@@ -50,6 +50,24 @@ system_context:
 
 # ALL NEW ENTRIES AFTER THIS LINE
 
+## 2026.1.1.1 — Repository Taxonomy Reorganization (2026-01-22)
+
+### Added
+- `scripts/rebuild_lupo_contents.py` for rebuilding `lupo_contents` from Markdown sources.
+- `dialogs/operations/2026-01-22_repo_organization.md` to log the repo organization work.
+
+### Changed
+- Reorganized documentation into `docs/channels/*` (root docs migrated to channel taxonomy).
+- Consolidated legacy doctrine into `docs/channels/doctrine/legacy-import/`.
+- Moved agent-1 documentation into `docs/channels/agents/agent-1/`.
+- Moved schema reports into `docs/channels/schema/reports/` and migration analyses into `docs/channels/schema/migrations/analysis/`.
+- Updated internal Markdown links to reflect new locations.
+- Created missing channel `README.md` and `INDEX.md` stubs across subfolders.
+- Updated version sources to `2026.1.1.1` (`LUPEDIA_VERSION`, `config/global_atoms.yaml`).
+
+### Removed
+- Empty directories removed after reorganization cleanup.
+
 ## 2026.1.0.8 — AAL v3.0 Epistemic Pluralism Architecture (2026-01-22)
 
 ### Major Architecture Evolution
