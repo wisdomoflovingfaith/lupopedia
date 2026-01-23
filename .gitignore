@@ -1,0 +1,106 @@
+# ---------------------------------------------------------
+# Core Git
+# ---------------------------------------------------------
+.git/
+.gitignore
+
+# ---------------------------------------------------------
+# JetBrains IDEs (PhpStorm, IntelliJ, WebStorm)
+# ---------------------------------------------------------
+.idea/
+*.iml
+out/
+cmake-build-*/
+
+# ---------------------------------------------------------
+# OS junk
+# ---------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------
+# PHP / Web server cache
+# ---------------------------------------------------------
+*.log
+*.cache
+*.tmp
+*.bak
+*.swp
+*.swo
+*.orig
+*.old
+*.lock
+
+# ---------------------------------------------------------
+# Composer (if ever used by contributors)
+# ---------------------------------------------------------
+vendor/
+composer.lock
+
+# ---------------------------------------------------------
+# Node (if contributors use tooling)
+# ---------------------------------------------------------
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# ---------------------------------------------------------
+# Build artifacts
+# ---------------------------------------------------------
+dist/
+build/
+coverage/
+reports/
+
+# ---------------------------------------------------------
+# Environment / secrets
+# ---------------------------------------------------------
+.env
+.env.*
+*.env.local
+*.env.development
+*.env.production
+
+# ---------------------------------------------------------
+# Uploads (never version control user content)
+# ---------------------------------------------------------
+uploads/
+user_uploads/
+assets/uploads/
+
+# ---------------------------------------------------------
+# Cache directories (Lupopedia + Crafty Syntax)
+# ---------------------------------------------------------
+cache/
+tmp/
+templates_c/
+sessions/
+
+# ---------------------------------------------------------
+# Lupopedia-specific exclusions
+# ---------------------------------------------------------
+/config/local.php
+/config/local/*
+/config/secret/*
+/runtime/*
+/runtime/cache/*
+/runtime/sessions/*
+/runtime/logs/*
+
+# ---------------------------------------------------------
+# Crafty Syntax legacy exclusions
+# ---------------------------------------------------------
+livehelp/logs/
+livehelp/sessions/
+livehelp/templates_c/
+livehelp/cache/
+
+# ---------------------------------------------------------
+# Prevent accidental deployment of dev tools
+# ---------------------------------------------------------
+tests/
+docs/dev/
+sandbox/
+
+lupopedia-config.php
