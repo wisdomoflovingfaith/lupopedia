@@ -1,4 +1,4 @@
----
+﻿---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 4.1.2
 header_atoms:
@@ -114,8 +114,9 @@ DeepSeek is valuable for reasoning, not timekeeping.
 - **[CORE_PHILOSOPHY.md](../overview/CORE_PHILOSOPHY.md)** - Why agents are discovered, not assigned
 - **[FOUNDERS_NOTE.md](../overview/FOUNDERS_NOTE.md)** - Lore entries documenting role discoveries
 - **[UTC_TIMEKEEPER Doctrine](UTC_TIMEKEEPER_DOCTRINE.md)** - UTC_TIMEKEEPER agent specification
-- **[agents/5/utc_mirror_capability_matrix.md](../../agents/5/utc_mirror_capability_matrix.md)** - UTC mirror capability matrix
+- **[agents/0005/utc_mirror_capability_matrix.md](../../agents/0005/utc_mirror_capability_matrix.md)** - UTC mirror capability matrix
 
 ---
 
 **Pack Role Registry Status:** Published as of Version 4.1.2. This registry documents discovered agent roles and serves as a living map of the Pack.
+

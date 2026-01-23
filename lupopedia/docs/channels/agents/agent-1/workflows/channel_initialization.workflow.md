@@ -1,4 +1,4 @@
----
+﻿---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 4.0.16
 header_atoms:
@@ -320,11 +320,11 @@ WHERE channel_id = :channel_id AND is_deleted = 0;
   - `dialogs/<channel_name>_dialog.md`
   
 - **Templates:**
-  - `agents/1/templates/channel_identity_block.template.md`
+  - `agents/0001/templates/channel_identity_block.template.md`
   
 - **Doctrine:**
-  - `agents/1/doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md`
-  - `agents/1/doctrine/WOLFIE_UTC_AUTHORITY.md`
+  - `agents/0001/doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md`
+  - `agents/0001/doctrine/WOLFIE_UTC_AUTHORITY.md`
   
 - **Agents:**
   - UTC_TIMEKEEPER (agent_registry_id: 5) — Real UTC timestamp provider
@@ -358,3 +358,4 @@ This workflow provides the structural outline for channel initialization. Future
 *Version: GLOBAL_CURRENT_LUPOPEDIA_VERSION*  
 *Status: Published*  
 *Author: GLOBAL_CURRENT_AUTHORS*
+

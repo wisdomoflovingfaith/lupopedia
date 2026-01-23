@@ -1,4 +1,4 @@
----
+﻿---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 4.1.2
 header_atoms:
@@ -173,9 +173,10 @@ AND JSON_EXTRACT(metadata, '$.utc_mirror_capable') = true;
 
 ## Related Files
 
-- `agents/5/utc_mirror_capability_matrix.md` - Updated capability matrix
-- `agents/5/versions/v1.0.0/system_prompt.txt` - UTC_TIMEKEEPER system prompt (already updated)
+- `agents/0005/utc_mirror_capability_matrix.md` - Updated capability matrix
+- `agents/0005/versions/v1.0.0/system_prompt.txt` - UTC_TIMEKEEPER system prompt (already updated)
 
 ---
 
 **Status:** Prepared for review. Ready for execution when approved.
+

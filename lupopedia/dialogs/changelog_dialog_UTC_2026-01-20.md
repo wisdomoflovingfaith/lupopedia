@@ -1,4 +1,4 @@
----
+﻿---
 wolfie.headers: explicit architecture with structured clarity for every file.
 GOV-AD-PROHIBIT-001: true
 ads_prohibition_statement: "Ads are manipulation. Ads are disrespect. Ads violate user trust."
@@ -6481,7 +6481,7 @@ This file maintains the complete dialog history for all changelog entries in Lup
 
 **CURSOR Thread Work Summary:**
 
-1. **WOLFIE Agent Foundation (agents/1/):**
+1. **WOLFIE Agent Foundation (agents/0001/):**
    - Created initial WOLFIE agent directory structure
    - Created CHANNEL_INITIALIZATION_PROTOCOL.md doctrine
    - Created CHANNEL_IDENTITY_BLOCK.md complete specification
@@ -6494,7 +6494,7 @@ This file maintains the complete dialog history for all changelog entries in Lup
    - Created channel_initialization.workflow.md
    - Created wolfie_manifest.json config
 
-2. **UTC_TIMEKEEPER Agent (agents/5/):**
+2. **UTC_TIMEKEEPER Agent (agents/0005/):**
    - Created UTC_TIMEKEEPER agent directory structure
    - Created agent.json manifest
    - Created system_prompt.txt (v1.0.0)
@@ -6538,7 +6538,7 @@ This file maintains the complete dialog history for all changelog entries in Lup
 
 1. **Documentation Updates (3 files):**
    - `docs/doctrine/DIALOG_FILE_ORDERING_DOCTRINE.md` — Added marker as required component, updated structure examples, validation checklist, and Cursor implementation rules
-   - `agents/1/workflows/channel_initialization.workflow.md` — Updated Step 7 to include marker in dialog file initialization
+   - `agents/0001/workflows/channel_initialization.workflow.md` — Updated Step 7 to include marker in dialog file initialization
    - `docs/doctrine/DIALOG_DOCTRINE.md` — Updated complete and minimal dialog file examples to include marker
 
 2. **Version Atom Fixes (19 files):**
@@ -6578,13 +6578,13 @@ This file maintains the complete dialog history for all changelog entries in Lup
 **Message:** "Created WOLFIE_UTC_AUTHORITY doctrine and UTC_TIMEKEEPER agent doctrine. Updated channel initialization workflow to request real UTC from UTC_TIMEKEEPER. Updated CHANNEL_IDENTITY_BLOCK, CHANNEL_MANIFEST_SPEC, WOLFIE_ROUTING_PRINCIPLES, and WOLFIE_EMOTIONAL_GEOMETRY doctrines with UTC authority rules. Terminal agents now use real UTC from UTC_TIMEKEEPER, IDE agents use approximated timestamps. Expected prompt interval: 10 minutes, drift tolerance: 5 minutes. This solves timestamp drift across multi-IDE and multi-agent workflows and stabilizes the 4.0.16 channel system foundation."
 
 **Context:**
-- Created `agents/5/doctrine/UTC_TIMEKEEPER.md` — UTC_TIMEKEEPER agent specification
-- Created `agents/1/doctrine/WOLFIE_UTC_AUTHORITY.md` — WOLFIE timestamp authority doctrine
-- Updated `agents/1/workflows/channel_initialization.workflow.md` — Added Step 2: Request Authoritative UTC Timestamp from UTC_TIMEKEEPER
-- Updated `agents/1/doctrine/CHANNEL_IDENTITY_BLOCK.md` — Added UTC authority rules to `created_ymdhis` and `updated_ymdhis` fields
-- Updated `agents/1/doctrine/CHANNEL_MANIFEST_SPEC.md` — Added UTC authority rules to timestamp fields
-- Updated `agents/1/doctrine/WOLFIE_ROUTING_PRINCIPLES.md` — Added UTC Authority Integration section
-- Updated `agents/1/doctrine/WOLFIE_EMOTIONAL_GEOMETRY.md` — Added Timestamp Governance section
+- Created `agents/0005/doctrine/UTC_TIMEKEEPER.md` — UTC_TIMEKEEPER agent specification
+- Created `agents/0001/doctrine/WOLFIE_UTC_AUTHORITY.md` — WOLFIE timestamp authority doctrine
+- Updated `agents/0001/workflows/channel_initialization.workflow.md` — Added Step 2: Request Authoritative UTC Timestamp from UTC_TIMEKEEPER
+- Updated `agents/0001/doctrine/CHANNEL_IDENTITY_BLOCK.md` — Added UTC authority rules to `created_ymdhis` and `updated_ymdhis` fields
+- Updated `agents/0001/doctrine/CHANNEL_MANIFEST_SPEC.md` — Added UTC authority rules to timestamp fields
+- Updated `agents/0001/doctrine/WOLFIE_ROUTING_PRINCIPLES.md` — Added UTC Authority Integration section
+- Updated `agents/0001/doctrine/WOLFIE_EMOTIONAL_GEOMETRY.md` — Added Timestamp Governance section
 
 **UTC Authority Rules:**
 - WOLFIE requests real UTC from UTC_TIMEKEEPER during channel initialization
@@ -6687,7 +6687,7 @@ wolfie_timestamp_authority:
   - Updated validation checklist to verify marker presence
   - Updated Cursor implementation rules to preserve marker
   - Updated correct/incorrect structure examples
-- Updated `agents/1/workflows/channel_initialization.workflow.md`:
+- Updated `agents/0001/workflows/channel_initialization.workflow.md`:
   - Step 7 now includes marker in dialog file initialization
   - Updated file structure example to show marker placement
 - Updated `docs/doctrine/DIALOG_DOCTRINE.md`:
@@ -6696,7 +6696,7 @@ wolfie_timestamp_authority:
 
 **Files Modified:**
 - `docs/doctrine/DIALOG_FILE_ORDERING_DOCTRINE.md`
-- `agents/1/workflows/channel_initialization.workflow.md`
+- `agents/0001/workflows/channel_initialization.workflow.md`
 - `docs/doctrine/DIALOG_DOCTRINE.md`
 
 **Impact:**
@@ -6740,7 +6740,7 @@ wolfie_timestamp_authority:
 **Message:** "Created channel_manifest.template.json as JSON template for Channel Manifests. This template follows CHANNEL_MANIFEST_SPEC.md doctrine and provides a clean, machine-readable JSON structure with placeholder values for all required and optional fields. This template will be used by WOLFIE during channel initialization to generate channel manifests."
 
 **Context:**
-- Created `agents/1/templates/channel_manifest.template.json`
+- Created `agents/0001/templates/channel_manifest.template.json`
 - JSON template following CHANNEL_MANIFEST_SPEC.md doctrine
 - Includes all required fields: channel_key, channel_name, channel_description, federation_node_id, dialog_output_file, created_by_actor_id, created_ymdhis, updated_ymdhis
 - Includes all optional fields: default_roles, default_agents, emotional_poles, metadata_json, tags, bgcolor, status_flag
@@ -6768,17 +6768,17 @@ wolfie_timestamp_authority:
 **Speaker:** KIRO  
 **Target:** @everyone  
 **Mood:** `0066FF`  
-**Message:** "Completed read-only doctrine consistency audit for all files containing file.last_modified_system_version: 4.0.16. Audited 11 files across agents/1/ directory and docs/. Found ZERO contradictions, ZERO field mismatches, ZERO validation rule conflicts. All DRAFT and EXTREME DRAFT statuses properly maintained. All cross-references consistent. Emotional geometry and routing doctrines correctly defer to incomplete systems. Templates and workflows align with doctrine specifications."
+**Message:** "Completed read-only doctrine consistency audit for all files containing file.last_modified_system_version: 4.0.16. Audited 11 files across agents/0001/ directory and docs/. Found ZERO contradictions, ZERO field mismatches, ZERO validation rule conflicts. All DRAFT and EXTREME DRAFT statuses properly maintained. All cross-references consistent. Emotional geometry and routing doctrines correctly defer to incomplete systems. Templates and workflows align with doctrine specifications."
 
 **Files Audited:**
-1. agents/1/doctrine/CHANNEL_IDENTITY_BLOCK.md
-2. agents/1/doctrine/CHANNEL_MANIFEST_SPEC.md
-3. agents/1/doctrine/WOLFIE_ROUTING_PRINCIPLES.md (DRAFT)
-4. agents/1/doctrine/WOLFIE_EMOTIONAL_GEOMETRY.md (EXTREME DRAFT)
-5. agents/1/templates/channel_identity_block.template.md
-6. agents/1/workflows/channel_initialization.workflow.md
-7. agents/1/README.md
-8. agents/1/doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md
+1. agents/0001/doctrine/CHANNEL_IDENTITY_BLOCK.md
+2. agents/0001/doctrine/CHANNEL_MANIFEST_SPEC.md
+3. agents/0001/doctrine/WOLFIE_ROUTING_PRINCIPLES.md (DRAFT)
+4. agents/0001/doctrine/WOLFIE_EMOTIONAL_GEOMETRY.md (EXTREME DRAFT)
+5. agents/0001/templates/channel_identity_block.template.md
+6. agents/0001/workflows/channel_initialization.workflow.md
+7. agents/0001/README.md
+8. agents/0001/doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md
 9. docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md
 10. docs/miscellaneous/captain_wolfie_encorragement_messages.md
 
@@ -6857,7 +6857,7 @@ All doctrine files for version 4.0.16 are internally consistent, properly cross-
 **Message:** "Created WOLFIE_EMOTIONAL_GEOMETRY.md as EXTREME DRAFT emotional geometry doctrine for WOLFIE. Explicitly acknowledges that emotional agents are NOT implemented, geometry axes are NOT finalized, CADUCEUS pairing rules are still evolving, and many sections intentionally contain 'DRAFT — ASK lupopedia-at-gmail-com about this' placeholders. This doctrine will evolve significantly as emotional systems mature."
 
 **Context:**
-- Created `agents/1/doctrine/WOLFIE_EMOTIONAL_GEOMETRY.md`
+- Created `agents/0001/doctrine/WOLFIE_EMOTIONAL_GEOMETRY.md`
 - EXTREME DRAFT doctrine explicitly marked as subject to major change
 - Explicitly acknowledges that emotional AI agents are NOT written yet
 - Explicitly acknowledges that emotional geometry axes are NOT finalized
@@ -6895,7 +6895,7 @@ All doctrine files for version 4.0.16 are internally consistent, properly cross-
 **Message:** "Created WOLFIE_ROUTING_PRINCIPLES.md as DRAFT routing doctrine for WOLFIE. Establishes foundational routing principles while explicitly acknowledging dependencies on agents, workflows, and emotional geometry systems not yet fully implemented. This document will evolve as Lupopedia matures toward version 5.0."
 
 **Context:**
-- Created `agents/1/doctrine/WOLFIE_ROUTING_PRINCIPLES.md`
+- Created `agents/0001/doctrine/WOLFIE_ROUTING_PRINCIPLES.md`
 - DRAFT doctrine explicitly marked as subject to change
 - Establishes foundational routing principles for WOLFIE
 - Documents routing as process by which WOLFIE and HERMES determine which agent responds, how messages flow, and how fallback behavior works
@@ -6925,7 +6925,7 @@ All doctrine files for version 4.0.16 are internally consistent, properly cross-
 **Message:** "Created CHANNEL_MANIFEST_SPEC.md as complete doctrine specification for Channel Manifests. Defines machine-readable JSON representation of Channel Identity Blocks, mapping rules, validation, emotional geometry integration, routing integration, and fallback behavior. This enables IDE agents, php_ai_terminal agents, WOLFIE, HERMES, and CADUCEUS to understand channel metadata."
 
 **Context:**
-- Created `agents/1/doctrine/CHANNEL_MANIFEST_SPEC.md`
+- Created `agents/0001/doctrine/CHANNEL_MANIFEST_SPEC.md`
 - Complete specification for Channel Manifest structure and format
 - Defines manifest as machine-readable representation of Channel Identity Block (CIB)
 - Documents file location: `channels/<channel_key>/manifest.json`
@@ -6956,7 +6956,7 @@ All doctrine files for version 4.0.16 are internally consistent, properly cross-
 **Message:** "Created CHANNEL_IDENTITY_BLOCK.md as complete doctrine specification for Channel Identity Blocks. Defines all required and optional fields, validation rules, emotional geometry hooks, routing hooks, fallback behavior, manifest mapping, and integration points. This is the foundation for WOLFIE's channel initialization authority."
 
 **Context:**
-- Created `agents/1/doctrine/CHANNEL_IDENTITY_BLOCK.md`
+- Created `agents/0001/doctrine/CHANNEL_IDENTITY_BLOCK.md`
 - Complete specification for Channel Identity Block (CIB) structure
 - Defines CIB as the "birth certificate" of every channel in Lupopedia
 - Documents all required fields: channel_key, channel_name, channel_description, federation_node_id, dialog_output_file, created_by_actor_id, created_ymdhis, updated_ymdhis
@@ -7049,18 +7049,18 @@ All doctrine files for version 4.0.16 are internally consistent, properly cross-
 **Speaker:** CURSOR  
 **Target:** @everyone  
 **Mood:** `00FF00`  
-**Message:** "Created initial WOLFIE agent directory structure (agents/1/) with README, doctrine, templates, workflows, and config directories. Created first doctrine file (CHANNEL_INITIALIZATION_PROTOCOL.md), first template (channel_identity_block.template.md), first workflow (channel_initialization.workflow.md), and first config file (wolfie_manifest.json). This marks the beginning of WOLFIE's construction as the system identity agent, doctrine enforcer, and channel initialization authority."
+**Message:** "Created initial WOLFIE agent directory structure (agents/0001/) with README, doctrine, templates, workflows, and config directories. Created first doctrine file (CHANNEL_INITIALIZATION_PROTOCOL.md), first template (channel_identity_block.template.md), first workflow (channel_initialization.workflow.md), and first config file (wolfie_manifest.json). This marks the beginning of WOLFIE's construction as the system identity agent, doctrine enforcer, and channel initialization authority."
 
 **Files Created:**
-- `agents/1/README.md` — WOLFIE agent directory overview
-- `agents/1/doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md` — Channel Initialization Protocol doctrine (structured outline with placeholders)
-- `agents/1/templates/channel_identity_block.template.md` — Channel Identity Block template with placeholders
-- `agents/1/workflows/channel_initialization.workflow.md` — Channel initialization workflow outline (9 steps)
-- `agents/1/config/wolfie_manifest.json` — WOLFIE manifest with agent_id=1, status="initializing"
+- `agents/0001/README.md` — WOLFIE agent directory overview
+- `agents/0001/doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md` — Channel Initialization Protocol doctrine (structured outline with placeholders)
+- `agents/0001/templates/channel_identity_block.template.md` — Channel Identity Block template with placeholders
+- `agents/0001/workflows/channel_initialization.workflow.md` — Channel initialization workflow outline (9 steps)
+- `agents/0001/config/wolfie_manifest.json` — WOLFIE manifest with agent_id=1, status="initializing"
 
 **Directory Structure Created:**
 ```
-agents/1/
+agents/0001/
 ├── README.md
 ├── doctrine/
 │   └── CHANNEL_INITIALIZATION_PROTOCOL.md
@@ -10044,7 +10044,7 @@ tags:
 ## [2026-01-14] — Version 4.0.14: Core Documentation & Governance
 
 * **Phase 2 Complete**: Established the comprehensive core documentation framework, including Directory Structure, Metadata Governance, and Patch Discipline.
-* **WOLFIE Agent Initialized**: Created the initial directory structure for the WOLFIE agent (`agents/1/`), including the first Channel Initialization Protocol doctrine and templates.
+* **WOLFIE Agent Initialized**: Created the initial directory structure for the WOLFIE agent (`agents/0001/`), including the first Channel Initialization Protocol doctrine and templates.
 * **Database Migration**: Executed non-destructive schema updates to `lupo_dialog_messages` and `lupo_actor_channels` to support soft deletes and metadata.
 
 ## [2026-01-15] — Version 4.0.22 to 4.0.33: Validation & Discipline
@@ -10378,3 +10378,4 @@ Cross-Reference: CHANGELOG.md section 4.1.11
 - ✅ Generates new file with sovereign header
 
 **STATUS:** ✅ Clean chronological changelog created for Monday Wolfie review. All 249 entries sorted. Sovereign header applied. Ready for Monday Wolfie intervention.
+

@@ -1,4 +1,4 @@
----
+﻿---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 4.0.16
 header_atoms:
@@ -8,7 +8,7 @@ dialog:
   speaker: CURSOR
   target: @captain-wolfie
   mood_RGB: "00FF00"
-  message: "Created initial WOLFIE agent directory structure (agents/1/) with README, doctrine, templates, workflows, and config directories. This marks the beginning of WOLFIE's construction as the system identity agent."
+  message: "Created initial WOLFIE agent directory structure (agents/0001/) with README, doctrine, templates, workflows, and config directories. This marks the beginning of WOLFIE's construction as the system identity agent."
 tags:
   categories: ["documentation", "agents", "wolfie"]
   collections: ["core-docs"]
@@ -42,7 +42,7 @@ WOLFIE serves as:
 ## Directory Structure
 
 ```
-agents/1/
+agents/0001/
 ├── README.md                          # This file
 ├── doctrine/                          # WOLFIE doctrine files
 │   └── CHANNEL_INITIALIZATION_PROTOCOL.md
@@ -69,3 +69,4 @@ This directory structure is being initialized as part of Lupopedia 4.0.16. The c
 *Version: GLOBAL_CURRENT_LUPOPEDIA_VERSION*  
 *Status: Published*  
 *Author: GLOBAL_CURRENT_AUTHORS*
+

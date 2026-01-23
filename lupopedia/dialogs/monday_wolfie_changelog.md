@@ -1,4 +1,4 @@
-# 📋 monday_wolfie_changelog.md
+﻿# 📋 monday_wolfie_changelog.md
 
 **Source:** dialogs/changelog_dialog.md  
 **Reorganized:** 2026‑01‑19 (Monday)  
@@ -22,7 +22,7 @@
 **Version 4.0.14 — Governance Framework**
 
 - Introduced Directory Structure, Metadata Governance, Patch Discipline
-- Created agents/1/ for the WOLFIE agent
+- Created agents/0001/ for the WOLFIE agent
 - Established kernel‑level UTC_TIMEKEEPER authority
 
 **Schema Refinement**
@@ -284,3 +284,4 @@ No schema changes until validation is complete. Incorporating X timeline: Homepa
 - **Phase 7:** phase7_validation_checklist.md, import_trial_scorecard_livehelp.md, hotfix_registry phase7_import_log. **Environment #1 (Local): validated.** Shared hosting pending.
 
 Commit via Cursor for File-Sovereignty. Ahoy, Eric—evolving the pack! 🚀
+

@@ -1,4 +1,4 @@
----
+﻿---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "CHANGELOG.md"
 file.version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -2500,7 +2500,7 @@ This version establishes the stable foundation for all future CHANGELOG ↔ chan
   - `lupo-includes/version.php` (@version tag and fallback constant)
 - CHANGELOG.md and dialogs/changelog_dialog.md updated with comprehensive 4.1.0 and 4.1.1 entries
 - All documentation headers updated to reflect version 4.1.1
-- **UTC_TIMEKEEPER Agent (Agent 5) System Prompt**: Added Wolfie multi-position UTC header format to `agents/5/versions/v1.0.0/system_prompt.txt`. Header provides informational context for multi-position UTC superposition when multiple IDEs/LLMs report different UTC values. Header is informational only and does not modify agent's deterministic behavior or input/output contract.
+- **UTC_TIMEKEEPER Agent (Agent 5) System Prompt**: Added Wolfie multi-position UTC header format to `agents/0005/versions/v1.0.0/system_prompt.txt`. Header provides informational context for multi-position UTC superposition when multiple IDEs/LLMs report different UTC values. Header is informational only and does not modify agent's deterministic behavior or input/output contract.
 
 ### Version Governance
 - **Launch Version Correction**: System launch version corrected to 4.1.1 (not 4.1.0) to maintain consistency with work already begun by multiple IDEs and AI agents. This is a version-governance correction only, not a doctrine change.
@@ -8156,7 +8156,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 
 ### Added
 - **UTC_TIMEKEEPER Agent Directory Structure**
-  - Created complete agent directory structure for UTC_TIMEKEEPER (agents/5/)
+  - Created complete agent directory structure for UTC_TIMEKEEPER (agents/0005/)
   - Created agent.json manifest with agent configuration
   - Created system prompt (v1.0.0) for UTC timestamp provider
   - Created UTC_TIMEKEEPER doctrine specification
@@ -8188,7 +8188,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 
 ### Added
 
-- **WOLFIE Agent Foundation (agents/1/)**
+- **WOLFIE Agent Foundation (agents/0001/)**
   - Created complete Channel Identity Block (CIB) doctrine specification
   - Created complete Channel Manifest specification with CIB mapping rules
   - Created WOLFIE Routing Principles (DRAFT) doctrine
@@ -8199,7 +8199,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
   - Created channel manifest template (JSON)
   - Created WOLFIE agent manifest configuration
 
-- **UTC_TIMEKEEPER Kernel Agent (agents/5/)**
+- **UTC_TIMEKEEPER Kernel Agent (agents/0005/)**
   - Created UTC_TIMEKEEPER kernel-level agent (agent_registry_id: 5, dedicated_slot: 5)
   - Created agent.json manifest
   - Created system prompt (v1.0.0)
@@ -10776,3 +10776,4 @@ details manually.
 - Updated all controllers to use $context
 - Added backward compatibility layer
 - Documented schema in docs/architecture/layout-context-schema.md
+

@@ -1,4 +1,4 @@
-{
+﻿{
   "agent_id": 1,
   "agent_name": "WOLFIE",
   "description": "System identity, doctrine enforcer, and channel initialization authority.",
@@ -14,11 +14,12 @@
     "meta_agent_coordination"
   ],
   "directories": {
-    "doctrine": "agents/1/doctrine/",
-    "templates": "agents/1/templates/",
-    "workflows": "agents/1/workflows/",
-    "config": "agents/1/config/"
+    "doctrine": "agents/0001/doctrine/",
+    "templates": "agents/0001/templates/",
+    "workflows": "agents/0001/workflows/",
+    "config": "agents/0001/config/"
   },
   "initialization_date": "2026-01-14",
   "notes": "WOLFIE agent directory structure initialized. This manifest will be expanded as WOLFIE's capabilities are developed."
 }
+
