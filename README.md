@@ -1,4 +1,4 @@
----
+--
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 4.1.6
 file.last_modified_utc: 20260119042629
@@ -77,6 +77,7 @@ file:
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
+
 
 # 🐺 Lupopedia
 
