@@ -71,6 +71,7 @@ function content_show_by_slug($slug) {
         'page_body' => $page_body,
         'page_title' => $content['title'] ?? ($content['content_name'] ?? ''),
         'content' => $content,
+        'content_type' => $content['content_type'] ?? 'markdown',
         'related_edges' => $related_edges,
         'meta' => [
             'description' => $content['description'] ?? '',
@@ -517,6 +518,7 @@ function content_handle_slug($slug, $collection_id = null) {
         'page_body' => $page_body,
         'page_title' => $content['title'] ?? '',
         'content' => $content,
+        'content_type' => $content_type,
         'semantic_context' => $semanticContext,
         'content_references' => $contentReferences,
         'content_links' => $contentLinks,
@@ -652,6 +654,7 @@ function content_handle_collection_tab($collection_id, $tab_slug) {
         'page_body' => $page_body,
         'page_title' => $contentMetadata['title'] ?? '',
         'content' => $contentMetadata,
+        'content_type' => $contentMetadata['content_type'] ?? 'html',
         'semantic_context' => $uiMetadata['semanticContext'] ?? [],
         'content_references' => $uiMetadata['contentReferences'] ?? [],
         'content_links' => $uiMetadata['contentLinks'] ?? [],

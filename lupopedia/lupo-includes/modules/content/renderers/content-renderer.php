@@ -153,6 +153,22 @@ function render_main_layout($context_or_body, $content = null, $metadata = []) {
     }
     $meta = isset($context['meta']) ? $context['meta'] : [];
     $related_edges = $context['related_edges'] ?? [];
+    $content_type = $context['content_type']
+        ?? ($meta['content_type'] ?? (is_array($content) ? ($content['content_type'] ?? null) : null));
+
+    $is_html = function($value) {
+        if (!is_string($value) || $value === '') {
+            return false;
+        }
+        return preg_match('/<[^>]+>/', $value) === 1;
+    };
+
+    if ($content_type === 'markdown' && !$is_html($page_body)) {
+        if (function_exists('render_markdown')) {
+            $page_body = render_markdown($page_body);
+            $context['page_body'] = $page_body;
+        }
+    }
 
     $semanticContext = $context['semantic_context'] ?? ($context['semanticContext'] ?? []);
     $contentReferences = $context['content_references'] ?? ($context['contentReferences'] ?? []);
