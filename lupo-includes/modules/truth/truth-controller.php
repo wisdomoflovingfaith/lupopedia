@@ -463,6 +463,7 @@ function truth_handle_slug($slug) {
             'page_body' => $page_body,
             'page_title' => $content['title'] ?? '',
             'content' => $content,
+            'content_type' => $content['content_type'] ?? null,
             'meta' => [
                 'description' => $content['description'] ?? ''
             ]
@@ -613,6 +614,7 @@ function truth_handle_view($slug) {
         'page_body' => $page_body,
         'page_title' => $contentMetadata['title'] ?? '',
         'content' => $contentMetadata,
+        'content_type' => $contentMetadata['content_type'] ?? 'html',
         'semantic_context' => $uiMetadata['semanticContext'] ?? [],
         'content_references' => $uiMetadata['contentReferences'] ?? [],
         'content_links' => $uiMetadata['contentLinks'] ?? [],
@@ -783,6 +785,7 @@ function truth_handle_assert($slug) {
         'page_body' => $page_body,
         'page_title' => $contentMetadata['title'] ?? '',
         'content' => $contentMetadata,
+        'content_type' => $contentMetadata['content_type'] ?? 'html',
         'semantic_context' => $uiMetadata['semanticContext'] ?? [],
         'content_references' => $uiMetadata['contentReferences'] ?? [],
         'content_links' => $uiMetadata['contentLinks'] ?? [],
@@ -963,6 +966,7 @@ function truth_handle_evidence($slug) {
         'page_body' => $page_body,
         'page_title' => $contentMetadata['title'] ?? '',
         'content' => $contentMetadata,
+        'content_type' => $contentMetadata['content_type'] ?? 'html',
         'semantic_context' => $uiMetadata['semanticContext'] ?? [],
         'content_references' => $uiMetadata['contentReferences'] ?? [],
         'content_links' => $uiMetadata['contentLinks'] ?? [],
@@ -1040,6 +1044,7 @@ function truth_handle_collection_tab($collection_id, $tab_slug) {
         'page_body' => $page_body,
         'page_title' => $contentMetadata['title'] ?? '',
         'content' => $contentMetadata,
+        'content_type' => $contentMetadata['content_type'] ?? 'html',
         'semantic_context' => $uiMetadata['semanticContext'] ?? [],
         'content_references' => $uiMetadata['contentReferences'] ?? [],
         'content_links' => $uiMetadata['contentLinks'] ?? [],
@@ -1135,6 +1140,7 @@ function truth_handle_collection_content($collection_id, $content_slug) {
         'page_body' => $page_body,
         'page_title' => $contentMetadata['title'] ?? '',
         'content' => $contentMetadata,
+        'content_type' => $contentMetadata['content_type'] ?? 'html',
         'semantic_context' => $uiMetadata['semanticContext'] ?? [],
         'content_references' => $uiMetadata['contentReferences'] ?? [],
         'content_links' => $uiMetadata['contentLinks'] ?? [],
@@ -1175,6 +1181,7 @@ function truth_render_not_found($slug) {
         'page_body' => $page_body,
         'page_title' => $content['title'] ?? '',
         'content' => $content,
+        'content_type' => $content['content_type'] ?? null,
         'meta' => [
             'description' => $content['description'] ?? ''
         ]

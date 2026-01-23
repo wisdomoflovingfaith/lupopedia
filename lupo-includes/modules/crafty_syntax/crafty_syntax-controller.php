@@ -78,6 +78,7 @@ function craftysyntax_handle_slug($slug) {
         'page_body' => $page_body,
         'page_title' => $content['title'] ?? '',
         'content' => $content,
+        'content_type' => $content['content_type'] ?? null,
         'meta' => [
             'description' => $content['description'] ?? ''
         ]
@@ -153,6 +154,7 @@ function craftysyntax_render_not_found($slug) {
         'page_body' => $page_body,
         'page_title' => $content['title'] ?? '',
         'content' => $content,
+        'content_type' => $content['content_type'] ?? null,
         'meta' => [
             'description' => $content['description'] ?? ''
         ]
