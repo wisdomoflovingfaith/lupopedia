@@ -1,0 +1,45 @@
+{
+    "table_name": "livehelp_visit_track",
+    "fields": [
+        "`recno` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`sessionid` varchar(40) NOT NULL DEFAULT '0'",
+        "`location` varchar(255) NOT NULL DEFAULT ''",
+        "`page` bigint NOT NULL DEFAULT 0",
+        "`title` varchar(100) NOT NULL DEFAULT ''",
+        "`whendone` bigint NOT NULL DEFAULT 0",
+        "`referrer` varchar(255) NOT NULL DEFAULT ''"
+    ],
+    "data": [
+        {
+            "recno": 5155,
+            "livehelp_id": 1,
+            "sessionid": "854e213f70b5bf013136271e06ea8eba",
+            "location": "http://www.lupopedia.com/craftysyntax/",
+            "page": 1,
+            "title": "Questions & Answers - LUPOPEDIA - Ontology Knowledge Platform",
+            "whendone": 20260119163309,
+            "referrer": "http://"
+        },
+        {
+            "recno": 5156,
+            "livehelp_id": 1,
+            "sessionid": "bd0e4d2bb021c47ea2ac6d9de7a48ff3",
+            "location": "http://lupopedia.com/agents.php",
+            "page": 1,
+            "title": "Chat with AI - LUPOPEDIA - Ontology Knowledge Platform",
+            "whendone": 20260119164215,
+            "referrer": "http://"
+        },
+        {
+            "recno": 5154,
+            "livehelp_id": 1,
+            "sessionid": "7c8a4eaa2f581f41cbfc67076073b4b2",
+            "location": "http://lupopedia.com/",
+            "page": 1,
+            "title": "Lupopedia  Human-Powered Knowledge   Empathetic AI",
+            "whendone": 20260119162940,
+            "referrer": "http://"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "table_name": "livehelp_keywords_daily",
+    "fields": [
+        "`recno` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`parentrec` int unsigned NOT NULL DEFAULT 0",
+        "`referer` varchar(255) NOT NULL DEFAULT ''",
+        "`pageurl` varchar(255) NOT NULL DEFAULT ''",
+        "`keywords` varchar(255) NOT NULL DEFAULT ''",
+        "`dateof` int NOT NULL DEFAULT 0",
+        "`levelvisits` int unsigned NOT NULL DEFAULT 0",
+        "`directvisits` int unsigned NOT NULL DEFAULT 0",
+        "`department` int NOT NULL DEFAULT 0"
+    ],
+    "data": []
+}

@@ -1,0 +1,9 @@
+{
+  "code": "STYLEKEEPER",
+  "name": "STYLEKEEPER",
+  "layer": "ux",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 96,
+  "version": "1.0.0"
+}

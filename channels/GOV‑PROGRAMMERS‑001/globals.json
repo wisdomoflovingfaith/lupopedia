@@ -1,0 +1,22 @@
+{
+    "version": "2026.1.0.3",
+    "channel_id": 1003,
+    "channel_key": "GOV‑PROGRAMMERS‑001",
+    "channel_name": "GOV‑PROGRAMMERS‑001",
+    "governance_flags": {
+        "governance_channel": true,
+        "auto_created": true,
+        "deletion_allowed": false
+    },
+    "allowed_actors": ["system", "wolfie", "programmers"],
+    "default_actor_id": 1,
+    "timestamps": {
+        "created_ymdhis": 20260106082200,
+        "updated_ymdhis": 20260106082200
+    },
+    "awareness_version": "2026.1.0.0",
+    "metadata": {
+        "purpose": "system-root",
+        "auto_created": true
+    }
+}

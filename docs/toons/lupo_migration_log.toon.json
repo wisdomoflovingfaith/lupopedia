@@ -1,0 +1,41 @@
+{
+  "table_name": "lupo_migration_log",
+  "fields": [
+    "`id` bigint NOT NULL auto_increment COMMENT 'Primary key'",
+    "`executed_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when migration was attempted'",
+    "`sql_snippet` text COMMENT 'First 2000 chars of migration SQL'",
+    "`status` varchar(20) NOT NULL COMMENT 'success or blocked'",
+    "`reason` text COMMENT 'If blocked, validation or execution reason'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_executed_ymdhis",
+      "columns": [
+        "executed_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Log of migration attempts by LupopediaMigrationController",
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

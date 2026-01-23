@@ -1,0 +1,45 @@
+{
+  "version": "4.2.1",
+  "created_utc": "2026-01-20T17:00:00Z",
+  "schema_freeze": "active",
+  "phase7_import_log": [
+    {
+      "hotfix_id": "phase7-import-local-001",
+      "version": "4.2.1",
+      "category": "import-validation",
+      "environment": "local",
+      "status": "validated",
+      "timestamp": "2026-01-21T00:00:00Z",
+      "validation_result": "pass",
+      "description": "Crafty Syntax 3.7.5 livehelp_ tables imported from lupopedia.com/lh into Lupopedia database for Phase 7 validation. Environment #1 (Local): phpMyAdmin confirms tables present; no errors; no schema drift; table count 173; doctrine 100%."
+    }
+  ],
+  "entries": [
+    {
+      "environment": "shared_hosting",
+      "status": "pending",
+      "crafty_version": "3.7.5",
+      "lupopedia_version": "4.2.1",
+      "run_utc": null,
+      "schema_pass": null,
+      "data_pass": null,
+      "timestamps_pass": null,
+      "toon_pass": null,
+      "overall_pass": null,
+      "notes": null
+    },
+    {
+      "environment": "local",
+      "status": "validated",
+      "crafty_version": "3.7.5",
+      "lupopedia_version": "4.2.1",
+      "run_utc": "2026-01-21T12:00:00Z",
+      "schema_pass": true,
+      "data_pass": true,
+      "timestamps_pass": true,
+      "toon_pass": true,
+      "overall_pass": true,
+      "notes": "Environment #1 (Local): Crafty Syntax 3.7.5 import from lupopedia.com/lh. phpMyAdmin confirms tables present. No errors, no schema drift. Table count 173. Doctrine 100%."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "code": "LOGWATCH",
+  "name": "LOGWATCH",
+  "layer": "system_ops",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 54,
+  "version": "1.0.0"
+}

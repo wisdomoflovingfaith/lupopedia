@@ -1,0 +1,85 @@
+{
+    "table_name": "lupo_help_tree",
+    "fields": [
+        "`help_tree_id` bigint NOT NULL auto_increment",
+        "`parent_id` bigint",
+        "`department_id` bigint NOT NULL DEFAULT 1",
+        "`content_id` bigint",
+        "`title` varchar(255) NOT NULL",
+        "`description` text",
+        "`action_type` enum('none','ai_agent','department','url','content','message') NOT NULL DEFAULT 'none'",
+        "`action_target` varchar(255)",
+        "`sort_order` int NOT NULL DEFAULT 0",
+        "`created_ymdhis` bigint NOT NULL",
+        "`updated_ymdhis` bigint NOT NULL",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0",
+        "`deleted_ymdhis` bigint"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "help_tree_id",
+        "expected_name": "help_tree_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_action",
+            "columns": [
+                "action_type",
+                "action_target"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_content",
+            "columns": [
+                "content_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_department",
+            "columns": [
+                "department_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_parent",
+            "columns": [
+                "parent_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_sort",
+            "columns": [
+                "parent_id",
+                "sort_order"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_updated",
+            "columns": [
+                "updated_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

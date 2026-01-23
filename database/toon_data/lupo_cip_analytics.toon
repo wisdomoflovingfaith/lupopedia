@@ -1,0 +1,94 @@
+{
+    "table_name": "lupo_cip_analytics",
+    "fields": [
+        "`id` bigint unsigned NOT NULL auto_increment",
+        "`event_id` bigint unsigned NOT NULL COMMENT 'Reference to lupo_cip_events.id'",
+        "`defensiveness_index` decimal(5,4) NOT NULL DEFAULT 0.0000 COMMENT 'DI: 0.0000-1.0000 scale'",
+        "`integration_velocity` decimal(5,4) NOT NULL DEFAULT 0.0000 COMMENT 'IV: 0.0000-1.0000 scale'",
+        "`architectural_impact_score` decimal(5,4) NOT NULL DEFAULT 0.0000 COMMENT 'AIS: 0.0000-1.0000 scale'",
+        "`doctrine_propagation_depth` tinyint unsigned NOT NULL DEFAULT 0 COMMENT 'DPD: 0-10 depth levels'",
+        "`critique_source_weight` decimal(5,4) NOT NULL DEFAULT 0.5000 COMMENT 'Source credibility weight'",
+        "`subsystem_impact_json` json COMMENT 'Impact analysis per subsystem'",
+        "`trend_analysis_json` json COMMENT 'Historical trend data'",
+        "`calculated_ymdhis` bigint NOT NULL COMMENT 'When analytics were calculated'",
+        "`recalculated_ymdhis` bigint COMMENT 'Last recalculation timestamp'",
+        "`analytics_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Analytics engine version'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "id",
+        "expected_name": "cip_analytic_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "unsigned_columns": [
+        {
+            "column_name": "id",
+            "current_type": "bigint unsigned",
+            "expected_type": "bigint",
+            "is_primary_key": true
+        },
+        {
+            "column_name": "event_id",
+            "current_type": "bigint unsigned",
+            "expected_type": "bigint",
+            "is_primary_key": false
+        },
+        {
+            "column_name": "doctrine_propagation_depth",
+            "current_type": "tinyint unsigned",
+            "expected_type": "tinyint",
+            "is_primary_key": false
+        }
+    ],
+    "indexes": [
+        {
+            "index_name": "idx_architectural_impact",
+            "columns": [
+                "architectural_impact_score"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_calculated_time",
+            "columns": [
+                "calculated_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_defensiveness_index",
+            "columns": [
+                "defensiveness_index"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_integration_velocity",
+            "columns": [
+                "integration_velocity"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "uk_event_analytics",
+            "columns": [
+                "event_id"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "uk_event_analytics",
+            "columns": [
+                "event_id"
+            ]
+        }
+    ]
+}

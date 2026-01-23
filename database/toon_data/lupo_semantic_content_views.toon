@@ -1,0 +1,123 @@
+{
+    "table_name": "lupo_semantic_content_views",
+    "fields": [
+        "`semantic_view_id` bigint NOT NULL auto_increment COMMENT 'Primary key for semantic content view'",
+        "`view_name` varchar(255) NOT NULL COMMENT 'View name identifier'",
+        "`view_type` enum('navigation','content','search','collection') NOT NULL COMMENT 'Type of semantic view'",
+        "`title` varchar(255) NOT NULL COMMENT 'View title'",
+        "`description` text COMMENT 'View description'",
+        "`template_path` varchar(512) NOT NULL COMMENT 'Template file path'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp'",
+        "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp'",
+        "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT 'View active flag'",
+        "`is_default` tinyint NOT NULL DEFAULT 0 COMMENT 'Default view flag'"
+    ],
+    "data": [
+        {
+            "semantic_view_id": 1,
+            "view_name": "navigation_overview",
+            "view_type": "navigation",
+            "title": "Semantic Navigation Overview",
+            "description": "Complete site structure with semantic relationships",
+            "template_path": "semantic/navigation-overview",
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_active": 1,
+            "is_default": 1
+        },
+        {
+            "semantic_view_id": 2,
+            "view_name": "content_view",
+            "view_type": "content",
+            "title": "Semantic Content View",
+            "description": "Full semantic content rendering for legacy pages",
+            "template_path": "semantic/content-view",
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_active": 1,
+            "is_default": 0
+        },
+        {
+            "semantic_view_id": 3,
+            "view_name": "search_view",
+            "view_type": "search",
+            "title": "Semantic Search View",
+            "description": "Search interface for semantic content discovery",
+            "template_path": "semantic/search-view",
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_active": 1,
+            "is_default": 0
+        },
+        {
+            "semantic_view_id": 4,
+            "view_name": "collection_view",
+            "view_type": "collection",
+            "title": "Semantic Collection View",
+            "description": "Organized content collections with semantic metadata",
+            "template_path": "semantic/collection-view",
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_active": 1,
+            "is_default": 0
+        }
+    ],
+    "primary_key": {
+        "column_name": "semantic_view_id",
+        "expected_name": "semantic_content_view_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis",
+                "is_default",
+                "is_active"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_active",
+            "columns": [
+                "is_active"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_default",
+            "columns": [
+                "is_default"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_view_type",
+            "columns": [
+                "view_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "uk_view_name",
+            "columns": [
+                "view_name"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "uk_view_name",
+            "columns": [
+                "view_name"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,443 @@
+﻿{
+    "overview": [],
+    "doctrine": [
+        {
+            "filename": "AGENT_CLASSIFICATION.md",
+            "slug": "agent-classification",
+            "title": "Agent Classification (Lupopedia 4.0.1)"
+        },
+        {
+            "filename": "AGENT_FILESYSTEM_DOCTRINE.md",
+            "slug": "agent-filesystem-doctrine",
+            "title": "Agent Filesystem + Prompt Template Doctrine"
+        },
+        {
+            "filename": "AGENT_LIFECYCLE_DOCTRINE.md",
+            "slug": "agent-lifecycle-doctrine",
+            "title": "Agent Lifecycle Doctrine"
+        },
+        {
+            "filename": "AGENT_PROMPT_DOCTRINE.md",
+            "slug": "agent-prompt-doctrine",
+            "title": "Agent Prompt Doctrine"
+        },
+        {
+            "filename": "AI_INTEGRATION_SAFETY_DOCTRINE.md",
+            "slug": "ai-integration-safety-doctrine",
+            "title": "≡ƒ¢í∩╕Å AI INTEGRATION SAFETY DOCTRINE (DRAFT)"
+        },
+        {
+            "filename": "AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md",
+            "slug": "ai-uncertainty-expression-doctrine",
+            "title": "≡ƒñû AI UNCERTAINTY EXPRESSION DOCTRINE (DRAFT)"
+        },
+        {
+            "filename": "ANIBUS_DOCTRINE.md",
+            "slug": "anibus-doctrine",
+            "title": "≡ƒÉ║ **ANIBUS DOCTRINE**"
+        },
+        {
+            "filename": "ATOMIZATION_DOCTRINE.md",
+            "slug": "atomization-doctrine",
+            "title": "≡ƒÄ» **ATOMIZATION DOCTRINE (MANDATORY)**"
+        },
+        {
+            "filename": "ATOM_RESOLUTION_SPECIFICATION.md",
+            "slug": "atom-resolution-specification",
+            "title": "≡ƒƒª **Atom Resolution Specification**"
+        },
+        {
+            "filename": "CHANNEL_DOCTRINE.md",
+            "slug": "channel-doctrine",
+            "title": "Channel Doctrine"
+        },
+        {
+            "filename": "CHARSET_COLLATION_DOCTRINE.md",
+            "slug": "charset-collation-doctrine",
+            "title": "≡ƒƒª **Charset and Collation Doctrine (Lupopedia 4.0.1)**"
+        },
+        {
+            "filename": "CONFIGURATION_DOCTRINE.md",
+            "slug": "configuration-doctrine",
+            "title": "≡ƒƒª **Lupopedia Configuration Doctrine**"
+        },
+        {
+            "filename": "CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md",
+            "slug": "cursor-cascade-role-separation-doctrine",
+            "title": "Cursor and Cascade Role Separation Doctrine"
+        },
+        {
+            "filename": "CURSOR_CONTEXT_METADATA.md",
+            "slug": "cursor-context-metadata",
+            "title": "≡ƒÄ» CURSOR CONTEXT METADATA (REQUIRED)"
+        },
+        {
+            "filename": "CURSOR_REFACTOR_DOCTRINE.md",
+            "slug": "cursor-refactor-doctrine",
+            "title": "Γ¡É **CURSOR REFACTOR DOCTRINE (Lupopedia 4.0.0)**"
+        },
+        {
+            "filename": "CURSOR_ROLE_DOCTRINE.md",
+            "slug": "cursor-role-doctrine",
+            "title": "≡ƒÄ» **CURSOR ROLE DOCTRINE (MANDATORY)**"
+        },
+        {
+            "filename": "DATABASE_SECURITY_DOCTRINE.md",
+            "slug": "database-security-doctrine",
+            "title": "≡ƒöÆ DATABASE SECURITY DOCTRINE (MANDATORY)"
+        },
+        {
+            "filename": "DIALOG_DOCTRINE.md",
+            "slug": "dialog-doctrine",
+            "title": "Dialog Doctrine"
+        },
+        {
+            "filename": "DIALOG_FILE_ORDERING_DOCTRINE.md",
+            "slug": "dialog-file-ordering-doctrine",
+            "title": "Dialog File Ordering Doctrine"
+        },
+        {
+            "filename": "DOCUMENTATION_AS_CODE_MANIFESTO.md",
+            "slug": "documentation-as-code-manifesto",
+            "title": "≡ƒƒª **Documentation-as-Code Manifesto**"
+        },
+        {
+            "filename": "DOCUMENTATION_DOCTRINE.md",
+            "slug": "documentation-doctrine",
+            "title": "≡ƒƒª **Lupopedia Documentation Doctrine**"
+        },
+        {
+            "filename": "DOCUMENTATION_REORGANIZATION_PROPOSAL.md",
+            "slug": "documentation-reorganization-proposal",
+            "title": "Documentation Reorganization Proposal"
+        },
+        {
+            "filename": "FAUCET_RULES_DOCTRINE.md",
+            "slug": "faucet-rules-doctrine",
+            "title": "Faucet Rules Doctrine"
+        },
+        {
+            "filename": "FEDERATION_DOCTRINE.md",
+            "slug": "federation-doctrine",
+            "title": "Federation Doctrine"
+        },
+        {
+            "filename": "FOLDER_NAMING_DOCTRINE.md",
+            "slug": "folder-naming-doctrine",
+            "title": "Folder Naming Doctrine"
+        },
+        {
+            "filename": "GLOBAL_ATOMS_DOCTRINE.md",
+            "slug": "global-atoms-doctrine",
+            "title": "Global Atoms Doctrine"
+        },
+        {
+            "filename": "INGESTION_DOCTRINE.md",
+            "slug": "ingestion-doctrine",
+            "title": "Ingestion & Semantic Radius Doctrine"
+        },
+        {
+            "filename": "INSTALLATION_LIFECYCLE_DOCTRINE.md",
+            "slug": "installation-lifecycle-doctrine",
+            "title": "Installation Lifecycle Doctrine"
+        },
+        {
+            "filename": "LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md",
+            "slug": "lupopedia-agent-dedicated-slot-ranges",
+            "title": "Lupopedia Agent Dedicated Slot Ranges (0ΓÇô999)"
+        },
+        {
+            "filename": "MIGRATION_DOCTRINE.md",
+            "slug": "migration-doctrine",
+            "title": "≡ƒƒª **Lupopedia Migration Doctrine (LiveHelp ΓåÆ Crafty Syntax 4.0.3)**"
+        },
+        {
+            "filename": "MODULE_DOCTRINE.md",
+            "slug": "module-doctrine",
+            "title": "Module Doctrine"
+        },
+        {
+            "filename": "MOOD_RGB_DOCTRINE.md",
+            "slug": "mood-rgb-doctrine",
+            "title": "Mood & Color Doctrine (Counting-in-Light)"
+        },
+        {
+            "filename": "MYTHIC_NAMES_DOCTRINE.md",
+            "slug": "mythic-names-doctrine",
+            "title": "≡ƒÄ» **MYTHIC NAMES DOCTRINE (MANDATORY)**"
+        },
+        {
+            "filename": "NAVIGATION_TAB_DOCTRINE.md",
+            "slug": "navigation-tab-doctrine",
+            "title": "Navigation Tab Doctrine"
+        },
+        {
+            "filename": "NO_FOREIGN_KEYS_DOCTRINE.md",
+            "slug": "no-foreign-keys-doctrine",
+            "title": "≡ƒÉ║ **NO FOREIGN KEYS DOCTRINE**"
+        },
+        {
+            "filename": "NO_STORED_PROCEDURES_DOCTRINE.md",
+            "slug": "no-stored-procedures-doctrine",
+            "title": "≡ƒÜ½ **NO STORED PROCEDURES / NO STORED FUNCTIONS DOCTRINE (MANDATORY)**"
+        },
+        {
+            "filename": "NO_TRIGGERS_DOCTRINE.md",
+            "slug": "no-triggers-doctrine",
+            "title": "≡ƒÜ½ **NO TRIGGERS DOCTRINE (MANDATORY)**"
+        },
+        {
+            "filename": "OPERATOR_UI_DOCTRINE.md",
+            "slug": "operator-ui-doctrine",
+            "title": "Operator UI Doctrine"
+        },
+        {
+            "filename": "PDO_CONVERSION_DOCTRINE.md",
+            "slug": "pdo-conversion-doctrine",
+            "title": "Γ¡É **PDO CONVERSION DOCTRINE (Lupopedia 4.0.1)**"
+        },
+        {
+            "filename": "REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md",
+            "slug": "reflective-emotional-geometry-doctrine",
+            "title": "≡ƒƒª **Reflective Emotional Geometry Doctrine ΓÇö Version 2.0**"
+        },
+        {
+            "filename": "ROUTING_DOCTRINE.md",
+            "slug": "routing-doctrine",
+            "title": "Routing Doctrine (HERMES + CADUCEUS)"
+        },
+        {
+            "filename": "SEMANTIC_GRAPH_DOCTRINE.md",
+            "slug": "semantic-graph-doctrine",
+            "title": "Semantic Graph Doctrine"
+        },
+        {
+            "filename": "SQL_REFACTOR_MAPPING_DOCTRINE.md",
+            "slug": "sql-refactor-mapping-doctrine",
+            "title": "Γ¡É **SQL REFACTOR MAPPING DOCTRINE**"
+        },
+        {
+            "filename": "SQL_REWRITE_DOCTRINE.md",
+            "slug": "sql-rewrite-doctrine",
+            "title": "Γ¡É **SQL REWRITE DOCTRINE (Lupopedia 4.0.1)**"
+        },
+        {
+            "filename": "SQL_TYPE_DOCTRINE.md",
+            "slug": "sql-type-doctrine",
+            "title": "SQL Type Doctrine"
+        },
+        {
+            "filename": "SUBDIRECTORY_INSTALLATION_DOCTRINE.md",
+            "slug": "subdirectory-installation-doctrine",
+            "title": "Lupopedia 4.0.9 ΓÇö Canonical Rules for Filesystem and URL Path Resolution"
+        },
+        {
+            "filename": "SYSTEM_AGENT_SAFETY_DOCTRINE.md",
+            "slug": "system-agent-safety-doctrine",
+            "title": "≡ƒ¢í∩╕Å SYSTEM AGENT SAFETY DOCTRINE"
+        },
+        {
+            "filename": "TABLE_PREFIXING_DOCTRINE.md",
+            "slug": "table-prefixing-doctrine",
+            "title": "≡ƒƒª **Table Prefixing and Primary Key Naming Doctrine (Lupopedia 4.0.1)**"
+        },
+        {
+            "filename": "TIMESTAMP_DOCTRINE.md",
+            "slug": "timestamp-doctrine",
+            "title": "Lupopedia Timestamp Doctrine"
+        },
+        {
+            "filename": "TOON_DOCTRINE.md",
+            "slug": "toon-doctrine",
+            "title": "Γ¡É **TOON DOCTRINE ΓÇö MANDATORY**"
+        },
+        {
+            "filename": "UI_LIBRARY_DOCTRINE.md",
+            "slug": "ui-library-doctrine",
+            "title": "UI Library Doctrine"
+        },
+        {
+            "filename": "VERSIONING_DOCTRINE.md",
+            "slug": "versioning-doctrine",
+            "title": "Versioning Doctrine"
+        },
+        {
+            "filename": "VERSION_DOCTRINE.md",
+            "slug": "version-doctrine",
+            "title": "Ecosystem Versioning Doctrine"
+        },
+        {
+            "filename": "WOLFIE_DOCTRINE.md",
+            "slug": "wolfie-doctrine",
+            "title": "≡ƒÉ║ **WOLFIE DOCTRINE**"
+        },
+        {
+            "filename": "WOLFIE_HEADER_DOCTRINE.md",
+            "slug": "wolfie-header-doctrine",
+            "title": "WOLFIE Header Doctrine"
+        },
+        {
+            "filename": "WOLFMIND_DOCTRINE.md",
+            "slug": "wolfmind-doctrine",
+            "title": "≡ƒÉ║ **WOLFMIND DOCTRINE**"
+        },
+        {
+            "filename": "as_above_so_below.md",
+            "slug": "as-above-so-below",
+            "title": "As above, so below (architectural principle)"
+        },
+        {
+            "filename": "emotional-agent-range.md",
+            "slug": "emotional-agent-range",
+            "title": "≡ƒÄ¡ **Emotional Agent Range Doctrine (1000ΓÇô1100)**"
+        },
+        {
+            "filename": "non_religious_position.md",
+            "slug": "non-religious-position",
+            "title": "Lupopedia is not a religious system"
+        }
+    ],
+    "architecture": [
+        {
+            "filename": "multi-ide-workflow.md",
+            "slug": "multi-ide-workflow",
+            "title": "Lupopedia Multi-IDE Workflow"
+        }
+    ],
+    "schema": [
+        {
+            "filename": "AI_SCHEMA_GUIDE.md",
+            "slug": "ai-schema-guide",
+            "title": "≡ƒÉ║ Wolfie's Schema Reference Guide"
+        },
+        {
+            "filename": "DATABASE_SCHEMA.md",
+            "slug": "database-schema",
+            "title": "≡ƒƒª **NOTE FOR CURSOR ΓÇö READ AND APPLY TO ALL FUTURE WORK**"
+        }
+    ],
+    "agents": [
+        {
+            "filename": "AGENT_PROMPT_TEMPLATING_STANDARD.md",
+            "slug": "agent-prompt-templating-standard",
+            "title": "≡ƒñû **Agent Prompt Templating Standard**"
+        },
+        {
+            "filename": "AGENT_RUNTIME.md",
+            "slug": "agent-runtime",
+            "title": "≡ƒñû **AI Agent Runtime Architecture**"
+        },
+        {
+            "filename": "ARA.md",
+            "slug": "ara",
+            "title": "≡ƒº¡ ARA ΓÇö Adversarial Review & Analysis Agent"
+        },
+        {
+            "filename": "DIALOG_HISTORY_SPEC.md",
+            "slug": "dialog-history-spec",
+            "title": "≡ƒô£ **Dialog History File Specification (dialog.md / changelog_dialog.md)**"
+        },
+        {
+            "filename": "HERMES_AND_CADUCEUS.md",
+            "slug": "hermes-and-caduceus",
+            "title": "**HERMES and CADUCEUS ΓÇö Complete Reference**"
+        },
+        {
+            "filename": "INLINE_DIALOG_SPECIFICATION.md",
+            "slug": "inline-dialog-specification",
+            "title": "≡ƒôÿ Inline Dialog Specification (Formal Standard v1.1)"
+        },
+        {
+            "filename": "WOLFIE_HEADER_GLOBAL_ATOMS_GUIDE.md",
+            "slug": "wolfie-header-global-atoms-guide",
+            "title": "ΓÜ¢∩╕Å WOLFIE Header Atoms ΓÇö Cursor Implementation Guide"
+        },
+        {
+            "filename": "WOLFIE_HEADER_SECTIONS_GUIDE.md",
+            "slug": "wolfie-header-sections-guide",
+            "title": "≡ƒƒª WOLFIE Header Sections Module ΓÇö Cursor Implementation Guide"
+        },
+        {
+            "filename": "WOLFIE_HEADER_SPECIFICATION.md",
+            "slug": "wolfie-header-specification",
+            "title": "≡ƒÉ║ **WOLFIE Header Specification v4.0.0**"
+        },
+        {
+            "filename": "lilith.md",
+            "slug": "lilith",
+            "title": "Lilith AI"
+        },
+        {
+            "filename": "thoth.md",
+            "slug": "thoth",
+            "title": "Thoth AI"
+        },
+        {
+            "filename": "wolfie.md",
+            "slug": "wolfie",
+            "title": "WOLFIE AI"
+        }
+    ],
+    "ui-ux": [],
+    "developer": [],
+    "history": [
+        {
+            "filename": "HISTORY.md",
+            "slug": "history",
+            "title": "≡ƒÉ║ **Lupopedia ΓÇö HISTORY.md**"
+        }
+    ],
+    "appendix": [
+        {
+            "filename": "COMPANY_REGISTRATIONS.md",
+            "slug": "company-registrations",
+            "title": "Company Registrations"
+        },
+        {
+            "filename": "COUNTING_IN_LIGHT.md",
+            "slug": "counting-in-light",
+            "title": "≡ƒÉ║ **CountingΓÇæinΓÇæLight Doctrine**"
+        },
+        {
+            "filename": "FOUNDERS_NOTE.md",
+            "slug": "founders-note",
+            "title": "Founder's Note"
+        },
+        {
+            "filename": "MYSQL_TO_POSTGRES_MEMORY.md",
+            "slug": "mysql-to-postgres-memory",
+            "title": "≡ƒƒª **MYSQL ΓåÆ POSTGRES MEMORY TABLE CONVERSION SPEC**"
+        },
+        {
+            "filename": "MY_FIRST_PYTHON_PROGRAM.md",
+            "slug": "my-first-python-program",
+            "title": "**My First Python Program (Federated Edition)**"
+        },
+        {
+            "filename": "PRESS_RELEASE_DRAFT.md",
+            "slug": "press-release-draft",
+            "title": "PRESS RELEASE DRAFT ΓÇö The Return of Wolfie"
+        },
+        {
+            "filename": "TERMINOLOGY.md",
+            "slug": "terminology",
+            "title": "≡ƒôû Lupopedia Terminology"
+        },
+        {
+            "filename": "WHAT_NOT_TO_DO_AND_WHY.md",
+            "slug": "what-not-to-do-and-why",
+            "title": "≡ƒº¿ WHAT_NOT_TO_DO_AND_WHY.md"
+        },
+        {
+            "filename": "WHO_IS_CAPTAIN_WOLFIE.md",
+            "slug": "who-is-captain-wolfie",
+            "title": "≡ƒÉ║ **Who Is Captain Wolfie?**"
+        },
+        {
+            "filename": "wolfie.md",
+            "slug": "wolfie",
+            "title": "Who is Wolfie"
+        }
+    ]
+}
+

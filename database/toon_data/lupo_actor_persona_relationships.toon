@@ -1,0 +1,46 @@
+{
+    "table_name": "lupo_actor_persona_relationships",
+    "fields": [
+        "`relationship_id` bigint NOT NULL auto_increment",
+        "`actor_id` bigint NOT NULL",
+        "`persona_id` bigint NOT NULL",
+        "`relationship_type` varchar(100) NOT NULL",
+        "`relationship_strength` decimal(5,2)",
+        "`relationship_context` json",
+        "`created_ymdhis` bigint NOT NULL",
+        "`updated_ymdhis` bigint NOT NULL"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "relationship_id",
+        "expected_name": "actor_persona_relationship_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_actor_id",
+            "columns": [
+                "actor_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_persona_id",
+            "columns": [
+                "persona_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_relationship_type",
+            "columns": [
+                "relationship_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

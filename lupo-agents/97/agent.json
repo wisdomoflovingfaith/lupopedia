@@ -1,0 +1,9 @@
+{
+  "code": "ACCESSIBILITY",
+  "name": "ACCESSIBILITY",
+  "layer": "ux",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 97,
+  "version": "1.0.0"
+}

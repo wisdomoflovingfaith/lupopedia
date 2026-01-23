@@ -1,0 +1,9 @@
+{
+  "code": "UXWOLF",
+  "name": "UXWOLF",
+  "layer": "ux",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 94,
+  "version": "1.0.0"
+}

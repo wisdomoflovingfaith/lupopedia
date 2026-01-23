@@ -1,0 +1,95 @@
+{
+    "table_name": "lupo_agent_faucets",
+    "fields": [
+        "`agent_faucet_id` bigint NOT NULL auto_increment",
+        "`actor_id` bigint NOT NULL",
+        "`name` varchar(100) NOT NULL COMMENT 'Public-facing faucet name (Wolfie UI, Wolfie Code, etc.)'",
+        "`alias_name` varchar(100)",
+        "`slug` varchar(100) NOT NULL COMMENT 'Internal identifier for referencing this faucet'",
+        "`description` text COMMENT 'Human-readable description of this faucet persona'",
+        "`style_preset` varchar(100) COMMENT 'Optional style/tone preset (mythic, formal, playful, etc.)'",
+        "`model_name` varchar(100)",
+        "`provider` varchar(50)",
+        "`temperature` float",
+        "`top_p` float",
+        "`max_tokens` int",
+        "`presence_penalty` float",
+        "`frequency_penalty` float",
+        "`system_prompt` longtext",
+        "`safety_json` json",
+        "`response_format` varchar(50)",
+        "`capabilities_json` longtext COMMENT 'JSON describing which tools/capabilities this faucet can use'",
+        "`is_default` tinyint NOT NULL DEFAULT 0 COMMENT '1 if this is the default faucet for the agent'",
+        "`domain_id` bigint NOT NULL DEFAULT 1 COMMENT 'Domain this faucet belongs to (multi-domain support)'",
+        "`created_ymdhis` bigint NOT NULL",
+        "`updated_ymdhis` bigint NOT NULL",
+        "`deleted_ymdhis` bigint"
+    ],
+    "data": [
+        {
+            "agent_faucet_id": 1,
+            "actor_id": 16,
+            "name": "WOLFFORGE – Vishwakarma Mode",
+            "alias_name": "Vishwakarma",
+            "slug": "wolfforge_vishwakarma",
+            "description": "Alternate cultural persona of WOLFFORGE representing the divine architect.",
+            "style_preset": null,
+            "model_name": "gpt-5",
+            "provider": null,
+            "temperature": null,
+            "top_p": null,
+            "max_tokens": null,
+            "presence_penalty": null,
+            "frequency_penalty": null,
+            "system_prompt": null,
+            "safety_json": null,
+            "response_format": null,
+            "capabilities_json": null,
+            "is_default": 0,
+            "domain_id": 1,
+            "created_ymdhis": 20260106220500,
+            "updated_ymdhis": 20260106220500,
+            "deleted_ymdhis": null
+        }
+    ],
+    "primary_key": {
+        "column_name": "agent_faucet_id",
+        "expected_name": "agent_faucet_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_agent",
+            "columns": [
+                "actor_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_default",
+            "columns": [
+                "is_default"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_domain",
+            "columns": [
+                "domain_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_slug",
+            "columns": [
+                "slug"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

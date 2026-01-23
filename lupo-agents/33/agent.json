@@ -1,0 +1,9 @@
+{
+  "code": "WOLFMIS",
+  "name": "WOLFMIS",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 16,
+  "version": "1.0.0"
+}

@@ -1,0 +1,58 @@
+{
+  "table_name": "lupo_agent_versions",
+  "fields": [
+    "`agent_version_id` bigint NOT NULL auto_increment",
+    "`agent_id` bigint NOT NULL",
+    "`version_label` varchar(64) NOT NULL",
+    "`semver_major` int DEFAULT '0'",
+    "`semver_minor` int DEFAULT '0'",
+    "`semver_patch` int DEFAULT '0'",
+    "`version_notes` text",
+    "`version_hash` varchar(128)",
+    "`previous_version_id` bigint",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` smallint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "agent_id",
+      "columns": [
+        "agent_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "semver_major",
+      "columns": [
+        "semver_major",
+        "semver_minor",
+        "semver_patch"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "version_label",
+      "columns": [
+        "version_label"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "agent_version_id",
+    "expected_name": "agent_version_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

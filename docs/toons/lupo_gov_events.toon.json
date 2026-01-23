@@ -1,0 +1,90 @@
+{
+  "table_name": "lupo_gov_events",
+  "fields": [
+    "`gov_event_id` bigint NOT NULL auto_increment COMMENT 'Primary key for governance event'",
+    "`utc_group_id` bigint NOT NULL COMMENT 'UTC group identifier'",
+    "`semantic_utc_version` varchar(50) NOT NULL COMMENT 'Semantic UTC version string'",
+    "`canonical_path` varchar(500) NOT NULL COMMENT 'Canonical path for the event'",
+    "`event_type` varchar(100) NOT NULL COMMENT 'Type of governance event'",
+    "`title` varchar(255) NOT NULL COMMENT 'Event title'",
+    "`directive_block` text COMMENT 'Captain Wolfie directive content'",
+    "`tldr_summary` text COMMENT 'TL;DR summary of the event'",
+    "`metadata_json` json COMMENT 'Additional event metadata'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+    "`is_active` tinyint NOT NULL DEFAULT '1' COMMENT 'Active flag'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_event_type",
+      "columns": [
+        "event_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_semantic_version",
+      "columns": [
+        "semantic_utc_version"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_utc_group",
+      "columns": [
+        "utc_group_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unique_canonical_path",
+      "columns": [
+        "canonical_path"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Governance events for Captain Wolfie directives",
+  "primary_key": {
+    "column_name": "gov_event_id",
+    "expected_name": "gov_event_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,105 @@
+{
+    "table_name": "livehelp_qa",
+    "fields": [
+        "`recno` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`parent` int NOT NULL DEFAULT 0",
+        "`question` text",
+        "`typeof` varchar(10) NOT NULL DEFAULT ''",
+        "`status` varchar(20) NOT NULL DEFAULT ''",
+        "`username` varchar(60) NOT NULL DEFAULT ''",
+        "`ordernum` int NOT NULL DEFAULT 0"
+    ],
+    "data": [
+        {
+            "recno": 1,
+            "livehelp_id": 1,
+            "parent": 0,
+            "question": "WHO",
+            "typeof": "folder",
+            "status": "A",
+            "username": "",
+            "ordernum": 0
+        },
+        {
+            "recno": 2,
+            "livehelp_id": 1,
+            "parent": 0,
+            "question": "who is Captain wolfie",
+            "typeof": "question",
+            "status": "A",
+            "username": "",
+            "ordernum": 0
+        },
+        {
+            "recno": 3,
+            "livehelp_id": 1,
+            "parent": 0,
+            "question": "WHAT",
+            "typeof": "folder",
+            "status": "A",
+            "username": "",
+            "ordernum": 0
+        },
+        {
+            "recno": 4,
+            "livehelp_id": 1,
+            "parent": 0,
+            "question": "WHERE",
+            "typeof": "folder",
+            "status": "A",
+            "username": "",
+            "ordernum": 0
+        },
+        {
+            "recno": 5,
+            "livehelp_id": 1,
+            "parent": 0,
+            "question": "WHEN",
+            "typeof": "folder",
+            "status": "A",
+            "username": "",
+            "ordernum": 0
+        },
+        {
+            "recno": 6,
+            "livehelp_id": 1,
+            "parent": 0,
+            "question": "WHY",
+            "typeof": "folder",
+            "status": "A",
+            "username": "",
+            "ordernum": 0
+        },
+        {
+            "recno": 7,
+            "livehelp_id": 1,
+            "parent": 0,
+            "question": "HOW",
+            "typeof": "folder",
+            "status": "A",
+            "username": "",
+            "ordernum": 0
+        },
+        {
+            "recno": 8,
+            "livehelp_id": 1,
+            "parent": 3,
+            "question": "LUPOPEDIA",
+            "typeof": "folder",
+            "status": "A",
+            "username": "",
+            "ordernum": 0
+        },
+        {
+            "recno": 9,
+            "livehelp_id": 1,
+            "parent": 2,
+            "question": "he is the guy that changed the world ",
+            "typeof": "answer",
+            "status": "",
+            "username": "",
+            "ordernum": 0
+        }
+    ]
+}

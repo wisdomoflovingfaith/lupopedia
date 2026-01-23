@@ -1,0 +1,137 @@
+{
+    "table_name": "lupo_system_logs",
+    "fields": [
+        "`log_id` bigint NOT NULL auto_increment",
+        "`event_type` varchar(64) NOT NULL COMMENT 'system|agent|error|security|migration|doctrine|heartbeat|temporal'",
+        "`severity` varchar(16) NOT NULL DEFAULT 'info' COMMENT 'info|warning|error|critical'",
+        "`actor_slug` varchar(64) COMMENT 'SYSTEM|LILITH|CURSOR|CASCADE|CAPTAIN_WOLFIE|etc'",
+        "`message` text NOT NULL COMMENT 'Human-readable event description'",
+        "`context_json` json COMMENT 'Optional structured metadata'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0",
+        "`deleted_ymdhis` bigint",
+        "`recursion_depth` tinyint DEFAULT 1",
+        "`observation_latency_ms` int",
+        "`temporal_anomaly_score` decimal(3,2)"
+    ],
+    "data": [
+        {
+            "log_id": 1,
+            "event_type": "system",
+            "severity": "info",
+            "actor_slug": "SYSTEM",
+            "message": "Lupopedia observability layer initialized.",
+            "context_json": "{\"tables\": 176, \"ceiling\": 181}",
+            "created_ymdhis": 20260120090400,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "recursion_depth": 1,
+            "observation_latency_ms": null,
+            "temporal_anomaly_score": null
+        },
+        {
+            "log_id": 2,
+            "event_type": "temporal",
+            "severity": "info",
+            "actor_slug": "LILITH",
+            "message": "Temporal coherence snapshot recorded.",
+            "context_json": "{\"latency_ms\": 11, \"utc_anchor\": 20260119032515}",
+            "created_ymdhis": 20260120090410,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "recursion_depth": 1,
+            "observation_latency_ms": null,
+            "temporal_anomaly_score": null
+        },
+        {
+            "log_id": 3,
+            "event_type": "health",
+            "severity": "info",
+            "actor_slug": "SYSTEM",
+            "message": "System health snapshot recorded.",
+            "context_json": "{\"table_count\": 181, \"schema_state\": \"frozen\"}",
+            "created_ymdhis": 20260120090420,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "recursion_depth": 1,
+            "observation_latency_ms": null,
+            "temporal_anomaly_score": null
+        },
+        {
+            "log_id": 4,
+            "event_type": "agent",
+            "severity": "info",
+            "actor_slug": "CURSOR",
+            "message": "Agent heartbeat recorded.",
+            "context_json": "{\"agent\": \"CURSOR\", \"status\": \"operational\"}",
+            "created_ymdhis": 20260120090430,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "recursion_depth": 1,
+            "observation_latency_ms": null,
+            "temporal_anomaly_score": null
+        },
+        {
+            "log_id": 5,
+            "event_type": "doctrine",
+            "severity": "warning",
+            "actor_slug": "LILITH",
+            "message": "Recursion depth approaching ceiling.",
+            "context_json": "{\"max\": 3, \"depth\": 2}",
+            "created_ymdhis": 20260120090440,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "recursion_depth": 1,
+            "observation_latency_ms": null,
+            "temporal_anomaly_score": null
+        }
+    ],
+    "primary_key": {
+        "column_name": "log_id",
+        "expected_name": "system_log_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_actor_slug",
+            "columns": [
+                "actor_slug"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_event_type",
+            "columns": [
+                "event_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_severity",
+            "columns": [
+                "severity"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

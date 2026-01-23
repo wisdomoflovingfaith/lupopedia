@@ -1,0 +1,81 @@
+{
+  "table_name": "lupo_crafty_syntax_layer_invites",
+  "fields": [
+    "`crafty_syntax_layer_invite_id` bigint NOT NULL auto_increment COMMENT 'Unique identifier for the layer invitation'",
+    "`layer_name` varchar(100) NOT NULL DEFAULT '' COMMENT 'Name/identifier for this layer invitation'",
+    "`image_name` varchar(255) NOT NULL DEFAULT '' COMMENT 'Filename of the image used for this layer'",
+    "`image_map` text COMMENT 'HTML image map coordinates and links in JSON format'",
+    "`department_name` varchar(100) NOT NULL DEFAULT '' COMMENT 'Name of the department this layer is associated with'",
+    "`user_id` bigint NOT NULL DEFAULT '0' COMMENT 'User ID who created this layer invitation (0 = system)'",
+    "`is_active` tinyint NOT NULL DEFAULT '1' COMMENT 'Whether this layer is active: 0=inactive, 1=active'",
+    "`display_count` int NOT NULL DEFAULT '0' COMMENT 'Number of times this layer has been displayed'",
+    "`click_count` int NOT NULL DEFAULT '0' COMMENT 'Number of times this layer has been clicked'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when record was created'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when record was last updated'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag: 0=active, 1=deleted'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when record was soft-deleted'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_department",
+      "columns": [
+        "department_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_name",
+      "columns": [
+        "layer_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_user",
+      "columns": [
+        "user_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Manages layer-based invitations in the LiveHelp system, allowing for image-based interactive elements that invite users to chat",
+  "primary_key": {
+    "column_name": "crafty_syntax_layer_invite_id",
+    "expected_name": "crafty_syntax_layer_invite_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

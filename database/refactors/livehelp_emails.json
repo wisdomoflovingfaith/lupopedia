@@ -1,0 +1,36 @@
+{
+  "legacy_table": "livehelp_emails",
+  "legacy_description": "Legacy Crafty Syntax table for outbound lead messages. This table stored the actual message content (subject, body, from email, notes) used when operators broadcasted emails to the database of lead email addresses. It was NOT a queue and NOT offline messages.",
+  "legacy_columns": {
+    "id": "Primary key for the outbound message",
+    "fromemail": "Email address used as the sender",
+    "subject": "Subject line of the outbound message",
+    "bodyof": "Body text of the outbound message",
+    "notes": "Internal notes about the message"
+  },
+  "new_table": "lupo_crm_lead_messages",
+  "new_description": "Durable CRM lead messages in Lupopedia. All legacy Crafty Syntax outbound lead messages are assigned to the broadcast lead (lead_id = 1).",
+  "migration_type": "full_row_migration",
+  "migration_reason": "These messages represent real outbound communication to leads and must be preserved. The legacy table name was misleading but the data is meaningful.",
+  "column_mapping": {
+    "id": "crm_lead_message_id",
+    "fromemail": "from_email",
+    "subject": "subject",
+    "bodyof": "body_text",
+    "notes": "notes"
+  },
+  "added_columns": {
+    "lead_id": "Set to 1 (broadcast lead)",
+    "created_ymdhis": "NOW() in bigint ymdhis format",
+    "updated_ymdhis": "NOW() in bigint ymdhis format"
+  },
+  "dropped_columns": [],
+  "migration_sql": {
+    "data_migration": "INSERT INTO lupo_crm_lead_messages (crm_lead_message_id, lead_id, from_email, subject, body_text, notes, created_ymdhis, updated_ymdhis) SELECT id AS crm_lead_message_id, 1 AS lead_id, fromemail AS from_email, subject, bodyof AS body_text, notes, DATE_FORMAT(NOW(), '%Y%m%d%H%i%S') AS created_ymdhis, DATE_FORMAT(NOW(), '%Y%m%d%H%i%S') AS updated_ymdhis FROM livehelp_emails;"
+  },
+  "post_migration": {
+    "drop_legacy_table": true,
+    "drop_sql": "DROP TABLE IF EXISTS livehelp_emails;"
+  },
+  "disposition": "Migrated and Dropped"
+}

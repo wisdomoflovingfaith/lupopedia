@@ -1,0 +1,21 @@
+{
+  "table_name": "unified_truth_items",
+  "fields": [
+    "`truth_item_id` bigint NOT NULL",
+    "`item_type` enum('question','answer') NOT NULL",
+    "`name` varchar(255)",
+    "`slug` varchar(255)",
+    "`body_text` longtext",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "truth_item_id",
+    "expected_name": "truth_item_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "relationships": []
+}

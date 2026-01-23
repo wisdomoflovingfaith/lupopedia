@@ -1,0 +1,67 @@
+{
+    "table_name": "lupo_governance_overrides",
+    "fields": [
+        "`governance_overrid_id` bigint NOT NULL auto_increment",
+        "`agent_id` bigint COMMENT 'Agent whose behavior is being overridden'",
+        "`applied_by_agent` bigint COMMENT 'Agent or system that applied the override'",
+        "`override_type` varchar(100) NOT NULL COMMENT 'capability_block, faucet_lock, safety_rule, escalation, etc.'",
+        "`target_key` varchar(150) COMMENT 'Capability, faucet, or rule being overridden'",
+        "`old_value` text COMMENT 'Previous value before override'",
+        "`new_value` text COMMENT 'New value after override'",
+        "`reason_text` text COMMENT 'Human-readable explanation for the override'",
+        "`metadata_json` json COMMENT 'Additional structured metadata'",
+        "`created_ymdhis` bigint NOT NULL",
+        "`expires_ymdhis` bigint COMMENT 'Optional expiration timestamp'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0",
+        "`deleted_ymdhis` bigint"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "governance_overrid_id",
+        "expected_name": "governance_overrid_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_agent",
+            "columns": [
+                "agent_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_applied_by",
+            "columns": [
+                "applied_by_agent"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_target",
+            "columns": [
+                "target_key"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_type",
+            "columns": [
+                "override_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

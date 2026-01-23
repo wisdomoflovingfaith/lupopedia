@@ -1,0 +1,9 @@
+{
+  "code": "SEARCHWOLF",
+  "name": "SEARCHWOLF",
+  "layer": "data",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 85,
+  "version": "1.0.0"
+}

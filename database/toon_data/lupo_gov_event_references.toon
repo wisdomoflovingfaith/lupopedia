@@ -1,0 +1,179 @@
+{
+    "table_name": "lupo_gov_event_references",
+    "fields": [
+        "`reference_id` bigint NOT NULL auto_increment COMMENT 'Primary key for reference'",
+        "`gov_event_id` bigint NOT NULL COMMENT 'Associated governance event'",
+        "`reference_type` varchar(100) NOT NULL COMMENT 'Type of reference (document, link, etc.)'",
+        "`reference_title` varchar(255) NOT NULL COMMENT 'Reference title'",
+        "`reference_url` varchar(1000) COMMENT 'URL if applicable'",
+        "`reference_content` text COMMENT 'Reference content or excerpt'",
+        "`order_sequence` int NOT NULL DEFAULT 0 COMMENT 'Display order'",
+        "`metadata_json` json COMMENT 'Additional reference metadata'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+        "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
+        "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    ],
+    "data": [
+        {
+            "reference_id": 1,
+            "gov_event_id": 1,
+            "reference_type": "backlink",
+            "reference_title": "Backlinks",
+            "reference_url": null,
+            "reference_content": "/\n/lupopedia_web/",
+            "order_sequence": 1,
+            "metadata_json": null,
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "reference_id": 2,
+            "gov_event_id": 1,
+            "reference_type": "outbound",
+            "reference_title": "Outbound",
+            "reference_url": null,
+            "reference_content": "/wolfie/\n/craftysyntax/\n/lupopedia_web/docs/",
+            "order_sequence": 2,
+            "metadata_json": null,
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "reference_id": 3,
+            "gov_event_id": 1,
+            "reference_type": "hashtag",
+            "reference_title": "Hashtags",
+            "reference_url": null,
+            "reference_content": "#lupopedia #semantic-os #reference-book-model #emotional-intelligence #crafty-syntax",
+            "order_sequence": 3,
+            "metadata_json": null,
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "reference_id": 4,
+            "gov_event_id": 1,
+            "reference_type": "navigation",
+            "reference_title": "Navigation",
+            "reference_url": null,
+            "reference_content": "home → lupopedia_web → lupopedia",
+            "order_sequence": 4,
+            "metadata_json": null,
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "reference_id": 5,
+            "gov_event_id": 1,
+            "reference_type": "content",
+            "reference_title": "Lupopedia Identity (LUPO-IDENTITY-001)",
+            "reference_url": null,
+            "reference_content": "Lupopedia is a reference book for your website. It does not store content; it stores knowledge about content. Every page on your site gets a reference entry that explains how it connects to everything else—where visitors came from, where they go next, what topics it relates to, and how it fits into the bigger picture. It is not a CMS or chatbot. It is a semantic OS that gives structure to the web so humans and AI can understand context, relationships, navigation paths, and meaning.",
+            "order_sequence": 5,
+            "metadata_json": "{\"ref\": \"LUPO-IDENTITY-001\", \"level\": \"identity\"}",
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "reference_id": 6,
+            "gov_event_id": 1,
+            "reference_type": "prohibited",
+            "reference_title": "GOV-PROHIBIT-LUPO-IDENTITY",
+            "reference_url": null,
+            "reference_content": "[001] Lupopedia may not be treated as a CMS, CRM, or ad-tech platform. It must remain a semantic OS and reference-book model.\n[002] No advertising, tracking pixels, or commercial exploitation of emotional metadata may be built on top of Lupopedia's core reference system.",
+            "order_sequence": 6,
+            "metadata_json": "{\"ref\": \"GOV-PROHIBIT-LUPO-IDENTITY\"}",
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "reference_id": 7,
+            "gov_event_id": 1,
+            "reference_type": "context_summary",
+            "reference_title": "Context summary",
+            "reference_url": null,
+            "reference_content": "Lupopedia is a reference-book style semantic OS that stores knowledge about content, not content itself. It builds a living knowledge atlas of a website's structure, navigation, and meaning so humans and AI can understand how pages relate, how people move, and what each page means in context.",
+            "order_sequence": 7,
+            "metadata_json": null,
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "reference_id": 8,
+            "gov_event_id": 1,
+            "reference_type": "architecture",
+            "reference_title": "Architecture",
+            "reference_url": null,
+            "reference_content": "Lupopedia is a semantic operating system that treats every page on a host site as a reference entry, not stored content. It maps backlinks, outbound links, navigation paths, hashtags, and contextual meaning into a living knowledge atlas that both humans and AI can traverse. Crafty Syntax is the ancestral root, providing decades of behavioral and emotional metadata that feed the WOLFIE emotional engine and multi-agent architecture.",
+            "order_sequence": 8,
+            "metadata_json": null,
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        }
+    ],
+    "primary_key": {
+        "column_name": "reference_id",
+        "expected_name": "gov_event_referenc_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_gov_event",
+            "columns": [
+                "gov_event_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_order_sequence",
+            "columns": [
+                "order_sequence"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_reference_type",
+            "columns": [
+                "reference_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

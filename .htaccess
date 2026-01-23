@@ -1,0 +1,67 @@
+# Lupopedia .htaccess
+# URL Rewriting for clean URLs
+# Routes: /who/captain_wolfie, /truth/captain_wolfie, /content/slug, etc.
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# RewriteBase: Adjust this to match your installation path
+# If Lupopedia is installed at /lupopedia/, use: RewriteBase /lupopedia/
+# If Lupopedia is installed at root, use: RewriteBase /
+# If Lupopedia is installed at /subfolder/, use: RewriteBase /subfolder/
+RewriteBase /lupopedia/
+
+# Prevent directory listing
+Options -Indexes
+
+# IMPORTANT: Allow static assets (CSS, JS, images) to be served directly
+# This must come BEFORE the rewrite rule that routes everything to index.php
+
+# Allow CSS, JS, images, fonts, and other static assets
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json|xml|map)$ [NC]
+RewriteRule ^ - [L]
+
+# Allow access to existing files and directories (skip rewrite)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Block PHP files in lupo-includes (security)
+RewriteCond %{REQUEST_URI} ^/lupopedia/lupo-includes/.*\.php$ [NC]
+RewriteRule ^ - [F,L]
+
+# Block access to sensitive directories
+RewriteCond %{REQUEST_URI} ^/lupopedia/(database|config|\.git)/ [NC]
+RewriteRule ^ - [F,L]
+
+# Rewrite all other requests to index.php with slug parameter
+# Extract the path after /lupopedia/ and pass it as slug
+RewriteRule ^(.*)$ index.php?slug=$1 [L,QSA]
+
+# Security: Deny access to hidden files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Deny access to config files
+<FilesMatch "^(lupopedia-config\.php|\.htaccess)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Prevent access to sensitive file types
+<FilesMatch "\.(sql|log|md|yaml|yml|json|bak|backup|old)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> LUPOPEDIA - Ontology Knowledge Platform</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="<?php echo LUPOPEDIA_PUBLIC_PATH; ?>/css/main.css">
+    <link rel="stylesheet" href="<?php echo LUPOPEDIA_PUBLIC_PATH; ?>/css/components.css">
+ 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="<?php echo LUPOPEDIA_PUBLIC_PATH; ?>/images/logoface.png">
+    
+    <!-- Meta collections -->
+    <meta name="description" content="Browse Q/A content from source of truth database">
+    <meta name="keywords" content="spirituality, religion, faith, wisdom, sacred texts, prayers, songs, AI, guidance">
+    <meta name="author" content="Captain WOLFIE (Eric Robin Gerdes)">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Questions & Answers">
+    <meta property="og:description" content="Browse Q/A content from source of truth database">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://lupopedia.com/questions.php">
+    <meta property="og:image" content="/images/s1.png">
+    
+        
+        
+    <!-- Recently Viewed Navigation Styles (global) -->
+    <style>
+    /* Authentication Status Indicator (Version 4.0.8) */
+    .auth-status-logged-in,
+    .auth-status-logged-out {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-right: 15px;
+    }
+    
+    .auth-username {
+        color: #333;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    
+    .auth-login-link,
+    .auth-logout-link {
+        color: #4a90e2;
+        text-decoration: none;
+        font-size: 14px;
+        padding: 6px 12px;
+        border: 1px solid #4a90e2;
+        border-radius: 4px;
+        transition: background 0.2s, color 0.2s;
+    }
+    
+    .auth-login-link:hover,
+    .auth-logout-link:hover {
+        background: #4a90e2;
+        color: white;
+    }
+    
+    /* Saved Collections Navigation - Q/A Tag Based */
+    .saved-collections-nav {
+        background: #E8F5E9;
+        padding: 10px 20px;
+        border-bottom: 2px solid #4CAF50;
+        margin-bottom: 0;
+        position: fixed;
+        top: 58px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        height: 49px; /* Explicit height: 10px top padding + content + 10px bottom padding */
+        display: flex;
+        align-items: center;
+    }
+    
+    .saved-collections-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 48px;
+    }
+    
+    .saved-collections-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .saved-collections-button {
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: bold;
+        transition: background-color 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    /* collections tab uses blue color instead of green */
+    .saved-collections-button[data-qa-type="collections"],
+    .saved-collections-dropdown[data-qa-type="collections"] .saved-collections-button {
+        background: #2973e4;
+    }
+    
+    .saved-collections-dropdown[data-qa-type="collections"] .saved-collections-button:hover {
+        background: #1f5bb8;
+    }
+    
+    .saved-collections-button:hover {
+        background: #45a049;
+    }
+    
+    .saved-collections-button .count {
+        background: rgba(255,255,255,0.3);
+        color: white;
+        border-radius: 10px;
+        padding: 2px 6px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+    
+    .saved-collections-dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        min-width: 220px;
+        max-width: 300px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        z-index: 10000;
+        max-height: 500px;
+        overflow-y: auto;
+        margin-top: 2px;
+        padding: 4px 0;
+    }
+    
+    .saved-collections-dropdown.active .saved-collections-dropdown-content {
+        display: block;
+    }
+    
+    .saved-collections-submenu {
+        position: relative;
+    }
+    
+    /* Submenu trigger with visual indicator */
+    .saved-collections-submenu-trigger {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 12px;
+        color: #333;
+        text-decoration: none;
+        cursor: pointer;
+        border-bottom: 1px solid #eee;
+        transition: background-color 0.2s;
+        white-space: nowrap;
+    }
+    
+    .saved-collections-submenu-trigger:hover {
+        background: #f5f5f5;
+    }
+    
+    .saved-collections-submenu-trigger::after {
+        content: '▶';
+        margin-left: 8px;
+        font-size: 10px;
+        color: #999;
+        transition: transform 0.2s;
+    }
+    
+    .saved-collections-submenu.active .saved-collections-submenu-trigger::after {
+        transform: rotate(90deg);
+    }
+    
+    .saved-collections-submenu-trigger .count {
+        background: #4CAF50;
+        color: white;
+        border-radius: 10px;
+        padding: 2px 6px;
+        font-size: 11px;
+        font-weight: 600;
+        margin-left: auto;
+        margin-right: 8px;
+    }
+    
+    /* Secondary submenu - positioned via JavaScript, appended to body */
+    .saved-collections-submenu-content {
+        display: none;
+        position: absolute;
+        background: white;
+        min-width: 280px;
+        max-width: 400px;
+        box-shadow: 4px 4px 12px rgba(0,0,0,0.25);
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        z-index: 10001;
+        max-height: 500px;
+        overflow-y: auto;
+        padding: 4px 0;
+    }
+    
+    .saved-collections-submenu-content.active {
+        display: block;
+    }
+    
+    .saved-collections-item {
+        display: block;
+        padding: 8px 12px;
+        color: #333;
+        text-decoration: none;
+        border-bottom: 1px solid #eee;
+        transition: background-color 0.2s;
+        font-size: 13px;
+    }
+    
+    .saved-collections-item:hover {
+        background: #f0f7ff;
+        color: #0066cc;
+    }
+    
+    .saved-collections-item:last-child {
+        border-bottom: none;
+    }
+
+ 
+    #eye-close-btn {
+    position: fixed;
+    bottom: 120px;
+    right: 0px;
+    width: 32px;
+    height: 32px;
+    background: white;
+    color: red;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    user-select: none;
+}
+
+#firstHeading { 
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; 
+    font-size: 32px; /* Comfortable default */ 
+    line-height: 42px; /* Ensures total height never exceeds 42px */ 
+    font-weight: 600; /* Slightly bold, clean look */ 
+    margin: 0; 
+    padding: 0; 
+    overflow: hidden; /* Prevents spillover if text gets tall */ 
+    white-space: nowrap; /* Keeps it on one line */ 
+}
+
+
+    </style>
+    <script>
+        function toggleSavedCollectionsDropdown(button) {
+            const dropdown = button.closest('.saved-collections-dropdown');
+            const isActive = dropdown.classList.contains('active');
+            
+            // Close all other dropdowns and their submenus
+            document.querySelectorAll('.saved-collections-dropdown').forEach(d => {
+                if (d !== dropdown) {
+                    d.classList.remove('active');
+                    // Close submenus in other dropdowns
+                    d.querySelectorAll('.saved-collections-submenu').forEach(s => {
+                        s.classList.remove('active');
+                        const content = s.querySelector('.saved-collections-submenu-content');
+                        if (content && content.parentNode === document.body) {
+                            content.remove();
+                        } else if (content) {
+                            content.style.display = 'none';
+                        }
+                        content.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Toggle this dropdown
+            const newState = !isActive;
+            dropdown.classList.toggle('active', newState);
+            
+            // Update ARIA attributes
+            button.setAttribute('aria-expanded', newState.toString());
+        }
+        
+        // Store references to open submenus for cleanup
+        let openSubmenuContent = null;
+        
+        function toggleSubmenu(trigger, event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            
+            const submenu = trigger.closest('.saved-collections-submenu');
+            if (!submenu) return;
+            
+            const isActive = submenu.classList.contains('active');
+            const submenuContent = submenu.querySelector('.saved-collections-submenu-content');
+            if (!submenuContent) return; // Must have content to be a submenu trigger
+            
+            // 1. Get DOM hierarchy BEFORE any content movement
+            const isOpening = !isActive;
+            
+            // Find the DIRECT CONTAINER of the current submenu (This is the parent's content div, in the original DOM)
+            // This element holds all siblings of the current submenu.
+            const container = submenu.parentElement;
+            
+            // Store event coordinates for positioning if trigger position fails
+            let mouseX = null;
+            let mouseY = null;
+            if (event && event.clientX && event.clientY) {
+                mouseX = event.clientX;
+                mouseY = event.clientY;
+            }
+            
+            // 2. Cleanup: Close all SIBLINGS at the current level
+            // This prevents the root tag from closing when a child tag opens.
+            if (container) {
+                // Iterate over all siblings of the current submenu
+                container.querySelectorAll(':scope > .saved-collections-submenu').forEach(s => {
+                    if (s !== submenu) {
+                        // This is a sibling, so close it and its content
+                        s.classList.remove('active');
+                        const content = s.querySelector('.saved-collections-submenu-content');
+                        
+                        // Remove content from body if it was moved/cloned there
+                        if (content && content.classList.contains('active') && content.parentNode === document.body) {
+                            content.remove();
+                        } else if (content) {
+                            content.style.display = 'none';
+                        }
+                        if (content) {
+                            content.classList.remove('active');
+                        }
+                        
+                        // Also close any nested submenus within this sibling (cleanup)
+                        s.querySelectorAll('.saved-collections-submenu').forEach(nested => {
+                            nested.classList.remove('active');
+                            const nestedContent = nested.querySelector('.saved-collections-submenu-content');
+                            if (nestedContent && nestedContent.parentNode === document.body) {
+                                nestedContent.remove();
+                            } else if (nestedContent) {
+                                nestedContent.style.display = 'none';
+                            }
+                            if (nestedContent) {
+                                nestedContent.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }
+            
+            // 3. Clean up any orphaned submenu in body from a previous operation
+            // This prevents a previous submenu at a different level from interfering.
+            if (openSubmenuContent && openSubmenuContent.parentNode === document.body && 
+                !openSubmenuContent.contains(submenu) && openSubmenuContent.id !== submenuContent.id) {
+                openSubmenuContent.remove();
+            }
+            
+            // 4. Toggle the current submenu
+            if (isOpening) {
+                submenu.classList.add('active');
+                
+                // --- Positioning Logic ---
+                const triggerRect = trigger.getBoundingClientRect();
+                
+                // Clone or move submenu content to body to avoid overflow clipping
+                let positionedSubmenu = submenuContent;
+                
+                // Check if the content is ALREADY in the body, or if it's currently hidden in the source HTML
+                if (submenuContent.parentNode !== document.body || !submenuContent.classList.contains('active')) {
+                    // Create a NEW element if not already moved (or if we need a fresh copy)
+                    positionedSubmenu = submenuContent.cloneNode(true);
+                    if (submenuContent.id) {
+                        positionedSubmenu.setAttribute('data-source-id', submenuContent.id); // Track source ID
+                    }
+                    
+                    // Remove any nested submenu content from the *clone* so we don't accidentally move
+                    // nested menu content multiple times if it was already moved/cloned
+                    positionedSubmenu.querySelectorAll('.saved-collections-submenu-content').forEach(c => {
+                        c.style.display = 'none';
+                        c.classList.remove('active');
+                    });
+                    
+                    document.body.appendChild(positionedSubmenu);
+                    openSubmenuContent = positionedSubmenu; // Store reference to the one in body
+                    
+                } else {
+                    // If it's already the one in the body, just use it
+                    positionedSubmenu = openSubmenuContent;
+                }
+                
+                // Must happen AFTER appending to body so it calculates size correctly
+                positionedSubmenu.classList.add('active');
+                positionedSubmenu.style.position = 'absolute';
+                positionedSubmenu.style.display = 'block';
+                
+                // Calculate position
+                let leftPos, topPos;
+                
+                // Fall back to trigger element position (most reliable for complex menus)
+                leftPos = triggerRect.right + 4;
+                topPos = triggerRect.top;
+                
+                // Fallback for positioning issues
+                if (!triggerRect || triggerRect.width === 0 || triggerRect.height === 0 || 
+                    isNaN(leftPos) || leftPos <= 0 || isNaN(topPos) || topPos <= 0) {
+                    
+                    const parentRect = trigger.parentElement?.getBoundingClientRect();
+                    if (parentRect && parentRect.width > 0 && parentRect.height > 0) {
+                        leftPos = parentRect.right + 4;
+                        topPos = parentRect.top;
+                    } else if (mouseX !== null && mouseY !== null) {
+                        leftPos = mouseX + 4;
+                        topPos = mouseY;
+                    } else {
+                        leftPos = 200;
+                        topPos = 200;
+                    }
+                }
+                
+                // Boundary checks
+                const viewportWidth = window.innerWidth;
+                const submenuWidth = positionedSubmenu.offsetWidth || 280;
+                if (leftPos + submenuWidth > viewportWidth) {
+                    leftPos = triggerRect.left - submenuWidth - 4;
+                    if (leftPos < 0) {
+                        leftPos = Math.max(4, (viewportWidth - submenuWidth) / 2);
+                    }
+                }
+                
+                const viewportHeight = window.innerHeight;
+                const submenuHeight = positionedSubmenu.offsetHeight;
+                if (topPos + submenuHeight > viewportHeight) {
+                    topPos = Math.max(4, viewportHeight - submenuHeight - 10);
+                }
+                
+                // Apply position
+                positionedSubmenu.style.left = Math.max(0, leftPos) + 'px';
+                positionedSubmenu.style.top = Math.max(0, topPos) + 'px';
+                positionedSubmenu.style.zIndex = '10001';
+                
+            } else {
+                // 5. Close submenu (when clicking the active trigger again)
+                submenu.classList.remove('active');
+                
+                // Find the currently displayed version (in body)
+                let positionedSubmenu = null;
+                if (submenuContent.id) {
+                    positionedSubmenu = document.body.querySelector(`#${submenuContent.id}.active`) || 
+                                       document.body.querySelector(`[data-source-id="${submenuContent.id}"].active`);
+                } else {
+                    // Fallback: find by matching content structure
+                    document.querySelectorAll('.saved-collections-submenu-content').forEach(c => {
+                        if (c.parentNode === document.body && c.classList.contains('active') && 
+                            c.getAttribute('data-source-id') === submenuContent.id) {
+                            positionedSubmenu = c;
+                        }
+                    });
+                }
+                
+                if (positionedSubmenu) {
+                    positionedSubmenu.remove();
+                }
+                
+                // Also ensure the original content element is reset/hidden
+                submenuContent.classList.remove('active');
+                submenuContent.style.display = 'none';
+                
+                openSubmenuContent = null;
+            }
+        }
+        
+        // Recalculate submenu position on scroll and resize (debounced)
+        let resizeTimeout;
+        function handleResizeOrScroll() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const activeSubmenu = document.querySelector('.saved-collections-submenu.active');
+                if (activeSubmenu) {
+                    const trigger = activeSubmenu.querySelector('.saved-collections-submenu-trigger');
+                    if (trigger) {
+                        // Reposition if submenu is open
+                        toggleSubmenu(trigger, null);
+                        toggleSubmenu(trigger, null); // Toggle twice to reopen in new position
+                    }
+                }
+            }, 100);
+        }
+        
+        window.addEventListener('scroll', handleResizeOrScroll, true);
+        window.addEventListener('resize', handleResizeOrScroll);
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            // Check if click is outside saved collections area
+            if (!event.target.closest('.saved-collections-dropdown') && 
+                !event.target.closest('.saved-collections-submenu-content')) {
+                // Close all primary dropdowns
+                document.querySelectorAll('.saved-collections-dropdown').forEach(d => {
+                    d.classList.remove('active');
+                });
+                
+                // Close all submenus and remove from body
+                document.querySelectorAll('.saved-collections-submenu').forEach(s => {
+                    s.classList.remove('active');
+                });
+                
+                // Clean up all submenu content in body and reset originals
+                document.querySelectorAll('.saved-collections-submenu-content').forEach(content => {
+                    if (content.parentNode === document.body) {
+                        content.remove();
+                    }
+                    // Also reset the original, hidden content element
+                    content.classList.remove('active');
+                    content.style.display = 'none';
+                });
+                openSubmenuContent = null;
+            }
+        });
+        
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(event) {
+            // Close on Escape key
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.saved-collections-dropdown').forEach(d => {
+                    d.classList.remove('active');
+                });
+                document.querySelectorAll('.saved-collections-submenu').forEach(s => {
+                    s.classList.remove('active');
+                });
+                
+                // Clean up all submenu content in body and reset originals
+                document.querySelectorAll('.saved-collections-submenu-content').forEach(content => {
+                    if (content.parentNode === document.body) {
+                        content.remove();
+                    }
+                    // Also reset the original, hidden content element
+                    content.classList.remove('active');
+                    content.style.display = 'none';
+                });
+                openSubmenuContent = null;
+            }
+        });
+    </script>
+</head>
+<body>
+ 
+
+ 
+    <!-- Navigation Header -->
+    <header class="main-header">
+    <div class="nav-logo-container" style="position: absolute; top: 20px; left: 0; z-index: 2000;">
+ 
+<a href="/index.php" class="nav-logo" onclick="scrollToTop()" title="WOLFIE - Home">
+     <img src="images/logoface.png?1766754946" alt="WOLFIE" width="50" height="50" border="0" style="border-radius: 50%;" />
+ </a>
+ </div>
+        <nav class="main-nav">
+            <div class="nav-container">
+
+                <!-- Main Navigation Links -->
+                <div class="nav-links">
+                    <a href="/" class="nav-link active">Home</a>
+                    <a href="/questions.php" class="nav-link active">Q/A</a>
+                    <a href="/search.php" class="nav-link ">Content</a>
+                    <a href="/collections.php" class="nav-link ">Collections</a>
+                    <a href="/users.php" class="nav-link ">Users</a>
+                    <a href="/agents.php" class="nav-link ">Agents</a>
+                </div>
+                
+                <!-- User Profile Section -->
+                <div class="nav-user">
+                    <?php
+                    // Version 4.0.9: Authentication status indicator with profile avatar
+                    // Ensure auth UI helpers are loaded
+                    if (!function_exists('lupo_render_login_status')) {
+                        $auth_ui_helpers_path = defined('LUPOPEDIA_PATH') 
+                            ? LUPOPEDIA_PATH . '/lupo-includes/functions/auth-ui-helpers.php'
+                            : (defined('LUPO_INCLUDES_DIR') ? LUPO_INCLUDES_DIR . '/functions/auth-ui-helpers.php' : '');
+                        if ($auth_ui_helpers_path && file_exists($auth_ui_helpers_path)) {
+                            require_once $auth_ui_helpers_path;
+                        }
+                    }
+                    
+                    // Render login status (with profile avatar if logged in)
+                    if (function_exists('lupo_render_login_status')) {
+                        echo lupo_render_login_status();
+                    } else {
+                        // Fallback: show login link if auth helpers not loaded
+                        $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
+                        echo '<a href="' . htmlspecialchars($login_url) . '" class="nav-link">Sign In</a>';
+                    }
+                    ?>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    
+    <!-- Saved Collections Navigation (all pages including index.php) -->
+    <?php
+    // Load renderer function
+    require_once(LUPO_INCLUDES_DIR . '/functions/render-saved-collections.php');
+    
+    // Get current user ID (assume logged in user ID is 7 for now - replace with actual session logic)
+    $currentUserId = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : (defined('CURRENT_USER_ID') ? CURRENT_USER_ID : 0);
+    $isUserLoggedIn = ($currentUserId > 0);
+    
+    // Render saved collections data (always render for viewing, permissions apply to editing only)
+    $collectionsData = render_saved_collections($currentUserId);
+    
+    // Include the component template
+    include(LUPO_INCLUDES_DIR . '/ui/components/saved-collections-nav.php');
+    ?>
+    
+    <!-- Save Collection Modal --> 
+                    
+                    <div class="saved-collections-dropdown-content" 
+                         id="dropdown-collections"
+                         role="menu">
+                            <div class="saved-collections-submenu">
+                                    <span class="saved-collections-submenu-trigger" 
+                                          onclick="toggleSubmenu(this, event)"
+                                          role="menuitem"
+                                          aria-expanded="false"
+                                          aria-haspopup="true"
+                                          data-submenu-id="submenu-collections-books"
+                                          tabindex="0"
+                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                        <span>Books</span>
+                                    </span>
+                                    <div class="saved-collections-submenu-content" 
+                                         id="submenu-collections-books"
+                                         role="menu">
+                                                                                                                                <div class="saved-collections-submenu">
+                                                <span class="saved-collections-submenu-trigger" 
+                                                      onclick="toggleSubmenu(this, event)"
+                                                      role="menuitem"
+                                                      aria-expanded="false"
+                                                      aria-haspopup="true"
+                                                      data-submenu-id="submenu-collections-books-bible-books"
+                                                      tabindex="0"
+                                                      onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                                    <span>Bible-books</span>
+                                                    <span class="count">1</span>
+                                                </span>
+                                                <div class="saved-collections-submenu-content" 
+                                                     id="submenu-collections-books-bible-books"
+                                                     role="menu">
+                                                    <a href="/content.php?id=7" 
+                                                           class="saved-collections-item"
+                                                           role="menuitem"
+                                                           tabindex="0">
+                                                            1 Corinthians - Complete Book                                                        </a>
+                                                                                                    </div>
+                                            </div>
+                                                                                                                        </div>
+                                </div>
+                                                                        </div>
+                </div>
+                            <div class="saved-collections-dropdown" data-qa-type="who">
+                    <button class="saved-collections-button" 
+                            onclick="toggleSavedCollectionsDropdown(this)"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            aria-controls="dropdown-who"
+                            data-qa-type="who">
+                        WHO <span class="count">2</span>
+                    </button>
+                    <div class="saved-collections-dropdown-content" 
+                         id="dropdown-who"
+                         role="menu">
+                                                                                                                <div class="saved-collections-submenu">
+                                    <span class="saved-collections-submenu-trigger" 
+                                          onclick="toggleSubmenu(this, event)"
+                                          role="menuitem"
+                                          aria-expanded="false"
+                                          aria-haspopup="true"
+                                          data-submenu-id="submenu-who-captain_wolfie"
+                                          tabindex="0"
+                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                        <span>Captain_wolfie</span>
+                                        <span class="count">1</span>
+                                    </span>
+                                    <div class="saved-collections-submenu-content" 
+                                         id="submenu-who-captain_wolfie"
+                                         role="menu">
+                                                                                    <a href="content.php?id=2" 
+                                               class="saved-collections-item"
+                                               role="menuitem"
+                                               tabindex="0">
+                                                Welcome to WOLFIE Platform                                            </a>
+                                                                            </div>
+                                </div>
+                                                            <div class="saved-collections-submenu">
+                                    <span class="saved-collections-submenu-trigger" 
+                                          onclick="toggleSubmenu(this, event)"
+                                          role="menuitem"
+                                          aria-expanded="false"
+                                          aria-haspopup="true"
+                                          data-submenu-id="submenu-who-apostle_paul"
+                                          tabindex="0"
+                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                        <span>Apostle_paul</span>
+                                        <span class="count">1</span>
+                                    </span>
+                                    <div class="saved-collections-submenu-content" 
+                                         id="submenu-who-apostle_paul"
+                                         role="menu">
+                                                                                    <a href="content.php?id=3" 
+                                               class="saved-collections-item"
+                                               role="menuitem"
+                                               tabindex="0">
+                                                Christianity - The Way of Love and Grace                                            </a>
+                                                                            </div>
+                                </div>
+                                                                        </div>
+                </div>
+                            <div class="saved-collections-dropdown" data-qa-type="what">
+                    <button class="saved-collections-button" 
+                            onclick="toggleSavedCollectionsDropdown(this)"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            aria-controls="dropdown-what"
+                            data-qa-type="what">
+                        WHAT <span class="count">2</span>
+                    </button>
+                    <div class="saved-collections-dropdown-content" 
+                         id="dropdown-what"
+                         role="menu">
+                                     <div class="saved-collections-submenu">
+                                    <span class="saved-collections-submenu-trigger" 
+                                          onclick="toggleSubmenu(this, event)"
+                                          role="menuitem"
+                                          aria-expanded="false"
+                                          aria-haspopup="true"
+                                          data-submenu-id="submenu-what-denomination"
+                                          tabindex="0"
+                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                        <span>Denomination</span>
+                                        <span class="count">1</span>
+                                    </span>
+                                    <div class="saved-collections-submenu-content" 
+                                         id="submenu-what-denomination"
+                                         role="menu">
+                                                <a href="/content.php?id=3" 
+                                               class="saved-collections-item"
+                                               role="menuitem"
+                                               tabindex="0">
+                                                Christianity - The Way of Love and Grace   </a>
+                                                                            </div>
+                                </div>
+                                                            <div class="saved-collections-submenu">
+                                    <span class="saved-collections-submenu-trigger" 
+                                          onclick="toggleSubmenu(this, event)"
+                                          role="menuitem"
+                                          aria-expanded="false"
+                                          aria-haspopup="true"
+                                          data-submenu-id="submenu-what-qa_system"
+                                          tabindex="0"
+                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                        <span>Qa_system</span>
+                                        <span class="count">1</span>
+                                    </span>
+                                    <div class="saved-collections-submenu-content" 
+                                         id="submenu-what-qa_system"
+                                         role="menu">
+                                                                                    <a href="content.php?id=24" 
+                                               class="saved-collections-item"
+                                               role="menuitem"
+                                               tabindex="0">
+                                                Q/A Tagging System Guide                                            </a>
+                                                                            </div>
+                                </div>
+                                                                        </div>
+                </div>
+                            <div class="saved-collections-dropdown" data-qa-type="where">
+                    <button class="saved-collections-button" 
+                            onclick="toggleSavedCollectionsDropdown(this)"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            aria-controls="dropdown-where"
+                            data-qa-type="where">
+                        WHERE <span class="count">2</span>
+                    </button>
+                    <div class="saved-collections-dropdown-content" 
+                         id="dropdown-where"
+                         role="menu">
+                                                                                                                <div class="saved-collections-submenu">
+                                    <span class="saved-collections-submenu-trigger" 
+                                          onclick="toggleSubmenu(this, event)"
+                                          role="menuitem"
+                                          aria-expanded="false"
+                                          aria-haspopup="true"
+                                          data-submenu-id="submenu-where-platform_root"
+                                          tabindex="0"
+                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                        <span>Platform_root</span>
+                                        <span class="count">1</span>
+                                    </span>
+                                    <div class="saved-collections-submenu-content" 
+                                         id="submenu-where-platform_root"
+                                         role="menu">
+                                                                                    <a href="content.php?id=2" 
+                                               class="saved-collections-item"
+                                               role="menuitem"
+                                               tabindex="0">
+                                                Welcome to WOLFIE Platform                                            </a>
+                                                                            </div>
+                                </div>
+                                                            <div class="saved-collections-submenu">
+                                    <span class="saved-collections-submenu-trigger" 
+                                          onclick="toggleSubmenu(this, event)"
+                                          role="menuitem"
+                                          aria-expanded="false"
+                                          aria-haspopup="true"
+                                          data-submenu-id="submenu-where-qa_page"
+                                          tabindex="0"
+                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                        <span>Qa_page</span>
+                                        <span class="count">1</span>
+                                    </span>
+                                    <div class="saved-collections-submenu-content" 
+                                         id="submenu-where-qa_page"
+                                         role="menu">
+                                                                                    <a href="content.php?id=24" 
+                                               class="saved-collections-item"
+                                               role="menuitem"
+                                               tabindex="0">
+                                                Q/A Tagging System Guide                                            </a>
+                                                                            </div>
+                                </div>
+                                                                        </div>
+                </div>
+                            <div class="saved-collections-dropdown" data-qa-type="when">
+                    <button class="saved-collections-button" 
+                            onclick="toggleSavedCollectionsDropdown(this)"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            aria-controls="dropdown-when"
+                            data-qa-type="when">
+                        WHEN <span class="count">1</span>
+                    </button>
+                    <div class="saved-collections-dropdown-content" 
+                         id="dropdown-when"
+                         role="menu">
+                                                                                                                <div class="saved-collections-submenu">
+                                    <span class="saved-collections-submenu-trigger" 
+                                          onclick="toggleSubmenu(this, event)"
+                                          role="menuitem"
+                                          aria-expanded="false"
+                                          aria-haspopup="true"
+                                          data-submenu-id="submenu-when-qa_system_intro"
+                                          tabindex="0"
+                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                        <span>Qa_system_intro</span>
+                                        <span class="count">1</span>
+                                    </span>
+                                    <div class="saved-collections-submenu-content" 
+                                         id="submenu-when-qa_system_intro"
+                                         role="menu">
+                                                                                    <a href="content.php?id=24" 
+                                               class="saved-collections-item"
+                                               role="menuitem"
+                                               tabindex="0">
+                                                Q/A Tagging System Guide                                            </a>
+                                                                            </div>
+                                </div>
+                                                                        </div>
+                </div>
+                            <div class="saved-collections-dropdown" data-qa-type="why">
+                    <button class="saved-collections-button" 
+                            onclick="toggleSavedCollectionsDropdown(this)"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            aria-controls="dropdown-why"
+                            data-qa-type="why">
+                        WHY <span class="count">1</span>
+                    </button>
+                    <div class="saved-collections-dropdown-content" 
+                         id="dropdown-why"
+                         role="menu">
+                                                                                                                <div class="saved-collections-submenu">
+                                    <span class="saved-collections-submenu-trigger" 
+                                          onclick="toggleSubmenu(this, event)"
+                                          role="menuitem"
+                                          aria-expanded="false"
+                                          aria-haspopup="true"
+                                          data-submenu-id="submenu-why-qa_design"
+                                          tabindex="0"
+                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                        <span>Qa_design</span>
+                                        <span class="count">1</span>
+                                    </span>
+                                    <div class="saved-collections-submenu-content" 
+                                         id="submenu-why-qa_design"
+                                         role="menu">
+                                                                                    <a href="content.php?id=24" 
+                                               class="saved-collections-item"
+                                               role="menuitem"
+                                               tabindex="0">
+                                                Q/A Tagging System Guide                                            </a>
+                                                                            </div>
+                                </div>
+                                                                        </div>
+                </div>
+                            <div class="saved-collections-dropdown" data-qa-type="how">
+                    <button class="saved-collections-button" 
+                            onclick="toggleSavedCollectionsDropdown(this)"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            aria-controls="dropdown-how"
+                            data-qa-type="how">
+                        HOW <span class="count">1</span>
+                    </button>
+                    <div class="saved-collections-dropdown-content" 
+                         id="dropdown-how"
+                         role="menu">
+                                                                                                                <div class="saved-collections-submenu">
+                                    <span class="saved-collections-submenu-trigger" 
+                                          onclick="toggleSubmenu(this, event)"
+                                          role="menuitem"
+                                          aria-expanded="false"
+                                          aria-haspopup="true"
+                                          data-submenu-id="submenu-how-add_qa_tag"
+                                          tabindex="0"
+                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                        <span>Add_qa_tag</span>
+                                        <span class="count">1</span>
+                                    </span>
+                                    <div class="saved-collections-submenu-content" 
+                                         id="submenu-how-add_qa_tag"
+                                         role="menu">
+                                                                                    <a href="content.php?id=24" 
+                                               class="saved-collections-item"
+                                               role="menuitem"
+                                               tabindex="0">
+                                                Q/A Tagging System Guide                                            </a>
+                                                                            </div>
+                                </div>
+                                                                        </div>
+                </div>
+                            <div class="saved-collections-dropdown" data-qa-type="do">
+                    <button class="saved-collections-button" 
+                            onclick="toggleSavedCollectionsDropdown(this)"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            aria-controls="dropdown-do"
+                            data-qa-type="do">
+                        DO <span class="count">2</span>
+                    </button>
+                    <div class="saved-collections-dropdown-content" 
+                         id="dropdown-do"
+                         role="menu">
+                                                                                                                <div class="saved-collections-submenu">
+                                    <span class="saved-collections-submenu-trigger" 
+                                          onclick="toggleSubmenu(this, event)"
+                                          role="menuitem"
+                                          aria-expanded="false"
+                                          aria-haspopup="true"
+                                          data-submenu-id="submenu-do-organize_content"
+                                          tabindex="0"
+                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                        <span>Organize_content</span>
+                                        <span class="count">1</span>
+                                    </span>
+                                    <div class="saved-collections-submenu-content" 
+                                         id="submenu-do-organize_content"
+                                         role="menu">
+                                                                                    <a href="content.php?id=24" 
+                                               class="saved-collections-item"
+                                               role="menuitem"
+                                               tabindex="0">
+                                                Q/A Tagging System Guide                                            </a>
+                                                                            </div>
+                                </div>
+                                                            <div class="saved-collections-submenu">
+                                    <span class="saved-collections-submenu-trigger" 
+                                          onclick="toggleSubmenu(this, event)"
+                                          role="menuitem"
+                                          aria-expanded="false"
+                                          aria-haspopup="true"
+                                          data-submenu-id="submenu-do-explore_content"
+                                          tabindex="0"
+                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
+                                        <span>Explore_content</span>
+                                        <span class="count">1</span>
+                                    </span>
+                                    <div class="saved-collections-submenu-content" 
+                                         id="submenu-do-explore_content"
+                                         role="menu">
+                                                                                    <a href="content.php?id=2" 
+                                               class="saved-collections-item"
+                                               role="menuitem"
+                                               tabindex="0">
+                                                Welcome to WOLFIE Platform                                            </a>
+                                                                            </div>
+                                </div>
+                                                                        </div>
+                </div>
+                        <div style="margin-left: auto; display: flex; gap: 8px;">
+                <button class="recently-viewed-button" onclick="checkLoginAndSave()" style="background: #28a745; border-color: #28a745; color: #fff;">
+                    Save
+                </button>
+                <button class="recently-viewed-button" onclick="checkLoginAndLoad()" style="background: #17a2b8; border-color: #17a2b8; color: #fff;">
+                    Load
+                </button>
+                <button class="recently-viewed-button" id="editCollectionBtn" onclick="checkLoginAndEdit()" style="background: #ffc107; border-color: #ffc107; color: #000;">
+                    Edit
+                </button>
+            </div>
+            
+            <script>
+            // Check login before allowing save/load/edit actions
+            function checkLoginAndSave() {
+                if (!isUserLoggedIn) {
+                    alert('Please log in to save collections.');
+                    return false;
+                }
+                showSaveCollectionModal();
+            }
+            
+            function checkLoginAndLoad() {
+                if (!isUserLoggedIn) {
+                    alert('Please log in to load collections.');
+                    return false;
+                }
+                showLoadCollectionModal();
+            }
+            
+            function checkLoginAndEdit() {
+                if (!isUserLoggedIn) {
+                    alert('Please log in to edit collections.');
+                    return false;
+                }
+                editCurrentCollection();
+            }
+            </script>
+        </div>
+    </nav>
+    -->
+    
+    <!-- Recently Viewed Navigation removed (replaced by Saved Collections Nav) -->
+    <!-- Nav removed -->
+        
+    <!-- Save Collection Modal -->
+    <div id="saveCollectionModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 30px; border-radius: 12px; max-width: 500px; width: 90%;">
+            <h3 style="margin-top: 0; color: #2c3e50;">💾 Save Recently Viewed Collection</h3>
+            <p style="color: #6c757d; margin-bottom: 20px;">Give this collection a name to save your current browsing session.</p>
+            
+            <div id="updateExistingNotice" style="display: none; background: #fff3cd; border: 1px solid #ffc107; padding: 12px; border-radius: 6px; margin-bottom: 15px;">
+                <strong>⚠️ Update Existing:</strong> You're currently viewing collection "<span id="currentCollectionName"></span>". Save to update it, or enter a new name to create a copy.
+            </div>
+            
+            <label for="collectionName" style="display: block; margin-bottom: 8px; font-weight: 600; color: #2c3e50;">Collection Name:</label>
+            <input type="text" id="collectionName" placeholder="e.g., Bible Study Session, Research Project" style="width: 100%; padding: 12px; border: 2px solid #D4AF37; border-radius: 6px; font-size: 1rem; margin-bottom: 10px;">
+            
+            <label for="collectionDescription" style="display: block; margin-bottom: 8px; margin-top: 15px; font-weight: 600; color: #2c3e50;">Description (optional):</label>
+            <textarea id="collectionDescription" placeholder="What is this collection for?" style="width: 100%; padding: 12px; border: 2px solid #D4AF37; border-radius: 6px; font-size: 1rem; margin-bottom: 20px; min-height: 80px;"></textarea>
+            
+            <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <button onclick="closeSaveCollectionModal()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Cancel</button>
+                <button onclick="saveCollection()" style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">💾 Save Collection</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Load Collection Modal -->
+    <div id="loadCollectionModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 30px; border-radius: 12px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;">
+            <h3 style="margin-top: 0; color: #2c3e50;">📂 Load Saved Collection</h3>
+            <p style="color: #6c757d; margin-bottom: 20px;">Select a saved collection to restore your browsing session.</p>
+            
+            <div id="collectionsList" style="margin-bottom: 20px;">
+                <div style="text-align: center; padding: 40px; color: #6c757d;">
+                    Loading your collections...
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <button onclick="closeLoadCollectionModal()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript for Collection Management -->
+    <script>
+    // Track currently loaded collection (if any)
+    let currentLoadedCollectionId = 10;
+    let currentLoadedCollectionName = "Demo Collection - All Q\/A Types";
+    
+    // Edit current collection (or save first if unsaved)
+    function editCurrentCollection() {
+        if (currentLoadedCollectionId) {
+            // Collection is saved, go to edit page
+            window.location.href = 'edit_collection.php?id=' + currentLoadedCollectionId;
+        } else {
+            // No saved collection, prompt to save first
+            alert('💡 Please save this collection first, then you can edit it!\n\nClick OK to open the Save dialog.');
+            showSaveCollectionModal();
+        }
+    }
+    
+    function showSaveCollectionModal() {
+        const modal = document.getElementById('saveCollectionModal');
+        const nameInput = document.getElementById('collectionName');
+        const updateNotice = document.getElementById('updateExistingNotice');
+        
+        // If a collection is currently loaded, show update notice and pre-fill name
+        if (currentLoadedCollectionId) {
+            updateNotice.style.display = 'block';
+            document.getElementById('currentCollectionName').textContent = currentLoadedCollectionName;
+            nameInput.value = currentLoadedCollectionName;
+        } else {
+            updateNotice.style.display = 'none';
+            nameInput.value = '';
+        }
+        
+        document.getElementById('collectionDescription').value = '';
+        modal.style.display = 'flex';
+        nameInput.focus();
+    }
+    
+    function closeSaveCollectionModal() {
+        document.getElementById('saveCollectionModal').style.display = 'none';
+    }
+    
+    function showLoadCollectionModal() {
+        const modal = document.getElementById('loadCollectionModal');
+        modal.style.display = 'flex';
+        loadCollectionsList();
+    }
+    
+    function closeLoadCollectionModal() {
+        document.getElementById('loadCollectionModal').style.display = 'none';
+    }
+    
+    function saveCollection() {
+        const name = document.getElementById('collectionName').value.trim();
+        const description = document.getElementById('collectionDescription').value.trim();
+        
+        if (!name) {
+            alert('Please enter a name for this collection');
+            return;
+        }
+        
+        // Determine if this is an update or new save
+        const isUpdate = currentLoadedCollectionId && name === currentLoadedCollectionName;
+        
+        fetch('api/save_collection.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                collection_name: name,
+                description: description,
+                update_existing: isUpdate,
+                existing_collection_id: isUpdate ? currentLoadedCollectionId : null
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('✅ Collection saved successfully!');
+                currentLoadedCollectionId = data.collection_id;
+                currentLoadedCollectionName = name;
+                closeSaveCollectionModal();
+            } else {
+                alert('Error: ' + (data.error || 'Failed to save collection'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error saving collection. Please try again.');
+        });
+    }
+    
+    function loadCollectionsList() {
+        const container = document.getElementById('collectionsList');
+        container.innerHTML = '<div style="text-align: center; padding: 40px; color: #6c757d;">Loading...</div>';
+        
+        fetch('api/list_collections.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.collections.length > 0) {
+                let html = '';
+                data.collections.forEach(collection => {
+                    const isCurrentlyLoaded = (collection.id == currentLoadedCollectionId);
+                    html += `
+                        <div style="border: 2px solid ${isCurrentlyLoaded ? '#28a745' : '#D4AF37'}; padding: 15px; border-radius: 8px; margin-bottom: 10px; ${isCurrentlyLoaded ? 'background: #d4edda;' : 'background: #f8f9fa;'}">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0 0 8px 0; color: #2c3e50;">
+                                        ${isCurrentlyLoaded ? '[Active] ' : ''}${htmlEscape(collection.collection_name)}
+                                    </h4>
+                                    <p style="margin: 0 0 8px 0; color: #6c757d; font-size: 0.9rem;">${htmlEscape(collection.description || 'No description')}</p>
+                                    <p style="margin: 0; color: #6c757d; font-size: 0.85rem;">
+                                        ${collection.saved_collections_count || collection.item_count || 0} saved items
+                                        <br><small>Created: ${new Date(collection.created_at).toLocaleString()}</small>
+                                    </p>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button onclick="loadCollectionById(${collection.id}, '${htmlEscape(collection.collection_name)}')" 
+                                            style="padding: 8px 16px; background: #17a2b8; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; white-space: nowrap;">
+                                        Load
+                                    </button>
+                                    <button onclick="deleteCollection(${collection.id})" 
+                                            style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            } else {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #6c757d;">
+                        <p>No saved collections yet.</p>
+                        <p style="font-size: 0.9rem;">Click "💾 Save" to save your first collection!</p>
+                    </div>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            container.innerHTML = '<div style="text-align: center; padding: 40px; color: #dc3545;">Error loading collections</div>';
+        });
+    }
+    
+    function loadCollectionById(collectionId, collectionName) {
+        if (!confirm(`Load collection "${collectionName}"? This will replace your current recently viewed items.`)) {
+            return;
+        }
+        
+        fetch('api/load_collection.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                collection_id: collectionId
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                currentLoadedCollectionId = collectionId;
+                currentLoadedCollectionName = collectionName;
+                alert('✅ Collection loaded! Refreshing page...');
+                location.reload();
+            } else {
+                alert('Error: ' + (data.error || 'Failed to load collection'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error loading collection. Please try again.');
+        });
+    }
+    
+    function deleteCollection(collectionId) {
+        if (!confirm('Delete this collection? This cannot be undone.')) {
+            return;
+        }
+        
+        fetch('api/delete_collection.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                collection_id: collectionId
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                if (collectionId == currentLoadedCollectionId) {
+                    currentLoadedCollectionId = null;
+                    currentLoadedCollectionName = null;
+                }
+                loadCollectionsList(); // Refresh list
+            } else {
+                alert('Error: ' + (data.error || 'Failed to delete collection'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error deleting collection. Please try again.');
+        });
+    }
+    
+    function htmlEscape(str) {
+        return String(str).replace(/[&<>"']/g, function(match) {
+            const escape = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            };
+            return escape[match];
+        });
+    }
+    
+    // Close modals on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeSaveCollectionModal();
+            closeLoadCollectionModal();
+        }
+    });
+    </script>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+    
+        
+    <!-- JavaScript for User Dropdown -->
+    <script>
+    function toggleUserDropdown() {
+        const dropdown = document.getElementById('userDropdownMenu');
+        if (dropdown) {
+            dropdown.classList.toggle('show');
+        }
+    }
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('userDropdownMenu');
+        const profileBtn = document.querySelector('.user-profile-btn');
+        
+        if (dropdown && profileBtn && !profileBtn.contains(event.target) && !dropdown.contains(event.target)) {
+            dropdown.classList.remove('show');
+        }
+    });
+    
+    // Close dropdown on escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const dropdown = document.getElementById('userDropdownMenu');
+            if (dropdown) {
+                dropdown.classList.remove('show');
+            }
+        }
+    });
+    </script>
+
+
+
+<style>.content-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: calc(100vh - 107px);
+    position: fixed;
+    top: 107px;
+    left: 0;
+}
+
+/* Row 1: Top Border */
+.resources-top-left {
+    width: 54px;
+    height: 42px;
+    background: url('images/s1b.png');
+}
+
+.resources-top-center {
+    width: calc(100vw - 118px);
+    height: 42px;
+    background: url('images/s2b.png');
+    background-repeat: repeat;
+    display: flex; 
+    align-items: flex-start; /* Aligns everything to the TOP */
+}
+
+.resources-top-right {
+    width: 54px;
+    height: 42px;
+    background: url('images/s3b.png');
+}
+
+/* Row 2: Middle Border and Content */
+.resources-middle-left {
+    width: 54px;
+    height: calc(100vh - 107px - 78px);
+    background: url('images/s4b.png');
+    background-repeat: repeat-y;
+}
+
+.resources-middle-center {
+    width: calc(100vw - 118px);
+    height: calc(100vh - 107px - 78px);
+    background: url('images/s5.png');
+    background-repeat: repeat;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.resources-middle-right {
+    width: 54px;
+    height: calc(100vh - 107px - 78px);
+    background: url('images/s6b.png');
+    background-repeat: repeat-y;
+}
+
+/* Row 3: Bottom Border */
+.resources-bottom-left {
+    width: 54px;
+    height: 42px;
+    background: url('images/s7b.png');
+}
+
+.resources-bottom-center {
+    width: calc(100vw - 118px);
+    height: 42px;
+    background: url('images/s8b.png');
+    background-repeat: repeat;
+}
+
+.resources-bottom-right {
+    width: 54px;
+    height: 42px;
+    background: url('images/s9b.png');
+}
+
+.resources-filters {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.filter-select, .search-input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.content-table thead {
+    background-color: #6c757d;
+    color: white;
+}
+
+.content-table th {
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.content-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.content-table tbody tr {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.content-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.pagination a {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+}
+
+.pagination a:hover {
+    background-color: #f8f9fa;
+}
+
+.pagination .current {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Container for the dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style for the actual menu */
+.dropdown-content {
+  display: none; /* Hidden by default */
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 450px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 4px;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 2px 6px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* The class we will toggle with JavaScript */
+.show {
+  display: block;
+}
+
+#contentsDropdown {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+#folderDropdown {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+#nextDropdown {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+#prevDropdown {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Style for the shortcut dropdown specifically */
+#shortcutDropdown {
+    min-width: 450px;
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+}
+/* Style for the 'Add' buttons inside the menu */
+.add-action {
+    color: #28a745 !important; /* Green to signify adding */
+    font-size: 0.85em;
+    font-style: italic;
+    padding-left: 25px !important;
+}
+
+.add-action:hover {
+    background-color: #e8f5e9 !important;
+    text-decoration: underline;
+}
+
+.add-action.global {
+    font-weight: bold;
+    font-style: normal;
+    background-color: #f0fdf4;
+}
+
+.main-tab { font-weight: bold; }
+.sub-tab { padding-left: 20px !important; color: #555; }
+
+</style>
+<script>
+function toggleMenu(menuId) {
+  // 1. Close any other open dropdowns first
+  var dropdowns = document.getElementsByClassName("dropdown-content");
+  for (var i = 0; i < dropdowns.length; i++) {
+    var openDropdown = dropdowns[i];
+    if (openDropdown.id !== menuId) {
+      openDropdown.classList.remove('show');
+    }
+  }
+
+  // 2. Toggle the one that was clicked
+  document.getElementById(menuId).classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks anywhere outside the images
+window.onclick = function(event) {
+  if (!event.target.matches('img')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    for (var i = 0; i < dropdowns.length; i++) {
+      dropdowns[i].classList.remove('show');
+    }
+  }
+}
+
+function addNewItem(type, parentName = '') {
+    // Stop the click from bubbling up to window.onclick
+    if (event) event.stopPropagation();
+
+    let message = (type === 'main') 
+        ? "Enter name for new Main Tab:" 
+        : `Enter new Sub-Tab name for "${parentName}":`;
+
+    let userInput = prompt(message);
+
+    if (userInput !== null && userInput.trim() !== "") {
+        // Logic to save to your database/backend goes here
+        console.log(`Action: Create ${type}, Name: ${userInput}, Parent: ${parentName}`);
+        
+        alert(`Successfully added "${userInput}" to your collection!`);
+        
+        // Optional: Refresh the page or update UI dynamically
+        // location.reload(); 
+    }
+}
+
+    </script>
+
+<div class="content-list-container">
+    <!-- Row 1: Top Border -->
+    <div class="resources-top-left"></div>
+   <div class="resources-top-center">
+    
+   <div class="dropdown">
+    <img src="images/addshortcut.png" width="42" height="42" onclick="toggleMenu('shortcutDropdown')" style="cursor:pointer;"> 
+    <div id="shortcutDropdown" class="dropdown-content">
+     <div style="padding: 10px; border-bottom: 1px solid #ddd; background: #f9f9f9;">
+        <b>Current Collection:</b> DESKTOP<br>
+        click on the name of the tab or subtab you would like to add this shortcut to to change the collection that this is in use the blue collections tab to select a different collection. 
+     </div>
+
+     <a href="#who" class="main-tab">| WHO</a>
+     <a href="#wolfie" class="sub-tab">|— WOLFIE</a>
+     <a href="javascript:void(0)" class="add-action" onclick="addNewItem('sub', 'WHO')">+ New Sub-Tab for WHO</a> 
+     <a href="#what" class="main-tab">| WHAT</a>
+     <a href="#software" class="sub-tab">|— SOFTWARE</a>
+     <a href="javascript:void(0)" class="add-action" onclick="addNewItem('sub', 'WHAT')">+ New Sub-Tab for WHAT</a>
+     <hr>
+     <a href="javascript:void(0)" class="add-action global" onclick="addNewItem('main')">+ Create New Main Tab</a>
+    </div>
+   </div>
+ 
+ 
+  <div class="dropdown">
+    <img src="images/contents.png" width="42" height="42" onclick="toggleMenu('contentsDropdown')" style="cursor:pointer;">
+ 
+     
+    <div id="contentsDropdown" class="dropdown-content">
+  
+       <a href="#news">News and Updates</a> 
+        <a href="#download">Download Crafty Syntax 3.7.5</a> 
+        <a href="#howto">How do I use Crafty Syntax right now?</a>
+        <a href="#legacy">Historical Overview (Where We Came From)</a> 
+        <a href="#whycraftysyntax">Why the Crafty Syntax Name Returns in 3.7.5</a> 
+        <a href="planfor_next_version_craftysyntax.php">Crafty Syntax 3.8.0 Modernization Plan</a> 
+        <a href="#future-roadmap">Roadmap Highlights</a> 
+        <a href="#download">How do I use Crafty Syntax right now?</a> 
+        <a href="lupopedia.php">What is LUPOPEDIA version 4.2.x?</a> 
+        <a href="#challenge">Real-Time Chat Problem</a> 
+        <a href="#fallback">Fallback Engineering</a> 
+        <a href="#fingerprinting">Session Fingerprinting</a> 
+        <a href="#security">Security Hardening</a> 
+        <a href="#documentation">Documentation Discipline</a> 
+        <a href="#timestamps">Timestamp Discipline</a> 
+        <a href="#innovations">Technical Innovations</a> 
+        <a href="#timeline">Complete Timeline</a> 
+        <a href="#features">Key Features</a>
+        <a href="#distribution">Distribution &amp; Auto-Installers</a> 
+        <a href="#license">GPL License Notes</a> 
+        <a href="#video-demo">Demo Video</a> 
+        <a href="#continuity">Crafty Syntax → WOLFIE</a> 
+        <a href="#next-steps">Next Steps</a> 
+        <a href="#references">References</a> 
+
+
+    </div>
+  </div>
+
+ 
+  <h1 id="firstHeading" class="firstHeading mw-first-heading">
+    <span class="mw-page-title-main">Crafty Syntax Live Help</span>
+  </h1>
+ &nbsp;
+  <img src="images/edges.png" width="77" height="42"   style="cursor:pointer; ">
+
+ 
+
+
+</div>
+    <div class="resources-top-right"></div>
+    <!-- Row 2: Middle Border and Content -->
+    <div class="resources-middle-left"></div>
+    <div class="resources-middle-center">
+ 

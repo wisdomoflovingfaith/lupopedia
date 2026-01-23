@@ -1,0 +1,14 @@
+{
+    "table_name": "livehelp_messages",
+    "fields": [
+        "`id_num` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`message` text",
+        "`channel` int NOT NULL DEFAULT 0",
+        "`timeof` bigint NOT NULL DEFAULT 0",
+        "`saidfrom` int NOT NULL DEFAULT 0",
+        "`saidto` int NOT NULL DEFAULT 0",
+        "`typeof` varchar(30) NOT NULL DEFAULT ''"
+    ],
+    "data": []
+}

@@ -1,0 +1,125 @@
+{
+  "table_name": "lupo_actor_conflicts",
+  "fields": [
+    "`actor_conflict_id` bigint NOT NULL auto_increment COMMENT 'Primary key for the conflict record'",
+    "`domain_id` bigint NOT NULL DEFAULT '1' COMMENT 'Domain/tenant this conflict belongs to'",
+    "`actor_a_id` bigint NOT NULL",
+    "`actor_b_id` bigint NOT NULL",
+    "`conflict_type` varchar(64) NOT NULL COMMENT 'Type/category of the conflict'",
+    "`conflict_summary` text NOT NULL COMMENT 'Detailed description of the conflict'",
+    "`resolution_status` enum('unresolved','resolved','ignored') NOT NULL DEFAULT 'unresolved' COMMENT 'Current status of the conflict resolution'",
+    "`resolution_summary` text COMMENT 'How the conflict was resolved (if applicable)'",
+    "`resolved_by` bigint COMMENT 'Actor who resolved the conflict (if applicable)'",
+    "`resolved_ymdhis` bigint COMMENT 'When the conflict was resolved (YYYYMMDDHHMMSS)'",
+    "`severity` enum('low','medium','high','critical') NOT NULL DEFAULT 'medium' COMMENT 'Severity level of the conflict'",
+    "`context_json` json COMMENT 'Additional context about the conflict in JSON format'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'",
+    "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_agent_a",
+      "columns": [
+        "actor_a_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_agent_b",
+      "columns": [
+        "actor_b_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_agent_pair",
+      "columns": [
+        "actor_a_id",
+        "actor_b_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_conflict_type",
+      "columns": [
+        "conflict_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_domain",
+      "columns": [
+        "domain_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_resolved_ymdhis",
+      "columns": [
+        "resolved_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_severity",
+      "columns": [
+        "severity"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_status",
+      "columns": [
+        "resolution_status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Tracks conflicts between AI agents, including resolution status and history. Used for monitoring and improving agent interactions.",
+  "primary_key": {
+    "column_name": "actor_conflict_id",
+    "expected_name": "actor_conflict_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

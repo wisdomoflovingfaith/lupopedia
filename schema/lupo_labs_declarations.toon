@@ -1,0 +1,23 @@
+table: lupo_labs_declarations
+  columns:
+    lab_id: bigint, primary, auto_increment
+    actor_id: bigint, not null, comment: "Actor making the LABS declaration"
+    lab_type: enum('baseline', 'capability', 'intention', 'boundary'), not null, comment: "Type of LABS declaration"
+    lab_value: text, not null, comment: "The actual LABS declaration value"
+    confidence_level: decimal(3,2), default: 1.00, comment: "Confidence level in this declaration (0.00-1.00)"
+    context_metadata: text, nullable, comment: "JSON-encoded context information for this declaration"
+    validation_status: enum('pending', 'validated', 'rejected', 'expired'), default: pending, comment: "Current validation status"
+    validated_by_actor_id: bigint, nullable, comment: "Actor who validated this declaration"
+    expires_ymdhis: bigint, nullable, comment: "UTC YYYYMMDDHHMMSS when this declaration expires"
+    created_ymdhis: bigint, not null, comment: "UTC YYYYMMDDHHMMSS when declaration was made"
+    updated_ymdhis: bigint, nullable, comment: "UTC YYYYMMDDHHMMSS when declaration was last updated"
+  indexes:
+    idx_actor_id, actor_id
+    idx_lab_type, lab_type
+    idx_validation_status, validation_status
+    idx_created_ymdhis, created_ymdhis
+    idx_expires_ymdhis, expires_ymdhis
+  engine: InnoDB
+  charset: utf8mb4
+  collate: utf8mb4_unicode_ci
+  comment: "Lupopedia Actor Baseline State (LABS) declarations. All fields are signed integers per No-UNSIGNED doctrine."

@@ -1,0 +1,55 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    ⚠️  CRITICAL: DO NOT MODIFY THIS CODE  ⚠️                 ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+This directory contains the EXACT Crafty Syntax 3.7.5 codebase as distributed by:
+
+    • Softaculous
+    • Installatron  
+    • Netenberg (as of January 2026)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  THIS CODE MUST REMAIN UNTOUCHED ⚠️
+
+This code is used EXCLUSIVELY for reference when building the new 
+Crafty Syntax 4.0.0 module for Lupopedia.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+RULES:
+
+    ✓ READ ONLY - Use for reference only
+    ✓ NO MODIFICATIONS - Do not change any files here
+    ✓ NO DELETIONS - Do not delete any files here
+    ✓ EXACT COPY - This must remain exactly as distributed by auto-installers
+    ✓ REFERENCE ONLY - This code does NOT run in Lupopedia
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHERE TO BUILD NEW CODE:
+
+    The new Crafty Syntax 4.0.0 module will be built in:
+    
+    • lupo-admin/        (admin interface)
+    • lupo-includes/     (core classes and functions)
+    • database/migrations/ (database migration scripts)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IF YOU NEED TO MODIFY CODE:
+
+    1. DO NOT modify files in legacy/
+    2. DO modify files in lupo-admin/ or lupo-includes/
+    3. REFERENCE legacy/ code to understand original behavior
+    4. IMPLEMENT new code based on legacy patterns
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+This code represents the exact baseline that auto-installers distribute.
+It is the reference point for all migration and upgrade work.
+
+DO NOT MODIFY. USE FOR REFERENCE ONLY.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+

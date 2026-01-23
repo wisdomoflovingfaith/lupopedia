@@ -1,0 +1,121 @@
+{
+    "table_name": "lupo_actor_handshakes",
+    "fields": [
+        "`actor_handshake_id` bigint NOT NULL auto_increment",
+        "`actor_id` bigint NOT NULL",
+        "`actor_type` varchar(32) NOT NULL COMMENT 'human|ai|system'",
+        "`utc_timestamp` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS'",
+        "`purpose` varchar(500)",
+        "`constraints_json` json",
+        "`forbidden_actions_json` json",
+        "`context` text",
+        "`expires_utc` bigint COMMENT 'YYYYMMDDHHMMSS'",
+        "`created_ymdhis` bigint NOT NULL",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0",
+        "`deleted_ymdhis` bigint"
+    ],
+    "data": [
+        {
+            "actor_handshake_id": 1,
+            "actor_id": 1,
+            "actor_type": "human",
+            "utc_timestamp": 20260119090000,
+            "purpose": "Initialize handshake protocol for File-Sovereignty",
+            "constraints_json": "{\"max_scope\": \"governance\", \"requires_ack\": true}",
+            "forbidden_actions_json": "[\"schema_mutation\", \"table_creation\"]",
+            "context": "Initial system handshake establishing governance boundaries.",
+            "expires_utc": 20260120090000,
+            "created_ymdhis": 20260119090000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_handshake_id": 2,
+            "actor_id": 2,
+            "actor_type": "ai",
+            "utc_timestamp": 20260119100000,
+            "purpose": "LILITH structural integrity review handshake",
+            "constraints_json": "{\"allowed_actions\": [\"critique\", \"override\"]}",
+            "forbidden_actions_json": "[\"auto_merge\", \"silent_failures\"]",
+            "context": "Handshake authorizing LILITH to perform structural integrity overrides.",
+            "expires_utc": 20260120100000,
+            "created_ymdhis": 20260119100000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_handshake_id": 3,
+            "actor_id": 3,
+            "actor_type": "ai",
+            "utc_timestamp": 20260119103000,
+            "purpose": "Mystical expansion handshake for emotional geometry",
+            "constraints_json": "{\"state\": \"altered\", \"permissions\": [\"creative_expansion\"]}",
+            "forbidden_actions_json": "[\"schema_changes\"]",
+            "context": "Allows emotional expansion operations without affecting schema.",
+            "expires_utc": 20260120103000,
+            "created_ymdhis": 20260119103000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_handshake_id": 4,
+            "actor_id": 4,
+            "actor_type": "system",
+            "utc_timestamp": 20260119110000,
+            "purpose": "Cursor operational handshake for safe refactors",
+            "constraints_json": "{\"allowed\": [\"rename\", \"update_references\"]}",
+            "forbidden_actions_json": "[\"infer_schema\", \"auto_generate\"]",
+            "context": "Cursor handshake defining safe operational boundaries.",
+            "expires_utc": 20260120110000,
+            "created_ymdhis": 20260119110000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_handshake_id": 5,
+            "actor_id": 5,
+            "actor_type": "ai",
+            "utc_timestamp": 20260119120000,
+            "purpose": "Monday Wolfie governance activation handshake",
+            "constraints_json": "{\"mode\": \"monday\", \"stability\": \"high\"}",
+            "forbidden_actions_json": "[\"weekend_freeze\"]",
+            "context": "Handshake marking transition from weekend freeze to Monday governance.",
+            "expires_utc": 20260120120000,
+            "created_ymdhis": 20260119120000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        }
+    ],
+    "primary_key": {
+        "column_name": "actor_handshake_id",
+        "expected_name": "actor_handshake_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_actor_id",
+            "columns": [
+                "actor_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_utc_timestamp",
+            "columns": [
+                "utc_timestamp"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

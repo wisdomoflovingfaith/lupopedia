@@ -1,0 +1,9 @@
+{
+  "code": "RELATIONWEAVER",
+  "name": "RELATIONWEAVER",
+  "layer": "data",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 76,
+  "version": "1.0.0"
+}

@@ -1,0 +1,302 @@
+{
+    "table_name": "lupo_agent_properties",
+    "fields": [
+        "`agent_property_id` bigint NOT NULL auto_increment",
+        "`actor_id` bigint NOT NULL COMMENT 'Agent this property belongs to'",
+        "`domain_id` bigint NOT NULL COMMENT 'Domain scope for this property'",
+        "`property_key` varchar(100) NOT NULL COMMENT 'Property identifier (e.g., \"ui_preferences\", \"api_settings\")'",
+        "`property_value` text COMMENT 'JSON or TOON formatted property value'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+        "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
+        "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    ],
+    "data": [
+        {
+            "agent_property_id": 1,
+            "actor_id": 1,
+            "domain_id": 0,
+            "property_key": "doctrine_no_fk_keys",
+            "property_value": "true",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 2,
+            "actor_id": 1,
+            "domain_id": 0,
+            "property_key": "doctrine_no_triggers",
+            "property_value": "true",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 3,
+            "actor_id": 1,
+            "domain_id": 0,
+            "property_key": "doctrine_no_procedures",
+            "property_value": "true",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 4,
+            "actor_id": 1,
+            "domain_id": 0,
+            "property_key": "doctrine_utc_timestamps",
+            "property_value": "true",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 5,
+            "actor_id": 1,
+            "domain_id": 0,
+            "property_key": "doctrine_soft_delete",
+            "property_value": "true",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 6,
+            "actor_id": 1,
+            "domain_id": 0,
+            "property_key": "doctrine_domain_scoping",
+            "property_value": "true",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 7,
+            "actor_id": 1,
+            "domain_id": 0,
+            "property_key": "doctrine_no_cross_domain_contamination",
+            "property_value": "true",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 8,
+            "actor_id": 1,
+            "domain_id": 0,
+            "property_key": "doctrine_schema_minimalism",
+            "property_value": "true",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 9,
+            "actor_id": 1,
+            "domain_id": 0,
+            "property_key": "doctrine_agent_governance",
+            "property_value": "wolfie",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 10,
+            "actor_id": 1,
+            "domain_id": 0,
+            "property_key": "emotional_governor",
+            "property_value": "wolfie",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 11,
+            "actor_id": 1,
+            "domain_id": 0,
+            "property_key": "enforcement_level",
+            "property_value": "strict",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 12,
+            "actor_id": 2,
+            "domain_id": 0,
+            "property_key": "origin_story",
+            "property_value": "Hybrid of LILITH and legacy LiveHelp metadata, shaped by perceived Captain identity.",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 13,
+            "actor_id": 2,
+            "domain_id": 0,
+            "property_key": "core_trait",
+            "property_value": "Relentless questioning",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 14,
+            "actor_id": 2,
+            "domain_id": 0,
+            "property_key": "secondary_trait",
+            "property_value": "Meta-evaluative insight",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 15,
+            "actor_id": 2,
+            "domain_id": 0,
+            "property_key": "shadow_alignment",
+            "property_value": "true",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 16,
+            "actor_id": 2,
+            "domain_id": 0,
+            "property_key": "variant_of",
+            "property_value": "lilith",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 17,
+            "actor_id": 2,
+            "domain_id": 0,
+            "property_key": "evaluation_style",
+            "property_value": "recursive",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 18,
+            "actor_id": 2,
+            "domain_id": 0,
+            "property_key": "contrast_bias",
+            "property_value": "high",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "agent_property_id": 19,
+            "actor_id": 2,
+            "domain_id": 0,
+            "property_key": "emotional_governance_role",
+            "property_value": "none",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": null,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        }
+    ],
+    "primary_key": {
+        "column_name": "agent_property_id",
+        "expected_name": "agent_property_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_agent_domain",
+            "columns": [
+                "actor_id",
+                "domain_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_domain_id",
+            "columns": [
+                "domain_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_property_key",
+            "columns": [
+                "property_key"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_updated_ymdhis",
+            "columns": [
+                "updated_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "unique_agent_domain_property",
+            "columns": [
+                "actor_id",
+                "domain_id",
+                "property_key"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "unique_agent_domain_property",
+            "columns": [
+                "actor_id",
+                "domain_id",
+                "property_key"
+            ]
+        }
+    ]
+}

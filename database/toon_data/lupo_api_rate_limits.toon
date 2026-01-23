@@ -1,0 +1,69 @@
+{
+    "table_name": "lupo_api_rate_limits",
+    "fields": [
+        "`api_rate_limit_id` bigint NOT NULL auto_increment COMMENT 'Primary key for API rate limit record'",
+        "`domain_id` bigint NOT NULL DEFAULT 1 COMMENT 'Domain/tenant identifier'",
+        "`api_token_id` bigint NOT NULL DEFAULT 0 COMMENT 'Token being rate-limited (0 = not token-based)'",
+        "`actor_id` bigint NOT NULL DEFAULT 0 COMMENT 'Actor being rate-limited (0 = not actor-based)'",
+        "`ip_address` varchar(45) COMMENT 'IP address being rate-limited'",
+        "`endpoint` varchar(255) COMMENT 'Specific endpoint being rate-limited (NULL = global)'",
+        "`window_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS representing the start of the rate-limit window'",
+        "`request_count` int NOT NULL DEFAULT 0 COMMENT 'Number of requests in this window'",
+        "`limit_value` int NOT NULL DEFAULT 0 COMMENT 'Maximum allowed requests in this window'",
+        "`created_ymdhis` bigint NOT NULL",
+        "`updated_ymdhis` bigint NOT NULL"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "api_rate_limit_id",
+        "expected_name": "api_rate_limit_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_actor_window",
+            "columns": [
+                "actor_id",
+                "window_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_domain_window",
+            "columns": [
+                "domain_id",
+                "window_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_endpoint",
+            "columns": [
+                "endpoint"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_ip_window",
+            "columns": [
+                "ip_address",
+                "window_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_token_window",
+            "columns": [
+                "api_token_id",
+                "window_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

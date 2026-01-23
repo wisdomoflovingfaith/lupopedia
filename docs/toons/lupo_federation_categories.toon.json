@@ -1,0 +1,44 @@
+{
+  "table_name": "lupo_federation_categories",
+  "fields": [
+    "`federation_category_id` bigint NOT NULL auto_increment",
+    "`category_name` varchar(255) NOT NULL",
+    "`category_slug` varchar(255) NOT NULL",
+    "`category_description` text",
+    "`meta_json` json",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT '0'",
+    "`created_ymdhis` bigint NOT NULL DEFAULT '0'",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT '0'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_category_slug",
+      "columns": [
+        "category_slug"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "federation_category_id",
+    "expected_name": "federation_category_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,101 @@
+{
+    "table_name": "livehelp_questions",
+    "fields": [
+        "`id` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`department` int NOT NULL DEFAULT 0",
+        "`ordering` int NOT NULL DEFAULT 0",
+        "`headertext` text",
+        "`fieldtype` varchar(30) NOT NULL DEFAULT ''",
+        "`options` text",
+        "`flags` varchar(60) NOT NULL DEFAULT ''",
+        "`module` varchar(60) NOT NULL DEFAULT ''",
+        "`required` char(1) NOT NULL DEFAULT 'N'"
+    ],
+    "data": [
+        {
+            "id": 1,
+            "livehelp_id": 1,
+            "department": 1,
+            "ordering": 0,
+            "headertext": "E-mail:",
+            "fieldtype": "email",
+            "options": "",
+            "flags": "",
+            "module": "leavemessage",
+            "required": "Y"
+        },
+        {
+            "id": 2,
+            "livehelp_id": 1,
+            "department": 1,
+            "ordering": 0,
+            "headertext": "Question:",
+            "fieldtype": "textarea",
+            "options": "",
+            "flags": "",
+            "module": "leavemessage",
+            "required": "N"
+        },
+        {
+            "id": 3,
+            "livehelp_id": 1,
+            "department": 1,
+            "ordering": 0,
+            "headertext": "Name",
+            "fieldtype": "username",
+            "options": "",
+            "flags": "",
+            "module": "livehelp",
+            "required": "N"
+        },
+        {
+            "id": 5,
+            "livehelp_id": 1,
+            "department": 1,
+            "ordering": 1,
+            "headertext": "Question",
+            "fieldtype": "textarea",
+            "options": "",
+            "flags": "",
+            "module": "livehelp",
+            "required": "N"
+        },
+        {
+            "id": 6,
+            "livehelp_id": 1,
+            "department": 0,
+            "ordering": 0,
+            "headertext": "E-mail:",
+            "fieldtype": "email",
+            "options": null,
+            "flags": "",
+            "module": "leavemessage",
+            "required": "Y"
+        },
+        {
+            "id": 7,
+            "livehelp_id": 1,
+            "department": 0,
+            "ordering": 0,
+            "headertext": "Question:",
+            "fieldtype": "textarea",
+            "options": null,
+            "flags": "",
+            "module": "leavemessage",
+            "required": "N"
+        },
+        {
+            "id": 8,
+            "livehelp_id": 1,
+            "department": -1,
+            "ordering": 0,
+            "headertext": "Question:",
+            "fieldtype": "textarea",
+            "options": null,
+            "flags": "",
+            "module": "leavemessage",
+            "required": "N"
+        }
+    ]
+}

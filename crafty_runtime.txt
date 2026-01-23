@@ -1,0 +1,221 @@
+Lupopedia Module Folder Structure for crafty_syntax
+Everything lives under:
+
+Code
+/modules/crafty_syntax/
+Inside that folder, you’ll have the six canonical subdirectories that every Lupopedia module uses:
+
+Code
+crafty_syntax/
+│
+├── module.json
+│
+├── controllers/
+│   ├── OperatorController.php
+│   ├── VisitorWidgetController.php
+│   ├── AdminController.php
+│   └── TranscriptController.php
+│
+├── agents/
+│   ├── VisitorPresenceAgent.php
+│   ├── OperatorPresenceAgent.php
+│   ├── ChatRoutingAgent.php
+│   ├── TranscriptAgent.php
+│   └── SystemEventAgent.php
+│
+├── views/
+│   ├── operator/
+│   │   ├── dashboard.php
+│   │   ├── visitor_list.php
+│   │   └── chat_window.php
+│   │
+│   ├── widget/
+│   │   ├── launcher.php
+│   │   └── chat.php
+│   │
+│   ├── admin/
+│   │   ├── departments.php
+│   │   ├── operators.php
+│   │   ├── settings.php
+│   │   └── alerts.php
+│   │
+│   └── transcript/
+│       └── view.php
+│
+├── routes/
+│   └── web.php
+│
+├── assets/
+│   ├── css/
+│   ├── js/
+│   └── sounds/
+│
+└── migrations/
+    ├── create_livehelp_departments.php
+    ├── create_livehelp_settings.php
+    ├── create_livehelp_presence.php
+    └── seed_channels.php
+This is the exact structure Cursor needs to generate the new Crafty Syntax module cleanly.
+
+# CRAFTY SYNTAX RUNTIME MODEL (LEGACY BEHAVIOR TO REBUILD IN LUPOPEDIA)
+
+## OVERVIEW
+Crafty Syntax LiveHelp used a dynamic, operator-controlled channel system. 
+It did NOT use static chat rooms. 
+It used:
+1. A global lobby channel (channel_id = 1)
+2. Dynamically created private channels (one per chat session)
+3. Operator-controlled membership
+4. Message routing based on from_actor_id and to_actor_id
+
+Rebuild this behavior exactly inside Lupopedia using the new schema.
+
+------------------------------------------------------------
+## CHANNEL 1 — THE LOBBY (INTAKE QUEUE)
+- All visitors start in channel_id = 1.
+- Operators are also in channel_id = 1.
+- Visitors only see messages addressed to them (to_actor_id = visitor_id).
+- Operators see all visitor messages.
+- This channel is NOT a chat room. It is a staging area.
+- No private conversations happen here.
+- No AI agents join this channel.
+
+------------------------------------------------------------
+## PRIVATE CHAT CHANNELS — ONE PER SESSION
+When an operator clicks a visitor in the lobby:
+1. A new channel is created.
+2. The channel_id MUST equal the dialog_thread_id.
+3. The operator joins the new channel.
+4. The visitor is moved from channel 1 into the new channel.
+5. The operator may add additional human operators.
+6. The operator may add AI agents.
+
+This channel is the actual chat session.
+
+------------------------------------------------------------
+## MESSAGE VISIBILITY RULES
+Crafty Syntax used strict routing rules:
+
+### VISITOR VISIBILITY
+Visitors ONLY see messages where:
+- to_actor_id = visitor_id
+OR
+- to_actor_id = 0 (broadcast to visitor)
+
+Visitors NEVER see:
+- operator-to-operator messages
+- system messages not addressed to them
+- other visitor messages
+
+### OPERATOR VISIBILITY
+Operators see ALL messages in the channel.
+
+### AI AGENT VISIBILITY
+AI agents only receive messages where:
+- to_actor_id = agent_actor_id
+
+------------------------------------------------------------
+## CHANNEL MEMBERSHIP RULES
+- Visitors start in channel 1.
+- Operators start in channel 1.
+- When a chat session begins:
+  - visitor moves to channel = dialog_thread_id
+  - operator joins channel = dialog_thread_id
+- Operators may add:
+  - other operators
+  - supervisors
+  - AI agents
+
+Membership is stored in actor_channels.
+
+------------------------------------------------------------
+## DIALOG THREADS AND CHANNELS
+Each chat session has:
+- one dialog_thread_id
+- one channel_id
+These MUST be identical.
+
+dialog_thread_id = channel_id
+
+Messages in that thread belong to that channel.
+
+------------------------------------------------------------
+## MESSAGE STORAGE
+Messages are stored in:
+- lupo_dialog_messages
+- lupo_dialog_message_bodies
+
+Each message has:
+- dialog_message_id
+- dialog_thread_id (same as channel_id)
+- from_actor_id
+- to_actor_id
+- message_text
+- metadata_json
+- timestamps
+
+------------------------------------------------------------
+## REQUIRED AGENTS TO REBUILD
+Cursor must generate the following agents:
+
+1. Visitor Presence Agent
+   - tracks arrivals, departures, idle, typing, navigation
+
+2. Operator Presence Agent
+   - tracks operator availability, typing, status
+
+3. Chat Routing Agent
+   - creates new channels
+   - moves visitor from channel 1 to private channel
+   - assigns operator
+   - adds additional humans or AI agents
+
+4. Transcript Agent
+   - writes messages to dialog tables
+   - attaches metadata
+   - maintains timestamps
+
+5. System Event Agent
+   - handles alerts, auto-invites, triggers
+
+------------------------------------------------------------
+## UI REQUIREMENTS
+Cursor must generate four UI surfaces:
+
+1. Operator Dashboard (/crafty/operator)
+   - list of visitors in channel 1
+   - list of active chats
+   - operator list
+   - typing indicators
+   - alerts
+
+2. Visitor Widget (/crafty/widget)
+   - floating chat bubble
+   - chat window
+   - typing indicator
+   - operator availability
+
+3. Admin Panel (/crafty/admin)
+   - departments
+   - operators
+   - settings
+   - alerts
+   - auto-invite rules
+
+4. Transcript Viewer (/crafty/transcript/{id})
+   - uses dialog tables
+
+------------------------------------------------------------
+## SUMMARY
+Rebuild Crafty Syntax exactly as it worked:
+- Lobby = channel 1
+- Private channels = dialog_thread_id
+- Operator-controlled membership
+- Visitor-restricted visibility
+- Operator full visibility
+- AI agents join channels like humans
+- Routing based on to_actor_id
+- All chat sessions stored in dialog tables
+- All presence and status stored in actor_properties
+
+This is the complete behavioral specification.

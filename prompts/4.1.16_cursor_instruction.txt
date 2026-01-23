@@ -1,0 +1,37 @@
+# CURSOR INSTRUCTION — VERSION 4.1.16 COMPLETED
+# PURPOSE:
+# Version 4.1.16 patch bump completed successfully.
+
+###############################################################################
+## TASK 1 — VERSION BUMP
+###############################################################################
+Update all version atoms from 4.1.15 → 4.1.16.
+
+###############################################################################
+## TASK 2 — MIGRATION VERIFICATION
+###############################################################################
+- Validate corrected migration script runs cleanly in staging.
+- Confirm all timestamp fields populate correctly.
+- Confirm column alignment in lupo_crm_lead_messages.
+- Confirm no new doctrine violations introduced.
+
+###############################################################################
+## TASK 3 — CHANGELOG.md
+###############################################################################
+Add entry:
+"4.1.16 — Migration Verification Patch"
+
+###############################################################################
+## TASK 4 — DIALOG + SIDE-DIALOG
+###############################################################################
+Add matching entries documenting verification.
+
+###############################################################################
+## TASK 5 — VALIDATION
+###############################################################################
+No schema changes. No new features. No refactors.
+
+###############################################################################
+## OUTPUT
+###############################################################################
+Return diffs only.

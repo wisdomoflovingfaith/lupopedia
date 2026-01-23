@@ -1,0 +1,9 @@
+{
+  "code": "ERIS",
+  "name": "ERIS",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 9,
+  "version": "1.0.0"
+}

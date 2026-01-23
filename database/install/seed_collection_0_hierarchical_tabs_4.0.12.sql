@@ -1,0 +1,1461 @@
+-- ============================================================
+-- Lupopedia 4.0.12 — Collection 0 Hierarchical Tab Structure
+-- Rebuilds Collection 0 tabs with hierarchical sub-tabs
+-- ============================================================
+--
+-- wolfie.headers.version: "4.0.12"
+-- header_atoms:
+--   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
+-- dialog:
+--   - speaker: CURSOR
+--     target: @everyone
+--     message: "Version 4.0.12: Rebuilt Collection 0 with hierarchical tab structure. Doctrine has 12 sub-tabs, Agents has 4 sub-tabs, Schema has 1 sub-tab, Appendix has 4 sub-tabs. Overview, UI-UX, and Developer Guide are hidden."
+--     mood: "00FF00"
+-- tags:
+--   categories: ["database", "seed", "hierarchy"]
+--   collections: ["core-modules"]
+--   channels: ["dev"]
+-- file:
+--   title: "Collection 0 Hierarchical Tabs Seed"
+--   description: "Seed file for hierarchical tab structure with sub-tabs"
+--   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
+--   status: active
+--   author: GLOBAL_CURRENT_AUTHORS
+--
+-- ============================================================
+
+-- Set deterministic timestamp
+SET @now = 20260113000000;
+SET @node_id = 1;
+
+-- ============================================================
+-- CLEAR EXISTING COLLECTION 0 TABS AND MAPPINGS
+-- ============================================================
+
+-- Soft delete all existing Collection 0 tabs
+UPDATE `lupo_collection_tabs` SET `is_deleted` = 1, `deleted_ymdhis` = @now WHERE `collection_id` = 0;
+
+-- Soft delete all existing Collection 0 tab mappings
+UPDATE `lupo_collection_tab_map` SET `is_deleted` = 1, `deleted_ymdhis` = @now WHERE `collection_tab_id` IN (SELECT `collection_tab_id` FROM `lupo_collection_tabs` WHERE `collection_id` = 0);
+
+-- ============================================================
+-- MAIN TABS (Root Level)
+-- ============================================================
+
+-- Main Tab: Overview
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    1,
+    NULL,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    1,
+    'Overview',
+    'overview',
+    '4caf50',
+    NULL,
+    1,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `is_hidden` = VALUES(`is_hidden`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Main Tab: Doctrine
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    2,
+    NULL,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    2,
+    'Doctrine',
+    'doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `is_hidden` = VALUES(`is_hidden`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Main Tab: Architecture
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    3,
+    NULL,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    3,
+    'Architecture',
+    'architecture',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `is_hidden` = VALUES(`is_hidden`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Main Tab: Schema
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    4,
+    NULL,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    4,
+    'Schema',
+    'schema',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `is_hidden` = VALUES(`is_hidden`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Main Tab: Agents
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    5,
+    NULL,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    5,
+    'Agents',
+    'agents',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `is_hidden` = VALUES(`is_hidden`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Main Tab: UI-UX
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    6,
+    NULL,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    6,
+    'UI-UX',
+    'ui-ux',
+    '4caf50',
+    NULL,
+    1,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `is_hidden` = VALUES(`is_hidden`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Main Tab: Developer Guide
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    7,
+    NULL,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    7,
+    'Developer Guide',
+    'developer-guide',
+    '4caf50',
+    NULL,
+    1,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `is_hidden` = VALUES(`is_hidden`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Main Tab: History
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    8,
+    NULL,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    8,
+    'History',
+    'history',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `is_hidden` = VALUES(`is_hidden`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Main Tab: Appendix
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    9,
+    NULL,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    9,
+    'Appendix',
+    'appendix',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `is_hidden` = VALUES(`is_hidden`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- ============================================================
+-- SUB-TABS (Hierarchical)
+-- ============================================================
+
+-- Sub-tab: SQL & Database Doctrine (under doctrine)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    100,
+    2,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    1,
+    'SQL & Database Doctrine',
+    'sql-database-doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Cursor Doctrine (under doctrine)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    101,
+    2,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    2,
+    'Cursor Doctrine',
+    'cursor-doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Agent Doctrine (under doctrine)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    102,
+    2,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    3,
+    'Agent Doctrine',
+    'agent-doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Documentation Doctrine (under doctrine)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    103,
+    2,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    4,
+    'Documentation Doctrine',
+    'documentation-doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Installation & Migration Doctrine (under doctrine)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    104,
+    2,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    5,
+    'Installation & Migration Doctrine',
+    'installation-migration-doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Naming & Structure Doctrine (under doctrine)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    105,
+    2,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    6,
+    'Naming & Structure Doctrine',
+    'naming-structure-doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Semantic & Ingestion Doctrine (under doctrine)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    106,
+    2,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    7,
+    'Semantic & Ingestion Doctrine',
+    'semantic-ingestion-doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: UI & Operator Doctrine (under doctrine)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    107,
+    2,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    8,
+    'UI & Operator Doctrine',
+    'ui-operator-doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Safety & Integration Doctrine (under doctrine)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    108,
+    2,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    9,
+    'Safety & Integration Doctrine',
+    'safety-integration-doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Mythic Doctrine (under doctrine)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    109,
+    2,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    10,
+    'Mythic Doctrine',
+    'mythic-doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Versioning Doctrine (under doctrine)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    110,
+    2,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    11,
+    'Versioning Doctrine',
+    'versioning-doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Misc Doctrine (under doctrine)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    111,
+    2,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    12,
+    'Misc Doctrine',
+    'misc-doctrine',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Agent Runtime (under agents)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    112,
+    5,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    1,
+    'Agent Runtime',
+    'agent-runtime',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Dialog & History (under agents)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    113,
+    5,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    2,
+    'Dialog & History',
+    'dialog-history',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: WOLFIE Header System (under agents)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    114,
+    5,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    3,
+    'WOLFIE Header System',
+    'wolfie-header-system',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Mythic AI Entities (under agents)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    115,
+    5,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    4,
+    'Mythic AI Entities',
+    'mythic-ai-entities',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Schema Reference (under schema)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    116,
+    4,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    1,
+    'Schema Reference',
+    'schema-reference',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Company & Legal (under appendix)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    117,
+    9,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    1,
+    'Company & Legal',
+    'company-legal',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Press & Public (under appendix)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    118,
+    9,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    2,
+    'Press & Public',
+    'press-public',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Technical Reference (under appendix)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    119,
+    9,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    3,
+    'Technical Reference',
+    'technical-reference',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- Sub-tab: Mythic & Personal (under appendix)
+INSERT INTO `lupo_collection_tabs` (
+    `collection_tab_id`,
+    `collection_tab_parent_id`,
+    `collection_id`,
+    `federations_node_id`,
+    `group_id`,
+    `user_id`,
+    `sort_order`,
+    `name`,
+    `slug`,
+    `color`,
+    `description`,
+    `is_hidden`,
+    `created_ymdhis`,
+    `updated_ymdhis`,
+    `is_active`,
+    `is_deleted`,
+    `deleted_ymdhis`
+) VALUES (
+    120,
+    9,
+    0,
+    @node_id,
+    NULL,
+    NULL,
+    4,
+    'Mythic & Personal',
+    'mythic-personal',
+    '4caf50',
+    NULL,
+    0,
+    @now,
+    @now,
+    1,
+    0,
+    NULL
+) ON DUPLICATE KEY UPDATE
+    `name` = VALUES(`name`),
+    `slug` = VALUES(`slug`),
+    `collection_tab_parent_id` = VALUES(`collection_tab_parent_id`),
+    `sort_order` = VALUES(`sort_order`),
+    `updated_ymdhis` = @now,
+    `is_active` = 1,
+    `is_deleted` = 0,
+    `deleted_ymdhis` = NULL;
+
+-- ============================================================
+-- END OF TAB SEED
+-- ============================================================

@@ -1,0 +1,387 @@
+{
+    "table_name": "lupo_collection_tab_paths",
+    "fields": [
+        "`collection_tab_path_id` bigint NOT NULL auto_increment",
+        "`collection_id` bigint NOT NULL",
+        "`collection_tab_id` bigint NOT NULL",
+        "`path` varchar(500) NOT NULL COMMENT 'Full tab path: departments/parks-and-recreation/summer-programs'",
+        "`depth` int NOT NULL COMMENT 'Number of levels (1 = root tab)'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS'",
+        "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0",
+        "`deleted_ymdhis` bigint"
+    ],
+    "data": [
+        {
+            "collection_tab_path_id": 1,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine",
+            "depth": 1,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 2,
+            "collection_id": 3,
+            "collection_tab_id": 5,
+            "path": "agents",
+            "depth": 1,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 3,
+            "collection_id": 3,
+            "collection_tab_id": 3,
+            "path": "architecture",
+            "depth": 1,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 4,
+            "collection_id": 3,
+            "collection_tab_id": 4,
+            "path": "schema",
+            "depth": 1,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 5,
+            "collection_id": 3,
+            "collection_tab_id": 8,
+            "path": "history",
+            "depth": 1,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 6,
+            "collection_id": 3,
+            "collection_tab_id": 9,
+            "path": "appendix",
+            "depth": 1,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 7,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine/sql",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 8,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine/cursor",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 9,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine/agent",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 10,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine/docs",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 11,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine/install",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 12,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine/naming",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 13,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine/semantic",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 14,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine/ui",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 15,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine/safety",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 16,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine/mythic",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 17,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine/versioning",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 18,
+            "collection_id": 3,
+            "collection_tab_id": 2,
+            "path": "doctrine/misc",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 19,
+            "collection_id": 3,
+            "collection_tab_id": 5,
+            "path": "agents/runtime",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 20,
+            "collection_id": 3,
+            "collection_tab_id": 5,
+            "path": "agents/dialog",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 21,
+            "collection_id": 3,
+            "collection_tab_id": 5,
+            "path": "agents/header",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 22,
+            "collection_id": 3,
+            "collection_tab_id": 5,
+            "path": "agents/mythic",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 23,
+            "collection_id": 3,
+            "collection_tab_id": 9,
+            "path": "appendix/company",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 24,
+            "collection_id": 3,
+            "collection_tab_id": 9,
+            "path": "appendix/press",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 25,
+            "collection_id": 3,
+            "collection_tab_id": 9,
+            "path": "appendix/technical",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 26,
+            "collection_id": 3,
+            "collection_tab_id": 9,
+            "path": "appendix/mythic",
+            "depth": 2,
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20250101000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 33,
+            "collection_id": 3,
+            "collection_tab_id": 1,
+            "path": "overview",
+            "depth": 1,
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 34,
+            "collection_id": 3,
+            "collection_tab_id": 6,
+            "path": "ui-ux",
+            "depth": 1,
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "collection_tab_path_id": 35,
+            "collection_id": 3,
+            "collection_tab_id": 7,
+            "path": "developer-guide",
+            "depth": 1,
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        }
+    ],
+    "primary_key": {
+        "column_name": "collection_tab_path_id",
+        "expected_name": "collection_tab_path_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_collection",
+            "columns": [
+                "collection_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_collection_tab",
+            "columns": [
+                "collection_tab_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_path",
+            "columns": [
+                "path"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "unique_tab_path",
+            "columns": [
+                "collection_id",
+                "collection_tab_id",
+                "path"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "unique_tab_path",
+            "columns": [
+                "collection_id",
+                "collection_tab_id",
+                "path"
+            ]
+        }
+    ]
+}

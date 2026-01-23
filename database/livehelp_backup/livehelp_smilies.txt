@@ -1,0 +1,306 @@
+{
+    "table_name": "livehelp_smilies",
+    "fields": [
+        "`smilies_id` smallint unsigned NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`code` varchar(50)",
+        "`smile_url` varchar(100)",
+        "`emoticon` varchar(75)"
+    ],
+    "data": [
+        {
+            "smilies_id": 1,
+            "livehelp_id": 1,
+            "code": ":D",
+            "smile_url": "icon_biggrin.gif",
+            "emoticon": "Very Happy"
+        },
+        {
+            "smilies_id": 2,
+            "livehelp_id": 1,
+            "code": ":-D",
+            "smile_url": "icon_biggrin.gif",
+            "emoticon": "Very Happy"
+        },
+        {
+            "smilies_id": 3,
+            "livehelp_id": 1,
+            "code": ":grin:",
+            "smile_url": "icon_biggrin.gif",
+            "emoticon": "Very Happy"
+        },
+        {
+            "smilies_id": 4,
+            "livehelp_id": 1,
+            "code": ":)",
+            "smile_url": "icon_smile.gif",
+            "emoticon": "Smile"
+        },
+        {
+            "smilies_id": 5,
+            "livehelp_id": 1,
+            "code": ":-)",
+            "smile_url": "icon_smile.gif",
+            "emoticon": "Smile"
+        },
+        {
+            "smilies_id": 6,
+            "livehelp_id": 1,
+            "code": ":smile:",
+            "smile_url": "icon_smile.gif",
+            "emoticon": "Smile"
+        },
+        {
+            "smilies_id": 7,
+            "livehelp_id": 1,
+            "code": ":(",
+            "smile_url": "icon_sad.gif",
+            "emoticon": "Sad"
+        },
+        {
+            "smilies_id": 8,
+            "livehelp_id": 1,
+            "code": ":-(",
+            "smile_url": "icon_sad.gif",
+            "emoticon": "Sad"
+        },
+        {
+            "smilies_id": 9,
+            "livehelp_id": 1,
+            "code": ":sad:",
+            "smile_url": "icon_sad.gif",
+            "emoticon": "Sad"
+        },
+        {
+            "smilies_id": 10,
+            "livehelp_id": 1,
+            "code": ":o",
+            "smile_url": "icon_surprised.gif",
+            "emoticon": "Surprised"
+        },
+        {
+            "smilies_id": 11,
+            "livehelp_id": 1,
+            "code": ":-o",
+            "smile_url": "icon_surprised.gif",
+            "emoticon": "Surprised"
+        },
+        {
+            "smilies_id": 12,
+            "livehelp_id": 1,
+            "code": ":eek:",
+            "smile_url": "icon_surprised.gif",
+            "emoticon": "Surprised"
+        },
+        {
+            "smilies_id": 13,
+            "livehelp_id": 1,
+            "code": ":shock:",
+            "smile_url": "icon_eek.gif",
+            "emoticon": "Shocked"
+        },
+        {
+            "smilies_id": 14,
+            "livehelp_id": 1,
+            "code": ":?",
+            "smile_url": "icon_confused.gif",
+            "emoticon": "Confused"
+        },
+        {
+            "smilies_id": 15,
+            "livehelp_id": 1,
+            "code": ":-?",
+            "smile_url": "icon_confused.gif",
+            "emoticon": "Confused"
+        },
+        {
+            "smilies_id": 16,
+            "livehelp_id": 1,
+            "code": ":???:",
+            "smile_url": "icon_confused.gif",
+            "emoticon": "Confused"
+        },
+        {
+            "smilies_id": 17,
+            "livehelp_id": 1,
+            "code": "8)",
+            "smile_url": "icon_cool.gif",
+            "emoticon": "Cool"
+        },
+        {
+            "smilies_id": 18,
+            "livehelp_id": 1,
+            "code": "8-)",
+            "smile_url": "icon_cool.gif",
+            "emoticon": "Cool"
+        },
+        {
+            "smilies_id": 19,
+            "livehelp_id": 1,
+            "code": ":cool:",
+            "smile_url": "icon_cool.gif",
+            "emoticon": "Cool"
+        },
+        {
+            "smilies_id": 20,
+            "livehelp_id": 1,
+            "code": ":lol:",
+            "smile_url": "icon_lol.gif",
+            "emoticon": "Laughing"
+        },
+        {
+            "smilies_id": 21,
+            "livehelp_id": 1,
+            "code": ":x",
+            "smile_url": "icon_mad.gif",
+            "emoticon": "Mad"
+        },
+        {
+            "smilies_id": 22,
+            "livehelp_id": 1,
+            "code": ":-x",
+            "smile_url": "icon_mad.gif",
+            "emoticon": "Mad"
+        },
+        {
+            "smilies_id": 23,
+            "livehelp_id": 1,
+            "code": ":mad:",
+            "smile_url": "icon_mad.gif",
+            "emoticon": "Mad"
+        },
+        {
+            "smilies_id": 24,
+            "livehelp_id": 1,
+            "code": ":P",
+            "smile_url": "icon_razz.gif",
+            "emoticon": "Razz"
+        },
+        {
+            "smilies_id": 25,
+            "livehelp_id": 1,
+            "code": ":-P",
+            "smile_url": "icon_razz.gif",
+            "emoticon": "Razz"
+        },
+        {
+            "smilies_id": 26,
+            "livehelp_id": 1,
+            "code": ":razz:",
+            "smile_url": "icon_razz.gif",
+            "emoticon": "Razz"
+        },
+        {
+            "smilies_id": 27,
+            "livehelp_id": 1,
+            "code": ":oops:",
+            "smile_url": "icon_redface.gif",
+            "emoticon": "Embarassed"
+        },
+        {
+            "smilies_id": 28,
+            "livehelp_id": 1,
+            "code": ":cry:",
+            "smile_url": "icon_cry.gif",
+            "emoticon": "Crying or Very sad"
+        },
+        {
+            "smilies_id": 29,
+            "livehelp_id": 1,
+            "code": ":evil:",
+            "smile_url": "icon_evil.gif",
+            "emoticon": "Evil or Very Mad"
+        },
+        {
+            "smilies_id": 30,
+            "livehelp_id": 1,
+            "code": ":twisted:",
+            "smile_url": "icon_twisted.gif",
+            "emoticon": "Twisted Evil"
+        },
+        {
+            "smilies_id": 31,
+            "livehelp_id": 1,
+            "code": ":roll:",
+            "smile_url": "icon_rolleyes.gif",
+            "emoticon": "Rolling Eyes"
+        },
+        {
+            "smilies_id": 32,
+            "livehelp_id": 1,
+            "code": ":wink:",
+            "smile_url": "icon_wink.gif",
+            "emoticon": "Wink"
+        },
+        {
+            "smilies_id": 33,
+            "livehelp_id": 1,
+            "code": ";)",
+            "smile_url": "icon_wink.gif",
+            "emoticon": "Wink"
+        },
+        {
+            "smilies_id": 34,
+            "livehelp_id": 1,
+            "code": ";-)",
+            "smile_url": "icon_wink.gif",
+            "emoticon": "Wink"
+        },
+        {
+            "smilies_id": 35,
+            "livehelp_id": 1,
+            "code": ":!:",
+            "smile_url": "icon_exclaim.gif",
+            "emoticon": "Exclamation"
+        },
+        {
+            "smilies_id": 36,
+            "livehelp_id": 1,
+            "code": ":?:",
+            "smile_url": "icon_question.gif",
+            "emoticon": "Question"
+        },
+        {
+            "smilies_id": 37,
+            "livehelp_id": 1,
+            "code": ":idea:",
+            "smile_url": "icon_idea.gif",
+            "emoticon": "Idea"
+        },
+        {
+            "smilies_id": 38,
+            "livehelp_id": 1,
+            "code": ":arrow:",
+            "smile_url": "icon_arrow.gif",
+            "emoticon": "Arrow"
+        },
+        {
+            "smilies_id": 39,
+            "livehelp_id": 1,
+            "code": ":|",
+            "smile_url": "icon_neutral.gif",
+            "emoticon": "Neutral"
+        },
+        {
+            "smilies_id": 40,
+            "livehelp_id": 1,
+            "code": ":-|",
+            "smile_url": "icon_neutral.gif",
+            "emoticon": "Neutral"
+        },
+        {
+            "smilies_id": 41,
+            "livehelp_id": 1,
+            "code": ":neutral:",
+            "smile_url": "icon_neutral.gif",
+            "emoticon": "Neutral"
+        },
+        {
+            "smilies_id": 42,
+            "livehelp_id": 1,
+            "code": ":mrgreen:",
+            "smile_url": "icon_mrgreen.gif",
+            "emoticon": "Mr. Green"
+        }
+    ]
+}

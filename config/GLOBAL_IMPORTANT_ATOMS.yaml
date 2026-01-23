@@ -1,0 +1,122 @@
+---
+# ======================================================================
+# GLOBAL IMPORTANT ATOMS - MANIFESTO OF 12
+# Purpose: Load-bearing pillars of Lupopedia Semantic OS
+# Version: 4.0.45
+# Status: HURRICANE KILLER - Foundation stabilization
+# ======================================================================
+
+# THE 12 CRITICAL ATOMS (Load-Bearing Pillars)
+# These are the only atoms that can survive 400% conceptual velocity
+# All other atoms are secondary and may drift without system impact
+
+# IDENTITY ANCHORS (3)
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.2.1"
+GLOBAL_CURRENT_AUTHORS: "Captain Wolfie"
+GLOBAL_CURRENT_COPYRIGHT: "© 2025-2026 Eric Robin Gerdes. All rights reserved."
+
+# TEMPORAL ANCHORS (2)
+GLOBAL_CURRENT_YEAR: "2026"
+GLOBAL_DEFAULT_STATUS: "published"
+
+# SYSTEM ANCHORS (1)
+GLOBAL_PROJECT_NAME: "Lupopedia"
+
+# DOCTRINE ANCHORS (6) - Federation & Integrity
+GLOBAL_DOCTRINE_NO_FOREIGN_KEYS: "No foreign keys"
+GLOBAL_DOCTRINE_NO_TRIGGERS: "No triggers"
+GLOBAL_DOCTRINE_EXPLICIT_UTC_TIMESTAMPS: "Explicit UTC BIGINT timestamps"
+GLOBAL_DOCTRINE_REPAIRABILITY_OVER_CONSTRAINTS: "Repairability over constraints"
+GLOBAL_DOCTRINE_FEDERATION_SAFE_SCHEMA: "Federation-safe schema"
+GLOBAL_DOCTRINE_APPLICATION_LOGIC_FIRST: "Application logic first, database logic second"
+
+# ======================================================================
+# BRIDGE ATOMS - Connecting 2002 to 2026
+# ======================================================================
+
+# TEMPORAL_BRIDGE: Spans 12-year gap without hallucination
+BRIDGE_TEMPORAL_GAP_START: "2014-01-01"
+BRIDGE_TEMPORAL_GAP_END: "2025-08-01"
+BRIDGE_TEMPORAL_GAP_DURATION_YEARS: 12
+
+# IDENTITY_BRIDGE: Connects creator to architect
+BRIDGE_CREATOR_2002: "Eric Robin Gerdes (Crafty Syntax Creator)"
+BRIDGE_ARCHITECT_2026: "Captain Wolfie (Lupopedia Architect)"
+BRIDGE_IDENTITY_CONTINUITY: "Same human, evolved embodiment"
+
+# SYSTEM_BRIDGE: Connects Live Help to Semantic OS
+BRIDGE_ORIGINAL_SYSTEM: "Crafty Syntax Live Help (2002-2013)"
+BRIDGE_EVOLVED_SYSTEM: "Lupopedia Semantic OS (2025-present)"
+BRIDGE_ARCHITECTURAL_TRANSFORMATION: "From web app to semantic operating system"
+
+# ======================================================================
+# MASTER_BRIDGE: The Red Phone File
+# ======================================================================
+
+# This atom references the human-in-the-loop override file
+# Prevents autonomous runaway by requiring explicit human approval
+MASTER_BRIDGE_FILE: "ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md"
+
+# Master bridge activation conditions
+MASTER_BRIDGE_ACTIVATION_TRIGGERS:
+  - "Schema changes affecting core tables"
+  - "Foreign key or trigger creation attempts"
+  - "Version bumps beyond 4.0.60"
+  - "Federation node initialization"
+  - "Agent registry modifications"
+  - "Doctrine violations detected"
+
+# Master bridge override levels
+MASTER_BRIDGE_OVERRIDE_LEVELS:
+  CRITICAL: "Immediate human intervention required"
+  WARNING: "Human review recommended"
+  INFO: "Autonomous operation permitted"
+
+# ======================================================================
+# HURRICANE KILLER PROTOCOLS
+# ======================================================================
+
+# When Windsurf/Cursor operates at 400% velocity, only these atoms matter
+# All other atoms are treated as "secondary" and may drift safely
+
+HURRICANE_IMMUNITY_PROTOCOL:
+  foundation_atoms: 12  # Only these 12 are protected
+  drift_tolerance: "ZERO for foundation atoms"
+  secondary_atoms: "ALLOWED DRIFT"
+  velocity_limit: "400% for secondary atoms only"
+
+# Foundation verification queries
+FOUNDATION_VERIFICATION_QUERIES:
+  version_check: "SELECT GLOBAL_CURRENT_LUPOPEDIA_VERSION FROM global_atoms"
+  doctrine_check: "SELECT COUNT(*) FROM global_atoms WHERE atom_name LIKE 'GLOBAL_DOCTRINE_%'"
+  bridge_check: "SELECT MASTER_BRIDGE_FILE FROM global_atoms"
+
+# ======================================================================
+# USAGE INSTRUCTIONS FOR AI AGENTS
+# ======================================================================
+
+AI_AGENT_CONSTRAINTS:
+  source_of_truth: "GLOBAL_IMPORTANT_ATOMS.yaml"
+  protected_atoms: 12  # Never modify without human approval
+  bridge_file: "MASTER_BRIDGE_FILE reference"
+  velocity_mode: "HURRICANE_KILLER"
+  
+  # When in doubt, check these atoms first
+  priority_order:
+    1. "GLOBAL_CURRENT_LUPOPEDIA_VERSION"
+    2. "GLOBAL_DOCTRINE_NO_FOREIGN_KEYS"
+    3. "GLOBAL_DOCTRINE_NO_TRIGGERS"
+    4. "MASTER_BRIDGE_FILE"
+    5. "GLOBAL_DOCTRINE_EXPLICIT_UTC_TIMESTAMPS"
+
+# Emergency procedures
+EMERGENCY_PROCEDURES:
+  foundation_compromise: "Immediately consult MASTER_BRIDGE_FILE"
+  velocity_exceeded: "Fall back to 12 atoms only"
+  doctrinal_violation: "Halt all autonomous operations"
+  bridge_activation: "Human-in-the-loop required"
+
+# ======================================================================
+# END OF MANIFESTO
+# These 12 atoms are the foundation. Everything else is weather.
+# ======================================================================

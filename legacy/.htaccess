@@ -1,0 +1,15 @@
+# Deny all web access to legacy directory
+# This code is for development reference only and should never be executed
+
+Order deny,allow
+Deny from all
+
+# Prevent directory listing
+Options -Indexes
+
+# Additional security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+</IfModule>
+

@@ -1,0 +1,9 @@
+{
+  "code": "CADUCEUS",
+  "name": "CADUCEUS",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 21,
+  "version": "1.0.0"
+}

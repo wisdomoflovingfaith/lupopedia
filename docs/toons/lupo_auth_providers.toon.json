@@ -1,0 +1,40 @@
+{
+  "table_name": "lupo_auth_providers",
+  "fields": [
+    "`auth_provider_id` bigint NOT NULL auto_increment",
+    "`provider_name` varchar(50) NOT NULL COMMENT 'Unique provider name (e.g., google, github)'",
+    "`client_id` varchar(255) NOT NULL COMMENT 'OAuth client ID'",
+    "`client_secret` text NOT NULL COMMENT 'Encrypted at rest in lupopedia-config.php'",
+    "`scopes` text COMMENT 'Space-separated list of OAuth scopes'",
+    "`authorization_endpoint` varchar(2000) NOT NULL COMMENT 'OAuth authorization URL'",
+    "`token_endpoint` varchar(2000) NOT NULL COMMENT 'OAuth token URL'",
+    "`userinfo_endpoint` varchar(2000) COMMENT 'Optional userinfo endpoint'",
+    "`jwks_uri` varchar(2000) COMMENT 'Optional JWKS URI for key rotation'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when provider was created'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when provider was last updated'",
+    "`is_active` tinyint NOT NULL DEFAULT '1' COMMENT '1 = active, 0 = inactive'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "unique_provider_name",
+      "columns": [
+        "provider_name"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Stores OAuth provider configurations. SECURITY: client_secret must be encrypted at rest in lupopedia-config.php (outside web root).",
+  "primary_key": {
+    "column_name": "auth_provider_id",
+    "expected_name": "auth_provider_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

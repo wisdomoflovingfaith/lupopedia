@@ -1,0 +1,37 @@
+{
+  "table_name": "lupo_analytics_visits",
+  "fields": [
+    "`analytics_visit_id` bigint NOT NULL auto_increment COMMENT 'Primary key for the visit tracking record'",
+    "`session_id` varchar(100) NOT NULL COMMENT 'Session identifier'",
+    "`actor_id` bigint NOT NULL DEFAULT '0' COMMENT 'Actor ID (0 = anonymous)'",
+    "`content_id` bigint COMMENT 'Content being viewed (NULL for non-content pages)'",
+    "`federations_node_id` bigint NOT NULL",
+    "`url_path` varchar(500) NOT NULL DEFAULT '' COMMENT 'Normalized URL path of the page view'",
+    "`referer_url` varchar(500) COMMENT 'Full referer URL for this page view'",
+    "`referer_domain` varchar(255) COMMENT 'Normalized referer domain'",
+    "`referer_path` varchar(500) COMMENT 'Normalized referer path'",
+    "`came_from` varchar(500) COMMENT 'Original entry referer for the session'",
+    "`first_seen_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when this page was first seen in this session'",
+    "`last_seen_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when this page was last seen in this session'",
+    "`view_count` int NOT NULL DEFAULT '1' COMMENT 'Number of times this page was viewed in this session'",
+    "`seconds_active` int NOT NULL DEFAULT '0' COMMENT 'Total seconds spent on this page during this session'",
+    "`user_agent` varchar(255) COMMENT 'User agent for this page view'",
+    "`ip_address` varchar(45) COMMENT 'IP address for this page view'",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [],
+  "notes": "Temporary rolling table for active-session page views; aggregated into daily/monthly tables on session expiration",
+  "primary_key": {
+    "column_name": "analytics_visit_id",
+    "expected_name": "analytics_visit_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

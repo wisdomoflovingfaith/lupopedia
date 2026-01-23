@@ -1,0 +1,89 @@
+{
+    "table_name": "lupo_content_question_map",
+    "fields": [
+        "`content_question_map_id` bigint NOT NULL auto_increment",
+        "`content_id` bigint NOT NULL COMMENT 'Content item associated with the question'",
+        "`question_id` bigint NOT NULL COMMENT 'Question applied to this content'",
+        "`domain_id` bigint NOT NULL COMMENT 'Domain this mapping belongs to'",
+        "`purpose` varchar(255) COMMENT 'Optional: answer, related, metadata, prompt, etc.'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+        "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
+        "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "content_question_map_id",
+        "expected_name": "content_question_map_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_content",
+            "columns": [
+                "content_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_domain",
+            "columns": [
+                "domain_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_question",
+            "columns": [
+                "question_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_updated_ymdhis",
+            "columns": [
+                "updated_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "unique_question_content",
+            "columns": [
+                "content_id",
+                "question_id"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "unique_question_content",
+            "columns": [
+                "content_id",
+                "question_id"
+            ]
+        }
+    ]
+}

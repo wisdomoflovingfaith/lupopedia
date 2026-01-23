@@ -1,0 +1,24 @@
+{
+  "table_name": "lupo_hotfix_registry",
+  "fields": [
+    "`hotfix_id` int NOT NULL auto_increment",
+    "`hotfix_version` varchar(20) NOT NULL",
+    "`applied_ymdhis` bigint NOT NULL",
+    "`applied_by_actor_id` int",
+    "`description` text",
+    "`metadata_json` json"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "hotfix_id",
+    "expected_name": "hotfix_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

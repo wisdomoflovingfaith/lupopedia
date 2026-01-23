@@ -1,0 +1,81 @@
+{
+  "table_name": "lupo_help_topics",
+  "fields": [
+    "`help_topic_id` bigint NOT NULL auto_increment COMMENT 'Primary key for help topic'",
+    "`slug` varchar(255) NOT NULL",
+    "`title` varchar(255) NOT NULL",
+    "`content_html` longtext",
+    "`content_markdown` longtext",
+    "`category` varchar(100)",
+    "`parent_slug` varchar(255)",
+    "`view_count` bigint DEFAULT '0'",
+    "`helpful_count` bigint DEFAULT '0'",
+    "`not_helpful_count` bigint DEFAULT '0'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC creation timestamp (YYYYMMDDHHMMSS)'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC last update timestamp (YYYYMMDDHHMMSS)'",
+    "`author_actor_id` bigint COMMENT 'Author actor ID'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_author",
+      "columns": [
+        "author_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_category",
+      "columns": [
+        "category"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_parent",
+      "columns": [
+        "parent_slug"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "help_topic_id",
+    "expected_name": "help_topic_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

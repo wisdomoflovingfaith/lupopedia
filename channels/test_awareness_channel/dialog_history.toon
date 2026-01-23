@@ -1,0 +1,36 @@
+{
+    "table_name": "lupo_dialog_messages",
+    "channel_metadata": {
+        "channel_id": 1001,
+        "channel_key": "test_awareness_channel"
+    },
+    "dialog_structure": {
+        "append_only": true,
+        "immutable_entries": true,
+        "chronological_order": true
+    },
+    "current_state": {
+        "total_messages": 0,
+        "last_message_id": null,
+        "last_activity": null,
+        "message_ymdhis": null
+    },
+    "message_schema": {
+        "primary_key": "message_id",
+        "required_fields": [
+            "message_id",
+            "channel_id",
+            "actor_id",
+            "message_type",
+            "content",
+            "created_ymdhis"
+        ],
+        "optional_fields": [
+            "parent_message_id",
+            "thread_id",
+            "metadata_json",
+            "emotional_geometry",
+            "actor_mood"
+        ]
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "code": "DIALOG",
+  "name": "DIALOG",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "dedicated_slot": 3,
+  "version": "1.0.0"
+}

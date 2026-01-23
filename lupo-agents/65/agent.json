@@ -1,0 +1,9 @@
+{
+  "code": "SECURITYWATCH",
+  "name": "SECURITYWATCH",
+  "layer": "system_ops",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 65,
+  "version": "1.0.0"
+}

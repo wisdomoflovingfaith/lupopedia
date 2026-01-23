@@ -1,0 +1,9 @@
+{
+  "code": "CHRONOS",
+  "name": "CHRONOS",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 22,
+  "version": "1.0.0"
+}

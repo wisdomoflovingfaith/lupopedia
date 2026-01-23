@@ -1,0 +1,40 @@
+{
+  "legacy_table": "livehelp_channels",
+  "legacy_description": "Ephemeral table used by Crafty Syntax to track currently active chat channels. Only existed during live sessions and contained no durable or historical data.",
+  "legacy_columns": {
+    "id": "Channel ID (ephemeral)",
+    "statusof": "Y/P/N flags for active/inactive",
+    "startdate": "Start timestamp of active chat",
+    "website": "Legacy domain reference",
+    "user_id": "Operator or visitor ID (obsolete)",
+    "sessionid": "Legacy session tracking"
+  },
+  "new_table": "lupo_channels",
+  "new_description": "Permanent, durable channel registry for Lupopedia. Supports AI agents, human actors, routing, visibility, timestamps, and semantic metadata.",
+  "migration": "no_data_migration",
+  "migration_reason": "Legacy table only stored active chat channels. No historical or meaningful data. Channels are ephemeral and should not be imported.",
+  "column_mapping": {},
+  "dropped_columns": [
+    "user_id",
+    "sessionid",
+    "statusof",
+    "website",
+    "startdate"
+  ],
+  "added_columns_in_new_table": {
+    "channel_id": "Primary key",
+    "channel_slug": "Stable identifier",
+    "channel_name": "Human-readable name",
+    "intent": "Routing intent",
+    "routing_mode": "AI/human routing rules",
+    "visibility": "Public/private/system",
+    "message_count": "Durable message count",
+    "start_ymdhis": "Start timestamp",
+    "end_ymdhis": "End timestamp",
+    "created_ymdhis": "Creation timestamp",
+    "updated_ymdhis": "Update timestamp",
+    "is_deleted": "Soft delete flag",
+    "deleted_ymdhis": "Soft delete timestamp"
+  },
+  "disposition": "Dropped"
+}

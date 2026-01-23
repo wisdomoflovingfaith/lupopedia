@@ -1,0 +1,49 @@
+{
+    "table_name": "lupo_actor_departments",
+    "fields": [
+        "`actor_department_id` bigint NOT NULL auto_increment",
+        "`actor_id` bigint NOT NULL",
+        "`department_id` bigint NOT NULL",
+        "`title` varchar(64)",
+        "`created_ymdhis` char(14) NOT NULL",
+        "`updated_ymdhis` char(14) NOT NULL",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0",
+        "`deleted_ymdhis` char(14)"
+    ],
+    "data": [
+        {
+            "actor_department_id": 1,
+            "actor_id": 1,
+            "department_id": 1,
+            "title": "",
+            "created_ymdhis": "0",
+            "updated_ymdhis": "0",
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        }
+    ],
+    "primary_key": {
+        "column_name": "actor_department_id",
+        "expected_name": "actor_department_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_actor",
+            "columns": [
+                "actor_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_department",
+            "columns": [
+                "department_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

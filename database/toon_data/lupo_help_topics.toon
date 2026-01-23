@@ -1,0 +1,133 @@
+{
+    "table_name": "lupo_help_topics",
+    "fields": [
+        "`help_topic_id` bigint NOT NULL auto_increment COMMENT 'Primary key for help topic'",
+        "`slug` varchar(255) NOT NULL",
+        "`title` varchar(255) NOT NULL",
+        "`content_html` longtext",
+        "`content_markdown` longtext",
+        "`category` varchar(100)",
+        "`parent_slug` varchar(255)",
+        "`view_count` bigint DEFAULT 0",
+        "`helpful_count` bigint DEFAULT 0",
+        "`not_helpful_count` bigint DEFAULT 0",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC creation timestamp (YYYYMMDDHHMMSS)'",
+        "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC last update timestamp (YYYYMMDDHHMMSS)'",
+        "`author_actor_id` bigint COMMENT 'Author actor ID'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'"
+    ],
+    "data": [
+        {
+            "help_topic_id": 1,
+            "slug": "what-is-help",
+            "title": "What is Lupopedia HELP?",
+            "content_html": "<h1 id=\"what-is-help\">What is Lupopedia HELP?</h1>\r\n\r\n<p><strong>Lupopedia HELP is the documentation surface of Lupopedia.</strong></p>\r\n\r\n<h2 id=\"what-help-is\">What HELP Is</h2>\r\n<p>The HELP module is:</p>\r\n<ul>\r\n  <li><strong>A read-only interface</strong> that displays human-authored doctrine, guides, and topics</li>\r\n  <li><strong>Stored in <code>lupo_help_topics</code></strong> database table</li>\r\n  <li><strong>Rendered through <code>/help/&lt;slug&gt;</code></strong> URLs</li>\r\n  <li><strong>Indexed through <code>/list/help</code></strong> for browsing</li>\r\n</ul>\r\n\r\n<p><strong>Think of it as: \"The library where actors go to understand the system.\"</strong></p>\r\n\r\n<h2 id=\"what-help-is-not\">What HELP Is Not</h2>\r\n<p>HELP is <strong>not</strong>:</p>\r\n<ul>\r\n  <li>A governance engine</li>\r\n  <li>A validator</li>\r\n  <li>A schema</li>\r\n  <li>A runtime module</li>\r\n  <li>A place where enforcement happens</li>\r\n</ul>\r\n\r\n<h2 id=\"help-characteristics\">HELP Characteristics</h2>\r\n<ul>\r\n  <li><strong>No enforcement</strong> - HELP does not enforce rules</li>\r\n  <li><strong>No logic</strong> - HELP does not execute code</li>\r\n  <li><strong>No state transitions</strong> - HELP does not change system state</li>\r\n  <li><strong>Just documentation</strong> - HELP is simply the knowledge layer</li>\r\n</ul>\r\n\r\n<h2 id=\"help-structure\">HELP Structure</h2>\r\n<p>Each help topic has:</p>\r\n<ul>\r\n  <li>A unique <code>slug</code> (URL identifier)</li>\r\n  <li>A <code>title</code> (display name)</li>\r\n  <li><code>content_html</code> (the documentation content)</li>\r\n  <li>A <code>category</code> (for organization)</li>\r\n</ul>\r\n\r\n<h2 id=\"accessing-help\">Accessing HELP</h2>\r\n<p>HELP topics are accessible at:</p>\r\n<ul>\r\n  <li><code>/help</code> - Help index (all topics)</li>\r\n  <li><code>/help/{slug}</code> - Specific topic (e.g., <code>/help/what-is-help</code>)</li>\r\n  <li><code>/list/help</code> - Browse all help topics</li>\r\n</ul>\r\n\r\n<h2 id=\"related-topics\">Related Topics</h2>\r\n<ul>\r\n  <li>See <a href=\"/help/using-help\">Using the Help System</a> for navigation</li>\r\n  <li>Read <a href=\"/help/environmental-context\">What is Environmental Context?</a> for boundary definitions</li>\r\n  <li>Visit <a href=\"/list/help\">/list/help</a> to see all help topics</li>\r\n</ul>",
+            "content_markdown": null,
+            "category": "Core",
+            "parent_slug": null,
+            "view_count": 0,
+            "helpful_count": 0,
+            "not_helpful_count": 0,
+            "created_ymdhis": 20260119030000,
+            "updated_ymdhis": 20260119030000,
+            "author_actor_id": null,
+            "is_deleted": 0
+        },
+        {
+            "help_topic_id": 2,
+            "slug": "environmental-context",
+            "title": "What is Environmental Context?",
+            "content_html": "<h1 id=\"environmental-context\">What is Environmental Context?</h1>\r\n\r\n<p><strong>Environmental Context is anything happening outside Lupopedia that Lupopedia cannot control.</strong></p>\r\n\r\n<h2 id=\"what-environmental-context-is\">What Environmental Context Is</h2>\r\n<p>Environmental Context includes:</p>\r\n<ul>\r\n  <li><strong>Anything happening outside Lupopedia</strong> - External to the system</li>\r\n  <li><strong>Anything your ears, eyes, or senses pick up</strong> - Real-world sensory input</li>\r\n  <li><strong>Anything your computer plays that Lupopedia didn't generate</strong> - External audio/video</li>\r\n  <li><strong>Anything in the real world</strong> - Physical environment</li>\r\n  <li><strong>Anything Lupopedia cannot control</strong> - External services and streams</li>\r\n</ul>\r\n\r\n<h2 id=\"examples\">Examples of Environmental Context</h2>\r\n<ul>\r\n  <li><strong>Pandora ads</strong> - Audio advertisements in external music streams</li>\r\n  <li><strong>K-LOVE radio</strong> - External radio broadcasts</li>\r\n  <li><strong>YouTube pre-rolls</strong> - Video advertisements before content</li>\r\n  <li><strong>Real-world billboards</strong> - Physical advertising in your environment</li>\r\n  <li><strong>Notifications from other apps</strong> - System notifications from external applications</li>\r\n  <li><strong>Background noise</strong> - Environmental sounds</li>\r\n  <li><strong>Physical environment</strong> - Your real-world surroundings</li>\r\n</ul>\r\n\r\n<h2 id=\"what-environmental-context-is-not\">What Environmental Context Is Not</h2>\r\n<p>Environmental Context is <strong>not</strong>:</p>\r\n<ul>\r\n  <li>Lupopedia content</li>\r\n  <li>A violation of GOV-AD-PROHIBIT-001</li>\r\n  <li>Something that needs to be logged as a violation</li>\r\n  <li>Governed by Lupopedia's anti-advertising law</li>\r\n</ul>\r\n\r\n<p><strong>Environmental Context is simply acknowledged.</strong></p>\r\n\r\n<h2 id=\"the-boundary\">The Boundary</h2>\r\n<p>The rule is simple:</p>\r\n<ul>\r\n  <li><strong>If Lupopedia didn't generate it</strong> → It's environmental context</li>\r\n  <li><strong>If Lupopedia did generate it</strong> → It must be ad-free</li>\r\n</ul>\r\n\r\n<p>This boundary ensures:</p>\r\n<ul>\r\n  <li><strong>System integrity</strong> - Lupopedia output remains 100% ad-free</li>\r\n  <li><strong>Realistic governance</strong> - The system acknowledges the external world</li>\r\n  <li><strong>Clear enforcement</strong> - The boundary is semantically precise</li>\r\n</ul>\r\n\r\n<h2 id=\"governance-relationship\">Relationship to GOV-AD-PROHIBIT-001</h2>\r\n<p>GOV-AD-PROHIBIT-001 (Anti-Advertising Law) governs:</p>\r\n<ul>\r\n  <li><strong>Lupopedia UI</strong> - Must be ad-free</li>\r\n  <li><strong>System output</strong> - Must be ad-free</li>\r\n  <li><strong>Agent responses</strong> - Must be ad-free</li>\r\n  <li><strong>Module output</strong> - Must be ad-free</li>\r\n</ul>\r\n\r\n<p>GOV-AD-PROHIBIT-001 does <strong>not</strong> govern:</p>\r\n<ul>\r\n  <li>Environmental context (external world)</li>\r\n  <li>Things Lupopedia cannot control</li>\r\n  <li>External audio/video streams</li>\r\n</ul>\r\n\r\n<h2 id=\"why-this-matters\">Why This Matters</h2>\r\n<p>The distinction between environmental context and system integrity is essential because:</p>\r\n<ul>\r\n  <li><strong>It's enforceable</strong> - Clear boundary between external and internal</li>\r\n  <li><strong>It's realistic</strong> - Acknowledges the external world without compromising system integrity</li>\r\n  <li><strong>It prevents confusion</strong> - Clear rule: if Lupopedia didn't generate it, it's environmental context</li>\r\n</ul>\r\n\r\n<h2 id=\"related-topics\">Related Topics</h2>\r\n<ul>\r\n  <li>Read <a href=\"/help/governance\">GOV-AD-PROHIBIT-001</a> for the Anti-Advertising Law</li>\r\n  <li>See <a href=\"/help/what-is-help\">What is Lupopedia HELP?</a> for documentation system</li>\r\n  <li>Visit <a href=\"/docs/doctrine/GOV_AD_PROHIBIT_001.md\">GOV-AD-PROHIBIT-001 Doctrine</a> for complete governance artifact</li>\r\n</ul>",
+            "content_markdown": null,
+            "category": "Core",
+            "parent_slug": null,
+            "view_count": 0,
+            "helpful_count": 0,
+            "not_helpful_count": 0,
+            "created_ymdhis": 20260119030000,
+            "updated_ymdhis": 20260119030000,
+            "author_actor_id": null,
+            "is_deleted": 0
+        },
+        {
+            "help_topic_id": 3,
+            "slug": "lupopedia-overview",
+            "title": "What is Lupopedia?",
+            "content_html": "<h1 id=\"lupopedia-overview\">What is Lupopedia?</h1>\n\n<p><strong>Lupopedia is a semantic operating system (not a CMS or framework). It records meaning; it doesn't impose it.</strong></p>\n\n<h2 id=\"the-five-pillars\">The Five Pillars</h2>\n<p>Lupopedia is built on five inviolable pillars:</p>\n<ol>\n  <li><strong>Actor Pillar</strong> - Identity is primary (email = login)</li>\n  <li><strong>Temporal Pillar</strong> - Time is the spine (BIGINT UTC timestamps)</li>\n  <li><strong>Edge Pillar</strong> - Relationships are meaning (no foreign keys, app-managed)</li>\n  <li><strong>Doctrine Pillar</strong> - Law prevents drift (rules in text files)</li>\n  <li><strong>Emergence Pillar</strong> - Roles are discovered, not assigned</li>\n</ol>\n\n<h2 id=\"how-it-works\">How It Works</h2>\n<p>Lupopedia operates through three layers of meaning:</p>\n<ul>\n  <li><strong>Collections</strong> = Navigation universes (each has its own tabs)</li>\n  <li><strong>Tabs</strong> = User-defined semantic categories (you choose the names)</li>\n  <li><strong>Content</strong> = Stored in <code>lupo_content</code> table</li>\n  <li><strong>Meaning</strong> = Created when content is placed under tabs</li>\n</ul>\n\n<h2 id=\"what-you-dont-build\">What You Don't Build</h2>\n<p>Lupopedia does not impose meaning. You don't build:</p>\n<ul>\n  <li>Every system</li>\n  <li>Tabs for users</li>\n  <li>Predefined categories</li>\n  <li>Imposed structure</li>\n</ul>\n<p><strong>You record what users define.</strong></p>\n\n<h2 id=\"what-you-do-build\">What You Do Build</h2>\n<p>You build the infrastructure:</p>\n<ul>\n  <li><strong>The infrastructure</strong> - Database, routing, modules</li>\n  <li><strong>The tools</strong> - Tab editor, content editor</li>\n  <li><strong>The doctrine</strong> - Rules in text files</li>\n</ul>\n\n<h2 id=\"current-status\">Current Status (4.1.6)</h2>\n<p>Lupopedia 4.1.6 includes:</p>\n<ul>\n  <li><strong>LABS-001</strong> - Actor baseline state (10 declarations required)</li>\n  <li><strong>GOV-AD-PROHIBIT-001</strong> - No ads in system output</li>\n  <li><strong>WOLFIE Headers</strong> - Metadata on every file (version tracking)</li>\n  <li><strong>UTC_TIMEKEEPER</strong> - Single source of truth for timestamps</li>\n  <li><strong>Help System</strong> - Documentation module</li>\n  <li><strong>List System</strong> - Browse entities</li>\n  <li><strong>TL;DR System</strong> - Quick reference summaries</li>\n  <li><strong>Governance Registry</strong> - Central registry of all governance artifacts</li>\n</ul>\n\n<h2 id=\"the-core-truth\">The Core Truth</h2>\n<blockquote>\n  <p><strong>Lupopedia is a semantic OS that records user-defined meaning.</strong></p>\n  <p>You build the infrastructure; users define their own collections, tabs, and content.</p>\n  <p>The system records it, doesn't impose it.</p>\n</blockquote>\n\n<h2 id=\"related-topics\">Related Topics</h2>\n<ul>\n  <li>See <a href=\"/help/getting-started\">Getting Started</a> for practical steps</li>\n  <li>Read <a href=\"/help/collection-doctrine\">Collection Doctrine</a> to understand navigation universes</li>\n  <li>Visit <a href=\"/help/labs-001\">LABS-001</a> for actor baseline state requirements</li>\n  <li>Check <a href=\"/tldnr/lupopedia-overview\">TL;DR: Lupopedia Overview</a> for quick reference</li>\n</ul>",
+            "content_markdown": null,
+            "category": "Core",
+            "parent_slug": null,
+            "view_count": 0,
+            "helpful_count": 0,
+            "not_helpful_count": 0,
+            "created_ymdhis": 20260119041400,
+            "updated_ymdhis": 20260119041400,
+            "author_actor_id": null,
+            "is_deleted": 0
+        }
+    ],
+    "primary_key": {
+        "column_name": "help_topic_id",
+        "expected_name": "help_topic_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_author",
+            "columns": [
+                "author_actor_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_category",
+            "columns": [
+                "category"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_parent",
+            "columns": [
+                "parent_slug"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_slug",
+            "columns": [
+                "slug"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "slug",
+            "columns": [
+                "slug"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "slug",
+            "columns": [
+                "slug"
+            ]
+        }
+    ]
+}

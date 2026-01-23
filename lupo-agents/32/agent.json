@@ -1,0 +1,9 @@
+{
+  "code": "WOLFFORGE",
+  "name": "WOLFFORGE",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 15,
+  "version": "1.0.0"
+}

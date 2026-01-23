@@ -1,0 +1,9 @@
+{
+  "code": "RESERVED_32",
+  "name": "RESERVED_32",
+  "layer": "kernel",
+  "is_required": false,
+  "is_kernel": true,
+  "recommended_slot": 32,
+  "version": "1.0.0"
+}

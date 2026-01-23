@@ -1,0 +1,89 @@
+{
+  "table_name": "lupo_actor_collections",
+  "fields": [
+    "`actor_collection_id` bigint NOT NULL auto_increment",
+    "`actor_id` bigint NOT NULL COMMENT 'User, group, agent, or persona'",
+    "`collection_id` bigint NOT NULL COMMENT 'Collection the actor has access to'",
+    "`access_level` enum('owner','write','read') NOT NULL DEFAULT 'read'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when granted'",
+    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when updated'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint",
+    "`persistent_identity_json` json COMMENT 'RSHAP persistent identity metadata'",
+    "`identity_signature` varchar(255) COMMENT 'Unique identity signature for handshake verification'",
+    "`trust_level` enum('system','verified','standard','restricted','untrusted') DEFAULT 'standard' COMMENT 'Trust level for multi-agent interactions'",
+    "`emotional_geometry_baseline` json COMMENT 'Baseline emotional geometry for agent interactions'",
+    "`doctrine_alignment_version` varchar(20) DEFAULT '4.0.72' COMMENT 'Version of doctrine this actor aligns with'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_access_level",
+      "columns": [
+        "access_level"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_collection",
+      "columns": [
+        "collection_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_identity_signature",
+      "columns": [
+        "identity_signature"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_trust_level",
+      "columns": [
+        "trust_level"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Actor collections with persistent identity storage for multi-agent protocols",
+  "primary_key": {
+    "column_name": "actor_collection_id",
+    "expected_name": "actor_collection_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

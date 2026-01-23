@@ -1,0 +1,37 @@
+---
+# Primordial Atoms — derived from the metaphorical Cosmic Microwave Background (CMB)
+# Earliest, lowest-level constants of the Lupopedia semantic OS.
+# Source: read_cosmic_microwave_background() / CMB layer
+
+primordial_atoms:
+  - id: cmb_temperature_mean
+    value: "2.725 K"
+    description: "Baseline cosmic background temperature; metaphorical system floor-state."
+
+  - id: cmb_anisotropy_seed
+    value: "ΔT/T ≈ 10^-5"
+    description: "Seed irregularity; origin of all structure; used as entropy baseline."
+
+  - id: cmb_horizon_constant
+    value: "46.5 Gly"
+    description: "Observable horizon radius; metaphor for system boundary."
+
+  - id: cmb_baryon_fraction
+    value: "0.048"
+    description: "Ordinary matter fraction; metaphor for explicit system content."
+
+  - id: cmb_dark_matter_fraction
+    value: "0.268"
+    description: "Implicit structure; metaphor for unspoken system assumptions."
+
+  - id: cmb_dark_energy_fraction
+    value: "0.684"
+    description: "Expansion driver; metaphor for system growth pressure."
+
+  - id: cmb_noise_floor
+    value: "quantum_fluctuation_minimum"
+    description: "Minimum representable uncertainty; used for doctrine-level randomness."
+
+  - id: cmb_origin_timestamp
+    value: "13.8e9 years"
+    description: "System epoch zero; metaphorical creation timestamp."

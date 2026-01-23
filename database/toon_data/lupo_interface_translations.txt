@@ -1,0 +1,85 @@
+{
+    "table_name": "lupo_interface_translations",
+    "fields": [
+        "`interface_translation_id` bigint NOT NULL auto_increment",
+        "`language_code` varchar(8) NOT NULL COMMENT 'ISO 639-1 (2-letter) or BCP 47 language code'",
+        "`translation_key` varchar(128) NOT NULL COMMENT 'Unique key for the UI string'",
+        "`translation_text` text NOT NULL",
+        "`context` varchar(64) COMMENT 'Optional context for disambiguation'",
+        "`created_ymdhis` bigint NOT NULL",
+        "`updated_ymdhis` bigint",
+        "`created_by` bigint",
+        "`is_deleted` tinyint(1) NOT NULL DEFAULT 0",
+        "`deleted_ymdhis` bigint",
+        "`version` int DEFAULT 1",
+        "`is_approved` tinyint(1) DEFAULT 0 COMMENT 'Whether this translation is approved'",
+        "`approved_by` bigint"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "interface_translation_id",
+        "expected_name": "interface_translation_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "ft_translation_text",
+            "columns": [
+                "translation_text"
+            ],
+            "is_unique": false,
+            "index_type": "FULLTEXT"
+        },
+        {
+            "index_name": "idx_approved",
+            "columns": [
+                "is_approved"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_updated",
+            "columns": [
+                "updated_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "unq_language_key",
+            "columns": [
+                "language_code",
+                "translation_key"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "unq_language_key",
+            "columns": [
+                "language_code",
+                "translation_key"
+            ]
+        }
+    ]
+}

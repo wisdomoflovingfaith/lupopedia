@@ -1,0 +1,9 @@
+{
+  "code": "RATEKEEPER",
+  "name": "RATEKEEPER",
+  "layer": "system_ops",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 67,
+  "version": "1.0.0"
+}

@@ -1,0 +1,9 @@
+{
+  "code": "TOPICMASTER",
+  "name": "TOPICMASTER",
+  "layer": "data",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 92,
+  "version": "1.0.0"
+}

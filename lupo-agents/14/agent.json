@@ -1,0 +1,9 @@
+{
+  "code": "THALIA",
+  "name": "THALIA",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 11,
+  "version": "1.0.0"
+}

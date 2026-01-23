@@ -1,0 +1,67 @@
+{
+  "table_name": "lupo_emotional_geometry_calibrations",
+  "fields": [
+    "`id` bigint unsigned NOT NULL auto_increment",
+    "`cip_analytics_id` bigint unsigned NOT NULL COMMENT 'Reference to lupo_cip_analytics.id'",
+    "`calibration_target` enum('agent','subsystem','global') NOT NULL",
+    "`target_identifier` varchar(255) NOT NULL COMMENT 'Agent ID, subsystem name, or \"global\"'",
+    "`baseline_before_json` json COMMENT 'R/G/B vectors before calibration'",
+    "`baseline_after_json` json NOT NULL COMMENT 'R/G/B vectors after calibration'",
+    "`tension_vectors_detected` json COMMENT 'Detected tension patterns'",
+    "`calibration_reason` text NOT NULL COMMENT 'Why calibration was needed'",
+    "`calibration_algorithm` varchar(100) DEFAULT 'cip_pattern_analysis' COMMENT 'Algorithm used'",
+    "`confidence_score` decimal(5,4) NOT NULL DEFAULT '0.5000' COMMENT 'Calibration confidence'",
+    "`validation_status` enum('pending','validated','rejected','needs_review') DEFAULT 'pending'",
+    "`applied_ymdhis` bigint COMMENT 'When calibration was applied'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'When calibration was calculated'",
+    "`calibration_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Calibration system version'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_analytics_ref",
+      "columns": [
+        "cip_analytics_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_confidence",
+      "columns": [
+        "confidence_score"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_target",
+      "columns": [
+        "calibration_target",
+        "target_identifier"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_validation_status",
+      "columns": [
+        "validation_status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Emotional Geometry Calibration - CIP-driven emotional baseline adjustments",
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

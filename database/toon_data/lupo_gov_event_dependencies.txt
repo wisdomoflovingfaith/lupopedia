@@ -1,0 +1,38 @@
+{
+    "table_name": "lupo_gov_event_dependencies",
+    "fields": [
+        "`id` bigint NOT NULL auto_increment COMMENT 'Primary key'",
+        "`gov_event_id` bigint NOT NULL COMMENT 'The event declaring a dependency'",
+        "`depends_on_event_id` bigint NOT NULL COMMENT 'The event it depends on'",
+        "`dependency_type` varchar(50) NOT NULL COMMENT 'hard, soft, branch, schema, doctrine'",
+        "`notes` text COMMENT 'Optional explanation'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC timestamp of creation'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
+        "`deleted_ymdhis` bigint COMMENT 'UTC timestamp of deletion'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "id",
+        "expected_name": "gov_event_dependency_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_depends_on_event_id",
+            "columns": [
+                "depends_on_event_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_gov_event_id",
+            "columns": [
+                "gov_event_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

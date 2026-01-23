@@ -1,0 +1,66 @@
+{
+  "table_name": "lupo_actors",
+  "fields": [
+    "`actor_id` bigint NOT NULL auto_increment COMMENT 'Primary key for actor'",
+    "`actor_type` enum('user','ai_agent','service') NOT NULL COMMENT 'Type of actor'",
+    "`slug` varchar(255) NOT NULL COMMENT 'Stable unique identifier'",
+    "`name` varchar(255) NOT NULL COMMENT 'Human-readable name'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS'",
+    "`is_active` tinyint NOT NULL DEFAULT '1' COMMENT 'Active flag'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS'",
+    "`actor_source_id` bigint COMMENT 'ID from source table (auth_users, agents, etc.)'",
+    "`actor_source_type` varchar(20) COMMENT 'Source type: user, agent, system'",
+    "`metadata` text COMMENT 'Optional JSON for additional actor attributes'",
+    "`adversarial_role` enum('none','structural_stress','protocol_break','doctrine_test') DEFAULT 'none'",
+    "`adversarial_oversight_actor_id` bigint COMMENT 'e.g., LILITH actor_id'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_actor_type",
+      "columns": [
+        "actor_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unique_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Represents all entities that can perform actions in the system: users, AI agents, and services.",
+  "primary_key": {
+    "column_name": "actor_id",
+    "expected_name": "actor_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

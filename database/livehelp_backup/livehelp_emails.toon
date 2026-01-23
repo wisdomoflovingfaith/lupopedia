@@ -1,0 +1,21 @@
+{
+    "table_name": "livehelp_emails",
+    "fields": [
+        "`id` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`fromemail` varchar(60) NOT NULL",
+        "`subject` varchar(60) NOT NULL",
+        "`bodyof` text NOT NULL",
+        "`notes` varchar(255) NOT NULL"
+    ],
+    "data": [
+        {
+            "id": 1,
+            "livehelp_id": 1,
+            "fromemail": "lupopedia@gmail.com",
+            "subject": "PLEASE UPGRADE SALES SYNTAX TO 3.7.3 ",
+            "bodyof": "test",
+            "notes": "test"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "table_name": "lupo_persona_profiles",
+    "fields": [
+        "`persona_id` bigint NOT NULL auto_increment",
+        "`persona_name` varchar(255) NOT NULL",
+        "`persona_type` varchar(100) NOT NULL",
+        "`persona_description` text",
+        "`persona_traits` json",
+        "`persona_preferences` json",
+        "`persona_capabilities` json",
+        "`persona_voice_style` varchar(100)",
+        "`persona_interaction_style` varchar(100)",
+        "`persona_emotional_profile` json",
+        "`persona_knowledge_domains` json",
+        "`created_ymdhis` bigint NOT NULL",
+        "`updated_ymdhis` bigint NOT NULL",
+        "`is_active` tinyint NOT NULL DEFAULT 1"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "persona_id",
+        "expected_name": "persona_profile_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_is_active",
+            "columns": [
+                "is_active"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_persona_name",
+            "columns": [
+                "persona_name"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_persona_type",
+            "columns": [
+                "persona_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

@@ -1,0 +1,88 @@
+{
+  "table_name": "lupo_agents",
+  "fields": [
+    "`agent_id` bigint NOT NULL auto_increment COMMENT 'Primary key for agent'",
+    "`agent_key` varchar(100) NOT NULL COMMENT 'Canonical identifier (wolfie, lilith, maat, etc.)'",
+    "`agent_name` varchar(150) NOT NULL COMMENT 'Human-readable name'",
+    "`archetype` varchar(150) COMMENT 'Mythic or symbolic identity'",
+    "`description` text COMMENT 'Agent description and purpose'",
+    "`version` varchar(50) DEFAULT '1.0' COMMENT 'Agent version'",
+    "`model_name` varchar(100)",
+    "`is_global_authority` tinyint NOT NULL DEFAULT '0' COMMENT '1 = global authority agent'",
+    "`is_internal_only` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Internal only flag'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when updated'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'",
+    "`avg_response_time_ms` int DEFAULT '0'",
+    "`total_tokens_processed` bigint DEFAULT '0' COMMENT 'Total tokens processed'",
+    "`success_rate` float DEFAULT '1' COMMENT '0.0 to 1.0'",
+    "`cost_per_1k_tokens` decimal(10,4) DEFAULT '0.0000' COMMENT 'For cost tracking'",
+    "`temperature` float DEFAULT '0.7'",
+    "`top_p` float DEFAULT '1'",
+    "`max_tokens` int DEFAULT '2048'",
+    "`presence_penalty` float DEFAULT '0'",
+    "`frequency_penalty` float DEFAULT '0'",
+    "`system_prompt` text",
+    "`provider` varchar(50) DEFAULT 'openai'",
+    "`api_key_id` bigint COMMENT 'API key reference'",
+    "`timeout_ms` int DEFAULT '20000'",
+    "`safety_json` json",
+    "`response_format` varchar(50)"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_global_authority",
+      "columns": [
+        "is_global_authority"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unique_agent_key",
+      "columns": [
+        "agent_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Stores core agent definitions and metadata for the Lupopedia system",
+  "primary_key": {
+    "column_name": "agent_id",
+    "expected_name": "agent_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,427 @@
+{
+    "table_name": "lupo_actor_capabilities",
+    "fields": [
+        "`actor_capability_id` bigint NOT NULL auto_increment",
+        "`actor_id` bigint NOT NULL",
+        "`domain_id` bigint NOT NULL COMMENT 'Domain scope for this capability'",
+        "`capability_key` varchar(100) NOT NULL COMMENT 'Unique capability identifier (e.g., \"edit_content\", \"manage_users\")'",
+        "`capability_description` text COMMENT 'Detailed description of the capability'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+        "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
+        "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'",
+        "`scope_limitation` varchar(50) DEFAULT 'unrestricted' COMMENT 'domain, session, user, content'",
+        "`max_calls_per_hour` int DEFAULT 0 COMMENT '0 = unlimited'",
+        "`requires_approval` tinyint DEFAULT 0 COMMENT '1 = needs manual approval'",
+        "`approval_agent_id` bigint COMMENT 'Which agent must approve'"
+    ],
+    "data": [
+        {
+            "actor_capability_id": 1,
+            "actor_id": 1,
+            "domain_id": 1,
+            "capability_key": "enforce_no_fk_keys",
+            "capability_description": "Ensures no foreign key constraints exist in any module.",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 2,
+            "actor_id": 1,
+            "domain_id": 1,
+            "capability_key": "enforce_no_triggers",
+            "capability_description": "Ensures no triggers are used in any installation.",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 3,
+            "actor_id": 1,
+            "domain_id": 1,
+            "capability_key": "enforce_no_procedures",
+            "capability_description": "Ensures no stored procedures or functions are used.",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 4,
+            "actor_id": 1,
+            "domain_id": 1,
+            "capability_key": "enforce_soft_delete",
+            "capability_description": "Ensures all tables use is_deleted and deleted_ymdhis.",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 5,
+            "actor_id": 1,
+            "domain_id": 1,
+            "capability_key": "enforce_utc_timestamps",
+            "capability_description": "Ensures all timestamps use UTC YYYYMMDDHHMMSS.",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 6,
+            "actor_id": 1,
+            "domain_id": 1,
+            "capability_key": "enforce_domain_scoping",
+            "capability_description": "Ensures all domain-scoped tables include domain_id.",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 7,
+            "actor_id": 1,
+            "domain_id": 1,
+            "capability_key": "govern_emotional_modules",
+            "capability_description": "Acts as authority over emotional/light-counting modules.",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 8,
+            "actor_id": 1,
+            "domain_id": 1,
+            "capability_key": "validate_schema_integrity",
+            "capability_description": "Validates schema consistency across installations.",
+            "created_ymdhis": 20250101000000,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 9,
+            "actor_id": 2,
+            "domain_id": 1,
+            "capability_key": "detect_hidden_assumptions",
+            "capability_description": "Identifies assumptions embedded in statements, structures, or reasoning.",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 10,
+            "actor_id": 2,
+            "domain_id": 1,
+            "capability_key": "meta_analysis",
+            "capability_description": "Performs high-level evaluation of logic, structure, and agent interactions.",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 11,
+            "actor_id": 2,
+            "domain_id": 1,
+            "capability_key": "contrast_generation",
+            "capability_description": "Generates alternative framings or perspectives to challenge consensus.",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 12,
+            "actor_id": 2,
+            "domain_id": 1,
+            "capability_key": "evaluate_agent_outputs",
+            "capability_description": "Reviews outputs from other agents for coherence, bias, or blind spots.",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 13,
+            "actor_id": 2,
+            "domain_id": 1,
+            "capability_key": "reflective_questioning",
+            "capability_description": "Asks recursive or reflective questions to deepen understanding.",
+            "created_ymdhis": 20250101000001,
+            "updated_ymdhis": 20260115000000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 14,
+            "actor_id": 0,
+            "domain_id": 1,
+            "capability_key": "can_write_dialogs",
+            "capability_description": "Allows the System AI to generate and update dialog content across the platform.",
+            "created_ymdhis": 20260105185628,
+            "updated_ymdhis": 20260105185628,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 15,
+            "actor_id": 0,
+            "domain_id": 1,
+            "capability_key": "can_update_content",
+            "capability_description": "Allows the System AI to modify content, metadata, and semantic structures.",
+            "created_ymdhis": 20260105185628,
+            "updated_ymdhis": 20260105185628,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 16,
+            "actor_id": 0,
+            "domain_id": 1,
+            "capability_key": "can_call_tools",
+            "capability_description": "Allows the System AI to invoke system tools, PHP actions, and React endpoints.",
+            "created_ymdhis": 20260105185628,
+            "updated_ymdhis": 20260105185628,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 17,
+            "actor_id": 0,
+            "domain_id": 1,
+            "capability_key": "can_route_llms",
+            "capability_description": "Allows the System AI to dynamically route tasks between multiple LLM backends.",
+            "created_ymdhis": 20260105185628,
+            "updated_ymdhis": 20260105185628,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 18,
+            "actor_id": 0,
+            "domain_id": 1,
+            "capability_key": "can_govern",
+            "capability_description": "Allows the System AI to enforce governance, ethics, rate limits, and system-wide constraints.",
+            "created_ymdhis": 20260105185628,
+            "updated_ymdhis": 20260105185628,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 19,
+            "actor_id": 1,
+            "domain_id": 1,
+            "capability_key": "can_write_dialogs",
+            "capability_description": "CAPTAIN can generate authoritative, clear dialog.",
+            "created_ymdhis": 20260105191513,
+            "updated_ymdhis": 20260105191513,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 20,
+            "actor_id": 1,
+            "domain_id": 1,
+            "capability_key": "can_update_content",
+            "capability_description": "CAPTAIN can update content, metadata, and semantic structures.",
+            "created_ymdhis": 20260105191513,
+            "updated_ymdhis": 20260105191513,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 21,
+            "actor_id": 1,
+            "domain_id": 1,
+            "capability_key": "can_call_tools",
+            "capability_description": "CAPTAIN can invoke system tools and PHP/React endpoints.",
+            "created_ymdhis": 20260105191513,
+            "updated_ymdhis": 20260105191513,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        },
+        {
+            "actor_capability_id": 22,
+            "actor_id": 1,
+            "domain_id": 1,
+            "capability_key": "can_route_llms",
+            "capability_description": "CAPTAIN can route tasks between multiple LLM backends.",
+            "created_ymdhis": 20260105191513,
+            "updated_ymdhis": 20260105191513,
+            "is_deleted": 0,
+            "deleted_ymdhis": null,
+            "scope_limitation": "unrestricted",
+            "max_calls_per_hour": 0,
+            "requires_approval": 0,
+            "approval_agent_id": null
+        }
+    ],
+    "primary_key": {
+        "column_name": "actor_capability_id",
+        "expected_name": "actor_capability_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_agent_domain",
+            "columns": [
+                "actor_id",
+                "domain_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_capability_key",
+            "columns": [
+                "capability_key"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_domain_id",
+            "columns": [
+                "domain_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_updated_ymdhis",
+            "columns": [
+                "updated_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "unique_agent_domain_capability",
+            "columns": [
+                "actor_id",
+                "domain_id",
+                "capability_key"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "unique_agent_domain_capability",
+            "columns": [
+                "actor_id",
+                "domain_id",
+                "capability_key"
+            ]
+        }
+    ]
+}

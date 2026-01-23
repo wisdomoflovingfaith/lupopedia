@@ -1,0 +1,159 @@
+{
+    "table_name": "lupo_gov_timeline_nodes",
+    "fields": [
+        "`timeline_node_id` bigint NOT NULL auto_increment COMMENT 'Primary key for timeline node'",
+        "`gov_event_id` bigint NOT NULL COMMENT 'Associated governance event'",
+        "`node_type` varchar(100) NOT NULL COMMENT 'Type of timeline node'",
+        "`node_title` varchar(255) NOT NULL COMMENT 'Timeline node title'",
+        "`node_description` text COMMENT 'Timeline node description'",
+        "`node_timestamp` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS for the node'",
+        "`parent_node_id` bigint COMMENT 'Parent node for hierarchical timelines'",
+        "`order_sequence` int NOT NULL DEFAULT 0 COMMENT 'Display order'",
+        "`metadata_json` json COMMENT 'Additional node metadata'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+        "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
+        "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    ],
+    "data": [
+        {
+            "timeline_node_id": 1,
+            "gov_event_id": 1,
+            "node_type": "milestone",
+            "node_title": "MHPCC",
+            "node_description": "Wolfie works at the Maui High Performance Computing Center, building temporal and behavioral analysis tools that foreshadow Lupopedia's reference-entry and emotional-metadata systems.",
+            "node_timestamp": 19970101000000,
+            "parent_node_id": null,
+            "order_sequence": 1,
+            "metadata_json": "{\"ref\": \"MHPCC\", \"cert\": 0.95}",
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "timeline_node_id": 2,
+            "gov_event_id": 1,
+            "node_type": "milestone",
+            "node_title": "CRAFTY-SYNTAX",
+            "node_description": "Crafty Syntax launches as a live help and interaction-tracking system, accumulating decades of behavioral metadata that later become the semantic root of Lupopedia.",
+            "node_timestamp": 20020101000000,
+            "parent_node_id": null,
+            "order_sequence": 2,
+            "metadata_json": "{\"ref\": \"CRAFTY-SYNTAX\", \"cert\": 0.97}",
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "timeline_node_id": 3,
+            "gov_event_id": 1,
+            "node_type": "milestone",
+            "node_title": "HIATUS",
+            "node_description": "System enters hiatus after personal tragedy; Crafty Syntax is forked into Sales Syntax to keep the architecture alive.",
+            "node_timestamp": 20140101000000,
+            "parent_node_id": null,
+            "order_sequence": 3,
+            "metadata_json": "{\"ref\": \"HIATUS\", \"cert\": 0.96}",
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "timeline_node_id": 4,
+            "gov_event_id": 1,
+            "node_type": "milestone",
+            "node_title": "RETURN",
+            "node_description": "The architect returns and reactivates Crafty Syntax as the semantic root of Lupopedia, evolving it into a modern semantic OS.",
+            "node_timestamp": 20251114000000,
+            "parent_node_id": null,
+            "order_sequence": 4,
+            "metadata_json": "{\"ref\": \"RETURN\", \"cert\": 0.99}",
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "timeline_node_id": 5,
+            "gov_event_id": 1,
+            "node_type": "milestone",
+            "node_title": "LUPO-GOV-IDENTITY",
+            "node_description": "Lupopedia identity is formalized as a governance event, establishing its role as a reference-book semantic OS with WOLFIE as the emotional engine and Crafty Syntax as the ancestral root.",
+            "node_timestamp": 20260120023000,
+            "parent_node_id": null,
+            "order_sequence": 5,
+            "metadata_json": "{\"ref\": \"LUPO-GOV-IDENTITY\", \"cert\": 0.99}",
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        }
+    ],
+    "primary_key": {
+        "column_name": "timeline_node_id",
+        "expected_name": "gov_timeline_nod_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_gov_event",
+            "columns": [
+                "gov_event_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_node_timestamp",
+            "columns": [
+                "node_timestamp"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_node_type",
+            "columns": [
+                "node_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_order_sequence",
+            "columns": [
+                "order_sequence"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_parent_node",
+            "columns": [
+                "parent_node_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

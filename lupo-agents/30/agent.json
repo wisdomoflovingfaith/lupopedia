@@ -1,0 +1,9 @@
+{
+  "code": "WOLFSIGHT",
+  "name": "WOLFSIGHT",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 13,
+  "version": "1.0.0"
+}

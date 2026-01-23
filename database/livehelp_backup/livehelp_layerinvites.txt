@@ -1,0 +1,68 @@
+{
+    "table_name": "livehelp_layerinvites",
+    "fields": [
+        "`layerid` int NOT NULL DEFAULT 0",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`name` varchar(60) NOT NULL DEFAULT ''",
+        "`imagename` varchar(60) NOT NULL DEFAULT ''",
+        "`imagemap` text",
+        "`department` varchar(60) NOT NULL DEFAULT ''",
+        "`user` int NOT NULL DEFAULT 0"
+    ],
+    "data": [
+        {
+            "layerid": 1,
+            "livehelp_id": 1,
+            "name": "",
+            "imagename": "layer-Man_invite.gif",
+            "imagemap": "<MAP NAME=myimagemap><AREA HREF=javascript:openLiveHelp() SHAPE=RECT COORDS=0,0,400,197><AREA HREF=javascript:openLiveHelp() SHAPE=RECT COORDS=0,157,213,257><AREA HREF=javascript:closeDHTML() SHAPE=RECT COORDS=237,157,400,257></MAP>",
+            "department": "",
+            "user": 0
+        },
+        {
+            "layerid": 2,
+            "livehelp_id": 1,
+            "name": "",
+            "imagename": "layer-Phone.gif",
+            "imagemap": "<MAP NAME=myimagemap><AREA HREF=javascript:openLiveHelp() SHAPE=RECT COORDS=0,0,472,150><AREA HREF=javascript:openLiveHelp() SHAPE=RECT COORDS=241,150,484,256><AREA HREF=javascript:closeDHTML() SHAPE=RECT COORDS=0,150,241,250></MAP>",
+            "department": "",
+            "user": 0
+        },
+        {
+            "layerid": 3,
+            "livehelp_id": 1,
+            "name": "",
+            "imagename": "layer-Help_button.gif",
+            "imagemap": "<MAP NAME=myimagemap><AREA HREF=javascript:openLiveHelp() SHAPE=RECT COORDS=0,0,400,197><AREA HREF=javascript:openLiveHelp() SHAPE=RECT COORDS=0,157,213,257><AREA HREF=javascript:closeDHTML() SHAPE=RECT COORDS=237,157,400,257></MAP>",
+            "department": "",
+            "user": 0
+        },
+        {
+            "layerid": 4,
+            "livehelp_id": 1,
+            "name": "",
+            "imagename": "layer-Woman_invite.png",
+            "imagemap": "<MAP NAME=myimagemap><AREA HREF=javascript:openLiveHelp() SHAPE=RECT COORDS=126,71,429,172><AREA HREF=javascript:closeDHTML() SHAPE=RECT COORDS=311,5,440,45></MAP>",
+            "department": "",
+            "user": 0
+        },
+        {
+            "layerid": 5,
+            "livehelp_id": 1,
+            "name": "",
+            "imagename": "layer-Subsilver.gif",
+            "imagemap": "<MAP NAME=myimagemap><AREA HREF=javascript:openLiveHelp() SHAPE=RECT COORDS=0,0,419,216><AREA HREF=javascript:openLiveHelp() SHAPE=RECT COORDS=0,216,319,279><AREA HREF=javascript:closeDHTML() SHAPE=RECT COORDS=326,218,429,280></MAP>",
+            "department": "",
+            "user": 0
+        },
+        {
+            "layerid": 6,
+            "livehelp_id": 1,
+            "name": "",
+            "imagename": "layer-Help_buttonoffline.gif",
+            "imagemap": "<MAP NAME=myimagemap><AREA HREF=javascript:openLiveHelp() SHAPE=RECT COORDS=0,0,400,197><AREA HREF=javascript:openLiveHelp() SHAPE=RECT COORDS=0,157,213,257><AREA HREF=javascript:closeDHTML() SHAPE=RECT COORDS=237,157,400,257></MAP>",
+            "department": "",
+            "user": 0
+        }
+    ]
+}

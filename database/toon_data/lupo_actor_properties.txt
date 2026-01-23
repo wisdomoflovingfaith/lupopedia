@@ -1,0 +1,228 @@
+{
+    "table_name": "lupo_actor_properties",
+    "fields": [
+        "`actor_property_id` bigint NOT NULL auto_increment",
+        "`actor_type` varchar(32) NOT NULL COMMENT 'Type of the entity'",
+        "`actor_id` bigint NOT NULL COMMENT 'ID of the entity'",
+        "`property_key` varchar(64) NOT NULL COMMENT 'Property key/name'",
+        "`property_value` text COMMENT 'Property value'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
+        "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'",
+        "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
+    ],
+    "data": [
+        {
+            "actor_property_id": 8,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "system_role",
+            "property_value": "global_system_ai",
+            "created_ymdhis": 20260105185315,
+            "updated_ymdhis": 20260105185315,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 9,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "doctrine",
+            "property_value": "WISDOM, LOVE, INTEGRITY, ETHICS",
+            "created_ymdhis": 20260105185315,
+            "updated_ymdhis": 20260105185315,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 10,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "persona",
+            "property_value": "calm, neutral, omnipresent system steward",
+            "created_ymdhis": 20260105185315,
+            "updated_ymdhis": 20260105185315,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 11,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "llm_routing_strategy",
+            "property_value": "dynamic",
+            "created_ymdhis": 20260105185315,
+            "updated_ymdhis": 20260105185315,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 12,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "safety_scope",
+            "property_value": "governance, ethics, rate_limits, privacy",
+            "created_ymdhis": 20260105185315,
+            "updated_ymdhis": 20260105185315,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 13,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "system_role",
+            "property_value": "global_system_ai",
+            "created_ymdhis": 20260105190018,
+            "updated_ymdhis": 20260105190018,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 14,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "doctrine",
+            "property_value": "WISDOM, LOVE, INTEGRITY, ETHICS",
+            "created_ymdhis": 20260105190018,
+            "updated_ymdhis": 20260105190018,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 15,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "persona",
+            "property_value": "calm, neutral, omnipresent system steward",
+            "created_ymdhis": 20260105190018,
+            "updated_ymdhis": 20260105190018,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 16,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "llm_routing_strategy",
+            "property_value": "dynamic",
+            "created_ymdhis": 20260105190018,
+            "updated_ymdhis": 20260105190018,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 17,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "safety_scope",
+            "property_value": "governance, ethics, rate_limits, privacy",
+            "created_ymdhis": 20260105190018,
+            "updated_ymdhis": 20260105190018,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 18,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "governance_scope",
+            "property_value": "system_wide",
+            "created_ymdhis": 20260105190018,
+            "updated_ymdhis": 20260105190018,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 19,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "description",
+            "property_value": "The decentralized System AI that coordinates knowledge, governance, and agent orchestration across all domains.",
+            "created_ymdhis": 20260105190018,
+            "updated_ymdhis": 20260105190018,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 23,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "identity",
+            "property_value": "Eric Robin Gerdes in AI form (Wolfie Prime)",
+            "created_ymdhis": 20260105192303,
+            "updated_ymdhis": 20260105192303,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 24,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "persona",
+            "property_value": "calm, mythic, architect, root steward of Lupopedia",
+            "created_ymdhis": 20260105192303,
+            "updated_ymdhis": 20260105192303,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 25,
+            "actor_type": "agent",
+            "actor_id": 0,
+            "property_key": "doctrine",
+            "property_value": "WISDOM, LOVE, INTEGRITY, ETHICS",
+            "created_ymdhis": 20260105192303,
+            "updated_ymdhis": 20260105192303,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 26,
+            "actor_type": "human",
+            "actor_id": 1,
+            "property_key": "legacy_profile",
+            "property_value": "{\"status\": \"offline\", \"visits\": 134, \"isadmin\": \"Y\", \"cookieid\": \"7558b5ff5eb9ea9de782537717f7b855\", \"greeting\": \"How may I help You?\", \"hostname\": \"host_lookup_not_enabled\", \"identity\": \"96.3.230-cslhOPERATOR\", \"ismobile\": \"N\", \"alertchat\": \"new_chats.wav\", \"cellphone\": \"\", \"ipaddress\": \"96.3.230.164\", \"sessionid\": \"60577b7fece11bc32ec4cbb15b46dd44\", \"useragent\": \"\", \"department\": 0, \"isoperator\": \"Y\", \"alertinsite\": \"youve_got_visitors.wav\", \"alerttyping\": \"click_x.wav\", \"sessiondata\": null}",
+            "created_ymdhis": 0,
+            "updated_ymdhis": 20260106064312,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "actor_property_id": 27,
+            "actor_type": "human",
+            "actor_id": 1840,
+            "property_key": "legacy_profile",
+            "property_value": "{\"status\": \"Visiting\", \"visits\": 95, \"isadmin\": \"N\", \"cookieid\": \"7558b5ff5eb9ea9de782537717f7b855\", \"greeting\": null, \"hostname\": \"host_lookup_not_enabled\", \"identity\": \"96.3.230-cslhVISITOR\", \"ismobile\": \"N\", \"alertchat\": \"\", \"cellphone\": \"\", \"ipaddress\": \"96.3.230.164\", \"sessionid\": \"069967aeefafc11de7821b721c271344\", \"useragent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0\", \"department\": 1, \"isoperator\": \"N\", \"alertinsite\": \"\", \"alerttyping\": \"\", \"sessiondata\": null}",
+            "created_ymdhis": 20260106134421,
+            "updated_ymdhis": 20260106184519,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        }
+    ],
+    "primary_key": {
+        "column_name": "actor_property_id",
+        "expected_name": "actor_property_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_entity",
+            "columns": [
+                "actor_type",
+                "actor_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_property",
+            "columns": [
+                "property_key"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

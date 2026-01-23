@@ -1,0 +1,101 @@
+{
+    "table_name": "lupo_content_media",
+    "fields": [
+        "`content_media_id` bigint NOT NULL auto_increment",
+        "`content_id` bigint NOT NULL COMMENT 'Reference to the parent content item'",
+        "`media_type` enum('image','audio','video','document','other') NOT NULL COMMENT 'Type of media: image, audio, video, document, or other'",
+        "`original_filename` varchar(255) COMMENT 'Original filename as uploaded by user'",
+        "`stored_filename` varchar(255) NOT NULL COMMENT 'Generated filename for storage (unique identifier)'",
+        "`stored_path` varchar(512) NOT NULL COMMENT 'Relative path to the media file (without filename)'",
+        "`file_extension` varchar(20) COMMENT 'File extension without leading dot'",
+        "`mime_type` varchar(100) COMMENT 'MIME type of the media file'",
+        "`file_size` bigint COMMENT 'File size in bytes'",
+        "`dimensions` varchar(50) COMMENT 'Image/video dimensions (WxH)'",
+        "`duration` int COMMENT 'Duration in seconds (audio/video)'",
+        "`media_order` int NOT NULL DEFAULT 0 COMMENT 'Display order within the content item'",
+        "`title` varchar(255) COMMENT 'Title of the media'",
+        "`caption_text` text COMMENT 'Descriptive caption'",
+        "`alt_text` text COMMENT 'Accessibility alternative text'",
+        "`description` text COMMENT 'Detailed description'",
+        "`metadata` json COMMENT 'JSON-encoded technical metadata (EXIF, codec info, etc.)'",
+        "`variants` json COMMENT 'JSON-encoded information about generated variants (thumbnails, etc.)'",
+        "`is_public` tinyint NOT NULL DEFAULT 1 COMMENT '1 = publicly accessible, 0 = private'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
+        "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+        "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "content_media_id",
+        "expected_name": "content_media_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_content",
+            "columns": [
+                "content_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_public",
+            "columns": [
+                "is_public"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_media_order",
+            "columns": [
+                "media_order"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_media_type",
+            "columns": [
+                "media_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_mime_type",
+            "columns": [
+                "mime_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_updated",
+            "columns": [
+                "updated_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

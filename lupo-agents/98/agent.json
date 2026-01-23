@@ -1,0 +1,9 @@
+{
+  "code": "ONBOARDER",
+  "name": "ONBOARDER",
+  "layer": "ux",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 98,
+  "version": "1.0.0"
+}

@@ -1,0 +1,33 @@
+{
+  "table_name": "lupo_system_config",
+  "fields": [
+    "`system_config_id` bigint NOT NULL auto_increment",
+    "`config_key` varchar(255) NOT NULL",
+    "`config_value` text NOT NULL",
+    "`actor_id` bigint NOT NULL DEFAULT '0'",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "config_key",
+      "columns": [
+        "config_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "system_config_id",
+    "expected_name": "system_config_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

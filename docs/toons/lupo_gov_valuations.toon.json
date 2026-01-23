@@ -1,0 +1,74 @@
+{
+  "table_name": "lupo_gov_valuations",
+  "fields": [
+    "`valuation_id` bigint NOT NULL auto_increment COMMENT 'Primary key for valuation'",
+    "`gov_event_id` bigint NOT NULL COMMENT 'Associated governance event'",
+    "`valuation_type` varchar(100) NOT NULL COMMENT 'Type of valuation'",
+    "`valuation_metric` varchar(255) NOT NULL COMMENT 'Metric being valued'",
+    "`valuation_value` decimal(20,8) COMMENT 'Numeric valuation value'",
+    "`valuation_text` text COMMENT 'Text-based valuation'",
+    "`valuation_currency` varchar(10) COMMENT 'Currency if applicable'",
+    "`valuation_unit` varchar(50) COMMENT 'Unit of measurement'",
+    "`confidence_score` decimal(5,4) COMMENT 'Confidence in valuation (0.0000-1.0000)'",
+    "`metadata_json` json COMMENT 'Additional valuation metadata'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_gov_event",
+      "columns": [
+        "gov_event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_valuation_metric",
+      "columns": [
+        "valuation_metric"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_valuation_type",
+      "columns": [
+        "valuation_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Valuations for governance events",
+  "primary_key": {
+    "column_name": "valuation_id",
+    "expected_name": "valuation_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

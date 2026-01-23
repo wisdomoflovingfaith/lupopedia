@@ -1,0 +1,20 @@
+{
+  "channel_key": "<REQUIRED — lowercase snake_case>",
+  "channel_name": "<REQUIRED — human-readable>",
+  "channel_description": "<REQUIRED — summary of channel purpose>",
+  "federation_node_id": 1,
+  "dialog_output_file": "dialogs/<channel_key>_dialog.md",
+  "created_by_actor_id": 1,
+  "created_ymdhis": "<UTC BIGINT YYYYMMDDHHIISS>",
+  "updated_ymdhis": "<UTC BIGINT YYYYMMDDHHIISS>",
+  "default_roles": [],
+  "default_agents": [],
+  "emotional_poles": {
+    "pole_a": 0,
+    "pole_b": 0
+  },
+  "metadata_json": {},
+  "tags": [],
+  "bgcolor": "FFFFFF",
+  "status_flag": "active"
+}

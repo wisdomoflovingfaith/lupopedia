@@ -1,0 +1,27 @@
+table: lupo_labs_violations
+  columns:
+    violation_id: bigint, primary, auto_increment
+    lab_id: bigint, not null, comment: "Reference to LABS declaration that was violated"
+    actor_id: bigint, not null, comment: "Actor who committed the violation"
+    violation_type: enum('baseline_breach', 'capability_exceeded', 'intention_violation', 'boundary_crossed'), not null, comment: "Type of LABS violation"
+    violation_severity: enum('low', 'medium', 'high', 'critical'), not null, comment: "Severity level of the violation"
+    violation_description: text, not null, comment: "Detailed description of what was violated"
+    detected_ymdhis: bigint, not null, comment: "UTC YYYYMMDDHHMMSS when violation was detected"
+    context_data: text, nullable, comment: "JSON-encoded context data at time of violation"
+    resolution_status: enum('open', 'investigating', 'resolved', 'dismissed'), default: open, comment: "Current resolution status"
+    resolved_by_actor_id: bigint, nullable, comment: "Actor who resolved this violation"
+    resolution_notes: text, nullable, comment: "Notes about how this violation was resolved"
+    created_ymdhis: bigint, not null, comment: "UTC YYYYMMDDHHMMSS when violation record was created"
+    updated_ymdhis: bigint, nullable, comment: "UTC YYYYMMDDHHMMSS when violation record was last updated"
+  indexes:
+    idx_lab_id, lab_id
+    idx_actor_id, actor_id
+    idx_violation_type, violation_type
+    idx_violation_severity, violation_severity
+    idx_detected_ymdhis, detected_ymdhis
+    idx_resolution_status, resolution_status
+    idx_created_ymdhis, created_ymdhis
+  engine: InnoDB
+  charset: utf8mb4
+  collate: utf8mb4_unicode_ci
+  comment: "LABS violation tracking. All fields are signed integers per No-UNSIGNED doctrine."

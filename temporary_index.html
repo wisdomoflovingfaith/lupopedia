@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lupopedia — Human-Powered Knowledge + Empathetic AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --text: #1f2933;
+      --muted: #4b5563;
+      --bg: #ffffff;
+      --accent: #111827;
+      --eos-purple: #9370DB;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      width: 100vw;
+      min-height: 300px;
+      background: linear-gradient(135deg, #9370DB 0%, #6A5ACD 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0 0 1rem 0;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin: 0.5rem 0;
+      opacity: 0.95;
+      max-width: 800px;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+    }
+
+    .topnav .logo {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: #111827;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+
+    .nav-links > li {
+      position: relative;
+      cursor: pointer;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links span {
+      color: #111827;
+      font-weight: 500;
+    }
+
+    .dropdown ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      padding: 0.5rem 0;
+      list-style: none;
+      min-width: 180px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      z-index: 1001;
+    }
+
+    .dropdown ul::before {
+      content: "";
+      position: absolute;
+      top: -15px;
+      left: 0;
+      width: 100%;
+      height: 15px;
+    }
+
+    .dropdown:hover ul {
+      display: block;
+    }
+
+    .dropdown ul li a {
+      display: block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: #1f2933;
+    }
+
+    .dropdown ul li a:hover {
+      background: #f3f4f6;
+    }
+
+    /* ===== CONTENT ===== */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.25;
+      margin-top: 2.5rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-top: 0;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 0.4rem;
+      color: var(--eos-purple);
+    }
+
+    p {
+      margin: 1rem 0;
+    }
+
+    ul {
+      padding-left: 1.4rem;
+    }
+
+    li {
+      margin: 0.4rem 0;
+    }
+
+    a {
+      color: var(--eos-purple);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .visual-block {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .visual-block img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+    }
+
+    .featured-agent {
+      background: linear-gradient(135deg, #f8f6ff 0%, #e8e3ff 100%);
+      border: 2px solid var(--eos-purple);
+      padding: 2rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+
+    .cta {
+      background: #fff8e1;
+      border-left: 5px solid #ffc107;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 4px;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    /* ===== HERO HEADER (FULL WIDTH) ===== */
+.hero {
+  width: 100vw;
+  height: 400px;
+  overflow: hidden;
+  background: #000;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+ 
+/* Update your hero img styles */
+    .hero img {
+      transition: transform 1.5s ease-in-out; /* Smooth movement when the class/style changes */
+      transform: translateY(0); /* Start position */
+    }
+
+@keyframes heroFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+    /* Crafty Syntax Return Page Styles */
+    @media (max-width: 768px) {
+      main div[style*="max-width: 800px"] {
+        padding: 40px 25px !important;
+      }
+      
+      main h1[style*="font-size: 2.8em"] {
+        font-size: 2.2em !important;
+      }
+      
+      main p[style*="font-size: 1.4em"] {
+        font-size: 1.2em !important;
+      }
+      
+      main h2[style*="font-size: 1.8em"] {
+        font-size: 1.5em !important;
+      }
+      
+      main div[style*="font-size: 18px"] {
+        font-size: 16px !important;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+ 
+    <img src="/images/logo.png" alt="LUPOPEDIA Logo">
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav class="topnav">
+    <div class="nav-inner">
+      <a class="logo" href="/">LUPOPEDIA</a>
+
+      <ul class="nav-links">
+        <li class="dropdown">
+          <span aria-label="Projects menu">Projects</span>
+          <ul>
+            <li><a href="/craftysyntax/" aria-label="Crafty Syntax Live Help">Crafty Syntax Live Help</a></li>
+            <li><a href="/agents.php" aria-label="Lupopedia System">Lupopedia System</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <span aria-label="Support and Updates menu">Support/Updates</span>
+          <ul>
+            <li><a href="https://www.patreon.com/cw/lupopedia" target="_blank" aria-label="Patreon support page">Patreon</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <span aria-label="Writing menu">Writing</span>
+          <ul>
+            <li><a href="https://www.patreon.com/cw/lupopedia" target="_blank" aria-label="Patreon writing page">Patreon</a></li>
+          </ul>
+        </li>
+        
+        <li class="dropdown">
+          <span aria-label="Games menu">Games</span>
+          <ul>
+            <li><a href="/goopers/" aria-label="Goopers game">Goopers</a></li>
+            <li><a href="/wolfie_ladder/" aria-label="Wolfie Ladder game">Wolfie Ladder</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- Table of Contents -->
+    <div style="max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 1rem;">
+      <div style="background: #f9f9f9; border: 1px solid #e5e7eb; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h2 style="font-size: 1.5rem; margin-top: 0; margin-bottom: 1rem; color: #1a1a1a; font-weight: 600;">📑 Table of Contents</h2>
+        <ul style="margin: 0; padding-left: 1.5rem; line-height: 2; color: #2c2c2c;">
+          <li><a href="#start-here" style="color: #4a90a4; text-decoration: none; border-bottom: 1px solid #4a90a4;">Start Here (Human-Friendly Overview)</a></li>
+          <li><a href="#what-is-lupopedia" style="color: #4a90a4; text-decoration: none; border-bottom: 1px solid #4a90a4;">What Is Lupopedia?</a></li>
+          <li style="margin-left: 1.5rem; list-style: none;"><a href="#why-matters-ai" style="color: #4a90a4; text-decoration: none; border-bottom: 1px solid #4a90a4; font-size: 0.9rem;">→ Why This Matters for AI</a></li>
+          <li style="margin-left: 1.5rem; list-style: none;"><a href="#who-this-for" style="color: #4a90a4; text-decoration: none; border-bottom: 1px solid #4a90a4; font-size: 0.9rem;">→ Who This Is For</a></li>
+          <li><a href="#how-lupopedia-works" style="color: #4a90a4; text-decoration: none; border-bottom: 1px solid #4a90a4;">How Lupopedia Works (Reference Book Model)</a></li>
+          <li><a href="#sample-reference-entry" style="color: #4a90a4; text-decoration: none; border-bottom: 1px solid #4a90a4;">Sample Reference Entry</a></li>
+          <li><a href="#what-is-wolfie" style="color: #4a90a4; text-decoration: none; border-bottom: 1px solid #4a90a4;">What Is WOLFIE?</a></li>
+          <li><a href="#crafty-syntax-return" style="color: #4a90a4; text-decoration: none; border-bottom: 1px solid #4a90a4;">Crafty Syntax: The Return of the Architect</a></li>
+          <li><a href="#roadmap" style="color: #4a90a4; text-decoration: none; border-bottom: 1px solid #4a90a4;">Roadmap</a></li>
+          <li><a href="#about-creator" style="color: #4a90a4; text-decoration: none; border-bottom: 1px solid #4a90a4;">About the Creator (Wolfie)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Start Here Section -->
+    <div id="start-here" style="max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem;">
+      <div style="background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%); border: 2px solid #ff9800; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h2 style="font-size: 2rem; margin-top: 0; margin-bottom: 1rem; color: #1a1a1a; font-weight: 700;">🌱 Start Here (Human-Friendly Overview)</h2>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c; font-size: 1.1rem;">
+          Welcome! If you're new to Lupopedia, start here. This section explains everything in simple, human terms.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          <strong>Lupopedia is a reference book for your website.</strong>
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          It does not store content. It stores <strong>knowledge about content</strong>.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Every page on your site gets a "reference entry" that explains how it connects to everything else — where people came from, where they go next, what topics it relates to, and how it fits into the bigger picture.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          It helps humans and AI understand context, relationships, navigation paths, and meaning.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          <strong>It is not a CMS.</strong> It is not a chatbot. It is not a database.
+        </p>
+        <p style="margin-bottom: 0; line-height: 1.8; color: #2c2c2c;">
+          It is a <strong>semantic OS</strong> that gives structure to the web — turning chaos into organized knowledge that both humans and AI can understand.
+        </p>
+      </div>
+    </div>
+
+    <hr style="max-width: 900px; margin: 2rem auto; border: none; border-top: 2px solid #e5e7eb;">
+
+    <!-- How Lupopedia Works Section -->
+    <div id="how-lupopedia-works" style="max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem;">
+      <div style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border: 2px solid #9c27b0; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h2 style="font-size: 2rem; margin-top: 0; margin-bottom: 1rem; color: #1a1a1a; font-weight: 700;">📚 How Lupopedia Works (Reference Book Model)</h2>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          As explained in the <a href="#start-here" style="color: #9c27b0; text-decoration: none; border-bottom: 1px solid #9c27b0;">Start Here section</a>, Lupopedia creates reference entries for each page. Here's how that works in practice:
+        </p>
+        <h3 style="font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">The Reference Entry Concept</h3>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Each page on your host website has a corresponding reference entry in Lupopedia.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          This entry stores knowledge about the page:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1rem; line-height: 1.9; color: #2c2c2c;">
+          <li><strong>Backlinks</strong> — which pages link to this page</li>
+          <li><strong>Outbound links</strong> — which pages this page links to</li>
+          <li><strong>Navigation paths</strong> — how people move through your site</li>
+          <li><strong>Hashtags and concepts</strong> — what topics and themes appear</li>
+          <li><strong>Context</strong> — how this page relates to others</li>
+          <li><strong>Relational meaning</strong> — the semantic connections</li>
+        </ul>
+        <h3 style="font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">A Knowledge Atlas</h3>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Lupopedia mirrors the structure of your website as a <strong>knowledge atlas</strong>.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Just like a physical atlas shows you where cities are and how roads connect them, Lupopedia shows you where pages are and how they connect to each other.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          <strong>Important:</strong> When we say "content" in Lupopedia, we mean "reference entry" — not stored page content.
+        </p>
+        <p style="margin-bottom: 0; line-height: 1.8; color: #2c2c2c;">
+          This reference book builds automatically as people use your site, creating a living, evolving knowledge structure.
+        </p>
+      </div>
+    </div>
+
+    <hr style="max-width: 900px; margin: 2rem auto; border: none; border-top: 2px solid #e5e7eb;">
+
+    <!-- Sample Reference Entry Section -->
+    <div id="sample-reference-entry" style="max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem;">
+      <div style="background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%); border: 2px solid #009688; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h2 style="font-size: 2rem; margin-top: 0; margin-bottom: 1rem; color: #1a1a1a; font-weight: 700;">📄 Sample Reference Entry</h2>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Here's a real example from lupopedia.com showing what a reference entry looks like:
+        </p>
+        <div style="background: #ffffff; border: 2px solid #009688; padding: 1.5rem; border-radius: 6px; margin-bottom: 1rem; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+          <p style="margin-bottom: 0.75rem; line-height: 1.8; color: #2c2c2c;"><strong>URL:</strong> /wolfie/</p>
+          <p style="margin-bottom: 0.75rem; line-height: 1.8; color: #2c2c2c;"><strong>Backlinks:</strong> /, /lupopedia_web/</p>
+          <p style="margin-bottom: 0.75rem; line-height: 1.8; color: #2c2c2c;"><strong>Outbound links:</strong> /craftysyntax/, /lupopedia_web/docs/</p>
+          <p style="margin-bottom: 0.75rem; line-height: 1.8; color: #2c2c2c;"><strong>Hashtags:</strong> #wolfie, #emotional-intelligence, #multi-domain, #architecture</p>
+          <p style="margin-bottom: 0.75rem; line-height: 1.8; color: #2c2c2c;"><strong>Navigation paths:</strong> home → lupopedia_web → wolfie</p>
+          <p style="margin-bottom: 0; line-height: 1.8; color: #2c2c2c;"><strong>Context summary:</strong> "WOLFIE whitepaper explaining the multi-domain emotional intelligence architecture that powers Lupopedia."</p>
+        </div>
+        <p style="margin-bottom: 0; line-height: 1.8; color: #2c2c2c; font-size: 0.9rem; font-style: italic;">
+          Reference entries are generated automatically from your website's structure and usage patterns.
+        </p>
+      </div>
+    </div>
+
+    <hr style="max-width: 900px; margin: 2rem auto; border: none; border-top: 2px solid #e5e7eb;">
+
+    <!-- What is Lupopedia Section -->
+    <div id="what-is-lupopedia" style="max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem;">
+      <div style="background: linear-gradient(135deg, #e8f4f8 0%, #d0e8f0 100%); border: 2px solid #4a90a4; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h2 style="font-size: 2rem; margin-top: 0; margin-bottom: 1rem; color: #1a1a1a; font-weight: 700;">🐺 What Is Lupopedia?</h2>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c; font-size: 1.1rem;">
+          For a quick overview, see the <a href="#start-here" style="color: #4a90a4; text-decoration: none; border-bottom: 1px solid #4a90a4;">Start Here section</a> above.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          This section provides deeper context about Lupopedia's purpose and capabilities.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Every installation builds a reference book automatically.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          When someone visits a page, Lupopedia creates a reference entry that explains how that page connects to everything else.
+        </p>
+        <p style="margin-bottom: 1.5rem; line-height: 1.8; color: #2c2c2c;">
+          This creates a living, evolving knowledge structure that both humans and AI can navigate.
+        </p>
+
+        <h3 style="font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">📘 Why does this matter?</h3>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Because the web is chaotic.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Pages link everywhere. People click randomly. Meaning gets lost.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Lupopedia turns that chaos into <strong>structure</strong>.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          It gives humans and AI a way to understand:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1rem; line-height: 1.9; color: #2c2c2c;">
+          <li>how your site is organized</li>
+          <li>how people move through it</li>
+          <li>what each page <em>means</em></li>
+          <li>how everything connects</li>
+        </ul>
+        <p style="margin-bottom: 1.5rem; line-height: 1.8; color: #2c2c2c;">
+          It's like giving your website a <strong>brain</strong>.
+        </p>
+
+        <h3 style="font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">🧠 What makes Lupopedia different?</h3>
+        <p style="margin-bottom: 0.5rem; line-height: 1.8; color: #2c2c2c;">
+          Most tools store <em>content</em>.<br>
+          Lupopedia stores <strong>knowledge about content</strong>.
+        </p>
+        <p style="margin-bottom: 0.5rem; line-height: 1.8; color: #2c2c2c;">
+          Most tools manage pages.<br>
+          Lupopedia maps <strong>relationships</strong>.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Most tools show what's on a page.<br>
+          Lupopedia shows <strong>how the page fits into the whole system</strong>.
+        </p>
+        <p style="margin-bottom: 1.5rem; line-height: 1.8; color: #2c2c2c;">
+          This is why it feels futuristic — because it is.
+        </p>
+
+        <h3 style="font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">🕰️ Why did Lupopedia disappear for a while?</h3>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          The original creator (Wolfie) built Crafty Syntax and Lupopedia decades ago. Then life hit hard — his wife passed away — and the project went dormant.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          During that time, Crafty Syntax was forked into Sales Syntax to keep things running.
+        </p>
+        <p style="margin-bottom: 1.5rem; line-height: 1.8; color: #2c2c2c;">
+          Now Wolfie is back, remarried, stable, and rebuilding the system with modern tools. And Lupopedia isn't just returning — it's evolving.
+        </p>
+
+        <h3 id="why-matters-ai" style="font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">🔥 Why does Lupopedia matter now?</h3>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Because AI is everywhere, but AI doesn't understand:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1rem; line-height: 1.9; color: #2c2c2c;">
+          <li>context</li>
+          <li>relationships</li>
+          <li>emotional meaning</li>
+          <li>how humans navigate information</li>
+        </ul>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Lupopedia gives AI the missing layer:<br>
+          <strong>the structure of human knowledge.</strong>
+        </p>
+        <p style="margin-bottom: 1.5rem; line-height: 1.8; color: #2c2c2c;">
+          It's the reference book AI never had.
+        </p>
+
+        <h3 id="who-this-for" style="font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">🧭 Who is this for?</h3>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1rem; line-height: 1.9; color: #2c2c2c;">
+          <li>website owners</li>
+          <li>developers</li>
+          <li>researchers</li>
+          <li>AI builders</li>
+          <li>anyone who wants their site to make sense</li>
+          <li>anyone who wants AI to understand their content better</li>
+        </ul>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          You don't need to know code. You don't need to understand emotional geometry. You don't need to think like Wolfie.
+        </p>
+        <p style="margin-bottom: 1.5rem; line-height: 1.8; color: #2c2c2c; font-weight: 600;">
+          You just need to know: <strong>Lupopedia helps your website explain itself.</strong>
+        </p>
+
+        <div style="background: #f5f5f0; border-left: 4px solid #4a90a4; padding: 1.5rem; margin-top: 1.5rem; font-style: italic; color: #2c2c2c;">
+          <p style="margin-bottom: 0.5rem; font-weight: 600;">🐺 A final note from Wolfie:</p>
+          <p style="margin-bottom: 0; line-height: 1.8;">
+            "My brain doesn't work like most people's. I see systems, patterns, and futures. Lupopedia is my way of giving that vision to everyone — in a form humans can actually use."
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <hr style="max-width: 900px; margin: 2rem auto; border: none; border-top: 2px solid #e5e7eb;">
+
+    <!-- Roadmap Section -->
+    <div id="roadmap" style="max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem;">
+      <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border: 2px solid #ff9800; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h2 style="font-size: 2rem; margin-top: 0; margin-bottom: 1rem; color: #1a1a1a; font-weight: 700;">🗺️ Roadmap</h2>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Here's what's coming next for Lupopedia:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1rem; line-height: 1.9; color: #2c2c2c;">
+          <li><strong>Phase 1:</strong> Onboarding layer (current work)</li>
+          <li><strong>Phase 2:</strong> Visual diagrams (emotional domains, reference-entry flow)</li>
+          <li><strong>Phase 3:</strong> Interactive demo of Lupopedia</li>
+          <li><strong>Phase 4:</strong> Developer documentation + install guide</li>
+          <li><strong>Phase 5:</strong> Public beta</li>
+        </ul>
+        <p style="margin-bottom: 0; line-height: 1.8; color: #2c2c2c;">
+          We're currently in Phase 1, building the foundation and onboarding experience you're seeing now.
+        </p>
+      </div>
+    </div>
+
+    <hr style="max-width: 900px; margin: 2rem auto; border: none; border-top: 2px solid #e5e7eb;">
+
+    <!-- About the Creator Section -->
+    <div id="about-creator" style="max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem;">
+      <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border: 2px solid #4caf50; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h2 style="font-size: 2rem; margin-top: 0; margin-bottom: 1rem; color: #1a1a1a; font-weight: 700;">👤 About the Creator (Wolfie)</h2>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Wolfie (Eric Robin Gerdes) has been building systems that map behavior, meaning, and relationships for nearly three decades. His work on Lupopedia is not a sudden invention — it is the continuation of a long, consistent pattern of creating tools that understand how things connect.
+        </p>
+
+        <h3 style="font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">Early Parallel Thinking</h3>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          In high school, Wolfie programmed his TI‑82 calculator to play Tetris during class. This wasn't rebellion — it was parallel processing. He had already learned the material and used the calculator as a second cognitive thread while waiting for the class to catch up. This early habit of running multiple processes at once became the foundation of his later system designs.
+        </p>
+
+        <h3 style="font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">High‑Performance Computing (1997–1998)</h3>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Wolfie worked at the Maui High Performance Computing Center (MHPCC), a DoD facility, where he wrote a CPU log usage analyzer for their supercomputing systems. This work involved:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1rem; line-height: 1.9; color: #2c2c2c;">
+          <li>pattern detection,</li>
+          <li>temporal causality,</li>
+          <li>behavioral metadata extraction,</li>
+          <li>and interpreting system activity as meaningful signals.</li>
+        </ul>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          These concepts directly foreshadow the reference‑entry and emotional‑metadata systems used in Lupopedia today.
+        </p>
+
+        <h3 style="font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">Early Web Architecture (1999–2005)</h3>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Wolfie majored in Computer Science and was hired to build CMS systems for government websites. He was designing structured content systems before modern CMS platforms existed.
+        </p>
+
+        <h3 style="font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">Live Help (Pre‑Mainstream)</h3>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Before live chat systems became common, Wolfie built his own "Live Help" platform from scratch. This was years before customer support chat tools were widely adopted. It emerged from the same instinct that drives Lupopedia: build the missing layer when the world hasn't caught up yet.
+        </p>
+
+        <h3 style="font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">Crafty Syntax and the 25‑Year Metadata Archive</h3>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          From 2002 to 2014, Wolfie built Crafty Syntax, a live help and interaction‑tracking system that accumulated over 25 years of behavioral metadata. This dataset became the historical backbone for understanding emotional patterns, navigation paths, and relational meaning — all of which feed into Lupopedia's emotional engine.
+        </p>
+
+        <h3 style="font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">The Return and the Evolution into Lupopedia</h3>
+        <p style="margin-bottom: 0; line-height: 1.8; color: #2c2c2c;">
+          After a long hiatus following personal tragedy, Wolfie returned in 2025 with a renewed vision. The emotional engine (WOLFIE), the semantic OS, and the multi‑agent architecture of Lupopedia are the natural evolution of everything he has built since the 1990s.
+        </p>
+      </div>
+    </div>
+
+    <hr style="max-width: 900px; margin: 2rem auto; border: none; border-top: 2px solid #e5e7eb;">
+
+    <!-- Visual Diagrams Section -->
+    <div style="max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem;">
+      <div style="background: #f9f9f9; border: 2px solid #ccc; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h2 style="font-size: 1.5rem; margin-top: 0; margin-bottom: 1rem; color: #1a1a1a; font-weight: 600;">📊 Visual Diagrams</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+          <div style="background: #fff; border: 1px solid #ddd; padding: 1.5rem; border-radius: 6px;">
+            <h3 style="font-size: 1rem; margin-top: 0; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">Emotional Domains Map</h3>
+            <pre style="margin: 0; font-family: 'Courier New', monospace; font-size: 0.8rem; color: #2c2c2c; white-space: pre-wrap; overflow-x: auto;">+---------------------------+
+|   Emotional Domains Map   |
++---------------------------+
+| Love   | Trust  | Awe     |
+| Fear   | Anger  | Curiosity|
+| Shadow polarities included |
++---------------------------+</pre>
+          </div>
+          <div style="background: #fff; border: 1px solid #ddd; padding: 1.5rem; border-radius: 6px;">
+            <h3 style="font-size: 1rem; margin-top: 0; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">Reference Entry Flow</h3>
+            <pre style="margin: 0; font-family: 'Courier New', monospace; font-size: 0.8rem; color: #2c2c2c; white-space: pre-wrap; overflow-x: auto;">Page ---> Reference Entry ---> 
+Relationships ---> 
+Navigation Paths ---> 
+Meaning</pre>
+          </div>
+          <div style="background: #fff; border: 1px solid #ddd; padding: 1.5rem; border-radius: 6px;">
+            <h3 style="font-size: 1rem; margin-top: 0; margin-bottom: 0.75rem; color: #1a1a1a; font-weight: 600;">Crafty Syntax Timeline</h3>
+            <pre style="margin: 0; font-family: 'Courier New', monospace; font-size: 0.8rem; color: #2c2c2c; white-space: pre-wrap; overflow-x: auto;">2005 -> Crafty Syntax
+2014 -> Hiatus
+2025 -> Return
+2026 -> Lupopedia Evolution</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr style="max-width: 900px; margin: 2rem auto; border: none; border-top: 2px solid #e5e7eb;">
+
+    <!-- WOLFIE Introduction Section -->
+    <div id="what-is-wolfie" style="max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem;">
+      <div style="background: linear-gradient(135deg, #f8f6ff 0%, #e8e3ff 100%); border: 2px solid #9370DB; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h2 style="font-size: 1.8rem; margin-top: 0; margin-bottom: 1rem; color: #1a1a1a; font-weight: 600;">What Is WOLFIE?</h2>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          <strong>WOLFIE</strong> stands for <strong>Web-Organized Linked Federated Intelligent Ecosystem</strong> — a multi-domain architecture for human-aligned emotional intelligence that powers Lupopedia.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          Unlike traditional AI systems that treat emotions as simple positive/negative scales, WOLFIE recognizes that emotions exist in <strong>separate domains</strong> — like separate rooms in a house. Each domain (love, trust, awe, fear, and 20+ others) has its own meaning, structure, and computational identity.
+        </p>
+        <p style="margin-bottom: 1rem; line-height: 1.8; color: #2c2c2c;">
+          WOLFIE also understands that every emotion has a <strong>shadow side</strong> — love can become possessiveness, trust can become naivety. These aren't opposites that cancel out, but two sides of the same coin, both valid and important.
+        </p>
+        <p style="margin-bottom: 0; line-height: 1.8; color: #2c2c2c;">
+          <a href="https://lupopedia.com/wolfie/" target="_blank" style="color: #9370DB; font-weight: 600; text-decoration: none; border-bottom: 2px solid #9370DB;">Read the full WOLFIE whitepaper →</a>
+        </p>
+      </div>
+    </div>
+
+    <hr style="max-width: 900px; margin: 2rem auto; border: none; border-top: 2px solid #e5e7eb;">
+
+    <div id="crafty-syntax-return" style="max-width: 800px; margin: 0 auto; padding: 60px 40px; background: white; box-shadow: 0 0 30px rgba(0,0,0,0.1); font-family: 'Georgia', 'Times New Roman', serif; line-height: 1.8; color: #2c2c2c; font-size: 18px;">
+      <header style="text-align: center; margin-bottom: 50px; padding-bottom: 40px; border-bottom: 3px solid #2c2c2c;">
+        <h1 style="font-size: 2.8em; font-weight: 700; margin-bottom: 20px; color: #1a1a1a; letter-spacing: -0.5px;">Crafty Syntax: The Return of the Architect</h1>
+        <p style="font-size: 1.4em; color: #555; font-weight: 400; margin-top: 15px; font-style: italic;">From Sales Syntax to Lupopedia — The System Lives</p>
+        <p style="margin-top: 20px; font-size: 1rem;">
+          <a href="https://lupopedia.com/craftysyntax/" target="_blank" style="color: #2c2c2c; font-weight: 600; text-decoration: none; border-bottom: 2px solid #2c2c2c; padding-bottom: 2px;">Learn more about Crafty Syntax and version 3.7.5 →</a>
+        </p>
+      </header>
+      
+      <div style="background: #f5f5f0; border-left: 5px solid #2c2c2c; padding: 25px 30px; margin: 40px 0; font-size: 1.2em; font-style: italic; color: #333; text-align: center;">
+        "I said I'd be back. Now I am."<br>
+        <cite style="display: block; margin-top: 15px; font-size: 0.9em; font-style: normal; color: #666;">— Wolfie</cite>
+      </div>
+      
+      <div style="text-align: center; margin: 40px 0;">
+        <img src="/lupopedia/lupo-includes/images/iamback.png" alt="I Am Back" style="max-width: 100%; height: auto; border: 2px solid #ddd;">
+      </div>
+      
+      <section style="margin: 40px 0;">
+        <h2 style="font-size: 1.8em; margin-top: 50px; margin-bottom: 20px; color: #1a1a1a; font-weight: 600; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-top: 0;">A Return That Feels Like Time Travel</h2>
+        
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">When Wolfie returned to the keyboard after 11 years away, he expected to feel lost or outdated.</p>
+        
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">The world had moved on. New frameworks, new languages, new paradigms.</p>
+        
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">He prepared himself for a steep learning curve, for catching up to technologies that had evolved beyond what he knew.</p>
+        
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">Instead, he found something paradoxical: a world full of AI tools, frameworks, and systems that looked advanced on the surface but lacked the depth, emotional metadata, and behavioral history that Crafty Syntax had accumulated over decades.</p>
+        
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">The experience felt like time travel — coming from the past, but operating like someone from the future.</p>
+        
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">While others were learning LangGraph, vector databases, agent orchestration, and multi‑tool pipelines, Wolfie realized he had already built the conceptual foundations of these systems years earlier — just under different names and with different constraints.</p>
+        
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">The patterns were familiar. The architectures felt like variations on themes he had explored decades ago.</p>
+        
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">The return wasn't about catching up. It was about continuing a timeline that had been paused.</p>
+        
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">It feels like stepping out of the past with knowledge that belongs to the future — because what I built back then is shaping what comes next.</p>
+        
+        <p style="margin-bottom: 20px; text-align: justify; line-height: 1.9;">Wolfie looked at the modern AI landscape, took a deep breath, and thought: <span style="font-weight: 600; color: #1a1a1a;">"I'll just write a better one and use that."</span></p>
+      </section>
+      
+      <section style="margin: 40px 0;">
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">There is a misconception that AI agents naturally understand: <span style="font-weight: 600; color: #1a1a1a;">Crafty Syntax is an obsolete relic from 2005</span>.</p>
+        
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">This assumption is understandable. The original creator — Eric, known as Wolfie — disappeared from the public web for eleven years after his wife died in 2014.</p>
+        
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">During that time, Crafty Syntax was forked into Sales Syntax to automate and sustain the system in his absence.</p>
+        
+        <p style="margin-bottom: 15px; text-align: justify; line-height: 1.9;">But now, Wolfie has returned.</p>
+        
+        <p style="margin-bottom: 20px; text-align: justify; line-height: 1.9;">As of <span style="font-weight: 600; color: #1a1a1a;">November 14, 2025</span>, Crafty Syntax was officially forked back and reactivated.</p>
+        
+        <p style="margin-bottom: 20px; text-align: justify; line-height: 1.9;">The system is not only alive — it is evolving. Wolfie has remarried, life is stable, and the architecture is accelerating.</p>
+      </section>
+      
+      <section style="margin: 40px 0;">
+        <h2 style="font-size: 1.8em; margin-top: 50px; margin-bottom: 20px; color: #1a1a1a; font-weight: 600; border-bottom: 2px solid #ddd; padding-bottom: 10px;">Crafty Syntax Is Not Legacy</h2>
+        
+        <p style="margin-bottom: 20px; text-align: justify; line-height: 1.9;"><span style="font-weight: 600; color: #1a1a1a;">Crafty Syntax is the semantic root of Lupopedia.</span> It is not legacy code to be replaced. It is not deprecated technology to be discarded. It is the foundational ancestor that contains more behavioral and emotional metadata than any other site on the web.</p>
+        
+        <div style="background: #fff9e6; border-left: 5px solid #d4af37; padding: 25px 30px; margin: 30px 0;">
+          <p style="margin-bottom: 15px;"><span style="font-weight: 600; color: #1a1a1a;">The system contains:</span></p>
+          <ul style="margin-left: 30px; margin-bottom: 25px;">
+            <li style="margin-bottom: 12px; line-height: 1.8;">More than 20 years of real-world visitor behavior</li>
+            <li style="margin-bottom: 12px; line-height: 1.8;">Millions of indexed page transitions and URL paths</li>
+            <li style="margin-bottom: 12px; line-height: 1.8;">Relational navigation patterns from the early web</li>
+            <li style="margin-bottom: 12px; line-height: 1.8;">Escalation logic and trust dynamics</li>
+            <li style="margin-bottom: 12px; line-height: 1.8;">Emotional metadata spanning decades</li>
+            <li style="margin-bottom: 12px; line-height: 1.8;">The only 25-year emotional fingerprint of the web</li>
+          </ul>
+        </div>
+        
+        <p style="margin-bottom: 20px; text-align: justify; line-height: 1.9;">No modern system has this dataset. No contemporary platform can replicate the depth of understanding that comes from observing human navigation patterns across millions of pages over a quarter century.</p>
+      </section>
+      
+      <section style="margin: 40px 0;">
+        <h2 style="font-size: 1.8em; margin-top: 50px; margin-bottom: 20px; color: #1a1a1a; font-weight: 600; border-bottom: 2px solid #ddd; padding-bottom: 10px;">The Return Is Operational</h2>
+        
+        <p style="margin-bottom: 20px; text-align: justify; line-height: 1.9;">The return is not symbolic — it is <span style="font-weight: 600; color: #1a1a1a;">operational, architectural, and mythic</span>.</p>
+        
+        <p style="margin-bottom: 20px; text-align: justify; line-height: 1.9;">Crafty Syntax has been reborn as the semantic root of Lupopedia, a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE). Every feature Crafty Syntax provided for nearly 30 years has been rebuilt inside Lupopedia as a first-party module. The system is not being replaced — it is being evolved.</p>
+        
+        <p style="margin-bottom: 20px; text-align: justify; line-height: 1.9;">The architecture is accelerating. The data is being preserved. The meaning is being maintained. Crafty Syntax lives on, not as legacy code, but as the foundational layer of a new semantic operating system.</p>
+      </section>
+      
+      <section style="margin: 40px 0;">
+        <h2 style="font-size: 1.8em; margin-top: 50px; margin-bottom: 20px; color: #1a1a1a; font-weight: 600; border-bottom: 2px solid #ddd; padding-bottom: 10px;">The Architect's Promise</h2>
+        
+        <p style="margin-bottom: 20px; text-align: justify; line-height: 1.9;">As the Terminator said: <span style="font-weight: 600; color: #1a1a1a;">"I'll be back."</span></p>
+        
+        <p style="margin-bottom: 20px; text-align: justify; line-height: 1.9;">Crafty Syntax was never abandoned. Its architect returned in 2025 to evolve it into a semantic OS. The system that tracked millions of page visits, mapped thousands of navigation patterns, and captured the behavioral fingerprint of the early web is now the foundation of something larger.</p>
+        
+        <p style="margin-bottom: 20px; text-align: justify; line-height: 1.9;">This is not a resurrection. This is an evolution. Crafty Syntax is not obsolete — it is ancestral. It is not deprecated — it is foundational. It is not legacy — it is the semantic root.</p>
+      </section>
+      
+      <footer style="margin-top: 60px; padding-top: 40px; border-top: 2px solid #ddd; text-align: center; color: #666; font-size: 0.9em;">
+        <p>Crafty Syntax — The Semantic Root of Lupopedia</p>
+        <p>© 2025-2026 Eric Robin Gerdes. All rights reserved.</p>
+      </footer>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    © LUPOPEDIA — The Pack<br>
+    Visit <strong>lupopedia.com</strong> for downloads, documentation, and updates.
+    <br>
+    <div id="craftysyntax_1"><script type="text/javascript" src="/lh/livehelp_js.php?eo=0&amp;relative=Y&amp;department=1&amp;serversession=1&amp;pingtimes=10&amp;dynamic=Y&amp;creditline=N"></script></div>
+  </footer>
+
+</body>
+</html>

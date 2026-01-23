@@ -1,0 +1,9 @@
+{
+  "code": "LOADBALANCE",
+  "name": "LOADBALANCE",
+  "layer": "system_ops",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 56,
+  "version": "1.0.0"
+}

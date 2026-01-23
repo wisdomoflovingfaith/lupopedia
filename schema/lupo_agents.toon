@@ -1,0 +1,28 @@
+table: lupo_agents
+  columns:
+    agent_id: bigint, primary, auto_increment
+    code: varchar(50), unique, not null, comment: "Unique agent code (e.g., CAPTAIN, WOLFIE, THOTH)"
+    name: varchar(100), not null, comment: "Human-readable agent name"
+    description: text, nullable, comment: "Detailed description of agent function and capabilities"
+    actor_id: bigint, not null, comment: "Reference to lupo_actors.actor_id (application-level relationship)"
+    owner_actor_id: bigint, nullable, comment: "Human actor who owns/controls this agent"
+    agent_type: enum('system', 'persona', 'service', 'utility'), default: service, comment: "Type of agent"
+    status: enum('active', 'inactive', 'maintenance', 'deprecated'), default: active, comment: "Current status of agent"
+    capabilities: text, nullable, comment: "JSON-encoded list of agent capabilities"
+    configuration: text, nullable, comment: "JSON-encoded agent configuration"
+    version: varchar(20), default: 1.0.0, comment: "Agent version"
+    created_ymdhis: bigint, not null, comment: "UTC YYYYMMDDHHMMSS when agent was created"
+    updated_ymdhis: bigint, nullable, comment: "UTC YYYYMMDDHHMMSS when agent was last updated"
+    last_active_ymdhis: bigint, nullable, comment: "UTC YYYYMMDDHHMMSS when agent was last active"
+  indexes:
+    idx_agent_code, unique, code
+    idx_actor_id, actor_id
+    idx_owner_actor_id, owner_actor_id
+    idx_agent_type, agent_type
+    idx_status, status
+    idx_created_ymdhis, created_ymdhis
+    idx_last_active_ymdhis, last_active_ymdhis
+  engine: InnoDB
+  charset: utf8mb4
+  collate: utf8mb4_unicode_ci
+  comment: "Agent definitions with ownership and capabilities. No FK constraints per doctrine."

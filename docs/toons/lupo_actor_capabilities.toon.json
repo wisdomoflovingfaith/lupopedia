@@ -1,0 +1,92 @@
+{
+  "table_name": "lupo_actor_capabilities",
+  "fields": [
+    "`actor_capability_id` bigint NOT NULL auto_increment",
+    "`actor_id` bigint NOT NULL",
+    "`domain_id` bigint NOT NULL COMMENT 'Domain scope for this capability'",
+    "`capability_key` varchar(100) NOT NULL COMMENT 'Unique capability identifier (e.g., \"edit_content\", \"manage_users\")'",
+    "`capability_description` text COMMENT 'Detailed description of the capability'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'",
+    "`scope_limitation` varchar(50) DEFAULT 'unrestricted' COMMENT 'domain, session, user, content'",
+    "`max_calls_per_hour` int DEFAULT '0' COMMENT '0 = unlimited'",
+    "`requires_approval` tinyint DEFAULT '0' COMMENT '1 = needs manual approval'",
+    "`approval_agent_id` bigint COMMENT 'Which agent must approve'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_agent_domain",
+      "columns": [
+        "actor_id",
+        "domain_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_capability_key",
+      "columns": [
+        "capability_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_domain_id",
+      "columns": [
+        "domain_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unique_agent_domain_capability",
+      "columns": [
+        "actor_id",
+        "domain_id",
+        "capability_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Defines domain-scoped capabilities and permissions for agents",
+  "primary_key": {
+    "column_name": "actor_capability_id",
+    "expected_name": "actor_capability_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

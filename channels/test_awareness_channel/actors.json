@@ -1,0 +1,36 @@
+{
+    "channel_id": 1001,
+    "channel_key": "test_awareness_channel",
+    "allowed_actors": [
+        {
+            "actor_id": 0,
+            "persona": "system_agent",
+            "role": "test_coordinator",
+            "permissions": ["aal_testing", "system_validation"],
+            "mood_defaults": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "color_coding": "#000000"
+        },
+        {
+            "actor_id": 1,
+            "persona": "captain_wolfie",
+            "role": "test_supervisor",
+            "permissions": ["test_supervision", "validation_approval"],
+            "mood_defaults": {
+                "red": 0,
+                "green": 1,
+                "blue": 0
+            },
+            "color_coding": "#00FF00"
+        }
+    ],
+    "access_control": {
+        "default_actor_id": 1,
+        "auto_approval": false,
+        "guest_access": false,
+        "test_environment": true
+    }
+}

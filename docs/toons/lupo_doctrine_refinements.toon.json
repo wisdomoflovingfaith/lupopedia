@@ -1,0 +1,65 @@
+{
+  "table_name": "lupo_doctrine_refinements",
+  "fields": [
+    "`id` bigint unsigned NOT NULL auto_increment",
+    "`cip_event_id` bigint unsigned NOT NULL COMMENT 'Triggering CIP event'",
+    "`doctrine_file_path` varchar(500) NOT NULL COMMENT 'Path to doctrine file updated'",
+    "`refinement_type` enum('addition','modification','removal','restructure') NOT NULL",
+    "`change_description` text NOT NULL COMMENT 'Description of doctrine change'",
+    "`before_content_hash` varchar(64) COMMENT 'SHA256 of content before change'",
+    "`after_content_hash` varchar(64) NOT NULL COMMENT 'SHA256 of content after change'",
+    "`impact_assessment_json` json COMMENT 'Assessment of change impact'",
+    "`approval_status` enum('pending','approved','rejected','auto_approved') DEFAULT 'pending'",
+    "`approved_by` varchar(100) COMMENT 'Who approved the change'",
+    "`applied_ymdhis` bigint COMMENT 'When change was applied'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'When refinement was proposed'",
+    "`refinement_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Refinement module version'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_applied_time",
+      "columns": [
+        "applied_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_approval_status",
+      "columns": [
+        "approval_status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_cip_event",
+      "columns": [
+        "cip_event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_doctrine_file",
+      "columns": [
+        "doctrine_file_path"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Doctrine Refinement Module - CIP-driven doctrine evolution tracking",
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

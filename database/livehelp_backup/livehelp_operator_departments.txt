@@ -1,0 +1,19 @@
+{
+    "table_name": "livehelp_operator_departments",
+    "fields": [
+        "`recno` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`user_id` int NOT NULL DEFAULT 0",
+        "`department` int NOT NULL DEFAULT 0",
+        "`extra` varchar(100) NOT NULL DEFAULT ''"
+    ],
+    "data": [
+        {
+            "recno": 1,
+            "livehelp_id": 1,
+            "user_id": 1,
+            "department": 1,
+            "extra": ""
+        }
+    ]
+}

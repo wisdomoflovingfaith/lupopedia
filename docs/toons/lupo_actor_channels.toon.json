@@ -1,0 +1,94 @@
+{
+  "table_name": "lupo_actor_channels",
+  "fields": [
+    "`actor_channel_id` bigint NOT NULL auto_increment COMMENT 'Primary key for the actor-channel relationship'",
+    "`actor_id` bigint NOT NULL COMMENT 'Reference to the actor (user/agent)'",
+    "`channel_id` bigint NOT NULL COMMENT 'Reference to the channel'",
+    "`status` char(1) NOT NULL DEFAULT 'A' COMMENT 'Status: A=Active, I=Inactive, etc.'",
+    "`start_date` bigint COMMENT 'Timestamp when actor joined the channel (YYYYMMDDHHMMSS)'",
+    "`bg_color` varchar(6) NOT NULL DEFAULT '000000' COMMENT 'Background color (6-char hex, no #)'",
+    "`text_color` varchar(6) NOT NULL DEFAULT '000000' COMMENT 'Text color (6-char hex, no #)'",
+    "`channel_color` varchar(6) NOT NULL DEFAULT 'F7FAFF' COMMENT 'Channel-specific color (6-char hex, no #)'",
+    "`alt_text_color` varchar(6) NOT NULL DEFAULT '000000' COMMENT 'Alternate text color (6-char hex, no #)'",
+    "`last_read_ymdhis` bigint COMMENT 'Timestamp when actor last read messages (YYYYMMDDHHMMSS)'",
+    "`muted_until_ymdhis` bigint COMMENT 'Timestamp until notifications are muted (YYYYMMDDHHMMSS)'",
+    "`preferences_json` json COMMENT 'Additional UI/UX preferences in JSON format'",
+    "`dialog_output_file` varchar(500) COMMENT 'Filesystem dialog log path for this actor in this channel; IDE agents write here as the mandatory fallback when database dialog tables are unavailable.'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'",
+    "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_channel",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unq_actor_channel",
+      "columns": [
+        "actor_id",
+        "channel_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Manages the many-to-many relationship between actors and channels, including per-actor channel preferences and status.",
+  "primary_key": {
+    "column_name": "actor_channel_id",
+    "expected_name": "actor_channel_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

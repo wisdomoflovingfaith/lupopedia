@@ -1,0 +1,43 @@
+{
+    "table_name": "lupo_channel_boot_log",
+    "fields": [
+        "`boot_id` bigint NOT NULL auto_increment COMMENT 'Primary key for boot event'",
+        "`actor_id` bigint COMMENT 'Actor that initiated boot sequence'",
+        "`session_id` varchar(64) COMMENT 'Session identifier'",
+        "`boot_start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED COMMENT 'Boot sequence start'",
+        "`boot_end_time` timestamp COMMENT 'Boot sequence completion'",
+        "`boot_status` enum('started','in_progress','completed','failed','interrupted') NOT NULL DEFAULT 'started'",
+        "`channels_loaded` int NOT NULL DEFAULT 0 COMMENT 'Number of channels successfully loaded'",
+        "`total_channels` int NOT NULL DEFAULT 0 COMMENT 'Total channels in boot sequence'",
+        "`error_details` json COMMENT 'Boot error information'",
+        "`performance_metrics` json COMMENT 'Boot performance data'",
+        "`created_ymdhis` bigint NOT NULL DEFAULT 0 COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "boot_id",
+        "expected_name": "channel_boot_log_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_actor_session",
+            "columns": [
+                "actor_id",
+                "session_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_boot_status_time",
+            "columns": [
+                "boot_status",
+                "boot_start_time"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}
