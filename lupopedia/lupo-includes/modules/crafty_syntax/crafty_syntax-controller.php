@@ -74,7 +74,15 @@ function craftysyntax_handle_slug($slug) {
     $page_body = render_content_page($content, $rendered_body);
     
     // 8. Render main layout (wraps content block with global UI)
-    return render_main_layout($page_body, $content);
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $content['title'] ?? '',
+        'content' => $content,
+        'meta' => [
+            'description' => $content['description'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
 }
 
 /**
@@ -141,7 +149,15 @@ function craftysyntax_render_not_found($slug) {
         'content_sections' => null
     ];
     $page_body = render_content_page($content, $content['body']);
-    return render_main_layout($page_body, $content);
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $content['title'] ?? '',
+        'content' => $content,
+        'meta' => [
+            'description' => $content['description'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
 }
 
 ?>

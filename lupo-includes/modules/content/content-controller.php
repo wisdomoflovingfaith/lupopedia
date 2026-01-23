@@ -24,6 +24,19 @@ if (file_exists(LUPOPEDIA_ABSPATH . '/lupo-includes/class-ConnectionsService.php
 }
 
 /**
+ * Resolve the active PDO connection.
+ *
+ * @return PDO|null
+ */
+function get_pdo_connection() {
+    if (!empty($GLOBALS['mydatabase'])) {
+        return $GLOBALS['mydatabase'];
+    }
+
+    return null;
+}
+
+/**
  * ---------------------------------------------------------
  * Content Controller - Main Entry Point
  * ---------------------------------------------------------
@@ -53,7 +66,20 @@ function content_show_by_slug($slug) {
     $related_edges = content_get_related_edges($content['content_id']);
     
     // 5. Render content with metadata
-    return content_render_canonical($content, $related_edges);
+    $page_body = content_render_canonical($content, $related_edges);
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $content['title'] ?? ($content['content_name'] ?? ''),
+        'content' => $content,
+        'related_edges' => $related_edges,
+        'meta' => [
+            'description' => $content['description'] ?? '',
+            'slug' => $content['slug'] ?? '',
+            'created_ymdhis' => $content['created_ymdhis'] ?? '',
+            'updated_ymdhis' => $content['updated_ymdhis'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
 }
 
 /**
@@ -69,6 +95,9 @@ function content_lookup_by_slug($slug) {
     
     try {
         $pdo = get_pdo_connection();
+        if (!$pdo) {
+            return null;
+        }
         
         $stmt = $pdo->prepare("
             SELECT * FROM lupo_contents 
@@ -81,15 +110,22 @@ function content_lookup_by_slug($slug) {
         
         if ($content) {
             // Parse JSON metadata
-            if ($content['metadata_json']) {
+            if (!empty($content['metadata_json'])) {
                 $content['metadata'] = json_decode($content['metadata_json'], true);
             }
-            
+
             // Parse AAL metadata if available
-            if ($content['aal_metadata_json']) {
+            if (!empty($content['aal_metadata_json'])) {
                 $content['aal_metadata'] = json_decode($content['aal_metadata_json'], true);
             }
-            
+
+            if (!isset($content['content_name']) && isset($content['title'])) {
+                $content['content_name'] = $content['title'];
+            }
+            if (!isset($content['content_body']) && isset($content['body'])) {
+                $content['content_body'] = $content['body'];
+            }
+
             return $content;
         }
         
@@ -116,6 +152,9 @@ function content_get_related_edges($content_id) {
     
     try {
         $pdo = get_pdo_connection();
+        if (!$pdo) {
+            return [];
+        }
         
         $stmt = $pdo->prepare("
             SELECT e.*, 
@@ -169,9 +208,25 @@ function content_render_canonical($content, $related_edges) {
     }
     
     // Fallback rendering
+    $content_name = isset($content['content_name'])
+        ? (string)$content['content_name']
+        : (isset($content['title']) ? (string)$content['title'] : '');
+    $content_body = isset($content['content_body'])
+        ? (string)$content['content_body']
+        : (isset($content['body']) ? (string)$content['body'] : '');
+    $rendered_body = $content_body;
+
+    if ($content_body === '' || strcasecmp(trim($content_body), 'see file') === 0) {
+        $resolved = content_resolve_body_from_file($content);
+        if (!empty($resolved['body'])) {
+            $content_body = $resolved['body'];
+            $rendered_body = $resolved['rendered_body'];
+        }
+    }
+
     $html = '<div class="lupopedia-content canonical-content">';
-    $html .= '<h1>' . htmlspecialchars($content['content_name']) . '</h1>';
-    $html .= '<div class="content-body">' . $content['content_body'] . '</div>';
+    $html .= '<h1>' . htmlspecialchars($content_name) . '</h1>';
+    $html .= '<div class="content-body">' . $rendered_body . '</div>';
     
     if (!empty($related_edges)) {
         $html .= '<div class="related-edges">';
@@ -186,6 +241,88 @@ function content_render_canonical($content, $related_edges) {
     
     $html .= '</div>';
     return $html;
+}
+
+/**
+ * Resolve content body from documentation files when content says "see file".
+ *
+ * @param array $content
+ * @return array{body:string,rendered_body:string}|null
+ */
+function content_resolve_body_from_file($content) {
+    $doc_root = rtrim(LUPOPEDIA_ABSPATH, '/\\') . '/docs';
+    $directories = [
+        $doc_root . '/channels/overview',
+        $doc_root . '/channels/doctrine',
+        $doc_root . '/channels/architecture',
+        $doc_root . '/channels/schema',
+        $doc_root . '/channels/agents',
+        $doc_root . '/channels/ui-ux',
+        $doc_root . '/channels/developer',
+        $doc_root . '/channels/history',
+        $doc_root . '/channels/appendix',
+        $doc_root . '/overview',
+        $doc_root . '/doctrine',
+        $doc_root . '/architecture',
+        $doc_root . '/schema',
+        $doc_root . '/agents',
+        $doc_root . '/ui-ux',
+        $doc_root . '/developer',
+        $doc_root . '/history',
+        $doc_root . '/appendix'
+    ];
+
+    $bases = [];
+    if (!empty($content['content_name'])) {
+        $bases[] = $content['content_name'];
+    }
+    if (!empty($content['title'])) {
+        $bases[] = $content['title'];
+    }
+    if (!empty($content['slug'])) {
+        $bases[] = $content['slug'];
+        if (strpos($content['slug'], '-') !== false) {
+            $bases[] = substr($content['slug'], strrpos($content['slug'], '-') + 1);
+        }
+    }
+    if (!empty($content['content_slug'])) {
+        $bases[] = $content['content_slug'];
+    }
+
+    $candidates = [];
+    foreach ($bases as $base) {
+        $normalized = trim($base);
+        if ($normalized === '') {
+            continue;
+        }
+        $candidates[] = $normalized . '.md';
+        $candidates[] = strtoupper($normalized) . '.md';
+        $candidates[] = strtoupper(str_replace([' ', '-'], '_', $normalized)) . '.md';
+        $candidates[] = str_replace([' ', '_'], '-', strtolower($normalized)) . '.md';
+    }
+    $candidates = array_values(array_unique($candidates));
+
+    foreach ($directories as $dir) {
+        if (!is_dir($dir)) {
+            continue;
+        }
+        foreach ($candidates as $candidate) {
+            $path = $dir . '/' . $candidate;
+            if (file_exists($path)) {
+                $body = file_get_contents($path);
+                $rendered_body = $body;
+                if (function_exists('content_render_body')) {
+                    $rendered_body = content_render_body($body, 'markdown', 'markdown');
+                }
+                return [
+                    'body' => $body,
+                    'rendered_body' => $rendered_body
+                ];
+            }
+        }
+    }
+
+    return null;
 }
 
 /**
@@ -271,7 +408,21 @@ function content_find_similar_slugs($slug) {
         return [];
     }
 }
-    
+
+/**
+ * Handle default content routing by slug.
+ *
+ * @param string $slug
+ * @param int|null $collection_id
+ * @return string
+ */
+function content_handle_slug($slug, $collection_id = null) {
+    // 1. Normalize slug
+    $slug = trim($slug, '/');
+    if ($slug === '') {
+        return '';
+    }
+
     // 2. Fetch content row
     $content = content_get_by_slug($slug);
     
@@ -362,19 +513,29 @@ function content_find_similar_slugs($slug) {
     
     // 10. Render main layout (wraps content block with global UI)
     // Pass all semantic data to layout for component integration
-    return render_main_layout($page_body, $content, [
-        'semanticContext' => $semanticContext,
-        'contentReferences' => $contentReferences,
-        'contentLinks' => $contentLinks,
-        'contentTags' => $contentTags,
-        'contentCollection' => $contentCollection,
-        'prevContent' => $prevNext['prev'],
-        'nextContent' => $prevNext['next'],
-        'contentSections' => isset($content['content_sections']) ? $content['content_sections'] : [],
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $content['title'] ?? '',
+        'content' => $content,
+        'semantic_context' => $semanticContext,
+        'content_references' => $contentReferences,
+        'content_links' => $contentLinks,
+        'tags' => $contentTags,
+        'collection' => $contentCollection,
+        'prev_content' => $prevNext['prev'],
+        'next_content' => $prevNext['next'],
+        'content_sections' => isset($content['content_sections']) ? $content['content_sections'] : [],
         'collection_id' => $collection_id,
         'tabs_data' => $tabs_data,
-        'current_collection' => $current_collection
-    ]);
+        'current_collection' => $current_collection,
+        'meta' => [
+            'description' => $content['description'] ?? '',
+            'slug' => $content['slug'] ?? '',
+            'created_ymdhis' => $content['created_ymdhis'] ?? '',
+            'updated_ymdhis' => $content['updated_ymdhis'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
 }
 
 /**
@@ -487,7 +648,25 @@ function content_handle_collection_tab($collection_id, $tab_slug) {
     ];
     
     // 7. Render main layout
-    return render_main_layout($page_body, $contentMetadata, $uiMetadata);
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $contentMetadata['title'] ?? '',
+        'content' => $contentMetadata,
+        'semantic_context' => $uiMetadata['semanticContext'] ?? [],
+        'content_references' => $uiMetadata['contentReferences'] ?? [],
+        'content_links' => $uiMetadata['contentLinks'] ?? [],
+        'tags' => $uiMetadata['contentTags'] ?? [],
+        'collection' => $uiMetadata['contentCollection'] ?? null,
+        'content_sections' => $uiMetadata['contentSections'] ?? null,
+        'tabs_data' => $uiMetadata['tabs_data'] ?? [],
+        'current_collection' => $uiMetadata['current_collection'] ?? null,
+        'collection_id' => $uiMetadata['collection_id'] ?? null,
+        'meta' => [
+            'description' => $contentMetadata['description'] ?? '',
+            'slug' => $contentMetadata['slug'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
 }
 
 ?>

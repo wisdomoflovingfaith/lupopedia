@@ -459,7 +459,15 @@ function truth_handle_slug($slug) {
             return '';
         }
         
-        $result = render_main_layout($page_body, $content);
+        $context = [
+            'page_body' => $page_body,
+            'page_title' => $content['title'] ?? '',
+            'content' => $content,
+            'meta' => [
+                'description' => $content['description'] ?? ''
+            ]
+        ];
+        $result = render_main_layout($context);
         
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
             $debug_info[] = "<!-- DEBUG: render_main_layout returned: " . (empty($result) ? "empty" : strlen($result) . " bytes") . " -->";
@@ -601,7 +609,27 @@ function truth_handle_view($slug) {
     
     // 12. Render main layout (wraps content block with global UI)
     // Pass metadata so semantic_panel, semantic_map, and content_outline receive TRUTH data
-    return render_main_layout($page_body, $contentMetadata, $uiMetadata);
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $contentMetadata['title'] ?? '',
+        'content' => $contentMetadata,
+        'semantic_context' => $uiMetadata['semanticContext'] ?? [],
+        'content_references' => $uiMetadata['contentReferences'] ?? [],
+        'content_links' => $uiMetadata['contentLinks'] ?? [],
+        'tags' => $uiMetadata['contentTags'] ?? [],
+        'collection' => $uiMetadata['contentCollection'] ?? null,
+        'content_sections' => $uiMetadata['contentSections'] ?? null,
+        'tabs_data' => $uiMetadata['tabs_data'] ?? [],
+        'current_collection' => $uiMetadata['current_collection'] ?? null,
+        'collection_id' => $uiMetadata['collection_id'] ?? null,
+        'prev_content' => $uiMetadata['prevContent'] ?? null,
+        'next_content' => $uiMetadata['nextContent'] ?? null,
+        'meta' => [
+            'description' => $contentMetadata['description'] ?? '',
+            'slug' => $contentMetadata['slug'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
 }
 
 /**
@@ -751,7 +779,27 @@ function truth_handle_assert($slug) {
     ];
     
     // 12. Render main layout
-    return render_main_layout($page_body, $contentMetadata, $uiMetadata);
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $contentMetadata['title'] ?? '',
+        'content' => $contentMetadata,
+        'semantic_context' => $uiMetadata['semanticContext'] ?? [],
+        'content_references' => $uiMetadata['contentReferences'] ?? [],
+        'content_links' => $uiMetadata['contentLinks'] ?? [],
+        'tags' => $uiMetadata['contentTags'] ?? [],
+        'collection' => $uiMetadata['contentCollection'] ?? null,
+        'content_sections' => $uiMetadata['contentSections'] ?? null,
+        'tabs_data' => $uiMetadata['tabs_data'] ?? [],
+        'current_collection' => $uiMetadata['current_collection'] ?? null,
+        'collection_id' => $uiMetadata['collection_id'] ?? null,
+        'prev_content' => $uiMetadata['prevContent'] ?? null,
+        'next_content' => $uiMetadata['nextContent'] ?? null,
+        'meta' => [
+            'description' => $contentMetadata['description'] ?? '',
+            'slug' => $contentMetadata['slug'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
 }
 
 /**
@@ -911,7 +959,27 @@ function truth_handle_evidence($slug) {
     ];
     
     // 13. Render main layout
-    return render_main_layout($page_body, $contentMetadata, $uiMetadata);
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $contentMetadata['title'] ?? '',
+        'content' => $contentMetadata,
+        'semantic_context' => $uiMetadata['semanticContext'] ?? [],
+        'content_references' => $uiMetadata['contentReferences'] ?? [],
+        'content_links' => $uiMetadata['contentLinks'] ?? [],
+        'tags' => $uiMetadata['contentTags'] ?? [],
+        'collection' => $uiMetadata['contentCollection'] ?? null,
+        'content_sections' => $uiMetadata['contentSections'] ?? null,
+        'tabs_data' => $uiMetadata['tabs_data'] ?? [],
+        'current_collection' => $uiMetadata['current_collection'] ?? null,
+        'collection_id' => $uiMetadata['collection_id'] ?? null,
+        'prev_content' => $uiMetadata['prevContent'] ?? null,
+        'next_content' => $uiMetadata['nextContent'] ?? null,
+        'meta' => [
+            'description' => $contentMetadata['description'] ?? '',
+            'slug' => $contentMetadata['slug'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
 }
 
 /**
@@ -968,7 +1036,27 @@ function truth_handle_collection_tab($collection_id, $tab_slug) {
     ];
     
     // 7. Render main layout
-    return render_main_layout($page_body, $contentMetadata, $uiMetadata);
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $contentMetadata['title'] ?? '',
+        'content' => $contentMetadata,
+        'semantic_context' => $uiMetadata['semanticContext'] ?? [],
+        'content_references' => $uiMetadata['contentReferences'] ?? [],
+        'content_links' => $uiMetadata['contentLinks'] ?? [],
+        'tags' => $uiMetadata['contentTags'] ?? [],
+        'collection' => $uiMetadata['contentCollection'] ?? null,
+        'content_sections' => $uiMetadata['contentSections'] ?? null,
+        'tabs_data' => $uiMetadata['tabs_data'] ?? [],
+        'current_collection' => $uiMetadata['current_collection'] ?? null,
+        'collection_id' => $uiMetadata['collection_id'] ?? null,
+        'prev_content' => $uiMetadata['prevContent'] ?? null,
+        'next_content' => $uiMetadata['nextContent'] ?? null,
+        'meta' => [
+            'description' => $contentMetadata['description'] ?? '',
+            'slug' => $contentMetadata['slug'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
 }
 
 /**
@@ -1043,7 +1131,27 @@ function truth_handle_collection_content($collection_id, $content_slug) {
     ];
     
     // 6. Render main layout
-    return render_main_layout($page_body, $contentMetadata, $uiMetadata);
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $contentMetadata['title'] ?? '',
+        'content' => $contentMetadata,
+        'semantic_context' => $uiMetadata['semanticContext'] ?? [],
+        'content_references' => $uiMetadata['contentReferences'] ?? [],
+        'content_links' => $uiMetadata['contentLinks'] ?? [],
+        'tags' => $uiMetadata['contentTags'] ?? [],
+        'collection' => $uiMetadata['contentCollection'] ?? null,
+        'content_sections' => $uiMetadata['contentSections'] ?? null,
+        'tabs_data' => $uiMetadata['tabs_data'] ?? [],
+        'current_collection' => $uiMetadata['current_collection'] ?? null,
+        'collection_id' => $uiMetadata['collection_id'] ?? null,
+        'prev_content' => $uiMetadata['prevContent'] ?? null,
+        'next_content' => $uiMetadata['nextContent'] ?? null,
+        'meta' => [
+            'description' => $contentMetadata['description'] ?? '',
+            'slug' => $contentMetadata['slug'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
 }
 
 /**
@@ -1063,7 +1171,15 @@ function truth_render_not_found($slug) {
     
     // Use content renderer for consistency
     $page_body = render_content_page($content, $content['body']);
-    return render_main_layout($page_body, $content);
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $content['title'] ?? '',
+        'content' => $content,
+        'meta' => [
+            'description' => $content['description'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
 }
 
 ?>

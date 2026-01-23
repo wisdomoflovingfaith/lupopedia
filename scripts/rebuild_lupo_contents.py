@@ -73,6 +73,16 @@ def determine_content_type(path: Path):
     return "article"
 
 
+def slugify_relative_path(path: Path):
+    stem_path = path.with_suffix("")
+    raw = "-".join(stem_path.parts)
+    slug = raw.lower()
+    slug = re.sub(r"[\s_]+", "-", slug)
+    slug = re.sub(r"[^a-z0-9\-]", "", slug)
+    slug = re.sub(r"-+", "-", slug).strip("-")
+    return slug
+
+
 def iter_markdown_files(root: Path):
     for path in root.rglob("*.md"):
         if should_ignore(path):
@@ -80,22 +90,74 @@ def iter_markdown_files(root: Path):
         yield path
 
 
-def main():
-    dry_run = True  # Set to False to execute inserts
+def load_db_config(config_path: Path):
+    text = config_path.read_text(encoding="utf-8")
 
-    root = Path("/docs/channels/")
+    def read_define(name):
+        pattern = re.compile(
+            r"define\(\s*['\"]" + re.escape(name) + r"['\"]\s*,\s*['\"]([^'\"]*)['\"]\s*\)",
+            re.IGNORECASE,
+        )
+        match = pattern.search(text)
+        return match.group(1) if match else None
+
+    def read_assignment(name):
+        pattern = re.compile(
+            r"^\s*" + re.escape(name) + r"\s*=\s*['\"]([^'\"]*)['\"]\s*;",
+            re.IGNORECASE | re.MULTILINE,
+        )
+        match = pattern.search(text)
+        return match.group(1) if match else None
+
+    config = {
+        "DB_HOST": read_define("DB_HOST"),
+        "DB_USER": read_define("DB_USER"),
+        "DB_PASSWORD": read_define("DB_PASSWORD"),
+        "DB_NAME": read_define("DB_NAME"),
+        "DB_PORT": read_define("DB_PORT"),
+        "DB_CHARSET": read_define("DB_CHARSET") or "utf8mb4",
+        "TABLE_PREFIX": read_assignment("table_prefix") or "lupo_",
+    }
+    return config
+
+
+def main():
+    dry_run = False  # Set to False to execute inserts
+
+    root = Path(__file__).resolve().parent.parent / "docs"
     if not root.exists():
         print(f"Root path not found: {root}", file=sys.stderr)
         sys.exit(1)
 
+    config_path = Path(__file__).resolve().parent.parent / "lupopedia-config.php"
+    if not config_path.exists():
+        print(f"Config not found: {config_path}", file=sys.stderr)
+        sys.exit(1)
+
+    db_config = load_db_config(config_path)
+    missing = [key for key in ("DB_HOST", "DB_USER", "DB_PASSWORD", "DB_NAME") if not db_config.get(key)]
+    if missing:
+        print(f"Missing database config keys: {', '.join(missing)}", file=sys.stderr)
+        sys.exit(1)
+
+    table_prefix = db_config.get("TABLE_PREFIX") or "lupo_"
+    contents_table = f"{table_prefix}contents"
+
     timestamp = utc_timestamp_ymdhis()
 
     rows = []
+    seen_slugs = set()
+    duplicate_slugs = []
     for md_file in iter_markdown_files(root):
         text = md_file.read_text(encoding="utf-8")
 
         title, description = extract_title_and_description(text, md_file.stem)
-        slug = md_file.stem
+        rel_path = md_file.relative_to(root)
+        slug = slugify_relative_path(rel_path)
+        if slug in seen_slugs:
+            duplicate_slugs.append(slug)
+            continue
+        seen_slugs.add(slug)
         content_sections = json.dumps(extract_headings(text), ensure_ascii=True)
         content_type = determine_content_type(md_file)
 
@@ -119,23 +181,26 @@ def main():
 
     if dry_run:
         print(f"DRY RUN: would truncate and insert {len(rows)} records.")
+        if duplicate_slugs:
+            print(f"Skipped {len(duplicate_slugs)} duplicate slugs.")
         return
 
     conn = pymysql.connect(
-        host="YOUR_HOST",
-        user="YOUR_USER",
-        password="YOUR_PASSWORD",
-        database="YOUR_DATABASE",
-        charset="utf8mb4",
+        host=db_config["DB_HOST"],
+        user=db_config["DB_USER"],
+        password=db_config["DB_PASSWORD"],
+        database=db_config["DB_NAME"],
+        port=int(db_config["DB_PORT"] or 3306),
+        charset=db_config["DB_CHARSET"],
         cursorclass=pymysql.cursors.DictCursor,
     )
 
     try:
         with conn.cursor() as cursor:
-            cursor.execute("TRUNCATE TABLE lupo_contents")
+            cursor.execute(f"TRUNCATE TABLE {contents_table}")
 
             sql = """
-                INSERT INTO lupo_contents (
+                INSERT INTO {table} (
                     title,
                     slug,
                     description,
@@ -167,8 +232,11 @@ def main():
                     %(version_number)s
                 )
             """
-            cursor.executemany(sql, rows)
+            cursor.executemany(sql.format(table=contents_table), rows)
         conn.commit()
+        print(f"Inserted {len(rows)} rows into {contents_table}.")
+        if duplicate_slugs:
+            print(f"Skipped {len(duplicate_slugs)} duplicate slugs.")
     finally:
         conn.close()
 

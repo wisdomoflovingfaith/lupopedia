@@ -10768,3 +10768,11 @@ details manually.
 - **Rate Limiting**: Structure supports future rate limiting implementation
 - **Authentication**: Ready for future authentication enhancements
 - **Monitoring**: Structure supports future monitoring and analytics
+
+## 2026.1.1.2 — 2026-01-23 16:14 UTC
+### Added
+- Unified LayoutContext schema
+- Normalized render_main_layout signature
+- Updated all controllers to use $context
+- Added backward compatibility layer
+- Documented schema in docs/architecture/layout-context-schema.md
