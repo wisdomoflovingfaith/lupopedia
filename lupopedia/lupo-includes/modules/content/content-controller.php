@@ -311,6 +311,19 @@ function content_resolve_body_from_file($content) {
             $path = $dir . '/' . $candidate;
             if (file_exists($path)) {
                 $body = file_get_contents($path);
+
+                // Strip YAML front-matter if present.
+                $lines = preg_split('/\r\n|\r|\n/', $body);
+                if (!empty($lines) && trim($lines[0]) === '---') {
+                    for ($i = 1; $i < count($lines); $i++) {
+                        if (trim($lines[$i]) === '---') {
+                            $lines = array_slice($lines, $i + 1);
+                            $body = implode("\n", $lines);
+                            break;
+                        }
+                    }
+                }
+
                 $rendered_body = $body;
                 if (function_exists('content_render_body')) {
                     $rendered_body = content_render_body($body, 'markdown', 'markdown');
