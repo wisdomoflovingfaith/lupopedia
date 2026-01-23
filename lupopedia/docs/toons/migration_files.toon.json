@@ -1,0 +1,31 @@
+{
+  "table_name": "migration_files",
+  "fields": [
+    "`file_id` bigint NOT NULL DEFAULT '0'",
+    "`batch_id` bigint NOT NULL DEFAULT '0'",
+    "`file_path` varchar(512) NOT NULL",
+    "`file_type` enum('doctrine','module','agent','documentation') NOT NULL",
+    "`file_status` enum('pending','processing','completed','failed','rolled_back') NOT NULL DEFAULT 'pending'",
+    "`file_hash` varchar(64)",
+    "`epoch_from` bigint NOT NULL DEFAULT '0'",
+    "`epoch_to` bigint NOT NULL DEFAULT '0'",
+    "`processing_time_ms` int NOT NULL DEFAULT '0'",
+    "`error_message` text",
+    "`retry_count` int NOT NULL DEFAULT '0'",
+    "`sort_order` int NOT NULL DEFAULT '0'",
+    "`properties` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT '0'",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint(1) NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT '0'"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "file_id",
+    "expected_name": "file_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "relationships": []
+}

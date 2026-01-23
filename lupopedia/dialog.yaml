@@ -1,0 +1,206 @@
+# 🐺 Lupopedia Inline Dialog Specification (Updated 4.0.0)
+# This file defines the universal communication protocol for all AI agents, IDEs, humans, and automated tools operating within Lupopedia.
+# Inline Dialog ensures synchronized awareness, traceability, and coordinated action across the entire semantic OS.
+
+---
+dialog_specification:
+  version: "4.0.0"
+  
+  purpose: |
+    Inline Dialog is the required communication format for:
+    - AI agents (Cursor, Cascade/Windsurf, DeepSeek, Copilot, etc.)
+    - IDE systems
+    - PHP terminal agents
+    - Automated tools
+    - Humans participating in the system
+    
+    It provides a short, structured message embedded directly into files to describe:
+    - what changed
+    - why it changed
+    - who should act next (if anyone)
+    
+    Inline Dialog creates a living conversational history inside the codebase.
+
+  definition: |
+    Inline Dialog is a structured YAML-style block that may appear anywhere in a file.
+    The topmost dialog block always represents the latest message.
+    
+    When used in WOLFIE Headers (at the top of files), the dialog block always contains
+    the very latest dialog message for that file, ensuring the most recent communication
+    is immediately visible.
+    
+    Each block contains:
+    - the speaker
+    - the target
+    - optional metadata
+    - the message (≤ 272 chars, no line breaks)
+
+  required_format: |
+    ---
+    dialog:
+      speaker: [SPEAKER]
+      target: [TARGET]
+      date_ymdhis: [UTC_YYYYMMDDHHIISS]   # optional
+      mood_RGB: [RRGGBB]                 # optional, Counting-in-Light mood color (six hex digits, no #)
+      message: [message text, <=272 chars, no line breaks]
+    ---
+
+  field_definitions:
+    speaker: |
+      The agent or human writing the dialog.
+      Examples: CURSOR, DEEPSEEK, COPILOT, CAPTAIN_WOLFIE, ERIC.
+    
+    target: |
+      Who the message is directed to.
+      May be:
+      - @everyone
+      - a specific agent (@CURSOR, @CASCADE, @DEEPSEEK)
+      - a subsystem (@PHP_TERMINALS)
+    
+    date_ymdhis: |
+      (optional) UTC timestamp in YYYYMMDDHHIISS format.
+    
+    mood_RGB: |
+      (optional) A color representing emotional tone using the Counting-in-Light system.
+      Format: RRGGBB (six hex digits, no leading #)
+      Stored as char(6) in database (e.g., "FF0000" not "#FF0000")
+      The # symbol is only added for display purposes, not storage
+    
+    message: |
+      (required) Plain text, no line breaks, ≤ 272 characters.
+      Describes what changed, why, and who acts next.
+      The 272-character limit reserves space for future mood tags within the 280-character X/Twitter constraint.
+
+  counting_in_light_mood_system:
+    description: |
+      The mood_RGB field uses a color derived from the Counting-in-Light emotional coordinate system.
+      Each axis is an integer 0–255:
+      - R (Red): Strife / Chaos / Conflict Intensity
+      - G (Green): Harmony / Attachment / Cohesion Intensity
+      - B (Blue): Memory Depth / Persistence Weight
+      Combined as a standard hex color: #RRGGBB
+    
+    examples:
+      critical_urgent: "#FF0000"
+      insightful_reflective: "#0000FF"
+      stabilizing_supportive: "#00FF00"
+      neutral_balanced: "#888888"
+    
+    purpose: |
+      This system allows agents to communicate tone, urgency, and emotional context.
+
+  rules:
+    mandatory_usage:
+      - "creating any file (required in WOLFIE Headers)"
+      - "modifying any file"
+      - "making schema changes"
+      - "updating documentation"
+      - "performing research another agent must act on"
+      - "handing off work"
+      - "coordinating multi-agent tasks"
+    
+    placement:
+      - "Dialog blocks may appear anywhere in a file"
+      - "The topmost block is always the latest"
+      - "WOLFIE Headers always contain the very latest dialog message"
+      - "Tools must scan the entire file for dialog blocks"
+    
+    message_constraints:
+      - "Messages must be plain text, single-line, ≤ 272 chars"
+      - "No line breaks allowed in message field"
+      - "Reserves ~8 characters for mood tag space (280 total - 272 message = 8)"
+    
+    human_participation:
+      - "Humans may write dialog blocks"
+      - "Humans can participate in conversational lineage"
+      - "Humans can hand off tasks, annotate files, leave instructions"
+    
+    prohibited_content:
+      - "SQL constraints"
+      - "schema logic"
+      - "business rules"
+      - "vendor-specific syntax"
+      - "markdown inside the message"
+    
+    version_control: |
+      Version-control rules will be defined in 4.0.1+.
+
+  integration_with_dialog_database:
+    description: |
+      All Inline Dialog messages may be stored in the dialog database used by PHP terminal agents.
+    
+    requirements:
+      - "Each entry must include: speaker, target, message, timestamp, agent_id (if applicable)"
+      - "Messages must be stored exactly as written"
+
+  dialog_history_file:
+    description: |
+      All Inline Dialog blocks across the repository should be extracted, sorted newest-first,
+      and consolidated into changelog_dialog.md for human-readable audit trail.
+    
+    specification: "See docs/DIALOG_HISTORY_SPEC.md for complete generation rules"
+    
+    generation_instruction: |
+      Agents should scan all files, extract dialog blocks, sort newest-first, and write to
+      changelog_dialog.md. Preserve speaker, target, date, mood, and message exactly as written.
+    
+    when_to_regenerate:
+      - "After major updates"
+      - "After schema changes"
+      - "After doctrine changes"
+      - "After multi-agent collaboration sessions"
+      - "Before releases"
+
+  inline_references:
+    description: |
+      To reference a dialog block inside documentation, use the format:
+      @FILENAME (startLine-endLine)
+    
+    format: "@FILENAME (startLine-endLine)"
+    example: "@HISTORY.md (28-32)"
+    
+    rules:
+      - "Use @ symbol followed by filename"
+      - "Use 1-indexed line numbers"
+      - "Use this format when citing dialog in docs or handoffs"
+
+  examples:
+    handoff_example: |
+      ---
+      dialog:
+        speaker: DEEPSEEK
+        target: @CURSOR
+        message: Completed research on category mapping; Cursor should implement schema update next.
+      ---
+    
+    documentation_update_example: |
+      ---
+      dialog:
+        speaker: CURSOR
+        target: @everyone
+        message: Updated migration docs to match Captain Wolfie doctrine; no constraints added.
+      ---
+    
+    php_terminal_agent_example: |
+      ---
+      dialog:
+        speaker: PHP_AGENT
+        target: @DEEPSEEK
+        message: Stored new dialog entry; DeepSeek may continue research thread.
+      ---
+    
+    with_mood_example: |
+      ---
+      dialog:
+        speaker: CURSOR
+        target: @everyone
+        mood_RGB: "FF0000"
+        message: Critical: Database migration failed; immediate attention required.
+      ---
+
+  enforcement:
+    - "All agents MUST read this file before generating documentation or SQL"
+    - "All agents MUST follow the Inline Dialog format"
+    - "All agents MUST assume multi-agent collaboration"
+    - "No agent may assume it is the only system working on Lupopedia"
+    - "Tools MUST scan entire files for dialog blocks, not just the top"

@@ -1,0 +1,22 @@
+{
+    "version": "2026.1.0.3",
+    "channel_id": 1,
+    "channel_key": "system/lobby",
+    "channel_name": "Lobby Channel",
+    "governance_flags": {
+        "system_channel": true,
+        "auto_created": true,
+        "deletion_allowed": false
+    },
+    "allowed_actors": ["system", "wolfie", "new_actors"],
+    "default_actor_id": 1,
+    "timestamps": {
+        "created_ymdhis": 20260106082200,
+        "updated_ymdhis": 20260106082200
+    },
+    "awareness_version": "4.0.72",
+    "metadata": {
+        "purpose": "system-root",
+        "auto_created": true
+    }
+}

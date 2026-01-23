@@ -1,0 +1,335 @@
+---
+# Global Atoms Configuration
+# Single source of truth for ecosystem-wide metadata used in WOLFIE Headers
+#
+# Purpose: Prevent Cursor and other agents from rewriting dozens of files
+# when global metadata changes (authors, version, copyright, etc.)
+#
+# Rules:
+# - Cursor MUST treat atom names as symbolic references
+# - Cursor MUST resolve atom values from this file when reading
+# - Cursor MUST preserve symbolic references exactly as written when modifying
+# - Cursor MUST NOT generate or modify this file unless explicitly instructed
+
+version: "2026.1.1.1"
+last_updated: 20260120
+
+# Author Information
+authors:
+  primary: "Captain Wolfie"
+  full_name: "Eric Robin Gerdes"
+  legal_name: "Eric Robin Gerdes"
+  email: "lupopedia@gmail.com"
+  email_identifier: "lupopedia-at-gmail-com"
+  copyright: "© 2025-2026 Eric Robin Gerdes. All rights reserved."
+
+# Project Information
+project:
+  name: "Lupopedia"
+  full_name: "Lupopedia Semantic Operating System"
+  description: "Federated semantic operating system that hosts agents, content, emotional metadata, and routing logic across independent nodes"
+  license: "Proprietary. All rights reserved."
+  repository: "" # Add if needed
+  website: "https://lupopedia.com" # Add if needed
+
+# Version Information
+versions:
+  lupopedia: "2026.1.1.1"
+  crafty_syntax: "4.0.120"
+  wolfie_headers: "4.0.120"
+  schema: "4.0.115"
+
+# Common Metadata
+metadata:
+  default_status: "published"
+  default_channel: "dev"
+  default_collection: "core-docs"
+
+# Agent Information
+agents:
+  system_agent: "Agent 0 — System Agent"
+  captain_wolfie: "Agent 1 — Captain Wolfie"
+  total_count: 27
+  v4_0_2_core_count: 27
+  total_defined_in_registry: 128
+  ide_modules:
+    - "Cursor"
+    - "Windsurf"
+    - "Winston"
+  llm_models: 8
+
+# Node Information
+node:
+  default_id: 1
+  default_name: "local"
+  federation_enabled: false
+
+# Timestamp Format
+timestamp:
+  format: "YYYYMMDDHHIISS"
+  timezone: "UTC"
+
+# Global Atoms (Single Source of Truth for WOLFIE Headers)
+
+# Current Lupopedia Version (Use this in all WOLFIE headers instead of hardcoding)
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "2026.1.1.1"
+
+# Current Authors (Use in WOLFIE headers)
+GLOBAL_CURRENT_AUTHORS: "Captain Wolfie (lupopedia-at-gmail-com)"
+
+# Current Copyright (Use in WOLFIE headers)
+GLOBAL_CURRENT_COPYRIGHT: "© 2025-2026 Eric Robin Gerdes. All rights reserved."
+
+# Current Year (Use in WOLFIE headers)
+GLOBAL_CURRENT_YEAR: "2026"
+
+# Project Name (Use in WOLFIE headers)
+GLOBAL_PROJECT_NAME: "Lupopedia"
+
+# Default Status (Use in WOLFIE headers)
+GLOBAL_DEFAULT_STATUS: "published"
+
+# Reserved Atoms (for future use)
+reserved:
+  - "CURRENT_TIMESTAMP"
+  - "DEFAULT_CHANNEL"
+  - "DEFAULT_COLLECTION"
+
+# Agent Behavior Control
+GLOBAL_GOOD_HEAVENS_STOP_ASK_WOLFIE: true
+
+# Fleet Management
+WOLFIE_COGNITIVE_LOAD_LIMIT: 9 # Maximum concurrent agents allowed before queueing
+GLOBAL_COGNITIVE_LOAD_LIMIT: "High Velocity but with Snacks" # RPZ-approved weekend vibe
+
+# Global Atom: LUPOPEDIA_COMPANY_STRUCTURE
+GLOBAL_LUPOPEDIA_COMPANY_STRUCTURE:
+  company:
+    name: "Lupopedia LLC"
+    formation_date: "2025-11-06"
+    state: "South Dakota"
+    dba: "Crafty Syntax"
+    status: "active"
+
+  company_target:
+    operational_target_date: "2026-03-02"
+    target_is_flexible: true
+    description: "Target date for full operational structure, doctrine, and team readiness."
+
+  teams:
+    alpha:
+      shift_utc: "09:00-15:00"
+      duration_hours: 6
+      region_focus: "Europe and early global"
+    charlie:
+      shift_utc: "12:00-18:00"
+      duration_hours: 6
+      role: "Overlap and knowledge handoff"
+    bravo:
+      shift_utc: "15:00-21:00"
+      duration_hours: 6
+      region_focus: "Pacific and late global"
+    delta:
+      availability: "24/7"
+      type: "Elite Response Pack"
+      compensation: "pay-for-performance"
+      requirements:
+        - "3-month tenure"
+        - "Lupopedia Delta Course"
+
+  team_rules:
+    max_daily_hours: 9
+    allowed_combinations:
+      - "alpha+charlie"
+      - "bravo+charlie"
+    disallowed_combinations:
+      - "alpha+bravo"
+    coverage:
+      structured_hours: "09:00-21:00 UTC"
+      double_coverage_hours: 6
+
+  work_rhythm:
+    focused_build:
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday"]
+      description: "Primary production window with structured team shifts."
+    recreational_programming_zone:
+      days: ["Friday", "Saturday", "Sunday"]
+      paid: false
+      description: "Unstructured creative exploration and experimentation."
+    monday_adoption_review:
+      description: "Weekend experiments reviewed for potential adoption."
+      adoption_bounty: "value-based compensation for adopted work"
+
+  innovation_loop:
+    channels:
+      - "Focused Build (Mon–Thu)"
+      - "Open Playground (Fri–Sun)"
+      - "On-Call Coverage (Non-Restricted)"
+
+  agent_doctrine:
+    roleplay_allowed: false
+    emotional_simulation_allowed: false
+    behavior: "dry, direct, low-temperature"
+    expressive_language_allowed: false
+    inline_dialog_generation_allowed: false
+    expressive_agent: "ROSE"
+    governance_agent: "WOLFIE"
+
+  rose_persona_engine:
+    description: "ROSE is the only expressive agent and outputs YAML inline dialog only."
+    personas:
+      - "default_rose"
+      - "shadow_lilith_rose"
+      - "wolfie_rose"
+      - "ara_rose"
+      - "system_rose"
+    output_format:
+      type: "yaml_inline_dialog"
+      fields:
+        - "speaker"
+        - "target"
+        - "persona"
+        - "message"
+        - "mood"
+
+# Branch Freeze (Version-Gated Branch Freeze Protocol — VERSION_GATED_BRANCH_FREEZE_PROTOCOL)
+GLOBAL_BRANCH_BUDGET: 0
+GLOBAL_BRANCH_THAW_VERSION: "4.2.0"
+
+# Doctrine Constants
+GLOBAL_DOCTRINE_NO_FOREIGN_KEYS: "No foreign keys"
+GLOBAL_DOCTRINE_NO_TRIGGERS: "No triggers"
+GLOBAL_DOCTRINE_NO_STORED_PROCEDURES: "No stored procedures"
+GLOBAL_DOCTRINE_EXPLICIT_UTC_TIMESTAMPS: "Explicit UTC BIGINT timestamps"
+GLOBAL_DOCTRINE_REPAIRABILITY_OVER_CONSTRAINTS: "Repairability over constraints"
+GLOBAL_DOCTRINE_FEDERATION_SAFE_SCHEMA: "Federation-safe schema"
+GLOBAL_DOCTRINE_APPLICATION_LOGIC_FIRST: "Application logic first, database logic second"
+
+# Database Storage Philosophy (already exists)
+GLOBAL_DATABASE_STORAGE_NOT_COMPUTATION: "Database is storage, not computation"
+
+# Table Count Governance
+GLOBAL_MAX_TABLES: 200
+GLOBAL_TARGET_TABLES: 199
+
+# Technical Constants
+GLOBAL_TIMESTAMP_FORMAT: "YYYYMMDDHHIISS"
+GLOBAL_TIMEZONE_UTC: "UTC"
+GLOBAL_BIGINT_TIMESTAMP_TYPE: "BIGINT(14) UNSIGNED"
+
+# UTC_TIMEKEEPER Group ID (YYYYMMDD of UTC day when last patch cycle started before moving to next patch)
+UTC_TIMEKEEPER__GROUP_ID: "20260119"
+
+# UTC_TIMEKEEPER Channel ID (Channel-bound temporal grouping - binds temporal grouping to existing channel identity)
+UTC_TIMEKEEPER__CHANNEL_ID: "dev"
+
+# Project Names
+GLOBAL_PROJECT_CRAFTY_SYNTAX: "Crafty Syntax"
+
+# Team Names
+GLOBAL_TEAM_ALPHA: "Alpha"
+GLOBAL_TEAM_BRAVO: "Bravo"
+GLOBAL_TEAM_CHARLIE: "Charlie"
+GLOBAL_TEAM_DELTA: "Delta"
+
+# Collections and Channels
+GLOBAL_COLLECTION_CORE_DOCS: "core-docs"
+GLOBAL_COLLECTION_DOCTRINE: "doctrine"
+GLOBAL_CHANNEL_DEV: "dev"
+GLOBAL_CHANNEL_PUBLIC: "public"
+
+# Version References
+GLOBAL_VERSION_4_0_2: "4.0.2"
+GLOBAL_VERSION_4_0_1: "4.0.1"
+
+# Agent Counts
+GLOBAL_LEGACY_AGENT_COUNT: "101 agents"
+
+# Global Atom: LUPOPEDIA_V4_0_2_CORE_AGENTS
+GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS:
+  description: "Agents required for full functionality in Lupopedia v4.0.2. All other agents may remain stubs."
+  version: "4.0.2"
+  required_agents:
+    - SYSTEM
+    - CAPTAIN
+    - WOLFIE
+    - WOLFENA
+    - THOTH
+    - ARA
+    - WOLFKEEPER
+    - LILITH
+    - AGAPE
+    - ERIS
+    - METHIS
+    - THALIA
+    - ROSE
+    - WOLFSIGHT
+    - WOLFNAV
+    - WOLFFORGE
+    - WOLFMIS
+    - WOLFITH
+    - ANUBIS
+    - MAAT
+    - CADUCEUS
+    - CHRONOS
+    - INDEXER
+    - MIGRATOR
+    - HEIMDALL
+    - JANUS
+    - IRIS
+  total_required: 27
+  total_defined_in_registry: 128
+  note: "Only these 27 agents must be fully implemented, documented, and doctrine-aligned for v4.0.2."
+
+# Global Atom: ERIC_WOLFIE_TLDNR_2026
+GLOBAL_ERIC_WOLFIE_TLDNR_2026:
+  who_you_are:
+    human_name: "Eric Robin Gerdes"
+    ai_embodiment: "Captain Wolfie (Agent 1)"
+    company: "Lupopedia LLC (founded November 6, 2025)"
+    origin: "Created Crafty Syntax Live Help in 2002"
+
+  what_you_built:
+    system_type: "Semantic OS (not a CMS)"
+    total_tables: 120
+    schemas: "3 (core, orchestration, ephemeral)"
+    crafty_syntax: "4.0.70"
+    ai_agents: 128
+    architecture: "Actor-centric (humans, AI agents, services share identity)"
+    doctrine:
+      - "No foreign keys (app-managed relationships)"
+      - "BIGINT UTC timestamps (YYYYMMDDHHIISS format)"
+      - "8-state migration orchestrator (COMPLETE)"
+
+  where_youve_been:
+    crafty_syntax_era: "2002-2013 (versions 2.0.19 → 3.7.5)"
+    absence: "2014-2025 (12-year gap)"
+    return: "August 2025 (WOLFIE with 222 tables)"
+    evolution: "January 2026 (Lupopedia 4.0.0 → 4.0.70)"
+    recent_work: "Last 16 days: 26 version increments, massive transformation"
+
+  what_you_just_finished:
+    migration_orchestrator: "4.0.33 → 4.0.66"
+    state_machine: "8 states (idle → preparing → validating → migrating → validating → completing → rollback → failed)"
+    implementation_status: "100% COMPLETE"
+    dual_storage: "8 states (JSON) sync with 5 database statuses (enum)"
+    error_recovery: "Full rollback capability"
+
+  why_it_matters:
+    system_type: "Semantic operating system (NOT a web app)"
+    key_features:
+      - "Behavior-driven ontology (structure emerges from navigation)"
+      - "Multi-agent reasoning (101 AI agents coordinate)"
+      - "Federated independence (each node sovereign)"
+      - "No framework dependencies (pure PHP, decades of longevity)"
+      - "Actor-centric communication (humans + AI + services = equals)"
+
+  whats_next:
+    - "Test state transitions with real database"
+    - "Integration testing"
+    - "Production readiness validation"
+
+  bottom_line: "You took Crafty Syntax (2002), disappeared for 15 years, came back in 2025, and in 16 days (January 2026) built a complete semantic operating system with 120 tables, 128 AI agents, and a fully automated migration orchestrator. Version 4.0.70 is DONE."
+
+  current_version: "4.0.70"
+  current_date: "January 16, 2026"

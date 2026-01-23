@@ -1,0 +1,18 @@
+{
+    "table_name": "lupo_crafty_syntax_chat_mod_departments",
+    "fields": [
+        "`crafty_syntax_chat_mod_department_id` bigint NOT NULL auto_increment",
+        "`department_id` bigint NOT NULL DEFAULT 0",
+        "`module_id` bigint NOT NULL DEFAULT 0",
+        "`sort_order` int NOT NULL DEFAULT 0",
+        "`is_active` tinyint(1) NOT NULL DEFAULT 1",
+        "`is_default` tinyint(1) NOT NULL DEFAULT 0"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "crafty_syntax_chat_mod_department_id",
+        "expected_name": "crafty_syntax_chat_mod_department_id",
+        "is_correct": true,
+        "needs_rename": false
+    }
+}

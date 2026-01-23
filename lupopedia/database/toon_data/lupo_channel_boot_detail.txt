@@ -1,0 +1,51 @@
+{
+    "table_name": "lupo_channel_boot_detail",
+    "fields": [
+        "`detail_id` bigint NOT NULL auto_increment COMMENT 'Primary key for boot detail'",
+        "`boot_id` bigint NOT NULL COMMENT 'Reference to lupo_channel_boot_log.boot_id'",
+        "`channel_id` bigint NOT NULL COMMENT 'Reference to lupo_channels.channel_id'",
+        "`load_start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED COMMENT 'Channel load start'",
+        "`load_end_time` timestamp COMMENT 'Channel load completion'",
+        "`load_status` enum('started','loading','completed','failed','skipped') NOT NULL DEFAULT 'started'",
+        "`content_items_loaded` int NOT NULL DEFAULT 0 COMMENT 'Content items successfully loaded'",
+        "`total_content_items` int NOT NULL DEFAULT 0 COMMENT 'Total content items in channel'",
+        "`load_duration_ms` int COMMENT 'Load duration in milliseconds'",
+        "`error_message` text COMMENT 'Load error details'",
+        "`created_ymdhis` bigint NOT NULL DEFAULT 0 COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "detail_id",
+        "expected_name": "channel_boot_detail_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "fk_boot_detail_channel",
+            "columns": [
+                "channel_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_boot_channel",
+            "columns": [
+                "boot_id",
+                "channel_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_load_status_time",
+            "columns": [
+                "load_status",
+                "load_start_time"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

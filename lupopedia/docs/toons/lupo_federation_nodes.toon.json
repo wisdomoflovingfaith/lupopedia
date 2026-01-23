@@ -1,0 +1,68 @@
+{
+  "table_name": "lupo_federation_nodes",
+  "fields": [
+    "`federation_node_id` bigint NOT NULL auto_increment",
+    "`node_base_url` varchar(500) NOT NULL",
+    "`node_name` varchar(255)",
+    "`node_description` text",
+    "`node_contact` varchar(255)",
+    "`meta_json` json",
+    "`content_count` bigint NOT NULL DEFAULT '0'",
+    "`atom_count` bigint NOT NULL DEFAULT '0'",
+    "`hashtag_count` bigint NOT NULL DEFAULT '0'",
+    "`actor_count` bigint NOT NULL DEFAULT '0'",
+    "`last_sync_ymdhis` bigint NOT NULL DEFAULT '0'",
+    "`trust_level` tinyint NOT NULL DEFAULT '0'",
+    "`status` tinyint NOT NULL DEFAULT '1'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT '0'",
+    "`created_ymdhis` bigint NOT NULL DEFAULT '0'",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT '0'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_node_base_url",
+      "columns": [
+        "node_base_url"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_trust_level",
+      "columns": [
+        "trust_level"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "federation_node_id",
+    "expected_name": "federation_node_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

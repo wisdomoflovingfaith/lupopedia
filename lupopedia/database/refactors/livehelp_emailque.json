@@ -1,0 +1,38 @@
+{
+  "legacy_table": "livehelp_emailque",
+  "legacy_description": "Legacy Crafty Syntax send-log table. Despite the misleading name, this table did NOT queue emails. It recorded which outbound lead message (from livehelp_emails) was sent to which email address and when. It was the delivery log for the Crafty Syntax Leads broadcast email system.",
+  "legacy_columns": {
+    "id": "Primary key for the send-log entry",
+    "messageid": "Foreign reference to livehelp_emails.id (outbound message)",
+    "towho": "Email address the message was sent to",
+    "dateof": "Timestamp of when the message was sent"
+  },
+  "new_table": "lupo_crm_lead_message_sends",
+  "new_description": "Durable CRM send-log table in Lupopedia. Records which lead message was sent to which recipient and when. Mirrors modern CRM email delivery logging.",
+  "migration_type": "full_row_migration",
+  "migration_reason": "Send-log entries represent real historical delivery events and must be preserved. The legacy table name was misleading but the data is meaningful.",
+  "column_mapping": {
+    "id": "crm_lead_message_send_id",
+    "messageid": "crm_lead_message_id",
+    "towho": "to_email",
+    "dateof": "sent_ymdhis"
+  },
+  "transformations": {
+    "sent_ymdhis": "Converted from legacy datetime to bigint ymdhis format"
+  },
+  "added_columns": {
+    "created_ymdhis": "Copied from sent_ymdhis",
+    "updated_ymdhis": "Copied from sent_ymdhis",
+    "is_deleted": 0,
+    "deleted_ymdhis": "NULL"
+  },
+  "dropped_columns": [],
+  "migration_sql": {
+    "data_migration": "INSERT INTO lupo_crm_lead_message_sends (crm_lead_message_send_id, crm_lead_message_id, to_email, sent_ymdhis, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) SELECT id AS crm_lead_message_send_id, messageid AS crm_lead_message_id, towho AS to_email, DATE_FORMAT(dateof, '%Y%m%d%H%i%S') AS sent_ymdhis, DATE_FORMAT(dateof, '%Y%m%d%H%i%S') AS created_ymdhis, DATE_FORMAT(dateof, '%Y%m%d%H%i%S') AS updated_ymdhis, 0 AS is_deleted, NULL AS deleted_ymdhis FROM livehelp_emailque;"
+  },
+  "post_migration": {
+    "drop_legacy_table": true,
+    "drop_sql": "DROP TABLE IF EXISTS livehelp_emailque;"
+  },
+  "disposition": "Migrated and Dropped"
+}

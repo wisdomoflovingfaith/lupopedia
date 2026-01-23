@@ -1,0 +1,36 @@
+{
+    "channel_id": 1002,
+    "channel_key": "dev-main-thread",
+    "allowed_actors": [
+        {
+            "actor_id": 0,
+            "persona": "system_agent",
+            "role": "development_coordinator",
+            "permissions": ["development_operations", "system_coordination"],
+            "mood_defaults": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "color_coding": "#000000"
+        },
+        {
+            "actor_id": 1,
+            "persona": "captain_wolfie",
+            "role": "development_steward",
+            "permissions": ["development_supervision", "policy_enforcement"],
+            "mood_defaults": {
+                "red": 0,
+                "green": 1,
+                "blue": 0
+            },
+            "color_coding": "#00FF00"
+        }
+    ],
+    "access_control": {
+        "default_actor_id": 1,
+        "auto_approval": false,
+        "guest_access": false,
+        "development_channel": true
+    }
+}

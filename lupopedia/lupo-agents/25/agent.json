@@ -1,0 +1,9 @@
+{
+  "code": "AGAPE",
+  "name": "AGAPE",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 8,
+  "version": "1.0.0"
+}

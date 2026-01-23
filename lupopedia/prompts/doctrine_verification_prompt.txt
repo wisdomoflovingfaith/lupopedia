@@ -1,0 +1,70 @@
+DOCTRINE VERIFICATION PROMPT FOR WINDSURF/CLAUDE
+
+======================================================================
+TASK: Audit entire Lupopedia project against 12 Critical Atoms
+VERSION: 4.0.45
+STATUS: HURRICANE KILLER PROTOCOL ACTIVE
+======================================================================
+
+OBJECTIVE:
+Find every place where hardcoded "15-year" or "149-table" values are still lingering.
+Verify all 12 Critical Atoms are properly implemented and protected.
+
+THE 12 CRITICAL ATOMS (Source of Truth):
+1. GLOBAL_CURRENT_LUPOPEDIA_VERSION
+2. GLOBAL_CURRENT_AUTHORS  
+3. GLOBAL_CURRENT_COPYRIGHT
+4. GLOBAL_CURRENT_YEAR
+5. GLOBAL_DEFAULT_STATUS
+6. GLOBAL_PROJECT_NAME
+7. GLOBAL_DOCTRINE_NO_FOREIGN_KEYS
+8. GLOBAL_DOCTRINE_NO_TRIGGERS
+9. GLOBAL_DOCTRINE_EXPLICIT_UTC_TIMESTAMPS
+10. GLOBAL_DOCTRINE_REPAIRABILITY_OVER_CONSTRAINTS
+11. GLOBAL_DOCTRINE_FEDERATION_SAFE_SCHEMA
+12. GLOBAL_DOCTRINE_APPLICATION_LOGIC_FIRST
+
+VERIFICATION COMMANDS:
+
+1. SEARCH FOR LINGERING HARD-CODED VALUES:
+   grep -r "15-year" . --exclude-dir=node_modules --exclude-dir=.git
+   grep -r "149-table" . --exclude-dir=node_modules --exclude-dir=.git
+   grep -r "149" . --exclude-dir=node_modules --exclude-dir=.git | grep -i "table"
+
+2. VERIFY CRITICAL ATOMS IMPLEMENTATION:
+   find . -name "*.php" -exec grep -l "GLOBAL_CURRENT_LUPOPEDIA_VERSION" {} \;
+   find . -name "*.php" -exec grep -l "GLOBAL_DOCTRINE_NO_FOREIGN_KEYS" {} \;
+   find . -name "*.php" -exec grep -l "GLOBAL_DOCTRINE_NO_TRIGGERS" {} \;
+
+3. CHECK MASTER BRIDGE REFERENCES:
+   grep -r "ASK_HUMAN_WOLFIE" . --exclude-dir=node_modules --exclude-dir=.git
+   grep -r "MASTER_BRIDGE" . --exclude-dir=node_modules --exclude-dir=.git
+
+4. VALIDATE DOCTRINE COMPLIANCE:
+   - Check for any CREATE TRIGGER statements
+   - Check for any FOREIGN KEY constraints
+   - Verify all timestamps are BIGINT(14) UNSIGNED
+   - Confirm no automatic DEFAULT CURRENT_TIMESTAMP
+
+5. AUDIT GLOBAL_IMPORTANT_ATOMS USAGE:
+   - Verify GLOBAL_IMPORTANT_ATOMS.yaml exists and contains 12 atoms
+   - Check if any AI agents reference this file as source of truth
+   - Confirm secondary atoms are allowed to drift
+
+REPORTING REQUIREMENTS:
+- List all files with lingering hard-coded values
+- Identify any missing Critical Atom implementations
+- Report any doctrine violations found
+- Confirm Master Bridge file is properly referenced
+- Provide remediation recommendations
+
+CONSTRAINTS:
+- DO NOT modify any files - REPORT ONLY
+- DO NOT apply changes - AUDIT ONLY
+- Reference GLOBAL_IMPORTANT_ATOMS.yaml as source of truth
+- Treat ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md as active override
+
+EXPECTED OUTCOME:
+Complete audit of project compliance with 12 Critical Atoms framework.
+Identification of any remaining technical debt or drift.
+Clear path to full hurricane immunity.

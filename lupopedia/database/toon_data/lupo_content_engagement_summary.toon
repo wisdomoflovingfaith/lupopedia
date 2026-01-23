@@ -1,0 +1,51 @@
+{
+    "table_name": "lupo_content_engagement_summary",
+    "fields": [
+        "`content_engagement_summary_id` bigint NOT NULL auto_increment COMMENT 'Reference to the content item'",
+        "`likes_total` int NOT NULL DEFAULT 0 COMMENT 'Total number of likes received'",
+        "`shares_total` int NOT NULL DEFAULT 0 COMMENT 'Total number of shares'",
+        "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when the summary was last updated'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when the summary was first created'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "content_engagement_summary_id",
+        "expected_name": "content_engagement_summary_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_likes_total",
+            "columns": [
+                "likes_total"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_shares_total",
+            "columns": [
+                "shares_total"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_updated_ymdhis",
+            "columns": [
+                "updated_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

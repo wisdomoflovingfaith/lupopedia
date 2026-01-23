@@ -1,0 +1,15 @@
+{
+    "table_name": "test_performance_metrics",
+    "fields": [
+        "`test_id` bigint NOT NULL auto_increment",
+        "`test_category` varchar(64) NOT NULL",
+        "`test_name` varchar(128) NOT NULL",
+        "`execution_time_ms` int NOT NULL",
+        "`memory_usage_mb` decimal(10,2)",
+        "`cpu_usage_percent` decimal(5,2)",
+        "`success_rate` decimal(5,2)",
+        "`error_count` int DEFAULT 0",
+        "`created_ymdhis` bigint NOT NULL"
+    ],
+    "data": []
+}

@@ -1,0 +1,59 @@
+{
+  "table_name": "lupo_meta_log_events",
+  "fields": [
+    "`event_id` bigint NOT NULL auto_increment",
+    "`depth` tinyint NOT NULL COMMENT '2=observation, 3=meta_observation'",
+    "`event_type` varchar(64) NOT NULL DEFAULT 'recursion' COMMENT 'recursion|ceiling_near|auto_collapse'",
+    "`actor_id` bigint",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_depth",
+      "columns": [
+        "depth"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Meta-logging recursion events; depth max 3. No FK.",
+  "primary_key": {
+    "column_name": "event_id",
+    "expected_name": "event_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

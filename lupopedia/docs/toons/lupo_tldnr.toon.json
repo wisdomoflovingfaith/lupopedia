@@ -1,0 +1,88 @@
+{
+  "table_name": "lupo_tldnr",
+  "fields": [
+    "`tldnr_id` bigint NOT NULL auto_increment COMMENT 'Primary key for TL;DR record'",
+    "`slug` varchar(255) NOT NULL COMMENT 'URL-friendly unique identifier'",
+    "`title` varchar(255) NOT NULL COMMENT 'TL;DR title (e.g., \"Lupopedia Overview\", \"Collection Doctrine\")'",
+    "`content_text` longtext NOT NULL COMMENT 'TL;DR content (plain text or markdown)'",
+    "`topic_type` varchar(100) COMMENT 'Type of topic (e.g., \"system\", \"doctrine\", \"module\", \"concept\")'",
+    "`topic_reference` varchar(255) COMMENT 'Reference to what this summarizes (e.g., \"Lupopedia\", \"Collection Doctrine\", \"LABS-001\")'",
+    "`system_version` varchar(20) COMMENT 'System version this TL;DR applies to (e.g., \"4.1.6\")'",
+    "`category` varchar(100) COMMENT 'Category for grouping (e.g., \"Core\", \"Doctrine\", \"Module\")'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC creation timestamp (YYYYMMDDHHIISS)'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC last update timestamp (YYYYMMDDHHIISS)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC deletion timestamp (YYYYMMDDHHIISS)'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_category",
+      "columns": [
+        "category"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_system_version",
+      "columns": [
+        "system_version"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_topic_reference",
+      "columns": [
+        "topic_reference"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_topic_type",
+      "columns": [
+        "topic_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "uniq_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "TL;DR summaries for quick reference - concise explanations of Lupopedia concepts",
+  "primary_key": {
+    "column_name": "tldnr_id",
+    "expected_name": "tldnr_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

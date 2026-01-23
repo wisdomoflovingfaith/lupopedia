@@ -1,0 +1,9 @@
+{
+  "code": "TRANSLATOR",
+  "name": "TRANSLATOR",
+  "layer": "cognitive",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 44,
+  "version": "1.0.0"
+}

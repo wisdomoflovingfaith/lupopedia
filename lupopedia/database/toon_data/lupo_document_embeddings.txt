@@ -1,0 +1,38 @@
+{
+    "table_name": "lupo_document_embeddings",
+    "fields": [
+        "`document_embedding_id` bigint NOT NULL auto_increment",
+        "`chunk_id` bigint NOT NULL",
+        "`embedding_json` json NOT NULL",
+        "`embedding_model` varchar(128) NOT NULL",
+        "`embedding_version` varchar(64)",
+        "`created_ymdhis` bigint NOT NULL",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0",
+        "`deleted_ymdhis` bigint"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "document_embedding_id",
+        "expected_name": "document_embedding_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "chunk_id",
+            "columns": [
+                "chunk_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "embedding_model",
+            "columns": [
+                "embedding_model"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

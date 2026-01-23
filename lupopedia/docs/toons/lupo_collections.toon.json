@@ -1,0 +1,109 @@
+{
+  "table_name": "lupo_collections",
+  "fields": [
+    "`collection_id` bigint NOT NULL auto_increment COMMENT 'Primary key for collection'",
+    "`federations_node_id` bigint NOT NULL COMMENT 'Domain this collection belongs to'",
+    "`user_id` bigint COMMENT 'Owner of this collection, if user-owned'",
+    "`group_id` bigint COMMENT 'Owning group, if group-owned'",
+    "`name` varchar(255) NOT NULL COMMENT 'Display name of the collection'",
+    "`slug` varchar(100) NOT NULL COMMENT 'URL-friendly identifier, unique per domain'",
+    "`color` char(6) DEFAULT '666666' COMMENT 'Hex color code for the collection (6 hex characters, no hash)'",
+    "`description` text COMMENT 'Optional description of the collection'",
+    "`sort_order` int DEFAULT '0' COMMENT 'Manual sort order within parent container'",
+    "`properties` text COMMENT 'JSON-encoded key-value store'",
+    "`published_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when published'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'",
+    "`parent_id` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_domain",
+      "columns": [
+        "federations_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_group",
+      "columns": [
+        "group_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_name",
+      "columns": [
+        "name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_sort_order",
+      "columns": [
+        "sort_order"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_user",
+      "columns": [
+        "user_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unique_collection_slug_domain",
+      "columns": [
+        "federations_node_id",
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Organizational containers for content with metadata and theming.",
+  "primary_key": {
+    "column_name": "collection_id",
+    "expected_name": "collection_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

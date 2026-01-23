@@ -1,0 +1,452 @@
+---
+wolfie.headers.version: 4.0.1
+dialog:
+  speaker: CURSOR
+  target: @everyone
+  message: "Extended atoms system to multi-scope: FILE, DIR, DIRR, MODULE, GLOBAL with resolution order. Added directory-scoped atoms support."
+tags:
+  categories: ["specification", "metadata"]
+  collections: ["core-specs"]
+  channels: ["dev"]
+file:
+  title: "WOLFIE Headers Specification"
+  description: "Machine-readable specification for WOLFIE Headers v4.0.0"
+  version: "4.0.0"
+  status: published
+  author: "Captain Wolfie"
+---
+
+# WOLFIE Headers Specification v4.0.0
+# Machine-readable YAML specification for Lupopedia ecosystem
+
+specification:
+  name: "WOLFIE Headers"
+  version: "4.0.0"
+  description: "Universal metadata envelope for all Lupopedia 4.x artifacts"
+  ecosystem_version: "4.0.0"
+  status: "stable"
+  date: 20260105
+
+purpose:
+  - "consistent structure"
+  - "semantic classification"
+  - "multi-agent coordination"
+  - "documentation clarity"
+  - "installer-safe versioning"
+  - "zero symbolic or mystical fields"
+  - "maximum portability"
+
+required_fields:
+  wolfie:
+    headers:
+      version:
+        type: "string"
+        value: "4.0.0"
+        description: "WOLFIE Header specification version"
+        mandatory: true
+
+optional_modules:
+  dialog:
+    description: "Multi-agent coordination, handoffs, or intent signaling"
+    requirement: "MANDATORY when an agent creates or modifies a file"
+    fields:
+      speaker:
+        type: "string"
+        description: "The agent, IDE, or human generating the dialog"
+        examples: ["CAPTAIN_WOLFIE", "CURSOR", "DEEPSEEK", "COPILOT", "PHP_AGENT", "SYSTEM", "MAAT"]
+        mandatory: true
+        rule: "MUST be the agent performing the action"
+      target:
+        type: "string"
+        description: "The intended recipient(s) of the dialog"
+        default: "@everyone"
+        allowed_formats:
+          - "@everyone"
+          - "@<agent>"
+          - "@<subsystem>"
+        mandatory: false
+        rule: "Defaults to @everyone unless agent specifies otherwise"
+      message:
+        type: "string"
+        max_length: 272
+        description: "Plain-text description of what changed or what action was taken"
+        mandatory: true
+        rules:
+          - "MUST be updated on every file modification"
+          - "MUST NOT exceed 272 characters"
+          - "MUST be plain text (no Markdown formatting)"
+          - "MUST describe what changed or what action was taken"
+    reference: "See INLINE_DIALOG_SPECIFICATION.md for complete format details"
+
+  context:
+    description: "Defines conceptual lineage for the file"
+    fields:
+      parent:
+        type: "string"
+        description: "Parent concept or document"
+        rules:
+          - "SHOULD reflect conceptual hierarchy, not file paths"
+        mandatory: false
+      child:
+        type: "string"
+        description: "Child concept or document"
+        rules:
+          - "SHOULD reflect conceptual hierarchy, not file paths"
+        mandatory: false
+
+  tags:
+    description: "Database-aligned tags for semantic classification"
+    type: "object"
+    fields:
+      atoms: { type: "array", items: "string" }
+      hashtags: { type: "array", items: "string" }
+      categories: { type: "array", items: "string" }
+      collections: { type: "array", items: "string" }
+      channels: { type: "array", items: "string" }
+      nodes: { type: "array", items: "string" }
+      edges: { type: "array", items: "string" }
+      edge_types: { type: "array", items: "string" }
+      actors: { type: "array", items: "string" }
+      agent_roles: { type: "array", items: "string" }
+      agent_styles: { type: "array", items: "string" }
+      agent_capabilities: { type: "array", items: "string" }
+      agent_moods: { type: "array", items: "string" }
+      agent_domains: { type: "array", items: "string" }
+      groups: { type: "array", items: "string" }
+      departments: { type: "array", items: "string" }
+      domains: { type: "array", items: "string" }
+      domain_modules: { type: "array", items: "string" }
+      contents: { type: "array", items: "string" }
+      content_media: { type: "array", items: "string" }
+      content_links: { type: "array", items: "string" }
+      content_questions: { type: "array", items: "string" }
+      search_keywords: { type: "array", items: "string" }
+      semantic_signals: { type: "array", items: "string" }
+      support_channels: { type: "array", items: "string" }
+      support_departments: { type: "array", items: "string" }
+      api_clients: { type: "array", items: "string" }
+      api_webhooks: { type: "array", items: "string" }
+      audit_tags: { type: "array", items: "string" }
+      ui_tabs: { type: "array", items: "string" }
+      ui_paths: { type: "array", items: "string" }
+      analytics_tags: { type: "array", items: "string" }
+    rules:
+      - "All fields optional"
+      - "Each field MUST be an array of strings"
+      - "Agents MAY use these for indexing, routing, or classification"
+
+  in_this_file_we_have:
+    description: "Machine-readable table of contents for agents and UI"
+    type: "array"
+    items: "string"
+    rules:
+      - "Values MUST be uppercase identifiers"
+      - "Order SHOULD match file order"
+      - "Agents MAY use this for navigation or validation"
+
+  header_atoms:
+    description: "Symbolic references to metadata from multiple scopes (file, directory, module, global)"
+    type: "array"
+    items: "string"
+    rules:
+      - "Optional - only include when file references atoms"
+      - "Atom names MUST be uppercase identifiers with scope prefix (e.g., GLOBAL_CURRENT_AUTHORS)"
+      - "Atoms resolved according to resolution order: FILE → DIR → DIRR → MODULE → GLOBAL"
+      - "First match wins - stop searching once atom is found"
+      - "Cursor MUST NOT expand, inline, or rewrite atom values"
+      - "Cursor MUST preserve symbolic references exactly as written"
+      - "Cursor MUST NOT perform global search-and-replace for atoms"
+      - "Cursor MUST NOT generate or modify atom files unless explicitly instructed"
+    purpose:
+      - "Single source of truth for metadata at multiple scopes"
+      - "Prevents mass rewrites when values change"
+      - "Enables consistent metadata across files, directories, modules, and ecosystem"
+      - "Supports inheritance and scoping"
+    atom_scopes:
+      FILE_*:
+        location: "file_atoms: block in WOLFIE Header"
+        inheritance: "None (file only)"
+      DIR_*:
+        location: "<dir>/_dir_atoms.yaml"
+        inheritance: "Non-recursive (current directory only)"
+      DIRR_*:
+        location: "<dir>/_dir_atoms.yaml"
+        inheritance: "Recursive (directory + all descendants, walk up parent dirs)"
+      MODULE_*:
+        location: "/modules/<module>/module_atoms.yaml"
+        inheritance: "Module scope"
+      GLOBAL_*:
+        location: "/config/global_atoms.yaml"
+        inheritance: "All files"
+    resolution_order:
+      - "1. FILE_* (from file_atoms in header)"
+      - "2. DIR_* (from _dir_atoms.yaml in file's directory)"
+      - "3. DIRR_* (from _dir_atoms.yaml, walk up parent dirs)"
+      - "4. MODULE_* (from module_atoms.yaml for current module)"
+      - "5. GLOBAL_* (from global_atoms.yaml)"
+    examples:
+      - "GLOBAL_CURRENT_AUTHORS"
+      - "MODULE_DOCS_VERSION"
+      - "DIRR_DOCS_AUTHOR"
+      - "FILE_CUSTOM_STATUS"
+    reference: "See atom files for definitions: /config/global_atoms.yaml, /modules/<module>/module_atoms.yaml, <dir>/_dir_atoms.yaml"
+
+  file_atoms:
+    description: "File-specific atoms defined in WOLFIE Header (highest priority)"
+    type: "object"
+    additional_properties: true
+    rules:
+      - "Optional - only include when file defines file-specific atoms"
+      - "Atom names MUST start with FILE_ prefix"
+      - "Highest priority in resolution order"
+      - "Applies only to current file"
+    example:
+      FILE_CUSTOM_STATUS: "draft"
+      FILE_SPECIAL_TAG: "internal"
+
+  sections:
+    description: "Programmatic file TOC extracted from Markdown ## headings"
+    type: "array"
+    items: "object"
+    fields:
+      title:
+        type: "string"
+        description: "Human-readable section title (extracted from heading text)"
+        mandatory: true
+      anchor:
+        type: "string"
+        description: "Anchor link slug (lowercase, hyphenated, prefixed with #)"
+        mandatory: true
+        format: "#lowercase-hyphenated-slug"
+    rules:
+      - "Optional - only include for files with 3+ major sections"
+      - "Extract only headings beginning with ## (H2 level)"
+      - "Order MUST match file order"
+      - "Agents MAY populate when creating/modifying large files"
+      - "Agents MUST NOT modify unless changing file structure"
+      - "Mirrors content_sections field in lupo_contents table"
+    anchor_generation:
+      - "Convert heading text to lowercase"
+      - "Replace spaces with hyphens"
+      - "Remove punctuation"
+      - "Prefix with #"
+    examples:
+      - heading: "## Getting Started"
+        title: "Getting Started"
+        anchor: "#getting-started"
+      - heading: "## API Reference"
+        title: "API Reference"
+        anchor: "#api-reference"
+
+  file:
+    description: "General metadata fields for clarity and tooling"
+    fields:
+      title:
+        type: "string"
+        description: "File title"
+        mandatory: false
+      description:
+        type: "string"
+        description: "File description"
+        mandatory: false
+      version:
+        type: "string"
+        description: "File version (SHOULD match ecosystem version 4.0.0)"
+        default: "4.0.0"
+        mandatory: false
+      created:
+        type: "integer"
+        format: "YYYYMMDDHHIISS"
+        description: "Creation timestamp (BIGINT UTC format)"
+        mandatory: false
+      modified:
+        type: "integer"
+        format: "YYYYMMDDHHIISS"
+        description: "Modification timestamp (BIGINT UTC format)"
+        mandatory: false
+      status:
+        type: "string"
+        enum: ["draft", "review", "published"]
+        description: "File status"
+        mandatory: false
+      author:
+        type: "string"
+        description: "File author"
+        mandatory: false
+
+format:
+  delimiter: "---"
+  position: "top_of_file"
+  format: "YAML"
+  encoding: "UTF-8"
+
+embedding_rules:
+  allowed_formats:
+    - "Markdown frontmatter"
+    - "PHP block comments"
+    - "Python # comment blocks"
+    - "JS/TS /* */ blocks"
+    - "SQL /* */ blocks"
+    - "Log files"
+    - "Agent outputs"
+
+validation:
+  required:
+    - "wolfie.headers.version must equal 4.0.0"
+    - "Must be enclosed in --- delimiters"
+    - "Must contain valid YAML"
+    - "dialog block MUST be present when an agent creates or modifies a file"
+  constraints:
+    - "Total header size MUST NOT exceed 10,000 characters"
+    - "MUST NOT contain executable code inside the header"
+    - "dialog.message MUST NOT exceed 272 characters if present"
+    - "dialog.speaker MUST be set to the agent's key when agent creates/modifies file"
+    - "dialog.target defaults to @everyone if not specified"
+
+backward_compatibility:
+  v3_0_0:
+    status: "deprecated"
+    note: "v3.0.0 headers remain valid but should be migrated to v4.0.0"
+  v2_x:
+    status: "deprecated"
+    note: "v2.x headers remain valid but deprecated"
+  tools:
+    - "SHOULD accept both v2.x and v3.x headers"
+    - "MUST NOT require symbolic fields removed in v3.0.0"
+
+examples:
+  minimal:
+    description: "Required field only (for files not created/modified by agents)"
+    yaml: |
+      ---
+      wolfie.headers.version: 4.0.0
+      ---
+
+  agent_modified:
+    description: "Required dialog block when agent creates or modifies file"
+    yaml: |
+      ---
+      wolfie.headers.version: 4.0.0
+      dialog:
+        speaker: CURSOR
+        target: @everyone
+        message: "Updated schema documentation to match Captain Wolfie doctrine."
+      ---
+
+  full_featured:
+    description: "All optional modules included"
+    yaml: |
+      ---
+      wolfie.headers.version: 4.0.0
+      dialog:
+        speaker: CURSOR
+        target: @everyone
+        message: "Updated schema documentation to match Captain Wolfie doctrine."
+      context:
+        parent: "DATABASE_PHILOSOPHY"
+        child: "SCHEMA_DESIGN"
+      tags:
+        categories: ["documentation", "database"]
+        channels: ["dev", "schema"]
+        collections: ["core-docs"]
+      in_this_file_we_have:
+        - OVERVIEW
+        - SCHEMA_DESIGN
+        - EXAMPLES
+        - MIGRATION_NOTES
+      sections:
+        - title: "Overview"
+          anchor: "#overview"
+        - title: "Schema Design"
+          anchor: "#schema-design"
+        - title: "Examples"
+          anchor: "#examples"
+        - title: "Migration Notes"
+          anchor: "#migration-notes"
+      file:
+        title: "Database Schema Design Guide"
+        description: "Complete guide to Lupopedia database schema design principles"
+        version: "4.0.0"
+        created: 20260105000000
+        modified: 20260105120000
+        status: published
+        author: "Captain Wolfie"
+      ---
+
+  with_sections:
+    description: "Large documentation file with sections module"
+    yaml: |
+      ---
+      wolfie.headers.version: 4.0.1
+      dialog:
+        speaker: CURSOR
+        target: @everyone
+        message: "Added new API examples and updated the sections list."
+        mood: "88CCFF"
+      sections:
+        - title: "Overview"
+          anchor: "#overview"
+        - title: "Installation"
+          anchor: "#installation"
+        - title: "Usage"
+          anchor: "#usage"
+        - title: "API Reference"
+          anchor: "#api-reference"
+        - title: "Examples"
+          anchor: "#examples"
+      file:
+        title: "Lupopedia API Guide"
+        description: "Developer documentation for the Lupopedia API."
+        created: 20250101000000
+        modified: 20250109064500
+        status: published
+        author: "Eric Robin Gerdes"
+        version: "4.0.1"
+      ---
+
+agent_requirements:
+  mandatory:
+    - "Recognize WOLFIE Headers v4.0.0 in files"
+    - "Preserve existing headers when modifying files"
+    - "Add headers to new files when appropriate"
+    - "Update the dialog block on every file creation or modification"
+    - "Set speaker to the agent's key (e.g., CURSOR, DEEPSEEK, COPILOT)"
+    - "Set target to @everyone (unless specifying a different target)"
+    - "Update message to describe what changed or what action was taken"
+    - "Follow Inline Dialog format for dialog blocks"
+    - "Validate header format before writing"
+    - "Respect backward compatibility with v2.x and v3.x headers"
+
+related_documentation:
+  - "docs/INLINE_DIALOG_SPECIFICATION.md - Required format for dialog blocks"
+  - "docs/DATABASE_PHILOSOPHY.md - Database design principles"
+  - "docs/DATABASE_SCHEMA.md - Complete schema reference for tag fields"
+  - "docs/WOLFIE_HEADER_SPECIFICATION.md - Full human-readable specification"
+
+version_history:
+  v4_0_1:
+    date: 20260109
+    changes:
+      - "Added header_atoms module for symbolic references to global metadata"
+      - "Created /config/global_atoms.yaml as single source of truth"
+      - "Established Cursor rules for preserving symbolic references"
+      - "Added sections module for programmatic file TOC"
+      - "Extracts ## headings and generates anchor links"
+      - "Enables agents to understand file structure before reading"
+      - "Mirrors content_sections field in lupo_contents table"
+  v4_0_0:
+    date: 20260105
+    changes:
+      - "Aligned header version with Lupopedia 4.0.0 ecosystem"
+      - "Updated file.version default to 4.0.0"
+      - "Replaced v3.0.0 as stable long-term version"
+  v3_0_0:
+    date: 20260105
+    status: "deprecated"
+    changes:
+      - "Minimal required field (wolfie.headers.version: 3.0.0)"
+      - "Optional modules: dialog, context, tags, TOC, file metadata"
+      - "Language-agnostic embedding rules"
+      - "Backward compatibility with v2.x"
+      - "Zero symbolic or mystical fields"
+

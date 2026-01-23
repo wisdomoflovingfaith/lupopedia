@@ -1,0 +1,9 @@
+{
+  "code": "WOLFKEEPER",
+  "name": "WOLFKEEPER",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 6,
+  "version": "1.0.0"
+}

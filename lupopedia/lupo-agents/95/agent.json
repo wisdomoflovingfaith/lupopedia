@@ -1,0 +1,9 @@
+{
+  "code": "UINAV",
+  "name": "UINAV",
+  "layer": "ux",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 95,
+  "version": "1.0.0"
+}

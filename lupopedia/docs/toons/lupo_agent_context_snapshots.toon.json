@@ -1,0 +1,110 @@
+{
+  "table_name": "lupo_agent_context_snapshots",
+  "fields": [
+    "`agent_context_snapshot_id` bigint NOT NULL auto_increment COMMENT 'Unique identifier for the snapshot'",
+    "`session_id` varchar(100) NOT NULL COMMENT 'Session identifier'",
+    "`actor_id` bigint NOT NULL",
+    "`parent_snapshot_id` bigint COMMENT 'For delta snapshots, references the parent full snapshot'",
+    "`snapshot_type` enum('full','delta','checkpoint','error','user_saved') NOT NULL DEFAULT 'full' COMMENT 'Type of snapshot'",
+    "`snapshot_purpose` varchar(50) COMMENT 'checkpoint, error_recovery, user_save, etc.'",
+    "`context_data` longtext NOT NULL COMMENT 'Serialized context state (compressed JSON)'",
+    "`context_summary` text COMMENT 'Human-readable summary of the context'",
+    "`context_metadata` json COMMENT 'Structured metadata about the context'",
+    "`token_count` int COMMENT 'Approximate token count for LLM context'",
+    "`character_count` int COMMENT 'Raw character count before compression'",
+    "`compressed_size` int COMMENT 'Size in bytes after compression'",
+    "`compression_ratio` float COMMENT 'compressed/original ratio (smaller is better)'",
+    "`compression_method` enum('gzip','zstd','none') DEFAULT 'gzip' COMMENT 'Compression algorithm used'",
+    "`serialization_time_ms` int COMMENT 'Time taken to serialize context (ms)'",
+    "`compression_time_ms` int COMMENT 'Time taken to compress (ms)'",
+    "`related_tool_call_id` bigint COMMENT 'Associated tool call that triggered this snapshot'",
+    "`conversation_turn` int COMMENT 'Conversation turn number when snapshot was taken'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when snapshot was created'",
+    "`expires_ymdhis` bigint COMMENT 'When this snapshot should be automatically purged'",
+    "`is_corrupt` tinyint(1) DEFAULT '0' COMMENT '1 if snapshot failed integrity check'",
+    "`retention_policy` enum('temporary','short_term','long_term') DEFAULT 'temporary' COMMENT 'How long to retain this snapshot'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "ft_summary",
+      "columns": [
+        "context_summary"
+      ],
+      "is_unique": false,
+      "index_type": "FULLTEXT"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_parent",
+      "columns": [
+        "parent_snapshot_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_related_tool",
+      "columns": [
+        "related_tool_call_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_retention",
+      "columns": [
+        "retention_policy",
+        "expires_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_session_agent",
+      "columns": [
+        "session_id",
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_turn",
+      "columns": [
+        "session_id",
+        "conversation_turn"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_type_purpose",
+      "columns": [
+        "snapshot_type",
+        "snapshot_purpose"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Stores serialized agent context states for persistence, recovery, and debugging across sessions",
+  "primary_key": {
+    "column_name": "agent_context_snapshot_id",
+    "expected_name": "agent_context_snapshot_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

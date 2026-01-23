@@ -1,0 +1,235 @@
+<?php
+//===========================================================================
+//* --    ~~                CRAFTY SYNTAX Live Help                ~~    -- *
+//===========================================================================
+//           URL:   https://lupopedia.com/    EMAIL: livehelp@lupopedia.com
+//         Copyright (C) 2003-2023 Eric Gerdes   (https://lupopedia.com )
+ // --------------------------------------------------------------------------
+// NOTICE: Do NOT remove the copyright and/or license information any files. 
+//         doing so will automatically terminate your rights to use program.
+//         If you change the program you MUST clause your changes and note
+//         that the original program is CRAFTY SYNTAX Live help or you will 
+//         also be terminating your rights to use program and any segment 
+//         of it.        
+// --------------------------------------------------------------------------
+// LICENSE:
+//     This program is free software; you can redistribute it and/or
+//     modify it under the terms of the GNU General Public License
+//     as published by the Free Software Foundation; 
+//     This program is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU General Public License for more details.
+//
+//     You should have received a copy of the GNU General Public License
+//     along with this program in a file named LICENSE.txt .
+//===========================================================================
+require_once("functions.php");
+require_once("security.php");
+require_once("config.php");
+require_once("config_cslh.php");
+// not needed in php 5+ : require_once("file_get_contents.php");
+
+// Ghost session or not:
+if(empty($ghost_session)) $ghost_session = false;
+
+// The two sessions operator and visitor sessions:
+if(empty($UNTRUSTED['cslhVISITOR'])) $UNTRUSTED['cslhVISITOR'] = "";
+if(empty($UNTRUSTED['cslhOPERATOR'])) $UNTRUSTED['cslhOPERATOR'] = "";
+
+// config settions that can be pased in the query string, Default values are set here:
+if(empty($UNTRUSTED['allow_ip_host_sessions'])){ $allow_ip_host_sessions=1; } else { $allow_ip_host_sessions = intval($UNTRUSTED['allow_ip_host_sessions']); }
+if(empty($UNTRUSTED['serversession'])){ $serversession=1; } else { $serversession = intval($UNTRUSTED['serversession']); }
+if(empty($UNTRUSTED['cookiesession'])){ $cookiesession=1; } else { $cookiesession = intval($UNTRUSTED['cookiesession']); }
+if(empty($UNTRUSTED['pingtimes'])){ $pingtimes=60; } else { $pingtimes = intval($UNTRUSTED['pingtimes']); }
+
+  
+// other variables:
+ if(empty($UNTRUSTED['pageid'])){ $UNTRUSTED['pageid'] = 1; }
+ if(empty($UNTRUSTED['page'])){ $UNTRUSTED['page'] = ""; }
+ if(empty($UNTRUSTED['title'])){ $UNTRUSTED['title'] = ""; }  
+ if(empty($UNTRUSTED['referer'])){ $UNTRUSTED['referer'] = ""; }
+ if(empty($UNTRUSTED['lastaction'])){ $UNTRUSTED['lastaction'] = 0; } 
+ 
+ $UNTRUSTED['referer'] = "http://" . str_replace("--dot--",".",$UNTRUSTED['referer']);
+ $UNTRUSTED['page'] = "http://" . str_replace("--dot--",".",$UNTRUSTED['page']);
+ 
+// setting that will not work:
+if( ($cookiesession!=1) && ($allow_ip_host_sessions!=1) && ($serversession!=1) ){
+   $allow_ip_host_sessions=0;
+   $serversession=1;
+   $cookiesession=1;
+}
+
+$isavisitor = true;
+// department 
+if(empty($UNTRUSTED['department'])){ $department=0; } else { $department = intval($UNTRUSTED['department']); }
+
+// username:
+if(empty($UNTRUSTED['username']) && !(empty($_COOKIE['username'])))
+  $UNTRUSTED['username'] = $_COOKIE['username'];
+	    
+$identity = identity($UNTRUSTED['cslhVISITOR'],"cslhVISITOR",$allow_ip_host_sessions,$serversession,$cookiesession,$ghost_session);
+update_session($identity,$ghost_session);
+$querystringadd ="&cslheg=1";
+if(!($allow_ip_host_sessions)){
+   $querystringadd .= "&allow_ip_host_sessions=0";
+}
+if($serversession==1){
+   $querystringadd .= "&serversession=1";
+} else {
+   $querystringadd .= "&serversession=0";
+}
+
+if(!(empty($relative))){
+      $querystringadd .= "&relative=Y";
+}
+
+if (!(empty($username))) {
+    $querystringadd .= "&username=".$username;
+}
+
+// get the info of this user.. 
+$sqlquery = "SELECT user_id,onchannel,isnamed,status,firstdepartment,visits,useragent,ipaddress FROM livehelp_users WHERE sessionid='".$identity['SESSIONID']."'";	
+$people_result = $mydatabase->query($sqlquery);
+$people = $people_result->fetchRow(DB_FETCHMODE_ORDERED);  
+// print "DEBUG SQL: ". $sqlquery;
+ if($people_result->numrows() != 0){
+	// print "DEBUG NUMROWS". $people->numrows();
+$myid = $people[0];
+$channel = $people[1];
+$isnamed = $people[2];
+$status = $people[3];  
+$firstdepartment = $people[4];  
+$visits = $people[5];  
+$useragent = $people[6];  
+$ipaddress = $people[7];
+ } else {
+$myid = 0;
+$channel = 0;
+$isnamed = "N";
+$status = "visit";  
+$firstdepartment = 1;  
+$visits = 1;  
+$useragent = "";  
+$ipaddress = "0.0.0.0";	 
+ }
+
+//if banned end here:
+$ignoreme = false;
+// make list of ignored visitors:  
+ $ipadd = explode(",",$CSLH_Config['ignoreips']);
+ for($i=0;$i<count($ipadd); $i++){
+ 	if( (!(empty($ipadd[$i])) && (!(empty($ipaddress))) ) ){
+ 	   if(preg_match("/" . $ipadd[$i] . "/",$ipaddress))
+ 	      $ignoreme = true;
+ 	}      
+ }  
+
+ $agent = explode(",",$CSLH_Config['ignoreagent']);
+ for($i=0;$i<count($agent); $i++){
+ 	if( (!(empty($agent[$i])) && (!(empty($ipaddress))) ) ){
+ 	   if(preg_match("/" . $agent[$i] . "/",$ipaddress))
+ 	      $ignoreme = true;
+ 	}      
+ }
+
+if( ($visits > $CSLH_Config['maxrequests']) && ($status!="chat") )
+   $ignoreme = true;
+
+if($ignoreme == true){
+	// print "DEBUG: ignoreme is true: "; exit;
+	if($_SERVER['SCRIPT_NAME'] == "image.php") {
+			// blank image:
+          $filepath = "images/livehelp3.gif";
+          showimage($filepath,"image/gif"); 
+          exit; 
+  } else {
+  	exit;
+  }
+}
+
+/// make sure the department is right.
+if( (intval($department)!=0) && ($status!="chat") ){
+  $sqlquery = "UPDATE livehelp_users set department=".intval($department)." WHERE sessionid='".$identity['SESSIONID']."'";	
+  $mydatabase->query($sqlquery);
+  // id we never set the department before:
+  if($firstdepartment==0){
+  $sqlquery = "UPDATE livehelp_users set firstdepartment=".intval($department)." WHERE sessionid='".$identity['SESSIONID']."'";	
+  $mydatabase->query($sqlquery);  
+  }
+}
+
+// Get department information. First found if no specific department assigned
+$qQry = "SELECT recno,messageemail,colorscheme,leavetxt,creditline,onlineimage,leaveamessage,offlineimage,speaklanguage,emailfun,dbfun FROM livehelp_departments "
+      . (($department==0)? 'LIMIT 1': "WHERE recno=$department");
+$qRes = $mydatabase->query($qQry);
+$qRow = $qRes->fetchRow(DB_FETCHMODE_ORDERED);     
+$messageemail = $qRow[1];          
+$colorscheme  = $qRow[2];           
+$leavetxt     = $qRow[3];           
+$creditline   = $qRow[4];            
+$onlineimage  = $qRow[5];
+
+if(empty($UNTRUSTED['leaveamessage'])){
+ $leaveamessage = $qRow[6];
+} else {
+ $leaveamessage = $UNTRUSTED['leaveamessage'];
+ if( ($leaveamessage == "NO") || ($leaveamessage == "no") ){ $leaveamessage="NO"; } else { $leaveamessage="YES";  } 
+}
+$offlineimage = $qRow[7];
+$speaklanguage = $qRow[8];
+$emailfun= $qRow[9];
+$dbfun= $qRow[10];
+$xyz = $creditline;
+if(empty($theme)){ $theme = "basic"; }
+
+$urlforchat = $UNTRUSTED['page'] . "?department=" . $UNTRUSTED['department'] ."&channel=" . $channel ."&t=" . $UNTRUSTED['lastaction'] . $querystringadd;
+$urlforbot = "user_bot.php?department=" . $UNTRUSTED['department'] . "&channel=" . $channel . "&t=" . $UNTRUSTED['lastaction'] . "&myid=" . $myid .  $querystringadd; 
+$urlforoperator = "themes/$theme/operator.jpg";
+$link = "<a href=\"https://lupopedia.com/?utm_source=poweredby&utm_campaign=poweredby\" alt=\"CRAFTY SYNTAX Live Help\" target=\"_blank\">";
+       $filepath = "images/livehelp.gif";
+       
+      if( ($xyz == "L") || ($xyz == "")){
+       $filepath = "images/livehelp.gif";
+      } 
+
+      if($xyz == "W"){
+       $filepath = "images/livehelp2.gif";  
+      }
+
+      if($xyz == "Y"){
+       $filepath = "images/livehelp4.gif";  
+      }
+
+      if($xyz == "Z"){
+       $filepath = "images/livehelp5.gif";   
+      }  
+	  
+	  if($xyz == "N"){
+        $filepath = "images/blank.gif";
+	  }
+      
+$cslhdue = $link . "<img src=" . $filepath . " border=0></a>";
+
+// Change Language if department Language is not the same as default language:
+if(($CSLH_Config['speaklanguage'] != $speaklanguage) && !(empty($speaklanguage)) ){
+ $languagefile = "lang/lang-" . $speaklanguage . ".php";
+ if(!(file_exists($languagefile))){
+ 	$languagefile = "lang/lang-.php";
+ }	
+ include($languagefile);
+}
+// include color file:
+$colorfile = "images/$colorscheme/color.php";
+if(!(file_exists($colorfile))){
+  $color_background="FFFFEE";
+  $color_alt1 = "D8E6F0";
+  $color_alt2 = "CED9FA";    
+  $color_alt3 = "E5ECF4";  
+  $color_alt4 = "C4CAE4";
+} else {
+  include($colorfile);
+}  
+ 
+?>

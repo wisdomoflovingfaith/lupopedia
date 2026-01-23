@@ -1,0 +1,92 @@
+{
+  "table_name": "lupo_semantic_translations",
+  "fields": [
+    "`semantic_translation_id` bigint NOT NULL auto_increment",
+    "`language_code` varchar(8) NOT NULL COMMENT 'ISO 639-1 (2-letter) or BCP 47 language code'",
+    "`entity_type` varchar(32) NOT NULL COMMENT 'Type of entity (atom, hashtag, edge, content, etc.)'",
+    "`entity_id` bigint NOT NULL",
+    "`translated_text` text NOT NULL",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint",
+    "`created_by` bigint",
+    "`is_deleted` tinyint(1) NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "ft_translated_text",
+      "columns": [
+        "translated_text"
+      ],
+      "is_unique": false,
+      "index_type": "FULLTEXT"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_entity_lookup",
+      "columns": [
+        "entity_type",
+        "entity_id",
+        "language_code"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_language_entity",
+      "columns": [
+        "language_code",
+        "entity_type",
+        "entity_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unq_translation",
+      "columns": [
+        "entity_type",
+        "entity_id",
+        "language_code"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Stores translations for various entities in the system",
+  "primary_key": {
+    "column_name": "semantic_translation_id",
+    "expected_name": "semantic_translation_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

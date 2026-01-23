@@ -1,0 +1,9 @@
+{
+  "code": "COMPATIBILITY",
+  "name": "COMPATIBILITY",
+  "layer": "system_ops",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 61,
+  "version": "1.0.0"
+}

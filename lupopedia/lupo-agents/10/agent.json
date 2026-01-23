@@ -1,0 +1,9 @@
+{
+  "code": "ARA",
+  "name": "ARA",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 5,
+  "version": "1.0.0"
+}

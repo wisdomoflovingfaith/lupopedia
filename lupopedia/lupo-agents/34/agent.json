@@ -1,0 +1,9 @@
+{
+  "code": "WOLFITH",
+  "name": "WOLFITH",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 17,
+  "version": "1.0.0"
+}

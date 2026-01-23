@@ -1,0 +1,74 @@
+{
+  "table_name": "lupo_edges",
+  "fields": [
+    "`edge_id` bigint NOT NULL auto_increment",
+    "`left_object_type` varchar(50) NOT NULL",
+    "`left_object_id` bigint NOT NULL",
+    "`right_object_type` varchar(50) NOT NULL",
+    "`right_object_id` bigint NOT NULL",
+    "`edge_type` varchar(100) NOT NULL",
+    "`weight_score` int NOT NULL DEFAULT '0'",
+    "`sort_num` int NOT NULL DEFAULT '0'",
+    "`actor_id` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT '0'",
+    "`created_ymdhis` bigint NOT NULL DEFAULT '0'",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT '0'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_edge_type",
+      "columns": [
+        "edge_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_left",
+      "columns": [
+        "left_object_type",
+        "left_object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_right",
+      "columns": [
+        "right_object_type",
+        "right_object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "edge_id",
+    "expected_name": "edge_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

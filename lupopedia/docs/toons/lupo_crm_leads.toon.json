@@ -1,0 +1,33 @@
+{
+  "table_name": "lupo_crm_leads",
+  "fields": [
+    "`crm_lead_id` bigint NOT NULL auto_increment COMMENT 'Unique identifier for the lead'",
+    "`email` varchar(255) COMMENT 'Email address of the lead'",
+    "`phone` varchar(45) COMMENT 'Phone number of the lead (formatted as E.164)'",
+    "`first_name` varchar(100) COMMENT 'First name of the lead'",
+    "`last_name` varchar(100) COMMENT 'Last name of the lead'",
+    "`source` varchar(100) COMMENT 'Source that generated this lead (e.g., website, referral, campaign)'",
+    "`status` varchar(50) NOT NULL DEFAULT 'new' COMMENT 'Current status of the lead (new, contacted, qualified, converted, etc.)'",
+    "`lead_score` int NOT NULL DEFAULT '0' COMMENT 'Numerical score indicating lead quality (0-100)'",
+    "`assigned_to` bigint COMMENT 'user ID of the team member assigned to this lead'",
+    "`lead_data` longtext COMMENT 'JSON-encoded additional lead information and custom fields'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC timestamp when the lead was created (YYYYMMDDHHMMSS)'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC timestamp when the lead was last updated (YYYYMMDDHHMMSS)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1 = deleted, 0 = active)'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC timestamp when the lead was soft-deleted (YYYYMMDDHHMMSS)'"
+  ],
+  "data": [],
+  "indexes": [],
+  "notes": "Stores potential customer leads with contact information and tracking data",
+  "primary_key": {
+    "column_name": "crm_lead_id",
+    "expected_name": "crm_lead_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

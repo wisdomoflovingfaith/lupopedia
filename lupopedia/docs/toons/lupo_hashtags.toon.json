@@ -1,0 +1,43 @@
+{
+  "table_name": "lupo_hashtags",
+  "fields": [
+    "`hashtag_id` bigint NOT NULL auto_increment",
+    "`hashtag_slug` varchar(255) NOT NULL",
+    "`description` text",
+    "`meta_json` json",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT '0'",
+    "`created_ymdhis` bigint NOT NULL DEFAULT '0'",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT '0'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_hashtag_slug",
+      "columns": [
+        "hashtag_slug"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "hashtag_id",
+    "expected_name": "hashtag_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

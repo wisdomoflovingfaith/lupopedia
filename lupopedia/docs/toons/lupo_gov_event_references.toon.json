@@ -1,0 +1,72 @@
+{
+  "table_name": "lupo_gov_event_references",
+  "fields": [
+    "`reference_id` bigint NOT NULL auto_increment COMMENT 'Primary key for reference'",
+    "`gov_event_id` bigint NOT NULL COMMENT 'Associated governance event'",
+    "`reference_type` varchar(100) NOT NULL COMMENT 'Type of reference (document, link, etc.)'",
+    "`reference_title` varchar(255) NOT NULL COMMENT 'Reference title'",
+    "`reference_url` varchar(1000) COMMENT 'URL if applicable'",
+    "`reference_content` text COMMENT 'Reference content or excerpt'",
+    "`order_sequence` int NOT NULL DEFAULT '0' COMMENT 'Display order'",
+    "`metadata_json` json COMMENT 'Additional reference metadata'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_gov_event",
+      "columns": [
+        "gov_event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_order_sequence",
+      "columns": [
+        "order_sequence"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_reference_type",
+      "columns": [
+        "reference_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "References for governance events",
+  "primary_key": {
+    "column_name": "reference_id",
+    "expected_name": "reference_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,60 @@
+{
+  "legacy_table": "livehelp_departments",
+  "legacy_description": "Crafty Syntax department definitions. Departments represented routing groups, operator groupings, and visitor-facing categories. Only the structural identity of departments is meaningful; all UI/theme settings were legacy artifacts.",
+  "legacy_columns": {
+    "recno": "Primary key for department",
+    "website": "Legacy site/federation node identifier",
+    "nameof": "Department name",
+    "visible": "Y/N visibility flag (UI only)",
+    "email": "Department email (rarely used)",
+    "priority": "Legacy routing priority",
+    "parent": "Legacy parent department (rarely used)",
+    "lang": "Language code",
+    "theme": "Legacy theme",
+    "topframe": "Legacy UI frame height",
+    "topbackground": "Legacy UI background color",
+    "other": "Miscellaneous legacy settings"
+  },
+  "new_table": "lupo_departments",
+  "new_description": "Durable semantic department objects used by Lupopedia. Departments are structural entities used for routing, actors, modules, and semantic grouping. UI/theme settings are intentionally dropped.",
+  "migration_type": "full_row_migration",
+  "migration_reason": "Departments represent meaningful structural entities and must be preserved. Legacy UI/theme settings are intentionally dropped because they do not belong in the semantic OS.",
+  "column_mapping": {
+    "recno": "department_id",
+    "website": "federation_node_id",
+    "nameof": "name"
+  },
+  "dropped_columns": [
+    "visible",
+    "email",
+    "priority",
+    "parent",
+    "lang",
+    "theme",
+    "topframe",
+    "topbackground",
+    "other"
+  ],
+  "added_columns": {
+    "description": "NULL",
+    "department_type": "'crafty'",
+    "default_actor_id": 1,
+    "settings_json": "NULL",
+    "created_ymdhis": "UTC timestamp (bigint ymdhis)",
+    "updated_ymdhis": "UTC timestamp (bigint ymdhis)",
+    "is_deleted": 0,
+    "deleted_ymdhis": "NULL"
+  },
+  "migration_sql": {
+    "pre_migration": [
+      "ALTER TABLE livehelp_departments ENGINE=InnoDB, CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;",
+      "ALTER TABLE livehelp_departments COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';"
+    ],
+    "data_migration": "INSERT INTO lupo_departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) SELECT recno AS department_id, website AS federation_node_id, nameof AS name, NULL AS description, 'crafty' AS department_type, 1 AS default_actor_id, NULL AS settings_json, DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS created_ymdhis, DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS updated_ymdhis, 0 AS is_deleted, NULL AS deleted_ymdhis FROM livehelp_departments;"
+  },
+  "post_migration": {
+    "drop_legacy_table": true,
+    "drop_sql": "DROP TABLE IF EXISTS livehelp_departments;"
+  },
+  "disposition": "Migrated and Dropped"
+}

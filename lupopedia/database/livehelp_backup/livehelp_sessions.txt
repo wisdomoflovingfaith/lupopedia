@@ -1,0 +1,10 @@
+{
+    "table_name": "livehelp_sessions",
+    "fields": [
+        "`session_id` varchar(100) NOT NULL DEFAULT ''",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`session_data` text NOT NULL",
+        "`expires` int NOT NULL DEFAULT 0"
+    ],
+    "data": []
+}

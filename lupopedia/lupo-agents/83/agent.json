@@ -1,0 +1,9 @@
+{
+  "code": "METADATAKEEPER",
+  "name": "METADATAKEEPER",
+  "layer": "data",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 83,
+  "version": "1.0.0"
+}

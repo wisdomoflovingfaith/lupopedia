@@ -1,0 +1,134 @@
+{
+    "table_name": "lupo_semantic_tags",
+    "fields": [
+        "`tag_id` bigint NOT NULL auto_increment COMMENT 'Primary key for semantic tag'",
+        "`tag_name` varchar(255) NOT NULL COMMENT 'Tag name'",
+        "`tag_slug` varchar(255) NOT NULL COMMENT 'URL-friendly tag slug'",
+        "`description` text COMMENT 'Tag description'",
+        "`color` varchar(7) NOT NULL DEFAULT '#666666' COMMENT 'Tag color hex'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp'",
+        "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp'",
+        "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT 'Tag active flag'"
+    ],
+    "data": [
+        {
+            "tag_id": 1,
+            "tag_name": "navigation",
+            "tag_slug": "navigation",
+            "description": "Navigation elements and structure",
+            "color": "#0066cc",
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_active": 1
+        },
+        {
+            "tag_id": 2,
+            "tag_name": "content-type",
+            "tag_slug": "content-type",
+            "description": "Content type classifications",
+            "color": "#ff9800",
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_active": 1
+        },
+        {
+            "tag_id": 3,
+            "tag_name": "legacy-url",
+            "tag_slug": "legacy-url",
+            "description": "Legacy Crafty Syntax URL patterns",
+            "color": "#ff5722",
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_active": 1
+        },
+        {
+            "tag_id": 4,
+            "tag_name": "semantic-view",
+            "tag_slug": "semantic-view",
+            "description": "Semantic view types",
+            "color": "#2196f3",
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_active": 1
+        },
+        {
+            "tag_id": 5,
+            "tag_name": "collection",
+            "tag_slug": "collection",
+            "description": "Collection categories",
+            "color": "#4caf50",
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_active": 1
+        },
+        {
+            "tag_id": 6,
+            "tag_name": "help",
+            "tag_slug": "help",
+            "description": "Help content",
+            "color": "#03a9f4",
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_active": 1
+        },
+        {
+            "tag_id": 7,
+            "tag_name": "system",
+            "tag_slug": "system",
+            "description": "System functionality",
+            "color": "#f44336",
+            "created_ymdhis": 20260120000000,
+            "updated_ymdhis": 20260120000000,
+            "is_active": 1
+        }
+    ],
+    "primary_key": {
+        "column_name": "tag_id",
+        "expected_name": "semantic_tag_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_created",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis",
+                "is_active"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_active",
+            "columns": [
+                "is_active"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "uk_tag_slug",
+            "columns": [
+                "tag_slug"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "uk_tag_slug",
+            "columns": [
+                "tag_slug"
+            ]
+        }
+    ]
+}

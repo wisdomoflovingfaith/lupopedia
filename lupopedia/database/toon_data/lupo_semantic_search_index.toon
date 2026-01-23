@@ -1,0 +1,71 @@
+{
+    "table_name": "lupo_semantic_search_index",
+    "fields": [
+        "`search_index_id` bigint NOT NULL auto_increment COMMENT 'Primary key for search index'",
+        "`index_name` varchar(255) NOT NULL COMMENT 'Search index name'",
+        "`index_type` enum('content','legacy_mapping','views') NOT NULL COMMENT 'Type of search index'",
+        "`description` text COMMENT 'Search index description'",
+        "`index_data` json NOT NULL COMMENT 'Search index data'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp'",
+        "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp'",
+        "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT 'Search index active flag'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "search_index_id",
+        "expected_name": "semantic_search_index_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_created",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis",
+                "is_active"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_index_type",
+            "columns": [
+                "index_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_active",
+            "columns": [
+                "is_active"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "uk_index_name",
+            "columns": [
+                "index_name"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "uk_index_name",
+            "columns": [
+                "index_name"
+            ]
+        }
+    ]
+}

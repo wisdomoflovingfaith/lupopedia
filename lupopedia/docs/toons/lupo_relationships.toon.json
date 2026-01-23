@@ -1,0 +1,39 @@
+{
+  "table_name": "lupo_relationships",
+  "fields": [
+    "`relationship_id` bigint NOT NULL",
+    "`source_type` varchar(50)",
+    "`source_id` bigint",
+    "`edge_type` varchar(50)",
+    "`target_type` varchar(50)",
+    "`target_id` bigint",
+    "`created_ymdhis` bigint",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint DEFAULT '0'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_relationship_lookup",
+      "columns": [
+        "source_type",
+        "source_id",
+        "edge_type",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "relationship_id",
+    "expected_name": "relationship_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

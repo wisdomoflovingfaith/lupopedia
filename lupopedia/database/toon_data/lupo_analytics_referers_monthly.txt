@@ -1,0 +1,107 @@
+{
+    "table_name": "lupo_analytics_referers_monthly",
+    "fields": [
+        "`analytics_referers_monthly_id` bigint NOT NULL auto_increment COMMENT 'Primary key for monthly referer records'",
+        "`content_id` bigint NOT NULL DEFAULT 0 COMMENT 'Content ID of the visited page (0 = non-content page)'",
+        "`url_path` varchar(500) NOT NULL COMMENT 'raw, full URL'",
+        "`referer_content_id` bigint NOT NULL DEFAULT 0 COMMENT 'Content ID of the referer page (0 = direct visit)'",
+        "`referer_url_path` varchar(500) NOT NULL COMMENT 'raw, full URL'",
+        "`parent_id` bigint NOT NULL DEFAULT 0 COMMENT 'Parent referer record for hierarchical analysis'",
+        "`level` int NOT NULL DEFAULT 1 COMMENT 'Depth level in the referer tree'",
+        "`group_id` bigint NOT NULL DEFAULT 0 COMMENT 'Group associated with this content'",
+        "`date_ym` bigint NOT NULL COMMENT 'UTC YYYYMM representing the monthly bucket'",
+        "`visits` int NOT NULL DEFAULT 0 COMMENT 'Total visits for this referer→page path in this month'",
+        "`direct_visits` int NOT NULL DEFAULT 0 COMMENT 'Visits with no referer (entry points)'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'Record creation timestamp (UTC YYYYMMDDHHMMSS)'",
+        "`updated_ymdhis` bigint NOT NULL COMMENT 'Record update timestamp (UTC YYYYMMDDHHMMSS)'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "analytics_referers_monthly_id",
+        "expected_name": "analytics_referers_monthly_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_content",
+            "columns": [
+                "content_id",
+                "date_ym"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_domain_month",
+            "columns": [
+                "date_ym"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_group",
+            "columns": [
+                "group_id",
+                "date_ym"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_level",
+            "columns": [
+                "level",
+                "date_ym"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_referer",
+            "columns": [
+                "referer_content_id",
+                "date_ym"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_updated",
+            "columns": [
+                "updated_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "uq_referer_month",
+            "columns": [
+                "content_id",
+                "referer_content_id",
+                "date_ym"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "uq_referer_month",
+            "columns": [
+                "content_id",
+                "referer_content_id",
+                "date_ym"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+  "code": "CACHEKEEPER",
+  "name": "CACHEKEEPER",
+  "layer": "system_ops",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 57,
+  "version": "1.0.0"
+}

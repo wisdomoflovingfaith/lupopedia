@@ -1,0 +1,78 @@
+{
+  "table_name": "lupo_content_shares",
+  "fields": [
+    "`content_share_id` bigint NOT NULL auto_increment",
+    "`content_id` bigint NOT NULL COMMENT 'ID of the content being shared'",
+    "`user_id` bigint COMMENT 'ID of the user who shared (if authenticated)'",
+    "`visitor_hash` char(64) COMMENT 'Hashed IP/session for anonymous shares'",
+    "`share_method` varchar(50) COMMENT 'Share method: link, embed, social, email, etc.'",
+    "`share_target` varchar(255) COMMENT 'Specific target of the share (e.g., \"twitter\", \"facebook\")'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_content",
+      "columns": [
+        "content_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_method",
+      "columns": [
+        "share_method"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_user",
+      "columns": [
+        "user_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Tracks share events for content items by both authenticated and anonymous users",
+  "primary_key": {
+    "column_name": "content_share_id",
+    "expected_name": "content_share_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

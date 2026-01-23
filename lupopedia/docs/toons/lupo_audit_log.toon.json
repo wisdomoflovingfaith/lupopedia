@@ -1,0 +1,58 @@
+{
+  "table_name": "lupo_audit_log",
+  "fields": [
+    "`audit_log_id` bigint NOT NULL auto_increment",
+    "`channel_id` bigint NOT NULL",
+    "`entity_type` varchar(32) NOT NULL COMMENT 'Type of entity (actor, agent, content, etc.)'",
+    "`entity_id` bigint NOT NULL COMMENT 'ID of the entity'",
+    "`event_type` varchar(100) NOT NULL COMMENT 'Type of event that occurred'",
+    "`table_name` varchar(100) COMMENT 'Name of the related database table'",
+    "`table_id` bigint COMMENT 'ID of the related record in the table'",
+    "`payload_json` longtext COMMENT 'Additional event data in JSON format'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'",
+    "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_entity",
+      "columns": [
+        "entity_type",
+        "entity_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_event",
+      "columns": [
+        "event_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_table",
+      "columns": [
+        "table_name",
+        "table_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Audit trail for tracking system events and changes",
+  "primary_key": {
+    "column_name": "audit_log_id",
+    "expected_name": "audit_log_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

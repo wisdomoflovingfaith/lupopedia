@@ -1,0 +1,12 @@
+{
+    "table_name": "unified_analytics_paths",
+    "fields": [
+        "`path_id` bigint NOT NULL auto_increment",
+        "`path_pattern` varchar(500) NOT NULL",
+        "`path_type` varchar(50)",
+        "`access_count` int DEFAULT 0",
+        "`last_accessed` bigint",
+        "`created_ymdhis` bigint NOT NULL"
+    ],
+    "data": []
+}

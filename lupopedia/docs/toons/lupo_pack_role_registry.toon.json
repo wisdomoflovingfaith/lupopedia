@@ -1,0 +1,52 @@
+{
+  "table_name": "lupo_pack_role_registry",
+  "fields": [
+    "`id` bigint unsigned NOT NULL auto_increment",
+    "`agent_id` bigint unsigned NOT NULL COMMENT 'Reference to lupo_agent_registry.agent_registry_id'",
+    "`role` varchar(255) NOT NULL COMMENT 'Discovered role name'",
+    "`discovery_method` text NOT NULL COMMENT 'How this role was discovered'",
+    "`behavior` text NOT NULL COMMENT 'Observed behavior that defines the role'",
+    "`reason` text NOT NULL COMMENT 'Why this agent has this role'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when role was discovered'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when role was last updated'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_agent_id",
+      "columns": [
+        "agent_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_role",
+      "columns": [
+        "role"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unique_agent_role",
+      "columns": [
+        "agent_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Pack Role Registry - discovered agent roles from Pack Architecture",
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

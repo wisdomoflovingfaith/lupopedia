@@ -1,0 +1,27 @@
+{
+    "table_name": "livehelp_quick",
+    "fields": [
+        "`id` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`name` varchar(50) NOT NULL DEFAULT ''",
+        "`typeof` varchar(30) NOT NULL DEFAULT ''",
+        "`message` text",
+        "`visiblity` varchar(20) NOT NULL DEFAULT ''",
+        "`department` varchar(60) NOT NULL DEFAULT '0'",
+        "`user` int NOT NULL DEFAULT 0",
+        "`ishtml` varchar(3) NOT NULL DEFAULT ''"
+    ],
+    "data": [
+        {
+            "id": 1,
+            "livehelp_id": 1,
+            "name": "hello",
+            "typeof": "",
+            "message": "hello",
+            "visiblity": "Private",
+            "department": "1",
+            "user": 1,
+            "ishtml": ""
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+---
+# Example Directory Atoms File
+# Copy this to any directory as _dir_atoms.yaml
+# 
+# Purpose: Define directory-scoped constants for files in this directory
+#
+# Rules:
+# - DIR_* atoms apply only to files in THIS directory (non-recursive)
+# - DIRR_* atoms apply to files in THIS directory AND all descendant directories (recursive)
+# - For DIRR_* resolution, walk up parent directories until _dir_atoms.yaml is found
+# - Cursor MUST preserve symbolic references, not expand them
+
+# Directory-only atoms (non-recursive)
+# These apply ONLY to files in the current directory
+DIR_DOCS_AUTHOR: "Documentation Team"
+DIR_DOCS_CHANNEL: "docs"
+
+# Directory-recursive atoms (inherited by descendants)
+# These apply to files in this directory AND all subdirectories
+DIRR_DOCS_VERSION: "4.0.1"
+DIRR_DOCS_COLLECTION: "core-docs"
+DIRR_DOCS_STATUS: "published"
+
+# Example: If this file is at docs/agents/_dir_atoms.yaml
+# - DIR_DOCS_AUTHOR applies only to files in docs/agents/
+# - DIRR_DOCS_VERSION applies to files in docs/agents/ AND docs/agents/subdir/ AND docs/agents/subdir/nested/

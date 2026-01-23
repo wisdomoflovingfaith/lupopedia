@@ -1,0 +1,63 @@
+{
+  "table_name": "lupo_collection_tab_paths",
+  "fields": [
+    "`collection_tab_path_id` bigint NOT NULL auto_increment",
+    "`collection_id` bigint NOT NULL",
+    "`collection_tab_id` bigint NOT NULL",
+    "`path` varchar(500) NOT NULL COMMENT 'Full tab path: departments/parks-and-recreation/summer-programs'",
+    "`depth` int NOT NULL COMMENT 'Number of levels (1 = root tab)'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS'",
+    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_collection",
+      "columns": [
+        "collection_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_collection_tab",
+      "columns": [
+        "collection_tab_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_path",
+      "columns": [
+        "path"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unique_tab_path",
+      "columns": [
+        "collection_id",
+        "collection_tab_id",
+        "path"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Full hierarchical paths for tabs - enables fast lookups and semantic edge generation",
+  "primary_key": {
+    "column_name": "collection_tab_path_id",
+    "expected_name": "collection_tab_path_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

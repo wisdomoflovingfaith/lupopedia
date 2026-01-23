@@ -1,0 +1,13 @@
+{
+    "table_name": "livehelp_channels",
+    "fields": [
+        "`id` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`user_id` int NOT NULL DEFAULT 0",
+        "`statusof` char(1) NOT NULL DEFAULT ''",
+        "`startdate` bigint NOT NULL DEFAULT 0",
+        "`sessionid` varchar(40) NOT NULL DEFAULT ''",
+        "`website` int NOT NULL DEFAULT 0"
+    ],
+    "data": []
+}

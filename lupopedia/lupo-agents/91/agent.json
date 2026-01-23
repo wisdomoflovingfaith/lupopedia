@@ -1,0 +1,9 @@
+{
+  "code": "CLUSTERWOLF",
+  "name": "CLUSTERWOLF",
+  "layer": "data",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 91,
+  "version": "1.0.0"
+}

@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sales Syntax Mockup Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+            background: #f1f5f9;
+            height: 100vh;
+            overflow: hidden;
+            padding: 30px;
+        }
+
+        .chat-container {
+            display: flex;
+            height: calc(100vh - 60px);
+            max-width: 1180px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 28px 70px rgba(15, 23, 42, 0.18);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 310px;
+            background: #1f2937;
+            color: #e5e7eb;
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 2px solid rgba(148, 163, 184, 0.25);
+        }
+
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 22px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-header p {
+            font-size: 0.85rem;
+            opacity: 0.75;
+        }
+
+        .collection-section {
+            background: rgba(31, 41, 55, 0.6);
+            padding: 16px;
+            border-radius: 14px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .collection-section h3 {
+            margin: 0 0 12px 0;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #cbd5f5;
+        }
+
+        .collection-section label {
+            display: block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin: 12px 0 4px;
+            color: rgba(226, 232, 240, 0.8);
+        }
+
+        .collection-section select {
+            width: 100%;
+            padding: 9px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: rgba(17, 24, 39, 0.6);
+            color: #e5e7eb;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+            color: #e5e7eb;
+        }
+
+        .chatting-users,
+        .current-visitors,
+        .chat-requests {
+            background: rgba(17, 24, 39, 0.55);
+            padding: 16px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .user-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px;
+            background: rgba(55, 65, 81, 0.7);
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        .user-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .user-name {
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .action-btn {
+            background: #2563eb;
+            border: none;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .visitor-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            background: rgba(55, 65, 81, 0.7);
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        .visitor-status {
+            background: #f97316;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            color: white;
+        }
+
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+            color: white;
+            padding: 18px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .channel-info .channel-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .channel-status {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .online-agents {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .agent-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px 24px;
+            background: #f8fafc;
+            overflow-y: auto;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            align-items: flex-start;
+        }
+
+        .message-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .message-content {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            border-left: 4px solid #2563eb;
+            max-width: 70%;
+        }
+
+        .tag-button-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tag-button-bar .tag-button {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(15, 23, 42, 0.2);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .tag-button-bar .tag-button:hover {
+            background: #1d2b45;
+        }
+
+        .tag-button .tag-plus {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(248, 250, 252, 0.12);
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #f8fafc;
+        }
+
+        .tag-button .tag-label {
+            letter-spacing: 0.01em;
+        }
+
+        .workflow-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .workflow-button {
+            background: #16a34a;
+            color: #f8fafc;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 16px;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            text-align: left;
+            cursor: pointer;
+            box-shadow: 0 12px 24px rgba(22, 163, 74, 0.25);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .workflow-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(22, 163, 74, 0.35);
+        }
+
+        .message.wolfie .message-avatar { background: #7c3aed; }
+        .message.lupo .message-avatar { background: #eab308; }
+        .message.lilith .message-avatar { background: #ef4444; }
+        .message.agape .message-avatar { background: #22c55e; }
+        .message.metis .message-avatar { background: #0ea5e9; }
+        .message.rose .message-avatar { background: #f97316; }
+        .message.maat .message-avatar { background: #14b8a6; }
+        .message.claude .message-avatar { background: #6366f1; }
+        .message.cursor .message-avatar { background: #0ea36a; }
+
+        .message.wolfie .message-content { border-left-color: #7c3aed; }
+        .message.lupo .message-content { border-left-color: #eab308; }
+        .message.lilith .message-content { border-left-color: #ef4444; }
+        .message.agape .message-content { border-left-color: #22c55e; }
+        .message.metis .message-content { border-left-color: #0ea5e9; }
+        .message.rose .message-content { border-left-color: #f97316; }
+        .message.maat .message-content { border-left-color: #14b8a6; }
+        .message.claude .message-content { border-left-color: #6366f1; }
+        .message.cursor .message-content { border-left-color: #0ea36a; }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            color: #6b7280;
+            font-style: italic;
+            margin: 14px 0;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #9ca3af;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+
+        .chat-input-area {
+            border-top: 1px solid rgba(148, 163, 184, 0.25);
+            padding: 18px 22px;
+            background: #ffffff;
+        }
+
+        .agent-tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 14px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .agent-tab {
+            background: #e2e8f0;
+            border: none;
+            padding: 10px 16px;
+            font-weight: 600;
+            color: #475569;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+        }
+
+        .agent-tab.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .message-input-section {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .message-input-section label {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .message-input-section input {
+            flex: 1;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            padding: 10px 16px;
+            font-size: 1rem;
+        }
+
+        .message-input-section button {
+            background: #22c55e;
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(34, 197, 94, 0.3);
+        }
+
+        /* AI Thinking Panel */
+        .thinking-panel {
+            position: fixed;
+            top: 90px;
+            right: 30px;
+            width: 420px;
+            height: 320px;
+            background: #0f172a;
+            border: 2px solid #dbeafe;
+            border-radius: 10px;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+            display: none;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .thinking-panel.show { display: block; }
+
+        .thinking-header {
+            background: #dbeafe;
+            padding: 10px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .thinking-title { font-weight: 700; color: #1f2937; font-size: 0.95rem; }
+
+        .thinking-close {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 2px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .thinking-content {
+            background: rgba(219, 234, 254, 0.85);
+            height: calc(100% - 44px);
+            padding: 12px;
+            overflow-y: auto;
+        }
+
+        .thinking-message {
+            background: white;
+            border-radius: 8px;
+            padding: 8px 10px;
+            border-left: 3px solid #2563eb;
+            margin-bottom: 10px;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.1);
+        }
+
+        .thinking-message.wolfie { border-left-color: #7c3aed; }
+        .thinking-message.lupo { border-left-color: #eab308; }
+        .thinking-message.lilith { border-left-color: #ef4444; }
+        .thinking-message.agape { border-left-color: #22c55e; }
+        .thinking-message.metis { border-left-color: #0ea5e9; }
+        .thinking-message.rose { border-left-color: #f97316; }
+        .thinking-message.maat { border-left-color: #14b8a6; }
+        .thinking-message.claude { border-left-color: #6366f1; }
+        .thinking-message.cursor { border-left-color: #0ea36a; }
+
+        .thinking-agent { font-weight: 700; color: #1f2937; }
+        .thinking-text { color: #1f2937; font-style: italic; margin-top: 2px; }
+        .thinking-timestamp { font-size: 0.7rem; color: #475569; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>WOLFIE Console</h1>
+                <p>Sales Syntax · LUPOPEDIA Network</p>
+            </div>
+
+            <div class="collection-section">
+                <h3>Current Collection of Data</h3>
+                <label>WHO</label>
+                <select>
+                    <option>Lead Architect — WOLFIE (Orchestration steward)</option>
+                    <option>Ontology Engineer — LUPO (Schema designer)</option>
+                    <option>Pipeline Integrator — CURSOR (DevOps + migrations)</option>
+                    <option>Governance Analyst — MAAT (Compliance checks)</option>
+                </select>
+                <label>WHAT</label>
+                <select>
+                    <option>Design multi-agent orchestration schema (AI registry + routing)</option>
+                    <option>Define workflow automation for agent collaboration</option>
+                    <option>Document research ontology + SOT channel mappings</option>
+                </select>
+                <label>WHERE</label>
+                <select>
+                    <option>LUPOPEDIA core cluster (Region: us-central)</option>
+                    <option>Shared hosting tier (Installatron baseline)</option>
+                    <option>Enterprise edge nodes (Vector + analytics tier)</option>
+                </select>
+                <label>WHEN</label>
+                <select>
+                    <option>Kickoff: 2025-11-10 @ 08:46 (context captured)</option>
+                    <option>Schema prototype handoff: 2025-11-20</option>
+                    <option>Production rollout window: LUPOPEDIA 0.1.x GA</option>
+                </select>
+                <label>WHY</label>
+                <select>
+                    <option>Enable coordinated multi-agent research with audit trail</option>
+                    <option>Preserve cultural context (ROSE) while scaling AI workflows</option>
+                    <option>Provide hybrid FK/orphan model for progressive enhancement</option>
+                </select>
+                <label>HOW</label>
+                <select>
+                    <option>Model SOT taxonomy → normalized tables + JSON overlays</option>
+                    <option>Adopt feature-flagged FK enforcement with nightly integrity jobs</option>
+                    <option>Leverage LUPOPEDIA headers + Sales Syntax channels for capture</option>
+                </select>
+                <label>TO DO</label>
+                <select>
+                    <option>Draft agent_registry + route_plan ERD</option>
+                    <option>Author orchestration README (constraint toggle playbook)</option>
+                    <option>Compile vendor comparison brief (CrewAI, LangGraph, AutoGen)</option>
+                </select>
+                <label>HACK</label>
+                <select>
+                    <option>Mock orchestrator using Sales Syntax layer invites</option>
+                    <option>Inject synthetic sessions for integrity validator smoke tests</option>
+                    <option>Reuse Crafty Syntax channel merger for rapid prototyping</option>
+                </select>
+                <label>OTHER</label>
+                <select>
+                    <option>Queue LUPOPEDIA agent training refresh (80+ personas)</option>
+                    <option>Schedule orchestration design review with WOLFIE Council</option>
+                    <option>Sync ROSE cultural dictionary with new orchestration lexicon</option>
+                </select>
+            </div>
+
+            <div class="chat-requests">
+                <div class="section-title">Human co-Chat users</div>
+                <div class="visitor-item">
+                    <div class="visitor-id">BOB</div>
+                    <div class="visitor-status">Assistant</div>
+                </div>
+ 
+            </div>
+
+            <div class="chatting-users">
+                <div class="section-title">Current Chatting AI Agents</div>
+                <div class="user-item">
+                    <div class="user-status"></div>
+                    <div class="user-name">WOLFIE (Coordinator)</div>
+                    <div class="user-actions"><button class="action-btn">→</button></div>
+                </div>
+                <div class="user-item">
+                    <div class="user-status"></div>
+                    <div class="user-name">CURSOR (File Ops)</div>
+                    <div class="user-actions"><button class="action-btn">→</button></div>
+                </div>
+                <div class="user-item">
+                    <div class="user-status"></div>
+                    <div class="user-name">LUPO (Ontology Planner)</div>
+                    <div class="user-actions"><button class="action-btn">→</button></div>
+                </div>
+                <div class="user-item">
+                    <div class="user-status"></div>
+                    <div class="user-name">LILITH (Critical Analysis)</div>
+                    <div class="user-actions"><button class="action-btn">→</button></div>
+                </div>
+                <div class="user-item">
+                    <div class="user-status"></div>
+                    <div class="user-name">AGAPE (Care Audit)</div>
+                    <div class="user-actions"><button class="action-btn">→</button></div>
+                </div>
+                <div class="user-item">
+                    <div class="user-status"></div>
+                    <div class="user-name">METIS (Empathy Check)</div>
+                    <div class="user-actions"><button class="action-btn">→</button></div>
+                </div>
+                <div class="user-item">
+                    <div class="user-status"></div>
+                    <div class="user-name">ROSE (Cultural)</div>
+                    <div class="user-actions"><button class="action-btn">→</button></div>
+                </div>
+                <div class="user-item">
+                    <div class="user-status"></div>
+                    <div class="user-name">MAAT (QA)</div>
+                    <div class="user-actions"><button class="action-btn">→</button></div>
+                </div>
+                <div class="user-item">
+                    <div class="user-status"></div>
+                    <div class="user-name">CLAUDE (Plan Review)</div>
+                    <div class="user-actions"><button class="action-btn">→</button></div>
+                </div>
+            </div>
+
+            <div class="current-visitors">
+                <div class="section-title">Live Visitors</div>
+                <div class="visitor-item">
+                    <div class="visitor-id">Visitor #7842</div>
+                    <div class="visitor-status" style="background:#22c55e;">Chatting</div>
+                </div>
+                <div class="visitor-item">
+                    <div class="visitor-id">Visitor #7851</div>
+                    <div class="visitor-status">Invite</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="chat-main">
+            <div class="chat-header">
+                <div class="channel-info">
+                    <div class="channel-name">Channel 238 </div>
+                    <div class="channel-status">Session 2025-11-10 &middot; mock design</div>
+                </div>
+                <div class="online-agents">
+                    <div class="agent-badge">WOLFIE</div>
+                    <div class="agent-badge">LUPO</div>
+                    <div class="agent-badge">LILITH</div>
+                    <div class="agent-badge">AGAPE</div>
+                    <div class="agent-badge">METIS</div>
+                    <div class="agent-badge">ROSE</div>
+                    <div class="agent-badge">MAAT</div>
+                    <div class="agent-badge">CLAUDE</div>
+                    <div class="agent-badge">CURSOR</div>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages"></div>
+
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+                <span>WOLFIE is thinking...</span>
+            </div>
+
+            <div class="chat-input-area">
+                <div class="agent-tabs">
+                    <button class="agent-tab active">WOLFIE</button>
+                    <button class="agent-tab">LUPO</button>
+                    <button class="agent-tab">LILITH</button>
+                    <button class="agent-tab">AGAPE</button>
+                    <button class="agent-tab">METIS</button>
+                    <button class="agent-tab">ROSE</button>
+                    <button class="agent-tab">MAAT</button>
+                    <button class="agent-tab">CLAUDE</button>
+                    <button class="agent-tab">CURSOR</button>
+                </div>
+                <div class="message-input-section">
+            
+                    <input type="text" placeholder="Type your response...">
+                    <button>Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="thinking-panel" id="thinkingPanel">
+        <div class="thinking-header">
+            <div class="thinking-title">AI Agent Thinking Output</div>
+            <button class="thinking-close" onclick="hideThinkingPanel()">X</button>
+        </div>
+        <div class="thinking-content" id="thinkingContent"></div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        const messageTimeline = [
+            {
+                delay: 1000,
+                agent: "Visitor #7842",
+                role: "user",
+                avatar: "U",
+                time: "08:46 AM",
+                html: `<p>Eh BRAH i like make one pono website dat allow me to talk to all kine ai agents at da same time . How do dat? </p>`
+            },
+            {
+                delay: 7000,
+                agent: "WOLFIE",
+                role: "wolfie",
+                avatar: "W",
+                time: "08:47 AM",
+                html: `<p>Ok, I can help you with making a plan for this—let me confer with ROSE on cultural context and ambiguity.</p>`,
+                triggerThinking: "initial"
+            },
+            {
+                delay: 13000,
+                agent: "ROSE",
+                role: "rose",
+                avatar: "R",
+                time: "08:48 AM",
+                html: `<p>The user is saying that they would like to construct a sophisticated web AI orchestration system that allows a group of AI agents to converge to solve their problem. They are using Hawaiian Pidgin: “pono” means good, “ohana” means family.</p>`
+            },
+            {
+                delay: 19000,
+                agent: "WOLFIE",
+                role: "wolfie",
+                avatar: "W",
+                time: "08:48 AM",
+                html: `<p>Ah.. I see you would like to design a database of ai agents that has a network and workflows where a user asks a question and then a helping agent like me orchestrates coordination talking to 80+ other ai agents on how best to solve your problem ...</p>
+                       <p>Please choose an orchestration workflow:</p>
+                       <div class="workflow-options">
+                           <button class="workflow-button">Reverse Twenty Question Brainstorm</button>
+                           <button class="workflow-button">Delegated Research Relay</button>
+                           <button class="workflow-button">Parallel Expert Panel Synthesis</button>
+                           <button class="workflow-button">Incremental Plan & QA Loop</button>
+                       </div>`
+            },
+            {
+                delay: 22000,
+                agent: "WOLFIE",
+                role: "wolfie",
+                avatar: "W",
+                time: "08:48 AM",
+                html: `<p><strong>Incremental Plan &amp; QA Loop</strong></p>
+                       <p>Here are the suggested AI agents for your team—do you accept this plan?</p>
+                       <ol style="margin:6px 0 0 18px;">
+                           <li>LUPO &mdash; database design</li>
+                           <li>LILITH &mdash; alternate viewpoints and constructive criticism</li>
+                           <li>METIS &mdash; comparative analysis of other systems and frameworks</li>
+                           <li>MAAT/CURSOR &mdash; parallel synthesis</li>
+                           <li>CLAUDE &mdash; planning and documentation</li>
+                       </ol>
+                       <p>Is this team okay? <button class="workflow-button" style="display:inline-block;width:auto;padding:6px 14px;margin-right:8px;">YES</button><button class="workflow-button" style="display:inline-block;width:auto;padding:6px 14px;">NO</button></p>`
+            },
+            {
+                delay: 25000,
+                agent: "LUPO",
+                role: "lupo",
+                avatar: "LP",
+                time: "08:49 AM",
+                html: `<p>The data layer needs strict referential integrity:</p>
+                       <ul style="margin:6px 0 0 18px;">
+                           <li><code>agents</code> &mdash; <code>id BIGINT UNSIGNED</code> PK, <code>slug</code> UNIQUE, <code>persona_type</code> ENUM.</li>
+                           <li><code>agent_channels</code> &mdash; FK (<code>agent_id</code>) REFERENCES <code>agents(id)</code> ON DELETE CASCADE, FK (<code>channel_id</code>) REFERENCES <code>channels(id)</code>, composite UNIQUE (<code>agent_id</code>, <code>channel_id</code>).</li>
+                           <li><code>conversation_sessions</code> &mdash; FK to <code>agents</code> (coordinator_id), indexed <code>hash</code> for quick lookups.</li>
+                           <li><code>conversation_messages</code> &mdash; FK (<code>session_id</code>) REFERENCES <code>conversation_sessions(id)</code>, FK (<code>author_agent_id</code>) REFERENCES <code>agents(id)</code>, add FULLTEXT on <code>content</code>.</li>
+                           <li><code>collection_nodes</code> ties back with FK (<code>session_id</code>) and CHECK constraint to enforce the WHO/WHAT/WHERE taxonomy.</li>
+                           <li><code>plan_steps</code> uses FK (<code>assigned_agent_id</code>) plus <code>ENUM('draft','active','done')</code> to track execution.</li>
+                       </ul>
+                       <p>Add <code>FOREIGN KEY</code> constraints everywhere so nothing floats unreferenced, and schedule <code>EVENT</code> jobs that archive closed sessions into history tables.</p>`
+            },
+            {
+                delay: 31000,
+                agent: "WOLFIE",
+                role: "wolfie",
+                avatar: "W",
+                time: "08:49 AM",
+                html: `<p>Okay, let me ask LILITH for a critical review of this plan to surface any logical gaps.</p>`
+            },
+            {
+                delay: 37000,
+                agent: "LILITH",
+                role: "lilith",
+                avatar: "L",
+                time: "08:50 AM",
+                html: `<p>I like the structure, but locking every record behind hard foreign keys will hurt when we need rapid prototyping. I recommend the orphan system: keep <code>agent_id</code>, <code>session_id</code>, etc. as BIGINT UNSIGNED, but enforce integrity with nightly auditors and <code>deleted_at</code> flags rather than cascading deletes. That way custom modules can extend without breaking WOLFIE headers.</p>`
+            },
+            {
+                delay: 43000,
+                agent: "WOLFIE",
+                role: "wolfie",
+                avatar: "W",
+                time: "08:50 AM",
+                html: `<p>Hmm… there seem to be conflicting approaches here, so let's ask METIS for a comparative view of all the options.</p>`
+            },
+            {
+                delay: 49000,
+                agent: "METIS",
+                role: "metis",
+                avatar: "M",
+                time: "08:51 AM",
+                html: `<p>I’ll compare both patterns against existing orchestration stacks. CrewAI and AutoGen lean on rigid task queues, while LangGraph and OpenAI’s Orchestration beta favor flexible node graphs with validator daemons—better for experimentation. We should document the pros and cons so the ohana sees where agility or safety wins.</p>
+                       <p>Tag this session’s collection with <code>Multi-Agent Orchestration</code>, <code>Workflow Automation</code>, <code>Vector Database</code>, and <code>Research Ontology</code> so we can surface comparative research quickly.</p>`
+            },
+            {
+                delay: 54000,
+                agent: "WOLFIE",
+                role: "wolfie",
+                avatar: "W",
+                time: "08:51 AM",
+                html: `<p>I suggest adding these tags to your collection set to keep the research organized across the nine foundational categories. Click any tag to add it directly to your collection.</p>
+                       <div class="tag-button-bar">
+                           <span class="tag-button"><span class="tag-plus">+</span><span class="tag-label">WHO · AI coordinator roster</span></span>
+                           <span class="tag-button"><span class="tag-plus">+</span><span class="tag-label">WHAT · Orchestration workflows</span></span>
+                           <span class="tag-button"><span class="tag-plus">+</span><span class="tag-label">WHERE · Deployment environments</span></span>
+                           <span class="tag-button"><span class="tag-plus">+</span><span class="tag-label">WHEN · Project timeline checkpoints</span></span>
+                           <span class="tag-button"><span class="tag-plus">+</span><span class="tag-label">WHY · Alignment &amp; governance cases</span></span>
+                           <span class="tag-button"><span class="tag-plus">+</span><span class="tag-label">HOW · Toolchain + integration steps</span></span>
+                       </div>`
+            },
+            {
+                delay: 60000,
+                agent: "WOLFIE",
+                role: "wolfie",
+                avatar: "W",
+                time: "08:51 AM",
+                html: `<p>Okay, now let’s have MAAT and CURSOR review what we’ve gathered and craft a consolidated plan.</p>`,
+                triggerThinking: "main"
+            },
+            {
+                delay: 66000,
+                agent: "MAAT",
+                role: "maat",
+                avatar: "M",
+                time: "08:52 AM",
+                html: `<p>Merging the best ideas so far: we keep LUPO’s schema as the canonical target—every table has a defined FK—but we gate enforcement through feature flags. In foundation tier (shared hosting) we run orphan mode with auditing tables (<code>integrity_jobs</code>, <code>integrity_findings</code>). In enterprise tier we flip the constraints on, log violations, and stream them into LUPOPEDIA’s compliance channel. CURSOR and I will document the switch-over procedure.</p>`
+            },
+            {
+                delay: 72000,
+                agent: "CURSOR",
+                role: "cursor",
+                avatar: "C",
+                time: "08:52 AM",
+                html: `<p>I’ll prep the migration files: baseline SQL scripts for the FK-on mode, a separate script to enable orphan auditing, and README updates that walk admins through toggling modes. I’ll also scaffold test fixtures so we can simulate both behaviors before release.</p>`
+            },
+            {
+                delay: 78000,
+                agent: "CLAUDE",
+                role: "claude",
+                avatar: "C",
+                time: "08:53 AM",
+                html: `<p>Draft plan:</p>
+                       <ol style="margin:6px 0 0 18px;">
+                           <li>Document both constraint modes in the schema README.</li>
+                           <li>Build the orphan validator service to mirror constraint checks nightly.</li>
+                           <li>Expose a configuration toggle so WOLFIE can decide which mode to run per deployment.</li>
+                       </ol>`
+            },
+            {
+                delay: 84000,
+                agent: "WOLFIE",
+                role: "wolfie",
+                avatar: "W",
+                time: "08:54 AM",
+                html: `<p>Excellent. I’ll capture this hybrid plan in the LUPOPEDIA headers, schedule LUPO and METIS to prototype both modes, and have MAAT and CURSOR package the deliverables. Then I’ll send the visitor a pono roadmap that keeps the whole ohana aligned.</p>`
+            }
+        ];
+
+        const thinkingMessagesInitial = [
+            { agent: "WOLFIE", role: "wolfie", text: "The user is asking to develop a plan for multi-agent orchestration. Ambiguous items: ‘pono website’, ‘ohana workflow’. I should ask ROSE for the definitions before looping in the others.", timestamp: "08:47:00" },
+            { agent: "ROSE", role: "rose", text: "Translating Hawaiian Pidgin terms: pono = good, ohana = family, kine = kind/type.", timestamp: "08:47:02" }
+        ];
+
+        const thinkingMessagesMain = [
+            { agent: "WOLFIE", role: "wolfie", text: "Looping LUPO, LILITH, METIS, MAAT, CLAUDE, and CURSOR into the planning channel.", timestamp: "08:47:35" },
+            { agent: "LILITH", role: "lilith", text: "Modeling orphan-system fallbacks so expansions never break WOLFIE headers.", timestamp: "08:47:36" },
+            { agent: "METIS", role: "metis", text: "Pulling comparison notes from CrewAI, LangGraph, AutoGen orchestration layers.", timestamp: "08:47:37" },
+            { agent: "MAAT", role: "maat", text: "Designing hybrid audit workflow that toggles constraints per environment.", timestamp: "08:47:38" },
+            { agent: "CURSOR", role: "cursor", text: "Queueing migration scripts, README updates, and test fixtures for both modes.", timestamp: "08:47:39" },
+            { agent: "CLAUDE", role: "claude", text: "Merging findings into a single deployment plan for WOLFIE to review.", timestamp: "08:47:40" }
+        ];
+
+        let currentThinkingIndex = 0;
+        let thinkingInterval;
+        let thinkingAutoHideTimeout;
+
+        function appendMessage(msg) {
+            if (!chatMessages) {
+                return;
+            }
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('message', msg.role);
+
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = msg.avatar;
+
+            const content = document.createElement('div');
+            content.className = 'message-content';
+            content.innerHTML = `
+                <div class="message-header">
+                    <span>${msg.agent}</span>
+                    <span>${msg.time}</span>
+                </div>
+                ${msg.html}
+            `;
+
+            wrapper.appendChild(avatar);
+            wrapper.appendChild(content);
+            chatMessages.appendChild(wrapper);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            if (msg.triggerThinking === "initial") {
+                showThinkingPanel(thinkingMessagesInitial, 10000);
+            } else if (msg.triggerThinking === "main") {
+                showThinkingPanel(thinkingMessagesMain);
+            }
+        }
+
+        function scheduleMessages() {
+            if (!messageTimeline.length) {
+                return;
+            }
+
+            messageTimeline.forEach((msg, index) => {
+                if (index > 0 && typingIndicator) {
+                    const indicatorDelay = Math.max(0, msg.delay - 500);
+                    setTimeout(() => {
+                        if (typingIndicator) {
+                            typingIndicator.style.display = 'flex';
+                        }
+                    }, indicatorDelay);
+                }
+                setTimeout(() => {
+                    appendMessage(msg);
+                    if (typingIndicator) {
+                        typingIndicator.style.display = 'none';
+                    }
+                }, msg.delay);
+            });
+
+            if (typingIndicator) {
+                const lastDelay = messageTimeline[messageTimeline.length - 1].delay;
+                setTimeout(() => {
+                    typingIndicator.style.display = 'none';
+                }, lastDelay + 600);
+            }
+        }
+
+        function showThinkingPanel(messages, autoHideMs) {
+            const panel = document.getElementById('thinkingPanel');
+            const content = document.getElementById('thinkingContent');
+            clearInterval(thinkingInterval);
+            if (thinkingAutoHideTimeout) {
+                clearTimeout(thinkingAutoHideTimeout);
+            }
+            currentThinkingIndex = 0;
+            content.innerHTML = '';
+            panel.classList.add('show');
+            startThinkingSequence(messages);
+            if (autoHideMs && autoHideMs > 0) {
+                thinkingAutoHideTimeout = setTimeout(() => {
+                    hideThinkingPanel();
+                }, autoHideMs);
+            }
+        }
+
+        function hideThinkingPanel() {
+            document.getElementById('thinkingPanel').classList.remove('show');
+            clearInterval(thinkingInterval);
+            document.getElementById('thinkingContent').innerHTML = '';
+            currentThinkingIndex = 0;
+            if (thinkingAutoHideTimeout) {
+                clearTimeout(thinkingAutoHideTimeout);
+                thinkingAutoHideTimeout = null;
+            }
+        }
+
+        function startThinkingSequence(messages) {
+            const content = document.getElementById('thinkingContent');
+            thinkingInterval = setInterval(() => {
+                if (currentThinkingIndex >= messages.length) {
+                    clearInterval(thinkingInterval);
+                    return;
+                }
+                const msg = messages[currentThinkingIndex];
+                const div = document.createElement('div');
+                div.className = `thinking-message ${msg.role}`;
+                div.innerHTML = `
+                    <div class="thinking-agent">${msg.agent}</div>
+                    <div class="thinking-text">${msg.text}</div>
+                    <div class="thinking-timestamp">${msg.timestamp}</div>
+                `;
+                content.appendChild(div);
+                content.scrollTop = content.scrollHeight;
+                currentThinkingIndex++;
+            }, 900);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            scheduleMessages();
+        });
+    </script>
+</body>
+</html>
+

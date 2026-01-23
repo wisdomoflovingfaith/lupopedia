@@ -1,0 +1,9 @@
+{
+  "code": "MERGEWOLF",
+  "name": "MERGEWOLF",
+  "layer": "data",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 81,
+  "version": "1.0.0"
+}

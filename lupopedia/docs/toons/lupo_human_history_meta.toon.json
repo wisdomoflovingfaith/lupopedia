@@ -1,0 +1,25 @@
+{
+  "table_name": "lupo_human_history_meta",
+  "fields": [
+    "`meta_id` bigint unsigned NOT NULL auto_increment",
+    "`event_key` varchar(255) NOT NULL",
+    "`tensor_mapping` varchar(32) NOT NULL",
+    "`philosophical_reference` varchar(255) NOT NULL",
+    "`system_impact` text NOT NULL",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "meta_id",
+    "expected_name": "meta_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gov_event>
+    <identity>
+        <id>GOV-LUPO-0001</id>
+        <utc_group_id>UTC-GRP-20260120023000</utc_group_id>
+        <semantic_utc_version>1.0.0</semantic_utc_version>
+        <canonical_path>/lupopedia/gov/lupopedia_identity.xml</canonical_path>
+        <event_type>lupopedia_identity</event_type>
+        <title>Lupopedia Identity</title>
+        <created_ymdhis>20260120023000</created_ymdhis>
+        <updated_ymdhis>20260120023000</updated_ymdhis>
+    </identity>
+    <directives>
+        <directive_block>Lupopedia must remain a semantic OS and reference-book model. All future modules, migrations, and agents must treat it as a knowledge atlas, not a content store or marketing system.</directive_block>
+    </directives>
+    <tldr>Lupopedia is a semantic OS that turns a website into a living reference book. It stores knowledge about content—relationships, navigation, and meaning—not the content itself. Crafty Syntax is the ancestral root, and WOLFIE provides the emotional and multi-domain intelligence layer.</tldr>
+    <references>
+        <reference id="1" type="backlink" title="Backlinks">
+            <content>/
+/lupopedia_web/</content>
+            <order_sequence>1</order_sequence>
+        </reference>
+        <reference id="2" type="outbound" title="Outbound">
+            <content>/wolfie/
+/craftysyntax/
+/lupopedia_web/docs/</content>
+            <order_sequence>2</order_sequence>
+        </reference>
+        <reference id="3" type="hashtag" title="Hashtags">
+            <content>#lupopedia #semantic-os #reference-book-model #emotional-intelligence #crafty-syntax</content>
+            <order_sequence>3</order_sequence>
+        </reference>
+        <reference id="4" type="navigation" title="Navigation">
+            <content>home → lupopedia_web → lupopedia</content>
+            <order_sequence>4</order_sequence>
+        </reference>
+        <reference id="5" type="content" title="Lupopedia Identity (LUPO-IDENTITY-001)">
+            <content>Lupopedia is a reference book for your website. It does not store content; it stores knowledge about content. Every page on your site gets a reference entry that explains how it connects to everything else—where visitors came from, where they go next, what topics it relates to, and how it fits into the bigger picture. It is not a CMS or chatbot. It is a semantic OS that gives structure to the web so humans and AI can understand context, relationships, navigation paths, and meaning.</content>
+            <order_sequence>5</order_sequence>
+            <metadata>{"ref":"LUPO-IDENTITY-001","level":"identity"}</metadata>
+        </reference>
+        <reference id="6" type="prohibited" title="GOV-PROHIBIT-LUPO-IDENTITY">
+            <content>[001] Lupopedia may not be treated as a CMS, CRM, or ad-tech platform. It must remain a semantic OS and reference-book model.
+[002] No advertising, tracking pixels, or commercial exploitation of emotional metadata may be built on top of Lupopedia's core reference system.</content>
+            <order_sequence>6</order_sequence>
+            <metadata>{"ref":"GOV-PROHIBIT-LUPO-IDENTITY"}</metadata>
+        </reference>
+        <reference id="7" type="context_summary" title="Context summary">
+            <content>Lupopedia is a reference-book style semantic OS that stores knowledge about content, not content itself. It builds a living knowledge atlas of a website's structure, navigation, and meaning so humans and AI can understand how pages relate, how people move, and what each page means in context.</content>
+            <order_sequence>7</order_sequence>
+        </reference>
+        <reference id="8" type="architecture" title="Architecture">
+            <content>Lupopedia is a semantic operating system that treats every page on a host site as a reference entry, not stored content. It maps backlinks, outbound links, navigation paths, hashtags, and contextual meaning into a living knowledge atlas that both humans and AI can traverse. Crafty Syntax is the ancestral root, providing decades of behavioral and emotional metadata that feed the WOLFIE emotional engine and multi-agent architecture.</content>
+            <order_sequence>8</order_sequence>
+        </reference>
+    </references>
+    <timeline>
+        <node id="1" type="milestone" title="MHPCC" timestamp="19970101000000">
+            <description>Wolfie works at the Maui High Performance Computing Center, building temporal and behavioral analysis tools that foreshadow Lupopedia's reference-entry and emotional-metadata systems.</description>
+            <order_sequence>1</order_sequence>
+            <metadata>{"ref":"MHPCC","cert":0.95}</metadata>
+        </node>
+        <node id="2" type="milestone" title="CRAFTY-SYNTAX" timestamp="20020101000000">
+            <description>Crafty Syntax launches as a live help and interaction-tracking system, accumulating decades of behavioral metadata that later become the semantic root of Lupopedia.</description>
+            <order_sequence>2</order_sequence>
+            <metadata>{"ref":"CRAFTY-SYNTAX","cert":0.97}</metadata>
+        </node>
+        <node id="3" type="milestone" title="HIATUS" timestamp="20140101000000">
+            <description>System enters hiatus after personal tragedy; Crafty Syntax is forked into Sales Syntax to keep the architecture alive.</description>
+            <order_sequence>3</order_sequence>
+            <metadata>{"ref":"HIATUS","cert":0.96}</metadata>
+        </node>
+        <node id="4" type="milestone" title="RETURN" timestamp="20251114000000">
+            <description>The architect returns and reactivates Crafty Syntax as the semantic root of Lupopedia, evolving it into a modern semantic OS.</description>
+            <order_sequence>4</order_sequence>
+            <metadata>{"ref":"RETURN","cert":0.99}</metadata>
+        </node>
+        <node id="5" type="milestone" title="LUPO-GOV-IDENTITY" timestamp="20260120023000">
+            <description>Lupopedia identity is formalized as a governance event, establishing its role as a reference-book semantic OS with WOLFIE as the emotional engine and Crafty Syntax as the ancestral root.</description>
+            <order_sequence>5</order_sequence>
+            <metadata>{"ref":"LUPO-GOV-IDENTITY","cert":0.99}</metadata>
+        </node>
+    </timeline>
+    <valuations>
+        <valuation id="1" type="resource" metric="behavioral_metadata" value="25000000">
+            <text>Approximate number of historical interactions, navigation paths, and behavioral events inherited from Crafty Syntax and related systems.</text>
+            <currency>N/A</currency>
+            <metadata>{"ref":"LUPO-VALUATION-001"}</metadata>
+        </valuation>
+        <valuation id="2" type="impact" metric="strategic">
+            <text>Provides a unique, long-horizon emotional and behavioral fingerprint of the web, enabling empathy-aware AI and context-rich navigation intelligence that modern systems cannot replicate.</text>
+            <metadata>{"ref":"LUPO-IMPACT-001"}</metadata>
+        </valuation>
+        <valuation id="3" type="risk" metric="governance">
+            <text>Misclassification of Lupopedia as a CMS or ad-tech platform could lead to architectural drift, commercial pressure, and violation of core prohibitions around emotional metadata exploitation.</text>
+            <metadata>{"ref":"LUPO-RISK-001"}</metadata>
+        </valuation>
+    </valuations>
+    <wave_resolution>
+        <ceiling>185</ceiling>
+        <bridges>
+            <bridge>Crafty Syntax → Lupopedia semantic root</bridge>
+            <bridge>Lupopedia → WOLFIE emotional engine</bridge>
+            <bridge>Reference entries → AI navigation and understanding</bridge>
+        </bridges>
+    </wave_resolution>
+    <atomic_index>
+        <type>governance_identity</type>
+        <version>1.0.0</version>
+        <cert>0.98</cert>
+        <wolfie_valence_domain>awe</wolfie_valence_domain>
+        <wolfie_valence_polarity>bright</wolfie_valence_polarity>
+    </atomic_index>
+    <prohibited_ref>GOV-PROHIBIT-LUPO-IDENTITY</prohibited_ref>
+    <actor_edges>
+        <edge actor_id="2" actor_slug="captain-wolfie" edge_type="emotional_engine">
+            <properties>{"source":"lupopedia_identity","role":"WOLFIE"}</properties>
+        </edge>
+    </actor_edges>
+</gov_event>

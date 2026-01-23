@@ -1,0 +1,7357 @@
+{
+    "table_name": "livehelp_paths_firsts",
+    "fields": [
+        "`id` int unsigned NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`visit_recno` int unsigned NOT NULL DEFAULT 0",
+        "`exit_recno` int unsigned NOT NULL DEFAULT 0",
+        "`dateof` int NOT NULL DEFAULT 0",
+        "`visits` int unsigned NOT NULL DEFAULT 0"
+    ],
+    "data": [
+        {
+            "id": 1,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 168
+        },
+        {
+            "id": 2,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 3,
+            "dateof": 202511,
+            "visits": 21
+        },
+        {
+            "id": 3,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 5
+        },
+        {
+            "id": 4,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 5,
+            "dateof": 202511,
+            "visits": 6
+        },
+        {
+            "id": 5,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 91
+        },
+        {
+            "id": 6,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 35
+        },
+        {
+            "id": 7,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 7,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 8,
+            "livehelp_id": 1,
+            "visit_recno": 7,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 9,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 8,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 10,
+            "livehelp_id": 1,
+            "visit_recno": 8,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 11,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 10,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 12,
+            "livehelp_id": 1,
+            "visit_recno": 10,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 13,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 3,
+            "dateof": 202511,
+            "visits": 63
+        },
+        {
+            "id": 14,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 6
+        },
+        {
+            "id": 15,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 11,
+            "dateof": 202511,
+            "visits": 7
+        },
+        {
+            "id": 16,
+            "livehelp_id": 1,
+            "visit_recno": 11,
+            "exit_recno": 12,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 17,
+            "livehelp_id": 1,
+            "visit_recno": 12,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 18,
+            "livehelp_id": 1,
+            "visit_recno": 13,
+            "exit_recno": 14,
+            "dateof": 202511,
+            "visits": 36
+        },
+        {
+            "id": 19,
+            "livehelp_id": 1,
+            "visit_recno": 12,
+            "exit_recno": 16,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 20,
+            "livehelp_id": 1,
+            "visit_recno": 16,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 21,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 5,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 22,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 17,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 23,
+            "livehelp_id": 1,
+            "visit_recno": 5,
+            "exit_recno": 18,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 24,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 20,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 25,
+            "livehelp_id": 1,
+            "visit_recno": 20,
+            "exit_recno": 21,
+            "dateof": 202511,
+            "visits": 5
+        },
+        {
+            "id": 26,
+            "livehelp_id": 1,
+            "visit_recno": 21,
+            "exit_recno": 23,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 27,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 25,
+            "dateof": 202511,
+            "visits": 5
+        },
+        {
+            "id": 28,
+            "livehelp_id": 1,
+            "visit_recno": 25,
+            "exit_recno": 26,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 29,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 27,
+            "dateof": 202511,
+            "visits": 5
+        },
+        {
+            "id": 30,
+            "livehelp_id": 1,
+            "visit_recno": 21,
+            "exit_recno": 20,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 31,
+            "livehelp_id": 1,
+            "visit_recno": 20,
+            "exit_recno": 31,
+            "dateof": 202511,
+            "visits": 4
+        },
+        {
+            "id": 32,
+            "livehelp_id": 1,
+            "visit_recno": 31,
+            "exit_recno": 32,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 33,
+            "livehelp_id": 1,
+            "visit_recno": 32,
+            "exit_recno": 33,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 34,
+            "livehelp_id": 1,
+            "visit_recno": 33,
+            "exit_recno": 34,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 35,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 5,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 36,
+            "livehelp_id": 1,
+            "visit_recno": 5,
+            "exit_recno": 3,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 37,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 10
+        },
+        {
+            "id": 38,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 22
+        },
+        {
+            "id": 39,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 13
+        },
+        {
+            "id": 40,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 20,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 41,
+            "livehelp_id": 1,
+            "visit_recno": 20,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 42,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 4
+        },
+        {
+            "id": 43,
+            "livehelp_id": 1,
+            "visit_recno": 14,
+            "exit_recno": 36,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 44,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 45,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 5,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 46,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 41,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 47,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 42,
+            "dateof": 202511,
+            "visits": 9
+        },
+        {
+            "id": 48,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 17,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 49,
+            "livehelp_id": 1,
+            "visit_recno": 5,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 50,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 48
+        },
+        {
+            "id": 51,
+            "livehelp_id": 1,
+            "visit_recno": 42,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 52,
+            "livehelp_id": 1,
+            "visit_recno": 5,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 53,
+            "livehelp_id": 1,
+            "visit_recno": 25,
+            "exit_recno": 3,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 54,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 43,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 55,
+            "livehelp_id": 1,
+            "visit_recno": 11,
+            "exit_recno": 20,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 56,
+            "livehelp_id": 1,
+            "visit_recno": 31,
+            "exit_recno": 23,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 57,
+            "livehelp_id": 1,
+            "visit_recno": 31,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 58,
+            "livehelp_id": 1,
+            "visit_recno": 14,
+            "exit_recno": 34,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 59,
+            "livehelp_id": 1,
+            "visit_recno": 34,
+            "exit_recno": 23,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 60,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 17,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 61,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 34,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 62,
+            "livehelp_id": 1,
+            "visit_recno": 34,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 63,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 53,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 64,
+            "livehelp_id": 1,
+            "visit_recno": 53,
+            "exit_recno": 54,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 65,
+            "livehelp_id": 1,
+            "visit_recno": 54,
+            "exit_recno": 20,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 66,
+            "livehelp_id": 1,
+            "visit_recno": 20,
+            "exit_recno": 5,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 67,
+            "livehelp_id": 1,
+            "visit_recno": 11,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 68,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 20,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 69,
+            "livehelp_id": 1,
+            "visit_recno": 20,
+            "exit_recno": 53,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 70,
+            "livehelp_id": 1,
+            "visit_recno": 53,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 71,
+            "livehelp_id": 1,
+            "visit_recno": 53,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 72,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 9,
+            "dateof": 202511,
+            "visits": 18
+        },
+        {
+            "id": 73,
+            "livehelp_id": 1,
+            "visit_recno": 9,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 17
+        },
+        {
+            "id": 74,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 58,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 75,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 8
+        },
+        {
+            "id": 76,
+            "livehelp_id": 1,
+            "visit_recno": 14,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 60
+        },
+        {
+            "id": 77,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 14,
+            "dateof": 202511,
+            "visits": 14
+        },
+        {
+            "id": 78,
+            "livehelp_id": 1,
+            "visit_recno": 14,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 8
+        },
+        {
+            "id": 79,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 14,
+            "dateof": 202511,
+            "visits": 6
+        },
+        {
+            "id": 80,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 14,
+            "dateof": 202511,
+            "visits": 57
+        },
+        {
+            "id": 81,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 61,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 82,
+            "livehelp_id": 1,
+            "visit_recno": 61,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 83,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 62,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 84,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 42,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 85,
+            "livehelp_id": 1,
+            "visit_recno": 27,
+            "exit_recno": 26,
+            "dateof": 202511,
+            "visits": 7
+        },
+        {
+            "id": 86,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 63,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 87,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 43
+        },
+        {
+            "id": 88,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 64,
+            "dateof": 202511,
+            "visits": 5
+        },
+        {
+            "id": 89,
+            "livehelp_id": 1,
+            "visit_recno": 64,
+            "exit_recno": 3,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 90,
+            "livehelp_id": 1,
+            "visit_recno": 17,
+            "exit_recno": 65,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 91,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 18,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 92,
+            "livehelp_id": 1,
+            "visit_recno": 18,
+            "exit_recno": 67,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 93,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 12,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 94,
+            "livehelp_id": 1,
+            "visit_recno": 12,
+            "exit_recno": 11,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 95,
+            "livehelp_id": 1,
+            "visit_recno": 42,
+            "exit_recno": 11,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 96,
+            "livehelp_id": 1,
+            "visit_recno": 11,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 97,
+            "livehelp_id": 1,
+            "visit_recno": 12,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 98,
+            "livehelp_id": 1,
+            "visit_recno": 65,
+            "exit_recno": 68,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 99,
+            "livehelp_id": 1,
+            "visit_recno": 68,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 100,
+            "livehelp_id": 1,
+            "visit_recno": 5,
+            "exit_recno": 69,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 101,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 69,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 102,
+            "livehelp_id": 1,
+            "visit_recno": 69,
+            "exit_recno": 3,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 103,
+            "livehelp_id": 1,
+            "visit_recno": 64,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 104,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 22
+        },
+        {
+            "id": 105,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 70,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 106,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 71,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 107,
+            "livehelp_id": 1,
+            "visit_recno": 71,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 108,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 70,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 109,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 69,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 110,
+            "livehelp_id": 1,
+            "visit_recno": 69,
+            "exit_recno": 68,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 111,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 69,
+            "dateof": 202511,
+            "visits": 4
+        },
+        {
+            "id": 112,
+            "livehelp_id": 1,
+            "visit_recno": 69,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 4
+        },
+        {
+            "id": 113,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 72,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 114,
+            "livehelp_id": 1,
+            "visit_recno": 72,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 115,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 11,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 116,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 54,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 117,
+            "livehelp_id": 1,
+            "visit_recno": 54,
+            "exit_recno": 16,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 118,
+            "livehelp_id": 1,
+            "visit_recno": 16,
+            "exit_recno": 12,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 119,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 3,
+            "dateof": 202511,
+            "visits": 4
+        },
+        {
+            "id": 120,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 11,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 121,
+            "livehelp_id": 1,
+            "visit_recno": 9,
+            "exit_recno": 73,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 122,
+            "livehelp_id": 1,
+            "visit_recno": 73,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 123,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 74,
+            "dateof": 202511,
+            "visits": 4
+        },
+        {
+            "id": 124,
+            "livehelp_id": 1,
+            "visit_recno": 74,
+            "exit_recno": 73,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 125,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 69,
+            "dateof": 202511,
+            "visits": 4
+        },
+        {
+            "id": 126,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 8
+        },
+        {
+            "id": 127,
+            "livehelp_id": 1,
+            "visit_recno": 58,
+            "exit_recno": 77,
+            "dateof": 202511,
+            "visits": 7
+        },
+        {
+            "id": 128,
+            "livehelp_id": 1,
+            "visit_recno": 77,
+            "exit_recno": 79,
+            "dateof": 202511,
+            "visits": 7
+        },
+        {
+            "id": 129,
+            "livehelp_id": 1,
+            "visit_recno": 79,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 130,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 12
+        },
+        {
+            "id": 131,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 68,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 132,
+            "livehelp_id": 1,
+            "visit_recno": 68,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 133,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 12
+        },
+        {
+            "id": 134,
+            "livehelp_id": 1,
+            "visit_recno": 14,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 4
+        },
+        {
+            "id": 135,
+            "livehelp_id": 1,
+            "visit_recno": 73,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 136,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 62,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 137,
+            "livehelp_id": 1,
+            "visit_recno": 62,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 138,
+            "livehelp_id": 1,
+            "visit_recno": 42,
+            "exit_recno": 62,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 139,
+            "livehelp_id": 1,
+            "visit_recno": 42,
+            "exit_recno": 68,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 140,
+            "livehelp_id": 1,
+            "visit_recno": 42,
+            "exit_recno": 64,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 141,
+            "livehelp_id": 1,
+            "visit_recno": 64,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 5
+        },
+        {
+            "id": 142,
+            "livehelp_id": 1,
+            "visit_recno": 74,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 143,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 64,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 144,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 27,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 145,
+            "livehelp_id": 1,
+            "visit_recno": 27,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 146,
+            "livehelp_id": 1,
+            "visit_recno": 69,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 4
+        },
+        {
+            "id": 147,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 25,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 148,
+            "livehelp_id": 1,
+            "visit_recno": 25,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 149,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 68,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 150,
+            "livehelp_id": 1,
+            "visit_recno": 68,
+            "exit_recno": 62,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 151,
+            "livehelp_id": 1,
+            "visit_recno": 62,
+            "exit_recno": 69,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 152,
+            "livehelp_id": 1,
+            "visit_recno": 68,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 153,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 85,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 154,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 34,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 155,
+            "livehelp_id": 1,
+            "visit_recno": 34,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 156,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 20,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 157,
+            "livehelp_id": 1,
+            "visit_recno": 23,
+            "exit_recno": 32,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 158,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 33,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 159,
+            "livehelp_id": 1,
+            "visit_recno": 69,
+            "exit_recno": 86,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 160,
+            "livehelp_id": 1,
+            "visit_recno": 69,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 161,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 11,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 162,
+            "livehelp_id": 1,
+            "visit_recno": 64,
+            "exit_recno": 87,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 163,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 88,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 164,
+            "livehelp_id": 1,
+            "visit_recno": 88,
+            "exit_recno": 14,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 165,
+            "livehelp_id": 1,
+            "visit_recno": 62,
+            "exit_recno": 17,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 166,
+            "livehelp_id": 1,
+            "visit_recno": 17,
+            "exit_recno": 12,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 167,
+            "livehelp_id": 1,
+            "visit_recno": 12,
+            "exit_recno": 33,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 168,
+            "livehelp_id": 1,
+            "visit_recno": 33,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 169,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 89,
+            "dateof": 202511,
+            "visits": 6
+        },
+        {
+            "id": 170,
+            "livehelp_id": 1,
+            "visit_recno": 89,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 171,
+            "livehelp_id": 1,
+            "visit_recno": 89,
+            "exit_recno": 63,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 172,
+            "livehelp_id": 1,
+            "visit_recno": 63,
+            "exit_recno": 12,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 173,
+            "livehelp_id": 1,
+            "visit_recno": 12,
+            "exit_recno": 14,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 174,
+            "livehelp_id": 1,
+            "visit_recno": 89,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 175,
+            "livehelp_id": 1,
+            "visit_recno": 69,
+            "exit_recno": 63,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 176,
+            "livehelp_id": 1,
+            "visit_recno": 63,
+            "exit_recno": 89,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 177,
+            "livehelp_id": 1,
+            "visit_recno": 89,
+            "exit_recno": 3,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 178,
+            "livehelp_id": 1,
+            "visit_recno": 23,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 179,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 58,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 180,
+            "livehelp_id": 1,
+            "visit_recno": 58,
+            "exit_recno": 91,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 181,
+            "livehelp_id": 1,
+            "visit_recno": 91,
+            "exit_recno": 33,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 182,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 91,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 183,
+            "livehelp_id": 1,
+            "visit_recno": 91,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 184,
+            "livehelp_id": 1,
+            "visit_recno": 13,
+            "exit_recno": 34,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 185,
+            "livehelp_id": 1,
+            "visit_recno": 34,
+            "exit_recno": 33,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 186,
+            "livehelp_id": 1,
+            "visit_recno": 33,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 187,
+            "livehelp_id": 1,
+            "visit_recno": 13,
+            "exit_recno": 32,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 188,
+            "livehelp_id": 1,
+            "visit_recno": 32,
+            "exit_recno": 85,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 189,
+            "livehelp_id": 1,
+            "visit_recno": 85,
+            "exit_recno": 31,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 190,
+            "livehelp_id": 1,
+            "visit_recno": 31,
+            "exit_recno": 20,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 191,
+            "livehelp_id": 1,
+            "visit_recno": 20,
+            "exit_recno": 23,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 192,
+            "livehelp_id": 1,
+            "visit_recno": 26,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 193,
+            "livehelp_id": 1,
+            "visit_recno": 3,
+            "exit_recno": 31,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 194,
+            "livehelp_id": 1,
+            "visit_recno": 20,
+            "exit_recno": 32,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 195,
+            "livehelp_id": 1,
+            "visit_recno": 20,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 196,
+            "livehelp_id": 1,
+            "visit_recno": 20,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 197,
+            "livehelp_id": 1,
+            "visit_recno": 13,
+            "exit_recno": 58,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 198,
+            "livehelp_id": 1,
+            "visit_recno": 17,
+            "exit_recno": 69,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 199,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 89,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 200,
+            "livehelp_id": 1,
+            "visit_recno": 89,
+            "exit_recno": 69,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 201,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 58,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 202,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 17,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 203,
+            "livehelp_id": 1,
+            "visit_recno": 17,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 204,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 205,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 89,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 206,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 54,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 207,
+            "livehelp_id": 1,
+            "visit_recno": 54,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 208,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 92,
+            "dateof": 202511,
+            "visits": 20
+        },
+        {
+            "id": 209,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 93,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 210,
+            "livehelp_id": 1,
+            "visit_recno": 93,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 211,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 92,
+            "dateof": 202511,
+            "visits": 65
+        },
+        {
+            "id": 212,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 89,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 213,
+            "livehelp_id": 1,
+            "visit_recno": 89,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 214,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 94,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 215,
+            "livehelp_id": 1,
+            "visit_recno": 94,
+            "exit_recno": 95,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 216,
+            "livehelp_id": 1,
+            "visit_recno": 95,
+            "exit_recno": 96,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 217,
+            "livehelp_id": 1,
+            "visit_recno": 96,
+            "exit_recno": 93,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 218,
+            "livehelp_id": 1,
+            "visit_recno": 93,
+            "exit_recno": 97,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 219,
+            "livehelp_id": 1,
+            "visit_recno": 97,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 220,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 98,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 221,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 99,
+            "dateof": 202511,
+            "visits": 7
+        },
+        {
+            "id": 222,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 100,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 223,
+            "livehelp_id": 1,
+            "visit_recno": 100,
+            "exit_recno": 101,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 224,
+            "livehelp_id": 1,
+            "visit_recno": 101,
+            "exit_recno": 102,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 225,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 103,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 226,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 104,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 227,
+            "livehelp_id": 1,
+            "visit_recno": 104,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 228,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 14
+        },
+        {
+            "id": 229,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 105,
+            "dateof": 202511,
+            "visits": 9
+        },
+        {
+            "id": 230,
+            "livehelp_id": 1,
+            "visit_recno": 105,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 74
+        },
+        {
+            "id": 231,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 232,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 105,
+            "dateof": 202511,
+            "visits": 69
+        },
+        {
+            "id": 233,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 9
+        },
+        {
+            "id": 234,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 45
+        },
+        {
+            "id": 235,
+            "livehelp_id": 1,
+            "visit_recno": 14,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 4
+        },
+        {
+            "id": 236,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 69,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 237,
+            "livehelp_id": 1,
+            "visit_recno": 69,
+            "exit_recno": 92,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 238,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 96,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 239,
+            "livehelp_id": 1,
+            "visit_recno": 96,
+            "exit_recno": 89,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 240,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 17,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 241,
+            "livehelp_id": 1,
+            "visit_recno": 65,
+            "exit_recno": 11,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 242,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 95,
+            "dateof": 202511,
+            "visits": 13
+        },
+        {
+            "id": 243,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 106,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 244,
+            "livehelp_id": 1,
+            "visit_recno": 106,
+            "exit_recno": 101,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 245,
+            "livehelp_id": 1,
+            "visit_recno": 101,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 246,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 107,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 247,
+            "livehelp_id": 1,
+            "visit_recno": 107,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 248,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 249,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 92,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 250,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 108,
+            "dateof": 202511,
+            "visits": 6
+        },
+        {
+            "id": 251,
+            "livehelp_id": 1,
+            "visit_recno": 108,
+            "exit_recno": 110,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 252,
+            "livehelp_id": 1,
+            "visit_recno": 110,
+            "exit_recno": 111,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 253,
+            "livehelp_id": 1,
+            "visit_recno": 110,
+            "exit_recno": 108,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 254,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 92,
+            "dateof": 202511,
+            "visits": 5
+        },
+        {
+            "id": 255,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 113,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 256,
+            "livehelp_id": 1,
+            "visit_recno": 113,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 257,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 107,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 258,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 71,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 259,
+            "livehelp_id": 1,
+            "visit_recno": 95,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 4
+        },
+        {
+            "id": 260,
+            "livehelp_id": 1,
+            "visit_recno": 14,
+            "exit_recno": 20,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 261,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 114,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 262,
+            "livehelp_id": 1,
+            "visit_recno": 114,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 263,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 115,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 264,
+            "livehelp_id": 1,
+            "visit_recno": 115,
+            "exit_recno": 113,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 265,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 53,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 266,
+            "livehelp_id": 1,
+            "visit_recno": 53,
+            "exit_recno": 20,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 267,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 32,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 268,
+            "livehelp_id": 1,
+            "visit_recno": 32,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 269,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 41,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 270,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 85,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 271,
+            "livehelp_id": 1,
+            "visit_recno": 41,
+            "exit_recno": 114,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 272,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 117,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 273,
+            "livehelp_id": 1,
+            "visit_recno": 117,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 274,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 119,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 275,
+            "livehelp_id": 1,
+            "visit_recno": 119,
+            "exit_recno": 54,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 276,
+            "livehelp_id": 1,
+            "visit_recno": 54,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 277,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 41,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 278,
+            "livehelp_id": 1,
+            "visit_recno": 41,
+            "exit_recno": 54,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 279,
+            "livehelp_id": 1,
+            "visit_recno": 54,
+            "exit_recno": 119,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 280,
+            "livehelp_id": 1,
+            "visit_recno": 119,
+            "exit_recno": 43,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 281,
+            "livehelp_id": 1,
+            "visit_recno": 43,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 282,
+            "livehelp_id": 1,
+            "visit_recno": 13,
+            "exit_recno": 92,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 283,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 122,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 284,
+            "livehelp_id": 1,
+            "visit_recno": 122,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 285,
+            "livehelp_id": 1,
+            "visit_recno": 117,
+            "exit_recno": 128,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 286,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 111,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 287,
+            "livehelp_id": 1,
+            "visit_recno": 111,
+            "exit_recno": 131,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 288,
+            "livehelp_id": 1,
+            "visit_recno": 131,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 289,
+            "livehelp_id": 1,
+            "visit_recno": 13,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 6
+        },
+        {
+            "id": 290,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 43,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 291,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 85,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 292,
+            "livehelp_id": 1,
+            "visit_recno": 85,
+            "exit_recno": 69,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 293,
+            "livehelp_id": 1,
+            "visit_recno": 69,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 294,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 14,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 295,
+            "livehelp_id": 1,
+            "visit_recno": 108,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 5
+        },
+        {
+            "id": 296,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 27,
+            "dateof": 202511,
+            "visits": 5
+        },
+        {
+            "id": 297,
+            "livehelp_id": 1,
+            "visit_recno": 27,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 298,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 58,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 299,
+            "livehelp_id": 1,
+            "visit_recno": 79,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 300,
+            "livehelp_id": 1,
+            "visit_recno": 27,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 301,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 7,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 302,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 105,
+            "dateof": 202511,
+            "visits": 5
+        },
+        {
+            "id": 303,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 96,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 304,
+            "livehelp_id": 1,
+            "visit_recno": 96,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 305,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 306,
+            "livehelp_id": 1,
+            "visit_recno": 13,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 307,
+            "livehelp_id": 1,
+            "visit_recno": 79,
+            "exit_recno": 27,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 308,
+            "livehelp_id": 1,
+            "visit_recno": 26,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 309,
+            "livehelp_id": 1,
+            "visit_recno": 13,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 310,
+            "livehelp_id": 1,
+            "visit_recno": 79,
+            "exit_recno": 32,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 311,
+            "livehelp_id": 1,
+            "visit_recno": 32,
+            "exit_recno": 27,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 312,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 122,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 313,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 89,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 314,
+            "livehelp_id": 1,
+            "visit_recno": 89,
+            "exit_recno": 92,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 315,
+            "livehelp_id": 1,
+            "visit_recno": 94,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 316,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 94,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 317,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 95,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 318,
+            "livehelp_id": 1,
+            "visit_recno": 95,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 319,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 105,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 320,
+            "livehelp_id": 1,
+            "visit_recno": 95,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 321,
+            "livehelp_id": 1,
+            "visit_recno": 89,
+            "exit_recno": 34,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 322,
+            "livehelp_id": 1,
+            "visit_recno": 34,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 323,
+            "livehelp_id": 1,
+            "visit_recno": 13,
+            "exit_recno": 33,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 324,
+            "livehelp_id": 1,
+            "visit_recno": 33,
+            "exit_recno": 31,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 325,
+            "livehelp_id": 1,
+            "visit_recno": 94,
+            "exit_recno": 99,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 326,
+            "livehelp_id": 1,
+            "visit_recno": 99,
+            "exit_recno": 69,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 327,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 34,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 328,
+            "livehelp_id": 1,
+            "visit_recno": 13,
+            "exit_recno": 31,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 329,
+            "livehelp_id": 1,
+            "visit_recno": 122,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 3
+        },
+        {
+            "id": 330,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 122,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 331,
+            "livehelp_id": 1,
+            "visit_recno": 14,
+            "exit_recno": 105,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 332,
+            "livehelp_id": 1,
+            "visit_recno": 105,
+            "exit_recno": 89,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 333,
+            "livehelp_id": 1,
+            "visit_recno": 105,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 334,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 148,
+            "dateof": 202511,
+            "visits": 7
+        },
+        {
+            "id": 335,
+            "livehelp_id": 1,
+            "visit_recno": 148,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 7
+        },
+        {
+            "id": 336,
+            "livehelp_id": 1,
+            "visit_recno": 69,
+            "exit_recno": 32,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 337,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 154,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 338,
+            "livehelp_id": 1,
+            "visit_recno": 154,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 339,
+            "livehelp_id": 1,
+            "visit_recno": 25,
+            "exit_recno": 95,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 340,
+            "livehelp_id": 1,
+            "visit_recno": 99,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 8
+        },
+        {
+            "id": 341,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 99,
+            "dateof": 202511,
+            "visits": 9
+        },
+        {
+            "id": 342,
+            "livehelp_id": 1,
+            "visit_recno": 99,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 343,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 99,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 344,
+            "livehelp_id": 1,
+            "visit_recno": 6,
+            "exit_recno": 99,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 345,
+            "livehelp_id": 1,
+            "visit_recno": 99,
+            "exit_recno": 92,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 346,
+            "livehelp_id": 1,
+            "visit_recno": 99,
+            "exit_recno": 164,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 347,
+            "livehelp_id": 1,
+            "visit_recno": 164,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 348,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 166,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 349,
+            "livehelp_id": 1,
+            "visit_recno": 14,
+            "exit_recno": 58,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 350,
+            "livehelp_id": 1,
+            "visit_recno": 79,
+            "exit_recno": 14,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 351,
+            "livehelp_id": 1,
+            "visit_recno": 58,
+            "exit_recno": 13,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 352,
+            "livehelp_id": 1,
+            "visit_recno": 105,
+            "exit_recno": 167,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 353,
+            "livehelp_id": 1,
+            "visit_recno": 167,
+            "exit_recno": 168,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 354,
+            "livehelp_id": 1,
+            "visit_recno": 168,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 355,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 168,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 356,
+            "livehelp_id": 1,
+            "visit_recno": 105,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 357,
+            "livehelp_id": 1,
+            "visit_recno": 32,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 358,
+            "livehelp_id": 1,
+            "visit_recno": 99,
+            "exit_recno": 169,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 359,
+            "livehelp_id": 1,
+            "visit_recno": 99,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 360,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 86,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 361,
+            "livehelp_id": 1,
+            "visit_recno": 86,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 362,
+            "livehelp_id": 1,
+            "visit_recno": 92,
+            "exit_recno": 20,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 363,
+            "livehelp_id": 1,
+            "visit_recno": 33,
+            "exit_recno": 32,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 364,
+            "livehelp_id": 1,
+            "visit_recno": 23,
+            "exit_recno": 0,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 365,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 25,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 366,
+            "livehelp_id": 1,
+            "visit_recno": 25,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 367,
+            "livehelp_id": 1,
+            "visit_recno": 41,
+            "exit_recno": 92,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 368,
+            "livehelp_id": 1,
+            "visit_recno": 1,
+            "exit_recno": 31,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 369,
+            "livehelp_id": 1,
+            "visit_recno": 26,
+            "exit_recno": 6,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 370,
+            "livehelp_id": 1,
+            "visit_recno": 14,
+            "exit_recno": 1,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 371,
+            "livehelp_id": 1,
+            "visit_recno": 14,
+            "exit_recno": 31,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 372,
+            "livehelp_id": 1,
+            "visit_recno": 31,
+            "exit_recno": 4,
+            "dateof": 202511,
+            "visits": 2
+        },
+        {
+            "id": 373,
+            "livehelp_id": 1,
+            "visit_recno": 4,
+            "exit_recno": 32,
+            "dateof": 202511,
+            "visits": 1
+        },
+        {
+            "id": 374,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 172,
+            "dateof": 202512,
+            "visits": 10
+        },
+        {
+            "id": 375,
+            "livehelp_id": 1,
+            "visit_recno": 172,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 9
+        },
+        {
+            "id": 376,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 174,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 377,
+            "livehelp_id": 1,
+            "visit_recno": 174,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 6
+        },
+        {
+            "id": 378,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 309
+        },
+        {
+            "id": 379,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 174,
+            "dateof": 202512,
+            "visits": 7
+        },
+        {
+            "id": 380,
+            "livehelp_id": 1,
+            "visit_recno": 174,
+            "exit_recno": 177,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 381,
+            "livehelp_id": 1,
+            "visit_recno": 177,
+            "exit_recno": 172,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 382,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 37
+        },
+        {
+            "id": 383,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 41
+        },
+        {
+            "id": 384,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 183,
+            "dateof": 202512,
+            "visits": 190
+        },
+        {
+            "id": 385,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 174,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 386,
+            "livehelp_id": 1,
+            "visit_recno": 172,
+            "exit_recno": 186,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 387,
+            "livehelp_id": 1,
+            "visit_recno": 172,
+            "exit_recno": 187,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 388,
+            "livehelp_id": 1,
+            "visit_recno": 187,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 389,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 188,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 390,
+            "livehelp_id": 1,
+            "visit_recno": 188,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 8
+        },
+        {
+            "id": 391,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 169
+        },
+        {
+            "id": 392,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 232
+        },
+        {
+            "id": 393,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 189,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 394,
+            "livehelp_id": 1,
+            "visit_recno": 189,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 7
+        },
+        {
+            "id": 395,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 190,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 396,
+            "livehelp_id": 1,
+            "visit_recno": 190,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 397,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 191,
+            "dateof": 202512,
+            "visits": 42
+        },
+        {
+            "id": 398,
+            "livehelp_id": 1,
+            "visit_recno": 191,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 41
+        },
+        {
+            "id": 399,
+            "livehelp_id": 1,
+            "visit_recno": 186,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 400,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 186,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 401,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 192,
+            "dateof": 202512,
+            "visits": 7
+        },
+        {
+            "id": 402,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 192,
+            "dateof": 202512,
+            "visits": 77
+        },
+        {
+            "id": 403,
+            "livehelp_id": 1,
+            "visit_recno": 192,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 87
+        },
+        {
+            "id": 404,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 7
+        },
+        {
+            "id": 405,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 189,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 406,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 195,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 407,
+            "livehelp_id": 1,
+            "visit_recno": 192,
+            "exit_recno": 197,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 408,
+            "livehelp_id": 1,
+            "visit_recno": 197,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 409,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 199,
+            "dateof": 202512,
+            "visits": 99
+        },
+        {
+            "id": 410,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 98
+        },
+        {
+            "id": 411,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 201,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 412,
+            "livehelp_id": 1,
+            "visit_recno": 201,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 413,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 203,
+            "dateof": 202512,
+            "visits": 16
+        },
+        {
+            "id": 414,
+            "livehelp_id": 1,
+            "visit_recno": 203,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 18
+        },
+        {
+            "id": 415,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 205,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 416,
+            "livehelp_id": 1,
+            "visit_recno": 205,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 417,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 206,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 418,
+            "livehelp_id": 1,
+            "visit_recno": 206,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 419,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 189,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 420,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 201,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 421,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 422,
+            "livehelp_id": 1,
+            "visit_recno": 209,
+            "exit_recno": 192,
+            "dateof": 202512,
+            "visits": 30
+        },
+        {
+            "id": 423,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 195,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 424,
+            "livehelp_id": 1,
+            "visit_recno": 195,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 425,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 199,
+            "dateof": 202512,
+            "visits": 9
+        },
+        {
+            "id": 426,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 213,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 427,
+            "livehelp_id": 1,
+            "visit_recno": 213,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 428,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 218,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 429,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 183,
+            "dateof": 202512,
+            "visits": 17
+        },
+        {
+            "id": 430,
+            "livehelp_id": 1,
+            "visit_recno": 189,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 431,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 203,
+            "dateof": 202512,
+            "visits": 8
+        },
+        {
+            "id": 432,
+            "livehelp_id": 1,
+            "visit_recno": 203,
+            "exit_recno": 201,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 433,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 219,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 434,
+            "livehelp_id": 1,
+            "visit_recno": 219,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 435,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 183,
+            "dateof": 202512,
+            "visits": 9
+        },
+        {
+            "id": 436,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 45
+        },
+        {
+            "id": 437,
+            "livehelp_id": 1,
+            "visit_recno": 192,
+            "exit_recno": 186,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 438,
+            "livehelp_id": 1,
+            "visit_recno": 186,
+            "exit_recno": 223,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 439,
+            "livehelp_id": 1,
+            "visit_recno": 223,
+            "exit_recno": 225,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 440,
+            "livehelp_id": 1,
+            "visit_recno": 225,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 441,
+            "livehelp_id": 1,
+            "visit_recno": 225,
+            "exit_recno": 189,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 442,
+            "livehelp_id": 1,
+            "visit_recno": 192,
+            "exit_recno": 188,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 443,
+            "livehelp_id": 1,
+            "visit_recno": 188,
+            "exit_recno": 229,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 444,
+            "livehelp_id": 1,
+            "visit_recno": 229,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 445,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 213,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 446,
+            "livehelp_id": 1,
+            "visit_recno": 213,
+            "exit_recno": 231,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 447,
+            "livehelp_id": 1,
+            "visit_recno": 231,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 448,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 449,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 450,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 199,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 451,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 91
+        },
+        {
+            "id": 452,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 83
+        },
+        {
+            "id": 453,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 11
+        },
+        {
+            "id": 454,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 8
+        },
+        {
+            "id": 455,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 189,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 456,
+            "livehelp_id": 1,
+            "visit_recno": 192,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 457,
+            "livehelp_id": 1,
+            "visit_recno": 192,
+            "exit_recno": 247,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 458,
+            "livehelp_id": 1,
+            "visit_recno": 247,
+            "exit_recno": 248,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 459,
+            "livehelp_id": 1,
+            "visit_recno": 248,
+            "exit_recno": 249,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 460,
+            "livehelp_id": 1,
+            "visit_recno": 249,
+            "exit_recno": 188,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 461,
+            "livehelp_id": 1,
+            "visit_recno": 188,
+            "exit_recno": 250,
+            "dateof": 202512,
+            "visits": 5
+        },
+        {
+            "id": 462,
+            "livehelp_id": 1,
+            "visit_recno": 250,
+            "exit_recno": 253,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 463,
+            "livehelp_id": 1,
+            "visit_recno": 253,
+            "exit_recno": 250,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 464,
+            "livehelp_id": 1,
+            "visit_recno": 189,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 465,
+            "livehelp_id": 1,
+            "visit_recno": 189,
+            "exit_recno": 201,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 466,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 258,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 467,
+            "livehelp_id": 1,
+            "visit_recno": 258,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 468,
+            "livehelp_id": 1,
+            "visit_recno": 209,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 469,
+            "livehelp_id": 1,
+            "visit_recno": 209,
+            "exit_recno": 199,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 470,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 471,
+            "livehelp_id": 1,
+            "visit_recno": 189,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 472,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 203,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 473,
+            "livehelp_id": 1,
+            "visit_recno": 189,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 474,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 261,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 475,
+            "livehelp_id": 1,
+            "visit_recno": 261,
+            "exit_recno": 248,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 476,
+            "livehelp_id": 1,
+            "visit_recno": 248,
+            "exit_recno": 247,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 477,
+            "livehelp_id": 1,
+            "visit_recno": 247,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 478,
+            "livehelp_id": 1,
+            "visit_recno": 209,
+            "exit_recno": 258,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 479,
+            "livehelp_id": 1,
+            "visit_recno": 247,
+            "exit_recno": 189,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 480,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 183,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 481,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 482,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 11
+        },
+        {
+            "id": 483,
+            "livehelp_id": 1,
+            "visit_recno": 265,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 7
+        },
+        {
+            "id": 484,
+            "livehelp_id": 1,
+            "visit_recno": 213,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 485,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 201,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 486,
+            "livehelp_id": 1,
+            "visit_recno": 201,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 487,
+            "livehelp_id": 1,
+            "visit_recno": 265,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 19
+        },
+        {
+            "id": 488,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 266,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 489,
+            "livehelp_id": 1,
+            "visit_recno": 266,
+            "exit_recno": 267,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 490,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 269,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 491,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 492,
+            "livehelp_id": 1,
+            "visit_recno": 269,
+            "exit_recno": 271,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 493,
+            "livehelp_id": 1,
+            "visit_recno": 271,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 494,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 276,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 495,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 271,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 496,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 8
+        },
+        {
+            "id": 497,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 278,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 498,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 201,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 499,
+            "livehelp_id": 1,
+            "visit_recno": 201,
+            "exit_recno": 183,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 500,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 266,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 501,
+            "livehelp_id": 1,
+            "visit_recno": 266,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 502,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 14
+        },
+        {
+            "id": 503,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 266,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 504,
+            "livehelp_id": 1,
+            "visit_recno": 266,
+            "exit_recno": 283,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 505,
+            "livehelp_id": 1,
+            "visit_recno": 283,
+            "exit_recno": 199,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 506,
+            "livehelp_id": 1,
+            "visit_recno": 266,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 507,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 186,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 508,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 285,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 509,
+            "livehelp_id": 1,
+            "visit_recno": 285,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 510,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 286,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 511,
+            "livehelp_id": 1,
+            "visit_recno": 286,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 512,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 188,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 513,
+            "livehelp_id": 1,
+            "visit_recno": 188,
+            "exit_recno": 195,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 514,
+            "livehelp_id": 1,
+            "visit_recno": 195,
+            "exit_recno": 266,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 515,
+            "livehelp_id": 1,
+            "visit_recno": 266,
+            "exit_recno": 199,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 516,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 517,
+            "livehelp_id": 1,
+            "visit_recno": 174,
+            "exit_recno": 287,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 518,
+            "livehelp_id": 1,
+            "visit_recno": 265,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 519,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 195,
+            "dateof": 202512,
+            "visits": 14
+        },
+        {
+            "id": 520,
+            "livehelp_id": 1,
+            "visit_recno": 195,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 15
+        },
+        {
+            "id": 521,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 21
+        },
+        {
+            "id": 522,
+            "livehelp_id": 1,
+            "visit_recno": 265,
+            "exit_recno": 288,
+            "dateof": 202512,
+            "visits": 5
+        },
+        {
+            "id": 523,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 289,
+            "dateof": 202512,
+            "visits": 5
+        },
+        {
+            "id": 524,
+            "livehelp_id": 1,
+            "visit_recno": 289,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 6
+        },
+        {
+            "id": 525,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 192,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 526,
+            "livehelp_id": 1,
+            "visit_recno": 209,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 43
+        },
+        {
+            "id": 527,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 291,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 528,
+            "livehelp_id": 1,
+            "visit_recno": 291,
+            "exit_recno": 293,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 529,
+            "livehelp_id": 1,
+            "visit_recno": 293,
+            "exit_recno": 291,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 530,
+            "livehelp_id": 1,
+            "visit_recno": 291,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 531,
+            "livehelp_id": 1,
+            "visit_recno": 265,
+            "exit_recno": 295,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 532,
+            "livehelp_id": 1,
+            "visit_recno": 295,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 533,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 297,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 534,
+            "livehelp_id": 1,
+            "visit_recno": 297,
+            "exit_recno": 203,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 535,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 297,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 536,
+            "livehelp_id": 1,
+            "visit_recno": 297,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 537,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 298,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 538,
+            "livehelp_id": 1,
+            "visit_recno": 298,
+            "exit_recno": 300,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 539,
+            "livehelp_id": 1,
+            "visit_recno": 300,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 7
+        },
+        {
+            "id": 540,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 301,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 541,
+            "livehelp_id": 1,
+            "visit_recno": 301,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 542,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 302,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 543,
+            "livehelp_id": 1,
+            "visit_recno": 302,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 544,
+            "livehelp_id": 1,
+            "visit_recno": 302,
+            "exit_recno": 301,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 545,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 290,
+            "dateof": 202512,
+            "visits": 17
+        },
+        {
+            "id": 546,
+            "livehelp_id": 1,
+            "visit_recno": 290,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 17
+        },
+        {
+            "id": 547,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 303,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 548,
+            "livehelp_id": 1,
+            "visit_recno": 303,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 549,
+            "livehelp_id": 1,
+            "visit_recno": 192,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 550,
+            "livehelp_id": 1,
+            "visit_recno": 188,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 551,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 307,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 552,
+            "livehelp_id": 1,
+            "visit_recno": 307,
+            "exit_recno": 247,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 553,
+            "livehelp_id": 1,
+            "visit_recno": 249,
+            "exit_recno": 250,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 554,
+            "livehelp_id": 1,
+            "visit_recno": 265,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 555,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 310,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 556,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 300,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 557,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 188,
+            "dateof": 202512,
+            "visits": 8
+        },
+        {
+            "id": 558,
+            "livehelp_id": 1,
+            "visit_recno": 188,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 559,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 188,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 560,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 311,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 561,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 267,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 562,
+            "livehelp_id": 1,
+            "visit_recno": 267,
+            "exit_recno": 314,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 563,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 315,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 564,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 565,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 300,
+            "dateof": 202512,
+            "visits": 6
+        },
+        {
+            "id": 566,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 316,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 567,
+            "livehelp_id": 1,
+            "visit_recno": 316,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 568,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 311,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 569,
+            "livehelp_id": 1,
+            "visit_recno": 311,
+            "exit_recno": 199,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 570,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 317,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 571,
+            "livehelp_id": 1,
+            "visit_recno": 287,
+            "exit_recno": 188,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 572,
+            "livehelp_id": 1,
+            "visit_recno": 188,
+            "exit_recno": 253,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 573,
+            "livehelp_id": 1,
+            "visit_recno": 253,
+            "exit_recno": 319,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 574,
+            "livehelp_id": 1,
+            "visit_recno": 319,
+            "exit_recno": 250,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 575,
+            "livehelp_id": 1,
+            "visit_recno": 174,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 576,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 577,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 199,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 578,
+            "livehelp_id": 1,
+            "visit_recno": 300,
+            "exit_recno": 188,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 579,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 322,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 580,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 323,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 581,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 582,
+            "livehelp_id": 1,
+            "visit_recno": 265,
+            "exit_recno": 199,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 583,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 307,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 584,
+            "livehelp_id": 1,
+            "visit_recno": 307,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 585,
+            "livehelp_id": 1,
+            "visit_recno": 209,
+            "exit_recno": 188,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 586,
+            "livehelp_id": 1,
+            "visit_recno": 253,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 587,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 249,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 588,
+            "livehelp_id": 1,
+            "visit_recno": 249,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 589,
+            "livehelp_id": 1,
+            "visit_recno": 278,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 590,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 326,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 591,
+            "livehelp_id": 1,
+            "visit_recno": 326,
+            "exit_recno": 327,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 592,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 328,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 593,
+            "livehelp_id": 1,
+            "visit_recno": 328,
+            "exit_recno": 329,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 594,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 330,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 595,
+            "livehelp_id": 1,
+            "visit_recno": 330,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 596,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 331,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 597,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 332,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 598,
+            "livehelp_id": 1,
+            "visit_recno": 332,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 599,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 600,
+            "livehelp_id": 1,
+            "visit_recno": 265,
+            "exit_recno": 333,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 601,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 333,
+            "dateof": 202512,
+            "visits": 23
+        },
+        {
+            "id": 602,
+            "livehelp_id": 1,
+            "visit_recno": 333,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 25
+        },
+        {
+            "id": 603,
+            "livehelp_id": 1,
+            "visit_recno": 265,
+            "exit_recno": 183,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 604,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 186,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 605,
+            "livehelp_id": 1,
+            "visit_recno": 186,
+            "exit_recno": 334,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 606,
+            "livehelp_id": 1,
+            "visit_recno": 334,
+            "exit_recno": 225,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 607,
+            "livehelp_id": 1,
+            "visit_recno": 225,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 608,
+            "livehelp_id": 1,
+            "visit_recno": 225,
+            "exit_recno": 199,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 609,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 5
+        },
+        {
+            "id": 610,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 247,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 611,
+            "livehelp_id": 1,
+            "visit_recno": 247,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 612,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 253,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 613,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 337,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 614,
+            "livehelp_id": 1,
+            "visit_recno": 337,
+            "exit_recno": 248,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 615,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 333,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 616,
+            "livehelp_id": 1,
+            "visit_recno": 333,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 617,
+            "livehelp_id": 1,
+            "visit_recno": 199,
+            "exit_recno": 338,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 618,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 248,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 619,
+            "livehelp_id": 1,
+            "visit_recno": 248,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 620,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 331,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 621,
+            "livehelp_id": 1,
+            "visit_recno": 331,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 622,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 342,
+            "dateof": 202512,
+            "visits": 11
+        },
+        {
+            "id": 623,
+            "livehelp_id": 1,
+            "visit_recno": 342,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 10
+        },
+        {
+            "id": 624,
+            "livehelp_id": 1,
+            "visit_recno": 298,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 625,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 345,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 626,
+            "livehelp_id": 1,
+            "visit_recno": 345,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 627,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 287,
+            "dateof": 202512,
+            "visits": 10
+        },
+        {
+            "id": 628,
+            "livehelp_id": 1,
+            "visit_recno": 287,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 10
+        },
+        {
+            "id": 629,
+            "livehelp_id": 1,
+            "visit_recno": 297,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 630,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 298,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 631,
+            "livehelp_id": 1,
+            "visit_recno": 298,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 632,
+            "livehelp_id": 1,
+            "visit_recno": 298,
+            "exit_recno": 195,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 633,
+            "livehelp_id": 1,
+            "visit_recno": 209,
+            "exit_recno": 248,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 634,
+            "livehelp_id": 1,
+            "visit_recno": 195,
+            "exit_recno": 347,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 635,
+            "livehelp_id": 1,
+            "visit_recno": 195,
+            "exit_recno": 186,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 636,
+            "livehelp_id": 1,
+            "visit_recno": 209,
+            "exit_recno": 307,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 637,
+            "livehelp_id": 1,
+            "visit_recno": 186,
+            "exit_recno": 250,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 638,
+            "livehelp_id": 1,
+            "visit_recno": 250,
+            "exit_recno": 330,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 639,
+            "livehelp_id": 1,
+            "visit_recno": 330,
+            "exit_recno": 349,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 640,
+            "livehelp_id": 1,
+            "visit_recno": 349,
+            "exit_recno": 300,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 641,
+            "livehelp_id": 1,
+            "visit_recno": 186,
+            "exit_recno": 350,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 642,
+            "livehelp_id": 1,
+            "visit_recno": 350,
+            "exit_recno": 351,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 643,
+            "livehelp_id": 1,
+            "visit_recno": 351,
+            "exit_recno": 319,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 644,
+            "livehelp_id": 1,
+            "visit_recno": 319,
+            "exit_recno": 352,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 645,
+            "livehelp_id": 1,
+            "visit_recno": 352,
+            "exit_recno": 353,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 646,
+            "livehelp_id": 1,
+            "visit_recno": 353,
+            "exit_recno": 354,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 647,
+            "livehelp_id": 1,
+            "visit_recno": 354,
+            "exit_recno": 186,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 648,
+            "livehelp_id": 1,
+            "visit_recno": 352,
+            "exit_recno": 355,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 649,
+            "livehelp_id": 1,
+            "visit_recno": 355,
+            "exit_recno": 356,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 650,
+            "livehelp_id": 1,
+            "visit_recno": 356,
+            "exit_recno": 357,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 651,
+            "livehelp_id": 1,
+            "visit_recno": 352,
+            "exit_recno": 358,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 652,
+            "livehelp_id": 1,
+            "visit_recno": 358,
+            "exit_recno": 359,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 653,
+            "livehelp_id": 1,
+            "visit_recno": 359,
+            "exit_recno": 289,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 654,
+            "livehelp_id": 1,
+            "visit_recno": 289,
+            "exit_recno": 360,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 655,
+            "livehelp_id": 1,
+            "visit_recno": 265,
+            "exit_recno": 359,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 656,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 267,
+            "dateof": 202512,
+            "visits": 8
+        },
+        {
+            "id": 657,
+            "livehelp_id": 1,
+            "visit_recno": 267,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 8
+        },
+        {
+            "id": 658,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 361,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 659,
+            "livehelp_id": 1,
+            "visit_recno": 361,
+            "exit_recno": 297,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 660,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 362,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 661,
+            "livehelp_id": 1,
+            "visit_recno": 362,
+            "exit_recno": 300,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 662,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 253,
+            "dateof": 202512,
+            "visits": 4
+        },
+        {
+            "id": 663,
+            "livehelp_id": 1,
+            "visit_recno": 253,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 5
+        },
+        {
+            "id": 664,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 307,
+            "dateof": 202512,
+            "visits": 5
+        },
+        {
+            "id": 665,
+            "livehelp_id": 1,
+            "visit_recno": 307,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 5
+        },
+        {
+            "id": 666,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 247,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 667,
+            "livehelp_id": 1,
+            "visit_recno": 247,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 668,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 247,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 669,
+            "livehelp_id": 1,
+            "visit_recno": 248,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 670,
+            "livehelp_id": 1,
+            "visit_recno": 188,
+            "exit_recno": 248,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 671,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 248,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 672,
+            "livehelp_id": 1,
+            "visit_recno": 192,
+            "exit_recno": 174,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 673,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 363,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 674,
+            "livehelp_id": 1,
+            "visit_recno": 363,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 675,
+            "livehelp_id": 1,
+            "visit_recno": 192,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 676,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 358,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 677,
+            "livehelp_id": 1,
+            "visit_recno": 358,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 678,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 679,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 349,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 680,
+            "livehelp_id": 1,
+            "visit_recno": 349,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 681,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 353,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 682,
+            "livehelp_id": 1,
+            "visit_recno": 353,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 683,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 352,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 684,
+            "livehelp_id": 1,
+            "visit_recno": 352,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 685,
+            "livehelp_id": 1,
+            "visit_recno": 352,
+            "exit_recno": 333,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 686,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 353,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 687,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 250,
+            "dateof": 202512,
+            "visits": 5
+        },
+        {
+            "id": 688,
+            "livehelp_id": 1,
+            "visit_recno": 250,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 5
+        },
+        {
+            "id": 689,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 364,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 690,
+            "livehelp_id": 1,
+            "visit_recno": 364,
+            "exit_recno": 289,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 691,
+            "livehelp_id": 1,
+            "visit_recno": 289,
+            "exit_recno": 287,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 692,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 364,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 693,
+            "livehelp_id": 1,
+            "visit_recno": 364,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 694,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 367,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 695,
+            "livehelp_id": 1,
+            "visit_recno": 367,
+            "exit_recno": 289,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 696,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 368,
+            "dateof": 202512,
+            "visits": 13
+        },
+        {
+            "id": 697,
+            "livehelp_id": 1,
+            "visit_recno": 368,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 11
+        },
+        {
+            "id": 698,
+            "livehelp_id": 1,
+            "visit_recno": 368,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 699,
+            "livehelp_id": 1,
+            "visit_recno": 368,
+            "exit_recno": 364,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 700,
+            "livehelp_id": 1,
+            "visit_recno": 364,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 701,
+            "livehelp_id": 1,
+            "visit_recno": 179,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 702,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 203,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 703,
+            "livehelp_id": 1,
+            "visit_recno": 364,
+            "exit_recno": 333,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 704,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 373,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 705,
+            "livehelp_id": 1,
+            "visit_recno": 373,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 706,
+            "livehelp_id": 1,
+            "visit_recno": 191,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 707,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 191,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 708,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 375,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 709,
+            "livehelp_id": 1,
+            "visit_recno": 375,
+            "exit_recno": 376,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 710,
+            "livehelp_id": 1,
+            "visit_recno": 376,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 711,
+            "livehelp_id": 1,
+            "visit_recno": 250,
+            "exit_recno": 186,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 712,
+            "livehelp_id": 1,
+            "visit_recno": 334,
+            "exit_recno": 253,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 713,
+            "livehelp_id": 1,
+            "visit_recno": 250,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 714,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 250,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 715,
+            "livehelp_id": 1,
+            "visit_recno": 250,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 716,
+            "livehelp_id": 1,
+            "visit_recno": 367,
+            "exit_recno": 378,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 717,
+            "livehelp_id": 1,
+            "visit_recno": 367,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 718,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 367,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 719,
+            "livehelp_id": 1,
+            "visit_recno": 367,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 720,
+            "livehelp_id": 1,
+            "visit_recno": 367,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 721,
+            "livehelp_id": 1,
+            "visit_recno": 288,
+            "exit_recno": 253,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 722,
+            "livehelp_id": 1,
+            "visit_recno": 253,
+            "exit_recno": 188,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 723,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 385,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 724,
+            "livehelp_id": 1,
+            "visit_recno": 385,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 725,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 342,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 726,
+            "livehelp_id": 1,
+            "visit_recno": 342,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 727,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 354,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 728,
+            "livehelp_id": 1,
+            "visit_recno": 354,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 729,
+            "livehelp_id": 1,
+            "visit_recno": 342,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 730,
+            "livehelp_id": 1,
+            "visit_recno": 188,
+            "exit_recno": 249,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 731,
+            "livehelp_id": 1,
+            "visit_recno": 367,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 732,
+            "livehelp_id": 1,
+            "visit_recno": 253,
+            "exit_recno": 373,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 733,
+            "livehelp_id": 1,
+            "visit_recno": 174,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 734,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 287,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 735,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 394,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 736,
+            "livehelp_id": 1,
+            "visit_recno": 394,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 737,
+            "livehelp_id": 1,
+            "visit_recno": 297,
+            "exit_recno": 250,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 738,
+            "livehelp_id": 1,
+            "visit_recno": 203,
+            "exit_recno": 232,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 739,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 396,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 740,
+            "livehelp_id": 1,
+            "visit_recno": 396,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 741,
+            "livehelp_id": 1,
+            "visit_recno": 248,
+            "exit_recno": 265,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 742,
+            "livehelp_id": 1,
+            "visit_recno": 265,
+            "exit_recno": 247,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 743,
+            "livehelp_id": 1,
+            "visit_recno": 209,
+            "exit_recno": 253,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 744,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 3
+        },
+        {
+            "id": 745,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 398,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 746,
+            "livehelp_id": 1,
+            "visit_recno": 398,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 747,
+            "livehelp_id": 1,
+            "visit_recno": 232,
+            "exit_recno": 399,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 748,
+            "livehelp_id": 1,
+            "visit_recno": 399,
+            "exit_recno": 373,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 749,
+            "livehelp_id": 1,
+            "visit_recno": 373,
+            "exit_recno": 248,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 750,
+            "livehelp_id": 1,
+            "visit_recno": 399,
+            "exit_recno": 250,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 751,
+            "livehelp_id": 1,
+            "visit_recno": 250,
+            "exit_recno": 209,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 752,
+            "livehelp_id": 1,
+            "visit_recno": 399,
+            "exit_recno": 203,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 753,
+            "livehelp_id": 1,
+            "visit_recno": 399,
+            "exit_recno": 400,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 754,
+            "livehelp_id": 1,
+            "visit_recno": 400,
+            "exit_recno": 354,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 755,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 401,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 756,
+            "livehelp_id": 1,
+            "visit_recno": 401,
+            "exit_recno": 188,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 757,
+            "livehelp_id": 1,
+            "visit_recno": 401,
+            "exit_recno": 342,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 758,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 399,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 759,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 402,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 760,
+            "livehelp_id": 1,
+            "visit_recno": 402,
+            "exit_recno": 179,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 761,
+            "livehelp_id": 1,
+            "visit_recno": 203,
+            "exit_recno": 401,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 762,
+            "livehelp_id": 1,
+            "visit_recno": 401,
+            "exit_recno": 332,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 763,
+            "livehelp_id": 1,
+            "visit_recno": 297,
+            "exit_recno": 403,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 764,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 401,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 765,
+            "livehelp_id": 1,
+            "visit_recno": 401,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 766,
+            "livehelp_id": 1,
+            "visit_recno": 401,
+            "exit_recno": 203,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 767,
+            "livehelp_id": 1,
+            "visit_recno": 332,
+            "exit_recno": 354,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 768,
+            "livehelp_id": 1,
+            "visit_recno": 354,
+            "exit_recno": 403,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 769,
+            "livehelp_id": 1,
+            "visit_recno": 403,
+            "exit_recno": 401,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 770,
+            "livehelp_id": 1,
+            "visit_recno": 401,
+            "exit_recno": 183,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 771,
+            "livehelp_id": 1,
+            "visit_recno": 203,
+            "exit_recno": 250,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 772,
+            "livehelp_id": 1,
+            "visit_recno": 297,
+            "exit_recno": 332,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 773,
+            "livehelp_id": 1,
+            "visit_recno": 332,
+            "exit_recno": 401,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 774,
+            "livehelp_id": 1,
+            "visit_recno": 297,
+            "exit_recno": 171,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 775,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 405,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 776,
+            "livehelp_id": 1,
+            "visit_recno": 405,
+            "exit_recno": 401,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 777,
+            "livehelp_id": 1,
+            "visit_recno": 171,
+            "exit_recno": 406,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 778,
+            "livehelp_id": 1,
+            "visit_recno": 183,
+            "exit_recno": 373,
+            "dateof": 202512,
+            "visits": 2
+        },
+        {
+            "id": 779,
+            "livehelp_id": 1,
+            "visit_recno": 298,
+            "exit_recno": 297,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 780,
+            "livehelp_id": 1,
+            "visit_recno": 300,
+            "exit_recno": 253,
+            "dateof": 202512,
+            "visits": 1
+        },
+        {
+            "id": 781,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 408,
+            "dateof": 202512,
+            "visits": 5
+        },
+        {
+            "id": 782,
+            "livehelp_id": 1,
+            "visit_recno": 408,
+            "exit_recno": 0,
+            "dateof": 202512,
+            "visits": 5
+        },
+        {
+            "id": 783,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 409,
+            "dateof": 202601,
+            "visits": 119
+        },
+        {
+            "id": 784,
+            "livehelp_id": 1,
+            "visit_recno": 409,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 97
+        },
+        {
+            "id": 785,
+            "livehelp_id": 1,
+            "visit_recno": 409,
+            "exit_recno": 410,
+            "dateof": 202601,
+            "visits": 16
+        },
+        {
+            "id": 786,
+            "livehelp_id": 1,
+            "visit_recno": 410,
+            "exit_recno": 411,
+            "dateof": 202601,
+            "visits": 26
+        },
+        {
+            "id": 787,
+            "livehelp_id": 1,
+            "visit_recno": 411,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 17
+        },
+        {
+            "id": 788,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 414,
+            "dateof": 202601,
+            "visits": 4
+        },
+        {
+            "id": 789,
+            "livehelp_id": 1,
+            "visit_recno": 414,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 790,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 415,
+            "dateof": 202601,
+            "visits": 3
+        },
+        {
+            "id": 791,
+            "livehelp_id": 1,
+            "visit_recno": 415,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 3
+        },
+        {
+            "id": 792,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 413,
+            "dateof": 202601,
+            "visits": 65
+        },
+        {
+            "id": 793,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 58
+        },
+        {
+            "id": 794,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 416,
+            "dateof": 202601,
+            "visits": 3
+        },
+        {
+            "id": 795,
+            "livehelp_id": 1,
+            "visit_recno": 416,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 4
+        },
+        {
+            "id": 796,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 411,
+            "dateof": 202601,
+            "visits": 9
+        },
+        {
+            "id": 797,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 418,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 798,
+            "livehelp_id": 1,
+            "visit_recno": 418,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 799,
+            "livehelp_id": 1,
+            "visit_recno": 409,
+            "exit_recno": 413,
+            "dateof": 202601,
+            "visits": 5
+        },
+        {
+            "id": 800,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 419,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 801,
+            "livehelp_id": 1,
+            "visit_recno": 419,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 6
+        },
+        {
+            "id": 802,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 421,
+            "dateof": 202601,
+            "visits": 3
+        },
+        {
+            "id": 803,
+            "livehelp_id": 1,
+            "visit_recno": 421,
+            "exit_recno": 416,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 804,
+            "livehelp_id": 1,
+            "visit_recno": 421,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 805,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 422,
+            "dateof": 202601,
+            "visits": 16
+        },
+        {
+            "id": 806,
+            "livehelp_id": 1,
+            "visit_recno": 422,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 16
+        },
+        {
+            "id": 807,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 424,
+            "dateof": 202601,
+            "visits": 3
+        },
+        {
+            "id": 808,
+            "livehelp_id": 1,
+            "visit_recno": 424,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 3
+        },
+        {
+            "id": 809,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 425,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 810,
+            "livehelp_id": 1,
+            "visit_recno": 425,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 811,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 419,
+            "dateof": 202601,
+            "visits": 4
+        },
+        {
+            "id": 812,
+            "livehelp_id": 1,
+            "visit_recno": 419,
+            "exit_recno": 426,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 813,
+            "livehelp_id": 1,
+            "visit_recno": 426,
+            "exit_recno": 427,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 814,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 426,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 815,
+            "livehelp_id": 1,
+            "visit_recno": 426,
+            "exit_recno": 429,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 816,
+            "livehelp_id": 1,
+            "visit_recno": 429,
+            "exit_recno": 431,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 817,
+            "livehelp_id": 1,
+            "visit_recno": 431,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 818,
+            "livehelp_id": 1,
+            "visit_recno": 409,
+            "exit_recno": 424,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 819,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 432,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 820,
+            "livehelp_id": 1,
+            "visit_recno": 432,
+            "exit_recno": 409,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 821,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 433,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 822,
+            "livehelp_id": 1,
+            "visit_recno": 433,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 823,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 434,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 824,
+            "livehelp_id": 1,
+            "visit_recno": 434,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 825,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 435,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 826,
+            "livehelp_id": 1,
+            "visit_recno": 435,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 827,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 436,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 828,
+            "livehelp_id": 1,
+            "visit_recno": 436,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 829,
+            "livehelp_id": 1,
+            "visit_recno": 433,
+            "exit_recno": 437,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 830,
+            "livehelp_id": 1,
+            "visit_recno": 437,
+            "exit_recno": 438,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 831,
+            "livehelp_id": 1,
+            "visit_recno": 438,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 832,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 439,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 833,
+            "livehelp_id": 1,
+            "visit_recno": 439,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 834,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 440,
+            "dateof": 202601,
+            "visits": 6
+        },
+        {
+            "id": 835,
+            "livehelp_id": 1,
+            "visit_recno": 440,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 6
+        },
+        {
+            "id": 836,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 441,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 837,
+            "livehelp_id": 1,
+            "visit_recno": 441,
+            "exit_recno": 442,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 838,
+            "livehelp_id": 1,
+            "visit_recno": 426,
+            "exit_recno": 443,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 839,
+            "livehelp_id": 1,
+            "visit_recno": 443,
+            "exit_recno": 410,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 840,
+            "livehelp_id": 1,
+            "visit_recno": 410,
+            "exit_recno": 444,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 841,
+            "livehelp_id": 1,
+            "visit_recno": 444,
+            "exit_recno": 445,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 842,
+            "livehelp_id": 1,
+            "visit_recno": 445,
+            "exit_recno": 442,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 843,
+            "livehelp_id": 1,
+            "visit_recno": 444,
+            "exit_recno": 446,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 844,
+            "livehelp_id": 1,
+            "visit_recno": 446,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 845,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 447,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 846,
+            "livehelp_id": 1,
+            "visit_recno": 447,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 847,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 449,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 848,
+            "livehelp_id": 1,
+            "visit_recno": 449,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 849,
+            "livehelp_id": 1,
+            "visit_recno": 409,
+            "exit_recno": 451,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 850,
+            "livehelp_id": 1,
+            "visit_recno": 451,
+            "exit_recno": 410,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 851,
+            "livehelp_id": 1,
+            "visit_recno": 410,
+            "exit_recno": 413,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 852,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 454,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 853,
+            "livehelp_id": 1,
+            "visit_recno": 454,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 854,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 455,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 855,
+            "livehelp_id": 1,
+            "visit_recno": 455,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 856,
+            "livehelp_id": 1,
+            "visit_recno": 410,
+            "exit_recno": 426,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 857,
+            "livehelp_id": 1,
+            "visit_recno": 426,
+            "exit_recno": 445,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 858,
+            "livehelp_id": 1,
+            "visit_recno": 445,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 859,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 456,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 860,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 457,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 861,
+            "livehelp_id": 1,
+            "visit_recno": 456,
+            "exit_recno": 410,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 862,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 459,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 863,
+            "livehelp_id": 1,
+            "visit_recno": 459,
+            "exit_recno": 440,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 864,
+            "livehelp_id": 1,
+            "visit_recno": 440,
+            "exit_recno": 419,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 865,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 415,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 866,
+            "livehelp_id": 1,
+            "visit_recno": 414,
+            "exit_recno": 413,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 867,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 409,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 868,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 462,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 869,
+            "livehelp_id": 1,
+            "visit_recno": 462,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 870,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 463,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 871,
+            "livehelp_id": 1,
+            "visit_recno": 463,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 872,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 464,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 873,
+            "livehelp_id": 1,
+            "visit_recno": 464,
+            "exit_recno": 440,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 874,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 466,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 875,
+            "livehelp_id": 1,
+            "visit_recno": 466,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 876,
+            "livehelp_id": 1,
+            "visit_recno": 424,
+            "exit_recno": 467,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 877,
+            "livehelp_id": 1,
+            "visit_recno": 467,
+            "exit_recno": 419,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 878,
+            "livehelp_id": 1,
+            "visit_recno": 411,
+            "exit_recno": 469,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 879,
+            "livehelp_id": 1,
+            "visit_recno": 469,
+            "exit_recno": 413,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 880,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 470,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 881,
+            "livehelp_id": 1,
+            "visit_recno": 470,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 882,
+            "livehelp_id": 1,
+            "visit_recno": 469,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 883,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 456,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 884,
+            "livehelp_id": 1,
+            "visit_recno": 456,
+            "exit_recno": 409,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 885,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 426,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 886,
+            "livehelp_id": 1,
+            "visit_recno": 426,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 887,
+            "livehelp_id": 1,
+            "visit_recno": 414,
+            "exit_recno": 410,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 888,
+            "livehelp_id": 1,
+            "visit_recno": 413,
+            "exit_recno": 472,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 889,
+            "livehelp_id": 1,
+            "visit_recno": 472,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 890,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 473,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 891,
+            "livehelp_id": 1,
+            "visit_recno": 473,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 892,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 474,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 893,
+            "livehelp_id": 1,
+            "visit_recno": 474,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 894,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 469,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 895,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 475,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 896,
+            "livehelp_id": 1,
+            "visit_recno": 475,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 897,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 476,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 898,
+            "livehelp_id": 1,
+            "visit_recno": 476,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 899,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 477,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 900,
+            "livehelp_id": 1,
+            "visit_recno": 477,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 901,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 478,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 902,
+            "livehelp_id": 1,
+            "visit_recno": 478,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 903,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 410,
+            "dateof": 202601,
+            "visits": 7
+        },
+        {
+            "id": 904,
+            "livehelp_id": 1,
+            "visit_recno": 410,
+            "exit_recno": 409,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 905,
+            "livehelp_id": 1,
+            "visit_recno": 410,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 9
+        },
+        {
+            "id": 906,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 467,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 907,
+            "livehelp_id": 1,
+            "visit_recno": 467,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 908,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 481,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 909,
+            "livehelp_id": 1,
+            "visit_recno": 481,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 910,
+            "livehelp_id": 1,
+            "visit_recno": 456,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 911,
+            "livehelp_id": 1,
+            "visit_recno": 0,
+            "exit_recno": 482,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 912,
+            "livehelp_id": 1,
+            "visit_recno": 482,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 2
+        },
+        {
+            "id": 913,
+            "livehelp_id": 1,
+            "visit_recno": 409,
+            "exit_recno": 482,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 914,
+            "livehelp_id": 1,
+            "visit_recno": 482,
+            "exit_recno": 483,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 915,
+            "livehelp_id": 1,
+            "visit_recno": 409,
+            "exit_recno": 484,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 916,
+            "livehelp_id": 1,
+            "visit_recno": 484,
+            "exit_recno": 482,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 917,
+            "livehelp_id": 1,
+            "visit_recno": 409,
+            "exit_recno": 485,
+            "dateof": 202601,
+            "visits": 1
+        },
+        {
+            "id": 918,
+            "livehelp_id": 1,
+            "visit_recno": 485,
+            "exit_recno": 0,
+            "dateof": 202601,
+            "visits": 1
+        }
+    ]
+}

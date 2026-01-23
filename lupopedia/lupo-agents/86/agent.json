@@ -1,0 +1,9 @@
+{
+  "code": "KNOWLEDGEWEAVER",
+  "name": "KNOWLEDGEWEAVER",
+  "layer": "data",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 86,
+  "version": "1.0.0"
+}

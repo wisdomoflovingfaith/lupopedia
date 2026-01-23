@@ -1,0 +1,40 @@
+{
+    "table_name": "livehelp_emailque",
+    "fields": [
+        "`id` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`messageid` int NOT NULL",
+        "`towho` varchar(60) NOT NULL",
+        "`dateof` int NOT NULL"
+    ],
+    "data": [
+        {
+            "id": 1,
+            "livehelp_id": 1,
+            "messageid": 1,
+            "towho": "lupopedia@gmail.com",
+            "dateof": 20260108
+        },
+        {
+            "id": 2,
+            "livehelp_id": 1,
+            "messageid": 1,
+            "towho": "",
+            "dateof": 20260108
+        },
+        {
+            "id": 3,
+            "livehelp_id": 1,
+            "messageid": 1,
+            "towho": "gfdsg@lupopedia.com",
+            "dateof": 20260108
+        },
+        {
+            "id": 4,
+            "livehelp_id": 1,
+            "messageid": 1,
+            "towho": "sample@email.tst",
+            "dateof": 20260108
+        }
+    ]
+}

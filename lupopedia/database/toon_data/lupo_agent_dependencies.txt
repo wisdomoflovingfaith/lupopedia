@@ -1,0 +1,38 @@
+{
+    "table_name": "lupo_agent_dependencies",
+    "fields": [
+        "`agent_dependency_id` bigint NOT NULL auto_increment",
+        "`agent_id` bigint NOT NULL COMMENT 'The agent that has dependencies'",
+        "`depends_on_agent_id` bigint NOT NULL COMMENT 'The agent it depends on'",
+        "`depends_on_agent_code` varchar(50) NOT NULL",
+        "`is_required` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = must be active, 0 = optional'",
+        "`notes` text COMMENT 'Why this dependency exists'",
+        "`created_ymdhis` bigint NOT NULL",
+        "`updated_ymdhis` bigint"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "agent_dependency_id",
+        "expected_name": "agent_dependency_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_agent_id",
+            "columns": [
+                "agent_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_depends_on",
+            "columns": [
+                "depends_on_agent_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

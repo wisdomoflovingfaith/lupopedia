@@ -1,0 +1,27 @@
+{
+    "table_name": "lupo_agent_external_events",
+    "fields": [
+        "`external_event_id` bigint NOT NULL auto_increment",
+        "`agent_name` varchar(255) NOT NULL",
+        "`source_system` varchar(255) NOT NULL",
+        "`event_type` varchar(50) NOT NULL",
+        "`event_payload_json` json",
+        "`created_ymdhis` bigint NOT NULL"
+    ],
+    "data": [
+        {
+            "external_event_id": 1,
+            "agent_name": "Junie",
+            "source_system": "JetBrains AI",
+            "event_type": "appearance",
+            "event_payload_json": "{\"notes\": \"First appearance detected during IDE integration\"}",
+            "created_ymdhis": 20260110104200
+        }
+    ],
+    "primary_key": {
+        "column_name": "external_event_id",
+        "expected_name": "agent_external_event_id",
+        "is_correct": false,
+        "needs_rename": true
+    }
+}

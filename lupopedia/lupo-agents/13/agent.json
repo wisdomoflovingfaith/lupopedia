@@ -1,0 +1,9 @@
+{
+  "code": "METHIS",
+  "name": "METHIS",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 10,
+  "version": "1.0.0"
+}

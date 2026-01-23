@@ -1,7 +1,7 @@
 --
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
-file.last_modified_utc: 20260119042629
+file.last_modified_system_version: 2026.1.1.1
+file.last_modified_utc: 20260123091529
 file.name: "README.md"
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION

@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is Lupopedia? — Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f5f5f5;
+            font-size: 16px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            text-align: center;
+            padding: 50px 30px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-bottom: 0;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        header .lead {
+            font-size: 1.3em;
+            font-weight: 500;
+            margin: 15px 0 20px;
+            line-height: 1.4;
+        }
+        
+        header p {
+            font-size: 1.05em;
+            margin-bottom: 20px;
+            opacity: 0.95;
+            line-height: 1.6;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        header h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            padding-bottom: 12px;
+            text-align: left;
+        }
+        
+        header h2:first-of-type {
+            margin-top: 30px;
+        }
+        
+        header ul, header ol {
+            text-align: left;
+            max-width: 900px;
+            margin: 15px auto 20px;
+        }
+        
+        header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        
+        header .version {
+            font-size: 0.95em;
+            opacity: 0.85;
+            margin-top: 8px;
+        }
+        
+        header hr {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            margin: 30px auto 20px;
+            max-width: 900px;
+        }
+        
+        section {
+            padding: 30px;
+        }
+        
+        section:first-of-type {
+            padding-top: 40px;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-top: 45px;
+            margin-bottom: 20px;
+            font-size: 1.85em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 12px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        h2:first-of-type {
+            margin-top: 0;
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            font-size: 1.45em;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        h4 {
+            color: #555;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+        
+        .lead {
+            font-size: 1.25em;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        ul, ol {
+            margin-left: 32px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 18px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: "Courier New", Consolas, monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: inherit;
+            font-size: inherit;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 3px 7px;
+            border-radius: 4px;
+            font-family: "Courier New", Consolas, monospace;
+            font-size: 0.9em;
+            color: #c7254e;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 35px 0;
+        }
+        
+        .definition-box {
+            background: #f0f4ff;
+            padding: 28px;
+            border-left: 5px solid #667eea;
+            margin: 28px 0;
+            border-radius: 6px;
+        }
+        
+        .definition-box h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        .definition-box p {
+            margin-bottom: 12px;
+        }
+        
+        .kiss-definition {
+            background: #fff9e6;
+            padding: 25px;
+            border-left: 5px solid #ffc107;
+            margin: 28px 0;
+            border-radius: 6px;
+        }
+        
+        .kiss-definition h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #f57c00;
+        }
+        
+        .crafty-syntax-box {
+            background: #e8f4f8;
+            padding: 32px;
+            border-left: 6px solid #2196F3;
+            margin: 32px 0;
+            border-radius: 8px;
+        }
+        
+        .crafty-syntax-box h2 {
+            color: #1976D2;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .crafty-syntax-box h3 {
+            color: #555;
+            margin-top: 18px;
+            margin-bottom: 16px;
+        }
+        
+        .crafty-syntax-box .info-box,
+        .crafty-syntax-box .highlight {
+            margin: 22px 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+            margin: 28px 0;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 22px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature-card h4 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 22px;
+            border-left: 4px solid #ffc107;
+            margin: 22px 0;
+            border-radius: 6px;
+        }
+        
+        .highlight h4 {
+            color: #1976D2;
+            margin-top: 0;
+        }
+        
+        .highlight p.emphasis {
+            font-size: 1.1em;
+            font-weight: 500;
+            margin: 16px 0;
+        }
+        
+        .warning {
+            background: #ffe6e6;
+            padding: 22px;
+            border-left: 4px solid #dc3545;
+            margin: 22px 0;
+            border-radius: 6px;
+        }
+        
+        .info-box {
+            background: #e7f3ff;
+            padding: 22px;
+            border-radius: 8px;
+            margin: 22px 0;
+        }
+        
+        .info-box h4 {
+            color: #1976D2;
+            margin-top: 0;
+            margin-bottom: 14px;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 18px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: "Courier New", Consolas, monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .nav-links {
+            background: #f8f9fa;
+            padding: 24px;
+            border-radius: 8px;
+            margin: 32px 0;
+        }
+        
+        .nav-links h3 {
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+        
+        .nav-links ul {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .nav-links li {
+            margin: 12px 0;
+        }
+        
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 35px 30px;
+            margin-top: 50px;
+            border-top: 2px solid #ddd;
+            color: #666;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0;
+            }
+            
+            header {
+                padding: 35px 20px 30px;
+            }
+            
+            header h1 {
+                font-size: 2em;
+                margin-bottom: 12px;
+            }
+            
+            header .lead {
+                font-size: 1.15em;
+                margin: 12px 0 16px;
+            }
+            
+            header p {
+                font-size: 1em;
+                margin-bottom: 16px;
+            }
+            
+            header h2 {
+                font-size: 1.4em;
+                margin-top: 28px;
+                margin-bottom: 16px;
+            }
+            
+            section {
+                padding: 24px 20px;
+            }
+            
+            h2 {
+                font-size: 1.6em;
+                margin-top: 36px;
+                margin-bottom: 16px;
+            }
+            
+            h3 {
+                font-size: 1.3em;
+                margin-top: 28px;
+                margin-bottom: 14px;
+            }
+            
+            h4 {
+                font-size: 1.15em;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            
+            ul, ol {
+                margin-left: 24px;
+                margin-bottom: 18px;
+            }
+            
+            .definition-box,
+            .kiss-definition,
+            .crafty-syntax-box,
+            .info-box,
+            .highlight,
+            .warning {
+                padding: 20px;
+                margin: 22px 0;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            
+            .comparison-table {
+                font-size: 0.9em;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.75em;
+            }
+            
+            header .lead {
+                font-size: 1.05em;
+            }
+            
+            h2 {
+                font-size: 1.45em;
+            }
+            
+            h3 {
+                font-size: 1.2em;
+            }
+            
+            ul, ol {
+                margin-left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐺 What is Lupopedia?</h1>
+            
+            <p class="lead"><strong>Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) for Organizing Public Knowledge</strong></p>
+            
+            <p>Lupopedia is a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) that runs inside ordinary web servers and transforms everyday websites into structured, meaningful knowledge spaces. It installs anywhere Crafty Syntax installs — shared hosting, VPS, cloud servers, Windows, Linux — and requires no special environment or system‑level changes.</p>
+            
+            <p>At its core, Lupopedia provides a unified way to ingest, organize, and understand content, whether it comes from a local filesystem, a legacy website, or trusted public sources on the web. For formal definitions, see <a href="docs/core/DEFINITION.md">DEFINITION.md</a> and <a href="docs/core/ARCHITECTURE.md">ARCHITECTURE.md</a>.</p>
+            
+            <h2>Why Lupopedia Exists</h2>
+            
+            <p>Most websites store information in folders, pages, and menus that make sense only to the person who built them. Lupopedia turns that structure into semantic meaning by letting website owners define how their content is organized — and then converting those choices into a machine‑readable knowledge graph. See <a href="docs/core/WHY_LUPOPEDIA_IS_DIFFERENT.md">WHY_LUPOPEDIA_IS_DIFFERENT.md</a> and <a href="PHILOSOPHY.md">PHILOSOPHY.md</a> for more on our approach.</p>
+            
+            <p>Instead of forcing a rigid taxonomy, Lupopedia learns from the site owner's navigation, categories, and structure. Meaning emerges naturally from how humans already organize their information. Learn more in <a href="docs/core/SEMANTIC_NAVIGATION.md">SEMANTIC_NAVIGATION.md</a>.</p>
+            
+            <h2>Collections: Self‑Contained Semantic Worlds</h2>
+            
+            <p>A Collection is a navigation universe inside Lupopedia. Each Collection has its own:</p>
+            
+            <ul>
+                <li>navigation tabs</li>
+                <li>sub‑tabs</li>
+                <li>content</li>
+                <li>structure</li>
+                <li>meaning</li>
+            </ul>
+            
+            <p><strong>Examples:</strong></p>
+            
+            <ul>
+                <li>A "Desktop" Collection might use WHO, WHAT, WHERE, WHEN, WHY, HOW, DO</li>
+                <li>A "County of Honolulu" Collection might use Departments, Parks & Recreation, Activities & Programs, Contact</li>
+            </ul>
+            
+            <p>Each Collection reflects the mental model of the website owner. Lupopedia doesn't impose meaning — it records it. See <a href="docs/modules/CONTENT_INTERFACE_AND_NAVIGATION.md">CONTENT_INTERFACE_AND_NAVIGATION.md</a> for details.</p>
+            
+            <h2>Navigation Tabs: User‑Defined Meaning</h2>
+            
+            <p>Navigation Tabs are categories created by the website owner. They are not predefined by Lupopedia. They can represent:</p>
+            
+            <ul>
+                <li>topics</li>
+                <li>departments</li>
+                <li>people</li>
+                <li>services</li>
+                <li>programs</li>
+                <li>actions</li>
+                <li>concepts</li>
+            </ul>
+            
+            <p>When content is placed under a tab, Lupopedia creates semantic edges that describe what that content is in the context of the site. See <a href="docs/doctrine/NAVIGATION_TAB_DOCTRINE.md">NAVIGATION_TAB_DOCTRINE.md</a> for the complete specification.</p>
+            
+            <pre><code>Tabs → meaning
+Meaning → edges
+Edges → search and discovery</code></pre>
+            
+            <p>This is how Lupopedia builds a semantic graph from human organization. Learn more in <a href="docs/doctrine/SEMANTIC_GRAPH_DOCTRINE.md">SEMANTIC_GRAPH_DOCTRINE.md</a>.</p>
+            
+            <h2>Content: The Atoms of the System</h2>
+            
+            <p>Lupopedia treats every piece of content as a content atom:</p>
+            
+            <ul>
+                <li>files</li>
+                <li>pages</li>
+                <li>documents</li>
+                <li>external URLs</li>
+                <li>imported legacy content</li>
+            </ul>
+            
+            <p>Each atom has:</p>
+            
+            <ul>
+                <li>a stable identity</li>
+                <li>a public URL</li>
+                <li>metadata</li>
+                <li>semantic edges</li>
+                <li>navigation placement</li>
+            </ul>
+            
+            <p>This allows content to be reorganized without breaking meaning or URLs. See <a href="docs/schema/DATABASE_SCHEMA.md">DATABASE_SCHEMA.md</a> for the complete content schema.</p>
+            
+            <h2>Ingestion: How Lupopedia Learns</h2>
+            
+            <p>Lupopedia ingests content in three layers:</p>
+            
+            <ul>
+                <li><strong>Radius 0 — Local Filesystem</strong>: Imports everything in the public webroot.</li>
+                <li><strong>Radius 1 — Internal Site URLs</strong>: Maps dynamic pages, CMS output, and virtual paths.</li>
+                <li><strong>Radius 2 — Trusted External Public Links</strong>: Follows public links the site owner has chosen to include.</li>
+            </ul>
+            
+            <p>This creates a semantic radius around each installation. See <a href="docs/doctrine/INGESTION_DOCTRINE.md">INGESTION_DOCTRINE.md</a> for complete ingestion architecture details.</p>
+            
+            <h2>Federation: Thousands of Installations, One Graph</h2>
+            
+            <p>Crafty Syntax is installed on thousands of servers worldwide. Each installation:</p>
+            
+            <ul>
+                <li>ingests its own content</li>
+                <li>organizes it into Collections</li>
+                <li>generates semantic edges</li>
+                <li>contributes meaning to a shared graph</li>
+            </ul>
+            
+            <p><strong>No central server.</strong><br>
+            <strong>No scraping.</strong><br>
+            <strong>No central authority.</strong><br>
+            <strong>No single point of failure.</strong></p>
+            
+            <p>Meaning emerges from the collective structure of thousands of independent sites. See <a href="docs/doctrine/FEDERATION_DOCTRINE.md">FEDERATION_DOCTRINE.md</a> and <a href="docs/doctrine/INSTALLATION_LIFECYCLE_DOCTRINE.md">INSTALLATION_LIFECYCLE_DOCTRINE.md</a> for complete federation architecture.</p>
+            
+            <h2>Agents & Doctrine: A System That Maintains Itself</h2>
+            
+            <p>Lupopedia includes a multi‑agent architecture where:</p>
+            
+            <ul>
+                <li>agents communicate through structured dialog (see <a href="docs/agents/INLINE_DIALOG_SPECIFICATION.md">INLINE_DIALOG_SPECIFICATION.md</a>)</li>
+                <li>each agent has a role and doctrine (see <a href="docs/doctrine/AGENT_LIFECYCLE_DOCTRINE.md">AGENT_LIFECYCLE_DOCTRINE.md</a>)</li>
+                <li>schema changes cascade safely</li>
+                <li>metadata stays consistent</li>
+                <li>emotional signals help with clarity, not control (see <a href="docs/doctrine/MOOD_RGB_DOCTRINE.md">MOOD_RGB_DOCTRINE.md</a>)</li>
+            </ul>
+            
+            <p>This creates a system that can evolve, refactor, and maintain itself over time. See <a href="docs/agents/AGENT_RUNTIME.md">AGENT_RUNTIME.md</a> and <a href="docs/doctrine/AGENT_FILESYSTEM_DOCTRINE.md">AGENT_FILESYSTEM_DOCTRINE.md</a> for complete agent architecture.</p>
+            
+            <h2>What Lupopedia Is Not</h2>
+            
+            <ul>
+                <li>It is not a replacement for Windows or Linux</li>
+                <li>It is not a crawler</li>
+                <li>It is not a centralized knowledge base</li>
+                <li>It is not a CMS</li>
+            </ul>
+            
+            <p>Lupopedia is a semantic layer that runs inside existing servers and organizes content based on how humans already structure their websites.</p>
+            
+            <h2>In One Sentence</h2>
+            
+            <p class="lead"><em>Lupopedia is a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) that turns everyday websites into structured knowledge spaces, learns from how humans organize information, and builds a global graph of meaning across thousands of installations.</em></p>
+            
+            <hr>
+            <p class="subtitle">Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)</p>
+            <p class="version">Version 4.0.3</p>
+        </header>
+
+        <section>
+            <div class="crafty-syntax-box">
+                <h2>🟦 Crafty Syntax 4.0.0 and the WOLFIE Ecosystem</h2>
+                <h3>A simple explanation for existing Crafty Syntax users</h3>
+                
+                <p>Crafty Syntax 4.0.0 is built on top of the Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE), but don't let the word "ecosystem" scare you. Lupopedia is not something you install instead of Windows or Linux. It's not a replacement for your server, and it doesn't require formatting, reinstalling, or changing anything about your hosting environment.</p>
+
+                <div class="info-box">
+                    <h4>✔ Lupopedia runs inside your existing server</h4>
+                    <p>If your server can run:</p>
+                    <ul>
+                        <li>PHP</li>
+                        <li>MySQL</li>
+                        <li>Apache or Nginx</li>
+                    </ul>
+                    <p>…then it can run Lupopedia.</p>
+                    <p><strong>Lupopedia is a lightweight semantic runtime, not a machine OS.</strong> It installs just like any other PHP application:</p>
+                    <ul>
+                        <li>No drivers</li>
+                        <li>No kernel modules</li>
+                        <li>No system‑level changes</li>
+                        <li>No virtualization</li>
+                        <li>No containers required</li>
+                    </ul>
+                    <p><strong>If you can upload files to your hosting account, you can run Lupopedia.</strong></p>
+                </div>
+
+                <div class="highlight">
+                    <h4>✔ Why Crafty Syntax 4.0.0 uses WOLFIE</h4>
+                    <p>Crafty Syntax has grown a lot since 2002. To keep it stable, modern, and maintainable, it now uses the Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) as its foundation. WOLFIE provides:</p>
+                    <ul>
+                        <li>a unified module system</li>
+                        <li>a clean upgrade path</li>
+                        <li>a consistent database layer</li>
+                        <li>a modern agent‑based architecture</li>
+                        <li>long‑term survivability</li>
+                    </ul>
+                    <p><strong>Crafty Syntax 4.0.0 is still Crafty Syntax — it just has a stronger engine under the hood.</strong></p>
+                </div>
+
+                <div class="info-box">
+                    <h4>✔ You don't need to learn anything new</h4>
+                    <p>You install Crafty Syntax the same way you always have:</p>
+                    <ol>
+                        <li>Upload the files</li>
+                        <li>Visit the installer</li>
+                        <li>Follow the prompts</li>
+                    </ol>
+                    <p><strong>WOLFIE is included automatically. You don't install it separately.</strong></p>
+                </div>
+
+                <div class="info-box">
+                    <h4>✔ Works everywhere Crafty Syntax already works</h4>
+                    <p>Lupopedia runs on:</p>
+                    <ul>
+                        <li>Windows servers</li>
+                        <li>Linux servers</li>
+                        <li>Shared hosting</li>
+                        <li>VPS</li>
+                        <li>Cloud servers</li>
+                        <li>Local development machines</li>
+                    </ul>
+                    <p><strong>If Crafty Syntax 3.x ran on your server, Crafty Syntax 4.0.0 will too.</strong></p>
+                </div>
+
+                <div class="highlight">
+                    <h4>✔ Think of Lupopedia like a framework</h4>
+                    <p><strong>The easiest way to understand it:</strong></p>
+                    <p class="emphasis">WOLFIE is to Crafty Syntax what WordPress Core is to WordPress plugins.</p>
+                    <p>It's the foundation, not the operating system of your computer.</p>
+                    <ul>
+                        <li>You don't replace your OS.</li>
+                        <li>You don't reformat anything.</li>
+                        <li>You don't change hosting providers.</li>
+                    </ul>
+                    <p><strong>You just install Crafty Syntax 4.0.0, and WOLFIE comes along for the ride.</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="kiss-definition">
+                <h3>🟨 KISS Definition (For Normal Humans)</h3>
+                <p>Lupopedia is a system where many AIs and humans can work together inside their own self‑contained worlds. Each world has its own rules, its own agents, and its own knowledge. It's like a network of mini‑universes that can talk to each other if you want them to.</p>
+            </div>
+
+            <div class="definition-box">
+                <h3>🟩 Short Definition (For Documentation Headers)</h3>
+                <p>Lupopedia is a <strong>Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)</strong> that hosts agents, content, emotional metadata, and routing logic across independent nodes, each functioning as a self‑contained knowledge world governed by shared doctrine.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Formal Definition</h2>
+            <p>Lupopedia is a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) composed of independent nodes, each functioning as a self‑contained world of agents, content, meaning, and governance. Each node runs the Lupopedia kernel, maintains its own database of atoms, questions, agents, collections, and channels, and applies local doctrine to route, interpret, and govern interactions between humans and AI agents.</p>
+
+            <h3>What Lupopedia Provides</h3>
+            <ul>
+                <li><strong>A semantic layer</strong> for representing meaning, emotional metadata, identity, and context</li>
+                <li><strong>An agent layer</strong> where each node hosts its own set of AI agents with classification, capabilities, and roles</li>
+                <li><strong>A routing layer</strong> (HERMES + CADUCEUS) that interprets emotional metadata, channel intent, and agent classification to coordinate multi‑agent behavior</li>
+                <li><strong>A governance layer</strong> (THEMIS, doctrine, RFCs) that enforces safety, consistency, and identity rules</li>
+                <li><strong>A federated architecture</strong> where nodes may operate independently or optionally interconnect, similar to distributed social platforms, but with semantic and agent‑driven behavior</li>
+                <li><strong>A persistence layer</strong> (schema, TOON, history) that stores meaning, interactions, and agent identity across time</li>
+            </ul>
+
+            <div class="info-box">
+                <p><strong>Each Lupopedia node is sovereign:</strong> it defines its own agents, content, routing rules, emotional metadata, and governance policies. Nodes may share schema and doctrine, but not state, unless explicitly federated.</p>
+            </div>
+
+            <p><strong>In essence:</strong> Lupopedia is a distributed, multi‑agent Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) where each installation is its own knowledge world, capable of hosting agents, content, emotional metadata, and governance — all operating under a unified doctrine but with local autonomy.</p>
+        </section>
+
+        <section>
+            <h2>What Makes Lupopedia Different</h2>
+
+            <h3>🧠 Semantic Navigation (Core Innovation)</h3>
+            <p>Lupopedia doesn't force users into a predefined taxonomy. Instead, it <em>learns</em> from how people naturally organize content:</p>
+            <ul>
+                <li>Users create tabs, subtabs, and collections</li>
+                <li>Lupopedia extracts tab‑paths</li>
+                <li>Normalizes them into semantic concepts ("atoms")</li>
+                <li>Builds weighted edges between content and concepts</li>
+                <li>Grows a knowledge graph organically over time</li>
+            </ul>
+
+            <p>This enables:</p>
+            <ul>
+                <li>Intelligent content discovery</li>
+                <li>Related‑content recommendations</li>
+                <li>Emergent categories and topics</li>
+                <li>A living ontology shaped by real usage</li>
+            </ul>
+
+            <p><strong>No manual tagging. No rigid categories. The structure emerges from the community.</strong></p>
+        </section>
+
+        <section>
+            <h2>Key Features</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📚 Content Management</h4>
+                    <p>Lightweight PHP-based content system with flexible permissions, media management, and user-generated navigation.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🧩 Semantic Graph</h4>
+                    <p>Dynamic knowledge graph with atoms and edges that evolves organically from user behavior. No predefined taxonomies required.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🤖 AI Agent Framework</h4>
+                    <p>Modular, multi-LLM support with dialog and tool-use capabilities. Each node hosts its own agents with full control.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🌐 Federated Network</h4>
+                    <p>Independent nodes can optionally interconnect to form a decentralized knowledge ecosystem. No central authority required.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🔐 Self-Sovereign</h4>
+                    <p>Your data, your rules. Each installation maintains complete control over its content, agents, and policies.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>📦 Portable & Extensible</h4>
+                    <p>Runs anywhere PHP runs. Works with any database engine. Add custom tools and models as needed.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>What It's Not</h2>
+            <p>To better understand what Lupopedia <em>is</em>, it helps to know what it's <em>not</em>:</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Traditional System</th>
+                        <th>Lupopedia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Wiki with fixed categories</td>
+                        <td>WOLFIE with emergent ontology</td>
+                    </tr>
+                    <tr>
+                        <td>CMS with predefined structure</td>
+                        <td>Content platform that learns from navigation</td>
+                    </tr>
+                    <tr>
+                        <td>Graph database (Neo4j, ArangoDB)</td>
+                        <td>Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) with agents</td>
+                    </tr>
+                    <tr>
+                        <td>AI assistant (ChatGPT, Claude)</td>
+                        <td>Multi-agent framework with decentralized nodes</td>
+                    </tr>
+                    <tr>
+                        <td>Centralized knowledge base</td>
+                        <td>Federated network of sovereign nodes</td>
+                    </tr>
+                    <tr>
+                        <td>Single-tenant application</td>
+                        <td>Multi-node WOLFIE with optional federation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Technical Foundation</h2>
+
+            <h3>Content Layer (CMS Core)</h3>
+            <ul>
+                <li>Lightweight PHP-based content system</li>
+                <li>User-generated navigation and collections</li>
+                <li>Flexible permission system (polymorphic ACL with Linux-style bitmask)</li>
+                <li>Media and upload management</li>
+                <li>WordPress-like directory structure for familiarity</li>
+            </ul>
+
+            <h3>Semantic Layer</h3>
+            <ul>
+                <li>Dynamic knowledge graph with atoms and edges (see <a href="docs/doctrine/SEMANTIC_GRAPH_DOCTRINE.md">SEMANTIC_GRAPH_DOCTRINE.md</a>)</li>
+                <li>Community-driven ontology evolution (see <a href="docs/core/SEMANTIC_NAVIGATION.md">SEMANTIC_NAVIGATION.md</a>)</li>
+                <li>Weighted relationship mapping</li>
+                <li>Domain-scoped semantic spaces</li>
+            </ul>
+
+            <h3>AI Agent Framework</h3>
+            <ul>
+                <li>Modular, multi-LLM support (see <a href="docs/agents/AGENT_RUNTIME.md">AGENT_RUNTIME.md</a>)</li>
+                <li>Dialog and tool-use capabilities (see <a href="docs/agents/INLINE_DIALOG_SPECIFICATION.md">INLINE_DIALOG_SPECIFICATION.md</a>)</li>
+                <li>Decentralized knowledge sharing</li>
+                <li>Privacy-respecting design</li>
+                <li>27 core agents required for v4.0.3</li>
+                <li>101 total agents defined in registry (see <a href="docs/doctrine/AGENT_LIFECYCLE_DOCTRINE.md">AGENT_LIFECYCLE_DOCTRINE.md</a>)</li>
+            </ul>
+
+            <h3>Federation Layer</h3>
+            <ul>
+                <li>Independent node architecture (see <a href="docs/doctrine/FEDERATION_DOCTRINE.md">FEDERATION_DOCTRINE.md</a>)</li>
+                <li>Optional interconnection protocols</li>
+                <li>Shared schema and doctrine</li>
+                <li>Local autonomy with global compatibility</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Architecture Principles</h2>
+
+            <div class="highlight">
+                <h3>1. Knowledge Should Emerge From Use</h3>
+                <p>Users create collections, tabs, and navigation paths. Lupopedia observes these patterns and distills them into semantic atoms and weighted relationships. The ontology grows organically, shaped by real behavior rather than imposed structure.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>2. Intelligence Should Be Local, Extensible, and Transparent</h3>
+                <p>Each installation includes AI agents capable of dialog, reasoning, and tool‑use. These agents can query local content, traverse the semantic graph, and interact with other Lupopedia nodes. They are modular, multi‑LLM, and fully under the control of the installation owner.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>3. Architecture Should Be Resilient and Human‑Centered</h3>
+                <p>Lupopedia is built to be portable, understandable, and maintainable. It avoids unnecessary complexity, favors explicit behavior over magic, and empowers administrators to shape their own knowledge environment.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Database Philosophy</h2>
+            <p>Lupopedia follows strict database design principles to ensure portability, performance, and maintainability:</p>
+
+            <h3>What We Avoid</h3>
+            <ul>
+                <li>❌ Foreign Keys (see <a href="docs/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md">NO_FOREIGN_KEYS_DOCTRINE.md</a>)</li>
+                <li>❌ Triggers <strong>⚠️ FORBIDDEN (MANDATORY)</strong> (see <a href="docs/doctrine/NO_TRIGGERS_DOCTRINE.md">NO_TRIGGERS_DOCTRINE.md</a>)</li>
+                <li>❌ Stored Procedures <strong>⚠️ FORBIDDEN (MANDATORY)</strong> (see <a href="docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md">NO_STORED_PROCEDURES_DOCTRINE.md</a>)</li>
+                <li>❌ Stored Functions <strong>⚠️ FORBIDDEN (MANDATORY)</strong></li>
+                <li>❌ Database Functions</li>
+                <li>❌ Engine-Specific Features</li>
+            </ul>
+
+            <h3>What We Use Instead</h3>
+            <ul>
+                <li>✅ Application-managed relationships (see <a href="docs/core/DATABASE_PHILOSOPHY.md">DATABASE_PHILOSOPHY.md</a>)</li>
+                <li>✅ Explicit data validation</li>
+                <li>✅ Clear documentation (structured with atoms/scopes, machine-readable) (see <a href="docs/doctrine/DOCUMENTATION_DOCTRINE.md">DOCUMENTATION_DOCTRINE.md</a>)</li>
+                <li>✅ Simple, predictable queries</li>
+                <li>✅ Database-agnostic SQL</li>
+                <li>✅ BIGINT UTC timestamps (YYYYMMDDHHMMSS format) (see <a href="docs/dev/WOLFIE_TIMESTAMP_DOCTRINE.md">WOLFIE_TIMESTAMP_DOCTRINE.md</a>)</li>
+            </ul>
+
+            <div class="warning">
+                <p><strong>⚠️ Critical Doctrine:</strong> All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. Triggers and stored procedures interfere with data merging, historical accuracy, repair operations, and federation sync. The database is for storage, not computation. All logic must be in application code. See <a href="docs/doctrine/NO_TRIGGERS_DOCTRINE.md">NO_TRIGGERS_DOCTRINE.md</a> and <a href="docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md">NO_STORED_PROCEDURES_DOCTRINE.md</a>.</p>
+            </div>
+
+            <p>This approach ensures:</p>
+            <ul>
+                <li><strong>Portability</strong> across database engines (MySQL, MariaDB, SQLite, PostgreSQL)</li>
+                <li><strong>Transparent</strong> data operations</li>
+                <li><strong>Debuggable</strong> behavior</li>
+                <li><strong>Maintainable</strong> schema evolution</li>
+                <li><strong>Predictable</strong> performance</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Why 111 Tables?</h2>
+            <p>Lupopedia 4.0.3 ships with <strong>111 core database tables</strong> (145 total including migration tables). This isn't bloat — it's the natural shape of a system that isn't just an app, but a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE). See <a href="docs/schema/DATABASE_SCHEMA.md">DATABASE_SCHEMA.md</a> for complete schema documentation.</p>
+
+            <p>For perspective: The CRM system built for the City & County of Honolulu — a full municipal platform — had fewer than 70 tables. Lupopedia surpasses that not because it's heavier, but because it's broader. It spans multiple domains that normally live in separate products:</p>
+
+            <ul>
+                <li>CMS</li>
+                <li>Wiki</li>
+                <li>Semantic graph engine</li>
+                <li>Multi‑agent runtime</li>
+                <li>Federated identity system</li>
+                <li>Legacy compatibility layer (Crafty Syntax)</li>
+                <li>Multilingual translation system</li>
+                <li>Analytics engine</li>
+                <li>Content platform</li>
+                <li>CRM‑style modules</li>
+                <li>Real‑time chat system</li>
+                <li>Decentralized knowledge navigation</li>
+            </ul>
+
+            <p><strong>Lupopedia isn't "big for version 4.0.3." It's complete for version 4.0.3.</strong></p>
+
+            <p>This is the first release where the system exists as its own identity — not a mutation of Crafty Syntax, not a CMS with extras, but a living archive with its own ontology, doctrine, and architecture.</p>
+        </section>
+
+        <section>
+            <h2>Origins: From WOLFIE to Lupopedia</h2>
+            <p>Before Lupopedia became a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE), it began under a very different name: <strong>WOLFIE</strong>, an acronym for Wisdom Of Loving Faith Integrity Ethics. The project started in August 2025 as a spiritual research engine designed to ingest 144,000 books from 22 different religions and map correlations between their teachings. For the complete origin story, see <a href="docs/history/HISTORY.md">HISTORY.md</a> and <a href="docs/appendix/FOUNDERS_NOTE.md">FOUNDERS_NOTE.md</a>.</p>
+            
+            <p>That early version had 222 tables, because it needed to capture scripture, symbolism, lineage, commentary, and cross‑textual relationships in extraordinary detail.</p>
+            
+            <p>But as the system grew, it became clear that WOLFIE wasn't just analyzing religion. It was becoming something larger — a platform capable of organizing any domain of knowledge.</p>
+            
+            <p><strong>The spiritual engine evolved into the Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE), and WOLFIE evolved into Lupopedia.</strong></p>
+            
+            <div class="info-box">
+                <p><strong>Important:</strong> Lupopedia is explicitly <strong>not</strong> a religious website. It is a <strong>domain‑neutral Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)</strong> that can be applied to any domain: technology, science, gaming, history, products, fandoms, social systems, or personal knowledge. Religion and mythology are part of the <em>origin story</em>, not the destination or the scope. See <a href="docs/doctrine/non_religious_position.md">non_religious_position.md</a> and <a href="docs/doctrine/MYTHIC_NAMES_DOCTRINE.md">MYTHIC_NAMES_DOCTRINE.md</a>.</p>
+            </div>
+            
+            <p>Agent names like <strong>Thoth</strong> and <strong>Lilith</strong> are acknowledgements of the research that shaped the architecture, not instructions about what Lupopedia must be used for. They are symbolic identifiers, not prescriptive requirements. See <a href="docs/agents/thoth.md">thoth.md</a> and <a href="docs/agents/lilith.md">lilith.md</a> for agent documentation.</p>
+        </section>
+
+        <section>
+            <h2>Crafty Syntax Compatibility</h2>
+            <p>Lupopedia 4.0.3 includes a complete, fully integrated rewrite of the entire <strong>Crafty Syntax Live Help</strong> system. This is not a partial port or a compatibility shim — every feature Crafty Syntax provided for nearly 30 years has been rebuilt inside Lupopedia as a first‑party module. See <a href="docs/modules/UPGRADE_PLAN_3.7.5_TO_4.0.0.md">UPGRADE_PLAN_3.7.5_TO_4.0.0.md</a> and <a href="modules/craftysyntax/README.md">Crafty Syntax Module README</a>.</p>
+
+            <h3>100% Feature Preservation</h3>
+            <ul>
+                <li>Live chat icons</li>
+                <li>Human operator chat sessions</li>
+                <li>Visitor tracking</li>
+                <li>Department routing</li>
+                <li>Operator availability indicators</li>
+                <li>Proactive invites</li>
+                <li>Referrer matching</li>
+                <li>Page matching</li>
+                <li>Visitor path tracking</li>
+                <li>Chat transcripts</li>
+                <li>Email queue</li>
+                <li>Leave‑a‑message system</li>
+                <li>Operator profiles</li>
+                <li>Chat moderation tools</li>
+                <li>Legacy admin panel behavior</li>
+            </ul>
+
+            <h3>Legacy Endpoints Still Work</h3>
+            <p>Lupopedia preserves the original Crafty Syntax URLs so existing sites do not break:</p>
+            <div class="code-block">
+/craftysyntax/livehelp.php
+/craftysyntax/livehelp_js.php
+            </div>
+            <p>Any website — on any domain — can still embed live help using the same JavaScript include Crafty Syntax has used since the early 2000s:</p>
+            <div class="code-block">
+&lt;script src="/craftysyntax/livehelp_js.php"&gt;&lt;/script&gt;
+            </div>
+
+            <p><strong>If Crafty Syntax could do it, Lupopedia can do it — with cleaner code, modern doctrine, and a unified architecture.</strong></p>
+        </section>
+
+        <section>
+            <h2>Content Interface & Semantic Navigation Tabs</h2>
+            <p class="subtitle" style="color: #666; font-size: 1em; margin-top: 10px; margin-bottom: 20px;"><em>How Crafty Syntax 4.0.0 Organizes Content Using the Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)</em></p>
+
+            <h3>Overview</h3>
+            <p>Crafty Syntax 4.0.0 introduces a modern Content Interface powered by the Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE). This interface allows website owners to organize their site's content using <strong>Collections</strong> and <strong>Navigation Tabs</strong>, creating a flexible, organic structure that automatically generates semantic meaning. See <a href="docs/modules/CONTENT_INTERFACE_AND_NAVIGATION.md">CONTENT_INTERFACE_AND_NAVIGATION.md</a> for complete documentation.</p>
+            
+            <p>Unlike traditional CMS systems that force a rigid taxonomy, Lupopedia lets each website define its own navigation structure. The system then converts those choices into semantic edges, allowing content to be discovered, reorganized, and understood in a deeper way.</p>
+            
+            <p>This section explains how Collections work, how Navigation Tabs are created, and how content inherits meaning from the structure defined by the website owner. See <a href="docs/doctrine/NAVIGATION_TAB_DOCTRINE.md">NAVIGATION_TAB_DOCTRINE.md</a> for the complete specification.</p>
+
+            <h3>1. What Are Collections?</h3>
+            <p>A <strong>Collection</strong> is a self‑contained navigation environment inside Crafty Syntax.</p>
+
+            <p>Each Collection has:</p>
+            <ul>
+                <li>its own Navigation Tabs</li>
+                <li>its own sub‑tabs</li>
+                <li>its own content organization</li>
+                <li>its own semantic context</li>
+            </ul>
+
+            <p>Collections allow different parts of a website to have different navigation systems without interfering with each other.</p>
+
+            <div class="feature-grid" style="margin: 20px 0;">
+                <div class="feature-card">
+                    <h4>Desktop Collection</h4>
+                    <p>Tabs might be:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>WHO</li>
+                        <li>WHAT</li>
+                        <li>WHERE</li>
+                        <li>WHEN</li>
+                        <li>WHY</li>
+                        <li>HOW</li>
+                        <li>DO</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h4>County of Honolulu Collection</h4>
+                    <p>Tabs might be:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Departments</li>
+                        <li>Parks and Recreation</li>
+                        <li>Activities and Programs</li>
+                        <li>Volunteer and Give</li>
+                        <li>Trees and Gardens</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p>Each Collection reflects the mental model of the website owner or organization.</p>
+
+            <h3>2. Navigation Tabs</h3>
+            <p>Navigation Tabs are <strong>user‑defined categories</strong> that belong to a specific Collection.</p>
+
+            <div class="info-box">
+                <p>They are <strong>not</strong> predefined by Lupopedia.<br>
+                They are <strong>not</strong> global.<br>
+                They are <strong>not</strong> fixed.</p>
+                <p><strong>They are created by the website owner</strong> to match the structure of their site.</p>
+            </div>
+
+            <h4>Tabs can represent anything:</h4>
+            <ul>
+                <li>People</li>
+                <li>Departments</li>
+                <li>Topics</li>
+                <li>Services</li>
+                <li>Programs</li>
+                <li>Locations</li>
+                <li>Actions</li>
+                <li>Concepts</li>
+            </ul>
+
+            <p>Tabs can also contain <strong>sub‑tabs</strong>, allowing deeper hierarchical organization.</p>
+
+            <div class="feature-grid" style="margin: 20px 0;">
+                <div class="feature-card">
+                    <h4>Desktop Collection Tabs</h4>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>WHO → WOLFIE</li>
+                        <li>WHAT → SOFTWARE</li>
+                        <li>WHERE → LOCALHOST</li>
+                        <li>WHEN → RELEASES</li>
+                        <li>WHY → DOCUMENTATION</li>
+                        <li>HOW → INSTALLATION</li>
+                        <li>DO → ACTIONS</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h4>County of Honolulu Tabs</h4>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Departments → ENV, DPR, MAYOR</li>
+                        <li>Parks and Recreation → Facilities, Programs</li>
+                        <li>Activities and Programs → Summer Fun, Classes</li>
+                        <li>Volunteer and Give → Opportunities</li>
+                        <li>Trees and Gardens → Arbor Day, Urban Forestry</li>
+                        <li>Contact → Offices, Forms</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p>Each tab is a semantic container defined by the website owner.</p>
+
+            <h3>3. How Content Is Assigned to Tabs</h3>
+            <p>When viewing any file or page in the Content Interface, the user can:</p>
+            <ul>
+                <li>assign it to a Collection</li>
+                <li>place it under one or more Navigation Tabs</li>
+                <li>create new tabs or sub‑tabs</li>
+                <li>move content between tabs</li>
+                <li>reorganize the navigation tree</li>
+            </ul>
+
+            <p>This is done through the "Current Collection" panel, which shows:</p>
+            <ul>
+                <li>all main tabs</li>
+                <li>all sub‑tabs</li>
+                <li>options to create new tabs</li>
+                <li>options to assign content</li>
+            </ul>
+
+            <p><strong>This interface is the semantic editor for the site.</strong></p>
+
+            <h3>4. How Navigation Tabs Create Semantic Edges</h3>
+            <p>Every time a user places content under a tab, Lupopedia creates <strong>semantic edges</strong>.</p>
+
+            <p>For example, placing a page under:</p>
+            <div class="code-block">
+Departments → Parks and Recreation → Summer Programs
+            </div>
+
+            <p>creates edges like:</p>
+            <ul>
+                <li>content → Departments</li>
+                <li>content → Parks and Recreation</li>
+                <li>content → Summer Programs</li>
+                <li>Parks and Recreation → Departments</li>
+                <li>Summer Programs → Parks and Recreation</li>
+            </ul>
+
+            <p>These edges become part of the site's semantic graph.</p>
+
+            <div class="highlight">
+                <h4>Why this matters</h4>
+                <ul style="margin-top: 10px;">
+                    <li>Navigation becomes meaning</li>
+                    <li>Meaning becomes metadata</li>
+                    <li>Metadata becomes search</li>
+                    <li>Search becomes discovery</li>
+                    <li>Discovery becomes federation</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>This is how Lupopedia learns organically from each installation.</strong></p>
+            </div>
+
+            <h3>5. Inheritance of Meaning</h3>
+            <p>Content inherits meaning from:</p>
+            <ul>
+                <li>the tab it is placed under</li>
+                <li>the sub‑tab hierarchy</li>
+                <li>the Collection it belongs to</li>
+                <li>the folder it was imported from (optional)</li>
+            </ul>
+
+            <p>This allows:</p>
+            <ul>
+                <li>bulk imports</li>
+                <li>legacy site mapping</li>
+                <li>automatic categorization</li>
+                <li>consistent navigation</li>
+                <li>flexible reorganization</li>
+            </ul>
+
+            <p><strong>If a folder has meaning, all files inside it inherit that meaning unless overridden.</strong></p>
+
+            <h3>6. Importing Files Into the Content System</h3>
+            <p>Crafty Syntax can scan a web server's public root and import:</p>
+            <ul>
+                <li>HTML files</li>
+                <li>text files</li>
+                <li>images</li>
+                <li>documents</li>
+                <li>static pages</li>
+                <li>legacy CMS output</li>
+            </ul>
+
+            <p>Each imported file becomes a content item with:</p>
+            <ul>
+                <li>a real filesystem path</li>
+                <li>a public URL path</li>
+                <li>a parent folder</li>
+                <li>inherited navigation</li>
+                <li>editable metadata</li>
+            </ul>
+
+            <p>After import, the website owner can reorganize the content freely inside Lupopedia.</p>
+
+            <div class="info-box">
+                <p><strong>The filesystem is only the source, not the identity.</strong></p>
+            </div>
+
+            <h3>7. Why This System Works</h3>
+            <p>This approach gives website owners:</p>
+
+            <div class="feature-grid" style="margin: 20px 0;">
+                <div class="feature-card">
+                    <h4>🎯 Freedom</h4>
+                    <p>They define their own navigation structure.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🔄 Flexibility</h4>
+                    <p>Each Collection can have its own tabs.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🧠 Semantic Power</h4>
+                    <p>Tabs become edges. Edges become meaning. Meaning becomes navigation.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>✅ Compatibility</h4>
+                    <p>Legacy sites can be imported without rewriting URLs.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>📈 Scalability</h4>
+                    <p>Every Crafty Syntax installation becomes a node in a larger semantic ecosystem.</p>
+                </div>
+            </div>
+
+            <h3>8. Summary</h3>
+            <div class="highlight">
+                <p>The Content Interface in Crafty Syntax 4.0.0 is more than a file manager.</p>
+                <p><strong>It is a semantic navigation engine</strong> that:</p>
+                <ul style="margin-top: 15px;">
+                    <li>lets website owners define their own categories</li>
+                    <li>organizes content into Collections</li>
+                    <li>generates semantic edges automatically</li>
+                    <li>supports metadata inheritance</li>
+                    <li>maps legacy sites into a modern structure</li>
+                    <li>builds a navigable semantic graph</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>This system is simple for users, but extremely powerful under the hood — enabling Lupopedia to understand, organize, and federate content across thousands of installations.</strong></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Use Cases</h2>
+            <p>Lupopedia can be applied to any domain of knowledge:</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📖 Knowledge Bases</h4>
+                    <p>Organize technical documentation, FAQs, and reference materials with semantic linking and AI-powered search.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🏢 Enterprise Intranets</h4>
+                    <p>Create internal knowledge systems with federated nodes, multi-agent assistance, and organizational control.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🎓 Educational Platforms</h4>
+                    <p>Build learning systems where content organization emerges from student navigation and usage patterns.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🔬 Research Archives</h4>
+                    <p>Organize research papers, datasets, and findings with semantic relationships and collaborative discovery.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>💼 Customer Support</h4>
+                    <p>Integrate Crafty Syntax live help with semantic knowledge base for intelligent customer assistance.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🌐 Community Platforms</h4>
+                    <p>Enable communities to share knowledge without sacrificing control, with optional federation across nodes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul>
+                <li><strong>PHP 8.1+</strong></li>
+                <li><strong>MySQL 8.0+</strong> or <strong>MariaDB 10.5+</strong> (PostgreSQL support planned)</li>
+                <li><strong>Web server</strong> (Apache/Nginx) with mod_rewrite</li>
+                <li><strong>InnoDB</strong> storage engine</li>
+                <li><strong>Modern browser</strong> for admin interface</li>
+            </ul>
+
+            <p><strong>Note:</strong> Lupopedia is designed to work with Installatron and similar auto-installers. Drop it into a hosting panel and it just works.</p>
+        </section>
+
+        <section>
+            <h2>Comprehensive Documentation</h2>
+            <p>Lupopedia is extensively documented. This section organizes all documentation by category to help you find exactly what you need.</p>
+
+            <div class="nav-links">
+                <h3>📚 Quick Start Documentation</h3>
+                <ul>
+                    <li><a href="README.md">Main README</a> — Complete project overview and getting started guide</li>
+                    <li><a href="docs/README.md">Documentation Index</a> — Complete documentation organized by category</li>
+                    <li><a href="VISION.md">Vision Statement</a> — Future direction and guiding principles</li>
+                    <li><a href="PHILOSOPHY.md">Philosophy</a> — Architectural principles and design choices</li>
+                    <li><a href="EXECUTIVE_SUMMARY.md">Executive Summary</a> — High-level overview and value proposition</li>
+                    <li><a href="docs/history/HISTORY.md">History</a> — Complete origin story from Crafty Syntax (2002) to Lupopedia</li>
+                    <li><a href="CHANGELOG.md">Changelog</a> — Version history and release notes</li>
+                    <li><a href="docs/appendix/FOUNDERS_NOTE.md">Founder's Note</a> — Personal narrative by Eric "Wolfie" Gerdes</li>
+                </ul>
+            </div>
+
+            <div class="nav-links">
+                <h3>🏗️ Core Architecture (WHAT & HOW)</h3>
+                <ul>
+                    <li><a href="docs/core/DEFINITION.md">DEFINITION.md</a> — Formal, short, and KISS definitions of Lupopedia</li>
+                    <li><a href="docs/core/ARCHITECTURE.md">ARCHITECTURE.md</a> — Technical architecture (4 layers: Content, Semantic, AI Agent Framework, Decentralized Network)</li>
+                    <li><a href="docs/core/ARCHITECTURE_SYNC.md">ARCHITECTURE_SYNC.md</a> — Authoritative reference for HERMES, CADUCEUS, IRIS, DialogManager, and THOTH subsystems</li>
+                    <li><a href="docs/core/WHY_NO_FRAMEWORKS.md">WHY_NO_FRAMEWORKS.md</a> — Philosophy and reasoning behind framework-free, first-principles architecture</li>
+                    <li><a href="docs/core/WHY_LUPOPEDIA_IS_DIFFERENT.md">WHY_LUPOPEDIA_IS_DIFFERENT.md</a> — What makes Lupopedia fundamentally different from any existing knowledge system</li>
+                    <li><a href="docs/core/END_GOAL_4_2_0.md">END_GOAL_4_2_0.md</a> — End goal by version 4.2.0: A Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) for organizing the world's public content</li>
+                    <li><a href="docs/core/SEMANTIC_NAVIGATION.md">SEMANTIC_NAVIGATION.md</a> — How Lupopedia converts user navigation into semantic atoms and edges</li>
+                </ul>
+            </div>
+
+            <div class="nav-links">
+                <h3>📜 Doctrine Documentation (WHY & RULES)</h3>
+                <ul>
+                    <li><a href="docs/doctrine/CHANNEL_DOCTRINE.md">CHANNEL_DOCTRINE.md</a> — Channel routing containers, membership rules, visibility rules</li>
+                    <li><a href="docs/doctrine/DIALOG_DOCTRINE.md">DIALOG_DOCTRINE.md</a> — Dialog/Thread/Message model and DIALOG agent specification</li>
+                    <li><a href="docs/doctrine/OPERATOR_UI_DOCTRINE.md">OPERATOR_UI_DOCTRINE.md</a> — Multi-thread, multi-color, single-screen operator interface</li>
+                    <li><a href="docs/doctrine/AGENT_FILESYSTEM_DOCTRINE.md">AGENT_FILESYSTEM_DOCTRINE.md</a> — Agent filesystem layout, registry schema, prompt templating</li>
+                    <li><a href="docs/doctrine/AGENT_LIFECYCLE_DOCTRINE.md">AGENT_LIFECYCLE_DOCTRINE.md</a> — Complete agent lifecycle from conception through archival</li>
+                    <li><a href="docs/doctrine/AGENT_PROMPT_DOCTRINE.md">AGENT_PROMPT_DOCTRINE.md</a> — Complete prompt structure, philosophy, and boundaries</li>
+                    <li><a href="docs/doctrine/MODULE_DOCTRINE.md">MODULE_DOCTRINE.md</a> — Module organization and interaction doctrine</li>
+                    <li><a href="docs/doctrine/INGESTION_DOCTRINE.md">INGESTION_DOCTRINE.md</a> — Three ingestion radii, semantic inheritance, Crafty Syntax import</li>
+                    <li><a href="docs/doctrine/ROUTING_DOCTRINE.md">ROUTING_DOCTRINE.md</a> — HERMES filtering system, CADUCEUS current geometry, two-layer routing</li>
+                    <li><a href="docs/doctrine/MOOD_RGB_DOCTRINE.md">MOOD_RGB_DOCTRINE.md</a> — Counting-in-Light emotional geometry system</li>
+                    <li><a href="docs/doctrine/GLOBAL_ATOMS_DOCTRINE.md">GLOBAL_ATOMS_DOCTRINE.md</a> — Deterministic symbolic constants system</li>
+                    <li><a href="docs/doctrine/WOLFIE_HEADER_DOCTRINE.md">WOLFIE_HEADER_DOCTRINE.md</a> — Universal metadata block system for all files</li>
+                    <li><a href="docs/doctrine/SEMANTIC_GRAPH_DOCTRINE.md">SEMANTIC_GRAPH_DOCTRINE.md</a> — Installation sovereignty, edge-only graph with polymorphic endpoints</li>
+                    <li><a href="docs/doctrine/FAUCET_RULES_DOCTRINE.md">FAUCET_RULES_DOCTRINE.md</a> — Agent invocation governance, model selection, safety boundaries</li>
+                    <li><a href="docs/doctrine/NAVIGATION_TAB_DOCTRINE.md">NAVIGATION_TAB_DOCTRINE.md</a> — Semantic categories, collections, tab hierarchy, semantic inheritance</li>
+                    <li><a href="docs/doctrine/FEDERATION_DOCTRINE.md">FEDERATION_DOCTRINE.md</a> — Installation sovereignty, federation registry, discovery, identity</li>
+                    <li><a href="docs/doctrine/INSTALLATION_LIFECYCLE_DOCTRINE.md">INSTALLATION_LIFECYCLE_DOCTRINE.md</a> — Complete installation lifecycle from conception through archival</li>
+                    <li><a href="docs/core/DATABASE_PHILOSOPHY.md">DATABASE_PHILOSOPHY.md</a> — Database design principles: application logic first, database logic second</li>
+                    <li><a href="docs/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md">NO_FOREIGN_KEYS_DOCTRINE.md</a> — No foreign keys, stored procedures, triggers, or views</li>
+                    <li><a href="docs/doctrine/CONFIGURATION_DOCTRINE.md">CONFIGURATION_DOCTRINE.md</a> — WordPress-style configuration model, single config file</li>
+                    <li><a href="docs/doctrine/VERSIONING_DOCTRINE.md">VERSIONING_DOCTRINE.md</a> — Version numbers as milestones, three-stage release pipeline</li>
+                    <li><a href="docs/doctrine/TOON_DOCTRINE.md">TOON_DOCTRINE.md</a> — MANDATORY rules for working with TOON format files</li>
+                </ul>
+            </div>
+
+            <div class="nav-links">
+                <h3>🤖 Agents Documentation (WHO)</h3>
+                <ul>
+                    <li><a href="docs/agents/AGENT_RUNTIME.md">AGENT_RUNTIME.md</a> — Complete guide to the agent system's runtime behavior</li>
+                    <li><a href="docs/agents/INLINE_DIALOG_SPECIFICATION.md">INLINE_DIALOG_SPECIFICATION.md</a> — Multi-agent communication format</li>
+                    <li><a href="docs/agents/WOLFIE_HEADER_SPECIFICATION.md">WOLFIE_HEADER_SPECIFICATION.md</a> — Universal metadata format for all files</li>
+                    <li><a href="docs/agents/HERMES_AND_CADUCEUS.md">HERMES_AND_CADUCEUS.md</a> — Routing layer complete reference</li>
+                    <li><a href="docs/agents/AGENT_PROMPT_TEMPLATING_STANDARD.md">AGENT_PROMPT_TEMPLATING_STANDARD.md</a> — Mandatory templating requirement for all agent prompts</li>
+                    <li><a href="docs/agents/wolfie.md">wolfie.md</a> — WOLFIE agent (System Architect, Platform Coordinator)</li>
+                    <li><a href="docs/agents/lilith.md">lilith.md</a> — Lilith agent (edge explorer, contradiction analyst)</li>
+                    <li><a href="docs/agents/thoth.md">thoth.md</a> — Thoth agent (truth engine, ontological evaluator)</li>
+                    <li><a href="docs/agents/ARA.md">ARA.md</a> — ARA agent (Adversarial Review & Analysis)</li>
+                    <li><a href="docs/doctrine/LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md">LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md</a> — Official range doctrine for agent dedicated_slot assignments (0-999)</li>
+                </ul>
+            </div>
+
+            <div class="nav-links">
+                <h3>🗄️ Database & Schema (WHAT)</h3>
+                <ul>
+                    <li><a href="docs/schema/DATABASE_SCHEMA.md">DATABASE_SCHEMA.md</a> — Comprehensive documentation of all 111 tables organized by category</li>
+                    <li><a href="docs/schema/AI_SCHEMA_GUIDE.md">AI_SCHEMA_GUIDE.md</a> — Why TOON files exist and why AI tools must use them</li>
+                    <li><a href="docs/core/DATABASE_PHILOSOPHY.md">DATABASE_PHILOSOPHY.md</a> — Database design principles and philosophy</li>
+                    <li><a href="docs/doctrine/TABLE_PREFIXING_DOCTRINE.md">TABLE_PREFIXING_DOCTRINE.md</a> — Table prefixing rules and primary key naming patterns</li>
+                    <li><a href="docs/doctrine/CHARSET_COLLATION_DOCTRINE.md">CHARSET_COLLATION_DOCTRINE.md</a> — Charset/collation at table level only</li>
+                    <li><a href="docs/dev/WOLFIE_TIMESTAMP_DOCTRINE.md">WOLFIE_TIMESTAMP_DOCTRINE.md</a> — Timestamp format requirements (BIGINT UTC YYYYMMDDHHIISS)</li>
+                    <li><a href="docs/doctrine/MIGRATION_DOCTRINE.md">MIGRATION_DOCTRINE.md</a> — Migration tables and upgrade documentation</li>
+                </ul>
+            </div>
+
+            <div class="nav-links">
+                <h3>🧩 Modules & Crafty Syntax (WHAT)</h3>
+                <ul>
+                    <li><a href="docs/modules/CONTENT_INTERFACE_AND_NAVIGATION.md">CONTENT_INTERFACE_AND_NAVIGATION.md</a> — How Crafty Syntax 4.0.0 organizes content using Collections and Navigation Tabs</li>
+                    <li><a href="docs/modules/UPGRADE_PLAN_3.7.5_TO_4.0.0.md">UPGRADE_PLAN_3.7.5_TO_4.0.0.md</a> — Upgrade documentation for Crafty Syntax integration</li>
+                    <li><a href="docs/modules/LEGACY_REFACTOR_PLAN.md">LEGACY_REFACTOR_PLAN.md</a> — Comprehensive plan for refactoring legacy Crafty Syntax files</li>
+                    <li><a href="modules/craftysyntax/README.md">Crafty Syntax Module README</a> — Crafty Syntax Live Help module documentation</li>
+                    <li><a href="modules/README.md">Modules README</a> — Module system overview</li>
+                </ul>
+            </div>
+
+            <div class="nav-links">
+                <h3>🛠️ Developer Guides (HOW)</h3>
+                <ul>
+                    <li><a href="docs/dev/INSTALLER_FLOW.md">INSTALLER_FLOW.md</a> — Installation process flow and node creation</li>
+                    <li><a href="docs/dev/FOR_INSTALLERS_AND_USERS.md">FOR_INSTALLERS_AND_USERS.md</a> — User-friendly explanations for installers and end users</li>
+                    <li><a href="docs/dev/CONTRIBUTOR_TRAINING.md">CONTRIBUTOR_TRAINING.md</a> — Minimum skill requirements and coding standards</li>
+                    <li><a href="docs/dev/DOCUMENTATION_STYLE_GUIDE.md">DOCUMENTATION_STYLE_GUIDE.md</a> — Documentation standards and style guide</li>
+                    <li><a href="docs/dev/TOON_METADATA_RECOMMENDATIONS.md">TOON_METADATA_RECOMMENDATIONS.md</a> — TOON file metadata documentation</li>
+                    <li><a href="docs/doctrine/CURSOR_REFACTOR_DOCTRINE.md">CURSOR_REFACTOR_DOCTRINE.md</a> — MANDATORY rules for rewriting legacy Crafty Syntax PHP code</li>
+                    <li><a href="docs/doctrine/PDO_CONVERSION_DOCTRINE.md">PDO_CONVERSION_DOCTRINE.md</a> — MANDATORY rules for converting mysqli to PDO_DB</li>
+                    <li><a href="docs/doctrine/SQL_REWRITE_DOCTRINE.md">SQL_REWRITE_DOCTRINE.md</a> — MANDATORY rules for rewriting SQL from Crafty Syntax into Lupopedia</li>
+                    <li><a href="docs/ARCHITECTURE/multi-ide-workflow.md">multi-ide-workflow.md</a> — Official multi-IDE workflow documentation</li>
+                </ul>
+            </div>
+
+            <div class="nav-links">
+                <h3>📡 Protocols & Standards (HOW)</h3>
+                <ul>
+                    <li><a href="docs/protocols/WOLFIE_HEADER_RFC.md">WOLFIE_HEADER_RFC.md</a> — RFC 4000: WOLFIE Header Metadata Standard</li>
+                    <li><a href="docs/protocols/THREAD_MOOD_RFC.md">THREAD_MOOD_RFC.md</a> — RFC 4002: Thread Mood Aggregation Standard</li>
+                    <li><a href="docs/protocols/CADUCEUS_ROUTING_RFC.md">CADUCEUS_ROUTING_RFC.md</a> — RFC 4003: CADUCEUS Routing Currents Standard</li>
+                    <li><a href="docs/protocols/HERMES_ROUTING_RFC.md">HERMES_ROUTING_RFC.md</a> — RFC 4004: HERMES Routing Layer Standard</li>
+                    <li><a href="docs/protocols/REVERSE_HANDSHAKE_SHAKA.md">REVERSE_HANDSHAKE_SHAKA.md</a> — Reverse handshake protocol specification</li>
+                </ul>
+            </div>
+
+            <div class="nav-links">
+                <h3>📖 History & Context (WHEN & WHO)</h3>
+                <ul>
+                    <li><a href="docs/history/HISTORY.md">HISTORY.md</a> — Complete origin story from Crafty Syntax (2002) through transformation to Lupopedia</li>
+                    <li><a href="docs/appendix/FOUNDERS_NOTE.md">FOUNDERS_NOTE.md</a> — Personal narrative by Eric "Wolfie" Gerdes</li>
+                    <li><a href="docs/appendix/WHO_IS_CAPTAIN_WOLFIE.md">WHO_IS_CAPTAIN_WOLFIE.md</a> — Biography of Captain Wolfie (AI embodiment of the creator)</li>
+                    <li><a href="docs/appendix/COMPANY_REGISTRATIONS.md">COMPANY_REGISTRATIONS.md</a> — Legal registrations and business entity information</li>
+                    <li><a href="docs/appendix/TERMINOLOGY.md">TERMINOLOGY.md</a> — Standard terminology and definitions</li>
+                    <li><a href="docs/appendix/WHAT_NOT_TO_DO_AND_WHY.md">WHAT_NOT_TO_DO_AND_WHY.md</a> — Anti-patterns and common mistakes to avoid</li>
+                </ul>
+            </div>
+
+            <div class="nav-links">
+                <h3>📋 Reference & Appendix</h3>
+                <ul>
+                    <li><a href="docs/appendix/COUNTING_IN_LIGHT.md">COUNTING_IN_LIGHT.md</a> — Counting-in-Light emotional coordinate system</li>
+                    <li><a href="docs/appendix/MYSQL_TO_POSTGRES_MEMORY.md">MYSQL_TO_POSTGRES_MEMORY.md</a> — Migration notes for MySQL → PostgreSQL transition</li>
+                    <li><a href="docs/appendix/MY_FIRST_PYTHON_PROGRAM.md">MY_FIRST_PYTHON_PROGRAM.md</a> — Story of documentation normalization Python script</li>
+                    <li><a href="lupopedia_call_to_action.htm">Join the Pack</a> — Information for contributors</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>The Lupopedia Difference</h2>
+            <ul>
+                <li><strong>Self-Sovereign:</strong> Your data, your rules. Complete control over content, agents, and policies.</li>
+                <li><strong>Adaptive:</strong> Learns from user behavior. Ontology evolves organically without manual tagging.</li>
+                <li><strong>Extensible:</strong> Add custom tools, models, and agents as needed. Modular architecture.</li>
+                <li><strong>Portable:</strong> Runs anywhere PHP runs. Works with any database engine. No proprietary dependencies.</li>
+                <li><strong>Private:</strong> No required cloud services. All data stays local unless explicitly federated.</li>
+                <li><strong>Resilient:</strong> Built to last decades. Explicit behavior over magic. Human-centered architecture.</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p><strong>Lupopedia — Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)</strong></p>
+            <p>Version 4.0.3 | © 2025-2026 Eric Robin Gerdes. All rights reserved.</p>
+            <p>Proprietary software. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

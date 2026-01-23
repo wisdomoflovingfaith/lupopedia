@@ -1,0 +1,22 @@
+{
+  "table_name": "lupo_anibus_events",
+  "fields": [
+    "`anibus_event_id` int NOT NULL auto_increment",
+    "`event_type` varchar(64) NOT NULL",
+    "`details` text NOT NULL",
+    "`created_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "anibus_event_id",
+    "expected_name": "anibus_event_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

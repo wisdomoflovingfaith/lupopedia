@@ -1,0 +1,9 @@
+{
+  "code": "ARCHIVER",
+  "name": "ARCHIVER",
+  "layer": "data",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 78,
+  "version": "1.0.0"
+}

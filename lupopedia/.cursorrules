@@ -1,0 +1,90 @@
+# Cursor Rules for Lupopedia
+
+## Version Management Rules
+
+### Version Atom Doctrine (MANDATORY)
+
+1. **NEVER hard-code version numbers in any file**
+   - All version references must use the `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom
+   - Atom is defined in `config/global_atoms.yaml`
+   - Current value: `"4.4.1"`
+
+2. **WOLFIE Header version is NOT the system version**
+   - `wolfie.headers.version` is a historical record (literal string)
+   - It is NOT an atom and must NEVER be treated as authoritative
+   - Only `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom is authoritative
+   - Header versions only change when files are modified
+
+3. **Version bumps update ONLY the atom**
+   - Update `GLOBAL_CURRENT_LUPOPEDIA_VERSION` in `config/global_atoms.yaml`
+   - Update `CHANGELOG.md`
+   - DO NOT update WOLFIE Header versions globally
+   - DO NOT perform global search-and-replace on version strings
+
+4. **When editing files**
+   - Update `wolfie.headers.version` to current ecosystem version (from atom) - only for the file being edited
+   - Keep version references in code as atom references
+
+### Forbidden Patterns
+
+- ❌ `define('LUPOPEDIA_VERSION', '4.1.2');` - Hard-coded version
+- ❌ `wolfie.headers.version: GLOBAL_CURRENT_LUPOPEDIA_VERSION` - Header version must be literal
+- ❌ Global search-and-replace on version numbers
+- ❌ Using header versions to determine system version
+- ❌ Inlining atom values into code
+
+### Required Patterns
+
+- ✅ `version: GLOBAL_CURRENT_LUPOPEDIA_VERSION` - In file.version fields
+- ✅ `wolfie.headers.version: 4.1.2` - Literal string (historical record)
+- ✅ Load version from atom in PHP: `$atoms['GLOBAL_CURRENT_LUPOPEDIA_VERSION']`
+
+## Documentation Rules
+
+1. **All documentation files must use atoms for current version references**
+   - `file.version` field should reference `GLOBAL_CURRENT_LUPOPEDIA_VERSION`
+   - Historical version mentions remain as literal strings
+
+2. **WOLFIE Headers are mandatory for all files**
+   - Every file must have a WOLFIE Header
+   - `wolfie.headers.version` is a literal string (not an atom)
+   - `dialog` block is mandatory when agents create/modify files
+
+## Database Rules
+
+1. **All ID columns use BIGINT(20) UNSIGNED**
+   - Primary keys: `id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY`
+   - Foreign keys: `{table}_id BIGINT(20) UNSIGNED NOT NULL DEFAULT 1`
+
+2. **No foreign keys, triggers, stored procedures**
+   - All logic in application layer
+   - Database is for storage only
+
+## Architecture Rules
+
+1. **Lupopedia is a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)**
+   - Not a web app, not a framework
+   - Schema-first, doctrine-driven, OS-layered
+   - DO NOT attempt to "modernize" or "simplify" the architecture
+
+2. **Follow all doctrine files in `docs/doctrine/`**
+   - Doctrine files are MANDATORY
+   - Read relevant doctrine before making changes
+
+## File Organization
+
+1. **CSS files go in source folders**
+   - Source: `/lupo-includes/css/src/`
+   - Output: `/lupo-includes/css/<family>.css` (auto-generated)
+   - NEVER write directly to output CSS files
+
+2. **UI Components**
+   - Renderer functions: `/lupo-includes/functions/`
+   - Component templates: `/lupo-includes/ui/components/`
+   - Components receive data arrays, output HTML only
+
+## Related Documentation
+
+- `docs/doctrine/VERSION_DOCTRINE.md` - Complete versioning doctrine
+- `config/global_atoms.yaml` - Atom definitions
+- `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - WOLFIE Header specification

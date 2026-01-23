@@ -1,0 +1,48 @@
+{
+    "table_name": "lupo_semantic_navigation_overview",
+    "fields": [
+        "`navigation_id` bigint NOT NULL auto_increment COMMENT 'Primary key for semantic navigation'",
+        "`title` varchar(255) NOT NULL COMMENT 'Navigation title'",
+        "`description` text COMMENT 'Navigation description'",
+        "`navigation_tree` json NOT NULL COMMENT 'Hierarchical navigation structure'",
+        "`content_categories` json NOT NULL COMMENT 'Content categories included'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp'",
+        "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
+        "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "navigation_id",
+        "expected_name": "semantic_navigation_overview_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_created",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis",
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

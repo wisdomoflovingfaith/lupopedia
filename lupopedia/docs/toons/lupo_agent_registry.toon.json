@@ -1,0 +1,39 @@
+{
+  "table_name": "lupo_agent_registry",
+  "fields": [
+    "`agent_registry_id` bigint NOT NULL auto_increment",
+    "`agent_registry_parent_id` bigint COMMENT 'if this is a alias'",
+    "`code` varchar(64) NOT NULL",
+    "`name` varchar(255) NOT NULL",
+    "`layer` varchar(64) NOT NULL",
+    "`is_required` tinyint(1) NOT NULL DEFAULT '0'",
+    "`is_active` tinyint(1) NOT NULL DEFAULT '0'",
+    "`is_kernel` tinyint(1) NOT NULL DEFAULT '0'",
+    "`dedicated_slot` int",
+    "`created_ymdhis` bigint NOT NULL",
+    "`classification_json` json COMMENT 'Agent classification and routing identity metadata (agent_class, subclass, routing_bias, capabilities)'",
+    "`metadata` json NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "unique_code",
+      "columns": [
+        "code"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "agent_registry_id",
+    "expected_name": "agent_registry_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

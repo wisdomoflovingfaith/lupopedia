@@ -1,0 +1,90 @@
+{
+  "table_name": "lupo_dialog_messages",
+  "fields": [
+    "`dialog_message_id` bigint NOT NULL auto_increment COMMENT 'Primary key for the dialog message'",
+    "`dialog_thread_id` bigint COMMENT 'Optional thread grouping for related dialogs'",
+    "`channel_id` bigint COMMENT 'Optional channel identifier'",
+    "`from_actor_id` bigint COMMENT 'Actor ID of the message sender'",
+    "`to_actor_id` bigint COMMENT 'Agent ID if message is from an AI agent'",
+    "`message_text` varchar(1000) NOT NULL COMMENT 'The message under 1000 chars '",
+    "`message_type` enum('text','command','system','error') NOT NULL DEFAULT 'text' COMMENT 'Type of message'",
+    "`metadata_json` json COMMENT 'Additional message metadata'",
+    "`mood_rgb` char(6) NOT NULL DEFAULT '666666' COMMENT 'Emotional polarity tensor encoded as hex (abstract axes: strife (R), harmony (G), memory depth (B); not literal RGB color channels)'",
+    "`weight` decimal(3,2) NOT NULL DEFAULT '0.00'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted)'",
+    "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_channel",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_dialog_thread_id",
+      "columns": [
+        "dialog_thread_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_message_type",
+      "columns": [
+        "message_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_to_actor_id",
+      "columns": [
+        "to_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Stores messages in dialog threads between agents and users. Supports rich message types, inline dialogs, and threading.",
+  "primary_key": {
+    "column_name": "dialog_message_id",
+    "expected_name": "dialog_message_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

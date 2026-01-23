@@ -1,0 +1,37 @@
+{
+    "table_name": "lupo_channel_context",
+    "context_metadata": {
+        "channel_id": 1002,
+        "channel_key": "dev-main-thread",
+        "context_type": "development_coordination",
+        "context_purpose": "main channel for development in global sense"
+    },
+    "semantic_structure": {
+        "domain": "development",
+        "primary_concepts": [
+            "development_coordination",
+            "system_updates",
+            "architecture_discussions",
+            "feature_development",
+            "bug_fixes"
+        ],
+        "excluded_concepts": [
+            "user_conversations",
+            "general_chat",
+            "non_development_topics"
+        ]
+    },
+    "agent_expectations": {
+        "assumed_persona": "developer",
+        "communication_style": "technical_direct",
+        "response_format": "structured_development",
+        "emotional_geometry": "neutral",
+        "task_orientation": "development_focus"
+    },
+    "context_rules": {
+        "task_scope": "development_coordination_only",
+        "conversation_type": "technical_coordination",
+        "emotional_protocol": "neutral_stance",
+        "temporal_context": "continuous_development"
+    }
+}

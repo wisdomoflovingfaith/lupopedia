@@ -1,0 +1,15 @@
+{
+  "agent_registry_id": 5,
+  "dedicated_slot": 5,
+  "code": "UTC_TIMEKEEPER",
+  "name": "UTC_TIMEKEEPER",
+  "layer": "kernel",
+  "is_conversational": false,
+  "is_user_addressable": false,
+  "capabilities": [
+    "provide_utc_timestamp"
+  ],
+  "expected_input_format": "what_is_current_utc_time_yyyymmddhhiiss",
+  "expected_output_format": "current_utc_time_yyyymmddhhiiss: <BIGINT>",
+  "version": "1.0.0"
+}

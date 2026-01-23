@@ -1,0 +1,9 @@
+{
+  "code": "RESERVED_28",
+  "name": "RESERVED_28",
+  "layer": "kernel",
+  "is_required": false,
+  "is_kernel": true,
+  "recommended_slot": 28,
+  "version": "1.0.0"
+}

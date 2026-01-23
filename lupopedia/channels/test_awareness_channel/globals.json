@@ -1,0 +1,29 @@
+{
+    "version": "2026.1.0.3",
+    "channel_id": 1001,
+    "channel_key": "test_awareness_channel",
+    "channel_name": "Agent Awareness Test Channel",
+    "governance_flags": {
+        "test_channel": true,
+        "auto_created": false,
+        "deletion_allowed": true
+    },
+    "allowed_actors": ["system", "wolfie", "test_agents"],
+    "default_actor_id": 1,
+    "timestamps": {
+        "created_ymdhis": 20260117000000,
+        "updated_ymdhis": 20260117000000
+    },
+    "awareness_version": "4.0.72",
+    "metadata": {
+        "purpose": "testing",
+        "doctrine": {
+            "version": "4.0.71",
+            "test_mode": true
+        },
+        "emotional_geometry": {
+            "baseline_mood": "neutral",
+            "test_scenario": "integration"
+        }
+    }
+}

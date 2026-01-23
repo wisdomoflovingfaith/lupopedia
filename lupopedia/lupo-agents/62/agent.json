@@ -1,0 +1,9 @@
+{
+  "code": "SANDBOXER",
+  "name": "SANDBOXER",
+  "layer": "system_ops",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 62,
+  "version": "1.0.0"
+}

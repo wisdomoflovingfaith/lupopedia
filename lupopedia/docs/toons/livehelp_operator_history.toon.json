@@ -1,0 +1,48 @@
+{
+  "table_name": "livehelp_operator_history",
+  "fields": [
+    "`id` int unsigned NOT NULL auto_increment",
+    "`livehelp_id` bigint unsigned NOT NULL DEFAULT '1'",
+    "`opid` int unsigned NOT NULL DEFAULT '0'",
+    "`action` varchar(60) NOT NULL DEFAULT ''",
+    "`dateof` bigint NOT NULL DEFAULT '0'",
+    "`sessionid` varchar(40) NOT NULL DEFAULT ''",
+    "`transcriptid` int NOT NULL DEFAULT '0'",
+    "`totaltime` int NOT NULL DEFAULT '0'",
+    "`channel` int NOT NULL DEFAULT '0'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "dateof",
+      "columns": [
+        "dateof"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "livehelp_id",
+      "columns": [
+        "livehelp_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "opid",
+      "columns": [
+        "opid"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "relationships": []
+}

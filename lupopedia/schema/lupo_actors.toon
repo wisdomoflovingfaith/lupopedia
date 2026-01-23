@@ -1,0 +1,26 @@
+table: lupo_actors
+  columns:
+    actor_id: bigint, primary, auto_increment
+    email: varchar(255), unique, nullable, comment: "Email for human actors, NULL for non-human actors"
+    type: enum('human', 'agent', 'service'), not null, comment: "Type of actor"
+    slug: varchar(255), unique, nullable, comment: "Human-readable unique identifier"
+    name: varchar(255), nullable, comment: "Human-readable name"
+    metadata: text, nullable, comment: "JSON-encoded additional actor attributes"
+    is_active: tinyint, default: 1, comment: "1 = active, 0 = inactive"
+    is_deleted: tinyint, default: 0, comment: "1 = deleted, 0 = not deleted"
+    deleted_ymdhis: bigint, nullable, comment: "UTC YYYYMMDDHHMMSS when deleted"
+    actor_source_id: bigint, nullable, comment: "ID from source table (auth_users, agents, etc.)"
+    actor_source_type: varchar(20), nullable, comment: "Source type: user, agent, system"
+    created_ymdhis: bigint, not null, comment: "UTC YYYYMMDDHHMMSS when created"
+    updated_ymdhis: bigint, not null, comment: "UTC YYYYMMDDHHMMSS when last updated"
+  indexes:
+    idx_type, type, actor_type
+    idx_email, unique, email
+    idx_slug, unique, slug
+    idx_created_ymdhis, created_ymdhis
+    idx_is_active, is_active
+    idx_is_deleted, is_deleted
+  engine: InnoDB
+  charset: utf8mb4
+  collate: utf8mb4_unicode_ci
+  comment: "Represents all entities that can perform actions in the system: users, AI agents, and services."

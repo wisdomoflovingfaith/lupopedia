@@ -1,0 +1,9 @@
+{
+  "code": "CONFIGMASTER",
+  "name": "CONFIGMASTER",
+  "layer": "system_ops",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 70,
+  "version": "1.0.0"
+}

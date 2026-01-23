@@ -1,0 +1,125 @@
+{
+  "table_name": "lupo_actor_edges",
+  "fields": [
+    "`actor_edge_id` bigint NOT NULL auto_increment",
+    "`domain_id` bigint NOT NULL COMMENT 'Domain scope for this relationship'",
+    "`source_actor_id` bigint NOT NULL COMMENT 'Source agent of the relationship'",
+    "`target_actor_id` bigint NOT NULL COMMENT 'Target agent of the relationship'",
+    "`edge_type` varchar(100) NOT NULL COMMENT 'Type of relationship (e.g., \"collaborates_with\", \"critiques\", \"balances\")'",
+    "`weight` float DEFAULT '1' COMMENT 'Strength or weight of the relationship'",
+    "`properties` text COMMENT 'JSON or TOON formatted metadata for the relationship'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_domain_id",
+      "columns": [
+        "domain_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_edge_source_relationship",
+      "columns": [
+        "source_actor_id",
+        "edge_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_edge_target_relationship",
+      "columns": [
+        "target_actor_id",
+        "edge_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_edge_type",
+      "columns": [
+        "edge_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_source_agent",
+      "columns": [
+        "source_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_source_target",
+      "columns": [
+        "source_actor_id",
+        "target_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_target_agent",
+      "columns": [
+        "target_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unique_agent_edge",
+      "columns": [
+        "domain_id",
+        "source_actor_id",
+        "target_actor_id",
+        "edge_type"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Defines directed relationships and interactions between agents",
+  "primary_key": {
+    "column_name": "actor_edge_id",
+    "expected_name": "actor_edge_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

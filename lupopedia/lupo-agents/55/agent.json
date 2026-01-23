@@ -1,0 +1,9 @@
+{
+  "code": "HEALTHCHECK",
+  "name": "HEALTHCHECK",
+  "layer": "system_ops",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 55,
+  "version": "1.0.0"
+}

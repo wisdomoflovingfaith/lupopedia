@@ -1,0 +1,197 @@
+{
+    "table_name": "lupo_dialog_messages",
+    "fields": [
+        "`dialog_message_id` bigint NOT NULL auto_increment COMMENT 'Primary key for the dialog message'",
+        "`dialog_thread_id` bigint COMMENT 'Optional thread grouping for related dialogs'",
+        "`channel_id` bigint COMMENT 'Optional channel identifier'",
+        "`from_actor_id` bigint COMMENT 'Actor ID of the message sender'",
+        "`to_actor_id` bigint COMMENT 'Agent ID if message is from an AI agent'",
+        "`message_text` varchar(1000) NOT NULL COMMENT 'The message under 1000 chars '",
+        "`message_type` enum('text','command','system','error') NOT NULL DEFAULT 'text' COMMENT 'Type of message'",
+        "`metadata_json` json COMMENT 'Additional message metadata'",
+        "`mood_rgb` char(6) NOT NULL DEFAULT '666666' COMMENT 'Emotional polarity tensor encoded as hex (abstract axes: strife (R), harmony (G), memory depth (B); not literal RGB color channels)'",
+        "`weight` decimal(3,2) NOT NULL DEFAULT 0.00",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
+        "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted)'",
+        "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
+    ],
+    "data": [
+        {
+            "dialog_message_id": 1,
+            "dialog_thread_id": 1,
+            "channel_id": 1,
+            "from_actor_id": 1,
+            "to_actor_id": 1,
+            "message_text": "1 import from crafty syntax",
+            "message_type": "text",
+            "metadata_json": "{\"legacy_email\": \"\", \"legacy_operators\": \"X1X\", \"legacy_sessionid\": \"b9a61c9e3f85e5a1c030bc1944506c16\", \"legacy_department\": 1, \"legacy_sessiondata\": \"<table width=100%><tr><td colspan=2 bgcolor=DDDDDD>User Information</td></tr><tr><td align=left><b>Referer:</b> <a href=http://lupopedia.com/what_was_crafty_syntax.php target=_blank>http://lupopedia.com/what_was_crafty_syntax.php</a><br><b>Status:</b>chat<br><b>Departments</b> default<br><b>E-mail :</b><br><b>SessionID :</b>b9a61c9e3f85e5a1c030bc1944506c16<br><b>identity :</b>96.3.230-cslhVISITOR<br><b>HostName:</b>host_lookup_not_enabled<br><b>User Agent :</b>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0<br><b>Browser :</b>Edge<br><b>Browser_Version :</b>142.0.0.0<br><b>Ip :</b>96.3.230.164<br><b>Cookied :</b>Y<br><b>New Session :</b>N<br><b> Question:</b> <br><font color=000000>fdsa</font>\"}",
+            "mood_rgb": "666666",
+            "weight": 1.0,
+            "created_ymdhis": 20251110175141,
+            "updated_ymdhis": 20251110175157,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "dialog_message_id": 2,
+            "dialog_thread_id": 2,
+            "channel_id": 1,
+            "from_actor_id": 1,
+            "to_actor_id": 1,
+            "message_text": "2 import from crafty syntax",
+            "message_type": "text",
+            "metadata_json": "{\"legacy_email\": \"\", \"legacy_operators\": \"X1X\", \"legacy_sessionid\": \"b9a61c9e3f85e5a1c030bc1944506c16\", \"legacy_department\": 1, \"legacy_sessiondata\": \"<table width=100%><tr><td colspan=2 bgcolor=DDDDDD>User Information</td></tr><tr><td align=left><b>Referer:</b> <a href=http://lupopedia.com/what_was_crafty_syntax.php target=_blank>http://lupopedia.com/what_was_crafty_syntax.php</a><br><b>Status:</b>chat<br><b>Departments</b> default<br><b>E-mail :</b><br><b>SessionID :</b>b9a61c9e3f85e5a1c030bc1944506c16<br><b>identity :</b>96.3.230-cslhVISITOR<br><b>HostName:</b>host_lookup_not_enabled<br><b>User Agent :</b>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0<br><b>Browser :</b>Edge<br><b>Browser_Version :</b>142.0.0.0<br><b>Ip :</b>96.3.230.164<br><b>Cookied :</b>Y<br><b>New Session :</b>N<br>\"}",
+            "mood_rgb": "666666",
+            "weight": 1.0,
+            "created_ymdhis": 20251110181804,
+            "updated_ymdhis": 20251110184120,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "dialog_message_id": 3,
+            "dialog_thread_id": 3,
+            "channel_id": 1,
+            "from_actor_id": 1,
+            "to_actor_id": 1,
+            "message_text": "3 import from crafty syntax",
+            "message_type": "text",
+            "metadata_json": "{\"legacy_email\": \"\", \"legacy_operators\": \"X1X\", \"legacy_sessionid\": \"d50d366e8e40f632be429c1e6c981885\", \"legacy_department\": 1, \"legacy_sessiondata\": \"<table width=100%><tr><td colspan=2 bgcolor=DDDDDD>User Information</td></tr><tr><td align=left><b>Referer:</b> <a href=http://lupopedia.com/lh/admin_options.php?tab=live target=_blank>http://lupopedia.com/lh/admin_options.php?tab=live</a><br><b>Status:</b>chat<br><b>Departments</b> default<br><b>E-mail :</b><br><b>SessionID :</b>d50d366e8e40f632be429c1e6c981885<br><b>identity :</b>96.3.230-cslhVISITOR<br><b>HostName:</b>host_lookup_not_enabled<br><b>User Agent :</b>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36<br><b>Browser :</b>Chrome<br><b>Browser_Version :</b>142.0.0.0<br><b>Ip :</b>96.3.230.164<br><b>Cookied :</b>Y<br><b>New Session :</b>N<br><b> Question:</b> <br><font color=000000>fdsaf</font>\"}",
+            "mood_rgb": "666666",
+            "weight": 1.0,
+            "created_ymdhis": 20251110191304,
+            "updated_ymdhis": 20251110191335,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "dialog_message_id": 4,
+            "dialog_thread_id": 4,
+            "channel_id": 1,
+            "from_actor_id": 1,
+            "to_actor_id": 1,
+            "message_text": "4 import from crafty syntax",
+            "message_type": "text",
+            "metadata_json": "{\"legacy_email\": \"\", \"legacy_operators\": \"X1X\", \"legacy_sessionid\": \"b9a61c9e3f85e5a1c030bc1944506c16\", \"legacy_department\": 1, \"legacy_sessiondata\": \"<table width=100%><tr><td colspan=2 bgcolor=DDDDDD>User Information</td></tr><tr><td align=left><b>Referer:</b> <a href=http://lupopedia.com/index.php target=_blank>http://lupopedia.com/index.php</a><br><b>Status:</b>chat<br><b>Departments</b> default<br><b>E-mail :</b><br><b>SessionID :</b>b9a61c9e3f85e5a1c030bc1944506c16<br><b>identity :</b>96.3.230-cslhVISITOR<br><b>HostName:</b>host_lookup_not_enabled<br><b>User Agent :</b>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0<br><b>Browser :</b>Edge<br><b>Browser_Version :</b>142.0.0.0<br><b>Ip :</b>96.3.230.164<br><b>Cookied :</b>Y<br><b>New Session :</b>N<br><b> Question:</b> <br><font color=000000>HJGBHJ</font>\"}",
+            "mood_rgb": "666666",
+            "weight": 1.0,
+            "created_ymdhis": 20251110215343,
+            "updated_ymdhis": 20251110215356,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "dialog_message_id": 5,
+            "dialog_thread_id": 5,
+            "channel_id": 1,
+            "from_actor_id": 1,
+            "to_actor_id": 1,
+            "message_text": "5 import from crafty syntax",
+            "message_type": "text",
+            "metadata_json": "{\"legacy_email\": \"\", \"legacy_operators\": \"X1X\", \"legacy_sessionid\": \"b9a61c9e3f85e5a1c030bc1944506c16\", \"legacy_department\": 1, \"legacy_sessiondata\": \"<table width=100%><tr><td colspan=2 bgcolor=DDDDDD>User Information</td></tr><tr><td align=left><b>Referer:</b> <a href=http://lupopedia.com/index.php target=_blank>http://lupopedia.com/index.php</a><br><b>Status:</b>chat<br><b>Departments</b> default<br><b>E-mail :</b><br><b>SessionID :</b>b9a61c9e3f85e5a1c030bc1944506c16<br><b>identity :</b>96.3.230-cslhVISITOR<br><b>HostName:</b>host_lookup_not_enabled<br><b>User Agent :</b>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0<br><b>Browser :</b>Edge<br><b>Browser_Version :</b>142.0.0.0<br><b>Ip :</b>96.3.230.164<br><b>Cookied :</b>Y<br><b>New Session :</b>N<br>\"}",
+            "mood_rgb": "666666",
+            "weight": 1.0,
+            "created_ymdhis": 20251110215612,
+            "updated_ymdhis": 20251110225953,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "dialog_message_id": 6,
+            "dialog_thread_id": 6,
+            "channel_id": 1,
+            "from_actor_id": 1,
+            "to_actor_id": 1,
+            "message_text": "6 import from crafty syntax",
+            "message_type": "text",
+            "metadata_json": "{\"legacy_email\": \"\", \"legacy_operators\": \"X1X\", \"legacy_sessionid\": \"4ee87ddaf8c0dd599cf45fa8d31af4eb\", \"legacy_department\": 1, \"legacy_sessiondata\": \"<table width=100%><tr><td colspan=2 bgcolor=DDDDDD>User Information</td></tr><tr><td align=left><b>Referer:</b> <a href=http://www.lupopedia.com/ target=_blank>http://www.lupopedia.com/</a><br><b>Status:</b>chat<br><b>Departments</b> default<br><b>E-mail :</b><br><b>SessionID :</b>4ee87ddaf8c0dd599cf45fa8d31af4eb<br><b>identity :</b>96.3.230-cslhVISITOR<br><b>HostName:</b>host_lookup_not_enabled<br><b>User Agent :</b>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0<br><b>Browser :</b>Edge<br><b>Browser_Version :</b>142.0.0.0<br><b>Ip :</b>96.3.230.164<br><b>Cookied :</b>Y<br><b>New Session :</b>N<br>\"}",
+            "mood_rgb": "666666",
+            "weight": 1.0,
+            "created_ymdhis": 20251111151223,
+            "updated_ymdhis": 20251111152132,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "dialog_message_id": 7,
+            "dialog_thread_id": 7,
+            "channel_id": 1,
+            "from_actor_id": 1,
+            "to_actor_id": 1,
+            "message_text": "7 import from crafty syntax",
+            "message_type": "text",
+            "metadata_json": "{\"legacy_email\": \"\", \"legacy_operators\": \"X1X\", \"legacy_sessionid\": \"d1749e8d26e93798d4f084760e72afa6\", \"legacy_department\": 1, \"legacy_sessiondata\": \"<table width=100%><tr><td colspan=2 bgcolor=DDDDDD>User Information</td></tr><tr><td align=left><b>Referer:</b> <a href=http:// target=_blank>http://</a><br><b>Status:</b>chat<br><b>Departments</b> default<br><b>E-mail :</b><br><b>SessionID :</b>d1749e8d26e93798d4f084760e72afa6<br><b>identity :</b>96.3.230-cslhVISITOR<br><b>HostName:</b>host_lookup_not_enabled<br><b>User Agent :</b>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36<br><b>Browser :</b>Chrome<br><b>Browser_Version :</b>143.0.0.0<br><b>Ip :</b>96.3.230.164<br><b>Cookied :</b>Y<br><b>New Session :</b>N<br><b> Question:</b> <br><font color=000000>fgds</font>\"}",
+            "mood_rgb": "666666",
+            "weight": 1.0,
+            "created_ymdhis": 20251228004357,
+            "updated_ymdhis": 20251228004412,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        }
+    ],
+    "primary_key": {
+        "column_name": "dialog_message_id",
+        "expected_name": "dialog_message_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_channel",
+            "columns": [
+                "channel_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_dialog_thread_id",
+            "columns": [
+                "dialog_thread_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_message_type",
+            "columns": [
+                "message_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_to_actor_id",
+            "columns": [
+                "to_actor_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_updated",
+            "columns": [
+                "updated_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

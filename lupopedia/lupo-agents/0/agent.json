@@ -1,0 +1,10 @@
+{
+  "code": "SYSTEM",
+  "name": "SYSTEM",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 0,
+  "version": "1.0.0"
+}
+

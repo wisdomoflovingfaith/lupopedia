@@ -1,0 +1,8 @@
+group_id,domain_id,group_name,description
+BIGINT UNSIGNED,BIGINT UNSIGNED,VARCHAR(50),TEXT
+1,0,System Administrators,Full system access across all domains
+2,1,Domain Admins,Administrative access within their domain
+3,1,Content Editors,Can create and edit content
+4,1,Regular Users,Standard user permissions
+5,2,Moderators,Can moderate user content
+6,3,Guests,Read-only access with limited permissions

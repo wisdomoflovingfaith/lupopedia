@@ -1,0 +1,51 @@
+{
+  "legacy_table": "livehelp_autoinvite",
+  "legacy_description": "Legacy Crafty Syntax auto-invite rules. Controlled when a visitor would be auto-invited into chat based on page, visits, referrer, seconds on page, and operator availability.",
+  "legacy_columns": {
+    "idnum": "Primary key",
+    "offline": "Y/N flag for offline invites",
+    "isactive": "Y/N active flag",
+    "department": "Department ID (not always used correctly in legacy)",
+    "message": "Invite message shown to visitor",
+    "page": "Page URL trigger",
+    "visits": "Visit count trigger",
+    "referer": "Referrer URL trigger",
+    "typeof": "Invite type (popup, slidein, etc.)",
+    "seconds": "Seconds before triggering invite",
+    "user_id": "Operator user ID",
+    "socialpane": "Y/N flag for showing social pane",
+    "excludemobile": "Y/N flag to exclude mobile devices",
+    "onlymobile": "Y/N flag to target only mobile devices"
+  },
+  "new_table": "lupo_crafty_syntax_auto_invite",
+  "new_columns_mapped": {
+    "idnum": "crafty_syntax_auto_invite_id",
+    "offline": "is_offline",
+    "isactive": "is_active (Y→1, else 0)",
+    "department": "department_id",
+    "message": "message",
+    "page": "page_url",
+    "visits": "visits",
+    "referer": "referrer_url",
+    "typeof": "invite_type",
+    "seconds": "trigger_seconds",
+    "user_id": "operator_user_id",
+    "socialpane": "show_socialpane (Y→1, else 0)",
+    "excludemobile": "exclude_mobile (Y→1, else 0)",
+    "onlymobile": "only_mobile (Y→1, else 0)"
+  },
+  "added_columns": {
+    "created_ymdhis": "Set to 20250101000000",
+    "updated_ymdhis": "Set to 20250101000000",
+    "is_deleted": "Default 0",
+    "deleted_ymdhis": "NULL"
+  },
+  "migration_notes": [
+    "Boolean Y/N fields converted to integer 1/0.",
+    "Legacy table had no timestamps; new table uses bigint ymdhis.",
+    "Department field was inconsistently used in legacy but preserved for historical accuracy.",
+    "No foreign keys added (doctrine).",
+    "Table is preserved as part of Crafty Syntax subsystem inside Lupopedia."
+  ],
+  "disposition": "Migrated"
+}

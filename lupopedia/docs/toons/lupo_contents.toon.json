@@ -1,0 +1,155 @@
+{
+  "table_name": "lupo_contents",
+  "fields": [
+    "`content_id` bigint NOT NULL auto_increment COMMENT 'Primary key for content'",
+    "`content_parent_id` bigint COMMENT 'Parent content ID for hierarchical relationships'",
+    "`federation_node_id` bigint DEFAULT '1' COMMENT 'Domain scope, NULL for global content'",
+    "`group_id` bigint COMMENT 'Optional group restriction'",
+    "`user_id` bigint COMMENT 'Author of the content'",
+    "`title` varchar(255) NOT NULL COMMENT 'Content title'",
+    "`slug` varchar(255) NOT NULL COMMENT 'URL-friendly identifier, unique within domain'",
+    "`description` text COMMENT 'Short summary or teaser'",
+    "`seo_keywords` varchar(500)",
+    "`body` longtext COMMENT 'Main content body'",
+    "`content_type` varchar(50) DEFAULT 'article' COMMENT 'Type of content (article, page, post, etc.)'",
+    "`format` varchar(20) DEFAULT 'html' COMMENT 'Content format (html, markdown, etc.)'",
+    "`content_url` varchar(2000) COMMENT 'content URL if content is referenced by url such as lupopedia.com/content/lupopedia'",
+    "`default_collection_id` bigint COMMENT 'Default collection ID'",
+    "`source_url` varchar(2000) COMMENT 'Original source URL if content is imported'",
+    "`source_title` varchar(500) COMMENT 'Title of the source'",
+    "`is_template` tinyint NOT NULL DEFAULT '0' COMMENT '1 = template, 0 = regular content'",
+    "`status` enum('draft','published','archived') DEFAULT 'draft' COMMENT 'Publication status'",
+    "`visibility` enum('public','private','unlisted') DEFAULT 'public' COMMENT 'Visibility level'",
+    "`view_count` int DEFAULT '0' COMMENT 'Number of views'",
+    "`share_count` int DEFAULT '0' COMMENT 'Number of shares'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`is_active` tinyint NOT NULL DEFAULT '1' COMMENT '1 = active, 0 = not active'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'",
+    "`content_sections` json COMMENT 'Cached list of section anchors extracted from the content body'",
+    "`version_number` int NOT NULL DEFAULT '1' COMMENT 'Monotonic version number for the live content row'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "ft_content",
+      "columns": [
+        "title",
+        "description",
+        "body"
+      ],
+      "is_unique": false,
+      "index_type": "FULLTEXT"
+    },
+    {
+      "index_name": "idx_content_parent",
+      "columns": [
+        "content_parent_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_content_type",
+      "columns": [
+        "content_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_domain",
+      "columns": [
+        "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_group",
+      "columns": [
+        "group_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_user",
+      "columns": [
+        "user_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_visibility",
+      "columns": [
+        "visibility"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unique_content_slug_domain",
+      "columns": [
+        "federation_node_id",
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Main content items including articles, pages, and other content types",
+  "primary_key": {
+    "column_name": "content_id",
+    "expected_name": "content_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

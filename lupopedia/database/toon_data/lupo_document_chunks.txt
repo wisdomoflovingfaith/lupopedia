@@ -1,0 +1,50 @@
+{
+    "table_name": "lupo_document_chunks",
+    "fields": [
+        "`document_chunk_id` bigint NOT NULL auto_increment",
+        "`document_id` bigint NOT NULL",
+        "`chunk_index` int NOT NULL",
+        "`chunk_content` mediumtext NOT NULL",
+        "`token_count` int",
+        "`metadata` json",
+        "`created_ymdhis` bigint NOT NULL",
+        "`updated_ymdhis` bigint NOT NULL",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0",
+        "`deleted_ymdhis` bigint"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "document_chunk_id",
+        "expected_name": "document_chunk_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "doc_chunk_unique",
+            "columns": [
+                "document_id",
+                "chunk_index"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "document_id",
+            "columns": [
+                "document_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "doc_chunk_unique",
+            "columns": [
+                "document_id",
+                "chunk_index"
+            ]
+        }
+    ]
+}

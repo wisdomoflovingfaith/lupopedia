@@ -1,0 +1,117 @@
+{
+    "table_name": "lupo_gov_valuations",
+    "fields": [
+        "`valuation_id` bigint NOT NULL auto_increment COMMENT 'Primary key for valuation'",
+        "`gov_event_id` bigint NOT NULL COMMENT 'Associated governance event'",
+        "`valuation_type` varchar(100) NOT NULL COMMENT 'Type of valuation'",
+        "`valuation_metric` varchar(255) NOT NULL COMMENT 'Metric being valued'",
+        "`valuation_value` decimal(20,8) COMMENT 'Numeric valuation value'",
+        "`valuation_text` text COMMENT 'Text-based valuation'",
+        "`valuation_currency` varchar(10) COMMENT 'Currency if applicable'",
+        "`valuation_unit` varchar(50) COMMENT 'Unit of measurement'",
+        "`confidence_score` decimal(5,4) COMMENT 'Confidence in valuation (0.0000-1.0000)'",
+        "`metadata_json` json COMMENT 'Additional valuation metadata'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+        "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
+        "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    ],
+    "data": [
+        {
+            "valuation_id": 1,
+            "gov_event_id": 1,
+            "valuation_type": "resource",
+            "valuation_metric": "behavioral_metadata",
+            "valuation_value": 25000000.0,
+            "valuation_text": "Approximate number of historical interactions, navigation paths, and behavioral events inherited from Crafty Syntax and related systems.",
+            "valuation_currency": "N/A",
+            "valuation_unit": null,
+            "confidence_score": null,
+            "metadata_json": "{\"ref\": \"LUPO-VALUATION-001\"}",
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "valuation_id": 2,
+            "gov_event_id": 1,
+            "valuation_type": "impact",
+            "valuation_metric": "strategic",
+            "valuation_value": null,
+            "valuation_text": "Provides a unique, long-horizon emotional and behavioral fingerprint of the web, enabling empathy-aware AI and context-rich navigation intelligence that modern systems cannot replicate.",
+            "valuation_currency": null,
+            "valuation_unit": null,
+            "confidence_score": null,
+            "metadata_json": "{\"ref\": \"LUPO-IMPACT-001\"}",
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        },
+        {
+            "valuation_id": 3,
+            "gov_event_id": 1,
+            "valuation_type": "risk",
+            "valuation_metric": "governance",
+            "valuation_value": null,
+            "valuation_text": "Misclassification of Lupopedia as a CMS or ad-tech platform could lead to architectural drift, commercial pressure, and violation of core prohibitions around emotional metadata exploitation.",
+            "valuation_currency": null,
+            "valuation_unit": null,
+            "confidence_score": null,
+            "metadata_json": "{\"ref\": \"LUPO-RISK-001\"}",
+            "created_ymdhis": 20260120023000,
+            "updated_ymdhis": 20260120023000,
+            "is_deleted": 0,
+            "deleted_ymdhis": null
+        }
+    ],
+    "primary_key": {
+        "column_name": "valuation_id",
+        "expected_name": "gov_valuation_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_gov_event",
+            "columns": [
+                "gov_event_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_valuation_metric",
+            "columns": [
+                "valuation_metric"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_valuation_type",
+            "columns": [
+                "valuation_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

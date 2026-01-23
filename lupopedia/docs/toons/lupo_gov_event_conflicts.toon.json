@@ -1,0 +1,45 @@
+{
+  "table_name": "lupo_gov_event_conflicts",
+  "fields": [
+    "`id` bigint NOT NULL auto_increment COMMENT 'Primary key'",
+    "`gov_event_id` bigint NOT NULL COMMENT 'The event declaring a conflict'",
+    "`conflicts_with_event_id` bigint NOT NULL COMMENT 'The event it conflicts with'",
+    "`conflict_type` varchar(50) NOT NULL COMMENT 'schema, doctrine, branch, timestamp, identity'",
+    "`severity` varchar(20) NOT NULL COMMENT 'warning, error, fatal'",
+    "`notes` text COMMENT 'Optional explanation of the conflict'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC timestamp of creation'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC timestamp of deletion'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_conflicts_with_event_id",
+      "columns": [
+        "conflicts_with_event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_gov_event_id",
+      "columns": [
+        "gov_event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Conflict relationships between governance events (append-only)",
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

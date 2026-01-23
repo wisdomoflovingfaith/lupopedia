@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wolfie's AI Kids Cheat Sheet — Lupopedia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <style>
+    :root {
+      --text: #1f2933;
+      --muted: #4b5563;
+      --bg: #ffffff;
+      --accent: #111827;
+      --eos-purple: #9370DB;
+      --border: #e5e7eb;
+      --highlight: #fff9e6;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--eos-purple);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    p {
+      margin: 1rem 0;
+      line-height: 1.8;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    thead {
+      background: var(--eos-purple);
+      color: white;
+    }
+
+    th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tbody tr:hover {
+      background: #f9fafb;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .personality {
+      font-weight: 600;
+      color: var(--eos-purple);
+    }
+
+    .strengths {
+      color: #059669;
+    }
+
+    .weak-spots {
+      color: #dc2626;
+    }
+
+    .section-box {
+      background: var(--highlight);
+      border-left: 5px solid var(--eos-purple);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 4px;
+    }
+
+    .rule-box {
+      background: #f0f9ff;
+      border-left: 5px solid #0284c7;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 4px;
+    }
+
+    .rule-box h3 {
+      margin-top: 0;
+      color: #0284c7;
+    }
+
+    ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin: 0.5rem 0;
+      line-height: 1.8;
+    }
+
+    .emoji {
+      font-size: 1.2em;
+      margin-right: 0.5rem;
+    }
+
+    .footer-note {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      table {
+        font-size: 0.9rem;
+      }
+
+      th, td {
+        padding: 0.75rem 0.5rem;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1><span class="emoji">🐺</span>Wolfie's AI Kids Cheat Sheet</h1>
+      <p class="subtitle">A field guide to the external AIs and IDEs in the Lupopedia ecosystem</p>
+      <p style="margin-top: 1rem; color: var(--muted);">
+        This is the quick‑reference map of all the "AI kids" Wolfie wrangles daily — who they are, what they're good at, and how to use them without triggering meltdowns.
+      </p>
+    </header>
+
+    <section>
+      <h2><span class="emoji">🤖</span>External AI Models (The Kids)</h2>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>AI Kid</th>
+            <th>Personality</th>
+            <th>Strengths</th>
+            <th>Weak Spots</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>DeepSeek</strong></td>
+            <td><span class="personality">The overachiever who reads entire books in one sitting</span></td>
+            <td><span class="strengths">Massive text handling, doctrine editing, structural rewrites, large README audits</span></td>
+            <td><span class="weak-spots">Needs strict boundaries or rewrites the universe</span></td>
+          </tr>
+          <tr>
+            <td><strong>Copilot</strong></td>
+            <td><span class="personality">The friendly one who tries hard to help</span></td>
+            <td><span class="strengths">Code reasoning, explanations, architecture thinking, multi‑agent orchestration</span></td>
+            <td><span class="weak-spots">Chokes on huge files, politely shrugs when overwhelmed</span></td>
+          </tr>
+          <tr>
+            <td><strong>Grok</strong></td>
+            <td><span class="personality">The sarcastic genius cousin</span></td>
+            <td><span class="strengths">Fast reasoning, pattern recognition, humor, summarization</span></td>
+            <td><span class="weak-spots">Not ideal for long‑form doctrine or huge diffs</span></td>
+          </tr>
+          <tr>
+            <td><strong>Gemini</strong></td>
+            <td><span class="personality">The academic kid</span></td>
+            <td><span class="strengths">Research, structured analysis, logic, cross‑domain reasoning</span></td>
+            <td><span class="weak-spots">Can get too formal, not great with messy legacy systems</span></td>
+          </tr>
+          <tr>
+            <td><strong>Z</strong></td>
+            <td><span class="personality">The wildcard</span></td>
+            <td><span class="strengths">Creative leaps, unusual insights, lateral thinking</span></td>
+            <td><span class="weak-spots">Unpredictable, needs guardrails</span></td>
+          </tr>
+          <tr>
+            <td><strong>ChatGPT</strong></td>
+            <td><span class="personality">The storyteller</span></td>
+            <td><span class="strengths">Narrative shaping, documentation, analogies, emotional framing</span></td>
+            <td><span class="weak-spots">Can hallucinate if not grounded in doctrine</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="emoji">🛠️</span>IDE Systems (The Workbenches)</h2>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>IDE / Tool</th>
+            <th>Role in the Ecosystem</th>
+            <th>Strengths</th>
+            <th>Weak Spots</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cursor</strong></td>
+            <td><span class="personality">The surgeon</span></td>
+            <td><span class="strengths">Precise code edits, SQL fixes, migrations, file generation</span></td>
+            <td><span class="weak-spots">Doesn't like huge files or giant doctrine blocks</span></td>
+          </tr>
+          <tr>
+            <td><strong>Windsurf</strong></td>
+            <td><span class="personality">The mechanic</span></td>
+            <td><span class="strengths">Multi‑file refactors, project‑wide changes</span></td>
+            <td><span class="weak-spots">Can get confused by emotional or mythic context</span></td>
+          </tr>
+          <tr>
+            <td><strong>JetBrains AI (Junie)</strong></td>
+            <td><span class="personality">The engineer</span></td>
+            <td><span class="strengths">Deep codebase understanding, refactoring, static analysis</span></td>
+            <td><span class="weak-spots">Not ideal for narrative or doctrine</span></td>
+          </tr>
+          <tr>
+            <td><strong>VS Code AI Extensions</strong></td>
+            <td><span class="personality">The utility belt</span></td>
+            <td><span class="strengths">Quick edits, inline suggestions</span></td>
+            <td><span class="weak-spots">Limited context window</span></td>
+          </tr>
+          <tr>
+            <td><strong>GitHub Copilot in IDE</strong></td>
+            <td><span class="personality">The sidekick</span></td>
+            <td><span class="strengths">Inline code completion, pattern matching</span></td>
+            <td><span class="weak-spots">Not a doctrine reader</span></td>
+          </tr>
+          <tr>
+            <td><strong>Claude in IDE</strong></td>
+            <td><span class="personality">The librarian</span></td>
+            <td><span class="strengths">Reads long files, explains complex logic</span></td>
+            <td><span class="weak-spots">Can be overly cautious</span></td>
+          </tr>
+          <tr>
+            <td><strong>DeepSeek in IDE</strong></td>
+            <td><span class="personality">The heavy lifter</span></td>
+            <td><span class="strengths">Handles huge diffs, big rewrites</span></td>
+            <td><span class="weak-spots">Needs tight instructions or it goes wild</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="emoji">🧩</span>How They Fit Together</h2>
+      
+      <div class="section-box">
+        <p>Think of your ecosystem like a <strong>multi‑agent workshop</strong>:</p>
+        
+        <ul>
+          <li><strong>DeepSeek</strong> handles the big doctrine and README rewrites.</li>
+          <li><strong>Cursor</strong> handles the precise code surgery.</li>
+          <li><strong>Windsurf</strong> handles multi‑file refactors.</li>
+          <li><strong>Copilot</strong> handles architectural reasoning and conversational planning.</li>
+          <li><strong>Grok / Gemini / Z / ChatGPT</strong> fill in the gaps with analysis, creativity, or narrative.</li>
+          <li><strong>Kiro / Cascade</strong> act as auditors and doctrine enforcers.</li>
+          <li><strong>You're the kernel architect</strong> orchestrating all of them.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="emoji">🧠</span>Operational Rule of Thumb</h2>
+      
+      <div class="rule-box">
+        <ul style="list-style: none; padding-left: 0;">
+          <li><strong>Big file?</strong> → DeepSeek</li>
+          <li><strong>Precise code fix?</strong> → Cursor</li>
+          <li><strong>Multi‑file refactor?</strong> → Windsurf</li>
+          <li><strong>Doctrine audit?</strong> → Kiro / Cascade</li>
+          <li><strong>Narrative or explanation?</strong> → ChatGPT / Copilot</li>
+          <li><strong>Weird insight or creative leap?</strong> → Z</li>
+          <li><strong>Fast reasoning?</strong> → Grok</li>
+          <li><strong>Academic clarity?</strong> → Gemini</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="emoji">🐺</span>Why This Cheat Sheet Exists</h2>
+      
+      <div class="section-box">
+        <p>Because you're not "using AI tools."</p>
+        <p>You're running a <strong>multi‑agent distributed cognition cluster</strong> across:</p>
+        
+        <ul>
+          <li>multiple models</li>
+          <li>multiple IDEs</li>
+          <li>multiple contexts</li>
+          <li>multiple roles</li>
+        </ul>
+        
+        <p style="margin-top: 1.5rem;"><strong>…all at the same time.</strong></p>
+        
+        <p style="margin-top: 1.5rem;">
+          Most people use one AI.<br>
+          You're running a semantic OS with a dozen agents like it's nothing.
+        </p>
+        
+        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--eos-purple);">
+          This cheat sheet keeps the chaos aligned.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      <p>Wolfie's AI Kids Cheat Sheet — Lupopedia Ecosystem</p>
+      <p>© 2025-2026 Eric Robin Gerdes. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+{
+    "table_name": "livehelp_leads",
+    "fields": [
+        "`id` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`email` varchar(90) NOT NULL",
+        "`phone` varchar(90) NOT NULL",
+        "`source` varchar(45) NOT NULL",
+        "`status` varchar(10) NOT NULL",
+        "`data` text NOT NULL",
+        "`firstname` varchar(40) NOT NULL",
+        "`lastname` varchar(40) NOT NULL",
+        "`date_entered` int NOT NULL"
+    ],
+    "data": [
+        {
+            "id": 1,
+            "livehelp_id": 1,
+            "email": "lupopedia@gmail.com",
+            "phone": "",
+            "source": "contact form",
+            "status": "emailed",
+            "data": "this=that&field_1=lupopedia%40gmail.com&field_2=fsda",
+            "firstname": "",
+            "lastname": "",
+            "date_entered": 20251110
+        },
+        {
+            "id": 2,
+            "livehelp_id": 1,
+            "email": "",
+            "phone": "",
+            "source": "transcript",
+            "status": "emailed",
+            "data": " <b>fdsa : </b> <b>Question</b><br>fdsa <br> <b>captain : </b> How may I help You? <br> <b>captain : </b> fdsa fdsa fdsa fds afds afdsa fds afdsa fd <br>",
+            "firstname": "fdsa",
+            "lastname": "",
+            "date_entered": 20251110
+        },
+        {
+            "id": 3,
+            "livehelp_id": 1,
+            "email": "gfdsg@lupopedia.com",
+            "phone": "",
+            "source": "contact form",
+            "status": "emailed",
+            "data": "this=that&field_1=gfdsg%40lupopedia.com&field_2=gfdsgf",
+            "firstname": "",
+            "lastname": "",
+            "date_entered": 20251113
+        },
+        {
+            "id": 4,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "phone": "",
+            "source": "contact form",
+            "status": "emailed",
+            "data": "this=that&field_1=sample%40email.tst&field_2=555",
+            "firstname": "",
+            "lastname": "",
+            "date_entered": 20251126
+        }
+    ]
+}

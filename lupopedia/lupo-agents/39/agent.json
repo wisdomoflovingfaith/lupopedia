@@ -1,0 +1,9 @@
+{
+  "code": "EVALUATOR",
+  "name": "EVALUATOR",
+  "layer": "cognitive",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 39,
+  "version": "1.0.0"
+}

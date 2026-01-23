@@ -1,0 +1,68 @@
+{
+    "table_name": "lupo_doctrine_evolution_audit",
+    "fields": [
+        "`id` bigint unsigned NOT NULL auto_increment",
+        "`refinement_id` bigint unsigned NOT NULL COMMENT 'Reference to lupo_doctrine_refinements.id'",
+        "`evolution_step` tinyint unsigned NOT NULL COMMENT 'Step in evolution process (1-10)'",
+        "`step_description` varchar(255) NOT NULL COMMENT 'Description of evolution step'",
+        "`step_status` enum('pending','in_progress','completed','failed','skipped') DEFAULT 'pending'",
+        "`step_metadata_json` json COMMENT 'Step-specific metadata'",
+        "`started_ymdhis` bigint COMMENT 'When step started'",
+        "`completed_ymdhis` bigint COMMENT 'When step completed'",
+        "`audit_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Audit system version'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "id",
+        "expected_name": "doctrine_evolution_audit_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "unsigned_columns": [
+        {
+            "column_name": "id",
+            "current_type": "bigint unsigned",
+            "expected_type": "bigint",
+            "is_primary_key": true
+        },
+        {
+            "column_name": "refinement_id",
+            "current_type": "bigint unsigned",
+            "expected_type": "bigint",
+            "is_primary_key": false
+        },
+        {
+            "column_name": "evolution_step",
+            "current_type": "tinyint unsigned",
+            "expected_type": "tinyint",
+            "is_primary_key": false
+        }
+    ],
+    "indexes": [
+        {
+            "index_name": "idx_completion_time",
+            "columns": [
+                "completed_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_refinement_step",
+            "columns": [
+                "refinement_id",
+                "evolution_step"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_step_status",
+            "columns": [
+                "step_status"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

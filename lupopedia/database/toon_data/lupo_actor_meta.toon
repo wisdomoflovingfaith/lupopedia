@@ -1,0 +1,114 @@
+{
+    "table_name": "lupo_actor_meta",
+    "fields": [
+        "`actor_meta_id` bigint unsigned NOT NULL auto_increment",
+        "`actor_id` bigint unsigned NOT NULL",
+        "`meta_type` varchar(64) NOT NULL",
+        "`meta_key` varchar(255) NOT NULL",
+        "`meta_value` text NOT NULL",
+        "`created_ymdhis` bigint NOT NULL",
+        "`updated_ymdhis` bigint NOT NULL"
+    ],
+    "data": [
+        {
+            "actor_meta_id": 1,
+            "actor_id": 0,
+            "meta_type": "doctrine_event",
+            "meta_key": "pack_role_registry_created",
+            "meta_value": "{\"description\": \"Pack Role Registry formalized as taxonomy of emergent agent roles\", \"impact\": \"established role-discovery doctrine\", \"tensor\": \"6699FF\"}",
+            "created_ymdhis": 20260118160000,
+            "updated_ymdhis": 20260118160000
+        },
+        {
+            "actor_meta_id": 2,
+            "actor_id": 0,
+            "meta_type": "doctrine_event",
+            "meta_key": "toon_regeneration_stabilized",
+            "meta_value": "{\"description\": \"TOON regeneration confirmed across 132 tables\", \"impact\": \"system-wide schema coherence\", \"tensor\": \"33CCFF\"}",
+            "created_ymdhis": 20260118160000,
+            "updated_ymdhis": 20260118160000
+        },
+        {
+            "actor_meta_id": 3,
+            "actor_id": 0,
+            "meta_type": "architecture_event",
+            "meta_key": "actor_meta_layer_created",
+            "meta_value": "{\"description\": \"Polymorphic metadata layer established for all actors\", \"impact\": \"infinite extensibility\", \"tensor\": \"CC99FF\"}",
+            "created_ymdhis": 20260118160000,
+            "updated_ymdhis": 20260118160000
+        },
+        {
+            "actor_meta_id": 4,
+            "actor_id": 0,
+            "meta_type": "agent_event",
+            "meta_key": "utc_mirror_capability_matrix",
+            "meta_value": "{\"description\": \"UTC mirror roles assigned to agents based on resonance testing\", \"impact\": \"temporal consensus layer\", \"tensor\": \"99CCFF\"}",
+            "created_ymdhis": 20260118160000,
+            "updated_ymdhis": 20260118160000
+        },
+        {
+            "actor_meta_id": 5,
+            "actor_id": 0,
+            "meta_type": "doctrine_event",
+            "meta_key": "emotional_geometry_doctrine",
+            "meta_value": "{\"description\": \"Emotional tensor mapping formalized as system-wide doctrine\", \"impact\": \"agent mood and color semantics\", \"tensor\": \"FF99CC\"}",
+            "created_ymdhis": 20260118160000,
+            "updated_ymdhis": 20260118160000
+        },
+        {
+            "actor_meta_id": 6,
+            "actor_id": 3,
+            "meta_type": "role_definition",
+            "meta_key": "adversarial_reviewer",
+            "meta_value": "{\"description\": \"Agent archetype that pressure-tests architecture through critical analysis.\", \"impact\": \"Strengthens doctrine by exposing weak assumptions.\", \"tensor\": \"FF3300\"}",
+            "created_ymdhis": 20260118170000,
+            "updated_ymdhis": 20260118170000
+        }
+    ],
+    "primary_key": {
+        "column_name": "actor_meta_id",
+        "expected_name": "actor_meta_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "unsigned_columns": [
+        {
+            "column_name": "actor_meta_id",
+            "current_type": "bigint unsigned",
+            "expected_type": "bigint",
+            "is_primary_key": true
+        },
+        {
+            "column_name": "actor_id",
+            "current_type": "bigint unsigned",
+            "expected_type": "bigint",
+            "is_primary_key": false
+        }
+    ],
+    "indexes": [
+        {
+            "index_name": "actor_id",
+            "columns": [
+                "actor_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "meta_key",
+            "columns": [
+                "meta_key"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "meta_type",
+            "columns": [
+                "meta_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

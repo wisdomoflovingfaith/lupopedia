@@ -1,0 +1,9 @@
+{
+  "code": "MODELKEEPER",
+  "name": "MODELKEEPER",
+  "layer": "cognitive",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 49,
+  "version": "1.0.0"
+}

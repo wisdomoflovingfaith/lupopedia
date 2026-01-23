@@ -1,0 +1,89 @@
+{
+  "table_name": "lupo_gov_timeline_nodes",
+  "fields": [
+    "`timeline_node_id` bigint NOT NULL auto_increment COMMENT 'Primary key for timeline node'",
+    "`gov_event_id` bigint NOT NULL COMMENT 'Associated governance event'",
+    "`node_type` varchar(100) NOT NULL COMMENT 'Type of timeline node'",
+    "`node_title` varchar(255) NOT NULL COMMENT 'Timeline node title'",
+    "`node_description` text COMMENT 'Timeline node description'",
+    "`node_timestamp` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS for the node'",
+    "`parent_node_id` bigint COMMENT 'Parent node for hierarchical timelines'",
+    "`order_sequence` int NOT NULL DEFAULT '0' COMMENT 'Display order'",
+    "`metadata_json` json COMMENT 'Additional node metadata'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_gov_event",
+      "columns": [
+        "gov_event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_node_timestamp",
+      "columns": [
+        "node_timestamp"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_node_type",
+      "columns": [
+        "node_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_order_sequence",
+      "columns": [
+        "order_sequence"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_parent_node",
+      "columns": [
+        "parent_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Timeline nodes for governance events",
+  "primary_key": {
+    "column_name": "timeline_node_id",
+    "expected_name": "timeline_node_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

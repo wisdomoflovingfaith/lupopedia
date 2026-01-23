@@ -1,0 +1,52 @@
+{
+    "table_name": "lupo_content_category_map",
+    "fields": [
+        "`content_category_map_id` bigint NOT NULL auto_increment COMMENT 'Primary key for content-category mapping'",
+        "`content_id` bigint NOT NULL COMMENT 'Content being categorized'",
+        "`category_id` bigint NOT NULL COMMENT 'Category assigned to this content'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when mapping was created'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "content_category_map_id",
+        "expected_name": "content_category_map_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_category",
+            "columns": [
+                "category_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_content",
+            "columns": [
+                "content_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "uq_content_category",
+            "columns": [
+                "content_id",
+                "category_id"
+            ],
+            "is_unique": true,
+            "index_type": "BTREE"
+        }
+    ],
+    "unique_constraints": [
+        {
+            "constraint_name": "uq_content_category",
+            "columns": [
+                "content_id",
+                "category_id"
+            ]
+        }
+    ]
+}

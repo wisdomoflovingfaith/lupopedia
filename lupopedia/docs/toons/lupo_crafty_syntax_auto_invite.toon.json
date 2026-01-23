@@ -1,0 +1,79 @@
+{
+  "table_name": "lupo_crafty_syntax_auto_invite",
+  "fields": [
+    "`crafty_syntax_auto_invite_id` bigint NOT NULL auto_increment",
+    "`is_offline` tinyint NOT NULL DEFAULT '0'",
+    "`is_active` tinyint NOT NULL DEFAULT '0'",
+    "`department_id` bigint NOT NULL DEFAULT '0'",
+    "`message` mediumtext",
+    "`page_url` varchar(500)",
+    "`visits` int NOT NULL DEFAULT '0'",
+    "`referrer_url` varchar(500)",
+    "`invite_type` varchar(50)",
+    "`trigger_seconds` int NOT NULL DEFAULT '0'",
+    "`operator_user_id` bigint NOT NULL DEFAULT '0'",
+    "`show_socialpane` tinyint NOT NULL DEFAULT '0'",
+    "`exclude_mobile` tinyint NOT NULL DEFAULT '0'",
+    "`only_mobile` tinyint NOT NULL DEFAULT '0'",
+    "`created_ymdhis` bigint NOT NULL DEFAULT '20250101000000'",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT '20250101000000'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_department",
+      "columns": [
+        "department_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_operator",
+      "columns": [
+        "operator_user_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_page_url",
+      "columns": [
+        "page_url"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_status",
+      "columns": [
+        "is_active",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Manages automatic chat invitation rules. Migrated from old schema on 2025-01-01.",
+  "primary_key": {
+    "column_name": "crafty_syntax_auto_invite_id",
+    "expected_name": "crafty_syntax_auto_invite_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

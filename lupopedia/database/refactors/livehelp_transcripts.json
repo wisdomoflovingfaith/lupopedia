@@ -1,0 +1,65 @@
+{
+  "legacy_table": "livehelp_transcripts",
+  "target_tables": [
+    "lupo_dialog_threads",
+    "lupo_dialog_message_bodies",
+    "lupo_dialog_messages"
+  ],
+
+  "migration_notes": [
+    "Each legacy transcript becomes exactly one dialog thread.",
+    "dialog_threads_id, dialog_message_body_id, and dialog_message_id all use recno for 1:1 lineage.",
+    "Full transcript text stored in lupo_dialog_message_bodies.full_text.",
+    "Stub message inserted into lupo_dialog_messages pointing to the body.",
+    "sessiondata preserved in metadata_json.",
+    "No predictive AI splitting or rewriting."
+  ],
+
+  "inserts": {
+    "lupo_dialog_threads": {
+      "fields": {
+        "dialog_threads_id": "recno",
+        "thread_title": "CONCAT('Imported transcript from Crafty Syntax 3.7.5 (session ', sessionid, ')')",
+        "thread_metadata_json": "JSON_OBJECT('legacy_email', email, 'legacy_department', department, 'legacy_operators', operators)",
+        "created_ymdhis": "starttime",
+        "updated_ymdhis": "endtime"
+      }
+    },
+
+    "lupo_dialog_message_bodies": {
+      "fields": {
+        "dialog_message_body_id": "recno",
+        "dialog_threads_id": "recno",
+        "federation_node_id": "1",
+        "full_text": "transcript",
+        "metadata_json": "JSON_OBJECT('legacy_sessionid', sessionid, 'legacy_department', department, 'legacy_email', email, 'legacy_operators', operators, 'legacy_sessiondata', sessiondata)",
+        "mood_rgb": "'666666'",
+        "created_ymdhis": "starttime",
+        "updated_ymdhis": "endtime"
+      }
+    },
+
+    "lupo_dialog_messages": {
+      "fields": {
+        "dialog_message_id": "recno",
+        "dialog_threads_id": "recno",
+        "dialog_message_body_id": "recno",
+        "actor_id": "1",
+        "target": "'importer'",
+        "message_text": "'Imported transcript from Crafty Syntax 3.7.5. Full content stored in dialog_message_bodies.'",
+        "metadata_json": "JSON_OBJECT('legacy_sessionid', sessionid)",
+        "mood_rgb": "'666666'",
+        "created_ymdhis": "starttime",
+        "updated_ymdhis": "endtime"
+      }
+    }
+  },
+
+  "rules": {
+    "id_strategy": "1_to_1_recno",
+    "timestamps_allow_null": true,
+    "preserve_full_text": true,
+    "no_ai_splitting": true,
+    "one_message_per_transcript": true
+  }
+}

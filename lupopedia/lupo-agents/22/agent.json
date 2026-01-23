@@ -1,0 +1,9 @@
+{
+  "code": "WOLFENA",
+  "name": "WOLFENA",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 3,
+  "version": "1.0.0"
+}

@@ -1,0 +1,86 @@
+{
+  "table_name": "lupo_modules",
+  "fields": [
+    "`module_id` bigint NOT NULL auto_increment",
+    "`module_key` varchar(100) NOT NULL",
+    "`module_name` varchar(150) NOT NULL",
+    "`namespace` varchar(100) NOT NULL",
+    "`version` varchar(50) NOT NULL",
+    "`version_code` int NOT NULL",
+    "`minimum_core_version` varchar(50) NOT NULL",
+    "`user_path` varchar(255)",
+    "`admin_path` varchar(255)",
+    "`api_path` varchar(255)",
+    "`route_params` longtext",
+    "`description` text",
+    "`author` varchar(100)",
+    "`website` varchar(255)",
+    "`icon` varchar(100) DEFAULT 'puzzle-piece'",
+    "`dependencies` longtext",
+    "`conflicts` longtext",
+    "`config_json` text NOT NULL",
+    "`is_system` tinyint(1) NOT NULL DEFAULT '0'",
+    "`is_active` tinyint(1) NOT NULL DEFAULT '0'",
+    "`settings` longtext",
+    "`installed_ymdhis` bigint",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_installed",
+      "columns": [
+        "installed_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_namespace",
+      "columns": [
+        "namespace"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_status",
+      "columns": [
+        "is_active",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_system",
+      "columns": [
+        "is_system"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "uq_module_key",
+      "columns": [
+        "module_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "module_id",
+    "expected_name": "module_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

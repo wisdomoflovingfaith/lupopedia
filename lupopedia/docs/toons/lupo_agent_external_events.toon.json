@@ -1,0 +1,25 @@
+{
+  "table_name": "lupo_agent_external_events",
+  "fields": [
+    "`external_event_id` bigint NOT NULL auto_increment",
+    "`agent_name` varchar(255) NOT NULL",
+    "`source_system` varchar(255) NOT NULL",
+    "`event_type` varchar(50) NOT NULL",
+    "`event_payload_json` json",
+    "`created_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [],
+  "notes": "Tracks appearances and interactions of external AI agents (Cursor, JetBrains AI, Copilot, etc). Not part of the core agent registry.",
+  "primary_key": {
+    "column_name": "external_event_id",
+    "expected_name": "external_event_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

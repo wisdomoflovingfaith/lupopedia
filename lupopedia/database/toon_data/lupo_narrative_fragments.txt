@@ -1,0 +1,48 @@
+{
+    "table_name": "lupo_narrative_fragments",
+    "fields": [
+        "`narrative_fragment_id` bigint NOT NULL auto_increment",
+        "`agent_id` bigint COMMENT 'Agent that generated this fragment'",
+        "`fragment_type` varchar(100) COMMENT 'memory, mythic, emotional, symbolic, annotation, etc.'",
+        "`title` varchar(255) COMMENT 'Optional short label'",
+        "`fragment_text` longtext NOT NULL COMMENT 'The narrative or memory text'",
+        "`metadata_json` json COMMENT 'Optional structured metadata'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+        "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when updated'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
+        "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "narrative_fragment_id",
+        "expected_name": "narrative_fragment_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_agent",
+            "columns": [
+                "agent_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_created",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_type",
+            "columns": [
+                "fragment_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

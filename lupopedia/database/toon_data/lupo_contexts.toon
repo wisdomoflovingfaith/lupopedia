@@ -1,0 +1,45 @@
+{
+    "table_name": "lupo_contexts",
+    "fields": [
+        "`context_id` bigint NOT NULL auto_increment",
+        "`context_type` varchar(50) NOT NULL",
+        "`context_slug` varchar(255) NOT NULL",
+        "`parent_context_id` bigint",
+        "`description` text",
+        "`created_ymd` bigint NOT NULL DEFAULT 0",
+        "`updated_ymd` bigint NOT NULL DEFAULT 0"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "context_id",
+        "expected_name": "context_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_context_slug",
+            "columns": [
+                "context_slug"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_context_type",
+            "columns": [
+                "context_type"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_parent_context",
+            "columns": [
+                "parent_context_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

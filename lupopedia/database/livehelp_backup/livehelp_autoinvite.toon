@@ -1,0 +1,39 @@
+{
+    "table_name": "livehelp_autoinvite",
+    "fields": [
+        "`idnum` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`offline` int NOT NULL DEFAULT 0",
+        "`isactive` char(1) NOT NULL DEFAULT ''",
+        "`department` int NOT NULL DEFAULT 0",
+        "`message` text",
+        "`page` varchar(255) NOT NULL DEFAULT ''",
+        "`visits` int NOT NULL DEFAULT 0",
+        "`referer` varchar(255) NOT NULL DEFAULT ''",
+        "`typeof` varchar(255) NOT NULL DEFAULT ''",
+        "`seconds` int unsigned NOT NULL DEFAULT 0",
+        "`user_id` int NOT NULL DEFAULT 0",
+        "`socialpane` char(1) NOT NULL DEFAULT 'N'",
+        "`excludemobile` char(1) NOT NULL DEFAULT 'N'",
+        "`onlymobile` char(1) NOT NULL DEFAULT 'N'"
+    ],
+    "data": [
+        {
+            "idnum": 1,
+            "livehelp_id": 1,
+            "offline": 0,
+            "isactive": "Y",
+            "department": 0,
+            "message": "4",
+            "page": "",
+            "visits": 0,
+            "referer": "",
+            "typeof": "layer",
+            "seconds": 30,
+            "user_id": 0,
+            "socialpane": "N",
+            "excludemobile": "N",
+            "onlymobile": "N"
+        }
+    ]
+}

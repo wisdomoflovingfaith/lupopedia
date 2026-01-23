@@ -1,0 +1,65 @@
+{
+  "table_name": "lupo_cip_propagation_tracking",
+  "fields": [
+    "`id` bigint unsigned NOT NULL auto_increment",
+    "`cip_event_id` bigint unsigned NOT NULL COMMENT 'Root CIP event'",
+    "`propagation_level` tinyint unsigned NOT NULL COMMENT 'Depth level (0-10)'",
+    "`affected_subsystem` varchar(100) NOT NULL COMMENT 'Subsystem affected at this level'",
+    "`propagation_type` enum('doctrine','emotional_geometry','agent_behavior','system_config') NOT NULL",
+    "`change_description` text NOT NULL COMMENT 'What changed at this level'",
+    "`propagation_strength` decimal(5,4) NOT NULL DEFAULT '1.0000' COMMENT 'Strength of propagation'",
+    "`completion_status` enum('pending','in_progress','completed','blocked','failed') DEFAULT 'pending'",
+    "`dependencies_json` json COMMENT 'Dependencies for this propagation step'",
+    "`started_ymdhis` bigint COMMENT 'When propagation started'",
+    "`completed_ymdhis` bigint COMMENT 'When propagation completed'",
+    "`propagation_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Propagation tracking version'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_completion_status",
+      "columns": [
+        "completion_status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_event_level",
+      "columns": [
+        "cip_event_id",
+        "propagation_level"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_propagation_strength",
+      "columns": [
+        "propagation_strength"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_subsystem",
+      "columns": [
+        "affected_subsystem"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "CIP Propagation Tracking - Visualizing depth and breadth of critique integration",
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

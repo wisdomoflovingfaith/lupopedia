@@ -1,0 +1,9 @@
+{
+  "code": "THOTH",
+  "name": "THOTH",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "dedicated_slot": 4,
+  "version": "1.0.0"
+}

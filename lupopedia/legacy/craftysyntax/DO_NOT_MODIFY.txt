@@ -1,0 +1,15 @@
+⚠️ DO NOT MODIFY FILES IN THIS DIRECTORY ⚠️
+
+This directory contains the EXACT Crafty Syntax 3.7.5 codebase as distributed
+by Softaculous, Installatron, and Netenberg.
+
+This code is READ-ONLY REFERENCE material for building Crafty Syntax 4.0.0.
+
+DO NOT modify, delete, or alter any files here.
+
+For development work, use:
+- lupo-admin/ (new admin interface)
+- lupo-includes/ (new core code)
+
+See ../README.md for full details.
+

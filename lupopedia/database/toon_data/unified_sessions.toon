@@ -1,0 +1,14 @@
+{
+    "table_name": "unified_sessions",
+    "fields": [
+        "`id` bigint NOT NULL auto_increment COMMENT 'Primary key for session'",
+        "`session_id` varchar(255) NOT NULL COMMENT 'Session identifier'",
+        "`user_id` bigint COMMENT 'Reference to lupo_auth_users.auth_user_id'",
+        "`system_context` varchar(50) NOT NULL COMMENT 'lupopedia, crafty_syntax, or unified'",
+        "`session_data` json COMMENT 'Session metadata and preferences'",
+        "`expires_at` timestamp NOT NULL COMMENT 'Session expiration time'",
+        "`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED COMMENT 'Creation timestamp'",
+        "`updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED on update CURRENT_TIMESTAMP COMMENT 'Last update timestamp'"
+    ],
+    "data": []
+}

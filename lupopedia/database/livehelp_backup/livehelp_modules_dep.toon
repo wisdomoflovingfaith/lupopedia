@@ -1,0 +1,41 @@
+{
+    "table_name": "livehelp_modules_dep",
+    "fields": [
+        "`rec` int NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`departmentid` int NOT NULL DEFAULT 0",
+        "`modid` int NOT NULL DEFAULT 0",
+        "`ordernum` int NOT NULL DEFAULT 0",
+        "`isactive` char(1) NOT NULL DEFAULT 'N'",
+        "`defaultset` char(1) NOT NULL DEFAULT ''"
+    ],
+    "data": [
+        {
+            "rec": 26,
+            "livehelp_id": 1,
+            "departmentid": 1,
+            "modid": 3,
+            "ordernum": 3,
+            "isactive": "N",
+            "defaultset": ""
+        },
+        {
+            "rec": 25,
+            "livehelp_id": 1,
+            "departmentid": 1,
+            "modid": 2,
+            "ordernum": 2,
+            "isactive": "N",
+            "defaultset": "Y"
+        },
+        {
+            "rec": 24,
+            "livehelp_id": 1,
+            "departmentid": 1,
+            "modid": 1,
+            "ordernum": 1,
+            "isactive": "N",
+            "defaultset": ""
+        }
+    ]
+}

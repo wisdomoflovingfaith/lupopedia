@@ -1,0 +1,9 @@
+{
+  "code": "WOLFNAV",
+  "name": "WOLFNAV",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
+  "recommended_slot": 14,
+  "version": "1.0.0"
+}

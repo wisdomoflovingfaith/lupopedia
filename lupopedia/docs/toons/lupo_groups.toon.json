@@ -1,0 +1,71 @@
+{
+  "table_name": "lupo_groups",
+  "fields": [
+    "`group_id` bigint NOT NULL auto_increment",
+    "`name` varchar(50) NOT NULL COMMENT 'Unique name of the group within the domain'",
+    "`description` text COMMENT 'Optional detailed description of the group'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when group was created'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when group was last updated'",
+    "`created_by` bigint COMMENT 'actor_id of the creator'",
+    "`is_active` tinyint NOT NULL DEFAULT '1' COMMENT '1 = active, 0 = inactive'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when soft-deleted'",
+    "`is_system` tinyint NOT NULL DEFAULT '0' COMMENT '1 = system group (cannot be deleted)'",
+    "`settings` json COMMENT 'JSON-encoded group-specific settings'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unique_group_domain",
+      "columns": [
+        "name"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Domain-scoped groups for organizing actors and managing permissions.",
+  "primary_key": {
+    "column_name": "group_id",
+    "expected_name": "group_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

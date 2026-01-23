@@ -1,0 +1,60 @@
+{
+  "table_name": "lupo_truth_questions_map",
+  "fields": [
+    "`truth_questions_map_id` bigint NOT NULL auto_increment",
+    "`truth_question_id` bigint NOT NULL",
+    "`object_type` varchar(50) NOT NULL",
+    "`object_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "object_id",
+      "columns": [
+        "object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "object_type",
+      "columns": [
+        "object_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "truth_question_id",
+      "columns": [
+        "truth_question_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "truth_questions_map_id",
+    "expected_name": "truth_questions_map_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

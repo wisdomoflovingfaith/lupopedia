@@ -1,0 +1,100 @@
+{
+    "table_name": "lupo_agent_tool_calls",
+    "fields": [
+        "`agent_tool_call_id` bigint NOT NULL auto_increment",
+        "`agent_id` bigint NOT NULL COMMENT 'Which agent initiated the call'",
+        "`faucet_id` bigint COMMENT 'Which faucet was used (if any)'",
+        "`domain_id` bigint NOT NULL COMMENT 'Domain context of the call'",
+        "`tool_name` varchar(150) NOT NULL COMMENT 'Name of the tool or action invoked'",
+        "`action_type` varchar(100) COMMENT 'Type of action (llm_call, faucet_spawn, search, codegen, etc.)'",
+        "`input_json` longtext COMMENT 'Serialized input parameters'",
+        "`output_json` longtext COMMENT 'Serialized output or result'",
+        "`provider` varchar(50) COMMENT 'LLM provider (openai, anthropic, google, deepseek, etc.)'",
+        "`model_name` varchar(150) COMMENT 'Model used for this call'",
+        "`tokens_prompt` int DEFAULT 0",
+        "`tokens_completion` int DEFAULT 0",
+        "`tokens_total` int DEFAULT 0",
+        "`cost_usd` decimal(10,6) DEFAULT 0.000000",
+        "`latency_ms` int DEFAULT 0",
+        "`status` varchar(50) DEFAULT 'success' COMMENT 'success, error, timeout, rejected'",
+        "`error_message` text",
+        "`parent_call_id` bigint COMMENT 'If this call was spawned by another call'",
+        "`thread_id` bigint COMMENT 'Dialog thread this call belongs to'",
+        "`message_id` bigint COMMENT 'Dialog message that triggered this call'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when call started'",
+        "`completed_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when call finished'"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "agent_tool_call_id",
+        "expected_name": "agent_tool_call_id",
+        "is_correct": true,
+        "needs_rename": false
+    },
+    "indexes": [
+        {
+            "index_name": "idx_agent",
+            "columns": [
+                "agent_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_domain",
+            "columns": [
+                "domain_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_faucet",
+            "columns": [
+                "faucet_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_message",
+            "columns": [
+                "message_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_model",
+            "columns": [
+                "model_name"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_parent",
+            "columns": [
+                "parent_call_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_provider",
+            "columns": [
+                "provider"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_thread",
+            "columns": [
+                "thread_id"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

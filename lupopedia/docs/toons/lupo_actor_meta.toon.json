@@ -1,0 +1,50 @@
+{
+  "table_name": "lupo_actor_meta",
+  "fields": [
+    "`actor_meta_id` bigint unsigned NOT NULL auto_increment",
+    "`actor_id` bigint unsigned NOT NULL",
+    "`meta_type` varchar(64) NOT NULL",
+    "`meta_key` varchar(255) NOT NULL",
+    "`meta_value` text NOT NULL",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "meta_key",
+      "columns": [
+        "meta_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "meta_type",
+      "columns": [
+        "meta_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "actor_meta_id",
+    "expected_name": "actor_meta_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

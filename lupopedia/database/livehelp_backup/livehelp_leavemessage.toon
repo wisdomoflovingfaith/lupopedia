@@ -1,0 +1,315 @@
+{
+    "table_name": "livehelp_leavemessage",
+    "fields": [
+        "`id` int unsigned NOT NULL auto_increment",
+        "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+        "`email` varchar(255) NOT NULL DEFAULT ''",
+        "`subject` varchar(200) NOT NULL DEFAULT ''",
+        "`department` int unsigned NOT NULL DEFAULT 0",
+        "`dateof` bigint NOT NULL DEFAULT 0",
+        "`sessiondata` text",
+        "`deliminated` text"
+    ],
+    "data": [
+        {
+            "id": 1,
+            "livehelp_id": 1,
+            "email": "lupopedia@gmail.com",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251110204908,
+            "sessiondata": "referer=http%3A%2F%2Flupopedia.com%2Findex.php&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F142.0.0.0+Safari%2F537.36+Edg%2F142.0.0.0&os=na&os_version=na&browser=Edge&ip=96.3.230.164",
+            "deliminated": "this=that&field_1=lupopedia%40gmail.com&field_2=fsda"
+        },
+        {
+            "id": 2,
+            "livehelp_id": 1,
+            "email": "lupopedia@gmail.com",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251110205055,
+            "sessiondata": "referer=http%3A%2F%2Flupopedia.com%2Flh%2Fadmin_options.php%3Ftab%3Dlive&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F142.0.0.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=96.3.230.164",
+            "deliminated": "this=that&field_1=lupopedia%40gmail.com&field_2=gfds"
+        },
+        {
+            "id": 3,
+            "livehelp_id": 1,
+            "email": "lupopedia@gmail.com",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251110210135,
+            "sessiondata": "referer=http%3A%2F%2Flupopedia.com%2Findex.php&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F142.0.0.0+Safari%2F537.36+Edg%2F142.0.0.0&os=na&os_version=na&browser=Edge&ip=96.3.230.164",
+            "deliminated": "this=that&field_1=lupopedia%40gmail.com&field_2=gtyjhghjghj"
+        },
+        {
+            "id": 4,
+            "livehelp_id": 1,
+            "email": "gfdsg@lupopedia.com",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251113021424,
+            "sessiondata": "referer=http%3A%2F%2Flupopedia.com%2Fagent_profile.php%3Fid%3D8&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F142.0.0.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=96.3.230.164",
+            "deliminated": "this=that&field_1=gfdsg%40lupopedia.com&field_2=gfdsgf"
+        },
+        {
+            "id": 5,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123413,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 6,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123436,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 7,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123504,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 8,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": " - Contact",
+            "department": 0,
+            "dateof": 20251126123541,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_6=sample%40email.tst&field_7=555"
+        },
+        {
+            "id": 9,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123654,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 10,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": " - Contact",
+            "department": 0,
+            "dateof": 20251126123659,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_6=sample%40email.tst&field_7=555"
+        },
+        {
+            "id": 11,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123705,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 12,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": " - Contact",
+            "department": 0,
+            "dateof": 20251126123707,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_6=sample%40email.tst&field_7=555"
+        },
+        {
+            "id": 13,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123712,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 14,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123726,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 15,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123727,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 16,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123728,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 17,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123728,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 18,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123729,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 19,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123730,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 20,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123731,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 21,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123732,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 22,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123850,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 23,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": " - Contact",
+            "department": 0,
+            "dateof": 20251126123853,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_6=sample%40email.tst&field_7=555"
+        },
+        {
+            "id": 24,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": " - Contact",
+            "department": 0,
+            "dateof": 20251126123900,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_6=sample%40email.tst&field_7=555"
+        },
+        {
+            "id": 25,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": " - Contact",
+            "department": 0,
+            "dateof": 20251126123906,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_6=sample%40email.tst&field_7=555"
+        },
+        {
+            "id": 26,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123935,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 27,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123954,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 28,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126123954,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 29,
+            "livehelp_id": 1,
+            "email": "sample@email.tst",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251126124001,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F99.0.4844.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=85.208.84.179",
+            "deliminated": "this=that&field_1=sample%40email.tst&field_2=555"
+        },
+        {
+            "id": 30,
+            "livehelp_id": 1,
+            "email": "lupopedia@gmail.com",
+            "subject": "default - Contact",
+            "department": 1,
+            "dateof": 20251228002640,
+            "sessiondata": "referer=http%3A%2F%2F&hostname=host_lookup_not_enabled&ua=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F143.0.0.0+Safari%2F537.36&os=na&os_version=na&browser=Chrome&ip=96.3.230.164",
+            "deliminated": "this=that&field_1=lupopedia%40gmail.com&field_2=fdsafdsa"
+        }
+    ]
+}

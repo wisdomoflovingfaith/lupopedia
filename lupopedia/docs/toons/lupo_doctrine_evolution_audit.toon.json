@@ -1,0 +1,54 @@
+{
+  "table_name": "lupo_doctrine_evolution_audit",
+  "fields": [
+    "`id` bigint unsigned NOT NULL auto_increment",
+    "`refinement_id` bigint unsigned NOT NULL COMMENT 'Reference to lupo_doctrine_refinements.id'",
+    "`evolution_step` tinyint unsigned NOT NULL COMMENT 'Step in evolution process (1-10)'",
+    "`step_description` varchar(255) NOT NULL COMMENT 'Description of evolution step'",
+    "`step_status` enum('pending','in_progress','completed','failed','skipped') DEFAULT 'pending'",
+    "`step_metadata_json` json COMMENT 'Step-specific metadata'",
+    "`started_ymdhis` bigint COMMENT 'When step started'",
+    "`completed_ymdhis` bigint COMMENT 'When step completed'",
+    "`audit_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Audit system version'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_completion_time",
+      "columns": [
+        "completed_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_refinement_step",
+      "columns": [
+        "refinement_id",
+        "evolution_step"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_step_status",
+      "columns": [
+        "step_status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "notes": "Doctrine Evolution Audit - Detailed tracking of doctrine change process",
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

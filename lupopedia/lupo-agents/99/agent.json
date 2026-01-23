@@ -1,0 +1,9 @@
+{
+  "code": "GUIDE",
+  "name": "GUIDE",
+  "layer": "ux",
+  "is_required": false,
+  "is_kernel": false,
+  "recommended_slot": 99,
+  "version": "1.0.0"
+}

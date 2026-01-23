@@ -1,0 +1,50 @@
+{
+    "table_name": "lupo_system_health_snapshots",
+    "fields": [
+        "`health_id` bigint NOT NULL auto_increment",
+        "`table_count` int NOT NULL",
+        "`table_ceiling` int NOT NULL",
+        "`schema_state` varchar(64) NOT NULL DEFAULT 'unknown' COMMENT 'frozen|active|migrating'",
+        "`sync_integrity` varchar(32) NOT NULL DEFAULT 'unknown' COMMENT 'clean|drift|unknown'",
+        "`emotional_r` decimal(3,2) COMMENT 'strife -1..1'",
+        "`emotional_g` decimal(3,2) COMMENT 'harmony -1..1'",
+        "`emotional_b` decimal(3,2) COMMENT 'memory -1..1'",
+        "`emotional_t` decimal(3,2) COMMENT 'temporal -1..1'",
+        "`created_ymdhis` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS'",
+        "`is_deleted` tinyint NOT NULL DEFAULT 0",
+        "`deleted_ymdhis` bigint"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "health_id",
+        "expected_name": "system_health_snapshot_id",
+        "is_correct": false,
+        "needs_rename": true
+    },
+    "indexes": [
+        {
+            "index_name": "idx_created_ymdhis",
+            "columns": [
+                "created_ymdhis"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_is_deleted",
+            "columns": [
+                "is_deleted"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        },
+        {
+            "index_name": "idx_table_count",
+            "columns": [
+                "table_count"
+            ],
+            "is_unique": false,
+            "index_type": "BTREE"
+        }
+    ]
+}

@@ -1,0 +1,77 @@
+# Lupopedia Database Rules
+# Enforces Captain Wolfie's database doctrine across all SQL and documentation files
+# This file is automatically enforced by all IDEs and AI agents working on Lupopedia
+
+rules:
+  - id: lupopedia-db-doctrine
+    description: "Enforce Captain Wolfie's database philosophy. Prevent AI agents from adding constraints, FK keys, triggers, stored procedures, stored functions, or business logic to SQL schemas. TRIGGERS ARE FORBIDDEN (MANDATORY) - all timestamps must be explicit in INSERT/UPDATE statements in YMDHIS UTC format. STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY) - all logic must be in application code."
+    applies_to: ["*.sql", "*.md", "*.yaml", "*.yml", "*.php", "*.js", "*.ts"]
+
+    forbid:
+      - pattern: "FOREIGN KEY"
+        message: "No foreign keys allowed. Application enforces relationships."
+      - pattern: "REFERENCES "
+        message: "No FK references allowed. Keep schema portable."
+      - pattern: "CHECK \("
+        message: "No CHECK constraints. Validation belongs in the application."
+      - pattern: "UNIQUE KEY"
+        message: "No uniqueness constraints. Business rules belong in the application."
+      - pattern: "CREATE TRIGGER"
+        message: "TRIGGERS ARE FORBIDDEN (MANDATORY). All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. See docs/doctrine/NO_TRIGGERS_DOCTRINE.md"
+      - pattern: "CREATE FUNCTION"
+        message: "STORED FUNCTIONS ARE FORBIDDEN (MANDATORY). All logic must be in application code. See docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md"
+      - pattern: "CREATE PROCEDURE"
+        message: "STORED PROCEDURES ARE FORBIDDEN (MANDATORY). All logic must be in application code. See docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md"
+      - pattern: "CREATE DEFINER"
+        message: "STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY). See docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md"
+      - pattern: "RETURNS"
+        message: "STORED FUNCTIONS ARE FORBIDDEN (MANDATORY). See docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md"
+      - pattern: "GENERATED ALWAYS AS"
+        message: "COMPUTED COLUMNS WITH LOGIC ARE FORBIDDEN (MANDATORY). All computation must be in application code. See docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md"
+      - pattern: "GENERATED ALWAYS AS"
+        message: "No computed/generated columns. Keep schema portable."
+      - pattern: "ENUM("
+        message: "No ENUM types. Use VARCHAR for cross-database compatibility."
+      - pattern: "CONSTRAINT"
+        message: "No constraints allowed. Application enforces all rules."
+
+    require:
+      - pattern: "`?[a-z_]+_id`? (bigint|BIGINT)"
+        message: "All tables must include [table name]_id BIGINT for multi-tenant support."
+      - pattern: "`?created_ymdhis`? (bigint|BIGINT)"
+        message: "All tables must include created_ymdhis BIGINT for tracking creation time."
+      - pattern: "`?updated_ymdhis`? (bigint|BIGINT)"
+        message: "All tables must include updated_ymdhis BIGINT for tracking updates."
+      - pattern: "`?is_deleted`? (tinyint|TINYINT)"
+        message: "All tables must include is_deleted TINYINT for soft deletes."
+      - pattern: "`?deleted_ymdhis`? (bigint|BIGINT)"
+        message: "All tables must include deleted_ymdhis BIGINT for tracking soft deletes."
+
+    on_violation: |
+      ---
+      DIALOG:
+        CAPTAIN_WOLFIE @everyone:
+          "VIOLATION: Database doctrine violation detected. The database is a ledger, not an application. Remove all constraints, FK keys, triggers, and business logic from SQL. See DATABASE_PHILOSOPHY.md and fix immediately."
+      ---
+
+    auto_fix:
+      - pattern: "FOREIGN KEY.*?,\s*"
+        replace: ""
+      - pattern: "\s*CONSTRAINT `?[^`\s]+`? (FOREIGN KEY|CHECK|UNIQUE).*?,\s*"
+        replace: ""
+      - pattern: "\s*UNIQUE \([^)]+\)"
+        replace: ""
+      - pattern: "\s*CHECK \([^)]+\)"
+        replace: ""
+      - pattern: "CREATE TRIGGER[\s\S]*?END;"
+        replace: "-- TRIGGERS ARE FORBIDDEN (MANDATORY). See docs/doctrine/NO_TRIGGERS_DOCTRINE.md -- REMOVED"
+      - pattern: "ENUM\([^)]*\)"
+        replace: "VARCHAR(255)"
+      - pattern: "(CREATE|ALTER) TABLE [^;]+;"
+        replace: |
+          $&
+          -- DATABASE DOCTRINE: Remember - no constraints, triggers, or business logic in the database.
+          -- The application is the brain. The database is the ledger. Don't flip the stack.
+
+# This file is automatically enforced by all IDEs and AI agents working on Lupopedia.
+# Last updated: 2025-01-05 by Captain Wolfie's doctrine enforcer

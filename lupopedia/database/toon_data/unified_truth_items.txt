@@ -1,0 +1,14 @@
+{
+    "table_name": "unified_truth_items",
+    "fields": [
+        "`unified_truth_id` bigint NOT NULL auto_increment",
+        "`truth_key` varchar(255) NOT NULL",
+        "`truth_value` text",
+        "`truth_type` varchar(50)",
+        "`confidence_score` decimal(3,2) DEFAULT 1.00",
+        "`source_actor_id` bigint",
+        "`created_ymdhis` bigint NOT NULL",
+        "`updated_ymdhis` bigint NOT NULL"
+    ],
+    "data": []
+}
