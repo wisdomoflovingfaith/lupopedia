@@ -50,6 +50,17 @@ system_context:
 
 # ALL NEW ENTRIES AFTER THIS LINE
 
+## [2026.1.1.9] - 2026-01-24 19:02:44
+
+### Operator Layer Updates
+- Added operator-layer tables: lupo_operators, lupo_operator_status, lupo_operator_sessions, lupo_operator_skills, lupo_operator_chat_assignments, lupo_operator_escalation_rules
+- Introduced human operators as expert participants in departments with human-in-the-loop support and AI escalation
+- Added operator availability, sessions, skills, chat assignments, and department escalation rules for routing and governance
+- Added OPERATOR_LAYER_DOCTRINE.md and updated doctrine index
+- Regenerated TOON files to sync with live schema
+- Confirmed schema now contains 196 tables
+
+
 ## [2026.1.1.8] - 2026-01-24 18:50:23
 
 ### Operator Layer Updates
@@ -10844,6 +10855,7 @@ details manually.
 - Regenerated TOON files (186 tables total)
 ### Notes
 - No other schema changes
+
 
 
 

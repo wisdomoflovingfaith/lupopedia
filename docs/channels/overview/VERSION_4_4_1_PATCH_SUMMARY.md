@@ -145,3 +145,9 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 **Production Ready:** ✅ YES  
 **Backward Compatible:** ✅ YES  
 **Documentation Complete:** ✅ YES
+
+## Patch Log Addendum - 2026-01-24 19:02:44
+- Added operator-layer tables: lupo_operators, lupo_operator_status, lupo_operator_sessions, lupo_operator_skills, lupo_operator_chat_assignments, lupo_operator_escalation_rules
+- Added operator layer doctrine and updated doctrine index
+- Regenerated TOON files to sync with live schema
+- Confirmed schema remains within the 199 table budget (current: 196)
