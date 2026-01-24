@@ -32,7 +32,7 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
  * @param string $redirect_url URL to redirect to after successful login
  * @return string Rendered login form HTML
  */
-function login_form($error_message = null, $redirect_url = '/admin') {
+function login_form($error_message = null, $redirect_url = '/') {
     // Debug output in development mode
     $debug_output = '';
     if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG && ini_get('display_errors')) {

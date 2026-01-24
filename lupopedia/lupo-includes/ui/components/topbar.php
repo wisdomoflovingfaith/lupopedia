@@ -193,7 +193,7 @@ $avatarTimestamp = file_exists(str_replace(LUPOPEDIA_PUBLIC_PATH, LUPOPEDIA_PATH
             <?php else: ?>
             <!-- Not logged in - show login link -->
             <div class="nav-user">
-                <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/login.php" class="nav-link">
+                <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/login" class="nav-link">
                     Sign In
                 </a>
             </div>

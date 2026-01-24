@@ -50,6 +50,15 @@ system_context:
 
 # ALL NEW ENTRIES AFTER THIS LINE
 
+## [2026.1.1.11] - 2026-01-24 19:22:37
+
+### Authentication Updates
+- Added unified login flow for visitors and operators
+- Added return-to-page behavior after login
+- Added operator detection logic based on lupo_operators
+- Added access control for /lupopedia/crafty_syntax/ (login required, operator-only console)
+
+
 ## [2026.1.1.10] - 2026-01-24 19:11:12
 
 ### Crafty Syntax Operator Module
@@ -10864,6 +10873,7 @@ details manually.
 - Regenerated TOON files (186 tables total)
 ### Notes
 - No other schema changes
+
 
 
 

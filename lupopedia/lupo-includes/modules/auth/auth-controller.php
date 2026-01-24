@@ -84,12 +84,24 @@ function auth_handle_slug($slug) {
 function login_handle_view() {
     // Start session if not already started
     lupo_start_session();
+
+    // Capture return target if provided or from referer
+    if (empty($_SESSION['return_to'])) {
+        $candidate = $_GET['redirect'] ?? '';
+        if (empty($candidate) && !empty($_SERVER['HTTP_REFERER'])) {
+            $candidate = $_SERVER['HTTP_REFERER'];
+        }
+        if (!empty($candidate) && strpos($candidate, '/login') === false) {
+            $_SESSION['return_to'] = $candidate;
+        }
+    }
     
     // Check if already logged in
     $user = current_user();
     if ($user) {
         // Already logged in, redirect
-        $redirect = $_GET['redirect'] ?? (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/admin' : '/admin');
+        $redirect = $_SESSION['return_to'] ?? (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/' : '/');
+        unset($_SESSION['return_to']);
         // Ensure redirect includes public path if it's a relative path
         if (strpos($redirect, '/') === 0 && strpos($redirect, LUPOPEDIA_PUBLIC_PATH) !== 0 && defined('LUPOPEDIA_PUBLIC_PATH')) {
             $redirect = LUPOPEDIA_PUBLIC_PATH . $redirect;
@@ -98,8 +110,8 @@ function login_handle_view() {
     }
     
     // Get redirect URL from query string or session
-    $default_redirect = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/admin' : '/admin';
-    $redirect_url = $_GET['redirect'] ?? ($_SESSION['login_redirect'] ?? $default_redirect);
+    $default_redirect = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/' : '/';
+    $redirect_url = $_GET['redirect'] ?? ($_SESSION['return_to'] ?? $default_redirect);
     
     // Get any error message from session
     $error_message = $_SESSION['login_error'] ?? null;
@@ -129,8 +141,9 @@ function login_handle_post() {
     // Validate input - email-only login
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
-    $default_redirect = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/admin' : '/admin';
-    $redirect = isset($_POST['redirect']) ? $_POST['redirect'] : $default_redirect;
+    $default_redirect = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/' : '/';
+    $redirect = $_SESSION['return_to'] ?? ($_POST['redirect'] ?? $default_redirect);
+    unset($_SESSION['return_to']);
     
     // Sanitize redirect URL (prevent open redirect)
     $redirect = filter_var($redirect, FILTER_SANITIZE_URL);
@@ -352,7 +365,17 @@ function login_handle_post() {
         
         // Clear any error messages
         unset($_SESSION['login_error']);
-        unset($_SESSION['login_redirect']);
+        unset($_SESSION['return_to']);
+
+        // Detect operator role for access control
+        $operator_id = lupo_get_operator_id_from_auth_user_id($user['auth_user_id']);
+        if ($operator_id) {
+            $_SESSION['is_operator'] = true;
+            $_SESSION['operator_id'] = $operator_id;
+        } else {
+            $_SESSION['is_operator'] = false;
+            unset($_SESSION['operator_id']);
+        }
         
         // Log successful login
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {

@@ -304,6 +304,53 @@ function current_user() {
 }
 
 /**
+ * Get operator ID from auth user ID
+ *
+ * @param int $auth_user_id Auth user ID
+ * @return int|false Operator ID on success, false if not an operator
+ */
+function lupo_get_operator_id_from_auth_user_id($auth_user_id) {
+    if (empty($auth_user_id)) {
+        return false;
+    }
+
+    if (!isset($GLOBALS['mydatabase'])) {
+        return false;
+    }
+
+    $db = $GLOBALS['mydatabase'];
+
+    try {
+        if (defined('LUPO_TABLE_PREFIX')) {
+            $table_prefix = LUPO_TABLE_PREFIX;
+        } else {
+            $table_prefix = str_replace('-', '_', LUPO_PREFIX);
+        }
+        $sql = "SELECT operator_id
+        FROM {$table_prefix}operators
+        WHERE auth_user_id = :auth_user_id
+          AND is_active = 1
+        LIMIT 1";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute([':auth_user_id' => (int)$auth_user_id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            return (int)$result['operator_id'];
+        }
+
+        return false;
+
+    } catch (Exception $e) {
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            error_log("AUTH ERROR: Failed to get operator ID from auth user ID: " . $e->getMessage());
+        }
+        return false;
+    }
+}
+
+/**
  * Check if an actor has admin role
  * 
  * Checks multiple sources for admin status:
@@ -469,7 +516,7 @@ function require_login() {
         lupo_start_session();
         
         // Store redirect in session
-        $_SESSION['login_redirect'] = $redirect_url;
+        $_SESSION['return_to'] = $redirect_url;
         
         // Redirect to login
         $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
