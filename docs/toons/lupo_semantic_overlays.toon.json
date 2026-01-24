@@ -1,0 +1,41 @@
+{
+  "table_name": "lupo_semantic_overlays",
+  "fields": [
+    "`id` int unsigned NOT NULL auto_increment",
+    "`slug` varchar(255) NOT NULL",
+    "`overlay_key` varchar(255) NOT NULL",
+    "`overlay_value` text NOT NULL",
+    "`context` varchar(255)",
+    "`created_at` timestamp DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_context",
+      "columns": [
+        "context"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}
