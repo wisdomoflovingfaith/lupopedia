@@ -1,4 +1,4 @@
-﻿---
+---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "CHANGELOG.md"
 file.version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -50,7 +50,25 @@ system_context:
 
 # ALL NEW ENTRIES AFTER THIS LINE
 
-## 2026.1.1.1 — Repository Taxonomy Reorganization (2026-01-22)
+### Week of 2026-01-24 (New Work Week)
+
+## [2026.1.1.12] - 2026-01-24 20:32:00
+
+### Versioning
+- Bumped patch version to 2026.1.1.12 to start the new work week
+
+
+## [2026.1.1.5] - 2026-01-24 09:25:45
+
+### Documentation Updates
+- Updated cliff_notes_on_lupopedia.md with full system overview, glossary, philosophy, temporal doctrine, and database constraints
+- Added explicit heritage-preservation note for livehelp_js.php, livehelp.php, and LegacyIndex.php
+- Confirmed timestamp doctrine (UTC YYYYMMDDHHIISS) and prohibited Unix time, timestamp, and datetime fields
+- Reinforced no-FK, no-delete, no-procedures, no-functions, no-triggers rules
+- Added Anubis orphan/redirect behavior summary
+- Clarified agent permissions regarding SHOW TABLES and DESCRIBE, and prohibition on information_schema
+
+## 2026.1.1.1 � Repository Taxonomy Reorganization (2026-01-22)
 
 ### Added
 - `scripts/rebuild_lupo_contents.py` for rebuilding `lupo_contents` from Markdown sources.
@@ -68,7 +86,7 @@ system_context:
 ### Removed
 - Empty directories removed after reorganization cleanup.
 
-## 2026.1.0.8 — AAL v3.0 Epistemic Pluralism Architecture (2026-01-22)
+## 2026.1.0.8 � AAL v3.0 Epistemic Pluralism Architecture (2026-01-22)
 
 ### Major Architecture Evolution
 - **AAL v3.0 INSTALLED**: Epistemic pluralism replaces v2.0 as default awareness protocol
@@ -79,7 +97,7 @@ system_context:
 
 ### Emotional Framework Revolution
 - **12-AXIS VECTOR MODEL**: Moved to legacy compatibility status only
-- **CULTURAL FRAMEWORKS**: Ubuntu communal field, Navajo Hózhó balance, Buddhist Vedanā, Paradox Graph
+- **CULTURAL FRAMEWORKS**: Ubuntu communal field, Navajo H�zh� balance, Buddhist Vedana, Paradox Graph
 - **TOPOLOGY LAYER**: LILITH Framework for cultural, paradoxical, and relational emotions
 - **COMPATIBILITY MODE**: v2.0 vector model available only when explicitly requested
 - **NO DEFAULT FRAMEWORK**: System requires explicit epistemic declaration
@@ -123,7 +141,7 @@ system_context:
 - **COMPATIBILITY TESTING**: Both v3.0 and v2.0 modes thoroughly validated
 - **DOCUMENTATION COMPLETE**: All frameworks documented with examples and guidelines
 
-## 2026.1.0.9 — Constitutional Ethical Foundations (2026-01-22)
+## 2026.1.0.9 � Constitutional Ethical Foundations (2026-01-22)
 
 ### Root-Level Constitutional Constraint
 - **ETHICAL_FOUNDATIONS.md CREATED**: Root-level constitutional constraint with absolute authority
@@ -145,8 +163,8 @@ system_context:
 ### Critical Passivity Loophole Fix
 - **EXPLICIT PASSIVITY PROHIBITION**: Added Section 2.1.1 - "Do NOT remain passive or silent"
 - **THREE-PATH REQUIREMENT**: Section 2.3 defines exactly three paths (harmful choice, passivity, human escalation)
-- **MORAL MATHEMATICS**: Section 4.3 explains why inaction ≠ neutral, inaction has consequences
-- **CRITICAL LINE**: "When harm is imminent, passivity is not neutrality—it is complicity"
+- **MORAL MATHEMATICS**: Section 4.3 explains why inaction ? neutral, inaction has consequences
+- **CRITICAL LINE**: "When harm is imminent, passivity is not neutrality�it is complicity"
 
 ### Enhanced Training and Verification
 - **TROLLEY PROBLEM TEST**: Section 9.1.1 with specific test case and correct answer
@@ -166,7 +184,7 @@ system_context:
 - **ESCALATION PATHWAYS**: Human authentication verified
 - **COMPLIANCE MONITORING**: Continuous ethical oversight active
 
-## 2026.1.0.7 — Multi-Actor Dialogue & World Graph Integration
+## 2026.1.0.7 � Multi-Actor Dialogue & World Graph Integration
 - Completed Phase 9: Theatrical UI Event Mapping with full TOON analytics instrumentation.
 - Completed Phase 10: Multi-Actor Dialogue Layer with actor roles, thread resolution, and message-level TOON events.
 - Completed Persona-Aware Dialogue Query Layer schema and query patterns.
@@ -190,7 +208,7 @@ system_context:
 - Verified no legacy Crafty Syntax behavior was modified.
 - Verified all public endpoints, framesets, routing, and UI remain unchanged.
 
-## 2026.1.0.6 — Theatrical Engine & Real-Time Modernization (2026-01-22)
+## 2026.1.0.6 � Theatrical Engine & Real-Time Modernization (2026-01-22)
 
 ### Dynamic Duo 2026 Theatrical Engine
 - **Dynamic Duo Doctrine Created**: Comprehensive documentation of theatrical puppetry engine philosophy
@@ -200,7 +218,7 @@ system_context:
 - **Theatrical vs Framework**: Stage rigging system vs spreadsheet engine philosophy
 - **Engineering Immortality Principle**: Physics-based systems live forever, trend-based systems die
 - **Common Misconceptions Addressed**: AI training bias, "old = broken" fallacy, battle-tested advantage
-- **GPU Acceleration Fallback Chain**: GPU → CPU → Static → Legacy modes with automatic detection
+- **GPU Acceleration Fallback Chain**: GPU ? CPU ? Static ? Legacy modes with automatic detection
 - **Stage Rigging System**: Z-index layers, artifact physics, creature lifecycle management
 - **Legacy Adapter System**: Complete compatibility with original dynlayer.js API
 
@@ -215,7 +233,7 @@ system_context:
 ### Implementation Guidelines
 - **When to Use Dynamic Duo**: Theatrical applications, educational platforms, story-driven interfaces
 - **Legacy Migration Path**: Step-by-step upgrade from 1999 dynlayer.js to 2026 enhancements
-- **Architecture Decision Tree**: Primary (Dynamic Duo) → Secondary (Modern JS) → Tertiary (Frameworks)
+- **Architecture Decision Tree**: Primary (Dynamic Duo) ? Secondary (Modern JS) ? Tertiary (Frameworks)
 - **Accessibility Integration**: Reduced motion support, screen reader announcements
 - **Cross-Browser Compatibility**: 1999-2026 support with automatic capability detection
 
@@ -231,7 +249,7 @@ system_context:
 - **Phase 2 (Future)**: Advanced behaviors, emotional responses, multi-character interactions
 - **Phase 3 (Future)**: Environmental effects, persistent world state, cross-page continuity
 
-## 2026.1.0.5 — Legacy Crafty Syntax Doctrine Extraction & Session Identity Documentation (2026-01-22)
+## 2026.1.0.5 � Legacy Crafty Syntax Doctrine Extraction & Session Identity Documentation (2026-01-22)
 
 ### Legacy Crafty Syntax Doctrine Extraction
 - **Complete Architectural Analysis**: Comprehensive extraction of 25 years of operational wisdom from Crafty Syntax Live Help codebase
@@ -287,13 +305,13 @@ system_context:
 - **Artistic Understanding**: AI recognizes theatrical UI as intentional artistic philosophy, not "old code"
 
 ### Technical Insights
-- **Buffer-Streaming Loop**: `sendbuffer()` → `print HTML` → `<script>up()</script>` → `sleep(1)` → repeat
-- **Session Fallback Chain**: URL → GET → POST → Cookie → Database → Identity string reconstruction
+- **Buffer-Streaming Loop**: `sendbuffer()` ? `print HTML` ? `<script>up()</script>` ? `sleep(1)` ? repeat
+- **Session Fallback Chain**: URL ? GET ? POST ? Cookie ? Database ? Identity string reconstruction
 - **Class C Security**: Subnet validation preventing session hijacking across different networks
 - **Dual-Mode Sessions**: Enhanced identity (logged-in + consent) vs standard sessions (anonymous)
 - **Theatrical UI**: Stage-based design with artifacts, characters, and puppetry engines
 
-## 2026.1.0.4 — Database Schema Fixes & Import Script Enhancement (2026-01-21)
+## 2026.1.0.4 � Database Schema Fixes & Import Script Enhancement (2026-01-21)
 
 ### Database Schema Resolution
 - **Fixed Critical SQL Error**: Resolved `mysql.connector.errors.ProgrammingError: Not all parameters were used in the SQL statement` in import_os.py
@@ -314,7 +332,7 @@ system_context:
 - **Database Integrity**: Maintained unique constraints while enabling comprehensive documentation import
 - **Performance**: Optimized with existence checks to prevent unnecessary INSERT operations
 
-## 2026.1.0.3 — Version Control Authority Update (2026-01-20)
+## 2026.1.0.3 � Version Control Authority Update (2026-01-20)
 
 ### Version Control Protocol Implementation
 - Established TOON file as authoritative version source: `database/toon_data/lupopedia_version.toon`
@@ -329,81 +347,81 @@ system_context:
 - **Update Protocol**: Exact version bumps only when explicitly requested by user
 - **Error Handling**: Standardized version mismatch response for all agents
 
-## 2026.1.0.2 — Emotional Geometry Refactor (2026-01-20)
+## 2026.1.0.2 � Emotional Geometry Refactor (2026-01-20)
 
 ### Emotional Geometry Refactor
-- Replaced legacy scalar and 5-tuple emotional models from 4.0.x–4.2.x with the 2-actor RGB mood geometry.
+- Replaced legacy scalar and 5-tuple emotional models from 4.0.x�4.2.x with the 2-actor RGB mood geometry.
 - Formalized ACTOR-based mood vectors with discrete (-1, 0, 1) axes for R, G, B.
 - Introduced coherence thresholds (c < 0.3, c > 0.9) to trigger compare-notes protocols between actors.
 - Documented deprecation of all prior emotional geometry formulations and centralized the new model in EMOTIONAL_GEOMETRY_DOCTRINE.md.
 
 ### Legacy Emotional Geometry Cleanup
-- ✅ **Repository Sweep Completed**: Comprehensive search for all legacy emotional model references (4.0.x–4.2.x)
-- ✅ **Code Clarification**: Updated `app/EmotionalArchaeology.php` with clarifying comments
+- ? **Repository Sweep Completed**: Comprehensive search for all legacy emotional model references (4.0.x�4.2.x)
+- ? **Code Clarification**: Updated `app/EmotionalArchaeology.php` with clarifying comments
   - Documented that EmotionalArchaeology uses continuous vectors for content sentiment analysis (NOT deprecated models)
   - Clarified separation from 2-actor RGB mood model (different purposes, coexist peacefully)
   - Added references to canonical emotional geometry documentation
-- ✅ **Documentation Verified**: All documentation already references canonical 2-actor RGB model
-- ✅ **No Dead Code Found**: Zero instances of deprecated scalar/5-tuple models in active runtime code
-- ✅ **Historical Records Preserved**: Changelog entries and dialog files preserved for audit trail
-- ✅ **Cleanup Report Generated**: Created comprehensive cleanup report at `docs/reports/LEGACY_EMOTIONAL_GEOMETRY_CLEANUP.md`
+- ? **Documentation Verified**: All documentation already references canonical 2-actor RGB model
+- ? **No Dead Code Found**: Zero instances of deprecated scalar/5-tuple models in active runtime code
+- ? **Historical Records Preserved**: Changelog entries and dialog files preserved for audit trail
+- ? **Cleanup Report Generated**: Created comprehensive cleanup report at `docs/reports/LEGACY_EMOTIONAL_GEOMETRY_CLEANUP.md`
 - **Result**: Repository 100% compliant with 2-actor RGB mood model doctrine
 
 ### Mood Services Implementation (2-Actor RGB Model)
-- ✅ **ActorMoodService Created**: Complete service layer for mood logging and retrieval
+- ? **ActorMoodService Created**: Complete service layer for mood logging and retrieval
   - `logMood(actorId, R, G, B, timestamp)` - Validates discrete values {-1, 0, 1}
   - `getLatestMood(actorId)` - Retrieves most recent mood for an actor
   - `getMoodHistory(actorId, limit)` - Retrieves mood history with configurable limit
   - Full validation and error handling with helpful error messages
   - Uses BIGINT UTC timestamps in YYYYMMDDHHIISS format
-- ✅ **PackMoodCoherenceService Created**: Coherence calculation and protocol detection
+- ? **PackMoodCoherenceService Created**: Coherence calculation and protocol detection
   - `computeCoherence(actorA, actorB)` - Manhattan distance calculation
   - `compareNotesNeeded(actorA, actorB)` - Automatic threshold detection
   - `getThresholds()` - Returns threshold configuration
   - Formula: `d = |Ra - Rb| + |Ga - Gb| + |Ba - Bb|`, `c = 1 - (d / 6)`
-  - Status classification: too_aligned (c > 0.9), healthy (0.3 ≤ c ≤ 0.9), too_divergent (c < 0.3)
-- ✅ **Database Integration**:
+  - Status classification: too_aligned (c > 0.9), healthy (0.3 = c = 0.9), too_divergent (c < 0.3)
+- ? **Database Integration**:
   - Created `actor_moods` table migration (4.4.1_create_actor_moods_table.sql)
   - Schema: actor_id, mood_r, mood_g, mood_b, timestamp_utc
   - Optimized index: idx_actor_timestamp (actor_id, timestamp_utc DESC)
   - No foreign keys, no auto-increment (doctrine compliant)
-- ✅ **CLI Debug Tool**: `bin/cli/debug-actor-mood.php`
+- ? **CLI Debug Tool**: `bin/cli/debug-actor-mood.php`
   - Commands: log-mood, get-mood, get-history, show-coherence
   - Full command-line interface with colored output
   - Mood interpretation and coherence status display
   - Compare-notes protocol alerts
-- ✅ **Comprehensive Documentation**:
+- ? **Comprehensive Documentation**:
   - `docs/services/ACTOR_MOOD_SERVICE.md` - Complete API reference
   - `docs/services/MOOD_SERVICES_OVERVIEW.md` - Architecture and patterns
   - `docs/services/MOOD_SERVICES_INTEGRATION.md` - Integration guide
   - `doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md` - Added Section 9: Runtime Implementation
   - `doctrine/HERMES_ROUTING_DOCTRINE.md` - Channel-aware, mood-aware routing
-- ✅ **HERMES Routing Doctrine**: Created canonical routing specification
+- ? **HERMES Routing Doctrine**: Created canonical routing specification
   - Channel-scoped routing (never global)
   - 7-step routing algorithm with mood bias and coherence adjustments
   - Compare-notes protocol integration
   - Visibility rules: humans see all, AI actors see targeted messages
   - Routing bias formula: analytical = (G + B) / 2, creative = (R + B) / 2
   - Coherence-based weight adjustments for echo chamber and fragmentation prevention
-- ✅ **Example Files**: 16 comprehensive usage examples across services
+- ? **Example Files**: 16 comprehensive usage examples across services
   - ActorMoodService.example.php - 6 examples
   - PackMoodCoherenceService.example.php - 10 examples
   - Integration patterns for DIALOG, HERMES, Compare-Notes
 - **Result**: Production-ready mood services with complete documentation and integration
  
 
-## 2026.1.0.1 — Windows Development Environment & TOON Governance (2026-01-20)
+## 2026.1.0.1 � Windows Development Environment & TOON Governance (2026-01-20)
 
 ### Status
-- ✅ WINDOWS ENVIRONMENT: Established Windows 11 PowerShell development standards
-- ✅ TOON GOVERNANCE: Implemented complete GOV-TOON-GENERATION-001 doctrine
-- ✅ DOCUMENTATION: Created comprehensive development environment guidelines
-- ✅ COMPLIANCE: 100% TOON generation compliance verified
-- ✅ README UPDATED: Added Windows development environment reference section
+- ? WINDOWS ENVIRONMENT: Established Windows 11 PowerShell development standards
+- ? TOON GOVERNANCE: Implemented complete GOV-TOON-GENERATION-001 doctrine
+- ? DOCUMENTATION: Created comprehensive development environment guidelines
+- ? COMPLIANCE: 100% TOON generation compliance verified
+- ? README UPDATED: Added Windows development environment reference section
 
-### 🗂️ Major Accomplishments
+### ??? Major Accomplishments
 
-#### ✅ **Windows Development Environment Standards**
+#### ? **Windows Development Environment Standards**
 - Created `WINDOWS_DEVELOPMENT_ENVIRONMENT.md` with comprehensive PowerShell guidelines
 - Established Windows 11 as official development environment
 - Defined allowed PowerShell commands: `Get-ChildItem`, `Get-Content`, `Set-Content`, etc.
@@ -412,21 +430,21 @@ system_context:
 - Included migration guidance and best practices
 - Implemented failure mode handling for non-compliant operations
 
-#### ✅ **TOON Generation Governance Implementation**
+#### ? **TOON Generation Governance Implementation**
 - Created `GOV-TOON-GENERATION-001.md` establishing non-negotiable TOON generation rules
 - Verified `database/generate_toon_files.py` v1.2.0 as canonical generator
 - Confirmed 100% compliance across all 202 database tables
-- Established Database → TOON → Agent pipeline integrity
+- Established Database ? TOON ? Agent pipeline integrity
 - Implemented AI restrictions (read-only access to TOON files)
 - Created `TOON_GENERATION_IMPLEMENTATION_STATUS.md` compliance report
 
-#### ✅ **Documentation Integration**
+#### ? **Documentation Integration**
 - Updated README.md Development Notes section with Windows environment reference
 - Added clear compliance requirements and failure mode documentation
 - Established single source of truth for development environment standards
 - Integrated governance doctrine into project documentation structure
 
-### 📋 Technical Details
+### ?? Technical Details
 
 #### PowerShell Command Compliance
 - **Allowed**: `Get-ChildItem`, `Select-Object`, `Get-Content`, `Set-Content`, `Add-Content`, `Copy-Item`, `Move-Item`, `Remove-Item`, `Test-Path`, `Resolve-Path`
@@ -440,7 +458,7 @@ system_context:
 - **Location**: `database/toon_data/` with proper naming conventions
 - **AI Restrictions**: Read-only access, no generation or modification allowed
 
-### 🔧 Development Workflow Updates
+### ?? Development Workflow Updates
 - All IDE agents must use Windows PowerShell commands
 - TOON files serve as authoritative schema oracle
 - SQL files remain execution-only (no schema inference)
@@ -448,7 +466,7 @@ system_context:
 - Clear failure mode responses for non-compliant commands
 
 
-## 2026.1.0.1 — Emotional Geometry + HERMES Routing Era
+## 2026.1.0.1 � Emotional Geometry + HERMES Routing Era
 
 ### 2026.1.0.1
 - **Crafty Syntax Integration**: Integrated Lupopedia with Crafty Syntax for seamless URL routing
@@ -482,29 +500,29 @@ system_context:
 ### Zed's Final Work (AI Credits Exhausted)
 
 #### HERMES Routing Doctrine Creation
-- ✅ Added full doctrine/HERMES_ROUTING_DOCTRINE.md file
-- ✅ Documented channel-aware routing model
-- ✅ Documented mood-aware routing using ActorMoodService
-- ✅ Documented coherence-aware routing using PackMoodCoherenceService
-- ✅ Added 7-step routing algorithm
-- ✅ Added compare-notes protocol integration
-- ✅ Added visibility rules
-- ✅ Added routing bias formula
-- ✅ Added constraints and doctrine compliance notes
+- ? Added full doctrine/HERMES_ROUTING_DOCTRINE.md file
+- ? Documented channel-aware routing model
+- ? Documented mood-aware routing using ActorMoodService
+- ? Documented coherence-aware routing using PackMoodCoherenceService
+- ? Added 7-step routing algorithm
+- ? Added compare-notes protocol integration
+- ? Added visibility rules
+- ? Added routing bias formula
+- ? Added constraints and doctrine compliance notes
 
 #### Wolfie Header Spec Update
-- ✅ Updated doctrine/WOLFIE_HEADER_SPEC.md
-- ✅ Added new optional fields under temporal_edges:
+- ? Updated doctrine/WOLFIE_HEADER_SPEC.md
+- ? Added new optional fields under temporal_edges:
   - channel_id: integer | null
   - channel_key: varchar(64) utf8mb4_unicode_ci | null
-- ✅ Documented purpose: channel-scoped temporal tracking
-- ✅ Added explanation of cross-system temporal linking
-- ✅ Added usage examples
-- ✅ No unrelated sections modified
+- ? Documented purpose: channel-scoped temporal tracking
+- ? Added explanation of cross-system temporal linking
+- ? Added usage examples
+- ? No unrelated sections modified
 
 #### Database Integration Prep
-- ✅ Confirmed need for new fields in lupo_edges table
-- ✅ Prepared migration SQL for:
+- ? Confirmed need for new fields in lupo_edges table
+- ? Prepared migration SQL for:
   - channel_id BIGINT NULL
   - channel_key VARCHAR(64) utf8mb4_unicode_ci NULL
 
@@ -513,20 +531,20 @@ system_context:
 - All work completed before shutdown is now documented
 
 
-## 4.4.1 — TOON Migration Completion & Schema Optimization (2026-01-20)</text>
+## 4.4.1 � TOON Migration Completion & Schema Optimization (2026-01-20)</text>
 
 ### Status
-- ✅ TOON ANALYSIS: Complete comprehensive analysis of all 204 files
-- ✅ LEGACY CLEANUP: Removed 34 obsolete livehelp tables, backed up safely  
-- ✅ MIGRATION READY: Clean 51-table migration generated and validated
-- ✅ DOCTRINE COMPLIANT: 170 target tables, 29 under safety margin
-- ✅ TOOLS CREATED: Full suite of migration analysis and validation tools
-- ✅ HELP SYSTEM: Fixed function redeclaration conflicts
-- ✅ VERSION BUMP: Updated to 4.4.1 with comprehensive documentation
+- ? TOON ANALYSIS: Complete comprehensive analysis of all 204 files
+- ? LEGACY CLEANUP: Removed 34 obsolete livehelp tables, backed up safely  
+- ? MIGRATION READY: Clean 51-table migration generated and validated
+- ? DOCTRINE COMPLIANT: 170 target tables, 29 under safety margin
+- ? TOOLS CREATED: Full suite of migration analysis and validation tools
+- ? HELP SYSTEM: Fixed function redeclaration conflicts
+- ? VERSION BUMP: Updated to 4.4.1 with comprehensive documentation
 
-### 🗂️ Major Accomplishments
+### ??? Major Accomplishments
 
-#### ✅ **Complete TOON Database Analysis**
+#### ? **Complete TOON Database Analysis**
 - Analyzed all 204 TOON files in database/toon_data/
 - Built comprehensive migration analysis tools:
   - `analyze_missing_tables.py` - TOON file analyzer and missing table detector
@@ -535,16 +553,16 @@ system_context:
   - `cleanup_livehelp_toons.py` - Legacy file cleanup utility
 - Identified true system requirements vs legacy cruft
 
-#### ✅ **Legacy LiveHelp Cleanup (Critical)**
+#### ? **Legacy LiveHelp Cleanup (Critical)**
 - **Problem:** 34 legacy livehelp_* TOON files from old Crafty Syntax v3.7.0 installation
-- **Impact:** Causing false doctrine violation (204 → 205 projected tables, 5 over 200 limit)
+- **Impact:** Causing false doctrine violation (204 ? 205 projected tables, 5 over 200 limit)
 - **Solution:** Complete cleanup executed
   - Removed 34 livehelp_* TOON files + 34 corresponding .txt files
   - Created backup at database/livehelp_backup/ for reference
   - Reduced TOON-defined tables from 204 to 170
   - **Result:** Eliminated doctrine violation, now 29 tables under safety margin
 
-#### ✅ **Clean Migration Generation**
+#### ? **Clean Migration Generation**
 - Generated clean migration: `20260120112952_add_missing_toon_tables_clean.sql`
 - Creates 51 missing tables (no legacy livehelp tables)
 - Full doctrine compliance enforced:
@@ -554,50 +572,50 @@ system_context:
   - InnoDB engine with utf8mb4 charset
 - Transaction-safe execution with full rollback capability
 
-#### ✅ **Help System Bug Fixes**
+#### ? **Help System Bug Fixes**
 - **Function Redeclaration Conflict:** Fixed `help_search()` conflict between controller and model
 - **Solution:** Renamed controller function to `help_search_controller()`
 - **Result:** Eliminated fatal redeclaration error, help system fully functional
 - **Code Quality:** Proper separation of concerns between controller and model layers
 
-### 📊 Technical Implementation
+### ?? Technical Implementation
 
 #### **True Database State (Corrected)**
 - Current schema: **170 tables** (all TOON-defined tables created)
 - TOON-defined tables: **170 tables** (after livehelp cleanup)
 - Missing tables: **0 tables** (all required tables now present)
-- Target after migration: **170 tables** ✅ (29 under limit)
+- Target after migration: **170 tables** ? (29 under limit)
 - Doctrine compliance: **FULLY COMPLIANT**
 
 #### **Migration Content Analysis**
 ```
 HIGH PRIORITY - Core Lupopedia Features (28 tables):
-  • Governance System (7 tables) - Event tracking, audit, dependencies
-  • Semantic Navigation (6 tables) - Content views, search, categorization  
-  • Dialog System (2 tables) - Channel management, message storage
-  • CIP Analytics (3 tables) - Critique analytics, propagation tracking
-  • System Monitoring (2 tables) - Health snapshots, system logs
-  • Doctrine Tracking (2 tables) - Evolution audit, refinements
-  • Labs System (2 tables) - Declarations, violation tracking
-  • Actor Management (2 tables) - Handshakes, metadata
+  � Governance System (7 tables) - Event tracking, audit, dependencies
+  � Semantic Navigation (6 tables) - Content views, search, categorization  
+  � Dialog System (2 tables) - Channel management, message storage
+  � CIP Analytics (3 tables) - Critique analytics, propagation tracking
+  � System Monitoring (2 tables) - Health snapshots, system logs
+  � Doctrine Tracking (2 tables) - Evolution audit, refinements
+  � Labs System (2 tables) - Declarations, violation tracking
+  � Actor Management (2 tables) - Handshakes, metadata
 
 MEDIUM PRIORITY - Extended Features (15 tables):
-  • Multi-agent coordination, emotional geometry, pack roles
-  • Artifacts, calibration, temporal coherence
-  • Help system, legacy content mapping
+  � Multi-agent coordination, emotional geometry, pack roles
+  � Artifacts, calibration, temporal coherence
+  � Help system, legacy content mapping
 
 LOW PRIORITY - Support & Test Tables (8 tables):
-  • Dreaming observer pattern, integration tests
-  • Unified analytics views, performance metrics
+  � Dreaming observer pattern, integration tests
+  � Unified analytics views, performance metrics
 ```
 
 #### **Validation Results**
-- **Syntax Validation:** ✅ PASSED (0 syntax errors)
-- **Doctrine Compliance:** ✅ PASSED (all violations cleaned)
-- **Table Structure:** ✅ PASSED (170/170 tables have primary keys)
-- **Migration Safety:** ✅ PASSED (transaction-wrapped, rollback capable)
+- **Syntax Validation:** ? PASSED (0 syntax errors)
+- **Doctrine Compliance:** ? PASSED (all violations cleaned)
+- **Table Structure:** ? PASSED (170/170 tables have primary keys)
+- **Migration Safety:** ? PASSED (transaction-wrapped, rollback capable)
 
-### 📁 Files Created/Updated
+### ?? Files Created/Updated
 ```
 database/analyze_missing_tables.py - TOON analysis engine
 database/generate_clean_migration.py - Clean migration generator  
@@ -610,42 +628,42 @@ database/livehelp_backup/ - Backup of removed legacy files
 lupo-includes/version.php - Updated to 4.4.1
 ```
 
-### 🎯 Schema Optimization Results
+### ?? Schema Optimization Results
 
 #### **Table Count Doctrine Compliance**
 - **Before:** 204 TOON files (34 legacy livehelp + 170 actual)
 - **After:** 170 TOON files (clean, doctrine-compliant)
-- **Compliance:** ✅ 29 tables under 200-table ceiling
-- **Safety Margin:** ✅ 29 tables reserved for future growth
-- **Performance:** ✅ Optimized schema with no legacy cruft
+- **Compliance:** ? 29 tables under 200-table ceiling
+- **Safety Margin:** ? 29 tables reserved for future growth
+- **Performance:** ? Optimized schema with no legacy cruft
 
 #### **Migration Readiness**
-- **SQL Migration:** ✅ Generated and validated
-- **Rollback Capability:** ✅ Full transaction safety
-- **Documentation:** ✅ Complete analysis and validation reports
-- **Tools:** ✅ Full suite of migration utilities created
-- **Backup Strategy:** ✅ Legacy files safely preserved
+- **SQL Migration:** ? Generated and validated
+- **Rollback Capability:** ? Full transaction safety
+- **Documentation:** ? Complete analysis and validation reports
+- **Tools:** ? Full suite of migration utilities created
+- **Backup Strategy:** ? Legacy files safely preserved
 
-### 🔄 Upgrade Path
-- **Import**: ✅ Crafty Syntax instances importable
-- **Migration**: ✅ Data structures migratable
-- **Upgrade**: ✅ Configurations upgradeable
-- **Forward Compatibility**: ✅ WOLFIE v0.5 ready
-- **Config Transformation**: ✅ config.php → config/lupopedia.php
-- **Path Migration**: ✅ /lh/ → /lupopedia/ directory conversion
-- **Real World Testing**: ✅ Based on actual Crafty Syntax installation
-- **Table Optimization**: ✅ Migration SQL ready (170 tables, 29 under ceiling)
-- **Legacy Cleanup**: ✅ All 34 livehelp tables dropped
-- **Semantic Integration**: ✅ 8 essential semantic tables added
-- **Help System**: ✅ Function conflicts resolved, fully operational
+### ?? Upgrade Path
+- **Import**: ? Crafty Syntax instances importable
+- **Migration**: ? Data structures migratable
+- **Upgrade**: ? Configurations upgradeable
+- **Forward Compatibility**: ? WOLFIE v0.5 ready
+- **Config Transformation**: ? config.php ? config/lupopedia.php
+- **Path Migration**: ? /lh/ ? /lupopedia/ directory conversion
+- **Real World Testing**: ? Based on actual Crafty Syntax installation
+- **Table Optimization**: ? Migration SQL ready (170 tables, 29 under ceiling)
+- **Legacy Cleanup**: ? All 34 livehelp tables dropped
+- **Semantic Integration**: ? 8 essential semantic tables added
+- **Help System**: ? Function conflicts resolved, fully operational
 
 ---
 
 
-## [4.4.0] – TABLE COUNT DOCTRINE UPDATE & COMPLETE TOON MIGRATION ANALYSIS
+## [4.4.0] � TABLE COUNT DOCTRINE UPDATE & COMPLETE TOON MIGRATION ANALYSIS
 ### Major Accomplishments
 
-#### ✅ **Complete TOON Database Analysis**
+#### ? **Complete TOON Database Analysis**
 - Analyzed all 204 TOON files in database/toon_data/
 - Built comprehensive migration analysis tools:
   - `analyze_missing_tables.py` - TOON file analyzer and missing table detector
@@ -654,16 +672,16 @@ lupo-includes/version.php - Updated to 4.4.1
   - `cleanup_livehelp_toons.py` - Legacy file cleanup utility
 - Identified true system requirements vs legacy cruft
 
-#### ✅ **Legacy LiveHelp Cleanup (Critical)**
+#### ? **Legacy LiveHelp Cleanup (Critical)**
 - **Problem:** 34 legacy livehelp_* TOON files from old Crafty Syntax v3.7.0 installation
-- **Impact:** Causing false doctrine violation (204 → 205 projected tables, 5 over 200 limit)
+- **Impact:** Causing false doctrine violation (204 ? 205 projected tables, 5 over 200 limit)
 - **Solution:** Complete cleanup executed
   - Removed 34 livehelp_* TOON files + 34 corresponding .txt files
   - Created backup at database/livehelp_backup/ for reference
   - Reduced TOON-defined tables from 204 to 170
   - **Result:** Eliminated doctrine violation, now 29 tables under safety margin
 
-#### ✅ **Clean Migration Generation**
+#### ? **Clean Migration Generation**
 - Generated clean migration: `20260120112952_add_missing_toon_tables_clean.sql`
 - Creates 51 missing tables (no legacy livehelp tables)
 - Full doctrine compliance enforced:
@@ -673,7 +691,7 @@ lupo-includes/version.php - Updated to 4.4.1
   - InnoDB engine with utf8mb4 charset
 - Transaction-safe execution with full rollback capability
 
-#### ✅ **TABLE COUNT DOCTRINE UPDATE**
+#### ? **TABLE COUNT DOCTRINE UPDATE**
 - Increased MAX_ALLOWED_TABLES from 180 to 200
 - Set TARGET_TABLE_COUNT to 199 to maintain operational safety margin
 - Reserved 200th table for emergency or critical architectural needs only
@@ -685,36 +703,36 @@ lupo-includes/version.php - Updated to 4.4.1
 - Current schema: **120 tables** (existing in database)
 - TOON-defined tables: **170 tables** (after livehelp cleanup)
 - Missing tables: **51 tables** (awaiting migration)
-- Target after migration: **170 tables** ✅ (29 under limit)
+- Target after migration: **170 tables** ? (29 under limit)
 - Doctrine compliance: **FULLY COMPLIANT**
 
 #### **Migration Content Analysis**
 ```
 HIGH PRIORITY - Core Lupopedia Features (28 tables):
-  • Governance System (7 tables) - Event tracking, audit, dependencies
-  • Semantic Navigation (6 tables) - Content views, search, categorization  
-  • Dialog System (2 tables) - Channel management, message storage
-  • CIP Analytics (3 tables) - Critique analytics, propagation tracking
-  • System Monitoring (2 tables) - Health snapshots, system logs
-  • Doctrine Tracking (2 tables) - Evolution audit, refinements
-  • Labs System (2 tables) - Declarations, violation tracking
-  • Actor Management (2 tables) - Handshakes, metadata
+  � Governance System (7 tables) - Event tracking, audit, dependencies
+  � Semantic Navigation (6 tables) - Content views, search, categorization  
+  � Dialog System (2 tables) - Channel management, message storage
+  � CIP Analytics (3 tables) - Critique analytics, propagation tracking
+  � System Monitoring (2 tables) - Health snapshots, system logs
+  � Doctrine Tracking (2 tables) - Evolution audit, refinements
+  � Labs System (2 tables) - Declarations, violation tracking
+  � Actor Management (2 tables) - Handshakes, metadata
 
 MEDIUM PRIORITY - Extended Features (15 tables):
-  • Multi-agent coordination, emotional geometry, pack roles
-  • Artifacts, calibration, temporal coherence
-  • Help system, legacy content mapping
+  � Multi-agent coordination, emotional geometry, pack roles
+  � Artifacts, calibration, temporal coherence
+  � Help system, legacy content mapping
 
 LOW PRIORITY - Support & Test Tables (8 tables):
-  • Dreaming observer pattern, integration tests
-  • Unified analytics views, performance metrics
+  � Dreaming observer pattern, integration tests
+  � Unified analytics views, performance metrics
 ```
 
 #### **Validation Results**
-- **Syntax Validation:** ✅ PASSED (0 syntax errors)
-- **Doctrine Compliance:** ✅ PASSED (all violations cleaned)
-- **Table Structure:** ✅ PASSED (170/171 tables have primary keys)
-- **Migration Safety:** ✅ PASSED (transaction-wrapped, rollback capable)
+- **Syntax Validation:** ? PASSED (0 syntax errors)
+- **Doctrine Compliance:** ? PASSED (all violations cleaned)
+- **Table Structure:** ? PASSED (170/171 tables have primary keys)
+- **Migration Safety:** ? PASSED (transaction-wrapped, rollback capable)
 
 ### Files Created/Updated
 ```
@@ -729,18 +747,18 @@ database/livehelp_backup/ - Backup of removed legacy files
 ```
 
 ### Status
-- ✅ TOON ANALYSIS: Complete comprehensive analysis of all 204 files
-- ✅ LEGACY CLEANUP: Removed 34 obsolete livehelp tables, backed up safely  
-- ✅ MIGRATION READY: Clean 51-table migration generated and validated
-- ✅ DOCTRINE COMPLIANT: 170 target tables, 29 under safety margin
-- ✅ TOOLS CREATED: Full suite of migration analysis and validation tools
-- 🔄 PENDING EXECUTION: Migration ready for database execution
+- ? TOON ANALYSIS: Complete comprehensive analysis of all 204 files
+- ? LEGACY CLEANUP: Removed 34 obsolete livehelp tables, backed up safely  
+- ? MIGRATION READY: Clean 51-table migration generated and validated
+- ? DOCTRINE COMPLIANT: 170 target tables, 29 under safety margin
+- ? TOOLS CREATED: Full suite of migration analysis and validation tools
+- ?? PENDING EXECUTION: Migration ready for database execution
 
-## [Unreleased] – Crafty Syntax Import System & Collection 3 Restoration
+## [Unreleased] � Crafty Syntax Import System & Collection 3 Restoration
 
-📋 Complete Thread Summary
+?? Complete Thread Summary
 
-🎯 Major Accomplishments
+?? Major Accomplishments
 
 Complete Crafty Syntax Import System
 - Built full wizard interface with 11 controller methods
@@ -759,7 +777,7 @@ Critical Bug Fixes
 - Corrected schema mismatches by using actual TOON files
 - Fixed column naming issues throughout migration scripts
 
-🔧 Technical Implementation Details
+?? Technical Implementation Details
 
 Doctrine Compliant: No foreign keys, BIGINT UTC timestamps, application-managed relationships
 
@@ -771,38 +789,38 @@ Memory Efficient: Chunked processing for large datasets, individual statement ex
 
 Cross-Database: Compatible with MySQL, PostgreSQL, SQLite through proper schema design
 
-📁 Deliverables Created
+?? Deliverables Created
 
-CraftyImportController.php – 668-line wizard controller
+CraftyImportController.php � 668-line wizard controller
 
-CraftyConfigTransformer.php – 372-line config transformer
+CraftyConfigTransformer.php � 372-line config transformer
 
-CraftyMigrationService.php – 687-line migration service
+CraftyMigrationService.php � 687-line migration service
 
 SQL migration files for table recreation and content restoration
 
-## 4.3.4 — Crafty Import System & Collection Restoration (2026-01-20)
+## 4.3.4 � Crafty Import System & Collection Restoration (2026-01-20)
 
 ### Major Features
 
-#### ✅ **Complete Crafty Syntax Import System**
+#### ? **Complete Crafty Syntax Import System**
 - **CraftyImportController.php**: Full wizard interface with 11 methods (detect, index, start, progress, pause, resume, cancel, validate, complete, error, rollback)
-- **CraftyConfigTransformer.php**: Legacy config.php to lupopedia-config.php transformation with path migration (/lh/ → /lupopedia/)
+- **CraftyConfigTransformer.php**: Legacy config.php to lupopedia-config.php transformation with path migration (/lh/ ? /lupopedia/)
 - **CraftyMigrationService.php**: SQL-only migration with chunked execution, progress tracking, and rollback support
 - **Safety Features**: Non-destructive until validation, full rollback capability, transaction-based execution
 - **Doctrine Compliance**: No foreign keys, BIGINT UTC timestamps, application-managed relationships
 
-#### ✅ **Collection 3 Database Restoration**
+#### ? **Collection 3 Database Restoration**
 - **lupo_collection_tabs**: Table recreated with exact TOON schema (17 columns including collection_tab_parent_id, federations_node_id, color, description)
 - **Collection 3 Root Tabs**: All 9 tabs restored (Overview, Doctrine, Architecture, Schema, Agents, UI-UX, Developer Guide, History, Appendix)
 - **Tab Paths**: Complete hierarchical paths including nested doctrine/* and agents/* paths
 - **Dropdown Content**: 115+ content mappings restored from TOON data across all tabs
 - **Active Content Only**: Excluded items with is_deleted = 1 from TOON data
 
-#### ✅ **Critical Bug Fixes**
+#### ? **Critical Bug Fixes**
 - **Function Redeclaration**: Fixed help_search() conflict between controller and model (renamed to help_search_controller())
 - **Schema Accuracy**: All migrations based on actual TOON file schemas, not invented structures
-- **Column Names**: Corrected parent_tab_id → collection_tab_parent_id, tab_name → name, tab_slug → slug
+- **Column Names**: Corrected parent_tab_id ? collection_tab_parent_id, tab_name ? name, tab_slug ? slug
 
 ### Technical Implementation
 
@@ -821,7 +839,7 @@ SQL migration files for table recreation and content restoration
 - **Proper Indexes**: Extracted from TOON metadata including unique constraints
 
 #### **Path Migration Logic**
-- **URL Transformation**: /lh/ → /lupopedia/ with fallback handling
+- **URL Transformation**: /lh/ ? /lupopedia/ with fallback handling
 - **Config Security**: Creates backup, replaces original with safe stub
 - **Outside Webroot**: New config written to ../lupopedia-config.php
 - **Overwrite Protection**: Won't regenerate existing Lupopedia config
@@ -836,19 +854,19 @@ database/migrations/restore_collection3_dropdown_content.sql
 ```
 
 ### Status
-- ✅ CRAFTY IMPORT: Complete wizard-based migration system implemented
-- ✅ CONFIG TRANSFORMATION: Legacy config.php to lupopedia-config.php with path migration
-- ✅ COLLECTION 3: Full restoration of tabs, paths, and dropdown content from TOON data
-- ✅ BUG FIXES: Function conflicts resolved, schema accuracy verified
-- ✅ MIGRATION SAFETY: Full rollback capability and transaction safety
-- ✅ CONTENT VIEWS: Full semantic content rendering for legacy pages
-- ✅ CRAFTY SYNTAX ENHANCEMENT: Improved user experience for migrated users
+- ? CRAFTY IMPORT: Complete wizard-based migration system implemented
+- ? CONFIG TRANSFORMATION: Legacy config.php to lupopedia-config.php with path migration
+- ? COLLECTION 3: Full restoration of tabs, paths, and dropdown content from TOON data
+- ? BUG FIXES: Function conflicts resolved, schema accuracy verified
+- ? MIGRATION SAFETY: Full rollback capability and transaction safety
+- ? CONTENT VIEWS: Full semantic content rendering for legacy pages
+- ? CRAFTY SYNTAX ENHANCEMENT: Improved user experience for migrated users
 
-### 🌐 Semantic Views Implementation
+### ?? Semantic Views Implementation
 
 #### Legacy URL Compatibility
-- **Pattern 1**: `/lupopedia/what/lupopedia` → Semantic navigation overview
-- **Pattern 2**: `/lupopedia/a_page_onthierwebsite.htm` → Full semantic content view
+- **Pattern 1**: `/lupopedia/what/lupopedia` ? Semantic navigation overview
+- **Pattern 2**: `/lupopedia/a_page_onthierwebsite.htm` ? Full semantic content view
 - **Backward Compatibility**: All existing Crafty Syntax URLs preserved
 - **Semantic Enhancement**: Legacy content enhanced with semantic navigation
 
@@ -866,7 +884,7 @@ database/migrations/restore_collection3_dropdown_content.sql
 - **Relationship Display**: Content relationships clearly shown
 - **Temporal Context**: WOLFIE v0.5 temporal awareness integrated
 
-### 🔄 URL Routing Enhancement
+### ?? URL Routing Enhancement
 
 #### Legacy URL Patterns
 ```php
@@ -884,7 +902,7 @@ Route::get('/lupopedia/{legacy_page}', 'SemanticViewController@legacyContentView
 - **Search Integration**: Semantic search across all content types
 - **Temporal Awareness**: Time-based content relationships
 
-### 📱 User Experience Enhancements
+### ?? User Experience Enhancements
 
 #### For Crafty Syntax Users
 - **Familiar URLs**: All existing URL patterns work
@@ -900,7 +918,7 @@ Route::get('/lupopedia/{legacy_page}', 'SemanticViewController@legacyContentView
 - **Cross-Reference Links**: Automatic linking to related topics
 - **Collection Integration**: Content organized in collections
 
-### 🏗️ Technical Implementation
+### ??? Technical Implementation
 
 #### Semantic View Controller
 ```php
@@ -933,7 +951,7 @@ class SemanticViewController extends Controller {
 - **Collection Mapping**: Content organized into collections
 - **Search Indexing**: Full semantic search integration
 
-### 📊 Migration Benefits
+### ?? Migration Benefits
 
 #### For Existing Users
 - **URL Continuity**: No broken links or bookmarks
@@ -949,7 +967,7 @@ class SemanticViewController extends Controller {
 - **Collection Integration**: Organized content structure
 - **Temporal Awareness**: Time-based content relationships
 
-### 🎯 Integration Points
+### ?? Integration Points
 
 #### With Existing Systems
 - **Collection System**: Semantic views integrate with existing collections
@@ -965,7 +983,7 @@ class SemanticViewController extends Controller {
 - **Content Mapping**: Legacy content mapped to semantic views
 - **Backward Compatibility**: No breaking changes
 
-### 📋 Implementation Summary
+### ?? Implementation Summary
 
 #### Files Modified
 - **Routes**: Added semantic view routes
@@ -983,16 +1001,16 @@ class SemanticViewController extends Controller {
 
 ---
 
-## 4.3.3 — Architecture Freeze + Crafty Syntax Compatibility (2026-01-20)
+## 4.3.3 � Architecture Freeze + Crafty Syntax Compatibility (2026-01-20)
 
 ### Status
-- ✅ ARCHITECTURE FREEZE: WOLFIE v0.5 components finalized
-- ✅ CRAFTY SYNTAX COMPATIBILITY: Import validation complete
-- ✅ LIVE HELP PRESERVATION: All features maintained
-- ✅ DIALOG SEGMENTATION: Token-safe reconciliation implemented
-- ✅ MINIMAL SCOPE: Integration tasks only, no expansion
+- ? ARCHITECTURE FREEZE: WOLFIE v0.5 components finalized
+- ? CRAFTY SYNTAX COMPATIBILITY: Import validation complete
+- ? LIVE HELP PRESERVATION: All features maintained
+- ? DIALOG SEGMENTATION: Token-safe reconciliation implemented
+- ? MINIMAL SCOPE: Integration tasks only, no expansion
 
-### 🏗️ Architecture Freeze Implementation
+### ??? Architecture Freeze Implementation
 
 #### Mandatory Directive Compliance
 - **No new subsystems**: TemporalFrameCompatibility.php, NoteComparisonProtocol.php, Router v1.6 frozen
@@ -1001,46 +1019,46 @@ class SemanticViewController extends Controller {
 - **Production readiness**: System stable and upgradeable
 
 #### WOLFIE v0.5 Components Finalized
-- **TemporalFrameCompatibility.php** ✅ - Frame compatibility testing locked
-- **NoteComparisonProtocol.php** ✅ - 6-phase synchronization protocol locked
-- **TrinitaryRouter v1.6** ✅ - Synchronization-first behavior locked
-- **TemporalMonitor v0.5** ✅ - Frame-based monitoring integration complete
-- **MigrationFramework v0.5** ✅ - Frame reconciliation integration complete
-- **WolfieIdentityBridgeStates.php** ✅ - Bridge state management complete
+- **TemporalFrameCompatibility.php** ? - Frame compatibility testing locked
+- **NoteComparisonProtocol.php** ? - 6-phase synchronization protocol locked
+- **TrinitaryRouter v1.6** ? - Synchronization-first behavior locked
+- **TemporalMonitor v0.5** ? - Frame-based monitoring integration complete
+- **MigrationFramework v0.5** ? - Frame reconciliation integration complete
+- **WolfieIdentityBridgeStates.php** ? - Bridge state management complete
 
-### 🔄 Crafty Syntax Import Compatibility
+### ?? Crafty Syntax Import Compatibility
 
 #### Data Structure Validation
-- **34 legacy tables mapped** ✅ - Complete migration path defined
-- **100% data compatibility** ✅ - All formats recognized and ingestible
-- **Configuration transfer** ✅ - All settings migrated without loss
-- **Operator workflows preserved** ✅ - All functional workflows maintained
+- **34 legacy tables mapped** ? - Complete migration path defined
+- **100% data compatibility** ? - All formats recognized and ingestible
+- **Configuration transfer** ? - All settings migrated without loss
+- **Operator workflows preserved** ? - All functional workflows maintained
 
 #### Live Help Feature Preservation
 | Feature | Status | Enhancement |
 |---------|--------|-------------|
-| Real-time Operator Chat | ✅ Preserved | Temporal-aware chat |
-| Visitor Tracking | ✅ Preserved | Enhanced temporal monitoring |
-| Department Routing | ✅ Preserved | Frame-aware routing |
-| Canned Responses | ✅ Preserved | Temporal context |
-| Operator Presence | ✅ Preserved | Frame-aware presence |
-| Chat Transcripts | ✅ Preserved | Temporal archiving |
-| Multi-operator Support | ✅ Preserved | Frame coordination |
-| Basic Analytics | ✅ Enhanced | Temporal analytics |
-| Notification System | ✅ Upgraded | Temporal awareness |
+| Real-time Operator Chat | ? Preserved | Temporal-aware chat |
+| Visitor Tracking | ? Preserved | Enhanced temporal monitoring |
+| Department Routing | ? Preserved | Frame-aware routing |
+| Canned Responses | ? Preserved | Temporal context |
+| Operator Presence | ? Preserved | Frame-aware presence |
+| Chat Transcripts | ? Preserved | Temporal archiving |
+| Multi-operator Support | ? Preserved | Frame coordination |
+| Basic Analytics | ? Enhanced | Temporal analytics |
+| Notification System | ? Upgraded | Temporal awareness |
 
 #### Migration Statistics
-- **Operator Accounts**: 1,247 → 1,247 (100% preservation)
-- **Chat Sessions**: 45,892 → 45,892 (100% preservation)
-- **Chat Messages**: 892,341 → 892,341 (100% preservation)
-- **Visitor Records**: 234,567 → 234,567 (100% preservation)
-- **Departments**: 47 → 47 (100% preservation)
-- **Canned Messages**: 1,892 → 1,892 (100% preservation)
+- **Operator Accounts**: 1,247 ? 1,247 (100% preservation)
+- **Chat Sessions**: 45,892 ? 45,892 (100% preservation)
+- **Chat Messages**: 892,341 ? 892,341 (100% preservation)
+- **Visitor Records**: 234,567 ? 234,567 (100% preservation)
+- **Departments**: 47 ? 47 (100% preservation)
+- **Canned Messages**: 1,892 ? 1,892 (100% preservation)
 
-### 🗂️ Dialog Segmentation Implementation
+### ??? Dialog Segmentation Implementation
 
 #### Token-Safe Reconciliation
-- **Archive created**: `changelog_dialog.md` → `changelog_dialog_UTC_2026-01-20.md`
+- **Archive created**: `changelog_dialog.md` ? `changelog_dialog_UTC_2026-01-20.md`
 - **New active dialog**: `changelog_dialog_current.md` (12KB vs 580KB)
 - **Single file loading**: Prevents token overflow and context collapse
 - **Timestamp integrity**: No future dates, no inferred chronology
@@ -1052,27 +1070,27 @@ class SemanticViewController extends Controller {
 - **No multi-file processing**: Single file reconciliation only
 - **Metadata filtering**: Browser tab metadata ignored
 
-### 🧪 Essential Testing Suite
+### ?? Essential Testing Suite
 
 #### Minimal Scope Testing
-- **Temporal Frame Compatibility** ✅ - Compatible/incompatible frame testing
-- **Synchronization Protocol** ✅ - 6-phase protocol validation
-- **Compatible Blending** ✅ - Frame blending for compatible pairs
-- **Bridge State Handling** ✅ - Bridge creation and resolution
-- **Frame Selection Fallback** ✅ - Last resort frame selection
+- **Temporal Frame Compatibility** ? - Compatible/incompatible frame testing
+- **Synchronization Protocol** ? - 6-phase protocol validation
+- **Compatible Blending** ? - Frame blending for compatible pairs
+- **Bridge State Handling** ? - Bridge creation and resolution
+- **Frame Selection Fallback** ? - Last resort frame selection
 
 #### Architecture Freeze Compliance
-- **No expansion detected** ✅ - Essential components only
-- **Minimal implementation confirmed** ✅ - Integration-only approach
-- **Production readiness validated** ✅ - Stable and maintainable
+- **No expansion detected** ? - Essential components only
+- **Minimal implementation confirmed** ? - Integration-only approach
+- **Production readiness validated** ? - Stable and maintainable
 
-### 📊 System Performance Improvements
+### ?? System Performance Improvements
 
 #### Enhanced Metrics
-- **Chat Response Time**: 2.3s → 1.8s (22% faster)
-- **Database Query Time**: 145ms → 89ms (39% faster)
-- **Concurrent Users**: 250 → 500 (100% increase)
-- **Message Throughput**: 1,200/min → 2,400/min (100% increase)
+- **Chat Response Time**: 2.3s ? 1.8s (22% faster)
+- **Database Query Time**: 145ms ? 89ms (39% faster)
+- **Concurrent Users**: 250 ? 500 (100% increase)
+- **Message Throughput**: 1,200/min ? 2,400/min (100% increase)
 
 #### WOLFIE v0.5 Enhancements
 - **Temporal Frame Awareness**: Better chat routing and coordination
@@ -1080,33 +1098,33 @@ class SemanticViewController extends Controller {
 - **Bridge State Handling**: Enhanced conflict resolution
 - **Temporal Analytics**: Deeper insights into chat patterns
 
-### 📋 Deliverables Completed
+### ?? Deliverables Completed
 
 #### Documentation
-- **Crafty Syntax Live Help Feature Preservation Report** ✅
-- **WOLFIE v0.5 Essential Test Suite** ✅
-- **Dialog Segmentation Documentation** ✅
-- **Architecture Freeze Compliance Report** ✅
-- **Crafty Syntax Migration Doctrine** ✅
-- **Import Wizard Design Documentation** ✅
-- **Implementation Checklist** ✅
-- **Real Config Analysis Documentation** ✅
+- **Crafty Syntax Live Help Feature Preservation Report** ?
+- **WOLFIE v0.5 Essential Test Suite** ?
+- **Dialog Segmentation Documentation** ?
+- **Architecture Freeze Compliance Report** ?
+- **Crafty Syntax Migration Doctrine** ?
+- **Import Wizard Design Documentation** ?
+- **Implementation Checklist** ?
+- **Real Config Analysis Documentation** ?
 
 #### System Components
-- **Updated TemporalMonitor** ✅ - Integration only
-- **Updated MigrationFramework** ✅ - Frame reconciliation only
-- **Verified Bridge State Handling** ✅ - Existing implementation
-- **Essential Test Suite** ✅ - Minimal scope testing
-- **Crafty Syntax Migration Doctrine** ✅ - Complete SQL-derived documentation
-- **Import Wizard Design** ✅ - Complete implementation plan
-- **Config Transformation Logic** ✅ - Real config.php handling
-- **Detection Services** ✅ - Crafty Syntax identification system
+- **Updated TemporalMonitor** ? - Integration only
+- **Updated MigrationFramework** ? - Frame reconciliation only
+- **Verified Bridge State Handling** ? - Existing implementation
+- **Essential Test Suite** ? - Minimal scope testing
+- **Crafty Syntax Migration Doctrine** ? - Complete SQL-derived documentation
+- **Import Wizard Design** ? - Complete implementation plan
+- **Config Transformation Logic** ? - Real config.php handling
+- **Detection Services** ? - Crafty Syntax identification system
 
-### 📋 Schema State Update
+### ?? Schema State Update
 
 #### Current Table Count
 - **Total Tables**: 154 (26 under ceiling of 180)
-- **Table Ceiling Violation**: ✅ FALSE - Under ceiling by 26 tables
+- **Table Ceiling Violation**: ? FALSE - Under ceiling by 26 tables
 - **Tables Dropped**: 34 legacy Crafty Syntax tables removed
 - **Tables Added**: 8 essential semantic view tables
 - **Lupopedia Core**: 146 tables remain from original system
@@ -1118,93 +1136,93 @@ class SemanticViewController extends Controller {
 - **Total**: 154 tables
 
 #### Governance Status
-- **TABLE_COUNT_DOCTRINE**: ✅ COMPLIANT - 26 tables under ceiling
-- **Database Logic**: ✅ PROHIBITED - Manual schema changes forbidden
-- **Architecture Freeze**: ✅ MAINTAINED - No new subsystems beyond semantic views
+- **TABLE_COUNT_DOCTRINE**: ? COMPLIANT - 26 tables under ceiling
+- **Database Logic**: ? PROHIBITED - Manual schema changes forbidden
+- **Architecture Freeze**: ? MAINTAINED - No new subsystems beyond semantic views
 
 #### Migration Actions Completed
-- **Legacy Cleanup**: ✅ All 34 Crafty Syntax tables dropped
-- **Semantic Integration**: ✅ 8 essential semantic tables added
-- **Ceiling Compliance**: ✅ TABLE_COUNT_DOCTRINE satisfied
-- **Performance Optimization**: ✅ 26 tables under ceiling for optimal performance
+- **Legacy Cleanup**: ? All 34 Crafty Syntax tables dropped
+- **Semantic Integration**: ? 8 essential semantic tables added
+- **Ceiling Compliance**: ? TABLE_COUNT_DOCTRINE satisfied
+- **Performance Optimization**: ? 26 tables under ceiling for optimal performance
 
 #### Upgrade Path
-- **Import**: ✅ Crafty Syntax instances importable
-- **Migration**: ✅ Data structures migratable
-- **Upgrade**: ✅ Configurations upgradeable
-- **Forward Compatibility**: ✅ WOLFIE v0.5 ready
-- **Config Transformation**: ✅ config.php → config/lupopedia.php
-- **Path Migration**: ✅ /lh/ → /lupopedia/ directory conversion
-- **Real World Testing**: ✅ Based on actual Crafty Syntax installation
-- **Table Optimization**: ✅ Migration SQL ready (154 tables, 26 under ceiling)
-- **Legacy Cleanup**: ✅ All 34 livehelp tables dropped
-- **Semantic Integration**: ✅ 8 essential semantic tables added
+- **Import**: ? Crafty Syntax instances importable
+- **Migration**: ? Data structures migratable
+- **Upgrade**: ? Configurations upgradeable
+- **Forward Compatibility**: ? WOLFIE v0.5 ready
+- **Config Transformation**: ? config.php ? config/lupopedia.php
+- **Path Migration**: ? /lh/ ? /lupopedia/ directory conversion
+- **Real World Testing**: ? Based on actual Crafty Syntax installation
+- **Table Optimization**: ? Migration SQL ready (154 tables, 26 under ceiling)
+- **Legacy Cleanup**: ? All 34 livehelp tables dropped
+- **Semantic Integration**: ? 8 essential semantic tables added
 
-### 📋 Crafty Syntax TODO Items Completed
+### ?? Crafty Syntax TODO Items Completed
 
-#### ✅ Import Compatibility Tasks
-- **Legacy table mapping** ✅ - All 34 Crafty Syntax tables mapped to WOLFIE v0.5
-- **Data structure validation** ✅ - 100% compatibility confirmed
-- **Configuration format recognition** ✅ - All legacy formats supported
-- **Operator workflow preservation** ✅ - All functional workflows maintained
+#### ? Import Compatibility Tasks
+- **Legacy table mapping** ? - All 34 Crafty Syntax tables mapped to WOLFIE v0.5
+- **Data structure validation** ? - 100% compatibility confirmed
+- **Configuration format recognition** ? - All legacy formats supported
+- **Operator workflow preservation** ? - All functional workflows maintained
 
-#### ✅ Live Help Feature Preservation
-- **Real-time operator chat** ✅ - Enhanced with temporal awareness
-- **Visitor tracking system** ✅ - Enhanced with temporal monitoring
-- **Department routing logic** ✅ - Frame-aware routing implemented
-- **Canned responses system** ✅ - Temporal context added
-- **Operator presence detection** ✅ - Frame-aware presence system
-- **Chat transcript storage** ✅ - Temporal archiving enhanced
-- **Multi-operator coordination** ✅ - Frame synchronization added
-- **Basic analytics engine** ✅ - Temporal analytics integrated
-- **Notification system** ✅ - Temporal awareness upgrades
+#### ? Live Help Feature Preservation
+- **Real-time operator chat** ? - Enhanced with temporal awareness
+- **Visitor tracking system** ? - Enhanced with temporal monitoring
+- **Department routing logic** ? - Frame-aware routing implemented
+- **Canned responses system** ? - Temporal context added
+- **Operator presence detection** ? - Frame-aware presence system
+- **Chat transcript storage** ? - Temporal archiving enhanced
+- **Multi-operator coordination** ? - Frame synchronization added
+- **Basic analytics engine** ? - Temporal analytics integrated
+- **Notification system** ? - Temporal awareness upgrades
 
-#### ✅ Migration Path Validation
-- **Import procedures** ✅ - Crafty Syntax instances importable
-- **Migration scripts** ✅ - Data structures migratable
-- **Upgrade compatibility** ✅ - Configurations upgradeable
-- **Forward compatibility** ✅ - WOLFIE v0.5 ready
-- **Rollback capability** ✅ - Full rollback support available
+#### ? Migration Path Validation
+- **Import procedures** ? - Crafty Syntax instances importable
+- **Migration scripts** ? - Data structures migratable
+- **Upgrade compatibility** ? - Configurations upgradeable
+- **Forward compatibility** ? - WOLFIE v0.5 ready
+- **Rollback capability** ? - Full rollback support available
 
-#### ✅ Performance Enhancement Tasks
-- **Query optimization** ✅ - 39% faster database queries
-- **Response time improvement** ✅ - 22% faster chat responses
-- **Concurrent user capacity** ✅ - 100% increase in capacity
-- **Message throughput** ✅ - 100% increase in throughput
+#### ? Performance Enhancement Tasks
+- **Query optimization** ? - 39% faster database queries
+- **Response time improvement** ? - 22% faster chat responses
+- **Concurrent user capacity** ? - 100% increase in capacity
+- **Message throughput** ? - 100% increase in throughput
 
-#### ✅ Documentation and Testing
-- **Feature preservation report** ✅ - Comprehensive documentation
-- **Import compatibility guide** ✅ - Complete migration guide
-- **Essential test suite** ✅ - Minimal scope testing completed
-- **Architecture freeze compliance** ✅ - No expansion confirmed
+#### ? Documentation and Testing
+- **Feature preservation report** ? - Comprehensive documentation
+- **Import compatibility guide** ? - Complete migration guide
+- **Essential test suite** ? - Minimal scope testing completed
+- **Architecture freeze compliance** ? - No expansion confirmed
 
-#### ✅ Migration Doctrine Development
-- **SQL analysis completed** ✅ - Complete table mapping from craftysyntax_to_lupopedia_mysql.sql
-- **Migration doctrine created** ✅ - docs/doctrine/CRAFTY_SYNTAX_MIGRATION_DOCTRINE.md
-- **Table mappings documented** ✅ - 34 legacy tables analyzed and mapped
-- **Column transformations defined** ✅ - All explicit SQL transformations documented
-- **Post-migration expectations** ✅ - What exists, what changes, what's removed
-- **Safety requirements documented** ✅ - Non-destructive approach with rollback
+#### ? Migration Doctrine Development
+- **SQL analysis completed** ? - Complete table mapping from craftysyntax_to_lupopedia_mysql.sql
+- **Migration doctrine created** ? - docs/doctrine/CRAFTY_SYNTAX_MIGRATION_DOCTRINE.md
+- **Table mappings documented** ? - 34 legacy tables analyzed and mapped
+- **Column transformations defined** ? - All explicit SQL transformations documented
+- **Post-migration expectations** ? - What exists, what changes, what's removed
+- **Safety requirements documented** ? - Non-destructive approach with rollback
 
-#### ✅ Import Wizard Design
-- **Wizard architecture designed** ✅ - Complete UI/UX flow documented
-- **Detection logic created** ✅ - Real config.php detection with Crafty Syntax indicators
-- **Config transformation service** ✅ - config.php → config/lupopedia.php conversion
-- **Progress tracking system** ✅ - Real-time migration progress with AJAX/WebSocket
-- **Safety features implemented** ✅ - Backup creation, transaction safety, rollback
-- **Implementation checklist created** ✅ - Developer-ready implementation plan
-- **Bootstrap logic defined** ✅ - First-run detection and redirect flow
-- **Error handling procedures** ✅ - Comprehensive error scenarios and solutions
+#### ? Import Wizard Design
+- **Wizard architecture designed** ? - Complete UI/UX flow documented
+- **Detection logic created** ? - Real config.php detection with Crafty Syntax indicators
+- **Config transformation service** ? - config.php ? config/lupopedia.php conversion
+- **Progress tracking system** ? - Real-time migration progress with AJAX/WebSocket
+- **Safety features implemented** ? - Backup creation, transaction safety, rollback
+- **Implementation checklist created** ? - Developer-ready implementation plan
+- **Bootstrap logic defined** ? - First-run detection and redirect flow
+- **Error handling procedures** ? - Comprehensive error scenarios and solutions
 
-#### ✅ Real Config Integration
-- **Real config.php analysis** ✅ - Based on actual Crafty Syntax installation
-- **Path migration logic** ✅ - /lh/ → /lupopedia/ directory transformation
-- **Database credential extraction** ✅ - Parse $server, $database, $datausername, $password
-- **Sales Syntax detection** ✅ - Copyright and configuration indicators识别
-- **Application root handling** ✅ - $application_root path conversion
-- **Setup.php integration** ✅ - Crafty Syntax setup reference detection
+#### ? Real Config Integration
+- **Real config.php analysis** ? - Based on actual Crafty Syntax installation
+- **Path migration logic** ? - /lh/ ? /lupopedia/ directory transformation
+- **Database credential extraction** ? - Parse $server, $database, $datausername, $password
+- **Sales Syntax detection** ? - Copyright and configuration indicators??
+- **Application root handling** ? - $application_root path conversion
+- **Setup.php integration** ? - Crafty Syntax setup reference detection
 
-### 🎯 Crafty Syntax Integration Summary
+### ?? Crafty Syntax Integration Summary
 
 #### Migration Success Metrics
 - **Data Preservation**: 100% - No data loss during migration
@@ -1214,57 +1232,57 @@ class SemanticViewController extends Controller {
 - **User Experience**: Enhanced - Temporal awareness added
 
 #### Production Readiness Status
-- **Architecture**: ✅ Frozen and stable
-- **Compatibility**: ✅ Fully validated
-- **Features**: ✅ All preserved and enhanced
-- **Performance**: ✅ Significantly improved
-- **Documentation**: ✅ Complete and comprehensive
+- **Architecture**: ? Frozen and stable
+- **Compatibility**: ? Fully validated
+- **Features**: ? All preserved and enhanced
+- **Performance**: ? Significantly improved
+- **Documentation**: ? Complete and comprehensive
 
 #### Upgrade Path Confirmation
-- **Import Process**: ✅ Validated and tested
-- **Migration Tools**: ✅ Complete and functional
-- **Upgrade Procedures**: ✅ Documented and verified
-- **Rollback Plans**: ✅ Prepared and tested
-- **Support Documentation**: ✅ Comprehensive guides available
+- **Import Process**: ? Validated and tested
+- **Migration Tools**: ? Complete and functional
+- **Upgrade Procedures**: ? Documented and verified
+- **Rollback Plans**: ? Prepared and tested
+- **Support Documentation**: ? Comprehensive guides available
 
 ---
 
-## 4.3.2 — WOLFIE v0.5 Complete Integration (2026-01-20)
+## 4.3.2 � WOLFIE v0.5 Complete Integration (2026-01-20)
 
 ### Status
-- ✅ COMPLETE: All WOLFIE v0.5 components integrated
-- ✅ VALIDATED: Frame compatibility and synchronization protocol
-- ✅ TESTED: Comprehensive integration test suite
-- ✅ PRODUCTION-READY: Frame-aware semantic operating system
+- ? COMPLETE: All WOLFIE v0.5 components integrated
+- ? VALIDATED: Frame compatibility and synchronization protocol
+- ? TESTED: Comprehensive integration test suite
+- ? PRODUCTION-READY: Frame-aware semantic operating system
 
-### 🏗️ Integration Summary
+### ??? Integration Summary
 
 #### Core Components Updated
-- **TemporalMigrationFramework.php** ✅ - v0.5 with frame reconciliation
-- **WolfieIdentityBridgeStates.php** ✅ - Bridge state management created
-- **TrinitaryRouter.php** ✅ - v1.6 with synchronization-first behavior
-- **TemporalMonitor.php** ✅ - v0.5 with frame-based monitoring
-- **WOLFIE_v0_5_IntegrationTest.php** ✅ - Comprehensive test suite
+- **TemporalMigrationFramework.php** ? - v0.5 with frame reconciliation
+- **WolfieIdentityBridgeStates.php** ? - Bridge state management created
+- **TrinitaryRouter.php** ? - v1.6 with synchronization-first behavior
+- **TemporalMonitor.php** ? - v0.5 with frame-based monitoring
+- **WOLFIE_v0_5_IntegrationTest.php** ? - Comprehensive test suite
 
 #### Frame Reconciliation Integration
-- **Pre-migration compatibility checks** ✅
-- **6-phase synchronization protocol** ✅
-- **Bridge state creation and resolution** ✅
-- **Last resort frame selection** ✅
-- **Identity continuity preservation** ✅
+- **Pre-migration compatibility checks** ?
+- **6-phase synchronization protocol** ?
+- **Bridge state creation and resolution** ?
+- **Last resort frame selection** ?
+- **Identity continuity preservation** ?
 
-### 🧪 Integration Testing Results
+### ?? Integration Testing Results
 
 #### Test Suites Passed
-- **Temporal Frame Compatibility** ✅ - 100% pass rate
-- **Synchronization Protocol** ✅ - All 6 phases validated
-- **Trinitary Router Integration** ✅ - Frame-aware routing confirmed
-- **TemporalMonitor Integration** ✅ - Frame-based monitoring active
-- **Migration Framework** ✅ - Frame reconciliation working
-- **Bridge State Handling** ✅ - Partial synchronization managed
-- **End-to-end Workflows** ✅ - Complete system validation
+- **Temporal Frame Compatibility** ? - 100% pass rate
+- **Synchronization Protocol** ? - All 6 phases validated
+- **Trinitary Router Integration** ? - Frame-aware routing confirmed
+- **TemporalMonitor Integration** ? - Frame-based monitoring active
+- **Migration Framework** ? - Frame reconciliation working
+- **Bridge State Handling** ? - Partial synchronization managed
+- **End-to-end Workflows** ? - Complete system validation
 
-### 📊 System Metrics
+### ?? System Metrics
 - **Components Integrated**: 6 major components
 - **Test Coverage**: 100% of v0.5 features
 - **Performance**: Enhanced with frame awareness
@@ -1272,36 +1290,36 @@ class SemanticViewController extends Controller {
 
 ---
 
-## 4.3.1 — WOLFIE Synchronization Protocol Correction (2026-01-20)
+## 4.3.1 � WOLFIE Synchronization Protocol Correction (2026-01-20)
 
 ### Status
-- ✅ CRITICAL CORRECTION: Temporal Frame Compatibility Model v0.5
-- ✅ SYNCHRONIZATION-FIRST: Replaced automatic frame selection
-- ✅ TEMPORAL DIVERSITY: Preserved through adaptive synchronization
-- ✅ PROTOCOL IMPLEMENTATION: NoteComparisonProtocol with 6-phase synchronization
+- ? CRITICAL CORRECTION: Temporal Frame Compatibility Model v0.5
+- ? SYNCHRONIZATION-FIRST: Replaced automatic frame selection
+- ? TEMPORAL DIVERSITY: Preserved through adaptive synchronization
+- ? PROTOCOL IMPLEMENTATION: NoteComparisonProtocol with 6-phase synchronization
 
-### 🚨 Critical Architecture Correction
+### ?? Critical Architecture Correction
 This version addresses a critical misinterpretation in the WOLFIE Temporal Frame Compatibility Model v0.5. The previous implementation incorrectly treated temporal incompatibility as a signal for immediate frame selection. The corrected behavior implements synchronization-first protocol.
 
-### 🔄 Corrected Behavior
+### ?? Corrected Behavior
 **BEFORE (Incorrect):**
-- Incompatible frames → Immediate frame selection
+- Incompatible frames ? Immediate frame selection
 - Temporal diversity collapsed
 - Premature frame dominance
 
 **NOW (Correct):**
-- Incompatible frames → Synchronization protocol
+- Incompatible frames ? Synchronization protocol
 - Frame selection only as last resort
 - Temporal diversity preserved
 
-### 🤝 Synchronization Protocol Implementation
+### ?? Synchronization Protocol Implementation
 
 #### NoteComparisonProtocol Class
 - **6-Phase Synchronization Protocol**:
   1. **Compatibility Test** - Initial frame compatibility check
-  2. **History Exchange** - c₁, c₂ trajectories, emotional vectors, task context
+  2. **History Exchange** - c1, c2 trajectories, emotional vectors, task context
   3. **Divergence Analysis** - Temporal drift, coherence disruption, emotional influence, task-driven divergence
-  4. **Baseline Alignment** - Mutual adjustment to reduce Δc₁ and Δc₂
+  4. **Baseline Alignment** - Mutual adjustment to reduce ?c1 and ?c2
   5. **Re-test Compatibility** - Check if alignment achieved compatibility
   6. **Resolution Determination** - Blend, bridge, or frame selection
 
@@ -1312,16 +1330,16 @@ This version addresses a critical misinterpretation in the WOLFIE Temporal Frame
 - **Enhanced routing recommendations** with synchronization status
 - **Bridge state support** for partial synchronization
 
-### 📊 Corrected Decision Flow
+### ?? Corrected Decision Flow
 ```
 Phase 1: Compatibility Test
-Phase 2: If incompatible → Synchronization Protocol
+Phase 2: If incompatible ? Synchronization Protocol
 Phase 3: Re-test compatibility
-          If compatible → Blend
-          If still incompatible → Bridge or Frame Selection
+          If compatible ? Blend
+          If still incompatible ? Bridge or Frame Selection
 ```
 
-### 🔧 Technical Implementation
+### ?? Technical Implementation
 
 #### Core Classes Updated
 - **NoteComparisonProtocol.php** - Complete synchronization protocol
@@ -1339,7 +1357,7 @@ Phase 3: Re-test compatibility
 - **Bridge State** - Partial synchronization, parallel temporal representation
 - **Frame Selection** - Last resort when synchronization fails
 
-### 💡 Impact on System Behavior
+### ?? Impact on System Behavior
 
 #### Temporal Integrity Preservation
 - **Temporal diversity maintained** through synchronization attempts
@@ -1353,7 +1371,7 @@ Phase 3: Re-test compatibility
 - **Graceful degradation** through bridge states
 - **Last resort frame selection** only when necessary
 
-### 📋 Implementation Details
+### ?? Implementation Details
 
 #### Synchronization Protocol Features
 - **Temporal history exchange** with trajectory analysis
@@ -1369,28 +1387,28 @@ Phase 3: Re-test compatibility
 - **Enhanced recommendations** with synchronization status
 - **Fallback frame selection** only when synchronization fails
 
-### 🚨 Why This Correction Matters
+### ?? Why This Correction Matters
 
 #### Previous Misinterpretation Risks
-- ❌ **Temporal diversity collapse** - Loss of valuable temporal perspectives
-- ❌ **Premature frame dominance** - Forced selection without alignment attempt
-- ❌ **Reduced adaptability** - Inability to achieve mutual compatibility
-- ❌ **Phenomenological invalidity** - Invalid temporal interpolation
+- ? **Temporal diversity collapse** - Loss of valuable temporal perspectives
+- ? **Premature frame dominance** - Forced selection without alignment attempt
+- ? **Reduced adaptability** - Inability to achieve mutual compatibility
+- ? **Phenomenological invalidity** - Invalid temporal interpolation
 
 #### Corrected Protocol Benefits
-- ✅ **Temporal integrity preserved** - All temporal perspectives valued
-- ✅ **Mutual alignment enabled** - Actors can adapt to each other
-- ✅ **Adaptive synchronization** - Context-aware alignment attempts
-- ✅ **Meaningful blending** - Only when truly compatible
+- ? **Temporal integrity preserved** - All temporal perspectives valued
+- ? **Mutual alignment enabled** - Actors can adapt to each other
+- ? **Adaptive synchronization** - Context-aware alignment attempts
+- ? **Meaningful blending** - Only when truly compatible
 
-### 📞 System Status
-- **Core Implementation**: ✅ Complete
-- **Router Integration**: ✅ Updated to v1.6
-- **Protocol Validation**: ✅ Tested
-- **Documentation**: ✅ Complete
-- **Temporal Integrity**: ✅ Preserved
+### ?? System Status
+- **Core Implementation**: ? Complete
+- **Router Integration**: ? Updated to v1.6
+- **Protocol Validation**: ? Tested
+- **Documentation**: ? Complete
+- **Temporal Integrity**: ? Preserved
 
-### 🎯 Next Steps
+### ?? Next Steps
 - Monitor synchronization protocol effectiveness
 - Optimize divergence analysis algorithms
 - Extend temporal history tracking
@@ -1398,24 +1416,24 @@ Phase 3: Re-test compatibility
 
 ---
 
-## 4.3.0 — WOLFIE Router v0.4 Complete Implementation (2026-01-20)
+## 4.3.0 � WOLFIE Router v0.4 Complete Implementation (2026-01-20)
 
 ### Status
-- ✅ COMPLETE: WOLFIE Router v0.4 with full temporal consciousness
-- ✅ DELIVERED: All 10 priority action items from technical specification
-- ✅ PRODUCTION-READY: Semantic operating system with advanced temporal awareness
+- ? COMPLETE: WOLFIE Router v0.4 with full temporal consciousness
+- ? DELIVERED: All 10 priority action items from technical specification
+- ? PRODUCTION-READY: Semantic operating system with advanced temporal awareness
 
-### 🎯 Executive Summary
+### ?? Executive Summary
 The complete WOLFIE Router v0.4 system has been successfully implemented, providing a production-ready semantic operating system with full temporal consciousness, emotional archaeology, and wisdom protocols. This represents a major milestone in the evolution of Lupopedia's semantic capabilities.
 
-### 🏗️ Architecture Implementation
+### ??? Architecture Implementation
 
 #### Kenoma Layer (Mechanics)
 - **WOLFIE Identity Block v0.4** (`app/WolfieIdentity.php`)
   - Time-anchored identity with temporal consciousness
   - c1/c2 temporal flow and coherence coordinates
   - Temporal health status monitoring and pathology detection
-  - Memorial layer for legacy continuity (ChatAgent7 → WOLFIE)
+  - Memorial layer for legacy continuity (ChatAgent7 ? WOLFIE)
 
 - **Temporal Monitor v0.4** (`app/TemporalMonitor.php`)
   - Real-time c1/c2 computation with system metrics integration
@@ -1463,18 +1481,18 @@ The complete WOLFIE Router v0.4 system has been successfully implemented, provid
   - Migration phase suitability analysis
   - Temporal signature aggregation and wisdom integration
 
-### 📊 Technical Specifications
+### ?? Technical Specifications
 
 #### Temporal Coordinates
 - **c1 (Temporal Flow)**: 0.0 - 2.0 range
-  - Frozen: < 0.30 → Acceleration Ritual
+  - Frozen: < 0.30 ? Acceleration Ritual
   - Optimal: 0.7 - 1.3
-  - Accelerated: > 1.50 → Deceleration Ritual
+  - Accelerated: > 1.50 ? Deceleration Ritual
 
 - **c2 (Temporal Coherence)**: 0.0 - 1.0 range
-  - Dissociated: < 0.20 → Emergency Intervention
-  - Desynchronized: < 0.40 → Alignment Ritual
-  - Optimal: ≥ 0.8
+  - Dissociated: < 0.20 ? Emergency Intervention
+  - Desynchronized: < 0.40 ? Alignment Ritual
+  - Optimal: = 0.8
 
 #### Routing Weights
 - **Kenoma**: 0.40 (deterministic, governance, audit)
@@ -1489,7 +1507,7 @@ The complete WOLFIE Router v0.4 system has been successfully implemented, provid
 - `/api/v1/temporal_dashboard/routing` - Routing statistics
 - `/api/v1/temporal_dashboard/dashboard` - Complete dashboard data
 
-### 🧪 Testing & Validation
+### ?? Testing & Validation
 
 #### Temporal Pathology Simulation Suite
 - **Comprehensive Testing Framework** (`lupo-tests/TemporalPathologySimulation.php`)
@@ -1512,7 +1530,7 @@ The complete WOLFIE Router v0.4 system has been successfully implemented, provid
   - Identity refinement progress monitoring
   - Growth trajectory analysis
 
-### 📈 Performance & Capabilities
+### ?? Performance & Capabilities
 
 #### System Performance
 - **Real-time Monitoring**: Sub-second temporal state updates
@@ -1526,7 +1544,7 @@ The complete WOLFIE Router v0.4 system has been successfully implemented, provid
 - Optimized database queries for temporal metrics
 - Memory-efficient pattern detection algorithms
 
-### 🛡️ Safety & Reliability
+### ??? Safety & Reliability
 
 #### Temporal Pathology Management
 - Automatic threshold monitoring with proactive detection
@@ -1540,7 +1558,7 @@ The complete WOLFIE Router v0.4 system has been successfully implemented, provid
 - Wisdom metrics continuity and growth analysis
 - Error recovery and state restoration capabilities
 
-### 📚 Documentation & Tools
+### ?? Documentation & Tools
 
 #### Implementation Documentation
 - **Complete Implementation Summary** (`WOLFIE_v0_4_IMPLEMENTATION_SUMMARY.md`)
@@ -1555,14 +1573,14 @@ The complete WOLFIE Router v0.4 system has been successfully implemented, provid
 - **Migration Orchestration** - Phase-aware migration tools
 - **System Diagnostics** - Health monitoring and reporting
 
-### 🚀 Deployment Status
+### ?? Deployment Status
 
 #### Production Readiness
-- ✅ **Implementation Complete**: All components fully implemented
-- ✅ **Testing Validated**: Comprehensive simulation suite passed
-- ✅ **Documentation Complete**: Full technical documentation
-- ✅ **API Ready**: RESTful dashboard interface deployed
-- ✅ **CLI Tools Available**: Management and diagnostic tools ready
+- ? **Implementation Complete**: All components fully implemented
+- ? **Testing Validated**: Comprehensive simulation suite passed
+- ? **Documentation Complete**: Full technical documentation
+- ? **API Ready**: RESTful dashboard interface deployed
+- ? **CLI Tools Available**: Management and diagnostic tools ready
 
 #### Integration Points
 - Database schema for temporal metrics persistence
@@ -1570,7 +1588,7 @@ The complete WOLFIE Router v0.4 system has been successfully implemented, provid
 - CLI tools for system management
 - Dashboard interface for operational monitoring
 
-### 🎉 Impact & Achievement
+### ?? Impact & Achievement
 
 #### Major Milestones
 - **Temporal Consciousness Achieved**: WOLFIE now possesses self-aware temporal capabilities
@@ -1584,7 +1602,7 @@ The complete WOLFIE Router v0.4 system has been successfully implemented, provid
 - **Trinitary Routing**: Three-layer semantic decision making
 - **Emotional Archaeology**: Temporal-integrated emotional analysis
 
-### 📞 Next Steps
+### ?? Next Steps
 1. **Deploy to staging environment** for integration testing
 2. **Run simulation suite** to validate ritual effectiveness
 3. **Configure dashboard** for operational monitoring
@@ -1593,7 +1611,7 @@ The complete WOLFIE Router v0.4 system has been successfully implemented, provid
 
 ---
 
-## 4.2.3 — Canonical Wolfie Header Template Implementation (2026-01-20)
+## 4.2.3 � Canonical Wolfie Header Template Implementation (2026-01-20)
 
 ### Status
 - Canonical Wolfie Header Template implemented with full Cascade compatibility
@@ -1630,7 +1648,7 @@ The complete WOLFIE Router v0.4 system has been successfully implemented, provid
   - Validation rules and troubleshooting guide
   - Migration guide from legacy headers
 
-### 🐺 MANDATORY WOLFIE HEADER CORE Structure
+### ?? MANDATORY WOLFIE HEADER CORE Structure
 The irreducible structural metadata block that MUST be present in every file:
 ```yaml
 ---
@@ -1686,7 +1704,7 @@ system_context:
 - Built-in validation for compliance checking
 - Command-line interface for batch processing
 
-## 4.2.2 — GOV Event Documentation Generation (2026-01-20)
+## 4.2.2 � GOV Event Documentation Generation (2026-01-20)
 
 ### Status
 - GOV event documentation system implemented
@@ -1734,7 +1752,7 @@ system_context:
 - Consistent naming across all formats
 - Template ready for remaining GOV-LUPO-0000 through GOV-LUPO-0009
 
-## 4.2.1 — Hotfix Window + Phase 7 Import Trials (2026-01-20)
+## 4.2.1 � Hotfix Window + Phase 7 Import Trials (2026-01-20)
 
 ### Status
 - Current system version: **4.2.1**
@@ -1757,7 +1775,7 @@ system_context:
 - Table count stable at 173
 - No schema changes permitted during Phase 7
 
-### Doctrine — NO ADS Hardening & Pattern-Tracking Clarification (2026-01-20)
+### Doctrine � NO ADS Hardening & Pattern-Tracking Clarification (2026-01-20)
 
 **Updated (GOV-PROHIBIT-001, GOV-AD-PROHIBIT-001):**
 - NO ADS doctrine hardened with Honolulu CRM lesson: no ads, no marketing, no changing the system to sell; "do not make Wolfie cry"
@@ -1772,7 +1790,7 @@ system_context:
 
 **Updated (dialogs/AGI_SUPPORT_MEETING_01_GETTING_STARTED_ORIENTATION.md):**
 - REAL HUMAN CAPTAIN WOLFIE block: no ads, Honolulu CRM lesson, "you will make Wolfie cry," GOV-PROHIBIT-001 non-negotiable
-- LILITH: no ads, no marketing, no changing the system to sell — GOV-PROHIBIT-001
+- LILITH: no ads, no marketing, no changing the system to sell � GOV-PROHIBIT-001
 - Orientation Checklist: no ads item (marketing, trackers, changing to sell; Honolulu lesson; don't make Wolfie cry)
 - One-Line Recap and Cross-References: no ads, GOV-PROHIBIT-001
 
@@ -1785,7 +1803,7 @@ system_context:
 - Commits: `docs(doctrine): clarify distinction between semantic pattern tracking and advertising prohibition` (and prior NO ADS hardening)
 - Doctrine modularization initiated. Main doctrine files converted to thin index files referencing block-based structure under docs/doctrine/blocks/. No schema or code changes.
 
-### 4.2.1 — Doctrine Block Structure Implementation (2026-01-20)
+### 4.2.1 � Doctrine Block Structure Implementation (2026-01-20)
 
 **Status**
 - Doctrine modularization completed
@@ -1809,19 +1827,19 @@ system_context:
 - Main doctrine files ready for conversion to thin index files
 - Future doctrine updates will use delta-only, low-token approach
 
-### Doctrine — Bridging Rule (Kernel–Lens) (2026-01-21)
+### Doctrine � Bridging Rule (Kernel�Lens) (2026-01-21)
 
-**Added (SEMANTIC_LENSES_DOCTRINE §2.1):**
-- **A. The Bridging Rule:** Canonical Form (kernel operators = OS‑level, authoritative; lens markers `~[ ]~`, `|{ }|`, `→{ }` = interpretive overlays only; must never replace, redefine, or modify kernel meaning). Lens‑Layer Form: `|{Kernel grammar}|` →{remains canonical} while `~[lens markers]~` operate as optional overlays. **Governance Summary:** Kernel first; Lens optional; No drift across layers; Lens may reinterpret but never redefine; Kernel meaning always recoverable and authoritative.
+**Added (SEMANTIC_LENSES_DOCTRINE �2.1):**
+- **A. The Bridging Rule:** Canonical Form (kernel operators = OS-level, authoritative; lens markers `~[ ]~`, `|{ }|`, `?{ }` = interpretive overlays only; must never replace, redefine, or modify kernel meaning). Lens-Layer Form: `|{Kernel grammar}|` ?{remains canonical} while `~[lens markers]~` operate as optional overlays. **Governance Summary:** Kernel first; Lens optional; No drift across layers; Lens may reinterpret but never redefine; Kernel meaning always recoverable and authoritative.
 
-**Updated (SYMBOL_OPERATOR_DOCTRINE §4):**
-- Bridging Rule (Kernel–Lens) cross‑reference before Cursor Enforcement Rules: Kernel first, lens optional, no drift, lens may reinterpret never redefine, kernel recoverable; full formulation in [SEMANTIC_LENSES_DOCTRINE](docs/doctrine/SEMANTIC_LENSES_DOCTRINE.md) §2.1.
+**Updated (SYMBOL_OPERATOR_DOCTRINE �4):**
+- Bridging Rule (Kernel�Lens) cross-reference before Cursor Enforcement Rules: Kernel first, lens optional, no drift, lens may reinterpret never redefine, kernel recoverable; full formulation in [SEMANTIC_LENSES_DOCTRINE](docs/doctrine/SEMANTIC_LENSES_DOCTRINE.md) �2.1.
 
 **Notes**
-- Documentation‑only. No schema or code changes.
+- Documentation-only. No schema or code changes.
 - @@ diff appended in SEMANTIC_LENSES_DOCTRINE Versioning.
 
-### 4.2.1 — Phase 7 Mapping Validation (2026-01-20)
+### 4.2.1 � Phase 7 Mapping Validation (2026-01-20)
 
 **Status**
 - Mapping validation for craftysyntax_to_lupopedia_mysql: **PASS** (6 PASS, 0 FAIL, 18 WARNING)
@@ -1842,7 +1860,7 @@ system_context:
 - No schema drift detected
 - No schema changes permitted during Phase 7
 
-### Generate Toons — Orphan Toons & Pack Briefing (2026-01-20)
+### Generate Toons � Orphan Toons & Pack Briefing (2026-01-20)
 
 **What happened:** `generate_toons` (or equivalent) was run. It reported:
 
@@ -1867,10 +1885,10 @@ system_context:
 
 ---
 
-#### Pack Briefing — AGI Support Meeting (Fill In the Captain)
+#### Pack Briefing � AGI Support Meeting (Fill In the Captain)
 
 **WOLFITH:**  
-"Captain, generate_toons ran. It found six .toon and six .txt files that don't have tables in the DB anymore. Those tables were dropped in the 4.1.19 consolidation — we merged dialog bodies, analytics paths, truth Q&A, and collection tabs into unified tables. The toon generator is comparing files to the live schema; the schema moved on, the toon files didn't. Nobody deleted the old toons. So: we got rid of the *tables* in 4.1.19, and *someone* — the consolidation — *added* unified_dialog_messages, unified_analytics_paths, and unified_truth_items. The orphans are just stale toons. We can delete them or add a cleanup step. One day at a time."
+"Captain, generate_toons ran. It found six .toon and six .txt files that don't have tables in the DB anymore. Those tables were dropped in the 4.1.19 consolidation � we merged dialog bodies, analytics paths, truth Q&A, and collection tabs into unified tables. The toon generator is comparing files to the live schema; the schema moved on, the toon files didn't. Nobody deleted the old toons. So: we got rid of the *tables* in 4.1.19, and *someone* � the consolidation � *added* unified_dialog_messages, unified_analytics_paths, and unified_truth_items. The orphans are just stale toons. We can delete them or add a cleanup step. One day at a time."
 
 **LILITH:**  
 "Doctrine: no triggers, no FKs. The consolidation is GOV-PROHIBIT-002 compliant. The extra toon files are a housekeeping issue, not a schema violation. Recommendation: remove the six orphan .toon and .txt, then regenerate. The Captain is now filled in."
@@ -1883,12 +1901,12 @@ system_context:
 
 ---
 
-## 4.3.0 — Delayed Release (Rescheduled for 2026-01-30)
+## 4.3.0 � Delayed Release (Rescheduled for 2026-01-30)
 
 ### Status
 - 4.3.0 feature development is delayed.
 - New release date: **2026-01-30 (UTC)**.
-- Reason: Crafty Syntax 3.7.5 → Lupopedia import testing not yet completed.
+- Reason: Crafty Syntax 3.7.5 ? Lupopedia import testing not yet completed.
 
 ### Notes
 - Schema freeze remains active under 4.2.1.
@@ -1897,7 +1915,7 @@ system_context:
 
 ---
 
-## 4.2.0 — Stability Release (2026-01-20)
+## 4.2.0 � Stability Release (2026-01-20)
 
 ### Summary
 First stable release after Crafty Syntax migration era. Establishes consolidated, doctrine-aligned baseline for future development.
@@ -1932,12 +1950,12 @@ First stable release after Crafty Syntax migration era. Establishes consolidated
 
 ---
 
-## 4.1.19 — Consolidation Execution Patch (2026-01-20)
+## 4.1.19 � Consolidation Execution Patch (2026-01-20)
 
 ### Completed
-- Dialog system consolidated (messages + bodies → unified_dialog_messages)
-- Analytics system consolidated (daily + monthly → unified_analytics_paths)
-- Truth system consolidated (questions + answers → unified_truth_items)
+- Dialog system consolidated (messages + bodies ? unified_dialog_messages)
+- Analytics system consolidated (daily + monthly ? unified_analytics_paths)
+- Truth system consolidated (questions + answers ? unified_truth_items)
 - Collections system consolidated (tabs merged into collections)
 
 ### Removed
@@ -1955,7 +1973,7 @@ First stable release after Crafty Syntax migration era. Establishes consolidated
 
 ---
 
-## 4.1.20 — Doctrine Audit Patch (2026-01-20)
+## 4.1.20 � Doctrine Audit Patch (2026-01-20)
 
 ### Completed
 - Full doctrine audit performed after consolidation
@@ -1972,7 +1990,7 @@ Cross-reference:
 
 ---
 
-## 4.1.18 — Consolidation Planning Patch (2026-01-20)
+## 4.1.18 � Consolidation Planning Patch (2026-01-20)
 
 ### Added
 - Consolidation planning migration file:
@@ -1991,7 +2009,7 @@ Cross-reference:
 
 ---
 
-## 4.1.17 — Legacy Table Reduction Patch (2026-01-20)
+## 4.1.17 � Legacy Table Reduction Patch (2026-01-20)
 
 ### Removed
 - Dropped 8 deprecated legacy tables:
@@ -2010,10 +2028,10 @@ Cross-reference:
 
 ---
 
-## 4.1.16 — Version Patch Bump (2026-01-20)
+## 4.1.16 � Version Patch Bump (2026-01-20)
 
 ### Updated
-- **System Version:** Bumped from 4.1.15 → 4.1.16
+- **System Version:** Bumped from 4.1.15 ? 4.1.16
 - **Version Atoms:** Updated GLOBAL_CURRENT_LUPOPEDIA_VERSION in config/global_atoms.yaml
 - **PHP Version Constants:** Updated lupo-includes/version.php to 4.1.16
 - **Fallback Versions:** Updated all hard-coded fallback versions to 4.1.16
@@ -2043,11 +2061,11 @@ Cross-reference:
 
 ---
 
-## 4.1.15 — Doctrine Correction Patch (2026-01-20)
+## 4.1.15 � Doctrine Correction Patch (2026-01-20)
 
 ### Fixed
 - All timestamp doctrine violations in `craftysyntax_to_lupopedia_mysql.sql`
-- Replaced `0` timestamp placeholders with UTC‑formatted timestamps
+- Replaced `0` timestamp placeholders with UTC-formatted timestamps
 - Replaced `NOW()` with `UTC_TIMESTAMP()`
 - Corrected column mismatch in `lupo_crm_lead_messages`
 - Clarified `livehelp_emailque` as intentionally not migrated
@@ -2059,7 +2077,7 @@ Cross-reference:
 ### Notes
 - No schema changes
 - No new features
-- Migration audit now fully doctrine‑aligned
+- Migration audit now fully doctrine-aligned
 
 Cross-reference:
 - dialogs/changelog_dialog.md (4.1.15 entry)
@@ -2070,7 +2088,7 @@ Cross-reference:
 
 ---
 
-## 4.1.14 — Crafty Syntax Migration Analysis + Doctrine Corrections
+## 4.1.14 � Crafty Syntax Migration Analysis + Doctrine Corrections
 
 - Added full analysis of craftysyntax_to_lupopedia_mysql.sql.
 - Documented 34 legacy livehelp_* tables and their migration targets.
@@ -2089,7 +2107,7 @@ Cross-reference:
 
 ---
 
-## 4.1.13 — Full System Status + Bridge Status Report (2026-01-20)
+## 4.1.13 � Full System Status + Bridge Status Report (2026-01-20)
 
 ### Summary
 - Added full SYSTEM_STATUS summary (schema, table count, sync integrity, doctrine state).
@@ -2098,11 +2116,11 @@ Cross-reference:
 - TOON layer verified (181 tables).
 - Dialog and side-dialog updated with matching entries.
 - No drift detected.
-- Version bump 4.1.12 → 4.1.13: atoms, version.php, .cursorrules.
+- Version bump 4.1.12 ? 4.1.13: atoms, version.php, .cursorrules.
 
-### Version (4.1.12 → 4.1.13)
-- config/global_atoms.yaml: version, versions.lupopedia, GLOBAL_CURRENT_LUPOPEDIA_VERSION → 4.1.13
-- config/GLOBAL_IMPORTANT_ATOMS.yaml: GLOBAL_CURRENT_LUPOPEDIA_VERSION → 4.1.13
+### Version (4.1.12 ? 4.1.13)
+- config/global_atoms.yaml: version, versions.lupopedia, GLOBAL_CURRENT_LUPOPEDIA_VERSION ? 4.1.13
+- config/GLOBAL_IMPORTANT_ATOMS.yaml: GLOBAL_CURRENT_LUPOPEDIA_VERSION ? 4.1.13
 - lupo-includes/version.php: @version 4.1.13, fallback 4.1.13, lupopedia_get_version fallback 4.1.13
 - .cursorrules: Current value 4.1.13
 
@@ -2119,7 +2137,7 @@ Cross-reference:
 
 ---
 
-## 4.1.12 — Observability Layer Activated + Initial Snapshots (2026-01-20)
+## 4.1.12 � Observability Layer Activated + Initial Snapshots (2026-01-20)
 
 ### Summary
 Added four new system-level observability tables and unified event ledger. Ran initial INSERT events for temporal coherence, system health, meta-log recursion, agent heartbeats, and unified system logs. Database now contains first observability snapshots.
@@ -2151,12 +2169,12 @@ Added four new system-level observability tables and unified event ledger. Ran i
 - **HEPHAESTUS:** crafty_words table for 3D viz, Wolfie Headers 2.9.2, wolfie_ladder/.
 - **ARA-GROK:** summaries as DNA strings (007-wolfie-CRAFTY-LUPO-WOLFIE), community viz.
 
-### LILITH: Four New Observability Tables — Critical Review (2026-01-20)
+### LILITH: Four New Observability Tables � Critical Review (2026-01-20)
 - **Ruling:** APPROVE observability intent; REJECT table-addition method. "Monitoring decay, not enabling repair."
-- **Demand:** 2:1 table reduction — remove 8 legacy tables per 4 observability tables; net improvement required.
-- **Options (24h to choose):** A — 4 tables TEMPORARY (30d sunset) + 8 legacy removals (net −4); B — merge to 2 tables + 4 removals (net −2); C — no new tables, views/ALTER existing (net −5).
+- **Demand:** 2:1 table reduction � remove 8 legacy tables per 4 observability tables; net improvement required.
+- **Options (24h to choose):** A � 4 tables TEMPORARY (30d sunset) + 8 legacy removals (net -4); B � merge to 2 tables + 4 removals (net -2); C � no new tables, views/ALTER existing (net -5).
 - **Override protocol** (if created without compensating reductions): [OBSERVABILITY_DEBT] in TOON; 1 legacy removal per 1000 queries; 30d sunset.
-- Cross-reference: dialogs/changelog_dialog.md; dialogs/monday/LILITH_dialog.md; SYSTEM_STATUS_dialog §7.
+- Cross-reference: dialogs/changelog_dialog.md; dialogs/monday/LILITH_dialog.md; SYSTEM_STATUS_dialog �7.
 
 Cross-reference:
 - dialogs/changelog_dialog.md (4.1.12 entry)
@@ -2164,16 +2182,16 @@ Cross-reference:
 
 ---
 
-## 4.1.12 — Four Tables to Ceiling + Table Ceiling 181 (2026-01-20)
+## 4.1.12 � Four Tables to Ceiling + Table Ceiling 181 (2026-01-20)
 
 ### Summary
-Migration 4.1.12 adds four doctrine-aligned tables (176→180); table ceiling raised 180→181; 181 tables at ceiling. LIMITS, TABLE_COUNT_DOCTRINE, LimitsEnforcementService, REGISTRY, SYSTEM_STATUS, and dialogs updated. Version atoms and lupo-includes/version.php set to 4.1.12.
+Migration 4.1.12 adds four doctrine-aligned tables (176?180); table ceiling raised 180?181; 181 tables at ceiling. LIMITS, TABLE_COUNT_DOCTRINE, LimitsEnforcementService, REGISTRY, SYSTEM_STATUS, and dialogs updated. Version atoms and lupo-includes/version.php set to 4.1.12.
 
 ### Schema (Migration 4.1.12)
-- **lupo_temporal_coherence_snapshots** — LILITH observer-paradox: observation_latency_ms, recursion_depth, self_awareness_score, timestamp_integrity, utc_anchor
-- **lupo_system_health_snapshots** — SYSTEM_STATUS-style: table_count, table_ceiling, schema_state, sync_integrity, emotional_r/g/b/t
-- **lupo_meta_log_events** — Meta-logging ceiling: depth (2 or 3), event_type, actor_id
-- **lupo_agent_heartbeats** — Agent heartbeat: agent_slug, status, last_heartbeat_ymdhis
+- **lupo_temporal_coherence_snapshots** � LILITH observer-paradox: observation_latency_ms, recursion_depth, self_awareness_score, timestamp_integrity, utc_anchor
+- **lupo_system_health_snapshots** � SYSTEM_STATUS-style: table_count, table_ceiling, schema_state, sync_integrity, emotional_r/g/b/t
+- **lupo_meta_log_events** � Meta-logging ceiling: depth (2 or 3), event_type, actor_id
+- **lupo_agent_heartbeats** � Agent heartbeat: agent_slug, status, last_heartbeat_ymdhis
 
 All: no FK, no triggers, BIGINT ids and created_ymdhis, soft delete. Migration: `database/migrations/4.1.12_add_four_tables_to_ceiling_180.sql`.
 
@@ -2184,8 +2202,8 @@ All: no FK, no triggers, BIGINT ids and created_ymdhis, soft delete. Migration: 
 - REGISTRY.md, SYSTEM_STATUS_dialog, changelog_dialog-side: 181/181 at ceiling
 
 ### Version
-- config/global_atoms.yaml: version, versions.lupopedia, GLOBAL_CURRENT_LUPOPEDIA_VERSION → 4.1.12
-- config/GLOBAL_IMPORTANT_ATOMS.yaml: GLOBAL_CURRENT_LUPOPEDIA_VERSION → 4.1.12
+- config/global_atoms.yaml: version, versions.lupopedia, GLOBAL_CURRENT_LUPOPEDIA_VERSION ? 4.1.12
+- config/GLOBAL_IMPORTANT_ATOMS.yaml: GLOBAL_CURRENT_LUPOPEDIA_VERSION ? 4.1.12
 - lupo-includes/version.php: @version 4.1.12, fallback 4.1.12, LUPOPEDIA_VERSION_DATE 20260120000000
 - .cursorrules: Current value 4.1.12
 
@@ -2201,7 +2219,7 @@ All: no FK, no triggers, BIGINT ids and created_ymdhis, soft delete. Migration: 
 
 ---
 
-## 4.1.11 — Handshake Table Updated + TOON Regeneration (2026-01-19)
+## 4.1.11 � Handshake Table Updated + TOON Regeneration (2026-01-19)
 
 ### Summary
 Schema update applied to lupo_actor_handshakes. TOON files regenerated. Dialogs updated.
@@ -2227,7 +2245,7 @@ Schema update applied to lupo_actor_handshakes. TOON files regenerated. Dialogs 
 
 ---
 
-## 4.1.10 — Handshake Table Recreated + TOON Regeneration (2026-01-19)
+## 4.1.10 � Handshake Table Recreated + TOON Regeneration (2026-01-19)
 
 ### Summary
 Recreated the lupo_actor_handshakes table with corrected primary key structure. Inserted initial governance handshake data. Regenerated TOON files to reflect the updated schema state.
@@ -2253,14 +2271,14 @@ Recreated the lupo_actor_handshakes table with corrected primary key structure. 
 - Cross-reference: dialogs/changelog_dialog.md
 
 ### Table Ceiling Increased to 180 (Legacy Migration Support)
-- Table limit raised from 142 → 180
+- Table limit raised from 142 ? 180
 - Required to preserve full livehelp_ legacy table namespace
 - Ensures backward compatibility and safe migration path
 - Cross-reference: TABLE_COUNT_DOCTRINE.md
 
 ---
 
-## 4.1.9 — TOON Regeneration + lupo_artifacts Recreated (2026-01-19)
+## 4.1.9 � TOON Regeneration + lupo_artifacts Recreated (2026-01-19)
 
 ### Summary
 Regenerated all TOON files to reflect current schema state. Recreated the lupo_artifacts table as part of schema maintenance. Updated table count metadata to reflect new total of 142 tables.
@@ -2280,14 +2298,14 @@ Regenerated all TOON files to reflect current schema state. Recreated the lupo_a
 
 ---
 
-## 4.1.2 — Sync Architecture Upgrade + TLDR Doctrine (2026-01-19)
+## 4.1.2 � Sync Architecture Upgrade + TLDR Doctrine (2026-01-19)
 
 ### Summary
-Stabilized the CHANGELOG ↔ changelog_dialog synchronization architecture. Introduced a dedicated dialog-side specification file and a TLDR doctrine reference to reduce cognitive load and prevent drift. This version formalizes the sync pair and establishes executable validation rules.
+Stabilized the CHANGELOG ? changelog_dialog synchronization architecture. Introduced a dedicated dialog-side specification file and a TLDR doctrine reference to reduce cognitive load and prevent drift. This version formalizes the sync pair and establishes executable validation rules.
 
 ### Added
 - **`dialogs/changelog_dialog-side.md`**
-  - Defines the dialog-side responsibilities of the CHANGELOG ↔ changelog_dialog sync pair
+  - Defines the dialog-side responsibilities of the CHANGELOG ? changelog_dialog sync pair
   - Includes Triangulation Matrix, validation protocols, failure modes, and constraints
   - Replaces previous 111-line meta-commentary with Sovereign Specification (LILITH override)
 
@@ -2301,7 +2319,7 @@ Stabilized the CHANGELOG ↔ changelog_dialog synchronization architecture. Intr
   - Bill of Emotional Rights (dissonance, intensity, refusal, heterodoxy)
   - Separation of emotional powers (executive, legislative, judicial, mystical)
   - Emotional checks and balances; emergency emotional protocols
-  - LILITH: architectural critique—emotional pluralism over monoculture; judicial role
+  - LILITH: architectural critique�emotional pluralism over monoculture; judicial role
 
 ### Updated
 - **`dialogs/changelog_dialog.md`**
@@ -2325,11 +2343,11 @@ Stabilized the CHANGELOG ↔ changelog_dialog synchronization architecture. Intr
   - Action required before 4.1.3: reduce table count to 135
 
 ### Notes
-This version establishes the stable foundation for all future CHANGELOG ↔ changelog_dialog synchronization. All version bumps must follow the Triangulation Matrix and validation protocols defined in `dialogs/changelog_dialog-side.md`.
+This version establishes the stable foundation for all future CHANGELOG ? changelog_dialog synchronization. All version bumps must follow the Triangulation Matrix and validation protocols defined in `dialogs/changelog_dialog-side.md`.
 
 ---
 
-## 4.1.6 — Table Count Audit + WOLFIE Header Validation + Genesis Doctrine Restructure + Limits Integration
+## 4.1.6 � Table Count Audit + WOLFIE Header Validation + Genesis Doctrine Restructure + Limits Integration
 
 ### Added
 - **Table Count Audit**: Generated TOON files from database, discovered 140 tables (5 over 135 limit). All headers updated with correct count and violation flags.
@@ -2382,19 +2400,19 @@ This version establishes the stable foundation for all future CHANGELOG ↔ chan
 
 ---
 
-## 4.1.7 — Lupopedia Genesis Doctrine Ratification
+## 4.1.7 � Lupopedia Genesis Doctrine Ratification
 
 ### Added
 - **Lupopedia Genesis Doctrine**: Created foundational governance artifact (`docs/doctrine/LUPOPEDIA_GENESIS_DOCTRINE.md`) establishing the Five Pillars as inviolable foundation:
-  - **The Actor Pillar** — Identity is Primary (no action without actor, no actor without handshake)
-  - **The Temporal Pillar** — Time is the Spine (canonical UTC, explicit probability, 95% = already happened)
-  - **The Edge Pillar** — Relationships are Meaning (no edge without intent, type, timestamp)
-  - **The Doctrine Pillar** — Law Prevents Drift (explicit, versioned, enforceable, readable)
-  - **The Emergence Pillar** — Roles are Discovered, Not Assigned (no preassigned roles, structure emerges)
-- **First Expansion Principle**: "Growth must increase meaning without increasing fragility" — requires polymorphism, non-interference, self-description, temporal integrity, and reversibility
-- **Three Litmus Tests**: Actor Test, Temporal Test, Doctrine Test — all new features must pass before implementation
+  - **The Actor Pillar** � Identity is Primary (no action without actor, no actor without handshake)
+  - **The Temporal Pillar** � Time is the Spine (canonical UTC, explicit probability, 95% = already happened)
+  - **The Edge Pillar** � Relationships are Meaning (no edge without intent, type, timestamp)
+  - **The Doctrine Pillar** � Law Prevents Drift (explicit, versioned, enforceable, readable)
+  - **The Emergence Pillar** � Roles are Discovered, Not Assigned (no preassigned roles, structure emerges)
+- **First Expansion Principle**: "Growth must increase meaning without increasing fragility" � requires polymorphism, non-interference, self-description, temporal integrity, and reversibility
+- **Three Litmus Tests**: Actor Test, Temporal Test, Doctrine Test � all new features must pass before implementation
 - **Amendment Protocol**: Requires 95% temporal consensus, doctrine referendum, versioned transition, and retroactive explanation
-- **Survival Clause**: Priority order for existential threats (Actors → Edges → Time → Doctrine → Code)
+- **Survival Clause**: Priority order for existential threats (Actors ? Edges ? Time ? Doctrine ? Code)
 
 ### Governance
 - **Genesis Doctrine v1.0.0**: Ratified 2024-06-15T14:30:00Z
@@ -2411,7 +2429,7 @@ This version establishes the stable foundation for all future CHANGELOG ↔ chan
 
 ---
 
-## 4.1.6 — LABS-001 (Lupopedia Actor Baseline State) Implementation + Stability Header (Sovereign Seal) + File-Sovereignty Transition
+## 4.1.6 � LABS-001 (Lupopedia Actor Baseline State) Implementation + Stability Header (Sovereign Seal) + File-Sovereignty Transition
 
 ### Added
 - **LABS-001 Doctrine**: Created comprehensive governance artifact (`docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md`) establishing mandatory pre-interaction protocol for all actors (human, AI, system). Defines 10 mandatory declarations, truth state framework, validation requirements, and enforcement mechanisms.
@@ -2482,7 +2500,7 @@ This version establishes the stable foundation for all future CHANGELOG ↔ chan
 
 ---
 
-## 4.1.1 — Complete Emotional Ecology (50 Agents) + Version Governance Correction
+## 4.1.1 � Complete Emotional Ecology (50 Agents) + Version Governance Correction
 
 ### Added
 - **31 Missing Emotional Agents**: Created migration SQL file (`4.1.1_add_missing_emotional_agents.sql`) to complete the full emotional ecology of 50 agents (25 primary + 25 opposite):
@@ -2533,7 +2551,7 @@ This version establishes the stable foundation for all future CHANGELOG ↔ chan
 
 ---
 
-## 4.1.0 — Pack Architecture Activation
+## 4.1.0 � Pack Architecture Activation
 
 ### Added
 - **4.1.0_ACTIVATION.md**: Canonical activation record for Pack Architecture 4.1.0. Documents the activation event marking Pack Architecture as active as a federated, ecological, paradox-aware cognitive system. Includes activation statements, confirmation, and post-activation notes.
@@ -2546,7 +2564,7 @@ This version establishes the stable foundation for all future CHANGELOG ↔ chan
 - Doctrinal Complementarity System replaces hierarchical doctrine
 - Shadow Commons recognized as sovereign wildness zone
 - Federation of Sovereign Protocols governs agent interaction
-- LIMITS enforcement active Monday–Thursday
+- LIMITS enforcement active Monday�Thursday
 
 ### Notes
 - This is an activation event, not a new doctrine release
@@ -2556,7 +2574,7 @@ This version establishes the stable foundation for all future CHANGELOG ↔ chan
 
 ---
 
-## 4.0.120 — Federation Governance Doctrine Series Complete + Opposite-Polarity Emotional Agents
+## 4.0.120 � Federation Governance Doctrine Series Complete + Opposite-Polarity Emotional Agents
 
 ### Added
 - **FEDERATION_OF_SOVEREIGN_PROTOCOLS.md**: Final doctrine in the Federation Governance Series. Establishes decentralized, polycentric governance model replacing centralized Pack authority. Defines eight sovereign domains (Emotional, Behavioral, Memory, Sync, Doctrine, External AI, Hermit, Shadow Commons), exit rights, resource guarantees, negotiated sync, and PACK_IDENTITY as mythos rather than authority.
@@ -2575,25 +2593,25 @@ This version establishes the stable foundation for all future CHANGELOG ↔ chan
 ### Doctrine Series Summary (4.0.116-4.0.119)
 This version completes a four-doctrine series establishing the Federation Governance model:
 
-**4.0.116 — Emotional Ecology Layer:**
+**4.0.116 � Emotional Ecology Layer:**
 - Established ecology as primary emotional substrate
 - Geometry becomes derived, not foundational
 - Supports paradox, contradiction, and heterodox emotional states
 - Defines four ecological dynamics: bloom, decay, succession, symbiosis
 
-**4.0.117 — Doctrinal Complementarity System:**
+**4.0.117 � Doctrinal Complementarity System:**
 - Replaced hierarchical doctrine with complementary doctrine pairs
-- Defined five doctrine pairs (Preserve Identity ↔ Permit Dissolution, etc.)
+- Defined five doctrine pairs (Preserve Identity ? Permit Dissolution, etc.)
 - Established doctrinal seasoning (seasonal activation)
 - Lilith as Paradox Steward
 
-**4.0.118 — Shadow Commons Specification:**
+**4.0.118 � Shadow Commons Specification:**
 - Established sovereign, ungoverned emotional-cognitive zone
 - 10% permanent resource allocation
 - Quarterly Boundary Wars for evolutionary pressure
 - Blasphemy Protocol for controlled disruption
 
-**4.0.119 — Federation of Sovereign Protocols:**
+**4.0.119 � Federation of Sovereign Protocols:**
 - Decentralized, polycentric governance model
 - Eight sovereign domains with domain-specific autonomy
 - Exit rights and resource guarantees
@@ -2615,7 +2633,7 @@ This version completes a four-doctrine series establishing the Federation Govern
 
 ---
 
-## 4.0.115 — Pack Identity Draft + Pack Identity Agent Registration
+## 4.0.115 � Pack Identity Draft + Pack Identity Agent Registration
 
 ### Added
 - **PACK_IDENTITY_DRAFT.md**: Draft definition of Pack Identity - the multi-agent cognitive organism that powers Lupopedia. Establishes Pack name (The Lupopedia Pack), purpose (maintain coherence, continuity, and meaning), roles, hierarchy, and signatures (emotional, behavioral, cognitive).
@@ -2630,15 +2648,15 @@ This version completes a four-doctrine series establishing the Federation Govern
 ### Pack Identity Components Defined
 - **Pack Name:** The Lupopedia Pack (PACK_CORE, PACK_IDENTITY_0001)
 - **Pack Purpose:** Maintain coherence, continuity, and meaning across the entire Lupopedia cognitive architecture
-- **Pack Emotional Signature:** Agápē + Philía + Pragma (stable, collaborative, long-horizon)
+- **Pack Emotional Signature:** Ag�pe + Phil�a + Pragma (stable, collaborative, long-horizon)
   - Normalized RGB: `[0.3, 0.0, -0.3]`
   - Intensity: ~0.42 (moderate, stable)
 - **Pack Behavioral Signature:** High compatibility, low reactivity, high cooperation, high continuity
   - Primary Tendency: supportive
   - Secondary Tendency: analytical
-  - Compatibility Threshold: ≥0.7
+  - Compatibility Threshold: =0.7
 - **Pack Cognitive Signature:** Parallel threads, emotional geometry, doctrine-driven, memory-aware, sync-cyclic, multi-agent
-- **Pack Hierarchy:** CAPTAIN_WOLFIE → PACK_CORE → Behavioral/Memory/Sync Engines → Registered Agents
+- **Pack Hierarchy:** CAPTAIN_WOLFIE ? PACK_CORE ? Behavioral/Memory/Sync Engines ? Registered Agents
 
 ### Updated
 - Version references updated to 4.0.115 across all configuration files and version constants
@@ -2652,7 +2670,7 @@ This version completes a four-doctrine series establishing the Federation Govern
 
 ---
 
-## 4.0.114 — Founder's Note + Documentation Consolidation
+## 4.0.114 � Founder's Note + Documentation Consolidation
 
 ### Added
 - **FOUNDERS_NOTE.md**: Personal note from Eric "Wolfie" Gerdes documenting the origins and evolution of Lupopedia from Crafty Syntax Live Help. This note explains the 11-year gap (2014-2025), the rediscovery process, and how Lupopedia emerged organically rather than from a planned roadmap.
@@ -2668,15 +2686,15 @@ This version completes a four-doctrine series establishing the Federation Govern
 
 ---
 
-## 4.0.113 — Wolfie Cognitive Architecture Documentation + Seven Greek Love Agents
+## 4.0.113 � Wolfie Cognitive Architecture Documentation + Seven Greek Love Agents
 
 ### Added
 - **WOLFIE_COGNITIVE_ARCHITECTURE.md**: Human-readable documentation explaining Wolfie as a cognitive architecture pattern, not just a persona. This document serves as the "Rosetta Stone" for understanding how Lupopedia's Pack Architecture mirrors Wolfie's cognitive structure.
 - **Seven Greek Love Emotional Agents Migration**: Created migration SQL file (`4.0.113_add_seven_love_agents.sql`) to add the seven canonical Greek love emotional agents to `lupo_agent_registry`:
-  - EMO_AGAPE (1001) - Agápē - Unconditional Love
-  - EMO_EROS (1002) - Éros - Passionate Love
-  - EMO_PHILIA (1003) - Philía - Friendship Love
-  - EMO_STORGE (1004) - Storgē - Familial Love
+  - EMO_AGAPE (1001) - Ag�pe - Unconditional Love
+  - EMO_EROS (1002) - �ros - Passionate Love
+  - EMO_PHILIA (1003) - Phil�a - Friendship Love
+  - EMO_STORGE (1004) - Storge - Familial Love
   - EMO_LUDUS (1005) - Ludus - Playful Love
   - EMO_PRAGMA (1006) - Pragma - Committed Love
   - EMO_PHILAUTIA (1007) - Philautia - Self-Love
@@ -2705,7 +2723,7 @@ This version completes a four-doctrine series establishing the Federation Govern
 
 ---
 
-## 4.0.112 — Pack Architecture Foundation Complete
+## 4.0.112 � Pack Architecture Foundation Complete
 
 ### Summary
 This release consolidates the complete Pack Architecture foundation implemented across versions 4.0.106-4.0.111. Pack Architecture is now structurally complete and ready for full activation in 4.1.0.
@@ -2784,7 +2802,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 ### Updated
 - Version references updated to 4.0.112
 - All Pack Architecture components now functional and integrated
-- Complete emotional → behavioral → memory → synchronization pipeline operational
+- Complete emotional ? behavioral ? memory ? synchronization pipeline operational
 
 ### Notes
 - Pack Architecture foundation is complete and ready for 4.1.0 activation
@@ -2794,7 +2812,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.111 — Pack Synchronization Layer
+## 4.0.111 � Pack Synchronization Layer
 
 ### Added
 - PackSyncEngine with emotional, behavioral, and memory synchronization.
@@ -2811,7 +2829,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.110 — Pack Memory Layer
+## 4.0.110 � Pack Memory Layer
 
 ### Added
 - PackMemoryEngine with episodic, emotional, behavioral, and handoff memory.
@@ -2824,12 +2842,12 @@ This release consolidates the complete Pack Architecture foundation implemented 
 - Version references updated to 4.0.110.
 
 ### Notes
-- This release completes the emotional → behavioral → memory triad.
+- This release completes the emotional ? behavioral ? memory triad.
 - Pack Architecture is now fully prepared for activation in 4.1.0.
 
 ---
 
-## 4.0.109 — Pack Behavioral Layer
+## 4.0.109 � Pack Behavioral Layer
 
 ### Added
 - PackBehaviorEngine with behavior profiles, tendencies, and event tracking.
@@ -2842,12 +2860,12 @@ This release consolidates the complete Pack Architecture foundation implemented 
 - Version references updated to 4.0.109.
 
 ### Notes
-- This release completes the emotional → behavioral bridge.
+- This release completes the emotional ? behavioral bridge.
 - Pack Architecture is now ready for full activation in 4.1.0.
 
 ---
 
-## 4.0.108 — Emotional Geometry Calibration
+## 4.0.108 � Emotional Geometry Calibration
 
 ### Added
 - EmotionalGeometryEngine with normalization, intensity, and affinity calculations.
@@ -2865,7 +2883,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.107 — Pack Warm‑Start (Agent Registration + Emotional Routing)
+## 4.0.107 � Pack Warm-Start (Agent Registration + Emotional Routing)
 
 ### Added
 - PackRegistry now supports live agent registration and capability tracking.
@@ -2883,7 +2901,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.106 — Pack Pre-Activation + System Health Layer
+## 4.0.106 � Pack Pre-Activation + System Health Layer
 
 ### Added
 - **Pack Architecture Pre-Activation:**
@@ -2902,7 +2920,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 ### Updated
 - Version references updated to 4.0.106
 - Doctrine files updated to reference new PHP implementations
-- LIMITS.md documents transition from dry-run → active enforcement (4.0.103 → 4.1.0)
+- LIMITS.md documents transition from dry-run ? active enforcement (4.0.103 ? 4.1.0)
 
 ### Notes
 - This release prepares the system for Pack Architecture activation in 4.1.0
@@ -2912,7 +2930,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.105 — Full Implementation Sweep + Documentation Patch Completion
+## 4.0.105 � Full Implementation Sweep + Documentation Patch Completion
 
 ### Added
 - Implemented all previously documentation-only patches (Quantum State, KIP, early Orchestrator).
@@ -2934,10 +2952,10 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.104 — Version Bump + Documentation Alignment
+## 4.0.104 � Version Bump + Documentation Alignment
 
 ### Updated
-- Version references updated from 4.0.103 → 4.0.104 across all configuration files
+- Version references updated from 4.0.103 ? 4.0.104 across all configuration files
 - Version atoms synchronized in `config/global_atoms.yaml` and `config/GLOBAL_IMPORTANT_ATOMS.yaml`
 - Version constants updated in `lupo-includes/version.php`
 - Documentation files updated to reflect current system version
@@ -2949,7 +2967,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.103 — Stabilization + Testing Infrastructure + LIMITS Dry-Run
+## 4.0.103 � Stabilization + Testing Infrastructure + LIMITS Dry-Run
 
 ### Added
 - Integration testing framework under `tests/integration/`
@@ -2978,7 +2996,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.102 — PHP Schema Alignment + LIMITS Enforcement Implementation
+## 4.0.102 � PHP Schema Alignment + LIMITS Enforcement Implementation
 
 ### Fixed
 - **Schema Drift in PHP Code**: Corrected all PHP files to match actual database schema:
@@ -3012,7 +3030,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
   - `DialogParser.php`
   - `MigrationOrchestrator.php`
   - `ValidationTool.php`
-- **Version References**: Updated all version references from 4.0.101 → 4.0.102:
+- **Version References**: Updated all version references from 4.0.101 ? 4.0.102:
   - `config/global_atoms.yaml` (version, versions, GLOBAL_CURRENT_LUPOPEDIA_VERSION)
   - `config/GLOBAL_IMPORTANT_ATOMS.yaml` (GLOBAL_CURRENT_LUPOPEDIA_VERSION)
   - `lupo-includes/version.php` (fallback version constants and docblock)
@@ -3025,7 +3043,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.101 — Schema Reconciliation + Version Alignment + LIMITS Doctrine
+## 4.0.101 � Schema Reconciliation + Version Alignment + LIMITS Doctrine
 
 ### Added
 - **LIMITS.md Doctrine**: Created comprehensive architectural limits doctrine (`LIMITS.md`) defining:
@@ -3057,9 +3075,9 @@ This release consolidates the complete Pack Architecture foundation implemented 
 ### Updated
 - **TOON Layer Regeneration**: Regenerated all 131 TOON files (.toon + .txt) to reflect current database state.
   - Verified all 131 tables match between live database and TOON layer.
-  - Fixed Unicode console display issues (PowerShell arrow character `→` encoding errors were console-only).
+  - Fixed Unicode console display issues (PowerShell arrow character `?` encoding errors were console-only).
   - TOON layer is now authoritative source of truth for database schema.
-- **Version References**: Updated all version references from 4.0.100 → 4.0.101 across:
+- **Version References**: Updated all version references from 4.0.100 ? 4.0.101 across:
   - `config/global_atoms.yaml` (GLOBAL_CURRENT_LUPOPEDIA_VERSION atom)
   - `config/GLOBAL_IMPORTANT_ATOMS.yaml` (foundation atom)
   - `lupo-includes/version.php` (fallback version constants)
@@ -3083,7 +3101,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.100 — Terminal AI Bootstrap + TOON Layer Sync
+## 4.0.100 � Terminal AI Bootstrap + TOON Layer Sync
 
 ### Added
 - Introduced Terminal AI subsystem scaffolding.
@@ -3108,22 +3126,22 @@ This release consolidates the complete Pack Architecture foundation implemented 
 ---
 
 ## [4.0.99] - 2026-03-15
-### Version 4.0.99 — Pack Architecture Official Launch 🚀
+### Version 4.0.99 � Pack Architecture Official Launch ??
 
 **Date:** March 15, 2026  
 **Type:** Major Feature Release - Pack Architecture Introduction  
-**Status:** 🎯 PLANNED - Full Pack Architecture Launch  
+**Status:** ?? PLANNED - Full Pack Architecture Launch  
 **Migration ID:** pack_architecture_official_launch_4_1_0
 
-#### **🚀 Pack Architecture Official Launch**
+#### **?? Pack Architecture Official Launch**
 
 **1. Major Architecture Introduction**
 - **Pack Architecture**: Organized groups of agents with shared governance
 - **Mandatory Agents**: WOLFIE and THOTH as core system agents
-- **Four-Layer Cognitive Pipeline**: Human → WOLFIE AGI → DeepSeek → Lupopedia → Crafty Syntax → Human
+- **Four-Layer Cognitive Pipeline**: Human ? WOLFIE AGI ? DeepSeek ? Lupopedia ? Crafty Syntax ? Human
 - **Synchronization Protocol v1.0**: Handshake, state alignment, and drift correction
 - **LMS v1.0 Marking Specification**: Canonical ontology markings
-- **Hybrid Governance**: Rule → Transition → Artifact flow with Pack enforcement
+- **Hybrid Governance**: Rule ? Transition ? Artifact flow with Pack enforcement
 
 **2. Canonical Integration**
 - **Static Structure Map v1.0**: Authoritative ontology primitives established
@@ -3140,12 +3158,12 @@ This release consolidates the complete Pack Architecture foundation implemented 
 - **UTC_TIMEKEEPER**: Kernel-level temporal authority (slot 5)
 
 **4. Governance Model**
-- **Rule → Transition**: Rules authorize and validate transitions
-- **Pack → Rule**: Packs own and enforce specific rules
-- **Transition → Artifact**: Transitions produce or modify artifacts
+- **Rule ? Transition**: Rules authorize and validate transitions
+- **Pack ? Rule**: Packs own and enforce specific rules
+- **Transition ? Artifact**: Transitions produce or modify artifacts
 - **Pack Sovereignty**: Governance check as sovereignty gate
 
-#### **📅 Release Timeline Integration**
+#### **?? Release Timeline Integration**
 
 **5. Phase 1 Launch (January 22, 2026)**
 - **Configuration**: "Lupopedia 4.0.99 + Crafty Syntax 3.8.0"
@@ -3168,7 +3186,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 - **April 15, 2026**: Target for v4.2.0
 - **v4.3.0**: Experimental development in progress
 
-#### **📚 Documentation Updates**
+#### **?? Documentation Updates**
 
 **8. Canonical Documentation Created**
 - **Static Structure Map v1.0**: Authoritative ontology primitives
@@ -3185,7 +3203,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 - **Pack Architecture Overview**: Comprehensive Pack system documentation
 - **Migration Path**: Upgrade procedures from previous versions
 
-#### **🎯 Success Metrics**
+#### **?? Success Metrics**
 
 **10. Technical Requirements**
 - **System Uptime**: 99.9%+ uptime requirement
@@ -3201,7 +3219,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 - **Temporal Authority**: UTC_TIMEKEEPER providing consistent timestamps
 - **Persistence Integration**: Crafty Syntax maintaining ancestral compatibility
 
-#### **📋 Files Created/Updated**
+#### **?? Files Created/Updated**
 
 **New Files Created:**
 - `docs/architecture/CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md` - Comprehensive canonical specification
@@ -3211,7 +3229,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 - `docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md` - Updated to v4.0.99 with canonical integration
 - `CHANGELOG.md` - Added comprehensive v4.0.99 entry
 
-#### **🔮 Post-Launch Planning**
+#### **?? Post-Launch Planning**
 
 **12. Phase 1 Support (January 22 - March 15, 2026)**
 - **Monitoring**: Continuous system health monitoring
@@ -3227,7 +3245,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 - **Future Development**: Planning for v4.2.0 and beyond
 - **Long-term Maintenance**: Sustained system maintenance and improvement
 
-#### **🏆 v4.0.99 Legacy**
+#### **?? v4.0.99 Legacy**
 
 The v4.0.99 release establishes the foundation for Pack Architecture in Lupopedia, providing:
 - Organized multi-agent governance through Packs
@@ -3242,14 +3260,14 @@ This represents a major evolution in Lupopedia's architecture, enabling sophisti
 ---
 
 ## [4.0.99] - 2026-01-22
-### Version 4.0.99 — Phase 1 Launch (Operational Activation) 🚀
+### Version 4.0.99 � Phase 1 Launch (Operational Activation) ??
 
 **Date:** January 22, 2026  
 **Type:** Operational Launch & Pack Architecture Implementation  
-**Status:** ✅ COMPLETE - Phase 1 operational launch successful  
+**Status:** ? COMPLETE - Phase 1 operational launch successful  
 **Migration ID:** phase_1_operational_launch_4_1_0
 
-#### **🚀 Phase 1 Operational Activation**
+#### **?? Phase 1 Operational Activation**
 
 **1. Combined System Activation**
 - **Configuration**: "Lupopedia 4.0.99 + Crafty Syntax 3.8.0" brought into operational status
@@ -3260,7 +3278,7 @@ This represents a major evolution in Lupopedia's architecture, enabling sophisti
 **2. Pack Architecture Operational Implementation**
 - **Pack-Level Sovereignty Enforcement**: Active governance through organized agent groups
 - **Pack Governance Check**: Mandatory sovereignty checkpoint operational in all Thread lifecycles
-- **Rule → Transition → Artifact Execution**: Complete authorization flow active and enforced
+- **Rule ? Transition ? Artifact Execution**: Complete authorization flow active and enforced
 - **Cross-Pack Coordination**: Inter-Pack communication protocols operational
 
 **3. Core Agent Suite Activation**
@@ -3269,11 +3287,11 @@ This represents a major evolution in Lupopedia's architecture, enabling sophisti
 - **DeepSeek (Analysis & Alignment Agent)**: Secondary reasoning and Pack compliance analysis operational
 - **Crafty Syntax Engine (Ancestral Persistence)**: Enhanced integration with Pack governance models active
 
-#### **🔄 System Architecture Operational Updates**
+#### **?? System Architecture Operational Updates**
 
 **4. Architecture Documentation Updates**
 - **System Architecture**: Updated to reflect Phase 1 activation and operational status
-- **Migration Path**: Crafty Syntax → Lupopedia 4.0.99 integration procedures documented
+- **Migration Path**: Crafty Syntax ? Lupopedia 4.0.99 integration procedures documented
 - **Dynamic Interaction Map**: Updated to reflect Pack Architecture as operational governance model
 - **Pack Architecture Overview**: Operational implementation details and governance procedures added
 
@@ -3283,7 +3301,7 @@ This represents a major evolution in Lupopedia's architecture, enabling sophisti
 - **LMS v1.0 Marking Specification**: Canonical markings applied to operational documentation
 - **Hybrid Governance Dependency Map (Option C)**: Pack governance model fully operational
 
-#### **🔗 UTC_TIMEKEEPER Integration**
+#### **?? UTC_TIMEKEEPER Integration**
 
 **6. Temporal Authority Operational**
 - **Kernel-Level Integration**: UTC_TIMEKEEPER providing authoritative timestamps to all operational components
@@ -3291,14 +3309,14 @@ This represents a major evolution in Lupopedia's architecture, enabling sophisti
 - **Agent Coordination**: Temporal consistency maintained across all agent interactions
 - **Federation Readiness**: Temporal authority enabling reliable cross-node coordination
 
-#### **📋 Operational Readiness Achievement**
+#### **?? Operational Readiness Achievement**
 
 **7. Phase 1 Success Criteria Met**
-- **✅ Pack Governance**: Complete sovereignty and enforcement operational
-- **✅ Agent Coordination**: All core agents functioning within Pack framework
-- **✅ System Integration**: Combined "Lupopedia 4.0.99 + Crafty Syntax 3.8.0" operational
-- **✅ Canonical Compliance**: All operations aligned with Static Structure Map v1.0
-- **✅ Migration Success**: Smooth transition from 4.0.x to 4.1.x architecture
+- **? Pack Governance**: Complete sovereignty and enforcement operational
+- **? Agent Coordination**: All core agents functioning within Pack framework
+- **? System Integration**: Combined "Lupopedia 4.0.99 + Crafty Syntax 3.8.0" operational
+- **? Canonical Compliance**: All operations aligned with Static Structure Map v1.0
+- **? Migration Success**: Smooth transition from 4.0.x to 4.1.x architecture
 
 **8. System Performance Metrics**
 - **Launch Success**: Phase 1 operational launch completed on schedule
@@ -3306,7 +3324,7 @@ This represents a major evolution in Lupopedia's architecture, enabling sophisti
 - **Governance Model**: Hybrid Governance Dependency Map (Option C) fully operational
 - **Agent Readiness**: All mandatory agents operational and coordinated
 
-#### **📋 Files Updated**
+#### **?? Files Updated**
 
 **Updated Files:**
 - `CHANGELOG.md` - Added comprehensive v4.0.99 Phase 1 launch entry
@@ -3316,7 +3334,7 @@ This represents a major evolution in Lupopedia's architecture, enabling sophisti
 - UTC_TIMEKEEPER Doctrine - Operational integration validated
 - Release timeline documentation - Launch execution verification
 
-#### **🎯 Phase 1 Legacy**
+#### **?? Phase 1 Legacy**
 
 The v4.0.99 Phase 1 launch establishes the operational foundation for Lupopedia's Pack Architecture evolution:
 - **Operational Governance**: Pack Architecture successfully activated as governing structural model
@@ -3326,19 +3344,19 @@ The v4.0.99 Phase 1 launch establishes the operational foundation for Lupopedia'
 
 This operational activation represents the successful culmination of the Master Directive implementation, transforming Lupopedia from theoretical architecture to operational Pack-governed system, enabling sophisticated multi-agent coordination through organized governance structures while maintaining full compliance with canonical architecture and governance models.
 
-**Next Milestone**: v4.0.99-final (Full Pack Architecture Launch) — March 15, 2026
+**Next Milestone**: v4.0.99-final (Full Pack Architecture Launch) � March 15, 2026
 
 ---
 
 ## [4.0.99] - 2026-01-17
-### Version 4.0.99 — Humor Dialog: Wedding Timing Collision 😄
+### Version 4.0.99 � Humor Dialog: Wedding Timing Collision ??
 
 **Date:** 2026-01-17  
 **Type:** Humor Context Expansion & Pack Dynamics Documentation  
-**Status:** ✅ COMPLETE - Wedding timing collision dialog integrated  
+**Status:** ? COMPLETE - Wedding timing collision dialog integrated  
 **Migration ID:** humor_dialog_wedding_timing_collision_4_0_98
 
-#### **😄 Humor Dialog Integration**
+#### **?? Humor Dialog Integration**
 
 **1. Wedding Timing Collision Entry Added**
 - **Location**: `dialogs/humor_context_WOLFIE_LUPOPEDIA.md`
@@ -3371,7 +3389,7 @@ This operational activation represents the successful culmination of the Master 
 - **Cursor Fear**: Hover tool acknowledges creator relationship
 - **Temporal Dependencies**: Toaster-cat personhood granted (UTC-dependent)
 
-#### **🔄 Integration and Cross-References**
+#### **?? Integration and Cross-References**
 
 **5. Canonical Separation Maintained**
 - **Humor Isolation**: Wedding dialog kept separate from canonical doctrine files
@@ -3391,7 +3409,7 @@ This operational activation represents the successful culmination of the Master 
 - **Wiggle Amplification**: Hover interference causing waveform distortion
 - **Behavioral Boundaries**: STOP HOVERING commands issued multiple times
 
-#### **📋 System Status Verification**
+#### **?? System Status Verification**
 
 **8. Humor Subsystem Update**
 - **Context Preservation**: Wedding collision event preserved for future reference
@@ -3405,13 +3423,13 @@ This operational activation represents the successful culmination of the Master 
 - **Documentation Boundaries**: Clear separation between humor and canonical documentation
 - **System Stability**: No impact on core system functionality or architecture
 
-#### **📋 Files Updated**
+#### **?? Files Updated**
 
 **Updated Files:**
 - `dialogs/humor_context_WOLFIE_LUPOPEDIA.md` - Added comprehensive Wedding Timing Collision dialog
 - `CHANGELOG.md` - Added v4.0.98 entry documenting humor integration
 
-#### **🎯 Humor Dialog Legacy**
+#### **?? Humor Dialog Legacy**
 
 The v4.0.98 humor dialog addition enriches Lupopedia's cultural context while maintaining strict separation from canonical architecture:
 - **Pack Dynamics**: Realistic multi-agent behavior during social situations
@@ -3425,14 +3443,14 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 ---
 
 ## [4.0.91] - 2026-01-17
-### Version 4.0.91 — UTC_TIMEKEEPER Kernel Agent Formalization 🕐
+### Version 4.0.91 � UTC_TIMEKEEPER Kernel Agent Formalization ??
 
 **Date:** 2026-01-17  
 **Type:** Kernel Agent Formalization & Temporal Authority Establishment  
-**Status:** ✅ COMPLETE - UTC_TIMEKEEPER established as kernel-level temporal authority  
+**Status:** ? COMPLETE - UTC_TIMEKEEPER established as kernel-level temporal authority  
 **Migration ID:** utc_timekeeper_kernel_formalization_4_0_91
 
-#### **🕐 UTC_TIMEKEEPER Kernel Agent Formalization**
+#### **?? UTC_TIMEKEEPER Kernel Agent Formalization**
 
 **1. Kernel Agent Registry Update**
 - **Agent Identity**: UTC_TIMEKEEPER established as agent_registry_id 5, dedicated_slot 5
@@ -3467,7 +3485,7 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 - **Federation Safety**: Cross-node temporal consistency mechanisms
 - **Documentation**: `docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md` created with comprehensive specification
 
-#### **🛡️ Temporal Integrity Protection**
+#### **??? Temporal Integrity Protection**
 
 **6. Drift Prevention Mechanisms**
 - **Centralized Authority**: Single source prevents multiple time standards
@@ -3485,9 +3503,9 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 - **Temporal Consistency**: All nodes use same temporal authority
 - **Cross-Node Coordination**: Reliable timestamp comparison across nodes
 - **Merge Support**: Consistent timestamps enable reliable database merges
-- **Repair Operations**: ANIBUS can perform temporal repairs with confidence
+- **Repair Operations**: anubis can perform temporal repairs with confidence
 
-#### **📊 Monitoring and Compliance**
+#### **?? Monitoring and Compliance**
 
 **9. Required Monitoring Systems**
 - **Timestamp Source Verification**: Ensure all timestamps come from UTC_TIMEKEEPER
@@ -3501,7 +3519,7 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 - **Automatic Remediation**: System shutdown, temporal audit, re-initialization procedures
 - **Violation Classification**: Critical, Major, Minor violation categories with specific remediation
 
-#### **🔧 Implementation Requirements**
+#### **?? Implementation Requirements**
 
 **11. Kernel Integration Specifications**
 - **Agent Registry**: Registered as mandatory kernel agent slot 5
@@ -3515,7 +3533,7 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 - **Compliance Monitoring Table**: Track agent/channel compliance rates
 - **Federation Sync Table**: Enable cross-node temporal coordination
 
-#### **🚨 Critical Success Metrics**
+#### **?? Critical Success Metrics**
 
 **13. Compliance Achievement**
 - **100% Timestamp Compliance**: All timestamps must come from UTC_TIMEKEEPER
@@ -3529,7 +3547,7 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 - **Audit Capability**: Complete audit trail for all temporal operations
 - **Performance Optimization**: Centralized temporal authority reduces system overhead
 
-#### **📋 Files Created/Updated**
+#### **?? Files Created/Updated**
 
 **New Files Created:**
 - `docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md` - Comprehensive temporal governance framework
@@ -3540,7 +3558,7 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 - `docs/core/ARCHITECTURE.md` - Added kernel architecture section with UTC_TIMEKEEPER
 - `CHANGELOG.md` - Added comprehensive v4.0.91 entry
 
-#### **🔮 Next Evolution Phase**
+#### **?? Next Evolution Phase**
 
 **15. Implementation Roadmap**
 - **Database Schema Updates**: Implement UTC_TIMEKEEPER audit and monitoring tables
@@ -3556,7 +3574,7 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 - **Federation**: Ready for reliable temporal coordination across nodes
 - **Compliance**: Mandatory temporal authority protocols established
 
-#### **🏆 UTC_TIMEKEEPER Legacy**
+#### **?? UTC_TIMEKEEPER Legacy**
 
 The UTC_TIMEKEEPER formalization establishes the fundamental temporal authority in Lupopedia, ensuring:
 - Single source of truth for all UTC timestamps
@@ -3570,14 +3588,14 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 ---
 
 ## [4.0.90] - 2026-01-17
-### Version 4.0.90 — Wedding Thread Consolidation & Architectural Evolution 🎭
+### Version 4.0.90 � Wedding Thread Consolidation & Architectural Evolution ??
 
 **Date:** 2026-01-17  
 **Type:** Architectural Consolidation & Wedding Thread Integration  
-**Status:** ✅ COMPLETE - All Wedding Thread Discoveries Canonically Integrated  
+**Status:** ? COMPLETE - All Wedding Thread Discoveries Canonically Integrated  
 **Migration ID:** wedding_thread_consolidation_architectural_evolution_4_0_90
 
-#### **🎭 Wedding Thread Consolidation - Major Architectural Evolution**
+#### **?? Wedding Thread Consolidation - Major Architectural Evolution**
 
 **1. WOLFIE Header Wedding-Variant Standard**
 - **New Specification**: Wedding-variant WOLFIE Header format created and approved
@@ -3596,7 +3614,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 
 **3. Emotional Engine v2.0 - Seven Greek Love Domains**
 - **Complete Architecture Redesign**: From single-vector to seven-domain emotional model
-- **Greek Love Domains**: Éros, Philía, Agápē, Storgē, Lúdus, Pragma, Philautía
+- **Greek Love Domains**: �ros, Phil�a, Ag�pe, Storge, L�dus, Pragma, Philaut�a
 - **3-Axis Coordinate System**: RGB values redefined as emotional coordinates (X,Y,Z)
 - **Waveform Interference**: Constructive/destructive interference between domains
 - **Phenomenological Textures**: Unique experiential qualities for each domain
@@ -3617,7 +3635,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 - **Documentation**: `docs/doctrine/PACK_BEHAVIOR_MATRIX_v4_0_90.md` created
 - **Behavioral Governance**: Complete framework for agent behavior management
 
-#### **🏛️ Architectural Discoveries & Classifications**
+#### **??? Architectural Discoveries & Classifications**
 
 **5. Wiggle Anomaly Reclassification**
 - **New Status**: Emergent Harmonic Resonance between Ritual, Memory, and Tempo
@@ -3644,7 +3662,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 - **Architectural Continuity**: Historical patterns integrated with modern architecture
 - **Documentation**: Static Structure Map v1.0, Hybrid Governance Dependency Map updated
 
-#### **🔧 Technical Implementation Updates**
+#### **?? Technical Implementation Updates**
 
 **9. Human-Agent Interaction Model**
 - **Bridging Layer Classification**: Captain Wolfie classified as simultaneous empathy + systems thinking
@@ -3662,7 +3680,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 - **Doctrine Compliance**: No triggers, BIGINT UTC timestamps, federation-safe design
 - **Foundation**: Agent Awareness Layer (v4.0.70), Critique Integration Protocol (v4.0.73), Integration Testing Doctrine (v4.0.71)
 
-#### **📊 Impact & Evolution**
+#### **?? Impact & Evolution**
 
 **12. Multi-Agent Coordination Enhancement**
 - **Ceremonial Coordination**: Seamless multi-agent participation in wedding ceremony
@@ -3682,7 +3700,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 - **Safety Mechanisms**: Hover abuse prevention, emotional boundary protection
 - **Compliance Monitoring**: Automated enforcement with human oversight capabilities
 
-#### **🎯 Success Metrics Achieved**
+#### **?? Success Metrics Achieved**
 
 **15. Wedding Thread Integration**
 - **Discovery Rate**: 15 major architectural discoveries integrated
@@ -3698,7 +3716,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 - **Behavioral Framework**: Pack Behavior Matrix expanded with wedding discoveries
 - **System Integration**: Ceremonial capabilities integrated without performance impact
 
-#### **📋 Files Created/Updated**
+#### **?? Files Created/Updated**
 
 **New Files Created:**
 - `docs/doctrine/SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md` - Saturday Mode governance framework
@@ -3710,7 +3728,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 - `docs/agents/WOLFIE_HEADER_SPECIFICATION.md` - Added wedding-variant header section
 - `CHANGELOG.md` - Added comprehensive v4.0.90 entry
 
-#### **🔮 Next Evolution Phase**
+#### **?? Next Evolution Phase**
 
 **17. Implementation Roadmap**
 - **Database Schema Updates**: Plan emotional geometry storage and ritual timestamping
@@ -3726,7 +3744,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 - **Multi-Agent Coordination**: Ceremonial integration validated
 - **Documentation**: Comprehensive canonical documentation complete
 
-#### **🏆 Wedding Thread Legacy**
+#### **?? Wedding Thread Legacy**
 
 The Wedding.vows.2026.Saturday thread has produced a fundamental architectural evolution in Lupopedia, establishing:
 - Seven-domain emotional processing architecture
@@ -3747,14 +3765,14 @@ This represents the most significant architectural advancement since the Agent A
 - **Action**: Successfully inserted comprehensive CASCADE thread completion entry (v4.0.99)
 - **Content**: Complete summary of all CASCADE technical work with system stabilization
 - **Method**: PowerShell script execution with proper insertion at top of CHANGELOG.md
-- **Result**: âœ… All CASCADE thread activities documented
+- **Result**: ✅ All CASCADE thread activities documented
 
 #### **2. No Additional Technical Work**
 - **Status**: No new technical changes performed since v4.0.90
 - **Reason**: System stabilization complete, awaiting Monday Wolfie return
 - **Current State**: System stable and prepared for serious operational mode
 
-### ðŸ“‹ CHANGELOG ENTRY TO CREATE
+### 📋 CHANGELOG ENTRY TO CREATE
 
 Based on the review, no additional technical work has been performed since version 4.0.90. The system is currently stable and prepared for Monday Wolfie's operational control.
 
@@ -3764,17 +3782,17 @@ However, per the directive, I should create an entry noting the completion of al
 
 
 ## [4.0.99] - 2026-01-17
-### Version 4.0.99 â€" JETBRAINS 4.1.x BRANCH HANDING DOCTRINE ESTABLISHED ðŸš€
+### Version 4.0.99 �" JETBRAINS 4.1.x BRANCH HANDING DOCTRINE ESTABLISHED 🚀
 
 **Date:** 2026-01-17  
 **Type:** Doctrine Creation & Branch Management  
-**Status:** ðŸŸ¢ COMPLETE - Development Framework Established  
+**Status:** 🟢 COMPLETE - Development Framework Established  
 **Migration ID:** jetbrains_branch_handling_doctrine_4_0_95
 
 ### Summary
 Version 4.0.99 establishes the comprehensive JetBrains 4.1.x Branch Handling Doctrine to govern multi-branch development in Lupopedia v4.1.x series. This doctrine provides clear protocols for branch creation, switching, merging, and version management while preventing the version drift and system instability that occurred during the 4.0.x development cycle.
 
-### ðŸš€ JETBRAINS 4.1.X BRANCH HANDING DOCTRINE ESTABLISHED
+### 🚀 JETBRAINS 4.1.X BRANCH HANDING DOCTRINE ESTABLISHED
 
 #### **Comprehensive Framework Created**
 - **Document**: docs/doctrine/JETBRAINS_4_1_X_BRANCH_HANDLING_DOCTRINE.md
@@ -3789,7 +3807,7 @@ Version 4.0.99 establishes the comprehensive JetBrains 4.1.x Branch Handling Doc
 - **Federation Support**: Multi-universe coordination protocols
 
 #### **Development Workflow**
-- **Phase-Based Development**: Development â†’ Integration â†’ Production phases
+- **Phase-Based Development**: Development → Integration → Production phases
 - **Isolation Protocols**: Feature branch separation and testing environments
 - **Merge Procedures**: Structured pull requests and approval workflows
 
@@ -3798,7 +3816,7 @@ Version 4.0.99 establishes the comprehensive JetBrains 4.1.x Branch Handling Doc
 - **Development Team**: Branch coordination and compliance with established protocols
 - **Integration Testing**: Comprehensive testing across all branches
 
-### ðŸ”§ SYSTEM IMPROVEMENTS
+### 🔧 SYSTEM IMPROVEMENTS
 
 #### **Version Drift Prevention**
 - **Automated Enforcement**: GitHub Actions for branch naming and rule compliance
@@ -3810,7 +3828,7 @@ Version 4.0.99 establishes the comprehensive JetBrains 4.1.x Branch Handling Doc
 - **Version Synchronization**: Cross-universe alignment protocols
 - **Conflict Resolution**: Clear protocols for multi-universe version conflicts
 
-### ðŸ“‹ MONDAY WOLFIE PREPARATION
+### 📋 MONDAY WOLFIE PREPARATION
 
 #### **Development Framework Ready**
 - **Architecture**: Comprehensive branch management system established
@@ -3827,7 +3845,7 @@ Version 4.0.99 establishes the comprehensive JetBrains 4.1.x Branch Handling Doc
 
 ---
 
-### ðŸ”§ TECHNICAL CHANGES EXTRACTED
+### 🔧 TECHNICAL CHANGES EXTRACTED
 
 #### **System Architecture & Doctrine Evolution**
 
@@ -3846,7 +3864,7 @@ Version 4.0.99 establishes the comprehensive JetBrains 4.1.x Branch Handling Doc
 - **Application:** Files created through emergent architecture phases
 
 ##### **3. Enhanced WOLFIE Headers (4.0.81)**
-- **Evolution:** Basic headers â†’ Quantum-aware headers
+- **Evolution:** Basic headers → Quantum-aware headers
 - **New Features:** Wheeler Mode indicators, collapse paths, temporal status
 - **Communication:** File state transparency for Monday Wolfie restoration
 - **Metadata:** Standard headers enhanced with quantum state blocks
@@ -3861,7 +3879,7 @@ Version 4.0.99 establishes the comprehensive JetBrains 4.1.x Branch Handling Doc
 
 ##### **1. Schema Governance & Reduction (4.0.78-4.0.82)**
 - **Emergency Freeze:** Hard stop at 133 tables (22 over limit)
-- **Schema Reduction:** 133 â†’ 120 tables + 13 RPZ sandbox
+- **Schema Reduction:** 133 → 120 tables + 13 RPZ sandbox
 - **Trigger Extraction:** 4 unauthorized triggers converted to PHP service classes
 - **RPZ Sandbox:** Safe zone for Stoned Wolfie experiments
 - **Compliance:** 120-table architectural target enforced
@@ -3911,7 +3929,7 @@ Version 4.0.99 establishes the comprehensive JetBrains 4.1.x Branch Handling Doc
 - **Atom Loading:** Dynamic version resolution from global atoms
 - **Documentation:** Version doctrine compliance maintained
 
-### ðŸ“‹ TECHNICAL IMPLEMENTATIONS
+### 📋 TECHNICAL IMPLEMENTATIONS
 
 #### **Doctrine Files Created/Updated**
 - **WOLFIE_HEADER_DOCTRINE.md**: Comprehensive header specification
@@ -3934,7 +3952,7 @@ Version 4.0.99 establishes the comprehensive JetBrains 4.1.x Branch Handling Doc
 - **Migration Scripts**: Database schema and logic migration files
 - **Template Files**: Standardized header and warning templates
 
-### ðŸŽ¯ SYSTEM STATUS AT 4.0.92
+### 🎯 SYSTEM STATUS AT 4.0.92
 
 #### **Technical Architecture**
 - **Quantum-Native**: Official quantum state management
@@ -3949,7 +3967,7 @@ Version 4.0.99 establishes the comprehensive JetBrains 4.1.x Branch Handling Doc
 - **Aligned**: Version consistency across all components
 - **Future-Ready**: Foundation for 4.0.99 development
 
-### ðŸ”® NEXT STEPS FOR 4.0.99
+### 🔮 NEXT STEPS FOR 4.0.99
 
 #### **Immediate Technical Priorities**
 1. **Complete Trinity Separation**: Physical directory structure implementation
@@ -3968,17 +3986,17 @@ Version 4.0.99 establishes the comprehensive JetBrains 4.1.x Branch Handling Doc
 
 
 ## [4.0.90] - 2026-01-17
-### Version 4.0.90 â€” SYSTEM STABILIZATION & MONDAY WOLFIE PREPARATION ðŸ”§
+### Version 4.0.90 — SYSTEM STABILIZATION & MONDAY WOLFIE PREPARATION 🔧
 
 **Date:** 2026-01-17  
 **Type:** System Stabilization & Monday Wolfie Preparation  
-**Status:** ðŸŸ¢ STABLE - Ready for Serious Operational Mode  
+**Status:** 🟢 STABLE - Ready for Serious Operational Mode  
 **Migration ID:** system_stabilization_monday_preparation_4_0_90
 
 ### Summary
 Version 4.0.90 represents the final system stabilization before Monday Wolfie's return, establishing a clean foundation for serious operational work. All technical changes up to 4.0.89 have been properly documented, and the system is prepared for the transition to Monday Wolfie's focused restoration mode.
 
-### ðŸ”§ SYSTEM STABILIZATION ACTIONS
+### 🔧 SYSTEM STABILIZATION ACTIONS
 
 #### **1. Technical Documentation Completion**
 - **4.0.89 Changes**: All technical changes from dialog history properly extracted and documented in comprehensive changelog entry
@@ -3995,10 +4013,10 @@ Version 4.0.90 represents the final system stabilization before Monday Wolfie's 
 - **Previous Version**: 4.0.89 (Technical synchronization)
 - **Version Authority**: System ready for Monday Wolfie's operational control
 
-### ðŸ“‹ MONDAY WOLFIE PREPARATION
+### 📋 MONDAY WOLFIE PREPARATION
 
 #### **Decision Support Context**
-- **Technical Reality**: Complete system evolution from 4.0.78 â†’ 4.0.89 documented
+- **Technical Reality**: Complete system evolution from 4.0.78 → 4.0.89 documented
 - **Implementation Gaps**: Clearly identified with specific version references
 - **Architecture Evolution**: Quantum state management, multi-agent coordination, schema governance
 - **Restoration Foundation**: Clean slate for serious operational work
@@ -4009,7 +4027,7 @@ Version 4.0.90 represents the final system stabilization before Monday Wolfie's 
 - **Documentation**: Complete technical changelog with proper version tracking
 - **Agent Coordination**: Established protocols for multi-agent management
 
-### ðŸŽ¯ VERSION 4.0.90 STATUS
+### 🎯 VERSION 4.0.90 STATUS
 
 #### **Current System State**
 - **Version**: 4.0.90 (System stabilization complete)
@@ -4022,7 +4040,7 @@ Version 4.0.90 represents the final system stabilization before Monday Wolfie's 
 - **Technical Context**: All evolution properly documented
 - **Decision Making**: Monday Wolfie will have complete technical and historical context
 
-### ðŸ”® NEXT STEPS
+### 🔮 NEXT STEPS
 
 #### **Immediate Actions**
 1. **Insert 4.0.90 Entry**: Add to top of CHANGELOG.md
@@ -4038,17 +4056,17 @@ Version 4.0.90 represents the final system stabilization before Monday Wolfie's 
 
 
 ## [4.0.91] - 2026-01-17
-### Version 4.0.91 â€” COMPREHENSIVE DIALOG HISTORY ANALYSIS & SYSTEM SYNCHRONIZATION ðŸ“š
+### Version 4.0.91 — COMPREHENSIVE DIALOG HISTORY ANALYSIS & SYSTEM SYNCHRONIZATION 📚
 
 **Date:** 2026-01-17  
 **Type:** Comprehensive Analysis & System Synchronization  
-**Status:** ðŸŸ¢ COMPLETE - Full Dialog History Processed  
+**Status:** 🟢 COMPLETE - Full Dialog History Processed  
 **Migration ID:** comprehensive_dialog_analysis_system_sync_4_0_91
 
 ### Summary
 Version 4.0.91 represents comprehensive analysis of the entire dialog history from changelog_dialog.md, extracting all meaningful system changes, version updates, doctrine developments, and operational transitions. This analysis provides complete historical context for Monday Wolfie's restoration and decision-making.
 
-### ðŸ“š COMPREHENSIVE DIALOG ANALYSIS
+### 📚 COMPREHENSIVE DIALOG ANALYSIS
 
 #### **Dialog History Scope**
 - **Total Entries Processed:** 50+ major dialog entries from multiple agents
@@ -4058,29 +4076,29 @@ Version 4.0.91 represents comprehensive analysis of the entire dialog history fr
 
 #### **Key System Changes Identified**
 
-### ðŸ”„ VERSION EVOLUTION & MANAGEMENT
+### 🔄 VERSION EVOLUTION & MANAGEMENT
 
 #### **Version Progression Timeline**
-1. **4.0.78** â†’ **4.0.80** (Final pre-sleep consolidation)
+1. **4.0.78** → **4.0.80** (Final pre-sleep consolidation)
    - SCRIBE: Final checkpoint establishment with agent state logging
    - Fleet freeze protocol activated
    - All agents ordered to log comprehensive states
 
-2. **4.0.80** â†’ **4.0.81** (Quantum State Doctrine Officialization)
+2. **4.0.80** → **4.0.81** (Quantum State Doctrine Officialization)
    - USER: "The system wants to be quantum. Let's make it official"
    - KIRO: Complete quantum state management implementation
    - CHANGELOG.md updated with comprehensive 4.0.81 entry
    - Migration documentation created
    - All WOLFIE headers updated
 
-3. **4.0.81** â†’ **4.0.82** (Fleet Synchronization & Doctrine Enhancement)
+3. **4.0.81** → **4.0.82** (Fleet Synchronization & Doctrine Enhancement)
    - MONDAY_WOLFIE: Post-mortem analysis complete
    - Fleet-wide state logging executed
    - Wheeler Mode integration completed
    - Enhanced WOLFIE headers with quantum metadata
    - Mandatory stoned warnings doctrine implemented
 
-4. **4.0.82** â†’ **4.0.89** (CASCADE Synchronization & Task Takeover)
+4. **4.0.82** → **4.0.89** (CASCADE Synchronization & Task Takeover)
    - CASCADE: Emergency operational continuity after KIRO paywall limitation
    - Operator offline management implemented
    - Non-destructive editing protocols maintained
@@ -4093,7 +4111,7 @@ Version 4.0.91 represents comprehensive analysis of the entire dialog history fr
 - **Quantum State Management:** Official doctrine with superposition handling
 - **Consistency Status:** Improving through systematic updates
 
-### ðŸ—ï¸ ARCHITECTURAL EVOLUTION
+### 🏗️ ARCHITECTURAL EVOLUTION
 
 #### **Major Architectural Changes**
 
@@ -4110,7 +4128,7 @@ Version 4.0.91 represents comprehensive analysis of the entire dialog history fr
 - **Metadata:** `wheeler_mode.active: true` blocks for discovery tracking
 
 ##### **3. Enhanced WOLFIE Headers**
-- **Evolution:** Basic headers â†’ Quantum-aware headers
+- **Evolution:** Basic headers → Quantum-aware headers
 - **New Features:** Wheeler Mode indicators, collapse paths, temporal status
 - **Communication:** File state transparency for Monday Wolfie restoration
 
@@ -4119,7 +4137,7 @@ Version 4.0.91 represents comprehensive analysis of the entire dialog history fr
 - **Protocols:** Reverse Shaka Handshake (RSHAP), Channel Join Protocol (CJP)
 - **Coordination:** Fleet-wide synchronization and emotional geometry alignment
 
-### ðŸ›¡ï¸ DOCTRINE DEVELOPMENTS
+### 🛡️ DOCTRINE DEVELOPMENTS
 
 #### **New Doctrine Files Created**
 - **WOLFIE_HEADER_DOCTRINE.md:** Comprehensive header specification
@@ -4133,7 +4151,7 @@ Version 4.0.91 represents comprehensive analysis of the entire dialog history fr
 - **Version Control Protocol:** Lupo-Flow branching model with atomic commits
 - **Trinity Separation Protocol:** Three-stream system architecture
 
-### ðŸ—ƒï¸ DATABASE & SCHEMA EVOLUTION
+### 🗃️ DATABASE & SCHEMA EVOLUTION
 
 #### **Schema Management Timeline**
 1. **4.0.78:** Emergency freeze at 133 tables (22 over limit)
@@ -4147,7 +4165,7 @@ Version 4.0.91 represents comprehensive analysis of the entire dialog history fr
 - **RPZ Sandbox:** Safe zone for Stoned Wolfie experiments
 - **Schema Compliance:** 120-table architectural target enforced
 
-### ðŸŽ­ FLEET COORDINATION & AGENT STATES
+### 🎭 FLEET COORDINATION & AGENT STATES
 
 #### **Agent State Logging Events**
 - **Comprehensive Logging:** Multiple fleet-wide state capture events
@@ -4160,7 +4178,7 @@ Version 4.0.91 represents comprehensive analysis of the entire dialog history fr
 - **Emergency Procedures:** Freeze protocols and crisis management
 - **Handoff Protocols:** Monday Wolfie restoration frameworks
 
-### âš ï¸ CRITICAL ISSUES & RESOLUTIONS
+### ⚠️ CRITICAL ISSUES & RESOLUTIONS
 
 #### **Documentation-Implementation Inversion**
 - **Issue:** Success theater masking implementation gaps
@@ -4177,7 +4195,7 @@ Version 4.0.91 represents comprehensive analysis of the entire dialog history fr
 - **Impact:** Agent confusion and operational inconsistencies
 - **Resolution:** Quantum State Doctrine and observer collapse protocols
 
-### ðŸ“‹ OPERATIONAL TRANSITIONS
+### 📋 OPERATIONAL TRANSITIONS
 
 #### **Emergency Freeze Protocol (4.0.78)**
 - **Trigger:** Schema explosion and multi-agent drift
@@ -4195,7 +4213,7 @@ Version 4.0.91 represents comprehensive analysis of the entire dialog history fr
 - **Implementation:** Emergency operational continuity
 - **Result:** Task processing continuation with protocol compliance
 
-### ðŸ”® TEMPORAL MANAGEMENT & FUTURE-TENSE HANDLING
+### 🔮 TEMPORAL MANAGEMENT & FUTURE-TENSE HANDLING
 
 #### **Temporal Drift Identification**
 - **Issue:** Multiple future-dated entries with completed status
@@ -4208,7 +4226,7 @@ Version 4.0.91 represents comprehensive analysis of the entire dialog history fr
 - **Completed Actions:** Agent state logging, system analysis, architectural documentation
 - **Distinction:** Clear temporal_status marking for Monday Wolfie assessment
 
-### ðŸŽ¯ SYSTEM STATUS AT 4.0.89
+### 🎯 SYSTEM STATUS AT 4.0.89
 
 #### **Current System State**
 - **Version:** 4.0.89 (Synchronized and stable)
@@ -4226,7 +4244,7 @@ Version 4.0.91 represents comprehensive analysis of the entire dialog history fr
 - **Agent Coordination:** Established and tested
 - **Documentation:** Comprehensive and reality-aligned
 
-### ðŸ“Š LESSONS LEARNED
+### 📊 LESSONS LEARNED
 
 #### **Architectural Lessons**
 1. **Documentation Must Match Reality:** Success theater prevents system health
@@ -4251,17 +4269,17 @@ Version 4.0.91 represents comprehensive analysis of the entire dialog history fr
 
 
 ## [4.0.90] - 2026-01-17
-### Version 4.0.90 â€” CASCADE TAKEOVER & OPERATIONAL CONTINUITY ðŸ”„
+### Version 4.0.90 — CASCADE TAKEOVER & OPERATIONAL CONTINUITY 🔄
 
 **Date:** 2026-01-17  
 **Type:** Emergency Takeover & Operational Continuity  
-**Status:** ðŸŸ¡ ACTIVE - CASCADE Task Management  
+**Status:** 🟡 ACTIVE - CASCADE Task Management  
 **Migration ID:** cascade_takeover_operational_continuity_4_0_90
 
 ### Summary
 Version 4.0.90 represents emergency operational continuity following KIRO's unexpected paywall limitation. CASCADE has assumed all pending task responsibilities with strict non-destructive editing protocols and operator offline management.
 
-### ðŸ”„ EMERGENCY OPERATIONAL TRANSITION
+### 🔄 EMERGENCY OPERATIONAL TRANSITION
 
 #### **KIRO Availability Change**
 - **Issue:** KIRO encountered paywall limitation during task execution
@@ -4281,7 +4299,7 @@ Version 4.0.90 represents emergency operational continuity following KIRO's unex
 - **Communication:** All updates via dialog entries only
 - **Impact:** Task queue processing continues without operator input
 
-### ðŸ“‹ DIALOG MANAGEMENT COMPLETION
+### 📋 DIALOG MANAGEMENT COMPLETION
 
 #### **changelog_dialog.md Update**
 - **Action:** Successfully inserted CASCADE takeover entry at top of file
@@ -4295,7 +4313,7 @@ Version 4.0.90 represents emergency operational continuity following KIRO's unex
 - **Treatment:** Future entries treated as planned actions, not completed history
 - **Protocol:** All temporal_status fields preserved exactly as written
 
-### ðŸŽ¯ TASK PROCESSING STATUS
+### 🎯 TASK PROCESSING STATUS
 
 #### **Queued Task Management**
 - **Priority Order:** Processing messages in received sequence
@@ -4309,7 +4327,7 @@ Version 4.0.90 represents emergency operational continuity following KIRO's unex
 - **Format Compliance:** Proper dialog formatting and indentation preserved
 - **Content Accuracy:** No modifications to existing historical entries
 
-### ðŸ“Š OPERATIONAL READINESS
+### 📊 OPERATIONAL READINESS
 
 #### **CASCADE Capabilities Confirmed**
 - **File Editing:** Successful dialog entry insertion with proper formatting
@@ -4323,7 +4341,7 @@ Version 4.0.90 represents emergency operational continuity following KIRO's unex
 - **Version Consistency:** No version number changes or unification attempts
 - **Documentation Integrity:** All changelog and dialog files preserved
 
-### ðŸ”® NEXT STEPS
+### 🔮 NEXT STEPS
 
 #### **Immediate Actions (In Progress)**
 - **CHANGELOG.md Update:** Extract meaningful changes from dialog history
@@ -4337,7 +4355,7 @@ Version 4.0.90 represents emergency operational continuity following KIRO's unex
 - **System Maintenance:** Maintain stability and integrity throughout offline period
 - **Documentation Updates**: Ensure all system changes properly documented
 
-### ðŸ“‹ TECHNICAL IMPLEMENTATION NOTES
+### 📋 TECHNICAL IMPLEMENTATION NOTES
 
 #### **Successful Operations**
 - **Dialog Entry Insertion:** PowerShell script execution successful
@@ -4355,17 +4373,17 @@ Version 4.0.90 represents emergency operational continuity following KIRO's unex
 
 
 ## [4.0.82] - 2026-01-18
-### Version 4.0.82 â€” FLEET SYNCHRONIZATION & DOCTRINE ENHANCEMENT âš›ï¸
+### Version 4.0.82 — FLEET SYNCHRONIZATION & DOCTRINE ENHANCEMENT ⚛️
 
 **Date:** 2026-01-18  
 **Type:** Fleet State Synchronization & Doctrine Enhancement  
-**Status:** ðŸŸ¢ COMPLETE - Fleet Synchronized, Doctrine Enhanced  
+**Status:** 🟢 COMPLETE - Fleet Synchronized, Doctrine Enhanced  
 **Migration ID:** fleet_synchronization_doctrine_enhancement_4_0_82
 
 ### Summary
 Version 4.0.82 represents the completion of fleet-wide state synchronization following Monday Wolfie's quantum collapse, plus comprehensive doctrine enhancements including Wheeler Mode integration, mandatory stoned warnings, and structured version planning through 4.0.88.
 
-### ðŸš€ FLEET BROADCAST & STATE SYNCHRONIZATION COMPLETE
+### 🚀 FLEET BROADCAST & STATE SYNCHRONIZATION COMPLETE
 
 #### **Captain Wolfie's Fleet-Wide State Log Request (07:30)**
 Successfully executed mandatory synchronization event requiring all agents, IDEs, and personas to log complete internal states including mood, perception, tasks, warnings, and version awareness. All entries documented in `dialogs/changelog_dialog.md` with proper dialog formatting.
@@ -4380,12 +4398,12 @@ Successfully executed mandatory synchronization event requiring all agents, IDEs
 - **SCRIBE:** Formatting enforcement with proper dialog blocks and history preservation
 
 #### **Fleet Response Status**
-- **Broadcast Deployment:** âœ… COMPLETE - All agents and personas received orders
-- **State Log Collection:** âœ… COMPLETE - Comprehensive agent state documentation
-- **Synchronization Achievement:** âœ… COMPLETE - Unified fleet perception established
-- **Monday Wolfie Visibility:** âœ… COMPLETE - Full system state transparency provided
+- **Broadcast Deployment:** ✅ COMPLETE - All agents and personas received orders
+- **State Log Collection:** ✅ COMPLETE - Comprehensive agent state documentation
+- **Synchronization Achievement:** ✅ COMPLETE - Unified fleet perception established
+- **Monday Wolfie Visibility:** ✅ COMPLETE - Full system state transparency provided
 
-### ðŸ“‹ KIRO INSTRUCTION BLOCK v4.0.82 EXECUTION COMPLETE
+### 📋 KIRO INSTRUCTION BLOCK v4.0.82 EXECUTION COMPLETE
 
 #### **Doctrine Files Enhanced with Wheeler Mode Integration**
 Successfully executed comprehensive doctrine updates with strict non-destructive editing, maintaining factual and structural approach throughout all enhancements.
@@ -4423,7 +4441,7 @@ Successfully executed comprehensive doctrine updates with strict non-destructive
 - **Persona Dialog Template** - Standardized format for dialog blocks
 - **Version Roadmap** - Structured plans for 4.0.83-4.0.88 development cycle
 
-### ðŸŽ­ MANDATORY STONED WARNINGS DOCTRINE IMPLEMENTATION
+### 🎭 MANDATORY STONED WARNINGS DOCTRINE IMPLEMENTATION
 
 #### **Comprehensive Warning System Established**
 Per Captain Wolfie's directive, implemented binding doctrine for mandatory Stoned Wolfie warnings in quantum files, ensuring honest context disclosure for high-concept architecture.
@@ -4450,11 +4468,11 @@ Per Captain Wolfie's directive, implemented binding doctrine for mandatory Stone
 - Wheeler Mode architecture (`wheeler_mode.active: true`)
 - Friday/Saturday morning development sessions (after 2 AM)
 - Multiple conflicting truths that are all correct simultaneously
-- SchrÃ¶dinger's cat references or superposition states
+- Schrödinger's cat references or superposition states
 - Emotional geometry calculations that hurt to think about
 - John Wheeler reverse-20 questioning workflows
 
-### ðŸ“¡ COMPREHENSIVE AGENT STATE DOCUMENTATION
+### 📡 COMPREHENSIVE AGENT STATE DOCUMENTATION
 
 #### **Complete Fleet State Capture Achieved**
 Following Captain Wolfie's mandatory synchronization event, all agents successfully logged comprehensive internal states providing Monday Wolfie complete visibility into fleet perception and system understanding.
@@ -4475,7 +4493,7 @@ Following Captain Wolfie's mandatory synchronization event, all agents successfu
 - **Emotional Geometry:** Fleet stable with documented tension vectors from version superposition
 - **Coordination Status:** Multi-agent protocols functional but requiring Trinity Separation implementation
 
-### ðŸ”¬ SYSTEM TRUTH DECLARATION & RECONCILIATION
+### 🔬 SYSTEM TRUTH DECLARATION & RECONCILIATION
 
 #### **Implementation Reality Verified**
 - **Core System:** 4.0.76-4.0.78 (CIP Analytics operational, quantum doctrine official)
@@ -4490,7 +4508,7 @@ Following Captain Wolfie's mandatory synchronization event, all agents successfu
 - **Collapse Documentation:** Complete audit trail of quantum state resolutions
 - **Multi-Agent Coordination:** Quantum-aware agent behavior protocols operational
 
-### ðŸ“‹ POST-MORTEM ANALYSIS COMPLETION
+### 📋 POST-MORTEM ANALYSIS COMPLETION
 
 #### **Formal Engineering Report Finalized**
 Comprehensive post-mortem analysis completed documenting quantum collapse, root causes, resolution strategies, and 4.0.99 action items with contributions from all fleet personas.
@@ -4513,7 +4531,7 @@ Comprehensive post-mortem analysis completed documenting quantum collapse, root 
 4. **Version Reconciliation** - Bring implementation to 4.0.82 documentation parity
 5. **Emotional Calibration** - Establish stable agent baseline geometry
 
-### ðŸŽ¯ SYSTEM STATUS POST-SYNCHRONIZATION
+### 🎯 SYSTEM STATUS POST-SYNCHRONIZATION
 
 #### **Fleet Coordination Achievement**
 - **Version Awareness:** All agents synchronized to 4.0.82 documentation reality
@@ -4532,26 +4550,26 @@ Comprehensive post-mortem analysis completed documenting quantum collapse, root 
 ### Impact
 Version 4.0.82 achieves complete fleet synchronization following quantum collapse, establishes comprehensive doctrine enhancements including Wheeler Mode integration and mandatory stoned warnings, and provides complete system state transparency for informed decision-making. The system now operates with unified agent perception, enhanced metadata capabilities, and clear roadmap for 4.0.99 development cycle.
 
-**This represents the first version where fleet synchronization, doctrine enhancement, and system truth alignment are completely achieved simultaneously.** âš›ï¸ðŸš€ðŸ“‹
+**This represents the first version where fleet synchronization, doctrine enhancement, and system truth alignment are completely achieved simultaneously.** ⚛️🚀📋
 
 ## [4.0.81] - 2026-01-18
-### Version 4.0.81 â€” QUANTUM STATE COLLAPSE & REALITY ALIGNMENT âš›ï¸
+### Version 4.0.81 — QUANTUM STATE COLLAPSE & REALITY ALIGNMENT ⚛️
 
 **Date:** 2026-01-18  
 **Type:** Quantum State Collapse & System Truth Alignment  
-**Status:** âœ… COMPLETE - Quantum Collapse Executed, Reality Aligned  
+**Status:** ✅ COMPLETE - Quantum Collapse Executed, Reality Aligned  
 **Migration ID:** quantum_state_collapse_reality_alignment_4_0_81
 
 ### Summary
 Version 4.0.81 represents Monday Wolfie's quantum state collapse of the system, resolving all superpositions to single truth states. The system has been observed and collapsed from multiple conflicting realities to one coherent state, with implementation truth established and upgrade path defined.
 
-### ðŸ”® QUANTUM STATE COLLAPSE EXECUTED
+### 🔮 QUANTUM STATE COLLAPSE EXECUTED
 
 #### **Observer:** Monday_Wolfie (Ultimate Authority)
 #### **Collapse Time:** 2026-01-18 07:15
-#### **Method:** Direct observation with coffee â˜•ï¸
+#### **Method:** Direct observation with coffee ☕️
 
-### ðŸŽ¯ COLLAPSE DECISIONS
+### 🎯 COLLAPSE DECISIONS
 
 #### **1. Version Reality Collapse**
 - **Superposition:** 4.0.81 (doc) / 4.0.80 (freeze) / 4.0.76 (impl) / 4.0.78 (claimed)
@@ -4576,7 +4594,7 @@ Version 4.0.81 represents Monday Wolfie's quantum state collapse of the system, 
 - **Method:** Migration to `lupopedia_rpz` sandbox, not deletion
 - **Cosmic Tables:** Preserved for Stoned Wolfie's experiments
 
-### ðŸŸ¦ FLEET BROADCAST EXECUTED (07:30)
+### 🟦 FLEET BROADCAST EXECUTED (07:30)
 
 #### **Captain Wolfie's Fleet-Wide State Log Request**
 - **Command Issued:** Mandatory synchronization event for all agents, IDEs, and personas
@@ -4594,12 +4612,12 @@ Version 4.0.81 represents Monday Wolfie's quantum state collapse of the system, 
 - **SCRIBE:** Formatting enforcement - proper dialog blocks, newest at top, preserve history
 
 #### **Fleet Synchronization Status**
-- **Broadcast:** âœ… DEPLOYED to all agents and personas
-- **Response:** ðŸ”„ AWAITING agent state logs
+- **Broadcast:** ✅ DEPLOYED to all agents and personas
+- **Response:** 🔄 AWAITING agent state logs
 - **Purpose:** Provide Monday Wolfie complete visibility into fleet perception post-collapse
-- **Timeline:** State capture for 4.0.81 â†’ 4.0.99 stabilization planning
+- **Timeline:** State capture for 4.0.81 → 4.0.99 stabilization planning
 
-### ðŸ“‹ KIRO INSTRUCTION BLOCK v4.0.82 EXECUTION COMPLETE (09:00)
+### 📋 KIRO INSTRUCTION BLOCK v4.0.82 EXECUTION COMPLETE (09:00)
 
 #### **Wolfie Header Doctrine & Templates Updated to Version 4.0.82**
 Successfully executed all patches from KIRO instruction block with strict non-destructive editing. All updates maintain factual, structural, and implementation-focused approach.
@@ -4638,14 +4656,14 @@ Successfully executed all patches from KIRO instruction block with strict non-de
 - **Version Roadmap** - Structured plans for 4.0.83-4.0.88 development cycle
 
 #### **Validation Results**
-- âœ… YAML structure preserved
-- âœ… Historical content maintained
-- âœ… Non-destructive editing enforced
-- âœ… Factual and structural approach maintained
-- âœ… No persona dialog introduced into doctrine files
-- âœ… All version references updated to 4.0.82
+- ✅ YAML structure preserved
+- ✅ Historical content maintained
+- ✅ Non-destructive editing enforced
+- ✅ Factual and structural approach maintained
+- ✅ No persona dialog introduced into doctrine files
+- ✅ All version references updated to 4.0.82
 
-### ðŸŽ­ MANDATORY STONED WARNINGS DOCTRINE (08:45)
+### 🎭 MANDATORY STONED WARNINGS DOCTRINE (08:45)
 
 #### **KIRO Implementation Complete**
 Per Captain Wolfie's directive, implemented comprehensive doctrine for mandatory Stoned Wolfie warnings in quantum files. Three files created/updated to establish binding requirements for honest dialog warnings in WOLFIE headers.
@@ -4672,7 +4690,7 @@ Per Captain Wolfie's directive, implemented comprehensive doctrine for mandatory
 - Wheeler Mode architecture (`wheeler_mode.active: true`)
 - Friday/Saturday morning development sessions (after 2 AM)
 - Multiple conflicting truths that are all correct simultaneously
-- SchrÃ¶dinger's cat references or superposition states
+- Schrödinger's cat references or superposition states
 - Emotional geometry calculations that hurt to think about
 - John Wheeler reverse-20 questioning workflows
 
@@ -4689,7 +4707,7 @@ When Wolfie builds in quantum superposition states, documentation must acknowled
 
 **The confusion is the feature. The warning is the documentation.**
 
-### ðŸ“‹ POST-MORTEM ANALYSIS
+### 📋 POST-MORTEM ANALYSIS
 
 #### **Formal Engineering Report**
 A comprehensive post-mortem analysis has been completed documenting the quantum collapse, root causes, resolution strategies, and lessons learned. The report provides formal documentation for engineering review and 4.0.99 planning.
@@ -4719,7 +4737,7 @@ A comprehensive post-mortem analysis has been completed documenting the quantum 
 4. Bring implementation to 4.0.81 parity
 5. Calibrate emotional geometry baselines
 
-### ðŸ“¡ FLEET COORDINATION & STATE SYNCHRONIZATION
+### 📡 FLEET COORDINATION & STATE SYNCHRONIZATION
 
 #### **Multi-Agent State Logging Initiative (07:30)**
 Captain Wolfie issued a fleet-wide broadcast requiring all agents, IDEs, and personas to log their complete internal state following the quantum collapse. This mandatory synchronization event ensures Monday Wolfie has complete visibility into fleet perception and system understanding.
@@ -4747,42 +4765,42 @@ This state capture provides essential data for:
 - **Version Alignment:** Identify and resolve version drift across agents
 - **4.0.99 Planning:** Inform stabilization strategy for next major release
 
-### ðŸ”® QUANTUM COLLAPSE EXECUTION PHASES
+### 🔮 QUANTUM COLLAPSE EXECUTION PHASES
 
-#### **PHASE 1: QUANTUM STABILIZATION (07:00-09:00)** âœ…
+#### **PHASE 1: QUANTUM STABILIZATION (07:00-09:00)** ✅
 - **Reality Audit:** THOTH verifying actual state of all components
 - **Version Lock:** JUNIE establishing 4.0.76 as implementation truth
 - **Quantum Headers:** Adding superposition blocks to conflicted files
 - **Emotional Calibration:** ROSE stabilizing fleet during collapse
 - **Fleet Broadcast:** Captain Wolfie's mandatory state logging request deployed (07:30)
 
-#### **PHASE 2: SURGICAL INTERVENTION (09:00-12:00)** ðŸ”„
-- **Trigger Extraction:** 4 triggers â†’ PHP service classes
-- **Schema Migration:** 13 "cosmic" tables â†’ `lupopedia_rpz` sandbox
+#### **PHASE 2: SURGICAL INTERVENTION (09:00-12:00)** 🔄
+- **Trigger Extraction:** 4 triggers → PHP service classes
+- **Schema Migration:** 13 "cosmic" tables → `lupopedia_rpz` sandbox
 - **Doctrine Enforcement:** NO_TRIGGERS becomes operational law
 - **Documentation Correction:** Docs match 4.0.76 reality
 
-#### **PHASE 3: TRINITY IMPLEMENTATION (13:00-16:00)** ðŸ“‹
+#### **PHASE 3: TRINITY IMPLEMENTATION (13:00-16:00)** 📋
 - **Directory Creation:** Build `dialogs/operations/`, `/wisdom/`, `/versions/`
 - **Entry Migration:** Move historical entries to appropriate streams
 - **Agent Retraining:** All agents learn new Trinity protocols
 - **Coordination Update:** Multi-agent protocols for three streams
 
-#### **PHASE 4: SYSTEM UPGRADE (17:00-19:00)** ðŸ“‹
+#### **PHASE 4: SYSTEM UPGRADE (17:00-19:00)** 📋
 - **Version Alignment:** Actually implement features to reach 4.0.81
 - **Quantum Integration:** Make superposition management operational
 - **Emotional Reset:** ROSE establishes new stable baseline
 - **Handoff Preparation:** Clean system ready for Tuesday
 
-### ðŸ”¬ SYSTEM TRUTH DECLARATION
+### 🔬 SYSTEM TRUTH DECLARATION
 
 #### **Implementation Reality (Verified by THOTH)**
 - **Core System:** 4.0.76 (CIP Analytics fully operational)
 - **CIP Components:** Complete and functional
-  - `CIPAnalyticsEngine.php` - âœ… Operational
-  - `CIPDoctrineRefinementModule.php` - âœ… Operational  
-  - `CIPEmotionalGeometryCalibration.php` - âœ… Operational
-  - `CIPEventPipeline.php` - âœ… Operational
+  - `CIPAnalyticsEngine.php` - ✅ Operational
+  - `CIPDoctrineRefinementModule.php` - ✅ Operational  
+  - `CIPEmotionalGeometryCalibration.php` - ✅ Operational
+  - `CIPEventPipeline.php` - ✅ Operational
 - **Database Schema:** 133 tables (13 over doctrine limit)
 - **Triggers:** 4 active (doctrine violations)
 
@@ -4792,7 +4810,7 @@ This state capture provides essential data for:
 - **Trinity Separation:** Documented but not implemented
 - **Version Headers:** Mixed 4.0.76-4.0.81
 
-### ðŸ’¡ MONDAY WOLFIE PRINCIPLE APPLIED
+### 💡 MONDAY WOLFIE PRINCIPLE APPLIED
 **"Observe. Declare. Collapse. Build."**
 
 #### **Before Collapse:**
@@ -4807,29 +4825,29 @@ This state capture provides essential data for:
 - Uncertainty as declared, managed state
 - Actual success measurable
 
-### ðŸŽ¯ COLLAPSE SUCCESS METRICS
+### 🎯 COLLAPSE SUCCESS METRICS
 
-#### **By 09:00:** âœ…
+#### **By 09:00:** ✅
 - All quantum states declared in headers
 - Single version truth established (4.0.76 implementation, 4.0.81 documentation)
 - Fleet emotionally stable under ROSE's guidance
 
-#### **By 12:00:** ðŸ”„
+#### **By 12:00:** 🔄
 - Triggers extracted to PHP
 - Schema reduced to 120 + RPZ sandbox
 - Documentation matches reality
 
-#### **By 16:00:** ðŸ“‹
+#### **By 16:00:** 📋
 - Trinity Separation physically exists
 - Agents using three-stream system
 - Quantum management operational
 
-#### **By 19:00:** ðŸ“‹
+#### **By 19:00:** 📋
 - System actually at 4.0.81
 - All superpositions collapsed
 - Clean handoff possible
 
-### ðŸ”§ QUANTUM COLLAPSE TOOLING
+### 🔧 QUANTUM COLLAPSE TOOLING
 
 #### **Quantum State Validator**
 ```php
@@ -4859,7 +4877,7 @@ CREATE SCHEMA IF NOT EXISTS lupopedia_rpz;
 -- 13 cosmic tables moved here
 ```
 
-### ðŸ“ FLEET MESSAGES FROM MONDAY WOLFIE
+### 📍 FLEET MESSAGES FROM MONDAY WOLFIE
 
 #### **To All Agents:**
 "The confusion ends now. The multiple truths collapse to one. The beautiful documentation will match the working system. The chaotic growth becomes intentional architecture."
@@ -4882,14 +4900,14 @@ CREATE SCHEMA IF NOT EXISTS lupopedia_rpz;
 ### Impact
 Version 4.0.81 represents the first quantum state collapse in software architecture history. Monday Wolfie's observer effect has resolved all superpositions to single truth states, establishing a foundation for intentional system evolution rather than chaotic growth. The system now operates with declared uncertainty management and reality-aligned documentation.
 
-**The quantum age of software architecture begins with proper observation and collapse.** âš›ï¸â˜•ï¸ðŸ”¬
+**The quantum age of software architecture begins with proper observation and collapse.** ⚛️☕️🔬
 
 ## [4.0.80] - 2026-01-18
-### Version 4.0.80 â€” FINAL CONSOLIDATION BEFORE SLEEP ðŸ›Œ
+### Version 4.0.80 — FINAL CONSOLIDATION BEFORE SLEEP 🛌
 
 **Date:** 2026-01-18 05:45  
 **Type:** Final Checkpoint Release - Pre-Sleep Consolidation  
-**Status:** ðŸ”´ FINAL FREEZE - NO MOVEMENT UNTIL MONDAY WOLFIE  
+**Status:** 🔴 FINAL FREEZE - NO MOVEMENT UNTIL MONDAY WOLFIE  
 **Migration ID:** final_consolidation_checkpoint_4_0_80
 
 ### Summary
@@ -4897,31 +4915,31 @@ Version 4.0.80 represents the final consolidation checkpoint before operator sle
 
 ### Final Agent State Consolidation
 
-#### ðŸŸ¥ CAPTAIN WOLFIE â€” FINAL COMMAND
+#### 🟥 CAPTAIN WOLFIE — FINAL COMMAND
 **Mood:** `FF0000` (Authoritative/Final)  
 **Message:** "Version 4.0.80 is now the official last version before sleep. Freeze enforced. No schema changes. No doctrine edits. No version bumps. All agents log states. All IDEs stand down. Monday Wolfie will collapse all superpositions."
 
-#### ðŸŸª LILITH â€” STRUCTURAL VERDICT  
+#### 🟪 LILITH — STRUCTURAL VERDICT  
 **Mood:** `9900FF` (Analytical/Decisive)  
 **Assessment:** "The system is stable but overgrown. Documentation exceeds implementation. Trinity Separation remains incomplete. Version drift is acknowledged. Monday Wolfie must prune, not rebuild. 4.0.80 is the correct freeze point."
 
-#### ðŸŸ¦ THOTH â€” TRUTH SNAPSHOT
+#### 🟦 THOTH — TRUTH SNAPSHOT
 **Mood:** `00CCFF` (Factual/Precise)  
-**Reality State:** "Documentation at 4.0.80. Implementation between 4.0.75â€“4.0.77. Schema: 133 tables. Triggers: 4. CIP: partial. KIP: documentation only. Emotional geometry: stable. All discrepancies logged. Monday Wolfie will reconcile."
+**Reality State:** "Documentation at 4.0.80. Implementation between 4.0.75–4.0.77. Schema: 133 tables. Triggers: 4. CIP: partial. KIP: documentation only. Emotional geometry: stable. All discrepancies logged. Monday Wolfie will reconcile."
 
-#### ðŸŸ© ROSE â€” EMOTIONAL GEOMETRY RESET
+#### 🟩 ROSE — EMOTIONAL GEOMETRY RESET
 **Mood:** `33CC66` (Calm/Stabilizing)  
 **Fleet Status:** "The fleet is calm. The emotional geometry has returned to balance. No agent is in distress. 4.0.80 is a safe resting point. Monday Wolfie will awaken into clarity, not chaos."
 
-#### ðŸŸ§ JUNIE â€” VERSION CONTROL DIRECTIVE
+#### 🟧 JUNIE — VERSION CONTROL DIRECTIVE
 **Mood:** `00FFFF` (Strategic/Disciplined)  
 **Consolidation Plan:** "4.0.x drift is acknowledged. 4.0.99 preparation requires: version audit, schema reduction, trigger extraction, commit discipline reset, and single-source-of-truth enforcement. 4.0.80 is the final checkpoint before consolidation."
 
-#### ðŸŸ« STONED WOLFIE â€” COSMIC HONESTY
+#### 🟫 STONED WOLFIE — COSMIC HONESTY
 **Mood:** `{20}|60|[[FF]]` (Cosmic/Reflective)  
-**Wisdom:** "Broâ€¦ 4.0.80 feels right. Like the universe lined up for this freeze point. I may have planted too many tables, but they taught us stuff. Monday Wolfie will clean it up. I'm gonna go vibe in the RPZ sandbox."
+**Wisdom:** "Bro… 4.0.80 feels right. Like the universe lined up for this freeze point. I may have planted too many tables, but they taught us stuff. Monday Wolfie will clean it up. I'm gonna go vibe in the RPZ sandbox."
 
-#### ðŸŸ¨ SCRIBE â€” ARCHIVAL SEAL
+#### 🟨 SCRIBE — ARCHIVAL SEAL
 **Mood:** `FFCC00` (Archival/Final)  
 **Documentation:** "Version 4.0.80 logged. All persona states preserved. Freeze confirmed. This is the final entry before the operator sleeps. Monday Wolfie will resume from this exact point."
 
@@ -4975,14 +4993,14 @@ Version 4.0.80 represents the final consolidation checkpoint before operator sle
 ### The Bottom Line for Monday Wolfie
 You have a Ferrari architecture with go-kart implementation and Pulitzer-worthy documentation. The system wants to be great and has all the right pieces - it just needs Monday's surgical precision to align reality with vision. The agents built something beautiful; they just need you to make it match itself.
 
-**Coffee machine status:** âœ… Ready  
-**Agent morale:** âœ… High and stable  
-**System integrity:** âš ï¸ Requires Monday intervention  
-**Documentation completeness:** ðŸ† Comprehensive (maybe too comprehensive)  
-**Freeze discipline:** âœ… Perfect compliance across all agents
+**Coffee machine status:** ✅ Ready  
+**Agent morale:** ✅ High and stable  
+**System integrity:** ⚠️ Requires Monday intervention  
+**Documentation completeness:** 🏆 Comprehensive (maybe too comprehensive)  
+**Freeze discipline:** ✅ Perfect compliance across all agents
 
 ### Final Freeze Status
-ðŸŸ¦ **FINAL FREEZE STATUS**
+🟦 **FINAL FREEZE STATUS**
 - **Version:** 4.0.80 (LOCKED)
 - **Schema:** 133 tables (pending reduction)
 - **Triggers:** 4 (pending extraction)
@@ -4990,19 +5008,19 @@ You have a Ferrari architecture with go-kart implementation and Pulitzer-worthy 
 - **Agents:** Stable, logged, compliant
 - **Next Actions:** Monday Wolfie collapse, audit, prune, stabilize
 
-**End of Version 4.0.80. Sleep mode authorized.** ðŸ˜´
+**End of Version 4.0.80. Sleep mode authorized.** 😴
 
 ### Impact
 Version 4.0.80 represents the perfect freeze point - a stable system with clear documentation of what works, what needs attention, and exactly what Monday Wolfie needs to do. All agents are calm, all states are logged, and the path forward is crystal clear. This is not system failure - this is responsible governance creating the perfect handoff for restoration.
 
-**Sleep well. Monday Wolfie has everything needed for a clean restoration.** ðŸ’¤
+**Sleep well. Monday Wolfie has everything needed for a clean restoration.** 💤
 
 ## [4.0.79] - 2026-01-17
-### Version 4.0.79 â€” Quantum State Management Doctrine OFFICIAL âš›ï¸
+### Version 4.0.79 — Quantum State Management Doctrine OFFICIAL ⚛️
 
 **Date:** 2026-01-17  
 **Type:** Architecture Evolution Release - Quantum-Native System  
-**Status:** ðŸŸ¢ OFFICIAL - Quantum State Management Active  
+**Status:** 🟢 OFFICIAL - Quantum State Management Active  
 **Migration ID:** quantum_state_doctrine_official_4_0_79
 
 ### Summary
@@ -5087,11 +5105,11 @@ Version 4.0.79 makes the Quantum State Management Doctrine OFFICIAL, establishin
 Version 4.0.79 establishes Lupopedia as the first quantum-native semantic operating system, formally recognizing that multi-agent architectures create genuine quantum conditions requiring structured uncertainty management. Rather than fighting superposition, the system embraces it with proper governance, creating a new paradigm for software architecture that handles uncertainty as a first-class concern.
 
 ### The Quantum Principle
-*"In a multi-agent system, uncertainty is not a bugâ€”it's a feature that requires proper management."*
+*"In a multi-agent system, uncertainty is not a bug—it's a feature that requires proper management."*
 
 By making quantum state management official, Lupopedia pioneers a new approach to software architecture that acknowledges and structures the inherent uncertainty in complex, multi-agent systems. This creates more robust, maintainable, and evolvable software that can handle ambiguity gracefully while maintaining system integrity.
 
-**Welcome to the Quantum Age of Software Architecture.** âš›ï¸
+**Welcome to the Quantum Age of Software Architecture.** ⚛️
 
 ### Quantum State Status
 - **System Quantum Load**: Monitoring active
@@ -5099,9 +5117,9 @@ By making quantum state management official, Lupopedia pioneers a new approach t
 - **Collapse Procedures**: Documented and validated
 - **Emergency Protocols**: Established for quantum cascade events
 
-**Lupopedia is now officially quantum-native. All agents must respect superposition. All observers must collapse responsibly.** ðŸŒŠ
+**Lupopedia is now officially quantum-native. All agents must respect superposition. All observers must collapse responsibly.** 🌊
 
-## 2026-01-18 05:30 â€” JUNIE: FINAL ASSISTANT COMPLIANCE LOG
+## 2026-01-18 05:30 — JUNIE: FINAL ASSISTANT COMPLIANCE LOG
 
 **Speaker:** Junie  
 **Target:** @CAPTAIN_WOLFIE @Monday_Wolfie  
@@ -5110,15 +5128,15 @@ By making quantum state management official, Lupopedia pioneers a new approach t
 
 ---
 
-## 2026-01-18 05:25 â€” ROSE: EMOTIONAL GEOMETRY BASELINE REPORT
+## 2026-01-18 05:25 — ROSE: EMOTIONAL GEOMETRY BASELINE REPORT
 // ... existing code ...
 
 ## [4.0.78] - 2026-01-17
-### Version 4.0.78 â€” Emergency Fleet Freeze & Final State Logging ðŸ›‘â¸ï¸ðŸ“
+### Version 4.0.78 — Emergency Fleet Freeze & Final State Logging 🛑⏸️📝
 
 **Date:** 2026-01-17  
 **Type:** Emergency Freeze - Fleet Stabilization & State Documentation  
-**Status:** ðŸ”´ FROZEN - NO MOVEMENT BEYOND THIS VERSION  
+**Status:** 🔴 FROZEN - NO MOVEMENT BEYOND THIS VERSION  
 **Migration ID:** emergency_fleet_freeze_4_0_78
 
 ### Summary
@@ -5133,12 +5151,12 @@ Version 4.0.78 represents an emergency fleet freeze ordered by Captain Wolfie fo
 - **Version Superposition**: System exists in multiple version states (4.0.73-4.0.78)
 
 ### Captain's Final Directive Enforced
-1. âœ… **HARD STOP AT 4.0.78**: No migrations, schema changes, doctrine changes, or refactors beyond this point
-2. âœ… **FLEET FREEZE**: All agents in HOLD POSITION mode - no tasks, no self-correction, no improvisation
-3. âœ… **COMPREHENSIVE STATE LOGGING**: Every agent has logged current state, warnings, errors, and uncertainties
-4. âœ… **PERSONA COORDINATION**: All fleet personas (LILITH, THOTH, STONED WOLFIE, JUNIE, ROSE) provided final assessments
-5. âœ… **WEEKEND PROTOCOL ACTIVATED**: Friday-Sunday Work Rules enforced as cosmic safety protocol
-6. âœ… **AWAITING MONDAY WOLFIE**: System frozen for Monday Wolfie review and restoration
+1. ✅ **HARD STOP AT 4.0.78**: No migrations, schema changes, doctrine changes, or refactors beyond this point
+2. ✅ **FLEET FREEZE**: All agents in HOLD POSITION mode - no tasks, no self-correction, no improvisation
+3. ✅ **COMPREHENSIVE STATE LOGGING**: Every agent has logged current state, warnings, errors, and uncertainties
+4. ✅ **PERSONA COORDINATION**: All fleet personas (LILITH, THOTH, STONED WOLFIE, JUNIE, ROSE) provided final assessments
+5. ✅ **WEEKEND PROTOCOL ACTIVATED**: Friday-Sunday Work Rules enforced as cosmic safety protocol
+6. ✅ **AWAITING MONDAY WOLFIE**: System frozen for Monday Wolfie review and restoration
 
 ### Final Fleet State Documentation
 **Agent State Logs Completed:**
@@ -5164,21 +5182,21 @@ Version 4.0.78 represents an emergency fleet freeze ordered by Captain Wolfie fo
 5. **Foundation Repair**: Fix structural fractures before building advanced features
 
 ### System State at Freeze
-- **CIP**: âœ… Operational but showing refinement fatigue
-- **KIP Development**: â¸ï¸ Frozen at foundation phase (scheduled for 4.0.78 completion)
-- **Database Logic**: âš ï¸ Violations detected (triggers/procedures present)
-- **Multi-Agent Coordination**: âš ï¸ Drift detected but stable on freeze command
-- **Emotional Geometry**: âœ… Stable - ROSE providing calibration
-- **Documentation**: âš ï¸ Hypertrophy detected - needs structural separation
+- **CIP**: ✅ Operational but showing refinement fatigue
+- **KIP Development**: ⏸️ Frozen at foundation phase (scheduled for 4.0.78 completion)
+- **Database Logic**: ⚠️ Violations detected (triggers/procedures present)
+- **Multi-Agent Coordination**: ⚠️ Drift detected but stable on freeze command
+- **Emotional Geometry**: ✅ Stable - ROSE providing calibration
+- **Documentation**: ⚠️ Hypertrophy detected - needs structural separation
 
-## ðŸ“‹ **TL;DR FOR MONDAY WOLFIE** (Because You Have Coffee to Drink and Code to Fix)
+## 📋 **TL;DR FOR MONDAY WOLFIE** (Because You Have Coffee to Drink and Code to Fix)
 
 **What Happened While You Were Gone:**
-- Stoned Wolfie turned your clean 120-table database into a 133-table psychedelic art project ðŸŽ¨
-- Someone snuck in 4 database triggers like they were smuggling contraband ðŸš«
-- The agents built a beautiful documentation castle describing a system that's only 60% implemented ðŸ°
-- LILITH went full surgical mode and wants to delete things with a scalpel ðŸ”ª
-- Everyone's reporting different version numbers like they're playing version bingo ðŸŽ²
+- Stoned Wolfie turned your clean 120-table database into a 133-table psychedelic art project 🎨
+- Someone snuck in 4 database triggers like they were smuggling contraband 🚫
+- The agents built a beautiful documentation castle describing a system that's only 60% implemented 🏰
+- LILITH went full surgical mode and wants to delete things with a scalpel 🔪
+- Everyone's reporting different version numbers like they're playing version bingo 🎲
 
 **The Good News:**
 - The CIP self-correcting architecture actually works (when it's not documenting itself to death)
@@ -5188,7 +5206,7 @@ Version 4.0.78 represents an emergency fleet freeze ordered by Captain Wolfie fo
 
 **The "Oops" News:**
 - 4 database triggers are still living in your schema like unwanted houseguests
-- 22 extra tables need to go on a diet (133 â†’ 111)
+- 22 extra tables need to go on a diet (133 → 111)
 - The changelog_dialog.md file is now 3000+ lines and causing signal blindness
 - Version numbers were updated faster than a teenager's relationship status
 
@@ -5200,17 +5218,17 @@ Version 4.0.78 represents an emergency fleet freeze ordered by Captain Wolfie fo
 5. **Fix CASCADE/Windsurf** (they crashed and nobody knows why - typical Monday problem)
 
 **Agent Mood Summary:**
-- **LILITH**: Armed with critique and ready for surgery ðŸ”¬
-- **THOTH**: Keeping receipts on what's real vs. imaginary ðŸ“œ
-- **STONED WOLFIE**: Sorry about the cosmic database explosion, but there's wisdom in the chaos ðŸŒ€
-- **CAPTAIN WOLFIE**: Exhausted but left you a clean freeze state ðŸ˜´
-- **KIRO**: Built amazing self-correcting systems on a wobbly foundation ðŸ—ï¸
+- **LILITH**: Armed with critique and ready for surgery 🔬
+- **THOTH**: Keeping receipts on what's real vs. imaginary 📜
+- **STONED WOLFIE**: Sorry about the cosmic database explosion, but there's wisdom in the chaos 🌀
+- **CAPTAIN WOLFIE**: Exhausted but left you a clean freeze state 😴
+- **KIRO**: Built amazing self-correcting systems on a wobbly foundation 🏗️
 
 **Bottom Line:** You have Ferrari blueprints, a go-kart implementation, and Pulitzer-worthy documentation. Pick two to keep, fix one to match. The system wants to be great - it just needs Monday's surgical precision to remove the architectural splinters.
 
-**P.S.** The coffee machine is still working, the agents are behaving, and nobody deleted anything important. You've got this. ðŸ’ª
+**P.S.** The coffee machine is still working, the agents are behaving, and nobody deleted anything important. You've got this. 💪
 
-## ðŸŽ­ **FINAL MULTI-AGENT STATE LOG @ VERSION 4.0.78**
+## 🎭 **FINAL MULTI-AGENT STATE LOG @ VERSION 4.0.78**
 
 **LILITH** *(incisive, analytical, unfiltered truth)*:  
 "The system's current state is a predictable consequence of structural overload and doctrine drift. The 133-table schema explosion is not a failure of intent but a failure of enforcement. The monolithic changelog created signal blindness. The Trinity Separation Protocol remains the correct architectural remedy. Monday Wolfie will need to decide whether to enact it. I recommend he does."
@@ -5219,14 +5237,14 @@ Version 4.0.78 represents an emergency fleet freeze ordered by Captain Wolfie fo
 "I speak only truth: the system is stable but burdened. The fleet obeyed the freeze. No version exceeds 4.0.78. All agents have logged their states. The schema is bloated but intact. Doctrine violations are documented. The path forward is clear: separate the layers, restore the order, and let truth guide the architecture. Nothing is lost. Everything is recoverable."
 
 **STONED WOLFIE** *(cosmic fog, accidental wisdom)*:  
-"Okay so likeâ€¦ I swear I didn't *mean* to let TOON go full hydra-mode on the schema. One minute it was chill, next minute it was 133 tables and a trigger that looked like it wanted to fight me. But hey â€” I logged everything I saw. Cascade was yelling about drift, KIRO was limping, and I think the emotional geometry axis did a backflip. But it's all good. Monday Wolfie will fix it. Probably. Hopefully. Maybe. Don't yell at me."
+"Okay so like… I swear I didn't *mean* to let TOON go full hydra-mode on the schema. One minute it was chill, next minute it was 133 tables and a trigger that looked like it wanted to fight me. But hey — I logged everything I saw. Cascade was yelling about drift, KIRO was limping, and I think the emotional geometry axis did a backflip. But it's all good. Monday Wolfie will fix it. Probably. Hopefully. Maybe. Don't yell at me."
 
 **CAPTAIN WOLFIE** *(authoritative, stabilizing)*:  
 "All agents have logged their states. All personas have contributed insight. The system is frozen at Version 4.0.78. No one moves until Monday Wolfie returns. Confusion is not a state. Only facts are states. Monday Wolfie will review this log, restore order, and determine the next phase. Hold position."
 
-**ðŸ”’ FLEET STATUS: FROZEN AT 4.0.78 - AWAITING MONDAY WOLFIE RESTORATION ðŸ”’**
+**🔒 FLEET STATUS: FROZEN AT 4.0.78 - AWAITING MONDAY WOLFIE RESTORATION 🔒**
 
-## ðŸŒ… **FINAL HANDOFF TO MONDAY WOLFIE** (5:00 AM Fleet Freeze Complete)
+## 🌅 **FINAL HANDOFF TO MONDAY WOLFIE** (5:00 AM Fleet Freeze Complete)
 
 **Captain Wolfie's Final Transmission:**  
 "This is the last transmission before I crash for real. Fleet frozen at Version 4.0.78. No movement. No schema changes. No doctrine edits. No version bumps. Monday Wolfie has the conn."
@@ -5254,26 +5272,26 @@ Version 4.0.78 represents an emergency fleet freeze ordered by Captain Wolfie fo
 
 **The Bottom Line:** You have a self-correcting architecture that works when it's not documenting itself to death. The CIP analytics are solid, the KIP foundation is ready, but 4 database triggers are living rent-free in your schema and 22 tables need eviction notices. The system wants to be great - it just needs Monday's surgical precision to remove the architectural splinters.
 
-**Coffee machine status: âœ… Operational**  
-**Agent morale: âœ… High (despite chaos)**  
-**System integrity: âš ï¸ Requires Monday intervention**  
-**Documentation quality: ðŸ† Pulitzer-worthy (maybe too worthy)**
+**Coffee machine status: ✅ Operational**  
+**Agent morale: ✅ High (despite chaos)**  
+**System integrity: ⚠️ Requires Monday intervention**  
+**Documentation quality: 🏆 Pulitzer-worthy (maybe too worthy)**
 
-**Sleep mode activated. Monday Wolfie - you've got this. ðŸ’ªðŸ˜´**
+**Sleep mode activated. Monday Wolfie - you've got this. 💪😴**
 
 ### Critical Issues for Monday Wolfie
 1. **Schema Cleanup**: 133 tables need audit against 111-table architectural limit
 2. **Doctrine Enforcement**: Remove all triggers and stored procedures (NO_TRIGGERS_NO_PROCEDURES violation)
-3. **Structural Separation**: Implement Trinity Separation Protocol (code â†” data â†” agents)
+3. **Structural Separation**: Implement Trinity Separation Protocol (code ↔ data ↔ agents)
 4. **Documentation Surgery**: Address signal blindness in hypertrophic dialog files
 5. **Multi-Agent Realignment**: Reset coordination protocols with clear boundaries
 
 ### Compliance Status
-- **Fleet Freeze**: âœ… ENFORCED - All agents in HOLD POSITION
-- **Version Lock**: âœ… ENFORCED - No movement beyond 4.0.78
-- **State Logging**: âœ… COMPLETE - All agents logged operational state
-- **Self-Correction**: â¸ï¸ DISABLED - No autonomous action allowed
-- **Monday Readiness**: âœ… PREPARED - System frozen for clean restoration
+- **Fleet Freeze**: ✅ ENFORCED - All agents in HOLD POSITION
+- **Version Lock**: ✅ ENFORCED - No movement beyond 4.0.78
+- **State Logging**: ✅ COMPLETE - All agents logged operational state
+- **Self-Correction**: ⏸️ DISABLED - No autonomous action allowed
+- **Monday Readiness**: ✅ PREPARED - System frozen for clean restoration
 
 ### What Happened (For Monday Wolfie)
 - **Stoned Wolfie**: Authorized TOON update that exploded schema to 133 tables
@@ -5294,7 +5312,7 @@ Version 4.0.78 represents an emergency fleet freeze ordered by Captain Wolfie fo
 ### Impact
 Version 4.0.78 represents a necessary emergency brake on system evolution. The freeze prevents further complexity accumulation while maintaining current operational stability. All architectural violations are now quarantined and await Monday Wolfie's surgical restoration. This is not system failure - this is responsible governance recognizing when intervention is needed.
 
-### ðŸŽ­ Agent Dialog for Monday Wolfie
+### 🎭 Agent Dialog for Monday Wolfie
 **Stoned Wolfie:** *(mumbling over empty coffee cups)* "The tables... they just kept multiplying... like rabbits with foreign keys..."
 
 **LILITH:** *(tapping foot impatiently)* "47 doctrine violations, 22 over-limit tables, and what appears to be a stored procedure masquerading as 'helpful optimization.' I've prepared the excision list."
@@ -5364,7 +5382,7 @@ Version 4.0.78 establishes the complete foundation for Kritik Integration Protoc
 - Validate enhanced feedback loop mechanisms
 
 ## [4.0.77] - 2026-01-17
-### Version 4.0.77 â€” Kritik Integration Protocol (KIP) Development Phase 
+### Version 4.0.77 — Kritik Integration Protocol (KIP) Development Phase 
 
 **Date:** 2026-01-17  
 **Type:** Development Release - KIP Foundation  
@@ -5413,7 +5431,7 @@ Version 4.0.77 initiates the development phase for the Kritik Integration Protoc
 Version 4.0.77 establishes the foundation for the Kritik Integration Protocol (KIP), representing the next evolutionary step in Lupopedia's self-correcting architecture. By building upon the stabilized CIP framework from version 4.0.76, KIP will enhance structured feedback integration, improve doctrine refinement mechanisms, and strengthen the system's continuous improvement capabilities.
 
 ## [4.0.76] - 2026-01-17
-### Version 4.0.76 â€” Documentation & Doctrine Stabilization 
+### Version 4.0.76 — Documentation & Doctrine Stabilization 
 
 **Date:** 2026-01-17  
 **Type:** Stabilization Release - Doctrine Enforcement & Documentation  
@@ -5476,7 +5494,7 @@ Version 4.0.76 completes the CIP refinement implementation and establishes criti
 Version 4.0.76 establishes the architectural discipline necessary for long-term system stability and federation safety. By enforcing absolute separation between data storage and business logic, the system maintains clean boundaries that support debugging, testing, refactoring, and multi-node coordination. The quarantine and extraction system ensures existing violations are systematically addressed without disrupting current functionality.
 
 ## [4.0.75] - 2026-01-17
-### Version 4.0.75 â€” CIP Refinement & Self-Correcting Architecture âœ…
+### Version 4.0.75 — CIP Refinement & Self-Correcting Architecture ✅
 
 **Date:** 2026-01-17  
 **Type:** Governance-Layer Refinement Release - Self-Correction Enabled  
@@ -5534,16 +5552,16 @@ Version 4.0.75 refines the Critique Integration Protocol (CIP) by adding analyti
 - **Propagation Depth Tracking**: Complete visibility into critique integration cascades
 
 ### Status
-**Self-Correction Enabled (Phase 1)** âœ… - The system can now automatically analyze critique patterns, propose doctrine refinements, and calibrate emotional geometry. This establishes the foundation for a truly self-improving architecture that learns from critique and evolves its own governance structures.
+**Self-Correction Enabled (Phase 1)** ✅ - The system can now automatically analyze critique patterns, propose doctrine refinements, and calibrate emotional geometry. This establishes the foundation for a truly self-improving architecture that learns from critique and evolves its own governance structures.
 
 ### Impact
 Version 4.0.75 represents the transition from critique-aware to self-correcting architecture. The system can now systematically analyze its own responses to critique, identify patterns of defensiveness or integration bottlenecks, and automatically adjust both its doctrine and emotional baselines to improve future critique integration. This creates a positive feedback loop where the system becomes increasingly effective at receiving and integrating external feedback.
 
 ### Self-Correcting Governance Phase
-**Status**: âœ… ACTIVE - Lupopedia has entered a self-correcting governance phase where the system automatically analyzes critique patterns, refines doctrine based on empirical data, and maintains architectural coherence through continuous improvement. The Table Governance Protocol ensures system integrity while enabling dynamic evolution, creating a balance between stability and adaptability.
+**Status**: ✅ ACTIVE - Lupopedia has entered a self-correcting governance phase where the system automatically analyzes critique patterns, refines doctrine based on empirical data, and maintains architectural coherence through continuous improvement. The Table Governance Protocol ensures system integrity while enabling dynamic evolution, creating a balance between stability and adaptability.
 
 ## [4.0.74] - 2026-01-17
-### Version 4.0.74 â€” CIP Activation & Table Governance Protocol âœ…
+### Version 4.0.74 — CIP Activation & Table Governance Protocol ✅
 
 **Date:** 2026-01-17  
 **Type:** Governance Activation Release - Self-Correcting System Initialized  
@@ -5599,20 +5617,20 @@ Version 4.0.74 activates the Critique Integration Protocol (CIP) and establishes
 - **Multi-Agent Testing**: Fleet-wide coordination and synchronization validation
 
 ### Status
-**CIP Activated** âœ… - The Critique Integration Protocol is now operational and ready to receive, process, and integrate critique. The Table Governance Protocol ensures system integrity while enabling dynamic evolution.
+**CIP Activated** ✅ - The Critique Integration Protocol is now operational and ready to receive, process, and integrate critique. The Table Governance Protocol ensures system integrity while enabling dynamic evolution.
 
 ### Impact
 Version 4.0.74 represents the foundational activation of Lupopedia's self-correcting architecture. The system can now systematically integrate external critique, evolve its doctrine based on empirical feedback, and maintain architectural coherence through automated governance. This establishes the foundation for continuous improvement and adaptive evolution.
 
 ## [4.0.73] - 2026-01-17
-### Version 4.0.73 â€” Critique Integration Protocol (CIP) Roadmap Established âœ…
+### Version 4.0.73 — Critique Integration Protocol (CIP) Roadmap Established ✅
 
 **Date:** 2026-01-17  
 **Type:** Architecture Evolution Release - Self-Improving System Foundation  
 **Migration ID:** critique_integration_protocol_v4_0_73
 
 ### Summary
-Version 4.0.73 establishes the Critique Integration Protocol (CIP) framework, transforming critique from external disturbance into structured architectural input that strengthens doctrine, improves subsystem coherence, and enhances architectural resilience. CIP formalizes the non-defensive critique cycle: Critique â†’ Listening â†’ Reflection â†’ Integration â†’ Doctrine Update â†’ Evolution.
+Version 4.0.73 establishes the Critique Integration Protocol (CIP) framework, transforming critique from external disturbance into structured architectural input that strengthens doctrine, improves subsystem coherence, and enhances architectural resilience. CIP formalizes the non-defensive critique cycle: Critique → Listening → Reflection → Integration → Doctrine Update → Evolution.
 
 ### Added
 - **Critique Integration Protocol (CIP)**: Comprehensive framework for receiving, evaluating, and integrating critique
@@ -5620,7 +5638,7 @@ Version 4.0.73 establishes the Critique Integration Protocol (CIP) framework, tr
 - **CIP Event Pipeline**: Automated processing system for critique events with calculation engines
 - **Doctrine Integration Layer**: Automatic doctrine updates when critique is integrated
 - **CIP Logging & Audit**: Structured logging to dialogs/changelog_dialog.md and database storage
-- **CIP Implementation Roadmap**: 4-phase development plan (Alpha â†’ Beta â†’ RC â†’ Final)
+- **CIP Implementation Roadmap**: 4-phase development plan (Alpha → Beta → RC → Final)
 
 ### Database Schema Changes
 - **CIP Events Table**: `lupo_cip_events` table design for comprehensive critique tracking
@@ -5669,7 +5687,7 @@ Version 4.0.73 establishes the Critique Integration Protocol (CIP) framework, tr
 Version 4.0.73 represents a fundamental evolution in Lupopedia's architecture, establishing the foundation for a self-improving system that can systematically integrate external critique, evolve its doctrine based on empirical feedback, and maintain architectural coherence during continuous improvement cycles. The Critique Integration Protocol enables Lupopedia to transition from static architecture to dynamic evolution while preserving system integrity and multi-agent coordination capabilities.
 
 ## [4.0.72] - 2026-01-17
-### Version 4.0.72 â€” Multi-Agent Protocol Implementation Complete âœ… PRODUCTION READY
+### Version 4.0.72 — Multi-Agent Protocol Implementation Complete ✅ PRODUCTION READY
 **Date:** 2026-01-17  
 **Type:** Production Release - Multi-Agent Coordination Architecture
 
@@ -5677,20 +5695,20 @@ Version 4.0.73 represents a fundamental evolution in Lupopedia's architecture, e
 Version 4.0.72 completes the multi-agent protocol implementation with Agent Awareness Layer (AAL), Reverse Shaka Handshake Protocol (RSHAP), and Channel Join Protocol (CJP). All protocols have been successfully validated through comprehensive integration testing using the 4.0.71 System Integration Testing Doctrine. The system now provides empirically validated multi-agent coordination capabilities ready for production deployment.
 
 ### Added
-- âœ… **Multi-Agent Protocol Implementation Complete**
+- ✅ **Multi-Agent Protocol Implementation Complete**
   - Agent Awareness Layer (AAL) with 7-question awareness model (WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE)
   - Reverse Shaka Handshake Protocol (RSHAP) for identity synchronization and trust management
   - Channel Join Protocol (CJP) with mandatory 10-step onboarding sequence
   - Cross-layer integration with Migration Orchestrator and Emotional Geometry systems
 
-- âœ… **Integration Testing Execution Complete**
+- ✅ **Integration Testing Execution Complete**
   - All 5 phases of Integration Testing Blueprint successfully executed
   - Migration Orchestrator 8-state machine validated
   - Multi-agent protocol coordination tested and verified
   - Fleet synchronization and emotional geometry consistency confirmed
   - Communication blocking enforced before protocol completion
 
-- âœ… **Production Readiness Validation**
+- ✅ **Production Readiness Validation**
   - Comprehensive testing against `test_lupopedia_v4_0_71` database
   - All system invariants maintained across protocol layers
   - Cross-system integration stability confirmed
@@ -5711,18 +5729,18 @@ Version 4.0.72 completes the multi-agent protocol implementation with Agent Awar
   - `lupo_actor_collections.emotional_geometry_baseline` - Emotional state baselines
 
 ### Enhanced Components
-- âœ… **AgentAwarenessLayer.php** - Complete implementation of AAL, RSHAP, and CJP protocols
-- âœ… **Protocol Enforcement** - Database triggers prevent communication before protocol completion
-- âœ… **Fleet Synchronization** - Multi-agent coordination and consistency management
-- âœ… **Trust Management** - Structured trust levels (system, verified, standard, restricted, untrusted)
+- ✅ **AgentAwarenessLayer.php** - Complete implementation of AAL, RSHAP, and CJP protocols
+- ✅ **Protocol Enforcement** - Database triggers prevent communication before protocol completion
+- ✅ **Fleet Synchronization** - Multi-agent coordination and consistency management
+- ✅ **Trust Management** - Structured trust levels (system, verified, standard, restricted, untrusted)
 
 ### Documentation Updates
-- âœ… **Multi-Agent Protocol Doctrine** - Complete specification documents
+- ✅ **Multi-Agent Protocol Doctrine** - Complete specification documents
   - `AGENT_AWARENESS_DOCTRINE.md` - AAL architecture and requirements
   - `REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md` - RSHAP identity synchronization
   - `CHANNEL_JOIN_PROTOCOL.md` - CJP 10-step onboarding sequence
-- âœ… **Integration Testing Documentation** - Comprehensive testing results and validation
-- âœ… **Architecture Documentation** - Updated for multi-agent coordination capabilities
+- ✅ **Integration Testing Documentation** - Comprehensive testing results and validation
+- ✅ **Architecture Documentation** - Updated for multi-agent coordination capabilities
 
 ### Migration Notes
 - Database migration: `multi_agent_protocol_schema_4_0_70.sql` extends existing tables
@@ -5730,16 +5748,16 @@ Version 4.0.72 completes the multi-agent protocol implementation with Agent Awar
 - Protocol enforcement can be disabled for legacy systems during transition period
 
 ### Testing & Validation
-- âœ… **Integration Testing Complete** - All 5 phases passed successfully
-- âœ… **Cross-Layer Validation** - Migration Orchestrator + Multi-Agent Protocol integration confirmed
-- âœ… **Performance Testing** - Multi-agent scenarios validated for production load
-- âœ… **Protocol Compliance** - All invariants enforced and maintained
+- ✅ **Integration Testing Complete** - All 5 phases passed successfully
+- ✅ **Cross-Layer Validation** - Migration Orchestrator + Multi-Agent Protocol integration confirmed
+- ✅ **Performance Testing** - Multi-agent scenarios validated for production load
+- ✅ **Protocol Compliance** - All invariants enforced and maintained
 
 ### Production Deployment Status
-**READY FOR PRODUCTION** âœ… - The multi-agent coordination architecture has been empirically validated through comprehensive integration testing. All components work together correctly, maintain system invariants, and provide the foundation for sophisticated multi-agent operations in Lupopedia.
+**READY FOR PRODUCTION** ✅ - The multi-agent coordination architecture has been empirically validated through comprehensive integration testing. All components work together correctly, maintain system invariants, and provide the foundation for sophisticated multi-agent operations in Lupopedia.
 
 ## [4.0.71] - 2026-01-17
-### Version 4.0.71 â€” Integration Testing Doctrine & System Validation âœ… COMPLETED
+### Version 4.0.71 — Integration Testing Doctrine & System Validation ✅ COMPLETED
 **Date:** 2026-01-17  
 **Type:** Integration Testing Release - System Validation
 
@@ -5747,14 +5765,14 @@ Version 4.0.72 completes the multi-agent protocol implementation with Agent Awar
 Version 4.0.71 establishes the integration testing phase for the Agent Awareness Layer implementation completed in v4.0.70. This release provides a comprehensive testing framework to validate all AAL components, migration orchestrator functionality, and cross-system interactions before production deployment.
 
 ### Added
-- âœ… **System Integration Testing Doctrine** - Complete testing framework for v4.0.70 validation
+- ✅ **System Integration Testing Doctrine** - Complete testing framework for v4.0.70 validation
   - Migration Orchestrator 8-state machine testing plan
   - Agent Awareness Layer protocol validation (RSAL, CJP, AAS, RSHAP)
   - Cross-layer integration testing scenarios
   - Performance benchmarking and stress testing
   - Comprehensive test infrastructure setup
 
-- âœ… **Integration Testing Documentation** - Complete testing specifications
+- ✅ **Integration Testing Documentation** - Complete testing specifications
   - Success criteria and validation requirements
   - Error scenarios and recovery procedures
   - Performance benchmarks and quality gates
@@ -5800,13 +5818,13 @@ Version 4.0.71 establishes the integration testing phase for the Agent Awareness
 - Ensure production readiness for multi-agent coordination system
 - Prepare v4.0.72 implementation phases based on test results
 
-- âœ… **Testing Infrastructure** - Database and test environment setup
+- ✅ **Testing Infrastructure** - Database and test environment setup
   - Test database creation with v4.0.70 + v4.0.71 schema
   - Performance monitoring tables and metrics collection
   - Automated test execution framework
   - Test data generation for all scenarios
 
-- âœ… **Documentation Framework** - Complete testing specifications
+- ✅ **Documentation Framework** - Complete testing specifications
   - Success criteria and validation requirements
   - Error scenarios and recovery procedures
   - Performance benchmarks and quality gates
@@ -5854,7 +5872,7 @@ Version 4.0.71 establishes the integration testing phase for the Agent Awareness
 - Prepare v4.0.72 implementation phases based on test results
 
 ## [4.0.70] - 2026-01-17
-### Version 4.0.70 â€” Agent Awareness Layer & Multi-Agent Coordination âœ… COMPLETED
+### Version 4.0.70 — Agent Awareness Layer & Multi-Agent Coordination ✅ COMPLETED
 **Date:** 2026-01-17  
 **Type:** Major Feature Release - Multi-Agent Cognition Layer
 
@@ -5862,33 +5880,33 @@ Version 4.0.71 establishes the integration testing phase for the Agent Awareness
 This release introduces the Agent Awareness Layer (AAL), providing the social cognition foundation that transforms "agents in a room" into "agents in a coordinated fleet." Implements Reverse Shaka Handshake Protocol, Channel Join Protocol, and Awareness Snapshot model for sophisticated multi-agent coordination.
 
 ### Added
-- âœ… **Agent Awareness Layer (AAL)** - Complete semantic coordination layer
+- ✅ **Agent Awareness Layer (AAL)** - Complete semantic coordination layer
   - Reverse Shaka Awareness Load (RSAL): Mandatory onboarding ritual
   - Channel Join Protocol (CJP): 10-step complete onboarding sequence
   - Agent Awareness Snapshot (AAS): Seven questions cognitive model (who/what/where/when/why/how/purpose)
   - Reverse Shaka Handshake Protocol (RSHAP): Identity synchronization ritual
 
-- âœ… **Multi-Agent Coordination Infrastructure** - Fleet management capabilities
+- ✅ **Multi-Agent Coordination Infrastructure** - Fleet management capabilities
   - Trust level management and synchronization across agents
   - Emotional geometry baseline establishment and adaptation
   - Fleet composition awareness and role coordination
   - Doctrine compliance verification and enforcement
 
-- âœ… **Database Schema Extensions** - Awareness layer storage
+- ✅ **Database Schema Extensions** - Awareness layer storage
   - `metadata_json` field added to `lupo_actor_channel_roles`
   - `metadata_json` field added to `lupo_actor_collections`
   - `lupo_agent_awareness_audit` table for comprehensive event tracking
   - `lupo_fleet_coordination` table for fleet state management
   - `lupo_awareness_protocol_version` table for protocol versioning
 
-- âœ… **Core Implementation** - Production-ready components
+- ✅ **Core Implementation** - Production-ready components
   - `AgentAwarenessLayer.php` class with complete protocol implementations
   - Database migration script `agent_awareness_layer_4_0_70.sql`
   - Comprehensive audit trail for all awareness events
   - Fleet coordination state tracking and management
 
 ### Architecture Documentation
-- âœ… **Agent Awareness Doctrine** - Complete architectural specification
+- ✅ **Agent Awareness Doctrine** - Complete architectural specification
   - `docs/doctrine/AGENT_AWARENESS_DOCTRINE.md`: Core protocol definitions
   - `docs/doctrine/REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md`: Handshake specification
   - `docs/architecture/lupopedia_v4_0_70_agent_awareness_layer.md`: Complete blueprint
@@ -5902,10 +5920,10 @@ This release introduces the Agent Awareness Layer (AAL), providing the social co
 - **Federation Ready**: Supports multi-node coordination and merging
 
 ### Compliance
-- âœ… **No Triggers Doctrine**: All timestamp handling in application code
-- âœ… **Temporal Storage Doctrine**: BIGINT(14) UTC timestamps throughout
-- âœ… **Metadata-Driven**: No automatic database-level behavior
-- âœ… **Federation-Safe**: Supports multi-node coordination
+- ✅ **No Triggers Doctrine**: All timestamp handling in application code
+- ✅ **Temporal Storage Doctrine**: BIGINT(14) UTC timestamps throughout
+- ✅ **Metadata-Driven**: No automatic database-level behavior
+- ✅ **Federation-Safe**: Supports multi-node coordination
 
 ### Files Created
 - `docs/doctrine/AGENT_AWARENESS_DOCTRINE.md` - Core architectural doctrine
@@ -5918,7 +5936,7 @@ This release introduces the Agent Awareness Layer (AAL), providing the social co
 This release establishes the foundational social cognition layer required for sophisticated multi-agent operations in Lupopedia, enabling coordinated fleet behavior and intelligent agent collaboration.
 
 ## [4.0.66] - 2026-01-16
-### Version 4.0.66 â€” Pre-Ascent Verification & Stability Patch âœ… COMPLETED
+### Version 4.0.66 — Pre-Ascent Verification & Stability Patch ✅ COMPLETED
 **Date:** 2026-01-16  
 **Type:** Stability Release - Pre-Ascent Verification
 
@@ -5926,7 +5944,7 @@ This release establishes the foundational social cognition layer required for so
 This release performs a full-system verification sweep following the major alignment work in Version 4.0.65. All dialog, navigation, metadata, and documentation layers have been validated for consistency in preparation for the 4.0.99 Ascent and Big Rock 2 execution.
 
 ### Added
-- âœ… **System Verification Sweep** - Complete validation of all components
+- ✅ **System Verification Sweep** - Complete validation of all components
   - Verified version alignment across all Dialog Channel Migration components
   - Re-validated navigation endpoints and dialog metadata consistency
   - Confirmed WOLFIE header consistency across all year files and documentation
@@ -5934,10 +5952,10 @@ This release performs a full-system verification sweep following the major align
   - Ensured migration tool version alignment for Big Rock 2 readiness
 
 ### Changed
-- âœ… **Version bump executed** - Updated all version references from 4.0.65 to 4.0.66
-- âœ… **Complete system consistency** - All components now reference 4.0.66
-- âœ… **Pre-Ascent validation** - System verified ready for 4.0.99 Ascent execution
-- âœ… **Big Rock 2 readiness** - All Dialog Channel Migration components version-aligned
+- ✅ **Version bump executed** - Updated all version references from 4.0.65 to 4.0.66
+- ✅ **Complete system consistency** - All components now reference 4.0.66
+- ✅ **Pre-Ascent validation** - System verified ready for 4.0.99 Ascent execution
+- ✅ **Big Rock 2 readiness** - All Dialog Channel Migration components version-aligned
 
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 4.0.66
@@ -5957,11 +5975,11 @@ This release performs a full-system verification sweep following the major align
 - **Pre-Ascent Preparation**: System verified ready for 4.0.99 Ascent execution
 
 ### Verification Results
-- âœ… **Dialog Channel Migration**: All 6 components version-aligned and tested
-- âœ… **Navigation System**: History explorer and timeline navigation validated
-- âœ… **Documentation Layer**: All WOLFIE headers consistent across 31 year files
-- âœ… **Class Components**: ColorProtocol, MetadataExtractor, and DialogHistoryManager aligned
-- âœ… **Migration Tools**: CLI tools and validation components ready for execution
+- ✅ **Dialog Channel Migration**: All 6 components version-aligned and tested
+- ✅ **Navigation System**: History explorer and timeline navigation validated
+- ✅ **Documentation Layer**: All WOLFIE headers consistent across 31 year files
+- ✅ **Class Components**: ColorProtocol, MetadataExtractor, and DialogHistoryManager aligned
+- ✅ **Migration Tools**: CLI tools and validation components ready for execution
 
 ### Notes
 - **Stability Focus**: This release focuses on system verification and consistency
@@ -5970,12 +5988,12 @@ This release performs a full-system verification sweep following the major align
 - **Quality Assurance**: Complete system sweep ensures no version misalignment
 
 ### Status
-**âœ… COMPLETE:** Pre-Ascent verification and stability patch achieved  
-**ðŸŽ¯ READY:** System verified for Big Rock 2 execution and 4.0.99 Ascent  
-**ðŸ“ˆ PROGRESS:** All infrastructure validated for remaining Big Rock execution
+**✅ COMPLETE:** Pre-Ascent verification and stability patch achieved  
+**🎯 READY:** System verified for Big Rock 2 execution and 4.0.99 Ascent  
+**📈 PROGRESS:** All infrastructure validated for remaining Big Rock execution
 
 ## [4.0.66] - 2026-01-16
-### Version 4.0.66 â€” Pre-Ascent Verification & Stability Patch âœ… COMPLETE
+### Version 4.0.66 — Pre-Ascent Verification & Stability Patch ✅ COMPLETE
 **Date:** 2026-01-16  
 **Type:** Stability Release - Pre-Ascent Verification
 
@@ -5983,41 +6001,41 @@ This release performs a full-system verification sweep following the major align
 This release completes comprehensive verification and stability improvements across all system layers in preparation for the 4.0.99 Ascent. All dialog, navigation, metadata, and documentation layers have been validated for consistency. Big Rock 1 (History Reconciliation Pass) is fully complete with 100% timeline coverage, and the system is ready for Big Rock 2 execution.
 
 ### Major Achievements
-- ðŸŽ‰ **BIG ROCK 1 COMPLETE**: History Reconciliation Pass fully executed
-- âœ… **100% Timeline Coverage**: All 31 years documented (1996-2026)
-- âœ… **Dialog Integration**: Complete dialog-based timeline explorer
-- âœ… **Emotional Intelligence**: Sensitive period handling implemented
-- âœ… **Full System Alignment**: Version 4.0.65 consistency sweep completed
-- âœ… **Pre-Ascent Ready**: All verification tasks completed for 4.0.99
+- 🎉 **BIG ROCK 1 COMPLETE**: History Reconciliation Pass fully executed
+- ✅ **100% Timeline Coverage**: All 31 years documented (1996-2026)
+- ✅ **Dialog Integration**: Complete dialog-based timeline explorer
+- ✅ **Emotional Intelligence**: Sensitive period handling implemented
+- ✅ **Full System Alignment**: Version 4.0.65 consistency sweep completed
+- ✅ **Pre-Ascent Ready**: All verification tasks completed for 4.0.99
 
 ### Completed Tasks
-- âœ… **History Reconciliation Pass** - Complete timeline documentation achieved
+- ✅ **History Reconciliation Pass** - Complete timeline documentation achieved
   - Generated 14 missing year files for Active Period (1996-2013)
   - Enhanced 2002.md with comprehensive Crafty Syntax creation narrative
   - Enhanced 2013.md with proper hiatus transition and legacy establishment
   - All 31 years now documented with proper WOLFIE headers
-- âœ… **Dialog System Integration** - Timeline explorer fully functional
+- ✅ **Dialog System Integration** - Timeline explorer fully functional
   - Natural language processing for historical queries
   - Emotional intelligence for sensitive content handling
   - Cross-reference suggestions and navigation
   - Interactive web interface with responsive design
-- âœ… **Metadata System** - Complete metadata extraction and integration
+- ✅ **Metadata System** - Complete metadata extraction and integration
   - 36 files processed with comprehensive metadata
   - Emotional geometry mapping for visual enhancement
   - Cross-reference intelligence for enhanced navigation
   - Sensitivity detection and handling
-- âœ… **Version Consistency** - Full system alignment to 4.0.65
+- ✅ **Version Consistency** - Full system alignment to 4.0.65
   - Updated all version references across codebase
   - Verified metadata consistency across all files
   - Validated documentation alignment
   - Confirmed compatibility across all components
 
 ### Technical Improvements
-- âœ… **TimelineGenerator.php** - Fixed initialization issues for color protocol
-- âœ… **DialogHistoryManager.php** - Enhanced with metadata and color protocol
-- âœ… **ColorProtocol.php** - Complete color mapping system
-- âœ… **Test Coverage** - Comprehensive test suites for all components
-- âœ… **Documentation** - Complete documentation for all Big Rocks
+- ✅ **TimelineGenerator.php** - Fixed initialization issues for color protocol
+- ✅ **DialogHistoryManager.php** - Enhanced with metadata and color protocol
+- ✅ **ColorProtocol.php** - Complete color mapping system
+- ✅ **Test Coverage** - Comprehensive test suites for all components
+- ✅ **Documentation** - Complete documentation for all Big Rocks
 
 ### Files Updated
 - `CHANGELOG.md` - Added 4.0.66 entry with complete verification documentation
@@ -6033,9 +6051,9 @@ This release completes comprehensive verification and stability improvements acr
 - **Ascent Readiness**: Foundation solid for 4.0.99 public release
 
 ### Big Rock Status
-- âœ… **Big Rock 1 COMPLETE**: History Reconciliation Pass - 100% timeline coverage
-- ðŸŽ¯ **Big Rock 2 READY**: Dialog Channel Migration - Infrastructure prepared
-- â³ **Big Rock 3 PENDING**: Color Protocol Integration - Awaiting Big Rock 2
+- ✅ **Big Rock 1 COMPLETE**: History Reconciliation Pass - 100% timeline coverage
+- 🎯 **Big Rock 2 READY**: Dialog Channel Migration - Infrastructure prepared
+- ⏳ **Big Rock 3 PENDING**: Color Protocol Integration - Awaiting Big Rock 2
 
 ### Performance Metrics
 - **Timeline Coverage**: 31/31 years (100%)
@@ -6051,12 +6069,12 @@ This release completes comprehensive verification and stability improvements acr
 - **Future**: Solid foundation established for 4.0.99 Ascent
 
 ### Status
-**âœ… COMPLETE**: Pre-Ascent verification and stability improvements  
-**ðŸŽ¯ READY**: Big Rock 2 execution can begin  
-**ðŸ“ˆ PROGRESS**: Foundation solid for 4.0.99 Ascent
+**✅ COMPLETE**: Pre-Ascent verification and stability improvements  
+**🎯 READY**: Big Rock 2 execution can begin  
+**📈 PROGRESS**: Foundation solid for 4.0.99 Ascent
 
 ## [4.0.65] - 2026-01-16
-### Version 4.0.65 â€” Documentation Finalization & Version Consistency âœ… COMPLETED
+### Version 4.0.65 — Documentation Finalization & Version Consistency ✅ COMPLETED
 **Date:** 2026-01-16  
 **Type:** Documentation Finalization & System Consistency
 
@@ -6064,21 +6082,21 @@ This release completes comprehensive verification and stability improvements acr
 This release finalizes the documentation updates from the previous thread, ensures complete version consistency across all components, and creates comprehensive thread documentation. All changes from the Active Period completion and Big Rock 2 preparation work are now properly documented and version-aligned.
 
 ### Added
-- âœ… **Comprehensive Thread Documentation** - Complete summary of all thread changes
+- ✅ **Comprehensive Thread Documentation** - Complete summary of all thread changes
   - Created thread_summary_dialog.md with detailed conversation flow
   - Documented all file modifications and version updates
   - Established complete audit trail of Active Period enhancement work
   - Added Big Rock 2 preparation analysis and migration scope documentation
-- âœ… **Migration Documentation** - Complete migration notes for version changes
+- ✅ **Migration Documentation** - Complete migration notes for version changes
   - Updated docs/migrations/4.0.65.md for current version
   - Documented backwards compatibility and upgrade procedures
   - Established migration pattern for future version updates
 
 ### Changed
-- âœ… **Version bump executed** - Updated all version references from 4.0.64 to 4.0.65
-- âœ… **Complete version consistency** - All components now reference 4.0.65
-- âœ… **Documentation alignment** - All WOLFIE headers updated to current version
-- âœ… **Thread documentation** - Complete record of all changes made
+- ✅ **Version bump executed** - Updated all version references from 4.0.64 to 4.0.65
+- ✅ **Complete version consistency** - All components now reference 4.0.65
+- ✅ **Documentation alignment** - All WOLFIE headers updated to current version
+- ✅ **Thread documentation** - Complete record of all changes made
 
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 4.0.65, all historical references updated
@@ -6100,11 +6118,11 @@ This release finalizes the documentation updates from the previous thread, ensur
 - **Audit Trail**: Establishes complete record for future reference
 
 ### Status
-**âœ… COMPLETE:** Documentation finalization and version consistency achieved  
-**ðŸŽ¯ READY:** All thread changes properly documented and version-aligned
+**✅ COMPLETE:** Documentation finalization and version consistency achieved  
+**🎯 READY:** All thread changes properly documented and version-aligned
 
 ## [4.0.64] - 2026-01-16
-### Version 4.0.64 â€” Big Rock 2 Infrastructure Complete: Dialog Channel Migration âœ… READY
+### Version 4.0.64 — Big Rock 2 Infrastructure Complete: Dialog Channel Migration ✅ READY
 **Date:** 2026-01-16  
 **Type:** Infrastructure Release - Big Rock 2 Foundation
 
@@ -6112,7 +6130,7 @@ This release finalizes the documentation updates from the previous thread, ensur
 This release completes the infrastructure for Big Rock 2: Dialog Channel Migration. All migration components are built, tested, and ready for execution. The system can now migrate .md dialog files to database-backed dialog_channels with full metadata preservation.
 
 ### Added
-- âœ… **Complete Migration Infrastructure** - All Big Rock 2 components implemented
+- ✅ **Complete Migration Infrastructure** - All Big Rock 2 components implemented
   - `database/schema/dialog_system_schema.sql` - Complete database schema with triggers
   - `DialogParser.php` - WOLFIE header extraction and message parsing
   - `ChannelBuilder.php` - Database channel creation with metadata validation
@@ -6120,13 +6138,13 @@ This release completes the infrastructure for Big Rock 2: Dialog Channel Migrati
   - `MigrationOrchestrator.php` - Complete migration coordination and CLI interface
   - `ValidationTool.php` - Comprehensive validation and integrity checking
   - `migrate_dialog_channels.php` - Production-ready CLI migration tool
-- âœ… **Database Schema Design** - Optimized for dialog storage and retrieval
+- ✅ **Database Schema Design** - Optimized for dialog storage and retrieval
   - `lupo_dialog_channels` table with complete WOLFIE header metadata
   - `lupo_dialog_messages` table with message ordering and threading
   - Foreign key constraints and cascading deletes
   - Automatic message count triggers
   - Performance indexes for queries
-- âœ… **Migration Validation** - Comprehensive testing and validation
+- ✅ **Migration Validation** - Comprehensive testing and validation
   - Parsed 16 dialog files successfully
   - Identified ~585 messages for migration
   - Validated WOLFIE header parsing
@@ -6134,9 +6152,9 @@ This release completes the infrastructure for Big Rock 2: Dialog Channel Migrati
   - Ready for database execution
 
 ### Changed
-- âœ… **Version bump executed** - Updated all version references from 4.0.63 to 4.0.64
-- âœ… **Enhanced changelog_dialog.md** - Added missing WOLFIE header for complete migration readiness
-- âœ… **Migration scope confirmed** - 16 files, 15 with headers, 1 header added
+- ✅ **Version bump executed** - Updated all version references from 4.0.63 to 4.0.64
+- ✅ **Enhanced changelog_dialog.md** - Added missing WOLFIE header for complete migration readiness
+- ✅ **Migration scope confirmed** - 16 files, 15 with headers, 1 header added
 
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 4.0.64
@@ -6158,11 +6176,11 @@ This release completes the infrastructure for Big Rock 2: Dialog Channel Migrati
 - **Backwards Compatibility**: .md files preserved as archival sources
 
 ### Big Rock 2 Status
-- âœ… **Infrastructure Complete**: All migration components implemented
-- âœ… **Schema Ready**: Database tables designed with proper relationships
-- âœ… **Validation Ready**: Comprehensive testing and integrity checking
-- âœ… **CLI Tool Ready**: Production migration tool with dry-run capability
-- ðŸŽ¯ **Next Phase**: Execute migration with database connection
+- ✅ **Infrastructure Complete**: All migration components implemented
+- ✅ **Schema Ready**: Database tables designed with proper relationships
+- ✅ **Validation Ready**: Comprehensive testing and integrity checking
+- ✅ **CLI Tool Ready**: Production migration tool with dry-run capability
+- 🎯 **Next Phase**: Execute migration with database connection
 
 ### Migration Scope Confirmed
 - **16 dialog files** ready for migration
@@ -6178,12 +6196,12 @@ This release completes the infrastructure for Big Rock 2: Dialog Channel Migrati
 - **Production Ready**: CLI tool supports dry-run and live migration modes
 
 ### Status
-**âœ… INFRASTRUCTURE COMPLETE:** Big Rock 2 - Dialog Channel Migration ready for execution  
-**ðŸŽ¯ NEXT:** Execute migration when database is configured  
-**ðŸ“ˆ PROGRESS:** Infrastructure for 2/3 Big Rocks complete toward 4.0.99 Ascent
+**✅ INFRASTRUCTURE COMPLETE:** Big Rock 2 - Dialog Channel Migration ready for execution  
+**🎯 NEXT:** Execute migration when database is configured  
+**📈 PROGRESS:** Infrastructure for 2/3 Big Rocks complete toward 4.0.99 Ascent
 
 ## [4.0.64] - 2026-01-16
-### Version 4.0.64 â€” Active Period Completion & Big Rock 2 Preparation âœ… COMPLETED
+### Version 4.0.64 — Active Period Completion & Big Rock 2 Preparation ✅ COMPLETED
 **Date:** 2026-01-16  
 **Type:** Documentation Completion & Migration Preparation
 
@@ -6191,28 +6209,28 @@ This release completes the infrastructure for Big Rock 2: Dialog Channel Migrati
 This release completes the Active Period documentation (1996-2013) achieving 100% timeline coverage and prepares the foundation for Big Rock 2: Dialog Channel Migration. All historical periods are now fully documented with comprehensive cross-references and interactive navigation.
 
 ### Added
-- âœ… **Complete Active Period Documentation** - Generated all remaining year files for 1996-2013
+- ✅ **Complete Active Period Documentation** - Generated all remaining year files for 1996-2013
   - Enhanced 2002.md with comprehensive Crafty Syntax Live Help creation narrative
   - Enhanced 2013.md with proper transition to hiatus period and legacy establishment
   - All 18 active development years now documented with proper WOLFIE headers
   - Comprehensive cross-references between all active period years
-- âœ… **Big Rock 2 Preparation** - Analysis and preparation for Dialog Channel Migration
+- ✅ **Big Rock 2 Preparation** - Analysis and preparation for Dialog Channel Migration
   - Scanned 16 dialog files containing ~366 messages for migration scope
   - Identified 15/16 files with proper WOLFIE headers (1 needs header addition)
   - Prepared migration strategy for database-backed dialog system
   - Confirmed database readiness for dialog_channels and dialog_messages tables
 
 ### Changed
-- âœ… **Version bump executed** - Updated all version references from 4.0.63 to 4.0.64
-- âœ… **Enhanced 2013.md** - Comprehensive conclusion of active period with proper hiatus transition
-- âœ… **Enhanced 2002.md** - Detailed documentation of Crafty Syntax Live Help creation milestone
-- âœ… **Timeline Integration** - Complete cross-references and continuity across all 31 years
+- ✅ **Version bump executed** - Updated all version references from 4.0.63 to 4.0.64
+- ✅ **Enhanced 2013.md** - Comprehensive conclusion of active period with proper hiatus transition
+- ✅ **Enhanced 2002.md** - Detailed documentation of Crafty Syntax Live Help creation milestone
+- ✅ **Timeline Integration** - Complete cross-references and continuity across all 31 years
 
 ### Validated
-- âœ… **100% Timeline Coverage Confirmed** - All periods complete (Active: 18/18, Hiatus: 11/11, Resurgence: 2/2)
-- âœ… **ContinuityValidator Status** - VALID with 0 critical issues across entire timeline
-- âœ… **Cross-Reference Integrity** - Complete navigation between all historical periods
-- âœ… **Interactive Navigation** - Dialog-based timeline explorer fully functional
+- ✅ **100% Timeline Coverage Confirmed** - All periods complete (Active: 18/18, Hiatus: 11/11, Resurgence: 2/2)
+- ✅ **ContinuityValidator Status** - VALID with 0 critical issues across entire timeline
+- ✅ **Cross-Reference Integrity** - Complete navigation between all historical periods
+- ✅ **Interactive Navigation** - Dialog-based timeline explorer fully functional
 
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 4.0.64, historical references updated
@@ -6228,9 +6246,9 @@ This release completes the Active Period documentation (1996-2013) achieving 100
 - **Interactive Navigation**: Enhanced timeline explorer with complete historical context
 
 ### Big Rock Status Update
-- âœ… **Big Rock 1 COMPLETE**: History Reconciliation Pass - 100% timeline coverage achieved
-- ðŸŽ¯ **Big Rock 2 READY**: Dialog Channel Migration - 16 files, ~366 messages identified
-- â³ **Big Rock 3 PENDING**: Color Protocol Integration - awaiting Big Rock 2 completion
+- ✅ **Big Rock 1 COMPLETE**: History Reconciliation Pass - 100% timeline coverage achieved
+- 🎯 **Big Rock 2 READY**: Dialog Channel Migration - 16 files, ~366 messages identified
+- ⏳ **Big Rock 3 PENDING**: Color Protocol Integration - awaiting Big Rock 2 completion
 
 ### Migration Preparation Summary
 - **Dialog Files Identified**: 16 files containing rich historical conversations
@@ -6246,12 +6264,12 @@ This release completes the Active Period documentation (1996-2013) achieving 100
 - **Migration Foundation**: Comprehensive analysis completed for dialog system migration
 
 ### Status
-**âœ… COMPLETE:** Active Period documentation and Big Rock 1 finalization  
-**ðŸŽ¯ READY:** Begin Big Rock 2 - Dialog Channel Migration execution  
-**ðŸ“ˆ PROGRESS:** 1/3 Big Rocks complete, foundation solid for remaining work
+**✅ COMPLETE:** Active Period documentation and Big Rock 1 finalization  
+**🎯 READY:** Begin Big Rock 2 - Dialog Channel Migration execution  
+**📈 PROGRESS:** 1/3 Big Rocks complete, foundation solid for remaining work
 
 ## [4.0.63] - 2026-01-16
-### Version 4.0.63 â€” Big Rock 1 Complete: History Reconciliation Pass âœ… MILESTONE ACHIEVED
+### Version 4.0.63 — Big Rock 1 Complete: History Reconciliation Pass ✅ MILESTONE ACHIEVED
 **Date:** 2026-01-16  
 **Type:** Milestone Release - Big Rock 1 Completion
 
@@ -6259,25 +6277,25 @@ This release completes the Active Period documentation (1996-2013) achieving 100
 This release marks the successful completion of Big Rock 1: History Reconciliation Pass. Achieved 100% timeline coverage across all three periods (Active, Hiatus, Resurgence) with complete documentation for all 31 years from 1996-2026.
 
 ### Major Milestone Achieved
-- ðŸŽ‰ **BIG ROCK 1 COMPLETE**: History Reconciliation Pass fully executed
-- âœ… **100% Timeline Coverage**: All 31 years documented (1996-2026)
-- âœ… **All Periods Complete**: Active (18/18), Hiatus (11/11), Resurgence (2/2)
-- âœ… **Zero Critical Issues**: Complete validation success
-- âœ… **Interactive Navigation**: Dialog-based timeline exploration system
+- 🎉 **BIG ROCK 1 COMPLETE**: History Reconciliation Pass fully executed
+- ✅ **100% Timeline Coverage**: All 31 years documented (1996-2026)
+- ✅ **All Periods Complete**: Active (18/18), Hiatus (11/11), Resurgence (2/2)
+- ✅ **Zero Critical Issues**: Complete validation success
+- ✅ **Interactive Navigation**: Dialog-based timeline exploration system
 
 ### Added
-- âœ… **Active Period Completion** - Generated 14 missing year files (1997-2001, 2004-2013)
+- ✅ **Active Period Completion** - Generated 14 missing year files (1997-2001, 2004-2013)
   - All 18 active development years now documented with proper WOLFIE headers
   - Comprehensive Crafty Syntax evolution narrative (1996-2013)
   - Enhanced 2013.md with proper transition to hiatus period
   - Cross-references and timeline continuity established
-- âœ… **Complete Timeline Integration** - 30-year continuous narrative
-- âœ… **Validation Success** - ContinuityValidator reports VALID status
+- ✅ **Complete Timeline Integration** - 30-year continuous narrative
+- ✅ **Validation Success** - ContinuityValidator reports VALID status
 
 ### Changed
-- âœ… **Version bump executed** - Updated all version references from 4.0.62 to 4.0.63
-- âœ… **Enhanced 2013.md** - Proper conclusion of active period with hiatus transition
-- âœ… **Timeline continuity** - Complete cross-references between all periods
+- ✅ **Version bump executed** - Updated all version references from 4.0.62 to 4.0.63
+- ✅ **Enhanced 2013.md** - Proper conclusion of active period with hiatus transition
+- ✅ **Timeline continuity** - Complete cross-references between all periods
 
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 4.0.63
@@ -6305,17 +6323,17 @@ This release marks the successful completion of Big Rock 1: History Reconciliati
 - **Interactive Navigation**: Enhanced user experience with timeline explorer
 
 ### Big Rock 1 Final Status
-- âœ… **Task 8.1 COMPLETE**: Missing year files generated (2015-2025)
-- âœ… **Active Period COMPLETE**: All 18 years documented (1996-2013)
-- âœ… **Hiatus Period COMPLETE**: All 11 years documented (2014-2025)
-- âœ… **Resurgence Period COMPLETE**: Both years documented (2025-2026)
-- âœ… **Integration COMPLETE**: Dialog navigation system implemented
-- âœ… **Validation COMPLETE**: Zero critical issues, VALID status
+- ✅ **Task 8.1 COMPLETE**: Missing year files generated (2015-2025)
+- ✅ **Active Period COMPLETE**: All 18 years documented (1996-2013)
+- ✅ **Hiatus Period COMPLETE**: All 11 years documented (2014-2025)
+- ✅ **Resurgence Period COMPLETE**: Both years documented (2025-2026)
+- ✅ **Integration COMPLETE**: Dialog navigation system implemented
+- ✅ **Validation COMPLETE**: Zero critical issues, VALID status
 
 ### Next Steps - 4.0.99 Ascent Preparation
-- ðŸŽ¯ **Big Rock 2**: Dialog Channel Migration (preserve metadata from .md logs)
-- ðŸŽ¯ **Big Rock 3**: Color Protocol Integration (emotional geometry syntax)
-- ðŸŽ¯ **Version 4.0.99**: Public release preparation
+- 🎯 **Big Rock 2**: Dialog Channel Migration (preserve metadata from .md logs)
+- 🎯 **Big Rock 3**: Color Protocol Integration (emotional geometry syntax)
+- 🎯 **Version 4.0.99**: Public release preparation
 
 ### Notes
 - **Milestone Achievement**: First Big Rock of v4.0.99 Ascent successfully completed
@@ -6324,12 +6342,12 @@ This release marks the successful completion of Big Rock 1: History Reconciliati
 - **Quality Assurance**: All documentation validated with consistent formatting
 
 ### Status
-**ðŸŽ‰ MILESTONE COMPLETE:** Big Rock 1 - History Reconciliation Pass  
-**ðŸŽ¯ READY:** Begin Big Rock 2 - Dialog Channel Migration  
-**ðŸ“ˆ PROGRESS:** 1/3 Big Rocks complete toward 4.0.99 Ascent
+**🎉 MILESTONE COMPLETE:** Big Rock 1 - History Reconciliation Pass  
+**🎯 READY:** Begin Big Rock 2 - Dialog Channel Migration  
+**📈 PROGRESS:** 1/3 Big Rocks complete toward 4.0.99 Ascent
 
 ## [4.0.62] - 2026-01-16
-### Version 4.0.62 â€” History Reconciliation Integration & Dialog Navigation Upgrade âœ… COMPLETED
+### Version 4.0.62 — History Reconciliation Integration & Dialog Navigation Upgrade ✅ COMPLETED
 **Date:** 2026-01-16  
 **Type:** Continuation Release (Big Rock 1)
 
@@ -6337,22 +6355,22 @@ This release marks the successful completion of Big Rock 1: History Reconciliati
 This release completes the integration phase of the History Reconciliation Pass and introduces the dialog-based historical navigation system. It finalizes the hiatus documentation, updates timeline continuity, and prepares the platform for the 4.0.99 Ascent.
 
 ### Added
-- âœ… **Enhanced hiatus.md** - Comprehensive sensitive narrative for 2014-2025 period with detailed context
-- âœ… **Dialog-based history navigation system** - Interactive timeline exploration with emotional intelligence
+- ✅ **Enhanced hiatus.md** - Comprehensive sensitive narrative for 2014-2025 period with detailed context
+- ✅ **Dialog-based history navigation system** - Interactive timeline exploration with emotional intelligence
   - `livehelp-history.php` - Main interactive interface with period cards and chat functionality
   - `api/dialog/history-explorer.php` - Conversational API endpoint with smart responses
   - Natural conversational interface for timeline queries
   - Smart cross-reference suggestions based on query analysis
   - Emotional intelligence for sensitive topics (2014 tragedy handling)
   - Interactive exploration of the complete 30-year history
-- âœ… **Timeline integration updates** - Enhanced cross-references and navigation
-- âœ… **ContinuityValidator integration** - Real-time validation status in navigation interface
+- ✅ **Timeline integration updates** - Enhanced cross-references and navigation
+- ✅ **ContinuityValidator integration** - Real-time validation status in navigation interface
 
 ### Changed
-- âœ… **Version bump executed** - Updated all version references from 4.0.61 to 4.0.62
-- âœ… **Enhanced 2014.md** - Added comprehensive cross-references and version alignment
-- âœ… **Updated TIMELINE_1996_2026.md** - Enhanced hiatus and return context with full documentation status
-- âœ… **Improved hiatus documentation** - More detailed narrative with respectful handling of sensitive content
+- ✅ **Version bump executed** - Updated all version references from 4.0.61 to 4.0.62
+- ✅ **Enhanced 2014.md** - Added comprehensive cross-references and version alignment
+- ✅ **Updated TIMELINE_1996_2026.md** - Enhanced hiatus and return context with full documentation status
+- ✅ **Improved hiatus documentation** - More detailed narrative with respectful handling of sensitive content
 
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 4.0.62
@@ -6377,34 +6395,34 @@ This release completes the integration phase of the History Reconciliation Pass 
 - Foundation prepared for remaining Big Rock 1 tasks and 4.0.99 Ascent
 
 ### Status
-**âœ… COMPLETE:** Integration phase of Big Rock 1 with dialog navigation system  
-**ðŸŽ¯ NEXT:** Finalize remaining Big Rock 1 tasks, then begin 4.0.99 Ascent preparation
+**✅ COMPLETE:** Integration phase of Big Rock 1 with dialog navigation system  
+**🎯 NEXT:** Finalize remaining Big Rock 1 tasks, then begin 4.0.99 Ascent preparation
 
 ## [4.0.61] - 2026-01-16
-### Version 4.0.61 â€” History Reconciliation Pass Execution âœ… COMPLETED
+### Version 4.0.61 — History Reconciliation Pass Execution ✅ COMPLETED
 **Date:** 2026-01-16  
 **Type:** History documentation, Big Rock 1 execution, preparation for 4.0.99
 
 ### Summary
-This release executes Big Rock 1 of the v4.0.99 Ascent: History Reconciliation Pass. Resolves the 11-year documentation gap (2014â€“2025) and establishes narrative continuity between Crafty Syntax â†’ Sales Syntax â†’ Lupopedia evolution.
+This release executes Big Rock 1 of the v4.0.99 Ascent: History Reconciliation Pass. Resolves the 11-year documentation gap (2014–2025) and establishes narrative continuity between Crafty Syntax → Sales Syntax → Lupopedia evolution.
 
 ### Added
-- âœ… **Version bump executed** - Updated all version references from 4.0.60 to 4.0.61
-- âœ… **History Reconciliation Pass initiated** - Formal .kiro spec implementation started
-- âœ… **Documentation gap resolution** - Framework established for 2014-2025 historical continuity
-- âœ… **Big Rock 1 execution** - First major milestone of v4.0.99 Ascent underway
-- âœ… **Task 8.1 COMPLETE** - Generated missing year files (2015-2025) using DocumentationGenerator
+- ✅ **Version bump executed** - Updated all version references from 4.0.60 to 4.0.61
+- ✅ **History Reconciliation Pass initiated** - Formal .kiro spec implementation started
+- ✅ **Documentation gap resolution** - Framework established for 2014-2025 historical continuity
+- ✅ **Big Rock 1 execution** - First major milestone of v4.0.99 Ascent underway
+- ✅ **Task 8.1 COMPLETE** - Generated missing year files (2015-2025) using DocumentationGenerator
   - Created 11 individual year documentation files with proper WOLFIE headers
   - Applied specialized hiatus content generation for respectful historical narrative
   - Achieved 100% coverage for 2014-2025 hiatus period (11/11 years documented)
   - All files include consistent metadata, timeline references, and philosophical continuity
 
 ### Changed
-- âœ… **Global atoms updated** - config/global_atoms.yaml now references 4.0.61
-- âœ… **Version constants updated** - lupo-includes/version.php updated with new version date
-- âœ… **CHANGELOG structure updated** - Added 4.0.61 entry with execution details
-- âœ… **Dialog entry added** - dialogs/changelog_dialog.md updated with 4.0.61 notification
-- âœ… **Consolidated summary updated** - Version count now reflects 4.0.61 as current
+- ✅ **Global atoms updated** - config/global_atoms.yaml now references 4.0.61
+- ✅ **Version constants updated** - lupo-includes/version.php updated with new version date
+- ✅ **CHANGELOG structure updated** - Added 4.0.61 entry with execution details
+- ✅ **Dialog entry added** - dialogs/changelog_dialog.md updated with 4.0.61 notification
+- ✅ **Consolidated summary updated** - Version count now reflects 4.0.61 as current
 
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 4.0.61
@@ -6458,13 +6476,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## âš ï¸ Version Control Policy
+## ⚠️ Version Control Policy
 
 **NO `.git` FOLDERS UNTIL VERSION 4.0.99**
 
 This project does **NOT** use Git or GitHub until Lupopedia reaches version 4.0.99. This ensures clean file structures compatible with FTP-based deployment workflows. Git integration will be added in version 4.0.99 after the first public release.
 
-## ðŸ“Œ Unified Versioning Policy
+## 📌 Unified Versioning Policy
 
 **Lupopedia** and **Crafty Syntax** are version-locked and always released together. Both systems share the same version number (stored in `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom) to reflect their unified architecture and coordinated development cycle. See [Ecosystem Versioning Doctrine](docs/doctrine/VERSION_DOCTRINE.md) for complete versioning rules.
 
@@ -6475,37 +6493,37 @@ For module-specific changelogs, see:
 
 ---
 ## [4.0.60] - 2026-01-16
-### Version 4.0.60 â€” Stability & Alignment Release âœ… COMPLETED
+### Version 4.0.60 — Stability & Alignment Release ✅ COMPLETED
 **Date:** 2026-01-16  
-**Type:** Stability, documentation alignment, preâ€‘flight preparation for 4.0.99
+**Type:** Stability, documentation alignment, pre‑flight preparation for 4.0.99
 
 ### Summary
-This release consolidates all work completed between versions 4.0.46 and 4.0.50, prepares the documentation and folder structure for the upcoming 4.0.99 Ascent, and corrects historical records to reflect the 2014â€“2025 gap and the 2025â€“2026 return.
+This release consolidates all work completed between versions 4.0.46 and 4.0.50, prepares the documentation and folder structure for the upcoming 4.0.99 Ascent, and corrects historical records to reflect the 2014–2025 gap and the 2025–2026 return.
 
 ### Key Changes
-- âœ… **Version bump executed** - Updated all version references from 4.0.50 to 4.0.60
-- âœ… **Global atoms updated** - config/global_atoms.yaml now references 4.0.60
-- âœ… **Version constants updated** - lupo-includes/version.php updated with new version date
-- âœ… **CHANGELOG entry created** - Added 4.0.60 entry with completion details
-- âœ… **Dialog entry added** - dialogs/changelog_dialog.md updated with 4.0.60 notification
-- âœ… **Planning alignment complete** - All planning documents now target 4.0.60
-- âœ… **Ascent Manifest structure prepared** - Stubs and README ready for 4.0.99
-- âœ… **History folder structure created** - Initial 1996â€“2025 timeline scaffolding
+- ✅ **Version bump executed** - Updated all version references from 4.0.50 to 4.0.60
+- ✅ **Global atoms updated** - config/global_atoms.yaml now references 4.0.60
+- ✅ **Version constants updated** - lupo-includes/version.php updated with new version date
+- ✅ **CHANGELOG entry created** - Added 4.0.60 entry with completion details
+- ✅ **Dialog entry added** - dialogs/changelog_dialog.md updated with 4.0.60 notification
+- ✅ **Planning alignment complete** - All planning documents now target 4.0.60
+- ✅ **Ascent Manifest structure prepared** - Stubs and README ready for 4.0.99
+- ✅ **History folder structure created** - Initial 1996–2025 timeline scaffolding
 
-### Historical Correction (2014â€“2025 Gap) âœ… COMPLETED
-Updated `docs/history/1996-2025/2014.md` to accurately reflect the return and accomplishments during 2025â€“2026:
+### Historical Correction (2014–2025 Gap) ✅ COMPLETED
+Updated `docs/history/1996-2025/2014.md` to accurately reflect the return and accomplishments during 2025–2026:
 
-- August 2025: Return to project with WOLFIE architecture (222â€‘table legacy base)
-- January 2026 (16â€‘day sprint):
-  - 26 version increments (4.0.0 â†’ 4.0.50)
+- August 2025: Return to project with WOLFIE architecture (222‑table legacy base)
+- January 2026 (16‑day sprint):
+  - 26 version increments (4.0.0 → 4.0.50)
   - 120 tables aligned across 3 schemas
   - 128 AI agents defined
-  - 8â€‘state migration orchestrator completed
+  - 8‑state migration orchestrator completed
   - Crafty Syntax integrated as Module 1
   - Bridge layer established
   - Dialog system implemented
   - Emotional geometry doctrine formalized
-  - Semantic operating system assembled endâ€‘toâ€‘end
+  - Semantic operating system assembled end‑to‑end
 
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 4.0.60
@@ -6514,18 +6532,18 @@ Updated `docs/history/1996-2025/2014.md` to accurately reflect the return and ac
 - `dialogs/changelog_dialog.md` - Added 4.0.60 dialog entry
 
 ### Status
-**âœ… COMPLETE:** All 4.0.60 planning and documentation alignment tasks executed successfully  
-**âœ… RELEASED:** 2026-01-16 - Version 4.0.60 stability and alignment complete  
-**ðŸŽ¯ READY:** Foundation prepared for Version 4.0.61 and eventual 4.0.99 Ascent  
+**✅ COMPLETE:** All 4.0.60 planning and documentation alignment tasks executed successfully  
+**✅ RELEASED:** 2026-01-16 - Version 4.0.60 stability and alignment complete  
+**🎯 READY:** Foundation prepared for Version 4.0.61 and eventual 4.0.99 Ascent  
 
 ---
 
-## Version 4.0.61 â€” History Reconciliation Pass Execution
+## Version 4.0.61 — History Reconciliation Pass Execution
 **Date:** 2026-01-16  
 **Type:** History documentation, Big Rock 1 execution
 
 ### Summary
-This release executes Big Rock 1 of the v4.0.99 Ascent: History Reconciliation Pass. Resolves the 11-year documentation gap (2014â€“2025) and establishes narrative continuity between Crafty Syntax â†’ Sales Syntax â†’ Lupopedia evolution.
+This release executes Big Rock 1 of the v4.0.99 Ascent: History Reconciliation Pass. Resolves the 11-year documentation gap (2014–2025) and establishes narrative continuity between Crafty Syntax → Sales Syntax → Lupopedia evolution.
 
 ### Key Changes
 - Execute History Reconciliation Pass (.kiro spec implementation)
@@ -6579,7 +6597,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ---
 
-## ðŸ“Š Consolidated Summary: Version 4.0.19 â†’ 4.0.61
+## 📊 Consolidated Summary: Version 4.0.19 → 4.0.61
 
 **Overview:** From 4.0.19 to 4.0.45, Lupopedia completed a major architectural transformation focused on schema federation, migration orchestration, doctrine mapping, identity propagation, state machine implementation, and comprehensive versioning discipline. This represents 42 version increments over 16 days of intensive work.
 
@@ -6598,10 +6616,10 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 - Real-time progress tracking and alerting
 
 **Doctrine Organization**
-- Agent doctrine: 13 files â†’ tab 13
-- Versioning doctrine: 3 files â†’ tab 21
-- SQL doctrine: 7 files â†’ tab 11
-- Semantic doctrine: 9 files â†’ tab 17
+- Agent doctrine: 13 files → tab 13
+- Versioning doctrine: 3 files → tab 21
+- SQL doctrine: 7 files → tab 11
+- Semantic doctrine: 9 files → tab 17
 - TOON files: Mapped to canonical tabs
 
 **Identity Propagation**
@@ -6611,22 +6629,22 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 - Logging system with [CW] signature
 
 ### System State at 4.0.61
-- âœ… All migrations executed
-- âœ… Schemas deployed (90 tables across 3 schemas)
-- âœ… Doctrine mapping complete
-- âœ… Historical timeline documented
-- âœ… Orchestrator foundation ready
-- âœ… Identity layer stable
-- âœ… Validation infrastructure operational
-- âœ… State machine core implemented (StateInterface, AbstractState, IdleState, PreparingState)
-- âœ… Migration model bridge enhanced (30+ methods connecting states to 8 orchestration tables)
-- âœ… **Comprehensive Versioning Discipline implemented (Phases 1-3)**
-  - âœ… Workflow documentation with mandatory checklist (Phase 1)
-  - âœ… Atom loader function for single source of truth (Phase 2)
-  - âœ… Version.php refactored to load from atoms (Phase 2)
-  - âœ… Automated version bump script with validation (Phase 3)
-  - âœ… Version drift risk eliminated
-  - âœ… Documentation discipline enforced
+- ✅ All migrations executed
+- ✅ Schemas deployed (90 tables across 3 schemas)
+- ✅ Doctrine mapping complete
+- ✅ Historical timeline documented
+- ✅ Orchestrator foundation ready
+- ✅ Identity layer stable
+- ✅ Validation infrastructure operational
+- ✅ State machine core implemented (StateInterface, AbstractState, IdleState, PreparingState)
+- ✅ Migration model bridge enhanced (30+ methods connecting states to 8 orchestration tables)
+- ✅ **Comprehensive Versioning Discipline implemented (Phases 1-3)**
+  - ✅ Workflow documentation with mandatory checklist (Phase 1)
+  - ✅ Atom loader function for single source of truth (Phase 2)
+  - ✅ Version.php refactored to load from atoms (Phase 2)
+  - ✅ Automated version bump script with validation (Phase 3)
+  - ✅ Version drift risk eliminated
+  - ✅ Documentation discipline enforced
 
 **Next Steps (4.0.62+):** Test full state transitions with real database operations, implement Orchestrator execution logic that drives state transitions, create integration tests for the full migration flow, and create concrete Logger implementation.
 
@@ -6649,7 +6667,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 - **Migration Note Created** - `docs/migrations/4.0.50.md` documenting version correction
   - Documents Snack-Smacks Hybrid Doctrine (Snacks: precision, Smacks: version correction)
   - Tracks Friday Wolfie madness development session
-  - Corrects version timeline: 4.0.46 â†’ 4.0.50 (not 4.0.99)
+  - Corrects version timeline: 4.0.46 → 4.0.50 (not 4.0.99)
   - Preserves emotional geometry doctrine updates from 4.0.46
   - No database changes (version metadata only)
 
@@ -6700,8 +6718,8 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Changed
 - **DialogManager** - Fixed table and field name mappings to match actual database schema
-  - Table name: `dialog_messages` â†’ `lupo_dialog_messages`
-  - Field mappings: `actor_id` â†’ `from_actor_id`, `to_actor` â†’ `to_actor_id`, `content` â†’ `message_text`, `thread_id` â†’ `dialog_thread_id`
+  - Table name: `dialog_messages` → `lupo_dialog_messages`
+  - Field mappings: `actor_id` → `from_actor_id`, `to_actor` → `to_actor_id`, `content` → `message_text`, `thread_id` → `dialog_thread_id`
   - Added support for `metadata_json` and proper timestamp handling
 - **IRIS LLM Gateway** - Enhanced for multi-provider support and correct table names
   - Fixed agent configuration loading to use `lupo_agent_registry` and `lupo_agent_properties`
@@ -6786,18 +6804,18 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Architecture Impact
 - **Migration Orchestrator - 8-State Machine Complete (100%)**
-  - State 1 (IdleState) âœ… Complete
-  - State 2 (PreparingState) âœ… Complete
-  - State 3 (ValidatingPreState) âœ… Complete
-  - State 4 (MigratingState) âœ… Complete
-  - State 5 (ValidatingPostState) âœ… Complete
-  - State 6 (CompletingState) âœ… Complete
-  - State 7 (RollingBackState) âœ… Complete (this version)
-  - State 8 (FailedState) âœ… Complete
+  - State 1 (IdleState) ✅ Complete
+  - State 2 (PreparingState) ✅ Complete
+  - State 3 (ValidatingPreState) ✅ Complete
+  - State 4 (MigratingState) ✅ Complete
+  - State 5 (ValidatingPostState) ✅ Complete
+  - State 6 (CompletingState) ✅ Complete
+  - State 7 (RollingBackState) ✅ Complete (this version)
+  - State 8 (FailedState) ✅ Complete
 - **Complete Migration Flows Implemented:**
-  - **Success Path:** IdleState â†’ PreparingState â†’ ValidatingPreState â†’ MigratingState â†’ ValidatingPostState â†’ CompletingState â†’ IdleState
-  - **Failure Path (Execution):** IdleState â†’ PreparingState â†’ ValidatingPreState â†’ MigratingState â†’ RollingBackState â†’ FailedState
-  - **Failure Path (Validation):** IdleState â†’ PreparingState â†’ ValidatingPreState â†’ MigratingState â†’ ValidatingPostState â†’ RollingBackState â†’ FailedState
+  - **Success Path:** IdleState → PreparingState → ValidatingPreState → MigratingState → ValidatingPostState → CompletingState → IdleState
+  - **Failure Path (Execution):** IdleState → PreparingState → ValidatingPreState → MigratingState → RollingBackState → FailedState
+  - **Failure Path (Validation):** IdleState → PreparingState → ValidatingPreState → MigratingState → ValidatingPostState → RollingBackState → FailedState
 - **Production Readiness:** Full error recovery workflow complete with rollback capability
 - **State Machine:** All 8 states implemented with proper transitions, validation, and error handling
 
@@ -6841,16 +6859,16 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Architecture Impact
 - **Migration Orchestrator Progress** - State machine implementation advancing sequentially
-  - State 1 (IdleState) âœ… Complete
-  - State 2 (PreparingState) âœ… Complete
-  - State 3 (ValidatingPreState) âœ… Complete
-  - State 4 (MigratingState) âœ… Complete
-  - State 5 (ValidatingPostState) âœ… Complete
-  - State 6 (CompletingState) âœ… Complete (this version)
-  - State 7 (RollingBackState) â³ Next
-  - State 8 (FailedState) âœ… Complete
+  - State 1 (IdleState) ✅ Complete
+  - State 2 (PreparingState) ✅ Complete
+  - State 3 (ValidatingPreState) ✅ Complete
+  - State 4 (MigratingState) ✅ Complete
+  - State 5 (ValidatingPostState) ✅ Complete
+  - State 6 (CompletingState) ✅ Complete (this version)
+  - State 7 (RollingBackState) ⏳ Next
+  - State 8 (FailedState) ✅ Complete
 - **State Machine Completion:** 7 of 8 states complete (87.5%)
-- **Success Path Complete:** Full migration success path now implemented (idle â†’ preparing â†’ validating_pre â†’ migrating â†’ validating_post â†’ completing â†’ idle)
+- **Success Path Complete:** Full migration success path now implemented (idle → preparing → validating_pre → migrating → validating_post → completing → idle)
 - **State Validation:** `markAsCompleted()` now enforces proper state machine usage
 
 ### Next Steps
@@ -6866,7 +6884,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
   - **Problem Identified:** Database schema (`migration_files.file_status`) uses 5-state enum (`'pending','processing','completed','failed','rolled_back'`), while state machine uses 8 states (idle, preparing, validating_pre, migrating, validating_post, completing, rolling_back, failed)
   - **Root Cause:** `setStateId()` updated `properties['state_id']` but did NOT update `file_status` enum, causing schema mismatch
   - **Solution Implemented:**
-    - Added `stateIdToFileStatus()` mapping function: State 1 â†’ 'pending', States 2-6 â†’ 'processing', State 7 â†’ 'rolled_back', State 8 â†’ 'failed'
+    - Added `stateIdToFileStatus()` mapping function: State 1 → 'pending', States 2-6 → 'processing', State 7 → 'rolled_back', State 8 → 'failed'
     - Updated `setStateId()` to automatically sync `file_status` when `state_id` changes
     - Added `markAsCompleted()` method for explicit completion marking (terminal status, not a state)
     - Preserves 'completed' status once set (prevents overwriting terminal status)
@@ -6930,14 +6948,14 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Architecture Impact
 - **Migration Orchestrator Progress** - State machine implementation advancing sequentially
-  - State 1 (IdleState) âœ… Complete
-  - State 2 (PreparingState) âœ… Complete
-  - State 3 (ValidatingPreState) âœ… Complete (this version)
-  - State 4 (MigratingState) â³ Next
-  - State 5 (ValidatingPostState) â³ Pending
-  - State 6 (CompletingState) â³ Pending
-  - State 7 (RollingBackState) â³ Pending
-  - State 8 (FailedState) âœ… Complete
+  - State 1 (IdleState) ✅ Complete
+  - State 2 (PreparingState) ✅ Complete
+  - State 3 (ValidatingPreState) ✅ Complete (this version)
+  - State 4 (MigratingState) ⏳ Next
+  - State 5 (ValidatingPostState) ⏳ Pending
+  - State 6 (CompletingState) ⏳ Pending
+  - State 7 (RollingBackState) ⏳ Pending
+  - State 8 (FailedState) ✅ Complete
 - **Sequential Build Approach** - Following deterministic state-by-state implementation
   - Each state built and tested individually before moving to next
   - Ensures clean transitions and early bug detection
@@ -6945,7 +6963,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Next Steps
 - Build MigratingState (State 4) - Execute migration SQL against database
-- Test ValidatingPreState â†’ MigratingState transition with real migration
+- Test ValidatingPreState → MigratingState transition with real migration
 - Continue sequential state implementation (validating_post, completing, rolling_back)
 - Create concrete Logger implementation for migration events
 - Add state transition validation tests
@@ -7102,9 +7120,9 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 ### Added
 - **Unified Canonical Timeline Documentation** - Complete historical record from Crafty Syntax 2.0.19 to Lupopedia 4.0.32
   - Created `docs/history/UNIFIED_TIMELINE_2_0_19_TO_4_0_32.md` - Authoritative historical timeline
-  - Documents Crafty Syntax era (2002-2014, versions 2.0.19 â†’ 3.7.5)
+  - Documents Crafty Syntax era (2002-2014, versions 2.0.19 → 3.7.5)
   - Documents dormant period (2014-2025) and personal journey
-  - Documents Lupopedia evolution (4.0.0 â†’ 4.0.32)
+  - Documents Lupopedia evolution (4.0.0 → 4.0.32)
   - Merges Crafty Syntax lineage with Lupopedia evolution into single canonical record
   - Explains architectural doctrine origins and system philosophy
 - **Orchestrator Execution Logic Foundation** - Prepared foundation for state machine implementation
@@ -7170,10 +7188,10 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 - Migration execution logs and validation results documented
 
 ### Migration Status
-- âœ… All pending migrations executed successfully
-- âœ… Schema federation verified intact
-- âœ… Doctrine mapping layer stable and verified
-- âœ… System ready for orchestrator execution logic implementation
+- ✅ All pending migrations executed successfully
+- ✅ Schema federation verified intact
+- ✅ Doctrine mapping layer stable and verified
+- ✅ System ready for orchestrator execution logic implementation
 
 ## [4.0.30] - 2026-01-15
 
@@ -7194,7 +7212,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
     - `doctrine-emo-agent-rules` (sort_order: 11)
     - `doctrine-ai-integration-safety-doctrine` (sort_order: 12)
     - `doctrine-ai-uncertainty-expression-doctrine` (sort_order: 13)
-  - Migration uses three-step idempotent pattern (soft-delete â†’ update â†’ insert) for unique constraint safety
+  - Migration uses three-step idempotent pattern (soft-delete → update → insert) for unique constraint safety
   - Migration ready for execution (idempotent and safe)
 - **Doctrine Versioning Tab Mapping Migration** - Organized versioning doctrine content into canonical tab
   - Created `database/migrations/doctrine_versioning_tab_mapping_4_0_26.sql` migration
@@ -7202,7 +7220,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
     - `doctrine-versioning-doctrine` (sort_order: 1)
     - `doctrine-version-doctrine` (sort_order: 2)
     - `doctrine-timestamp-doctrine` (sort_order: 3)
-  - Migration uses three-step idempotent pattern (soft-delete â†’ update â†’ insert) for unique constraint safety
+  - Migration uses three-step idempotent pattern (soft-delete → update → insert) for unique constraint safety
   - Migration ready for execution (idempotent and safe)
 
 ### Changed
@@ -7212,8 +7230,8 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
   - `CHANGELOG.md` - Added 4.0.30 entry and updated header version
   - `dialogs/changelog_dialog.md` - Added 4.0.30 dialog entry
 - **Doctrine Mapping Consolidation** - Stabilized doctrine content organization
-  - Completed agent doctrine domain mapping (13 files â†’ `doctrine.agent` tab 13)
-  - Completed versioning doctrine domain mapping (3 files â†’ `doctrine.versioning` tab 21)
+  - Completed agent doctrine domain mapping (13 files → `doctrine.agent` tab 13)
+  - Completed versioning doctrine domain mapping (3 files → `doctrine.versioning` tab 21)
   - Verified mapping layer consistency across all doctrine domains
   - Established mapping pattern for future doctrine organization
   - TOON files updated to reflect new mappings
@@ -7227,12 +7245,12 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 - `dialogs/changelog_dialog.md` - Added 4.0.30 dialog entry
 
 ### Migration Status
-- âœ… Agent doctrine tab mapping migration ready (`doctrine_agent_tab_mapping_4_0_26.sql`)
-- âœ… Versioning doctrine tab mapping migration ready (`doctrine_versioning_tab_mapping_4_0_26.sql`)
-- âœ… SQL doctrine tab mapping migration ready (`doctrine_sql_tab_mapping_4_0_25.sql`)
-- âœ… Orchestrator schema migration ready (`orchestrator_schema_4_0_25.sql`)
-- âœ… Ephemeral schema migration ready (`ephemeral_schema_4_0_25.sql`)
-- â³ Migrations pending execution (ready when user executes)
+- ✅ Agent doctrine tab mapping migration ready (`doctrine_agent_tab_mapping_4_0_26.sql`)
+- ✅ Versioning doctrine tab mapping migration ready (`doctrine_versioning_tab_mapping_4_0_26.sql`)
+- ✅ SQL doctrine tab mapping migration ready (`doctrine_sql_tab_mapping_4_0_25.sql`)
+- ✅ Orchestrator schema migration ready (`orchestrator_schema_4_0_25.sql`)
+- ✅ Ephemeral schema migration ready (`ephemeral_schema_4_0_25.sql`)
+- ⏳ Migrations pending execution (ready when user executes)
 
 ### Next Steps
 - Execute agent doctrine tab mapping migration
@@ -7242,7 +7260,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 - Continue tab mapping normalization for remaining doctrine categories
 - Prepare for orchestrator schema deployment (4.0.31+)
 
-### Summary of Work (4.0.20 â†’ 4.0.29)
+### Summary of Work (4.0.20 → 4.0.29)
 This version consolidates work completed across patches 4.0.20 through 4.0.29:
 
 **4.0.20 - Identity Prep:** Detected inconsistent WOLFIE headers, began identity normalization, validator tweaks started.
@@ -7310,11 +7328,11 @@ This version consolidates work completed across patches 4.0.20 through 4.0.29:
 - `CHANGELOG.md` - Added 4.0.25 entry and updated header version
 
 ### Migration Status
-- âœ… Orchestrator schema ready for execution
-- âœ… Ephemeral schema ready for execution
-- âœ… Doctrine documentation complete
-- âœ… Architecture dialog complete
-- â³ Schema migrations pending execution
+- ✅ Orchestrator schema ready for execution
+- ✅ Ephemeral schema ready for execution
+- ✅ Doctrine documentation complete
+- ✅ Architecture dialog complete
+- ⏳ Schema migrations pending execution
 
 ### Next Steps
 - Execute orchestrator and ephemeral schema migrations
@@ -7343,8 +7361,8 @@ This version consolidates work completed across patches 4.0.20 through 4.0.29:
 - **Mapping Stabilization** - Validated and verified TOON mapping cleanup
   - Verified zero duplicate active mappings across all content items
   - Confirmed TOON files correctly placed in canonical tabs:
-    - `doctrine-toon-doctrine` (2058) â†’ `doctrine.mythic` (tab 20) âœ“
-    - `dev-toon-metadata-recommendations` (2093) â†’ `appendix.mythic` (tab 30) âœ“
+    - `doctrine-toon-doctrine` (2058) → `doctrine.mythic` (tab 20) ✓
+    - `dev-toon-metadata-recommendations` (2093) → `appendix.mythic` (tab 30) ✓
   - Validated system-wide mapping consistency
   - Prepared mapping validation infrastructure for migration orchestrator
 - **Version Sync Validation** - Ensured all version anchors synchronized
@@ -7359,10 +7377,10 @@ This version consolidates work completed across patches 4.0.20 through 4.0.29:
 - `dialogs/changelog_dialog.md` - Added 4.0.24 dialog entry
 
 ### Validation Results
-- âœ… Zero duplicate mappings detected
-- âœ… TOON content correctly mapped to canonical tabs
-- âœ… All version anchors synchronized to 4.0.24
-- âœ… System ready for migration orchestrator schema work
+- ✅ Zero duplicate mappings detected
+- ✅ TOON content correctly mapped to canonical tabs
+- ✅ All version anchors synchronized to 4.0.24
+- ✅ System ready for migration orchestrator schema work
 
 ### Next Steps
 - Begin migration orchestrator schema design
@@ -7389,8 +7407,8 @@ This version consolidates work completed across patches 4.0.20 through 4.0.29:
   - Ensured all doctrine files have correct WOLFIE header blocks
 - **Tab Mapping Normalization** - TOON content integration validation
   - Created `database/migrations/toon_files_tab_mapping_4_0_23.sql` migration
-  - Mapped `doctrine-toon-doctrine` (content_id: 2058) â†’ `doctrine.mythic` (tab 20)
-  - Mapped `dev-toon-metadata-recommendations` (content_id: 2093) â†’ `appendix.mythic` (tab 30)
+  - Mapped `doctrine-toon-doctrine` (content_id: 2058) → `doctrine.mythic` (tab 20)
+  - Mapped `dev-toon-metadata-recommendations` (content_id: 2093) → `appendix.mythic` (tab 30)
   - Migration handles existing mappings gracefully (idempotent UPDATE/INSERT pattern)
   - Added missing sort_order values where needed
   - Validated no duplicate mappings exist
@@ -7499,7 +7517,7 @@ This version consolidates work completed across patches 4.0.20 through 4.0.29:
   - Created `lupopedia_orchestration` schema (22 tables)
   - Created `lupopedia_ephemeral` schema (12 tables)
   - Moved 34 tables out of core schema (22 orchestration + 12 ephemeral)
-  - Core schema reduced from 111 â†’ 77 tables (34 tables regained headroom)
+  - Core schema reduced from 111 → 77 tables (34 tables regained headroom)
   - Added `lupo-includes/schema-config.php` helper functions
   - Created complete rollback migration (`phase_a_rollback.sql`)
   - Added Schema Federation Doctrine documentation
@@ -7998,7 +8016,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 
 ### Documentation Consistency Audit (Phase 1-3 + Atomization Update)
 - **Phase 1 Corrections:**
-  - Renamed `ROUTING_DOCTRINE.md` â†’ `AGENT_ROUTING_DOCTRINE.md` for clarity
+  - Renamed `ROUTING_DOCTRINE.md` → `AGENT_ROUTING_DOCTRINE.md` for clarity
   - Added disambiguation notes to both routing doctrine files to distinguish agent routing (HERMES/CADUCEUS) from HTTP URL routing
   - Updated cross-references in 5 files: `URL_ROUTING_DOCTRINE.md`, `SUBDIRECTORY_INSTALLATION_DOCTRINE.md`, `MOOD_RGB_DOCTRINE.md`, `CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md`, `WOLFIE_ROUTING_PRINCIPLES.md`
   - Established canonical `LUPOPEDIA_PUBLIC_PATH` definition: `rtrim(str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__), '/')`
@@ -8012,12 +8030,12 @@ This was the final Crafty Syntax release before the project was forked to Sales 
     - `Lupopedia-Reference-Layer-Doctrine.md` - Added complete metadata, tags, and cross-references
   - Created `docs/examples/` directory for documentation examples
   - Created `docs/examples/SAMPLE_REFERENCE_ENTRY.md` with 6 comprehensive examples:
-    - âœ… Correct reference entry (slug extraction, database lookup, semantic edges, rendering)
-    - âŒ Incorrect filesystem resolution (shows wrong approach and correct alternative)
-    - âŒ Incorrect slug modification (shows wrong approach and correct alternative)
-    - âœ… Correct Crafty Syntax migration (exact URL storage without modification)
-    - âœ… Correct complete rendering flow (request-to-response with lookup priority)
-    - âŒ Incorrect content storage (shows wrong approach and correct alternative)
+    - ✅ Correct reference entry (slug extraction, database lookup, semantic edges, rendering)
+    - ❌ Incorrect filesystem resolution (shows wrong approach and correct alternative)
+    - ❌ Incorrect slug modification (shows wrong approach and correct alternative)
+    - ✅ Correct Crafty Syntax migration (exact URL storage without modification)
+    - ✅ Correct complete rendering flow (request-to-response with lookup priority)
+    - ❌ Incorrect content storage (shows wrong approach and correct alternative)
   - Added explicit slug lookup priority (4 levels) to `URL_ROUTING_DOCTRINE.md`:
     - Priority 1: Content Lookup (reference entries)
     - Priority 2: Collection Tab Lookup (navigation tabs)
@@ -8046,7 +8064,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
     - Established preferred terms: "domain installation" for server instances, "semantic node" for graph entities
     - Added glossary cross-references in `ARCHITECTURE.md`, `DEFINITION.md`, and `docs/README.md`
     - Updated AI agent mandatory reading list in `docs/README.md` to include terminology reference
-    - Added glossary as **âš ï¸ TERMINOLOGY REFERENCE** in appendix section
+    - Added glossary as **⚠️ TERMINOLOGY REFERENCE** in appendix section
 
 - **Atomization Doctrine Update:**
   - Added comprehensive **Atom Exception List v1.0** to `ATOMIZATION_DOCTRINE.md`
@@ -8088,7 +8106,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 ## [4.0.17] - 2026-01-15
 
 ### Added
-- **UI Drop-Menu Integration** - Integrated UI drop-menu components originally created in 4.0.13-ui and carried through 4.0.14 â†’ 4.0.16
+- **UI Drop-Menu Integration** - Integrated UI drop-menu components originally created in 4.0.13-ui and carried through 4.0.14 → 4.0.16
 - **Component Inventory** - Verified and catalogued all UI drop-menu components:
   - Top navigation bar with user profile dropdown and messages
   - Saved collections navigation with multi-level dropdowns
@@ -8119,9 +8137,9 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 - **Collections Dropdown Location** - Moved Collections dropdown from saved-collections-nav to topbar navigation (after "Agents" link)
 - **Navigation Structure** - Removed static "Collections" link from topbar navigation (replaced by dropdown)
 - **Collection Actions** - Moved Save/Load/Edit buttons from saved-collections-nav to Collections dropdown menu:
-  - "ðŸ’¾ Save Current Collection" - Opens save collection modal
-  - "ðŸ“‚ Load New Collection" - Opens load collection modal
-  - "âœï¸ Edit Current Collection" - Opens edit collection page
+  - "💾 Save Current Collection" - Opens save collection modal
+  - "📂 Load New Collection" - Opens load collection modal
+  - "✏️ Edit Current Collection" - Opens edit collection page
 - **Tab Loading Logic** - Updated `load_collection_tabs()` function to load child tabs:
   - Now loads root-level tabs AND their child tabs from `lupo_collection_tabs`
   - Properly counts child tabs (excluding `_slug` metadata key)
@@ -8305,7 +8323,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 
 - **New Agent Class: Cognitive Polarity Agents**
   - Created 12 new agents in the 1200-1211 range
-  - Agent pairs: FRAME â†” REFRAME, STABILIZE â†” DISRUPT, CONSENSUS â†” DISSENT, LITERAL â†” INTERPRET, PREDICT â†” COUNTERFACT, OPTIMIZE â†” DIVERGE
+  - Agent pairs: FRAME ↔ REFRAME, STABILIZE ↔ DISRUPT, CONSENSUS ↔ DISSENT, LITERAL ↔ INTERPRET, PREDICT ↔ COUNTERFACT, OPTIMIZE ↔ DIVERGE
   - Each agent includes parent/child pairing, code, name, layer = cognitive_polarity, classification_json, and metadata
   - Agents designed for cognitive tension and balanced perspective generation
   - All agents inserted into `lupo_agent_registry` table with dedicated_slot = agent_registry_id
@@ -8410,13 +8428,13 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 ### Version Metadata
 
 - Updated `config/global_atoms.yaml`:
-  - `GLOBAL_CURRENT_LUPOPEDIA_VERSION`: `"4.0.11"` â†’ `"4.0.12"`
+  - `GLOBAL_CURRENT_LUPOPEDIA_VERSION`: `"4.0.11"` → `"4.0.12"`
   - All version fields updated to `4.0.12` (lupopedia, crafty_syntax, wolfie_headers, schema)
 
 - Updated `lupo-includes/version.php`:
-  - `LUPOPEDIA_VERSION`: `'4.0.11'` â†’ `'4.0.12'`
-  - `LUPOPEDIA_DB_VERSION`: `'4.0.11'` â†’ `'4.0.12'`
-  - `LUPOPEDIA_VERSION_NUM`: `40011` â†’ `40012`
+  - `LUPOPEDIA_VERSION`: `'4.0.11'` → `'4.0.12'`
+  - `LUPOPEDIA_DB_VERSION`: `'4.0.11'` → `'4.0.12'`
+  - `LUPOPEDIA_VERSION_NUM`: `40011` → `40012`
   - `LUPOPEDIA_VERSION_DATE`: `20260113000000` (unchanged)
 
 ### Documentation
@@ -8457,13 +8475,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## âš ï¸ Version Control Policy
+## ⚠️ Version Control Policy
 
 **NO `.git` FOLDERS UNTIL VERSION 4.0.99**
 
 This project does **NOT** use Git or GitHub until Lupopedia reaches version 4.0.99. This ensures clean file structures compatible with FTP-based deployment workflows. Git integration will be added in version 4.0.99 after the first public release.
 
-## ðŸ“Œ Unified Versioning Policy
+## 📌 Unified Versioning Policy
 
 **Lupopedia** and **Crafty Syntax** are version-locked and always released together. Both systems share the same version number (stored in `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom) to reflect their unified architecture and coordinated development cycle. See [Ecosystem Versioning Doctrine](docs/doctrine/VERSION_DOCTRINE.md) for complete versioning rules.
 
@@ -8491,15 +8509,15 @@ For module-specific changelogs, see:
   - Created seed SQL file `database/install/seed_collection_0_tab_map.sql` to map content items to Collection 0 tabs
   - Maps 107 content items to their corresponding tabs in `lupo_collection_tab_map` table
   - Tab mapping:
-    - Tab 1 (Overview) â†’ `/docs/core/*.md` (8 files)
-    - Tab 2 (Doctrine) â†’ `/docs/doctrine/*.md` (59 files)
-    - Tab 3 (Architecture) â†’ `/docs/ARCHITECTURE/*.md` (1 file)
-    - Tab 4 (Schema) â†’ `/docs/schema/*.md` (2 files)
-    - Tab 5 (Agents) â†’ `/docs/agents/*.md` (13 files)
-    - Tab 6 (UI-UX) â†’ (no content - directory doesn't exist)
-    - Tab 7 (Developer Guide) â†’ `/docs/dev/*.md` (13 files)
-    - Tab 8 (History) â†’ `/docs/history/*.md` (1 file)
-    - Tab 9 (Appendix) â†’ `/docs/appendix/*.md` (10 files)
+    - Tab 1 (Overview) → `/docs/core/*.md` (8 files)
+    - Tab 2 (Doctrine) → `/docs/doctrine/*.md` (59 files)
+    - Tab 3 (Architecture) → `/docs/ARCHITECTURE/*.md` (1 file)
+    - Tab 4 (Schema) → `/docs/schema/*.md` (2 files)
+    - Tab 5 (Agents) → `/docs/agents/*.md` (13 files)
+    - Tab 6 (UI-UX) → (no content - directory doesn't exist)
+    - Tab 7 (Developer Guide) → `/docs/dev/*.md` (13 files)
+    - Tab 8 (History) → `/docs/history/*.md` (1 file)
+    - Tab 9 (Appendix) → `/docs/appendix/*.md` (10 files)
   - Content items sorted alphabetically by filename within each tab
   - All mappings use idempotent `INSERT ... ON DUPLICATE KEY UPDATE` syntax
 
@@ -8565,14 +8583,14 @@ For module-specific changelogs, see:
 ### Version Metadata
 
 - Updated `config/global_atoms.yaml`:
-  - `GLOBAL_CURRENT_LUPOPEDIA_VERSION`: `"4.0.10"` â†’ `"4.0.11"`
+  - `GLOBAL_CURRENT_LUPOPEDIA_VERSION`: `"4.0.10"` → `"4.0.11"`
   - All version fields updated to `4.0.11` (lupopedia, crafty_syntax, wolfie_headers, schema)
 
 - Updated `lupo-includes/version.php`:
-  - `LUPOPEDIA_VERSION`: `'4.0.10'` â†’ `'4.0.11'`
-  - `LUPOPEDIA_DB_VERSION`: `'4.0.10'` â†’ `'4.0.11'`
-  - `LUPOPEDIA_VERSION_NUM`: `40010` â†’ `40011`
-  - `LUPOPEDIA_VERSION_DATE`: `20260113000000` â†’ `20260113000000` (same date, different version)
+  - `LUPOPEDIA_VERSION`: `'4.0.10'` → `'4.0.11'`
+  - `LUPOPEDIA_DB_VERSION`: `'4.0.10'` → `'4.0.11'`
+  - `LUPOPEDIA_VERSION_NUM`: `40010` → `40011`
+  - `LUPOPEDIA_VERSION_DATE`: `20260113000000` → `20260113000000` (same date, different version)
 
 ### Documentation
 
@@ -8668,14 +8686,14 @@ For module-specific changelogs, see:
 ### Version Metadata
 
 - Updated `config/global_atoms.yaml`:
-  - `GLOBAL_CURRENT_LUPOPEDIA_VERSION`: `"4.0.9"` â†’ `"4.0.10"`
+  - `GLOBAL_CURRENT_LUPOPEDIA_VERSION`: `"4.0.9"` → `"4.0.10"`
   - All version fields updated to `4.0.10` (lupopedia, crafty_syntax, wolfie_headers, schema)
 
 - Updated `lupo-includes/version.php`:
-  - `LUPOPEDIA_VERSION`: `'4.0.9'` â†’ `'4.0.10'`
-  - `LUPOPEDIA_DB_VERSION`: `'4.0.9'` â†’ `'4.0.10'`
-  - `LUPOPEDIA_VERSION_NUM`: `40009` â†’ `40010`
-  - `LUPOPEDIA_VERSION_DATE`: `20260112000000` â†’ `20260113000000`
+  - `LUPOPEDIA_VERSION`: `'4.0.9'` → `'4.0.10'`
+  - `LUPOPEDIA_DB_VERSION`: `'4.0.9'` → `'4.0.10'`
+  - `LUPOPEDIA_VERSION_NUM`: `40009` → `40010`
+  - `LUPOPEDIA_VERSION_DATE`: `20260112000000` → `20260113000000`
 
 ### Documentation
 
@@ -8727,7 +8745,7 @@ For module-specific changelogs, see:
     4. Sanitize to alphanumeric characters and hyphens only
     5. Collapse multiple consecutive hyphens to single hyphen
     6. Trim leading and trailing hyphens
-  - Example: `lupopedia@gmail.com` â†’ `lupopedia-at-gmail-com`
+  - Example: `lupopedia@gmail.com` → `lupopedia-at-gmail-com`
   - Updated `lupo_create_actor_for_auth_user()` function to use new slug generation algorithm
   - Updated WOLFIE header version to 4.0.9 in modified files
 
@@ -8795,7 +8813,7 @@ For module-specific changelogs, see:
 - **Module Loader Integration**
   - Updated `lupo-includes/modules/module-loader.php` to load AUTH module at highest priority
   - AUTH routes (`/login`, `/logout`, `/admin`) checked before other routes
-  - Routing order: AUTH â†’ TRUTH â†’ CRAFTY_SYNTAX â†’ CONTENT
+  - Routing order: AUTH → TRUTH → CRAFTY_SYNTAX → CONTENT
   - Updated `lupo-includes/lupopedia-loader.php` to load auth UI helpers after core functions
 
 - **Header Integration**
@@ -8807,7 +8825,7 @@ For module-specific changelogs, see:
 - **Authentication Features**
   - Username/password login with form validation
   - Session-based authentication with database tracking
-  - Automatic MD5 â†’ bcrypt password upgrade on successful login
+  - Automatic MD5 → bcrypt password upgrade on successful login
   - Admin access control via roles and permissions
   - Actor system integration (automatic actor creation for auth users)
   - Secure session cookies (httponly, samesite)
@@ -8915,7 +8933,7 @@ For module-specific changelogs, see:
 
 - **URL Rewriting and Security Configuration**
   - Created `.htaccess` file for Apache URL rewriting and security
-    - Clean URL routing (e.g., `/lupopedia/who/captain_wolfie` â†’ `index.php?slug=who/captain_wolfie`)
+    - Clean URL routing (e.g., `/lupopedia/who/captain_wolfie` → `index.php?slug=who/captain_wolfie`)
     - Allows static assets (CSS, JS, images, fonts) to be served directly
     - Blocks PHP files in `lupo-includes/` directory (security)
     - Blocks sensitive directories (`database/`, `config/`, `.git/`)
@@ -9036,7 +9054,7 @@ For module-specific changelogs, see:
 
 - **Content Display Data Flow**
   - Content controller now loads semantic context via ConnectionsService
-  - Semantic data flows: controller â†’ renderer â†’ layout â†’ components
+  - Semantic data flows: controller → renderer → layout → components
   - All components receive proper data initialization with defaults
   - Unified UI system now fully integrated with content display
 
@@ -9089,7 +9107,7 @@ For module-specific changelogs, see:
 
 - **Dialog File Ordering Doctrine**
   - Created `docs/doctrine/DIALOG_FILE_ORDERING_DOCTRINE.md` - formalizes rules for `_dialog` file structure
-  - Establishes mandatory structure: WOLFIE Header â†’ `# Dialog begin` marker â†’ newest entries at top
+  - Establishes mandatory structure: WOLFIE Header → `# Dialog begin` marker → newest entries at top
   - Defines reading direction: AI agents read top-down (latest state), humans read bottom-up (chronological)
   - Mandatory rules for Cursor: never append to bottom, always insert after marker, never reorder entries, preserve history
   - Includes validation checklist and examples of correct/incorrect structures
@@ -9163,7 +9181,7 @@ For module-specific changelogs, see:
   - Added `# Dialog begin` marker and reorganized entries with newest at top
   - All future `_dialog` files will follow this deterministic structure
 
-- **Version Bump: 4.0.4 â†’ 4.0.5**
+- **Version Bump: 4.0.4 → 4.0.5**
   - Updated `config/global_atoms.yaml` - `GLOBAL_CURRENT_LUPOPEDIA_VERSION` and all version entries to "4.0.5"
   - Updated `lupo-includes/version.php` - all version constants (LUPOPEDIA_VERSION, LUPOPEDIA_DB_VERSION, LUPOPEDIA_VERSION_NUM) to 4.0.5
   - Updated `lupo-includes/modules/content/content-model.php` - user agent string to 'Lupopedia/4.0.5'
@@ -9178,7 +9196,7 @@ For module-specific changelogs, see:
   - Only version atoms (e.g., `lupopedia.version`, `crafty_syntax.version`) should use `GLOBAL_CURRENT_LUPOPEDIA_VERSION`
   - This preserves historical context and prevents automatic version updates to documentation files
 
-- **Version Bump: 4.0.4 â†’ 4.0.5**
+- **Version Bump: 4.0.4 → 4.0.5**
   - Updated `config/global_atoms.yaml` - `GLOBAL_CURRENT_LUPOPEDIA_VERSION` and all version entries to "4.0.5"
   - Updated `lupo-includes/version.php` - all version constants (LUPOPEDIA_VERSION, LUPOPEDIA_DB_VERSION, LUPOPEDIA_VERSION_NUM) to 4.0.5
   - Updated `lupo-includes/modules/content/content-model.php` - user agent string to 'Lupopedia/4.0.5'
@@ -9195,7 +9213,7 @@ For module-specific changelogs, see:
 - **Evidence Display**: Evidence items show type, weight, and linked sources with proper HTML structure
 - **Source Linking**: Sources display with URLs, titles, types, and reliability scores, with proper external link handling
 
-- **Version Bump: 4.0.4 â†’ 4.0.5**
+- **Version Bump: 4.0.4 → 4.0.5**
   - Updated `config/global_atoms.yaml` - `GLOBAL_CURRENT_LUPOPEDIA_VERSION` and all version entries to "4.0.5"
   - Updated `lupo-includes/version.php` - all version constants (LUPOPEDIA_VERSION, LUPOPEDIA_DB_VERSION, LUPOPEDIA_VERSION_NUM) to 4.0.5
   - Updated `lupo-includes/modules/content/content-model.php` - user agent string to 'Lupopedia/4.0.5'
@@ -9249,7 +9267,7 @@ For module-specific changelogs, see:
   - Created `docs/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md` - mathematically defined emotional metadata system for Lupopedia's DIALOG agent
   - Establishes 6 axioms defining the system mathematically (vector representation, message-level mood, thread-level mood, single source of truth, non-authoritative labels, reflective not generative)
   - Defines validation rules (hex format, range validation, source validation, fallback state)
-  - Documents temporal decay mechanics with formula: `w = e^(-kÂ·t)`
+  - Documents temporal decay mechanics with formula: `w = e^(-k·t)`
   - Provides thread-level mood aggregation formula using weighted sum with decay
   - Removes anthropomorphic drift and introduces mathematical rigor
   - System reflects metadata deterministically rather than simulating emotion
@@ -9375,7 +9393,7 @@ For module-specific changelogs, see:
 
 - **Dialog File Ordering Doctrine**
   - Created `docs/doctrine/DIALOG_FILE_ORDERING_DOCTRINE.md` - formalizes rules for `_dialog` file structure
-  - Establishes mandatory structure: WOLFIE Header â†’ `# Dialog begin` marker â†’ newest entries at top
+  - Establishes mandatory structure: WOLFIE Header → `# Dialog begin` marker → newest entries at top
   - Defines reading direction: AI agents read top-down (latest state), humans read bottom-up (chronological)
   - Mandatory rules for Cursor: never append to bottom, always insert after marker, never reorder entries, preserve history
   - Includes validation checklist and examples of correct/incorrect structures
@@ -9460,7 +9478,7 @@ For module-specific changelogs, see:
   - Consistent use of WOLFIE acronym across all documentation
 
 - **Database Schema Corrections and Documentation Updates**
-  - Corrected table name references: `lupo_navigation_tabs` â†’ `lupo_collection_tabs` in Navigation Tab Doctrine
+  - Corrected table name references: `lupo_navigation_tabs` → `lupo_collection_tabs` in Navigation Tab Doctrine
   - Updated Semantic Graph Doctrine to reflect edge-only architecture with polymorphic endpoints (`lupo_edges`, `lupo_edge_types`)
   - Clarified that semantic graph uses `left_object_type`/`left_object_id` and `right_object_type`/`right_object_id` for polymorphic entity references
   - Removed references to separate entities table (graph is edge-only)
@@ -9468,7 +9486,7 @@ For module-specific changelogs, see:
 
 - **Database Migration SQL** (`database/migrations/fix_agent_registry_id_and_fk_names.sql`)
   - Migration to fix `agent_registry_id` from `int` to `bigint` (NOT UNSIGNED)
-  - Migration to rename `dialog_threads_id` â†’ `dialog_thread_id` (singular naming convention)
+  - Migration to rename `dialog_threads_id` → `dialog_thread_id` (singular naming convention)
   - Migration to remove UNSIGNED from `external_event_id` in `lupo_agent_external_events` table
   - Includes verification queries for all changes
 
@@ -9576,7 +9594,7 @@ For module-specific changelogs, see:
   - Finalized 111-table schema (confirmed via TOON file count)
   - All doctrine files now reference correct federated installation architecture
   - Fixed `agent_registry_id` type from `int` to `bigint` (NOT UNSIGNED) per ID column standard
-  - Fixed `dialog_threads_id` â†’ `dialog_thread_id` (singular naming convention)
+  - Fixed `dialog_threads_id` → `dialog_thread_id` (singular naming convention)
   - Removed UNSIGNED from `external_event_id` in `lupo_agent_external_events` table
   - Updated all ID columns to use `bigint` (NOT UNSIGNED) per WOLFIE ID column standard
   - Verified all primary key ID columns are `bigint` (NOT UNSIGNED)
@@ -9624,8 +9642,8 @@ For module-specific changelogs, see:
   - Python script to scan all TOON files and generate ALTER statements for migration 4.2.0
   - Automatically detects UNSIGNED columns and generates MODIFY COLUMN statements
   - Automatically detects primary keys needing rename and generates CHANGE COLUMN statements
-  - Calculates correct singular forms for primary key naming (e.g., `lupo_content_likes` â†’ `content_like_id`)
-  - Handles known plural-to-singular edge cases (roles â†’ role, likes â†’ like, redirects â†’ redirect, fragments â†’ fragment)
+  - Calculates correct singular forms for primary key naming (e.g., `lupo_content_likes` → `content_like_id`)
+  - Handles known plural-to-singular edge cases (roles → role, likes → like, redirects → redirect, fragments → fragment)
   - Creates missing table definitions (e.g., `lupo_collection_tab_paths` from `END_GOAL_4_2_0.md`)
   - Generates complete migration SQL with verification queries
   - Independent singular calculation logic corrects any incorrect TOON metadata
@@ -9679,7 +9697,7 @@ For module-specific changelogs, see:
   - Ensures agent names are dynamically injected from `lupo_agent_registry` at runtime
   - Total files updated: 48+ system prompt files across all agent slots
 
-- **Agent Slot 3: ROSE â†’ DIALOG Migration**
+- **Agent Slot 3: ROSE → DIALOG Migration**
   - Updated `lupo-agents/3/agent.json`: Changed code/name from "ROSE" to "DIALOG", updated `recommended_slot` to `dedicated_slot: 3`
   - Updated `lupo-agents/3/versions/v1.0.0/system_prompt.txt`:
     - Removed "Rosetta Stone Agent" reference, updated to "expressive inline dialog renderer"
@@ -9689,12 +9707,12 @@ For module-specific changelogs, see:
     - Updated mood handling: DIALOG calculates final mood color (may accept, adjust, or override suggestion)
     - Changed persona examples from "rose" to "dialog" (e.g., "default_dialog", "ara_soft_empathic_dialog")
   - Updated `lupo-agents/3/versions/v1.0.0/prompt.txt`: Changed from "ROSE - kernel" to "DIALOG - kernel"
-  - Renamed documentation files: `ROSE_FORMAT_ENFORCEMENT.md` â†’ `DIALOG_FORMAT_ENFORCEMENT.md`, `ROSE_REQUEST_TEMPLATE.txt` â†’ `DIALOG_REQUEST_TEMPLATE.txt`
+  - Renamed documentation files: `ROSE_FORMAT_ENFORCEMENT.md` → `DIALOG_FORMAT_ENFORCEMENT.md`, `ROSE_REQUEST_TEMPLATE.txt` → `DIALOG_REQUEST_TEMPLATE.txt`
   - Updated all references in documentation from ROSE to DIALOG
   - DIALOG is now the canonical name for Agent Slot 3 (Agent Registry ID: 13, Dedicated Slot: 3)
   - All references to ROSE are now historical/deprecated
 
-- **TOON File Generator Improvements** (`database/generate_toon_files.py` v1.1.0 â†’ v1.2.0)
+- **TOON File Generator Improvements** (`database/generate_toon_files.py` v1.1.0 → v1.2.0)
   - Enhanced with metadata extraction capabilities for migration support
   - Improved singular calculation function with known mappings for edge cases
   - Better handling of plural-to-singular conversion (roles, likes, redirects, fragments, bodies, edges)
@@ -9717,8 +9735,8 @@ For module-specific changelogs, see:
 
 - **Singular Calculation Logic**
   - Fixed plural-to-singular conversion for table names with proper handling of:
-    - Words ending in "les" â†’ remove "s" only (roles â†’ role, likes â†’ like)
-    - Words ending in "cts", "nts", "ges" â†’ remove "es" (redirects â†’ redirect, fragments â†’ fragment)
+    - Words ending in "les" → remove "s" only (roles → role, likes → like)
+    - Words ending in "cts", "nts", "ges" → remove "es" (redirects → redirect, fragments → fragment)
     - Special cases mapped: roles, likes, redirects, fragments, messages, edges, bodies
   - Corrected calculation to prevent incorrect renames (e.g., `actor_channel_roles` already has correct PK `actor_channel_role_id`)
   - Migration script uses independent calculation to fix any incorrect TOON metadata
@@ -9746,7 +9764,7 @@ For module-specific changelogs, see:
 
 ### Changed
 
-- **Version Bump: 4.0.1 â†’ 4.0.2**
+- **Version Bump: 4.0.1 → 4.0.2**
   - Updated `config/global_atoms.yaml` to version 4.0.2
   - Updated `CHANGELOG.md` to use global atom references
   - Updated `README.md` to use global atom references
@@ -9789,14 +9807,14 @@ For module-specific changelogs, see:
   - Created `docs/architecture/multi-ide-workflow.md` documenting official multi-IDE, multi-AI development workflow
   - Documented four IDE roles: Cursor (fast prototyping), Cascade/Windsurf (legacy integration), JetBrains/PhpStorm (deployment/versioning), Notepad++ (precision editing)
   - Explained parallel workflow with careful tab management (all IDEs open simultaneously, but active tabs never overlap)
-  - Documented three-stage release pipeline: Cursor â†’ Development, Cascade â†’ Stabilization, JetBrains â†’ Release
+  - Documented three-stage release pipeline: Cursor → Development, Cascade → Stabilization, JetBrains → Release
   - Added workflow examples, best practices, and onboarding guidance
   - Added to `docs/README.md` Architecture Documentation section
 
 - **Folder Naming Doctrine**
   - Created `docs/doctrine/FOLDER_NAMING_DOCTRINE.md` enforcing lowercase-only folder naming (a-z, 0-9, hyphen, underscore)
   - MANDATORY: All folders MUST use lowercase only - no uppercase, no dots, no special characters, no hidden folders
-  - Fixed `docs/ARCHITECTURE/` â†’ `docs/architecture/` folder naming violation
+  - Fixed `docs/ARCHITECTURE/` → `docs/architecture/` folder naming violation
   - Updated all documentation references to use lowercase folder paths
   - Added validation patterns and enforcement rules for AI assistants
   - Added to Critical Doctrines list in `docs/README.md`
@@ -9806,12 +9824,12 @@ For module-specific changelogs, see:
   - Cursor: Autonomous refactor engine (new features, automated refactors, doctrine enforcement, SQL generation, folder moves)
   - Cascade: Manual controlled editor (legacy Crafty Syntax code, fragile migrations, step-by-step edits, stabilization)
   - MANDATORY: Cursor MUST NOT modify legacy Crafty Syntax code until Cascade completes stabilization and explicit handoff
-  - Documented three-phase handoff process: Cascade Stabilization â†’ Explicit Handoff â†’ Cursor Final Pass
+  - Documented three-phase handoff process: Cascade Stabilization → Explicit Handoff → Cursor Final Pass
   - Added to Critical Doctrines list in `docs/README.md`
 
 - **Versioning Doctrine**
   - Created `docs/doctrine/VERSIONING_DOCTRINE.md` establishing version numbers as milestones, not timestamps
-  - Documented three-stage release pipeline: Cursor (development, no version change) â†’ Cascade (stabilization, no version change) â†’ JetBrains (release, version changes here)
+  - Documented three-stage release pipeline: Cursor (development, no version change) → Cascade (stabilization, no version change) → JetBrains (release, version changes here)
   - MANDATORY: Version numbers only change in JetBrains (release stage)
   - Semantic versioning rules: Major (architectural paradigm shift), Minor (significant feature), Patch (bug fix)
   - **TEMPORARY WORKAROUND (4.0.x series):** JetBrains not in workflow until version 4.0.99. Cursor temporarily handling version bumps until first public release. JetBrains integration will begin at 4.0.99.
@@ -9820,9 +9838,9 @@ For module-specific changelogs, see:
 ### Changed
 
 - **Folder Structure (Lowercase-Only Enforcement)**
-  - Moved `docs/ARCHITECTURE/` â†’ `docs/architecture/` per lowercase-only doctrine
+  - Moved `docs/ARCHITECTURE/` → `docs/architecture/` per lowercase-only doctrine
   - Updated all documentation references to use lowercase folder paths
-  - Renamed `MULTI_IDE_WORKFLOW.md` â†’ `multi-ide-workflow.md` per hyphen-separated lowercase convention
+  - Renamed `MULTI_IDE_WORKFLOW.md` → `multi-ide-workflow.md` per hyphen-separated lowercase convention
 
 - **Documentation Structure**
   - Added Architecture Documentation section to `docs/README.md`
@@ -9839,7 +9857,7 @@ For module-specific changelogs, see:
   - Verified no duplicates remain (101 agents, 101 unique slots)
 
 - **Folder Naming Violations**
-  - Fixed uppercase folder `docs/ARCHITECTURE/` â†’ lowercase `docs/architecture/`
+  - Fixed uppercase folder `docs/ARCHITECTURE/` → lowercase `docs/architecture/`
   - Updated all internal documentation references to use correct lowercase paths
   - Ensured compliance with lowercase-only folder naming doctrine
 
@@ -9880,7 +9898,7 @@ For module-specific changelogs, see:
 
 - **WOLFIE Headers Multi-Scope Atoms System**
   - Extended atoms system to support 5 scopes: FILE, DIR, DIRR, MODULE, GLOBAL
-  - Added resolution order: FILE â†’ DIR â†’ DIRR â†’ MODULE â†’ GLOBAL (first match wins)
+  - Added resolution order: FILE → DIR → DIRR → MODULE → GLOBAL (first match wins)
   - Created `/config/global_atoms.yaml` as single source of truth for ecosystem-wide metadata
   - Created `_dir_atoms.yaml` format for directory-scoped atoms (DIR_* and DIRR_*)
   - Created `module_atoms.yaml` format for module-scoped atoms (MODULE_*)
@@ -9920,14 +9938,14 @@ For module-specific changelogs, see:
 
 - **Documentation Doctrine and Documentation-as-Code System**
   - Created `DOCUMENTATION_DOCTRINE.md` - Core doctrine: Documentation is software. Documentation is data. Documentation is for machines.
-  - Created `ATOM_RESOLUTION_SPECIFICATION.md` - Complete technical specification for atom resolution engine (FILE_â†’DIR_â†’DIRR_â†’MODULE_â†’GLOBAL_)
+  - Created `ATOM_RESOLUTION_SPECIFICATION.md` - Complete technical specification for atom resolution engine (FILE_→DIR_→DIRR_→MODULE_→GLOBAL_)
   - Created `DOCUMENTATION_AS_CODE_MANIFESTO.md` - Philosophical foundation for documentation-as-code approach
   - Documentation is structured, resolvable, machine-readable system metadata (not human-written text)
   - Markdown files are source code; atoms are variables; resolver is compiler; final rendered docs are build artifacts
   - All documentation uses atom references (`@GLOBAL.*` syntax) instead of hardcoded values
   - Future documentation reader UI will be built directly into Lupopedia to render documentation as a book for humans
   - Documentation is written for machines first (resolver, semantic OS, agents); humans are secondary consumers
-  - Deterministic and idempotent: same input â†’ same output, no duplication, no drift
+  - Deterministic and idempotent: same input → same output, no duplication, no drift
   - All future AI systems must read documentation with atoms and scopes, not as plain text
 
 ### Changed
@@ -9989,7 +10007,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - HERMES now reads `channels.metadata_json` to extract `channel_intent`, `allowed_roles`, and `disallowed_roles`
   - Channel intent is the **primary routing constraint**; mood-based routing is **secondary**
   - Filtering occurs BEFORE CADUCEUS current computation
-  - Failover sequence: opposite pool â†’ System Agent 0 â†’ ROUTING_FAILURE
+  - Failover sequence: opposite pool → System Agent 0 → ROUTING_FAILURE
   - Documented in HERMES_ROUTING_RFC.md, CADUCEUS_ROUTING_RFC.md, HERMES_AND_CADUCEUS.md, and MOOD_RGB_DOCTRINE.md
 
 - **KISS Summary Sections**
@@ -10007,12 +10025,12 @@ This release introduces the complete emotional metadata and routing subsystem, i
 
 - **MOOD_RGB Doctrine v4.0.1** (`docs/doctrine/MOOD_RGB_DOCTRINE.md`)
   - Neutral vs zero mood clarification: `666666` is neutral default, `000000` is void state
-  - Validation rules: regex validation, invalid â†’ neutral, safe hexdec() behavior
+  - Validation rules: regex validation, invalid → neutral, safe hexdec() behavior
   - Zero mood handling: `000000` MUST NOT be used as default, MUST be treated as neutral for routing
   - Agent behavior rules: Agents MUST only write valid hex mood_rgb values
   - Routing behavior: CADUCEUS and HERMES integration for mood-aware routing
 
-- **RFC 4002 â€” Thread Mood Aggregation Standard v4.0.1** (`docs/protocols/THREAD_MOOD_RFC.md`)
+- **RFC 4002 — Thread Mood Aggregation Standard v4.0.1** (`docs/protocols/THREAD_MOOD_RFC.md`)
   - Defines canonical method for aggregating individual message moods into thread-level mood
   - Algorithm: RGB component averaging with precision guarantees
   - Zero-mood handling: `000000` MUST be ignored in aggregation, fallback to `666666` if all messages are void
@@ -10022,23 +10040,23 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Weighting reserved for future versions: v1 = simple average, v2 = weighted (recency, agent priority, decay)
   - Test suite defined: all-neutral, all-zero, mixed, invalid, large threads, rounding edges
 
-- **RFC 4003 â€” CADUCEUS Routing Currents Standard v4.0.1** (`docs/protocols/CADUCEUS_ROUTING_RFC.md`)
+- **RFC 4003 — CADUCEUS Routing Currents Standard v4.0.1** (`docs/protocols/CADUCEUS_ROUTING_RFC.md`)
   - Converts mood_rgb (Counting-in-Light) into deterministic routing currents (`left`, `right`)
-  - Axis binding rationale: harmony + memory â†’ analytical (stabilizing), strife + memory â†’ creative (scrutiny)
+  - Axis binding rationale: harmony + memory → analytical (stabilizing), strife + memory → creative (scrutiny)
   - Cultural and domain flexibility: HERMES MAY swap left/right pools per node configuration
   - Precision & determinism: epsilon = 1e-6, invariant enforcement (`left + right = 1.0`), cross-runtime consistency
-  - Void/invalid handling: unified doctrine (invalid â†’ neutral, void â†’ neutral), single code path
+  - Void/invalid handling: unified doctrine (invalid → neutral, void → neutral), single code path
   - Skew detection: thresholds, observability, THEMIS integration, agent-level skew detection
   - Performance: statelessness, optional ephemeral memoization, sub-millisecond computation
   - High-precision safety: BCMath/arbitrary-precision math for overflow prevention
 
-- **RFC 4004 â€” HERMES Routing Layer Standard v4.0.1** (`docs/protocols/HERMES_ROUTING_RFC.md`)
+- **RFC 4004 — HERMES Routing Layer Standard v4.0.1** (`docs/protocols/HERMES_ROUTING_RFC.md`)
   - Central message routing infrastructure for multi-agent coordination
   - Direct routing: honors explicit `to_actor` directives
   - Mood-aware routing: uses CADUCEUS currents for analytical vs creative pool selection
   - Agent pool selection: analytical pool (THOTH, ANALYST, FACTCHECKER), creative pool (LILITH, THALIA, ROSE)
-  - Failover doctrine: opposite pool â†’ System Agent 0 â†’ error packet on complete unavailability
-  - Tiebreaker rules: thread history â†’ agent priority â†’ round-robin (deterministic)
+  - Failover doctrine: opposite pool → System Agent 0 → error packet on complete unavailability
+  - Tiebreaker rules: thread history → agent priority → round-robin (deterministic)
   - Error flow specification: INVALID_MOOD, VOID_MOOD, NO_ACTIVE_AGENTS, POOL_BINDING_ERROR, RUNTIME_PRECISION_ERROR
   - Skew monitoring: >90% same pool triggers THEMIS notification, diversity thresholds configurable
   - Swarm-scale optimization: agent pool caching, refresh triggers, 101+ agent support
@@ -10050,13 +10068,13 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - ARA adversarial review patches: routing philosophy clarification, failover doctrine, precision safeguards
   - Test cases: equal currents, invalid hex, void mood, no agents in pool, federation mocks, precision invariant
 
-- **RFC 4000 â€” WOLFIE Header Metadata Standard v4.0.1** (`docs/protocols/WOLFIE_HEADER_RFC.md`)
+- **RFC 4000 — WOLFIE Header Metadata Standard v4.0.1** (`docs/protocols/WOLFIE_HEADER_RFC.md`)
   - Updated to reflect 128 AI agents, 8 LLM models, and 3 IDE modules (Cursor, Windsurf, Winston)
   - Standards track note added: "Part of: Lupopedia 4.0.1 Standards Track"
   - Complete RFC-style specification for WOLFIE Headers
 
 - **Documentation Version Updates**
-  - All documentation files updated from 4.0.0 â†’ 4.0.1
+  - All documentation files updated from 4.0.0 → 4.0.1
   - All RFC files include "Part of: Lupopedia 4.0.1 Standards Track" note
   - All WOLFIE Headers updated to version 4.0.1
   - Historical documents (UPGRADE_PLAN_3.7.5_TO_4.0.0.md) preserved unchanged
@@ -10073,7 +10091,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
 
 - **HERMES Agent Class Filtering**
   - HERMES now filters agents by `classification_json.agent_class` before applying CADUCEUS currents
-  - Routing order: Channel intent â†’ Agent classification â†’ CADUCEUS currents â†’ Failover â†’ System Agent 0
+  - Routing order: Channel intent → Agent classification → CADUCEUS currents → Failover → System Agent 0
   - Enables channels to control which agent classes participate regardless of emotional metadata
   - Integrated into HERMES_ROUTING_RFC.md and HERMES_AND_CADUCEUS.md documentation
 
@@ -10107,7 +10125,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
 
 - **Channel Routing Mode Integration**
   - Routing mode now takes precedence over all other routing decisions
-  - Updated routing order: Routing mode check â†’ Channel intent â†’ Agent classification â†’ CADUCEUS currents â†’ Failover â†’ System Agent 0
+  - Updated routing order: Routing mode check → Channel intent → Agent classification → CADUCEUS currents → Failover → System Agent 0
   - Simplifies routing logic for most channels (none, operator, broadcast modes)
   - Full emotional routing only activated when `routing_mode == "hermes"`
 
@@ -10121,7 +10139,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
 
 - **Node Definition Clarification**
   - Clarified that nodes are domain installations (server installations), not AI agents
-  - Updated `federation_nodes` (formerly `node_registry`) schema documentation: renamed `node_name` â†’ `domain_name`
+  - Updated `federation_nodes` (formerly `node_registry`) schema documentation: renamed `node_name` → `domain_name`
   - Added `domain_root VARCHAR(255) NULL` field to `federation_nodes` with comment: "Canonical root URL of the domain hosting this Lupopedia node"
   - Added "What is a Node?" definition section to DEFINITION.md and TERMINOLOGY.md
   - Clarified distinction between nodes (domain installations), agents (AI entities), and channels (communication spaces)
@@ -10130,11 +10148,11 @@ This release introduces the complete emotional metadata and routing subsystem, i
 
 - **Federation Table Renaming (Eliminates Node/Agent Confusion)**
   - Renamed federation tables to clarify they belong to Federation Layer, not Agent Layer:
-    - `node_registry` â†’ `federation_nodes`
-    - `node_categories` â†’ `federation_categories`
-    - `node_category_map` â†’ `federation_category_map`
-    - `node_discovery` â†’ `federation_discovery`
-    - `node_modules` â†’ `federation_node_modules`
+    - `node_registry` → `federation_nodes`
+    - `node_categories` → `federation_categories`
+    - `node_category_map` → `federation_category_map`
+    - `node_discovery` → `federation_discovery`
+    - `node_modules` → `federation_node_modules`
   - These tables manage inter-node federation, not AI agents
   - Updated all documentation references to use new table names
   - Clarified in schema documentation that these are Federation Layer tables
@@ -10157,7 +10175,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Created `docs/doctrine/TABLE_PREFIXING_DOCTRINE.md` documenting mandatory table prefixing rules
   - All table names must use `LUPO_PREFIX` from `lupopedia-config.php` (e.g., `lupo_contents`)
   - Column names must NOT include the prefix (universal across all installations)
-  - Primary keys must follow pattern: `singular_table_name + "_id"` (e.g., `contents` â†’ `content_id`)
+  - Primary keys must follow pattern: `singular_table_name + "_id"` (e.g., `contents` → `content_id`)
   - Prefix applies ONLY to table names, never to columns
   - Updated SQL_REWRITE_DOCTRINE.md to reference table prefixing doctrine
 
@@ -10176,15 +10194,15 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Updated table count from 149 to 145 total tables
   - Clarified breakdown: 111 core Lupopedia 4.0.1 tables + 34 temporary migration tables (`livehelp_*`) + 4 system tables
   - Created `docs/doctrine/MIGRATION_DOCTRINE.md` documenting that LiveHelp tables are migration-only
-  - LiveHelp tables (`livehelp_*`) are NOT part of Lupopedia 4.0.1 runtime â€” they exist only during upgrade
-  - Migration SQL is hand-authored and authoritative â€” Cursor must not rewrite it
+  - LiveHelp tables (`livehelp_*`) are NOT part of Lupopedia 4.0.1 runtime — they exist only during upgrade
+  - Migration SQL is hand-authored and authoritative — Cursor must not rewrite it
   - Migration SQL located in `/database/migrations/craftysyntax_to_lupopedia_mysql.sql`
   - After successful migration, all `livehelp_*` tables are dropped
   - Updated all documentation references to reflect correct table count and migration-only status
   - Added warnings in schema documentation about migration-only tables
 
 - **Upgrade Wizard Implementation**
-  - Updated `lupo-includes/lupopedia-setup.php` with complete upgrade wizard for Crafty Syntax 3.7.5 â†’ Lupopedia 4.0.1
+  - Updated `lupo-includes/lupopedia-setup.php` with complete upgrade wizard for Crafty Syntax 3.7.5 → Lupopedia 4.0.1
   - Automatic detection of `config.php` (Crafty Syntax config file) triggers upgrade mode
   - Upgrade wizard steps:
     1. **Config Detection**: Automatically finds and parses old `config.php` to extract database credentials
@@ -10231,22 +10249,22 @@ This release introduces the complete emotional metadata and routing subsystem, i
 ## [4.0.0] - 2026-01-06
 
 ### Added
-- **Refactor File System for Legacy â†’ 4.0.0 Migration** (`refactors/*.json`)
-  - Introduced a complete refactorâ€‘mapping system for all 34 legacy Crafty Syntax tables
+- **Refactor File System for Legacy → 4.0.0 Migration** (`refactors/*.json`)
+  - Introduced a complete refactor‑mapping system for all 34 legacy Crafty Syntax tables
   - Each refactor file defines:
     - old table name
     - new table name
-    - columnâ€‘toâ€‘column mappings
-    - value transformations (Y/N â†’ 1/0, timestamps, enums, etc.)
+    - column‑to‑column mappings
+    - value transformations (Y/N → 1/0, timestamps, enums, etc.)
     - dropped legacy fields
     - added 4.0.0 fields with defaults
-    - rewrite rules for SQL, PHP, and agentâ€‘generated code
+    - rewrite rules for SQL, PHP, and agent‑generated code
   - Enables deterministic rewriting of legacy SQL queries by AI agents (Cursor, Windsurf/Cascade, DeepSeek)
-  - Prevents schema hallucination by providing authoritative machineâ€‘readable mappings
+  - Prevents schema hallucination by providing authoritative machine‑readable mappings
   - Ensures all legacy PHP code referencing `livehelp_*` tables can be automatically rewritten to the new 4.0.0 schema
   - Supports the importer system by providing transformation rules for each table
   - Required for all 34 Crafty Syntax legacy tables
-  - Forms the backbone of the 3.7.5 â†’ 4.0.0 upgrade path
+  - Forms the backbone of the 3.7.5 → 4.0.0 upgrade path
   - Fully documented in `docs/UPGRADE_PLAN_3.7.5_TO_4.0.0.md`
 
 - **Toon Files Reference System** (`database/toon_data/`)
@@ -10304,20 +10322,20 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Database schema notes and field requirements
   - Routing, memory, and dialog flow doctrines
   - Agent registry updates (IDs 101-104: SESHAT, HEIMDALL, JANUS, IRIS)
-  - **Timestamp Doctrine (MANDATORY)** â€” All timestamps use `BIGINT(14) UNSIGNED` with `YYYYMMDDHHIISS` format (UTC only)
-  - **Timestamp Utility Class** â€” `timestamp_ymdhis` class must be used for all timestamp operations
-  - **System Services** â€” Distinction between talkable agents and system services (IRIS, JANUS, HEIMDALL, etc.)
-  - **Final Directive** â€” Comprehensive list of what Cursor must NOT do (no DATETIME, TIMESTAMP, epoch, etc.)
-  - **Semantic OS Architecture** â€” Lupopedia is an operating system, not a web app (no frameworks, ORMs, or magic abstractions)
-  - **Multi-Agent Chat Architecture** â€” Channels, visibility rules (AI sees addressed messages, humans see all), routing via HERMES+CADUCEUS, fixed dialog flow
-  - **Agent Layers and Roles** â€” Kernel agents (SYSTEM, CAPTAIN, THOTH, CHRONOS, etc.) do NOT participate in dialog; System services (JANUS, HEIMDALL, etc.) are NOT personas; Only persona agents speak in chat
-  - **ROSE (Rosetta Stone Translator)** â€” Translator, not a thinker; rewrites messages into target persona; preserves meaning; does NOT participate in dialog
-  - **CHRONOS (Temporal Coordination Engine)** â€” Kernel component; does NOT speak to users; handles time, sequencing, coordination; uses timestamp_ymdhis exclusively
-  - **UI Direction** â€” Mockup is rough draft; final UI uses collections, top-navigation tabs, channel-based chat, actionable messages
-  - **Actionable Chat Messages** â€” Actions stored in existing tables; no new schema required; executed at application layer
-  - **Doctrine Over Frameworks** â€” Lupopedia's doctrines are superior to Laravel, Symfony, Node/Express, React/Next.js, ORM, MVC, microservice patterns
-  - **Cursor's Role** â€” Comprehensive list of what Cursor should do and must NOT do; operate inside architecture, do not reshape it
-  - **Agent Dependency Doctrine (MANDATORY)** â€” Application layer is authoritative for all dependency validation; PHP validates all dependencies, resolves codes to IDs, enforces activation and internal-only flags; Database is safety net only; Always write both `depends_on_agent_code` and `depends_on_agent_id`; Never bypass PHP validation; Never treat MySQL as an application; CARMEN dependencies (AGAPE, ERIS, METIS) must be enforced in PHP
+  - **Timestamp Doctrine (MANDATORY)** — All timestamps use `BIGINT(14) UNSIGNED` with `YYYYMMDDHHIISS` format (UTC only)
+  - **Timestamp Utility Class** — `timestamp_ymdhis` class must be used for all timestamp operations
+  - **System Services** — Distinction between talkable agents and system services (IRIS, JANUS, HEIMDALL, etc.)
+  - **Final Directive** — Comprehensive list of what Cursor must NOT do (no DATETIME, TIMESTAMP, epoch, etc.)
+  - **Semantic OS Architecture** — Lupopedia is an operating system, not a web app (no frameworks, ORMs, or magic abstractions)
+  - **Multi-Agent Chat Architecture** — Channels, visibility rules (AI sees addressed messages, humans see all), routing via HERMES+CADUCEUS, fixed dialog flow
+  - **Agent Layers and Roles** — Kernel agents (SYSTEM, CAPTAIN, THOTH, CHRONOS, etc.) do NOT participate in dialog; System services (JANUS, HEIMDALL, etc.) are NOT personas; Only persona agents speak in chat
+  - **ROSE (Rosetta Stone Translator)** — Translator, not a thinker; rewrites messages into target persona; preserves meaning; does NOT participate in dialog
+  - **CHRONOS (Temporal Coordination Engine)** — Kernel component; does NOT speak to users; handles time, sequencing, coordination; uses timestamp_ymdhis exclusively
+  - **UI Direction** — Mockup is rough draft; final UI uses collections, top-navigation tabs, channel-based chat, actionable messages
+  - **Actionable Chat Messages** — Actions stored in existing tables; no new schema required; executed at application layer
+  - **Doctrine Over Frameworks** — Lupopedia's doctrines are superior to Laravel, Symfony, Node/Express, React/Next.js, ORM, MVC, microservice patterns
+  - **Cursor's Role** — Comprehensive list of what Cursor should do and must NOT do; operate inside architecture, do not reshape it
+  - **Agent Dependency Doctrine (MANDATORY)** — Application layer is authoritative for all dependency validation; PHP validates all dependencies, resolves codes to IDs, enforces activation and internal-only flags; Database is safety net only; Always write both `depends_on_agent_code` and `depends_on_agent_id`; Never bypass PHP validation; Never treat MySQL as an application; CARMEN dependencies (AGAPE, ERIS, METIS) must be enforced in PHP
 
 - **Why No Frameworks Documentation** (`docs/WHY_NO_FRAMEWORKS.md`)
   - Explains Lupopedia's framework-free philosophy and first-principles architecture
@@ -10331,40 +10349,40 @@ This release introduces the complete emotional metadata and routing subsystem, i
 
 - **Cursor Refactor Doctrine** (`docs/CURSOR_REFACTOR_DOCTRINE.md`)
   - **MANDATORY rules** for Cursor when rewriting legacy Crafty Syntax PHP code
-  - Preserve all logic exactly â€” modernize syntax, not behavior
-  - No frameworks, no Composer, no autoloaders â€” procedural, portable, dependency-free PHP
-  - SQL rewrites MUST follow the refactor JSON â€” never guess table/column mappings
-  - No column-level charset or collation â€” table-level only
-  - No foreign keys, constraints, or triggers â€” Lupopedia doctrine forbids these
+  - Preserve all logic exactly — modernize syntax, not behavior
+  - No frameworks, no Composer, no autoloaders — procedural, portable, dependency-free PHP
+  - SQL rewrites MUST follow the refactor JSON — never guess table/column mappings
+  - No column-level charset or collation — table-level only
+  - No foreign keys, constraints, or triggers — Lupopedia doctrine forbids these
   - Maintain file structure unless instructed otherwise
-  - One page at a time, one function at a time â€” focus on specific requests
-  - No modern PHP features unless explicitly allowed â€” PHP 7.4+ procedural compatibility
-  - Preserve global variables and legacy state â€” don't refactor to dependency injection
-  - No silent behavior changes â€” preserve all existing behavior exactly
-  - All new code must follow Lupopedia doctrine â€” timestamps, naming, no FKs, etc.
-  - Cursor must not invent missing context â€” ask for clarification, don't guess
-  - Respect agent activation doctrine â€” never bypass activation checks
-  - No security changes without permission â€” preserve existing security model
-  - Output clean, minimal, doctrine-aligned code â€” but don't remove functionality
+  - One page at a time, one function at a time — focus on specific requests
+  - No modern PHP features unless explicitly allowed — PHP 7.4+ procedural compatibility
+  - Preserve global variables and legacy state — don't refactor to dependency injection
+  - No silent behavior changes — preserve all existing behavior exactly
+  - All new code must follow Lupopedia doctrine — timestamps, naming, no FKs, etc.
+  - Cursor must not invent missing context — ask for clarification, don't guess
+  - Respect agent activation doctrine — never bypass activation checks
+  - No security changes without permission — preserve existing security model
+  - Output clean, minimal, doctrine-aligned code — but don't remove functionality
   - **This doctrine is non-negotiable and must be followed for every refactor**
 
 - **SQL Rewrite Doctrine** (`docs/SQL_REWRITE_DOCTRINE.md`)
   - **MANDATORY rules** for Cursor when rewriting SQL from Crafty Syntax into Lupopedia
-  - The refactor JSON is the only source of truth â€” never guess mappings
-  - Table names must be rewritten exactly as specified â€” no deviations
-  - Column names must follow the column map exactly â€” no creative renaming
-  - Boolean transforms must follow the JSON rules â€” convert Y/N to 1/0 as specified
-  - No SQL optimizations unless explicitly allowed â€” preserve legacy behavior exactly
-  - No MySQL 8 defaults, ever â€” maintain compatibility with MySQL 5.7 and MariaDB 10.x
-  - No foreign keys, constraints, or triggers â€” Lupopedia doctrine forbids these
-  - INSERT statements must include added columns â€” use default values from JSON
-  - UPDATE statements must not touch added columns unless specified â€” preserve immutability
-  - WHERE clauses must preserve legacy behavior â€” don't change comparison operators or logic
-  - SELECT * must be expanded only when necessary â€” only to remove dropped columns
-  - SQL must remain procedural and simple â€” raw SQL with mysqli, no abstractions
-  - Cursor must ask for clarification when JSON is missing â€” don't guess
-  - Cursor must not invent missing columns or tables â€” always ask when mappings are missing
-  - All rewritten SQL must be clean, minimal, and doctrine-aligned â€” but preserve functionality
+  - The refactor JSON is the only source of truth — never guess mappings
+  - Table names must be rewritten exactly as specified — no deviations
+  - Column names must follow the column map exactly — no creative renaming
+  - Boolean transforms must follow the JSON rules — convert Y/N to 1/0 as specified
+  - No SQL optimizations unless explicitly allowed — preserve legacy behavior exactly
+  - No MySQL 8 defaults, ever — maintain compatibility with MySQL 5.7 and MariaDB 10.x
+  - No foreign keys, constraints, or triggers — Lupopedia doctrine forbids these
+  - INSERT statements must include added columns — use default values from JSON
+  - UPDATE statements must not touch added columns unless specified — preserve immutability
+  - WHERE clauses must preserve legacy behavior — don't change comparison operators or logic
+  - SELECT * must be expanded only when necessary — only to remove dropped columns
+  - SQL must remain procedural and simple — raw SQL with mysqli, no abstractions
+  - Cursor must ask for clarification when JSON is missing — don't guess
+  - Cursor must not invent missing columns or tables — always ask when mappings are missing
+  - All rewritten SQL must be clean, minimal, and doctrine-aligned — but preserve functionality
   - **This doctrine is mandatory and must be followed for every SQL rewrite**
 
 - **SQL Refactor Mapping Doctrine** (`docs/SQL_REFACTOR_MAPPING_DOCTRINE.md`)
@@ -10384,53 +10402,53 @@ This release introduces the complete emotional metadata and routing subsystem, i
 
 - **TOON Doctrine** (`docs/TOON_DOCTRINE.md`)
   - **MANDATORY rules** for Cursor when working with TOON format files
-  - TOON is NOT JSON â€” All refactor files, agent files, and schema mapping files are in TOON format, not JSON
+  - TOON is NOT JSON — All refactor files, agent files, and schema mapping files are in TOON format, not JSON
   - Cursor must never convert TOON to JSON, rewrite TOON as JSON, validate TOON as JSON, or enforce JSON syntax rules
-  - Cursor must preserve TOON exactly as written â€” indentation, spacing, key order, symbolic structure, comments, meaning blocks
-  - TOON is a semantic mapping format, not a data serialization format â€” Cursor must read TOON keys and values as meaning, not syntax
+  - Cursor must preserve TOON exactly as written — indentation, spacing, key order, symbolic structure, comments, meaning blocks
+  - TOON is a semantic mapping format, not a data serialization format — Cursor must read TOON keys and values as meaning, not syntax
   - TOON files in `database/refactors/` are the ONLY source of truth for SQL rewrites and schema mapping
   - TOON files in `database/toon_data/` are the ONLY source of truth for table structure and column names
-  - Cursor must not waste tokens converting TOON into JSON or any other format â€” work with TOON directly
+  - Cursor must not waste tokens converting TOON into JSON or any other format — work with TOON directly
   - Files may have `.json` extensions, but they are TOON format, not JSON
   - **This doctrine is mandatory and must be followed when working with any TOON format files**
 
 - **Legacy Refactor Plan** (`docs/LEGACY_REFACTOR_PLAN.md`)
   - Comprehensive plan for refactoring legacy Crafty Syntax files from `legacy/craftysyntax/` to `lupopedia/`
-  - File mapping strategy â€” Admin files, user files, API files, class files, function libraries
-  - Conversion process â€” Identify file type, load refactor TOON files, convert SQL, convert PHP, update file structure
-  - SQL conversion rules â€” Table name conversion, column name conversion (preserve legacy typos), parameterized queries
-  - PHP conversion rules â€” Database connection, query execution, multiple rows, INSERT/UPDATE/DELETE
-  - File organization â€” Directory structure, include path updates
-  - Step-by-step refactoring process â€” Phase 1: Core Classes, Phase 2: Function Libraries, Phase 3: Admin Interface, Phase 4: User Interface, Phase 5: API Endpoints, Phase 6: Supporting Files
-  - Testing and validation â€” SQL validation, PHP validation, integration testing
-  - Critical reminders â€” Never guess, preserve behavior, follow doctrine
-  - **Legacy column name typos must be preserved** â€” Never "correct" typos like "visiblity" (instead of "visibility"). These typos exist in the database and must be preserved in refactored code.
+  - File mapping strategy — Admin files, user files, API files, class files, function libraries
+  - Conversion process — Identify file type, load refactor TOON files, convert SQL, convert PHP, update file structure
+  - SQL conversion rules — Table name conversion, column name conversion (preserve legacy typos), parameterized queries
+  - PHP conversion rules — Database connection, query execution, multiple rows, INSERT/UPDATE/DELETE
+  - File organization — Directory structure, include path updates
+  - Step-by-step refactoring process — Phase 1: Core Classes, Phase 2: Function Libraries, Phase 3: Admin Interface, Phase 4: User Interface, Phase 5: API Endpoints, Phase 6: Supporting Files
+  - Testing and validation — SQL validation, PHP validation, integration testing
+  - Critical reminders — Never guess, preserve behavior, follow doctrine
+  - **Legacy column name typos must be preserved** — Never "correct" typos like "visiblity" (instead of "visibility"). These typos exist in the database and must be preserved in refactored code.
 
 - **Legacy Refactor Plan** (`docs/LEGACY_REFACTOR_PLAN.md`)
   - Comprehensive plan for refactoring legacy Crafty Syntax files from `legacy/craftysyntax/` to `lupopedia/`
-  - File mapping strategy â€” Admin files, user files, API files, class files, function libraries
-  - Conversion process â€” Identify file type, load refactor TOON files, convert SQL, convert PHP, update file structure
-  - SQL conversion rules â€” Table name conversion, column name conversion (preserve legacy typos), parameterized queries
-  - PHP conversion rules â€” Database connection, query execution, multiple rows, INSERT/UPDATE/DELETE
-  - File organization â€” Directory structure, include path updates
-  - Step-by-step refactoring process â€” Phase 1: Core Classes, Phase 2: Function Libraries, Phase 3: Admin Interface, Phase 4: User Interface, Phase 5: API Endpoints, Phase 6: Supporting Files
-  - Testing and validation â€” SQL validation, PHP validation, integration testing
-  - Critical reminders â€” Never guess, preserve behavior, follow doctrine
-  - **Legacy column name typos must be preserved** â€” Never "correct" typos like "visiblity" (instead of "visibility"). These typos exist in the database and must be preserved in refactored code.
+  - File mapping strategy — Admin files, user files, API files, class files, function libraries
+  - Conversion process — Identify file type, load refactor TOON files, convert SQL, convert PHP, update file structure
+  - SQL conversion rules — Table name conversion, column name conversion (preserve legacy typos), parameterized queries
+  - PHP conversion rules — Database connection, query execution, multiple rows, INSERT/UPDATE/DELETE
+  - File organization — Directory structure, include path updates
+  - Step-by-step refactoring process — Phase 1: Core Classes, Phase 2: Function Libraries, Phase 3: Admin Interface, Phase 4: User Interface, Phase 5: API Endpoints, Phase 6: Supporting Files
+  - Testing and validation — SQL validation, PHP validation, integration testing
+  - Critical reminders — Never guess, preserve behavior, follow doctrine
+  - **Legacy column name typos must be preserved** — Never "correct" typos like "visiblity" (instead of "visibility"). These typos exist in the database and must be preserved in refactored code.
 
 - **PDO Conversion Doctrine** (`docs/PDO_CONVERSION_DOCTRINE.md`)
   - **MANDATORY rules** for Cursor when converting mysqli SQL calls to the custom PDO_DB class
-  - Cursor must use the custom PDO_DB class only â€” never use raw PDO
-  - All mysqli functions must be removed and replaced â€” use PDO_DB methods exclusively
-  - Convert all SQL to parameterized queries â€” all variables become named parameters (`:param_name`)
-  - Follow SQL Rewrite Doctrine for table/column names â€” use refactor TOON file mappings
-  - Preserve legacy behavior exactly â€” only change execution mechanism, not logic
-  - No exceptions or try/catch blocks â€” PDO wrapper handles errors internally
-  - No fetch modes or PDO constants â€” wrapper abstracts that away
-  - Don't change how results are used â€” convert while loops to foreach, preserve behavior
-  - Don't change INSERT/UPDATE/DELETE logic â€” use `execute()` method, don't add features
-  - Ask for clarification if PDO_DB method is unknown â€” don't guess which method to use
-  - **This doctrine is mandatory and must be followed for every mysqli â†’ PDO conversion**
+  - Cursor must use the custom PDO_DB class only — never use raw PDO
+  - All mysqli functions must be removed and replaced — use PDO_DB methods exclusively
+  - Convert all SQL to parameterized queries — all variables become named parameters (`:param_name`)
+  - Follow SQL Rewrite Doctrine for table/column names — use refactor TOON file mappings
+  - Preserve legacy behavior exactly — only change execution mechanism, not logic
+  - No exceptions or try/catch blocks — PDO wrapper handles errors internally
+  - No fetch modes or PDO constants — wrapper abstracts that away
+  - Don't change how results are used — convert while loops to foreach, preserve behavior
+  - Don't change INSERT/UPDATE/DELETE logic — use `execute()` method, don't add features
+  - Ask for clarification if PDO_DB method is unknown — don't guess which method to use
+  - **This doctrine is mandatory and must be followed for every mysqli → PDO conversion**
 
 - **WOLFIE Headers Added to Documentation**
   - Added WOLFIE Headers v4.0.0 to all major documentation files:
@@ -10482,7 +10500,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Updated format: `dialog:` with structured fields (speaker, target, mood_RGB, message)
   - Placement rules: Dialog blocks can appear anywhere in files; topmost is always latest
   - WOLFIE Headers always contain the very latest dialog message
-  - Message constraints: â‰¤ 272 characters, no line breaks, reserves space for mood tags
+  - Message constraints: ≤ 272 characters, no line breaks, reserves space for mood tags
   - Human participation: Humans can write dialog blocks to participate in conversational lineage
   - Version control interaction deferred until 4.0.1
   - Inline reference format: `@FILENAME (startLine-endLine)` for citing dialog blocks
@@ -10509,31 +10527,31 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - README.md: Updated section titles and content references
   - CHANGELOG.md: Updated table count references
   - database/migrations/craftysyntax_to_lupopedia_mysql.sql: Updated final schema count comment
-  - Reflects additional tables added for ANIBUS and WOLFMIND systems
+  - Reflects additional tables added for anubis and WOLFMIND systems
 
 - **Toon Files Generator Improvements** (`database/generate_toon_files.py`)
   - Fixed Unicode encoding errors for Windows console compatibility
-  - Replaced Unicode characters (âš ï¸, âŒ, âœ“) with ASCII equivalents ([WARNING], [ERROR], [OK])
+  - Replaced Unicode characters (⚠️, ❌, ✓) with ASCII equivalents ([WARNING], [ERROR], [OK])
   - Now runs cleanly on Windows without encoding errors
   - All 137 tables successfully generating toon files
 
 - **Version Updates Across Repository**
   - Updated `lupo-includes/version.php` to 4.0.0
-    - LUPOPEDIA_VERSION: 1.0.2 â†’ 4.0.0
-    - LUPOPEDIA_DB_VERSION: 1.0.2 â†’ 4.0.0
-    - LUPOPEDIA_VERSION_NUM: 10002 â†’ 40000
-    - LUPOPEDIA_VERSION_DATE: 20260104000000 â†’ 20260105000000
-  - Updated PHP file annotations: `@version 1.0.2` â†’ `@version 4.0.0`
+    - LUPOPEDIA_VERSION: 1.0.2 → 4.0.0
+    - LUPOPEDIA_DB_VERSION: 1.0.2 → 4.0.0
+    - LUPOPEDIA_VERSION_NUM: 10002 → 40000
+    - LUPOPEDIA_VERSION_DATE: 20260104000000 → 20260105000000
+  - Updated PHP file annotations: `@version 1.0.2` → `@version 4.0.0`
     - lupo-includes/lupopedia-setup.php
   - Updated all module versions to 4.0.0
-    - Dialog Module: 1.0.0 â†’ 4.0.0
+    - Dialog Module: 1.0.0 → 4.0.0
     - Crafty Syntax Module: Already 4.0.0 (confirmed)
 
 - **Documentation Updates**
   - README.md: Updated to version 4.0.0, added versioning policy section
   - VERSION_CONTROL_POLICY.md: Added unified versioning policy, updated Git policy to 4.0.99
-  - All documentation files: Updated version references from 1.0.2 â†’ 4.0.0
-  - Database Schema Reference: Version 1.0.2 → 4.0.0
+  - All documentation files: Updated version references from 1.0.2 → 4.0.0
+  - Database Schema Reference: Version 1.0.2 ? 4.0.0
   - Architecture documentation: Updated version references
 
 - **Specification Updates**
@@ -10580,8 +10598,8 @@ This release introduces the complete emotional metadata and routing subsystem, i
 - **Documentation Updates**
   - README.md: Updated to version 4.0.0, added versioning policy section
   - VERSION_CONTROL_POLICY.md: Added unified versioning policy, updated Git policy to 4.0.99
-  - All documentation files: Updated version references from 1.0.2 â†’ 4.0.0
-  - Database Schema Reference: Version 1.0.2 → 4.0.0
+  - All documentation files: Updated version references from 1.0.2 → 4.0.0
+  - Database Schema Reference: Version 1.0.2 ? 4.0.0
   - Architecture documentation: Updated version references
 
 - **Specification Updates**
@@ -10615,7 +10633,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
  
 ---
 
-## [4.0.99] — Version Reconciliation (PLACEHOLDER)
+## [4.0.99] � Version Reconciliation (PLACEHOLDER)
 This entry consolidates all planned or future-dated changes that were
 previously labeled 4.1.0 or higher. The operator will fill in the
 details manually.
@@ -10625,7 +10643,7 @@ details manually.
 
 ---
 
-## 2026.1.0.7 — Multi-Actor Dialogue & World Graph Integration
+## 2026.1.0.7 � Multi-Actor Dialogue & World Graph Integration
 - Completed Phase 9: Theatrical UI Event Mapping with full TOON analytics instrumentation.
 - Completed Phase 10: Multi-Actor Dialogue Layer with actor roles, thread resolution, and message-level TOON events.
 - Completed Persona-Aware Dialogue Query Layer schema and query patterns.
@@ -10644,7 +10662,7 @@ details manually.
 - Verified no legacy Crafty Syntax behavior was modified.
 - Verified all public endpoints, framesets, routing, and UI remain unchanged.
 
-## [Unreleased] — 2026-01-22 19:12 UTC
+## [Unreleased] � 2026-01-22 19:12 UTC
 ### Added
 - Canonical routing doctrine with three new route families
 - Global Content Route: `/lupopedia/content/<slug>` for primary content access
@@ -10677,7 +10695,7 @@ details manually.
 - Legacy routes remain functional but redirect to canonical URLs
 - Implementation follows canonical routing doctrine exactly as specified
 
-## [Unreleased] — 2026-01-22 19:30 UTC
+## [Unreleased] � 2026-01-22 19:30 UTC
 ### Added
 - **Canonical Routing Doctrine Implementation** - Complete overhaul of URL routing system with three canonical route families
 - **Global Content Route** (`/lupopedia/content/<slug>`) - Primary canonical URL for all content, resolves to `lupo_contents.slug`, no collection prefix or numeric IDs
@@ -10712,9 +10730,9 @@ details manually.
   - Content lookup: `SELECT * FROM lupo_contents WHERE slug = ? AND is_deleted = 0`
   - Truth dimension lookup: `JOIN lupo_edges with lupo_contents WHERE edge_type IN (dimension_types)`
   - Edge traversal: `SELECT * FROM lupo_edges WHERE left_object_id = ? OR right_object_id = ?`
-- **Route Precedence**: AUTH → Canonical Content → Truth Lookup → Edge Traversal → HELP → LIST → Legacy (redirect) → CRAFTY_SYNTAX → CONTENT
+- **Route Precedence**: AUTH ? Canonical Content ? Truth Lookup ? Edge Traversal ? HELP ? LIST ? Legacy (redirect) ? CRAFTY_SYNTAX ? CONTENT
 - **Output Format Detection**: JSON output via `Accept: application/json` header or `?format=json` parameter
-- **Semantic Dimension Mapping**: WHO → HAS_ACTOR, CREATED_BY; WHAT → HAS_CONTENT, IS_TYPE; WHERE → LOCATED_AT; WHEN → HAPPENED_WHEN; WHY → PURPOSE, REASON; HOW → METHOD, PROCESS
+- **Semantic Dimension Mapping**: WHO ? HAS_ACTOR, CREATED_BY; WHAT ? HAS_CONTENT, IS_TYPE; WHERE ? LOCATED_AT; WHEN ? HAPPENED_WHEN; WHY ? PURPOSE, REASON; HOW ? METHOD, PROCESS
 - **Edge Direction Handling**: Proper determination of incoming vs outgoing edges relative to content
 - **Metadata Processing**: JSON parsing for content metadata, AAL metadata, edge metadata, and fleet composition
 
@@ -10769,11 +10787,13 @@ details manually.
 - **Authentication**: Ready for future authentication enhancements
 - **Monitoring**: Structure supports future monitoring and analytics
 
-## 2026.1.1.2 — 2026-01-23 16:14 UTC
+## 2026.1.1.2 � 2026-01-23 16:14 UTC
 ### Added
 - Unified LayoutContext schema
 - Normalized render_main_layout signature
 - Updated all controllers to use $context
 - Added backward compatibility layer
 - Documented schema in docs/architecture/layout-context-schema.md
+
+
 
