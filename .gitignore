@@ -78,6 +78,12 @@ templates_c/
 sessions/
 
 # ---------------------------------------------------------
+# DB export artifacts (phpMyAdmin / TOON exports)
+# ---------------------------------------------------------
+database/toon_data/*.toon
+database/toon_data/*.txt
+
+# ---------------------------------------------------------
 # Lupopedia-specific exclusions
 # ---------------------------------------------------------
 /config/local.php
