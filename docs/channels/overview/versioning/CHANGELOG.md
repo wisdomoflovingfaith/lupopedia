@@ -10793,3 +10793,10 @@ details manually.
 - Added backward compatibility layer
 - Documented schema in docs/architecture/layout-context-schema.md
 
+## 2026.1.1.3 — 2026-01-24 12:53 UTC
+### Added
+- Created lupo_channel_state table for live semantic channel state
+- Regenerated TOON files (186 tables total)
+### Notes
+- No other schema changes
+
