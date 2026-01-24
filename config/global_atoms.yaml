@@ -11,8 +11,8 @@
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "2026.1.1.1"
-last_updated: 20260120
+version: "2026.1.1.12"
+last_updated: 20260124203200
 
 # Author Information
 authors:
@@ -34,7 +34,7 @@ project:
 
 # Version Information
 versions:
-  lupopedia: "2026.1.1.1"
+  lupopedia: "2026.1.1.12"
   crafty_syntax: "4.0.120"
   wolfie_headers: "4.0.120"
   schema: "4.0.115"
@@ -72,7 +72,7 @@ timestamp:
 # Global Atoms (Single Source of Truth for WOLFIE Headers)
 
 # Current Lupopedia Version (Use this in all WOLFIE headers instead of hardcoding)
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "2026.1.1.1"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "2026.1.1.12"
 
 # Current Authors (Use in WOLFIE headers)
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie (lupopedia-at-gmail-com)"
