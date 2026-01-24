@@ -1,0 +1,52 @@
+{
+  "table_name": "lupo_operators",
+  "fields": [
+    "`id` int unsigned NOT NULL auto_increment",
+    "`auth_user_id` int unsigned NOT NULL",
+    "`actor_id` int unsigned NOT NULL",
+    "`department_id` int unsigned NOT NULL",
+    "`is_active` tinyint(1) DEFAULT 1",
+    "`availability_status` enum('online','offline','busy','away') DEFAULT 'offline'",
+    "`created_at` timestamp DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED",
+    "`updated_at` timestamp DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "uniq_operator",
+      "columns": [
+        "auth_user_id",
+        "department_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_department",
+      "columns": [
+        "department_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}
