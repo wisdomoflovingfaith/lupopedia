@@ -50,6 +50,17 @@ system_context:
 
 # ALL NEW ENTRIES AFTER THIS LINE
 
+## [2026.1.1.7] - 2026-01-24 17:20:21
+
+### Semantic OS Infrastructure Updates
+- Added semantic OS tables: lupo_aliases, lupo_semantic_overlays
+- Recorded migration 2026_01_24_02_add_semantic_aliases_and_overlays.php
+- Updated scripts/generate_toon_files.py to clear stale docs/toons/*.toon.json before regeneration
+- Regenerated TOON files via python3 scripts/generate_toon_files.py
+- Removed stale TOONs for deprecated tables no longer present in live schema
+- Verified TOON coverage matches live database schema
+
+
 ## [2026.1.1.6] - 2026-01-24 10:25:30
 
 ### Documentation Updates
@@ -10824,5 +10835,6 @@ details manually.
 - Regenerated TOON files (186 tables total)
 ### Notes
 - No other schema changes
+
 
 
