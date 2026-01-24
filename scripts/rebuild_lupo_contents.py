@@ -149,7 +149,7 @@ def main():
     seen_slugs = set()
     duplicate_slugs = []
     for md_file in iter_markdown_files(root):
-        text = md_file.read_text(encoding="utf-8")
+        text = md_file.read_text(encoding="utf-8", errors="replace")
 
         title, description = extract_title_and_description(text, md_file.stem)
         rel_path = md_file.relative_to(root)
@@ -164,6 +164,10 @@ def main():
         row = {
             "title": title,
             "slug": slug,
+            # custom_path is a semantic routing override used by the IDE and semantic OS.
+            # It must never be interpreted as a filesystem path.
+            # PHP agents must continue using content_url for machine-local file resolution.
+            "custom_path": None,
             "description": description,
             "body": text,
             "content_sections": content_sections,
@@ -203,6 +207,7 @@ def main():
                 INSERT INTO {table} (
                     title,
                     slug,
+                    custom_path,
                     description,
                     body,
                     content_sections,
@@ -218,6 +223,7 @@ def main():
                 ) VALUES (
                     %(title)s,
                     %(slug)s,
+                    %(custom_path)s,
                     %(description)s,
                     %(body)s,
                     %(content_sections)s,
