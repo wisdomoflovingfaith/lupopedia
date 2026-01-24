@@ -50,6 +50,14 @@ system_context:
 
 # ALL NEW ENTRIES AFTER THIS LINE
 
+## [2026.1.1.3] - 2026-01-24 06:50:00
+
+### Schema Updates
+- Added lupo_channel_state table to store live semantic state for each channel
+- Table includes actor presence, semantic layers, operational mode, emotional state, routing rules, and time-aware meaning
+- Regenerated TOON files (now 186 tables total)
+- No other schema changes
+
 ## [2026.1.1.2] - 2026-01-24 06:19:00
 
 ### Doctrine Updates
