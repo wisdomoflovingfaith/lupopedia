@@ -1,0 +1,77 @@
+{
+  "table_name": "lupo_semantic_categories",
+  "fields": [
+    "`category_id` bigint NOT NULL auto_increment COMMENT 'Primary key for semantic category'",
+    "`category_name` varchar(255) NOT NULL COMMENT 'Category name'",
+    "`category_slug` varchar(255) NOT NULL COMMENT 'URL-friendly category slug'",
+    "`description` text COMMENT 'Category description'",
+    "`parent_category_id` bigint COMMENT 'Parent category ID'",
+    "`sort_order` int NOT NULL DEFAULT 0 COMMENT 'Display order'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp'",
+    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT 'Category active flag'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "uk_category_slug",
+      "columns": [
+        "category_slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_parent_category",
+      "columns": [
+        "parent_category_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_sort_order",
+      "columns": [
+        "sort_order"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis",
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "category_id",
+    "expected_name": "category_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

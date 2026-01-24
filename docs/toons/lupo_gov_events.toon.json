@@ -12,16 +12,32 @@
     "`metadata_json` json COMMENT 'Additional event metadata'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
     "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_active` tinyint NOT NULL DEFAULT '1' COMMENT 'Active flag'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag'",
+    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT 'Active flag'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_created_ymdhis",
+      "index_name": "unique_canonical_path",
       "columns": [
-        "created_ymdhis"
+        "canonical_path"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_utc_group",
+      "columns": [
+        "utc_group_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_semantic_version",
+      "columns": [
+        "semantic_utc_version"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -30,6 +46,14 @@
       "index_name": "idx_event_type",
       "columns": [
         "event_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -49,33 +73,8 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_semantic_version",
-      "columns": [
-        "semantic_utc_version"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_utc_group",
-      "columns": [
-        "utc_group_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "unique_canonical_path",
-      "columns": [
-        "canonical_path"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Governance events for Captain Wolfie directives",
   "primary_key": {
     "column_name": "gov_event_id",
     "expected_name": "gov_event_id",

@@ -10,7 +10,6 @@
   ],
   "data": [],
   "indexes": [],
-  "notes": "Tracks appearances and interactions of external AI agents (Cursor, JetBrains AI, Copilot, etc). Not part of the core agent registry.",
   "primary_key": {
     "column_name": "external_event_id",
     "expected_name": "external_event_id",

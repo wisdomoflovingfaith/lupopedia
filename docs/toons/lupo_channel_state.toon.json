@@ -1,0 +1,48 @@
+{
+  "table_name": "lupo_channel_state",
+  "fields": [
+    "`state_id` bigint unsigned NOT NULL auto_increment",
+    "`channel_id` bigint unsigned NOT NULL",
+    "`active_actors_json` json",
+    "`speaker_actors_json` json",
+    "`observer_actors_json` json",
+    "`layers_enabled_json` json",
+    "`operational_mode` varchar(32)",
+    "`emotional_state_json` json",
+    "`recent_topics_json` json",
+    "`semantic_weight` float DEFAULT 0",
+    "`trend_score` float DEFAULT 0",
+    "`last_activity_ymdhis` bigint unsigned",
+    "`context_vector` blob",
+    "`routing_rules` varchar(32)",
+    "`edge_visibility` varchar(32)",
+    "`retention_policy` varchar(32)",
+    "`decay_policy` varchar(32)",
+    "`archive_flag` tinyint(1) DEFAULT 0",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint unsigned NOT NULL",
+    "`updated_ymdhis` bigint unsigned NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_channel_id",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "state_id",
+    "expected_name": "state_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

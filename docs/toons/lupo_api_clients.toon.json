@@ -2,13 +2,13 @@
   "table_name": "lupo_api_clients",
   "fields": [
     "`api_client_id` bigint NOT NULL auto_increment COMMENT 'Primary key for API client record'",
-    "`actor_id` bigint NOT NULL DEFAULT '0' COMMENT 'Owner of this client (0 = system)'",
+    "`actor_id` bigint NOT NULL DEFAULT 0 COMMENT 'Owner of this client (0 = system)'",
     "`client_key` varchar(255) NOT NULL COMMENT 'Public client identifier'",
     "`client_secret` varchar(255) NOT NULL COMMENT 'Hashed client secret (never store raw secret)'",
     "`client_name` varchar(150) NOT NULL COMMENT 'Human-readable name of the client'",
     "`client_description` text COMMENT 'Description of the integration or application'",
     "`scopes` text COMMENT 'Comma-separated list of allowed scopes'",
-    "`is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 = active, 0 = disabled'",
+    "`is_active` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = disabled'",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
     "`expires_ymdhis` bigint COMMENT 'Expiration timestamp (NULL = never)'"
@@ -16,11 +16,11 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_active",
+      "index_name": "uq_client_key",
       "columns": [
-        "is_active"
+        "client_key"
       ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
@@ -32,23 +32,22 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_expires",
       "columns": [
         "expires_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "uq_client_key",
-      "columns": [
-        "client_key"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Registered API clients for external integrations and service accounts",
   "primary_key": {
     "column_name": "api_client_id",
     "expected_name": "api_client_id",

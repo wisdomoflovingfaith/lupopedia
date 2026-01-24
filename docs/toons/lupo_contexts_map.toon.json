@@ -6,10 +6,10 @@
     "`item_type` varchar(50) NOT NULL",
     "`item_slug` varchar(255) NOT NULL",
     "`description` text",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
-    "`deleted_ymdhis` bigint NOT NULL DEFAULT '0'",
-    "`created_ymdhis` bigint NOT NULL DEFAULT '0'",
-    "`updated_ymdhis` bigint NOT NULL DEFAULT '0'"
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0"
   ],
   "data": [],
   "indexes": [
@@ -17,6 +17,22 @@
       "index_name": "idx_context_id",
       "columns": [
         "context_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_item_type",
+      "columns": [
+        "item_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_item_slug",
+      "columns": [
+        "item_slug"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -35,22 +51,6 @@
       "index_name": "idx_is_deleted",
       "columns": [
         "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_item_slug",
-      "columns": [
-        "item_slug"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_item_type",
-      "columns": [
-        "item_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"

@@ -9,7 +9,7 @@
     "`target_id` bigint",
     "`created_ymdhis` bigint",
     "`updated_ymdhis` bigint",
-    "`is_deleted` tinyint DEFAULT '0'"
+    "`is_deleted` tinyint DEFAULT 0"
   ],
   "data": [],
   "indexes": [

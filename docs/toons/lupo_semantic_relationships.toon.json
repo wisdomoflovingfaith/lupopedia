@@ -1,0 +1,68 @@
+{
+  "table_name": "lupo_semantic_relationships",
+  "fields": [
+    "`relationship_id` bigint NOT NULL auto_increment COMMENT 'Primary key for semantic relationship'",
+    "`source_content_id` bigint NOT NULL COMMENT 'Source content ID'",
+    "`target_content_id` bigint COMMENT 'Target content ID'",
+    "`relationship_type` enum('related','series','hierarchy') NOT NULL COMMENT 'Type of semantic relationship'",
+    "`relationship_strength` decimal(3,2) NOT NULL DEFAULT 1.00 COMMENT 'Relationship strength (0.0-1.0)'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_source_content",
+      "columns": [
+        "source_content_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_target_content",
+      "columns": [
+        "target_content_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_relationship_type",
+      "columns": [
+        "relationship_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis",
+        "relationship_type",
+        "source_content_id",
+        "target_content_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "relationship_id",
+    "expected_name": "relationship_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -7,26 +7,26 @@
     "`source_url` text",
     "`source_title` varchar(255) NOT NULL DEFAULT ''",
     "`source_type` varchar(50) NOT NULL DEFAULT ''",
-    "`reliability_score` decimal(5,2) NOT NULL DEFAULT '0.00'",
+    "`reliability_score` decimal(5,2) NOT NULL DEFAULT 0.00",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "actor_id",
+      "index_name": "truth_evidence_id",
       "columns": [
-        "actor_id"
+        "truth_evidence_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "truth_evidence_id",
+      "index_name": "actor_id",
       "columns": [
-        "truth_evidence_id"
+        "actor_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

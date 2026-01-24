@@ -12,7 +12,7 @@
     "`jwks_uri` varchar(2000) COMMENT 'Optional JWKS URI for key rotation'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when provider was created'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when provider was last updated'",
-    "`is_active` tinyint NOT NULL DEFAULT '1' COMMENT '1 = active, 0 = inactive'"
+    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = inactive'"
   ],
   "data": [],
   "indexes": [
@@ -25,7 +25,6 @@
       "index_type": "BTREE"
     }
   ],
-  "notes": "Stores OAuth provider configurations. SECURITY: client_secret must be encrypted at rest in lupopedia-config.php (outside web root).",
   "primary_key": {
     "column_name": "auth_provider_id",
     "expected_name": "auth_provider_id",

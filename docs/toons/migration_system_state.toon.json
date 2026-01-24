@@ -1,17 +1,17 @@
 {
   "table_name": "migration_system_state",
   "fields": [
-    "`state_id` bigint NOT NULL DEFAULT '0'",
-    "`batch_id` bigint NOT NULL DEFAULT '0'",
+    "`state_id` bigint NOT NULL DEFAULT 0",
+    "`batch_id` bigint NOT NULL DEFAULT 0",
     "`system_status` enum('normal','frozen','thawing','emergency') NOT NULL DEFAULT 'normal'",
     "`freeze_reason` varchar(255)",
     "`affected_components` json",
     "`user_message` text",
     "`properties` json",
-    "`created_ymdhis` bigint NOT NULL DEFAULT '0'",
-    "`updated_ymdhis` bigint NOT NULL DEFAULT '0'",
-    "`is_deleted` tinyint(1) NOT NULL DEFAULT '0'",
-    "`deleted_ymdhis` bigint NOT NULL DEFAULT '0'"
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint(1) NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0"
   ],
   "data": [],
   "indexes": [],

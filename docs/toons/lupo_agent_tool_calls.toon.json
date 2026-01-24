@@ -11,11 +11,11 @@
     "`output_json` longtext COMMENT 'Serialized output or result'",
     "`provider` varchar(50) COMMENT 'LLM provider (openai, anthropic, google, deepseek, etc.)'",
     "`model_name` varchar(150) COMMENT 'Model used for this call'",
-    "`tokens_prompt` int DEFAULT '0'",
-    "`tokens_completion` int DEFAULT '0'",
-    "`tokens_total` int DEFAULT '0'",
-    "`cost_usd` decimal(10,6) DEFAULT '0.000000'",
-    "`latency_ms` int DEFAULT '0'",
+    "`tokens_prompt` int DEFAULT 0",
+    "`tokens_completion` int DEFAULT 0",
+    "`tokens_total` int DEFAULT 0",
+    "`cost_usd` decimal(10,6) DEFAULT 0.000000",
+    "`latency_ms` int DEFAULT 0",
     "`status` varchar(50) DEFAULT 'success' COMMENT 'success, error, timeout, rejected'",
     "`error_message` text",
     "`parent_call_id` bigint COMMENT 'If this call was spawned by another call'",
@@ -35,14 +35,6 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_domain",
-      "columns": [
-        "domain_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_faucet",
       "columns": [
         "faucet_id"
@@ -51,9 +43,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_message",
+      "index_name": "idx_domain",
       "columns": [
-        "message_id"
+        "domain_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -67,17 +59,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_parent",
+      "index_name": "idx_provider",
       "columns": [
-        "parent_call_id"
+        "provider"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_provider",
+      "index_name": "idx_parent",
       "columns": [
-        "provider"
+        "parent_call_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -89,9 +81,16 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_message",
+      "columns": [
+        "message_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
-  "notes": "Logs all internal tool calls, LLM calls, and faucet spawns for agent orchestration.",
   "primary_key": {
     "column_name": "agent_tool_call_id",
     "expected_name": "agent_tool_call_id",

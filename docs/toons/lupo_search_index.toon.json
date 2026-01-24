@@ -9,8 +9,8 @@
     "`body_text` longtext COMMENT 'Full searchable text content'",
     "`keywords_text` text COMMENT 'Comma-separated keywords, tags, or categories'",
     "`search_metadata` text COMMENT 'JSON-encoded additional search metadata'",
-    "`relevance_score` float DEFAULT '1' COMMENT 'Search relevance score (0.0 - 1.0)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`relevance_score` float DEFAULT 1 COMMENT 'Search relevance score (0.0 - 1.0)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'"
@@ -18,14 +18,14 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "ft_search_content",
+      "index_name": "unique_entity",
       "columns": [
-        "title_text",
-        "body_text",
-        "keywords_text"
+        "domain_id",
+        "entity_type",
+        "entity_id"
       ],
-      "is_unique": false,
-      "index_type": "FULLTEXT"
+      "is_unique": true,
+      "index_type": "BTREE"
     },
     {
       "index_name": "idx_domain_type",
@@ -41,6 +41,14 @@
       "columns": [
         "entity_type",
         "entity_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated",
+      "columns": [
+        "updated_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -62,25 +70,16 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_updated",
+      "index_name": "ft_search_content",
       "columns": [
-        "updated_ymdhis"
+        "title_text",
+        "body_text",
+        "keywords_text"
       ],
       "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "unique_entity",
-      "columns": [
-        "domain_id",
-        "entity_type",
-        "entity_id"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
+      "index_type": "FULLTEXT"
     }
   ],
-  "notes": "Unified search index for all searchable Lupopedia entities",
   "primary_key": {
     "column_name": "search_index_id",
     "expected_name": "search_index_id",

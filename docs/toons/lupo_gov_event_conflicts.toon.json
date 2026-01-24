@@ -8,19 +8,11 @@
     "`severity` varchar(20) NOT NULL COMMENT 'warning, error, fatal'",
     "`notes` text COMMENT 'Optional explanation of the conflict'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC timestamp of creation'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
     "`deleted_ymdhis` bigint COMMENT 'UTC timestamp of deletion'"
   ],
   "data": [],
   "indexes": [
-    {
-      "index_name": "idx_conflicts_with_event_id",
-      "columns": [
-        "conflicts_with_event_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
     {
       "index_name": "idx_gov_event_id",
       "columns": [
@@ -28,9 +20,16 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_conflicts_with_event_id",
+      "columns": [
+        "conflicts_with_event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
-  "notes": "Conflict relationships between governance events (append-only)",
   "primary_key": {
     "column_name": "id",
     "expected_name": "id",

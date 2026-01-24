@@ -2,7 +2,7 @@
   "table_name": "lupo_documents",
   "fields": [
     "`document_id` bigint NOT NULL auto_increment",
-    "`domain_id` int NOT NULL DEFAULT '1'",
+    "`domain_id` int NOT NULL DEFAULT 1",
     "`document_name` varchar(256) NOT NULL",
     "`source_type` varchar(64) NOT NULL",
     "`source_url` text",
@@ -12,7 +12,7 @@
     "`metadata` json",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],

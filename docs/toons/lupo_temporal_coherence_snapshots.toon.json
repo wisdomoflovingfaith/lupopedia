@@ -3,12 +3,12 @@
   "fields": [
     "`snapshot_id` bigint NOT NULL auto_increment",
     "`utc_anchor` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS of anchor'",
-    "`observation_latency_ms` int NOT NULL DEFAULT '0'",
-    "`recursion_depth` tinyint NOT NULL DEFAULT '0' COMMENT '1=action, 2=observation, 3=meta; max 3'",
+    "`observation_latency_ms` int NOT NULL DEFAULT 0",
+    "`recursion_depth` tinyint NOT NULL DEFAULT 0 COMMENT '1=action, 2=observation, 3=meta; max 3'",
     "`self_awareness_score` decimal(3,2) COMMENT '0-1 scale'",
     "`timestamp_integrity` varchar(32) NOT NULL DEFAULT 'unknown' COMMENT 'monotonic|gaps|anomalies'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
@@ -22,23 +22,22 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_is_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_utc_anchor",
       "columns": [
         "utc_anchor"
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
-  "notes": "Temporal coherence metrics per LILITH observer-paradox review. No FK.",
   "primary_key": {
     "column_name": "snapshot_id",
     "expected_name": "snapshot_id",

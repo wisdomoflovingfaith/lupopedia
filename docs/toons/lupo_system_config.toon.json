@@ -4,7 +4,7 @@
     "`system_config_id` bigint NOT NULL auto_increment",
     "`config_key` varchar(255) NOT NULL",
     "`config_value` text NOT NULL",
-    "`actor_id` bigint NOT NULL DEFAULT '0'",
+    "`actor_id` bigint NOT NULL DEFAULT 0",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL"
   ],

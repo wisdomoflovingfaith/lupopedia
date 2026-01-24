@@ -5,8 +5,8 @@
     "`edge_type` varchar(100) NOT NULL",
     "`description` text",
     "`category` varchar(100)",
-    "`created_ymd` bigint NOT NULL DEFAULT '0'",
-    "`updated_ymd` bigint NOT NULL DEFAULT '0'"
+    "`created_ymd` bigint NOT NULL DEFAULT 0",
+    "`updated_ymd` bigint NOT NULL DEFAULT 0"
   ],
   "data": [],
   "indexes": [

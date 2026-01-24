@@ -2,8 +2,8 @@
   "table_name": "lupo_sessions",
   "fields": [
     "`session_id` varchar(100) NOT NULL COMMENT 'Unique session identifier (primary key)'",
-    "`federation_node_id` bigint NOT NULL DEFAULT '1' COMMENT 'Domain/tenant identifier for multi-tenant support'",
-    "`actor_id` bigint NOT NULL DEFAULT '0' COMMENT 'Actor ID (0 for anonymous users)'",
+    "`federation_node_id` bigint NOT NULL DEFAULT 1 COMMENT 'Domain/tenant identifier for multi-tenant support'",
+    "`actor_id` bigint NOT NULL DEFAULT 0 COMMENT 'Actor ID (0 for anonymous users)'",
     "`ip_address` varchar(45) NOT NULL DEFAULT '' COMMENT 'IP address of the client (supports IPv6)'",
     "`user_agent` varchar(255) NOT NULL DEFAULT '' COMMENT 'User agent string from the client browser'",
     "`device_id` varchar(100) COMMENT 'Unique device identifier (if available)'",
@@ -11,9 +11,9 @@
     "`auth_method` varchar(30) COMMENT 'Authentication method used (e.g., password, oauth, api_key)'",
     "`auth_provider` varchar(50) COMMENT 'Authentication provider (e.g., local, google, github)'",
     "`security_level` enum('low','medium','high') NOT NULL DEFAULT 'medium' COMMENT 'Security level of the session'",
-    "`is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Whether the session is currently active'",
-    "`is_expired` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Whether the session has expired'",
-    "`is_revoked` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Whether the session was manually revoked'",
+    "`is_active` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'Whether the session is currently active'",
+    "`is_expired` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Whether the session has expired'",
+    "`is_revoked` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Whether the session was manually revoked'",
     "`session_data` longtext COMMENT 'Serialized session data (encrypted if sensitive)'",
     "`metadata` json COMMENT 'Additional session metadata in JSON format'",
     "`login_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when the session was authenticated'",
@@ -21,11 +21,19 @@
     "`expires_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when the session expires'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when session was created'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when session was last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag: 0=active, 1=deleted'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag: 0=active, 1=deleted'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when session was soft-deleted'"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "idx_domain",
+      "columns": [
+        "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "idx_actor",
       "columns": [
@@ -35,34 +43,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_cleanup",
+      "index_name": "idx_last_seen",
       "columns": [
-        "is_deleted",
         "last_seen_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_created",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_device",
-      "columns": [
-        "device_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_domain",
-      "columns": [
-        "federation_node_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -76,9 +59,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_last_seen",
+      "index_name": "idx_device",
       "columns": [
-        "last_seen_ymdhis"
+        "device_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -100,9 +83,25 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_cleanup",
+      "columns": [
+        "is_deleted",
+        "last_seen_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
-  "notes": "Manages user sessions for authentication and tracking, including security and device information",
   "primary_key": {
     "column_name": "session_id",
     "expected_name": "session_id",

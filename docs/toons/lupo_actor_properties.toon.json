@@ -8,7 +8,7 @@
     "`property_value` text COMMENT 'Property value'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'",
     "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
   ],
   "data": [],
@@ -31,7 +31,6 @@
       "index_type": "BTREE"
     }
   ],
-  "notes": "Stores flexible properties for various entities",
   "primary_key": {
     "column_name": "actor_property_id",
     "expected_name": "actor_property_id",

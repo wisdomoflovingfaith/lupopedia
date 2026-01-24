@@ -1,0 +1,86 @@
+{
+  "table_name": "lupo_tab_events",
+  "fields": [
+    "`tab_event_id` bigint NOT NULL auto_increment COMMENT 'Primary key for tab event'",
+    "`tab_id` varchar(255) NOT NULL COMMENT 'Tab identifier'",
+    "`session_id` varchar(255) COMMENT 'Session identifier'",
+    "`actor_id` bigint COMMENT 'Actor ID from lupo_actors'",
+    "`world_id` bigint COMMENT 'World context ID'",
+    "`world_key` varchar(255) COMMENT 'World context key'",
+    "`world_type` varchar(50) COMMENT 'World context type'",
+    "`event_type` varchar(100) NOT NULL COMMENT 'Type of tab event'",
+    "`event_data` json COMMENT 'Event-specific data'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_tab_id",
+      "columns": [
+        "tab_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_session_id",
+      "columns": [
+        "session_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_world_id",
+      "columns": [
+        "world_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_event_type",
+      "columns": [
+        "event_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_tab_event_type",
+      "columns": [
+        "tab_id",
+        "event_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "tab_event_id",
+    "expected_name": "tab_event_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

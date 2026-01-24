@@ -2,9 +2,9 @@
   "table_name": "lupo_api_token_logs",
   "fields": [
     "`api_token_log_id` bigint NOT NULL auto_increment COMMENT 'Primary key for API token usage log entry'",
-    "`domain_id` bigint NOT NULL DEFAULT '1' COMMENT 'Domain/tenant identifier'",
+    "`domain_id` bigint NOT NULL DEFAULT 1 COMMENT 'Domain/tenant identifier'",
     "`api_token_id` bigint NOT NULL COMMENT 'ID of the token used (no FK)'",
-    "`actor_id` bigint NOT NULL DEFAULT '0' COMMENT 'Actor associated with the token (0 = system)'",
+    "`actor_id` bigint NOT NULL DEFAULT 0 COMMENT 'Actor associated with the token (0 = system)'",
     "`endpoint` varchar(255) NOT NULL COMMENT 'API endpoint accessed'",
     "`http_method` varchar(10) NOT NULL COMMENT 'HTTP method used (GET, POST, etc.)'",
     "`ip_address` varchar(45) COMMENT 'IP address of the requester'",
@@ -15,6 +15,14 @@
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "idx_token",
+      "columns": [
+        "api_token_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "idx_actor",
       "columns": [
@@ -47,17 +55,8 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_token",
-      "columns": [
-        "api_token_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Audit log of all API token usage events",
   "primary_key": {
     "column_name": "api_token_log_id",
     "expected_name": "api_token_log_id",

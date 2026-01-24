@@ -21,18 +21,19 @@
     "`conversation_turn` int COMMENT 'Conversation turn number when snapshot was taken'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when snapshot was created'",
     "`expires_ymdhis` bigint COMMENT 'When this snapshot should be automatically purged'",
-    "`is_corrupt` tinyint(1) DEFAULT '0' COMMENT '1 if snapshot failed integrity check'",
+    "`is_corrupt` tinyint(1) DEFAULT 0 COMMENT '1 if snapshot failed integrity check'",
     "`retention_policy` enum('temporary','short_term','long_term') DEFAULT 'temporary' COMMENT 'How long to retain this snapshot'"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "ft_summary",
+      "index_name": "idx_session_agent",
       "columns": [
-        "context_summary"
+        "session_id",
+        "actor_id"
       ],
       "is_unique": false,
-      "index_type": "FULLTEXT"
+      "index_type": "BTREE"
     },
     {
       "index_name": "idx_created",
@@ -43,17 +44,10 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_parent",
+      "index_name": "idx_type_purpose",
       "columns": [
-        "parent_snapshot_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_related_tool",
-      "columns": [
-        "related_tool_call_id"
+        "snapshot_type",
+        "snapshot_purpose"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -68,15 +62,6 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_session_agent",
-      "columns": [
-        "session_id",
-        "actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_turn",
       "columns": [
         "session_id",
@@ -86,16 +71,30 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_type_purpose",
+      "index_name": "idx_related_tool",
       "columns": [
-        "snapshot_type",
-        "snapshot_purpose"
+        "related_tool_call_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_parent",
+      "columns": [
+        "parent_snapshot_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "ft_summary",
+      "columns": [
+        "context_summary"
+      ],
+      "is_unique": false,
+      "index_type": "FULLTEXT"
     }
   ],
-  "notes": "Stores serialized agent context states for persistence, recovery, and debugging across sessions",
   "primary_key": {
     "column_name": "agent_context_snapshot_id",
     "expected_name": "agent_context_snapshot_id",

@@ -20,17 +20,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "meta_key",
+      "index_name": "meta_type",
       "columns": [
-        "meta_key"
+        "meta_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "meta_type",
+      "index_name": "meta_key",
       "columns": [
-        "meta_type"
+        "meta_key"
       ],
       "is_unique": false,
       "index_type": "BTREE"

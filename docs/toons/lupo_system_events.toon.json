@@ -5,23 +5,23 @@
     "`event_type` varchar(100) NOT NULL",
     "`event_message` text NOT NULL",
     "`event_context` text",
-    "`actor_id` bigint NOT NULL DEFAULT '0'",
+    "`actor_id` bigint NOT NULL DEFAULT 0",
     "`created_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "actor_id",
+      "index_name": "event_type",
       "columns": [
-        "actor_id"
+        "event_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "event_type",
+      "index_name": "actor_id",
       "columns": [
-        "event_type"
+        "actor_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

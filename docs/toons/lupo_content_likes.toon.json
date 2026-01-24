@@ -7,51 +7,11 @@
     "`visitor_hash` char(64) COMMENT 'Hashed IP/session for anonymous likes'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
   ],
   "data": [],
   "indexes": [
-    {
-      "index_name": "idx_content",
-      "columns": [
-        "content_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_created_ymdhis",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_is_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_updated_ymdhis",
-      "columns": [
-        "updated_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_user",
-      "columns": [
-        "user_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
     {
       "index_name": "unique_like_user",
       "columns": [
@@ -69,9 +29,48 @@
       ],
       "is_unique": true,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_content",
+      "columns": [
+        "content_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_user",
+      "columns": [
+        "user_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
-  "notes": "Tracks likes on content items by both authenticated and anonymous users",
   "primary_key": {
     "column_name": "content_like_id",
     "expected_name": "content_like_id",

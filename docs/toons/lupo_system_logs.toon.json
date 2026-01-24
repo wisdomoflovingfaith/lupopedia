@@ -8,14 +8,30 @@
     "`message` text NOT NULL COMMENT 'Human-readable event description'",
     "`context_json` json COMMENT 'Optional structured metadata'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint",
-    "`recursion_depth` tinyint DEFAULT '1'",
+    "`recursion_depth` tinyint DEFAULT 1",
     "`observation_latency_ms` int",
     "`temporal_anomaly_score` decimal(3,2)"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "idx_event_type",
+      "columns": [
+        "event_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_severity",
+      "columns": [
+        "severity"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "idx_actor_slug",
       "columns": [
@@ -33,31 +49,14 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_event_type",
-      "columns": [
-        "event_type"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_is_deleted",
       "columns": [
         "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_severity",
-      "columns": [
-        "severity"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Unified system log for Lupopedia OS. No FK. Tracks events, errors, agents, doctrine, and system behavior.",
   "primary_key": {
     "column_name": "log_id",
     "expected_name": "log_id",

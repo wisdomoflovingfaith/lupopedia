@@ -1,0 +1,17 @@
+{
+  "table_name": "lupo_actor_moods",
+  "fields": [
+    "`actor_id` bigint unsigned NOT NULL",
+    "`mood_r` tinyint NOT NULL",
+    "`mood_g` tinyint NOT NULL",
+    "`mood_b` tinyint NOT NULL",
+    "`timestamp_utc` bigint unsigned NOT NULL"
+  ],
+  "data": [],
+  "indexes": [],
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

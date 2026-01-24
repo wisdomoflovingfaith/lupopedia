@@ -5,7 +5,7 @@
     "`hashtag_id` bigint NOT NULL COMMENT 'Reference to the hashtag'",
     "`context_id` bigint NOT NULL COMMENT 'Context for this hashtag association'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when the association was created'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
   ],
   "data": [],
@@ -14,6 +14,14 @@
       "index_name": "idx_content",
       "columns": [
         "content_hashtag_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_hashtag",
+      "columns": [
+        "hashtag_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -35,14 +43,6 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_hashtag",
-      "columns": [
-        "hashtag_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_is_deleted",
       "columns": [
         "is_deleted"
@@ -51,7 +51,6 @@
       "index_type": "BTREE"
     }
   ],
-  "notes": "Associates content with hashtags within specific contexts",
   "primary_key": {
     "column_name": "content_hashtag_id",
     "expected_name": "content_hashtag_id",

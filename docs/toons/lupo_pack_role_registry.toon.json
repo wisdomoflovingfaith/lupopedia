@@ -13,6 +13,14 @@
   "data": [],
   "indexes": [
     {
+      "index_name": "unique_agent_role",
+      "columns": [
+        "agent_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_agent_id",
       "columns": [
         "agent_id"
@@ -27,17 +35,8 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "unique_agent_role",
-      "columns": [
-        "agent_id"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Pack Role Registry - discovered agent roles from Pack Architecture",
   "primary_key": {
     "column_name": "id",
     "expected_name": "id",

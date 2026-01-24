@@ -12,7 +12,7 @@
     "`metadata_json` json COMMENT 'Additional structured metadata'",
     "`created_ymdhis` bigint NOT NULL",
     "`expires_ymdhis` bigint COMMENT 'Optional expiration timestamp'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
@@ -34,9 +34,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_created",
+      "index_name": "idx_type",
       "columns": [
-        "created_ymdhis"
+        "override_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -50,15 +50,14 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_type",
+      "index_name": "idx_created",
       "columns": [
-        "override_type"
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "Stores governance, safety, and capability overrides applied to agents or domains.",
   "primary_key": {
     "column_name": "governance_overrid_id",
     "expected_name": "governance_overrid_id",

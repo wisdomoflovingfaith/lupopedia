@@ -9,42 +9,29 @@
     "`permission` enum('read','write','owner') NOT NULL DEFAULT 'read' COMMENT 'Permission level'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when permission was created'",
     "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when permission was updated'",
-    "`is_deleted` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = active'",
+    "`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = active'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when permission was deleted'"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_created_ymdhis",
+      "index_name": "uniq_target_user",
       "columns": [
-        "created_ymdhis"
+        "target_type",
+        "target_id",
+        "user_id"
       ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_deleted",
+      "index_name": "uniq_target_group",
       "columns": [
-        "is_deleted",
-        "deleted_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_group",
-      "columns": [
+        "target_type",
+        "target_id",
         "group_id"
       ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_permission",
-      "columns": [
-        "permission"
-      ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
@@ -65,27 +52,39 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "uniq_target_group",
+      "index_name": "idx_group",
       "columns": [
-        "target_type",
-        "target_id",
         "group_id"
       ],
-      "is_unique": true,
+      "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "uniq_target_user",
+      "index_name": "idx_deleted",
       "columns": [
-        "target_type",
-        "target_id",
-        "user_id"
+        "is_deleted",
+        "deleted_ymdhis"
       ],
-      "is_unique": true,
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_permission",
+      "columns": [
+        "permission"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "Polymorphic permissions table for all object types (collections, departments, modules, features, etc.). Uses target_type + target_id to determine the object.",
   "primary_key": {
     "column_name": "permission_id",
     "expected_name": "permission_id",

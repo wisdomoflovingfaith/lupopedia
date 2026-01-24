@@ -6,19 +6,11 @@
     "`event_type` varchar(64) NOT NULL DEFAULT 'recursion' COMMENT 'recursion|ceiling_near|auto_collapse'",
     "`actor_id` bigint",
     "`created_ymdhis` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
-    {
-      "index_name": "idx_actor_id",
-      "columns": [
-        "actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
     {
       "index_name": "idx_created_ymdhis",
       "columns": [
@@ -36,6 +28,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_is_deleted",
       "columns": [
         "is_deleted"
@@ -44,7 +44,6 @@
       "index_type": "BTREE"
     }
   ],
-  "notes": "Meta-logging recursion events; depth max 3. No FK.",
   "primary_key": {
     "column_name": "event_id",
     "expected_name": "event_id",

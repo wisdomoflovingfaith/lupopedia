@@ -5,28 +5,28 @@
     "`topic_name` varchar(255) NOT NULL DEFAULT ''",
     "`slug` varchar(255) NOT NULL DEFAULT ''",
     "`topic_description` text",
-    "`actor_id` bigint NOT NULL DEFAULT '0'",
-    "`weight_score` decimal(5,2) NOT NULL DEFAULT '0.00'",
-    "`importance_score` decimal(5,2) NOT NULL DEFAULT '0.00'",
+    "`actor_id` bigint NOT NULL DEFAULT 0",
+    "`weight_score` decimal(5,2) NOT NULL DEFAULT 0.00",
+    "`importance_score` decimal(5,2) NOT NULL DEFAULT 0.00",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "actor_id",
+      "index_name": "slug",
       "columns": [
-        "actor_id"
+        "slug"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "slug",
+      "index_name": "actor_id",
       "columns": [
-        "slug"
+        "actor_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

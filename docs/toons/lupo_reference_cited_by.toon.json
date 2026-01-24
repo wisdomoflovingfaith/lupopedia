@@ -5,17 +5,25 @@
     "`reference_object_id` bigint NOT NULL",
     "`content_id` bigint NOT NULL",
     "`section_anchor_slug` varchar(255)",
-    "`section_order` int NOT NULL DEFAULT '0'",
+    "`section_order` int NOT NULL DEFAULT 0",
     "`reference_type` varchar(50) NOT NULL",
     "`raw_reference` text",
     "`meta_json` json",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
-    "`deleted_ymdhis` bigint NOT NULL DEFAULT '0'",
-    "`created_ymdhis` bigint NOT NULL DEFAULT '0'",
-    "`updated_ymdhis` bigint NOT NULL DEFAULT '0'"
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "idx_reference_object",
+      "columns": [
+        "reference_object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "idx_content_id",
       "columns": [
@@ -25,17 +33,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_is_deleted",
+      "index_name": "idx_section_anchor",
       "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_reference_object",
-      "columns": [
-        "reference_object_id"
+        "section_anchor_slug"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -49,9 +49,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_section_anchor",
+      "index_name": "idx_is_deleted",
       "columns": [
-        "section_anchor_slug"
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"

@@ -1,0 +1,63 @@
+{
+  "table_name": "lupo_semantic_paths",
+  "fields": [
+    "`id` bigint unsigned NOT NULL auto_increment",
+    "`source_page_id` bigint unsigned NOT NULL",
+    "`target_page_id` bigint unsigned NOT NULL",
+    "`layer` enum('interaction','extracted','navigation','ai') NOT NULL",
+    "`weight` float NOT NULL DEFAULT 0",
+    "`decay_factor` float NOT NULL DEFAULT 1",
+    "`trend_score` float NOT NULL DEFAULT 0",
+    "`timeframe` enum('hour','day','week','month','year','total','custom') NOT NULL",
+    "`custom_start` datetime",
+    "`custom_end` datetime",
+    "`created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED",
+    "`updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "source_page_id",
+      "columns": [
+        "source_page_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "target_page_id",
+      "columns": [
+        "target_page_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "layer",
+      "columns": [
+        "layer"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "timeframe",
+      "columns": [
+        "timeframe"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

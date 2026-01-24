@@ -18,22 +18,6 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_applied_time",
-      "columns": [
-        "applied_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_approval_status",
-      "columns": [
-        "approval_status"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_cip_event",
       "columns": [
         "cip_event_id"
@@ -48,9 +32,24 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_approval_status",
+      "columns": [
+        "approval_status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_applied_time",
+      "columns": [
+        "applied_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
-  "notes": "Doctrine Refinement Module - CIP-driven doctrine evolution tracking",
   "primary_key": {
     "column_name": "id",
     "expected_name": "id",

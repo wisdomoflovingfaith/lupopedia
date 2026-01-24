@@ -10,23 +10,15 @@
     "`properties` json COMMENT 'JSON-encoded additional properties'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_created_ymdhis",
+      "index_name": "idx_target",
       "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_is_deleted",
-      "columns": [
-        "is_deleted"
+        "target_content_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -41,9 +33,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_target",
+      "index_name": "idx_url",
       "columns": [
-        "target_content_id"
+        "source_url"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -57,15 +57,14 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_url",
+      "index_name": "idx_is_deleted",
       "columns": [
-        "source_url"
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "Tracks all inbound links to content items from various sources",
   "primary_key": {
     "column_name": "content_inbound_link_id",
     "expected_name": "content_inbound_link_id",

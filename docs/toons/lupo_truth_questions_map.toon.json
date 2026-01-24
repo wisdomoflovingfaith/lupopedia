@@ -8,23 +8,15 @@
     "`actor_id` bigint NOT NULL",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "actor_id",
+      "index_name": "truth_question_id",
       "columns": [
-        "actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "object_id",
-      "columns": [
-        "object_id"
+        "truth_question_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -38,9 +30,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "truth_question_id",
+      "index_name": "object_id",
       "columns": [
-        "truth_question_id"
+        "object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "actor_id",
+      "columns": [
+        "actor_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

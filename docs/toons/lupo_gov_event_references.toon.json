@@ -7,23 +7,15 @@
     "`reference_title` varchar(255) NOT NULL COMMENT 'Reference title'",
     "`reference_url` varchar(1000) COMMENT 'URL if applicable'",
     "`reference_content` text COMMENT 'Reference content or excerpt'",
-    "`order_sequence` int NOT NULL DEFAULT '0' COMMENT 'Display order'",
+    "`order_sequence` int NOT NULL DEFAULT 0 COMMENT 'Display order'",
     "`metadata_json` json COMMENT 'Additional reference metadata'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
     "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
   ],
   "data": [],
   "indexes": [
-    {
-      "index_name": "idx_created_ymdhis",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
     {
       "index_name": "idx_gov_event",
       "columns": [
@@ -33,9 +25,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_is_deleted",
+      "index_name": "idx_reference_type",
       "columns": [
-        "is_deleted"
+        "reference_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -49,15 +41,22 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_reference_type",
+      "index_name": "idx_created_ymdhis",
       "columns": [
-        "reference_type"
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "References for governance events",
   "primary_key": {
     "column_name": "reference_id",
     "expected_name": "reference_id",

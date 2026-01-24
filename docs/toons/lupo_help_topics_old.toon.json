@@ -8,10 +8,18 @@
     "`category` varchar(100)",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'"
+    "`is_deleted` tinyint NOT NULL DEFAULT 0"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "uniq_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "idx_category",
       "columns": [
@@ -26,14 +34,6 @@
         "is_deleted"
       ],
       "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "uniq_slug",
-      "columns": [
-        "slug"
-      ],
-      "is_unique": true,
       "index_type": "BTREE"
     }
   ],

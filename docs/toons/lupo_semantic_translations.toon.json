@@ -9,33 +9,19 @@
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint",
     "`created_by` bigint",
-    "`is_deleted` tinyint(1) NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint(1) NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "ft_translated_text",
+      "index_name": "unq_translation",
       "columns": [
-        "translated_text"
+        "entity_type",
+        "entity_id",
+        "language_code"
       ],
-      "is_unique": false,
-      "index_type": "FULLTEXT"
-    },
-    {
-      "index_name": "idx_created",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
@@ -59,6 +45,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_updated",
       "columns": [
         "updated_ymdhis"
@@ -67,17 +61,22 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "unq_translation",
+      "index_name": "idx_deleted",
       "columns": [
-        "entity_type",
-        "entity_id",
-        "language_code"
+        "is_deleted"
       ],
-      "is_unique": true,
+      "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "ft_translated_text",
+      "columns": [
+        "translated_text"
+      ],
+      "is_unique": false,
+      "index_type": "FULLTEXT"
     }
   ],
-  "notes": "Stores translations for various entities in the system",
   "primary_key": {
     "column_name": "semantic_translation_id",
     "expected_name": "semantic_translation_id",

@@ -3,11 +3,12 @@
   "fields": [
     "`content_id` bigint NOT NULL auto_increment COMMENT 'Primary key for content'",
     "`content_parent_id` bigint COMMENT 'Parent content ID for hierarchical relationships'",
-    "`federation_node_id` bigint DEFAULT '1' COMMENT 'Domain scope, NULL for global content'",
+    "`federation_node_id` bigint DEFAULT 1 COMMENT 'Domain scope, NULL for global content'",
     "`group_id` bigint COMMENT 'Optional group restriction'",
     "`user_id` bigint COMMENT 'Author of the content'",
     "`title` varchar(255) NOT NULL COMMENT 'Content title'",
     "`slug` varchar(255) NOT NULL COMMENT 'URL-friendly identifier, unique within domain'",
+    "`custom_path` varchar(255) COMMENT 'Semantic routing override; not a filesystem path'",
     "`description` text COMMENT 'Short summary or teaser'",
     "`seo_keywords` varchar(500)",
     "`body` longtext COMMENT 'Main content body'",
@@ -17,30 +18,40 @@
     "`default_collection_id` bigint COMMENT 'Default collection ID'",
     "`source_url` varchar(2000) COMMENT 'Original source URL if content is imported'",
     "`source_title` varchar(500) COMMENT 'Title of the source'",
-    "`is_template` tinyint NOT NULL DEFAULT '0' COMMENT '1 = template, 0 = regular content'",
+    "`is_template` tinyint NOT NULL DEFAULT 0 COMMENT '1 = template, 0 = regular content'",
     "`status` enum('draft','published','archived') DEFAULT 'draft' COMMENT 'Publication status'",
     "`visibility` enum('public','private','unlisted') DEFAULT 'public' COMMENT 'Visibility level'",
-    "`view_count` int DEFAULT '0' COMMENT 'Number of views'",
-    "`share_count` int DEFAULT '0' COMMENT 'Number of shares'",
+    "`view_count` int DEFAULT 0 COMMENT 'Number of views'",
+    "`share_count` int DEFAULT 0 COMMENT 'Number of shares'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`utc_cycle` enum('creative','responsible') NOT NULL",
+    "`triage_status` enum('untriaged','keeper','fragment','duplicate','trash') NOT NULL DEFAULT 'untriaged'",
+    "`triage_notes` text",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
-    "`is_active` tinyint NOT NULL DEFAULT '1' COMMENT '1 = active, 0 = not active'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
+    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = not active'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'",
     "`content_sections` json COMMENT 'Cached list of section anchors extracted from the content body'",
-    "`version_number` int NOT NULL DEFAULT '1' COMMENT 'Monotonic version number for the live content row'"
+    "`version_number` int NOT NULL DEFAULT 1 COMMENT 'Monotonic version number for the live content row'"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "ft_content",
+      "index_name": "unique_content_slug_domain",
       "columns": [
-        "title",
-        "description",
-        "body"
+        "federation_node_id",
+        "slug"
       ],
-      "is_unique": false,
-      "index_type": "FULLTEXT"
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_custom_path",
+      "columns": [
+        "custom_path"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
     },
     {
       "index_name": "idx_content_parent",
@@ -59,9 +70,49 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_visibility",
+      "columns": [
+        "visibility"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_created_ymdhis",
       "columns": [
         "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_active",
+      "columns": [
+        "is_active"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -83,38 +134,6 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_is_active",
-      "columns": [
-        "is_active"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_is_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_status",
-      "columns": [
-        "status"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_updated_ymdhis",
-      "columns": [
-        "updated_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_user",
       "columns": [
         "user_id"
@@ -123,24 +142,16 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_visibility",
+      "index_name": "ft_content",
       "columns": [
-        "visibility"
+        "title",
+        "description",
+        "body"
       ],
       "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "unique_content_slug_domain",
-      "columns": [
-        "federation_node_id",
-        "slug"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
+      "index_type": "FULLTEXT"
     }
   ],
-  "notes": "Main content items including articles, pages, and other content types",
   "primary_key": {
     "column_name": "content_id",
     "expected_name": "content_id",

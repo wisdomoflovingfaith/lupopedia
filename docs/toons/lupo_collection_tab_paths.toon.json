@@ -8,11 +8,21 @@
     "`depth` int NOT NULL COMMENT 'Number of levels (1 = root tab)'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS'",
     "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "unique_tab_path",
+      "columns": [
+        "collection_id",
+        "collection_tab_id",
+        "path"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "idx_collection",
       "columns": [
@@ -36,19 +46,8 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "unique_tab_path",
-      "columns": [
-        "collection_id",
-        "collection_tab_id",
-        "path"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Full hierarchical paths for tabs - enables fast lookups and semantic edge generation",
   "primary_key": {
     "column_name": "collection_tab_path_id",
     "expected_name": "collection_tab_path_id",

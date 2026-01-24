@@ -8,7 +8,7 @@
     "`measurement_method` varchar(100) NOT NULL COMMENT 'How impact was measured'",
     "`before_metrics_json` json COMMENT 'Metrics before calibration'",
     "`after_metrics_json` json COMMENT 'Metrics after calibration'",
-    "`observation_period_hours` int unsigned DEFAULT '24' COMMENT 'Observation period length'",
+    "`observation_period_hours` int unsigned DEFAULT 24 COMMENT 'Observation period length'",
     "`measured_ymdhis` bigint NOT NULL COMMENT 'When impact was measured'",
     "`impact_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Impact tracking version'"
   ],
@@ -40,7 +40,6 @@
       "index_type": "BTREE"
     }
   ],
-  "notes": "Calibration Impact Tracking - Measuring effectiveness of emotional geometry adjustments",
   "primary_key": {
     "column_name": "id",
     "expected_name": "id",

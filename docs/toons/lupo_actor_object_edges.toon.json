@@ -1,0 +1,56 @@
+{
+  "table_name": "lupo_actor_object_edges",
+  "fields": [
+    "`actor_object_edge_id` bigint NOT NULL auto_increment",
+    "`actor_id` bigint NOT NULL",
+    "`target_table` varchar(100) NOT NULL COMMENT 'e.g., lupo_contents, lupo_unified_truth_items, lupo_hashtags, lupo_topics, lupo_channels, etc.'",
+    "`target_id` bigint NOT NULL",
+    "`edge_type` varchar(50) NOT NULL COMMENT 'e.g., read, liked, disliked, created, commented_on, shared_from, etc.'",
+    "`properties_json` json",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "uniq_actor_target_type",
+      "columns": [
+        "actor_id",
+        "target_table",
+        "target_id",
+        "edge_type"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_actor_edge_type",
+      "columns": [
+        "actor_id",
+        "edge_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_target_lookup",
+      "columns": [
+        "target_table",
+        "target_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "actor_object_edge_id",
+    "expected_name": "actor_object_edge_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

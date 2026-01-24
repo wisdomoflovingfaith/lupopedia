@@ -9,29 +9,13 @@
     "`comment_text` text NOT NULL COMMENT 'The actual comment content'",
     "`user_agent` varchar(255) COMMENT 'User agent string from the commenter''s browser/device'",
     "`ip_hash` char(64) COMMENT 'SHA-256 hash of the commenter''s IP address for privacy'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
     "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'"
   ],
   "data": [],
   "indexes": [
-    {
-      "index_name": "idx_content_id",
-      "columns": [
-        "content_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_created_ymdhis",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
     {
       "index_name": "idx_domain_id",
       "columns": [
@@ -41,17 +25,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_ip_hash",
+      "index_name": "idx_user_id",
       "columns": [
-        "ip_hash"
+        "user_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_is_deleted",
+      "index_name": "idx_content_id",
       "columns": [
-        "is_deleted"
+        "content_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -65,6 +49,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_updated_ymdhis",
       "columns": [
         "updated_ymdhis"
@@ -73,15 +65,22 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_user_id",
+      "index_name": "idx_is_deleted",
       "columns": [
-        "user_id"
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_ip_hash",
+      "columns": [
+        "ip_hash"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "Stores user comments on content with support for threaded replies",
   "primary_key": {
     "column_name": "user_comment_id",
     "expected_name": "user_comment_id",

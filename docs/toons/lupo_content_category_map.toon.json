@@ -9,11 +9,12 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_category",
+      "index_name": "uq_content_category",
       "columns": [
+        "content_id",
         "category_id"
       ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
@@ -25,16 +26,14 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "uq_content_category",
+      "index_name": "idx_category",
       "columns": [
-        "content_id",
         "category_id"
       ],
-      "is_unique": true,
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "Maps content items to categories",
   "primary_key": {
     "column_name": "content_category_map_id",
     "expected_name": "content_category_map_id",

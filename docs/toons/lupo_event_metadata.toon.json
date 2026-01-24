@@ -1,0 +1,48 @@
+{
+  "table_name": "lupo_event_metadata",
+  "fields": [
+    "`metadata_id` bigint NOT NULL auto_increment",
+    "`event_id` bigint NOT NULL",
+    "`metadata_key` varchar(100) NOT NULL",
+    "`metadata_value` text",
+    "`created_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_event_id",
+      "columns": [
+        "event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_metadata_key",
+      "columns": [
+        "metadata_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "metadata_id",
+    "expected_name": "metadata_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

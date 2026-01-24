@@ -9,7 +9,7 @@
     "`violation_metadata` json",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC creation timestamp (YYYYMMDDHHMMSS)'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC last update timestamp (YYYYMMDDHHMMSS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'"
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'"
   ],
   "data": [],
   "indexes": [
@@ -30,6 +30,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_violation_code",
+      "columns": [
+        "violation_code"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_created",
       "columns": [
         "created_ymdhis"
@@ -41,14 +49,6 @@
       "index_name": "idx_deleted",
       "columns": [
         "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_violation_code",
-      "columns": [
-        "violation_code"
       ],
       "is_unique": false,
       "index_type": "BTREE"

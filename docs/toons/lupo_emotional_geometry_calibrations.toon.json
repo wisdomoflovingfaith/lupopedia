@@ -10,7 +10,7 @@
     "`tension_vectors_detected` json COMMENT 'Detected tension patterns'",
     "`calibration_reason` text NOT NULL COMMENT 'Why calibration was needed'",
     "`calibration_algorithm` varchar(100) DEFAULT 'cip_pattern_analysis' COMMENT 'Algorithm used'",
-    "`confidence_score` decimal(5,4) NOT NULL DEFAULT '0.5000' COMMENT 'Calibration confidence'",
+    "`confidence_score` decimal(5,4) NOT NULL DEFAULT 0.5000 COMMENT 'Calibration confidence'",
     "`validation_status` enum('pending','validated','rejected','needs_review') DEFAULT 'pending'",
     "`applied_ymdhis` bigint COMMENT 'When calibration was applied'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'When calibration was calculated'",
@@ -22,14 +22,6 @@
       "index_name": "idx_analytics_ref",
       "columns": [
         "cip_analytics_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_confidence",
-      "columns": [
-        "confidence_score"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -50,9 +42,16 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_confidence",
+      "columns": [
+        "confidence_score"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
-  "notes": "Emotional Geometry Calibration - CIP-driven emotional baseline adjustments",
   "primary_key": {
     "column_name": "id",
     "expected_name": "id",

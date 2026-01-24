@@ -2,12 +2,12 @@
   "table_name": "lupo_api_tokens",
   "fields": [
     "`api_token_id` bigint NOT NULL auto_increment COMMENT 'Primary key for API token record'",
-    "`domain_id` bigint NOT NULL DEFAULT '1' COMMENT 'Domain/tenant identifier'",
-    "`actor_id` bigint NOT NULL DEFAULT '0' COMMENT 'Actor who owns this token (0 = system token)'",
+    "`domain_id` bigint NOT NULL DEFAULT 1 COMMENT 'Domain/tenant identifier'",
+    "`actor_id` bigint NOT NULL DEFAULT 0 COMMENT 'Actor who owns this token (0 = system token)'",
     "`token_key` varchar(255) NOT NULL COMMENT 'Hashed token value (never store raw token)'",
     "`token_label` varchar(150) COMMENT 'Human-readable label for this token'",
     "`scopes` text COMMENT 'Comma-separated list of scopes/permissions for this token'",
-    "`is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 = active, 0 = revoked'",
+    "`is_active` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = revoked'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when token was created'",
     "`expires_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when token expires (NULL = never)'",
     "`last_used_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when token was last used'",
@@ -18,9 +18,17 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_active",
+      "index_name": "uq_token_key",
       "columns": [
-        "is_active"
+        "token_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_domain",
+      "columns": [
+        "domain_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -34,9 +42,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_domain",
+      "index_name": "idx_active",
       "columns": [
-        "domain_id"
+        "is_active"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -56,17 +64,8 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "uq_token_key",
-      "columns": [
-        "token_key"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Stores API tokens for actors, modules, and system integrations",
   "primary_key": {
     "column_name": "api_token_id",
     "expected_name": "api_token_id",

@@ -8,31 +8,24 @@
     "`usage_context` varchar(64) COMMENT 'Context where this template is used'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'",
     "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
   ],
   "data": [],
   "indexes": [
     {
+      "index_name": "unq_actor_template_key",
+      "columns": [
+        "actor_id",
+        "template_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_actor",
       "columns": [
         "actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_created",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_deleted",
-      "columns": [
-        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -46,9 +39,25 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_updated",
       "columns": [
         "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_deleted",
+      "columns": [
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -60,18 +69,8 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "unq_actor_template_key",
-      "columns": [
-        "actor_id",
-        "template_key"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Stores reply templates that actors (users/agents) can use to generate consistent responses.",
   "primary_key": {
     "column_name": "actor_reply_template_id",
     "expected_name": "actor_reply_template_id",

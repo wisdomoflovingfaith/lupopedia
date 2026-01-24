@@ -1,0 +1,71 @@
+{
+  "table_name": "lupo_semantic_content_views",
+  "fields": [
+    "`semantic_view_id` bigint NOT NULL auto_increment COMMENT 'Primary key for semantic content view'",
+    "`view_name` varchar(255) NOT NULL COMMENT 'View name identifier'",
+    "`view_type` enum('navigation','content','search','collection') NOT NULL COMMENT 'Type of semantic view'",
+    "`title` varchar(255) NOT NULL COMMENT 'View title'",
+    "`description` text COMMENT 'View description'",
+    "`template_path` varchar(512) NOT NULL COMMENT 'Template file path'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp'",
+    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT 'View active flag'",
+    "`is_default` tinyint NOT NULL DEFAULT 0 COMMENT 'Default view flag'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "uk_view_name",
+      "columns": [
+        "view_name"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_view_type",
+      "columns": [
+        "view_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_default",
+      "columns": [
+        "is_default"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis",
+        "is_default",
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "semantic_view_id",
+    "expected_name": "semantic_view_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

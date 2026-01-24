@@ -1,0 +1,24 @@
+{
+  "table_name": "lupo_unified_analytics_paths",
+  "fields": [
+    "`analytics_path_id` bigint NOT NULL",
+    "`period` enum('daily','monthly') NOT NULL",
+    "`visit_content_id` bigint",
+    "`exit_content_id` bigint",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "analytics_path_id",
+    "expected_name": "analytics_path_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

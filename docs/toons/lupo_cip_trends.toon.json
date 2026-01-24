@@ -5,23 +5,24 @@
     "`trend_period` enum('hourly','daily','weekly','monthly') NOT NULL",
     "`period_start_ymdhis` bigint NOT NULL COMMENT 'Start of aggregation period'",
     "`period_end_ymdhis` bigint NOT NULL COMMENT 'End of aggregation period'",
-    "`avg_defensiveness_index` decimal(5,4) NOT NULL DEFAULT '0.0000'",
-    "`avg_integration_velocity` decimal(5,4) NOT NULL DEFAULT '0.0000'",
-    "`avg_architectural_impact` decimal(5,4) NOT NULL DEFAULT '0.0000'",
-    "`total_events` int unsigned NOT NULL DEFAULT '0'",
-    "`high_impact_events` int unsigned NOT NULL DEFAULT '0' COMMENT 'AIS > 0.7000'",
-    "`doctrine_updates_triggered` int unsigned NOT NULL DEFAULT '0'",
+    "`avg_defensiveness_index` decimal(5,4) NOT NULL DEFAULT 0.0000",
+    "`avg_integration_velocity` decimal(5,4) NOT NULL DEFAULT 0.0000",
+    "`avg_architectural_impact` decimal(5,4) NOT NULL DEFAULT 0.0000",
+    "`total_events` int unsigned NOT NULL DEFAULT 0",
+    "`high_impact_events` int unsigned NOT NULL DEFAULT 0 COMMENT 'AIS > 0.7000'",
+    "`doctrine_updates_triggered` int unsigned NOT NULL DEFAULT 0",
     "`trend_metadata_json` json COMMENT 'Additional trend analysis'",
     "`calculated_ymdhis` bigint NOT NULL COMMENT 'When trend was calculated'"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_high_impact",
+      "index_name": "uk_period_trend",
       "columns": [
-        "high_impact_events"
+        "trend_period",
+        "period_start_ymdhis"
       ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
@@ -34,16 +35,14 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "uk_period_trend",
+      "index_name": "idx_high_impact",
       "columns": [
-        "trend_period",
-        "period_start_ymdhis"
+        "high_impact_events"
       ],
-      "is_unique": true,
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "CIP Trends - Aggregated analytics over time periods",
   "primary_key": {
     "column_name": "id",
     "expected_name": "id",

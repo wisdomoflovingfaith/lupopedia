@@ -8,7 +8,7 @@
     "`memory_usage_mb` decimal(10,2)",
     "`cpu_usage_percent` decimal(5,2)",
     "`success_rate` decimal(5,2)",
-    "`error_count` int DEFAULT '0'",
+    "`error_count` int DEFAULT 0",
     "`created_ymdhis` bigint NOT NULL"
   ],
   "data": [],

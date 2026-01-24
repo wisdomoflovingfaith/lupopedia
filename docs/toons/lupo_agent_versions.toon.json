@@ -4,15 +4,15 @@
     "`agent_version_id` bigint NOT NULL auto_increment",
     "`agent_id` bigint NOT NULL",
     "`version_label` varchar(64) NOT NULL",
-    "`semver_major` int DEFAULT '0'",
-    "`semver_minor` int DEFAULT '0'",
-    "`semver_patch` int DEFAULT '0'",
+    "`semver_major` int DEFAULT 0",
+    "`semver_minor` int DEFAULT 0",
+    "`semver_patch` int DEFAULT 0",
     "`version_notes` text",
     "`version_hash` varchar(128)",
     "`previous_version_id` bigint",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` smallint NOT NULL DEFAULT '0'",
+    "`is_deleted` smallint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
@@ -26,19 +26,19 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "semver_major",
+      "index_name": "version_label",
       "columns": [
-        "semver_major",
-        "semver_minor",
-        "semver_patch"
+        "version_label"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "version_label",
+      "index_name": "semver_major",
       "columns": [
-        "version_label"
+        "semver_major",
+        "semver_minor",
+        "semver_patch"
       ],
       "is_unique": false,
       "index_type": "BTREE"

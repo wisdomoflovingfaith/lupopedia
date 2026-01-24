@@ -4,29 +4,45 @@
     "`channel_id` bigint NOT NULL auto_increment COMMENT 'Primary key for channel'",
     "`federation_node_id` bigint NOT NULL COMMENT 'Domain/tenant identifier'",
     "`created_by_actor_id` bigint NOT NULL COMMENT 'who made this channel'",
-    "`default_actor_id` bigint NOT NULL DEFAULT '1' COMMENT 'Default actor ID'",
+    "`default_actor_id` bigint NOT NULL DEFAULT 1 COMMENT 'Default actor ID'",
     "`channel_key` varchar(64) NOT NULL COMMENT 'URL-friendly identifier (slug)'",
+    "`channel_slug` varchar(32) NOT NULL DEFAULT 'channel_key' COMMENT 'well if they think it exists i guess i will make it'",
+    "`channel_type` varchar(32) NOT NULL DEFAULT 'chat_room'",
+    "`language` varchar(16) NOT NULL DEFAULT 'en'",
     "`channel_name` varchar(255) NOT NULL COMMENT 'Human-readable channel name'",
     "`description` text COMMENT 'Channel description'",
     "`metadata_json` text COMMENT 'JSON metadata for the channel'",
     "`bgcolor` varchar(6) NOT NULL DEFAULT 'FFFFFF'",
-    "`status_flag` tinyint NOT NULL DEFAULT '1' COMMENT 'Status flag (1=active, 0=inactive)'",
+    "`status_flag` tinyint NOT NULL DEFAULT 1 COMMENT 'Status flag (1=active, 0=inactive)'",
     "`end_ymdhis` bigint COMMENT 'Channel end timestamp (YYYYMMDDHHMMSS, NULL if ongoing)'",
     "`duration_seconds` int COMMENT 'Duration of the channel in seconds (if ended)'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'",
     "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'",
     "`aal_metadata_json` json COMMENT 'Agent Awareness Layer metadata for WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE'",
     "`fleet_composition_json` json COMMENT 'Current fleet of agents in this channel with their roles'",
-    "`awareness_version` varchar(20) DEFAULT '4.0.72' COMMENT 'AAL protocol version for this channel'"
+    "`awareness_version` varchar(20) DEFAULT '4.0.72' COMMENT 'AAL protocol version for this channel'",
+    "`channel_number` int COMMENT 'Channel number (0-9 reserved for system)'",
+    "`parent_channel_id` bigint COMMENT 'Reference to parent channel for hierarchy'",
+    "`is_kernel` tinyint NOT NULL DEFAULT 0 COMMENT 'Part of system kernel (Channel 0)'",
+    "`boot_sequence_order` int COMMENT 'Order in kernel boot sequence'"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_awareness_version",
+      "index_name": "unq_channel_key_per_node",
       "columns": [
-        "awareness_version"
+        "channel_key",
+        "federation_node_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_domain",
+      "columns": [
+        "federation_node_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -40,22 +56,6 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_dates",
-      "columns": [
-        "end_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_domain",
-      "columns": [
-        "federation_node_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_status",
       "columns": [
         "status_flag"
@@ -64,16 +64,22 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "unq_channel_key_per_node",
+      "index_name": "idx_dates",
       "columns": [
-        "channel_key",
-        "federation_node_id"
+        "end_ymdhis"
       ],
-      "is_unique": true,
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_awareness_version",
+      "columns": [
+        "awareness_version"
+      ],
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "Communication channels with Agent Awareness Layer (AAL) metadata for multi-agent coordination",
   "primary_key": {
     "column_name": "channel_id",
     "expected_name": "channel_id",

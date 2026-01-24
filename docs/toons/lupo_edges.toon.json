@@ -7,40 +7,22 @@
     "`right_object_type` varchar(50) NOT NULL",
     "`right_object_id` bigint NOT NULL",
     "`edge_type` varchar(100) NOT NULL",
-    "`weight_score` int NOT NULL DEFAULT '0'",
-    "`sort_num` int NOT NULL DEFAULT '0'",
+    "`channel_id` bigint",
+    "`channel_key` varchar(64)",
+    "`weight_score` int NOT NULL DEFAULT 0",
+    "`sort_num` int NOT NULL DEFAULT 0",
     "`actor_id` bigint",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
-    "`deleted_ymdhis` bigint NOT NULL DEFAULT '0'",
-    "`created_ymdhis` bigint NOT NULL DEFAULT '0'",
-    "`updated_ymdhis` bigint NOT NULL DEFAULT '0'"
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`semantic_weight` decimal(5,2) DEFAULT 0.00 COMMENT 'Semantic relationship strength (0.00-1.00)'",
+    "`relationship_type` enum('hierarchical','semantic','dependency','reference','contains') DEFAULT 'semantic' COMMENT 'Type of relationship'",
+    "`bidirectional` tinyint NOT NULL DEFAULT 0 COMMENT 'Relationship works both ways'",
+    "`context_scope` varchar(100) COMMENT 'Scope where relationship applies'"
   ],
   "data": [],
   "indexes": [
-    {
-      "index_name": "idx_actor",
-      "columns": [
-        "actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_edge_type",
-      "columns": [
-        "edge_type"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_is_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
     {
       "index_name": "idx_left",
       "columns": [
@@ -55,6 +37,56 @@
       "columns": [
         "right_object_type",
         "right_object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_edge_type",
+      "columns": [
+        "edge_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_semantic_weight",
+      "columns": [
+        "semantic_weight"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_relationship_type",
+      "columns": [
+        "relationship_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_channel_semantic",
+      "columns": [
+        "channel_id",
+        "relationship_type",
+        "semantic_weight"
       ],
       "is_unique": false,
       "index_type": "BTREE"

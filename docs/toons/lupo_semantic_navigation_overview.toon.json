@@ -1,0 +1,53 @@
+{
+  "table_name": "lupo_semantic_navigation_overview",
+  "fields": [
+    "`navigation_id` bigint NOT NULL auto_increment COMMENT 'Primary key for semantic navigation'",
+    "`title` varchar(255) NOT NULL COMMENT 'Navigation title'",
+    "`description` text COMMENT 'Navigation description'",
+    "`navigation_tree` json NOT NULL COMMENT 'Hierarchical navigation structure'",
+    "`content_categories` json NOT NULL COMMENT 'Content categories included'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
+    "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "navigation_id",
+    "expected_name": "navigation_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

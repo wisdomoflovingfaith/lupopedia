@@ -6,7 +6,7 @@
     "`status` varchar(32) NOT NULL DEFAULT 'unknown' COMMENT 'operational|idle|error|unknown'",
     "`last_heartbeat_ymdhis` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
@@ -15,6 +15,14 @@
       "index_name": "idx_agent_slug",
       "columns": [
         "agent_slug"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_last_heartbeat_ymdhis",
+      "columns": [
+        "last_heartbeat_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -34,17 +42,8 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_last_heartbeat_ymdhis",
-      "columns": [
-        "last_heartbeat_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Agent heartbeat/status. No FK.",
   "primary_key": {
     "column_name": "heartbeat_id",
     "expected_name": "heartbeat_id",

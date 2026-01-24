@@ -11,39 +11,23 @@
     "`category` varchar(100) COMMENT 'Category for grouping (e.g., \"Core\", \"Doctrine\", \"Module\")'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC creation timestamp (YYYYMMDDHHIISS)'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC last update timestamp (YYYYMMDDHHIISS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'",
     "`deleted_ymdhis` bigint COMMENT 'UTC deletion timestamp (YYYYMMDDHHIISS)'"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_category",
+      "index_name": "uniq_slug",
       "columns": [
-        "category"
+        "slug"
       ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_created",
+      "index_name": "idx_topic_type",
       "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_is_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_system_version",
-      "columns": [
-        "system_version"
+        "topic_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -57,23 +41,38 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_topic_type",
+      "index_name": "idx_category",
       "columns": [
-        "topic_type"
+        "category"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "uniq_slug",
+      "index_name": "idx_system_version",
       "columns": [
-        "slug"
+        "system_version"
       ],
-      "is_unique": true,
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "TL;DR summaries for quick reference - concise explanations of Lupopedia concepts",
   "primary_key": {
     "column_name": "tldnr_id",
     "expected_name": "tldnr_id",

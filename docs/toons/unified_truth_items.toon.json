@@ -1,19 +1,53 @@
 {
   "table_name": "unified_truth_items",
   "fields": [
-    "`truth_item_id` bigint NOT NULL",
-    "`item_type` enum('question','answer') NOT NULL",
-    "`name` varchar(255)",
-    "`slug` varchar(255)",
-    "`body_text` longtext",
-    "`metadata_json` json",
-    "`created_ymdhis` bigint"
+    "`unified_truth_id` bigint NOT NULL auto_increment",
+    "`truth_key` varchar(255) NOT NULL",
+    "`truth_value` text",
+    "`truth_type` varchar(50)",
+    "`confidence_score` decimal(3,2) DEFAULT 1.00",
+    "`source_actor_id` bigint",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL"
   ],
   "data": [],
-  "indexes": [],
+  "indexes": [
+    {
+      "index_name": "idx_truth_key",
+      "columns": [
+        "truth_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_truth_type",
+      "columns": [
+        "truth_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_source_actor_id",
+      "columns": [
+        "source_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
   "primary_key": {
-    "column_name": "truth_item_id",
-    "expected_name": "truth_item_id",
+    "column_name": "unified_truth_id",
+    "expected_name": "unified_truth_id",
     "is_correct": true,
     "needs_rename": false
   },

@@ -6,23 +6,23 @@
     "`context_slug` varchar(255) NOT NULL",
     "`parent_context_id` bigint",
     "`description` text",
-    "`created_ymd` bigint NOT NULL DEFAULT '0'",
-    "`updated_ymd` bigint NOT NULL DEFAULT '0'"
+    "`created_ymd` bigint NOT NULL DEFAULT 0",
+    "`updated_ymd` bigint NOT NULL DEFAULT 0"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_context_slug",
+      "index_name": "idx_context_type",
       "columns": [
-        "context_slug"
+        "context_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_context_type",
+      "index_name": "idx_context_slug",
       "columns": [
-        "context_type"
+        "context_slug"
       ],
       "is_unique": false,
       "index_type": "BTREE"

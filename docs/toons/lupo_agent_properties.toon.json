@@ -8,24 +8,26 @@
     "`property_value` text COMMENT 'JSON or TOON formatted property value'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
     "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
   ],
   "data": [],
   "indexes": [
     {
+      "index_name": "unique_agent_domain_property",
+      "columns": [
+        "actor_id",
+        "domain_id",
+        "property_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_agent_domain",
       "columns": [
         "actor_id",
         "domain_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_created_ymdhis",
-      "columns": [
-        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -39,17 +41,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_is_deleted",
+      "index_name": "idx_property_key",
       "columns": [
-        "is_deleted"
+        "property_key"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_property_key",
+      "index_name": "idx_created_ymdhis",
       "columns": [
-        "property_key"
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -63,17 +65,14 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "unique_agent_domain_property",
+      "index_name": "idx_is_deleted",
       "columns": [
-        "actor_id",
-        "domain_id",
-        "property_key"
+        "is_deleted"
       ],
-      "is_unique": true,
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "Stores domain-scoped key-value properties for agents",
   "primary_key": {
     "column_name": "agent_property_id",
     "expected_name": "agent_property_id",

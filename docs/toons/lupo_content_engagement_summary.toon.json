@@ -2,13 +2,21 @@
   "table_name": "lupo_content_engagement_summary",
   "fields": [
     "`content_engagement_summary_id` bigint NOT NULL auto_increment COMMENT 'Reference to the content item'",
-    "`likes_total` int NOT NULL DEFAULT '0' COMMENT 'Total number of likes received'",
-    "`shares_total` int NOT NULL DEFAULT '0' COMMENT 'Total number of shares'",
+    "`likes_total` int NOT NULL DEFAULT 0 COMMENT 'Total number of likes received'",
+    "`shares_total` int NOT NULL DEFAULT 0 COMMENT 'Total number of shares'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when the summary was last updated'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when the summary was first created'"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "idx_created_ymdhis",
       "columns": [
@@ -32,17 +40,8 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_updated_ymdhis",
-      "columns": [
-        "updated_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Denormalized cache of engagement metrics for content items",
   "primary_key": {
     "column_name": "content_engagement_summary_id",
     "expected_name": "content_engagement_summary_id",

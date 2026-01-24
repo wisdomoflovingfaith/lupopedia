@@ -1,0 +1,54 @@
+{
+  "table_name": "lupo_persona_dialogue_patterns",
+  "fields": [
+    "`pattern_id` bigint NOT NULL auto_increment",
+    "`persona_id` bigint NOT NULL",
+    "`pattern_type` varchar(100) NOT NULL",
+    "`pattern_name` varchar(255) NOT NULL",
+    "`pattern_triggers` json",
+    "`pattern_responses` json",
+    "`pattern_context` json",
+    "`pattern_frequency` decimal(5,2)",
+    "`pattern_confidence` decimal(5,2)",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_persona_id",
+      "columns": [
+        "persona_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_pattern_type",
+      "columns": [
+        "pattern_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_pattern_name",
+      "columns": [
+        "pattern_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "pattern_id",
+    "expected_name": "pattern_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -3,41 +3,24 @@
   "fields": [
     "`help_tree_id` bigint NOT NULL auto_increment",
     "`parent_id` bigint",
-    "`department_id` bigint NOT NULL DEFAULT '1'",
+    "`department_id` bigint NOT NULL DEFAULT 1",
     "`content_id` bigint",
     "`title` varchar(255) NOT NULL",
     "`description` text",
     "`action_type` enum('none','ai_agent','department','url','content','message') NOT NULL DEFAULT 'none'",
     "`action_target` varchar(255)",
-    "`sort_order` int NOT NULL DEFAULT '0'",
+    "`sort_order` int NOT NULL DEFAULT 0",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_action",
+      "index_name": "idx_parent",
       "columns": [
-        "action_type",
-        "action_target"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_content",
-      "columns": [
-        "content_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_created",
-      "columns": [
-        "created_ymdhis"
+        "parent_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -51,9 +34,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_parent",
+      "index_name": "idx_content",
       "columns": [
-        "parent_id"
+        "content_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -68,6 +51,23 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_action",
+      "columns": [
+        "action_type",
+        "action_target"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_updated",
       "columns": [
         "updated_ymdhis"
@@ -76,7 +76,6 @@
       "index_type": "BTREE"
     }
   ],
-  "notes": "Hierarchical help system for organizing help topics and routing to appropriate resources",
   "primary_key": {
     "column_name": "help_tree_id",
     "expected_name": "help_tree_id",

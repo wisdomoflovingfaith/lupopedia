@@ -2,14 +2,14 @@
   "table_name": "lupo_api_webhooks",
   "fields": [
     "`api_webhook_id` bigint NOT NULL auto_increment COMMENT 'Primary key for webhook registration'",
-    "`domain_id` bigint NOT NULL DEFAULT '1' COMMENT 'Domain/tenant identifier'",
-    "`actor_id` bigint NOT NULL DEFAULT '0' COMMENT 'Actor who created this webhook (0 = system)'",
-    "`module_id` bigint NOT NULL DEFAULT '0' COMMENT 'Module associated with this webhook (0 = global)'",
+    "`domain_id` bigint NOT NULL DEFAULT 1 COMMENT 'Domain/tenant identifier'",
+    "`actor_id` bigint NOT NULL DEFAULT 0 COMMENT 'Actor who created this webhook (0 = system)'",
+    "`module_id` bigint NOT NULL DEFAULT 0 COMMENT 'Module associated with this webhook (0 = global)'",
     "`endpoint_url` varchar(500) NOT NULL COMMENT 'Target URL to receive webhook POST requests'",
     "`secret_key` varchar(255) NOT NULL COMMENT 'Hashed secret used to sign webhook payloads'",
     "`event_types` text NOT NULL COMMENT 'Comma-separated list of event types this webhook listens to'",
-    "`is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 = active, 0 = disabled'",
-    "`max_retries` int NOT NULL DEFAULT '5' COMMENT 'Maximum number of retry attempts for failed deliveries'",
+    "`is_active` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = disabled'",
+    "`max_retries` int NOT NULL DEFAULT 5 COMMENT 'Maximum number of retry attempts for failed deliveries'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when webhook was created'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when webhook was last updated'",
     "`expires_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when webhook expires (NULL = never)'",
@@ -18,9 +18,9 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_active",
+      "index_name": "idx_domain",
       "columns": [
-        "is_active"
+        "domain_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -34,9 +34,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_domain",
+      "index_name": "idx_module",
       "columns": [
-        "domain_id"
+        "module_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_active",
+      "columns": [
+        "is_active"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -48,17 +56,8 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_module",
-      "columns": [
-        "module_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Registered webhook endpoints for external integrations",
   "primary_key": {
     "column_name": "api_webhook_id",
     "expected_name": "api_webhook_id",

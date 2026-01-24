@@ -1,18 +1,43 @@
 {
   "table_name": "unified_analytics_paths",
   "fields": [
-    "`analytics_path_id` bigint NOT NULL",
-    "`period` enum('daily','monthly') NOT NULL",
-    "`visit_content_id` bigint",
-    "`exit_content_id` bigint",
-    "`metadata_json` json",
-    "`created_ymdhis` bigint"
+    "`path_id` bigint NOT NULL auto_increment",
+    "`path_pattern` varchar(500) NOT NULL",
+    "`path_type` varchar(50)",
+    "`access_count` int DEFAULT 0",
+    "`last_accessed` bigint",
+    "`created_ymdhis` bigint NOT NULL"
   ],
   "data": [],
-  "indexes": [],
+  "indexes": [
+    {
+      "index_name": "idx_path_pattern",
+      "columns": [
+        "path_pattern"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_path_type",
+      "columns": [
+        "path_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_access_count",
+      "columns": [
+        "access_count"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
   "primary_key": {
-    "column_name": "analytics_path_id",
-    "expected_name": "analytics_path_id",
+    "column_name": "path_id",
+    "expected_name": "path_id",
     "is_correct": true,
     "needs_rename": false
   },

@@ -7,13 +7,13 @@
     "`role_key` varchar(64) NOT NULL",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint(1) NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint(1) NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint",
     "`handshake_metadata_json` json COMMENT 'RSHAP handshake identity and synchronization data'",
     "`awareness_snapshot_json` json COMMENT 'CJP Awareness Snapshot (WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE)'",
     "`protocol_completion_status` enum('pending','aal_complete','rshap_complete','cjp_complete','ready') DEFAULT 'pending' COMMENT 'Multi-agent protocol completion status'",
     "`protocol_version` varchar(20) DEFAULT '4.0.72' COMMENT 'Protocol version used for this actor-channel relationship'",
-    "`join_sequence_step` tinyint DEFAULT '0' COMMENT 'Current step in 10-step CJP sequence (0-10)'",
+    "`join_sequence_step` tinyint DEFAULT 0 COMMENT 'Current step in 10-step CJP sequence (0-10)'",
     "`handshake_completed_ymdhis` bigint COMMENT 'Timestamp when RSHAP was completed'",
     "`awareness_completed_ymdhis` bigint COMMENT 'Timestamp when AAL was completed'",
     "`cjp_completed_ymdhis` bigint COMMENT 'Timestamp when full CJP was completed'"
@@ -37,9 +37,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_join_sequence_step",
+      "index_name": "idx_role_key",
       "columns": [
-        "join_sequence_step"
+        "role_key"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -53,23 +53,22 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_join_sequence_step",
+      "columns": [
+        "join_sequence_step"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_protocol_version",
       "columns": [
         "protocol_version"
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_role_key",
-      "columns": [
-        "role_key"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Actor-channel relationships with RSHAP handshake and CJP awareness metadata",
   "primary_key": {
     "column_name": "actor_channel_role_id",
     "expected_name": "actor_channel_role_id",

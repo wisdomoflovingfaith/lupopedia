@@ -18,7 +18,7 @@
     "`author` varchar(100)",
     "`created_timestamp` bigint unsigned NOT NULL COMMENT 'YYYYMMDDHHIISS format'",
     "`modified_timestamp` bigint unsigned NOT NULL COMMENT 'YYYYMMDDHHIISS format'",
-    "`message_count` int unsigned DEFAULT '0' COMMENT 'Cached count of messages'",
+    "`message_count` int unsigned DEFAULT 0 COMMENT 'Cached count of messages'",
     "`metadata_json` json COMMENT 'Additional metadata from WOLFIE headers'"
   ],
   "data": [],
@@ -32,34 +32,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_created_timestamp",
-      "columns": [
-        "created_timestamp"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_dialog_channels_composite",
-      "columns": [
-        "status",
-        "created_timestamp"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_file_source",
       "columns": [
         "file_source"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_modified_timestamp",
-      "columns": [
-        "modified_timestamp"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -73,6 +48,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_target",
+      "columns": [
+        "target"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_status",
       "columns": [
         "status"
@@ -81,15 +64,31 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_target",
+      "index_name": "idx_created_timestamp",
       "columns": [
-        "target"
+        "created_timestamp"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_modified_timestamp",
+      "columns": [
+        "modified_timestamp"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_dialog_channels_composite",
+      "columns": [
+        "status",
+        "created_timestamp"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "Dialog channels migrated from .md files with WOLFIE header metadata",
   "primary_key": {
     "column_name": "channel_id",
     "expected_name": "channel_id",

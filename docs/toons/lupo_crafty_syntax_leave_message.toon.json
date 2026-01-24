@@ -2,13 +2,13 @@
   "table_name": "lupo_crafty_syntax_leave_message",
   "fields": [
     "`crafty_syntax_leave_message_id` bigint NOT NULL auto_increment",
-    "`department_id` bigint NOT NULL DEFAULT '0'",
+    "`department_id` bigint NOT NULL DEFAULT 0",
     "`email` varchar(255) NOT NULL DEFAULT ''",
     "`phone` varchar(45)",
     "`name` varchar(200)",
     "`subject` varchar(255) NOT NULL DEFAULT ''",
     "`message` text",
-    "`priority` tinyint NOT NULL DEFAULT '2'",
+    "`priority` tinyint NOT NULL DEFAULT 2",
     "`session_data` text",
     "`form_data` text",
     "`ip_address` varchar(45)",
@@ -17,27 +17,11 @@
     "`assigned_to` bigint",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
-    {
-      "index_name": "idx_assigned",
-      "columns": [
-        "assigned_to"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_created",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
     {
       "index_name": "idx_department",
       "columns": [
@@ -55,15 +39,28 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_message_search",
+      "index_name": "idx_status",
       "columns": [
-        "email",
-        "name",
-        "subject",
-        "message"
+        "status"
       ],
       "is_unique": false,
-      "index_type": "FULLTEXT"
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_assigned",
+      "columns": [
+        "assigned_to"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     },
     {
       "index_name": "idx_priority",
@@ -74,12 +71,15 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_status",
+      "index_name": "idx_message_search",
       "columns": [
-        "status"
+        "email",
+        "name",
+        "subject",
+        "message"
       ],
       "is_unique": false,
-      "index_type": "BTREE"
+      "index_type": "FULLTEXT"
     }
   ],
   "primary_key": {

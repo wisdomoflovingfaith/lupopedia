@@ -2,7 +2,7 @@
   "table_name": "lupo_dialog_threads",
   "fields": [
     "`dialog_thread_id` bigint NOT NULL auto_increment COMMENT 'Primary key for the dialog thread'",
-    "`federation_node_id` bigint NOT NULL DEFAULT '1' COMMENT 'Node that owns this thread; default is local installation (1)'",
+    "`federation_node_id` bigint NOT NULL DEFAULT 1 COMMENT 'Node that owns this thread; default is local installation (1)'",
     "`channel_id` bigint COMMENT 'Optional channel identifier for grouping threads'",
     "`project_slug` varchar(100) COMMENT 'Project or subsystem this thread belongs to'",
     "`task_name` varchar(255) COMMENT 'Human-readable task name for this thread'",
@@ -13,47 +13,23 @@
     "`metadata_json` json COMMENT 'Metadata: intent, scope, persona, mood, inline dialog metadata'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted)'",
     "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_channel",
-      "columns": [
-        "channel_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_created",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_created_by_actor",
-      "columns": [
-        "created_by_actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_node",
       "columns": [
         "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_channel",
+      "columns": [
+        "channel_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -67,6 +43,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_task",
+      "columns": [
+        "task_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_status",
       "columns": [
         "status"
@@ -75,9 +59,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_task",
+      "index_name": "idx_created",
       "columns": [
-        "task_name"
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -89,9 +73,24 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_by_actor",
+      "columns": [
+        "created_by_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
-  "notes": "High-level dialog threads grouping messages across agents, tasks, and projects.",
   "primary_key": {
     "column_name": "dialog_thread_id",
     "expected_name": "dialog_thread_id",

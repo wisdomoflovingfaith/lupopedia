@@ -7,7 +7,7 @@
     "`embedding_model` varchar(128) NOT NULL",
     "`embedding_version` varchar(64)",
     "`created_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],

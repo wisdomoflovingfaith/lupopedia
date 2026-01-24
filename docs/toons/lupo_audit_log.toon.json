@@ -11,7 +11,7 @@
     "`payload_json` longtext COMMENT 'Additional event data in JSON format'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'",
     "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
   ],
   "data": [],
@@ -43,7 +43,6 @@
       "index_type": "BTREE"
     }
   ],
-  "notes": "Audit trail for tracking system events and changes",
   "primary_key": {
     "column_name": "audit_log_id",
     "expected_name": "audit_log_id",

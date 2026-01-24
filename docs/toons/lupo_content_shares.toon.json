@@ -9,7 +9,7 @@
     "`share_target` varchar(255) COMMENT 'Specific target of the share (e.g., \"twitter\", \"facebook\")'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
   ],
   "data": [],
@@ -23,17 +23,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_created_ymdhis",
+      "index_name": "idx_user",
       "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_is_deleted",
-      "columns": [
-        "is_deleted"
+        "user_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -47,6 +39,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_updated_ymdhis",
       "columns": [
         "updated_ymdhis"
@@ -55,15 +55,14 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_user",
+      "index_name": "idx_is_deleted",
       "columns": [
-        "user_id"
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "Tracks share events for content items by both authenticated and anonymous users",
   "primary_key": {
     "column_name": "content_share_id",
     "expected_name": "content_share_id",

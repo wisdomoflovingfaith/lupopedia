@@ -9,42 +9,27 @@
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint",
     "`created_by` bigint",
-    "`is_deleted` tinyint(1) NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint(1) NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint",
-    "`version` int DEFAULT '1'",
-    "`is_approved` tinyint(1) DEFAULT '0' COMMENT 'Whether this translation is approved'",
+    "`version` int DEFAULT 1",
+    "`is_approved` tinyint(1) DEFAULT 0 COMMENT 'Whether this translation is approved'",
     "`approved_by` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "ft_translation_text",
+      "index_name": "unq_language_key",
       "columns": [
-        "translation_text"
+        "language_code",
+        "translation_key"
       ],
-      "is_unique": false,
-      "index_type": "FULLTEXT"
-    },
-    {
-      "index_name": "idx_approved",
-      "columns": [
-        "is_approved"
-      ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
       "index_name": "idx_created",
       "columns": [
         "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_deleted",
-      "columns": [
-        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -58,16 +43,30 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "unq_language_key",
+      "index_name": "idx_deleted",
       "columns": [
-        "language_code",
-        "translation_key"
+        "is_deleted"
       ],
-      "is_unique": true,
+      "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_approved",
+      "columns": [
+        "is_approved"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "ft_translation_text",
+      "columns": [
+        "translation_text"
+      ],
+      "is_unique": false,
+      "index_type": "FULLTEXT"
     }
   ],
-  "notes": "Stores user interface translations for the application",
   "primary_key": {
     "column_name": "interface_translation_id",
     "expected_name": "interface_translation_id",

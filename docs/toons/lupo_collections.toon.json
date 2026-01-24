@@ -9,21 +9,30 @@
     "`slug` varchar(100) NOT NULL COMMENT 'URL-friendly identifier, unique per domain'",
     "`color` char(6) DEFAULT '666666' COMMENT 'Hex color code for the collection (6 hex characters, no hash)'",
     "`description` text COMMENT 'Optional description of the collection'",
-    "`sort_order` int DEFAULT '0' COMMENT 'Manual sort order within parent container'",
+    "`sort_order` int DEFAULT 0 COMMENT 'Manual sort order within parent container'",
     "`properties` text COMMENT 'JSON-encoded key-value store'",
     "`published_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when published'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'",
     "`parent_id` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_created_ymdhis",
+      "index_name": "unique_collection_slug_domain",
       "columns": [
-        "created_ymdhis"
+        "federations_node_id",
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_name",
+      "columns": [
+        "name"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -45,25 +54,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_is_deleted",
+      "index_name": "idx_user",
       "columns": [
-        "is_deleted"
+        "user_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_name",
+      "index_name": "idx_created_ymdhis",
       "columns": [
-        "name"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_sort_order",
-      "columns": [
-        "sort_order"
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -77,24 +78,22 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_user",
+      "index_name": "idx_is_deleted",
       "columns": [
-        "user_id"
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "unique_collection_slug_domain",
+      "index_name": "idx_sort_order",
       "columns": [
-        "federations_node_id",
-        "slug"
+        "sort_order"
       ],
-      "is_unique": true,
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "Organizational containers for content with metadata and theming.",
   "primary_key": {
     "column_name": "collection_id",
     "expected_name": "collection_id",

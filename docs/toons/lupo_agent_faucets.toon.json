@@ -19,8 +19,8 @@
     "`safety_json` json",
     "`response_format` varchar(50)",
     "`capabilities_json` longtext COMMENT 'JSON describing which tools/capabilities this faucet can use'",
-    "`is_default` tinyint NOT NULL DEFAULT '0' COMMENT '1 if this is the default faucet for the agent'",
-    "`domain_id` bigint NOT NULL DEFAULT '1' COMMENT 'Domain this faucet belongs to (multi-domain support)'",
+    "`is_default` tinyint NOT NULL DEFAULT 0 COMMENT '1 if this is the default faucet for the agent'",
+    "`domain_id` bigint NOT NULL DEFAULT 1 COMMENT 'Domain this faucet belongs to (multi-domain support)'",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
     "`deleted_ymdhis` bigint"
@@ -36,9 +36,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_default",
+      "index_name": "idx_slug",
       "columns": [
-        "is_default"
+        "slug"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -52,15 +52,14 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_slug",
+      "index_name": "idx_default",
       "columns": [
-        "slug"
+        "is_default"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "Persona faucets for core AI agents (Wolfie, Wolfith, etc.)",
   "primary_key": {
     "column_name": "agent_faucet_id",
     "expected_name": "agent_faucet_id",

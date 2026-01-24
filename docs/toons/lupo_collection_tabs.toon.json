@@ -1,0 +1,68 @@
+{
+  "table_name": "lupo_collection_tabs",
+  "fields": [
+    "`collection_tab_id` bigint NOT NULL auto_increment",
+    "`collection_tab_parent_id` bigint COMMENT 'Parent tab ID for hierarchical nesting, NULL for root level'",
+    "`collection_id` bigint NOT NULL COMMENT 'Reference to the parent collection'",
+    "`federations_node_id` bigint NOT NULL COMMENT 'Domain this tab belongs to (via collection)'",
+    "`group_id` bigint COMMENT 'Owning group, if group-owned'",
+    "`user_id` bigint COMMENT 'Owning user, if user-owned'",
+    "`sort_order` int DEFAULT 0 COMMENT 'Order of display within parent container'",
+    "`name` varchar(255) NOT NULL COMMENT 'Display name of the tab'",
+    "`slug` varchar(100) NOT NULL COMMENT 'URL-friendly identifier, unique within collection'",
+    "`color` char(6) DEFAULT '4caf50' COMMENT 'Hex color code (6 characters, no hash)'",
+    "`description` text COMMENT 'Optional description of the tab'",
+    "`is_hidden` tinyint NOT NULL DEFAULT 0 COMMENT '1 = hidden, 0 = visible'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
+    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = not active'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = soft deleted, 0 = not deleted'",
+    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_collection_id",
+      "columns": [
+        "collection_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_parent_tab_id",
+      "columns": [
+        "collection_tab_parent_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "collection_tab_id",
+    "expected_name": "collection_tab_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

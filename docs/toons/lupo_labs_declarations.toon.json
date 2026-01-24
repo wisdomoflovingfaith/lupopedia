@@ -12,7 +12,7 @@
     "`validation_log_json` json COMMENT 'Validation log entries (violations, errors)'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC creation timestamp (YYYYMMDDHHMMSS)'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC last update timestamp (YYYYMMDDHHMMSS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'",
     "`deleted_ymdhis` bigint COMMENT 'UTC deletion timestamp (YYYYMMDDHHMMSS)'"
   ],
   "data": [],
@@ -21,6 +21,30 @@
       "index_name": "idx_actor_id",
       "columns": [
         "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_certificate_id",
+      "columns": [
+        "certificate_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_validation_status",
+      "columns": [
+        "validation_status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_next_revalidation",
+      "columns": [
+        "next_revalidation_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -36,35 +60,11 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_certificate_id",
-      "columns": [
-        "certificate_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_next_revalidation",
-      "columns": [
-        "next_revalidation_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_revalidation_due",
       "columns": [
         "next_revalidation_ymdhis",
         "validation_status",
         "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_validation_status",
-      "columns": [
-        "validation_status"
       ],
       "is_unique": false,
       "index_type": "BTREE"

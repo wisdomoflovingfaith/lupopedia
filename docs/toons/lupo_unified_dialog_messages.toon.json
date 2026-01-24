@@ -1,0 +1,25 @@
+{
+  "table_name": "lupo_unified_dialog_messages",
+  "fields": [
+    "`dialog_message_id` bigint NOT NULL",
+    "`thread_id` bigint",
+    "`actor_id` bigint",
+    "`created_ymdhis` bigint",
+    "`updated_ymdhis` bigint",
+    "`metadata_json` json",
+    "`body_text` longtext"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "dialog_message_id",
+    "expected_name": "dialog_message_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -16,11 +16,20 @@
     "`dialog_output_file` varchar(500) COMMENT 'Filesystem dialog log path for this actor in this channel; IDE agents write here as the mandatory fallback when database dialog tables are unavailable.'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag (1=deleted, 0=active)'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'",
     "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "unq_actor_channel",
+      "columns": [
+        "actor_id",
+        "channel_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "idx_actor",
       "columns": [
@@ -38,25 +47,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_created",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_status",
       "columns": [
         "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -70,16 +71,14 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "unq_actor_channel",
+      "index_name": "idx_deleted",
       "columns": [
-        "actor_id",
-        "channel_id"
+        "is_deleted"
       ],
-      "is_unique": true,
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
-  "notes": "Manages the many-to-many relationship between actors and channels, including per-actor channel preferences and status.",
   "primary_key": {
     "column_name": "actor_channel_id",
     "expected_name": "actor_channel_id",

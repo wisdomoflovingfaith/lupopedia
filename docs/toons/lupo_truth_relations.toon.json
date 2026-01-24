@@ -10,7 +10,7 @@
     "`actor_id` bigint NOT NULL",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
@@ -24,17 +24,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "relation_type",
+      "index_name": "right_object_type",
       "columns": [
-        "relation_type"
+        "right_object_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "right_object_type",
+      "index_name": "relation_type",
       "columns": [
-        "right_object_type"
+        "relation_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"

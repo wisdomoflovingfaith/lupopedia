@@ -5,7 +5,7 @@
     "`agent_id` bigint NOT NULL COMMENT 'The agent that has dependencies'",
     "`depends_on_agent_id` bigint NOT NULL COMMENT 'The agent it depends on'",
     "`depends_on_agent_code` varchar(50) NOT NULL",
-    "`is_required` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 = must be active, 0 = optional'",
+    "`is_required` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = must be active, 0 = optional'",
     "`notes` text COMMENT 'Why this dependency exists'",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint"

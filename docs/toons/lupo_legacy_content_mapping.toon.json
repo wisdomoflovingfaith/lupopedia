@@ -1,0 +1,84 @@
+{
+  "table_name": "lupo_legacy_content_mapping",
+  "fields": [
+    "`mapping_id` bigint NOT NULL auto_increment COMMENT 'Primary key for content mapping'",
+    "`legacy_url` varchar(255) NOT NULL COMMENT 'Original Crafty Syntax URL'",
+    "`semantic_url` varchar(255) NOT NULL COMMENT 'New semantic URL'",
+    "`content_type` enum('page','topic','collection') NOT NULL COMMENT 'Type of content'",
+    "`content_id` bigint COMMENT 'Reference to semantic content'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'Mapping creation timestamp'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'Mapping update timestamp'",
+    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT 'Mapping active flag'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "uk_legacy_url",
+      "columns": [
+        "legacy_url"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_semantic_url",
+      "columns": [
+        "semantic_url"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_content_type",
+      "columns": [
+        "content_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_content_id",
+      "columns": [
+        "content_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis",
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "mapping_id",
+    "expected_name": "mapping_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -7,7 +7,7 @@
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when membership was created'",
     "`created_by` bigint COMMENT 'actor_id who created this membership'",
     "`expires_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when membership expires (NULL = never)'",
-    "`is_active` tinyint NOT NULL DEFAULT '1' COMMENT '1 = active, 0 = inactive'",
+    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = inactive'",
     "`role` varchar(50) DEFAULT 'member' COMMENT 'Role/position within the group'"
   ],
   "data": [],
@@ -22,18 +22,18 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_expires",
+      "index_name": "idx_group_domain",
       "columns": [
-        "expires_ymdhis"
+        "group_id",
+        "domain_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_group_domain",
+      "index_name": "idx_expires",
       "columns": [
-        "group_id",
-        "domain_id"
+        "expires_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -47,7 +47,6 @@
       "index_type": "BTREE"
     }
   ],
-  "notes": "Manages many-to-many relationship between actors and groups within domains. Tracks group memberships for users, AI agents, and services with role-based access control.",
   "primary_key": {
     "column_name": "actor_group_membership_id",
     "expected_name": "actor_group_membership_id",

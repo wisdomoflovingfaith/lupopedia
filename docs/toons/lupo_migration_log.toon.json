@@ -26,7 +26,6 @@
       "index_type": "BTREE"
     }
   ],
-  "notes": "Log of migration attempts by LupopediaMigrationController",
   "primary_key": {
     "column_name": "id",
     "expected_name": "id",

@@ -7,7 +7,7 @@
     "`access_level` enum('owner','write','read') NOT NULL DEFAULT 'read'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when granted'",
     "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint",
     "`persistent_identity_json` json COMMENT 'RSHAP persistent identity metadata'",
     "`identity_signature` varchar(255) COMMENT 'Unique identity signature for handshake verification'",
@@ -17,14 +17,6 @@
   ],
   "data": [],
   "indexes": [
-    {
-      "index_name": "idx_access_level",
-      "columns": [
-        "access_level"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
     {
       "index_name": "idx_actor",
       "columns": [
@@ -42,17 +34,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_created_ymdhis",
+      "index_name": "idx_access_level",
       "columns": [
-        "created_ymdhis"
+        "access_level"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_identity_signature",
+      "index_name": "idx_created_ymdhis",
       "columns": [
-        "identity_signature"
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -66,6 +58,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_identity_signature",
+      "columns": [
+        "identity_signature"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_trust_level",
       "columns": [
         "trust_level"
@@ -74,7 +74,6 @@
       "index_type": "BTREE"
     }
   ],
-  "notes": "Actor collections with persistent identity storage for multi-agent protocols",
   "primary_key": {
     "column_name": "actor_collection_id",
     "expected_name": "actor_collection_id",

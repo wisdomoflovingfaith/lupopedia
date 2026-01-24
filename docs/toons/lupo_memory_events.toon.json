@@ -7,7 +7,7 @@
     "`content` text NOT NULL",
     "`metadata` json",
     "`token_count` int",
-    "`importance` tinyint DEFAULT '0'",
+    "`importance` tinyint DEFAULT 0",
     "`embedding_status` enum('none','pending','ready','failed') DEFAULT 'none'",
     "`created_ymdhis` bigint NOT NULL"
   ],

@@ -7,17 +7,18 @@
     "`purpose` varchar(255) COMMENT 'Why this atom is attached (topic, tag, variable, etc.)'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT '1 = deleted, 0 = not deleted'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_atom",
+      "index_name": "unique_atom_content",
       "columns": [
+        "content_id",
         "atom_id"
       ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
@@ -29,9 +30,25 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "idx_atom",
+      "columns": [
+        "atom_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "idx_created_ymdhis",
       "columns": [
         "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -51,26 +68,8 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_updated_ymdhis",
-      "columns": [
-        "updated_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "unique_atom_content",
-      "columns": [
-        "content_id",
-        "atom_id"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Maps semantic atoms to content items, enabling atomic knowledge composition",
   "primary_key": {
     "column_name": "content_atom_map_id",
     "expected_name": "content_atom_map_id",

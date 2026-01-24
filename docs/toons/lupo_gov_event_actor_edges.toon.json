@@ -8,23 +8,33 @@
     "`edge_properties` text COMMENT 'JSON or TOON formatted metadata'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
     "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0' COMMENT 'Soft delete flag'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_actor",
+      "index_name": "unique_gov_event_actor_edge",
       "columns": [
-        "actor_id"
+        "gov_event_id",
+        "actor_id",
+        "edge_type"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_gov_event",
+      "columns": [
+        "gov_event_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_created_ymdhis",
+      "index_name": "idx_actor",
       "columns": [
-        "created_ymdhis"
+        "actor_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -38,9 +48,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_gov_event",
+      "index_name": "idx_created_ymdhis",
       "columns": [
-        "gov_event_id"
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -52,19 +62,8 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "unique_gov_event_actor_edge",
-      "columns": [
-        "gov_event_id",
-        "actor_id",
-        "edge_type"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
     }
   ],
-  "notes": "Actor relationships for governance events",
   "primary_key": {
     "column_name": "edge_id",
     "expected_name": "edge_id",
