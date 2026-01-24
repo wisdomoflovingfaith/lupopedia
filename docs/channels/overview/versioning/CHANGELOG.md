@@ -50,6 +50,14 @@ system_context:
 
 # ALL NEW ENTRIES AFTER THIS LINE
 
+## [2026.1.1.2] - 2026-01-24 06:19:00
+
+### Doctrine Updates
+- Updated CHANNEL_MANIFEST_SPEC.md to include actor membership, semantic scope, operational mode, and temporal behavior
+- Added updated CHANNEL_IDENTITY_BLOCK template with comprehensive channel configuration
+- Added Four-Layer Semantic Model doctrine (SEMANTIC_LAYER_MODEL.md) defining Interaction, Extracted, Navigation, and AI-Generated semantics
+- Enhanced channels as semantic contexts and actor‑membership containers with explicit routing boundaries
+
 ## 2026.1.1.1 — Repository Taxonomy Reorganization (2026-01-22)
 
 ### Added
