@@ -1,22 +1,23 @@
 {
-  "table_name": "lupo_operators",
+  "table_name": "lupo_operator_escalation_rules",
   "fields": [
-    "`operator_id` bigint NOT NULL auto_increment",
-    "`auth_user_id` bigint NOT NULL",
-    "`actor_id` bigint NOT NULL",
+    "`operator_escalation_rule_id` bigint NOT NULL auto_increment",
     "`department_id` bigint NOT NULL",
+    "`rule_slug` varchar(255) NOT NULL",
+    "`threshold_type` varchar(50) NOT NULL",
+    "`threshold_value` bigint",
+    "`action` varchar(50) NOT NULL DEFAULT 'escalate'",
     "`is_active` bigint DEFAULT 1",
-    "`availability_status` varchar(20) DEFAULT 'offline'",
     "`created_ymdhis` bigint",
     "`updated_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "uniq_operator",
+      "index_name": "uniq_department_rule",
       "columns": [
-        "auth_user_id",
-        "department_id"
+        "department_id",
+        "rule_slug"
       ],
       "is_unique": true,
       "index_type": "BTREE"
@@ -30,17 +31,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_actor_id",
+      "index_name": "idx_threshold_type",
       "columns": [
-        "actor_id"
+        "threshold_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     }
   ],
   "primary_key": {
-    "column_name": "operator_id",
-    "expected_name": "operator_id",
+    "column_name": "operator_escalation_rule_id",
+    "expected_name": "operator_escalation_rule_id",
     "is_correct": true,
     "needs_rename": false
   },

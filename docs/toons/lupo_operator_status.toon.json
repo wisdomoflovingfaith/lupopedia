@@ -1,0 +1,43 @@
+{
+  "table_name": "lupo_operator_status",
+  "fields": [
+    "`operator_status_id` bigint NOT NULL auto_increment",
+    "`operator_id` bigint NOT NULL",
+    "`status` varchar(20) DEFAULT 'offline'",
+    "`last_seen_ymdhis` bigint",
+    "`active_chat_count` bigint DEFAULT 0",
+    "`max_chat_capacity` bigint DEFAULT 3",
+    "`created_ymdhis` bigint",
+    "`updated_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_operator_id",
+      "columns": [
+        "operator_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "operator_status_id",
+    "expected_name": "operator_status_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

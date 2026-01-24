@@ -1,0 +1,50 @@
+{
+  "table_name": "lupo_operator_skills",
+  "fields": [
+    "`operator_skill_id` bigint NOT NULL auto_increment",
+    "`operator_id` bigint NOT NULL",
+    "`skill_slug` varchar(255) NOT NULL",
+    "`proficiency_level` bigint DEFAULT 3",
+    "`certified` bigint DEFAULT 0",
+    "`created_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "uniq_operator_skill",
+      "columns": [
+        "operator_id",
+        "skill_slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_operator_id",
+      "columns": [
+        "operator_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_skill_slug",
+      "columns": [
+        "skill_slug"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "operator_skill_id",
+    "expected_name": "operator_skill_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

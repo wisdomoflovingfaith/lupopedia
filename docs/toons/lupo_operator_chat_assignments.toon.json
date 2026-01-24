@@ -1,0 +1,50 @@
+{
+  "table_name": "lupo_operator_chat_assignments",
+  "fields": [
+    "`operator_chat_assignment_id` bigint NOT NULL auto_increment",
+    "`operator_id` bigint NOT NULL",
+    "`dialog_thread_id` bigint NOT NULL",
+    "`assigned_ymdhis` bigint NOT NULL",
+    "`unassigned_ymdhis` bigint",
+    "`assignment_reason` varchar(50) DEFAULT 'auto'",
+    "`created_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_operator_id",
+      "columns": [
+        "operator_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_dialog_thread_id",
+      "columns": [
+        "dialog_thread_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_assigned_ymdhis",
+      "columns": [
+        "assigned_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "operator_chat_assignment_id",
+    "expected_name": "operator_chat_assignment_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

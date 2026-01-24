@@ -50,6 +50,15 @@ system_context:
 
 # ALL NEW ENTRIES AFTER THIS LINE
 
+## [2026.1.1.8] - 2026-01-24 18:50:23
+
+### Operator Layer Updates
+- Added operator-layer tables: lupo_operators, lupo_operator_status, lupo_operator_sessions, lupo_operator_skills, lupo_operator_chat_assignments, lupo_operator_escalation_rules
+- Defined operator presence, availability, sessions, skills, routing assignments, and escalation rules for AI-to-human handoff
+- Regenerated TOON files via python3 scripts/generate_toon_files.py to sync with live schema
+- Confirmed schema now contains 196 tables
+
+
 ## [2026.1.1.7] - 2026-01-24 17:20:21
 
 ### Semantic OS Infrastructure Updates
@@ -10835,6 +10844,7 @@ details manually.
 - Regenerated TOON files (186 tables total)
 ### Notes
 - No other schema changes
+
 
 
 
