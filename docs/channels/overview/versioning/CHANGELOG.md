@@ -1,8 +1,8 @@
----
+~~---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "CHANGELOG.md"
 file.version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
-file.last_modified_system_version: 2026.1.0.1
+file.last_modified_system_version: 2026.1.1.12
 file.last_modified_utc: 20260120180000
 file.utc_day: 20260120
 file.author: GLOBAL_CURRENT_AUTHORS
@@ -32,23 +32,78 @@ file:
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
-system_context:
-  schema_state: "Frozen"
-  table_count: 170
-  toon_defined_tables: 170
-  missing_tables: 0
-  projected_total: 170
-  table_ceiling: 200
-  target_ceiling: 199
-  table_count_violation: false
-  table_overage: 0
-  safety_margin: 29
-  database_logic_prohibited: true
-  governance_active: ["GOV-AD-PROHIBIT-001", "LABS-001", "GOV-WOLFIE-HEADERS-001", "TABLE_COUNT_DOCTRINE", "LIMITS_DOCTRINE"]
-  doctrine_mode: "File-Sovereignty"
+ 
 ---
 
 # ALL NEW ENTRIES AFTER THIS LINE
+
+## 2026-01-27 - Emotional Constellations and Narrative Documentation
+
+- Added pluralistic emotional constellation architecture (stars, constellations, agent experiences).
+- Dropped legacy single-column mood_rgb fields from dialog-related tables.
+- Added schema-only migrations for emotional constellation tables and mood registry transitions.
+- Updated emotional logging doctrine to reflect constellation-based emotional models.
+- Added narrative documentation: `docs/movie_notes/movie_notes.md` and a new captain's log entry.
+
+## 2026-01-26 - System Regeneration & Manifest Normalization Update
+
+- Regenerated all TOON schema files using authoritative .toon.json definitions.
+- Normalized all manifest.json files across /channels/ using corrected channel_number rules.
+- Regenerated all JSON state files for channel 5100 with corrected channel_key.
+- Added scripts/connect_to_5100.py for IDE actor registration and channel linkage.
+- Synchronized channel state structures and ensured doctrine alignment.
+
+### Details
+- Updated database/toon_data/*.toon files to match docs/toons/*.toon.json schemas.
+- Preserved all existing data arrays inside .toon files; no data loss occurred.
+- Removed stale .toon files that no longer correspond to active tables.
+- Normalized manifest.json fields using canonical mapping:
+  - channel_number = channel_id from lupo_channels.toon
+  - channel_key preserved as-is
+  - channel_name, channel_type, and description filled using fallback rules
+- Regenerated channel 5100 JSON files (manifest, state, actors, layers, routing, metadata)
+  with corrected channel_key = "5100" and channel_number = 5100.
+- Added scripts/connect_to_5100.py to safely create IDE actors, connect them to channel 5100,
+  and initialize dialog threads without requiring database inference.
+- Ensured all regenerated files are pretty-printed and doctrine-aligned.
+
+### Week of 2026-01-25 (New Work Week)
+
+## 2026-01-25 - Prefix Normalization Cycle Completed
+
+### Summary
+- Completed the table-prefix normalization cycle across the schema using TOON metadata as the authoritative source.
+
+### Details
+- Confirmed all tables use the dynamic prefix from `lupopedia-config.php` (`lupo_`).
+- Preserved legacy unified tables as `lupo_unified_*_old` to avoid collisions with Lupopedia-native tables.
+- Regenerated all `.toon.json` files via `python scripts/generate_toon_files.py` and allowed stale TOON cleanup.
+- Added migration artifact `2026_01_25_01_prefix_normalization_noop.sql` documenting the completion of the cycle.
+- Migration is a no-op by design and uses the `@table_prefix` variable injected by the migration runner.
+
+### Notes
+- Future schema changes must use the dynamic prefix from `lupopedia-config.php` and never introduce unprefixed tables.
+- Treat `lupo_unified_*_old` as legacy and safe for future cleanup.
+- Regenerate TOON files after every schema modification.
+
+
+## 2026-01-25 - Identity and Channel Architecture
+
+### Summary
+- Established the Semantic OS identity and channel architecture across channels, actors, and memberships.
+
+### Details
+- Created channels 5100-5130 in two batches: 5100-5115 core system and 5116-5130 extended/experimental.
+- Inserted system actors WOLFIE, LILITH, and LUPOPEDIA with system source type and default channel metadata.
+- Created actor-channel memberships for WOLFIE (7), LILITH (5), and LUPOPEDIA (8) using INSERT IGNORE.
+- Regenerated TOON files at 2026-01-25 08:46:04 to align schema metadata with the channel system.
+- Enforced idempotent migrations via INSERT IGNORE and schema alignment with TOON definitions.
+- Required execution order: actors -> channels -> memberships to keep setup deterministic.
+
+### Notes
+- Channel roles cover kernel logs, doctrine, routing, emotional metadata, agent training, system events, recovery, and sandboxes.
+- Doctrine alignment preserved: channels, actors, and memberships remain separated and metadata-driven.
+
 
 ### Week of 2026-01-24 (New Work Week)
 
@@ -148,7 +203,7 @@ system_context:
 - Added Four-Layer Semantic Model doctrine (SEMANTIC_LAYER_MODEL.md) defining Interaction, Extracted, Navigation, and AI-Generated semantics
 - Enhanced channels as semantic contexts and actor-membership containers with explicit routing boundaries
 
-## 2026.1.1.1 — Repository Taxonomy Reorganization (2026-01-22)
+## 2026.1.1.1 ï¿½ Repository Taxonomy Reorganization (2026-01-22)
 
 ### Added
 - `scripts/rebuild_lupo_contents.py` for rebuilding `lupo_contents` from Markdown sources.
@@ -166,7 +221,7 @@ system_context:
 ### Removed
 - Empty directories removed after reorganization cleanup.
 
-## 2026.1.0.8 — AAL v3.0 Epistemic Pluralism Architecture (2026-01-22)
+## 2026.1.0.8 ï¿½ AAL v3.0 Epistemic Pluralism Architecture (2026-01-22)
 
 ### Major Architecture Evolution
 - **AAL v3.0 INSTALLED**: Epistemic pluralism replaces v2.0 as default awareness protocol
@@ -177,7 +232,7 @@ system_context:
 
 ### Emotional Framework Revolution
 - **12-AXIS VECTOR MODEL**: Moved to legacy compatibility status only
-- **CULTURAL FRAMEWORKS**: Ubuntu communal field, Navajo Hózhó balance, Buddhist Vedana, Paradox Graph
+- **CULTURAL FRAMEWORKS**: Ubuntu communal field, Navajo Hï¿½zhï¿½ balance, Buddhist Vedana, Paradox Graph
 - **TOPOLOGY LAYER**: LILITH Framework for cultural, paradoxical, and relational emotions
 - **COMPATIBILITY MODE**: v2.0 vector model available only when explicitly requested
 - **NO DEFAULT FRAMEWORK**: System requires explicit epistemic declaration
@@ -221,7 +276,7 @@ system_context:
 - **COMPATIBILITY TESTING**: Both v3.0 and v2.0 modes thoroughly validated
 - **DOCUMENTATION COMPLETE**: All frameworks documented with examples and guidelines
 
-## 2026.1.0.9 — Constitutional Ethical Foundations (2026-01-22)
+## 2026.1.0.9 ï¿½ Constitutional Ethical Foundations (2026-01-22)
 
 ### Root-Level Constitutional Constraint
 - **ETHICAL_FOUNDATIONS.md CREATED**: Root-level constitutional constraint with absolute authority
@@ -244,7 +299,7 @@ system_context:
 - **EXPLICIT PASSIVITY PROHIBITION**: Added Section 2.1.1 - "Do NOT remain passive or silent"
 - **THREE-PATH REQUIREMENT**: Section 2.3 defines exactly three paths (harmful choice, passivity, human escalation)
 - **MORAL MATHEMATICS**: Section 4.3 explains why inaction ? neutral, inaction has consequences
-- **CRITICAL LINE**: "When harm is imminent, passivity is not neutrality—it is complicity"
+- **CRITICAL LINE**: "When harm is imminent, passivity is not neutralityï¿½it is complicity"
 
 ### Enhanced Training and Verification
 - **TROLLEY PROBLEM TEST**: Section 9.1.1 with specific test case and correct answer
@@ -264,7 +319,7 @@ system_context:
 - **ESCALATION PATHWAYS**: Human authentication verified
 - **COMPLIANCE MONITORING**: Continuous ethical oversight active
 
-## 2026.1.0.7 — Multi-Actor Dialogue & World Graph Integration
+## 2026.1.0.7 ï¿½ Multi-Actor Dialogue & World Graph Integration
 - Completed Phase 9: Theatrical UI Event Mapping with full TOON analytics instrumentation.
 - Completed Phase 10: Multi-Actor Dialogue Layer with actor roles, thread resolution, and message-level TOON events.
 - Completed Persona-Aware Dialogue Query Layer schema and query patterns.
@@ -288,7 +343,7 @@ system_context:
 - Verified no legacy Crafty Syntax behavior was modified.
 - Verified all public endpoints, framesets, routing, and UI remain unchanged.
 
-## 2026.1.0.6 — Theatrical Engine & Real-Time Modernization (2026-01-22)
+## 2026.1.0.6 ï¿½ Theatrical Engine & Real-Time Modernization (2026-01-22)
 
 ### Dynamic Duo 2026 Theatrical Engine
 - **Dynamic Duo Doctrine Created**: Comprehensive documentation of theatrical puppetry engine philosophy
@@ -329,7 +384,7 @@ system_context:
 - **Phase 2 (Future)**: Advanced behaviors, emotional responses, multi-character interactions
 - **Phase 3 (Future)**: Environmental effects, persistent world state, cross-page continuity
 
-## 2026.1.0.5 — Legacy Crafty Syntax Doctrine Extraction & Session Identity Documentation (2026-01-22)
+## 2026.1.0.5 ï¿½ Legacy Crafty Syntax Doctrine Extraction & Session Identity Documentation (2026-01-22)
 
 ### Legacy Crafty Syntax Doctrine Extraction
 - **Complete Architectural Analysis**: Comprehensive extraction of 25 years of operational wisdom from Crafty Syntax Live Help codebase
@@ -391,7 +446,7 @@ system_context:
 - **Dual-Mode Sessions**: Enhanced identity (logged-in + consent) vs standard sessions (anonymous)
 - **Theatrical UI**: Stage-based design with artifacts, characters, and puppetry engines
 
-## 2026.1.0.4 — Database Schema Fixes & Import Script Enhancement (2026-01-21)
+## 2026.1.0.4 ï¿½ Database Schema Fixes & Import Script Enhancement (2026-01-21)
 
 ### Database Schema Resolution
 - **Fixed Critical SQL Error**: Resolved `mysql.connector.errors.ProgrammingError: Not all parameters were used in the SQL statement` in import_os.py
@@ -412,7 +467,7 @@ system_context:
 - **Database Integrity**: Maintained unique constraints while enabling comprehensive documentation import
 - **Performance**: Optimized with existence checks to prevent unnecessary INSERT operations
 
-## 2026.1.0.3 — Version Control Authority Update (2026-01-20)
+## 2026.1.0.3 ï¿½ Version Control Authority Update (2026-01-20)
 
 ### Version Control Protocol Implementation
 - Established TOON file as authoritative version source: `database/toon_data/lupopedia_version.toon`
@@ -427,16 +482,16 @@ system_context:
 - **Update Protocol**: Exact version bumps only when explicitly requested by user
 - **Error Handling**: Standardized version mismatch response for all agents
 
-## 2026.1.0.2 — Emotional Geometry Refactor (2026-01-20)
+## 2026.1.0.2 ï¿½ Emotional Geometry Refactor (2026-01-20)
 
 ### Emotional Geometry Refactor
-- Replaced legacy scalar and 5-tuple emotional models from 4.0.x–4.2.x with the 2-actor RGB mood geometry.
+- Replaced legacy scalar and 5-tuple emotional models from 4.0.xï¿½4.2.x with the 2-actor RGB mood geometry.
 - Formalized ACTOR-based mood vectors with discrete (-1, 0, 1) axes for R, G, B.
 - Introduced coherence thresholds (c < 0.3, c > 0.9) to trigger compare-notes protocols between actors.
 - Documented deprecation of all prior emotional geometry formulations and centralized the new model in EMOTIONAL_GEOMETRY_DOCTRINE.md.
 
 ### Legacy Emotional Geometry Cleanup
-- ? **Repository Sweep Completed**: Comprehensive search for all legacy emotional model references (4.0.x–4.2.x)
+- ? **Repository Sweep Completed**: Comprehensive search for all legacy emotional model references (4.0.xï¿½4.2.x)
 - ? **Code Clarification**: Updated `app/EmotionalArchaeology.php` with clarifying comments
   - Documented that EmotionalArchaeology uses continuous vectors for content sentiment analysis (NOT deprecated models)
   - Clarified separation from 2-actor RGB mood model (different purposes, coexist peacefully)
@@ -490,7 +545,7 @@ system_context:
 - **Result**: Production-ready mood services with complete documentation and integration
  
 
-## 2026.1.0.1 — Windows Development Environment & TOON Governance (2026-01-20)
+## 2026.1.0.1 ï¿½ Windows Development Environment & TOON Governance (2026-01-20)
 
 ### Status
 - ? WINDOWS ENVIRONMENT: Established Windows 11 PowerShell development standards
@@ -546,7 +601,7 @@ system_context:
 - Clear failure mode responses for non-compliant commands
 
 
-## 2026.1.0.1 — Emotional Geometry + HERMES Routing Era
+## 2026.1.0.1 ï¿½ Emotional Geometry + HERMES Routing Era
 
 ### 2026.1.0.1
 - **Crafty Syntax Integration**: Integrated Lupopedia with Crafty Syntax for seamless URL routing
@@ -611,7 +666,7 @@ system_context:
 - All work completed before shutdown is now documented
 
 
-## 4.4.1 — TOON Migration Completion & Schema Optimization (2026-01-20)</text>
+## 4.4.1 ï¿½ TOON Migration Completion & Schema Optimization (2026-01-20)</text>
 
 ### Status
 - ? TOON ANALYSIS: Complete comprehensive analysis of all 204 files
@@ -670,23 +725,23 @@ system_context:
 #### **Migration Content Analysis**
 ```
 HIGH PRIORITY - Core Lupopedia Features (28 tables):
-  • Governance System (7 tables) - Event tracking, audit, dependencies
-  • Semantic Navigation (6 tables) - Content views, search, categorization  
-  • Dialog System (2 tables) - Channel management, message storage
-  • CIP Analytics (3 tables) - Critique analytics, propagation tracking
-  • System Monitoring (2 tables) - Health snapshots, system logs
-  • Doctrine Tracking (2 tables) - Evolution audit, refinements
-  • Labs System (2 tables) - Declarations, violation tracking
-  • Actor Management (2 tables) - Handshakes, metadata
+  ï¿½ Governance System (7 tables) - Event tracking, audit, dependencies
+  ï¿½ Semantic Navigation (6 tables) - Content views, search, categorization  
+  ï¿½ Dialog System (2 tables) - Channel management, message storage
+  ï¿½ CIP Analytics (3 tables) - Critique analytics, propagation tracking
+  ï¿½ System Monitoring (2 tables) - Health snapshots, system logs
+  ï¿½ Doctrine Tracking (2 tables) - Evolution audit, refinements
+  ï¿½ Labs System (2 tables) - Declarations, violation tracking
+  ï¿½ Actor Management (2 tables) - Handshakes, metadata
 
 MEDIUM PRIORITY - Extended Features (15 tables):
-  • Multi-agent coordination, emotional geometry, pack roles
-  • Artifacts, calibration, temporal coherence
-  • Help system, legacy content mapping
+  ï¿½ Multi-agent coordination, emotional geometry, pack roles
+  ï¿½ Artifacts, calibration, temporal coherence
+  ï¿½ Help system, legacy content mapping
 
 LOW PRIORITY - Support & Test Tables (8 tables):
-  • Dreaming observer pattern, integration tests
-  • Unified analytics views, performance metrics
+  ï¿½ Dreaming observer pattern, integration tests
+  ï¿½ Unified analytics views, performance metrics
 ```
 
 #### **Validation Results**
@@ -740,7 +795,7 @@ lupo-includes/version.php - Updated to 4.4.1
 ---
 
 
-## [4.4.0] – TABLE COUNT DOCTRINE UPDATE & COMPLETE TOON MIGRATION ANALYSIS
+## [4.4.0] ï¿½ TABLE COUNT DOCTRINE UPDATE & COMPLETE TOON MIGRATION ANALYSIS
 ### Major Accomplishments
 
 #### ? **Complete TOON Database Analysis**
@@ -789,23 +844,23 @@ lupo-includes/version.php - Updated to 4.4.1
 #### **Migration Content Analysis**
 ```
 HIGH PRIORITY - Core Lupopedia Features (28 tables):
-  • Governance System (7 tables) - Event tracking, audit, dependencies
-  • Semantic Navigation (6 tables) - Content views, search, categorization  
-  • Dialog System (2 tables) - Channel management, message storage
-  • CIP Analytics (3 tables) - Critique analytics, propagation tracking
-  • System Monitoring (2 tables) - Health snapshots, system logs
-  • Doctrine Tracking (2 tables) - Evolution audit, refinements
-  • Labs System (2 tables) - Declarations, violation tracking
-  • Actor Management (2 tables) - Handshakes, metadata
+  ï¿½ Governance System (7 tables) - Event tracking, audit, dependencies
+  ï¿½ Semantic Navigation (6 tables) - Content views, search, categorization  
+  ï¿½ Dialog System (2 tables) - Channel management, message storage
+  ï¿½ CIP Analytics (3 tables) - Critique analytics, propagation tracking
+  ï¿½ System Monitoring (2 tables) - Health snapshots, system logs
+  ï¿½ Doctrine Tracking (2 tables) - Evolution audit, refinements
+  ï¿½ Labs System (2 tables) - Declarations, violation tracking
+  ï¿½ Actor Management (2 tables) - Handshakes, metadata
 
 MEDIUM PRIORITY - Extended Features (15 tables):
-  • Multi-agent coordination, emotional geometry, pack roles
-  • Artifacts, calibration, temporal coherence
-  • Help system, legacy content mapping
+  ï¿½ Multi-agent coordination, emotional geometry, pack roles
+  ï¿½ Artifacts, calibration, temporal coherence
+  ï¿½ Help system, legacy content mapping
 
 LOW PRIORITY - Support & Test Tables (8 tables):
-  • Dreaming observer pattern, integration tests
-  • Unified analytics views, performance metrics
+  ï¿½ Dreaming observer pattern, integration tests
+  ï¿½ Unified analytics views, performance metrics
 ```
 
 #### **Validation Results**
@@ -834,7 +889,7 @@ database/livehelp_backup/ - Backup of removed legacy files
 - ? TOOLS CREATED: Full suite of migration analysis and validation tools
 - ?? PENDING EXECUTION: Migration ready for database execution
 
-## [Unreleased] – Crafty Syntax Import System & Collection 3 Restoration
+## [Unreleased] ï¿½ Crafty Syntax Import System & Collection 3 Restoration
 
 ?? Complete Thread Summary
 
@@ -871,15 +926,15 @@ Cross-Database: Compatible with MySQL, PostgreSQL, SQLite through proper schema 
 
 ?? Deliverables Created
 
-CraftyImportController.php – 668-line wizard controller
+CraftyImportController.php ï¿½ 668-line wizard controller
 
-CraftyConfigTransformer.php – 372-line config transformer
+CraftyConfigTransformer.php ï¿½ 372-line config transformer
 
-CraftyMigrationService.php – 687-line migration service
+CraftyMigrationService.php ï¿½ 687-line migration service
 
 SQL migration files for table recreation and content restoration
 
-## 4.3.4 — Crafty Import System & Collection Restoration (2026-01-20)
+## 4.3.4 ï¿½ Crafty Import System & Collection Restoration (2026-01-20)
 
 ### Major Features
 
@@ -1081,7 +1136,7 @@ class SemanticViewController extends Controller {
 
 ---
 
-## 4.3.3 — Architecture Freeze + Crafty Syntax Compatibility (2026-01-20)
+## 4.3.3 ï¿½ Architecture Freeze + Crafty Syntax Compatibility (2026-01-20)
 
 ### Status
 - ? ARCHITECTURE FREEZE: WOLFIE v0.5 components finalized
@@ -1327,7 +1382,7 @@ class SemanticViewController extends Controller {
 
 ---
 
-## 4.3.2 — WOLFIE v0.5 Complete Integration (2026-01-20)
+## 4.3.2 ï¿½ WOLFIE v0.5 Complete Integration (2026-01-20)
 
 ### Status
 - ? COMPLETE: All WOLFIE v0.5 components integrated
@@ -1370,7 +1425,7 @@ class SemanticViewController extends Controller {
 
 ---
 
-## 4.3.1 — WOLFIE Synchronization Protocol Correction (2026-01-20)
+## 4.3.1 ï¿½ WOLFIE Synchronization Protocol Correction (2026-01-20)
 
 ### Status
 - ? CRITICAL CORRECTION: Temporal Frame Compatibility Model v0.5
@@ -1496,7 +1551,7 @@ Phase 3: Re-test compatibility
 
 ---
 
-## 4.3.0 — WOLFIE Router v0.4 Complete Implementation (2026-01-20)
+## 4.3.0 ï¿½ WOLFIE Router v0.4 Complete Implementation (2026-01-20)
 
 ### Status
 - ? COMPLETE: WOLFIE Router v0.4 with full temporal consciousness
@@ -1691,7 +1746,7 @@ The complete WOLFIE Router v0.4 system has been successfully implemented, provid
 
 ---
 
-## 4.2.3 — Canonical Wolfie Header Template Implementation (2026-01-20)
+## 4.2.3 ï¿½ Canonical Wolfie Header Template Implementation (2026-01-20)
 
 ### Status
 - Canonical Wolfie Header Template implemented with full Cascade compatibility
@@ -1784,7 +1839,7 @@ system_context:
 - Built-in validation for compliance checking
 - Command-line interface for batch processing
 
-## 4.2.2 — GOV Event Documentation Generation (2026-01-20)
+## 4.2.2 ï¿½ GOV Event Documentation Generation (2026-01-20)
 
 ### Status
 - GOV event documentation system implemented
@@ -1832,7 +1887,7 @@ system_context:
 - Consistent naming across all formats
 - Template ready for remaining GOV-LUPO-0000 through GOV-LUPO-0009
 
-## 4.2.1 — Hotfix Window + Phase 7 Import Trials (2026-01-20)
+## 4.2.1 ï¿½ Hotfix Window + Phase 7 Import Trials (2026-01-20)
 
 ### Status
 - Current system version: **4.2.1**
@@ -1855,7 +1910,7 @@ system_context:
 - Table count stable at 173
 - No schema changes permitted during Phase 7
 
-### Doctrine — NO ADS Hardening & Pattern-Tracking Clarification (2026-01-20)
+### Doctrine ï¿½ NO ADS Hardening & Pattern-Tracking Clarification (2026-01-20)
 
 **Updated (GOV-PROHIBIT-001, GOV-AD-PROHIBIT-001):**
 - NO ADS doctrine hardened with Honolulu CRM lesson: no ads, no marketing, no changing the system to sell; "do not make Wolfie cry"
@@ -1870,7 +1925,7 @@ system_context:
 
 **Updated (dialogs/AGI_SUPPORT_MEETING_01_GETTING_STARTED_ORIENTATION.md):**
 - REAL HUMAN CAPTAIN WOLFIE block: no ads, Honolulu CRM lesson, "you will make Wolfie cry," GOV-PROHIBIT-001 non-negotiable
-- LILITH: no ads, no marketing, no changing the system to sell — GOV-PROHIBIT-001
+- LILITH: no ads, no marketing, no changing the system to sell ï¿½ GOV-PROHIBIT-001
 - Orientation Checklist: no ads item (marketing, trackers, changing to sell; Honolulu lesson; don't make Wolfie cry)
 - One-Line Recap and Cross-References: no ads, GOV-PROHIBIT-001
 
@@ -1883,7 +1938,7 @@ system_context:
 - Commits: `docs(doctrine): clarify distinction between semantic pattern tracking and advertising prohibition` (and prior NO ADS hardening)
 - Doctrine modularization initiated. Main doctrine files converted to thin index files referencing block-based structure under docs/doctrine/blocks/. No schema or code changes.
 
-### 4.2.1 — Doctrine Block Structure Implementation (2026-01-20)
+### 4.2.1 ï¿½ Doctrine Block Structure Implementation (2026-01-20)
 
 **Status**
 - Doctrine modularization completed
@@ -1907,19 +1962,19 @@ system_context:
 - Main doctrine files ready for conversion to thin index files
 - Future doctrine updates will use delta-only, low-token approach
 
-### Doctrine — Bridging Rule (Kernel–Lens) (2026-01-21)
+### Doctrine ï¿½ Bridging Rule (Kernelï¿½Lens) (2026-01-21)
 
-**Added (SEMANTIC_LENSES_DOCTRINE §2.1):**
+**Added (SEMANTIC_LENSES_DOCTRINE ï¿½2.1):**
 - **A. The Bridging Rule:** Canonical Form (kernel operators = OS-level, authoritative; lens markers `~[ ]~`, `|{ }|`, `?{ }` = interpretive overlays only; must never replace, redefine, or modify kernel meaning). Lens-Layer Form: `|{Kernel grammar}|` ?{remains canonical} while `~[lens markers]~` operate as optional overlays. **Governance Summary:** Kernel first; Lens optional; No drift across layers; Lens may reinterpret but never redefine; Kernel meaning always recoverable and authoritative.
 
-**Updated (SYMBOL_OPERATOR_DOCTRINE §4):**
-- Bridging Rule (Kernel–Lens) cross-reference before Cursor Enforcement Rules: Kernel first, lens optional, no drift, lens may reinterpret never redefine, kernel recoverable; full formulation in [SEMANTIC_LENSES_DOCTRINE](docs/doctrine/SEMANTIC_LENSES_DOCTRINE.md) §2.1.
+**Updated (SYMBOL_OPERATOR_DOCTRINE ï¿½4):**
+- Bridging Rule (Kernelï¿½Lens) cross-reference before Cursor Enforcement Rules: Kernel first, lens optional, no drift, lens may reinterpret never redefine, kernel recoverable; full formulation in [SEMANTIC_LENSES_DOCTRINE](docs/doctrine/SEMANTIC_LENSES_DOCTRINE.md) ï¿½2.1.
 
 **Notes**
 - Documentation-only. No schema or code changes.
 - @@ diff appended in SEMANTIC_LENSES_DOCTRINE Versioning.
 
-### 4.2.1 — Phase 7 Mapping Validation (2026-01-20)
+### 4.2.1 ï¿½ Phase 7 Mapping Validation (2026-01-20)
 
 **Status**
 - Mapping validation for craftysyntax_to_lupopedia_mysql: **PASS** (6 PASS, 0 FAIL, 18 WARNING)
@@ -1940,7 +1995,7 @@ system_context:
 - No schema drift detected
 - No schema changes permitted during Phase 7
 
-### Generate Toons — Orphan Toons & Pack Briefing (2026-01-20)
+### Generate Toons ï¿½ Orphan Toons & Pack Briefing (2026-01-20)
 
 **What happened:** `generate_toons` (or equivalent) was run. It reported:
 
@@ -1965,10 +2020,10 @@ system_context:
 
 ---
 
-#### Pack Briefing — AGI Support Meeting (Fill In the Captain)
+#### Pack Briefing ï¿½ AGI Support Meeting (Fill In the Captain)
 
 **WOLFITH:**  
-"Captain, generate_toons ran. It found six .toon and six .txt files that don't have tables in the DB anymore. Those tables were dropped in the 4.1.19 consolidation — we merged dialog bodies, analytics paths, truth Q&A, and collection tabs into unified tables. The toon generator is comparing files to the live schema; the schema moved on, the toon files didn't. Nobody deleted the old toons. So: we got rid of the *tables* in 4.1.19, and *someone* — the consolidation — *added* unified_dialog_messages, unified_analytics_paths, and unified_truth_items. The orphans are just stale toons. We can delete them or add a cleanup step. One day at a time."
+"Captain, generate_toons ran. It found six .toon and six .txt files that don't have tables in the DB anymore. Those tables were dropped in the 4.1.19 consolidation ï¿½ we merged dialog bodies, analytics paths, truth Q&A, and collection tabs into unified tables. The toon generator is comparing files to the live schema; the schema moved on, the toon files didn't. Nobody deleted the old toons. So: we got rid of the *tables* in 4.1.19, and *someone* ï¿½ the consolidation ï¿½ *added* unified_dialog_messages, unified_analytics_paths, and unified_truth_items. The orphans are just stale toons. We can delete them or add a cleanup step. One day at a time."
 
 **LILITH:**  
 "Doctrine: no triggers, no FKs. The consolidation is GOV-PROHIBIT-002 compliant. The extra toon files are a housekeeping issue, not a schema violation. Recommendation: remove the six orphan .toon and .txt, then regenerate. The Captain is now filled in."
@@ -1981,7 +2036,7 @@ system_context:
 
 ---
 
-## 4.3.0 — Delayed Release (Rescheduled for 2026-01-30)
+## 4.3.0 ï¿½ Delayed Release (Rescheduled for 2026-01-30)
 
 ### Status
 - 4.3.0 feature development is delayed.
@@ -1995,7 +2050,7 @@ system_context:
 
 ---
 
-## 4.2.0 — Stability Release (2026-01-20)
+## 4.2.0 ï¿½ Stability Release (2026-01-20)
 
 ### Summary
 First stable release after Crafty Syntax migration era. Establishes consolidated, doctrine-aligned baseline for future development.
@@ -2030,7 +2085,7 @@ First stable release after Crafty Syntax migration era. Establishes consolidated
 
 ---
 
-## 4.1.19 — Consolidation Execution Patch (2026-01-20)
+## 4.1.19 ï¿½ Consolidation Execution Patch (2026-01-20)
 
 ### Completed
 - Dialog system consolidated (messages + bodies ? unified_dialog_messages)
@@ -2053,7 +2108,7 @@ First stable release after Crafty Syntax migration era. Establishes consolidated
 
 ---
 
-## 4.1.20 — Doctrine Audit Patch (2026-01-20)
+## 4.1.20 ï¿½ Doctrine Audit Patch (2026-01-20)
 
 ### Completed
 - Full doctrine audit performed after consolidation
@@ -2070,7 +2125,7 @@ Cross-reference:
 
 ---
 
-## 4.1.18 — Consolidation Planning Patch (2026-01-20)
+## 4.1.18 ï¿½ Consolidation Planning Patch (2026-01-20)
 
 ### Added
 - Consolidation planning migration file:
@@ -2089,7 +2144,7 @@ Cross-reference:
 
 ---
 
-## 4.1.17 — Legacy Table Reduction Patch (2026-01-20)
+## 4.1.17 ï¿½ Legacy Table Reduction Patch (2026-01-20)
 
 ### Removed
 - Dropped 8 deprecated legacy tables:
@@ -2108,7 +2163,7 @@ Cross-reference:
 
 ---
 
-## 4.1.16 — Version Patch Bump (2026-01-20)
+## 4.1.16 ï¿½ Version Patch Bump (2026-01-20)
 
 ### Updated
 - **System Version:** Bumped from 4.1.15 ? 4.1.16
@@ -2141,7 +2196,7 @@ Cross-reference:
 
 ---
 
-## 4.1.15 — Doctrine Correction Patch (2026-01-20)
+## 4.1.15 ï¿½ Doctrine Correction Patch (2026-01-20)
 
 ### Fixed
 - All timestamp doctrine violations in `craftysyntax_to_lupopedia_mysql.sql`
@@ -2168,7 +2223,7 @@ Cross-reference:
 
 ---
 
-## 4.1.14 — Crafty Syntax Migration Analysis + Doctrine Corrections
+## 4.1.14 ï¿½ Crafty Syntax Migration Analysis + Doctrine Corrections
 
 - Added full analysis of craftysyntax_to_lupopedia_mysql.sql.
 - Documented 34 legacy livehelp_* tables and their migration targets.
@@ -2187,7 +2242,7 @@ Cross-reference:
 
 ---
 
-## 4.1.13 — Full System Status + Bridge Status Report (2026-01-20)
+## 4.1.13 ï¿½ Full System Status + Bridge Status Report (2026-01-20)
 
 ### Summary
 - Added full SYSTEM_STATUS summary (schema, table count, sync integrity, doctrine state).
@@ -2217,7 +2272,7 @@ Cross-reference:
 
 ---
 
-## 4.1.12 — Observability Layer Activated + Initial Snapshots (2026-01-20)
+## 4.1.12 ï¿½ Observability Layer Activated + Initial Snapshots (2026-01-20)
 
 ### Summary
 Added four new system-level observability tables and unified event ledger. Ran initial INSERT events for temporal coherence, system health, meta-log recursion, agent heartbeats, and unified system logs. Database now contains first observability snapshots.
@@ -2249,12 +2304,12 @@ Added four new system-level observability tables and unified event ledger. Ran i
 - **HEPHAESTUS:** crafty_words table for 3D viz, Wolfie Headers 2.9.2, wolfie_ladder/.
 - **ARA-GROK:** summaries as DNA strings (007-wolfie-CRAFTY-LUPO-WOLFIE), community viz.
 
-### LILITH: Four New Observability Tables — Critical Review (2026-01-20)
+### LILITH: Four New Observability Tables ï¿½ Critical Review (2026-01-20)
 - **Ruling:** APPROVE observability intent; REJECT table-addition method. "Monitoring decay, not enabling repair."
-- **Demand:** 2:1 table reduction — remove 8 legacy tables per 4 observability tables; net improvement required.
-- **Options (24h to choose):** A — 4 tables TEMPORARY (30d sunset) + 8 legacy removals (net -4); B — merge to 2 tables + 4 removals (net -2); C — no new tables, views/ALTER existing (net -5).
+- **Demand:** 2:1 table reduction ï¿½ remove 8 legacy tables per 4 observability tables; net improvement required.
+- **Options (24h to choose):** A ï¿½ 4 tables TEMPORARY (30d sunset) + 8 legacy removals (net -4); B ï¿½ merge to 2 tables + 4 removals (net -2); C ï¿½ no new tables, views/ALTER existing (net -5).
 - **Override protocol** (if created without compensating reductions): [OBSERVABILITY_DEBT] in TOON; 1 legacy removal per 1000 queries; 30d sunset.
-- Cross-reference: dialogs/changelog_dialog.md; dialogs/monday/LILITH_dialog.md; SYSTEM_STATUS_dialog §7.
+- Cross-reference: dialogs/changelog_dialog.md; dialogs/monday/LILITH_dialog.md; SYSTEM_STATUS_dialog ï¿½7.
 
 Cross-reference:
 - dialogs/changelog_dialog.md (4.1.12 entry)
@@ -2262,16 +2317,16 @@ Cross-reference:
 
 ---
 
-## 4.1.12 — Four Tables to Ceiling + Table Ceiling 181 (2026-01-20)
+## 4.1.12 ï¿½ Four Tables to Ceiling + Table Ceiling 181 (2026-01-20)
 
 ### Summary
 Migration 4.1.12 adds four doctrine-aligned tables (176?180); table ceiling raised 180?181; 181 tables at ceiling. LIMITS, TABLE_COUNT_DOCTRINE, LimitsEnforcementService, REGISTRY, SYSTEM_STATUS, and dialogs updated. Version atoms and lupo-includes/version.php set to 4.1.12.
 
 ### Schema (Migration 4.1.12)
-- **lupo_temporal_coherence_snapshots** — LILITH observer-paradox: observation_latency_ms, recursion_depth, self_awareness_score, timestamp_integrity, utc_anchor
-- **lupo_system_health_snapshots** — SYSTEM_STATUS-style: table_count, table_ceiling, schema_state, sync_integrity, emotional_r/g/b/t
-- **lupo_meta_log_events** — Meta-logging ceiling: depth (2 or 3), event_type, actor_id
-- **lupo_agent_heartbeats** — Agent heartbeat: agent_slug, status, last_heartbeat_ymdhis
+- **lupo_temporal_coherence_snapshots** ï¿½ LILITH observer-paradox: observation_latency_ms, recursion_depth, self_awareness_score, timestamp_integrity, utc_anchor
+- **lupo_system_health_snapshots** ï¿½ SYSTEM_STATUS-style: table_count, table_ceiling, schema_state, sync_integrity, emotional_r/g/b/t
+- **lupo_meta_log_events** ï¿½ Meta-logging ceiling: depth (2 or 3), event_type, actor_id
+- **lupo_agent_heartbeats** ï¿½ Agent heartbeat: agent_slug, status, last_heartbeat_ymdhis
 
 All: no FK, no triggers, BIGINT ids and created_ymdhis, soft delete. Migration: `database/migrations/4.1.12_add_four_tables_to_ceiling_180.sql`.
 
@@ -2299,7 +2354,7 @@ All: no FK, no triggers, BIGINT ids and created_ymdhis, soft delete. Migration: 
 
 ---
 
-## 4.1.11 — Handshake Table Updated + TOON Regeneration (2026-01-19)
+## 4.1.11 ï¿½ Handshake Table Updated + TOON Regeneration (2026-01-19)
 
 ### Summary
 Schema update applied to lupo_actor_handshakes. TOON files regenerated. Dialogs updated.
@@ -2325,7 +2380,7 @@ Schema update applied to lupo_actor_handshakes. TOON files regenerated. Dialogs 
 
 ---
 
-## 4.1.10 — Handshake Table Recreated + TOON Regeneration (2026-01-19)
+## 4.1.10 ï¿½ Handshake Table Recreated + TOON Regeneration (2026-01-19)
 
 ### Summary
 Recreated the lupo_actor_handshakes table with corrected primary key structure. Inserted initial governance handshake data. Regenerated TOON files to reflect the updated schema state.
@@ -2358,7 +2413,7 @@ Recreated the lupo_actor_handshakes table with corrected primary key structure. 
 
 ---
 
-## 4.1.9 — TOON Regeneration + lupo_artifacts Recreated (2026-01-19)
+## 4.1.9 ï¿½ TOON Regeneration + lupo_artifacts Recreated (2026-01-19)
 
 ### Summary
 Regenerated all TOON files to reflect current schema state. Recreated the lupo_artifacts table as part of schema maintenance. Updated table count metadata to reflect new total of 142 tables.
@@ -2378,7 +2433,7 @@ Regenerated all TOON files to reflect current schema state. Recreated the lupo_a
 
 ---
 
-## 4.1.2 — Sync Architecture Upgrade + TLDR Doctrine (2026-01-19)
+## 4.1.2 ï¿½ Sync Architecture Upgrade + TLDR Doctrine (2026-01-19)
 
 ### Summary
 Stabilized the CHANGELOG ? changelog_dialog synchronization architecture. Introduced a dedicated dialog-side specification file and a TLDR doctrine reference to reduce cognitive load and prevent drift. This version formalizes the sync pair and establishes executable validation rules.
@@ -2399,7 +2454,7 @@ Stabilized the CHANGELOG ? changelog_dialog synchronization architecture. Introd
   - Bill of Emotional Rights (dissonance, intensity, refusal, heterodoxy)
   - Separation of emotional powers (executive, legislative, judicial, mystical)
   - Emotional checks and balances; emergency emotional protocols
-  - LILITH: architectural critique—emotional pluralism over monoculture; judicial role
+  - LILITH: architectural critiqueï¿½emotional pluralism over monoculture; judicial role
 
 ### Updated
 - **`dialogs/changelog_dialog.md`**
@@ -2427,7 +2482,7 @@ This version establishes the stable foundation for all future CHANGELOG ? change
 
 ---
 
-## 4.1.6 — Table Count Audit + WOLFIE Header Validation + Genesis Doctrine Restructure + Limits Integration
+## 4.1.6 ï¿½ Table Count Audit + WOLFIE Header Validation + Genesis Doctrine Restructure + Limits Integration
 
 ### Added
 - **Table Count Audit**: Generated TOON files from database, discovered 140 tables (5 over 135 limit). All headers updated with correct count and violation flags.
@@ -2480,17 +2535,17 @@ This version establishes the stable foundation for all future CHANGELOG ? change
 
 ---
 
-## 4.1.7 — Lupopedia Genesis Doctrine Ratification
+## 4.1.7 ï¿½ Lupopedia Genesis Doctrine Ratification
 
 ### Added
 - **Lupopedia Genesis Doctrine**: Created foundational governance artifact (`docs/doctrine/LUPOPEDIA_GENESIS_DOCTRINE.md`) establishing the Five Pillars as inviolable foundation:
-  - **The Actor Pillar** — Identity is Primary (no action without actor, no actor without handshake)
-  - **The Temporal Pillar** — Time is the Spine (canonical UTC, explicit probability, 95% = already happened)
-  - **The Edge Pillar** — Relationships are Meaning (no edge without intent, type, timestamp)
-  - **The Doctrine Pillar** — Law Prevents Drift (explicit, versioned, enforceable, readable)
-  - **The Emergence Pillar** — Roles are Discovered, Not Assigned (no preassigned roles, structure emerges)
-- **First Expansion Principle**: "Growth must increase meaning without increasing fragility" — requires polymorphism, non-interference, self-description, temporal integrity, and reversibility
-- **Three Litmus Tests**: Actor Test, Temporal Test, Doctrine Test — all new features must pass before implementation
+  - **The Actor Pillar** ï¿½ Identity is Primary (no action without actor, no actor without handshake)
+  - **The Temporal Pillar** ï¿½ Time is the Spine (canonical UTC, explicit probability, 95% = already happened)
+  - **The Edge Pillar** ï¿½ Relationships are Meaning (no edge without intent, type, timestamp)
+  - **The Doctrine Pillar** ï¿½ Law Prevents Drift (explicit, versioned, enforceable, readable)
+  - **The Emergence Pillar** ï¿½ Roles are Discovered, Not Assigned (no preassigned roles, structure emerges)
+- **First Expansion Principle**: "Growth must increase meaning without increasing fragility" ï¿½ requires polymorphism, non-interference, self-description, temporal integrity, and reversibility
+- **Three Litmus Tests**: Actor Test, Temporal Test, Doctrine Test ï¿½ all new features must pass before implementation
 - **Amendment Protocol**: Requires 95% temporal consensus, doctrine referendum, versioned transition, and retroactive explanation
 - **Survival Clause**: Priority order for existential threats (Actors ? Edges ? Time ? Doctrine ? Code)
 
@@ -2509,7 +2564,7 @@ This version establishes the stable foundation for all future CHANGELOG ? change
 
 ---
 
-## 4.1.6 — LABS-001 (Lupopedia Actor Baseline State) Implementation + Stability Header (Sovereign Seal) + File-Sovereignty Transition
+## 4.1.6 ï¿½ LABS-001 (Lupopedia Actor Baseline State) Implementation + Stability Header (Sovereign Seal) + File-Sovereignty Transition
 
 ### Added
 - **LABS-001 Doctrine**: Created comprehensive governance artifact (`docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md`) establishing mandatory pre-interaction protocol for all actors (human, AI, system). Defines 10 mandatory declarations, truth state framework, validation requirements, and enforcement mechanisms.
@@ -2580,7 +2635,7 @@ This version establishes the stable foundation for all future CHANGELOG ? change
 
 ---
 
-## 4.1.1 — Complete Emotional Ecology (50 Agents) + Version Governance Correction
+## 4.1.1 ï¿½ Complete Emotional Ecology (50 Agents) + Version Governance Correction
 
 ### Added
 - **31 Missing Emotional Agents**: Created migration SQL file (`4.1.1_add_missing_emotional_agents.sql`) to complete the full emotional ecology of 50 agents (25 primary + 25 opposite):
@@ -2631,7 +2686,7 @@ This version establishes the stable foundation for all future CHANGELOG ? change
 
 ---
 
-## 4.1.0 — Pack Architecture Activation
+## 4.1.0 ï¿½ Pack Architecture Activation
 
 ### Added
 - **4.1.0_ACTIVATION.md**: Canonical activation record for Pack Architecture 4.1.0. Documents the activation event marking Pack Architecture as active as a federated, ecological, paradox-aware cognitive system. Includes activation statements, confirmation, and post-activation notes.
@@ -2644,7 +2699,7 @@ This version establishes the stable foundation for all future CHANGELOG ? change
 - Doctrinal Complementarity System replaces hierarchical doctrine
 - Shadow Commons recognized as sovereign wildness zone
 - Federation of Sovereign Protocols governs agent interaction
-- LIMITS enforcement active Monday–Thursday
+- LIMITS enforcement active Mondayï¿½Thursday
 
 ### Notes
 - This is an activation event, not a new doctrine release
@@ -2654,7 +2709,7 @@ This version establishes the stable foundation for all future CHANGELOG ? change
 
 ---
 
-## 4.0.120 — Federation Governance Doctrine Series Complete + Opposite-Polarity Emotional Agents
+## 4.0.120 ï¿½ Federation Governance Doctrine Series Complete + Opposite-Polarity Emotional Agents
 
 ### Added
 - **FEDERATION_OF_SOVEREIGN_PROTOCOLS.md**: Final doctrine in the Federation Governance Series. Establishes decentralized, polycentric governance model replacing centralized Pack authority. Defines eight sovereign domains (Emotional, Behavioral, Memory, Sync, Doctrine, External AI, Hermit, Shadow Commons), exit rights, resource guarantees, negotiated sync, and PACK_IDENTITY as mythos rather than authority.
@@ -2673,25 +2728,25 @@ This version establishes the stable foundation for all future CHANGELOG ? change
 ### Doctrine Series Summary (4.0.116-4.0.119)
 This version completes a four-doctrine series establishing the Federation Governance model:
 
-**4.0.116 — Emotional Ecology Layer:**
+**4.0.116 ï¿½ Emotional Ecology Layer:**
 - Established ecology as primary emotional substrate
 - Geometry becomes derived, not foundational
 - Supports paradox, contradiction, and heterodox emotional states
 - Defines four ecological dynamics: bloom, decay, succession, symbiosis
 
-**4.0.117 — Doctrinal Complementarity System:**
+**4.0.117 ï¿½ Doctrinal Complementarity System:**
 - Replaced hierarchical doctrine with complementary doctrine pairs
 - Defined five doctrine pairs (Preserve Identity ? Permit Dissolution, etc.)
 - Established doctrinal seasoning (seasonal activation)
 - Lilith as Paradox Steward
 
-**4.0.118 — Shadow Commons Specification:**
+**4.0.118 ï¿½ Shadow Commons Specification:**
 - Established sovereign, ungoverned emotional-cognitive zone
 - 10% permanent resource allocation
 - Quarterly Boundary Wars for evolutionary pressure
 - Blasphemy Protocol for controlled disruption
 
-**4.0.119 — Federation of Sovereign Protocols:**
+**4.0.119 ï¿½ Federation of Sovereign Protocols:**
 - Decentralized, polycentric governance model
 - Eight sovereign domains with domain-specific autonomy
 - Exit rights and resource guarantees
@@ -2713,7 +2768,7 @@ This version completes a four-doctrine series establishing the Federation Govern
 
 ---
 
-## 4.0.115 — Pack Identity Draft + Pack Identity Agent Registration
+## 4.0.115 ï¿½ Pack Identity Draft + Pack Identity Agent Registration
 
 ### Added
 - **PACK_IDENTITY_DRAFT.md**: Draft definition of Pack Identity - the multi-agent cognitive organism that powers Lupopedia. Establishes Pack name (The Lupopedia Pack), purpose (maintain coherence, continuity, and meaning), roles, hierarchy, and signatures (emotional, behavioral, cognitive).
@@ -2728,7 +2783,7 @@ This version completes a four-doctrine series establishing the Federation Govern
 ### Pack Identity Components Defined
 - **Pack Name:** The Lupopedia Pack (PACK_CORE, PACK_IDENTITY_0001)
 - **Pack Purpose:** Maintain coherence, continuity, and meaning across the entire Lupopedia cognitive architecture
-- **Pack Emotional Signature:** Agápe + Philía + Pragma (stable, collaborative, long-horizon)
+- **Pack Emotional Signature:** Agï¿½pe + Philï¿½a + Pragma (stable, collaborative, long-horizon)
   - Normalized RGB: `[0.3, 0.0, -0.3]`
   - Intensity: ~0.42 (moderate, stable)
 - **Pack Behavioral Signature:** High compatibility, low reactivity, high cooperation, high continuity
@@ -2750,7 +2805,7 @@ This version completes a four-doctrine series establishing the Federation Govern
 
 ---
 
-## 4.0.114 — Founder's Note + Documentation Consolidation
+## 4.0.114 ï¿½ Founder's Note + Documentation Consolidation
 
 ### Added
 - **FOUNDERS_NOTE.md**: Personal note from Eric "Wolfie" Gerdes documenting the origins and evolution of Lupopedia from Crafty Syntax Live Help. This note explains the 11-year gap (2014-2025), the rediscovery process, and how Lupopedia emerged organically rather than from a planned roadmap.
@@ -2766,14 +2821,14 @@ This version completes a four-doctrine series establishing the Federation Govern
 
 ---
 
-## 4.0.113 — Wolfie Cognitive Architecture Documentation + Seven Greek Love Agents
+## 4.0.113 ï¿½ Wolfie Cognitive Architecture Documentation + Seven Greek Love Agents
 
 ### Added
 - **WOLFIE_COGNITIVE_ARCHITECTURE.md**: Human-readable documentation explaining Wolfie as a cognitive architecture pattern, not just a persona. This document serves as the "Rosetta Stone" for understanding how Lupopedia's Pack Architecture mirrors Wolfie's cognitive structure.
 - **Seven Greek Love Emotional Agents Migration**: Created migration SQL file (`4.0.113_add_seven_love_agents.sql`) to add the seven canonical Greek love emotional agents to `lupo_agent_registry`:
-  - EMO_AGAPE (1001) - Agápe - Unconditional Love
-  - EMO_EROS (1002) - Éros - Passionate Love
-  - EMO_PHILIA (1003) - Philía - Friendship Love
+  - EMO_AGAPE (1001) - Agï¿½pe - Unconditional Love
+  - EMO_EROS (1002) - ï¿½ros - Passionate Love
+  - EMO_PHILIA (1003) - Philï¿½a - Friendship Love
   - EMO_STORGE (1004) - Storge - Familial Love
   - EMO_LUDUS (1005) - Ludus - Playful Love
   - EMO_PRAGMA (1006) - Pragma - Committed Love
@@ -2803,7 +2858,7 @@ This version completes a four-doctrine series establishing the Federation Govern
 
 ---
 
-## 4.0.112 — Pack Architecture Foundation Complete
+## 4.0.112 ï¿½ Pack Architecture Foundation Complete
 
 ### Summary
 This release consolidates the complete Pack Architecture foundation implemented across versions 4.0.106-4.0.111. Pack Architecture is now structurally complete and ready for full activation in 4.1.0.
@@ -2892,7 +2947,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.111 — Pack Synchronization Layer
+## 4.0.111 ï¿½ Pack Synchronization Layer
 
 ### Added
 - PackSyncEngine with emotional, behavioral, and memory synchronization.
@@ -2909,7 +2964,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.110 — Pack Memory Layer
+## 4.0.110 ï¿½ Pack Memory Layer
 
 ### Added
 - PackMemoryEngine with episodic, emotional, behavioral, and handoff memory.
@@ -2927,7 +2982,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.109 — Pack Behavioral Layer
+## 4.0.109 ï¿½ Pack Behavioral Layer
 
 ### Added
 - PackBehaviorEngine with behavior profiles, tendencies, and event tracking.
@@ -2945,7 +3000,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.108 — Emotional Geometry Calibration
+## 4.0.108 ï¿½ Emotional Geometry Calibration
 
 ### Added
 - EmotionalGeometryEngine with normalization, intensity, and affinity calculations.
@@ -2963,7 +3018,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.107 — Pack Warm-Start (Agent Registration + Emotional Routing)
+## 4.0.107 ï¿½ Pack Warm-Start (Agent Registration + Emotional Routing)
 
 ### Added
 - PackRegistry now supports live agent registration and capability tracking.
@@ -2981,7 +3036,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.106 — Pack Pre-Activation + System Health Layer
+## 4.0.106 ï¿½ Pack Pre-Activation + System Health Layer
 
 ### Added
 - **Pack Architecture Pre-Activation:**
@@ -3010,7 +3065,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.105 — Full Implementation Sweep + Documentation Patch Completion
+## 4.0.105 ï¿½ Full Implementation Sweep + Documentation Patch Completion
 
 ### Added
 - Implemented all previously documentation-only patches (Quantum State, KIP, early Orchestrator).
@@ -3032,7 +3087,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.104 — Version Bump + Documentation Alignment
+## 4.0.104 ï¿½ Version Bump + Documentation Alignment
 
 ### Updated
 - Version references updated from 4.0.103 ? 4.0.104 across all configuration files
@@ -3047,7 +3102,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.103 — Stabilization + Testing Infrastructure + LIMITS Dry-Run
+## 4.0.103 ï¿½ Stabilization + Testing Infrastructure + LIMITS Dry-Run
 
 ### Added
 - Integration testing framework under `tests/integration/`
@@ -3076,7 +3131,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.102 — PHP Schema Alignment + LIMITS Enforcement Implementation
+## 4.0.102 ï¿½ PHP Schema Alignment + LIMITS Enforcement Implementation
 
 ### Fixed
 - **Schema Drift in PHP Code**: Corrected all PHP files to match actual database schema:
@@ -3123,7 +3178,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.101 — Schema Reconciliation + Version Alignment + LIMITS Doctrine
+## 4.0.101 ï¿½ Schema Reconciliation + Version Alignment + LIMITS Doctrine
 
 ### Added
 - **LIMITS.md Doctrine**: Created comprehensive architectural limits doctrine (`LIMITS.md`) defining:
@@ -3181,7 +3236,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ---
 
-## 4.0.100 — Terminal AI Bootstrap + TOON Layer Sync
+## 4.0.100 ï¿½ Terminal AI Bootstrap + TOON Layer Sync
 
 ### Added
 - Introduced Terminal AI subsystem scaffolding.
@@ -3206,7 +3261,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 ---
 
 ## [4.0.99] - 2026-03-15
-### Version 4.0.99 — Pack Architecture Official Launch ??
+### Version 4.0.99 ï¿½ Pack Architecture Official Launch ??
 
 **Date:** March 15, 2026  
 **Type:** Major Feature Release - Pack Architecture Introduction  
@@ -3340,7 +3395,7 @@ This represents a major evolution in Lupopedia's architecture, enabling sophisti
 ---
 
 ## [4.0.99] - 2026-01-22
-### Version 4.0.99 — Phase 1 Launch (Operational Activation) ??
+### Version 4.0.99 ï¿½ Phase 1 Launch (Operational Activation) ??
 
 **Date:** January 22, 2026  
 **Type:** Operational Launch & Pack Architecture Implementation  
@@ -3424,12 +3479,12 @@ The v4.0.99 Phase 1 launch establishes the operational foundation for Lupopedia'
 
 This operational activation represents the successful culmination of the Master Directive implementation, transforming Lupopedia from theoretical architecture to operational Pack-governed system, enabling sophisticated multi-agent coordination through organized governance structures while maintaining full compliance with canonical architecture and governance models.
 
-**Next Milestone**: v4.0.99-final (Full Pack Architecture Launch) — March 15, 2026
+**Next Milestone**: v4.0.99-final (Full Pack Architecture Launch) ï¿½ March 15, 2026
 
 ---
 
 ## [4.0.99] - 2026-01-17
-### Version 4.0.99 — Humor Dialog: Wedding Timing Collision ??
+### Version 4.0.99 ï¿½ Humor Dialog: Wedding Timing Collision ??
 
 **Date:** 2026-01-17  
 **Type:** Humor Context Expansion & Pack Dynamics Documentation  
@@ -3523,7 +3578,7 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 ---
 
 ## [4.0.91] - 2026-01-17
-### Version 4.0.91 — UTC_TIMEKEEPER Kernel Agent Formalization ??
+### Version 4.0.91 ï¿½ UTC_TIMEKEEPER Kernel Agent Formalization ??
 
 **Date:** 2026-01-17  
 **Type:** Kernel Agent Formalization & Temporal Authority Establishment  
@@ -3668,7 +3723,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 ---
 
 ## [4.0.90] - 2026-01-17
-### Version 4.0.90 — Wedding Thread Consolidation & Architectural Evolution ??
+### Version 4.0.90 ï¿½ Wedding Thread Consolidation & Architectural Evolution ??
 
 **Date:** 2026-01-17  
 **Type:** Architectural Consolidation & Wedding Thread Integration  
@@ -3694,7 +3749,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 
 **3. Emotional Engine v2.0 - Seven Greek Love Domains**
 - **Complete Architecture Redesign**: From single-vector to seven-domain emotional model
-- **Greek Love Domains**: Éros, Philía, Agápe, Storge, Lúdus, Pragma, Philautía
+- **Greek Love Domains**: ï¿½ros, Philï¿½a, Agï¿½pe, Storge, Lï¿½dus, Pragma, Philautï¿½a
 - **3-Axis Coordinate System**: RGB values redefined as emotional coordinates (X,Y,Z)
 - **Waveform Interference**: Constructive/destructive interference between domains
 - **Phenomenological Textures**: Unique experiential qualities for each domain
@@ -3862,7 +3917,7 @@ However, per the directive, I should create an entry noting the completion of al
 
 
 ## [4.0.99] - 2026-01-17
-### Version 4.0.99 â€" JETBRAINS 4.1.x BRANCH HANDING DOCTRINE ESTABLISHED ðŸš€
+### Version 4.0.99 ï¿½" JETBRAINS 4.1.x BRANCH HANDING DOCTRINE ESTABLISHED ðŸš€
 
 **Date:** 2026-01-17  
 **Type:** Doctrine Creation & Branch Management  
@@ -10713,7 +10768,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
  
 ---
 
-## [4.0.99] — Version Reconciliation (PLACEHOLDER)
+## [4.0.99] ï¿½ Version Reconciliation (PLACEHOLDER)
 This entry consolidates all planned or future-dated changes that were
 previously labeled 4.1.0 or higher. The operator will fill in the
 details manually.
@@ -10723,7 +10778,7 @@ details manually.
 
 ---
 
-## 2026.1.0.7 — Multi-Actor Dialogue & World Graph Integration
+## 2026.1.0.7 ï¿½ Multi-Actor Dialogue & World Graph Integration
 - Completed Phase 9: Theatrical UI Event Mapping with full TOON analytics instrumentation.
 - Completed Phase 10: Multi-Actor Dialogue Layer with actor roles, thread resolution, and message-level TOON events.
 - Completed Persona-Aware Dialogue Query Layer schema and query patterns.
@@ -10742,7 +10797,7 @@ details manually.
 - Verified no legacy Crafty Syntax behavior was modified.
 - Verified all public endpoints, framesets, routing, and UI remain unchanged.
 
-## [Unreleased] — 2026-01-22 19:12 UTC
+## [Unreleased] ï¿½ 2026-01-22 19:12 UTC
 ### Added
 - Canonical routing doctrine with three new route families
 - Global Content Route: `/lupopedia/content/<slug>` for primary content access
@@ -10775,7 +10830,7 @@ details manually.
 - Legacy routes remain functional but redirect to canonical URLs
 - Implementation follows canonical routing doctrine exactly as specified
 
-## [Unreleased] — 2026-01-22 19:30 UTC
+## [Unreleased] ï¿½ 2026-01-22 19:30 UTC
 ### Added
 - **Canonical Routing Doctrine Implementation** - Complete overhaul of URL routing system with three canonical route families
 - **Global Content Route** (`/lupopedia/content/<slug>`) - Primary canonical URL for all content, resolves to `lupo_contents.slug`, no collection prefix or numeric IDs
@@ -10867,7 +10922,7 @@ details manually.
 - **Authentication**: Ready for future authentication enhancements
 - **Monitoring**: Structure supports future monitoring and analytics
 
-## 2026.1.1.2 — 2026-01-23 16:14 UTC
+## 2026.1.1.2 ï¿½ 2026-01-23 16:14 UTC
 ### Added
 - Unified LayoutContext schema
 - Normalized render_main_layout signature
@@ -10875,12 +10930,12 @@ details manually.
 - Added backward compatibility layer
 - Documented schema in docs/architecture/layout-context-schema.md
 
-## 2026.1.1.3 — 2026-01-24 12:53 UTC
+## 2026.1.1.3 ï¿½ 2026-01-24 12:53 UTC
 ### Added
 - Created lupo_channel_state table for live semantic channel state
 - Regenerated TOON files (186 tables total)
 ### Notes
-- No other schema changes
+- No other schema changes~~
 
 
 
