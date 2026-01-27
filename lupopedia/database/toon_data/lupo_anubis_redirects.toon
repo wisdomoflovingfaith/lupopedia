@@ -1,0 +1,18 @@
+{
+    "table_name": "lupo_anubis_redirects",
+    "fields": [
+        "`anubis_redirect_id` bigint NOT NULL auto_increment",
+        "`table_name` varchar(255) NOT NULL",
+        "`old_id` bigint NOT NULL",
+        "`new_id` bigint NOT NULL",
+        "`timestamp_utc` char(14) NOT NULL",
+        "`agent` varchar(255) NOT NULL"
+    ],
+    "data": [],
+    "primary_key": {
+        "column_name": "anubis_redirect_id",
+        "expected_name": "anubis_redirect_id",
+        "is_correct": true,
+        "needs_rename": false
+    }
+}

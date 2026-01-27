@@ -1,0 +1,76 @@
+{
+  "table_name": "lupo_unified_registry",
+  "fields": [
+    "`unified_registry_id` bigint NOT NULL auto_increment",
+    "`entity_type` varchar(64) NOT NULL",
+    "`entity_id` bigint unsigned NOT NULL",
+    "`entity_key` varchar(255)",
+    "`entity_name` varchar(255)",
+    "`dedicated_index_id` bigint unsigned NOT NULL",
+    "`entity_table` varchar(128) NOT NULL",
+    "`federation_node_id` bigint NOT NULL DEFAULT 1",
+    "`created_ymdhis` bigint unsigned NOT NULL",
+    "`updated_ymdhis` bigint unsigned NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`is_active` tinyint(1) NOT NULL DEFAULT 1",
+    "`is_kernel` tinyint(1) NOT NULL DEFAULT 0",
+    "`metadata_json` json"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "uniq_entity",
+      "columns": [
+        "entity_type",
+        "entity_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "uniq_entity_type_dedicated_index",
+      "columns": [
+        "entity_type",
+        "dedicated_index_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_entity_key",
+      "columns": [
+        "entity_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_source_table",
+      "columns": [
+        "entity_table"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_entity_type",
+      "columns": [
+        "entity_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "unified_registry_id",
+    "expected_name": "unified_registry_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,97 @@
+-- Migration: Update TOON Files with Metadata
+-- Version: 4.1.1
+-- Date: 2026-01-18
+-- Module: Schema Documentation
+--
+-- This migration documents the addition of toon_metadata to all TOON schema files.
+-- TOON files are JSON schema definitions that mirror database tables.
+-- This update adds version tracking and schema source information to each TOON file.
+--
+-- @package Lupopedia
+-- @version 4.1.1
+-- @author Captain Wolfie
+
+-- ============================================================================
+-- TOON FILE METADATA UPDATE
+-- ============================================================================
+-- 
+-- Updated TOON files with toon_metadata section:
+-- 
+-- Added to each TOON file:
+--   "toon_metadata": {
+--       "version": "4.1.1" (or "4.1.6" for LABS tables),
+--       "last_updated": "2026-01-18",
+--       "schema_source": "migration_4_1_1_create_help_topics" | "install_lupopedia_mysql" | "migration_4_1_6_create_labs_declarations",
+--       "doctrine_compliant": true
+--   }
+--
+-- Files updated:
+--   - database/toon_data/lupo_help_topics.toon
+--   - database/toon_data/lupo_actors.toon
+--   - database/toon_data/lupo_agents.toon
+--   - database/toon_data/lupo_labs_declarations.toon
+--   - database/toon_data/lupo_labs_violations.toon
+--   - database/toon_data/lupo_contents.toon
+--   - database/toon_data/lupo_channels.toon
+--   - database/toon_data/lupo_collections.toon
+--
+-- Purpose:
+--   - Track TOON file version and last update date
+--   - Document schema source (migration file or install script)
+--   - Verify doctrine compliance
+--   - Enable automated schema synchronization validation
+--
+-- Note: TOON files are JSON schema definitions, not database tables.
+-- This migration documents schema metadata updates only.
+-- No database schema changes are required.
+
+-- ============================================================================
+-- VALIDATION QUERIES
+-- ============================================================================
+-- 
+-- To verify TOON files match database schema, run:
+--
+-- 1. Check table existence:
+--    SHOW TABLES LIKE 'lupo_%';
+--
+-- 2. Verify table structure matches TOON fields:
+--    DESCRIBE lupo_help_topics;
+--    DESCRIBE lupo_actors;
+--    DESCRIBE lupo_agents;
+--    DESCRIBE lupo_labs_declarations;
+--    DESCRIBE lupo_labs_violations;
+--    DESCRIBE lupo_contents;
+--    DESCRIBE lupo_channels;
+--    DESCRIBE lupo_collections;
+--
+-- 3. Verify indexes match TOON definitions:
+--    SHOW INDEXES FROM lupo_help_topics;
+--    SHOW INDEXES FROM lupo_actors;
+--    SHOW INDEXES FROM lupo_agents;
+--    SHOW INDEXES FROM lupo_labs_declarations;
+--    SHOW INDEXES FROM lupo_labs_violations;
+--    SHOW INDEXES FROM lupo_contents;
+--    SHOW INDEXES FROM lupo_channels;
+--    SHOW INDEXES FROM lupo_collections;
+--
+-- 4. Verify no foreign keys exist (doctrine compliance):
+--    SELECT 
+--        TABLE_NAME, 
+--        COLUMN_NAME, 
+--        CONSTRAINT_NAME, 
+--        REFERENCED_TABLE_NAME, 
+--        REFERENCED_COLUMN_NAME 
+--    FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE 
+--    WHERE REFERENCED_TABLE_SCHEMA IS NOT NULL 
+--      AND TABLE_SCHEMA = DATABASE()
+--      AND TABLE_NAME LIKE 'lupo_%';
+--    -- Should return 0 rows (no foreign keys per doctrine)
+
+-- ============================================================================
+-- MIGRATION COMPLETE
+-- ============================================================================
+-- 
+-- Status: Documentation only - no database changes required
+-- TOON files updated with metadata tracking
+-- All TOON files validated for JSON syntax
+-- Schema synchronization verified

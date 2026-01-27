@@ -1,0 +1,29 @@
+{
+  "table_name": "lupo_migration_system_state",
+  "fields": [
+    "`state_id` bigint NOT NULL DEFAULT 0",
+    "`batch_id` bigint NOT NULL DEFAULT 0",
+    "`system_status` enum('normal','frozen','thawing','emergency') NOT NULL DEFAULT 'normal'",
+    "`freeze_reason` varchar(255)",
+    "`affected_components` json",
+    "`user_message` text",
+    "`properties` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint(1) NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "state_id",
+    "expected_name": "state_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

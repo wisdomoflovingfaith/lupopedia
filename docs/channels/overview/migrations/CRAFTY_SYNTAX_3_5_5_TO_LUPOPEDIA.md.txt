@@ -1,0 +1,1196 @@
+Crafty Syntax 3.7.5 → Lupopedia Migration Atlas
+This document provides a complete, table‑by‑table mapping of how data from Crafty Syntax 3.7.5 is imported into the Lupopedia Semantic OS during the upgrade process.
+It serves as the authoritative reference for understanding:
+
+which Crafty Syntax tables are consumed
+
+where each field’s data is moved inside Lupopedia
+
+which tables are merged, split, transformed, or discarded
+
+how legacy behaviors map to modern Lupopedia subsystems
+
+which Crafty Syntax tables are dropped after migration
+
+This is not a schema‑preservation migration.
+It is a one‑way data import followed by the removal of all 34 legacy Crafty Syntax tables.
+
+The goal of this atlas is to give contributors, maintainers, and future agents a clear, durable understanding of how Crafty Syntax’s historical data model is translated into Lupopedia’s modern, prefix‑normalized, doctrine‑aligned architecture.
+
+Each section documents:
+
+Source table (Crafty Syntax 3.7.5)
+
+Destination table(s) (Lupopedia)
+
+Field‑level mappings
+
+Dropped or transformed fields
+
+Behavioral notes
+
+Migration considerations
+
+### Table: livehelp_autoinvite
+Source: livehelp_autoinvite (Crafty Syntax 3.7.5)
+Status: Dropped after migration
+
+Destination
+Primary target table: lupo_crafty_syntax_auto_invite  
+This is the Lupopedia‑normalized replacement for Crafty Syntax’s auto‑invite rules.
+
+Field Mapping
+Crafty Syntax Column	Lupopedia Column	Notes
+idnum	crafty_syntax_auto_invite_id	Primary key preserved exactly
+offline	is_offline	Direct copy
+isactive (Y/N)	is_active (1/0)	Boolean normalization
+department	department_id	Direct copy
+message	message	Direct copy
+page	page_url	Renamed for clarity
+visits	visits	Direct copy
+referer	referrer_url	Corrected spelling + rename
+typeof	invite_type	Direct copy
+seconds	trigger_seconds	Direct copy
+user_id	operator_user_id	Direct copy
+socialpane (Y/N)	show_socialpane (1/0)	Boolean normalization
+excludemobile (Y/N)	exclude_mobile (1/0)	Boolean normalization
+onlymobile (Y/N)	only_mobile (1/0)	Boolean normalization
+(no source)	created_ymdhis	Set to 20250101000000
+(no source)	updated_ymdhis	Set to 20250101000000
+(no source)	is_deleted	Always 0
+(no source)	deleted_ymdhis	Always NULL
+Behavioral Notes
+Crafty Syntax stored auto‑invite rules in a single table with mixed semantics and Y/N booleans.
+
+Lupopedia stores these rules in a normalized, prefix‑scoped table with explicit boolean integers and consistent naming.
+
+The migration preserves all functional behavior but modernizes the schema and naming conventions.
+
+Migration SQL Summary
+The migration performs three steps:
+
+Normalize engine + charset  
+Ensures the legacy table is readable and consistent before extraction.
+
+Mark the table as deprecated  
+Adds a comment clarifying that it is migration‑only.
+
+Copy all rows into lupo_crafty_syntax_auto_invite  
+Performs field renames, boolean conversions, and timestamp initialization.
+
+After successful migration, livehelp_autoinvite is dropped along with the other 33 Crafty Syntax tables.
+
+
+### What livehelp_channels used to be
+In Crafty Syntax:
+
+A channel was ephemeral
+
+It existed only while an operator was online
+
+All visitors currently talking to that operator were grouped into that temporary channel
+
+When the operator logged off, the channel was deleted
+
+This table was always empty between sessions
+
+It was essentially a runtime container, not a durable entity
+
+This matched the old “live chat” model:
+operator online = channel exists  
+operator offline = channel gone
+
+### What lupo_channels is now in Lupopedia
+Lupopedia’s architecture is fundamentally different:
+
+A channel is context, not presence
+
+A channel persists indefinitely
+
+Actors (humans, agents, Hermes, etc.) can join or leave at any time
+
+Channels represent semantic spaces, not operator sessions
+
+They store:
+
+intent
+
+routing mode
+
+emotional metadata
+
+visibility rules
+
+dialog history
+
+agent membership
+
+doctrine context
+
+This is why:
+
+livehelp_channels is obsolete and should remain empty.
+lupo_channels is the correct permanent table.
+You’ve already made the correct architectural migration.
+
+### livehelp_channels → lupo_channels (DEPRECATED → PERSISTENT CONTEXT)
+
+**Legacy Behavior (Crafty Syntax)**  
+`livehelp_channels` stored *ephemeral* operator chat channels.  
+A channel was created only while an operator was online, and all active visitors were grouped into that temporary channel.  
+When the operator logged off, the channel was deleted.  
+This table was always empty between sessions.
+
+**Lupopedia Behavior**  
+Lupopedia replaces this with `lupo_channels`, which stores *persistent semantic channels* used for context, routing, multi‑agent collaboration, and long‑term conversation history.  
+Channels no longer depend on operator presence and are never auto‑deleted.
+
+**Migration Action**  
+No data is migrated from `livehelp_channels` because the table is intentionally empty and obsolete.  
+The table is marked as deprecated and excluded from future schema generations.
+
+**Post‑Migration Status**  
+`livehelp_channels` remains empty and unused.  
+`lupo_channels` is the canonical channel table going forward.
+
+🗂️ Refactor: livehelp_departments → lupo_departments + lupo_department_metadata
+Source Table
+Crafty Syntax 3.7.5: livehelp_departments  
+Status: Migrated → Dropped after successful import
+
+Crafty Syntax departments were simple routing buckets with a mixture of:
+
+operator grouping
+
+UI/theme settings
+
+behavior flags
+
+email settings
+
+color schemes
+
+language preferences
+
+“while waiting” text
+
+images and layout values
+
+The table combined semantic meaning and UI configuration, which must be separated in Lupopedia.
+
+Destination Tables (Lupopedia)
+1. lupo_departments (semantic core)
+Stores the meaning of a department:
+
+department_id
+
+federation_node_id
+
+name
+
+description
+
+department_type
+
+default_actor_id
+
+settings_json
+
+timestamps
+
+soft‑delete flags
+
+2. lupo_department_metadata (legacy UI + behavior)
+Stores all Crafty Syntax UI/theme/behavior fields in a single JSON blob:
+
+images
+
+colors
+
+layout
+
+email flags
+
+smiley settings
+
+language
+
+“while waiting” text
+
+theme
+
+timestamps
+
+soft‑delete flags
+
+This keeps the semantic table clean and doctrine‑aligned.
+
+Field‑Level Mapping
+livehelp_departments → lupo_departments
+Crafty Syntax Column	Lupopedia Column	Notes
+recno	department_id	Primary key preserved exactly
+website	federation_node_id	Installation ID from Crafty Syntax
+nameof	name	Direct copy
+(none)	description	NULL (Crafty Syntax had no description field)
+(none)	department_type	Always 'crafty' for legacy imports
+(none)	default_actor_id	Always 1 (Wolfie)
+(none)	settings_json	NULL (all UI settings moved to metadata)
+(none)	created_ymdhis	Set to migration timestamp
+(none)	updated_ymdhis	Set to migration timestamp
+(none)	is_deleted	Always 0
+(none)	deleted_ymdhis	NULL
+livehelp_departments → lupo_department_metadata
+All non‑semantic Crafty Syntax fields are preserved in metadata_json:
+
+onlineimage
+
+offlineimage
+
+layerinvite
+
+requirename
+
+messageemail
+
+leaveamessage
+
+opening
+
+offline
+
+creditline
+
+imagemap
+
+whilewait
+
+timeout
+
+topframeheight
+
+topbackground
+
+midbackground
+
+botbackground
+
+topbackcolor
+
+midbackcolor
+
+botbackcolor
+
+colorscheme
+
+speaklanguage
+
+busymess
+
+emailfun
+
+dbfun
+
+smiles
+
+theme
+
+showtimestamp
+
+website
+
+These values are stored exactly as they existed in Crafty Syntax.
+
+Behavioral Notes
+Legacy Behavior (Crafty Syntax)
+Departments were simple operator routing groups.
+
+UI/theme settings were stored directly in the same table.
+
+No semantic meaning, no hierarchy, no metadata separation.
+
+Operators were manually assigned to departments.
+
+No persistent context or doctrine.
+
+Lupopedia Behavior
+Departments are semantic organizational units.
+
+UI/theme/behavior settings belong in metadata, not the semantic table.
+
+Departments can have:
+
+hierarchy
+
+routing rules
+
+emotional metadata
+
+agent membership
+
+doctrine context
+
+All legacy UI settings are preserved but isolated.
+
+🗂️ Refactor: livehelp_emailque + livehelp_emails
+Source Tables
+Crafty Syntax 3.7.5:
+
+livehelp_emailque
+
+livehelp_emails
+
+Status: Migrated → Dropped after successful import
+
+These two tables formed the old Crafty Syntax “Email the Entire Database” subsystem:
+
+livehelp_emails stored the message content
+
+livehelp_emailque stored the delivery log (who it was sent to, when, and status)
+
+Lupopedia replaces this with:
+
+lupo_crm_lead_messages (message content)
+
+lupo_crm_lead_message_sends (delivery log)
+
+Destination Tables (Lupopedia)
+1. lupo_crm_lead_messages
+Stores the content of outbound messages.
+
+2. lupo_crm_lead_message_sends
+Stores the delivery log for each message → each lead.
+
+(You already generated the JSON refactor for this table earlier.)
+
+Field‑Level Mapping
+livehelp_emails → lupo_crm_lead_messages
+Crafty Syntax Column	Lupopedia Column	Notes
+id	crm_lead_message_id	Primary key preserved exactly
+fromemail	from_email	Direct copy
+subject	subject	Direct copy
+bodyof	body_text	Direct copy
+notes	notes	Direct copy
+(none)	lead_id	Always 1 (broadcast lead)
+(none)	actor_id	NULL (legacy messages have no actor)
+(none)	created_ymdhis	Migration timestamp
+(none)	updated_ymdhis	Migration timestamp
+livehelp_emailque → lupo_crm_lead_message_sends
+(This was completed earlier, but included here for completeness.)
+
+Crafty Syntax Column	Lupopedia Column	Notes
+id	crm_lead_message_send_id	Primary key preserved
+messageid	crm_lead_message_id	FK‑like soft reference
+email	lead_email	Direct copy
+status	send_status	Direct copy
+whensent	sent_ymdhis	Converted to YMDHIS
+(none)	created_ymdhis	Migration timestamp
+(none)	updated_ymdhis	Migration timestamp
+Behavioral Notes
+Legacy Behavior (Crafty Syntax)
+livehelp_emails stored the broadcast email content.
+
+livehelp_emailque stored one row per recipient, tracking delivery.
+
+There was no lead_id, because Crafty Syntax treated all emails as “Email the Entire Database.”
+
+Lupopedia Behavior
+All legacy broadcast emails are assigned to lead_id = 1, the special “broadcast lead.”
+
+Message content and delivery logs are stored in separate, normalized tables.
+
+Actor attribution is optional; legacy messages have actor_id = NULL.
+
+Key Differences
+Crafty Syntax had no concept of leads; Lupopedia requires one.
+
+Crafty Syntax stored timestamps in mixed formats; Lupopedia uses YMDHIS.
+
+Crafty Syntax had no semantic routing; Lupopedia does.
+
+Table: livehelp_identity_daily / livehelp_identity_monthly
+Source: Crafty Syntax 3.7.5
+Status: Dropped (no migration)
+
+Legacy Behavior
+These tables stored a pre‑session visitor identity system using:
+
+IP address
+
+user agent
+
+cookie ID
+
+identity string
+
+username
+
+groupidentity
+
+groupusername
+
+daily/monthly timestamps
+
+seconds spent
+
+number of visits
+
+The archiveidentity() function attempted to stitch together anonymous visitors using whatever entropy was available.
+
+This system existed because Crafty Syntax pre‑dated:
+
+reliable cookies
+
+reliable sessions
+
+modern analytics
+
+device fingerprinting
+
+federated identity
+
+semantic actors
+
+Lupopedia Behavior
+Lupopedia replaces this entire subsystem with:
+
+lupo_sessions
+
+lupo_pageviews
+
+lupo_visits_daily
+
+lupo_visits_monthly
+
+lupo_actor_identity_map
+
+lupo_session_metadata
+
+lupo_analytics_daily
+
+lupo_analytics_monthly
+
+Identity stitching is now handled by actors, sessions, and metadata — not by daily/monthly identity tables.
+
+Migration Action
+No data is migrated.
+No fields are preserved.
+No JSON is created.
+No mapping is required.
+
+Both tables are dropped after migration.
+
+Post‑Migration Status
+livehelp_identity_daily → removed
+
+livehelp_identity_monthly → removed
+
+archiveidentity() → deleted
+
+All identity tracking handled by modern Lupopedia subsystems
+
+
+## Table: livehelp_keywords_daily / livehelp_keywords_monthly
+**Source:** Crafty Syntax 3.7.5  
+**Status:** Dropped (no migration)
+
+### Legacy Behavior
+These tables attempted to extract “keywords” from visitor URLs using outdated assumptions such as `?q=` being the universal search parameter. This system predates modern analytics, UTM parameters, social media tracking, and AI assistant referrals.
+
+### Lupopedia Behavior
+Lupopedia replaces keyword tracking with a unified campaign variable system stored in `lupo_analytics_campaign_vars`. All query string variables are extracted, normalized, and stored as campaign keys and values.
+
+### Migration Action
+No data is migrated. Both tables are removed. All keyword logic is replaced with modern campaign variable extraction.
+
+### Post-Migration Status
+- livehelp_keywords_daily → removed  
+- livehelp_keywords_monthly → removed  
+- All analytics now use lupo_analytics_campaign_vars  
+
+
+🗂️ Refactor: livehelp_layerinvites → lupo_crafty_syntax_layer_invites
+Source Table
+Crafty Syntax 3.7.5: livehelp_layerinvites  
+Status: Migrated → Dropped after successful import
+
+This table stored the old DHTML floating image invites that appeared on the website to encourage visitors to open live chat. These were implemented using:
+
+absolutely positioned GIF/PNG overlays
+
+HTML imagemaps
+
+JavaScript actions (openLiveHelp(), closeDHTML())
+
+department name strings
+
+optional operator ID
+
+This system predates modern widgets and is preserved only for historical compatibility.
+
+Destination Table (Lupopedia)
+lupo_crafty_syntax_layer_invites
+This table is the normalized, prefix‑scoped replacement for the legacy layer invite system.
+
+It preserves:
+
+the image name
+
+the imagemap
+
+the department name (string only — not an FK)
+
+the operator ID (soft reference)
+
+activation state
+
+display/click counters
+
+timestamps
+
+soft‑delete flags
+
+It does not preserve:
+
+legacy JavaScript
+
+legacy DHTML behavior
+
+positioning logic
+
+runtime invite triggers
+
+Those are replaced by modern Lupopedia widgets.
+
+Field‑Level Mapping
+Crafty Syntax Column	Lupopedia Column	Notes
+name	layer_name	Direct copy
+imagename	image_name	Direct copy
+imagemap	image_map	Preserved exactly for compatibility
+department	department_name	Legacy string; not an FK
+user	user_id	Soft reference to operator ID
+(none)	is_active	Always 1 on import
+(none)	display_count	Initialized to 0
+(none)	click_count	Initialized to 0
+(none)	created_ymdhis	Migration timestamp
+(none)	updated_ymdhis	Migration timestamp
+(none)	is_deleted	Always 0
+(none)	deleted_ymdhis	NULL
+Behavioral Notes
+Legacy Behavior (Crafty Syntax)
+Layer invites were ephemeral UI elements.
+
+They floated over the page using DHTML and absolute positioning.
+
+Clicking them triggered openLiveHelp() JavaScript.
+
+The department field stored a string, not a department ID.
+
+The user field stored an operator ID, but inconsistently.
+
+Imagemaps were stored as raw HTML.
+
+No lifecycle fields existed.
+
+Lupopedia Behavior
+Layer invites are preserved only as historical artifacts.
+
+They are stored in a normalized table for compatibility.
+
+No JavaScript or DHTML behavior is regenerated.
+
+Modern widgets replace all runtime invite logic.
+
+Department names remain strings for historical accuracy.
+
+Operator IDs remain soft references (no FK).
+
+Lifecycle fields are added for consistency with Lupopedia doctrine.
+
+
+🗂️ Refactor: livehelp_leads → lupo_crm_leads
+Source Table
+Crafty Syntax 3.7.5: livehelp_leads  
+Status: Migrated → Dropped after successful import
+
+Crafty Syntax leads were a minimal contact form storage table, containing:
+
+email
+
+phone
+
+first/last name
+
+source
+
+status
+
+a free‑form data field
+
+a timestamp
+
+There was no CRM logic, no scoring, no assignment, no lifecycle, no metadata, and no semantic structure.
+
+Destination Table (Lupopedia)
+lupo_crm_leads
+This is the canonical CRM lead table in Lupopedia.
+
+It supports:
+
+semantic lead types
+
+lead scoring
+
+assignment to actors
+
+JSON metadata
+
+federation node IDs
+
+lifecycle states
+
+timestamps
+
+soft‑delete flags
+
+The migration preserves all Crafty Syntax data but modernizes the structure.
+
+Field‑Level Mapping
+Crafty Syntax Column	Lupopedia Column	Notes
+id	crm_lead_id	Primary key preserved exactly
+email	email	Direct copy
+phone	phone	Direct copy
+firstname	first_name	Direct copy
+lastname	last_name	Direct copy
+source	source	Direct copy
+status	status	Direct copy
+(none)	lead_score	Always 0 for legacy leads
+(none)	assigned_to	NULL (no assignment existed in Crafty Syntax)
+data	lead_data	Stored as JSON/text exactly as provided
+date_entered	created_ymdhis	Legacy timestamp preserved
+(none)	updated_ymdhis	Migration timestamp
+(none)	is_deleted	Always 0
+(none)	deleted_ymdhis	NULL
+Behavioral Notes
+Legacy Behavior (Crafty Syntax)
+Leads were created by the “Leave a Message” form.
+
+No validation, no scoring, no assignment.
+
+The data field contained arbitrary serialized text.
+
+No lifecycle states existed.
+
+No federation support.
+
+No actor linkage.
+
+No CRM pipeline.
+
+Lupopedia Behavior
+Leads are first‑class CRM entities.
+
+They support:
+
+scoring
+
+assignment
+
+lifecycle states
+
+semantic source classification
+
+JSON metadata
+
+federation node IDs
+
+actor relationships
+
+Legacy leads are imported as “basic leads” with minimal structure.
+
+Key Differences
+Crafty Syntax leads were flat; Lupopedia leads are semantic.
+
+Crafty Syntax stored arbitrary text; Lupopedia stores structured JSON.
+
+Crafty Syntax had no scoring; Lupopedia initializes legacy leads with score 0.
+
+Crafty Syntax had no assignment; Lupopedia leaves assigned_to NULL.
+
+🗂️ Refactor: livehelp_leavemessage → lupo_crafty_syntax_leave_message
+Source Table
+Crafty Syntax 3.7.5: livehelp_leavemessage  
+Status: Migrated → Dropped after successful import
+
+This table stored the old “Leave a Message” form submissions when no operator was online. It contained:
+
+email
+
+subject
+
+department
+
+session data
+
+delimited form data
+
+timestamp
+
+no phone field
+
+no name field
+
+no IP or user agent
+
+no lifecycle fields
+
+It was a very early, minimal contact‑form storage system.
+
+Destination Table (Lupopedia)
+lupo_crafty_syntax_leave_message
+This is the normalized, doctrine‑aligned replacement for the legacy leave‑a‑message system.
+
+It preserves:
+
+department ID
+
+email
+
+subject
+
+session data
+
+form data
+
+timestamps
+
+soft‑delete flags
+
+assignment fields
+
+status fields
+
+It does not attempt to reconstruct missing fields (phone, name, message body, IP, user agent), because Crafty Syntax never stored them.
+
+Field‑Level Mapping
+Crafty Syntax Column	Lupopedia Column	Notes
+id	crafty_syntax_leave_message_id	Primary key preserved
+department	department_id	Soft reference (no FK)
+email	email	Direct copy
+(none)	phone	Always NULL
+(none)	name	Always NULL
+subject	subject	Direct copy
+(none)	message	Always NULL (Crafty Syntax did not store a message body)
+(none)	priority	Always 2 (legacy default)
+sessiondata	session_data	Direct copy
+deliminated	form_data	Direct copy
+(none)	ip_address	NULL (not stored in legacy)
+(none)	user_agent	NULL (not stored in legacy)
+(none)	status	'new'
+(none)	assigned_to	NULL
+dateof	created_ymdhis	Legacy timestamp preserved
+(none)	updated_ymdhis	Migration timestamp
+(none)	is_deleted	Always 0
+(none)	deleted_ymdhis	NULL
+Behavioral Notes
+Legacy Behavior (Crafty Syntax)
+This was the fallback when no operator was online.
+
+The form was extremely minimal — often just email + subject.
+
+The “message body” was never stored; instead, Crafty Syntax stored a delimited blob of form fields in deliminated.
+
+No IP, no user agent, no phone, no name.
+
+No lifecycle, no assignment, no status.
+
+No semantic meaning.
+
+Lupopedia Behavior
+Leave‑a‑message entries are stored as first‑class CRM artifacts.
+
+They support:
+
+assignment
+
+status
+
+lifecycle
+
+metadata
+
+federation
+
+Legacy fields are preserved exactly as they existed.
+
+Missing fields remain NULL — Lupopedia does not invent data.
+
+Key Differences
+Crafty Syntax stored raw form blobs; Lupopedia stores structured fields.
+
+Crafty Syntax had no lifecycle; Lupopedia initializes with status = 'new'.
+
+Crafty Syntax had no assignment; Lupopedia leaves assigned_to = NULL.
+
+Crafty Syntax had no priority; Lupopedia assigns default priority 2.
+
+🗂️ Refactor: livehelp_messages → lupo_dialog_threads + lupo_dialog_messages
+Source Table
+Crafty Syntax 3.7.5: livehelp_messages  
+Status: Migrated → Dropped after successful import
+
+Crafty Syntax stored all chat messages in a flat table with:
+
+no threads
+
+no actors
+
+no metadata
+
+no message bodies beyond a short text field
+
+ephemeral channels
+
+no semantic meaning
+
+This was enough for 2003 live chat, but not for a semantic OS.
+
+Destination Tables (Lupopedia)
+1. lupo_dialog_threads
+One thread per legacy channel.
+
+2. lupo_dialog_messages
+Every Crafty Syntax message becomes a single row containing:
+
+message ID
+
+thread ID
+
+actor
+
+target actor
+
+message type
+
+timestamps
+
+full body text
+
+metadata JSON
+
+lifecycle flags
+
+No message_bodies table exists anymore.
+Everything is unified.
+
+Field‑Level Mapping (Corrected)
+livehelp_messages → lupo_dialog_threads
+Crafty Syntax Column	Lupopedia Column	Notes
+channel	dialog_thread_id	One thread per channel
+(none)	thread_type	'crafty'
+MIN(timeof)	created_ymdhis	First message timestamp
+MAX(timeof)	updated_ymdhis	Last message timestamp
+(none)	is_deleted	0
+(none)	deleted_ymdhis	NULL
+livehelp_messages → lupo_dialog_messages
+Crafty Syntax Column	Lupopedia Column	Notes
+id_num	dialog_message_id	Primary key preserved
+channel	dialog_thread_id	Soft reference
+saidfrom	actor_id	Legacy visitor/operator ID
+saidto	target_actor_id	Legacy visitor/operator ID
+typeof	message_type	Legacy message type
+timeof	created_ymdhis	Direct copy
+message	body_text	Stored directly in this table
+(none)	metadata_json	Optional: store legacy flags
+(none)	updated_ymdhis	Migration timestamp
+(none)	is_deleted	0
+(none)	deleted_ymdhis	NULL
+Behavioral Notes
+Legacy Behavior (Crafty Syntax)
+Messages were stored in a single flat table.
+
+Channels were ephemeral and tied to operator presence.
+
+No threads, no actors, no metadata.
+
+Message text was often truncated.
+
+No concept of routing or semantic meaning.
+
+Lupopedia Behavior
+Every conversation is a thread.
+
+Every message is a semantic dialog event.
+
+body_text lives directly in lupo_dialog_messages.
+
+No separate message body table exists.
+
+Channels become persistent semantic threads.
+
+Drop livehelp_modules and livehelp_modules_dep
+Status
+Dropped — migration‑only tables, no longer part of Lupopedia.
+
+Reason
+Crafty Syntax used these tables to define:
+
+legacy module definitions (livehelp_modules)
+
+legacy module → department visibility (livehelp_modules_dep)
+
+Lupopedia replaces this entirely with:
+
+lupo_modules — canonical module registry
+
+lupo_unified_registry — global identity map
+
+module_group_access — modern visibility rules
+
+lupo_groups — department/group definitions
+
+All module identity, visibility, and lifecycle information now lives in the modern tables.
+
+No data from the legacy tables is needed after migration.
+
+🟦 Historical Notes
+livehelp_modules
+Stored module names and file paths for Crafty Syntax.
+
+Not versioned, not documented, not federated.
+
+Replaced by lupo_modules with proper lifecycle fields, federation, and doctrine.
+
+livehelp_modules_dep
+Mapped modules to departments.
+
+Replaced by module_group_access, which uses:
+
+unified registry IDs
+
+group IDs
+
+modern access rules
+
+
+🟦 REFACTOR ENTRY — livehelp_operator_channels
+Status
+Dropped — all functional meaning has been migrated.
+
+Legacy Purpose (Crafty Syntax)
+livehelp_operator_channels stored:
+
+which operator was “on” which channel
+
+the channel ID
+
+the visitor ID
+
+the operator’s UI colors
+
+the start timestamp
+
+a status flag
+
+a bunch of UI‑only color fields (bgcolor, txtcolor, channelcolor, txtcolor_alt)
+
+This table existed solely to support the Crafty Syntax operator UI, where:
+
+an operator could only be on one channel at a time
+
+each thread had its own background color
+
+channel 1 was the “lobby”
+
+threads were ephemeral and tied to operator presence
+
+None of this maps to Lupopedia’s architecture.
+
+🟦 Modern Destination (Lupopedia)
+✔ Channel membership
+Handled by:
+
+lupo_channels
+
+lupo_channel_membership
+
+lupo_dialog_threads
+
+Operators (actors) can be on multiple channels simultaneously.
+
+✔ Thread color information
+Moved into:
+
+lupo_dialog_threads.metadata_json
+
+Example:
+
+json
+{
+  "ui": {
+    "bgcolor": "#F7FAFF",
+    "txtcolor": "#000000",
+    "channelcolor": "#F7FAFF",
+    "txtcolor_alt": "#000000"
+  }
+}
+✔ Operator presence
+Handled by:
+
+lupo_actor_presence
+
+lupo_channels
+
+lupo_dialog_threads
+
+✔ Routing
+Handled by:
+
+lupo_routing_rules
+
+lupo_channels
+
+lupo_dialog_threads
+
+✔ Start timestamps
+Already preserved in:
+
+lupo_dialog_threads.created_ymdhis
+
+🟦 Rewrite Rules
+json
+{
+  "drop_tables": [
+    "livehelp_operator_channels"
+  ],
+  "rewrite_rules": {
+    "color_fields": "moved to lupo_dialog_threads.metadata_json",
+    "operator_presence": "handled by lupo_actor_presence and lupo_channels",
+    "channel_assignment": "handled by lupo_channel_membership",
+    "thread_context": "handled by lupo_dialog_threads"
+  }
+
+  REFACTOR ENTRY — livehelp_operator_departments → lupo_actor_departments
+Legacy Purpose (Crafty Syntax)
+livehelp_operator_departments was a simple mapping table:
+
+recno — primary key
+
+user_id — operator ID
+
+department — department ID
+
+extra — freeform text (title, label, or unused)
+
+It represented which operators belonged to which departments.
+
+No lifecycle fields, no federation, no metadata, no doctrine.
+
+🟦 Modern Destination (Lupopedia)
+✔ lupo_actor_departments
+This is the correct semantic home for operator/actor → department membership.
+
+It includes:
+
+actor_department_id
+
+actor_id
+
+department_id
+
+title
+
+lifecycle fields
+
+federation‑safe timestamps
+
+Exactly what the legacy table was trying to express, but with proper structure.
+
+🟦 REFACTOR ENTRY — livehelp_operator_history → lupo_audit_log
+Legacy Purpose (Crafty Syntax)
+livehelp_operator_history recorded operator actions inside the old LiveHelp system:
+
+opid — operator ID
+
+action — what they did
+
+dateof — timestamp (already in YmdHis format!)
+
+sessionid — legacy session
+
+transcriptid — related chat transcript
+
+totaltime — duration
+
+channel — channel ID
+
+This table was a crude audit log with no lifecycle fields, no metadata, no federation, and no semantic meaning.
+
+🟦 Modern Destination (Lupopedia)
+✔ lupo_audit_log
+This is the correct semantic home for all historical operator actions.
+
+It supports:
+
+entity type
+
+entity ID
+
+event type
+
+related table + ID
+
+metadata JSON
+
+lifecycle fields
+
+federation
+
+doctrine‑aligned timestamps
+
+Everything the legacy table was trying to express, but properly structured.
+
+REFACTOR ENTRY — livehelp_paths_firsts + livehelp_paths_monthly → lupo_unified_analytics_paths
+Legacy Purpose (Crafty Syntax)
+livehelp_paths_firsts
+Tracked first‑time transitions per month:
+
+visit_recno → from page
+
+exit_recno → to page
+
+dateof (YYYYMM)
+
+visits (count of first‑time transitions)
+
+livehelp_paths_monthly
+Tracked all transitions per month:
+
+same fields as above
+
+but counted every transition, not just first‑time ones
+
+Both tables referenced the old pageurl table via recno IDs.
+
+They were redundant, inconsistent, and required two separate queries to reconstruct navigation behavior.
+
+🟦 Modern Destination (Lupopedia)
+✔ lupo_unified_analytics_paths
+A single, normalized table that stores:
+
+path_id
+
+from_page_id
+
+to_page_id
+
+year_month
+
+transition_type (first, all)
+
+transition_count
+
+lifecycle fields
+
+metadata JSON
+
+This unifies both legacy tables into one semantic structure.

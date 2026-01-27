@@ -1,0 +1,33 @@
+{
+  "table_name": "lupo_migration_batches",
+  "fields": [
+    "`batch_id` bigint NOT NULL DEFAULT 0",
+    "`batch_name` varchar(255) NOT NULL",
+    "`batch_status` enum('pending','running','completed','failed','rolled_back') NOT NULL DEFAULT 'pending'",
+    "`epoch_from` bigint NOT NULL DEFAULT 0",
+    "`epoch_to` bigint NOT NULL DEFAULT 0",
+    "`total_files` int NOT NULL DEFAULT 0",
+    "`processed_files` int NOT NULL DEFAULT 0",
+    "`failed_files` int NOT NULL DEFAULT 0",
+    "`started_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`completed_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`properties` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint(1) NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "batch_id",
+    "expected_name": "batch_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

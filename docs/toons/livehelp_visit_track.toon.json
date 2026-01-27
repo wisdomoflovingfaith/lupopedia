@@ -1,0 +1,63 @@
+{
+  "table_name": "livehelp_visit_track",
+  "fields": [
+    "`recno` int NOT NULL auto_increment",
+    "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+    "`sessionid` varchar(40) NOT NULL DEFAULT '0'",
+    "`location` varchar(255) NOT NULL DEFAULT ''",
+    "`page` bigint NOT NULL DEFAULT 0",
+    "`title` varchar(100) NOT NULL DEFAULT ''",
+    "`whendone` bigint NOT NULL DEFAULT 0",
+    "`referrer` varchar(255) NOT NULL DEFAULT ''"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "sessionid",
+      "columns": [
+        "sessionid"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "location",
+      "columns": [
+        "location"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "page",
+      "columns": [
+        "page"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "whendone",
+      "columns": [
+        "whendone"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "livehelp_id",
+      "columns": [
+        "livehelp_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "recno",
+    "expected_name": "recno",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "relationships": []
+}

@@ -1,0 +1,35 @@
+{
+  "table_name": "lupo_department_metadata",
+  "fields": [
+    "`department_metadata_id` bigint NOT NULL auto_increment",
+    "`department_id` bigint NOT NULL COMMENT 'Soft reference to lupo_departments.department_id (no FK by doctrine)'",
+    "`metadata_json` json NOT NULL COMMENT 'Legacy UI settings, colors, images, behavior flags, and other non-semantic metadata'",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "uq_department_metadata",
+      "columns": [
+        "department_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "department_metadata_id",
+    "expected_name": "department_metadata_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

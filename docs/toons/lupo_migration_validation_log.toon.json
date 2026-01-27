@@ -1,0 +1,31 @@
+{
+  "table_name": "lupo_migration_validation_log",
+  "fields": [
+    "`validation_id` bigint NOT NULL DEFAULT 0",
+    "`batch_id` bigint NOT NULL DEFAULT 0",
+    "`file_id` bigint NOT NULL DEFAULT 0",
+    "`validation_phase` enum('pre','during','post') NOT NULL",
+    "`validation_type` varchar(100) NOT NULL",
+    "`validation_status` enum('passed','failed','warning') NOT NULL",
+    "`validation_result` text",
+    "`execution_time_ms` int NOT NULL DEFAULT 0",
+    "`properties` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint(1) NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "validation_id",
+    "expected_name": "validation_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

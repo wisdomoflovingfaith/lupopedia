@@ -1,0 +1,27 @@
+{
+  "table_name": "lupo_analytics_campaign_vars",
+  "fields": [
+    "`campaign_var_id` bigint NOT NULL auto_increment",
+    "`period` enum('daily','monthly','yearly','total','custom') NOT NULL",
+    "`date_ymd` bigint",
+    "`yearmonth` int",
+    "`year` int",
+    "`campaign_key` varchar(255) NOT NULL",
+    "`campaign_value` varchar(500)",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "campaign_var_id",
+    "expected_name": "campaign_var_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,32 @@
+{
+  "table_name": "livehelp_quick",
+  "fields": [
+    "`id` int NOT NULL auto_increment",
+    "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+    "`name` varchar(50) NOT NULL DEFAULT ''",
+    "`typeof` varchar(30) NOT NULL DEFAULT ''",
+    "`message` text",
+    "`visiblity` varchar(20) NOT NULL DEFAULT ''",
+    "`department` varchar(60) NOT NULL DEFAULT '0'",
+    "`user` int NOT NULL DEFAULT 0",
+    "`ishtml` varchar(3) NOT NULL DEFAULT ''"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "livehelp_id",
+      "columns": [
+        "livehelp_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "relationships": []
+}

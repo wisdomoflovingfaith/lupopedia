@@ -1,0 +1,31 @@
+{
+  "table_name": "lupo_migration_alerts",
+  "fields": [
+    "`alert_id` bigint NOT NULL DEFAULT 0",
+    "`batch_id` bigint NOT NULL DEFAULT 0",
+    "`file_id` bigint NOT NULL DEFAULT 0",
+    "`alert_type` enum('error','warning','info','critical') NOT NULL",
+    "`alert_title` varchar(255) NOT NULL",
+    "`alert_message` text NOT NULL",
+    "`alert_status` enum('new','acknowledged','resolved','escalated') NOT NULL DEFAULT 'new'",
+    "`escalation_level` int NOT NULL DEFAULT 0",
+    "`properties` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint(1) NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "alert_id",
+    "expected_name": "alert_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

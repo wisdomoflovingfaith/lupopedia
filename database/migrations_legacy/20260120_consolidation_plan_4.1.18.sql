@@ -1,0 +1,15 @@
+-- Version: 4.1.18
+-- Purpose: Schema consolidation planning (no schema changes)
+-- Date: 2026-01-20
+-- Notes:
+--   This file defines the consolidation plan for:
+--     1. Dialog system (messages + bodies)
+--     2. Analytics system (daily + monthly)
+--     3. Truth system (questions + answers)
+--     4. Collections system (collections + tabs)
+--   Actual CREATE/DROP operations will occur in 4.1.19+
+
+-- Placeholder: CREATE TABLE lupo_unified_dialog_messages (...)
+-- Placeholder: CREATE TABLE lupo_unified_analytics_paths (...)
+-- Placeholder: CREATE TABLE lupo_unified_truth_items (...)
+-- Placeholder: ALTER TABLE lupo_collections ADD parent_id INT NULL;

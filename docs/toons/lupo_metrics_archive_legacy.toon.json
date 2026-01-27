@@ -1,0 +1,22 @@
+{
+  "table_name": "lupo_metrics_archive_legacy",
+  "fields": [
+    "`metric_id` int unsigned NOT NULL",
+    "`metric_key` varchar(255) NOT NULL",
+    "`metric_value` varchar(255)",
+    "`recorded_at` datetime"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "metric_id",
+    "expected_name": "metric_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}
