@@ -1,0 +1,40 @@
+{
+    "channel_identity": {
+        "channel_id": 0,
+        "channel_key": "system/kernel",
+        "channel_name": "System Kernel Channel",
+        "channel_type": "system_kernel",
+        "purpose": "Reserved channel for bootstrapping, migrations, and OS-level events"
+    },
+    "semantic_context": {
+        "domain": "system_operations",
+        "primary_topics": ["bootstrapping", "migrations", "os_events", "kernel_coordination"],
+        "excluded_topics": ["user_conversations", "general_chat", "non_system_operations"]
+    },
+    "agent_behavior": {
+        "assumed_persona": "system_operator",
+        "communication_style": "technical_direct",
+        "response_format": "structured_json",
+        "emotional_geometry": "neutral"
+    },
+    "task_scope": {
+        "allowed_tasks": [
+            "system_bootstrapping",
+            "migration_orchestration", 
+            "os_event_logging",
+            "kernel_agent_coordination",
+            "system_health_monitoring"
+        ],
+        "forbidden_tasks": [
+            "user_conversations",
+            "general_chat",
+            "non_system_operations",
+            "casual_discussions"
+        ]
+    },
+    "temporal_context": {
+        "awareness_version": "4.0.72",
+        "creation_purpose": "system_initialization",
+        "operational_scope": "continuous"
+    }
+}

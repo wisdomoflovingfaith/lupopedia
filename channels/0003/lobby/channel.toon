@@ -1,0 +1,50 @@
+{
+    "table_name": "lupo_channels",
+    "channel_metadata": {
+        "channel_id": 1,
+        "channel_key": "system/lobby",
+        "channel_name": "Lobby Channel",
+        "description": "Universal entry point for all new actors. Temporary holding area before routing.",
+        "metadata_json": "{\"purpose\": \"system-root\", \"auto_created\": true}",
+        "bgcolor": "CCCCCC",
+        "status_flag": 1,
+        "created_ymdhis": 20260106082200,
+        "updated_ymdhis": 20260106082200,
+        "awareness_version": "4.0.72"
+    },
+    "channel_schema": {
+        "primary_key": "channel_id",
+        "required_fields": [
+            "channel_id",
+            "federation_node_id", 
+            "created_by_actor_id",
+            "default_actor_id",
+            "channel_key",
+            "channel_name",
+            "created_ymdhis",
+            "updated_ymdhis"
+        ],
+        "optional_fields": [
+            "description",
+            "metadata_json",
+            "bgcolor",
+            "status_flag",
+            "end_ymdhis",
+            "duration_seconds",
+            "is_deleted",
+            "deleted_ymdhis",
+            "aal_metadata_json",
+            "fleet_composition_json",
+            "awareness_version"
+        ]
+    },
+    "channel_config": {
+        "is_system_channel": true,
+        "is_protected": true,
+        "auto_created": true,
+        "deletion_allowed": false,
+        "default_actor_id": 1,
+        "allowed_actor_types": ["system", "ai_agent", "human"],
+        "federation_node_id": 1
+    }
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "channel_number": 1,
+    "directory": "0001",
+    "channel_key": "dev-main-thread",
+    "slug": "dev-main-thread"
+  },
+  {
+    "channel_number": 2,
+    "directory": "0002",
+    "channel_key": "GOV-PROGRAMMERS-001",
+    "slug": "gov-programmers-001"
+  },
+  {
+    "channel_number": 3,
+    "directory": "0003",
+    "channel_key": "system",
+    "slug": "system"
+  },
+  {
+    "channel_number": 4,
+    "directory": "0004",
+    "channel_key": "test_awareness_channel",
+    "slug": "test-awareness"
+  },
+  {
+    "channel_number": 5100,
+    "directory": "5100",
+    "channel_key": "5100",
+    "slug": "5100"
+  }
+]

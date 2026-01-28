@@ -1,0 +1,24 @@
+{
+    "version": "2026.1.0.3",
+    "channel_id": 0,
+    "channel_key": "system/kernel",
+    "channel_name": "System Kernel Channel",
+    "governance_flags": {
+        "system_channel": true,
+        "protected": true,
+        "auto_created": true,
+        "deletion_allowed": false
+    },
+    "allowed_actors": ["system", "wolfie", "captain_wolfie"],
+    "default_actor_id": 1,
+    "timestamps": {
+        "created_ymdhis": 20260106084500,
+        "updated_ymdhis": 20260106084500
+    },
+    "awareness_version": "4.0.72",
+    "metadata": {
+        "purpose": "kernel",
+        "protected": true,
+        "auto_created": true
+    }
+}
