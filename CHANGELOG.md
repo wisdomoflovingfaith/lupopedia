@@ -46,3 +46,15 @@ The schema is now fully aligned with Lupopedia's naming doctrine and ready for t
 
 ### Notes
 - This patch is part of the ongoing Crafty Syntax -> Lupopedia migration work
+
+## [2026.1.1.14] - 2026-01-27
+### Added
+- Integrated Emotional Geometry Doctrine v4.1 (Light-Emotion Isomorphism section added)
+- Added mood_rgb and mood_framework fields to lupo_dialog_messages
+- Phase 1 emotional framework migration initiated
+
+### Changed
+- Updated emotional metadata architecture to support pluralistic frameworks
+
+### Notes
+- This patch is part of the ongoing Crafty Syntax -> Lupopedia migration work
