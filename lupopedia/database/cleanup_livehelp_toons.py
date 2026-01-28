@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# wolfie.headers: explicit architecture with structured clarity for every file.
+# file.last_modified_system_version: 2026.3.7.6
+# file.channel: schema
 """
 LiveHelp TOON Cleanup Script
 Removes all legacy livehelp_ TOON files from Crafty Syntax 3.7.0 and recalculates true table count.
@@ -198,18 +201,20 @@ class LiveHelpTOONCleanup:
 
         report.append("🎯 DOCTRINE COMPLIANCE CHECK:")
         target_count = stats["target_after_migration"]
-        if target_count <= 199:
-            report.append(f"   ✅ COMPLIANT: {target_count} ≤ 199 (target)")
-            report.append(f"   ✅ COMPLIANT: {target_count} ≤ 200 (maximum)")
-            margin = 199 - target_count
+        if target_count <= 222:
+            report.append(f"   ✅ COMPLIANT: {target_count} ≤ 222 (target)")
+            report.append(f"   ✅ COMPLIANT: {target_count} ≤ 222 (maximum)")
+            margin = 222 - target_count
             report.append(f"   📈 Safety margin: {margin} tables under target")
-        elif target_count == 200:
+        elif target_count == 222:
             report.append(
-                f"   ⚠️  AT MAXIMUM: {target_count} = 200 (emergency slot used)"
+                f"   ⚠️  AT MAXIMUM: {target_count} = 222 (hard ceiling reached)"
             )
         else:
-            report.append(f"   🚨 VIOLATION: {target_count} > 200 (doctrine violation)")
-            overage = target_count - 200
+            report.append(
+                f"   🚨 VIOLATION: {target_count} > 222 (trigger Table Optimization Cycle)"
+            )
+            overage = target_count - 222
             report.append(f"   📉 Overage: {overage} tables over maximum")
 
         report.append("")

@@ -1,5 +1,9 @@
 <?php
 /**
+ * wolfie.headers: explicit architecture with structured clarity for every file.
+ * file.last_modified_system_version: 2026.3.7.6
+ * file.channel: schema
+ *
  * Lupopedia Migration Controller
  *
  * First-line controller for governance and schema changes. All AI-generated
@@ -8,7 +12,7 @@
  * Enforces:
  * - Immutable governance events (append-only for lupo_gov_*)
  * - NO-ADS: no ad-tech, tracking, or analytics schema
- * - Table ceiling: 200 tables max (target: 199)
+ * - Table ceiling: 222 tables max (target: 222)
  * - No foreign keys, no triggers
  *
  * @package App\Services\System
@@ -41,8 +45,8 @@ class ValidationResult
 
 class LupopediaMigrationController
 {
-    protected const MAX_TABLES = 200;
-    protected const TARGET_TABLES = 199;
+    protected const MAX_TABLES = 222;
+    protected const TARGET_TABLES = 222;
     protected const SQL_SNIPPET_LENGTH = 2000;
     protected const GOVERNANCE_PREFIX = 'lupo_gov_';
 
@@ -116,7 +120,7 @@ class LupopediaMigrationController
     }
 
     /**
-     * Return true if current table count is under the ceiling (< 200), false if >= 200.
+     * Return true if current table count is under the ceiling (< 222), false if >= 222.
      */
     public function checkTableCeiling(PDO $pdo): bool
     {

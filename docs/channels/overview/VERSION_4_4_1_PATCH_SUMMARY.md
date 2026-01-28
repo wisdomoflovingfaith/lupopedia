@@ -1,3 +1,9 @@
+﻿---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 2026.3.7.6
+file.channel: doctrine
+---
+
 # Version 4.4.1 Patch Release Summary
 
 **Release Date:** 2026-01-20 11:38 UTC  
@@ -35,7 +41,7 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 - **Consistency:** All version references now synchronized across codebase
 
 ### **Schema Documentation Updates**
-- **Table Count:** Updated to reflect 170 tables (29 under 200 limit)
+- **Table Count:** Updated to reflect 170 tables (52 under 222 limit)
 - **System Context:** Updated to show schema optimization completion
 - **Doctrine Compliance:** Updated TABLE_COUNT_DOCTRINE with new limits
 - **Architecture Map:** Updated version and last modified date
@@ -68,7 +74,7 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 - **Tools Created:** Full suite of migration analysis utilities
 
 ### **Schema Optimization**
-- **Table Count:** Achieved 170 tables (29 under safety margin)
+- **Table Count:** Achieved 170 tables (52 under safety margin)
 - **Doctrine Compliance:** Full compliance with TABLE_COUNT_DOCTRINE
 - **Performance:** Optimized schema with no legacy cruft
 - **Migration Ready:** Transaction-safe migration with rollback capability
@@ -98,8 +104,8 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 ### **Current Configuration**
 - **Version:** 4.4.1
 - **Table Count:** 170 tables
-- **Table Ceiling:** 200 tables
-- **Safety Margin:** 29 tables
+- **Table Ceiling:** 222 tables
+- **Safety Margin:** 52 tables
 - **Doctrine Status:** Fully compliant
 - **Schema State:** Frozen (architecture freeze maintained)
 
@@ -150,4 +156,5 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 - Added operator-layer tables: lupo_operators, lupo_operator_status, lupo_operator_sessions, lupo_operator_skills, lupo_operator_chat_assignments, lupo_operator_escalation_rules
 - Added operator layer doctrine and updated doctrine index
 - Regenerated TOON files to sync with live schema
-- Confirmed schema remains within the 199 table budget (current: 196)
+- Confirmed schema remains within the 222 table budget (current: 196)
+

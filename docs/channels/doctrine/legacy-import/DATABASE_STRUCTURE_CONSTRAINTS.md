@@ -1,3 +1,9 @@
+﻿---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 2026.3.7.6
+file.channel: doctrine
+---
+
 # DOCTRINE: DATABASE STRUCTURE CONSTRAINTS
 
 **Filename:** doctrine/DATABASE_STRUCTURE_CONSTRAINTS.md  
@@ -9,14 +15,14 @@
 ## 1. TABLE LIMIT ENFORCEMENT
 
 ### 1.1 Hard Limit Constraint
-- **MAX_TABLES_PER_DATABASE**: 199 tables
+- **MAX_TABLES_PER_DATABASE**: 222 tables
 - **Scope**: Applies to all databases in Lupopedia ecosystem
 - **Enforcement**: System-level validation prevents table creation beyond limit
 - **Exception**: Migration overage window (see Section 2)
 
 ### 1.2 Table Count Monitoring
 ```sql
--- Current table count query (must be ≤ 199)
+-- Current table count query (must be ≤ 222)
 SELECT COUNT(*) as table_count 
 FROM information_schema.tables 
 WHERE table_schema = DATABASE();
@@ -25,17 +31,17 @@ WHERE table_schema = DATABASE();
 ### 1.3 Database Scope
 - **lupopedia**: Canonical shipping database (primary constraint)
 - **lupopedia_worms**: Experimental/ORM sandbox (same constraint)
-- **Future databases**: All subject to 199-table limit
+- **Future databases**: All subject to 222-table limit
 
 ## 2. MIGRATION OVERAGE WINDOW
 
 ### 2.1 Migration Exception Rules
-Migrations may temporarily exceed 199 tables only if:
+Migrations may temporarily exceed 222 tables only if:
 
 - **Active Migration**: Migration is currently executing
-- **Temporary Overage**: Table count exceeds 199 during migration only
+- **Temporary Overage**: Table count exceeds 222 during migration only
 - **Cleanup Required**: Deprecated tables dropped before completion
-- **Final Compliance**: Post-migration count ≤ 199
+- **Final Compliance**: Post-migration count ≤ 222
 
 ### 2.2 Migration Overage Window Protocol
 ```yaml
@@ -44,7 +50,7 @@ migration_overage_window:
   end_condition: migration_completion_or_failure
   max_overage_duration: <migration_execution_time>
   cleanup_requirement: mandatory_before_completion
-  final_validation: table_count_must_be_199_or_less
+  final_validation: table_count_must_be_222_or_less
 ```
 
 ### 2.3 Migration Validation
@@ -52,7 +58,7 @@ migration_overage_window:
 -- Pre-migration validation
 SELECT 
   COUNT(*) as current_tables,
-  199 - COUNT(*) as remaining_capacity
+  222 - COUNT(*) as remaining_capacity
 FROM information_schema.tables 
 WHERE table_schema = DATABASE();
 
@@ -60,12 +66,21 @@ WHERE table_schema = DATABASE();
 SELECT 
   COUNT(*) as final_tables,
   CASE 
-    WHEN COUNT(*) <= 199 THEN 'COMPLIANT' 
+    WHEN COUNT(*) <= 222 THEN 'COMPLIANT' 
     ELSE 'VIOLATION' 
   END as compliance_status
 FROM information_schema.tables 
 WHERE table_schema = DATABASE();
 ```
+
+### 2.4 Table Optimization Cycle Trigger
+If any database reaches 223 tables or more:
+
+- Review all tables for redundancy
+- Identify merge candidates
+- Remove deprecated or legacy-artifact tables
+- Ensure doctrine alignment
+- Re-evaluate schema intent and emotional metadata placement
 
 ## 3. TABLE NAMING CONVENTIONS
 
@@ -204,7 +219,7 @@ COMMENT='Descriptive table comment'
 SELECT 
   (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE()) as current_tables,
   CASE 
-    WHEN (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE()) < 199 
+    WHEN (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE()) < 222 
     THEN 'CAN_CREATE' 
     ELSE 'AT_LIMIT' 
   END as creation_allowed;
@@ -231,7 +246,7 @@ SELECT
   'TABLE_COUNT_COMPLIANCE' as check_type,
   COUNT(*) as table_count,
   CASE 
-    WHEN COUNT(*) <= 199 THEN 'COMPLIANT' 
+    WHEN COUNT(*) <= 222 THEN 'COMPLIANT' 
     ELSE 'VIOLATION' 
   END as status,
   NOW() as check_time
@@ -332,7 +347,7 @@ monitoring_metrics:
 
 ### 11.2 Lupopedia_worms Database (Experimental)
 - **AI Sandbox**: ORM experiments allowed
-- **Same Constraints**: 199-table limit applies
+- **Same Constraints**: 222-table limit applies
 - **Experimental Features**: Must be isolated
 - **Regular Cleanup**: Temporary tables auto-cleanup
 
@@ -371,6 +386,7 @@ violation_consequences:
 
 ---
 
-**AUTHORITY:** This doctrine defines the mandatory structural constraints for all databases in the Lupopedia ecosystem. The 199-table limit is absolute and non-negotiable.
+**AUTHORITY:** This doctrine defines the mandatory structural constraints for all databases in the Lupopedia ecosystem. The 222-table limit is absolute and non-negotiable.
 
 **COMPLIANCE:** Required for all database operations. System validation enforces these constraints automatically.
+

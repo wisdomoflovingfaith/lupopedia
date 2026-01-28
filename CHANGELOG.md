@@ -1,3 +1,11 @@
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 2026.3.7.6
+file.channel: versioning
+file.last_modified_utc: 20260128133454
+file.name: "CHANGELOG.md"
+---
+
 # Note on Versioning and Multiple Changelogs
 Lupopedia uses a multi-channel versioning system.
 
@@ -46,6 +54,20 @@ The schema is now fully aligned with Lupopedia's naming doctrine and ready for t
 
 ### Notes
 - This patch is part of the ongoing Crafty Syntax -> Lupopedia migration work
+
+## [2026.3.7.6] - 2026-01-28
+### Added
+- Added Captain's Log entries documenting fragmented feature recall and emergency bridge session.
+- Added doctrine `doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md` (pono/pilau/kapakai).
+- Added `scripts/generate_blessed_channel_registry.py` for blessed registry generation with ethical triad defaults.
+- Generated `channels/registry.json` and normalized channel directories to numeric zero-padded folders.
+- Added `plan_for_crafty_syntax.md` migration sprint plan (Cycles + Consecration).
+
+### Changed
+- Updated Emotional Geometry Doctrine to v4.2 with Light-Emotion Isomorphism section.
+- Updated `README.md` with Wolfie Header update requirements and channel provenance rules.
+- Updated system version to 2026.3.7.6.
+- Raised table ceiling doctrine/config references to 222 and added optimization trigger at 223+.
 
 ## [2026.1.1.14] - 2026-01-27
 ### Added

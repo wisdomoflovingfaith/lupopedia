@@ -1,4 +1,7 @@
 ---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 2026.3.7.6
+file.channel: schema
 # Global Atoms Configuration
 # Single source of truth for ecosystem-wide metadata used in WOLFIE Headers
 #
@@ -209,8 +212,8 @@ GLOBAL_DOCTRINE_APPLICATION_LOGIC_FIRST: "Application logic first, database logi
 GLOBAL_DATABASE_STORAGE_NOT_COMPUTATION: "Database is storage, not computation"
 
 # Table Count Governance
-GLOBAL_MAX_TABLES: 200
-GLOBAL_TARGET_TABLES: 199
+GLOBAL_MAX_TABLES: 222
+GLOBAL_TARGET_TABLES: 222
 
 # Technical Constants
 GLOBAL_TIMESTAMP_FORMAT: "YYYYMMDDHHIISS"

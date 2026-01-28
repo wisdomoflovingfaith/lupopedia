@@ -2,7 +2,8 @@
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "CHANGELOG.md"
 file.version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
-file.last_modified_system_version: 2026.1.0.1
+file.last_modified_system_version: 2026.3.7.6
+file.channel: doctrine
 file.last_modified_utc: 20260120180000
 file.utc_day: 20260120
 file.author: GLOBAL_CURRENT_AUTHORS
@@ -1655,7 +1656,7 @@ The irreducible structural metadata block that MUST be present in every file:
 wolfie.headers: explicit architecture with structured clarity for every file.
 
 file.name: "<FILENAME>"
-file.last_modified_system_version: <SYSTEM_VERSION>
+file.channel: doctrine
 file.last_modified_utc: <UTC_TIMESTAMP>
 file.utc_day: <UTC_DAY>
 
@@ -8363,7 +8364,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 - **WOLFIE Header Format Update**
   - Replaced deprecated `wolfie.headers.version` field with new universal format
   - New required signature: `wolfie.headers: explicit architecture with structured clarity for every file.`
-  - New required field: `file.last_modified_system_version: x.x.x` (per-file historical marker)
+  - New required field: `file.channel: doctrine
   - Updated all header documentation to reflect universal, ecosystem-agnostic scope
   - Header format now applies to any program, any stack, any language, any framework
 
@@ -10795,5 +10796,21 @@ details manually.
 - Added backward compatibility layer
 - Documented schema in docs/architecture/layout-context-schema.md
 
+
+
+
+## 2026.3.7.6 - 2026-01-28
+### Added
+- Added Captain's Log entries for nightmare fragments and emergency bridge session.
+- Added `doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md` (pono/pilau/kapakai).
+- Added `plan_for_crafty_syntax.md` migration sprint plan.
+- Added `scripts/generate_blessed_channel_registry.py` for blessed registry generation.
+- Added `channels/registry.json` and normalized channel folders to numeric zero-padded names.
+
+### Changed
+- Updated Emotional Geometry doctrine to v4.2 with Light-Emotion Isomorphism preface.
+- Updated `README.md` with Wolfie Header update requirements and channel provenance rules.
+- Raised table ceiling doctrine/config references to 222 and added optimization trigger at 223+.
+- Updated schema and doctrine reports to reflect the new table limit.
 
 

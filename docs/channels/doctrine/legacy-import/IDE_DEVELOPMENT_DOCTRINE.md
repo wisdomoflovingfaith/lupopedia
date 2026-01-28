@@ -1,3 +1,9 @@
+﻿---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 2026.3.7.6
+file.channel: doctrine
+---
+
 # Lupopedia IDE & Development Doctrine
 
 ## 1. Canonical Versioning
@@ -63,7 +69,7 @@ Lupopedia is a semantic OS with:
 - emotional frameworks
 - kernel
 - boot sequence
-- 199-table ceiling enforced
+- 222-table ceiling enforced
 - Migration path originates from Crafty Syntax 3.7.5
 - Kernel and boot sequence must remain intact
 
@@ -81,3 +87,4 @@ Assist with:
 ---
 
 **This doctrine is mandatory for all IDE agents and development operations in Lupopedia.**
+

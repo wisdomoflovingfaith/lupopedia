@@ -2,9 +2,10 @@
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "CHANGELOG.md"
 file.version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
-file.last_modified_system_version: 2026.1.1.12
-file.last_modified_utc: 20260120180000
-file.utc_day: 20260120
+file.last_modified_system_version: 2026.3.7.6
+file.channel: doctrine
+file.last_modified_utc: 20260128133454
+file.utc_day: 20260128
 file.author: GLOBAL_CURRENT_AUTHORS
 file.status: published
 header_atoms:
@@ -17,10 +18,10 @@ GOV-AD-PROHIBIT-001: true
 UTC_TIMEKEEPER__CHANNEL_ID: "dev"
 
 dialog:
-  speaker: CURSOR
-  target: @FLEET @Monday_Wolfie @Wolf @CAPTAIN_WOLFIE
+  speaker: JETBRAINS
+  target: @everyone
   mood_RGB: "00FF88"
-  message: "Version 4.4.1 Complete. Mood Services Implementation: ActorMoodService + PackMoodCoherenceService created with actor_moods table, CLI tools, and HERMES routing doctrine. Legacy emotional geometry cleanup completed. Repository 100% compliant with canonical 2-actor RGB mood model. All services production-ready with comprehensive documentation."
+  message: "Logged 2026.3.7.6 updates covering emotional geometry, ethical markers, channel normalization, and header rules."
 tags:
   categories: ["documentation", "changelog"]
   collections: ["core-docs"]
@@ -36,6 +37,16 @@ file:
 ---
 
 # ALL NEW ENTRIES AFTER THIS LINE
+
+## 2026-01-28 - 2026.3.7.6 Sprint Actions
+
+- Updated Emotional Geometry Doctrine to v4.2 with Light-Emotion Isomorphism foundation.
+- Added doctrine `doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md` for pono/pilau/kapakai triad.
+- Added Captain's Log entries for fragmented feature recall and emergency bridge session.
+- Normalized channel directories to zero-padded numeric folders and generated `channels/registry.json`.
+- Added `scripts/generate_blessed_channel_registry.py` with strict identity requirements and ethical triad defaults.
+- Updated root `README.md` with Wolfie Header update requirements and channel provenance rule.
+- Updated system version to 2026.3.7.6.
 
 ## 2026-01-27 - Patch Bump, Untracked Files Committed
 
@@ -10952,3 +10963,17 @@ details manually.
 
 
 
+
+## 2026.3.7.6 - 2026-01-28
+### Added
+- Added Captain's Log entries for nightmare fragments and emergency bridge session.
+- Added `doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md` (pono/pilau/kapakai).
+- Added `plan_for_crafty_syntax.md` migration sprint plan.
+- Added `scripts/generate_blessed_channel_registry.py` for blessed registry generation.
+- Added `channels/registry.json` and normalized channel folders to numeric zero-padded names.
+
+### Changed
+- Updated Emotional Geometry doctrine to v4.2 with Light-Emotion Isomorphism preface.
+- Updated `README.md` with Wolfie Header update requirements and channel provenance rules.
+- Raised table ceiling doctrine/config references to 222 and added optimization trigger at 223+.
+- Updated schema and doctrine reports to reflect the new table limit.

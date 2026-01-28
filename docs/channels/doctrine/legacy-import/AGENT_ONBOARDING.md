@@ -1,3 +1,9 @@
+﻿---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 2026.3.7.6
+file.channel: doctrine
+---
+
 # DOCTRINE: AGENT ONBOARDING
 
 **Filename:** doctrine/AGENT_ONBOARDING.md  
@@ -262,7 +268,7 @@ channel_3_validation:
 ```yaml
 structural_constraints:
   mandatory_understanding:
-    - table_limit_constraints (199 tables)
+    - table_limit_constraints (222 tables)
     - migration_overage_window
     - naming_conventions
     - column_constraints
@@ -514,3 +520,4 @@ performance_metrics:
 **AUTHORITY:** This doctrine defines the mandatory onboarding process for all AI agents. No agent may operate without completing this onboarding successfully.
 
 **COMPLIANCE:** Required for all agent activation. System validation enforces onboarding completion before operational permissions are granted.
+
