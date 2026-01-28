@@ -26,14 +26,14 @@ tags:
 in_this_file_we_have:
   - No Foreign Keys Doctrine
   - Why Foreign Keys Are Forbidden
-  - ANIBUS: The Custodial Intelligence
+  - anubis: The Custodial Intelligence
   - How Orphans Work in Lupopedia
   - How NoSQL Memory Fits In
   - Summary Doctrine
   - Final Note for AI Tools
 file:
   title: "No Foreign Keys Doctrine"
-  description: "Why Lupopedia never uses foreign key constraints and how ANIBUS governs memory, lineage, and orphan resolution"
+  description: "Why Lupopedia never uses foreign key constraints and how anubis governs memory, lineage, and orphan resolution"
   version: GLOBAL_VERSION_4_0_1
   status: GLOBAL_DEFAULT_STATUS
   author: "Captain Wolfie"
@@ -41,7 +41,7 @@ file:
 
 # ðŸº **NO FOREIGN KEYS DOCTRINE**  
 ### *Why Lupopedia Never Uses Foreign Key Constraints*  
-### *And How ANIBUS Governs Memory, Lineage, and Orphan Resolution*
+### *And How anubis Governs Memory, Lineage, and Orphan Resolution*
 
 **GOV-PROHIBIT:** The No Foreign Keys prohibition is part of [GOV-PROHIBIT-002](GOV-PROHIBIT-002.md) (Anti-Chaos Database). Index: [GOV-PROHIBIT-000](GOV-PROHIBIT-000.md).
 
@@ -65,7 +65,7 @@ Foreign key constraints (FKs) violate all of these requirements.
 This document explains:
 
 - why FK constraints are forbidden  
-- how ANIBUS replaces FK enforcement  
+- how anubis replaces FK enforcement  
 - how orphaned records are handled  
 - how lineage and shadowâ€‘paths are preserved  
 - how future NoSQL memory tables integrate into the system  
@@ -80,7 +80,7 @@ Lupopedia follows a strict architectural rule:
 
 > **The database stores raw facts.  
 > The agents enforce correctness.  
-> ANIBUS heals and maintains lineage.**
+> anubis heals and maintains lineage.**
 
 This means:
 
@@ -127,7 +127,7 @@ Lupopedia is designed to be **selfâ€‘correcting**.
 
 Agents like:
 
-- **ANIBUS** (custodial intelligence)  
+- **anubis** (custodial intelligence)  
 - **Agent 0** (governor)  
 - **Thread Manager**  
 - **History Archivist**  
@@ -233,13 +233,13 @@ The `node_id` field is a scoping identifier, not a relational dependency. It ind
 
 ---
 
-## **4. ANIBUS: The Custodial Intelligence**
+## **4. anubis: The Custodial Intelligence**
 
-ANIBUS is the **custodial intelligence system** that replaces foreign key constraints in Lupopedia.
+anubis is the **custodial intelligence system** that replaces foreign key constraints in Lupopedia.
 
-**See [ANIBUS_DOCTRINE.md](ANIBUS_DOCTRINE.md) for complete documentation.**
+**See [anubis_DOCTRINE.md](anubis_DOCTRINE.md) for complete documentation.**
 
-ANIBUS is responsible for:
+anubis is responsible for:
 
 - memory governance  
 - orphan resolution  
@@ -252,35 +252,35 @@ ANIBUS is responsible for:
 - repairing partial imports  
 - validating agent behavior  
 
-ANIBUS replaces the need for FK constraints entirely.
+anubis replaces the need for FK constraints entirely.
 
-### **4.1 ANIBUS Implementation**
+### **4.1 anubis Implementation**
 
-ANIBUS is implemented as:
+anubis is implemented as:
 
-- **PHP Class:** `lupo-includes/class-anibus.php`
+- **PHP Class:** `lupo-includes/class-anubis.php`
 - **Database Tables:**
-  - `anibus_orphans` - Tracks orphaned references
-  - `anibus_redirects` - Maintains semantic redirects for memory redirection
-  - `anibus_events` - Logs all custodial actions
+  - `anubis_orphaned` - Tracks orphaned references
+  - `anubis_redirects` - Maintains semantic redirects for memory redirection
+  - `anubis_events` - Logs all custodial actions
 
-### **4.2 How ANIBUS Handles Orphans**
+### **4.2 How anubis Handles Orphans**
 
 When a record references something missing:
 
-- ANIBUS detects it (via `detectOrphansInTable()`)
-- ANIBUS logs it (to `anibus_orphans` table)
-- ANIBUS reassigns it (via `repairOrphansForTable()`)
-- ANIBUS creates redirects (to `anibus_redirects` table)
-- ANIBUS reconstructs lineage (preserves original references)
-- ANIBUS preserves emotional metadata (maintains continuity)
-- ANIBUS stores the "shadow state" (for historical reconstruction)
+- anubis detects it (via `detectOrphansInTable()`)
+- anubis logs it (to `anubis_orphaned` table)
+- anubis reassigns it (via `repairOrphansForTable()`)
+- anubis creates redirects (to `anubis_redirects` table)
+- anubis reconstructs lineage (preserves original references)
+- anubis preserves emotional metadata (maintains continuity)
+- anubis stores the "shadow state" (for historical reconstruction)
 
 FK constraints would block this entire process.
 
 ### **4.3 Memory Redirection**
 
-ANIBUS maintains **semantic redirects** that allow:
+anubis maintains **semantic redirects** that allow:
 
 - Queries to automatically follow redirects (`applyRedirectIfExists()`)
 - Lineage preservation when records are reassigned
@@ -350,7 +350,7 @@ Reasons:
 
 The database stores raw facts.
 The agents enforce correctness.
-ANIBUS heals and maintains lineage.
+anubis heals and maintains lineage.
 Nothing is ever deleted.
 Everything is preserved, reassigned, or archived.
 ```
@@ -370,7 +370,7 @@ Any AI tool (Cursor, Copilot, DeepSeek, Claude, Gemini, Grok, Windsurf) must fol
 
 All referential integrity is handled by:
 
-- **ANIBUS**  
+- **anubis**  
 - **Agent 0**  
 - **Doctrine**  
 - **Repair routines**  
@@ -386,9 +386,10 @@ This is how Lupopedia stays alive, flexible, emotional, and selfâ€‘healing.
 
 - **[Database Philosophy](../architecture/DATABASE_PHILOSOPHY.md)** - Core principle that database is ledger, application is brain - supports no FK doctrine
 - **[AI Schema Guide](../schema/AI_SCHEMA_GUIDE.md)** - Why schema references avoid foreign key assumptions and use explicit structure
-- **[ANIBUS Doctrine](ANIBUS_DOCTRINE.md)** - Complete custodial intelligence system that replaces foreign key constraints
+- **[anubis Doctrine](anubis_DOCTRINE.md)** - Complete custodial intelligence system that replaces foreign key constraints
 - **[Architecture Sync](../architecture/ARCHITECTURE_SYNC.md)** - System architecture implementing no-FK principles
 - **[WOLFMIND Doctrine](WOLFMIND_DOCTRINE.md)** - Memory system that uses application-managed relationships instead of foreign keys
 
 ---
+
 

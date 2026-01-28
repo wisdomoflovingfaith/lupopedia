@@ -35,9 +35,9 @@ RENAME TABLE lupopedia_orchestration.lupo_agent_tool_calls TO lupopedia.lupo_age
 RENAME TABLE lupopedia_orchestration.lupo_agent_versions TO lupopedia.lupo_agent_versions;
 RENAME TABLE lupopedia_orchestration.lupo_memory_events TO lupopedia.lupo_memory_events;
 RENAME TABLE lupopedia_orchestration.lupo_memory_rollups TO lupopedia.lupo_memory_rollups;
-RENAME TABLE lupopedia_orchestration.lupo_anibus_events TO lupopedia.lupo_anibus_events;
-RENAME TABLE lupopedia_orchestration.lupo_anibus_orphans TO lupopedia.lupo_anibus_orphans;
-RENAME TABLE lupopedia_orchestration.lupo_anibus_redirects TO lupopedia.lupo_anibus_redirects;
+RENAME TABLE lupopedia_orchestration.lupo_anubis_events TO lupopedia.lupo_anubis_events;
+RENAME TABLE lupopedia_orchestration.lupo_anubis_orphaned TO lupopedia.lupo_anubis_orphaned;
+RENAME TABLE lupopedia_orchestration.lupo_anubis_redirects TO lupopedia.lupo_anubis_redirects;
 RENAME TABLE lupopedia_orchestration.lupo_api_rate_limits TO lupopedia.lupo_api_rate_limits;
 RENAME TABLE lupopedia_orchestration.lupo_api_token_logs TO lupopedia.lupo_api_token_logs;
 RENAME TABLE lupopedia_orchestration.lupo_notifications TO lupopedia.lupo_notifications;
@@ -69,3 +69,4 @@ DROP SCHEMA IF EXISTS lupopedia_ephemeral;
 -- ======================================================================
 -- END OF PHASE A ROLLBACK
 -- ======================================================================
+

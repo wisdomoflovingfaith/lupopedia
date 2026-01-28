@@ -52,7 +52,7 @@ Lupopedia is built on five non-negotiable principles that make it fundamentally 
 ### 2. No Foreign Keys
 - All relationships managed in application code
 - Database stores facts, agents enforce correctness
-- ANIBUS handles orphan resolution and data repair
+- anubis handles orphan resolution and data repair
 - **Why:** Enables data merging, federation, and self-healing
 - **See:** [No Foreign Keys Doctrine](docs/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md)
 
@@ -161,13 +161,13 @@ Lupopedia is built on five non-negotiable principles that make it fundamentally 
 > 
 > **If you add any of these, you will make Captain cry.**
 > 
-> The database stores raw facts. The agents enforce correctness. [ANIBUS](docs/doctrine/ANIBUS_DOCTRINE.md) heals and maintains lineage.
+> The database stores raw facts. The agents enforce correctness. [anubis](docs/doctrine/anubis_DOCTRINE.md) heals and maintains lineage.
 > 
-> **⚠️ TRIGGERS ARE FORBIDDEN (MANDATORY):** Triggers must never be created, suggested, or added. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. Triggers interfere with data merging, historical accuracy, ANIBUS repair operations, and federation sync.
+> **⚠️ TRIGGERS ARE FORBIDDEN (MANDATORY):** Triggers must never be created, suggested, or added. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. Triggers interfere with data merging, historical accuracy, anubis repair operations, and federation sync.
 > 
-> **⚠️ STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** Stored procedures and functions must never be created, suggested, or added. The database is for storage, not computation. All logic must be in application code. Stored procedures/functions interfere with data merging, federation across different database engines, ANIBUS repair operations, and version control.
+> **⚠️ STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** Stored procedures and functions must never be created, suggested, or added. The database is for storage, not computation. All logic must be in application code. Stored procedures/functions interfere with data merging, federation across different database engines, anubis repair operations, and version control.
 > 
-> **See [NO FOREIGN KEYS DOCTRINE](docs/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md), [NO TRIGGERS DOCTRINE](docs/doctrine/NO_TRIGGERS_DOCTRINE.md), [NO STORED PROCEDURES DOCTRINE](docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md), and [ANIBUS DOCTRINE](docs/doctrine/ANIBUS_DOCTRINE.md) for complete details.**
+> **See [NO FOREIGN KEYS DOCTRINE](docs/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md), [NO TRIGGERS DOCTRINE](docs/doctrine/NO_TRIGGERS_DOCTRINE.md), [NO STORED PROCEDURES DOCTRINE](docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md), and [anubis DOCTRINE](docs/doctrine/anubis_DOCTRINE.md) for complete details.**
 > 
 > This is **non-negotiable core doctrine**. All AI tools (Cursor, Copilot, DeepSeek, Claude, Gemini, Grok, Windsurf) must follow this rule.
 
@@ -202,7 +202,7 @@ Lupopedia's unique capabilities are enabled by architectural choices that reject
 These aren't limitations — they're **advantages** that enable:
 - Data merging across installations
 - Federation across different database engines
-- Self-healing through ANIBUS custodial intelligence
+- Self-healing through anubis custodial intelligence
 - Portability across hosting environments
 - Longevity without framework deprecation
 
@@ -296,3 +296,4 @@ All AI agents (Cursor, Copilot, DeepSeek, Claude, Gemini, Grok, Windsurf) **MUST
 ---
 
 **End of Recommendations**
+

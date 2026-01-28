@@ -131,7 +131,7 @@ $hierarchy = [
                 'WOLFIE_DOCTRINE.md',
                 'WOLFIE_HEADER_DOCTRINE.md',
                 'WOLFMIND_DOCTRINE.md',
-                'ANIBUS_DOCTRINE.md',
+                'anubis_DOCTRINE.md',
                 'TOON_DOCTRINE.md'
             ]],
             ['name' => 'Versioning Doctrine', 'slug' => 'versioning-doctrine', 'sort' => 11, 'files' => [
@@ -563,3 +563,4 @@ file_put_contents(__DIR__ . '/seed_collection_0_hierarchical_tab_map_4.0.12.sql'
 echo "Generated seed SQL files:\n";
 echo "  - seed_collection_0_hierarchical_tabs_4.0.12.sql\n";
 echo "  - seed_collection_0_hierarchical_tab_map_4.0.12.sql\n";
+

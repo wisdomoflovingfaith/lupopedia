@@ -35,7 +35,7 @@ Top-Level Contents:
 - AGENT_RUNTIME.md
 - AI_INTEGRATION_SAFETY_DOCTRINE.md
 - AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md
-- ANIBUS_DOCTRINE.md
+- anubis_DOCTRINE.md
 - ARCHITECTURE_SYNC.md
 - as_above_so_below.md
 - ATOM_RESOLUTION_SPECIFICATION.md
@@ -197,4 +197,5 @@ Related Channels:
 - [architecture](../architecture/README.md)
 - [developer](../developer/README.md)
 - [dev-teams](../dev-teams/README.md)
+
 

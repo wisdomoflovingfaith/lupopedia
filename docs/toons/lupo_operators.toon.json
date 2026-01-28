@@ -2,13 +2,18 @@
   "table_name": "lupo_operators",
   "fields": [
     "`operator_id` bigint NOT NULL auto_increment",
+    "`anchor_agent_id` int",
+    "`metadata_json` json COMMENT 'Structured metadata for operator identity, preferences, and system state'",
     "`auth_user_id` bigint NOT NULL",
     "`actor_id` bigint NOT NULL",
     "`department_id` bigint NOT NULL",
     "`is_active` bigint DEFAULT 1",
     "`availability_status` varchar(20) DEFAULT 'offline'",
     "`created_ymdhis` bigint",
-    "`updated_ymdhis` bigint"
+    "`updated_ymdhis` bigint",
+    "`pono_score` decimal(3,2) DEFAULT 1.00",
+    "`pilau_score` decimal(3,2) DEFAULT 0.00",
+    "`kapakai_score` decimal(3,2) DEFAULT 0.50 COMMENT 'Ethical uncertainty marker - shoreline state between pono and pilau'"
   ],
   "data": [],
   "indexes": [

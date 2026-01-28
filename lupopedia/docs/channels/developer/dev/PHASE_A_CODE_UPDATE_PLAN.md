@@ -303,19 +303,19 @@ JOIN lupo_sessions
 
 ---
 
-## Phase 12: Anibus and Event Management
+## Phase 12: anubis and Event Management
 
-### Step 12.1: Update Anibus Tables
+### Step 12.1: Update anubis Tables
 
-**Action**: Find all Anibus table references
+**Action**: Find all anubis table references
 
 **Tables to Update**:
-- `lupo_anibus_events` → `lupopedia_orchestration.lupo_anibus_events`
-- `lupo_anibus_orphans` → `lupopedia_orchestration.lupo_anibus_orphans`
-- `lupo_anibus_redirects` → `lupopedia_orchestration.lupo_anibus_redirects`
+- `lupo_anubis_events` → `lupopedia_orchestration.lupo_anubis_events`
+- `lupo_anubis_orphaned` → `lupopedia_orchestration.lupo_anubis_orphaned`
+- `lupo_anubis_redirects` → `lupopedia_orchestration.lupo_anubis_redirects`
 
 **Files to Check**:
-- Anibus event handlers
+- anubis event handlers
 - Redirect management
 - Orphan detection
 
@@ -483,7 +483,7 @@ If issues occur:
 9. **Phase 9**: API and rate limiting
 10. **Phase 10**: System and orchestration
 11. **Phase 11**: Memory and debugging
-12. **Phase 12**: Anibus and events
+12. **Phase 12**: anubis and events
 13. **Phase 13**: Content processing
 
 ---
@@ -520,3 +520,4 @@ If issues occur:
 *Last Updated: January 2026*  
 *Version: GLOBAL_CURRENT_LUPOPEDIA_VERSION*  
 *Author: Captain Wolfie*
+

@@ -27,7 +27,7 @@ in_this_file_we_have:
   - Why Triggers Are Forbidden
   - Explicit Timestamp Control Requirement
   - Data Merging Requirements
-  - ANIBUS Data Repair Requirements
+  - anubis Data Repair Requirements
   - IDE Enforcement Rules
   - Summary Doctrine
 file:
@@ -75,7 +75,7 @@ Triggers must **NEVER** be created, suggested, or added.
 - Data repair operations
 - Database merging
 - Historical accuracy preservation
-- ANIBUS orphan resolution
+- anubis orphan resolution
 - Federation sync operations
 - Import/export workflows
 - Legacy data preservation
@@ -243,9 +243,9 @@ $db->insert('agents', [
 
 ---
 
-## **5. ANIBUS Must Be Free to Repair Data**
+## **5. anubis Must Be Free to Repair Data**
 
-ANIBUS (the custodial intelligence agent) will receive:
+anubis (the custodial intelligence agent) will receive:
 
 - Orphaned rows
 - Deleted parents
@@ -255,7 +255,7 @@ ANIBUS (the custodial intelligence agent) will receive:
 - Broken relationships
 - Federation conflicts
 
-**ANIBUS must be able to:**
+**anubis must be able to:**
 
 - Preserve original timestamps during repairs
 - Compare timestamps across nodes
@@ -265,10 +265,10 @@ ANIBUS (the custodial intelligence agent) will receive:
 - Rebuild relationships while maintaining history
 - Reconstruct timelines from original timestamps
 
-**Example ANIBUS Repair:**
+**Example anubis Repair:**
 
 ```php
-// ANIBUS finds orphaned agent record with original timestamp
+// anubis finds orphaned agent record with original timestamp
 $orphan = [
     'agent_id' => 42,
     'agent_name' => 'Orphaned Agent',
@@ -277,8 +277,8 @@ $orphan = [
     'parent_agent_id' => 999  // Orphaned reference (parent deleted)
 ];
 
-// ANIBUS repairs by reassigning parent, PRESERVING original timestamps
-$anibus->repairOrphan('agents', 42, [
+// anubis repairs by reassigning parent, PRESERVING original timestamps
+$anubis->repairOrphan('agents', 42, [
     'parent_agent_id' => 1,  // Reassigned to valid parent
     // created_ymdhis remains: 20250105100000 (PRESERVED)
     // updated_ymdhis remains: 20250106150000 (PRESERVED)
@@ -463,7 +463,7 @@ TRIGGERS ARE FORBIDDEN IN LUPOPEDIA (MANDATORY).
 Reasons:
 - Interfere with data merging
 - Destroy historical accuracy
-- Break ANIBUS repair operations
+- Break anubis repair operations
 - Break federation sync
 - Corrupt imported timestamps
 - Make conflict resolution impossible
@@ -508,7 +508,7 @@ All timestamp control is handled by:
 - **Application code** (PHP, Python, etc.)
 - **Explicit INSERT/UPDATE statements**
 - **YMDHIS UTC format (BIGINT)**
-- **ANIBUS repair operations**
+- **anubis repair operations**
 - **Federation sync logic**
 - **Merge algorithms**
 
@@ -526,9 +526,10 @@ This doctrine works in conjunction with:
 - **[NO_STORED_PROCEDURES_DOCTRINE.md](NO_STORED_PROCEDURES_DOCTRINE.md)** â€” Database logic is forbidden; all computation in application layer
 - **[WOLFIE_TIMESTAMP_DOCTRINE.md](../developer/dev/WOLFIE_TIMESTAMP_DOCTRINE.md)** â€” Explicit timestamp format requirements (BIGINT UTC YYYYMMDDHHIISS)
 - **[DATABASE_PHILOSOPHY.md](../architecture/DATABASE_PHILOSOPHY.md)** â€” Application logic first, database logic second
-- **[ANIBUS_DOCTRINE.md](ANIBUS_DOCTRINE.md)** â€” Custodial intelligence handles data repair without triggers
+- **[anubis_DOCTRINE.md](anubis_DOCTRINE.md)** â€” Custodial intelligence handles data repair without triggers
 
----- [ANIBUS_DOCTRINE.md](ANIBUS_DOCTRINE.md) â€” How ANIBUS handles data repair
+---- [anubis_DOCTRINE.md](anubis_DOCTRINE.md) â€” How anubis handles data repair
 - [PHILOSOPHY.md](../../PHILOSOPHY.md) â€” Overall database philosophy
 
 ---
+

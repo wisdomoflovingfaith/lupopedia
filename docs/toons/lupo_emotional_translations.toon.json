@@ -1,0 +1,26 @@
+{
+  "table_name": "lupo_emotional_translations",
+  "fields": [
+    "`translation_id` bigint NOT NULL auto_increment",
+    "`source_framework` varchar(32) NOT NULL",
+    "`source_state` text NOT NULL",
+    "`target_framework` varchar(32) NOT NULL",
+    "`target_state` text NOT NULL",
+    "`loss_score` decimal(3,2) NOT NULL",
+    "`created_ymdhis` bigint NOT NULL",
+    "`last_used_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "translation_id",
+    "expected_name": "translation_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

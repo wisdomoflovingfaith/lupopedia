@@ -1,0 +1,56 @@
+{
+  "table_name": "lupo_truth_questions",
+  "fields": [
+    "`truth_question_id` bigint unsigned NOT NULL auto_increment",
+    "`truth_question_parent_id` bigint unsigned",
+    "`actor_id` bigint unsigned NOT NULL DEFAULT 0",
+    "`qtype` varchar(50) NOT NULL DEFAULT 'unknown'",
+    "`status` enum('active','draft','pending','archived') NOT NULL DEFAULT 'active'",
+    "`sort_num` int unsigned NOT NULL DEFAULT 0",
+    "`slug` varchar(255) NOT NULL",
+    "`question_text` text NOT NULL",
+    "`format` enum('text','html','markdown','json') NOT NULL DEFAULT 'text'",
+    "`format_override` varchar(50)",
+    "`view_count` bigint unsigned NOT NULL DEFAULT 0",
+    "`likes_count` bigint unsigned NOT NULL DEFAULT 0",
+    "`shares_count` bigint unsigned NOT NULL DEFAULT 0",
+    "`answer_count` bigint unsigned NOT NULL DEFAULT 0",
+    "`last_activity_ymdhis` bigint unsigned",
+    "`is_featured` tinyint(1) NOT NULL DEFAULT 0",
+    "`is_verified` tinyint(1) NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint unsigned NOT NULL",
+    "`updated_ymdhis` bigint unsigned NOT NULL",
+    "`is_deleted` tinyint(1) NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint unsigned"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_parent",
+      "columns": [
+        "truth_question_parent_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "truth_question_id",
+    "expected_name": "truth_question_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

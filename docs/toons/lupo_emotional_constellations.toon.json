@@ -1,0 +1,27 @@
+{
+  "table_name": "lupo_emotional_constellations",
+  "fields": [
+    "`constellation_id` char(26) NOT NULL COMMENT 'ULID'",
+    "`framework_name` varchar(255) NOT NULL",
+    "`cultural_origin` varchar(255)",
+    "`description` text",
+    "`stars` json NOT NULL COMMENT 'Array of star_ids'",
+    "`is_canonical` tinyint(1) NOT NULL DEFAULT 0",
+    "`canonical_for_culture` varchar(255)",
+    "`created_ymdhis` bigint",
+    "`deprecated_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "constellation_id",
+    "expected_name": "constellation_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

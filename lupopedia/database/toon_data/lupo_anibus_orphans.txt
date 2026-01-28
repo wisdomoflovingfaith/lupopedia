@@ -1,7 +1,7 @@
 {
-    "table_name": "lupo_anibus_orphans",
+    "table_name": "lupo_anubis_orphaned",
     "fields": [
-        "`anibus_orphan_id` int NOT NULL auto_increment",
+        "`anubis_orphan_id` int NOT NULL auto_increment",
         "`table_name` varchar(128) NOT NULL",
         "`column_name` varchar(128) NOT NULL",
         "`missing_id` bigint NOT NULL",
@@ -11,8 +11,8 @@
     ],
     "data": [],
     "primary_key": {
-        "column_name": "anibus_orphan_id",
-        "expected_name": "anibus_orphan_id",
+        "column_name": "anubis_orphan_id",
+        "expected_name": "anubis_orphan_id",
         "is_correct": true,
         "needs_rename": false
     }

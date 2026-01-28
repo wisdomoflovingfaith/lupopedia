@@ -2,7 +2,6 @@
   "table_name": "livehelp_users",
   "fields": [
     "`user_id` int NOT NULL auto_increment",
-    "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
     "`lastaction` bigint DEFAULT 0",
     "`username` varchar(30) NOT NULL DEFAULT ''",
     "`displayname` varchar(42) NOT NULL DEFAULT ''",
@@ -90,14 +89,6 @@
       "index_name": "sessionid",
       "columns": [
         "sessionid"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "livehelp_id",
-      "columns": [
-        "livehelp_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

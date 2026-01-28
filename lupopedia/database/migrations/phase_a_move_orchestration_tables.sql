@@ -48,9 +48,9 @@ RENAME TABLE lupopedia.lupo_agent_versions TO lupopedia_orchestration.lupo_agent
 -- Memory and Event Management
 RENAME TABLE lupopedia.lupo_memory_events TO lupopedia_orchestration.lupo_memory_events;
 RENAME TABLE lupopedia.lupo_memory_rollups TO lupopedia_orchestration.lupo_memory_rollups;
-RENAME TABLE lupopedia.lupo_anibus_events TO lupopedia_orchestration.lupo_anibus_events;
-RENAME TABLE lupopedia.lupo_anibus_orphans TO lupopedia_orchestration.lupo_anibus_orphans;
-RENAME TABLE lupopedia.lupo_anibus_redirects TO lupopedia_orchestration.lupo_anibus_redirects;
+RENAME TABLE lupopedia.lupo_anubis_events TO lupopedia_orchestration.lupo_anubis_events;
+RENAME TABLE lupopedia.lupo_anubis_orphaned TO lupopedia_orchestration.lupo_anubis_orphaned;
+RENAME TABLE lupopedia.lupo_anubis_redirects TO lupopedia_orchestration.lupo_anubis_redirects;
 
 -- API and Rate Limiting
 RENAME TABLE lupopedia.lupo_api_rate_limits TO lupopedia_orchestration.lupo_api_rate_limits;
@@ -72,3 +72,4 @@ RENAME TABLE lupopedia.lupo_governance_overrides TO lupopedia_orchestration.lupo
 -- ======================================================================
 -- END OF PHASE A ORCHESTRATION TABLE MIGRATION
 -- ======================================================================
+

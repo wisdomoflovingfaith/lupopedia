@@ -1,0 +1,23 @@
+{
+  "table_name": "lupo_emotional_frameworks",
+  "fields": [
+    "`framework_name` varchar(32) NOT NULL",
+    "`description` text",
+    "`is_default` tinyint(1) NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "framework_name",
+    "expected_name": "framework_name",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -198,7 +198,7 @@ def calculate_expected_pk_name(table_name: str) -> str:
     
     Examples:
         lupo_agent_registry → agent_registry_id (registry is already singular)
-        lupo_anibus_redirects → anibus_redirect_id (redirects → redirect)
+        lupo_anubis_redirects → anubis_redirect_id (redirects → redirect)
         lupo_collection_tabs → collection_tab_id (tabs → tab)
         lupo_truth_topics → truth_topic_id (topics → topic)
         lupo_user_comments → user_comment_id (comments → comment)
@@ -207,7 +207,7 @@ def calculate_expected_pk_name(table_name: str) -> str:
         lupo_narrative_fragments → narrative_fragment_id (fragments → fragment)
         lupo_dialog_threads → dialog_thread_id (threads → thread)
         lupo_dialog_message_bodies → dialog_message_body_id (bodies → body)
-        lupo_anibus_orphans → anibus_orphan_id (orphans → orphan)
+        lupo_anubis_orphaned → anubis_orphan_id (orphans → orphan)
     """
     # Remove lupo_ prefix if present
     name = table_name.replace('lupo_', '', 1) if table_name.startswith('lupo_') else table_name
@@ -707,4 +707,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 

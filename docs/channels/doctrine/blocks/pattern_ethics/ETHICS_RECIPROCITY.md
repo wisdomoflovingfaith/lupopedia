@@ -233,7 +233,7 @@ Stores memory events for actors (agents, users, services).
 
 **Purpose:** Store all memory events for actors, supporting both relational and vector retrieval.
 
-**Note:** No foreign key on `actor_id` - follows Lupopedia doctrine. ANIBUS handles orphan resolution.
+**Note:** No foreign key on `actor_id` - follows Lupopedia doctrine. anubis handles orphan resolution.
 
 ### **4.2 `memory_debug_log`**
 Internal logging for WOLFMIND operations and debugging.
@@ -321,7 +321,7 @@ When vector support is unavailable:
 
 WOLFMIND integrates with:
 
-- **ANIBUS** - Handles orphan resolution for `actor_id` references
+- **anubis** - Handles orphan resolution for `actor_id` references
 - **Agent Framework** - Each agent has its own memory space via `actor_id`
 - **Actor System** - Memory scoped to actors (users, agents, services)
 - **Dialog System** - Can store dialog context as memory events
@@ -406,9 +406,9 @@ WOLFMIND implements progressive enhancement:
 
 ## **10. Relationship to Other Systems**
 
-### **10.1 ANIBUS Integration**
-- ANIBUS handles orphan resolution for `actor_id` references
-- If an actor is deleted/reassigned, ANIBUS creates redirects
+### **10.1 anubis Integration**
+- anubis handles orphan resolution for `actor_id` references
+- If an actor is deleted/reassigned, anubis creates redirects
 - WOLFMIND can use `applyRedirectIfExists()` to follow redirects
 
 ### **10.2 Actor System**
@@ -462,7 +462,7 @@ WOLFMIND is the **memory curator** that:
 - Follows progressive enhancement doctrine
 - Works on foundation tier, unlocks with better tiers
 - Maintains no foreign keys (application-managed)
-- Integrates with ANIBUS for orphan resolution
+- Integrates with anubis for orphan resolution
 - Enables long-term agent learning
 
 Without WOLFMIND, agents would have no memory.
@@ -489,4 +489,5 @@ This is how Lupopedia agents become truly intelligent over time.
 - **[MySQL to Postgres Memory](../appendix/appendix/MYSQL_TO_POSTGRES_MEMORY.md)** - Complete migration specification for memory tables
 
 ---
+
 

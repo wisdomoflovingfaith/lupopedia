@@ -1,4 +1,4 @@
-﻿=== TABLE: auth_audit_log ===
+=== TABLE: auth_audit_log ===
 Primary Key: N/A
 Columns: `id` bigint NOT NULL auto_increment COMMENT 'Primary key for audit log entry', `user_id` bigint COMMENT 'Reference to lupo_auth_users.auth_user_id', `crafty_operator_id` int COMMENT 'Reference to livehelp_operators.operatorid', `event_type` varchar(50) NOT NULL COMMENT 'login, logout, session_created, session_destroyed, etc.', `system_context` varchar(50) NOT NULL COMMENT 'lupopedia, crafty_syntax, unified, admin', `ip_address` varchar(45) COMMENT 'Client IP address', `user_agent` text COMMENT 'Client user agent string', `event_data` json COMMENT 'Additional event metadata', `success` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=success, 0=failure', `error_message` text COMMENT 'Error details if success=0', `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED COMMENT 'Event timestamp', `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED on update CURRENT_TIMESTAMP COMMENT 'Last update timestamp'
 Indexes: N/A
@@ -180,7 +180,7 @@ Indexes: INDEX: idx_content (content_id, date_ymd); INDEX: idx_created (created_
 
 === TABLE: lupo_analytics_referers_monthly ===
 Primary Key: analytics_referers_monthly_id
-Columns: `analytics_referers_monthly_id` bigint NOT NULL auto_increment COMMENT 'Primary key for monthly referer records', `content_id` bigint NOT NULL DEFAULT 0 COMMENT 'Content ID of the visited page (0 = non-content page)', `url_path` varchar(500) NOT NULL COMMENT 'raw, full URL', `referer_content_id` bigint NOT NULL DEFAULT 0 COMMENT 'Content ID of the referer page (0 = direct visit)', `referer_url_path` varchar(500) NOT NULL COMMENT 'raw, full URL', `parent_id` bigint NOT NULL DEFAULT 0 COMMENT 'Parent referer record for hierarchical analysis', `level` int NOT NULL DEFAULT 1 COMMENT 'Depth level in the referer tree', `group_id` bigint NOT NULL DEFAULT 0 COMMENT 'Group associated with this content', `date_ym` bigint NOT NULL COMMENT 'UTC YYYYMM representing the monthly bucket', `visits` int NOT NULL DEFAULT 0 COMMENT 'Total visits for this refererâ†’page path in this month', `direct_visits` int NOT NULL DEFAULT 0 COMMENT 'Visits with no referer (entry points)', `created_ymdhis` bigint NOT NULL COMMENT 'Record creation timestamp (UTC YYYYMMDDHHMMSS)', `updated_ymdhis` bigint NOT NULL COMMENT 'Record update timestamp (UTC YYYYMMDDHHMMSS)'
+Columns: `analytics_referers_monthly_id` bigint NOT NULL auto_increment COMMENT 'Primary key for monthly referer records', `content_id` bigint NOT NULL DEFAULT 0 COMMENT 'Content ID of the visited page (0 = non-content page)', `url_path` varchar(500) NOT NULL COMMENT 'raw, full URL', `referer_content_id` bigint NOT NULL DEFAULT 0 COMMENT 'Content ID of the referer page (0 = direct visit)', `referer_url_path` varchar(500) NOT NULL COMMENT 'raw, full URL', `parent_id` bigint NOT NULL DEFAULT 0 COMMENT 'Parent referer record for hierarchical analysis', `level` int NOT NULL DEFAULT 1 COMMENT 'Depth level in the referer tree', `group_id` bigint NOT NULL DEFAULT 0 COMMENT 'Group associated with this content', `date_ym` bigint NOT NULL COMMENT 'UTC YYYYMM representing the monthly bucket', `visits` int NOT NULL DEFAULT 0 COMMENT 'Total visits for this referer→page path in this month', `direct_visits` int NOT NULL DEFAULT 0 COMMENT 'Visits with no referer (entry points)', `created_ymdhis` bigint NOT NULL COMMENT 'Record creation timestamp (UTC YYYYMMDDHHMMSS)', `updated_ymdhis` bigint NOT NULL COMMENT 'Record update timestamp (UTC YYYYMMDDHHMMSS)'
 Indexes: INDEX: idx_content (content_id, date_ym); INDEX: idx_created (created_ymdhis); INDEX: idx_domain_month (date_ym); INDEX: idx_group (group_id, date_ym); INDEX: idx_level (level, date_ym); INDEX: idx_referer (referer_content_id, date_ym); INDEX: idx_updated (updated_ymdhis); UNIQUE: uq_referer_month (content_id, referer_content_id, date_ym)
 
 === TABLE: lupo_analytics_visits ===
@@ -198,19 +198,29 @@ Primary Key: analytics_visits_monthly_id
 Columns: `analytics_visits_monthly_id` bigint NOT NULL auto_increment COMMENT 'Primary key for monthly page visit statistics', `content_id` bigint NOT NULL DEFAULT 0 COMMENT 'Content ID of the visited page (0 = non-content page)', `url_path` varchar(500) NOT NULL DEFAULT '' COMMENT 'Normalized URL path of the visited page', `group_id` bigint NOT NULL DEFAULT 0 COMMENT 'Group associated with this content', `date_ym` bigint NOT NULL COMMENT 'UTC YYYYMM representing the monthly bucket', `visits` int NOT NULL DEFAULT 0, `unique_sessions` int NOT NULL DEFAULT 0, `unique_actors` int NOT NULL DEFAULT 0, `direct_visits` int NOT NULL DEFAULT 0, `internal_visits` int NOT NULL DEFAULT 0, `entry_count` int NOT NULL DEFAULT 0, `exit_count` int NOT NULL DEFAULT 0, `total_seconds` int NOT NULL DEFAULT 0, `avg_seconds` int NOT NULL DEFAULT 0, `created_ymdhis` bigint NOT NULL, `updated_ymdhis` bigint NOT NULL
 Indexes: INDEX: idx_content (content_id, date_ym); INDEX: idx_created (created_ymdhis); INDEX: idx_group (group_id, date_ym); INDEX: idx_updated (updated_ymdhis); UNIQUE: uq_visits_monthly (content_id, date_ym)
 
-=== TABLE: lupo_anibus_events ===
-Primary Key: anibus_event_id
-Columns: `anibus_event_id` int NOT NULL auto_increment, `event_type` varchar(64) NOT NULL, `details` text NOT NULL, `created_ymdhis` bigint NOT NULL
+=== TABLE: lupo_anubis_events ===
+Primary Key: anubis_event_id
+Columns: `anubis_event_id` bigint NOT NULL auto_increment, `event_type` varchar(64) NOT NULL, `table_name` varchar(255) NOT NULL, `row_id` bigint NOT NULL, `timestamp_utc` char(14) NOT NULL, `agent` varchar(255) NOT NULL, `details_json` longtext NOT NULL
 Indexes: N/A
 
-=== TABLE: lupo_anibus_orphans ===
-Primary Key: anibus_orphan_id
-Columns: `anibus_orphan_id` int NOT NULL auto_increment, `table_name` varchar(128) NOT NULL, `column_name` varchar(128) NOT NULL, `missing_id` bigint NOT NULL, `detected_ymdhis` bigint NOT NULL, `resolved_ymdhis` bigint, `resolution_note` text
+=== TABLE: lupo_anubis_orphaned ===
+Primary Key: anubis_orphaned_id
+Columns: `anubis_orphaned_id` bigint NOT NULL auto_increment, `table_name` varchar(255) NOT NULL, `orphan_id` bigint NOT NULL, `timestamp_utc` char(14) NOT NULL, `reason` varchar(255) NOT NULL
 Indexes: N/A
 
-=== TABLE: lupo_anibus_redirects ===
-Primary Key: anibus_redirect_id
-Columns: `anibus_redirect_id` int NOT NULL auto_increment, `from_id` bigint NOT NULL, `to_id` bigint NOT NULL, `table_name` varchar(128) NOT NULL, `reason` varchar(128) NOT NULL, `created_ymdhis` bigint NOT NULL
+=== TABLE: lupo_anubis_revised ===
+Primary Key: anubis_revised_id
+Columns: `anubis_revised_id` bigint NOT NULL auto_increment, `table_name` varchar(255) NOT NULL, `row_id` bigint NOT NULL, `timestamp_utc` char(14) NOT NULL, `agent` varchar(255) NOT NULL, `revision_json` longtext NOT NULL
+Indexes: N/A
+
+=== TABLE: lupo_anubis_redirects ===
+Primary Key: anubis_redirect_id
+Columns: `anubis_redirect_id` bigint NOT NULL auto_increment, `table_name` varchar(255) NOT NULL, `old_id` bigint NOT NULL, `new_id` bigint NOT NULL, `timestamp_utc` char(14) NOT NULL, `agent` varchar(255) NOT NULL
+Indexes: N/A
+
+=== TABLE: lupo_anubis_mirrored ===
+Primary Key: anubis_mirrored_id
+Columns: `anubis_mirrored_id` bigint NOT NULL auto_increment, `table_name` varchar(255) NOT NULL, `original_id` bigint NOT NULL, `mirrored_json` longtext NOT NULL, `timestamp_utc` char(14) NOT NULL, `agent` varchar(255) NOT NULL, `reason` varchar(255) NOT NULL, `lineage_chain` varchar(255)
 Indexes: N/A
 
 === TABLE: lupo_api_clients ===
@@ -912,4 +922,5 @@ Indexes: N/A
 Primary Key: N/A
 Columns: `truth_item_id` bigint NOT NULL, `item_type` enum('question','answer') NOT NULL, `name` varchar(255), `slug` varchar(255), `body_text` longtext, `metadata_json` json, `created_ymdhis` bigint
 Indexes: N/A
+
 

@@ -554,7 +554,7 @@ A structured data format used for database schema documentation and data exchang
 
 A deletion strategy where records are marked as deleted (deleted_ymdhis != 0) but not physically removed from the database.
 
-**Purpose:** Enables recovery, maintains referential integrity, supports ANIBUS orphan handling
+**Purpose:** Enables recovery, maintains referential integrity, supports anubis orphan handling
 
 **See:** [NO_FOREIGN_KEYS_DOCTRINE.md](../../doctrine/NO_FOREIGN_KEYS_DOCTRINE.md)
 
@@ -589,3 +589,4 @@ Timestamp format: YYYYMMDDHHMMSS stored as BIGINT(14) in UTC.
 
 **Last Updated:** January 15, 2026  
 **Version:** GLOBAL_CURRENT_LUPOPEDIA_VERSION
+

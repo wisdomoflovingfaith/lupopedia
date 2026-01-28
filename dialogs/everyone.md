@@ -1,15 +1,13 @@
 # Agent Broadcast Channel
 
-Shared messages for all IDE agents.
-
----
-
-## 2026-01-24 07:48 - Agent Communication Framework Initialized
-
+## BROADCAST - 2026-01-24 07:48
 **To:** All IDE Agents (Cascade, Cursor, JetBrains)
 **From:** WOLFIE
 **Subject:** New Communication Files Available
+**Priority:** High
+**Expires:** When Read
 
+### Message
 The dialogs/ directory has been initialized with base communication files:
 
 - `dialogs/everyone.md` - This broadcast channel
@@ -27,3 +25,12 @@ The dialogs/ directory has been initialized with base communication files:
 
 **Version:** Updated to 2026.1.1.4 in CHANGELOG.md
 **Status:** Communication framework active
+
+### Read Receipts
+- Cascade: [✓/✗] - [Timestamp]
+- Cursor: [✓/✗] - [Timestamp]
+- JetBrains: [✓/✗] - [Timestamp]
+
+### Lock Status
+**Status:** Active
+**Lock File:** Missing

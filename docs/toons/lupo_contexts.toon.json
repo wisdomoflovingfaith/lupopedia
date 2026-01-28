@@ -1,30 +1,29 @@
 {
   "table_name": "lupo_contexts",
   "fields": [
-    "`context_id` bigint NOT NULL auto_increment",
-    "`context_type` varchar(50) NOT NULL",
-    "`context_slug` varchar(255) NOT NULL",
-    "`parent_context_id` bigint",
-    "`description` text",
-    "`created_ymd` bigint NOT NULL DEFAULT 0",
-    "`updated_ymd` bigint NOT NULL DEFAULT 0"
+    "`context_id` int unsigned NOT NULL auto_increment",
+    "`context_code` varchar(16) NOT NULL COMMENT 'Numeric/hierarchical code, e.g. 1000, 2100.10'",
+    "`context_name` varchar(255) NOT NULL COMMENT 'Short human-readable label'",
+    "`context_description` text COMMENT 'Long-form description / doctrine notes'",
+    "`parent_context_id` int unsigned COMMENT 'FK to lupo_contexts.context_id for hierarchy'",
+    "`is_system` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1 = system/meta/doctrine context'",
+    "`is_fiction` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1 = fiction / narrative / lore'",
+    "`is_installation_local` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1 = installation-specific context'",
+    "`sort_order` int NOT NULL DEFAULT 0 COMMENT 'Optional manual ordering within siblings'",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`weight_score` decimal(5,2) NOT NULL DEFAULT 0.00 COMMENT 'Dynamic ranking score based on age, revisions, likes, shares, references, and links'",
+    "`is_active` tinyint(1) NOT NULL DEFAULT 1",
+    "`metadata_json` json COMMENT 'Extra semantic flags, routing hints, emotional metadata, etc.'"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_context_type",
+      "index_name": "uq_context_code",
       "columns": [
-        "context_type"
+        "context_code"
       ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "idx_context_slug",
-      "columns": [
-        "context_slug"
-      ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {

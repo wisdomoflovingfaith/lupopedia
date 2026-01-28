@@ -28,7 +28,15 @@
     "`api_key_id` bigint COMMENT 'API key reference'",
     "`timeout_ms` int DEFAULT 20000",
     "`safety_json` json",
-    "`response_format` varchar(50)"
+    "`response_format` varchar(50)",
+    "`pono_score` decimal(3,2) DEFAULT 1.00",
+    "`pilau_score` decimal(3,2) DEFAULT 0.00",
+    "`kapakai_score` decimal(3,2) DEFAULT 0.50 COMMENT 'Ethical uncertainty marker - shoreline state between pono and pilau'",
+    "`kapu_active` tinyint(1) DEFAULT 0",
+    "`kapu_until` bigint",
+    "`kapu_reason` varchar(500)",
+    "`kapu_consent_given` tinyint(1) DEFAULT 0",
+    "`kapu_appeal_pending` tinyint(1) DEFAULT 0"
   ],
   "data": [],
   "indexes": [

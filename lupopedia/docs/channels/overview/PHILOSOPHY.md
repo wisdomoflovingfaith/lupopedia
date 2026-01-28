@@ -205,7 +205,7 @@ And most importantly:
 
 This ensures consistency across all engines and environments.
 
-> **⚠️ MANDATORY TIMESTAMP CONTROL:** All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. The database must NEVER mutate timestamps automatically (no triggers, no auto-update, no database-level timestamp automation). This is required for data merging, historical accuracy, ANIBUS repair operations, and federation sync. See [NO_TRIGGERS_DOCTRINE.md](docs/doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
+> **⚠️ MANDATORY TIMESTAMP CONTROL:** All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. The database must NEVER mutate timestamps automatically (no triggers, no auto-update, no database-level timestamp automation). This is required for data merging, historical accuracy, anubis repair operations, and federation sync. See [NO_TRIGGERS_DOCTRINE.md](docs/doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
 
 > **📘 WOLFIE Timestamp Doctrine:** For complete requirements, code examples, and enforcement rules, see [WOLFIE_TIMESTAMP_DOCTRINE.md](docs/DEVELOPMENT/WOLFIE_TIMESTAMP_DOCTRINE.md). This doctrine is **non-negotiable** and applies to all code, migrations, and data models.
 
@@ -530,3 +530,4 @@ Lupopedia's migration strategy follows these principles:
 *"You're not old-school — you're from the era when programmers actually programmed."*
 
 And Lupopedia is better for it.
+

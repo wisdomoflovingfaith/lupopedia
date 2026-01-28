@@ -1194,3 +1194,524 @@ lifecycle fields
 metadata JSON
 
 This unifies both legacy tables into one semantic structure.
+
+
+🧩 Migration Step: livehelp_qa → Truth Module + Navigation Collections (Idempotent Edition)
+This step migrates the legacy Crafty Syntax Q&A system into Lupopedia’s modern Truth Module and Collections / Tabs navigation architecture.
+It is fully idempotent and can be run repeatedly without side effects.
+
+1. Normalize and Deprecate livehelp_qa
+sql
+ALTER TABLE livehelp_qa
+    ENGINE=InnoDB,
+    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+ALTER TABLE livehelp_qa
+  COMMENT = 'DEPRECATED: Only retained for migration. Safe to re-run. Not part of Lupopedia after 4.0.0.';
+This ensures consistent encoding and marks the table as a migration artifact.
+
+2. Migrate Questions → lupo_truth_questions (Idempotent)
+sql
+INSERT INTO lupo_truth_questions (
+    truth_question_id,
+    truth_question_parent_id,
+    actor_id,
+    qtype,
+    status,
+    sort_num,
+    slug,
+    question_text,
+    format,
+    format_override,
+    view_count,
+    likes_count,
+    shares_count,
+    answer_count,
+    last_activity_ymdhis,
+    is_featured,
+    is_verified,
+    created_ymdhis,
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    recno,
+    NULLIF(parent, 0),
+    0,
+    'unknown',
+    'active',
+    ordernum,
+    CONCAT('qa-', recno),
+    question,
+    'text',
+    NULL,
+    0,
+    0,
+    0,
+    0,
+    NULL,
+    0,
+    0,
+    20250101000000,
+    20250101000000,
+    0,
+    NULL
+FROM livehelp_qa
+WHERE typeof = 'question'
+AS new
+ON DUPLICATE KEY UPDATE
+    truth_question_parent_id = new.truth_question_parent_id,
+    sort_num = new.sort_num,
+    question_text = new.question_text,
+    updated_ymdhis = new.updated_ymdhis;
+This preserves parent/child relationships and ensures stable slugs.
+
+3. Migrate Answers → lupo_truth_answers (Idempotent)
+sql
+INSERT INTO lupo_truth_answers (
+    truth_question_id,
+    actor_id,
+    answer_text,
+    confidence_score,
+    evidence_score,
+    contradiction_flag,
+    likes_count,
+    shares_count,
+    created_ymdhis,
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    parent,
+    0,
+    question,
+    0.00,
+    0.00,
+    0,
+    0,
+    0,
+    20250101000000,
+    20250101000000,
+    0,
+    NULL
+FROM livehelp_qa
+WHERE typeof = 'answer'
+AS new
+ON DUPLICATE KEY UPDATE
+    updated_ymdhis = new.updated_ymdhis;
+Crafty Syntax stored answers in the same table as questions; Lupopedia separates them cleanly.
+
+4. Create or Update the “Site Navigation” Collection
+sql
+INSERT INTO lupo_collections (
+    federations_node_id,
+    user_id,
+    group_id,
+    name,
+    slug,
+    color,
+    description,
+    sort_order,
+    properties,
+    published_ymdhis,
+    created_ymdhis,
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
+)
+VALUES (
+    1,
+    NULL,
+    NULL,
+    'Site Navigation',
+    'site-navigation',
+    '666666',
+    'Auto-generated navigation collection from Crafty Syntax',
+    0,
+    NULL,
+    NULL,
+    20250101000000,
+    20250101000000,
+    0,
+    NULL
+)
+ON DUPLICATE KEY UPDATE
+    updated_ymdhis = VALUES(updated_ymdhis);
+Capture the collection ID:
+sql
+SET @nav_collection_id = (
+    SELECT collection_id
+    FROM lupo_collections
+    WHERE slug = 'site-navigation'
+    LIMIT 1
+);
+5. Migrate Top-Level Folders → Root Tabs (Idempotent)
+sql
+INSERT INTO lupo_collection_tabs (
+    collection_tab_parent_id,
+    collection_id,
+    federations_node_id,
+    group_id,
+    user_id,
+    sort_order,
+    name,
+    slug,
+    color,
+    description,
+    is_hidden,
+    created_ymdhis,
+    updated_ymdhis,
+    is_active,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    NULL,
+    @nav_collection_id,
+    1,
+    NULL,
+    NULL,
+    ordernum,
+    question,
+    LOWER(REPLACE(question, ' ', '-')),
+    '4caf50',
+    NULL,
+    0,
+    20250101000000,
+    20250101000000,
+    1,
+    0,
+    NULL
+FROM livehelp_qa
+WHERE typeof = 'folder' AND parent = 0
+AS new
+ON DUPLICATE KEY UPDATE
+    sort_order = new.sort_order,
+    updated_ymdhis = new.updated_ymdhis;
+6. Migrate Child Folders → Nested Tabs (Idempotent)
+sql
+INSERT INTO lupo_collection_tabs (
+    collection_tab_parent_id,
+    collection_id,
+    federations_node_id,
+    group_id,
+    user_id,
+    sort_order,
+    name,
+    slug,
+    color,
+    description,
+    is_hidden,
+    created_ymdhis,
+    updated_ymdhis,
+    is_active,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    parent_tab.collection_tab_id,
+    @nav_collection_id,
+    1,
+    NULL,
+    NULL,
+    child.ordernum,
+    child.question,
+    LOWER(REPLACE(child.question, ' ', '-')),
+    '4caf50',
+    NULL,
+    0,
+    20250101000000,
+    20250101000000,
+    1,
+    0,
+    NULL
+FROM livehelp_qa child
+JOIN livehelp_qa parent
+    ON parent.recno = child.parent
+JOIN lupo_collection_tabs parent_tab
+    ON parent_tab.slug = LOWER(REPLACE(parent.question, ' ', '-'))
+WHERE child.typeof = 'folder' AND child.parent != 0
+AS new
+ON DUPLICATE KEY UPDATE
+    sort_order = new.sort_order,
+    updated_ymdhis = new.updated_ymdhis;
+
+
+Migration Step: livehelp_questions → lupo_crafty_syntax_chat_questions
+(Pre‑Chat Intake Questions)
+
+The livehelp_questions table in Crafty Syntax stored the fields shown to the user before a chat session begins — name, email, department selector, custom fields, etc.
+
+These are not truth questions and must not be migrated into the Truth module.
+
+They map directly into Lupopedia’s:
+
+Code
+lupo_crafty_syntax_chat_questions
+This table preserves the legacy intake form structure for compatibility and historical reference.
+
+1. Normalize and Deprecate livehelp_questions
+sql
+ALTER TABLE livehelp_questions
+    ENGINE=InnoDB,
+    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+ALTER TABLE livehelp_questions
+  COMMENT = 'DEPRECATED: Only retained for migration. Safe to re-run. Not part of Lupopedia after 4.0.0.';
+2. Idempotent Migration Into lupo_crafty_syntax_chat_questions
+sql
+INSERT INTO lupo_crafty_syntax_chat_questions (
+    crafty_syntax_chat_question_id,
+    department_id,
+    sort_order,
+    headertext,
+    field_type,
+    options,
+    flags,
+    module_name,
+    is_required,
+    created_ymdhis,
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    id,
+    department,
+    ordering,
+    headertext,
+    fieldtype,
+    options,
+    flags,
+    module,
+    CASE WHEN required = 'Y' THEN 1 ELSE 0 END,
+    20250101000000,
+    20250101000000,
+    0,
+    NULL
+FROM livehelp_questions
+AS new
+ON DUPLICATE KEY UPDATE
+    department_id = new.department_id,
+    sort_order = new.sort_order,
+    headertext = new.headertext,
+    field_type = new.field_type,
+    options = new.options,
+    flags = new.flags,
+    module_name = new.module_name,
+    is_required = new.is_required,
+    updated_ymdhis = new.updated_ymdhis;
+
+
+    ALTER TABLE livehelp_quick
+    ENGINE=InnoDB,
+    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE livehelp_quick
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+
+INSERT INTO lupo_actor_reply_templates (
+    actor_reply_template_id,
+    actor_id,
+    template_key,
+    template_text,
+    usage_context,
+    created_ymdhis,
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    id AS actor_reply_template_id,
+    `user` AS actor_id,
+    name AS template_key,
+    message AS template_text,
+    typeof AS usage_context,
+    20250101000000 AS created_ymdhis,
+    20250101000000 AS updated_ymdhis,
+    0 AS is_deleted,
+    NULL AS deleted_ymdhis
+FROM livehelp_quick;
+
+
+
+🧩 Migration Step: livehelp_smilies → Dropped
+(Replaced by the Lupopedia Emoji Token System)
+The legacy livehelp_smilies table stored mappings from Crafty Syntax text tokens (e.g., :shock:) to image filenames (e.g., icon_eek.gif).
+This table is not migrated into Lupopedia.
+
+Lupopedia replaces the entire smilie‑mapping subsystem with a filesystem‑based emoji picker and a safe, explicit markup token.
+
+The result is:
+
+no database table
+
+no lookup mappings
+
+no ambiguity
+
+no HTML embedded in chat text
+
+full support for custom emoji packs
+
+automatic folder‑based discovery
+
+1. Drop / Deprecate livehelp_smilies
+sql
+ALTER TABLE livehelp_smilies
+  COMMENT = 'DEPRECATED: Dropped during migration. Crafty Syntax smilie mappings are not used in Lupopedia. Emoji rendering is now filesystem-based and token-driven.';
+(Table is removed entirely during post‑migration cleanup.)
+
+🌟 2. The Lupopedia Emoji System (Replacement Architecture)
+Lupopedia uses a folder‑based, self‑discovering, zero‑maintenance emoji system.
+
+Directory structure:
+Code
+smilies/
+    default/
+    animals/
+    reactions/
+    custom/
+Each subfolder becomes a tab in the emoji picker.
+Each image becomes a selectable emoji.
+
+No database.
+No migrations.
+No schema drift.
+No FK chains.
+No brittle HTML.
+
+3. Emoji Token Format (Canonical)
+Lupopedia inserts a safe, reversible, unambiguous token into chat text:
+
+Code
+||emoji:smilies/default/icon_eek.gif||
+Why this format:
+|| is already part of Lupopedia’s markup ecosystem
+
+emoji: is a clear namespace
+
+the path is explicit and portable
+
+no HTML inside chat text
+
+no escaping issues
+
+easy to regex
+
+easy to render
+
+easy to extend
+
+4. Renderer Rules
+When the renderer encounters:
+
+Code
+||emoji:PATH/TO/FILE||
+…it outputs:
+
+html
+<img src="PATH/TO/FILE" class="emoji">
+Renderer responsibilities:
+
+sanitize the path
+
+ensure the file exists
+
+apply the .emoji class
+
+support theme‑aware sizing
+
+support accessibility (alt text optional)
+
+5. UI Behavior
+When the user clicks the emoji icon:
+
+Lupopedia scans the smilies/ directory
+
+Each subfolder becomes a tab
+
+Each image becomes a selectable emoji
+
+Clicking an emoji inserts the token:
+
+Code
+||emoji:smilies/<folder>/<filename>||
+The chat preview renders the actual image
+
+The stored message keeps the token (not HTML)
+
+This ensures:
+
+portability
+
+reversibility
+
+safety
+
+future‑proofing
+
+custom emoji pack support
+
+6. Doctrine Notes
+A. No HTML in chat text
+HTML is brittle, unsafe, and not reversible.
+
+B. No database mapping tables
+Emoji packs are filesystem‑driven, not schema‑driven.
+
+C. Tokens must be explicit and namespaced
+||emoji:...|| prevents collisions with other markup.
+
+D. Emoji system must be self‑discovering
+Adding a new emoji = drop a file into a folder.
+
+E. Renderer must be deterministic and safe
+Token → sanitized path → <img>.
+
+
+🧩 Migration Step: livehelp_sessions → Dropped
+(Replaced by lupo_sessions, the deterministic, actor‑aware session engine)
+The legacy livehelp_sessions table stored Crafty Syntax’s ephemeral visitor sessions.
+These sessions were:
+
+non‑deterministic
+
+browser‑cookie dependent
+
+not actor‑aware
+
+not device‑aware
+
+not federated
+
+not repairable
+
+not timestamp‑normalized
+
+not suitable for multi‑agent systems
+
+Lupopedia replaces this subsystem entirely with:
+
+Code
+lupo_sessions
+…a deterministic, actor‑aware, device‑aware, federated‑ready, repairable session engine that supports:
+
+multi‑agent concurrency
+
+cross‑device continuity
+
+temporal intelligence
+
+session replay
+
+emotional context tracking
+
+safe migration and regeneration
+
+Because of this, no data from livehelp_sessions is migrated.
+
+The table is retained only long enough to allow safe re‑runs of the migration process.
+
+

@@ -71,10 +71,10 @@ To generate ALTER statements automatically from TOON files (without reading the 
 **Problem:** Not explicit, and composite PKs aren't identifiable  
 **Need:** Explicit primary key column name(s)
 
-**Example from `lupo_anibus_redirects`:**
+**Example from `lupo_anubis_redirects`:**
 - Field shows: `"`id` int unsigned NOT NULL auto_increment"`
 - Need to know: This is the PRIMARY KEY
-- Need to know: Should be `anibus_redirect_id` (singular table name + `_id`)
+- Need to know: Should be `anubis_redirect_id` (singular table name + `_id`)
 
 ### **2. Index Definitions** ❌ MISSING
 
@@ -87,8 +87,8 @@ To generate ALTER statements automatically from TOON files (without reading the 
 - Index type (BTREE, HASH, etc.)
 
 **Example:**
-- Table has index: `idx_anibus_from` on column `from_id`
-- If we rename `id` → `anibus_redirect_id`, but `from_id` references the PK, index might need updating
+- Table has index: `idx_anubis_from` on column `from_id`
+- If we rename `id` → `anubis_redirect_id`, but `from_id` references the PK, index might need updating
 
 ### **3. Unique Constraints** ❌ MISSING
 
@@ -107,7 +107,7 @@ To generate ALTER statements automatically from TOON files (without reading the 
 **Example:**
 - Table: `lupo_agent_registry`
 - Current PK: `agent_registry_id` ✓ (correct)
-- But: `lupo_anibus_redirects` has PK `id` ✗ (should be `anibus_redirect_id`)
+- But: `lupo_anubis_redirects` has PK `id` ✗ (should be `anubis_redirect_id`)
 
 ### **5. Foreign Key References** ❌ MISSING (But Not Needed!)
 
@@ -175,9 +175,9 @@ For generating ALTER statements, the MINIMUM needed is:
 
 ```json
 {
-    "table_name": "lupo_anibus_redirects",
+    "table_name": "lupo_anubis_redirects",
     "primary_key": "id",
-    "expected_primary_key": "anibus_redirect_id",
+    "expected_primary_key": "anubis_redirect_id",
     "unsigned_columns": ["id", "from_id", "to_id"],
     "fields": [...],
     "data": [...]
@@ -221,7 +221,7 @@ def calculate_expected_pk_name(table_name: str) -> str:
     
     Examples:
         lupo_agent_registry → agent_registry_id
-        lupo_anibus_redirects → anibus_redirect_id  
+        lupo_anubis_redirects → anubis_redirect_id  
         lupo_collection_tabs → collection_tab_id
     """
     # Remove lupo_ prefix if present
@@ -387,9 +387,9 @@ Add to TOON files:
 
 ```json
 {
-    "table_name": "lupo_anibus_redirects",
+    "table_name": "lupo_anubis_redirects",
     "primary_key": "id",
-    "expected_primary_key": "anibus_redirect_id",
+    "expected_primary_key": "anubis_redirect_id",
     "primary_key_needs_rename": true,
     "unsigned_columns": [
         {
@@ -464,3 +464,4 @@ Update `generate_toon_files.py` to:
 4. Add these fields to TOON file output
 
 This would enable automatic ALTER statement generation from TOON files without reading the SQL dump.
+

@@ -9,7 +9,7 @@
  *      Initializes ANIBUS with a database connection.
  *
  * logOrphan($table, $column, $missingId)
- *      Records an orphaned reference into anibus_orphans.
+ *      Records an orphaned reference into anubis_orphaned.
  *
  * resolveOrphan($orphanId, $newParentId, $note)
  *      Marks an orphan as resolved and stores a resolution note.
@@ -18,7 +18,7 @@
  *      Creates a semantic redirect entry for lineage preservation.
  *
  * logEvent($eventType, $details)
- *      Writes a general ANIBUS event into anibus_events.
+ *      Writes a general ANIBUS event into anubis_events.
  *
  * detectOrphansInTable($table, $column, $idList)
  *      Scans a table for missing references and logs orphans.
@@ -60,7 +60,7 @@ class ANIBUS
         $now = gmdate('YmdHis');
 
         $stmt = $this->db->prepare("
-            INSERT INTO anibus_orphans (table_name, column_name, missing_id, detected_ymdhis)
+            INSERT INTO anubis_orphaned (table_name, column_name, missing_id, detected_ymdhis)
             VALUES (?, ?, ?, ?)
         ");
         $stmt->execute([$table, $column, $missingId, $now]);
@@ -71,7 +71,7 @@ class ANIBUS
         $now = gmdate('YmdHis');
 
         $stmt = $this->db->prepare("
-            UPDATE anibus_orphans
+            UPDATE anubis_orphaned
             SET resolved_ymdhis = ?, resolution_note = ?
             WHERE id = ?
         ");
@@ -86,7 +86,7 @@ class ANIBUS
         $now = gmdate('YmdHis');
 
         $stmt = $this->db->prepare("
-            INSERT INTO anibus_redirects (from_id, to_id, table_name, reason, created_ymdhis)
+            INSERT INTO anubis_redirects (from_id, to_id, table_name, reason, created_ymdhis)
             VALUES (?, ?, ?, ?, ?)
         ");
         $stmt->execute([$fromId, $toId, $table, $reason, $now]);
@@ -95,7 +95,7 @@ class ANIBUS
     public function getRedirectTarget($table, $id)
     {
         $stmt = $this->db->prepare("
-            SELECT to_id FROM anibus_redirects
+            SELECT to_id FROM anubis_redirects
             WHERE table_name = ? AND from_id = ?
             ORDER BY id DESC LIMIT 1
         ");
@@ -118,7 +118,7 @@ class ANIBUS
         $now = gmdate('YmdHis');
 
         $stmt = $this->db->prepare("
-            INSERT INTO anibus_events (event_type, details, created_ymdhis)
+            INSERT INTO anubis_events (event_type, details, created_ymdhis)
             VALUES (?, ?, ?)
         ");
         $stmt->execute([$eventType, $details, $now]);
@@ -167,7 +167,7 @@ class ANIBUS
     public function getOrphans($limit = 100)
     {
         $stmt = $this->db->prepare("
-            SELECT * FROM anibus_orphans
+            SELECT * FROM anubis_orphaned
             WHERE resolved_ymdhis IS NULL
             ORDER BY id ASC
             LIMIT ?

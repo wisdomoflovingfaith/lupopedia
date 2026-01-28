@@ -1,0 +1,30 @@
+{
+  "table_name": "lupo_kapu_events",
+  "fields": [
+    "`kapu_id` bigint NOT NULL",
+    "`agent_id` varchar(255)",
+    "`imposed_by_actor_id` varchar(255)",
+    "`kapu_type` enum('protective','corrective','preventive')",
+    "`restrictions` json",
+    "`restoration_plan` json",
+    "`kapakai_level` decimal(3,2)",
+    "`review_schedule` json",
+    "`accepted_at` bigint",
+    "`appealed_at` bigint",
+    "`active` tinyint(1) DEFAULT 1",
+    "`created_at` bigint"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "kapu_id",
+    "expected_name": "kapu_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

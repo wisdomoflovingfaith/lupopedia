@@ -7,6 +7,7 @@
     "`target_identifier` varchar(255) NOT NULL COMMENT 'Agent ID, subsystem name, or \"global\"'",
     "`baseline_before_json` json COMMENT 'R/G/B vectors before calibration'",
     "`baseline_after_json` json NOT NULL COMMENT 'R/G/B vectors after calibration'",
+    "`mood_framework` varchar(32) NOT NULL DEFAULT 'western_analytical'",
     "`tension_vectors_detected` json COMMENT 'Detected tension patterns'",
     "`calibration_reason` text NOT NULL COMMENT 'Why calibration was needed'",
     "`calibration_algorithm` varchar(100) DEFAULT 'cip_pattern_analysis' COMMENT 'Algorithm used'",

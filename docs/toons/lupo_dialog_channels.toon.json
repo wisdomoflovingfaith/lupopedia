@@ -8,7 +8,6 @@
     "`description` text",
     "`speaker` varchar(100)",
     "`target` varchar(100)",
-    "`mood_rgb` varchar(7) COMMENT 'Emotional polarity tensor encoded as hex (abstract axes: strife (R), harmony (G), memory depth (B); not literal RGB color channels)'",
     "`categories` json COMMENT 'Array of category strings'",
     "`collections` json COMMENT 'Array of collection strings'",
     "`channels` json COMMENT 'Array of channel strings'",

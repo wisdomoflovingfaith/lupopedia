@@ -5,6 +5,7 @@
     "`mood_r` tinyint NOT NULL",
     "`mood_g` tinyint NOT NULL",
     "`mood_b` tinyint NOT NULL",
+    "`mood_framework` varchar(32) NOT NULL DEFAULT 'western_analytical'",
     "`timestamp_utc` bigint unsigned NOT NULL"
   ],
   "data": [],

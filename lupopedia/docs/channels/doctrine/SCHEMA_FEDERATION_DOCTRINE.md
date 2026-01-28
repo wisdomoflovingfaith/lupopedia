@@ -79,7 +79,7 @@ Tables classified as **orchestration** include:
 - Search rebuild operations (`search_rebuild_log`)
 - Memory debugging (`memory_debug_log`, `memory_events`, `memory_rollups`)
 - Interpretation logging (`interpretation_log`)
-- Anibus event management (`anibus_*`)
+- anubis event management (`anubis_*`)
 - API rate limiting (`api_rate_limits`, `api_token_logs`)
 - Notifications (`notifications`)
 - Governance overrides (`governance_overrides`)
@@ -210,3 +210,4 @@ Monitoring dashboard tracks:
 *Last Updated: January 2026*  
 *Version: GLOBAL_CURRENT_LUPOPEDIA_VERSION*  
 *Author: Captain Wolfie*
+

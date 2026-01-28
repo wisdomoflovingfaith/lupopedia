@@ -1,21 +1,14 @@
--- 2026-01-20 Doctrine Corrections (Version 4.1.14)
--- - Fixed timestamp doctrine violations
--- - Corrected lupo_crm_lead_messages column mismatch
--- - Resolved livehelp_emailque migration gap
--- - Corrected typos ("remnoved" → "removed")
--- - No schema changes made
---
-/* 
+ /* 
 ======================================================================
    MIGRATION OVERVIEW
-   Upgrades Crafty Syntax Live Help versions 3.6.1 through 3.7.5 to 4.0.3.
+   Upgrades Crafty Syntax Live Help versions 3.6.1 through 3.7.5 to 4.2.1.
 
    There were no database changes between 3.6.1 and 3.7.5, so all versions
    run this same migration to reach 4.0.0. EVERY TABLE CHANGED between
    3.7.5 and 4.0.0 — this release is a complete rebuild of the system
    after a 15-year hiatus from development.
 
-   Version 4.0.3 is a full architectural rewrite. Every table has been
+   Version 4.2.1 is a full architectural rewrite. Every table has been
    replaced, modernized, or migrated into the new Lupopedia domain model.
    This migration touches the entire system and redefines the core data
    structures for long-term scalability, clarity, and maintainability.
@@ -29,14 +22,13 @@
 
 ----------------------------------------------------------------------
     SCOPE
-    Total tables present during migration: 145
+    Total tables present during migration: 233
 
       • 34 legacy Crafty Syntax tables (3.7.5)
-      • 111 core Lupopedia tables (4.0.3)
-      • 8 new Crafty Syntax module tables included in this migration
+      • 199 core Lupopedia tables (4.2.1)
 
     After successful migration, all 34 legacy tables are dropped,
-    bringing the final schema count to 111 tables.
+    bringing the final schema count to 199 tables.
 
     This preserves the historical table count while clarifying that
     not all legacy tables map directly into the core schema — some
@@ -130,63 +122,66 @@ ALTER TABLE livehelp_config
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
 
 UPDATE lupo_modules m
-JOIN livehelp_config c ON 1=1
-SET m.config_json = JSON_OBJECT(
-    'version', c.version,
-    'site_title', c.site_title,
-    'use_flush', c.use_flush,
-    'membernum', c.membernum,
-    'show_typing', c.show_typing,
-    'webpath', c.webpath,
-    's_webpath', c.s_webpath,
-    'speaklanguage', c.speaklanguage,
-    'scratch_space', c.scratch_space,
-    'admin_refresh', c.admin_refresh,
-    'maxexe', c.maxexe,
-    'refreshrate', c.refreshrate,
-    'chatmode', c.chatmode,
-    'adminsession', c.adminsession,
-    'ignoreips', c.ignoreips,
-    'directoryid', c.directoryid,
-    'tracking', c.tracking,
-    'colorscheme', c.colorscheme,
-    'matchip', c.matchip,
-    'gethostnames', c.gethostnames,
-    'maxrecords', c.maxrecords,
-    'maxreferers', c.maxreferers,
-    'maxvisits', c.maxvisits,
-    'maxmonths', c.maxmonths,
-    'maxoldhits', c.maxoldhits,
-    'showgames', c.showgames,
-    'showsearch', c.showsearch,
-    'showdirectory', c.showdirectory,
-    'usertracking', c.usertracking,
-    'resetbutton', c.resetbutton,
-    'keywordtrack', c.keywordtrack,
-    'reftracking', c.reftracking,
-    'topkeywords', c.topkeywords,
-    'everythingelse', c.everythingelse,
-    'rememberusers', c.rememberusers,
-    'smtp_host', c.smtp_host,
-    'smtp_username', c.smtp_username,
-    'smtp_password', c.smtp_password,
-    'owner_email', c.owner_email,
-    'topframeheight', c.topframeheight,
-    'topbackground', c.topbackground,
-    'usecookies', c.usecookies,
-    'smtp_portnum', c.smtp_portnum,
-    'showoperator', c.showoperator,
-    'chatcolors', c.chatcolors,
-    'floatxy', c.floatxy,
-    'sessiontimeout', c.sessiontimeout,
-    'theme', c.theme,
-    'operatorstimeout', c.operatorstimeout,
-    'operatorssessionout', c.operatorssessionout,
-    'maxrequests', c.maxrequests,
-    'ignoreagent', c.ignoreagent
+SET m.config_json = (
+    SELECT JSON_OBJECT(
+        'version', c.version,
+        'site_title', c.site_title,
+        'use_flush', c.use_flush,
+        'membernum', c.membernum,
+        'show_typing', c.show_typing,
+        'webpath', c.webpath,
+        's_webpath', c.s_webpath,
+        'speaklanguage', c.speaklanguage,
+        'scratch_space', c.scratch_space,
+        'admin_refresh', c.admin_refresh,
+        'maxexe', c.maxexe,
+        'refreshrate', c.refreshrate,
+        'chatmode', c.chatmode,
+        'adminsession', c.adminsession,
+        'ignoreips', c.ignoreips,
+        'directoryid', c.directoryid,
+        'tracking', c.tracking,
+        'colorscheme', c.colorscheme,
+        'matchip', c.matchip,
+        'gethostnames', c.gethostnames,
+        'maxrecords', c.maxrecords,
+        'maxreferers', c.maxreferers,
+        'maxvisits', c.maxvisits,
+        'maxmonths', c.maxmonths,
+        'maxoldhits', c.maxoldhits,
+        'showgames', c.showgames,
+        'showsearch', c.showsearch,
+        'showdirectory', c.showdirectory,
+        'usertracking', c.usertracking,
+        'resetbutton', c.resetbutton,
+        'keywordtrack', c.keywordtrack,
+        'reftracking', c.reftracking,
+        'topkeywords', c.topkeywords,
+        'everythingelse', c.everythingelse,
+        'rememberusers', c.rememberusers,
+        'smtp_host', c.smtp_host,
+        'smtp_username', c.smtp_username,
+        'smtp_password', c.smtp_password,
+        'owner_email', c.owner_email,
+        'topframeheight', c.topframeheight,
+        'topbackground', c.topbackground,
+        'usecookies', c.usecookies,
+        'smtp_portnum', c.smtp_portnum,
+        'showoperator', c.showoperator,
+        'chatcolors', c.chatcolors,
+        'floatxy', c.floatxy,
+        'sessiontimeout', c.sessiontimeout,
+        'theme', c.theme,
+        'operatorstimeout', c.operatorstimeout,
+        'operatorssessionout', c.operatorssessionout,
+        'maxrequests', c.maxrequests,
+        'ignoreagent', c.ignoreagent
+    )
+    FROM livehelp_config c
+    WHERE 1
+    LIMIT 1
 )
 WHERE m.module_id = 1;
-
 
 -- ======================================================================
 -- livehelp_departments               → departments
@@ -223,6 +218,59 @@ SELECT
     0 AS is_deleted,
     NULL AS deleted_ymdhis
 FROM livehelp_departments;
+
+INSERT INTO lupo_department_metadata (
+    department_id,
+    metadata_json,
+    created_ymdhis,
+    updated_ymdhis,
+    is_active,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    recno AS department_id,
+
+    JSON_OBJECT(
+        'onlineimage', onlineimage,
+        'offlineimage', offlineimage,
+        'layerinvite', layerinvite,
+        'requirename', requirename,
+        'messageemail', messageemail,
+        'leaveamessage', leaveamessage,
+        'opening', opening,
+        'offline', offline,
+        'creditline', creditline,
+        'imagemap', imagemap,
+        'whilewait', whilewait,
+        'timeout', timeout,
+        'topframeheight', topframeheight,
+        'topbackground', topbackground,
+        'midbackground', midbackground,
+        'botbackground', botbackground,
+        'topbackcolor', topbackcolor,
+        'midbackcolor', midbackcolor,
+        'botbackcolor', botbackcolor,
+        'colorscheme', colorscheme,
+        'speaklanguage', speaklanguage,
+        'busymess', busymess,
+        'emailfun', emailfun,
+        'dbfun', dbfun,
+        'smiles', smiles,
+        'theme', theme,
+        'showtimestamp', showtimestamp,
+        'website', website
+    ) AS metadata_json,
+
+    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS created_ymdhis,
+    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS updated_ymdhis,
+
+    1 AS is_active,
+    0 AS is_deleted,
+    NULL AS deleted_ymdhis
+
+FROM livehelp_departments;
+
 
 
 -- ======================================================================
@@ -554,6 +602,351 @@ SELECT
     0 AS is_deleted,
     NULL AS deleted_ymdhis
 FROM livehelp_operator_history;
+ 
+-- ======================================================================
+ALTER TABLE livehelp_qa
+    ENGINE=InnoDB,
+    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE livehelp_qa
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+
+TRUNCATE lupo_truth_questions;
+
+INSERT INTO lupo_truth_questions (
+    truth_question_id,
+    truth_question_parent_id,
+    actor_id,
+    qtype,
+    status,
+    sort_num,
+    slug,
+    question_text,
+    format,
+    format_override,
+    view_count,
+    likes_count,
+    shares_count,
+    answer_count,
+    last_activity_ymdhis,
+    is_featured,
+    is_verified,
+    created_ymdhis,
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    recno,
+    NULLIF(parent, 0),
+    0,
+    'unknown',
+    'active',
+    ordernum,
+    CONCAT('qa-', recno),
+    question,
+    'text',
+    NULL,
+    0,
+    0,
+    0,
+    0,
+    NULL,
+    0,
+    0,
+    20250101000000,
+    20250101000000,
+    0,
+    NULL
+FROM livehelp_qa
+WHERE typeof = 'question'
+ON DUPLICATE KEY UPDATE
+    truth_question_parent_id = VALUES(truth_question_parent_id),
+    sort_num = VALUES(sort_num),
+    question_text = VALUES(question_text),
+    updated_ymdhis = VALUES(updated_ymdhis);
+
+
+
+TRUNCATE lupo_truth_answers;
+
+INSERT INTO lupo_truth_answers (
+    truth_question_id,
+    actor_id,
+    answer_text,
+    confidence_score,
+    evidence_score,
+    contradiction_flag,
+    likes_count,
+    shares_count,
+    created_ymdhis,
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    parent,
+    0,
+    question,
+    0.00,
+    0.00,
+    0,
+    0,
+    0,
+    20250101000000,
+    20250101000000,
+    0,
+    NULL
+FROM livehelp_qa
+WHERE typeof = 'answer'
+ON DUPLICATE KEY UPDATE
+    updated_ymdhis = VALUES(updated_ymdhis);
+
+
+INSERT INTO lupo_collections (
+    federations_node_id,
+    user_id,
+    group_id,
+    name,
+    slug,
+    color,
+    description,
+    sort_order,
+    properties,
+    published_ymdhis,
+    created_ymdhis,
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
+)
+VALUES (
+    1,
+    NULL,
+    NULL,
+    'Site Navigation',
+    'site-navigation',
+    '666666',
+    'Auto-generated navigation collection from Crafty Syntax',
+    0,
+    NULL,
+    NULL,
+    20250101000000,
+    20250101000000,
+    0,
+    NULL
+);
+
+INSERT INTO lupo_collection_tabs (
+    collection_tab_parent_id,
+    collection_id,
+    federations_node_id,
+    group_id,
+    user_id,
+    sort_order,
+    name,
+    slug,
+    color,
+    description,
+    is_hidden,
+    created_ymdhis,
+    updated_ymdhis,
+    is_active,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    NULL AS collection_tab_parent_id,
+    1 AS collection_id,
+    1 AS federations_node_id,
+    NULL AS group_id,
+    NULL AS user_id,
+    ordernum AS sort_order,
+    question AS name,
+    LOWER(REPLACE(question, ' ', '-')) AS slug,
+    '4caf50' AS color,
+    NULL AS description,
+    0 AS is_hidden,
+    20250101000000 AS created_ymdhis,
+    20250101000000 AS updated_ymdhis,
+    1 AS is_active,
+    0 AS is_deleted,
+    NULL AS deleted_ymdhis
+FROM livehelp_qa
+WHERE typeof = 'folder' AND parent = 0;
+
+
+INSERT INTO lupo_collection_tabs (
+    collection_tab_parent_id,
+    collection_id,
+    federations_node_id,
+    group_id,
+    user_id,
+    sort_order,
+    name,
+    slug,
+    color,
+    description,
+    is_hidden,
+    created_ymdhis,
+    updated_ymdhis,
+    is_active,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    parent_tab.collection_tab_id AS collection_tab_parent_id,
+    1 AS collection_id,
+    1 AS federations_node_id,
+    NULL AS group_id,
+    NULL AS user_id,
+    child.ordernum AS sort_order,
+    child.question AS name,
+    LOWER(REPLACE(child.question, ' ', '-')) AS slug,
+    '4caf50' AS color,
+    NULL AS description,
+    0 AS is_hidden,
+    20250101000000 AS created_ymdhis,
+    20250101000000 AS updated_ymdhis,
+    1 AS is_active,
+    0 AS is_deleted,
+    NULL AS deleted_ymdhis
+FROM livehelp_qa child
+JOIN livehelp_qa parent
+    ON parent.recno = child.parent
+JOIN lupo_collection_tabs parent_tab
+    ON parent_tab.slug = LOWER(REPLACE(parent.question, ' ', '-'))
+WHERE child.typeof = 'folder' AND child.parent != 0;
+
+
+-- ======================================================================
+
+ALTER TABLE livehelp_questions
+    ENGINE=InnoDB,
+    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE livehelp_questions
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+
+
+INSERT INTO lupo_crafty_syntax_chat_questions (
+    crafty_syntax_chat_question_id,
+    department_id,
+    sort_order,
+    headertext,
+    field_type,
+    options,
+    flags,
+    module_name,
+    is_required,
+    created_ymdhis,
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    id AS crafty_syntax_chat_question_id,
+    department AS department_id,
+    ordering AS sort_order,
+    headertext,
+    fieldtype AS field_type,
+    options,
+    flags,
+    module AS module_name,
+    CASE WHEN required = 'Y' THEN 1 ELSE 0 END AS is_required,
+    20250101000000 AS created_ymdhis,
+    20250101000000 AS updated_ymdhis,
+    0 AS is_deleted,
+    NULL AS deleted_ymdhis
+FROM livehelp_questions;
+
+ 
+-- ======================================================================
+
+ALTER TABLE livehelp_quick
+    ENGINE=InnoDB,
+    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE livehelp_quick
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+
+INSERT INTO lupo_actor_reply_templates (
+    actor_reply_template_id,
+    actor_id,
+    template_key,
+    template_text,
+    usage_context,
+    created_ymdhis,
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    id AS actor_reply_template_id,
+    `user` AS actor_id,
+    name AS template_key,
+    message AS template_text,
+    typeof AS usage_context,
+    20250101000000 AS created_ymdhis,
+    20250101000000 AS updated_ymdhis,
+    0 AS is_deleted,
+    NULL AS deleted_ymdhis
+FROM livehelp_quick;
+
+ -- ======================================================================
+  
+ALTER TABLE livehelp_smilies
+    ENGINE=InnoDB,
+    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ 
+ALTER TABLE livehelp_smilies
+COMMENT = 'LEGACY ARCHIVE TABLE — no longer used. Crafty Syntax originally stored emoji metadata here, but Lupopedia replaces this system entirely. Emoji and inline images are now inserted directly into dialog text using the token format :|:name|folder|filename:|:. The renderer reads icons from the chat_smilies/ directory (and its subfolders) and replaces the token with the corresponding image at display time. This table is preserved only for historical reference; no data is imported and no new rows will be created.';
+  
+-- ======================================================================
+  
+ALTER TABLE livehelp_sessions
+    ENGINE=InnoDB,
+    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ 
+ALTER TABLE livehelp_sessions
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- here is where i am working from 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -678,284 +1071,7 @@ GROUP BY
     COALESCE(v_exit.pageurl, d_exit.pageurl, '');    -- Group by resolved slug, not recno
 
 
--- ======================================================================
-ALTER TABLE livehelp_qa
-    ENGINE=InnoDB,
-    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE livehelp_qa
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
 
-
-
-TRUNCATE lupo_truth_questions;
-
-INSERT INTO lupo_truth_questions (
-    truth_question_id,
-    truth_question_parent_id,
-    actor_id,
-    qtype,
-    status,
-    sort_num,
-    slug,
-    question_text,
-    format,
-    format_override,
-    view_count,
-    likes_count,
-    shares_count,
-    answer_count,
-    last_activity_ymdhis,
-    is_featured,
-    is_verified,
-    created_ymdhis,
-    updated_ymdhis,
-    is_deleted,
-    deleted_ymdhis
-)
-SELECT
-    recno AS truth_question_id,
-    CASE WHEN parent = 0 THEN NULL ELSE parent END AS truth_question_parent_id,
-    0 AS actor_id,
-    'unknown' AS qtype,
-    'active' AS status,
-    ordernum AS sort_num,
-    CONCAT('qa-', recno) AS slug,
-    question AS question_text,
-    'text' AS format,
-    NULL AS format_override,
-    0 AS view_count,
-    0 AS likes_count,
-    0 AS shares_count,
-    0 AS answer_count,
-    NULL AS last_activity_ymdhis,
-    0 AS is_featured,
-    0 AS is_verified,
-    20250101000000 AS created_ymdhis,
-    20250101000000 AS updated_ymdhis,
-    0 AS is_deleted,
-    NULL AS deleted_ymdhis
-FROM livehelp_qa
-WHERE typeof = 'question';
-
-
-TRUNCATE lupo_truth_answers;
-
-INSERT INTO lupo_truth_answers (
-    truth_question_id,
-    actor_id,
-    answer_text,
-    confidence_score,
-    evidence_score,
-    contradiction_flag,
-    likes_count,
-    shares_count,
-    created_ymdhis,
-    updated_ymdhis,
-    is_deleted,
-    deleted_ymdhis
-)
-SELECT
-    parent AS truth_question_id,
-    0 AS actor_id,
-    question AS answer_text,
-    0.00 AS confidence_score,
-    0.00 AS evidence_score,
-    0 AS contradiction_flag,
-    0 AS likes_count,
-    0 AS shares_count,
-    20250101000000 AS created_ymdhis,
-    20250101000000 AS updated_ymdhis,
-    0 AS is_deleted,
-    NULL AS deleted_ymdhis
-FROM livehelp_qa
-WHERE typeof = 'answer';
-
-INSERT INTO lupo_collections (
-    federations_node_id,
-    user_id,
-    group_id,
-    name,
-    slug,
-    color,
-    description,
-    sort_order,
-    properties,
-    published_ymdhis,
-    created_ymdhis,
-    updated_ymdhis,
-    is_deleted,
-    deleted_ymdhis
-)
-VALUES (
-    1,
-    NULL,
-    NULL,
-    'Site Navigation',
-    'site-navigation',
-    '666666',
-    'Auto-generated navigation collection from Crafty Syntax',
-    0,
-    NULL,
-    NULL,
-    20250101000000,
-    20250101000000,
-    0,
-    NULL
-);
-
-INSERT INTO lupo_collection_tabs (
-    collection_tab_parent_id,
-    collection_id,
-    federations_node_id,
-    group_id,
-    user_id,
-    sort_order,
-    name,
-    slug,
-    color,
-    description,
-    is_hidden,
-    created_ymdhis,
-    updated_ymdhis,
-    is_active,
-    is_deleted,
-    deleted_ymdhis
-)
-SELECT
-    NULL AS collection_tab_parent_id,
-    1 AS collection_id,
-    1 AS federations_node_id,
-    NULL AS group_id,
-    NULL AS user_id,
-    ordernum AS sort_order,
-    question AS name,
-    LOWER(REPLACE(question, ' ', '-')) AS slug,
-    '4caf50' AS color,
-    NULL AS description,
-    0 AS is_hidden,
-    20250101000000 AS created_ymdhis,
-    20250101000000 AS updated_ymdhis,
-    1 AS is_active,
-    0 AS is_deleted,
-    NULL AS deleted_ymdhis
-FROM livehelp_qa
-WHERE typeof = 'folder' AND parent = 0;
-
-
-INSERT INTO lupo_collection_tabs (
-    collection_tab_parent_id,
-    collection_id,
-    federations_node_id,
-    group_id,
-    user_id,
-    sort_order,
-    name,
-    slug,
-    color,
-    description,
-    is_hidden,
-    created_ymdhis,
-    updated_ymdhis,
-    is_active,
-    is_deleted,
-    deleted_ymdhis
-)
-SELECT
-    parent_tab.collection_tab_id AS collection_tab_parent_id,
-    1 AS collection_id,
-    1 AS federations_node_id,
-    NULL AS group_id,
-    NULL AS user_id,
-    child.ordernum AS sort_order,
-    child.question AS name,
-    LOWER(REPLACE(child.question, ' ', '-')) AS slug,
-    '4caf50' AS color,
-    NULL AS description,
-    0 AS is_hidden,
-    20250101000000 AS created_ymdhis,
-    20250101000000 AS updated_ymdhis,
-    1 AS is_active,
-    0 AS is_deleted,
-    NULL AS deleted_ymdhis
-FROM livehelp_qa child
-JOIN livehelp_qa parent
-    ON parent.recno = child.parent
-JOIN lupo_collection_tabs parent_tab
-    ON parent_tab.slug = LOWER(REPLACE(parent.question, ' ', '-'))
-WHERE child.typeof = 'folder' AND child.parent != 0;
-
- 
--- ======================================================================
-
-ALTER TABLE livehelp_questions
-    ENGINE=InnoDB,
-    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE livehelp_questions
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
-
-
-INSERT INTO lupo_crafty_syntax_chat_questions (
-    crafty_syntax_chat_question_id,
-    department_id,
-    sort_order,
-    headertext,
-    field_type,
-    options,
-    flags,
-    module_name,
-    is_required,
-    created_ymdhis,
-    updated_ymdhis,
-    is_deleted,
-    deleted_ymdhis
-)
-SELECT
-    id AS crafty_syntax_chat_question_id,
-    department AS department_id,
-    ordering AS sort_order,
-    headertext,
-    fieldtype AS field_type,
-    options,
-    flags,
-    module AS module_name,
-    CASE WHEN required = 'Y' THEN 1 ELSE 0 END AS is_required,
-    20250101000000 AS created_ymdhis,
-    20250101000000 AS updated_ymdhis,
-    0 AS is_deleted,
-    NULL AS deleted_ymdhis
-FROM livehelp_questions;
-
-
--- ======================================================================
-
-ALTER TABLE livehelp_quick
-    ENGINE=InnoDB,
-    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE livehelp_quick
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
-
-INSERT INTO lupo_actor_reply_templates (
-    actor_reply_template_id,
-    actor_id,
-    template_key,
-    template_text,
-    usage_context,
-    created_ymdhis,
-    updated_ymdhis,
-    is_deleted,
-    deleted_ymdhis
-)
-SELECT
-    id AS actor_reply_template_id,
-    `user` AS actor_id,
-    name AS template_key,
-    message AS template_text,
-    typeof AS usage_context,
-    20250101000000 AS created_ymdhis,
-    20250101000000 AS updated_ymdhis,
-    0 AS is_deleted,
-    NULL AS deleted_ymdhis
-FROM livehelp_quick;
 
 
 -- ======================================================================
@@ -1011,24 +1127,8 @@ ALTER TABLE livehelp_referers_monthly
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
  
  
--- ======================================================================
-  
-ALTER TABLE livehelp_sessions
-    ENGINE=InnoDB,
-    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
- 
-ALTER TABLE livehelp_sessions
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
- 
- -- ======================================================================
-  
-ALTER TABLE livehelp_smilies
-    ENGINE=InnoDB,
-    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
- 
-ALTER TABLE livehelp_smilies
-COMMENT = 'LEGACY ARCHIVE TABLE — no longer used. Crafty Syntax originally stored emoji metadata here, but Lupopedia replaces this system entirely. Emoji and inline images are now inserted directly into dialog text using the token format :|:name|folder|filename:|:. The renderer reads icons from the chat_smilies/ directory (and its subfolders) and replaces the token with the corresponding image at display time. This table is preserved only for historical reference; no data is imported and no new rows will be created.';
-  
+
+
 -- ======================================================================
 -- livehelp_transcripts               → lupo_dialog_message_bodies
 
@@ -1069,14 +1169,14 @@ FROM livehelp_transcripts;
 
 
 
-INSERT INTO lupo_dialog_messages
-(
+INSERT INTO lupo_dialog_messages (
     dialog_message_id,
     dialog_thread_id,
     channel_id,
     from_actor_id,
     to_actor_id,
     message_text,
+    message_body,
     message_type,
     metadata_json,
     mood_rgb,
@@ -1085,48 +1185,25 @@ INSERT INTO lupo_dialog_messages
     updated_ymdhis
 )
 SELECT
-    recno AS dialog_message_id,
-    recno AS dialog_thread_id,
-    1 AS channel_id,
-    1 AS from_actor_id,
-    1 AS to_actor_id,
-    CONCAT(recno, ' import from crafty syntax') AS message_text,
-    'text' AS message_type,
+    recno,
+    recno,
+    1,
+    1,
+    1,
+    CONCAT(recno, ' import from crafty syntax'),
+    transcript,
+    'text',
     JSON_OBJECT(
         'legacy_sessionid', sessionid,
         'legacy_department', department,
         'legacy_email', email,
         'legacy_operators', operators,
         'legacy_sessiondata', sessiondata
-    ) AS metadata_json,
-    '666666' AS mood_rgb,
-    1 AS weight,
-    starttime AS created_ymdhis,
-    endtime AS updated_ymdhis
-FROM livehelp_transcripts;
-
-
-INSERT INTO lupo_dialog_message_bodies (
-    dialog_message_body_id,
-    dialog_message_id,
-    full_text,
-    metadata_json,
-    created_ymdhis,
-    updated_ymdhis
-)
-SELECT
-    recno AS dialog_message_body_id,
-    recno AS dialog_message_id,
-    transcript AS full_text,
-    JSON_OBJECT(
-        'legacy_sessionid', sessionid,
-        'legacy_department', department,
-        'legacy_email', email,
-        'legacy_operators', operators,
-        'legacy_sessiondata', sessiondata
-    ) AS metadata_json,
-    starttime AS created_ymdhis,
-    endtime AS updated_ymdhis
+    ),
+    '666666',
+    1,
+    starttime,
+    endtime
 FROM livehelp_transcripts;
 
 

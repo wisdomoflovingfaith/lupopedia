@@ -1,0 +1,40 @@
+{
+  "table_name": "lupo_truth_answers",
+  "fields": [
+    "`truth_answer_id` bigint NOT NULL auto_increment",
+    "`truth_question_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL DEFAULT 0",
+    "`answer_text` longtext NOT NULL",
+    "`confidence_score` decimal(5,2) NOT NULL DEFAULT 0.00",
+    "`evidence_score` decimal(5,2) NOT NULL DEFAULT 0.00",
+    "`contradiction_flag` tinyint NOT NULL DEFAULT 0",
+    "`likes_count` bigint NOT NULL DEFAULT 0",
+    "`shares_count` bigint NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_question",
+      "columns": [
+        "truth_question_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "truth_answer_id",
+    "expected_name": "truth_answer_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

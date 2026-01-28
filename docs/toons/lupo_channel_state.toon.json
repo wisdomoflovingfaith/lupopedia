@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_channel_state",
   "fields": [
-    "`state_id` bigint unsigned NOT NULL auto_increment",
+    "`channel_state_id` bigint NOT NULL auto_increment",
     "`channel_id` bigint unsigned NOT NULL",
     "`active_actors_json` json",
     "`speaker_actors_json` json",
@@ -9,6 +9,7 @@
     "`layers_enabled_json` json",
     "`operational_mode` varchar(32)",
     "`emotional_state_json` json",
+    "`mood_framework` varchar(32) NOT NULL DEFAULT 'western_analytical'",
     "`recent_topics_json` json",
     "`semantic_weight` float DEFAULT 0",
     "`trend_score` float DEFAULT 0",
@@ -35,8 +36,8 @@
     }
   ],
   "primary_key": {
-    "column_name": "state_id",
-    "expected_name": "state_id",
+    "column_name": "channel_state_id",
+    "expected_name": "channel_state_id",
     "is_correct": true,
     "needs_rename": false
   },

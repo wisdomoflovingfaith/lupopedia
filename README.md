@@ -1,16 +1,17 @@
 --
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 2026.1.1.1
-file.last_modified_utc: 20260123091529
+file.last_modified_system_version: 2026.3.7.6
+file.channel: doctrine
+file.last_modified_utc: 20260128133107
 file.name: "README.md"
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
-  speaker: CURSOR
+  speaker: JETBRAINS
   target: @everyone
   mood_RGB: "00FF00"
-  message: "Integrated Lupopedia Creation Myth (TL;DR) into README.md. Added Five Pillars, How It Works, What You Don't Build, What You Do Build. This is the Rosetta Stone of Lupopedia's identity."
+  message: "Added Wolfie Header update requirements and channel provenance rules to README."
 tags:
   categories: ["documentation", "getting-started"]
   collections: ["core-docs"]
@@ -22,6 +23,7 @@ in_this_file_we_have:
   - Why Lupopedia Has 111 Tables (And Why That's a Feature, Not a Flaw)
   - Crafty Syntax Compatibility: 100% Feature Preservation
   - Quick Start
+  - Wolfie Header Update Requirements
   - Why Lupopedia Is Different (see docs/WHY_LUPOPEDIA_IS_DIFFERENT.md)
   - INSTALLATION
   - REQUIREMENTS
@@ -42,6 +44,8 @@ sections:
     anchor: "#crafty-syntax-compatibility-100-feature-preservation"
   - title: "Quick Start"
     anchor: "#quick-start"
+  - title: "Wolfie Header Update Requirements"
+    anchor: "#wolfie-header-update-requirements"
   - title: "Crafty Syntax Migration Notes"
     anchor: "#crafty-syntax-migration-notes"
   - title: "Key Features"
@@ -132,6 +136,36 @@ This rule is absolute. No exceptions. No negotiations. No amount of money can ov
 - The infrastructure (database, routing, modules)
 - The tools (tab editor, content editor)
 - The doctrine (rules in text files)
+
+## Wolfie Header Update Requirements
+
+Every file in Lupopedia must include a Wolfie Header block at the top of the file. These fields ensure historical clarity, provenance, and proper version tracking across the entire system.
+
+### Required Fields
+Code
+```
+file.last_modified_system_version: X.X.X.X
+file.channel: XXXX
+```
+
+### Update Rules
+1. `file.last_modified_system_version` must be updated on every edit.  
+This value must always reflect the current system version at the moment the file is modified.  
+This ensures accurate historical lineage and prevents ambiguity across migrations and rewrites.
+
+2. `file.channel` must also be updated on every edit.  
+This field must reflect the channel responsible for the edit (e.g., `crafty-port`, `schema`, `doctrine`, etc.).
+
+### Unknown Channel Rule
+If the editing channel is not known:
+
+- If the file already has a `file.channel` value, retain the existing value.
+- If the file has no channel value, set it to:
+
+Code
+```
+file.channel: 0000
+```
 
 ## Origin Story (Conceptual)
 

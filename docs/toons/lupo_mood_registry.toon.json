@@ -1,0 +1,42 @@
+{
+  "table_name": "lupo_mood_registry",
+  "fields": [
+    "`mood_id` bigint NOT NULL auto_increment",
+    "`mood_type` varchar(64) NOT NULL COMMENT 'Canonical mood type (e.g., agape, eros)'",
+    "`mood_variant` varchar(64) COMMENT 'Optional subtype or variant label'",
+    "`mood_rgb` char(6) NOT NULL COMMENT 'Emotional polarity tensor (hex), fixed-width'",
+    "`description` text",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when updated'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_mood_type",
+      "columns": [
+        "mood_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_mood_rgb",
+      "columns": [
+        "mood_rgb"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "mood_id",
+    "expected_name": "mood_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

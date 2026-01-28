@@ -1,0 +1,50 @@
+{
+  "table_name": "lupo_agent_experiences",
+  "fields": [
+    "`link_id` char(26) NOT NULL COMMENT 'ULID'",
+    "`agent_id` bigint NOT NULL",
+    "`star_id` char(26) NOT NULL",
+    "`intensity` decimal(3,2) COMMENT '0.00 to 1.00'",
+    "`context_id` bigint COMMENT 'thread/message/etc'",
+    "`observed_ymdhis` bigint",
+    "`expressed_as_rgb` char(6) COMMENT 'Legacy mood_rgb expression'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_agent",
+      "columns": [
+        "agent_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_star",
+      "columns": [
+        "star_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_context",
+      "columns": [
+        "context_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "link_id",
+    "expected_name": "link_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

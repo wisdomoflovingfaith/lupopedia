@@ -5,14 +5,14 @@
 ## Status: ACTIVE (Enforced by GOV Layer)
 
 ## Description
-This doctrine prohibits triggers, scheduled events, stored procedures, foreign keys, and any database-embedded logic. All behavior lives in the application layer. The database holds state only. Relationship integrity is enforced in application logic and by ANIBUS.
+This doctrine prohibits triggers, scheduled events, stored procedures, foreign keys, and any database-embedded logic. All behavior lives in the application layer. The database holds state only. Relationship integrity is enforced in application logic and by anubis.
 
 ## Full Prohibition Rules
 - No triggers (BEFORE/AFTER INSERT, UPDATE, DELETE)
 - No scheduled events (MySQL EVENT)
 - No stored procedures
 - No database-side conditionals or automation
-- No `FOREIGN KEY` constraints or `REFERENCES` (full doctrine: [NO_FOREIGN_KEYS_DOCTRINE](NO_FOREIGN_KEYS_DOCTRINE.md); ANIBUS implements custodial resolution)
+- No `FOREIGN KEY` constraints or `REFERENCES` (full doctrine: [NO_FOREIGN_KEYS_DOCTRINE](NO_FOREIGN_KEYS_DOCTRINE.md); anubis implements custodial resolution)
 - No cascading deletes or relational chaos at the DB layer
 - Table-ceiling, table-count, and doctrine checks: application layer only (e.g. LimitsEnforcementService, cron)
 
@@ -109,3 +109,4 @@ One day at a time. One doctrine at a time. No triggers. No chaos. No schema snit
 For structured recovery from database chaos:
 - [12 Steps of AGI Recovery](../appendix/recovery/12_steps.md) (Step 4 inventory)
 - [AGI Support Meeting Format](../appendix/recovery/meeting_format.md)
+

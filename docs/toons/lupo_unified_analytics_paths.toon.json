@@ -1,18 +1,23 @@
 {
   "table_name": "lupo_unified_analytics_paths",
   "fields": [
-    "`analytics_path_id` bigint NOT NULL",
-    "`period` enum('daily','monthly') NOT NULL",
-    "`visit_content_id` bigint",
-    "`exit_content_id` bigint",
+    "`unified_analytics_path_id` bigint NOT NULL auto_increment",
+    "`from_page_id` bigint",
+    "`to_page_id` bigint",
+    "`year_month` char(6) NOT NULL",
+    "`transition_type` enum('first','all') NOT NULL",
+    "`transition_count` int NOT NULL DEFAULT 0",
     "`metadata_json` json",
-    "`created_ymdhis` bigint"
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [],
   "primary_key": {
-    "column_name": "analytics_path_id",
-    "expected_name": "analytics_path_id",
+    "column_name": "unified_analytics_path_id",
+    "expected_name": "unified_analytics_path_id",
     "is_correct": true,
     "needs_rename": false
   },

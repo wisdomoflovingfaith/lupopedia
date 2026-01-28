@@ -1,0 +1,41 @@
+{
+  "table_name": "lupo_mood_assignments",
+  "fields": [
+    "`mood_assignment_id` bigint NOT NULL auto_increment",
+    "`table_name` varchar(128) NOT NULL COMMENT 'Target table name (e.g., lupo_dialog_messages)'",
+    "`row_id` bigint NOT NULL COMMENT 'Primary key value in target table'",
+    "`mood_id` bigint NOT NULL COMMENT 'Reference to lupo_mood_registry.mood_id'",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_assignment_target",
+      "columns": [
+        "table_name",
+        "row_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_assignment_mood",
+      "columns": [
+        "mood_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "mood_assignment_id",
+    "expected_name": "mood_assignment_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

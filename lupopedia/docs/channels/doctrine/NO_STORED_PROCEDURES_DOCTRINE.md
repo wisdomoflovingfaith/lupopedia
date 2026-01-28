@@ -27,12 +27,12 @@ in_this_file_we_have:
   - Database Storage vs Computation
   - Data Merging Requirements
   - Federation Requirements
-  - ANIBUS Logic Control Requirements
+  - anubis Logic Control Requirements
   - IDE Enforcement Rules
   - Summary Doctrine
 file:
   title: "No Stored Procedures/Functions Doctrine (MANDATORY)"
-  description: "Stored procedures and functions are FORBIDDEN in Lupopedia. The database is for storage, not computation. All logic belongs in the application layer. This is mandatory for data merging, federation, and ANIBUS repair operations."
+  description: "Stored procedures and functions are FORBIDDEN in Lupopedia. The database is for storage, not computation. All logic belongs in the application layer. This is mandatory for data merging, federation, and anubis repair operations."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: GLOBAL_DEFAULT_STATUS
   status: published
@@ -80,7 +80,7 @@ Stored procedures and functions must **NEVER** be created, suggested, or added.
 **Stored procedures and functions interfere with:**
 - Data merging operations
 - Federation sync across different database engines
-- ANIBUS repair operations
+- anubis repair operations
 - Historical accuracy preservation
 - Portability across database engines
 - Version control and migration safety
@@ -97,7 +97,7 @@ Lupopedia's database layer must remain:
 
 - **Portable** â€” Works across MySQL, MariaDB, SQLite, PostgreSQL, and future engines
 - **Mergeable** â€” Can merge databases with different histories and structures
-- **Repairable** â€” ANIBUS can repair data without database logic interfering
+- **Repairable** â€” anubis can repair data without database logic interfering
 - **Inspectable** â€” All logic is visible in application code, not hidden in database
 - **Predictable** â€” No hidden side effects or unexpected mutations
 - **Federation-Safe** â€” Works across independent nodes with different database engines
@@ -182,7 +182,7 @@ When merging databases, you encounter:
 
 - Fire at the wrong time during merges
 - Rewrite data that should be preserved
-- Mutate fields that ANIBUS is trying to repair
+- Mutate fields that anubis is trying to repair
 - Block merges by enforcing constraints
 - Break imports by rejecting valid data
 - Destroy historical accuracy by overwriting timestamps
@@ -331,9 +331,9 @@ class FederationSync {
 
 ---
 
-## **6. ANIBUS Must Control All Logic**
+## **6. anubis Must Control All Logic**
 
-ANIBUS (the custodial intelligence agent) is responsible for:
+anubis (the custodial intelligence agent) is responsible for:
 
 - **Orphan repair** â€” Reassigning orphaned records to valid parents
 - **Parent reassignment** â€” Fixing broken relationships
@@ -345,16 +345,16 @@ ANIBUS (the custodial intelligence agent) is responsible for:
 
 **Stored procedures would:**
 
-- **Override ANIBUS** â€” Execute logic that conflicts with ANIBUS decisions
-- **Corrupt its decisions** â€” Mutate data that ANIBUS is trying to repair
-- **Mutate data behind its back** â€” Change values without ANIBUS knowing
+- **Override anubis** â€” Execute logic that conflicts with anubis decisions
+- **Corrupt its decisions** â€” Mutate data that anubis is trying to repair
+- **Mutate data behind its back** â€” Change values without anubis knowing
 - **Break conflict resolution** â€” Execute logic that prevents proper conflict resolution
 - **Destroy historical truth** â€” Overwrite original values with recalculated ones
 
-**Example ANIBUS Repair:**
+**Example anubis Repair:**
 
 ```php
-// ANIBUS finds orphaned agent record
+// anubis finds orphaned agent record
 $orphan = [
     'agent_id' => 42,
     'parent_agent_id' => 999,  // Orphaned (parent deleted)
@@ -362,8 +362,8 @@ $orphan = [
     'updated_ymdhis' => 20250106150000
 ];
 
-// ANIBUS repairs by reassigning parent
-$anibus->repairOrphan('agents', 42, [
+// anubis repairs by reassigning parent
+$anubis->repairOrphan('agents', 42, [
     'parent_agent_id' => 1,  // Reassigned to valid parent
     // Preserves original score and timestamp
     'score' => $orphan['score'],  // PRESERVED
@@ -373,11 +373,11 @@ $anibus->repairOrphan('agents', 42, [
 // If stored procedures existed, they would:
 // - Recalculate score during repair (destroying original)
 // - Overwrite updated_ymdhis with current time
-// - Execute logic that conflicts with ANIBUS repair
+// - Execute logic that conflicts with anubis repair
 // - Make it impossible to preserve original values
 ```
 
-**ANIBUS must be the only place where logic lives.**
+**anubis must be the only place where logic lives.**
 
 ---
 
@@ -448,7 +448,7 @@ $db->update('agents', [
 - âœ… Keep database as pure storage layer
 - âœ… Make all logic visible and version-controlled
 - âœ… Ensure all logic is portable across database engines
-- âœ… Let ANIBUS control all repair and merge logic
+- âœ… Let anubis control all repair and merge logic
 
 **Lupopedia uses application-level logic, not database-level computation.**
 
@@ -590,7 +590,7 @@ Reasons:
 - Make data merging impossible
 - Hide logic where it can't be version-controlled
 - Break federation across different database engines
-- Interfere with ANIBUS repair operations
+- Interfere with anubis repair operations
 - Destroy historical accuracy
 - Break portability across hosting environments
 - Require elevated privileges
@@ -600,7 +600,7 @@ ALL logic must be:
 - In application code (PHP, Python, etc.)
 - Visible and version-controlled
 - Portable across database engines
-- Controlled by ANIBUS for repairs and merges
+- Controlled by anubis for repairs and merges
 - Simple SELECT, INSERT, UPDATE, DELETE only
 
 The database must NEVER execute logic.
@@ -639,23 +639,24 @@ Any AI tool (Cursor, Copilot, DeepSeek, Claude, Gemini, Grok, Windsurf, Cursor A
 All computation and logic is handled by:
 
 - **Application code** (PHP, Python, etc.)
-- **ANIBUS repair operations**
+- **anubis repair operations**
 - **Federation sync logic**
 - **Merge algorithms**
 - **Simple SQL queries only** (SELECT, INSERT, UPDATE, DELETE)
 
 **Never by stored procedures or functions.**
 
-This is how Lupopedia maintains portability, enables data merging, supports federation, and allows ANIBUS to repair data without interference.
+This is how Lupopedia maintains portability, enables data merging, supports federation, and allows anubis to repair data without interference.
 
 ---
 
 **See also:**
 - [NO_FOREIGN_KEYS_DOCTRINE.md](NO_FOREIGN_KEYS_DOCTRINE.md) â€” Related doctrine on foreign keys
 - [NO_TRIGGERS_DOCTRINE.md](NO_TRIGGERS_DOCTRINE.md) â€” Related doctrine on triggers
-- [ANIBUS_DOCTRINE.md](ANIBUS_DOCTRINE.md) â€” Custodial intelligence system
+- [anubis_DOCTRINE.md](anubis_DOCTRINE.md) â€” Custodial intelligence system
 - [DATABASE_PHILOSOPHY.md](../architecture/DATABASE_PHILOSOPHY.md) â€” Database design principles
-- [ANIBUS_DOCTRINE.md](ANIBUS_DOCTRINE.md) â€” How ANIBUS handles data repair
+- [anubis_DOCTRINE.md](anubis_DOCTRINE.md) â€” How anubis handles data repair
 - [PHILOSOPHY.md](../../PHILOSOPHY.md) â€” Overall database philosophy
 
 ---
+

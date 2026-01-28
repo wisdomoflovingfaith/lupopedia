@@ -174,23 +174,23 @@ ALTER TABLE `lupo_analytics_visits_monthly`
   CHANGE COLUMN `analytics_visit_track_monthly_id` `analytics_visits_monthly_id` bigint NOT NULL auto_increment COMMENT 'Primary key for monthly page visit statistics' FIRST,
   ADD PRIMARY KEY (`analytics_visits_monthly_id`);
 
--- lupo_anibus_events: Rename PK from id to anibus_event_id
-ALTER TABLE `lupo_anibus_events`
+-- lupo_anubis_events: Rename PK from id to anubis_event_id
+ALTER TABLE `lupo_anubis_events`
   DROP PRIMARY KEY,
-  CHANGE COLUMN `id` `anibus_event_id` int NOT NULL auto_increment FIRST,
-  ADD PRIMARY KEY (`anibus_event_id`);
+  CHANGE COLUMN `id` `anubis_event_id` int NOT NULL auto_increment FIRST,
+  ADD PRIMARY KEY (`anubis_event_id`);
 
--- lupo_anibus_orphans: Rename PK from id to anibus_orphan_id
-ALTER TABLE `lupo_anibus_orphans`
+-- lupo_anubis_orphaned: Rename PK from id to anubis_orphan_id
+ALTER TABLE `lupo_anubis_orphaned`
   DROP PRIMARY KEY,
-  CHANGE COLUMN `id` `anibus_orphan_id` int NOT NULL auto_increment FIRST,
-  ADD PRIMARY KEY (`anibus_orphan_id`);
+  CHANGE COLUMN `id` `anubis_orphan_id` int NOT NULL auto_increment FIRST,
+  ADD PRIMARY KEY (`anubis_orphan_id`);
 
--- lupo_anibus_redirects: Rename PK from id to anibus_redirect_id
-ALTER TABLE `lupo_anibus_redirects`
+-- lupo_anubis_redirects: Rename PK from id to anubis_redirect_id
+ALTER TABLE `lupo_anubis_redirects`
   DROP PRIMARY KEY,
-  CHANGE COLUMN `id` `anibus_redirect_id` int NOT NULL auto_increment FIRST,
-  ADD PRIMARY KEY (`anibus_redirect_id`);
+  CHANGE COLUMN `id` `anubis_redirect_id` int NOT NULL auto_increment FIRST,
+  ADD PRIMARY KEY (`anubis_redirect_id`);
 
 -- lupo_api_rate_limits: Rename PK from api_rate_limits_id to api_rate_limit_id
 ALTER TABLE `lupo_api_rate_limits`
@@ -362,3 +362,4 @@ WHERE TABLE_SCHEMA = DATABASE()
 ORDER BY TABLE_NAME;
 
 COMMIT;
+

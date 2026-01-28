@@ -63,7 +63,7 @@ Cursor must distinguish between:
 These are the **only modules** that belong in the `modules` table.
 
 ### **Kernel Utilities (NOT modules):**
-- ANIBUS  
+- anubis  
 - Dialog  
 - Memory  
 - HERMES  

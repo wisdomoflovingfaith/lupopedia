@@ -1,0 +1,46 @@
+{
+  "table_name": "lupo_anubis_deletion_log",
+  "fields": [
+    "`anubis_deletion_id` bigint unsigned NOT NULL auto_increment",
+    "`table_name` varchar(255) NOT NULL",
+    "`record_id` bigint unsigned NOT NULL",
+    "`deleted_ymdhis` bigint unsigned NOT NULL",
+    "`deletion_type` enum('path_not_taken','merged','moved','updated','consolidated','orphan_adopted','manual_override','system_cleanup','superseded','deprecated','temporal_context_expired') NOT NULL",
+    "`replacement_table` varchar(255)",
+    "`replacement_id` bigint unsigned",
+    "`anubis_operator` varchar(255) NOT NULL",
+    "`context_json` json",
+    "`notes` longtext"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_table_record",
+      "columns": [
+        "table_name",
+        "record_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_deleted_time",
+      "columns": [
+        "deleted_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "anubis_deletion_id",
+    "expected_name": "anubis_deletion_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

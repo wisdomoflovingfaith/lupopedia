@@ -134,7 +134,7 @@ This directory contains all Lupopedia documentation organized by category. This 
 - **[CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md](../doctrine/CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md)** â€” âš ï¸ **MANDATORY**: Role separation between Cursor (autonomous refactor engine) and Cascade (manual controlled editor). Cursor handles new features and automated refactors. Cascade handles legacy code and fragile migrations. Cursor MUST NOT touch legacy Crafty Syntax code until Cascade completes stabilization and explicit handoff.
 - **[JETBRAINS_CONFIGURATION_DOCTRINE.md](../doctrine/JETBRAINS_CONFIGURATION_DOCTRINE.md)** â€” âš ï¸ **MANDATORY FOR JETBRAINS IDEs**: JetBrains is a tool in SERVANT MODE, not an authority. Must NOT modify version numbers, WOLFIE headers, doctrine files, or interfere with atomization system. JetBrains operates as a tool only.
 - **[VERSIONING_DOCTRINE.md](../doctrine/VERSIONING_DOCTRINE.md)** â€” âš ï¸ **MANDATORY**: Version numbers are milestones, not timestamps. JetBrains is the release gate where version numbers change. Semantic versioning must reflect architectural meaning. Three-stage pipeline: Cursor (development) â†’ Cascade (stabilization) â†’ JetBrains (release).
-- **[ANIBUS_DOCTRINE.md](../doctrine/ANIBUS_DOCTRINE.md)** â€” Orphan handling system and relationship integrity
+- **[anubis_DOCTRINE.md](../doctrine/anubis_DOCTRINE.md)** â€” Orphan handling system and relationship integrity
 - **[WOLFMIND_DOCTRINE.md](../doctrine/WOLFMIND_DOCTRINE.md)** â€” Agent memory system and progressive enhancement
 - **[SYSTEM_AGENT_SAFETY_DOCTRINE.md](../doctrine/SYSTEM_AGENT_SAFETY_DOCTRINE.md)** â€” Agent 0 governance and inviolable rules
 - **[KERNEL_AGENTS.md](../doctrine/KERNEL_AGENTS.md)** â€” Kernel agents (0-49) including LILITH's heterodox operational stance
@@ -370,4 +370,5 @@ Related Channels:
 - [architecture](../architecture/README.md)
 - [doctrine](../doctrine/README.md)
 - [history](../history/README.md)
+
 

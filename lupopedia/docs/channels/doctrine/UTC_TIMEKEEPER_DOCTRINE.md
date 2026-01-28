@@ -161,7 +161,7 @@ UTC_TIMEKEEPER enables federation by:
 - **Temporal Consistency**: All nodes use same temporal authority
 - **Cross-Node Coordination**: Reliable timestamp comparison across nodes
 - **Merge Support**: Consistent timestamps enable reliable database merges
-- **Repair Operations**: ANIBUS can perform temporal repairs with confidence
+- **Repair Operations**: anubis can perform temporal repairs with confidence
 
 ---
 
@@ -326,3 +326,4 @@ UTC_TIMEKEEPER must scale for:
 ---
 
 *This doctrine establishes UTC_TIMEKEEPER as the fundamental temporal authority in Lupopedia, ensuring consistent, reliable, and auditable timestamp management across all agents, channels, and federation nodes while preventing temporal drift and inference.*
+

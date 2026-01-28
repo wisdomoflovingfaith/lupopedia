@@ -592,37 +592,37 @@ def select_one_from_lupo_analytics_visits_monthly(db):
     """
     return db.query(sql)
 
-def select_one_from_lupo_anibus_events(db):
+def select_one_from_lupo_anubis_events(db):
     sql = """
         SELECT
-            anibus_event_id,
+            anubis_event_id,
             event_type,
             details,
             created_ymdhis
-        FROM lupo_anibus_events
+        FROM lupo_anubis_events
         LIMIT 1;
     """
     return db.query(sql)
 
-def select_one_from_lupo_anibus_orphans(db):
+def select_one_from_lupo_anubis_orphaned(db):
     sql = """
         SELECT
-            anibus_orphan_id,
+            anubis_orphan_id,
             orphan_type,
             orphan_data,
             created_ymdhis,
             updated_ymdhis,
             is_deleted,
             deleted_ymdhis
-        FROM lupo_anibus_orphans
+        FROM lupo_anubis_orphaned
         LIMIT 1;
     """
     return db.query(sql)
 
-def select_one_from_lupo_anibus_redirects(db):
+def select_one_from_lupo_anubis_redirects(db):
     sql = """
         SELECT
-            anibus_redirect_id,
+            anubis_redirect_id,
             source_path,
             target_path,
             redirect_type,
@@ -630,7 +630,7 @@ def select_one_from_lupo_anibus_redirects(db):
             updated_ymdhis,
             is_deleted,
             deleted_ymdhis
-        FROM lupo_anibus_redirects
+        FROM lupo_anubis_redirects
         LIMIT 1;
     """
     return db.query(sql)

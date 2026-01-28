@@ -9,44 +9,44 @@ dialog:
   speaker: CURSOR
   target: @everyone
   mood_RGB: "00FF00"
-  message: Updated ANIBUS_DOCTRINE.md with critical coding pattern: when SELECT FROM table WHERE parent=X and parent doesn't exist, log to anibus_orphans. Added section 8 with examples, helper functions, and integration guidelines. Updated table count to 144.
+  message: Updated anubis_DOCTRINE.md with critical coding pattern: when SELECT FROM table WHERE parent=X and parent doesn't exist, log to anubis_orphaned. Added section 8 with examples, helper functions, and integration guidelines. Updated table count to 144.
 tags:
   categories: ["documentation", "doctrine", "agents", "database"]
   collections: ["core-docs", "doctrine"]
   channels: ["dev", "public"]
 in_this_file_we_have:
-  - ANIBUS Overview
-  - Why ANIBUS Exists
-  - ANIBUS Replaces Foreign Keys
+  - anubis Overview
+  - Why anubis Exists
+  - anubis Replaces Foreign Keys
   - Core Responsibilities
   - Database Tables
   - PHP Class Implementation
-  - How ANIBUS Works
+  - How anubis Works
   - Coding Pattern: Orphan Detection (CRITICAL)
   - Example Use Cases
   - Integration with Lupopedia
 file:
-  title: "ANIBUS Doctrine"
+  title: "anubis Doctrine"
   description: "Custodial Intelligence system that replaces foreign keys, handles orphan resolution, memory redirection, and maintains lineage in Lupopedia"
   version: "4.0.1"
   status: published
   author: "Captain Wolfie"
 ---
 
-# ðŸº **ANIBUS DOCTRINE**
+# ðŸº **anubis DOCTRINE**
 ### *Custodial Intelligence for Lupopedia*
 
-ANIBUS is the **custodial intelligence system** that replaces foreign key constraints in Lupopedia. It handles orphan resolution, memory redirection, lineage preservation, and maintains the integrity of relationships without the rigidity and fragility of database-level constraints.
+anubis is the **custodial intelligence system** that replaces foreign key constraints in Lupopedia. It handles orphan resolution, memory redirection, lineage preservation, and maintains the integrity of relationships without the rigidity and fragility of database-level constraints.
 
 ---
 
-## **1. Why ANIBUS Exists**
+## **1. Why anubis Exists**
 
 Lupopedia follows the doctrine:
 
-> **"The database stores raw facts. The agents enforce correctness. ANIBUS heals and maintains lineage."**
+> **"The database stores raw facts. The agents enforce correctness. anubis heals and maintains lineage."**
 
-ANIBUS exists because:
+anubis exists because:
 
 - **Foreign keys are forbidden** in Lupopedia (see [NO_FOREIGN_KEYS_DOCTRINE.md](NO_FOREIGN_KEYS_DOCTRINE.md))
 - **Orphans are meaningful**, not errors â€” they represent states awaiting resolution
@@ -55,11 +55,11 @@ ANIBUS exists because:
 - **Self-healing** is required â€” the system must repair itself without human intervention
 - **Portability** demands application-level enforcement, not database-level constraints
 
-ANIBUS is the agent that makes this possible.
+anubis is the agent that makes this possible.
 
 ---
 
-## **2. ANIBUS Replaces Foreign Keys**
+## **2. anubis Replaces Foreign Keys**
 
 Foreign key constraints would:
 
@@ -70,7 +70,7 @@ Foreign key constraints would:
 - Break self-healing routines (prevent agent-driven repair)
 - Break wizard-driven installation (require all dependencies at once)
 
-ANIBUS replaces all of this with:
+anubis replaces all of this with:
 
 - **Orphan detection** â€” finds missing references
 - **Orphan logging** â€” records them for resolution
@@ -83,7 +83,7 @@ ANIBUS replaces all of this with:
 
 ## **3. Core Responsibilities**
 
-ANIBUS is responsible for:
+anubis is responsible for:
 
 ### **3.1 Orphan Management**
 - Detecting orphaned references (records pointing to non-existent parents)
@@ -119,51 +119,80 @@ ANIBUS is responsible for:
 
 ## **4. Database Tables**
 
-ANIBUS uses three core tables:
+anubis uses five core tables:
 
-### **4.1 `anibus_orphans`**
+### **4.1 `anubis_orphaned`**
 Tracks orphaned references awaiting resolution.
 
 **Fields:**
-- `id` - Primary key
+- `anubis_orphaned_id` - Primary key
 - `table_name` - Table containing the orphaned reference
-- `column_name` - Column containing the missing ID
-- `missing_id` - The ID that doesn't exist in the parent table
-- `detected_ymdhis` - When the orphan was detected (UTC timestamp)
-- `resolved_ymdhis` - When the orphan was resolved (NULL if unresolved)
-- `resolution_note` - Notes about how it was resolved
+- `orphan_id` - The missing ID that triggered the orphan record
+- `timestamp_utc` - When the orphan was detected (UTC char(14))
+- `reason` - Resolution or detection reason
 
 **Purpose:** Log all orphaned references for inspection, repair, and historical analysis.
 
-### **4.2 `anibus_redirects`**
+### **4.2 `anubis_redirects`**
 Maintains semantic redirects for memory redirection and lineage preservation.
 
 **Fields:**
-- `id` - Primary key
-- `from_id` - Original ID (the old reference)
-- `to_id` - Target ID (the new reference)
+- `anubis_redirect_id` - Primary key
 - `table_name` - Table this redirect applies to
-- `reason` - Why the redirect was created (e.g., "orphan_repair", "soft_delete", "merge")
-- `created_ymdhis` - When the redirect was created (UTC timestamp)
+- `old_id` - Original ID (the old reference)
+- `new_id` - Target ID (the new reference)
+- `timestamp_utc` - When the redirect was created (UTC char(14))
+- `agent` - Agent responsible for the redirect
 
 **Purpose:** Preserve lineage when records are reassigned, merged, or transformed. Allows queries to automatically follow redirects.
 
-### **4.3 `anibus_events`**
-General event log for all ANIBUS custodial actions.
+### **4.3 `anubis_events`**
+General event log for all anubis custodial actions.
 
 **Fields:**
-- `id` - Primary key
+- `anubis_event_id` - Primary key
 - `event_type` - Type of event (e.g., "orphan_detected", "redirect_created", "repair_completed")
-- `details` - JSON or text details about the event
-- `created_ymdhis` - When the event occurred (UTC timestamp)
+- `table_name` - Table affected by the event
+- `row_id` - Row affected by the event
+- `timestamp_utc` - When the event occurred (UTC char(14))
+- `agent` - Agent responsible for the event
+- `details_json` - JSON or text details about the event
 
-**Purpose:** Audit trail of all ANIBUS operations for debugging, analysis, and system monitoring.
+**Purpose:** Audit trail of all anubis operations for debugging, analysis, and system monitoring.
+
+### **4.4 `anubis_revised`**
+Tracks revision actions applied during repairs and corrections.
+
+**Fields:**
+- `anubis_revised_id` - Primary key
+- `table_name` - Table affected by the revision
+- `row_id` - Row affected by the revision
+- `timestamp_utc` - When the revision was applied (UTC char(14))
+- `agent` - Agent responsible for the revision
+- `revision_json` - Revision payload
+
+**Purpose:** Record structured revisions applied by anubis repair workflows.
+
+### **4.5 `anubis_mirrored`**
+Stores mirrored snapshots used for lineage and recovery.
+
+**Fields:**
+- `anubis_mirrored_id` - Primary key
+- `table_name` - Table mirrored
+- `original_id` - Original row ID
+- `mirrored_json` - Serialized mirror snapshot
+- `timestamp_utc` - When the mirror was captured (UTC char(14))
+- `agent` - Agent responsible for the mirror
+- `reason` - Why the mirror was created
+- `lineage_chain` - Optional lineage chain reference
+
+**Purpose:** Preserve mirrored lineage snapshots for repair and audit workflows.
 
 ---
 
 ## **5. PHP Class Implementation**
 
-ANIBUS is implemented as `class-anibus.php` in `lupo-includes/`.
+anubis is implemented as `class-anubis.php` in `lupo-includes/`.
 
 ### **5.1 Core Methods**
 
@@ -180,26 +209,26 @@ ANIBUS is implemented as `class-anibus.php` in `lupo-includes/`.
 - `applyRedirectIfExists($table, $id)` - Apply redirect if one exists
 
 #### **Event Logging**
-- `logEvent($eventType, $details)` - Log a general ANIBUS event
+- `logEvent($eventType, $details)` - Log a general anubis event
 
 ### **5.2 Core Principles**
 
 The class follows these principles:
 
 ```
-ANIBUS NEVER deletes data.
-ANIBUS NEVER enforces foreign keys.
-ANIBUS ONLY logs, reassigns, redirects, and preserves lineage.
+anubis NEVER deletes data.
+anubis NEVER enforces foreign keys.
+anubis ONLY logs, reassigns, redirects, and preserves lineage.
 ```
 
 ---
 
-## **6. How ANIBUS Works**
+## **6. How anubis Works**
 
 ### **6.1 Orphan Detection Flow**
 
-1. **Detection** - ANIBUS scans tables for references to non-existent records
-2. **Logging** - Orphans are logged to `anibus_orphans` with detection timestamp
+1. **Detection** - anubis scans tables for references to non-existent records
+2. **Logging** - Orphans are logged to `anubis_orphaned` with detection timestamp
 3. **Inspection** - Unresolved orphans can be queried for analysis
 4. **Resolution** - Orphans are reassigned to valid parents
 5. **Redirect Creation** - Semantic redirects preserve the original reference
@@ -208,15 +237,15 @@ ANIBUS ONLY logs, reassigns, redirects, and preserves lineage.
 ### **6.2 Memory Redirection Flow**
 
 1. **Redirect Creation** - When a record is reassigned, a redirect is created
-2. **Redirect Storage** - Redirect stored in `anibus_redirects` with reason
+2. **Redirect Storage** - Redirect stored in `anubis_redirects` with reason
 3. **Automatic Application** - Queries can use `applyRedirectIfExists()` to follow redirects
 4. **Lineage Preservation** - Original references are preserved through redirect chains
 
 ### **6.3 Self-Healing Flow**
 
-1. **Periodic Scanning** - ANIBUS scans tables for orphaned references
+1. **Periodic Scanning** - anubis scans tables for orphaned references
 2. **Automatic Detection** - Orphans are detected and logged
-3. **Repair Attempts** - ANIBUS attempts to repair orphans using default parents
+3. **Repair Attempts** - anubis attempts to repair orphans using default parents
 4. **Redirect Creation** - Redirects preserve original relationships
 5. **Event Logging** - All actions are logged for audit trail
 
@@ -224,7 +253,7 @@ ANIBUS ONLY logs, reassigns, redirects, and preserves lineage.
 
 ## **7. Integration with Lupopedia**
 
-ANIBUS integrates with:
+anubis integrates with:
 
 - **Agent 0 (System Agent)** - Kernel-level governance and safety
 - **Thread Manager** - Maintains dialog thread relationships
@@ -239,7 +268,7 @@ ANIBUS integrates with:
 
 ### **8.1 The Pattern**
 
-When writing code that queries records by parent reference, **always check if the parent exists**. If it doesn't, log it to ANIBUS.
+When writing code that queries records by parent reference, **always check if the parent exists**. If it doesn't, log it to anubis.
 
 **The Pattern:**
 ```php
@@ -255,8 +284,8 @@ $parentRow = $parentStmt->fetch();
 
 if ($parentRow['c'] == 0) {
     // Parent doesn't exist - log orphan
-    $anibus = new ANIBUS($db);
-    $anibus->logOrphan('contents', 'content_parent_id', $parentId);
+    $anubis = new anubis($db);
+    $anubis->logOrphan('contents', 'content_parent_id', $parentId);
     
     // Handle gracefully - maybe return empty array or use default parent
     return [];
@@ -290,7 +319,7 @@ You can create a helper function to make this easier:
 
 ```php
 function queryWithOrphanCheck($db, $table, $parentColumn, $parentId, $parentTable = null) {
-    $anibus = new ANIBUS($db);
+    $anubis = new anubis($db);
     
     // If parent table not specified, assume same table
     $checkTable = $parentTable ?: $table;
@@ -302,7 +331,7 @@ function queryWithOrphanCheck($db, $table, $parentColumn, $parentId, $parentTabl
     
     if ($checkRow['c'] == 0) {
         // Log orphan
-        $anibus->logOrphan($table, $parentColumn, $parentId);
+        $anubis->logOrphan($table, $parentColumn, $parentId);
         return []; // Return empty array
     }
     
@@ -326,7 +355,7 @@ Without orphan detection:
 
 With orphan detection:
 - Broken references are logged immediately
-- ANIBUS can repair them automatically
+- anubis can repair them automatically
 - System maintains self-healing capability
 - Data integrity is preserved
 - Lineage is maintained through redirects
@@ -342,7 +371,7 @@ SELECT * FROM table WHERE parent_id = X
 ```php
 // Check parent exists first
 if (parent_not_exists) {
-    $anibus->logOrphan('table', 'parent_id', X);
+    $anubis->logOrphan('table', 'parent_id', X);
     // Handle gracefully
 }
 ```
@@ -356,30 +385,30 @@ This is the **Lupopedia way** â€” detect, log, heal, preserve.
 ### **9.1 Orphan Resolution**
 ```php
 // Detect orphans in a table
-$anibus = new ANIBUS($db);
-$anibus->detectOrphansInTable('content_category_map', 'category_id', [1, 2, 3, 999]);
+$anubis = new anubis($db);
+$anubis->detectOrphansInTable('content_category_map', 'category_id', [1, 2, 3, 999]);
 
 // Get unresolved orphans
-$orphans = $anibus->getOrphans(100);
+$orphans = $anubis->getOrphans(100);
 
 // Resolve an orphan
-$anibus->resolveOrphan($orphanId, $newParentId, "Reassigned to default category");
+$anubis->resolveOrphan($orphanId, $newParentId, "Reassigned to default category");
 ```
 
 ### **9.2 Memory Redirection**
 ```php
 // Create a redirect when reassigning
-$anibus->logRedirect('contents', $oldContentId, $newContentId, "content_merge");
+$anubis->logRedirect('contents', $oldContentId, $newContentId, "content_merge");
 
 // Apply redirect in queries
-$actualId = $anibus->applyRedirectIfExists('contents', $oldContentId);
+$actualId = $anubis->applyRedirectIfExists('contents', $oldContentId);
 // $actualId will be $newContentId if redirect exists, otherwise $oldContentId
 ```
 
 ### **9.3 Automatic Repair**
 ```php
 // Repair all orphans in a table
-$anibus->repairOrphansForTable('content_category_map', 'category_id', 1);
+$anubis->repairOrphansForTable('content_category_map', 'category_id', 1);
 // This will:
 // 1. Find all orphans in the table
 // 2. Reassign them to category_id = 1
@@ -391,21 +420,21 @@ $anibus->repairOrphansForTable('content_category_map', 'category_id', 1);
 
 ## **10. Relationship to NO FOREIGN KEYS DOCTRINE**
 
-ANIBUS is the **implementation** of the [NO FOREIGN KEYS DOCTRINE](NO_FOREIGN_KEYS_DOCTRINE.md).
+anubis is the **implementation** of the [NO FOREIGN KEYS DOCTRINE](NO_FOREIGN_KEYS_DOCTRINE.md).
 
 That doctrine states:
 - Foreign keys are forbidden
 - The database stores raw facts
 - The agents enforce correctness
-- ANIBUS heals and maintains lineage
+- anubis heals and maintains lineage
 
-ANIBUS is the agent that makes this doctrine work in practice.
+anubis is the agent that makes this doctrine work in practice.
 
 ---
 
 ## **11. Future Extensions**
 
-ANIBUS will expand to handle:
+anubis will expand to handle:
 
 - **NoSQL Memory Integration** - Redirects for vector memory and semantic embeddings
 - **Temporal Memory Logs** - Time-based redirect chains
@@ -418,7 +447,7 @@ ANIBUS will expand to handle:
 
 ## **12. Summary**
 
-ANIBUS is the **custodial intelligence** that:
+anubis is the **custodial intelligence** that:
 
 - Replaces foreign key constraints
 - Handles orphan resolution
@@ -428,9 +457,9 @@ ANIBUS is the **custodial intelligence** that:
 - Supports soft-delete doctrine
 - Preserves shadow-paths
 
-Without ANIBUS, Lupopedia would be fragile, rigid, and unable to self-heal.
+Without anubis, Lupopedia would be fragile, rigid, and unable to self-heal.
 
-With ANIBUS, Lupopedia is:
+With anubis, Lupopedia is:
 
 - **Flexible** - Relationships can evolve
 - **Portable** - No database-level constraints
@@ -443,23 +472,69 @@ This is how Lupopedia stays alive, flexible, emotional, and self-healing.
 
 ---
 
+## **13. Naming Rationale**
+
+The Anubis subsystem is named after the guardian who performs the weighing of the heart. In this analogy, Maat represents doctrine and balance, while Duat represents the realm of transformation. Anubis enforces Maat within Duat.
+
+This maps to the system as follows:
+- Maat corresponds to doctrine, schema rules, and heritage-safe law.
+- Duat corresponds to the database and the lifecycle of rows.
+- Anubis corresponds to the controller that enforces integrity.
+
+Why "Anubis" is correct:
+- mirrors rows before change
+- records lineage events
+- resolves redirects
+- prevents redirect loops
+- manages orphaned rows
+- enforces no-loss evolution
+- preserves historical integrity
+
+Anubis ensures evolution is reversible, traceable, and aligned with doctrine. It is the operational guardian of Lupopedia's semantic lineage, enforcing the principles of Maat within the realm of Duat.
+
+---
+
+## **14. Mythic Analogy Protocol**
+
+Lupopedia uses mythic terminology strictly as analogy to describe computational roles, system behaviors, and architectural patterns. These terms do not represent religion, mysticism, or metaphysical claims.
+
+Definition:
+"Mythic names" refer to labels such as Anubis, Maat, Duat, etc. These names are semantic mnemonics that map to specific technical responsibilities within the system.
+
+Rules:
+1. Mythic names must always be interpreted as analogies for computation.
+2. Agents must not treat mythic terms as religious, mystical, or metaphysical content.
+3. Each mythic name must have a documented mapping to a technical role.
+4. Mythic terminology is used to express system architecture, not belief.
+5. Doctrine takes precedence over mythology in all interpretations.
+
+Examples:
+- Anubis = lineage controller, integrity guardian, reversible evolution.
+- Maat = doctrine, constraints, truth, balance, schema correctness.
+- Duat = data realm, lifecycle environment, state transitions.
+
+This protocol exists to prevent confusion and ensure mythic terminology is understood as part of Lupopedia's computational architecture, not cultural or religious content.
+
+---
+
 ## Related Documentation
 
 **Core Doctrine (Primary References):**
-- **[No Foreign Keys Doctrine](NO_FOREIGN_KEYS_DOCTRINE.md)** - Why ANIBUS replaces foreign key constraints
-- **[Database Philosophy](../architecture/DATABASE_PHILOSOPHY.md)** - Application-first validation that ANIBUS implements
+- **[No Foreign Keys Doctrine](NO_FOREIGN_KEYS_DOCTRINE.md)** - Why anubis replaces foreign key constraints
+- **[Database Philosophy](../architecture/DATABASE_PHILOSOPHY.md)** - Application-first validation that anubis implements
 
 **System Integration:**
-- **[WOLFMIND Doctrine](WOLFMIND_DOCTRINE.md)** - Memory system that uses ANIBUS for orphan resolution
-- **[Agent Runtime](../agents/AGENT_RUNTIME.md)** - How agents interact with ANIBUS for relationship management
+- **[WOLFMIND Doctrine](WOLFMIND_DOCTRINE.md)** - Memory system that uses anubis for orphan resolution
+- **[Agent Runtime](../agents/AGENT_RUNTIME.md)** - How agents interact with anubis for relationship management
 
 **Implementation Context:**
-- **[Database Schema](../schema/DATABASE_SCHEMA.md)** - Complete documentation of anibus_* tables
-- **[Architecture Sync](../architecture/ARCHITECTURE_SYNC.md)** - System architecture that includes ANIBUS custodial intelligence
+- **[Database Schema](../schema/DATABASE_SCHEMA.md)** - Complete documentation of anubis_* tables
+- **[Architecture Sync](../architecture/ARCHITECTURE_SYNC.md)** - System architecture that includes anubis custodial intelligence
 
 **Historical Context (LOW Priority):**
 - **[History](../history/HISTORY.md)** - Background on why self-healing systems became necessary
-- **[What Not To Do And Why](../appendix/appendix/WHAT_NOT_TO_DO_AND_WHY.md)** - Lessons learned that led to ANIBUS design
+- **[What Not To Do And Why](../appendix/appendix/WHAT_NOT_TO_DO_AND_WHY.md)** - Lessons learned that led to anubis design
 
 ---
+
 
