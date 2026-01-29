@@ -38,6 +38,38 @@ file:
 
 # ALL NEW ENTRIES AFTER THIS LINE
 
+## [2026.3.7.8] — 2026-01-29 23:55 (UTC)
+
+### Summary
+- Completed Crafty Syntax -> Lupopedia migration alignment and documentation for all legacy tables.
+- Finalized doctrine coverage, atlas indexing, and channel 42 doctrine framing.
+- Confirmed TOONs as authoritative schema snapshots and maintained version/channel consistency.
+
+### Details
+- Confirmed full import pipeline coverage (import_from_old_crafty_syntax.sql) and post-import drops for all 34 legacy livehelp_ tables.
+- Added doctrine migration files for every legacy table, including a minimal livehelp_autoinvite note.
+- Regenerated and refined docs/doctrine/MigrationAtlas.md with subsystem notes and alphabetized replacements.
+- Added filesystem padding doctrine for channel directories and documented channel 42 migration checklist with cycle-based framing and emotional metadata stubs.
+- Created the Crafty Syntax ancestral intent + continuity document to preserve historical context and operational guarantees.
+- Verified mappings against doctrine, SQL, and TOONs in docs/toons/ as the authoritative schema source.
+
+## [2026.3.7.7] — 2026-01-29 23:36 (UTC)
+
+### Summary
+- Completed Crafty Syntax -> Lupopedia migration atlas and doctrine coverage for all 34 legacy tables.
+- Finalized migration pipeline alignment with import_from_old_crafty_syntax.sql and authoritative TOONs.
+- Documented subsystem replacements, federation node mapping, and post-import drops.
+
+### Details
+- Completed import_from_old_crafty_syntax.sql coverage and confirmed all 34 legacy livehelp_* tables migrate then drop.
+- Added doctrine migration files for every legacy table, including a minimal livehelp_autoinvite note.
+- Generated and refined docs/doctrine/MigrationAtlas.md with alphabetized replacements and subsystem notes for ambiguous mappings.
+- Confirmed federation node import (livehelp_websites -> lupo_federation_nodes) including default_department_id support.
+- Verified mappings against doctrine, SQL, and TOONs in docs/toons/ (authoritative schema snapshots).
+
+### Notes
+- TOONs in docs/toons/ are the authoritative schema source; deprecated database/toon_data/ is ignored.
+
 ## 2026-01-28 - 2026.3.7.6 Sprint Actions
 
 - Updated Emotional Geometry Doctrine to v4.2 with Light-Emotion Isomorphism foundation.
@@ -10971,6 +11003,7 @@ details manually.
 - Added `plan_for_crafty_syntax.md` migration sprint plan.
 - Added `scripts/generate_blessed_channel_registry.py` for blessed registry generation.
 - Added `channels/registry.json` and normalized channel folders to numeric zero-padded names.
+- Added `lupo-includes/functions/identity-helpers.php` for anonymous actor allocation, jsrn assignment, and merge utilities.
 
 ### Changed
 - Updated Emotional Geometry doctrine to v4.2 with Light-Emotion Isomorphism preface.
