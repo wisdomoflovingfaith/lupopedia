@@ -12,7 +12,6 @@
     "`channel_name` varchar(255) NOT NULL COMMENT 'Human-readable channel name'",
     "`description` text COMMENT 'Channel description'",
     "`metadata_json` text COMMENT 'JSON metadata for the channel'",
-    "`bgcolor` varchar(6) NOT NULL DEFAULT 'FFFFFF'",
     "`status_flag` tinyint NOT NULL DEFAULT 1 COMMENT 'Status flag (1=active, 0=inactive)'",
     "`end_ymdhis` bigint COMMENT 'Channel end timestamp (YYYYMMDDHHMMSS, NULL if ongoing)'",
     "`duration_seconds` int COMMENT 'Duration of the channel in seconds (if ended)'",

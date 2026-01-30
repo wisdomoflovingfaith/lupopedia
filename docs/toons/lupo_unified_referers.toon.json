@@ -1,0 +1,70 @@
+{
+  "table_name": "lupo_unified_referers",
+  "fields": [
+    "`referer_id` bigint NOT NULL auto_increment",
+    "`content_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`referer_url` varchar(2000)",
+    "`referer_domain` varchar(255)",
+    "`referer_path` varchar(2000)",
+    "`referer_content_id` bigint",
+    "`date_ymd` int NOT NULL",
+    "`visits` int NOT NULL DEFAULT 1",
+    "`depth` int NOT NULL DEFAULT 0",
+    "`metadata_json` json"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_content_id",
+      "columns": [
+        "content_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_referer_domain",
+      "columns": [
+        "referer_domain"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_referer_content_id",
+      "columns": [
+        "referer_content_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_date",
+      "columns": [
+        "date_ymd"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "referer_id",
+    "expected_name": "referer_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

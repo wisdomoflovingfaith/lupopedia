@@ -1,0 +1,37 @@
+{
+  "table_name": "lupo_modules_departments",
+  "fields": [
+    "`module_department_id` bigint NOT NULL auto_increment",
+    "`module_id` bigint NOT NULL",
+    "`department_id` bigint NOT NULL",
+    "`is_enabled` tinyint NOT NULL DEFAULT 1",
+    "`sort_order` int DEFAULT 0",
+    "`created_ymdhis` char(14) NOT NULL",
+    "`updated_ymdhis` char(14) NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` char(14)"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "uniq_mod_dept",
+      "columns": [
+        "module_id",
+        "department_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "module_department_id",
+    "expected_name": "module_department_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

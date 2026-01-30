@@ -1,0 +1,55 @@
+{
+  "table_name": "lupo_unified_visits",
+  "fields": [
+    "`id` bigint unsigned NOT NULL auto_increment",
+    "`content_id` bigint unsigned NOT NULL DEFAULT 0",
+    "`actor_id` bigint unsigned NOT NULL DEFAULT 0",
+    "`page_url` varchar(500) NOT NULL",
+    "`page_domain` varchar(255) NOT NULL",
+    "`page_path` varchar(500) NOT NULL",
+    "`date_ymd` int NOT NULL",
+    "`visits` int NOT NULL DEFAULT 0",
+    "`depth` int NOT NULL DEFAULT 0",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "page_domain",
+      "columns": [
+        "page_domain"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "date_ymd",
+      "columns": [
+        "date_ymd"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "content_id",
+      "columns": [
+        "content_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

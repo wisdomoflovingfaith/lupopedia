@@ -3,6 +3,7 @@
   "fields": [
     "`federation_node_id` bigint NOT NULL auto_increment",
     "`node_base_url` varchar(500) NOT NULL",
+    "`default_department_id` bigint",
     "`node_name` varchar(255)",
     "`node_description` text",
     "`node_contact` varchar(255)",

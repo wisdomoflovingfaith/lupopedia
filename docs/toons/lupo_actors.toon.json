@@ -2,7 +2,7 @@
   "table_name": "lupo_actors",
   "fields": [
     "`actor_id` bigint NOT NULL auto_increment COMMENT 'Primary key for actor'",
-    "`actor_type` enum('user','ai_agent','service') NOT NULL COMMENT 'Type of actor'",
+    "`actor_type` enum('user','ai_agent','service','anonymous') NOT NULL COMMENT 'Type of actor'",
     "`slug` varchar(255) NOT NULL COMMENT 'Stable unique identifier'",
     "`name` varchar(255) NOT NULL COMMENT 'Human-readable name'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS'",
@@ -11,7 +11,7 @@
     "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS'",
     "`actor_source_id` bigint COMMENT 'ID from source table (auth_users, agents, etc.)'",
-    "`actor_source_type` varchar(20) COMMENT 'Source type: user, agent, system'",
+    "`actor_source_type` varchar(50)",
     "`metadata` text COMMENT 'Optional JSON for additional actor attributes'",
     "`adversarial_role` enum('none','structural_stress','protocol_break','doctrine_test') DEFAULT 'none'",
     "`adversarial_oversight_actor_id` bigint COMMENT 'e.g., LILITH actor_id'"

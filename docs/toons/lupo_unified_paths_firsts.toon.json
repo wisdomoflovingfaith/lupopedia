@@ -1,0 +1,51 @@
+{
+  "table_name": "lupo_unified_paths_firsts",
+  "fields": [
+    "`id` bigint unsigned NOT NULL auto_increment",
+    "`from_visit_id` bigint unsigned NOT NULL DEFAULT 0",
+    "`to_visit_id` bigint unsigned NOT NULL DEFAULT 0",
+    "`date_ymd` int NOT NULL",
+    "`visits` int NOT NULL DEFAULT 0",
+    "`metadata_json` json",
+    "`created_at` timestamp DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED",
+    "`updated_at` timestamp DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "from_visit_id",
+      "columns": [
+        "from_visit_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "to_visit_id",
+      "columns": [
+        "to_visit_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "date_ymd",
+      "columns": [
+        "date_ymd"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}
