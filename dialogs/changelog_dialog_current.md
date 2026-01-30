@@ -2,9 +2,9 @@
 wolfie.headers: explicit architecture with structured clarity for every file.
 GOV-AD-PROHIBIT-001: true
 ads_prohibition_statement: "Ads are manipulation. Ads are disrespect. Ads violate user trust."
-file.last_modified_system_version: 2026.1.0.0
-file.last_modified_utc: 20260120113800
-file.utc_day: 20260120
+file.last_modified_system_version: 2026.3.8.0
+file.last_modified_utc: 20260130005340
+file.utc_day: 20260130
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -66,3 +66,26 @@ in_this_file_we_have:
   - Version 4.1.19 (2026-01-20): Consolidation Execution Patch; unified_dialog_messages, unified_analytics_paths, unified_truth_items; collections parent_id; 6 tables dropped; TOON regeneration required
   - Version 4.1.18 (2026-01-20): Consolidation Planning Patch; dialog, analytics, truth, collections targets; migration skeleton; no schema; execution 4.1.19+
   - Version 4.1.1
+
+## [2026.3.8.0] – Crafty Syntax Subsystem Activation + AI→Human Escalation Engine
+
+### Added
+- Activated the new Crafty Syntax operator console under `lupopedia/crafty_syntax/`
+- Implemented full routing, controllers, views, includes, and admin CSS
+- Added Operator Expertise System (`includes/expertise.php`) using TOON-aligned scoring
+- Added AI→Human escalation engine (`includes/escalation.php`) with topic/department/channel resolution
+- Escalation metadata stored safely in `lupo_dialog_threads.metadata_json` (no schema drift)
+- Logged AI→human handoffs in `lupo_agent_tool_calls`
+- Updated operator presence and load via `lupo_operator_status`
+- Integrated Crafty Syntax module router to forward `/crafty_syntax/...` slugs into the new subsystem
+- Added Operator Expertise Snapshot panel to the Operator Overview page
+
+### Changed
+- Operator Overview now renders real data from `lupo_actors`, `lupo_operator_status`, and `lupo_dialog_threads`
+- Legacy placeholder routing replaced with the new procedural console
+- Added `/crafty_syntax/escalate` endpoint for AI→human escalation
+
+### Notes
+- No database schema changes beyond the new migration; all new behavior stored in metadata_json per doctrine
+- Escalation engine uses `lupo_crafty_select_operator()` for expertise-based routing
+- This version marks the first fully functional semantic OS integration of Crafty Syntax

@@ -1,8 +1,8 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 2026.3.7.6
+file.last_modified_system_version: 2026.3.8.0
 file.channel: versioning
-file.last_modified_utc: 20260128133454
+file.last_modified_utc: 20260130005340
 file.name: "CHANGELOG.md"
 ---
 
@@ -54,6 +54,29 @@ The schema is now fully aligned with Lupopedia's naming doctrine and ready for t
 
 ### Notes
 - This patch is part of the ongoing Crafty Syntax -> Lupopedia migration work
+
+## [2026.3.8.0] – Crafty Syntax Subsystem Activation + AI→Human Escalation Engine
+
+### Added
+- Activated the new Crafty Syntax operator console under `lupopedia/crafty_syntax/`
+- Implemented full routing, controllers, views, includes, and admin CSS
+- Added Operator Expertise System (`includes/expertise.php`) using TOON-aligned scoring
+- Added AI→Human escalation engine (`includes/escalation.php`) with topic/department/channel resolution
+- Escalation metadata stored safely in `lupo_dialog_threads.metadata_json` (no schema drift)
+- Logged AI→human handoffs in `lupo_agent_tool_calls`
+- Updated operator presence and load via `lupo_operator_status`
+- Integrated Crafty Syntax module router to forward `/crafty_syntax/...` slugs into the new subsystem
+- Added Operator Expertise Snapshot panel to the Operator Overview page
+
+### Changed
+- Operator Overview now renders real data from `lupo_actors`, `lupo_operator_status`, and `lupo_dialog_threads`
+- Legacy placeholder routing replaced with the new procedural console
+- Added `/crafty_syntax/escalate` endpoint for AI→human escalation
+
+### Notes
+- No database schema changes beyond the new migration; all new behavior stored in metadata_json per doctrine
+- Escalation engine uses `lupo_crafty_select_operator()` for expertise-based routing
+- This version marks the first fully functional semantic OS integration of Crafty Syntax
 
 ## [2026.3.7.6] - 2026-01-28
 ### Added

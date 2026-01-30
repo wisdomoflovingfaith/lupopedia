@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    background: #f4f6fb;
+    color: #1c2430;
+}
+
+.cs-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.cs-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0b2b5c;
+    color: #ffffff;
+    padding: 12px 20px;
+}
+
+.cs-brand {
+    font-weight: bold;
+    margin-right: 12px;
+}
+
+.cs-subtitle {
+    color: #b7c6e0;
+}
+
+.cs-topbar-right {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.cs-logout {
+    color: #ffcf5f;
+    text-decoration: none;
+}
+
+.cs-body {
+    display: flex;
+    flex: 1;
+}
+
+.cs-sidebar {
+    width: 240px;
+    background: #e5e9f2;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.cs-nav-section {
+    margin-bottom: 16px;
+    border: 1px dotted #4a5f86;
+    padding: 8px;
+    background: #f7f9ff;
+}
+
+.cs-nav-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.cs-nav-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cs-nav-section li {
+    margin: 6px 0;
+}
+
+.cs-nav-section a {
+    color: #0b2b5c;
+    text-decoration: none;
+}
+
+.cs-content {
+    flex: 1;
+    padding: 24px;
+}
+
+.cs-card {
+    background: #ffffff;
+    border: 1px solid #d0d6e2;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.cs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+.cs-label {
+    font-size: 12px;
+    color: #5f6d85;
+}
+
+.cs-value {
+    font-weight: bold;
+}
+
+.cs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cs-table th,
+.cs-table td {
+    border-bottom: 1px solid #e1e6f0;
+    padding: 8px 4px;
+    text-align: left;
+}
+
+.cs-muted {
+    color: #6f7d92;
+    margin-left: 6px;
+}
+
+.cs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cs-list li {
+    margin: 6px 0;
+}

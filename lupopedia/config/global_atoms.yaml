@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 2026.3.7.6
+file.last_modified_system_version: 2026.3.8.0
 file.channel: schema
 # Global Atoms Configuration
 # Single source of truth for ecosystem-wide metadata used in WOLFIE Headers
@@ -14,8 +14,8 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "2026.1.1.1"
-last_updated: 20260120
+version: "2026.3.8.0"
+last_updated: 20260130005340
 
 # Author Information
 authors:
@@ -37,7 +37,7 @@ project:
 
 # Version Information
 versions:
-  lupopedia: "2026.1.1.1"
+  lupopedia: "2026.3.8.0"
   crafty_syntax: "4.0.120"
   wolfie_headers: "4.0.120"
   schema: "4.0.115"
@@ -75,7 +75,7 @@ timestamp:
 # Global Atoms (Single Source of Truth for WOLFIE Headers)
 
 # Current Lupopedia Version (Use this in all WOLFIE headers instead of hardcoding)
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "2026.1.1.1"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "2026.3.8.0"
 
 # Current Authors (Use in WOLFIE headers)
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie (lupopedia-at-gmail-com)"

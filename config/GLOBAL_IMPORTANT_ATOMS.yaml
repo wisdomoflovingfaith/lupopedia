@@ -11,7 +11,7 @@
 # All other atoms are secondary and may drift without system impact
 
 # IDENTITY ANCHORS (3)
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.2.1"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "2026.3.8.0"
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie"
 GLOBAL_CURRENT_COPYRIGHT: "© 2025-2026 Eric Robin Gerdes. All rights reserved."
 

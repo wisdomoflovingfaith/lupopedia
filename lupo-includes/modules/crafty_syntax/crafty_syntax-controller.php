@@ -48,42 +48,59 @@ function craftysyntax_handle_slug($slug) {
         return craftysyntax_render_not_found($slug);
     }
     
-    // 4. TODO: Load legacy Crafty Syntax data
-    // For now, create a placeholder content structure
-    $content = [
-        'title' => 'Crafty Syntax Legacy Route',
-        'description' => 'Legacy Crafty Syntax routing',
-        'content_type' => 'html',
-        'format' => 'html',
-        'body' => '<p>Crafty Syntax legacy route for slug: <strong>' . htmlspecialchars($slug) . '</strong></p><p>This will load legacy Crafty Syntax data and integrate with Lupopedia UI.</p>',
-        'content_sections' => null
-    ];
-    
-    // 5. Render body
-    $rendered_body = content_render_body($content['body'], $content['content_type'], $content['format']);
-    
-    // 6. Extract section anchors (cached)
-    if (empty($content['content_sections'])) {
-        $sections = content_extract_sections($rendered_body);
-        if (!empty($sections)) {
-            $content['content_sections'] = $sections;
+    // 4. Route to the modern Crafty Syntax operator console
+    $console = craftysyntax_handle_operator_console($slug);
+    if ($console !== null) {
+        return $console;
+    }
+
+    return craftysyntax_render_not_found($slug);
+}
+
+/**
+ * Render the modern Crafty Syntax operator console (procedural PHP).
+ *
+ * @param string $slug
+ * @return string|null
+ */
+function craftysyntax_handle_operator_console($slug) {
+    $console_path = LUPOPEDIA_ABSPATH . '/crafty_syntax/index.php';
+    if (!file_exists($console_path)) {
+        return null;
+    }
+
+    $parts = explode('/', trim($slug, '/'));
+    $page = 'operator';
+    $action = 'overview';
+    $index = array_search('crafty_syntax', $parts, true);
+    if ($index !== false && isset($parts[$index + 1]) && $parts[$index + 1] !== '') {
+        $page = $parts[$index + 1];
+        if (isset($parts[$index + 2]) && $parts[$index + 2] !== '') {
+            $action = $parts[$index + 2];
         }
     }
-    
-    // 7. Render content block (content only, no layout)
-    $page_body = render_content_page($content, $rendered_body);
-    
-    // 8. Render main layout (wraps content block with global UI)
-    $context = [
-        'page_body' => $page_body,
-        'page_title' => $content['title'] ?? '',
-        'content' => $content,
-        'content_type' => $content['content_type'] ?? null,
-        'meta' => [
-            'description' => $content['description'] ?? ''
-        ]
-    ];
-    return render_main_layout($context);
+
+    $original_page = $_GET['page'] ?? null;
+    $original_action = $_GET['action'] ?? null;
+    $_GET['page'] = $page;
+    $_GET['action'] = $action;
+
+    ob_start();
+    include $console_path;
+    $output = ob_get_clean();
+
+    if ($original_page === null) {
+        unset($_GET['page']);
+    } else {
+        $_GET['page'] = $original_page;
+    }
+    if ($original_action === null) {
+        unset($_GET['action']);
+    } else {
+        $_GET['action'] = $original_action;
+    }
+
+    return $output;
 }
 
 /**
