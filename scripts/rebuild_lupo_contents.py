@@ -1,3 +1,4 @@
+import argparse
 import json
 import re
 import sys
@@ -121,10 +122,37 @@ def load_db_config(config_path: Path):
     return config
 
 
-def main():
-    dry_run = False  # Set to False to execute inserts
+def resolve_channel_key(root: Path, md_file: Path):
+    try:
+        rel_parts = md_file.relative_to(root).parts
+    except ValueError:
+        return None
+    if not rel_parts:
+        return None
+    return rel_parts[0]
 
-    root = Path(__file__).resolve().parent.parent / "docs"
+
+def main():
+    parser = argparse.ArgumentParser(description="Rebuild lupo_contents from Markdown files.")
+    parser.add_argument(
+        "--root",
+        default=None,
+        help="Root directory to scan for Markdown (default: docs/channels).",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print counts without writing to the database.",
+    )
+    parser.add_argument(
+        "--default-channel-id",
+        type=int,
+        default=0,
+        help="Fallback channel_id when a channel_key cannot be resolved.",
+    )
+    args = parser.parse_args()
+
+    root = Path(args.root) if args.root else Path(__file__).resolve().parent.parent / "docs" / "channels"
     if not root.exists():
         print(f"Root path not found: {root}", file=sys.stderr)
         sys.exit(1)
@@ -146,8 +174,10 @@ def main():
     timestamp = utc_timestamp_ymdhis()
 
     rows = []
+    slug_channel_map = {}
     seen_slugs = set()
     duplicate_slugs = []
+    missing_channels = set()
     for md_file in iter_markdown_files(root):
         text = md_file.read_text(encoding="utf-8", errors="replace")
 
@@ -183,10 +213,18 @@ def main():
         }
         rows.append(row)
 
-    if dry_run:
+        channel_key = resolve_channel_key(root, md_file)
+        if channel_key:
+            slug_channel_map[slug] = channel_key
+        else:
+            missing_channels.add(md_file.as_posix())
+
+    if args.dry_run:
         print(f"DRY RUN: would truncate and insert {len(rows)} records.")
         if duplicate_slugs:
             print(f"Skipped {len(duplicate_slugs)} duplicate slugs.")
+        if missing_channels:
+            print(f"Missing channel keys for {len(missing_channels)} files.")
         return
 
     conn = pymysql.connect(
@@ -202,6 +240,9 @@ def main():
     try:
         with conn.cursor() as cursor:
             cursor.execute(f"TRUNCATE TABLE {contents_table}")
+            cursor.execute(
+                "DELETE FROM lupo_edges WHERE left_object_type = 'content' OR right_object_type = 'content'"
+            )
 
             sql = """
                 INSERT INTO {table} (
@@ -239,10 +280,84 @@ def main():
                 )
             """
             cursor.executemany(sql.format(table=contents_table), rows)
+
+            cursor.execute("SELECT channel_id, channel_key FROM lupo_channels WHERE is_deleted = 0")
+            channel_rows = cursor.fetchall()
+            channel_key_map = {row["channel_key"]: row["channel_id"] for row in channel_rows}
+
+            cursor.execute(f"SELECT content_id, slug FROM {contents_table}")
+            content_rows = cursor.fetchall()
+            content_id_map = {row["slug"]: row["content_id"] for row in content_rows}
+
+            edge_rows = []
+            for slug, channel_key in slug_channel_map.items():
+                content_id = content_id_map.get(slug)
+                if content_id is None:
+                    continue
+                channel_id = channel_key_map.get(channel_key, args.default_channel_id)
+                if channel_key not in channel_key_map:
+                    missing_channels.add(channel_key)
+                edge_rows.append(
+                    (
+                        "channel",
+                        channel_id,
+                        "content",
+                        content_id,
+                        "HAS_CONTENT",
+                        channel_id,
+                        channel_key if channel_key in channel_key_map else None,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        timestamp,
+                        timestamp,
+                        0.0,
+                        "semantic",
+                        0,
+                        None,
+                    )
+                )
+
+            if edge_rows:
+                edge_sql = """
+                    INSERT INTO lupo_edges (
+                        left_object_type,
+                        left_object_id,
+                        right_object_type,
+                        right_object_id,
+                        edge_type,
+                        channel_id,
+                        channel_key,
+                        weight_score,
+                        sort_num,
+                        actor_id,
+                        is_deleted,
+                        deleted_ymdhis,
+                        created_ymdhis,
+                        updated_ymdhis,
+                        semantic_weight,
+                        relationship_type,
+                        bidirectional,
+                        context_scope
+                    ) VALUES (
+                        %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
+                    )
+                """
+                cursor.executemany(edge_sql, edge_rows)
+
         conn.commit()
         print(f"Inserted {len(rows)} rows into {contents_table}.")
+        if edge_rows:
+            print(f"Inserted {len(edge_rows)} channel-content edges.")
         if duplicate_slugs:
             print(f"Skipped {len(duplicate_slugs)} duplicate slugs.")
+        if missing_channels:
+            print(
+                "Missing channel keys (used fallback channel_id): "
+                + ", ".join(sorted(missing_channels))
+            )
     finally:
         conn.close()
 
