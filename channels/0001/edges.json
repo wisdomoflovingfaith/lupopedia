@@ -1,0 +1,23 @@
+[
+  {
+    "edge_id": 449,
+    "left_object_type": "channel",
+    "left_object_id": 0,
+    "right_object_type": "channel",
+    "right_object_id": 1,
+    "edge_type": "HAS_DOCTRINE",
+    "channel_id": 0,
+    "channel_key": "system/kernel",
+    "weight_score": 100,
+    "sort_num": 1,
+    "actor_id": 1,
+    "is_deleted": 0,
+    "deleted_ymdhis": 0,
+    "created_ymdhis": 20260122160000,
+    "updated_ymdhis": 20260122160000,
+    "semantic_weight": 1.0,
+    "relationship_type": "hierarchical",
+    "bidirectional": 0,
+    "context_scope": null
+  }
+]

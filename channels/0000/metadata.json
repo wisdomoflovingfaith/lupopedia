@@ -1,0 +1,9 @@
+{
+  "channel": {
+    "purpose": "kernel",
+    "protected": true,
+    "auto_created": true
+  },
+  "threads": [],
+  "contents": []
+}

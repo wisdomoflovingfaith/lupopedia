@@ -1,0 +1,15 @@
+{
+  "channel": {
+    "purpose": "testing",
+    "doctrine": {
+      "version": "4.0.71",
+      "test_mode": true
+    },
+    "emotional_geometry": {
+      "baseline_mood": "neutral",
+      "test_scenario": "integration"
+    }
+  },
+  "threads": [],
+  "contents": []
+}
