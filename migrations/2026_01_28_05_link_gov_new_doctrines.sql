@@ -1,0 +1,113 @@
+INSERT INTO lupo_edges (
+    left_object_type,
+    left_object_id,
+    right_object_type,
+    right_object_id,
+    edge_type,
+    channel_id,
+    channel_key,
+    weight_score,
+    sort_num,
+    actor_id,
+    is_deleted,
+    deleted_ymdhis,
+    created_ymdhis,
+    updated_ymdhis,
+    semantic_weight,
+    relationship_type,
+    bidirectional,
+    context_scope
+)
+SELECT
+    'channel',
+    9000,
+    'content',
+    c.content_id,
+    'HAS_CONTENT',
+    9000,
+    'gov',
+    0,
+    0,
+    1,
+    0,
+    0,
+    CAST(DATE_FORMAT(FROM_UNIXTIME(UNIX_TIMESTAMP()), '%Y%m%d%H%i%S') AS UNSIGNED),
+    CAST(DATE_FORMAT(FROM_UNIXTIME(UNIX_TIMESTAMP()), '%Y%m%d%H%i%S') AS UNSIGNED),
+    0.00,
+    'semantic',
+    0,
+    NULL
+FROM lupo_contents c
+WHERE LOWER(c.slug) IN (
+    'gov-ethical-triad-doctrine',
+    'gov-safety-doctrine',
+    'gov-no-ads-doctrine',
+    'gov-kapu-rules-doctrine',
+    'gov-restorative-governance-doctrine',
+    'gov-truth-and-honesty-protocol',
+    'gov-harm-minimization-guidelines',
+    'gov-channel-registry-governance',
+    'gov-channel-creation-policy',
+    'gov-channel-deprecation-policy',
+    'gov-migration-approval-protocol',
+    'gov-versioning-governance',
+    'gov-fleet-composition-rules',
+    'gov-agent-behavior-contracts',
+    'gov-kernel-governance-rules',
+    'gov-emotional-geometry-governance',
+    'gov-mood-framework-governance',
+    'gov-translation-loss-protocols',
+    'gov-pluralistic-emotion-model-governance',
+    'gov-governance-constitution',
+    'gov-meta-doctrine',
+    'gov-authority-and-oversight-rules',
+    'gov-auditability-and-traceability-doctrine',
+    'gov-historical-preservation-doctrine',
+    'gov-legacy-system-stewardship-doctrine',
+    'gov-commit-stewardship-doctrine',
+    'gov-changelog-governance',
+    'gov-heritage-safe-migration-rules',
+    'gov-schema-evolution-protocol',
+    'gov-identity-and-channel-provenance-rules'
+)
+OR LOWER(c.title) IN (
+    'ethical triad doctrine',
+    'safety doctrine',
+    'no ads doctrine',
+    'kapu rules doctrine',
+    'restorative governance doctrine',
+    'truth and honesty protocol',
+    'harm minimization guidelines',
+    'channel registry governance',
+    'channel creation policy',
+    'channel deprecation policy',
+    'migration approval protocol',
+    'versioning governance',
+    'fleet composition rules',
+    'agent behavior contracts',
+    'kernel governance rules',
+    'emotional geometry governance',
+    'mood framework governance',
+    'translation loss protocols',
+    'pluralistic emotion model governance',
+    'governance constitution',
+    'meta doctrine',
+    'authority and oversight rules',
+    'auditability and traceability doctrine',
+    'historical preservation doctrine',
+    'legacy system stewardship doctrine',
+    'commit stewardship doctrine',
+    'changelog governance',
+    'heritage safe migration rules',
+    'schema evolution protocol',
+    'identity and channel provenance rules'
+)
+AND NOT EXISTS (
+    SELECT 1
+    FROM lupo_edges e
+    WHERE e.left_object_type = 'channel'
+      AND e.left_object_id = 9000
+      AND e.right_object_type = 'content'
+      AND e.right_object_id = c.content_id
+      AND e.edge_type = 'HAS_CONTENT'
+);
