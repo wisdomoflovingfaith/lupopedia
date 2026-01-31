@@ -1,0 +1,61 @@
+{
+  "table_name": "lupo_operator_escalations",
+  "fields": [
+    "`escalation_id` bigint NOT NULL auto_increment",
+    "`operator_id` bigint NOT NULL",
+    "`thread_id` bigint NOT NULL",
+    "`escalation_reason` varchar(64) NOT NULL",
+    "`priority` varchar(16) NOT NULL DEFAULT 'medium'",
+    "`status` varchar(16) NOT NULL DEFAULT 'pending'",
+    "`assigned_to_operator_id` bigint",
+    "`created_ymdhis` char(14) NOT NULL",
+    "`updated_ymdhis` char(14) NOT NULL",
+    "`resolved_ymdhis` char(14)"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_operator",
+      "columns": [
+        "operator_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_thread",
+      "columns": [
+        "thread_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_priority",
+      "columns": [
+        "priority"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "escalation_id",
+    "expected_name": "escalation_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

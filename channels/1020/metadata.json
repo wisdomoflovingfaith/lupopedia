@@ -1,8 +1,0 @@
-{
-  "channel": {
-    "purpose": "logs",
-    "system_channel": true
-  },
-  "threads": [],
-  "contents": []
-}

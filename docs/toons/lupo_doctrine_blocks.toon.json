@@ -1,0 +1,57 @@
+{
+  "table_name": "lupo_doctrine_blocks",
+  "fields": [
+    "`id` bigint NOT NULL auto_increment",
+    "`block_key` varchar(255) NOT NULL",
+    "`block_title` varchar(255) NOT NULL",
+    "`block_content` longtext NOT NULL",
+    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHIISS when created'",
+    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHIISS when last updated'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "unique_block_key",
+      "columns": [
+        "block_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_block_key",
+      "columns": [
+        "block_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,48 @@
+{
+  "table_name": "lupo_operator_kapu_log",
+  "fields": [
+    "`kapu_log_id` bigint NOT NULL auto_increment",
+    "`operator_id` bigint NOT NULL",
+    "`reason` text",
+    "`invoked_ymdhis` char(14) NOT NULL",
+    "`released_ymdhis` char(14)",
+    "`created_ymdhis` char(14) NOT NULL",
+    "`updated_ymdhis` char(14) NOT NULL",
+    "`pono_at_invoke` decimal(3,2)",
+    "`pilau_at_invoke` decimal(3,2)",
+    "`kapakai_at_invoke` decimal(3,2)",
+    "`pono_at_release` decimal(3,2)",
+    "`pilau_at_release` decimal(3,2)",
+    "`kapakai_at_release` decimal(3,2)"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_operator",
+      "columns": [
+        "operator_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_invoked",
+      "columns": [
+        "invoked_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "kapu_log_id",
+    "expected_name": "kapu_log_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -19,13 +19,23 @@ Options -Indexes
 
 # Allow CSS, JS, images, fonts, and other static assets
 RewriteCond %{REQUEST_FILENAME} -f
-RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json|xml|map)$ [NC]
+RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json|xml|map|md)$ [NC]
 RewriteRule ^ - [L]
 
 # Allow access to existing files and directories (skip rewrite)
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
+
+# Internal rewrite for /admin to admin.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^admin/?$ admin.php [L,QSA]
+
+# Allow access to crafty_syntax subsystem (skip rewrite)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^lupopedia/crafty_syntax(/.*)?$ lupopedia/crafty_syntax/index.php [L,QSA]
 
 # Block PHP files in lupo-includes (security)
 RewriteCond %{REQUEST_URI} ^/lupopedia/lupo-includes/.*\.php$ [NC]
@@ -61,7 +71,8 @@ RewriteRule ^(.*)$ index.php?slug=$1 [L,QSA]
 </IfModule>
 
 # Prevent access to sensitive file types
-<FilesMatch "\.(sql|log|md|yaml|yml|json|bak|backup|old)$">
+# MD allowed for documentation access
+<FilesMatch "\.(sql|log|yaml|yml|json|bak|backup|old)$">
     Order allow,deny
     Deny from all
 </FilesMatch>

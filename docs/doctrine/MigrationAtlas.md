@@ -36,5 +36,6 @@
 | livehelp_visits_daily | IMPORTED -> DROPPED | lupo_unified_visits | [livehelp_visit_track_migration.md](migrations/livehelp_visit_track_migration.md) |
 | livehelp_visits_monthly | IMPORTED -> DROPPED | lupo_unified_visits | [livehelp_visit_track_migration.md](migrations/livehelp_visit_track_migration.md) |
 | livehelp_websites | IMPORTED -> DROPPED | lupo_federation_nodes | [livehelp_websites_migration.md](migrations/livehelp_websites_migration.md) |
+| Demo Operators | APPLIED | lupo_auth_users, lupo_actors, lupo_operators, lupo_operator_status | [2026_01_30_demo_operators.md](migrations/2026_01_30_demo_operators.md) |
 
 This Migration Atlas provides the canonical overview of all Crafty Syntax -> Lupopedia migrations. Each doctrine file contains detailed notes, mappings, and rationale.

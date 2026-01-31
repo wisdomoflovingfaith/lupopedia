@@ -10,6 +10,7 @@ $logout_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/logou
     <meta charset="UTF-8">
     <title>Crafty Syntax Operator Overview</title>
     <link rel="stylesheet" href="<?php echo lupo_crafty_h($base_url); ?>assets/css/admin.css">
+    <script src="<?php echo lupo_crafty_h($base_url); ?>assets/js/live_mood.js" defer></script>
 </head>
 <body>
     <div class="cs-layout">
@@ -64,6 +65,22 @@ $logout_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/logou
                             <div class="cs-value"><?php echo lupo_crafty_format_ymdhis($status['last_seen_ymdhis']); ?></div>
                         </div>
                     </div>
+
+                    <?php if ($status['status'] !== 'kapu'): ?>
+                    <div style="margin-top: 16px;">
+                        <form method="post" action="<?php echo lupo_crafty_base_url(); ?>kapu_invoke.php" style="display: inline;">
+                            <button type="submit" class="cs-button cs-button-kapu">🛑 Invoke Kapu (Self-Care Mode)</button>
+                        </form>
+                        <p class="cs-muted" style="margin-top: 8px;">Activate protected state: reduces capacity, escalates active chats</p>
+                    </div>
+                    <?php else: ?>
+                    <div style="margin-top: 16px;">
+                        <form method="post" action="<?php echo lupo_crafty_base_url(); ?>kapu_release.php" style="display: inline;">
+                            <button type="submit" class="cs-button cs-button-release">✅ Release Kapu</button>
+                        </form>
+                        <p class="cs-muted" style="margin-top: 8px;">You are in protected state. Click to restore normal capacity.</p>
+                    </div>
+                    <?php endif; ?>
                 </section>
 
                 <section class="cs-card">
@@ -79,11 +96,15 @@ $logout_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/logou
                         </div>
                         <div>
                             <div class="cs-label">Pono</div>
-                            <div class="cs-value"><?php echo lupo_crafty_h($emotional['pono']); ?></div>
+                            <div class="cs-value cs-pono"><?php echo lupo_crafty_h($emotional['pono']); ?></div>
+                        </div>
+                        <div>
+                            <div class="cs-label">Pilau</div>
+                            <div class="cs-value cs-pilau"><?php echo lupo_crafty_h($emotional['pilau']); ?></div>
                         </div>
                         <div>
                             <div class="cs-label">Kapakai</div>
-                            <div class="cs-value"><?php echo lupo_crafty_h($emotional['kapakai']); ?></div>
+                            <div class="cs-value cs-kapakai"><?php echo lupo_crafty_h($emotional['kapakai']); ?></div>
                         </div>
                     </div>
                 </section>
@@ -99,11 +120,11 @@ $logout_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/logou
                                     <th>Operator</th>
                                     <th>Departments</th>
                                     <th>Channels</th>
-                                    <th>Emotional</th>
+                                    <th>Heartmind</th>
                                     <th>Availability</th>
                                     <th>Load</th>
-                                    <th>Performance</th>
-                                    <th>Expertise</th>
+                                    <th>Active Chats</th>
+                                    <th>Mood_RGB</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -115,6 +136,7 @@ $logout_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/logou
                                     $availability_label = $snapshot['availability_label'] ?: 'offline';
                                     $load_label = $snapshot['load_score'] > 0 ? 'light' : ($snapshot['load_score'] < 0 ? 'overloaded' : 'balanced');
                                     $performance_label = $snapshot['performance_score'] > 0 ? 'high' : ($snapshot['performance_score'] < 0 ? 'low' : 'average');
+                                    $mood_rgb = $snapshot['mood_rgb'] ?: '666666';
                                     ?>
                                     <tr>
                                         <td>
@@ -123,11 +145,17 @@ $logout_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/logou
                                         </td>
                                         <td><?php echo lupo_crafty_h($dept_label); ?></td>
                                         <td><?php echo lupo_crafty_h($channel_label); ?></td>
-                                        <td><?php echo lupo_crafty_h($emotional_label); ?> (<?php echo lupo_crafty_h($snapshot['emotional_stability']); ?>)</td>
+                                        <td>
+                                            <strong><?php echo lupo_crafty_h($snapshot['heartmind']); ?></strong>
+                                            <span class="cs-muted" style="display: block; font-size: 10px;">
+                                                E: <?php echo lupo_crafty_h($snapshot['expertise_score']); ?> |
+                                                S: <?php echo lupo_crafty_h($snapshot['emotional_stability']); ?>
+                                            </span>
+                                        </td>
                                         <td><?php echo lupo_crafty_h($availability_label); ?> (<?php echo lupo_crafty_h($snapshot['availability_score']); ?>)</td>
-                                        <td><?php echo lupo_crafty_h($load_label); ?> (<?php echo lupo_crafty_h($snapshot['active_chat_count']); ?>)</td>
-                                        <td><?php echo lupo_crafty_h($performance_label); ?> (<?php echo lupo_crafty_h($snapshot['performance_score']); ?>)</td>
-                                        <td><?php echo lupo_crafty_h($snapshot['expertise_score']); ?></td>
+                                        <td><?php echo lupo_crafty_h($load_label); ?> (<?php echo lupo_crafty_h($snapshot['load_score']); ?>)</td>
+                                        <td><?php echo lupo_crafty_h($snapshot['active_chat_count']); ?></td>
+                                        <td style="background-color: #<?php echo lupo_crafty_h($mood_rgb); ?>; color: #fff; text-shadow: 1px 1px 1px #000;">#<?php echo lupo_crafty_h($mood_rgb); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

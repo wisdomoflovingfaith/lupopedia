@@ -1,1 +1,0 @@
-SYSTEM: This is the system prompt for agent VISHWAKARMA. Content will be filled in later.

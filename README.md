@@ -104,6 +104,49 @@ file:
 - **Content** = Stored in `lupo_content` table
 - **Meaning** = Created when content is placed under tabs
 
+## Doctrine Boot Block (Required for All AI Agents)
+
+IMPORTANT — Lupopedia uses an ACTOR MODEL:
+
+- actor_id is the primary identity key
+- There is no user_id
+- All sessions, permissions, ownership, and uploads use actor_id
+- auth_user_id is only for human login
+- No foreign keys, triggers, or stored procedures
+- All timestamps use YYYYMMDDHHIISS in UTC
+- Schema changes must come from TOON files in /docs/toons/
+- Table limit is 222
+- Python = maintenance (scripts/python/, PyMySQL, explicit SQL)
+- PHP = runtime only (no schema changes)
+- Uploads use SHA256 hash filenames under uploads/{actors,agents,channels,operators}/YYYY/MM/
+- LEXA enforces doctrine and boundaries in the gateway
+
+Never introduce user_id.
+Never add foreign keys, triggers, or stored procedures.
+Never modify schema without TOON source.
+Never let PHP perform migrations.
+
+## Lupopedia Doctrine
+
+Lupopedia is governed by a strict canonical doctrine that defines:
+
+- **Identity model** (`actor_id`, not `user_id`)
+- **Database rules** (no foreign keys, triggers, or stored procedures)
+- **Timestamp format** (`YYYYMMDDHHIISS` UTC)
+- **Schema source of truth** (TOON files in `/docs/toons/`)
+- **Language boundaries** (Python = maintenance, PHP = runtime)
+- **Upload structure** (hash-based, date-based)
+- **Session and login behavior**
+- **Agent model and registry**
+- **LEXA's enforcement role**
+- **Multi-agent workflow**
+
+**All contributors and AI agents must read and follow:**
+
+📘 **[`docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md`](docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md)**
+
+Any AI coding agent (JetBrains, Cursor, Claude, etc.) must be initialized with this doctrine before making changes to the codebase.
+
 ## NO ADS, NO SEO, NO MARKETING — ABSOLUTE PROHIBITION
 
 Lupopedia does not participate in advertising, SEO manipulation, marketing optimization, sponsored content, affiliate linking, or any form of semantic distortion for profit.

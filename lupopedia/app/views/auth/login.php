@@ -238,8 +238,11 @@
 
             <form method="POST" action="<?php echo e(route('unified.login')); ?>">
                 <?php echo csrf_field(); ?>
-                
+
                 <input type="hidden" name="system_context" value="<?php echo htmlspecialchars($systemContext); ?>">
+                <?php if (!empty($redirect)): ?>
+                <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>">
+                <?php endif; ?>
 
                 <div class="form-group">
                     <label for="email" class="form-label">Email Address</label>

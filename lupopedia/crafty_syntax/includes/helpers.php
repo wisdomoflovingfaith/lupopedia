@@ -72,3 +72,98 @@ function lupo_crafty_render($view, $data = []) {
     extract($data, EXTR_SKIP);
     include __DIR__ . '/../views/' . $view . '.php';
 }
+
+/**
+ * Get operator ID from auth user ID
+ *
+ * @param int $auth_user_id
+ * @return int|null Operator ID or null if not found
+ */
+function lupo_get_operator_id_from_auth_user_id($auth_user_id) {
+    if (empty($auth_user_id)) {
+        return null;
+    }
+
+    $db = lupo_crafty_db();
+    if (!$db) {
+        return null;
+    }
+
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+
+    try {
+        $sql = "SELECT operator_id
+                FROM {$table_prefix}operators
+                WHERE auth_user_id = :auth_user_id
+                  AND is_active = 1
+                LIMIT 1";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute([':auth_user_id' => (int)$auth_user_id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            return (int)$result['operator_id'];
+        }
+
+        return null;
+
+    } catch (Exception $e) {
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            error_log("CRAFTY HELPERS: Failed to get operator ID: " . $e->getMessage());
+        }
+        return null;
+    }
+}
+
+/**
+ * Check if current operator is admin
+ *
+ * @param int $operator_id Optional operator ID (uses current if not provided)
+ * @return bool
+ */
+function lupo_crafty_is_admin($operator_id = null) {
+    if ($operator_id === null) {
+        $operator = lupo_crafty_operator();
+        if (!$operator) {
+            return false;
+        }
+        $operator_id = $operator['operator_id'];
+    }
+
+    // Get auth_user_id from operator
+    $db = lupo_crafty_db();
+    if (!$db) {
+        return false;
+    }
+
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+
+    try {
+        $sql = "SELECT auth_user_id FROM {$table_prefix}operators WHERE operator_id = :operator_id LIMIT 1";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([':operator_id' => (int)$operator_id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return false;
+        }
+
+        $auth_user_id = (int)$result['auth_user_id'];
+
+        // Get actor_id from auth_user_id
+        $actor_id = lupo_get_actor_id_from_auth_user_id($auth_user_id);
+        if (!$actor_id) {
+            return false;
+        }
+
+        // Use main Lupopedia function
+        return lupo_is_admin($actor_id);
+
+    } catch (Exception $e) {
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            error_log("CRAFTY HELPERS: Failed to check admin status: " . $e->getMessage());
+        }
+        return false;
+    }
+}

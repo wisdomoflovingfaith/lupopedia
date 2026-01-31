@@ -37,24 +37,32 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
  * - $currentPage (string) - Current page identifier for active link highlighting (optional)
  */
 
+// Get current authenticated user (uses session validation via lupo_validate_session)
+$current_auth_user = current_user();
+$isUserLoggedIn = ($current_auth_user !== false);
+
 // Initialize variables with defaults if not set
-if (!isset($isUserLoggedIn)) {
-    $isUserLoggedIn = false;
-}
 if (!isset($currentUserId)) {
-    $currentUserId = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : 0;
-    $isUserLoggedIn = ($currentUserId > 0);
+    $currentUserId = $isUserLoggedIn ? (int)$current_auth_user['auth_user_id'] : 0;
 }
 if (!isset($userAvatar)) {
-    $userAvatar = $isUserLoggedIn && $currentUserId > 0 
-        ? LUPOPEDIA_PUBLIC_PATH . '/uploads/avatars/' . $currentUserId . '_avatar.jpg'
-        : LUPOPEDIA_PUBLIC_PATH . '/images/logoface.png';
+    if ($isUserLoggedIn && $currentUserId > 0) {
+        // Use auth_user_id for avatar filename (same as lupo_render_login_status)
+        $avatar_path = LUPOPEDIA_PATH . '/uploads/avatars/' . $currentUserId . '_avatar.jpg';
+        if (file_exists($avatar_path)) {
+            $userAvatar = LUPOPEDIA_PUBLIC_PATH . '/uploads/avatars/' . $currentUserId . '_avatar.jpg?t=' . time();
+        } else {
+            $userAvatar = LUPOPEDIA_PUBLIC_PATH . '/images/logoface.png';
+        }
+    } else {
+        $userAvatar = LUPOPEDIA_PUBLIC_PATH . '/images/logoface.png';
+    }
 }
 if (!isset($userName)) {
-    $userName = $isUserLoggedIn ? 'User' : '';
+    $userName = $isUserLoggedIn ? ($current_auth_user['display_name'] ?? $current_auth_user['username'] ?? 'User') : '';
 }
 if (!isset($userEmail)) {
-    $userEmail = $isUserLoggedIn ? 'user@example.com' : '';
+    $userEmail = $isUserLoggedIn ? ($current_auth_user['email'] ?? '') : '';
 }
 if (!isset($messageCount)) {
     $messageCount = 0;
@@ -66,8 +74,7 @@ if (!isset($currentPage)) {
 // Determine active navigation link
 $navLinks = [
     'home' => ['url' => '/', 'label' => 'Home'],
-    'truth' => ['url' => '/truth', 'label' => 'TRUTH'],
-    'qa' => ['url' => '/questions.php', 'label' => 'Q/A'],
+    'qa' => ['url' => LUPOPEDIA_PUBLIC_PATH . '/qa/', 'label' => 'Q/A'],
     'content' => ['url' => '/search.php', 'label' => 'Content'],
     'users' => ['url' => '/users.php', 'label' => 'Users'],
     'agents' => ['url' => '/agents.php', 'label' => 'Agents'],
@@ -91,11 +98,10 @@ $avatarTimestamp = file_exists(str_replace(LUPOPEDIA_PUBLIC_PATH, LUPOPEDIA_PATH
             <!-- Main Navigation Links -->
             <div class="nav-links">
                 <?php foreach ($navLinks as $key => $link): ?>
-                    <?php 
-                    $isActive = ($currentPage === $key || 
+                    <?php
+                    $isActive = ($currentPage === $key ||
                                 ($key === 'home' && ($currentPage === '' || $currentPage === 'index')) ||
-                                ($key === 'truth' && strpos($currentPage, 'truth') !== false) ||
-                                ($key === 'qa' && strpos($currentPage, 'question') !== false) ||
+                                ($key === 'qa' && (strpos($currentPage, 'question') !== false || strpos($currentPage, 'qa') !== false)) ||
                                 ($key === 'content' && strpos($currentPage, 'content') !== false) ||
                                 ($key === 'users' && strpos($currentPage, 'user') !== false) ||
                                 ($key === 'agents' && strpos($currentPage, 'agent') !== false));
@@ -193,7 +199,11 @@ $avatarTimestamp = file_exists(str_replace(LUPOPEDIA_PUBLIC_PATH, LUPOPEDIA_PATH
             <?php else: ?>
             <!-- Not logged in - show login link -->
             <div class="nav-user">
-                <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/login.php" class="nav-link">
+                <?php
+                $current_url = $_SERVER['REQUEST_URI'] ?? '/';
+                $login_url = LUPOPEDIA_PUBLIC_PATH . '/login?redirect=' . urlencode($current_url);
+                ?>
+                <a href="<?= htmlspecialchars($login_url) ?>" class="nav-link">
                     Sign In
                 </a>
             </div>

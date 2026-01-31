@@ -21,7 +21,8 @@
     "`created_ymdhis` bigint unsigned NOT NULL",
     "`updated_ymdhis` bigint unsigned NOT NULL",
     "`is_deleted` tinyint(1) NOT NULL DEFAULT 0",
-    "`deleted_ymdhis` bigint unsigned"
+    "`deleted_ymdhis` bigint unsigned",
+    "`default_collection_id` bigint NOT NULL DEFAULT 0 COMMENT 'Home collection for this truth question'"
   ],
   "data": [],
   "indexes": [

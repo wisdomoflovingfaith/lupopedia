@@ -3,7 +3,7 @@
   "fields": [
     "`collection_id` bigint NOT NULL auto_increment COMMENT 'Primary key for collection'",
     "`federations_node_id` bigint NOT NULL COMMENT 'Domain this collection belongs to'",
-    "`user_id` bigint COMMENT 'Owner of this collection, if user-owned'",
+    "`actor_id` bigint unsigned COMMENT 'Owner actor of this collection, if actor-owned'",
     "`group_id` bigint COMMENT 'Owning group, if group-owned'",
     "`name` varchar(255) NOT NULL COMMENT 'Display name of the collection'",
     "`slug` varchar(100) NOT NULL COMMENT 'URL-friendly identifier, unique per domain'",
@@ -54,14 +54,6 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_user",
-      "columns": [
-        "user_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "idx_created_ymdhis",
       "columns": [
         "created_ymdhis"
@@ -89,6 +81,14 @@
       "index_name": "idx_sort_order",
       "columns": [
         "sort_order"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_actor",
+      "columns": [
+        "actor_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

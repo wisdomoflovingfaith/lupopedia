@@ -70,7 +70,24 @@ function lupo_render_login_status() {
         $logout_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/logout' : '/logout';
         $admin_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/admin' : '/admin';
         $profile_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/profile' : '/profile';
-        
+        $operator_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/lupopedia/crafty_syntax/' : '/lupopedia/crafty_syntax/';
+
+        // Check if user is an operator
+        $is_operator = false;
+        try {
+            $db = lupo_get_db();
+            $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : str_replace('-', '_', LUPO_PREFIX);
+            $operator_check_sql = "SELECT operator_id FROM {$table_prefix}operators WHERE auth_user_id = :auth_user_id AND is_active = 1 LIMIT 1";
+            $operator_stmt = $db->prepare($operator_check_sql);
+            $operator_stmt->execute([':auth_user_id' => $auth_user_id]);
+            $is_operator = ($operator_stmt->rowCount() > 0);
+        } catch (Exception $e) {
+            // Silently fail - if operators table doesn't exist or query fails, user is not an operator
+            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                error_log("AUTH UI: Operator check failed: " . $e->getMessage());
+            }
+        }
+
         $html = '<div class="user-dropdown">';
         $html .= '<button class="user-profile-btn" onclick="toggleUserDropdown()">';
         $html .= '<div class="user-avatar">';
@@ -92,9 +109,18 @@ function lupo_render_login_status() {
         $html .= '</div>';
         $html .= '<div class="dropdown-divider"></div>';
         $html .= '<a href="' . htmlspecialchars($profile_url) . '" class="dropdown-item">';
-        $html .= '<span class="dropdown-icon">👤</span> My Profile</a>';
+        $html .= '<span class="dropdown-icon">👤</span> Edit Profile</a>';
+
+        // Show Crafty Syntax Operator Admin only if user is an operator
+        if ($is_operator) {
+            $html .= '<a href="' . htmlspecialchars($operator_url) . '" class="dropdown-item" style="color: #16a085; font-weight: 600;">';
+            $html .= '<span class="dropdown-icon">🎧</span> Crafty Syntax Operator Admin</a>';
+        }
+
+        $html .= '<a href="#" class="dropdown-item" style="color: #999;" onclick="return false;">';
+        $html .= '<span class="dropdown-icon">🔔</span> Notifications</a>';
         $html .= '<a href="' . htmlspecialchars($admin_url) . '" class="dropdown-item" style="color: #16a085; font-weight: 600;">';
-        $html .= '<span class="dropdown-icon">🔧</span> Admin</a>';
+        $html .= '<span class="dropdown-icon">🔧</span> Lupopedia Semantic Admin</a>';
         $html .= '<div class="dropdown-divider"></div>';
         $html .= '<a href="' . htmlspecialchars($logout_url) . '" class="dropdown-item logout-item">';
         $html .= '<span class="dropdown-icon">🚪</span> Sign Out</a>';
@@ -105,14 +131,14 @@ function lupo_render_login_status() {
     } else {
         // User is not logged in - show login link
         $current_url = $_SERVER['REQUEST_URI'] ?? '/';
-        $login_url = defined('LUPOPEDIA_PUBLIC_PATH') 
+        $login_url = defined('LUPOPEDIA_PUBLIC_PATH')
             ? LUPOPEDIA_PUBLIC_PATH . '/login?redirect=' . urlencode($current_url)
             : '/login?redirect=' . urlencode($current_url);
-        
+
         $html = '<div class="nav-user">';
         $html .= '<a href="' . htmlspecialchars($login_url) . '" class="nav-link">Sign In</a>';
         $html .= '</div>';
-        
+
         return $html;
     }
 }

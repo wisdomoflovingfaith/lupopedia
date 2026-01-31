@@ -17,6 +17,7 @@ tags:
   channels: ["dev", "agents", "public"]
 in_this_file_we_have:
   - Important Clarification: mood_RGB Terminology
+  - Doctrine Boundaries
   - Emotional Polarity Tensor Doctrine Overview
   - The Three Axes (R, G, B)
   - Mood_RGB Field
@@ -51,6 +52,24 @@ file:
 **Avoid Misconceptions:** References to "mood color" or "color doctrine" in this document are metaphorical holdovers from the original naming convention. The system uses abstract emotional coordinates, not visual colors.
 
 **See Axis Definitions below for full details.**
+
+---
+
+## Doctrine Boundaries
+
+**Not Defined in Doctrine:**
+
+The following aspects are intentionally left undefined by doctrine and represent implementation freedoms:
+
+- **Polarity of axes** - whether 00 or FF represents "more" of any emotional dimension
+- **Mapping from Pono/Pilau/Kapakai to RGB** - ethical state markers are not mapped to color axes
+- **Blending rules** - how multiple mood tensors combine or interpolate
+- **Normalization rules** - mathematical constraints on tensor values beyond basic ranges
+- **Uncertainty handling** - representation of ambiguous or indeterminate emotional states
+- **Hex computation methods** - algorithms for converting emotional values to hex representation
+- **Tensor validity constraints** - validation rules beyond hex format checking
+
+These are implementation freedoms, not doctrinal definitions. Implementations may establish their own conventions for these aspects without violating doctrine.
 
 ---
 
@@ -188,18 +207,20 @@ CADUCEUS uses mood_rgb to compute routing currents:
 - left_current  
 - right_current  
 
-These currents influence:
+These currents have implementation-specific relationships with:
 - expressive vs analytical agents,
 - top vs down polarity,
 - creative vs conservative routing_bias values.
 
-Examples:
-- High R increases assertive/critical currents.
-- High G increases expressive/cooperative currents.
-- High B increases reflective/deepâ€‘reasoning currents.
+Examples of possible implementation choices:
+- High R may increase assertive/critical currents.
+- High G may increase expressive/cooperative currents.
+- High B may increase reflective/deepâ€‘reasoning currents.
+
+These relationships are implementation-specific and not defined by doctrine.
 
 CADUCEUS does NOT override HERMES filtering.  
-It only biases candidate ordering.
+It only provides candidate ordering.
 
 ---
 
@@ -290,7 +311,7 @@ The neutral mood value in Countingâ€‘inâ€‘Light is `'666666'`, represe
 
 The value `'000000'` is **NOT** neutral. It represents a "void" or "no signal" state and **MUST NOT** be used as a default. In routing, `'000000'` **MUST** be treated as equivalent to neutral. In aggregation (e.g., computing threadâ€‘level mood), `'000000'` **MAY** be ignored or treated as `'666666'` depending on implementation needs.
 
-This distinction ensures that threadâ€‘level mood aggregation remains meaningful and that neutral messages contribute balanced weight to the emotional geometry of a conversation.
+This distinction ensures that threadâ€‘level mood aggregation remains meaningful and that neutral messages contribute balanced contribution to the emotional geometry of a conversation.
 
 ## Zero Mood
 - `'000000'` is allowed and represents "no expressed bias" or "void state."
@@ -341,6 +362,12 @@ If a pool becomes empty after filtering:
 1. Retry with the opposite pool.
 2. If both pools empty â†’ fallback to System Agent 0.
 3. If System Agent 0 unavailable â†’ return `ROUTING_FAILURE`.
+
+---
+
+## Final Note
+
+The doctrine defines the axes and the abstract tensor structure. All conversion formulas, blending rules, and emotional mappings are implementation choices and must not be treated as canonical.
 
 ---
 

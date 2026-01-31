@@ -22,6 +22,11 @@ use App\Services\CraftyProgressService;
 use Exception;
 use PDO;
 
+// Load Collection 0 (system documentation) helpers
+if (defined('LUPOPEDIA_PATH')) {
+    require_once(LUPOPEDIA_PATH . '/lupo-includes/functions/collection-zero-helpers.php');
+}
+
 /**
  * CraftyImportController
  *
@@ -429,9 +434,43 @@ class CraftyImportController
             // Get validation results
             $validation = $this->validationService->getLastValidationResults();
 
+            // Initialize Collection 0 (system documentation)
+            // Ensure Collection 0 exists and is populated with documentation tabs
+            if (function_exists('lupo_initialize_collection_zero')) {
+                $collection_zero_success = lupo_initialize_collection_zero();
+                if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                    error_log("CRAFTY IMPORT: Collection 0 initialization " . ($collection_zero_success ? 'succeeded' : 'failed'));
+                }
+            }
+
             // Clean up temporary files
             $this->cleanup();
 
+            // Check if migration was successful
+            $migration_successful = (
+                isset($summary['status']) && $summary['status'] === 'complete' &&
+                isset($validation['passed']) && $validation['passed'] === true
+            );
+
+            // If migration successful, redirect to Collection 0 (documentation landing page)
+            if ($migration_successful) {
+                // Clear migration session
+                unset($_SESSION['crafty_migration']);
+
+                // Redirect to Collection 0
+                $collection_zero_url = function_exists('lupo_get_collection_zero_url')
+                    ? lupo_get_collection_zero_url()
+                    : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/collection/0/lupopedia';
+
+                if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                    error_log("CRAFTY IMPORT: Redirecting to Collection 0: " . $collection_zero_url);
+                }
+
+                header('Location: ' . $collection_zero_url);
+                return '';
+            }
+
+            // If migration not successful, show completion screen with errors
             return $this->renderView('import_wizard/complete', [
                 'summary' => $summary,
                 'validation' => $validation,

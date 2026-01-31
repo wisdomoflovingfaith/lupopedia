@@ -64,7 +64,7 @@ function craftysyntax_handle_slug($slug) {
  * @return string|null
  */
 function craftysyntax_handle_operator_console($slug) {
-    $console_path = LUPOPEDIA_ABSPATH . '/crafty_syntax/index.php';
+    $console_path = LUPOPEDIA_ABSPATH . '/lupopedia/crafty_syntax/index.php';
     if (!file_exists($console_path)) {
         return null;
     }

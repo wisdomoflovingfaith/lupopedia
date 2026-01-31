@@ -69,6 +69,78 @@ $serversession=true;
 $identity = identity($UNTRUSTED['cslhOPERATOR'],"cslhOPERATOR",$allow_ip_host_sessions,$serversession,$cookiesession);
 $isavisitor = false;
 
+// --- BEGIN LUPOPEDIA AUTH BRIDGE ---
+if (file_exists(dirname(dirname(__DIR__)) . '/lupo-includes/bootstrap.php')) {
+    require_once(dirname(dirname(__DIR__)) . '/lupo-includes/bootstrap.php');
+    if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+        error_log("LEGACY AUTH BRIDGE: bootstrap loaded. Session ID: " . session_id());
+    }
+    $lupo_user = current_user();
+    if ($lupo_user) {
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            error_log("LEGACY AUTH BRIDGE: Lupo User: " . $lupo_user['email']);
+        }
+        $lupo_operator_id = lupo_get_operator_id_from_auth_user_id($lupo_user['auth_user_id']);
+        if ($lupo_operator_id) {
+            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                error_log("LEGACY AUTH BRIDGE: Lupo Operator ID: " . $lupo_operator_id);
+            }
+            // Ensure this operator exists in legacy livehelp_users and is authenticated with current session
+            $lupo_db = $GLOBALS['mydatabase'];
+            $lupo_session_id = $identity['SESSIONID'];
+            
+            // Check if user already exists in legacy
+            $check_sql = "SELECT user_id FROM livehelp_users WHERE username = :username OR email = :email LIMIT 1";
+            $check_stmt = $lupo_db->prepare($check_sql);
+            $check_stmt->execute([':username' => $lupo_user['username'], ':email' => $lupo_user['email']]);
+            $legacy_user = $check_stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($legacy_user) {
+                if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                    error_log("LEGACY AUTH BRIDGE: Updating legacy user ID: " . $legacy_user['user_id'] . " with session: " . $lupo_session_id);
+                }
+                // Update existing legacy user to be authenticated with current session
+                $update_sql = "UPDATE livehelp_users SET 
+                    sessionid = :sessionid, 
+                    authenticated = 'Y', 
+                    isoperator = 'Y', 
+                    isonline = 'Y', 
+                    status = 'online',
+                    isadmin = :isadmin
+                    WHERE user_id = :user_id";
+                $update_stmt = $lupo_db->prepare($update_sql);
+                $update_stmt->execute([
+                    ':sessionid' => $lupo_session_id,
+                    ':isadmin' => $lupo_user['is_admin'] ? 'Y' : 'N',
+                    ':user_id' => $legacy_user['user_id']
+                ]);
+            } else {
+                if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                    error_log("LEGACY AUTH BRIDGE: Creating new legacy user for: " . $lupo_user['email']);
+                }
+                // Create new legacy user
+                $insert_sql = "INSERT INTO livehelp_users (
+                    username, password, email, sessionid, authenticated, isoperator, isonline, status, isadmin
+                ) VALUES (
+                    :username, 'LEGACY_SYNCED', :email, :sessionid, 'Y', 'Y', 'Y', 'online', :isadmin
+                )";
+                $insert_stmt = $lupo_db->prepare($insert_sql);
+                $insert_stmt->execute([
+                    ':username' => $lupo_user['username'],
+                    ':email' => $lupo_user['email'],
+                    ':sessionid' => $lupo_session_id,
+                    ':isadmin' => $lupo_user['is_admin'] ? 'Y' : 'N'
+                ]);
+            }
+        }
+    } else {
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            error_log("LEGACY AUTH BRIDGE: No Lupo User found.");
+        }
+    }
+}
+// --- END LUPOPEDIA AUTH BRIDGE ---
+
 update_session($identity);
 
 // get the info on the admin user:

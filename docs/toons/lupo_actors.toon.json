@@ -14,7 +14,8 @@
     "`actor_source_type` varchar(50)",
     "`metadata` text COMMENT 'Optional JSON for additional actor attributes'",
     "`adversarial_role` enum('none','structural_stress','protocol_break','doctrine_test') DEFAULT 'none'",
-    "`adversarial_oversight_actor_id` bigint COMMENT 'e.g., LILITH actor_id'"
+    "`adversarial_oversight_actor_id` bigint COMMENT 'e.g., LILITH actor_id'",
+    "`avatar_hash` varchar(64) COMMENT 'SHA256 hash filename of avatar image stored under uploads/actors/YYYY/MM/'"
   ],
   "data": [],
   "indexes": [

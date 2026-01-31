@@ -98,7 +98,7 @@ function login_handle_view() {
     }
     
     // Get redirect URL from query string or session
-    $default_redirect = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/admin' : '/admin';
+    $default_redirect = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/' : '/';
     $redirect_url = $_GET['redirect'] ?? ($_SESSION['login_redirect'] ?? $default_redirect);
     
     // Get any error message from session
@@ -129,7 +129,7 @@ function login_handle_post() {
     // Validate input - email-only login
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
-    $default_redirect = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/admin' : '/admin';
+    $default_redirect = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/' : '/';
     $redirect = isset($_POST['redirect']) ? $_POST['redirect'] : $default_redirect;
     
     // Sanitize redirect URL (prevent open redirect)
@@ -352,20 +352,28 @@ function login_handle_post() {
         
         // Clear any error messages
         unset($_SESSION['login_error']);
-        unset($_SESSION['login_redirect']);
-        
+
         // Log successful login
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
             error_log("AUTH: Successful login for user: " . htmlspecialchars($email) . " (actor_id: " . $actor_id . ")");
         }
-        
+
         // If password change is required (MD5 password), redirect to password change page
+        // Keep login_redirect in session so we can return user to original page after password change
         if (isset($_SESSION['password_change_required']) && $_SESSION['password_change_required']) {
+            // Store redirect for after password change (don't clear it yet)
+            if (!isset($_SESSION['login_redirect']) && $redirect !== $default_redirect) {
+                $_SESSION['login_redirect'] = $redirect;
+            }
             $change_password_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/change-password' : '/change-password';
             lupo_safe_redirect($change_password_url, 2, 'Password change required. Redirecting...');
         }
-        
-        // Redirect to admin or previous page (redirect already includes public path from earlier processing)
+
+        // Clear login redirect now that we're using it
+        unset($_SESSION['login_redirect']);
+
+        // Redirect to original page (or /admin if no redirect was specified)
+        // The $redirect variable contains either $_POST['redirect'] or the default '/admin'
         lupo_safe_redirect($redirect, 2, 'Login successful! Redirecting...');
         
     } catch (Exception $e) {
@@ -529,15 +537,18 @@ function change_password_handle_post() {
         unset($_SESSION['password_change_user_id']);
         unset($_SESSION['password_change_actor_id']);
         unset($_SESSION['password_change_error']);
-        
+
         // Log successful password change
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
             error_log("AUTH: Password changed from MD5 to bcrypt for user: " . htmlspecialchars($user['username']));
         }
-        
-        // Redirect to admin dashboard
-        $admin_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/admin' : '/admin';
-        lupo_safe_redirect($admin_url, 2, 'Redirecting to admin...');
+
+        // Redirect to original page or home
+        $default_redirect = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/' : '/';
+        $redirect_url = $_SESSION['login_redirect'] ?? $default_redirect;
+        unset($_SESSION['login_redirect']);
+
+        lupo_safe_redirect($redirect_url, 2, 'Password changed successfully! Redirecting...');
         
     } catch (Exception $e) {
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {

@@ -17,7 +17,10 @@
     "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
     "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted)'",
-    "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
+    "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'",
+    "`escalated_to_operator_id` bigint COMMENT 'Operator assigned during escalation (Crafty Syntax handoff)'",
+    "`escalation_reason` varchar(255) COMMENT 'Reason for escalation (confusion, conflict, policy, etc.)'",
+    "`escalation_timestamp` bigint COMMENT 'UTC YYYYMMDDHHMMSS when escalation was triggered'"
   ],
   "data": [],
   "indexes": [

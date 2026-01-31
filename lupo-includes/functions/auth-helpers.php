@@ -236,6 +236,10 @@ function current_user() {
     // Validate session
     $actor_id = lupo_validate_session();
     
+    if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+        error_log("AUTH DEBUG: current_user() - Validated actor_id: " . ($actor_id ?: 'FALSE'));
+    }
+
     if (!$actor_id) {
         return false;
     }
@@ -275,6 +279,9 @@ function current_user() {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         
         if (!$user) {
+            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                error_log("AUTH DEBUG: current_user() - No user found for actor_id: " . $actor_id);
+            }
             return false;
         }
         
@@ -470,7 +477,7 @@ function require_login() {
         
         // Store redirect in session
         $_SESSION['login_redirect'] = $redirect_url;
-        
+
         // Redirect to login
         $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
         $login_url .= '?redirect=' . urlencode($redirect_url);

@@ -1,0 +1,73 @@
+{
+  "table_name": "lupo_channel_files",
+  "fields": [
+    "`file_id` bigint NOT NULL auto_increment",
+    "`channel_id` bigint NOT NULL COMMENT 'References lupo_channels.channel_id'",
+    "`file_type` varchar(50) NOT NULL COMMENT 'metadata, contents, actors, context, threads, etc'",
+    "`file_name` varchar(255) NOT NULL COMMENT 'Original filename'",
+    "`file_path` varchar(500) NOT NULL COMMENT 'Path relative to uploads root'",
+    "`file_hash` varchar(64) NOT NULL COMMENT 'SHA256 hash of file content'",
+    "`file_size` bigint NOT NULL COMMENT 'File size in bytes'",
+    "`mime_type` varchar(100) COMMENT 'MIME type'",
+    "`upload_ymdhis` char(14) NOT NULL COMMENT 'Upload timestamp YYYYMMDDHHMMSS'",
+    "`created_ymdhis` char(14) NOT NULL COMMENT 'Record creation timestamp'",
+    "`updated_ymdhis` char(14) NOT NULL COMMENT 'Record update timestamp'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = soft deleted'",
+    "`deleted_ymdhis` char(14) COMMENT 'Deletion timestamp'",
+    "`migrated_from_directory` varchar(255) COMMENT 'Original directory path for migration tracking'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_channel_id",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_file_type",
+      "columns": [
+        "file_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_file_hash",
+      "columns": [
+        "file_hash"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_upload_ymdhis",
+      "columns": [
+        "upload_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "file_id",
+    "expected_name": "file_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

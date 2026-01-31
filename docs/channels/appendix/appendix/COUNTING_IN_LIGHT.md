@@ -9,25 +9,25 @@ dialog:
   speaker: Captain Wolfie
   target: DIALOG Agent
   mood_RGB: "00A0FF"
-  message: "Updated Counting-in-Light Doctrine: Clarified that dialogs are by individual messages (not thread-level), added message weight field documentation (0.00 to 1.00), and documented thread-level mood aggregation from message-level moods."
+  message: "Updated Counting-in-Light Doctrine: Clarified that dialogs are by individual messages (not thread-level), and documented thread-level mood aggregation from message-level moods."
 tags:
   categories: ["documentation", "doctrine", "agents", "communication", "emotional-metadata"]
   collections: ["core-docs", "doctrine"]
   channels: ["dev", "public"]
 in_this_file_we_have:
   - Counting-in-Light Doctrine
+  - Doctrine Boundaries
   - Three Axes: R (Strife/Chaos), G (Harmony/Cohesion), B (Memory/Persistence)
   - Format and Color Examples
   - Choosing Mood Colors
   - Doctrine for Agents
   - Message-Level Mood Assignment (individual messages, not thread-level)
-  - Message Weight Field (0.00 to 1.00)
   - Thread-Level Mood Aggregation
   - Integration with Inline Dialog
   - Future Extensions
 file:
   title: "Counting-in-Light Doctrine"
-  description: "The emotional coordinate system of Lupopedia: RGB-based mood encoding for dialog messages, agent communication, and UI indicators. Message-level mood assignment with optional weight field for thread aggregation."
+  description: "The emotional coordinate system of Lupopedia: RGB-based mood encoding for dialog messages, agent communication, and UI indicators. Message-level mood assignment for thread aggregation."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
@@ -45,6 +45,24 @@ Counting‑in‑Light is the emotional color system used across Lupopedia to enc
 Most conversations are one human talking to one AI.  
 Agent classification and routing only matter when multiple agents are active.  
 If only one agent is present, HERMES bypasses routing and delivers the message normally.
+
+---
+
+## **Doctrine Boundaries**
+
+**Not Defined in Doctrine:**
+
+The following aspects are intentionally left undefined by doctrine and represent implementation freedoms:
+
+- **Polarity of axes** - whether 00 or FF represents "more" of any emotional dimension
+- **Mapping from Pono/Pilau/Kapakai to RGB** - ethical state markers are not mapped to color axes
+- **Blending rules** - how multiple mood tensors combine or interpolate
+- **Normalization rules** - mathematical constraints on tensor values beyond basic ranges
+- **Uncertainty handling** - representation of ambiguous or indeterminate emotional states
+- **Hex computation methods** - algorithms for converting emotional values to hex representation
+- **Tensor validity constraints** - validation rules beyond hex format checking
+
+These are implementation freedoms, not doctrinal definitions. Implementations may establish their own conventions for these aspects without violating doctrine.
 
 ---
 
@@ -82,7 +100,7 @@ Represents:
 - empathy  
 - unity  
 - reassurance  
-- stabilizing influence  
+- stabilizing effect  
 - emotional connection  
 
 High G = "this is supportive or calming."
@@ -188,24 +206,8 @@ Agents should not overuse high‑intensity colors.
 Each message in `lupo_dialog_messages` has its own mood assignment:
 
 - `mood_rgb` - The emotional color vector for this specific message (char(6), e.g., "FF0000")
-- `weight` - Optional weight multiplier for this message in thread aggregation (decimal(3,2), range 0.00 to 1.00)
 
-### **Message Weight Field**
-
-The `weight` field allows individual messages to be weighted differently when calculating thread-level mood:
-
-- **Range:** 0.00 to 1.00 (decimal(3,2))
-- **Default:** 1.00 (normal weight)
-- **Purpose:** Allows important messages to have more influence in thread mood aggregation
-- **Usage:** Can be set when a message is particularly significant, urgent, or should carry more emotional weight in the conversation
-
-**Example:**
-- Normal message: `weight = 1.00` (default)
-- Important message: `weight = 1.00` (full weight)
-- Less significant message: `weight = 0.50` (half weight)
-- Background/context message: `weight = 0.25` (quarter weight)
-
-**Note:** The weight field is optional and defaults to 1.00. Most messages will use the default weight. The weight is used in thread-level mood aggregation calculations along with temporal decay.
+Implementations MAY apply weighting during aggregation, but weighting is not stored in the message schema and is not part of the mood tensor.
 
 ---
 
@@ -227,11 +229,10 @@ Messages must remain ≤ 272 chars to reserve space for mood tags.
 Thread mood is calculated from individual message moods using:
 
 1. **Message-level mood vectors** - Each message has its own `mood_rgb`
-2. **Message weights** - Each message has a `weight` (0.00 to 1.00)
-3. **Temporal decay** - Older messages fade over time
-4. **Weighted aggregation** - Combines all factors into thread-level mood
+2. **Temporal decay** - Older messages fade over time
+3. **Aggregation** - Combines factors into thread-level mood
 
-The thread mood reflects the emotional shape of the conversation as a whole, aggregated from individual message moods.
+Implementations MAY apply weighting during aggregation, but weighting is not stored in the message schema and is not part of the mood tensor.
 
 ---
 
@@ -241,7 +242,12 @@ Planned expansions:
 - palette presets  
 - UI color ramps  
 - emotional analytics  
-- enhanced weight calculation algorithms  
+
+---
+
+## **Final Note**
+
+The doctrine defines the axes and the abstract tensor structure. All conversion formulas, blending rules, and emotional mappings are implementation choices and must not be treated as canonical.
 
 ---
 

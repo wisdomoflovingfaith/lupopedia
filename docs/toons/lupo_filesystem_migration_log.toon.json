@@ -1,0 +1,62 @@
+{
+  "table_name": "lupo_filesystem_migration_log",
+  "fields": [
+    "`log_id` bigint NOT NULL auto_increment",
+    "`migration_type` varchar(50) NOT NULL COMMENT 'agents or channels'",
+    "`directory_path` varchar(500) NOT NULL COMMENT 'Original directory path'",
+    "`entity_type` varchar(50) NOT NULL COMMENT 'agent or channel'",
+    "`entity_id` bigint COMMENT 'ID in lupo_agents or lupo_channels'",
+    "`status` varchar(50) NOT NULL COMMENT 'pending, success, failed, rolled_back'",
+    "`files_migrated` int DEFAULT 0 COMMENT 'Number of files migrated'",
+    "`error_message` text COMMENT 'Error details if failed'",
+    "`started_ymdhis` char(14) NOT NULL",
+    "`completed_ymdhis` char(14)"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_migration_type",
+      "columns": [
+        "migration_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_entity",
+      "columns": [
+        "entity_type",
+        "entity_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_directory",
+      "columns": [
+        "directory_path"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "log_id",
+    "expected_name": "log_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

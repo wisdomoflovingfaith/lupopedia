@@ -1,8 +1,0 @@
-{
-  "channel": {
-    "purpose": "routing",
-    "system_channel": true
-  },
-  "threads": [],
-  "contents": []
-}

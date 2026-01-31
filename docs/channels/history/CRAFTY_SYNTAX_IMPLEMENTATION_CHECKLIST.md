@@ -274,7 +274,99 @@ public function checkFirstRun()
 
 ---
 
-**Implementation Status: Ready for Development**  
-**All components mapped to existing SQL migration logic**  
-**No architecture expansion or new features**  
+**Implementation Status: Ready for Development**
+**All components mapped to existing SQL migration logic**
+**No architecture expansion or new features**
 **Strict adherence to migration doctrine**
+
+---
+
+## SECTION 10 — Crafty Syntax → Lupopedia Integration Requirements (Feb 7–9)
+
+### A. Legacy Login Completion
+- [ ] MD5 → bcrypt upgrade flow
+- [ ] Redirect-back logic
+- [ ] Avatar dropdown
+- [ ] Operator detection
+- [ ] Session upgrade logic
+
+### B. Crafty Syntax Operator Admin Panel
+- [ ] Operator dashboard
+- [ ] Operator presence (online/offline/away)
+- [ ] Operator expertise (domain + department)
+- [ ] Operator routing rules
+- [ ] Operator status updates
+- [ ] Operator activity feed
+
+### C. Livehelp_js Integration
+- [ ] JS icon on external pages
+- [ ] Visitor session initialization
+- [ ] Visitor tracking
+- [ ] Incoming chat request generation
+- [ ] Operator assignment
+- [ ] Escalation to human operator
+
+### D. Multi-Channel Operator Screen
+- [ ] Multi-color channel UI
+- [ ] Operator can handle multiple chats
+- [ ] Channel switching
+- [ ] Notifications
+- [ ] Message history
+- [ ] Typing indicators
+
+### E. REST API for Cross-Install Operator Routing
+- [ ] API endpoint for requesting an operator
+- [ ] Expertise-based routing
+- [ ] Department-based routing
+- [ ] Authentication
+- [ ] Rate limiting
+- [ ] JSON response format
+- [ ] Error codes
+
+---
+
+## SECTION 11 — Sprint Plan (Feb 1–9, 2026)
+
+### Milestone 1 — Feb 1–3
+- [ ] Finalize login system
+- [ ] Finalize session upgrade logic
+- [ ] Implement operator detection
+- [ ] Implement avatar dropdown
+- [ ] Begin operator admin panel skeleton
+
+### Milestone 2 — Feb 3–5
+- [ ] Implement Livehelp_js traffic ingestion
+- [ ] Implement operator presence + status
+- [ ] Implement operator dashboard basics
+- [ ] Begin multi-channel UI prototype
+
+### Milestone 3 — Feb 5–7 (Progress Report Due)
+- [ ] Multi-channel UI functional prototype
+- [ ] Livehelp traffic visible
+- [ ] Operator panel usable
+- [ ] REST API endpoints stubbed
+- [ ] Documentation updated
+- [ ] Submit progress report
+
+### Milestone 4 — Feb 7–9 (Demo Prep)
+- [ ] End-to-end operator workflow
+- [ ] Multi-channel UI polished
+- [ ] REST API functional
+- [ ] Cross-install operator routing working
+- [ ] Demo script prepared
+
+---
+
+## SECTION 12 — Notes for AI Agents
+
+All AI coding agents (JetBrains, Cursor, Claude, Windsurf, etc.) must:
+
+- Respect the actor model (`actor_id`, not `user_id`)
+- Respect database doctrine (no FK, no triggers, no stored procedures)
+- Use `YYYYMMDDHHIISS` UTC timestamps
+- Treat TOON files in `/docs/toons/` as schema source of truth
+- Respect Python vs PHP boundaries
+- Respect upload structure (hash-based, date-based)
+- Respect LEXA's enforcement role
+- Never invent schema or modify schema without TOON source
+- Never modernize away from doctrine

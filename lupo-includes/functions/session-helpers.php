@@ -68,6 +68,9 @@ function lupo_start_session() {
  * @return string|false Session ID or false if no session
  */
 function lupo_get_session_id() {
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+         session_name('PHPSESSID');
+    }
     lupo_start_session();
     return session_id();
 }
@@ -293,74 +296,125 @@ function lupo_create_session($actor_id, $auth_method = 'password', $auth_provide
                 return false;
             }
         }
-        
-        $sql = "INSERT INTO {$table_name} (
-            session_id,
-            federation_node_id,
-            actor_id,
-            ip_address,
-            user_agent,
-            device_type,
-            auth_method,
-            auth_provider,
-            security_level,
-            is_active,
-            is_expired,
-            is_revoked,
-            login_ymdhis,
-            last_seen_ymdhis,
-            expires_ymdhis,
-            created_ymdhis,
-            updated_ymdhis,
-            is_deleted
-        ) VALUES (
-            :session_id,
-            :federation_node_id,
-            :actor_id,
-            :ip_address,
-            :user_agent,
-            :device_type,
-            :auth_method,
-            :auth_provider,
-            :security_level,
-            1,
-            0,
-            0,
-            :login_ymdhis,
-            :last_seen_ymdhis,
-            :expires_ymdhis,
-            :created_ymdhis,
-            :updated_ymdhis,
-            0
-        )";
-        
+
+        // Check if session already exists (user may have anonymous session before login)
+        // If exists, upgrade the anonymous session to authenticated instead of creating duplicate
+        $check_sql = "SELECT session_id, actor_id FROM {$table_name} WHERE session_id = :session_id LIMIT 1";
+        $check_stmt = $db->prepare($check_sql);
+        $check_stmt->execute([':session_id' => $session_id]);
+        $existing_session = $check_stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($existing_session) {
+            // Session exists - upgrade it to authenticated session
+            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                error_log("SESSION DEBUG: Upgrading existing session ID: " . substr($session_id, 0, 20) . "... from actor_id " . $existing_session['actor_id'] . " to " . $actor_id);
+            }
+
+            $sql = "UPDATE {$table_name} SET
+                actor_id = :actor_id,
+                ip_address = :ip_address,
+                user_agent = :user_agent,
+                device_type = :device_type,
+                auth_method = :auth_method,
+                auth_provider = :auth_provider,
+                security_level = :security_level,
+                is_active = 1,
+                is_expired = 0,
+                is_revoked = 0,
+                login_ymdhis = :login_ymdhis,
+                last_seen_ymdhis = :last_seen_ymdhis,
+                expires_ymdhis = :expires_ymdhis,
+                updated_ymdhis = :updated_ymdhis
+                WHERE session_id = :session_id";
+
+            $params = [
+                ':session_id' => $session_id,
+                ':actor_id' => (int)$actor_id,
+                ':ip_address' => $ip_address,
+                ':user_agent' => $user_agent,
+                ':device_type' => $device_type,
+                ':auth_method' => $auth_method,
+                ':auth_provider' => $auth_provider,
+                ':security_level' => $security_level,
+                ':login_ymdhis' => $now,
+                ':last_seen_ymdhis' => $now,
+                ':expires_ymdhis' => $expires,
+                ':updated_ymdhis' => $now
+            ];
+        } else {
+            // No existing session - create new one
+            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                error_log("SESSION DEBUG: Creating new session ID: " . substr($session_id, 0, 20) . "... for actor_id " . $actor_id);
+            }
+
+            $sql = "INSERT INTO {$table_name} (
+                session_id,
+                federation_node_id,
+                actor_id,
+                ip_address,
+                user_agent,
+                device_type,
+                auth_method,
+                auth_provider,
+                security_level,
+                is_active,
+                is_expired,
+                is_revoked,
+                login_ymdhis,
+                last_seen_ymdhis,
+                expires_ymdhis,
+                created_ymdhis,
+                updated_ymdhis,
+                is_deleted
+            ) VALUES (
+                :session_id,
+                :federation_node_id,
+                :actor_id,
+                :ip_address,
+                :user_agent,
+                :device_type,
+                :auth_method,
+                :auth_provider,
+                :security_level,
+                1,
+                0,
+                0,
+                :login_ymdhis,
+                :last_seen_ymdhis,
+                :expires_ymdhis,
+                :created_ymdhis,
+                :updated_ymdhis,
+                0
+            )";
+
+            $params = [
+                ':session_id' => $session_id,
+                ':federation_node_id' => LUPO_DEFAULT_NODE_ID,
+                ':actor_id' => (int)$actor_id,
+                ':ip_address' => $ip_address,
+                ':user_agent' => $user_agent,
+                ':device_type' => $device_type,
+                ':auth_method' => $auth_method,
+                ':auth_provider' => $auth_provider,
+                ':security_level' => $security_level,
+                ':login_ymdhis' => $now,
+                ':last_seen_ymdhis' => $now,
+                ':expires_ymdhis' => $expires,
+                ':created_ymdhis' => $now,
+                ':updated_ymdhis' => $now
+            ];
+        }
+
         $stmt = $db->prepare($sql);
-        
-        // Prepare parameters
-        $params = [
-            ':session_id' => $session_id,
-            ':federation_node_id' => LUPO_DEFAULT_NODE_ID,
-            ':actor_id' => (int)$actor_id,
-            ':ip_address' => $ip_address,
-            ':user_agent' => $user_agent,
-            ':device_type' => $device_type,
-            ':auth_method' => $auth_method,
-            ':auth_provider' => $auth_provider,
-            ':security_level' => $security_level,
-            ':login_ymdhis' => $now,
-            ':last_seen_ymdhis' => $now,
-            ':expires_ymdhis' => $expires,
-            ':created_ymdhis' => $now,
-            ':updated_ymdhis' => $now
-        ];
-        
+
         // Enhanced debug logging before execute
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-            $debug_msg = "SESSION DEBUG: Attempting INSERT - Session ID: " . substr($session_id, 0, 20) . "... (length: " . strlen($session_id) . "), Actor ID: " . $actor_id . ", Expires: " . $expires . ", Table: {$table_name}, Now: " . $now;
+            $action = $existing_session ? 'UPDATE' : 'INSERT';
+            $debug_msg = "SESSION DEBUG: Attempting {$action} - Session ID: " . substr($session_id, 0, 20) . "... (length: " . strlen($session_id) . "), Actor ID: " . $actor_id . ", Expires: " . $expires . ", Table: {$table_name}, Now: " . $now;
             error_log($debug_msg);
             error_log("SESSION DEBUG: SQL = " . $sql);
             error_log("SESSION DEBUG: Params = " . json_encode($params));
-            
+
             // Also display on screen in debug mode (visible, not just HTML comment)
             if (ini_get('display_errors')) {
                 echo "<!-- " . htmlspecialchars($debug_msg) . " -->\n";
@@ -368,7 +422,7 @@ function lupo_create_session($actor_id, $auth_method = 'password', $auth_provide
                 echo "<!-- Params: " . htmlspecialchars(json_encode($params, JSON_PRETTY_PRINT)) . " -->\n";
             }
         }
-        
+
         // Execute the statement
         $result = $stmt->execute($params);
         
@@ -386,20 +440,22 @@ function lupo_create_session($actor_id, $auth_method = 'password', $auth_provide
             throw new Exception("PDO execute failed: " . ($error_info[2] ?? 'Unknown error'));
         }
         
-        // Verify row was inserted
+        // Verify row was affected (inserted or updated)
         $row_count = $stmt->rowCount();
         if ($row_count === 0) {
+            $action = $existing_session ? 'UPDATE' : 'INSERT';
             if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                error_log("AUTH ERROR: INSERT executed but no rows affected - Session ID: " . substr($session_id, 0, 8) . "...");
+                error_log("AUTH ERROR: {$action} executed but no rows affected - Session ID: " . substr($session_id, 0, 8) . "...");
             }
-            throw new Exception("INSERT executed but no rows affected");
+            throw new Exception("{$action} executed but no rows affected");
         }
-        
-        // Debug logging for successful session creation
+
+        // Debug logging for successful session creation/upgrade
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-            error_log("SESSION: Session created successfully - ID: " . substr($session_id, 0, 8) . "..., Actor ID: " . $actor_id . ", Expires: " . $expires . ", Rows affected: " . $row_count);
+            $action = $existing_session ? 'upgraded' : 'created';
+            error_log("SESSION: Session {$action} successfully - ID: " . substr($session_id, 0, 8) . "..., Actor ID: " . $actor_id . ", Expires: " . $expires . ", Rows affected: " . $row_count);
         }
-        
+
         return $session_id;
         
     } catch (PDOException $e) {
@@ -467,6 +523,10 @@ function lupo_validate_session($session_id = null) {
         $session_id = lupo_get_session_id();
     }
     
+    if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+        error_log("SESSION DEBUG: lupo_validate_session() - session_id: " . ($session_id ?: 'EMPTY') . ", session_name: " . session_name());
+    }
+
     if (empty($session_id)) {
         return false;
     }
@@ -501,6 +561,9 @@ function lupo_validate_session($session_id = null) {
         $session = $stmt->fetch(PDO::FETCH_ASSOC);
         
         if (!$session) {
+            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                error_log("SESSION DEBUG: lupo_validate_session() - No session found in DB for ID: " . $session_id);
+            }
             return false;
         }
         

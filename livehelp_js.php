@@ -63,7 +63,8 @@ if(!(empty($UNTRUSTED['relative']))){
    $WEBPATH = $CSLH_Config['webpath'];
 }
 
-?>var livehelp_PATH = "<?php echo $CSLH_Config['webpath']; ?>";
+?>// Lupopedia Chat – Built with pono
+var livehelp_PATH = "<?php echo $CSLH_Config['webpath']; ?>";
 var livehelp_SCRIPT = "<?php echo $CSLH_Config['webpath']; ?>livehelp_js.php";
 var livehelp_IMAGE = "<?php echo $CSLH_Config['s_webpath']; ?>image.php";
 var livehelp_SEND = "<?php echo $CSLH_Config['webpath']; ?>livehelp_js.php";

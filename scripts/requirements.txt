@@ -1,0 +1,5 @@
+# Python dependencies for Lupopedia migration scripts
+# Install with: pip install -r requirements.txt
+
+# MySQL database driver
+pymysql==1.1.0

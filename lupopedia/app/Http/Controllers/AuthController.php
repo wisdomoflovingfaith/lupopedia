@@ -19,6 +19,20 @@ class AuthController extends Controller
     }
 
     /**
+     * Show the login form
+     */
+    public function showLoginForm(Request $request)
+    {
+        $systemContext = $request->input('system_context', 'lupopedia');
+        $redirectUrl = $request->input('redirect', '');
+
+        return view('auth.login', [
+            'system_context' => $systemContext,
+            'redirect' => $redirectUrl
+        ]);
+    }
+
+    /**
      * Unified login method for both Lupopedia and Crafty Syntax
      */
     public function unifiedLogin(Request $request)
@@ -181,16 +195,46 @@ class AuthController extends Controller
      */
     private function redirectToSystemInterface($systemContext, $authResult)
     {
+        // Check for redirect URL from session or request
+        $redirectUrl = session('login_redirect') ?? request()->input('redirect');
+
+        // Clear the redirect from session
+        session()->forget('login_redirect');
+
+        // If redirect URL exists and is safe (not external), use it
+        if ($redirectUrl && $this->isInternalUrl($redirectUrl)) {
+            return redirect($redirectUrl)->with('success', 'Login successful');
+        }
+
+        // Default redirects based on context
         switch ($systemContext) {
             case UnifiedSessionHandler::CONTEXT_CRAFTY_SYNTAX:
                 // Redirect to Crafty Syntax operator interface
                 return redirect('/livehelp/index.php')->with('success', 'Login successful');
-            
+
             case UnifiedSessionHandler::CONTEXT_LUPOPEDIA:
             default:
                 // Redirect to Lupopedia dashboard
                 return redirect('/dashboard')->with('success', 'Login successful');
         }
+    }
+
+    /**
+     * Check if URL is internal (safe to redirect to)
+     */
+    private function isInternalUrl($url)
+    {
+        // Allow relative URLs
+        if (strpos($url, '/') === 0) {
+            return true;
+        }
+
+        // Disallow external URLs (those with :// in them)
+        if (strpos($url, '://') !== false) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

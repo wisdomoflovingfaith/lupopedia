@@ -175,28 +175,108 @@ function lupo_route_slug($slug) {
         }
     }
     
-    // TRUTH LOOKUP ROUTE: /truth/<who|what|where|when|why|how>/<slug>
-    if (preg_match('#^truth/(who|what|where|when|why|how)/(.+)$#', $slug, $matches)) {
-        $dimension = $matches[1];
-        $truth_slug = $matches[2];
-        
-        $truth_controller = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/truth/truth-controller.php';
-        if (file_exists($truth_controller)) {
-            require_once $truth_controller;
-            
-            try {
-                if (function_exists('truth_lookup_dimension')) {
-                    $result = truth_lookup_dimension($dimension, $truth_slug);
-                    if (!empty($result)) {
-                        return $result;
-                    }
-                }
-            } catch (Exception $e) {
-                if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                    error_log('Truth lookup routing error: ' . $e->getMessage());
-                }
-            }
+    // Q/A ROUTE: /qa/ and /qa/<slug>
+    if ($slug === 'qa' || strpos($slug, 'qa/') === 0) {
+        // Load render_main_layout function if not already loaded
+        $content_renderer = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/renderers/content-renderer.php';
+        if (file_exists($content_renderer)) {
+            require_once $content_renderer;
         }
+
+        // Extract Q/A slug (empty for root /qa/)
+        $qa_slug = $slug === 'qa' ? '' : substr($slug, 3); // Remove 'qa/' prefix
+
+        // Root Q/A page: /qa/
+        if (empty($qa_slug)) {
+            $qa_index_view = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/qa/views/index.php';
+            if (file_exists($qa_index_view)) {
+                ob_start();
+                include $qa_index_view;
+                $page_body = ob_get_clean();
+            } else {
+                // Fallback placeholder
+                $page_body = '<p>root level nav tree of questions goes here</p>';
+            }
+
+            // Wrap in main layout
+            $context = [
+                'page_body' => $page_body,
+                'page_title' => 'Q/A'
+            ];
+            return render_main_layout($context);
+        }
+        // Q/A question page: /qa/<slug>
+        else {
+            $qa_question_view = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/qa/views/question.php';
+
+            // Look up truth question by slug
+            $db = $GLOBALS['mydatabase'] ?? null;
+            if (!$db) {
+                $page_body = '<h1>Error</h1><p>Database not available</p>';
+                $context = [
+                    'page_body' => $page_body,
+                    'page_title' => 'Error'
+                ];
+                return render_main_layout($context);
+            }
+
+            $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+            $stmt = $db->prepare("SELECT * FROM {$table_prefix}truth_questions WHERE slug = :slug LIMIT 1");
+            $stmt->execute([':slug' => $qa_slug]);
+            $question = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$question) {
+                $page_body = '<h1>404 Not Found</h1><p>Question not found: ' . htmlspecialchars($qa_slug) . '</p>';
+                $context = [
+                    'page_body' => $page_body,
+                    'page_title' => 'Not Found'
+                ];
+                return render_main_layout($context);
+            }
+
+            // Determine collection context
+            if (isset($_SESSION['collection_id'])) {
+                $collection_id = $_SESSION['collection_id'];
+            } else {
+                $collection_id = $question['default_collection_id'] ?? null;
+            }
+
+            // Set variables for view
+            $slug = $qa_slug;
+
+            if (file_exists($qa_question_view)) {
+                ob_start();
+                include $qa_question_view;
+                $page_body = ob_get_clean();
+            } else {
+                // Fallback placeholder
+                $page_body = '<p>Question view for slug: ' . htmlspecialchars($qa_slug) . '</p>';
+                $page_body .= '<p>Collection context: ' . htmlspecialchars($collection_id) . '</p>';
+            }
+
+            // Wrap in main layout
+            $context = [
+                'page_body' => $page_body,
+                'page_title' => $question['question_text'] ?? 'Q/A',
+                'collection_id' => $collection_id
+            ];
+            return render_main_layout($context);
+        }
+    }
+
+    // TRUTH LOOKUP ROUTE: /truth/<who|what|where|when|why|how>/<slug>
+    // Redirect old Truth routes to /qa/
+    if (preg_match('#^truth/(who|what|where|when|why|how)/(.+)$#', $slug, $matches)) {
+        header('HTTP/1.1 301 Moved Permanently');
+        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/qa/');
+        exit;
+    }
+
+    // Redirect standalone /truth to /qa/
+    if ($slug === 'truth') {
+        header('HTTP/1.1 301 Moved Permanently');
+        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/qa/');
+        exit;
     }
     
     // EDGE TRAVERSAL ROUTE: /edge/<slug> or /edge/id/<content_id>
@@ -271,90 +351,16 @@ function lupo_route_slug($slug) {
         'how/'
     ];
     
-    // Determine if slug matches a TRUTH prefix or TRUTH route
-    $is_truth = false;
-    $truth_route_type = null;
-    
-    // Check for TRUTH explicit routes
-    if (strpos($slug, 'truth/') === 0) {
-        $is_truth = true;
-        $remainder = substr($slug, 6); // Remove 'truth/' prefix
-        
-        // Check for specific TRUTH routes
-        if (strpos($remainder, 'assert/') === 0) {
-            $truth_route_type = 'assert';
-            $truth_slug = substr($remainder, 7); // Remove 'assert/' prefix
-        } elseif (strpos($remainder, 'evidence/') === 0) {
-            $truth_route_type = 'evidence';
-            $truth_slug = substr($remainder, 9); // Remove 'evidence/' prefix
-        } else {
-            $truth_route_type = 'view';
-            $truth_slug = $remainder;
-        }
-    } else {
-        // Check for question prefixes (legacy TRUTH routing)
-        foreach ($question_prefixes as $prefix) {
-            if (strpos($slug, $prefix) === 0) {
-                $is_truth = true;
-                $truth_route_type = 'question';
-                $truth_slug = $slug;
-                break;
-            }
+    // Redirect old question prefix routes to /qa/
+    foreach ($question_prefixes as $prefix) {
+        if (strpos($slug, $prefix) === 0) {
+            header('HTTP/1.1 301 Moved Permanently');
+            header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/qa/');
+            exit;
         }
     }
-    
-    if ($is_truth) {
-        // Route to TRUTH controller
-        // Fix: Use correct path with lupo-includes directory
-        $truth_controller = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/truth/truth-controller.php';
-        if (file_exists($truth_controller)) {
-            require_once $truth_controller;
-            
-            // Route based on type
-            try {
-                if ($truth_route_type === 'assert' && function_exists('truth_handle_assert')) {
-                    $result = truth_handle_assert($truth_slug);
-                    if (empty($result) && defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                        return "<!-- DEBUG: truth_handle_assert returned empty for slug: " . htmlspecialchars($truth_slug) . " -->";
-                    }
-                    return $result;
-                } elseif ($truth_route_type === 'evidence' && function_exists('truth_handle_evidence')) {
-                    $result = truth_handle_evidence($truth_slug);
-                    if (empty($result) && defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                        return "<!-- DEBUG: truth_handle_evidence returned empty for slug: " . htmlspecialchars($truth_slug) . " -->";
-                    }
-                    return $result;
-                } elseif ($truth_route_type === 'view' && function_exists('truth_handle_view')) {
-                    $result = truth_handle_view($truth_slug);
-                    if (empty($result) && defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                        return "<!-- DEBUG: truth_handle_view returned empty for slug: " . htmlspecialchars($truth_slug) . " -->";
-                    }
-                    return $result;
-                } elseif ($truth_route_type === 'question' && function_exists('truth_handle_slug')) {
-                    // Legacy question prefix routing
-                    $result = truth_handle_slug($truth_slug);
-                    if (empty($result) && defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                        return "<!-- DEBUG: truth_handle_slug returned empty for slug: " . htmlspecialchars($truth_slug) . " -->";
-                    }
-                    return $result;
-                } elseif (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                    return "<!-- DEBUG: TRUTH route type '" . htmlspecialchars($truth_route_type) . "' but handler function not found -->";
-                }
-            } catch (Exception $e) {
-                if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                    return "<!-- DEBUG: Exception in TRUTH routing: " . htmlspecialchars($e->getMessage()) . " --><pre>" . htmlspecialchars($e->getTraceAsString()) . "</pre>";
-                }
-                return '';
-            } catch (Error $e) {
-                if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                    return "<!-- DEBUG: Fatal error in TRUTH routing: " . htmlspecialchars($e->getMessage()) . " --><pre>" . htmlspecialchars($e->getTraceAsString()) . "</pre>";
-                }
-                return '';
-            }
-        } elseif (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-            return "<!-- DEBUG: TRUTH controller file not found at: " . htmlspecialchars($truth_controller) . " -->";
-        }
-    } elseif (strpos($slug, 'crafty_syntax') !== false) {
+
+    if (strpos($slug, 'crafty_syntax') !== false) {
         // Route to Crafty Syntax module
         $crafty_syntax_controller = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/crafty_syntax/crafty_syntax-controller.php';
         if (file_exists($crafty_syntax_controller)) {
