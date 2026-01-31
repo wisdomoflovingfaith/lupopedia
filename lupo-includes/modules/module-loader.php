@@ -175,6 +175,133 @@ function lupo_route_slug($slug) {
         }
     }
     
+    // OPERATOR SIGN-ON ROUTE: /operator/signon
+    if ($slug === 'operator/signon') {
+        // Load render_main_layout function
+        $content_renderer = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/renderers/content-renderer.php';
+        if (file_exists($content_renderer)) {
+            require_once $content_renderer;
+        }
+
+        // Handle POST request (operator selection)
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['operator_id'])) {
+            $operator_id = (int)$_POST['operator_id'];
+
+            $db = $GLOBALS['mydatabase'] ?? null;
+            if ($db) {
+                $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+
+                // Get channel_id for the selected operator
+                $stmt = $db->prepare("SELECT channel_id FROM {$table_prefix}operators WHERE operator_id = :operator_id LIMIT 1");
+                $stmt->execute([':operator_id' => $operator_id]);
+                $operator = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($operator) {
+                    // Update operator to active
+                    $update_stmt = $db->prepare("UPDATE {$table_prefix}operators SET is_active = 1 WHERE operator_id = :operator_id");
+                    $update_stmt->execute([':operator_id' => $operator_id]);
+
+                    // Redirect to channel
+                    $channel_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+                    $channel_url .= '/channels/' . $operator['channel_id'];
+                    header('Location: ' . $channel_url);
+                    exit;
+                }
+            }
+        }
+
+        // Get current user
+        if (!function_exists('current_user')) {
+            require_once LUPOPEDIA_ABSPATH . '/lupo-includes/functions/auth-helpers.php';
+        }
+        $current_user = current_user();
+
+        $operators = [];
+        if ($current_user) {
+            $actor_id = $current_user['actor_id'] ?? null;
+
+            if ($actor_id) {
+                $db = $GLOBALS['mydatabase'] ?? null;
+                if ($db) {
+                    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+                    $stmt = $db->prepare("SELECT operator_id, department_id, channel_id FROM {$table_prefix}operators WHERE actor_id = :actor_id");
+                    $stmt->execute([':actor_id' => $actor_id]);
+                    $operators = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                }
+            }
+        }
+
+        // Load view
+        $operator_signon_view = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/operator/views/signon.php';
+        if (file_exists($operator_signon_view)) {
+            ob_start();
+            include $operator_signon_view;
+            $page_body = ob_get_clean();
+        } else {
+            $page_body = '<p>Operator sign-on view not found</p>';
+        }
+
+        $context = [
+            'page_body' => $page_body,
+            'page_title' => 'Operator Sign-On'
+        ];
+        return render_main_layout($context);
+    }
+
+    // CHANNELS ROUTE: /channels/{channel_id}
+    if (preg_match('#^channels/(\d+)$#', $slug, $matches)) {
+        $channel_id = (int)$matches[1];
+
+        // Load ChannelsController
+        $channels_controller_path = LUPOPEDIA_ABSPATH . '/lupopedia/app/Http/Controllers/ChannelsController.php';
+        if (file_exists($channels_controller_path)) {
+            require_once $channels_controller_path;
+            $controller = new ChannelsController();
+            $controller->show($channel_id);
+            return '';
+        } else {
+            // Fallback if controller not found
+            $content_renderer = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/renderers/content-renderer.php';
+            if (file_exists($content_renderer)) {
+                require_once $content_renderer;
+            }
+
+            $page_body = '<p>channel interface goes here</p>';
+            $context = [
+                'page_body' => $page_body,
+                'page_title' => 'Channel ' . $channel_id
+            ];
+            return render_main_layout($context);
+        }
+    }
+
+    // EDGES ROUTE: /edges/{edge_id}
+    if (preg_match('#^edges/(\d+)$#', $slug, $matches)) {
+        $edge_id = (int)$matches[1];
+
+        // Load EdgesController
+        $edges_controller_path = LUPOPEDIA_ABSPATH . '/lupopedia/app/Http/Controllers/EdgesController.php';
+        if (file_exists($edges_controller_path)) {
+            require_once $edges_controller_path;
+            $controller = new EdgesController();
+            $controller->show($edge_id);
+            return '';
+        } else {
+            // Fallback if controller not found
+            $content_renderer = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/renderers/content-renderer.php';
+            if (file_exists($content_renderer)) {
+                require_once $content_renderer;
+            }
+
+            $page_body = '<p>edges interface goes here</p>';
+            $context = [
+                'page_body' => $page_body,
+                'page_title' => 'Edge ' . $edge_id
+            ];
+            return render_main_layout($context);
+        }
+    }
+
     // Q/A ROUTE: /qa/ and /qa/<slug>
     if ($slug === 'qa' || strpos($slug, 'qa/') === 0) {
         // Load render_main_layout function if not already loaded

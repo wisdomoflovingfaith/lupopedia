@@ -1,0 +1,22 @@
+{
+  "channel_id": 5100,
+  "active_actors_json": [],
+  "speaker_actors_json": [],
+  "observer_actors_json": [],
+  "layers_enabled_json": [],
+  "operational_mode": "idle",
+  "emotional_state_json": {},
+  "recent_topics_json": [],
+  "semantic_weight": 0,
+  "trend_score": 0,
+  "last_activity_ymdhis": null,
+  "context_vector": null,
+  "routing_rules": null,
+  "edge_visibility": null,
+  "retention_policy": null,
+  "decay_policy": null,
+  "archive_flag": 0,
+  "metadata_json": {},
+  "created_ymdhis": null,
+  "updated_ymdhis": null
+}

@@ -700,13 +700,24 @@ if (!isset($contentSections)) {
 </head>
 <body>
 
-<?php 
+<?php
 // Top navigation bar
 if (file_exists(LUPO_UI_PATH . '/components/topbar.php')) {
     include LUPO_UI_PATH . '/components/topbar.php';
 }
+
+// Determine if semantic nav bar should be hidden
+$hide_semantic_nav = false;
+if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/lupopedia/channels/') !== false) {
+    $hide_semantic_nav = true;
+}
+// Also check if path starts with /channels/ (without lupopedia prefix)
+if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/channels/') === 0) {
+    $hide_semantic_nav = true;
+}
 ?>
 
+<?php if (!$hide_semantic_nav): ?>
 <!-- Saved Collections Navigation -->
 <nav class="saved-collections-nav">
     <!-- Spacer div -->
@@ -778,6 +789,7 @@ if (file_exists(LUPO_UI_PATH . '/components/topbar.php')) {
         <!-- Tabs loaded by AJAX ends here -->
     </div>
 </nav>
+<?php endif; ?>
 
 <!-- Save Collection Modal -->
 <div id="saveCollectionModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; align-items: center; justify-content: center;">
@@ -1109,6 +1121,7 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
 
+<?php if (!$hide_semantic_nav): ?>
 <!-- Content Container with Decorative Borders -->
 <div class="content-list-container">
     <!-- Row 1: Top Border -->
@@ -1212,6 +1225,14 @@ document.addEventListener('keydown', function(e) {
     </div>
     <div class="resources-bottom-right"></div>
 </div>
+<?php endif; ?>
+
+<?php if ($hide_semantic_nav): ?>
+<!-- Channel Page: Simple Container for Content -->
+<div style="width: 100%; height: calc(100vh - 60px); position: fixed; top: 60px; left: 0; overflow: hidden;">
+    <?= $page_body ?>
+</div>
+<?php endif; ?>
 
 <!-- Auto-load collection tabs when page loads if collection_id is set -->
 <script>
@@ -1241,7 +1262,9 @@ document.addEventListener('keydown', function(e) {
 <?php 
 // Footer
 if (file_exists(LUPO_UI_PATH . '/components/footer.php')) {
-    include LUPO_UI_PATH . '/components/footer.php';
+   if (!$hide_semantic_nav){
+     include LUPO_UI_PATH . '/components/footer.php';
+     }
 }
 
 // Load UI JavaScript at end of body

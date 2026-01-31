@@ -1,0 +1,348 @@
+
+    Directory: C:\ServBay\www\servbay\lupopedia\docs\toons
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----         1/29/2026   5:19 PM           2055 lupo_actors.toon.json
+-a----         1/29/2026   5:19 PM           1162 lupo_actor_actions.toon.json
+-a----         1/29/2026   5:19 PM           2656 lupo_actor_capabilities.toon.
+                                                  json
+-a----         1/29/2026   5:19 PM           2921 lupo_actor_channels.toon.json
+-a----         1/29/2026   5:19 PM           2620 lupo_actor_channel_roles.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM           2641 lupo_actor_collections.toon.j
+                                                  son
+-a----         1/29/2026   5:19 PM           3614 lupo_actor_conflicts.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           1031 lupo_actor_departments.toon.j
+                                                  son
+-a----         1/29/2026   5:19 PM           3298 lupo_actor_edges.toon.json
+-a----         1/29/2026   5:19 PM           2175 lupo_actor_events.toon.json
+-a----         1/29/2026   5:19 PM           1805 lupo_actor_group_membership.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM           1391 lupo_actor_handshakes.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           1131 lupo_actor_meta.toon.json
+-a----         1/29/2026   5:19 PM            474 lupo_actor_moods.toon.json
+-a----         1/29/2026   5:19 PM           1511 lupo_actor_object_edges.toon.
+                                                  json
+-a----         1/29/2026   5:19 PM           1219 lupo_actor_persona_relationsh
+                                                  ips.toon.json
+-a----         1/29/2026   5:19 PM           1386 lupo_actor_properties.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           2363 lupo_actor_reply_templates.to
+                                                  on.json
+-a----         1/29/2026   5:19 PM           1449 lupo_actor_roles.toon.json
+-a----         1/29/2026   5:19 PM           1500 lupo_actor_truth_edges.toon.j
+                                                  son
+-a----         1/29/2026   5:19 PM           3323 lupo_agents.toon.json
+-a----         1/29/2026   5:19 PM           3805 lupo_agent_context_snapshots.
+                                                  toon.json
+-a----         1/29/2026   5:19 PM           1206 lupo_agent_dependencies.toon.
+                                                  json
+-a----         1/29/2026   5:19 PM           1162 lupo_agent_experiences.toon.j
+                                                  son
+-a----         1/29/2026   5:19 PM            641 lupo_agent_external_events.to
+                                                  on.json
+-a----         1/29/2026   5:19 PM           2245 lupo_agent_faucets.toon.json
+-a----         1/29/2026   5:19 PM            822 lupo_agent_faucet_credentials
+                                                  .toon.json
+-a----         1/29/2026   5:19 PM           1504 lupo_agent_heartbeats.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           2339 lupo_agent_properties.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           1167 lupo_agent_registry.toon.json
+-a----         1/29/2026   5:19 PM           3139 lupo_agent_tool_calls.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           1414 lupo_agent_versions.toon.json
+-a----         1/29/2026   5:19 PM            889 lupo_aliases.toon.json
+-a----         1/29/2026   5:19 PM            729 lupo_analytics_campaign_vars.
+                                                  toon.json
+-a----         1/29/2026   5:19 PM           3005 lupo_analytics_referers_daily
+                                                  .toon.json
+-a----         1/29/2026   5:19 PM           3067 lupo_analytics_referers_month
+                                                  ly.toon.json
+-a----         1/29/2026   5:19 PM           1860 lupo_analytics_visits.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           2933 lupo_analytics_visits_daily.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM           2276 lupo_analytics_visits_monthly
+                                                  .toon.json
+-a----         1/29/2026   5:19 PM           1326 lupo_anubis_deletion_log.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM            660 lupo_anubis_events.toon.json
+-a----         1/29/2026   5:19 PM            711 lupo_anubis_mirrored.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM            592 lupo_anubis_orphaned.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM            622 lupo_anubis_redirects.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM            626 lupo_anubis_revised.toon.json
+-a----         1/29/2026   5:19 PM           1858 lupo_api_clients.toon.json
+-a----         1/29/2026   5:19 PM           2237 lupo_api_rate_limits.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           2454 lupo_api_tokens.toon.json
+-a----         1/29/2026   5:19 PM           2097 lupo_api_token_logs.toon.json
+-a----         1/29/2026   5:19 PM           2407 lupo_api_webhooks.toon.json
+-a----         1/29/2026   5:19 PM           1412 lupo_artifacts.toon.json
+-a----         1/29/2026   5:19 PM           1377 lupo_atoms.toon.json
+-a----         1/29/2026   5:19 PM           1790 lupo_audit_log.toon.json
+-a----         1/29/2026   5:19 PM           2363 lupo_auth_audit_log.toon.json
+-a----         1/29/2026   5:19 PM           1524 lupo_auth_providers.toon.json
+-a----         1/29/2026   5:19 PM           2397 lupo_auth_users.toon.json
+-a----         1/29/2026   5:19 PM           1757 lupo_calibration_impacts.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM           3522 lupo_channels.toon.json
+-a----         1/29/2026   5:19 PM           1883 lupo_channel_boot_detail.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM           1672 lupo_channel_boot_log.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           1437 lupo_channel_state.toon.json
+-a----         1/29/2026   5:19 PM           2288 lupo_cip_analytics.toon.json
+-a----         1/29/2026   5:19 PM           2091 lupo_cip_propagation_tracking
+                                                  .toon.json
+-a----         1/29/2026   5:19 PM           1773 lupo_cip_trends.toon.json
+-a----         1/29/2026   5:19 PM           3120 lupo_collections.toon.json
+-a----         1/29/2026   5:19 PM           2428 lupo_collection_tabs.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           2664 lupo_collection_tab_map.toon.
+                                                  json
+-a----         1/29/2026   5:19 PM           1629 lupo_collection_tab_paths.too
+                                                  n.json
+-a----         1/29/2026   5:19 PM           5292 lupo_contents.toon.json
+-a----         1/29/2026   5:19 PM           2182 lupo_content_atom_map.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           1266 lupo_content_category_map.too
+                                                  n.json
+-a----         1/29/2026   5:19 PM           1563 lupo_content_engagement_summa
+                                                  ry.toon.json
+-a----         1/29/2026   5:19 PM           2401 lupo_content_events.toon.json
+-a----         1/29/2026   5:19 PM           1712 lupo_content_hashtag.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           2278 lupo_content_inbound_links.to
+                                                  on.json
+-a----         1/29/2026   5:19 PM           2180 lupo_content_likes.toon.json
+-a----         1/29/2026   5:19 PM           3551 lupo_content_media.toon.json
+-a----         1/29/2026   5:19 PM           2298 lupo_content_question_map.too
+                                                  n.json
+-a----         1/29/2026   5:19 PM           1922 lupo_content_references.toon.
+                                                  json
+-a----         1/29/2026   5:19 PM           1378 lupo_content_revisions.toon.j
+                                                  son
+-a----         1/29/2026   5:19 PM           2174 lupo_content_shares.toon.json
+-a----         1/29/2026   5:19 PM           1695 lupo_content_tag_relationship
+                                                  s.toon.json
+-a----         1/29/2026   5:19 PM           1880 lupo_contexts.toon.json
+-a----         1/29/2026   5:19 PM           1623 lupo_contexts_map.toon.json
+-a----         1/29/2026   5:19 PM           1160 lupo_contexts_old.toon.json
+-a----         1/29/2026   5:19 PM           2087 lupo_crafty_syntax_auto_invit
+                                                  e.toon.json
+-a----         1/29/2026   5:19 PM            746 lupo_crafty_syntax_chat_mod_d
+                                                  epartments.toon.json
+-a----         1/29/2026   5:19 PM           1111 lupo_crafty_syntax_chat_quest
+                                                  ions.toon.json
+-a----         1/29/2026   5:19 PM           2711 lupo_crafty_syntax_layer_invi
+                                                  tes.toon.json
+-a----         1/29/2026   5:19 PM           2327 lupo_crafty_syntax_leave_mess
+                                                  age.toon.json
+-a----         1/29/2026   5:19 PM           1876 lupo_crafty_user_mapping.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM           1683 lupo_crm_leads.toon.json
+-a----         1/29/2026   5:19 PM           1088 lupo_crm_lead_messages.toon.j
+                                                  son
+-a----         1/29/2026   5:19 PM           1325 lupo_departments.toon.json
+-a----         1/29/2026   5:19 PM           1083 lupo_department_metadata.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM           2752 lupo_dialog_channels.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           2755 lupo_dialog_messages.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           3315 lupo_dialog_threads.toon.json
+-a----         1/29/2026   5:19 PM           1599 lupo_doctrine_evolution_audit
+                                                  .toon.json
+-a----         1/29/2026   5:19 PM           2080 lupo_doctrine_refinements.too
+                                                  n.json
+-a----         1/29/2026   5:19 PM            850 lupo_documents.toon.json
+-a----         1/29/2026   5:19 PM           1109 lupo_document_chunks.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           1053 lupo_document_embeddings.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM           2844 lupo_edges.toon.json
+-a----         1/29/2026   5:19 PM            769 lupo_edge_types.toon.json
+-a----         1/29/2026   5:19 PM            773 lupo_emotional_constellations
+                                                  .toon.json
+-a----         1/29/2026   5:19 PM            575 lupo_emotional_frameworks.too
+                                                  n.json
+-a----         1/29/2026   5:19 PM           2337 lupo_emotional_geometry_calib
+                                                  rations.toon.json
+-a----         1/29/2026   5:19 PM            859 lupo_emotional_stars.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM            724 lupo_emotional_translations.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM            841 lupo_event_log.toon.json
+-a----         1/29/2026   5:19 PM           1058 lupo_event_metadata.toon.json
+-a----         1/29/2026   5:19 PM           1137 lupo_federation_categories.to
+                                                  on.json
+-a----         1/29/2026   5:19 PM           1285 lupo_federation_category_map.
+                                                  toon.json
+-a----         1/29/2026   5:19 PM           1415 lupo_federation_discovery.too
+                                                  n.json
+-a----         1/29/2026   5:19 PM           1837 lupo_federation_nodes.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           2091 lupo_governance_overrides.too
+                                                  n.json
+-a----         1/29/2026   5:19 PM           2590 lupo_gov_events.toon.json
+-a----         1/29/2026   5:19 PM           2042 lupo_gov_event_actor_edges.to
+                                                  on.json
+-a----         1/29/2026   5:19 PM           1396 lupo_gov_event_conflicts.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM           1290 lupo_gov_event_dependencies.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM           2132 lupo_gov_event_references.too
+                                                  n.json
+-a----         1/29/2026   5:19 PM           2537 lupo_gov_timeline_nodes.toon.
+                                                  json
+-a----         1/29/2026   5:19 PM           2268 lupo_gov_valuations.toon.json
+-a----         1/29/2026   5:19 PM           2053 lupo_groups.toon.json
+-a----         1/29/2026   5:19 PM           1030 lupo_hashtags.toon.json
+-a----         1/29/2026   5:19 PM           2066 lupo_help_topics.toon.json
+-a----         1/29/2026   5:19 PM           2103 lupo_help_tree.toon.json
+-a----         1/29/2026   5:19 PM            579 lupo_hotfix_registry.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM            675 lupo_human_history_meta.toon.
+                                                  json
+-a----         1/29/2026   5:19 PM            752 lupo_integration_test_results
+                                                  .toon.json
+-a----         1/29/2026   5:19 PM           2114 lupo_interface_translations.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM           2352 lupo_interpretation_log.toon.
+                                                  json
+-a----         1/29/2026   5:19 PM            772 lupo_kapu_events.toon.json
+-a----         1/29/2026   5:19 PM            640 lupo_kapu_restoration_paths.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM           2827 lupo_labs_declarations.toon.j
+                                                  son
+-a----         1/29/2026   5:19 PM           1817 lupo_labs_violations.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           2172 lupo_legacy_content_mapping.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM            745 lupo_memory_debug_log.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           1115 lupo_memory_events.toon.json
+-a----         1/29/2026   5:19 PM            764 lupo_memory_rollups.toon.json
+-a----         1/29/2026   5:19 PM           1405 lupo_meta_log_events.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM            513 lupo_metrics_archive_legacy.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM           1017 lupo_migration_alerts.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           1119 lupo_migration_batches.toon.j
+                                                  son
+-a----         1/29/2026   5:19 PM            904 lupo_migration_dependencies.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM           1197 lupo_migration_files.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           1046 lupo_migration_log.toon.json
+-a----         1/29/2026   5:19 PM           1061 lupo_migration_progress.toon.
+                                                  json
+-a----         1/29/2026   5:19 PM           1072 lupo_migration_rollback_log.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM            875 lupo_migration_system_state.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM           1007 lupo_migration_validation_log
+                                                  .toon.json
+-a----         1/29/2026   5:19 PM           2217 lupo_modules.toon.json
+-a----         1/29/2026   5:19 PM            957 lupo_modules_departments.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM           1132 lupo_mood_assignments.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           1172 lupo_mood_registry.toon.json
+-a----         1/29/2026   5:19 PM           2031 lupo_multi_agent_critique_syn
+                                                  c.toon.json
+-a----         1/29/2026   5:19 PM           1612 lupo_narrative_fragments.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM            817 lupo_notifications.toon.json
+-a----         1/29/2026   5:19 PM           1562 lupo_operators.toon.json
+-a----         1/29/2026   5:19 PM           1227 lupo_operator_chat_assignment
+                                                  s.toon.json
+-a----         1/29/2026   5:19 PM           1321 lupo_operator_escalation_rule
+                                                  s.toon.json
+-a----         1/29/2026   5:19 PM            999 lupo_operator_sessions.toon.j
+                                                  son
+-a----         1/29/2026   5:19 PM           1143 lupo_operator_skills.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           1026 lupo_operator_status.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           1467 lupo_pack_role_registry.toon.
+                                                  json
+-a----         1/29/2026   5:19 PM           2672 lupo_permissions.toon.json
+-a----         1/29/2026   5:19 PM           1303 lupo_persona_dialogue_pattern
+                                                  s.toon.json
+-a----         1/29/2026   5:19 PM           1433 lupo_persona_profiles.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           1767 lupo_reference_cited_by.toon.
+                                                  json
+-a----         1/29/2026   5:19 PM           1465 lupo_reference_objects.toon.j
+                                                  son
+-a----         1/29/2026   5:19 PM            905 lupo_relationships.toon.json
+-a----         1/29/2026   5:19 PM           2728 lupo_search_index.toon.json
+-a----         1/29/2026   5:19 PM           2140 lupo_search_rebuild_log.toon.
+                                                  json
+-a----         1/29/2026   5:19 PM           2045 lupo_semantic_categories.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM           2005 lupo_semantic_content_views.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM           1566 lupo_semantic_navigation_over
+                                                  view.toon.json
+-a----         1/29/2026   5:19 PM            926 lupo_semantic_overlays.toon.j
+                                                  son
+-a----         1/29/2026   5:19 PM           1686 lupo_semantic_paths.toon.json
+-a----         1/29/2026   5:19 PM           1854 lupo_semantic_relationships.t
+                                                  oon.json
+-a----         1/29/2026   5:19 PM           1831 lupo_semantic_search_index.to
+                                                  on.json
+-a----         1/29/2026   5:19 PM           1587 lupo_semantic_tags.toon.json
+-a----         1/29/2026   5:19 PM           2220 lupo_semantic_translations.to
+                                                  on.json
+-a----         1/29/2026   5:19 PM           4020 lupo_sessions.toon.json
+-a----         1/29/2026   5:19 PM           2214 lupo_session_events.toon.json
+-a----         1/29/2026   5:19 PM            791 lupo_system_config.toon.json
+-a----         1/29/2026   5:19 PM            932 lupo_system_events.toon.json
+-a----         1/29/2026   5:19 PM           1555 lupo_system_health_snapshots.
+                                                  toon.json
+-a----         1/29/2026   5:19 PM           1926 lupo_system_logs.toon.json
+-a----         1/29/2026   5:19 PM           2159 lupo_tab_events.toon.json
+-a----         1/29/2026   5:19 PM           1465 lupo_temporal_coherence_snaps
+                                                  hots.toon.json
+-a----         1/29/2026   5:19 PM            730 lupo_test_performance_metrics
+                                                  .toon.json
+-a----         1/29/2026   5:19 PM           2688 lupo_tldnr.toon.json
+-a----         1/29/2026   5:19 PM           1157 lupo_truth_answers.toon.json
+-a----         1/29/2026   5:19 PM           1144 lupo_truth_evidence.toon.json
+-a----         1/29/2026   5:19 PM           1825 lupo_truth_questions.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           1413 lupo_truth_questions_map.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM           1371 lupo_truth_relations.toon.jso
+                                                  n
+-a----         1/29/2026   5:19 PM           1187 lupo_truth_sources.toon.json
+-a----         1/29/2026   5:19 PM           1340 lupo_truth_topics.toon.json
+-a----         1/29/2026   5:19 PM            853 lupo_unified_analytics_paths.
+                                                  toon.json
+-a----         1/29/2026   5:19 PM            597 lupo_unified_dialog_messages.
+                                                  toon.json
+-a----         1/29/2026   5:19 PM           1274 lupo_unified_paths_firsts.too
+                                                  n.json
+-a----         1/29/2026   5:19 PM           1593 lupo_unified_referers.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           1943 lupo_unified_registry.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           1880 lupo_unified_sessions.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM            607 lupo_unified_truth_items.toon
+                                                  .json
+-a----         1/29/2026   5:19 PM           1346 lupo_unified_visits.toon.json
+-a----         1/29/2026   5:19 PM           1110 lupo_unified_websites.toon.js
+                                                  on
+-a----         1/29/2026   5:19 PM           2676 lupo_user_comments.toon.json
+-a----         1/29/2026   5:19 PM           1248 lupo_world_events.toon.json
+-a----         1/29/2026   5:19 PM           1699 lupo_world_registry.toon.json

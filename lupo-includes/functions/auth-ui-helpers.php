@@ -115,6 +115,11 @@ function lupo_render_login_status() {
         if ($is_operator) {
             $html .= '<a href="' . htmlspecialchars($operator_url) . '" class="dropdown-item" style="color: #16a085; font-weight: 600;">';
             $html .= '<span class="dropdown-icon">🎧</span> Crafty Syntax Operator Admin</a>';
+
+            // Add Operator Sign-On menu item
+            $operator_signon_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/operator/signon' : '/operator/signon';
+            $html .= '<a href="' . htmlspecialchars($operator_signon_url) . '" class="dropdown-item" style="color: #16a085; font-weight: 600;">';
+            $html .= '<span class="dropdown-icon">✓</span> Operator Sign-On</a>';
         }
 
         $html .= '<a href="#" class="dropdown-item" style="color: #999;" onclick="return false;">';

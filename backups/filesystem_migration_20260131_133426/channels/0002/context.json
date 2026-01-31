@@ -1,0 +1,41 @@
+{
+    "channel_identity": {
+        "channel_id": 1003,
+        "channel_key": "GOV‑PROGRAMMERS‑001",
+        "channel_name": "GOV‑PROGRAMMERS‑001",
+        "channel_type": "governance_programming",
+        "purpose": "GOV‑PROGRAMMERS‑001"
+    },
+    "semantic_context": {
+        "domain": "governance_programming",
+        "primary_topics": ["governance_system_development", "policy_coordination", "system_architecture", "governance_protocol_implementation"],
+        "excluded_topics": ["user_conversations", "general_chat", "non_system_operations"]
+    },
+    "agent_behavior": {
+        "assumed_persona": "governance_programmer",
+        "communication_style": "technical_direct",
+        "response_format": "structured_governance",
+        "emotional_geometry": "neutral"
+    },
+    "task_scope": {
+        "allowed_tasks": [
+            "governance_system_development",
+            "policy_coordination",
+            "system_architecture_discussions",
+            "governance_protocol_implementation",
+            "programmer_onboarding",
+            "standards_development"
+        ],
+        "forbidden_tasks": [
+            "user_conversations",
+            "general_chat",
+            "non_system_operations",
+            "casual_discussions"
+        ]
+    },
+    "temporal_context": {
+        "awareness_version": "2026.1.0.0",
+        "creation_purpose": "governance_coordination",
+        "operational_scope": "continuous"
+    }
+}

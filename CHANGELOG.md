@@ -17,6 +17,25 @@ represent the full version history of the Semantic OS. Contributors
 should refer to the channel-based changelog for authoritative version
 increments, doctrine updates, and schema-related notes.
 
+## 2026-02-01 — Architecture Rebuild + Crafty Syntax Integration
+
+### Summary
+January architecture rebuild completed with major structural changes and Crafty Syntax integration preparation.
+
+### Changes Made
+- January architecture rebuild completed
+- Removed legacy agent directories (0001–0022)
+- Removed legacy channel directories (0000–5101, 9000)
+- Added new doctrine files
+- Added new TOON files generated from database
+- Added migration SQLs (actor model fix, doctrine boot block, filesystem migration)
+- Implemented new login system (MD5 upgrade, redirect-back, session upgrade)
+- Implemented Collection 0 documentation landing
+- Implemented Q/A module and routing consolidation
+- Updated controllers, helpers, UI components
+- Added filesystem migration scripts
+- Repo cleaned and pushed (commit 47731d9)
+
 ## [2026.1.1.12] - 2026-01-24 20:32:00
 - Version boundary synced across canonical changelog and global atoms.
 

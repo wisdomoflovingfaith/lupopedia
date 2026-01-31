@@ -1,0 +1,11 @@
+{
+  "channel_key": "5100",
+  "channel_number": 5100,
+  "channel_name": "Lupopedia",
+  "channel_type": "system",
+  "language": "en",
+  "description": "Primary system channel for Lupopedia.",
+  "awareness_version": "4.0.72",
+  "parent_channel_id": null,
+  "is_kernel": false
+}
