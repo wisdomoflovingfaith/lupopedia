@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `lupo_actor_collections` (
     `identity_signature` varchar(255) COMMENT 'Unique identity signature for handshake verification',
     `trust_level` enum('system','verified','standard','restricted','untrusted') DEFAULT 'standard' COMMENT 'Trust level for multi-agent interactions',
     `emotional_geometry_baseline` json COMMENT 'Baseline emotional geometry for agent interactions',
-    `doctrine_alignment_version` varchar(20) DEFAULT '4.0.72' COMMENT 'Version of doctrine this actor aligns with',
+    `doctrine_alignment_version` varchar(20) DEFAULT '3.0.72' COMMENT 'Version of doctrine this actor aligns with',
     PRIMARY KEY (`actor_collection_id`),
     KEY `idx_access_level` (`access_level`),
     KEY `idx_actor` (`actor_id`),

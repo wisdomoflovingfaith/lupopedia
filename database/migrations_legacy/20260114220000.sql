@@ -1,14 +1,14 @@
 -- ============================================================================
 -- Lupopedia Database Migration
--- Version: 4.0.16
+-- Version: 3.0.16
 -- Timestamp: 2026-01-14 22:00:00 UTC
--- Channel: lupopedia 4.0.16 - channels/documentation/database refinement
+-- Channel: lupopedia 3.0.16 - channels/documentation/database refinement
 -- ============================================================================
 --
 -- Purpose: Schema refinement for channel and dialog system tables
 --
 -- This migration addresses 7 schema issues identified during documentation
--- review for version 4.0.16:
+-- review for version 3.0.16:
 --
 -- 1. lupo_channels — Add unique constraint on channel_key per federation_node_id
 -- 2. lupo_dialog_messages — Fix incorrect comment on from_actor_id column

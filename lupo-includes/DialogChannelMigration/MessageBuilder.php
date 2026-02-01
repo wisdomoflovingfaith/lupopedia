@@ -7,7 +7,7 @@
  * 
  * @package Lupopedia
  * @subpackage DialogChannelMigration
- * @version 4.0.102
+ * @version 3.0.102
  * @author Captain Wolfie
  */
 
@@ -174,7 +174,7 @@ class MessageBuilder {
             'metadata_json' => json_encode([
                 'original_length' => strlen($messageData['message_text']),
                 'migration_date' => date('Y-m-d H:i:s'),
-                'migration_version' => '4.0.101',
+                'migration_version' => '3.0.101',
                 'speaker' => $messageData['speaker'] ?? null,
                 'target' => $messageData['target'] ?? null,
                 'reply_to_message_id' => $messageData['reply_to_message_id'] ?? null,

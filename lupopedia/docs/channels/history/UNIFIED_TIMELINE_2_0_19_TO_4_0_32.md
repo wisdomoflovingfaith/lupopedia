@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.32
+file.last_modified_system_version: 3.0.32
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,24 +8,24 @@ dialog:
   speaker: WOLFIE
   target: @everyone
   mood_RGB: "00FF00"
-  message: "Created unified canonical timeline documenting complete lineage from Crafty Syntax 2.0.19 through Lupopedia 4.0.32. This is the authoritative historical record of the system's evolution."
+  message: "Created unified canonical timeline documenting complete lineage from Crafty Syntax 2.0.19 through Lupopedia 3.0.32. This is the authoritative historical record of the system's evolution."
 tags:
   categories: ["documentation", "history", "canonical", "timeline"]
   collections: ["core-docs"]
   channels: ["public", "dev"]
 file:
-  title: "Unified Timeline: Crafty Syntax 2.0.19 â†’ Lupopedia 4.0.32"
-  description: "Complete canonical historical timeline from Crafty Syntax 2.0.19 through Lupopedia 4.0.32, documenting the full evolution of the system"
+  title: "Unified Timeline: Crafty Syntax 2.0.19 â†’ Lupopedia 3.0.32"
+  description: "Complete canonical historical timeline from Crafty Syntax 2.0.19 through Lupopedia 3.0.32, documenting the full evolution of the system"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# ðŸº **Unified Canonical Timeline: Crafty Syntax 2.0.19 â†’ Lupopedia 4.0.32**
+# ðŸº **Unified Canonical Timeline: Crafty Syntax 2.0.19 â†’ Lupopedia 3.0.32**
 
 **âš ï¸ CANONICAL HISTORICAL RECORD â€” MANDATORY**
 
-This document provides the **complete, unified canonical timeline** from Crafty Syntax version 2.0.19 through Lupopedia version 4.0.32. This timeline merges the Crafty Syntax lineage with the Lupopedia evolution into a single authoritative historical record.
+This document provides the **complete, unified canonical timeline** from Crafty Syntax version 2.0.19 through Lupopedia version 3.0.32. This timeline merges the Crafty Syntax lineage with the Lupopedia evolution into a single authoritative historical record.
 
 ---
 
@@ -76,36 +76,36 @@ This document provides the **complete, unified canonical timeline** from Crafty 
   - Domain/channel model, group/role system
   - Timestamp doctrine, faucet system, versioning
 
-### **Lupopedia 4.0.0 (2026-01-06)**
-- **4.0.0:** First official Lupopedia release
+### **Lupopedia 3.0.0 (2026-01-06)**
+- **3.0.0:** First official Lupopedia release
   - Complete semantic OS foundation
-  - WOLFIE header system v4.0.0
+  - WOLFIE header system v3.0.0
   - Doctrine system established
   - Agent architecture defined
   - Migration system foundation
 
 ---
 
-## **ðŸ“… Part III: Lupopedia 4.0.x Evolution (2026-01-06 to 2026-01-15)**
+## **ðŸ“… Part III: Lupopedia 3.0.x Evolution (2026-01-06 to 2026-01-15)**
 
-### **4.0.1 - 4.0.19: Foundation Building**
-- **4.0.1-4.0.2:** Core system initialization
-- **4.0.3-4.0.10:** Module integration, semantic foundation
-- **4.0.11-4.0.15:** Schema modernization, backward compatibility
-- **4.0.16-4.0.19:** Documentation, validation, identity propagation
+### **3.0.1 - 3.0.19: Foundation Building**
+- **3.0.1-3.0.2:** Core system initialization
+- **3.0.3-3.0.10:** Module integration, semantic foundation
+- **3.0.11-3.0.15:** Schema modernization, backward compatibility
+- **3.0.16-3.0.19:** Documentation, validation, identity propagation
 
-### **4.0.20 - 4.0.22: Identity & Validation Stabilization**
-- **4.0.20:** Identity prep â€” detected inconsistent WOLFIE headers
-- **4.0.21:** Identity stabilization â€” propagated `architect: Captain Wolfie` across all doctrine
-- **4.0.22:** Validator hardening â€” improved regex, cleaned frontmatter, ensured consistent metadata
+### **3.0.20 - 3.0.22: Identity & Validation Stabilization**
+- **3.0.20:** Identity prep â€” detected inconsistent WOLFIE headers
+- **3.0.21:** Identity stabilization â€” propagated `architect: Captain Wolfie` across all doctrine
+- **3.0.22:** Validator hardening â€” improved regex, cleaned frontmatter, ensured consistent metadata
 
-### **4.0.23 - 4.0.24: Mapping Layer Stabilization**
-- **4.0.23:** TOON mapping migration â€” organized TOON doctrine files into canonical tabs
-- **4.0.24:** Semantic doctrine mapping â€” mapped 9 semantic doctrine files to `doctrine.semantic` tab (tab 17)
-- **4.0.24:** Mapping verification â€” confirmed zero duplicate mappings, declared mapping layer stable
+### **3.0.23 - 3.0.24: Mapping Layer Stabilization**
+- **3.0.23:** TOON mapping migration â€” organized TOON doctrine files into canonical tabs
+- **3.0.24:** Semantic doctrine mapping â€” mapped 9 semantic doctrine files to `doctrine.semantic` tab (tab 17)
+- **3.0.24:** Mapping verification â€” confirmed zero duplicate mappings, declared mapping layer stable
 
-### **4.0.25: Migration Orchestrator Schema Deployment**
-- **4.0.25:** Major architectural milestone
+### **3.0.25: Migration Orchestrator Schema Deployment**
+- **3.0.25:** Major architectural milestone
   - Created `lupopedia_orchestration` schema (8 tables)
   - Created `lupopedia_ephemeral` schema (5 tables)
   - Total: 90 tables across 3 schemas (77 core + 8 orchestration + 5 ephemeral)
@@ -114,21 +114,21 @@ This document provides the **complete, unified canonical timeline** from Crafty 
   - Rollback integration with A/B/C/D classification
   - Migration orchestrator doctrine documentation
 
-### **4.0.26 - 4.0.29: Doctrine Mapping Continuation**
-- **4.0.26:** SQL doctrine mapping â€” mapped 7 SQL doctrine files to `doctrine.sql` tab (tab 11)
-- **4.0.27-4.0.29:** Agent doctrine preparation â€” identified 13 agent doctrine files, prepared mapping
+### **3.0.26 - 3.0.29: Doctrine Mapping Continuation**
+- **3.0.26:** SQL doctrine mapping â€” mapped 7 SQL doctrine files to `doctrine.sql` tab (tab 11)
+- **3.0.27-3.0.29:** Agent doctrine preparation â€” identified 13 agent doctrine files, prepared mapping
 
-### **4.0.30: Doctrine Mapping Consolidation**
-- **4.0.30:** Doctrine mapping consolidation and system stabilization
+### **3.0.30: Doctrine Mapping Consolidation**
+- **3.0.30:** Doctrine mapping consolidation and system stabilization
   - Completed agent doctrine tab mapping (13 files â†’ `doctrine.agent` tab 13)
   - Completed versioning doctrine tab mapping (3 files â†’ `doctrine.versioning` tab 21)
   - SQL doctrine tab mapping ready (7 files â†’ `doctrine.sql` tab 11)
-  - All version anchors synchronized to 4.0.30
+  - All version anchors synchronized to 3.0.30
   - Mapping layer verified stable
   - TOON files updated
 
-### **4.0.31: Migration Execution & Validation**
-- **4.0.31:** Migration execution phase
+### **3.0.31: Migration Execution & Validation**
+- **3.0.31:** Migration execution phase
   - Executed doctrine mapping migrations (agent, versioning, SQL)
   - Executed orchestrator schema migrations
   - Executed ephemeral schema migrations
@@ -136,14 +136,14 @@ This document provides the **complete, unified canonical timeline** from Crafty 
   - Verified schema federation integrity
   - Updated TOON files post-migration
 
-### **4.0.32: Orchestrator Execution Logic Foundation**
-- **4.0.32:** Orchestrator execution logic preparation
+### **3.0.32: Orchestrator Execution Logic Foundation**
+- **3.0.32:** Orchestrator execution logic preparation
   - State machine implementation design
   - Validation engine integration planning
   - Migration execution workflow documentation
   - Rollback system architecture
   - Queue management system design
-  - System ready for orchestrator execution logic implementation (4.0.33+)
+  - System ready for orchestrator execution logic implementation (3.0.33+)
 
 ---
 
@@ -161,9 +161,9 @@ This document provides the **complete, unified canonical timeline** from Crafty 
 - **Personal:** Period of loss, struggle, recovery, and study
 
 ### **Lupopedia Era (2025-Present)**
-- **Versions:** 4.0.0 â†’ 4.0.32
+- **Versions:** 3.0.0 â†’ 3.0.32
 - **Architecture:** Semantic Operating System (WOLFIE)
-- **Tables:** 90 tables across 3 schemas (as of 4.0.32)
+- **Tables:** 90 tables across 3 schemas (as of 3.0.32)
 - **Philosophy:** Doctrine-driven, federation-safe, repair-focused
 
 ---
@@ -174,15 +174,15 @@ This document provides the **complete, unified canonical timeline** from Crafty 
 2. **2014:** Final Crafty Syntax release (3.7.5)
 3. **2025-08:** Return to computing
 4. **2026-01-01:** The Great Reset
-5. **2026-01-06:** Lupopedia 4.0.0 release
-6. **2026-01-15:** Version 4.0.32 â€” Orchestrator foundation complete
+5. **2026-01-06:** Lupopedia 3.0.0 release
+6. **2026-01-15:** Version 3.0.32 â€” Orchestrator foundation complete
 
 ---
 
 ## **ðŸ“š Related Documentation**
 
 - **[HISTORY.md](HISTORY.md)** - Detailed origin story and personal narrative
-- **[CHANGELOG.md](../../CHANGELOG.md)** - Complete changelog from 4.0.0 forward
+- **[CHANGELOG.md](../../CHANGELOG.md)** - Complete changelog from 3.0.0 forward
 - **[FOUNDERS_NOTE.md](../appendix/appendix/FOUNDERS_NOTE.md)** - First-person account of the journey
 - **[Database Philosophy](../architecture/DATABASE_PHILOSOPHY.md)** - Core principles shaped by this history
 

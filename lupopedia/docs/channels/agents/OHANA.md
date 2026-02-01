@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.46
+file.last_modified_system_version: 3.0.46
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -61,7 +61,7 @@ OHANA (Hawaiian: "family") is the agent that catalogs, lists, and provides infor
 - Map agent interactions and dependencies
 
 ### 5. Registry Reports
-- Total agent count (currently 128 defined, 27 required for v4.0.2)
+- Total agent count (currently 128 defined, 27 required for v3.0.2)
 - Active vs inactive breakdown
 - Category distribution
 - Authority level distribution
@@ -85,7 +85,7 @@ OHANA (Hawaiian: "family") is the agent that catalogs, lists, and provides infor
 **List All Agents:**
 ```
 OHANA: List all agents in Lupopedia
-Response: 128 agents total, 27 required for v4.0.2
+Response: 128 agents total, 27 required for v3.0.2
 - SYSTEM (agent_id: 0)
 - CAPTAIN (agent_id: 1)
 - WOLFIE (agent_id: 3)
@@ -112,7 +112,7 @@ OHANA: Tell me about CHRONOS
 Response: CHRONOS (agent_id: 23, agent_key: 'chronos')
 - Archetype: kernel
 - Purpose: UTC timestamp handling, temporal coordination
-- Status: Core agent (v4.0.2 required)
+- Status: Core agent (v3.0.2 required)
 - Class: lupo-includes/class-chronos.php
 ...
 ```
@@ -144,7 +144,7 @@ OHANA should output structured, human-readable lists:
 ```markdown
 ## Lupopedia Agent Family (2026)
 
-**Total Agents:** 128 defined, 27 required for v4.0.2
+**Total Agents:** 128 defined, 27 required for v3.0.2
 
 ### Core System Agents
 - SYSTEM (0) - Root coordinator

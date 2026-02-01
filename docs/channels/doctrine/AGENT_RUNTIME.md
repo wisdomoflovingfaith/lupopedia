@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -663,7 +663,7 @@ When errors cannot be resolved automatically:
 
 2. CONTEXT ACQUISITION
    - Read existing file: docs/example/EXAMPLE.md
-   - Load WOLFIE header: version 4.0.13, last modified by CASCADE
+   - Load WOLFIE header: version 3.0.13, last modified by CASCADE
    - Check dialog thread: uses changelog_dialog.md (no dedicated thread)
    - Understand file purpose: Example documentation
 
@@ -676,7 +676,7 @@ When errors cannot be resolved automatically:
 4. PATCH EXECUTION
    - Plan: Add new section on best practices
    - Modify: Add content to EXAMPLE.md
-   - Update header: version → 4.0.14, dialog block updated
+   - Update header: version → 3.0.14, dialog block updated
    - Create dialog entry: "Added best practices section"
 
 5. DIALOG WRITING
@@ -689,7 +689,7 @@ When errors cannot be resolved automatically:
      **Message:** "Added best practices section to example documentation."
 
 6. HEADER UPDATE
-   - file.last_modified_system_version: 4.1.6
+   - file.last_modified_system_version: 3.1.6
    - dialog block matches dialog entry exactly
    - header_atoms updated if needed
    - YAML validation passes ✓
@@ -714,7 +714,7 @@ EXECUTION:
 2. Plan modifications: Add new table documentation
 3. Update content: Add lupo_new_table documentation
 4. Update WOLFIE header:
-   - version: 4.0.14
+   - version: 3.0.14
    - dialog: Updated with change description
 5. Create dialog entry in changelog_dialog.md
 6. Validate all changes are consistent
@@ -774,7 +774,7 @@ COMPLETE HEADER UPDATE EXAMPLE:
 BEFORE:
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
@@ -799,7 +799,7 @@ file:
 AFTER KIRO UPDATE:
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS

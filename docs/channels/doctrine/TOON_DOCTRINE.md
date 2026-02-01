@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -22,8 +22,8 @@ in_this_file_we_have:
   - Agent Role During Development
 file:
   title: "TOON Doctrine"
-  description: "Mandatory rules Cursor must follow when working with TOON format files in Lupopedia 4.0.1"
-  version: "4.1.0"
+  description: "Mandatory rules Cursor must follow when working with TOON format files in Lupopedia 3.0.1"
+  version: "3.1.0"
   status: published
   author: "Captain Wolfie"
 ---
@@ -171,7 +171,7 @@ During this phase, agents must:
 
 ## **ðŸ”µ 7. TOON Is Not JSON**
 
-**Cursor must recognize that all refactor files, agent files, and schema mapping files in Lupopedia 4.0.0 are written in TOON format, NOT JSON.**
+**Cursor must recognize that all refactor files, agent files, and schema mapping files in Lupopedia 3.0.0 are written in TOON format, NOT JSON.**
 
 **TOON is a meaning-preserving, token-efficient structured format.**
 
@@ -308,7 +308,7 @@ During this phase, agents must:
 - Merge rules
 - Rewrite rules
 - Migration notes
-- Crafty Syntax 3.7.5 â†’ Lupopedia 4.0.0 upgrade logic
+- Crafty Syntax 3.7.5 â†’ Lupopedia 3.0.0 upgrade logic
 
 **Purpose of `database/refactors/` Files:**
 These files are the "living documentation" and "migration brain" that track:
@@ -318,7 +318,7 @@ These files are the "living documentation" and "migration brain" that track:
 - Merge rules for combining data
 - Rewrite rules for SQL and PHP code
 - Migration notes and edge cases
-- Crafty Syntax 3.7.5 â†’ Lupopedia 4.0.0 upgrade logic
+- Crafty Syntax 3.7.5 â†’ Lupopedia 3.0.0 upgrade logic
 
 **Critical Rules for `database/refactors/` files:**
 - âœ… **EDITABLE** â€” Cursor may modify files in this directory (`.toon` or `.json`)
@@ -428,7 +428,7 @@ These files are the "living documentation" and "migration brain" that track:
    - Legacy â†’ new table mappings
    - Column mappings
    - Transforms and merge rules
-   - Crafty Syntax 3.7.5 â†’ Lupopedia 4.0.0 upgrade logic
+   - Crafty Syntax 3.7.5 â†’ Lupopedia 3.0.0 upgrade logic
 
 ### **General Rules:**
 5. **Database is authoritative** â€” Manual schema alterations in phpMyAdmin are source of truth
@@ -440,7 +440,7 @@ These files are the "living documentation" and "migration brain" that track:
 11. **Never convert TOON** â€” Don't rewrite, don't validate as JSON, don't "fix"
 12. **Use refactor JSON for rewriting** â€” Reference when rewriting legacy SQL, PHP, AJAX
 
-**This is how TOON files and refactor JSON files are handled in Lupopedia 4.0.0.**
+**This is how TOON files and refactor JSON files are handled in Lupopedia 3.0.0.**
 
 ---
 
@@ -453,6 +453,6 @@ These files are the "living documentation" and "migration brain" that track:
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.0*  
+*Version: 3.0.0*  
 *Author: Captain Wolfie*
 

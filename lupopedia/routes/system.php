@@ -5,7 +5,7 @@
  * Routes for system-level endpoints (health checks, diagnostics, etc.)
  *
  * @package Lupopedia
- * @version 4.0.106
+ * @version 3.0.106
  * @author Captain Wolfie
  */
 

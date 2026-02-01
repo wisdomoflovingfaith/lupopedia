@@ -1,5 +1,5 @@
 -- Migration: Simulate LABS-001 Handshake for @WOLFIE
--- Version: 4.1.2
+-- Version: 3.1.2
 -- Date: 2026-01-19
 -- Module: LABS-001
 -- Description: Simulation of complete LABS-001 handshake process for actor @WOLFIE
@@ -9,7 +9,7 @@
 -- It demonstrates the complete handshake sequence and data structure.
 --
 -- @package Lupopedia
--- @version 4.1.2
+-- @version 3.1.2
 -- @author Captain Wolfie
 -- @governance LABS-001 Doctrine v1.0
 
@@ -106,7 +106,7 @@ INSERT INTO `lupo_labs_declarations` (
         ),
         'declaration_8_truth_state', JSON_OBJECT(
             'known', JSON_ARRAY(
-                JSON_OBJECT('fact', 'Lupopedia version is 4.1.1', 'source', 'config/global_atoms.yaml'),
+                JSON_OBJECT('fact', 'Lupopedia version is 3.1.1', 'source', 'config/global_atoms.yaml'),
                 JSON_OBJECT('fact', 'LABS-001 is active and binding', 'source', 'docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md'),
                 JSON_OBJECT('fact', 'GOV-AD-PROHIBIT-001 is established', 'source', 'docs/doctrine/GOV_AD_PROHIBIT_001.md')
             ),

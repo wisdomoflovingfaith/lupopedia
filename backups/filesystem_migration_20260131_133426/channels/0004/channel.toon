@@ -5,12 +5,12 @@
         "channel_key": "test_awareness_channel",
         "channel_name": "Agent Awareness Test Channel",
         "description": "Test channel for AAL validation",
-        "metadata_json": "{\"purpose\": \"testing\", \"doctrine\": {\"version\": \"4.0.71\", \"test_mode\": true}, \"emotional_geometry\": {\"baseline_mood\": \"neutral\", \"test_scenario\": \"integration\"}}",
+        "metadata_json": "{\"purpose\": \"testing\", \"doctrine\": {\"version\": \"3.0.71\", \"test_mode\": true}, \"emotional_geometry\": {\"baseline_mood\": \"neutral\", \"test_scenario\": \"integration\"}}",
         "bgcolor": "FFFFFF",
         "status_flag": 1,
         "created_ymdhis": 20260117000000,
         "updated_ymdhis": 20260117000000,
-        "awareness_version": "4.0.72"
+        "awareness_version": "3.0.72"
     },
     "channel_schema": {
         "primary_key": "channel_id",

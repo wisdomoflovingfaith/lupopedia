@@ -33,7 +33,7 @@
         ]
     },
     "temporal_context": {
-        "awareness_version": "4.0.72",
+        "awareness_version": "3.0.72",
         "creation_purpose": "system_entry_point",
         "operational_scope": "temporary_holding"
     }

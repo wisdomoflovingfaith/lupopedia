@@ -1,5 +1,5 @@
 -- Migration: Fix LABS Timestamp Doctrine
--- Version: 4.1.2
+-- Version: 3.1.2
 -- Date: 2026-01-18
 -- Module: LABS-001
 -- Description: Ensures all LABS tables use BIGINT YYYYMMDDHHIISS timestamps and no UNSIGNED fields.
@@ -8,11 +8,11 @@
 -- with Lupopedia's No-UNSIGNED doctrine for database portability (PostgreSQL compatibility).
 --
 -- PREREQUISITE: 
---   - Run migration 4.1.6_create_labs_declarations_table.sql FIRST if tables don't exist
+--   - Run migration 3.1.6_create_labs_declarations_table.sql FIRST if tables don't exist
 --   - This migration only modifies existing tables (does not create them)
 --
 -- @package Lupopedia
--- @version 4.1.2
+-- @version 3.1.2
 -- @author Captain Wolfie
 -- @governance LABS-001 Doctrine v1.0
 
@@ -56,8 +56,8 @@ MODIFY COLUMN `is_deleted` TINYINT NOT NULL DEFAULT 0 COMMENT 'Soft delete flag 
 -- ============================================================================
 -- FIX LUPO_LABS_VIOLATIONS TABLE
 -- ============================================================================
--- NOTE: This table may not exist if migration 4.1.6 hasn't been run yet.
--- If you get "Table doesn't exist" error, run 4.1.6_create_labs_declarations_table.sql first.
+-- NOTE: This table may not exist if migration 3.1.6 hasn't been run yet.
+-- If you get "Table doesn't exist" error, run 3.1.6_create_labs_declarations_table.sql first.
 -- Or comment out this section if the table doesn't exist yet.
 
 -- Remove UNSIGNED from primary key

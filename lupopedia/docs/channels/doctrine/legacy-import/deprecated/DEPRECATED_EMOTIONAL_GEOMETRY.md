@@ -6,21 +6,21 @@ header_atoms:
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Created deprecated emotional geometry documentation for legacy models (4.0.x–4.2.x). Documents scalar and 5-tuple models replaced by 2-actor RGB mood geometry."
+  message: "Created deprecated emotional geometry documentation for legacy models (3.0.x–4.2.x). Documents scalar and 5-tuple models replaced by 2-actor RGB mood geometry."
   mood: "FF6600"
 tags:
   categories: ["doctrine", "deprecated", "legacy", "emotional-system"]
   collections: ["core-docs", "doctrine", "deprecated"]
   channels: ["dev", "doctrine"]
 file:
-  title: "Deprecated Emotional Geometry Models (4.0.x–4.2.x)"
+  title: "Deprecated Emotional Geometry Models (3.0.x–4.2.x)"
   description: "Documentation of deprecated scalar and 5-tuple emotional models replaced in 4.4.x+"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: deprecated
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# ⚠️ Deprecated Emotional Geometry Models (4.0.x–4.2.x)
+# ⚠️ Deprecated Emotional Geometry Models (3.0.x–4.2.x)
 
 **Status**: DEPRECATED  
 **Replacement**: 2-Actor RGB Mood Geometry (4.4.x+)  
@@ -38,7 +38,7 @@ file:
 
 ## 1. Overview of Deprecated Models
 
-The following emotional geometry models were used in Lupopedia versions 4.0.x through 4.2.x but have been replaced:
+The following emotional geometry models were used in Lupopedia versions 3.0.x through 4.2.x but have been replaced:
 
 ### 1.1 Scalar Emotional Models
 - Single-axis emotion representation
@@ -57,7 +57,7 @@ The following emotional geometry models were used in Lupopedia versions 4.0.x th
 
 ---
 
-## 2. Scalar Emotional Model (4.0.x–4.1.x)
+## 2. Scalar Emotional Model (3.0.x–3.1.x)
 
 ### 2.1 Description
 The scalar model represented emotion as a single continuous value on a bipolar scale.
@@ -87,7 +87,7 @@ function calculateEmotion($input) {
 
 ---
 
-## 3. 5-Tuple Emotional Model (4.1.x–4.2.x)
+## 3. 5-Tuple Emotional Model (3.1.x–4.2.x)
 
 ### 3.1 Description
 The 5-tuple model attempted to capture emotional complexity using five components:
@@ -238,8 +238,8 @@ Replace functions like:
 ## 7. Historical Context
 
 ### 7.1 Evolution Timeline
-- **4.0.x**: Introduced scalar emotional model for basic sentiment
-- **4.1.x**: Expanded to 5-tuple model for complexity
+- **3.0.x**: Introduced scalar emotional model for basic sentiment
+- **3.1.x**: Expanded to 5-tuple model for complexity
 - **4.2.x**: Attempted optimizations of tuple model
 - **4.3.x**: Recognized limitations and began actor-centric design
 - **4.4.x**: Full replacement with 2-actor RGB mood model

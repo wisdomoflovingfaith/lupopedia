@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -39,7 +39,7 @@ This directory contains the **EXACT** Crafty Syntax 3.7.5 codebase as distribute
 
 ## Purpose
 
-This code is **NOT part of the active Lupopedia application**. It is kept here **EXCLUSIVELY** for reference while building the new Crafty Syntax 4.0.0 module for Lupopedia.
+This code is **NOT part of the active Lupopedia application**. It is kept here **EXCLUSIVELY** for reference while building the new Crafty Syntax 3.0.0 module for Lupopedia.
 
 ### Use Cases:
 - Reference during development of the new Crafty Syntax module
@@ -88,7 +88,7 @@ legacy/
 
 **DO NOT build new code in `legacy/`**
 
-The new Crafty Syntax 4.0.0 module will be built in:
+The new Crafty Syntax 3.0.0 module will be built in:
 
 - `lupo-admin/` - Admin interface and UI
 - `lupo-includes/` - Core classes and functions

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,7 +8,7 @@ dialog:
   speaker: KIRO
   target: @everyone
   mood_RGB: "0066FF"
-  message: "Updated INLINE_DIALOG_SPECIFICATION.md for Phase 2: Updated to version 4.0.14, enhanced cross-references, and ensured consistency with dialog doctrine and metadata governance."
+  message: "Updated INLINE_DIALOG_SPECIFICATION.md for Phase 2: Updated to version 3.0.14, enhanced cross-references, and ensured consistency with dialog doctrine and metadata governance."
 tags:
   categories: ["documentation", "specification", "multi-agent"]
   collections: ["core-docs"]
@@ -122,7 +122,7 @@ DIALOG:
 **Header Dialog (in WOLFIE Header):**
 ```yaml
 ---
-wolfie.headers.version: 4.0.1
+wolfie.headers.version: 3.0.1
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -171,7 +171,7 @@ Agents MAY:
 
 ### **5.3 When Creating a File**
 Agents MUST:
-- Include a WOLFIE Header with `wolfie.headers.version: 4.0.1`
+- Include a WOLFIE Header with `wolfie.headers.version: 3.0.1`
 - Include a `dialog:` block in the header with the initial message
 
 Agents MAY:
@@ -224,7 +224,7 @@ When storing in `dialog_messages`:
 ### **7.1 Header Dialog (in WOLFIE Header)**
 ```yaml
 ---
-wolfie.headers.version: 4.0.1
+wolfie.headers.version: 3.0.1
 dialog:
   speaker: CURSOR
   target: @everyone

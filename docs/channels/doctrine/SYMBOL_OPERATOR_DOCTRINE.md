@@ -221,7 +221,7 @@ Each operator includes: **Definition** · **Usage Rule** · **Example**
 
 **Example:**
 
-> This step is skipped // deprecated in 4.1.18.
+> This step is skipped // deprecated in 3.1.18.
 
 ---
 
@@ -278,7 +278,7 @@ Each sentence shows multiple operators in realistic Lupopedia / Crafty Syntax co
 > The subsystem is ~~stable, but <<under high load>> it begins to drift?? requiring immediate !!attention.
 
 **4.**  
-> Kernel-Agent::CURSOR must preserve **all symbolic operators** // non‑negotiable under doctrine 4.1.18.
+> Kernel-Agent::CURSOR must preserve **all symbolic operators** // non‑negotiable under doctrine 3.1.18.
 
 **5.**  
 > ^^From the governance layer, the [[Polymorphic Meta‑Table]] appears consistent, though inheritance rules remain unclear??

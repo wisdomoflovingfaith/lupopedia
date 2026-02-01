@@ -1,10 +1,10 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Added WOLFIE Header v4.0.0. Next move: generate SQL inserts for all 100 agents, then create the complete folder structure and JSON files for each agent following the strict template."
+  message: "Added WOLFIE Header v3.0.0. Next move: generate SQL inserts for all 100 agents, then create the complete folder structure and JSON files for each agent following the strict template."
 tags:
   categories: ["documentation", "specification", "agents"]
   collections: ["core-docs", "agent-registry"]

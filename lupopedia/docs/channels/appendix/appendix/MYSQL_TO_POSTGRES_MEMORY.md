@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -23,7 +23,7 @@ in_this_file_we_have:
 file:
   title: "MySQL to Postgres Memory Table Conversion Specification"
   description: "Deterministic migration specification for converting MySQL memory tables to Postgres with pgvector support - zero ambiguity, zero foreign keys"
-  version: "4.0.0"
+  version: "3.0.0"
   status: published
   author: "Captain Wolfie"
 ---

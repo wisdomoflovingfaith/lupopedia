@@ -1,7 +1,7 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "TLDR_entities_dialog.md"
-file.last_modified_system_version: 4.1.12
+file.last_modified_system_version: 3.1.12
 file.last_modified_utc: 20260120060000
 file.utc_day: 20260120
 

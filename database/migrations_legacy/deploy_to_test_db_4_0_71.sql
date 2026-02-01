@@ -1,5 +1,5 @@
 -- Deploy Multi-Agent Protocol Schema to test_lupopedia_v4_0_71
--- Integration Testing Phase - Version 4.0.71
+-- Integration Testing Phase - Version 3.0.71
 -- Database: test_lupopedia_v4_0_71
 -- Purpose: Deploy AAL + RSHAP + CJP protocol extensions for testing
 
@@ -13,14 +13,14 @@ USE `test_lupopedia_v4_0_71`;
 ALTER TABLE `lupo_channels` 
 ADD COLUMN IF NOT EXISTS `aal_metadata_json` JSON DEFAULT NULL COMMENT 'Agent Awareness Layer metadata for WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE',
 ADD COLUMN IF NOT EXISTS `fleet_composition_json` JSON DEFAULT NULL COMMENT 'Current fleet of agents in this channel with their roles',
-ADD COLUMN IF NOT EXISTS `awareness_version` VARCHAR(20) DEFAULT '4.0.71' COMMENT 'AAL protocol version for this channel';
+ADD COLUMN IF NOT EXISTS `awareness_version` VARCHAR(20) DEFAULT '3.0.71' COMMENT 'AAL protocol version for this channel';
 
 -- Extend lupo_actor_channel_roles for RSHAP and CJP
 ALTER TABLE `lupo_actor_channel_roles`
 ADD COLUMN IF NOT EXISTS `handshake_metadata_json` JSON DEFAULT NULL COMMENT 'RSHAP handshake identity and synchronization data',
 ADD COLUMN IF NOT EXISTS `awareness_snapshot_json` JSON DEFAULT NULL COMMENT 'CJP Awareness Snapshot (WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE)',
 ADD COLUMN IF NOT EXISTS `protocol_completion_status` ENUM('pending', 'aal_complete', 'rshap_complete', 'cjp_complete', 'ready') DEFAULT 'pending' COMMENT 'Multi-agent protocol completion status',
-ADD COLUMN IF NOT EXISTS `protocol_version` VARCHAR(20) DEFAULT '4.0.71' COMMENT 'Protocol version used for this actor-channel relationship',
+ADD COLUMN IF NOT EXISTS `protocol_version` VARCHAR(20) DEFAULT '3.0.71' COMMENT 'Protocol version used for this actor-channel relationship',
 ADD COLUMN IF NOT EXISTS `join_sequence_step` TINYINT DEFAULT 0 COMMENT 'Current step in 10-step CJP sequence (0-10)',
 ADD COLUMN IF NOT EXISTS `handshake_completed_ymdhis` BIGINT DEFAULT NULL COMMENT 'Timestamp when RSHAP was completed',
 ADD COLUMN IF NOT EXISTS `awareness_completed_ymdhis` BIGINT DEFAULT NULL COMMENT 'Timestamp when AAL was completed',
@@ -32,7 +32,7 @@ ADD COLUMN IF NOT EXISTS `persistent_identity_json` JSON DEFAULT NULL COMMENT 'R
 ADD COLUMN IF NOT EXISTS `identity_signature` VARCHAR(255) DEFAULT NULL COMMENT 'Unique identity signature for handshake verification',
 ADD COLUMN IF NOT EXISTS `trust_level` ENUM('system', 'verified', 'standard', 'restricted', 'untrusted') DEFAULT 'standard' COMMENT 'Trust level for multi-agent interactions',
 ADD COLUMN IF NOT EXISTS `emotional_geometry_baseline` JSON DEFAULT NULL COMMENT 'Baseline emotional geometry for agent interactions',
-ADD COLUMN IF NOT EXISTS `doctrine_alignment_version` VARCHAR(20) DEFAULT '4.0.71' COMMENT 'Version of doctrine this actor aligns with';
+ADD COLUMN IF NOT EXISTS `doctrine_alignment_version` VARCHAR(20) DEFAULT '3.0.71' COMMENT 'Version of doctrine this actor aligns with';
 
 -- ============================================================================
 -- CREATE TESTING-SPECIFIC INDEXES
@@ -65,9 +65,9 @@ INSERT IGNORE INTO `lupo_channels` (
     'test/integration-testing', 'Integration Testing Channel', 
     'Channel for testing AAL+RSHAP+CJP protocol integration',
     '{"purpose": "integration_testing", "test_environment": true}',
-    '{"testing_phase": "4.0.71", "validation_scope": ["AAL", "RSHAP", "CJP"]}',
+    '{"testing_phase": "3.0.71", "validation_scope": ["AAL", "RSHAP", "CJP"]}',
     '{"total_agents": 0, "active_protocols": [], "test_mode": true}',
-    '4.0.71',
+    '3.0.71',
     'FFFF00', 1, 20260117031200, 20260117031200, 0
 );
 
@@ -77,13 +77,13 @@ INSERT IGNORE INTO `lupo_actors` (
     `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`
 ) VALUES 
 (100, 'ai_agent', 'test-agent-kiro', 'Test Agent KIRO', 
- '{"test_agent": true, "protocol_version": "4.0.71", "testing_role": "coordinator"}',
+ '{"test_agent": true, "protocol_version": "3.0.71", "testing_role": "coordinator"}',
  20260117031200, 20260117031200, 1, 0),
 (101, 'ai_agent', 'test-agent-cascade', 'Test Agent CASCADE', 
- '{"test_agent": true, "protocol_version": "4.0.71", "testing_role": "validator"}',
+ '{"test_agent": true, "protocol_version": "3.0.71", "testing_role": "validator"}',
  20260117031200, 20260117031200, 1, 0),
 (102, 'ai_agent', 'test-agent-windsuf', 'Test Agent windsuf', 
- '{"test_agent": true, "protocol_version": "4.0.71", "testing_role": "integrator"}',
+ '{"test_agent": true, "protocol_version": "3.0.71", "testing_role": "integrator"}',
  20260117031200, 20260117031200, 1, 0);
 
 -- ============================================================================
@@ -112,5 +112,5 @@ DESCRIBE lupo_channels;
 -- ============================================================================
 SELECT 'Integration Testing Database Ready' as status, 
        'test_lupopedia_v4_0_71' as database_name,
-       '4.0.71' as version,
+       '3.0.71' as version,
        NOW() as deployment_timestamp;

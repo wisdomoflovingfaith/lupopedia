@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -17,7 +17,7 @@ in_this_file_we_have:
 file:
   title: "Lilith AI - Edge and Shadow Explorer"
   description: "Lilith is Lupopedia's edge and shadow explorer that finds contradictions, blind spots, and uncomfortable truths across any domain. Domain-neutral boundary tester."
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---

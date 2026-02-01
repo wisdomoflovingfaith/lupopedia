@@ -7,7 +7,7 @@
  * 
  * @package Lupopedia
  * @subpackage HistoryReconciliation
- * @version 4.0.61
+ * @version 3.0.61
  * @author Captain Wolfie
  */
 
@@ -760,7 +760,7 @@ class SimpleContinuityAtomLoader {
         
         // Fallback values
         if (!isset($this->atoms['GLOBAL_CURRENT_LUPOPEDIA_VERSION'])) {
-            $this->atoms['GLOBAL_CURRENT_LUPOPEDIA_VERSION'] = '4.0.61';
+            $this->atoms['GLOBAL_CURRENT_LUPOPEDIA_VERSION'] = '3.0.61';
         }
         if (!isset($this->atoms['GLOBAL_CURRENT_AUTHORS'])) {
             $this->atoms['GLOBAL_CURRENT_AUTHORS'] = 'Captain Wolfie';

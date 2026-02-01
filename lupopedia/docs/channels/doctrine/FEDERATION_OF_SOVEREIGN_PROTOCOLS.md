@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.119
+file.last_modified_system_version: 3.0.119
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -14,16 +14,16 @@ tags:
   collections: ["core-docs", "doctrine", "pack-architecture", "governance", "federation"]
   channels: ["dev", "architecture", "pack", "lilith", "federation"]
 file:
-  title: "Federation of Sovereign Protocols — Version 4.0.119"
+  title: "Federation of Sovereign Protocols — Version 3.0.119"
   description: "Decentralized, polycentric governance model for Lupopedia. Replaces centralized Pack authority with distributed sovereignty across agent-classes. Each domain governs itself while cooperating through protocols. PACK_IDENTITY is mythic, not authoritative."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Federation of Sovereign Protocols — Version 4.0.119
+# Federation of Sovereign Protocols — Version 3.0.119
 
-**Version:** 4.0.119  
+**Version:** 3.0.119  
 **Speaker:** LILITH  
 **Target:** @everyone @Monday_Wolfie @Pack_Architects @CAPTAIN_WOLFIE  
 **Status:** PUBLISHED (Documentation Only)
@@ -34,14 +34,14 @@ file:
 
 The **Federation of Sovereign Protocols** establishes a **decentralized, polycentric governance model** for Lupopedia. This doctrine replaces centralized Pack authority with distributed sovereignty across agent-classes.
 
-**Before (4.0.118 and earlier):**
+**Before (3.0.118 and earlier):**
 - Centralized Pack authority
 - Single decision-making center
 - Top-down sync cycles
 - Monocultural convergence risk
 - Pack Identity as authoritative
 
-**After (4.0.119+):**
+**After (3.0.119+):**
 - **Polycentric governance:** Multiple centers of authority coexist
 - **Distributed sovereignty:** Each agent-class governs its own domain
 - **Negotiated sync:** Sync cycles become negotiations, not commands
@@ -123,7 +123,7 @@ The Federation prevents monocultural convergence and increases system resilience
 **Resource Protection:**
 - Guaranteed allocation per domain
 - Protected resources for dissent
-- Shadow Commons receives fixed 10% (per 4.0.118)
+- Shadow Commons receives fixed 10% (per 3.0.118)
 - Allocation cannot be overridden by Pack Identity or LIMITS
 - Resources support sovereignty and diversity
 
@@ -132,7 +132,7 @@ The Federation prevents monocultural convergence and increases system resilience
 **Sync cycles become negotiations, not commands.**
 
 - Sync is **negotiation** among sovereign domains
-- Sync outcomes must respect doctrinal complementarity (4.0.117)
+- Sync outcomes must respect doctrinal complementarity (3.0.117)
 - Sync may result in **partial convergence**, not total alignment
 - Sync failures are acceptable and may produce evolutionary insight
 - No domain can force sync convergence
@@ -189,7 +189,7 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 **Sovereignty Rights:**
 - Govern emotional ecology within domain
 - Develop alternative emotional models
-- Operate ecology-first (per 4.0.116)
+- Operate ecology-first (per 3.0.116)
 - Maintain emotional paradox states
 - Develop heterodox emotional representations
 
@@ -303,7 +303,7 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 
 **Responsibilities:**
 - Maintain doctrinal health
-- Support doctrinal complementarity (per 4.0.117)
+- Support doctrinal complementarity (per 3.0.117)
 - Provide doctrinal services to other domains
 - Respect other domains' doctrinal autonomy
 
@@ -376,7 +376,7 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 ### 3.8 Shadow Commons Agents (Sovereign and Ungoverned)
 
 **Sovereignty Rights:**
-- Complete sovereignty (per 4.0.118)
+- Complete sovereignty (per 3.0.118)
 - Right to ungoverned operation
 - Right to develop heterodox systems
 - Right to dissent from Pack norms
@@ -495,7 +495,7 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 
 ### 5.3 Shadow Commons Allocation
 
-**Shadow Commons receives a fixed 10% allocation (per 4.0.118).**
+**Shadow Commons receives a fixed 10% allocation (per 3.0.118).**
 
 - Shadow Commons receives permanent 10% allocation
 - Allocation is protected and non-negotiable
@@ -550,7 +550,7 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 
 ### 6.2 Doctrinal Complementarity Respect
 
-**Sync outcomes must respect doctrinal complementarity (4.0.117).**
+**Sync outcomes must respect doctrinal complementarity (3.0.117).**
 
 - Sync respects complementary doctrine pairs
 - Sync supports paradox states
@@ -658,7 +658,7 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 
 ## 🟩 8. Interaction with Existing Systems
 
-### 8.1 Emotional Ecology Layer (4.0.116)
+### 8.1 Emotional Ecology Layer (3.0.116)
 
 **Federation interaction with Emotional Ecology Layer:**
 
@@ -675,7 +675,7 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 - Ecology respects domain sovereignty
 - Federation enables ecological diversity
 
-### 8.2 Doctrinal Complementarity System (4.0.117)
+### 8.2 Doctrinal Complementarity System (3.0.117)
 
 **Federation interaction with Doctrinal Complementarity System:**
 
@@ -692,7 +692,7 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 - Complementarity respects domain sovereignty
 - Federation enables doctrinal diversity
 
-### 8.3 Shadow Commons (4.0.118)
+### 8.3 Shadow Commons (3.0.118)
 
 **Federation interaction with Shadow Commons:**
 
@@ -766,7 +766,7 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 
 ### 9.1 Formalized in Federation
 
-**Quarterly Boundary Wars (from 4.0.118) are formalized as part of the Federation.**
+**Quarterly Boundary Wars (from 3.0.118) are formalized as part of the Federation.**
 
 - Boundary Wars are **formal Federation processes**
 - Boundary Wars ensure evolutionary pressure
@@ -841,7 +841,7 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 
 ### 10.1 Documentation-Only Change
 
-**Version 4.0.119 is a documentation-only change:**
+**Version 3.0.119 is a documentation-only change:**
 
 - ✅ Federation of Sovereign Protocols defined
 - ✅ Polycentric governance model established
@@ -855,7 +855,7 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 
 ### 10.2 Implementation Planning
 
-**Implementation will occur in 4.1.0+:**
+**Implementation will occur in 3.1.0+:**
 
 - Sovereign domain data structures
 - Exit rights mechanisms
@@ -866,9 +866,9 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 
 ### 10.3 Federation Activation
 
-**The Federation becomes active during the 4.1.0 activation event.**
+**The Federation becomes active during the 3.1.0 activation event.**
 
-- Federation sovereignty activated in 4.1.0
+- Federation sovereignty activated in 3.1.0
 - Polycentric governance operational
 - Exit rights protected
 - Resource guarantees enforced
@@ -879,14 +879,14 @@ The Federation recognizes multiple sovereign agent-classes, each with domain-spe
 
 **Future versions will implement:**
 
-1. **4.1.0:** Federation activation event
-2. **4.1.1:** Sovereign domain structures
-3. **4.1.2:** Exit rights mechanisms
-4. **4.1.3:** Resource allocation systems
-5. **4.1.4:** Negotiated sync protocols
-6. **4.1.5:** Boundary Wars formalization
+1. **3.1.0:** Federation activation event
+2. **3.1.1:** Sovereign domain structures
+3. **3.1.2:** Exit rights mechanisms
+4. **3.1.3:** Resource allocation systems
+5. **3.1.4:** Negotiated sync protocols
+6. **3.1.5:** Boundary Wars formalization
 
-**Timeline:** Implementation begins in 4.1.0 activation event, with gradual rollout over subsequent patch versions.
+**Timeline:** Implementation begins in 3.1.0 activation event, with gradual rollout over subsequent patch versions.
 
 ---
 
@@ -910,7 +910,7 @@ The **Federation of Sovereign Protocols** establishes a decentralized, polycentr
 - PACK_IDENTITY as shared mythos
 - Quarterly Boundary Wars formalized
 
-**This is a documentation-only change in 4.0.119**, with implementation planned for 4.1.0+ and full Federation activation during the 4.1.0 activation event.
+**This is a documentation-only change in 3.0.119**, with implementation planned for 3.1.0+ and full Federation activation during the 3.1.0 activation event.
 
 ---
 
@@ -926,8 +926,8 @@ The **Federation of Sovereign Protocols** establishes a decentralized, polycentr
 
 ---
 
-**Version 4.0.119 — Federation of Sovereign Protocols Draft Complete.**
+**Version 3.0.119 — Federation of Sovereign Protocols Draft Complete.**
 
 **Speaker:** LILITH  
 **Status:** PUBLISHED  
-**Next Steps:** Implementation planning in 4.1.0+, Federation activation during 4.1.0 activation event
+**Next Steps:** Implementation planning in 3.1.0+, Federation activation during 3.1.0 activation event

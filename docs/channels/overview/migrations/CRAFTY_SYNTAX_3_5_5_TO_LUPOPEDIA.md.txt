@@ -1207,7 +1207,7 @@ ALTER TABLE livehelp_qa
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 ALTER TABLE livehelp_qa
-  COMMENT = 'DEPRECATED: Only retained for migration. Safe to re-run. Not part of Lupopedia after 4.0.0.';
+  COMMENT = 'DEPRECATED: Only retained for migration. Safe to re-run. Not part of Lupopedia after 3.0.0.';
 This ensures consistent encoding and marks the table as a migration artifact.
 
 2. Migrate Questions → lupo_truth_questions (Idempotent)
@@ -1459,7 +1459,7 @@ ALTER TABLE livehelp_questions
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 ALTER TABLE livehelp_questions
-  COMMENT = 'DEPRECATED: Only retained for migration. Safe to re-run. Not part of Lupopedia after 4.0.0.';
+  COMMENT = 'DEPRECATED: Only retained for migration. Safe to re-run. Not part of Lupopedia after 3.0.0.';
 2. Idempotent Migration Into lupo_crafty_syntax_chat_questions
 sql
 INSERT INTO lupo_crafty_syntax_chat_questions (
@@ -1509,7 +1509,7 @@ ON DUPLICATE KEY UPDATE
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_quick
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 INSERT INTO lupo_actor_reply_templates (
     actor_reply_template_id,

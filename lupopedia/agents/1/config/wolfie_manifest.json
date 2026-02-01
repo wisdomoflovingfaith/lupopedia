@@ -2,7 +2,7 @@
   "agent_id": 1,
   "agent_name": "WOLFIE",
   "description": "System identity, doctrine enforcer, and channel initialization authority.",
-  "version": "4.0.19",
+  "version": "3.0.19",
   "status": "initializing",
   "capabilities": [
     "channel_initialization",

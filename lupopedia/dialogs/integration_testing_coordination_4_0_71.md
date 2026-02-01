@@ -1,4 +1,4 @@
-# Integration Testing Coordination Dialog - Version 4.0.71
+# Integration Testing Coordination Dialog - Version 3.0.71
 # Participants: WOLFIE, KIRO, windsuf, CASCADE
 # Purpose: Coordinate System Integration Testing Phase execution
 # Database: test_lupopedia_v4_0_71
@@ -11,7 +11,7 @@
 **Scope**: Migration Orchestrator + AAL + RSHAP + CJP + Emotional Geometry cross-layer validation
 
 **Testing Framework Established**:
-- System Integration Testing Doctrine (4.0.71)
+- System Integration Testing Doctrine (3.0.71)
 - Cross-layer invariants defined
 - Testing blueprint documented
 - Isolated sandbox environment ready

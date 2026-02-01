@@ -27,7 +27,7 @@
 
 ### Forbidden Patterns
 
-- ❌ `define('LUPOPEDIA_VERSION', '4.1.2');` - Hard-coded version
+- ❌ `define('LUPOPEDIA_VERSION', '3.1.2');` - Hard-coded version
 - ❌ `wolfie.headers.version: GLOBAL_CURRENT_LUPOPEDIA_VERSION` - Header version must be literal
 - ❌ Global search-and-replace on version numbers
 - ❌ Using header versions to determine system version
@@ -36,7 +36,7 @@
 ### Required Patterns
 
 - ✅ `version: GLOBAL_CURRENT_LUPOPEDIA_VERSION` - In file.version fields
-- ✅ `wolfie.headers.version: 4.1.2` - Literal string (historical record)
+- ✅ `wolfie.headers.version: 3.1.2` - Literal string (historical record)
 - ✅ Load version from atom in PHP: `$atoms['GLOBAL_CURRENT_LUPOPEDIA_VERSION']`
 
 ## Documentation Rules

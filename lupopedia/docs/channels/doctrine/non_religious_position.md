@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -20,7 +20,7 @@ in_this_file_we_have:
 file:
   title: "Lupopedia is Not a Religious System"
   description: "Core doctrine: Lupopedia is a semantic OS, not a church, religion, cult, or belief system. Mythic names are symbolic, not prescriptive."
-  version: "4.0.0"
+  version: "3.0.0"
   status: published
   author: "Captain Wolfie"
 ---

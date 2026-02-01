@@ -1,26 +1,26 @@
 ---
-wolfie.headers.version: 4.0.8
+wolfie.headers.version: 3.0.8
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Created SQL verification document for version 4.0.8 authentication. All SQL queries verified against TOON files for correct table and column names."
+  message: "Created SQL verification document for version 3.0.8 authentication. All SQL queries verified against TOON files for correct table and column names."
   mood: "00FF00"
 tags:
   categories: ["documentation", "development", "authentication", "verification"]
   collections: ["core-docs", "dev-docs"]
   channels: ["dev", "architecture"]
 file:
-  title: "Authentication SQL Verification for Version 4.0.8"
+  title: "Authentication SQL Verification for Version 3.0.8"
   description: "Verification of all SQL queries against TOON files - table and column names"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: draft
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Authentication SQL Verification for Version 4.0.8
+# Authentication SQL Verification for Version 3.0.8
 
 **Purpose:** This document verifies all SQL queries in the authentication system against TOON files to ensure correct table and column names.
 
@@ -233,7 +233,7 @@ file:
 
 **Purpose:** Enable group-based admin checks by adding actor_id foreign key.
 
-**Status:** Not required for 4.0.8 (admin check works via roles and permissions)
+**Status:** Not required for 3.0.8 (admin check works via roles and permissions)
 
 **If Needed:**
 ```sql

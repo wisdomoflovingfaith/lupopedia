@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -42,9 +42,9 @@ Global atoms are **symbolic references** defined in `/config/global_atoms.yaml` 
 
 ## **Why Use Global Atoms?**
 
-When Lupopedia upgrades from `4.0.1` to `4.0.2`, instead of:
+When Lupopedia upgrades from `3.0.1` to `3.0.2`, instead of:
 
-âŒ **Manually searching and replacing `"4.0.1"` in dozens of files**
+âŒ **Manually searching and replacing `"3.0.1"` in dozens of files**
 
 You can:
 
@@ -59,7 +59,7 @@ You can:
 All global atoms are defined in `/config/global_atoms.yaml`. Current available atoms:
 
 ### **Version Atoms**
-- `GLOBAL_CURRENT_LUPOPEDIA_VERSION` â€” Current Lupopedia version (currently `"4.0.1"`)
+- `GLOBAL_CURRENT_LUPOPEDIA_VERSION` â€” Current Lupopedia version (currently `"3.0.1"`)
 
 ### **Author Atoms**
 - `GLOBAL_CURRENT_AUTHORS` â€” Primary author name (currently `"Captain Wolfie"`)
@@ -78,7 +78,7 @@ All global atoms are defined in `/config/global_atoms.yaml`. Current available a
 
 ### **Complex Atoms** (referenced with dot notation in documentation)
 - `GLOBAL_LUPOPEDIA_COMPANY_STRUCTURE` â€” Company structure and team information
-- `GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS` â€” Required agents list for v4.0.2
+- `GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS` â€” Required agents list for v3.0.2
 
 ---
 
@@ -90,7 +90,7 @@ List all global atoms you're using in the `header_atoms:` block:
 
 ```yaml
 ---
-wolfie.headers.version: 4.0.1
+wolfie.headers.version: 3.0.1
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -108,7 +108,7 @@ file:
   status: GLOBAL_DEFAULT_STATUS
 ```
 
-**Important:** Use the atom name exactly as written (e.g., `GLOBAL_CURRENT_LUPOPEDIA_VERSION`), not the value (not `"4.0.1"`).
+**Important:** Use the atom name exactly as written (e.g., `GLOBAL_CURRENT_LUPOPEDIA_VERSION`), not the value (not `"3.0.1"`).
 
 ---
 
@@ -118,7 +118,7 @@ file:
 
 ```yaml
 ---
-wolfie.headers.version: 4.0.1
+wolfie.headers.version: 3.0.1
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -143,9 +143,9 @@ tags:
 
 ```yaml
 ---
-wolfie.headers.version: 4.0.1
+wolfie.headers.version: 3.0.1
 file:
-  version: "4.0.1"  # âŒ Hardcoded - will need search/replace on upgrade
+  version: "3.0.1"  # âŒ Hardcoded - will need search/replace on upgrade
   author: "Captain Wolfie"  # âŒ Hardcoded - will need search/replace if author changes
 ---
 ```
@@ -154,21 +154,21 @@ file:
 
 ## **How to Update Version Numbers**
 
-When Lupopedia upgrades from `4.0.1` to `4.0.2`:
+When Lupopedia upgrades from `3.0.1` to `3.0.2`:
 
 ### **Step 1: Update `/config/global_atoms.yaml`**
 
 ```yaml
 # Change this line:
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.1"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "3.0.1"
 
 # To this:
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.2"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "3.0.2"
 ```
 
 ### **Step 2: That's It!**
 
-All WOLFIE headers that reference `GLOBAL_CURRENT_LUPOPEDIA_VERSION` will now automatically use `"4.0.2"` when resolved.
+All WOLFIE headers that reference `GLOBAL_CURRENT_LUPOPEDIA_VERSION` will now automatically use `"3.0.2"` when resolved.
 
 **No search/replace needed across any files.**
 
@@ -180,8 +180,8 @@ When a tool or agent reads a WOLFIE header:
 
 1. **Detects atom reference** â€” Sees `version: GLOBAL_CURRENT_LUPOPEDIA_VERSION`
 2. **Resolves atom** â€” Looks up `GLOBAL_CURRENT_LUPOPEDIA_VERSION` in `/config/global_atoms.yaml`
-3. **Gets value** â€” Retrieves `"4.0.1"` (or whatever the current value is)
-4. **Uses resolved value** â€” Treats `version` as `"4.0.1"` for processing
+3. **Gets value** â€” Retrieves `"3.0.1"` (or whatever the current value is)
+4. **Uses resolved value** â€” Treats `version` as `"3.0.1"` for processing
 
 **The file itself still contains the symbolic reference.**  
 **Only during resolution does the actual value get substituted.**
@@ -195,7 +195,7 @@ Cursor (and all IDEs) must:
 - âœ… **Preserve symbolic references** â€” Keep `GLOBAL_CURRENT_LUPOPEDIA_VERSION` exactly as written
 - âœ… **Resolve values when reading** â€” Look up actual value from `global_atoms.yaml` when processing
 - âœ… **List atoms in `header_atoms:`** â€” Declare all global atoms used in the file
-- âŒ **NEVER expand atoms** â€” Don't replace `GLOBAL_CURRENT_LUPOPEDIA_VERSION` with `"4.0.1"` in the file
+- âŒ **NEVER expand atoms** â€” Don't replace `GLOBAL_CURRENT_LUPOPEDIA_VERSION` with `"3.0.1"` in the file
 - âŒ **NEVER inline values** â€” Don't substitute the actual value when writing headers
 - âŒ **NEVER modify `global_atoms.yaml`** â€” Unless explicitly instructed to update version
 
@@ -216,7 +216,7 @@ Cursor (and all IDEs) must:
 When migrating existing files to use global atoms:
 
 1. **Add `header_atoms:` block** â€” List all global atoms you'll use
-2. **Replace hardcoded values** â€” Change `version: "4.0.1"` to `version: GLOBAL_CURRENT_LUPOPEDIA_VERSION`
+2. **Replace hardcoded values** â€” Change `version: "3.0.1"` to `version: GLOBAL_CURRENT_LUPOPEDIA_VERSION`
 3. **Test resolution** â€” Verify tools can resolve the atoms correctly
 4. **Update documentation** â€” Document that files now use atoms
 
@@ -225,7 +225,7 @@ When migrating existing files to use global atoms:
 **Before:**
 ```yaml
 file:
-  version: "4.0.1"
+  version: "3.0.1"
   author: "Captain Wolfie"
 ```
 

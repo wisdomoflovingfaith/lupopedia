@@ -7,7 +7,7 @@
  * Follows Lupopedia doctrine: application logic first, database logic second.
  * 
  * @package Lupopedia\Tests
- * @version 4.0.46
+ * @version 3.0.46
  * @author Captain Wolfie
  */
 

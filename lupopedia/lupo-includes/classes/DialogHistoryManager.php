@@ -8,7 +8,7 @@
  * Enhanced with metadata extraction, cross-reference intelligence, and color protocol integration
  * 
  * @package Lupopedia
- * @version 4.0.66
+ * @version 3.0.66
  * @author GLOBAL_CURRENT_AUTHORS
  */
 

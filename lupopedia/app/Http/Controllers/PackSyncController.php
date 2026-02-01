@@ -5,7 +5,7 @@
  * HTTP endpoint for Pack synchronization operations.
  *
  * @package Lupopedia
- * @version 4.0.112
+ * @version 3.0.112
  * @author Captain Wolfie
  */
 

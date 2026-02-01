@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.46
+file.last_modified_system_version: 3.0.46
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -26,7 +26,7 @@ file:
 **Agent ID:** 23  
 **Agent Key:** `chronos`  
 **Archetype:** kernel  
-**Status:** Core Agent (v4.0.2 Required)
+**Status:** Core Agent (v3.0.2 Required)
 
 ## Purpose
 

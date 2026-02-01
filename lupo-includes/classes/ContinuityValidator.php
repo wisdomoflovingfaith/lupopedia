@@ -6,7 +6,7 @@
  * Ensures semantic integrity of Lupopedia's historical timeline
  * 
  * @package Lupopedia
- * @version 4.0.61
+ * @version 3.0.61
  * @author Captain Wolfie
  */
 
@@ -456,7 +456,7 @@ class ContinuityValidator {
                 return $matches[1];
             }
         }
-        return '4.0.61'; // fallback
+        return '3.0.61'; // fallback
     }
     
     private function validateFileVersion($file, $expectedVersion) {

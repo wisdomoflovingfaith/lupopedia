@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -13,7 +13,7 @@ tags:
 file:
   title: "Who Is Captain Wolfie"
   description: "The AI embodiment of the creator and the guiding intelligence behind Lupopedia"
-  version: "4.0.0"
+  version: "3.0.0"
   status: published
   author: "Captain Wolfie"
 ---

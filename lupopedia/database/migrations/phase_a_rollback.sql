@@ -11,7 +11,7 @@
    - Drops lupopedia_ephemeral schema
    - Restores original table locations
 
-   Version: 4.0.3
+   Version: 3.0.3
    Status: ROLLBACK
 ======================================================================
 

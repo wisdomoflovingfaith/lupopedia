@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -13,7 +13,7 @@ tags:
 file:
   title: "WOLFIE Header Sections Module â€” Cursor Implementation Guide"
   description: "Practical guide for Cursor and other IDE agents on when and how to populate the sections module"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---
@@ -202,7 +202,7 @@ Code examples.
 **WOLFIE Header with sections:**
 ```yaml
 ---
-wolfie.headers.version: 4.0.1
+wolfie.headers.version: 3.0.1
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -221,7 +221,7 @@ sections:
 file:
   title: "Lupopedia API Guide"
   description: "Developer documentation for the Lupopedia API."
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Eric Robin Gerdes"
 ---

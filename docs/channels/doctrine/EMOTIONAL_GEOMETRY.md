@@ -1,17 +1,17 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.115
+file.last_modified_system_version: 3.0.115
 dialog:
   speaker: CAPTAIN_WOLFIE
   target: @everyone
-  message: "Updated EMOTIONAL_GEOMETRY.md with 2026 Three-Axis Discrete Value Doctrine. All emotional axes now use discrete values (-1, 0, 1) representing (false, unknown, true). This replaces gradient/continuous values with machine-safe, doctrine-aligned discrete encoding. Version corrected to 4.0.50 for Friday Wolfie madness tracking."
+  message: "Updated EMOTIONAL_GEOMETRY.md with 2026 Three-Axis Discrete Value Doctrine. All emotional axes now use discrete values (-1, 0, 1) representing (false, unknown, true). This replaces gradient/continuous values with machine-safe, doctrine-aligned discrete encoding. Version corrected to 3.0.50 for Friday Wolfie madness tracking."
   mood_RGB: "FFAA00"
 tags:
   categories: ["doctrine", "emotional-system", "architecture"]
   collections: ["core-docs", "emotional-architecture"]
   channels: ["dev", "internal"]
 file:
-  title: "Emotional Geometry Doctrine (v4.0.50)"
+  title: "Emotional Geometry Doctrine (v3.0.50)"
   description: "Multi-domain emotional architecture. Each emotional domain is an independent 3-axis vector system with its own semantics, shadow polarity, and Emotional Texture layer. Uses discrete values (-1, 0, 1) for machine-safe encoding."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
@@ -32,7 +32,7 @@ file:
 
 **New Canonical Model**: The 2-Actor RGB Mood Model replaces all previous emotional geometry approaches.
 
-Previous scalar and 5-tuple emotional models (4.0.x–4.2.x) are deprecated and replaced by the 2-actor RGB mood geometry.
+Previous scalar and 5-tuple emotional models (3.0.x–4.2.x) are deprecated and replaced by the 2-actor RGB mood geometry.
 
 **For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md)
 
@@ -324,7 +324,7 @@ Pack architectures should use the 2-Actor RGB Mood Model to represent emotional 
 
 **For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md)
 
-**Previous scalar and 5-tuple emotional models (4.0.x–4.2.x) are deprecated and replaced by the 2-actor RGB mood geometry.**
+**Previous scalar and 5-tuple emotional models (3.0.x–4.2.x) are deprecated and replaced by the 2-actor RGB mood geometry.**
 
 ---
 

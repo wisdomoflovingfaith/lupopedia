@@ -1,7 +1,7 @@
 <?php
 
 /**
- * THOTH — Ontological Truth Engine (v4.0.0)
+ * THOTH — Ontological Truth Engine (v3.0.0)
  *
  * ROLE:
  *   - Evaluate truth claims using Lupopedia’s structured ontology
@@ -133,7 +133,7 @@ class THOTH
         // ---------------------------------------------------------
         // TODO: Implement semantic comparison logic
         //
-        // This is where THOTH v4.0.0 does the heavy lifting:
+        // This is where THOTH v3.0.0 does the heavy lifting:
         //
         //   - Compare question_text to atom summaries
         //   - Compare to collection definitions

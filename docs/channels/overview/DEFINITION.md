@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 updated: 2026-01-08
 author: Wolfie (Eric Robin Gerdes)
 architect: Captain Wolfie
@@ -93,5 +93,5 @@ Lupopedia is a distributed, multiâ€‘agent Web-Organized Linked Federated In
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.1*  
+*Version: 3.0.1*  
 *Author: Captain Wolfie*

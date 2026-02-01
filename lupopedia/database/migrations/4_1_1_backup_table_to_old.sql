@@ -1,5 +1,5 @@
 -- Migration: Backup Table with _old Suffix
--- Version: 4.1.1
+-- Version: 3.1.1
 -- Date: 2026-01-18
 -- Module: Schema Backup
 --
@@ -7,7 +7,7 @@
 -- This preserves the original table structure and data before schema changes.
 --
 -- @package Lupopedia
--- @version 4.1.1
+-- @version 3.1.1
 -- @author Captain Wolfie
 
 -- ============================================================================

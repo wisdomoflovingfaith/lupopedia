@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.112
+file.last_modified_system_version: 3.0.112
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -23,7 +23,7 @@ file:
 
 # Pack Behavioral Layer Doctrine
 
-**Version:** 4.0.109  
+**Version:** 3.0.109  
 **Status:** ACTIVE  
 **Authority:** Pack Architecture  
 **Scope:** Pack agent behavior, emotional-behavioral bridge, handoff compatibility
@@ -32,7 +32,7 @@ file:
 
 ## Overview
 
-The Pack Behavioral Layer bridges emotional geometry (from 4.0.108) with agent behavior, enabling Pack Architecture to make behavioral decisions based on emotional state and context. This layer completes the emotional → behavioral → action pipeline for Pack agents.
+The Pack Behavioral Layer bridges emotional geometry (from 3.0.108) with agent behavior, enabling Pack Architecture to make behavioral decisions based on emotional state and context. This layer completes the emotional → behavioral → action pipeline for Pack agents.
 
 ---
 
@@ -253,7 +253,7 @@ Planned enhancements for Pack behavioral evolution:
 
 ## Integration with Emotional Geometry
 
-The Pack Behavioral Layer integrates seamlessly with the Emotional Geometry system (4.0.108):
+The Pack Behavioral Layer integrates seamlessly with the Emotional Geometry system (3.0.108):
 
 1. **Emotional Vectors** → **Behavior Profiles**: Emotional geometry determines behavior tendency
 2. **Emotional Affinity** → **Behavioral Compatibility**: Affinity influences compatibility score
@@ -298,9 +298,9 @@ $profile = $service->getProfile('TerminalAI_001');
 
 ## Related Documentation
 
-- **[EMOTIONAL_GEOMETRY.md](docs/doctrine/EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (4.0.108)
+- **[EMOTIONAL_GEOMETRY.md](docs/doctrine/EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (3.0.108)
 - **[PACK_BEHAVIOR_MATRIX_v4_0_90.md](docs/doctrine/PACK_BEHAVIOR_MATRIX_v4_0_90.md)** - Pack behavior matrix (historical)
 
 ---
 
-**Pack Behavioral Layer Status:** ACTIVE as of Version 4.0.109. Fully integrated with Pack Architecture and Emotional Geometry systems.
+**Pack Behavioral Layer Status:** ACTIVE as of Version 3.0.109. Fully integrated with Pack Architecture and Emotional Geometry systems.

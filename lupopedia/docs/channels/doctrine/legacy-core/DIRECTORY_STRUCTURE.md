@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -242,7 +242,7 @@ database/
 â”‚   â”œâ”€â”€ lupopedia_mysql.sql     # Main schema
 â”‚   â””â”€â”€ seed_*.sql              # Seed data files
 â”œâ”€â”€ migrations/                 # Database migrations
-â”‚   â”œâ”€â”€ 4.0.10.sql              # Version-specific migrations
+â”‚   â”œâ”€â”€ 3.0.10.sql              # Version-specific migrations
 â”‚   â””â”€â”€ migration_notes.md      # Migration documentation
 â”œâ”€â”€ csv_data/                   # CSV data files (optional)
 â”œâ”€â”€ toon_data/                  # TOON format data files
@@ -264,12 +264,12 @@ database/
 **Structure:**
 ```
 modules/
-â”œâ”€â”€ dialog/                     # Dialog module (v4.0.0)
+â”œâ”€â”€ dialog/                     # Dialog module (v3.0.0)
 â”‚   â”œâ”€â”€ README.md               # Module documentation
 â”‚   â”œâ”€â”€ controllers/            # Module controllers
 â”‚   â”œâ”€â”€ models/                 # Module data models
 â”‚   â””â”€â”€ templates/              # Module templates
-â”œâ”€â”€ craftysyntax/               # Crafty Syntax module (v4.0.0)
+â”œâ”€â”€ craftysyntax/               # Crafty Syntax module (v3.0.0)
 â””â”€â”€ [module_name]/              # Additional modules
 ```
 
@@ -424,7 +424,7 @@ images/
 ### 15.1 Development-Only Directories
 - `legacy/` - Reference code, not deployed
 - `docs/dev/` - Developer-specific documentation
-- `.git/` - Version control (not present until v4.1.0)
+- `.git/` - Version control (not present until v3.1.0)
 
 ### 15.2 Production Deployment
 - Exclude development-only directories

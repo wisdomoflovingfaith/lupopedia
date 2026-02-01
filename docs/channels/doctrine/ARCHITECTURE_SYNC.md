@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -660,7 +660,7 @@ Multi-agent collaboration support through:
    - No directory changes required for this sync
 
 5. VALIDATE VERSION ALIGNMENT:
-   - All files use version 4.0.14
+   - All files use version 3.0.14
    - Version consistency maintained
 
 6. VALIDATE DIALOG THREAD CONSISTENCY:
@@ -767,7 +767,7 @@ RESULT: All doctrine files synchronized with agent runtime changes
 
 **Metadata-Version Sync Process:**
 ```
-1. VERSION CHANGE: System version 4.0.14 → 4.0.15
+1. VERSION CHANGE: System version 3.0.14 → 3.0.15
 
 2. METADATA SYNC REQUIRED:
    - Update file.last_modified_system_version in all modified files
@@ -792,7 +792,7 @@ RESULT: All doctrine files synchronized with agent runtime changes
    - Version consistency across all files
    - Metadata synchronization complete
    - No version conflicts or inconsistencies
-   - System ready for version 4.0.15 operations
+   - System ready for version 3.0.15 operations
 
 6. DOCUMENTATION:
    - Version increment documented in changelog

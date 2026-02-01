@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -139,7 +139,7 @@ This is not plugin architecture.
 
 Lupopedia ships with:
 
-- **27 v4.0.2 core agents** (see `@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents` for complete list)
+- **27 v3.0.2 core agents** (see `@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents` for complete list)
 - agent faucets
 - persona definitions
 - emotional modeling
@@ -333,7 +333,7 @@ Semantic graphs exist.
 
 But:
 
-- **27 v4.0.2 core agents** (128 total defined in registry)
+- **27 v3.0.2 core agents** (128 total defined in registry)
 - each with faucets
 - each with personas
 - each with emotional modeling

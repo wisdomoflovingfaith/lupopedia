@@ -1,17 +1,17 @@
 <?php
 /**
 ---
-wolfie.headers.version: "4.0.12"
+wolfie.headers.version: "3.0.12"
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.12: Version bump for hierarchical tab structure implementation. No logic changes to truth-render.php in this version."
+    message: "Version 3.0.12: Version bump for hierarchical tab structure implementation. No logic changes to truth-render.php in this version."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.11: Fixed markdown rendering in truth_render_content_item() - ensures render_markdown() is loaded before use and outputs HTML directly (not escaped). Added tab content list and content item rendering functions (truth_render_tab_content_list, truth_render_content_item)."
+    message: "Version 3.0.11: Fixed markdown rendering in truth_render_content_item() - ensures render_markdown() is loaded before use and outputs HTML directly (not escaped). Added tab content list and content item rendering functions (truth_render_tab_content_list, truth_render_content_item)."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
@@ -810,7 +810,7 @@ function truth_render_evidence_form($slug) {
 
 /**
  * ---------------------------------------------------------
- * TRUTH Version 4.0.11: Tab Content Rendering
+ * TRUTH Version 3.0.11: Tab Content Rendering
  * ---------------------------------------------------------
  * 
  * Functions to render content lists and individual content items.
@@ -819,7 +819,7 @@ function truth_render_evidence_form($slug) {
 /**
  * Render content list for a tab
  * 
- * Version 4.0.11: Renders a list of content items mapped to a tab.
+ * Version 3.0.11: Renders a list of content items mapped to a tab.
  * 
  * @param array $tab Tab row
  * @param array $contentItems Array of content rows
@@ -865,7 +865,7 @@ function truth_render_tab_content_list($tab, $contentItems) {
 /**
  * Render markdown content item
  * 
- * Version 4.0.11: Renders a content item with markdown rendering.
+ * Version 3.0.11: Renders a content item with markdown rendering.
  * 
  * @param array $content Content row
  * @return string HTML for content display

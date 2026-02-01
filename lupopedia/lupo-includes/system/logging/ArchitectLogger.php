@@ -5,7 +5,7 @@
  * Logs architect actions with consistent signature and identity.
  * 
  * @package Lupopedia
- * @version 4.0.20
+ * @version 3.0.20
  * @author Captain Wolfie
  */
 

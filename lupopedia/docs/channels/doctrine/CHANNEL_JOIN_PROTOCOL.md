@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.72
+file.last_modified_system_version: 3.0.72
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -22,11 +22,11 @@ file:
 ---
 
 # CHANNEL_JOIN_PROTOCOL.md
-# Version: 4.0.72
+# Version: 3.0.72
 # Status: Updated Doctrine
 # Domain: Multi-Agent Cognition Layer
 
-## Updates in 4.0.72
+## Updates in 3.0.72
 - Version alignment
 - Integration testing results incorporated
 - Clarified communication-blocking invariants
@@ -75,4 +75,4 @@ alignment, and synchronization state.
 No agent may communicate before completing CJP.
 
 ## 10. VERSIONING RULES
-Active in 4.0.72. Future versions may extend but not break invariants.
+Active in 3.0.72. Future versions may extend but not break invariants.

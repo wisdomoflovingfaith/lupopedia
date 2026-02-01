@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.16
+file.last_modified_system_version: 3.0.16
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -80,7 +80,7 @@ All Channel Identity Blocks MUST include the following required fields:
 **Examples:**
 - `Development Documentation Channel`
 - `Routing Development`
-- `Lupopedia 4.0.16 - Channels/Documentation/Database Refinement`
+- `Lupopedia 3.0.16 - Channels/Documentation/Database Refinement`
 
 **Database Mapping:** `lupo_channels.channel_name`
 
@@ -361,7 +361,7 @@ Channel Identity Blocks MAY include the following optional fields:
 
 The Channel Identity Block integrates with Lupopedia's emotional geometry system through the `emotional_poles` field.
 
-### 4.1. Polar Agents
+### 3.1. Polar Agents
 
 Each channel may define two **polar agents** (the "serpents" of the CADUCEUS metaphor):
 

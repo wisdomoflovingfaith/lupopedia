@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.16
+file.last_modified_system_version: 3.0.16
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -147,7 +147,7 @@ If a routing rule must be deprecated:
 
 Routing depends on the following systems, some of which are **not yet fully implemented**:
 
-### 4.1. Implemented Dependencies
+### 3.1. Implemented Dependencies
 
 ✅ **Channel Identity Block (CIB)** — Complete specification  
 ✅ **Channel Manifest** — Complete specification  
@@ -524,7 +524,7 @@ All changes must be logged in `dialogs/changelog_dialog.md`:
 
 ### 8.4. Version History
 
-**Version 4.0.16 (2026-01-14):**
+**Version 3.0.16 (2026-01-14):**
 - Initial DRAFT doctrine created
 - Core routing concepts defined as placeholders
 - Validation rules established

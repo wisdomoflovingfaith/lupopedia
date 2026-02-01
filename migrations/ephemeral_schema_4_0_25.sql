@@ -1,4 +1,4 @@
--- Ephemeral Schema - Version 4.0.25
+-- Ephemeral Schema - Version 3.0.25
 -- Creates 5 tables for ephemeral data management in lupopedia_ephemeral schema
 
 -- Create ephemeral schema if not exists

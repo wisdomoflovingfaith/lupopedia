@@ -1,15 +1,15 @@
 -- ============================================================
--- Lupopedia 4.0.12 — Collection 0 Hierarchical Tab Structure
+-- Lupopedia 3.0.12 — Collection 0 Hierarchical Tab Structure
 -- Rebuilds Collection 0 tabs with hierarchical sub-tabs
 -- ============================================================
 --
--- wolfie.headers.version: "4.0.12"
+-- wolfie.headers.version: "3.0.12"
 -- header_atoms:
 --   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 -- dialog:
 --   - speaker: CURSOR
 --     target: @everyone
---     message: "Version 4.0.12: Rebuilt Collection 0 with hierarchical tab structure. Doctrine has 12 sub-tabs, Agents has 4 sub-tabs, Schema has 1 sub-tab, Appendix has 4 sub-tabs. Overview, UI-UX, and Developer Guide are hidden."
+--     message: "Version 3.0.12: Rebuilt Collection 0 with hierarchical tab structure. Doctrine has 12 sub-tabs, Agents has 4 sub-tabs, Schema has 1 sub-tab, Appendix has 4 sub-tabs. Overview, UI-UX, and Developer Guide are hidden."
 --     mood: "00FF00"
 -- tags:
 --   categories: ["database", "seed", "hierarchy"]

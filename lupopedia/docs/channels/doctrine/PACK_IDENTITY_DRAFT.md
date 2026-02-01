@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.115
+file.last_modified_system_version: 3.0.115
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -21,12 +21,12 @@ file:
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# ðŸŸ¦ 4.0.115 â€” Pack Identity Draft
+# ðŸŸ¦ 3.0.115 â€” Pack Identity Draft
 
-**Version:** 4.0.115  
+**Version:** 3.0.115  
 **Speaker:** CAPTAIN_WOLFIE  
 **Target:** @everyone @Monday_Wolfie @Pack_Architects  
-**Status:** DRAFT (Finalization in 4.1.0)
+**Status:** DRAFT (Finalization in 3.1.0)
 
 ---
 
@@ -194,7 +194,7 @@ The Pack behaves according to:
 - low volatility
 - high doctrine alignment
 
-**This is the behavioral stance required for 4.1.0 activation.**
+**This is the behavioral stance required for 3.1.0 activation.**
 
 ### Behavioral Profile (Draft):
 
@@ -229,9 +229,9 @@ The Pack thinks in:
 
 ---
 
-## ðŸŸ« 10. Activation Requirements for 4.1.0
+## ðŸŸ« 10. Activation Requirements for 3.1.0
 
-To activate Pack Identity in 4.1.0, Monday Wolfie must:
+To activate Pack Identity in 3.1.0, Monday Wolfie must:
 
 1. âœ… Approve the Pack name
 2. âœ… Approve the Pack purpose
@@ -249,7 +249,7 @@ To activate Pack Identity in 4.1.0, Monday Wolfie must:
 
 ## ðŸŸ¦ 11. Summary
 
-4.0.115 defines the identity of the Pack â€” the organism that powers Lupopedia.
+3.0.115 defines the identity of the Pack â€” the organism that powers Lupopedia.
 
 **Pack Name:** The Lupopedia Pack (PACK_CORE, PACK_IDENTITY_0001)  
 **Pack Purpose:** Maintain coherence, continuity, and meaning across the entire Lupopedia cognitive architecture  
@@ -257,13 +257,13 @@ To activate Pack Identity in 4.1.0, Monday Wolfie must:
 **Pack Behavioral Signature:** High compatibility, low reactivity, high cooperation  
 **Pack Cognitive Signature:** Parallel threads, emotional geometry, doctrine-driven, memory-aware, sync-cyclic, multi-agent
 
-This identity will be finalized and activated in 4.1.0.
+This identity will be finalized and activated in 3.1.0.
 
 ---
 
 ## Related Documentation
 
-- **[MONDAY_WOLFIE_BRIEFING_4.0.114_TO_4.1.0.md](../overview/MONDAY_WOLFIE_BRIEFING_4.0.114_TO_4.1.0.md)** - Complete briefing for 4.1.0 activation
+- **[MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md](../overview/MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md)** - Complete briefing for 3.1.0 activation
 - **[WOLFIE_COGNITIVE_ARCHITECTURE.md](../architecture/WOLFIE_COGNITIVE_ARCHITECTURE.md)** - Cognitive architecture that Pack mirrors
 - **[PACK_BEHAVIOR_DOCTRINE.md](PACK_BEHAVIOR_DOCTRINE.md)** - Pack behavioral layer doctrine
 - **[PACK_MEMORY_DOCTRINE.md](PACK_MEMORY_DOCTRINE.md)** - Pack memory layer doctrine
@@ -272,4 +272,4 @@ This identity will be finalized and activated in 4.1.0.
 
 ---
 
-**Pack Identity Draft Status:** DRAFT as of Version 4.0.115. Finalization and activation scheduled for Version 4.1.0.
+**Pack Identity Draft Status:** DRAFT as of Version 3.0.115. Finalization and activation scheduled for Version 3.1.0.

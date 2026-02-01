@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.18
+file.last_modified_system_version: 3.0.18
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_DEFAULT_STATUS
@@ -95,11 +95,11 @@ This directory contains all Lupopedia documentation organized by category. This 
 **First-party modules and integrations:**
 
 - **[LEGACY_REFACTOR_PLAN.md](../developer/modules/LEGACY_REFACTOR_PLAN.md)** â€” Comprehensive plan for refactoring legacy GLOBAL_PROJECT_CRAFTY_SYNTAX files from `legacy/craftysyntax/` to `lupopedia/`
-- **[UPGRADE_PLAN_3.7.5_TO_4.0.0.md](../developer/modules/UPGRADE_PLAN_3.7.5_TO_4.0.0.md)** â€” Upgrade documentation for GLOBAL_PROJECT_CRAFTY_SYNTAX integration
+- **[UPGRADE_PLAN_3.7.5_TO_3.0.0.md](../developer/modules/UPGRADE_PLAN_3.7.5_TO_3.0.0.md)** â€” Upgrade documentation for GLOBAL_PROJECT_CRAFTY_SYNTAX integration
 
 **Module-specific documentation:**
 - `modules/craftysyntax/README.md` â€” GLOBAL_PROJECT_CRAFTY_SYNTAX Live Help module documentation
-- **[CONTENT_INTERFACE_AND_NAVIGATION.md](../developer/modules/CONTENT_INTERFACE_AND_NAVIGATION.md)** â€” How GLOBAL_PROJECT_CRAFTY_SYNTAX 4.0.0 organizes content using Collections and Navigation Tabs with the Lupopedia Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)
+- **[CONTENT_INTERFACE_AND_NAVIGATION.md](../developer/modules/CONTENT_INTERFACE_AND_NAVIGATION.md)** â€” How GLOBAL_PROJECT_CRAFTY_SYNTAX 3.0.0 organizes content using Collections and Navigation Tabs with the Lupopedia Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)
 
 ---
 
@@ -119,7 +119,7 @@ This directory contains all Lupopedia documentation organized by category. This 
 - **[CONFIGURATION_DOCTRINE.md](../doctrine/CONFIGURATION_DOCTRINE.md)** â€” WordPress-style configuration model, single config file (`lupopedia-config.php`), why no `.env`/Composer/`/src`
 - **[TABLE_PREFIXING_DOCTRINE.md](../doctrine/TABLE_PREFIXING_DOCTRINE.md)** â€” Table prefixing rules, primary key naming patterns (`singular_table_name + "_id"`), column naming (no prefix)
 - **[CHARSET_COLLATION_DOCTRINE.md](../doctrine/CHARSET_COLLATION_DOCTRINE.md)** â€” Charset/collation at table level only, forbidden MySQL 8.0-only collations, clean column definitions
-- **[MIGRATION_DOCTRINE.md](../doctrine/MIGRATION_DOCTRINE.md)** â€” LiveHelp tables are migration-only, not part of Lupopedia 4.0.1 runtime
+- **[MIGRATION_DOCTRINE.md](../doctrine/MIGRATION_DOCTRINE.md)** â€” LiveHelp tables are migration-only, not part of Lupopedia 3.0.1 runtime
 - **[NO_FOREIGN_KEYS_DOCTRINE.md](../doctrine/NO_FOREIGN_KEYS_DOCTRINE.md)** â€” No foreign keys, stored procedures, triggers, or views
 - **[NO_TRIGGERS_DOCTRINE.md](../doctrine/NO_TRIGGERS_DOCTRINE.md)** â€” âš ï¸ **FORBIDDEN (MANDATORY)**: Triggers must never be created. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format
 - **[NO_STORED_PROCEDURES_DOCTRINE.md](../doctrine/NO_STORED_PROCEDURES_DOCTRINE.md)** â€” âš ï¸ **FORBIDDEN (MANDATORY)**: Stored procedures and functions must never be created. The database is for storage, not computation. All logic must be in application code
@@ -174,8 +174,8 @@ This directory contains all Lupopedia documentation organized by category. This 
 - **[thoth.md](../agents/thoth.md)** â€” Thoth agent (truth engine, ontological evaluator)
 - **[ARA.md](../agents/ARA.md)** â€” ARA agent (Adversarial Review & Analysis)
 
-**v4.0.2 Core Agents:**
-For the complete list of 27 required core agents for v4.0.2, see: `@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents` in `config/global_atoms.yaml`.
+**v3.0.2 Core Agents:**
+For the complete list of 27 required core agents for v3.0.2, see: `@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents` in `config/global_atoms.yaml`.
 
 **Agent system prompts:**
 - `lupo-agents/WOLFIE/versions/v1.0.0/system_prompt.txt` â€” Canonical system prompt for WOLFIE agent
@@ -321,7 +321,7 @@ docs/
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.0*  
+*Version: 3.0.0*  
 *Author: Captain Wolfie*
 
 ## Channel Index
@@ -329,9 +329,9 @@ docs/
 Purpose: High-level orientation, releases, roadmaps, and program status.
 
 Top-Level Contents:
-- 4.1.0/
-- 4.1.0_ACTIVATION.md
-- 4.1.1/
+- 3.1.0/
+- 3.1.0_ACTIVATION.md
+- 3.1.1/
 - ascent/
 - big-rock-1/
 - big-rock-2/
@@ -347,8 +347,8 @@ Top-Level Contents:
 - LUPOPEDIA_REENTRY_SPELL.md
 - MONDAY_RESUME_CONTEXT.md
 - MONDAY_START_OF_DAY.md
-- MONDAY_WOLFIE_4.1.0_ACTIVATION_SCRIPT.md
-- MONDAY_WOLFIE_BRIEFING_4.0.114_TO_4.1.0.md
+- MONDAY_WOLFIE_3.1.0_ACTIVATION_SCRIPT.md
+- MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md
 - postmortems/
 - releases/
 - reports/

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.5
+file.last_modified_system_version: 3.1.5
 file.last_modified_utc: 20260120000000
 file.name: "VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md"
 GOV-AD-PROHIBIT-001: true

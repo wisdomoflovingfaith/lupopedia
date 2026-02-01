@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.50
+file.last_modified_system_version: 3.0.50
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -38,7 +38,7 @@ file:
 
 **Preservation Note:** This context is preserved for future reference to maintain the collaborative spirit and humor that makes development sessions enjoyable, even during intense debugging and deployment scenarios.
 
-**Related:** Deployment directives, multi-IDE coordination, dialog system implementation, version 4.0.46
+**Related:** Deployment directives, multi-IDE coordination, dialog system implementation, version 3.0.46
 
 ---
 
@@ -98,7 +98,7 @@ file:
 
 **message:**
 > Ok crew, get this — I'm not going up a patch this time. I'm going up a
-> whole minor version. That's right, we're jumping to 4.1.0. Now nobody freak
+> whole minor version. That's right, we're jumping to 3.1.0. Now nobody freak
 > out — freaking out is not helpful, and it is not a good emotion. Prepare
 > to create a brand new file: TO_DO_FOR_VERSION_4_1_0.md. This is a Wolfie-
 > class maneuver and we are doing it live.
@@ -120,7 +120,7 @@ emotional turbulence commentary and reassures the fleet using the humor
 parachute.
 
 **Humor Elements:**
-- Minor version jump announcement (4.0.46 → 4.1.0)
+- Minor version jump announcement (3.0.46 → 3.1.0)
 - "Wolfie-class maneuver" terminology
 - Stoned Wolfie's ship metaphor (ship wants to be bigger)
 - R-axis wobble reference (emotional state)

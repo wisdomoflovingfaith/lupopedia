@@ -2,7 +2,7 @@
 /**
  * wolfie.header.identity: generate-toon-from-schema
  * wolfie.header.placement: /scripts/generate_toon_from_schema.php
- * wolfie.header.version: 4.1.1
+ * wolfie.header.version: 3.1.1
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone

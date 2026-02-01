@@ -9,7 +9,7 @@
  * - Weekend behavioral limits
  * 
  * @package App\Services\System
- * @version 4.1.12
+ * @version 3.1.12
  * @author Captain Wolfie
  * @see LIMITS.md
  */
@@ -125,8 +125,8 @@ class LimitsEnforcementService
     /**
      * Check if version bump is allowed (weekend freeze enforcement)
      * 
-     * @param string $currentVersion Current version (e.g., "4.0.101")
-     * @param string $proposedVersion Proposed version (e.g., "4.0.102" or "4.1.0")
+     * @param string $currentVersion Current version (e.g., "3.0.101")
+     * @param string $proposedVersion Proposed version (e.g., "3.0.102" or "3.1.0")
      * @return array ['allowed' => bool, 'reason' => string]
      */
     public function checkVersionBump(string $currentVersion, string $proposedVersion): array
@@ -141,11 +141,11 @@ class LimitsEnforcementService
             $proposedMajor = (int)($proposedParts[0] ?? 0);
             $proposedMinor = (int)($proposedParts[1] ?? 0);
             
-            // Check for minor version lock (4.0.x → 4.1.x forbidden on weekend)
+            // Check for minor version lock (3.0.x → 3.1.x forbidden on weekend)
             if ($currentMajor === $proposedMajor && $currentMinor === 0 && $proposedMinor > 0) {
                 return [
                     'allowed' => false,
-                    'reason' => 'WEEKEND VERSION FREEZE: Minor version lock prevents 4.0.x → 4.1.x on weekend days (Days 0, 5, 6 UTC)'
+                    'reason' => 'WEEKEND VERSION FREEZE: Minor version lock prevents 3.0.x → 3.1.x on weekend days (Days 0, 5, 6 UTC)'
                 ];
             }
             

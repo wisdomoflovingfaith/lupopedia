@@ -189,7 +189,7 @@ INSERT INTO `{{prefix}}dialog_threads` (
     'Ongoing',
     NULL,
     JSON_OBJECT(
-        'wolfie_header',JSON_OBJECT('version','4.0.0','speaker','System Kernel Actor','message','Bootstrapping Lupopedia kernel.'),
+        'wolfie_header',JSON_OBJECT('version','3.0.0','speaker','System Kernel Actor','message','Bootstrapping Lupopedia kernel.'),
         'agent_intent',JSON_OBJECT('actor_id',0,'agent_name','System Kernel Actor','role','kernel','action','bootstrap','channel','system/kernel','scope',JSON_ARRAY('migrations/','bootstrap/'),'internal',TRUE),
         'channels',JSON_ARRAY('system/kernel')
     ),

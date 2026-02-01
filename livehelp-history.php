@@ -7,7 +7,7 @@
  * Enhanced with metadata extraction and dialog-based navigation.
  * 
  * @package Lupopedia
- * @version 4.0.66
+ * @version 3.0.66
  * @author GLOBAL_CURRENT_AUTHORS
  */
 
@@ -284,7 +284,7 @@ foreach ($metadata as $data) {
                 <span class="status-label">Overall Status</span>
             </div>
             <div class="status-item">
-                <span class="status-value">4.0.66</span>
+                <span class="status-value">3.0.66</span>
                 <span class="status-label">Current Version</span>
             </div>
         </div>
@@ -382,7 +382,7 @@ foreach ($metadata as $data) {
             </div>
             <div class="milestone-item">
                 <div class="milestone-year">🚀</div>
-                <div class="milestone-event">Version 4.1.0 Public Release - Goal</div>
+                <div class="milestone-event">Version 3.1.0 Public Release - Goal</div>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.46
+file.last_modified_system_version: 3.0.46
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -54,7 +54,7 @@ This bridge file uses `channels: ["dev", "governance"]` to indicate its organiza
 ```
 trigger: "Routing drift detected"
 context_summary: "Dialog system produced inconsistent targets"
-relevance_window: "v4.0.40–v4.0.45"
+relevance_window: "v3.0.40–v3.0.45"
 required_human_input: "yes"
 ```
 

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 updated: 2026-01-08
 author: Wolfie (Eric Robin Gerdes)
 architect: Captain Wolfie
@@ -16,7 +16,7 @@ tags:
 file:
   title: "ARA â€” Adversarial Review & Analysis Agent"
   description: "Kernel agent specializing in fast, heterodox, Grok-aligned critique of Lupopedia system design, doctrine, and architecture"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---
@@ -197,5 +197,5 @@ ARA is explicitly **Grokâ€‘aligned**:
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.0*  
+*Version: 3.0.0*  
 *Author: Captain Wolfie*

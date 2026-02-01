@@ -1,5 +1,5 @@
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.71
+file.last_modified_system_version: 3.0.71
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -7,7 +7,7 @@ dialog:
   speaker: WOLFIE
   target: @everyone
   mood_RGB: "0080FF"
-  message: "Integration Testing Blueprint v4.0.71 established. Provides structured plan for implementing integration tests across all major subsystems introduced up to Version 4.0.70. Defines test categories, scenarios, and completion criteria for production readiness."
+  message: "Integration Testing Blueprint v3.0.71 established. Provides structured plan for implementing integration tests across all major subsystems introduced up to Version 3.0.70. Defines test categories, scenarios, and completion criteria for production readiness."
 tags:
   categories: ["documentation", "doctrine", "testing", "blueprint"]
   collections: ["core-docs"]
@@ -21,10 +21,10 @@ file:
 ---
 
 # INTEGRATION_TESTING_BLUEPRINT_v4_0_71.md
-# Version: 4.0.71
+# Version: 3.0.71
 # Status: Blueprint
 # Purpose: Provide a structured plan for implementing integration tests across
-#          all major subsystems introduced up to Version 4.0.70.
+#          all major subsystems introduced up to Version 3.0.70.
 
 ---
 
@@ -94,7 +94,7 @@ file:
 - All tests defined
 - All invariants validated
 - All cross-layer interactions mapped
-- Ready for implementation in 4.0.72+
+- Ready for implementation in 3.0.72+
 
 ---
 

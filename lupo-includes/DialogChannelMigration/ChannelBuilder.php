@@ -7,7 +7,7 @@
  * 
  * @package Lupopedia
  * @subpackage DialogChannelMigration
- * @version 4.0.102
+ * @version 3.0.102
  * @author Captain Wolfie
  */
 
@@ -131,7 +131,7 @@ class ChannelBuilder {
             'collections' => $this->encodeJsonArray($metadata['collections']),
             'channels' => $this->encodeJsonArray($metadata['channels']),
             'tags' => $this->encodeJsonArray($metadata['tags']),
-            'version' => $this->sanitizeString($metadata['version']) ?: '4.0.101',
+            'version' => $this->sanitizeString($metadata['version']) ?: '3.0.101',
             'status' => $this->validateStatus($metadata['status']),
             'author' => $this->sanitizeString($metadata['author']) ?: 'Captain Wolfie',
             'created_timestamp' => $timestamp,
@@ -139,7 +139,7 @@ class ChannelBuilder {
             'metadata_json' => json_encode([
                 'raw_header' => $metadata['raw_header'],
                 'migration_date' => date('Y-m-d H:i:s'),
-                'migration_version' => '4.0.101'
+                'migration_version' => '3.0.101'
             ])
         ];
     }

@@ -127,4 +127,4 @@ The Color Protocol Integration feature integrates emotional metadata using a str
 4. THE Documentation_System SHALL document performance considerations for UI access
 5. THE Documentation_System SHALL specify caching strategies for emotional metadata
 6. THE Documentation_System SHALL document accessibility considerations for color-based UI
-7. THE Documentation_System SHALL clarify that no UI implementation is required in version 4.1.0
+7. THE Documentation_System SHALL clarify that no UI implementation is required in version 3.1.0

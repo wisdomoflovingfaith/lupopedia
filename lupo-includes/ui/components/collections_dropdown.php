@@ -6,7 +6,7 @@
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: collections-dropdown
- *   message: "Version 4.0.18: Created collections dropdown component for selecting and managing user collections. Lists collections via AJAX, includes Save/Load/Edit actions, triggers tab loading on selection."
+ *   message: "Version 3.0.18: Created collections dropdown component for selecting and managing user collections. Lists collections via AJAX, includes Save/Load/Edit actions, triggers tab loading on selection."
  * wolfie.header.mood.label: focused
  * wolfie.header.mood.rgb: "00FF00"
  */
@@ -17,7 +17,7 @@
  * Renders a dropdown menu that lists all collections the user has access to.
  * When a collection is selected, it triggers AJAX to load tabs for that collection.
  * 
- * @version 4.0.18
+ * @version 3.0.18
  * @param int|null $currentCollectionId Currently selected collection ID (if any)
  */
 

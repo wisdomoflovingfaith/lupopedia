@@ -1,5 +1,5 @@
 -- Migration: Update TOON Files with Metadata
--- Version: 4.1.1
+-- Version: 3.1.1
 -- Date: 2026-01-18
 -- Module: Schema Documentation
 --
@@ -8,7 +8,7 @@
 -- This update adds version tracking and schema source information to each TOON file.
 --
 -- @package Lupopedia
--- @version 4.1.1
+-- @version 3.1.1
 -- @author Captain Wolfie
 
 -- ============================================================================
@@ -19,7 +19,7 @@
 -- 
 -- Added to each TOON file:
 --   "toon_metadata": {
---       "version": "4.1.1" (or "4.1.6" for LABS tables),
+--       "version": "3.1.1" (or "3.1.6" for LABS tables),
 --       "last_updated": "2026-01-18",
 --       "schema_source": "migration_4_1_1_create_help_topics" | "install_lupopedia_mysql" | "migration_4_1_6_create_labs_declarations",
 --       "doctrine_compliant": true

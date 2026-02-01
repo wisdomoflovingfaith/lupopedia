@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,7 +8,7 @@ dialog:
   speaker: KIRO
   target: @everyone
   mood_RGB: "0066FF"
-  message: "Updated AGENT_RUNTIME.md for Phase 2: Updated to version 4.0.14, enhanced cross-references, and ensured consistency with new core documentation structure and governance framework."
+  message: "Updated AGENT_RUNTIME.md for Phase 2: Updated to version 3.0.14, enhanced cross-references, and ensured consistency with new core documentation structure and governance framework."
 tags:
   categories: ["documentation", "architecture", "ai-agents"]
   collections: ["core-docs"]
@@ -32,11 +32,11 @@ file:
 
 # ðŸ¤– **AI Agent Runtime Architecture**
 
-**Version 4.0.1**
+**Version 3.0.1**
 
 ## **Overview**
 
-Lupopedia 4.0.1's AI agent system operates through three interconnected layers that enable intelligent, governed, and federated agent interactions. This document explains how users interact with agents, how agents communicate with the PHP backend, how they trigger React UI actions, how they call other Lupopedia nodes, and how the entire system maintains context and enforces governance.
+Lupopedia 3.0.1's AI agent system operates through three interconnected layers that enable intelligent, governed, and federated agent interactions. This document explains how users interact with agents, how agents communicate with the PHP backend, how they trigger React UI actions, how they call other Lupopedia nodes, and how the entire system maintains context and enforces governance.
 
 ---
 

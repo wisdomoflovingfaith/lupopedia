@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.16
+file.last_modified_system_version: 3.0.16
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -12,7 +12,7 @@ dialog:
 tags:
   categories: ["documentation", "architecture", "channels", "dialogs", "agents"]
   collections: ["core-docs", "architecture"]
-  channels: ["dev", "lupopedia-4.0.16-channels-documentation-database-refinement"]
+  channels: ["dev", "lupopedia-3.0.16-channels-documentation-database-refinement"]
 in_this_file_we_have:
   - IDE Agent Workflows (Filesystem-Based)
   - php_ai_terminal Agent Workflows (Database-Based)
@@ -71,7 +71,7 @@ Dialog files follow this structure:
 ```markdown
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.16
+file.last_modified_system_version: 3.0.16
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -107,7 +107,7 @@ This ensures:
 **MANDATORY:** All IDE agents participating in a channel MUST write their dialog entries to the channel's dialog file.
 
 **Example:**
-- Channel: `lupopedia 4.0.16 - channels/documentation/database refinement`
+- Channel: `lupopedia 3.0.16 - channels/documentation/database refinement`
 - Dialog File: `dialogs/changelog_dialog.md`
 - All agents (Cursor, Kiro, Cascade) write to this file
 

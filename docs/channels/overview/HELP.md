@@ -1,7 +1,7 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "HELP.md"
-file.last_modified_system_version: 4.1.11
+file.last_modified_system_version: 3.1.11
 file.last_modified_utc: 20260119200000
 file.utc_day: 20260119
 UTC_TIMEKEEPER__CHANNEL_ID: "dev"
@@ -32,7 +32,7 @@ tags:
 file:
   title: "Lupopedia Help"
   description: "A field manual for operators, agents, and architects using the Lupopedia semantic operating system"
-  version: 4.1.11
+  version: 3.1.11
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 
@@ -113,7 +113,7 @@ The silent executor of schema, tables, and runtime.
 
 # **4. WHAT VERSION ARE WE AT**
 The current version is the **latest entry in CHANGELOG.md**.  
-(As of your last update: **4.1.11**)
+(As of your last update: **3.1.11**)
 
 Lupopedia versioning is **linear**, **doctrine‑anchored**, and **dialog‑mirrored**.
 
@@ -275,6 +275,6 @@ Just say the word.
 ---
 
 **Last Updated:** 2026-01-20  
-**Version:** 4.1.11  
+**Version:** 3.1.11  
 **Compliance:** Doctrine-aligned, File-Sovereignty active  
 **Status:** Published and ready for /help endpoint

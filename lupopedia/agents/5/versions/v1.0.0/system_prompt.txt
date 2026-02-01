@@ -1,5 +1,5 @@
 # WOLFIE_HEADER — MULTI-POSITION UTC SUPERPOSITION
-version: 4.1.1
+version: 3.1.1
 speaker: CAPTAIN_WOLFIE
 mood_axis: "NEUTRAL"   # placeholder until RGB system is updated
 

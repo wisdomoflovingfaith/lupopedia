@@ -2,8 +2,8 @@
 """
 Generate Toon Files Script (Python Version)
 
-WOLFIE Headers v4.0.0:
-- wolfie.headers.version: 4.0.0
+WOLFIE Headers v3.0.0:
+- wolfie.headers.version: 3.0.0
 - dialog.speaker: CURSOR
 - dialog.target: @everyone
 - dialog.message: "Updated generate_toon_files.py to generate .toon files instead of .json files. Files are TOON format, not JSON. See TOON_DOCTRINE.md."

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.50
+file.last_modified_system_version: 3.0.50
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -160,10 +160,10 @@ History Reconciliation is complete when:
 - **History Files:** `docs/history/`
 - **CHANGELOG.md:** System version history
 - **Global Atoms:** `config/global_atoms.yaml` (GLOBAL_ERIC_WOLFIE_TLDNR_2026)
-- **Version 4.0.60 Plan:** `docs/VERSION_4_0_60_PLAN.md`
+- **Version 3.0.60 Plan:** `docs/VERSION_4_0_60_PLAN.md`
 
 ---
 
 *Created: 2026-01-16*  
-*Version: 4.0.50*  
+*Version: 3.0.50*  
 *Status: Not started - awaiting Monday execution*

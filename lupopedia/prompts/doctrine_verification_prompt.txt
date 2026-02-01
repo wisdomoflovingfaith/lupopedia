@@ -2,7 +2,7 @@ DOCTRINE VERIFICATION PROMPT FOR WINDSURF/CLAUDE
 
 ======================================================================
 TASK: Audit entire Lupopedia project against 12 Critical Atoms
-VERSION: 4.0.45
+VERSION: 3.0.45
 STATUS: HURRICANE KILLER PROTOCOL ACTIVE
 ======================================================================
 

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -92,7 +92,7 @@ Metadata serves as foundation for:
 **Required WOLFIE Header Fields:**
 ```yaml
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -553,7 +553,7 @@ tags:
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -615,7 +615,7 @@ tags:
 ✅ CORRECT:
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:

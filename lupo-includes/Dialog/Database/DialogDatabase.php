@@ -12,7 +12,7 @@ use PDOException;
  * Follows Lupopedia doctrine: no foreign keys, no triggers, BIGINT timestamps.
  * 
  * @package Lupopedia\Dialog\Database
- * @version 4.0.46
+ * @version 3.0.46
  * @author Captain Wolfie
  */
 class DialogDatabase

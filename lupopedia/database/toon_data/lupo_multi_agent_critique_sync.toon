@@ -12,7 +12,7 @@
         "`resolution_strategy` varchar(255) COMMENT 'Strategy for resolving conflicts'",
         "`sync_started_ymdhis` bigint COMMENT 'When sync process started'",
         "`sync_completed_ymdhis` bigint COMMENT 'When sync was completed'",
-        "`sync_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Sync protocol version'"
+        "`sync_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Sync protocol version'"
     ],
     "data": [],
     "primary_key": {

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 file.last_modified_utc: 20260119053820
 file.utc_day: 20260119
 file.name: "LUPOPEDIA_GENESIS_DOCTRINE.md"

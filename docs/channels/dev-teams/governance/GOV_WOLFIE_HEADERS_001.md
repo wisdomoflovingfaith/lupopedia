@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 file.last_modified_utc: 20260119054940
 file.utc_day: 20260119
 file.name: "GOV_WOLFIE_HEADERS_001.md"
@@ -86,7 +86,7 @@ This governance artifact applies to:
 **Every file MUST include `file.last_modified_system_version`.**
 
 - This field tracks which system version last modified the file
-- Enables instant identification of outdated files: `grep -R "file.last_modified_system_version: 4.0.14" .`
+- Enables instant identification of outdated files: `grep -R "file.last_modified_system_version: 3.0.14" .`
 - Prevents version drift across the codebase
 - Must be updated whenever the file is modified
 
@@ -237,7 +237,7 @@ WOLFIE Headers maintain temporal integrity by:
 - Using `UTC_TIMEKEEPER__CHANNEL_ID` for channel-bound temporal grouping (optional)
 - Using `temporal_edges` for contextual metadata (optional)
 - Supporting `file.last_named` for rename tracking
-- Enabling temporal queries: "Which files were modified in version 4.1.6?" and "Which files were modified at UTC 20260119041301?"
+- Enabling temporal queries: "Which files were modified in version 3.1.6?" and "Which files were modified at UTC 20260119041301?"
 
 ### Governance Registry Integration
 WOLFIE Headers reference governance artifacts through:

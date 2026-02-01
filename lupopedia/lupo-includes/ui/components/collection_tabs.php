@@ -1,21 +1,21 @@
 <?php
 /**
 ---
-wolfie.headers.version: "4.0.12"
+wolfie.headers.version: "3.0.12"
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.12: Version bump for hierarchical tab structure implementation. No logic changes to collection_tabs.php in this version."
+    message: "Version 3.0.12: Version bump for hierarchical tab structure implementation. No logic changes to collection_tabs.php in this version."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.11: Fixed collection tabs component to filter out _slug metadata key when iterating sub-tabs. Component now correctly displays tabs without showing metadata keys. Uses collection_id from context for URL generation."
+    message: "Version 3.0.11: Fixed collection tabs component to filter out _slug metadata key when iterating sub-tabs. Component now correctly displays tabs without showing metadata keys. Uses collection_id from context for URL generation."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.10: Updated collection tabs component to render tabs as clickable links using LUPOPEDIA_PUBLIC_PATH. Tab URLs follow pattern /collection/0/tab/{slug} for Collection 0 system tabs."
+    message: "Version 3.0.10: Updated collection tabs component to render tabs as clickable links using LUPOPEDIA_PUBLIC_PATH. Tab URLs follow pattern /collection/0/tab/{slug} for Collection 0 system tabs."
     mood: "00FF00"
   - speaker: Wolfie
     target: collection-tabs
@@ -27,7 +27,7 @@ tags:
   channels: ["dev"]
 file:
   title: "Collection Tabs Component"
-  description: "Renders the tabs dropdown menu with main-tab and sub-tab structure. Version 4.0.10: Collection 0 tabs with clickable links."
+  description: "Renders the tabs dropdown menu with main-tab and sub-tab structure. Version 3.0.10: Collection 0 tabs with clickable links."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: active
   author: GLOBAL_CURRENT_AUTHORS
@@ -88,7 +88,7 @@ if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG && empty($tabs_data)) {
         <?php endif; ?>
         <?php foreach ($tabs_data as $main_tab => $sub_tabs): ?>
             <?php
-            // Version 4.0.11: Use actual tab slug from database if available
+            // Version 3.0.11: Use actual tab slug from database if available
             // Fallback to generated slug if tabs_data includes slug info
             $tab_slug = null;
             if (is_array($sub_tabs) && isset($sub_tabs['_slug'])) {

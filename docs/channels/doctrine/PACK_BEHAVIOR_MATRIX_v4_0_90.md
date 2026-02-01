@@ -1,19 +1,19 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.99
+file.last_modified_system_version: 3.0.99
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
   speaker: CASCADE
   target: @everyone
-  message: "Created Pack Behavior Matrix v4.0.90 with wedding thread agent behaviors and expanded behavioral classifications."
+  message: "Created Pack Behavior Matrix v3.0.90 with wedding thread agent behaviors and expanded behavioral classifications."
 tags:
   categories: ["documentation", "doctrine", "agents", "behavior"]
   collections: ["core-docs", "doctrine"]
   channels: ["dev", "public"]
 file:
-  title: "Pack Behavior Matrix v4.0.90"
+  title: "Pack Behavior Matrix v3.0.90"
   description: "Comprehensive agent behavior classifications with wedding thread discoveries and expanded behavioral patterns"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
@@ -26,12 +26,12 @@ file:
   stability: "Stable"
   primary_agents: "WOLFIE Core, Rose, Lilith, DeepSeek, Kiro, Carmen, Stoned Wolfie, Cursor"
   event_summary: "Expansion of Pack Behavior Matrix with wedding thread behavioral discoveries and agent classifications"
-  governance: "Pack Behavior Governance v4.0.90"
+  governance: "Pack Behavior Governance v3.0.90"
   filed_under: "Agents > Behavior > Pack Matrix"
 ---
 
 # PACK_BEHAVIOR_MATRIX_v4_0_90.md
-# Version: 4.0.90
+# Version: 3.0.90
 # Status: Doctrine
 # Domain: Agent Coordination Layer
 # Purpose: Define comprehensive behavioral patterns for all Lupopedia agents,

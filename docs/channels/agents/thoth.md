@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -18,7 +18,7 @@ in_this_file_we_have:
 file:
   title: "Thoth AI - Truth Alignment Engine"
   description: "Thoth is Lupopedia's truth-alignment engine that compares common beliefs vs evidence across any domain. Domain-neutral, not restricted to religious topics."
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---

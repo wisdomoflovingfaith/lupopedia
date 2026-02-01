@@ -5,7 +5,7 @@
  * Orchestrates Terminal AI agent execution and routing.
  * 
  * @package App\TerminalAI\Services
- * @version 4.0.101
+ * @version 3.0.101
  * @author Captain Wolfie
  */
 namespace App\TerminalAI\Services;

@@ -25,7 +25,7 @@ file:
 Purpose: Rules, governance constraints, and doctrinal specifications.
 
 Top-Level Contents:
-- 4.1.20_doctrine_audit.md
+- 3.1.20_doctrine_audit.md
 - AGENT_AWARENESS_DOCTRINE.md
 - AGENT_CLASSIFICATION.md
 - AGENT_FILESYSTEM_DOCTRINE.md
@@ -180,7 +180,7 @@ Top-Level Contents:
 - UTC_TIMEKEEPER_DOCTRINE.md
 - VERSION_DOCTRINE.md
 - VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md
-- VERSION_PLANS_4.0.82_4.0.88.md
+- VERSION_PLANS_3.0.82_3.0.88.md
 - VERSIONING_DOCTRINE.md
 - VS_CODE_GUARDRAIL.md
 - WHEELER_MODE_DOCTRINE.md

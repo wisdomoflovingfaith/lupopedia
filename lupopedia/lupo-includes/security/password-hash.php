@@ -2,11 +2,11 @@
 /**
  * wolfie.header.identity: password-hash
  * wolfie.header.placement: /lupo-includes/security/password-hash.php
- * wolfie.header.version: 4.0.8
+ * wolfie.header.version: 3.0.8
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
- *   message: "Created password hashing utility for version 4.0.8 authentication. Supports bcrypt (new) and MD5 (legacy) with automatic upgrade on login."
+ *   message: "Created password hashing utility for version 3.0.8 authentication. Supports bcrypt (new) and MD5 (legacy) with automatic upgrade on login."
  *   mood: "00FF00"
  */
 

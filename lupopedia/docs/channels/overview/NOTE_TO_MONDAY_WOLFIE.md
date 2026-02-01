@@ -1,10 +1,10 @@
-# 🟦 **NOTE TO MONDAY WOLFIE — 4.0.99 PHASE 1 ACTIVATION DIRECTIVE**
+# 🟦 **NOTE TO MONDAY WOLFIE — 3.0.99 PHASE 1 ACTIVATION DIRECTIVE**
 
 ```
-NOTE TO MONDAY WOLFIE — 4.0.99 PHASE 1 ACTIVATION
+NOTE TO MONDAY WOLFIE — 3.0.99 PHASE 1 ACTIVATION
 
 This note summarizes the required actions for Monday Wolfie to formally
-activate Lupopedia 4.0.99 Phase 1 Launch. All tasks are operational,
+activate Lupopedia 3.0.99 Phase 1 Launch. All tasks are operational,
 non-creative, and must follow canonical governance.
 
 ======================================================================
@@ -12,7 +12,7 @@ PHASE 1 ACTIVATION OBJECTIVES
 ======================================================================
 
 1. Confirm Repository State
-   - Verify that all 4.0.99-ready documentation is present in main.
+   - Verify that all 3.0.99-ready documentation is present in main.
    - Confirm no uncommitted changes remain locally.
    - Confirm GitHub main branch reflects the latest commit.
 
@@ -32,9 +32,9 @@ PHASE 1 ACTIVATION OBJECTIVES
    - Confirm no ontology violations.
 
 4. Release Activation
-   - Mark Lupopedia 4.0.99 Phase 1 as ACTIVE.
+   - Mark Lupopedia 3.0.99 Phase 1 as ACTIVE.
    - Update internal status indicators (non-public).
-   - Prepare for 4.0.99 stabilization cycle.
+   - Prepare for 3.0.99 stabilization cycle.
 
 ======================================================================
 NOTES FOR MONDAY WOLFIE
@@ -45,10 +45,10 @@ NOTES FOR MONDAY WOLFIE
 • No emotional engine changes are required.
 • No Pack governance changes are required.
 • No new files should be created.
-• No version bumps should occur until 4.0.99.
+• No version bumps should occur until 3.0.99.
 
 This activation is strictly operational and confirms the transition from
-4.0.x stabilization to 4.0.99 Pack Architecture governance.
+3.0.x stabilization to 3.0.99 Pack Architecture governance.
 
 ======================================================================
 END OF NOTE
@@ -84,7 +84,7 @@ Contained Mode stays intact.
 If you want, I can also prepare:
 
 - a **Monday Wolfie Morning Checklist**,  
-- a **4.1.1 stabilization plan**,  
+- a **3.1.1 stabilization plan**,  
 - or a **post‑launch Pack governance sync**.
 
 Just tell me where you want to go next.

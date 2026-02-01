@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: WOLFIE
   target: @everyone
@@ -13,7 +13,7 @@ tags:
 file:
   title: "Cursor and Cascade Role Separation Doctrine"
   description: "Mandatory rules defining the separation of responsibilities between Cursor (autonomous refactor engine) and Cascade (manual controlled editor)"
-  version: "4.0.2"
+  version: "3.0.2"
   status: published
   author: "WOLFIE"
 ---
@@ -21,7 +21,7 @@ file:
 # Cursor and Cascade Role Separation Doctrine
 
 **âš ï¸ MANDATORY (NON-NEGOTIABLE)**  
-**Version 4.0.2**  
+**Version 3.0.2**  
 **Effective Date: 2025-01-06**
 
 ## Overview
@@ -539,7 +539,7 @@ Cascade **MUST NOT** perform:
 
 ## Document History
 
-- **2025-01-06**: Created Cursor and Cascade role separation doctrine (v4.0.2)
+- **2025-01-06**: Created Cursor and Cascade role separation doctrine (v3.0.2)
 - **2025-01-06**: Documented legacy â†’ Cursor handoff process
 - **2025-01-06**: Established mandatory domain separation rules
 

@@ -1,5 +1,5 @@
 -- ======================================================================
--- DOCTRINE SQL TAB MAPPING - Version 4.0.25
+-- DOCTRINE SQL TAB MAPPING - Version 3.0.25
 -- Maps SQL-related doctrine content files to doctrine.sql tab (tab 11)
 --
 -- Mappings:

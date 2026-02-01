@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 file.last_modified_utc: 20260119140000
 file.utc_day: 20260119
 file.name: "TABLE_REDUCTION_PLAN.md"
@@ -92,12 +92,12 @@ system_context:
 
 - **When:** Only after Schema Freeze is lifted **or** explicit Captain approval.
 - **Order:** 1 and 2–3 are independent. 4 and 5 depend on orchestration/doctrine changes; do those last or together.
-- **Migrations:** Create one migration per table (or one combined `4.1.8_table_reduction_to_135.sql`) only when executing. This file is the **plan**, not the migration.
+- **Migrations:** Create one migration per table (or one combined `3.1.8_table_reduction_to_135.sql`) only when executing. This file is the **plan**, not the migration.
 
 ### Proposed migration (DO NOT RUN without approval)
 
 ```sql
--- 4.1.8_table_reduction_to_135.sql
+-- 3.1.8_table_reduction_to_135.sql
 -- REQUIRES: Schema Freeze lifted or Captain approval. Pre-drop checks complete.
 
 -- 1. lupo_help_topics_old (archived)

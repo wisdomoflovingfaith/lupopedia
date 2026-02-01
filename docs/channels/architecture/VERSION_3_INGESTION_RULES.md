@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -54,7 +54,7 @@ file:
 
 ## **Semantic Radius Expansion & External Public Ingestion**
 
-**âš ï¸ Important:** "Version 3" refers to **Version 3 of the Python ingestion program** (see [My First Python Program](../appendix/appendix/MY_FIRST_PYTHON_PROGRAM.md)), **NOT Lupopedia version 3.0**. Lupopedia is currently at version 4.0.2. This document describes the evolution of the ingestion engine component within Lupopedia.
+**âš ï¸ Important:** "Version 3" refers to **Version 3 of the Python ingestion program** (see [My First Python Program](../appendix/appendix/MY_FIRST_PYTHON_PROGRAM.md)), **NOT Lupopedia version 3.0**. Lupopedia is currently at version 3.0.2. This document describes the evolution of the ingestion engine component within Lupopedia.
 
 Version 3 of the ingestion program extends Lupopedia's ingestion engine beyond the local server's public root. Instead of only importing files physically present on the server, Version 3 of the ingestion program allows each installation to ingest trusted external public content that the site owner has implicitly endorsed through linking.
 
@@ -333,7 +333,7 @@ Because:
 
 External ingestion (Ingestion Program Version 3) is a natural extension of the existing semantic following mechanism. It follows the same trust model (linkage = endorsement) and the same semantic inheritance rules (context from referring content).
 
-**Remember:** This is Version 3 of the Python ingestion program, not Lupopedia version 3.0. Lupopedia 4.0.2 includes Ingestion Program Version 3 capabilities.
+**Remember:** This is Version 3 of the Python ingestion program, not Lupopedia version 3.0. Lupopedia 3.0.2 includes Ingestion Program Version 3 capabilities.
 
 ### **The Key Difference**
 
@@ -370,7 +370,7 @@ Version 3 of the ingestion program (not Lupopedia version 3.0) allows Lupopedia 
 
 From local filesystem ingestion (Ingestion Program Version 1) to internal URL following (Ingestion Program Version 2) to trusted external semantic expansion (Ingestion Program Version 3), the ingestion engine has evolved to create a federated semantic mesh that respects site owner intent while building a global knowledge graph.
 
-**Important Clarification:** These are versions of the **Python ingestion program component** within Lupopedia, not versions of Lupopedia itself. Lupopedia is currently at **version 4.0.2**. The ingestion program is a sub-component that has evolved through multiple versions (1, 2, 3) as its capabilities expanded. See [My First Python Program](../appendix/appendix/MY_FIRST_PYTHON_PROGRAM.md) for the story of how this component evolved.
+**Important Clarification:** These are versions of the **Python ingestion program component** within Lupopedia, not versions of Lupopedia itself. Lupopedia is currently at **version 3.0.2**. The ingestion program is a sub-component that has evolved through multiple versions (1, 2, 3) as its capabilities expanded. See [My First Python Program](../appendix/appendix/MY_FIRST_PYTHON_PROGRAM.md) for the story of how this component evolved.
 
 ---
 

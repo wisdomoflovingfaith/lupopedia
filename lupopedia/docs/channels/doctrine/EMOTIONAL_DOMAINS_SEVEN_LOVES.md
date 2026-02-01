@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: Kiro
   target: @everyone
@@ -22,7 +22,7 @@ file:
 # Emotional Domains: The Seven Greek Loves
 
 **Official Doctrine Document**  
-**Version 4.0.15**  
+**Version 3.0.15**  
 **Effective Date: 2026-01-13**
 
 ---
@@ -504,7 +504,7 @@ When working with love-related content:
 
 ## 💠 Document History
 
-- **2026-01-13**: Created EMOTIONAL_DOMAINS_SEVEN_LOVES.md (v4.0.15)
+- **2026-01-13**: Created EMOTIONAL_DOMAINS_SEVEN_LOVES.md (v3.0.15)
 - **2026-01-13**: Defined seven Greek love domains with independent geometries
 - **2026-01-13**: Documented shadow polarity aliasing for each love
 - **2026-01-13**: Defined 3-axis geometry for each Greek love

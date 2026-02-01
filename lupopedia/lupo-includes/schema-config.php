@@ -6,7 +6,7 @@
  * Provides constants and helper functions for schema-qualified table names.
  * 
  * @package Lupopedia
- * @version 4.0.3
+ * @version 3.0.3
  * @author Captain Wolfie
  */
 

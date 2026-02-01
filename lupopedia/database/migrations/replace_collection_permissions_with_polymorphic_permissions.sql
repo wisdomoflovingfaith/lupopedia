@@ -1,5 +1,5 @@
 -- Migration: Replace lupo_collection_permissions with polymorphic lupo_permissions table
--- Version: 4.0.3
+-- Version: 3.0.3
 -- Date: 2026-01-11
 -- 
 -- This migration replaces the collection-specific permissions table with a polymorphic

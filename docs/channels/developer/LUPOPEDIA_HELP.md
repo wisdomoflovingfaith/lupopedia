@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.10
+file.last_modified_system_version: 3.1.10
 file.name: "LUPOPEDIA_HELP.md"
 GOV-AD-PROHIBIT-001: true
 header_atoms:
@@ -93,7 +93,7 @@ The silent executor of schema, tables, and runtime.
 
 # **4. WHAT VERSION ARE WE AT**
 The current version is the **latest entry in CHANGELOG.md**.  
-(As of your last update: **4.1.11** or **4.1.12**, depending on TOON regen.)
+(As of your last update: **3.1.11** or **3.1.12**, depending on TOON regen.)
 
 Lupopedia versioning is **linear**, **doctrine‑anchored**, and **dialog‑mirrored**.
 

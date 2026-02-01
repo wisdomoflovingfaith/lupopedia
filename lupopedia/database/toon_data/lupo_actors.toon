@@ -77,7 +77,7 @@
             "deleted_ymdhis": null,
             "actor_source_id": 1245,
             "actor_source_type": "agent",
-            "metadata": "{\"agent_registry_id\": 1245, \"purpose\": \"adversarial_review\", \"role\": \"structural_stress_tester\", \"version\": \"4.1.5\"}",
+            "metadata": "{\"agent_registry_id\": 1245, \"purpose\": \"adversarial_review\", \"role\": \"structural_stress_tester\", \"version\": \"3.1.5\"}",
             "adversarial_role": "none",
             "adversarial_oversight_actor_id": null
         }

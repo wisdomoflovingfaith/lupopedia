@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -137,7 +137,7 @@ Not bad for a guy who just wanted to add some YAML headers.
 ## **Related Documentation**
 
 - **[HISTORY.md](../../history/HISTORY.md)** â€” Complete origin story from Crafty Syntax (2002) to Lupopedia
-- **[Content Interface & Navigation](../../developer/modules/CONTENT_INTERFACE_AND_NAVIGATION.md)** â€” How content organization works in Crafty Syntax 4.0.0
+- **[Content Interface & Navigation](../../developer/modules/CONTENT_INTERFACE_AND_NAVIGATION.md)** â€” How content organization works in Crafty Syntax 3.0.0
 - **[Semantic Navigation System](../../architecture/SEMANTIC_NAVIGATION.md)** â€” Technical details on semantic edge generation
 - **[Why Lupopedia Is Different](../../overview/WHY_LUPOPEDIA_IS_DIFFERENT.md)** â€” What makes Lupopedia fundamentally different
 

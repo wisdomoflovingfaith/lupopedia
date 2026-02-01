@@ -1,5 +1,5 @@
 ---
-wolfie.headers.version: 4.0.1
+wolfie.headers.version: 3.0.1
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -10,20 +10,20 @@ tags:
   channels: ["dev"]
 file:
   title: "WOLFIE Headers Specification"
-  description: "Machine-readable specification for WOLFIE Headers v4.0.0"
-  version: "4.0.0"
+  description: "Machine-readable specification for WOLFIE Headers v3.0.0"
+  version: "3.0.0"
   status: published
   author: "Captain Wolfie"
 ---
 
-# WOLFIE Headers Specification v4.0.0
+# WOLFIE Headers Specification v3.0.0
 # Machine-readable YAML specification for Lupopedia ecosystem
 
 specification:
   name: "WOLFIE Headers"
-  version: "4.0.0"
+  version: "3.0.0"
   description: "Universal metadata envelope for all Lupopedia 4.x artifacts"
-  ecosystem_version: "4.0.0"
+  ecosystem_version: "3.0.0"
   status: "stable"
   date: 20260105
 
@@ -41,7 +41,7 @@ required_fields:
     headers:
       version:
         type: "string"
-        value: "4.0.0"
+        value: "3.0.0"
         description: "WOLFIE Header specification version"
         mandatory: true
 
@@ -251,8 +251,8 @@ optional_modules:
         mandatory: false
       version:
         type: "string"
-        description: "File version (SHOULD match ecosystem version 4.0.0)"
-        default: "4.0.0"
+        description: "File version (SHOULD match ecosystem version 3.0.0)"
+        default: "3.0.0"
         mandatory: false
       created:
         type: "integer"
@@ -292,7 +292,7 @@ embedding_rules:
 
 validation:
   required:
-    - "wolfie.headers.version must equal 4.0.0"
+    - "wolfie.headers.version must equal 3.0.0"
     - "Must be enclosed in --- delimiters"
     - "Must contain valid YAML"
     - "dialog block MUST be present when an agent creates or modifies a file"
@@ -306,7 +306,7 @@ validation:
 backward_compatibility:
   v3_0_0:
     status: "deprecated"
-    note: "v3.0.0 headers remain valid but should be migrated to v4.0.0"
+    note: "v3.0.0 headers remain valid but should be migrated to v3.0.0"
   v2_x:
     status: "deprecated"
     note: "v2.x headers remain valid but deprecated"
@@ -319,14 +319,14 @@ examples:
     description: "Required field only (for files not created/modified by agents)"
     yaml: |
       ---
-      wolfie.headers.version: 4.0.0
+      wolfie.headers.version: 3.0.0
       ---
 
   agent_modified:
     description: "Required dialog block when agent creates or modifies file"
     yaml: |
       ---
-      wolfie.headers.version: 4.0.0
+      wolfie.headers.version: 3.0.0
       dialog:
         speaker: CURSOR
         target: @everyone
@@ -337,7 +337,7 @@ examples:
     description: "All optional modules included"
     yaml: |
       ---
-      wolfie.headers.version: 4.0.0
+      wolfie.headers.version: 3.0.0
       dialog:
         speaker: CURSOR
         target: @everyone
@@ -366,7 +366,7 @@ examples:
       file:
         title: "Database Schema Design Guide"
         description: "Complete guide to Lupopedia database schema design principles"
-        version: "4.0.0"
+        version: "3.0.0"
         created: 20260105000000
         modified: 20260105120000
         status: published
@@ -377,7 +377,7 @@ examples:
     description: "Large documentation file with sections module"
     yaml: |
       ---
-      wolfie.headers.version: 4.0.1
+      wolfie.headers.version: 3.0.1
       dialog:
         speaker: CURSOR
         target: @everyone
@@ -401,12 +401,12 @@ examples:
         modified: 20250109064500
         status: published
         author: "Eric Robin Gerdes"
-        version: "4.0.1"
+        version: "3.0.1"
       ---
 
 agent_requirements:
   mandatory:
-    - "Recognize WOLFIE Headers v4.0.0 in files"
+    - "Recognize WOLFIE Headers v3.0.0 in files"
     - "Preserve existing headers when modifying files"
     - "Add headers to new files when appropriate"
     - "Update the dialog block on every file creation or modification"
@@ -437,8 +437,8 @@ version_history:
   v4_0_0:
     date: 20260105
     changes:
-      - "Aligned header version with Lupopedia 4.0.0 ecosystem"
-      - "Updated file.version default to 4.0.0"
+      - "Aligned header version with Lupopedia 3.0.0 ecosystem"
+      - "Updated file.version default to 3.0.0"
       - "Replaced v3.0.0 as stable long-term version"
   v3_0_0:
     date: 20260105

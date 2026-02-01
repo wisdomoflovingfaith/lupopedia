@@ -1,7 +1,7 @@
-# INTEGRATION TESTING DOCTRINE v4.0.71
+# INTEGRATION TESTING DOCTRINE v3.0.71
 ## System Integration Testing Plan
 
-**Version:** 4.0.71  
+**Version:** 3.0.71  
 **Status:** Draft Vision  
 **Domain:** Multi-Agent Cognition Layer Testing  
 **Purpose:** Define comprehensive integration testing plan for Agent Awareness Layer (AAL) implementation
@@ -10,7 +10,7 @@
 
 ## 🎯 Purpose
 
-Version 4.0.71 defines the integration testing phase for the Agent Awareness Layer implementation completed in v4.0.70. This doctrine establishes the systematic approach to validate that the architecture, protocols, and coordination systems function correctly in real-world scenarios.
+Version 3.0.71 defines the integration testing phase for the Agent Awareness Layer implementation completed in v3.0.70. This doctrine establishes the systematic approach to validate that the architecture, protocols, and coordination systems function correctly in real-world scenarios.
 
 ---
 
@@ -156,7 +156,7 @@ USE test_lupopedia_v4_0_71;
 
 -- Load base schema
 SOURCE database/install/lupopedia_mysql.sql;
--- Load v4.0.70 migration
+-- Load v3.0.70 migration
 SOURCE database/migrations/agent_awareness_layer_4_0_70.sql;
 ```
 
@@ -279,7 +279,7 @@ $testScenarios = [
 ## 🎯 Next Steps After Testing
 
 ### If Tests Pass ✅
-1. **Production Deployment**: Prepare v4.0.71 for production
+1. **Production Deployment**: Prepare v3.0.71 for production
 2. **Performance Optimization**: Implement identified improvements
 3. **Documentation Update**: Refine based on test results
 4. **Monitoring Setup**: Production monitoring configuration
@@ -310,9 +310,9 @@ $testScenarios = [
 
 **Doctrine Status:** 🔄 ACTIVE  
 **Next Review:** After test execution completion  
-**Version:** 4.0.71  
+**Version:** 3.0.71  
 **Target:** Production-ready Agent Awareness Layer
 
 ---
 
-*This integration testing doctrine provides the systematic approach needed to validate the Agent Awareness Layer implementation, ensuring the v4.0.70 architecture functions correctly in real-world scenarios before production deployment.*
+*This integration testing doctrine provides the systematic approach needed to validate the Agent Awareness Layer implementation, ensuring the v3.0.70 architecture functions correctly in real-world scenarios before production deployment.*

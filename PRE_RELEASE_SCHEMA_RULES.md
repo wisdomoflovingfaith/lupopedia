@@ -1,11 +1,11 @@
 # PRE_RELEASE_SCHEMA_RULES.md  
-**Doctrine: Schema Behavior During the Freedom Zone (Pre‑2026.4.0.1)**
+**Doctrine: Schema Behavior During the Freedom Zone (Pre‑2026.3.0.1)**
 
 ---
 
 ## 1. Purpose
 
-These rules define how schema changes must be handled during the **Freedom Zone**, the pre‑release development period before Lupopedia's first stable version (**2026.4.0.1**).
+These rules define how schema changes must be handled during the **Freedom Zone**, the pre‑release development period before Lupopedia's first stable version (**2026.3.0.1**).
 
 During this phase:
 
@@ -201,7 +201,7 @@ Agents must tolerate this volatility.
 
 These rules remain in effect until:
 
-### **Version 2026.4.0.1 — First Stable Release**
+### **Version 2026.3.0.1 — First Stable Release**
 
 At that point:
 

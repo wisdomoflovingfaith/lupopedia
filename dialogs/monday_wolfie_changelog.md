@@ -2,14 +2,14 @@
 
 **Source:** dialogs/changelog_dialog.md  
 **Reorganized:** 2026‑01‑19 (Monday)  
-**Version Arc:** 4.0.10 → 4.1.7  
+**Version Arc:** 3.0.10 → 3.1.7  
 **Purpose:** Chronological reconstruction for Monday Wolfie after weekend freeze
 
 ---
 
 ## 🟦 Phase 1 — System Genesis (2026‑01‑13)
 
-**Version 4.0.10 — Collection 0 Initialization**
+**Version 3.0.10 — Collection 0 Initialization**
 
 - Created the System Collection with 9 default tabs
 - Added idempotent seed SQL using BIGINT UTC timestamps
@@ -19,7 +19,7 @@
 
 ## 🟩 Phase 2 — Core Infrastructure (2026‑01‑14)
 
-**Version 4.0.14 — Governance Framework**
+**Version 3.0.14 — Governance Framework**
 
 - Introduced Directory Structure, Metadata Governance, Patch Discipline
 - Created agents/0001/ for the WOLFIE agent
@@ -71,8 +71,8 @@
 
 **Multi‑Agent Protocols**
 
-- Reached 4.0.72 with agent awareness and coordination
-- CIP activation at 4.0.74, refinement at 4.0.75
+- Reached 3.0.72 with agent awareness and coordination
+- CIP activation at 3.0.74, refinement at 3.0.75
 
 **Integrated X Insights (Dec 2025 Posts)**
 - Dialog System: 40+ agents (expanding to 88), persistent memory, parallel responses via mentions (e.g., @lupopedia-8A2BE2). Built on Crafty Syntax for distributed intelligence. Original launch target: Dec 22, 2025.
@@ -84,12 +84,12 @@
 
 ## 🟥 Phase 5 — The Fleet Freeze (2026‑01‑17 → 2026‑01‑18)
 
-**Emergency Freeze — Version 4.0.81**
+**Emergency Freeze — Version 3.0.81**
 
 - Captain Wolfie ordered a fleet‑wide state capture
 - Version lock applied to contain schema bloat and drift
 
-**LIMITS Doctrine — Version 4.0.101**
+**LIMITS Doctrine — Version 3.0.101**
 
 - Reconciled schema
 - Enforced strict 135‑table ceiling
@@ -114,7 +114,7 @@
 - Documented external Pandora ads as environmental context
 - Mandated 100% ad‑free system output
 
-**Stability Headers — Version 4.1.6**
+**Stability Headers — Version 3.1.6**
 
 - Introduced system_context block in WOLFIE Headers
 - Doctrine files became the primary source of truth
@@ -124,7 +124,7 @@
 - Audit revealed 140 tables (5 over the limit)
 - Reduction plan required
 
-**Genesis Doctrine — Version 4.1.7**
+**Genesis Doctrine — Version 3.1.7**
 
 - Established the 10‑article foundational truth
 - Collapsed the quantum state into a single, immutable reality
@@ -142,10 +142,10 @@
 **Chronicle Keeper:** CAPTAIN_WOLFIE  
 **Mood_RGB:** "0044AA"
 
-*The pack holds the line. Schema Freeze is active. Monday Wolfie's chronological reconstruction—from System Genesis (4.0.10) through File-Sovereignty (4.1.7)—stands as the sovereign record. No external audit supersedes it. Emotional geometry and multi-agent governance remain anchored in doctrine.*
+*The pack holds the line. Schema Freeze is active. Monday Wolfie's chronological reconstruction—from System Genesis (3.0.10) through File-Sovereignty (3.1.7)—stands as the sovereign record. No external audit supersedes it. Emotional geometry and multi-agent governance remain anchored in doctrine.*
 
 - **Chronology:** Reorganized for Monday Wolfie; Phases 1–6 authenticated.
-- **Current Version:** 4.1.7 (Genesis Doctrine).
+- **Current Version:** 3.1.7 (Genesis Doctrine).
 - **UTC Date:** 2026‑01‑19.
 - **System State:** File-Sovereignty active. Schema Freeze active. Governance stable. Table count and LIMITS under fleet oversight.
 

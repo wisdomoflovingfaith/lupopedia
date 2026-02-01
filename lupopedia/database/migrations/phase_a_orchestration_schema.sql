@@ -12,7 +12,7 @@
    - Maintains schema federation integrity
    - Prepares for Phase B cleanup
 
-   Version: 4.0.3
+   Version: 3.0.3
    Status: PRE_MIGRATION → STABLE
 ======================================================================
 

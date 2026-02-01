@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,7 +8,7 @@ dialog:
   speaker: CAPTAIN_WOLFIE
   target: @everyone @FLEET
   mood_RGB: "336699"
-  message: "Updated DIALOG_FILE_ORDERING_DOCTRINE.md to version 4.1.6. Header synchronized with current system version."
+  message: "Updated DIALOG_FILE_ORDERING_DOCTRINE.md to version 3.1.6. Header synchronized with current system version."
 tags:
   categories: ["doctrine", "dialog", "file-structure"]
   collections: ["core-docs"]

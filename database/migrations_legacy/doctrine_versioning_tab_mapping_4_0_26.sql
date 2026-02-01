@@ -1,5 +1,5 @@
 -- ======================================================================
--- DOCTRINE VERSIONING TAB MAPPING - Version 4.0.26
+-- DOCTRINE VERSIONING TAB MAPPING - Version 3.0.26
 -- Maps versioning-related doctrine content files to doctrine.versioning tab (tab 21)
 --
 -- Mappings:

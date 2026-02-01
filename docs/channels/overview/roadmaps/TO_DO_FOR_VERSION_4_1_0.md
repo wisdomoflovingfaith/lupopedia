@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.46
+file.last_modified_system_version: 3.0.46
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -10,21 +10,21 @@ dialog:
   mood_RGB: "FF6600"
   message: "Created TO_DO_FOR_VERSION_4_1_0.md - comprehensive task list for minor version jump. This is a Wolfie-class maneuver and we are doing it live. No panic. Doctrine parachute deployed."
 tags:
-  categories: ["documentation", "planning", "version-4.1.0"]
+  categories: ["documentation", "planning", "version-3.1.0"]
   collections: ["core-docs"]
   channels: ["dev", "public"]
 file:
-  title: "To-Do List for Version 4.1.0"
-  description: "Comprehensive task list and milestones for Lupopedia version 4.1.0 - First Public Release"
-  version: "4.1.0"
+  title: "To-Do List for Version 3.1.0"
+  description: "Comprehensive task list and milestones for Lupopedia version 3.1.0 - First Public Release"
+  version: "3.1.0"
   status: draft
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# TO-DO FOR VERSION 4.1.0
+# TO-DO FOR VERSION 3.1.0
 
-**Target Version:** 4.1.0  
-**Current Version:** 4.0.46  
+**Target Version:** 3.1.0  
+**Current Version:** 3.0.46  
 **Status:** Planning Phase  
 **Created:** 2026-01-16  
 **Captain Wolfie Directive:** "This is a Wolfie-class maneuver and we are doing it live."
@@ -37,13 +37,13 @@ file:
 - [ ] **Phase 3: Controlled Rollout** - High velocity, low risk deployment
   - [ ] One-click migration from Crafty Syntax
   - [ ] Auto-generate semantic structure from existing sites
-  - [ ] Release Lupopedia 4.1.0 as first public version
+  - [ ] Release Lupopedia 3.1.0 as first public version
   - [ ] Public announcement and documentation
   - [ ] User migration guides and tutorials
 
 ### 2. Git Integration & Version Control
 - [ ] **Add Git Support** - First version with Git integration
-  - [ ] Initialize `.git` repository (currently forbidden until 4.1.0)
+  - [ ] Initialize `.git` repository (currently forbidden until 3.1.0)
   - [ ] Set up GitHub repository
   - [ ] Create `.gitignore` following FTP deployment compatibility rules
   - [ ] Migrate from FTP-based deployment to Git-based workflow
@@ -64,8 +64,8 @@ file:
 - [ ] **User-Selectable Table Prefixes** - New installs only
   - [ ] Update installation wizard to allow prefix selection
   - [ ] Store user-selected prefix in `lupopedia-config.php`
-  - [ ] Update `docs/doctrine/TABLE_PREFIXING_DOCTRINE.md` with 4.1.0+ behavior
-  - [ ] Ensure upgrades (3.7.5→4.0.x) still enforce `lupo_` prefix
+  - [ ] Update `docs/doctrine/TABLE_PREFIXING_DOCTRINE.md` with 3.1.0+ behavior
+  - [ ] Ensure upgrades (3.7.5→3.0.x) still enforce `lupo_` prefix
   - [ ] Document prefix selection in installation documentation
   - [ ] Add validation for prefix format and conflicts
 
@@ -106,7 +106,7 @@ file:
   - [ ] Update README.md for public release
   - [ ] Create installation guide for new users
   - [ ] Create migration guide for Crafty Syntax users
-  - [ ] Update all version references to 4.1.0
+  - [ ] Update all version references to 3.1.0
   - [ ] Public API documentation
   - [ ] Developer onboarding guide
 
@@ -147,7 +147,7 @@ file:
 - [ ] **Production Schema Lock**
   - [ ] Finalize all 120 table schemas
   - [ ] Complete TOON file validation
-  - [ ] Schema migration scripts for 4.0.x → 4.1.0
+  - [ ] Schema migration scripts for 3.0.x → 3.1.0
   - [ ] Database optimization and indexing
   - [ ] Performance benchmarking
 
@@ -185,11 +185,11 @@ file:
 ## 📋 Pre-Release Checklist
 
 ### Version Bump Preparation
-- [ ] Update `config/global_atoms.yaml` - all version references to 4.1.0
+- [ ] Update `config/global_atoms.yaml` - all version references to 3.1.0
 - [ ] Update `lupo-includes/version.php` - version constants
-- [ ] Update `CHANGELOG.md` - add 4.1.0 entry
-- [ ] Update all WOLFIE Headers - `file.last_modified_system_version: 4.1.0`
-- [ ] Create `docs/migrations/4.1.0.md` - migration notes
+- [ ] Update `CHANGELOG.md` - add 3.1.0 entry
+- [ ] Update all WOLFIE Headers - `file.last_modified_system_version: 3.1.0`
+- [ ] Create `docs/migrations/3.1.0.md` - migration notes
 - [ ] Update all documentation version references
 
 ### Release Preparation
@@ -205,7 +205,7 @@ file:
 
 ## 🎯 Success Criteria
 
-**Version 4.1.0 is considered complete when:**
+**Version 3.1.0 is considered complete when:**
 - ✅ Git integration fully operational
 - ✅ JetBrains workflow integrated
 - ✅ First public release deployed
@@ -222,7 +222,7 @@ file:
 ## 📝 Notes
 
 **Captain Wolfie's Directive:**
-> "Ok crew, get this — I'm not going up a patch this time. I'm going up a whole minor version. That's right, we're jumping to 4.1.0. Now nobody freak out — freaking out is not helpful, and it is not a good emotion. Prepare to create a brand new file: TO_DO_FOR_VERSION_4_1_0.md. This is a Wolfie-class maneuver and we are doing it live."
+> "Ok crew, get this — I'm not going up a patch this time. I'm going up a whole minor version. That's right, we're jumping to 3.1.0. Now nobody freak out — freaking out is not helpful, and it is not a good emotion. Prepare to create a brand new file: TO_DO_FOR_VERSION_4_1_0.md. This is a Wolfie-class maneuver and we are doing it live."
 
 **Stoned Wolfie's Commentary:**
 > "Yo, just so everyone knows, a minor version jump is like… when the ship suddenly decides it wants to be a slightly bigger ship. Totally normal. Totally fine. No need to panic — panic is like, the worst vibe. We might get a little wobble on the R-axis of the worry emotion, but the doctrine parachute is deployed and we're chill. Carry on."

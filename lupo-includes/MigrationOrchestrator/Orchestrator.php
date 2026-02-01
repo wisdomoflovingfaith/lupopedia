@@ -4,7 +4,7 @@
  * WOLFIE HEADER
  * ======================================================================
  * wolfie.headers: explicit architecture with structured clarity for every file.
- * file.last_modified_system_version: 4.0.35
+ * file.last_modified_system_version: 3.0.35
  * header_atoms:
  *   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
  *   - GLOBAL_CURRENT_AUTHORS
@@ -14,7 +14,7 @@
  * dialog:
  *   speaker: CURSOR
  *   target: @everyone
- *   message: "Updated Orchestrator class for Migration Orchestrator state machine. Manages state transitions, coordinates migration execution, and enforces state machine rules. Implements 8-state machine: idle, preparing, validating_pre, migrating, validating_post, completing, rolling_back, failed (guardrail added 4.0.35)."
+ *   message: "Updated Orchestrator class for Migration Orchestrator state machine. Manages state transitions, coordinates migration execution, and enforces state machine rules. Implements 8-state machine: idle, preparing, validating_pre, migrating, validating_post, completing, rolling_back, failed (guardrail added 3.0.35)."
  *   mood: "00FF00"
  * tags:
  *   categories: ["migration", "orchestration", "state-machine"]
@@ -85,7 +85,7 @@ class Orchestrator
      * 5 = validating_post
      * 6 = completing
      * 7 = rolling_back
-     * 8 = failed (explicit failure state - guardrail added 4.0.35)
+     * 8 = failed (explicit failure state - guardrail added 3.0.35)
      */
     private const STATE_MAP = [
         1 => IdleState::class,

@@ -6,7 +6,7 @@
  * throughout the system.
  * 
  * @package Lupopedia
- * @version 4.0.20
+ * @version 3.0.20
  * @author Captain Wolfie
  */
 

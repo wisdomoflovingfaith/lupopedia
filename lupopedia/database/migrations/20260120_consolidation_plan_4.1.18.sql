@@ -1,4 +1,4 @@
--- Version: 4.1.18
+-- Version: 3.1.18
 -- Purpose: Schema consolidation planning (no schema changes)
 -- Date: 2026-01-20
 -- Notes:
@@ -7,7 +7,7 @@
 --     2. Analytics system (daily + monthly)
 --     3. Truth system (questions + answers)
 --     4. Collections system (collections + tabs)
---   Actual CREATE/DROP operations will occur in 4.1.19+
+--   Actual CREATE/DROP operations will occur in 3.1.19+
 
 -- Placeholder: CREATE TABLE lupo_unified_dialog_messages (...)
 -- Placeholder: CREATE TABLE lupo_unified_analytics_paths (...)

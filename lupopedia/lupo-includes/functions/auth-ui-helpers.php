@@ -2,11 +2,11 @@
 /**
  * wolfie.header.identity: auth-ui-helpers
  * wolfie.header.placement: /lupo-includes/functions/auth-ui-helpers.php
- * wolfie.header.version: 4.0.9
+ * wolfie.header.version: 3.0.9
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
- *   message: "Updated authentication UI helper for version 4.0.9. Enhanced lupo_render_login_status() to show profile avatar with dropdown menu when logged in (instead of just text links). All links now use LUPOPEDIA_PUBLIC_PATH for subdirectory compatibility. Profile avatar uses auth_user_id for filename lookup."
+ *   message: "Updated authentication UI helper for version 3.0.9. Enhanced lupo_render_login_status() to show profile avatar with dropdown menu when logged in (instead of just text links). All links now use LUPOPEDIA_PUBLIC_PATH for subdirectory compatibility. Profile avatar uses auth_user_id for filename lookup."
  *   mood: "00FF00"
  */
 

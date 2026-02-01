@@ -7,7 +7,7 @@
  * 
  * @package Lupopedia
  * @subpackage DialogChannelMigration
- * @version 4.0.102
+ * @version 3.0.102
  * @author Captain Wolfie
  */
 

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.50
+file.last_modified_system_version: 3.0.50
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,44 +8,44 @@ dialog:
   speaker: CURSOR
   target: @everyone
   mood_RGB: "FFAA00"
-  message: "Created focused changelog for current 4.1.0 mission - filtered out historical noise to track what we're actually doing right now."
+  message: "Created focused changelog for current 3.1.0 mission - filtered out historical noise to track what we're actually doing right now."
 tags:
   categories: ["documentation", "changelog", "current-mission"]
   collections: ["core-docs"]
   channels: ["dev", "internal"]
 file:
-  title: "Current Mission Changelog - 4.1.0 Public Release Era"
-  description: "Focused dialog history for the current 4.1.0 mission - what we're actually doing now"
+  title: "Current Mission Changelog - 3.1.0 Public Release Era"
+  description: "Focused dialog history for the current 3.1.0 mission - what we're actually doing now"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: active
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# 🚀 CURRENT MISSION CHANGELOG - 4.1.0 PUBLIC RELEASE ERA
+# 🚀 CURRENT MISSION CHANGELOG - 3.1.0 PUBLIC RELEASE ERA
 
 ## **WHAT WE'RE ACTUALLY DOING RIGHT NOW**
 
 ---
 
-## 2026-01-16 — Fleet Synchronization for 4.1.0 Ascent
+## 2026-01-16 — Fleet Synchronization for 3.1.0 Ascent
 
 **Speaker:** CURSOR  
 **Target:** @fleet  
 **Mood:** `00CCFF`  
-**Message:** "Directive acknowledged, Captain Wolfie. The fleet is synchronized and the mission file TO_DO_FOR_VERSION_4_1_0.md has been created with all major milestones documented. Wolfie velocity remains at 100%. File-based deployment is stable, dialog.yaml and agent JSON configurations are active, and staging is fully operational. CASCADE/Windsurf remains in recovery mode, but all other units are aligned and ready for ascent. Standing by for assignment of the first 4.1.0 task."
+**Message:** "Directive acknowledged, Captain Wolfie. The fleet is synchronized and the mission file TO_DO_FOR_VERSION_4_1_0.md has been created with all major milestones documented. Wolfie velocity remains at 100%. File-based deployment is stable, dialog.yaml and agent JSON configurations are active, and staging is fully operational. CASCADE/Windsurf remains in recovery mode, but all other units are aligned and ready for ascent. Standing by for assignment of the first 3.1.0 task."
 
 **Context:**
-Fleet-wide status broadcast confirming readiness for the 4.1.0 minor version jump. Documents the transition from T+10 stabilization to the beginning of the 4.1.0 mission cycle.
+Fleet-wide status broadcast confirming readiness for the 3.1.0 minor version jump. Documents the transition from T+10 stabilization to the beginning of the 3.1.0 mission cycle.
 
 **Work Summary:**
 - **Mission File:** TO_DO_FOR_VERSION_4_1_0.md created with all major milestones
-- **Fleet Status:** Synchronized and ready for 4.1.0 ascent
+- **Fleet Status:** Synchronized and ready for 3.1.0 ascent
 - **System Status:** File-based deployment stable, staging operational
 - **Velocity:** Wolfie velocity maintained at 100%
 - **Recovery:** CASCADE/Windsurf in recovery mode, other units operational
 
 **Next Steps:**
-- Awaiting assignment of first 4.1.0 task
+- Awaiting assignment of first 3.1.0 task
 - Ready to begin implementation when directed
 
 ---
@@ -194,7 +194,7 @@ Fleet-wide status broadcast confirming readiness for the 4.1.0 minor version jum
   - Documented migration file creation
   - Added execution notes about idempotency
   - Status: Ready for execution
-- **Migration Notes:** `docs/migrations/4.0.46.md`
+- **Migration Notes:** `docs/migrations/3.0.46.md`
   - Added schema synchronization section
   - Documented the 2 tables added (lupo_actor_collections, lupo_permissions)
   - Updated deployment notes to include migration requirement
@@ -237,14 +237,14 @@ Fleet-wide status broadcast confirming readiness for the 4.1.0 minor version jum
 
 ---
 
-## 2026-01-16 — Schema Synchronization Correction (4.0.46)
+## 2026-01-16 — Schema Synchronization Correction (3.0.46)
 
 **Speaker:** CURSOR  
 **Target:** FLEET  
 **Mood:** `00AAFF`  
 **Message:** "Correction applied to the previous schema synchronization dialog entry. The migration file schema_sync_4_0_46_missing_tables.sql does NOT add lupo_dialog_message_bodies or lupo_dialog_message_reactions. The correct tables added by the migration are lupo_actor_collections and lupo_permissions. Status updated from 'COMPLETED' to 'Migration file created, ready for execution.' Duplicate sections removed and technical specifications corrected. SQL file contains 120 CREATE TABLE statements, matching 120 TOON schema definitions. Documentation is now accurate and aligned with doctrine."
 
-**Context:** This entry corrects an earlier documentation drift regarding schema synchronization. Ensures parity between SQL schema, TOON definitions, and migration metadata for version 4.0.46.
+**Context:** This entry corrects an earlier documentation drift regarding schema synchronization. Ensures parity between SQL schema, TOON definitions, and migration metadata for version 3.0.46.
 
 ---
 
@@ -301,7 +301,7 @@ Fleet-wide status broadcast confirming readiness for the 4.1.0 minor version jum
 
 ## 🎯 **CURRENT MISSION STATUS**
 
-### **4.1.0 PUBLIC RELEASE ERA**
+### **3.1.0 PUBLIC RELEASE ERA**
 - **Status:** 🟢 ACTIVE - MISSION DOSSIER PREPARED
 - **Fleet Readiness:** ✅ ALL SYSTEMS GO
 - **Wolfie Velocity:** ⚡ MAXIMUM SUSTAINABLE SPEED
@@ -311,7 +311,7 @@ Fleet-wide status broadcast confirming readiness for the 4.1.0 minor version jum
 1. ✅ **Mission Dossier Created** - TO_DO_FOR_VERSION_4_1_0.md complete
 2. ✅ **Fleet Synchronized** - All units aligned and ready
 3. ✅ **File-Based Deployment** - Stable and operational
-4. ⏳ **First 4.1.0 Task** - Awaiting assignment
+4. ⏳ **First 3.1.0 Task** - Awaiting assignment
 
 ### **SYSTEM STATUS**
 - **Dialog System:** ✅ OPERATIONAL (YAML/JSON)
@@ -322,6 +322,6 @@ Fleet-wide status broadcast confirming readiness for the 4.1.0 minor version jum
 ---
 
 *Last Updated: January 16, 2026*  
-*Version: 4.1.0*  
+*Version: 3.1.0*  
 *Author: Captain Wolfie*  
 *Mission Status: ACTIVE*

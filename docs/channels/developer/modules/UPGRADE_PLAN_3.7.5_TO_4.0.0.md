@@ -1,7 +1,7 @@
 Absolutely, Eric — here is the **full, final, production‑ready**  
-**UPGRADE_PLAN_3.7.5_TO_4.0.0.md**, rewritten to match:
+**UPGRADE_PLAN_3.7.5_TO_3.0.0.md**, rewritten to match:
 
-- the **real architecture** of Lupopedia 4.0.0  
+- the **real architecture** of Lupopedia 3.0.0  
 - the **Crafty Syntax compatibility layer**  
 - the **refactor JSON system**  
 - the **importer + toon file workflow**  
@@ -10,31 +10,31 @@ Absolutely, Eric — here is the **full, final, production‑ready**
 - the **multi‑agent IDE workflow** (Cursor, Windsurf/Cascade, DeepSeek)  
 - the **WOLFIE Header doctrine**  
 
-This is the document you will ship with 4.0.0.
+This is the document you will ship with 3.0.0.
 
 ---
 
-# ✅ **UPGRADE_PLAN_3.7.5_TO_4.0.0.md**  
+# ✅ **UPGRADE_PLAN_3.7.5_TO_3.0.0.md**  
 *(Complete, polished, Lupopedia‑accurate, ready for docs/)*
 
 ```markdown
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Complete upgrade plan from Crafty Syntax 3.7.5 to Lupopedia + Crafty Syntax 4.0.0, including refactor JSON system and compatibility layer."
+  message: "Complete upgrade plan from Crafty Syntax 3.7.5 to Lupopedia + Crafty Syntax 3.0.0, including refactor JSON system and compatibility layer."
 tags:
   categories: ["upgrade", "migration", "craftysyntax"]
   collections: ["core-docs"]
   channels: ["public", "dev"]
 file:
-  title: "Upgrade Plan: Crafty Syntax 3.7.5 → 4.0.0"
-  description: "Full migration plan for upgrading legacy Crafty Syntax installations into Lupopedia 4.0.0 with compatibility layer and refactor JSON system."
+  title: "Upgrade Plan: Crafty Syntax 3.7.5 → 3.0.0"
+  description: "Full migration plan for upgrading legacy Crafty Syntax installations into Lupopedia 3.0.0 with compatibility layer and refactor JSON system."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   architect: Captain Wolfie
@@ -42,11 +42,11 @@ file:
 ---
 
 # 🛠️ Upgrade Plan  
-## Crafty Syntax 3.7.5 → Lupopedia + Crafty Syntax 4.0.0
+## Crafty Syntax 3.7.5 → Lupopedia + Crafty Syntax 3.0.0
 
-This document describes the **official, deterministic, fully backward‑compatible** upgrade path for Crafty Syntax Live Help (CSLH) versions **3.6.1 through 3.7.5** into the new **Lupopedia 4.0.0** platform.
+This document describes the **official, deterministic, fully backward‑compatible** upgrade path for Crafty Syntax Live Help (CSLH) versions **3.6.1 through 3.7.5** into the new **Lupopedia 3.0.0** platform.
 
-Crafty Syntax 4.0.0 is now a **bundled module** inside Lupopedia and shares the same version number.  
+Crafty Syntax 3.0.0 is now a **bundled module** inside Lupopedia and shares the same version number.  
 Both systems are **version‑locked** and released together.
 
 ---
@@ -55,7 +55,7 @@ Both systems are **version‑locked** and released together.
 
 ### Why this upgrade exists
 Crafty Syntax development paused for nearly **15 years**.  
-Lupopedia 4.0.0 is a **complete architectural rewrite** that:
+Lupopedia 3.0.0 is a **complete architectural rewrite** that:
 
 - modernizes the schema  
 - replaces every legacy table  
@@ -72,7 +72,7 @@ Lupopedia 4.0.0 is a **complete architectural rewrite** that:
 - Rewrites all SQL queries using **refactor JSON**  
 - Preserves all old URLs (`livehelp.php`, `livehelp_js.php`, etc.)  
 - Drops all legacy tables after successful import  
-- Installs Crafty Syntax 4.0.0 as a Lupopedia module  
+- Installs Crafty Syntax 3.0.0 as a Lupopedia module  
 
 ### What this upgrade does *not* do
 - It does **not** preserve active chat sessions  
@@ -101,7 +101,7 @@ All 34 legacy tables are **dropped** after successful migration.
 
 # 🧬 Doctrine Requirements (Non‑Negotiable)
 
-Lupopedia 4.0.0 follows strict database rules:
+Lupopedia 3.0.0 follows strict database rules:
 
 - **No foreign keys**  
 - **No triggers**  
@@ -119,7 +119,7 @@ All migration scripts follow this doctrine.
 
 # 🟦 Backward Compatibility Layer (Critical)
 
-Version 4.0.0 must continue to behave **exactly like Crafty Syntax 3.7.5** when users or websites request:
+Version 3.0.0 must continue to behave **exactly like Crafty Syntax 3.7.5** when users or websites request:
 
 - `/lupopedia/livehelp.php`
 - `/lupopedia/livehelp_js.php`
@@ -155,7 +155,7 @@ These files:
 
 - preserve all old GET/POST parameters  
 - preserve old output formats (HTML, JS, XMLHTTP)  
-- call into the new Crafty Syntax 4.0.0 runtime  
+- call into the new Crafty Syntax 3.0.0 runtime  
 - use the new schema under the hood  
 - behave exactly like 3.7.5  
 
@@ -354,7 +354,7 @@ Once all steps are complete:
 
 - Crafty Syntax 3.7.5 is fully modernized  
 - All data lives in the Lupopedia domain model  
-- The system now runs on the 4.0.0 semantic OS  
+- The system now runs on the 3.0.0 semantic OS  
 - You gain access to the agent ecosystem  
 - You gain semantic navigation  
 - You gain federated awareness  

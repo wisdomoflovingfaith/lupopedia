@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -13,7 +13,7 @@ tags:
 file:
   title: "WOLFIE Header Global Atoms — Cursor Implementation Guide"
   description: "Practical guide for Cursor on when and how to use global atoms in WOLFIE Headers"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---
@@ -94,7 +94,7 @@ When resolving an atom, Cursor MUST check in this order:
    - ❌ Do NOT inline atom values
 
 2. **Rewrite atom references to literal values**
-   - ❌ Do NOT change `version: CURRENT_VERSION` to `version: "4.0.1"`
+   - ❌ Do NOT change `version: CURRENT_VERSION` to `version: "3.0.1"`
 
 3. **Generate or modify `global_atoms.yaml`**
    - ❌ Do NOT create or edit `/config/global_atoms.yaml` unless explicitly instructed
@@ -154,13 +154,13 @@ file:
 ```yaml
 # Located at: docs/agents/_dir_atoms.yaml
 DIR_DOCS_AUTHOR: "Documentation Team"
-DIRR_DOCS_VERSION: "4.0.1"
+DIRR_DOCS_VERSION: "3.0.1"
 ```
 
 ### In `module_atoms.yaml` (module-scoped):
 ```yaml
 # Located at: modules/craftysyntax/module_atoms.yaml
-MODULE_CRAFTYSYNTAX_VERSION: "4.0.1"
+MODULE_CRAFTYSYNTAX_VERSION: "3.0.1"
 MODULE_CRAFTYSYNTAX_AUTHOR: "Crafty Syntax Team"
 ```
 
@@ -168,14 +168,14 @@ MODULE_CRAFTYSYNTAX_AUTHOR: "Crafty Syntax Team"
 ```yaml
 # Located at: /config/global_atoms.yaml
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie"
-GLOBAL_CURRENT_VERSION: "4.0.1"
+GLOBAL_CURRENT_VERSION: "3.0.1"
 ```
 
 ### Resolved (for display only, NOT written to file):
 ```yaml
 file:
   author: "Captain Wolfie"  # Resolved from GLOBAL_CURRENT_AUTHORS
-  version: "4.0.1"          # Resolved from MODULE_DOCS_VERSION
+  version: "3.0.1"          # Resolved from MODULE_DOCS_VERSION
   status: "draft"           # Resolved from FILE_CUSTOM_STATUS
 ```
 
@@ -253,12 +253,12 @@ When Cursor reads a file with atoms:
    - Check `file_atoms:` block → Found `FILE_CUSTOM_STATUS: "draft"`
    - Check `_dir_atoms.yaml` in file's directory → Check for `DIR_*` and `DIRR_*`
    - Walk up parent directories for `DIRR_*` → Check each `_dir_atoms.yaml` until found
-   - Check `module_atoms.yaml` for current module → Found `MODULE_DOCS_VERSION: "4.0.1"`
+   - Check `module_atoms.yaml` for current module → Found `MODULE_DOCS_VERSION: "3.0.1"`
    - Check `/config/global_atoms.yaml` → Found `GLOBAL_CURRENT_AUTHORS: "Captain Wolfie"`
 
 3. **Resolve atoms (for display/processing)**
    - `GLOBAL_CURRENT_AUTHORS` → `"Captain Wolfie"` (from global)
-   - `MODULE_DOCS_VERSION` → `"4.0.1"` (from module)
+   - `MODULE_DOCS_VERSION` → `"3.0.1"` (from module)
    - `FILE_CUSTOM_STATUS` → `"draft"` (from file_atoms)
    - Use resolved values for understanding context
 
@@ -300,7 +300,7 @@ Based on `/config/global_atoms.yaml`:
 - `GLOBAL_PROJECT_NAME` → Project name
 - `GLOBAL_DEFAULT_STATUS` → Default file status
 - `GLOBAL_LUPOPEDIA_COMPANY_STRUCTURE` → Company structure, teams, work rhythm
-- `GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS` → v4.0.2 required core agent list
+- `GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS` → v3.0.2 required core agent list
 
 **Reference Syntax in Documentation:**
 When referencing global atoms in documentation prose, use the resolver syntax:
@@ -381,7 +381,7 @@ DIR_DOCS_AUTHOR: "Documentation Team"
 ### DIRR_* (Recursive)
 **File:** `docs/_dir_atoms.yaml`
 ```yaml
-DIRR_DOCS_VERSION: "4.0.1"
+DIRR_DOCS_VERSION: "3.0.1"
 ```
 - Applies to: Files in `docs/` AND all subdirectories
 - Resolution: Walk up from file's directory until `_dir_atoms.yaml` is found

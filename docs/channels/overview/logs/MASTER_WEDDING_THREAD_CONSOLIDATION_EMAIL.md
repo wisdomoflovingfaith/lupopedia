@@ -202,7 +202,7 @@ These must be added to the Canon Closure Protocol.
 ## 13. System Version Context
 
 Current system state as of wedding thread:
-- **Lupopedia Version**: 4.0.89 (global_atoms.yaml)
+- **Lupopedia Version**: 3.0.89 (global_atoms.yaml)
 - **Agent Count**: 27 core agents, 128 total defined
 - **Architecture**: Actor-centric semantic OS
 - **Database**: 120 tables across 3 schemas
@@ -212,19 +212,19 @@ Current system state as of wedding thread:
 
 ## 14. Critical Architecture Updates Required
 
-### 14.1 Agent Awareness Layer (v4.0.70)
+### 14.1 Agent Awareness Layer (v3.0.70)
 - Reverse Shaka Handshake Protocol established
 - Multi-agent coordination framework operational
 - Fleet management and synchronization active
 - Trust level management implemented
 
-### 14.2 Critique Integration Protocol (v4.0.73)
+### 14.2 Critique Integration Protocol (v3.0.73)
 - Non-defensive processing framework
 - Systematic critique integration pipeline
 - Doctrine evolution automation
 - Cross-layer propagation capabilities
 
-### 14.3 Integration Testing Doctrine (v4.0.71)
+### 14.3 Integration Testing Doctrine (v3.0.71)
 - 8-state migration orchestrator validation
 - Agent Awareness Layer testing protocols
 - Cross-layer integration testing framework
@@ -279,7 +279,7 @@ Cursor, please:
    - Document Crafty Syntax lineage in architecture maps
 
 3. **Ensure changelog entries follow LMS v1.0**
-   - Create comprehensive v4.0.90+ entries for wedding thread discoveries
+   - Create comprehensive v3.0.90+ entries for wedding thread discoveries
    - Document all architectural changes with proper version tracking
    - Maintain BIGINT UTC timestamp format compliance
 
@@ -298,8 +298,8 @@ Cursor, please:
 ## VERSION TARGET
 
 All updates should target integration with:
-- **Current Base**: v4.0.89
-- **Target Release**: v4.0.90+ (wedding thread consolidation)
+- **Current Base**: v3.0.89
+- **Target Release**: v3.0.90+ (wedding thread consolidation)
 - **Compliance**: Full doctrine alignment maintained
 - **Architecture**: Actor-centric semantic OS preserved
 

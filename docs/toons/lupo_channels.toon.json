@@ -21,7 +21,7 @@
     "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'",
     "`aal_metadata_json` json COMMENT 'Agent Awareness Layer metadata for WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE'",
     "`fleet_composition_json` json COMMENT 'Current fleet of agents in this channel with their roles'",
-    "`awareness_version` varchar(20) DEFAULT '4.0.72' COMMENT 'AAL protocol version for this channel'",
+    "`awareness_version` varchar(20) DEFAULT '3.0.72' COMMENT 'AAL protocol version for this channel'",
     "`channel_number` int COMMENT 'Channel number (0-9 reserved for system)'",
     "`parent_channel_id` bigint COMMENT 'Reference to parent channel for hierarchy'",
     "`is_kernel` tinyint NOT NULL DEFAULT 0 COMMENT 'Part of system kernel (Channel 0)'",

@@ -15,7 +15,7 @@
 - **Created By Actor ID**: 0 (System Agent)
 - **Default Actor ID**: 1 (Captain Wolfie)
 - **Background Color**: #CCCCCC
-- **Awareness Version**: 4.0.72
+- **Awareness Version**: 3.0.72
 
 ## Channel Purpose
 This channel serves as:

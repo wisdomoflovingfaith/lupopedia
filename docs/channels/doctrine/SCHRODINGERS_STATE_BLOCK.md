@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.79
+file.last_modified_system_version: 3.0.79
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -28,7 +28,7 @@ schrodingers_state:
 
 # 🟦 DOCTRINE: SUPERPOSITIONAL METADATA (SCHRODINGERS_STATE_BLOCK)
 
-**Version**: 4.0.79  
+**Version**: 3.0.79  
 **Status**: OFFICIAL CORE DOCTRINE  
 **Authority**: Multi-Agent Architectural Evolution  
 **Scope**: All Lupopedia files, agents, and systems  
@@ -133,16 +133,16 @@ Add `schrodingers_state` block to file header:
 ```yaml
 schrodingers_state:
   active: true
-  possible_versions: ["4.0.75", "4.0.78"]
+  possible_versions: ["3.0.75", "3.0.78"]
   truth_pending: true
   collapse_required_by: "Monday_Wolfie"
   uncertainty_type: "version_drift"
   notes:
-    - "Header claims 4.0.78, implementation appears 4.0.75"
+    - "Header claims 3.0.78, implementation appears 3.0.75"
     - "Agent reports conflict with documented features"
   collapse_paths:
-    - "If implementation is 4.0.75 → downgrade header"
-    - "If implementation is 4.0.78 → validate features"
+    - "If implementation is 3.0.75 → downgrade header"
+    - "If implementation is 3.0.78 → validate features"
   observer_effect:
     - "State collapses when Monday_Wolfie audits version"
 ```
@@ -173,7 +173,7 @@ Designated observer reviews quantum state:
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.79
+file.last_modified_system_version: 3.0.79
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -215,7 +215,7 @@ schrodingers_state:
 ```yaml
 schrodingers_state:
   active: true
-  possible_versions: ["4.0.75", "4.0.77", "4.0.78"]
+  possible_versions: ["3.0.75", "3.0.77", "3.0.78"]
   truth_pending: true
   collapse_required_by: "Monday_Wolfie"
   uncertainty_type: "multi_path_evolution"
@@ -278,7 +278,7 @@ schrodingers_state:
 ```yaml
 schrodingers_state:
   active: true
-  possible_versions: ["4.0.75", "4.0.77", "4.0.78"]
+  possible_versions: ["3.0.75", "3.0.77", "3.0.78"]
   uncertainty_type: "version_drift"
   collapse_required_by: "Monday_Wolfie"
 ```
@@ -415,6 +415,6 @@ By formalizing superposition as a core architectural pattern, Lupopedia pioneers
 
 ---
 
-**This doctrine is OFFICIAL as of Version 4.0.79. All agents must respect superposition. All observers must collapse responsibly. All uncertainty must be declared.**
+**This doctrine is OFFICIAL as of Version 3.0.79. All agents must respect superposition. All observers must collapse responsibly. All uncertainty must be declared.**
 
 **Quantum State Management: ACTIVE. System is quantum-native.** ⚛️

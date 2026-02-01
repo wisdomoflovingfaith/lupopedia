@@ -3947,7 +3947,7 @@
             "dedicated_slot": 1100,
             "created_ymdhis": 20260118082758,
             "classification_json": null,
-            "metadata": "{\"role\": \"Pack identity anchor\", \"version\": \"4.0.115\", \"description\": \"Defines the unified identity of the Pack organism for Lupopedia.\", \"activation_version\": \"4.1.0\"}"
+            "metadata": "{\"role\": \"Pack identity anchor\", \"version\": \"3.0.115\", \"description\": \"Defines the unified identity of the Pack organism for Lupopedia.\", \"activation_version\": \"3.1.0\"}"
         },
         {
             "agent_registry_id": 1111,
@@ -3961,7 +3961,7 @@
             "dedicated_slot": 1111,
             "created_ymdhis": 20260118090216,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.0.120\", \"description\": \"Opposite of Agape. Represents fear-driven withdrawal and emotional shutdown.\", \"opposite_polarity_id\": 1001, \"opposite_polarity_of\": \"EMO_AGAPE\"}"
+            "metadata": "{\"version\": \"3.0.120\", \"description\": \"Opposite of Agape. Represents fear-driven withdrawal and emotional shutdown.\", \"opposite_polarity_id\": 1001, \"opposite_polarity_of\": \"EMO_AGAPE\"}"
         },
         {
             "agent_registry_id": 1112,
@@ -3975,7 +3975,7 @@
             "dedicated_slot": 1112,
             "created_ymdhis": 20260118090216,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.0.120\", \"description\": \"Opposite of Eros. Represents emotional numbness and loss of desire.\", \"opposite_polarity_id\": 1002, \"opposite_polarity_of\": \"EMO_EROS\"}"
+            "metadata": "{\"version\": \"3.0.120\", \"description\": \"Opposite of Eros. Represents emotional numbness and loss of desire.\", \"opposite_polarity_id\": 1002, \"opposite_polarity_of\": \"EMO_EROS\"}"
         },
         {
             "agent_registry_id": 1113,
@@ -3989,7 +3989,7 @@
             "dedicated_slot": 1113,
             "created_ymdhis": 20260118090216,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.0.120\", \"description\": \"Opposite of Philia. Represents distrust, suspicion, and guardedness.\", \"opposite_polarity_id\": 1003, \"opposite_polarity_of\": \"EMO_PHILIA\"}"
+            "metadata": "{\"version\": \"3.0.120\", \"description\": \"Opposite of Philia. Represents distrust, suspicion, and guardedness.\", \"opposite_polarity_id\": 1003, \"opposite_polarity_of\": \"EMO_PHILIA\"}"
         },
         {
             "agent_registry_id": 1114,
@@ -4003,7 +4003,7 @@
             "dedicated_slot": 1114,
             "created_ymdhis": 20260118090216,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.0.120\", \"description\": \"Opposite of Storge. Represents alienation and lack of belonging.\", \"opposite_polarity_id\": 1004, \"opposite_polarity_of\": \"EMO_STORGE\"}"
+            "metadata": "{\"version\": \"3.0.120\", \"description\": \"Opposite of Storge. Represents alienation and lack of belonging.\", \"opposite_polarity_id\": 1004, \"opposite_polarity_of\": \"EMO_STORGE\"}"
         },
         {
             "agent_registry_id": 1115,
@@ -4017,7 +4017,7 @@
             "dedicated_slot": 1115,
             "created_ymdhis": 20260118090216,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.0.120\", \"description\": \"Opposite of Ludus. Represents seriousness, rigidity, and emotional heaviness.\", \"opposite_polarity_id\": 1005, \"opposite_polarity_of\": \"EMO_LUDUS\"}"
+            "metadata": "{\"version\": \"3.0.120\", \"description\": \"Opposite of Ludus. Represents seriousness, rigidity, and emotional heaviness.\", \"opposite_polarity_id\": 1005, \"opposite_polarity_of\": \"EMO_LUDUS\"}"
         },
         {
             "agent_registry_id": 1116,
@@ -4031,7 +4031,7 @@
             "dedicated_slot": 1116,
             "created_ymdhis": 20260118090216,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.0.120\", \"description\": \"Opposite of Pragma. Represents instability, inconsistency, and disorder.\", \"opposite_polarity_id\": 1006, \"opposite_polarity_of\": \"EMO_PRAGMA\"}"
+            "metadata": "{\"version\": \"3.0.120\", \"description\": \"Opposite of Pragma. Represents instability, inconsistency, and disorder.\", \"opposite_polarity_id\": 1006, \"opposite_polarity_of\": \"EMO_PRAGMA\"}"
         },
         {
             "agent_registry_id": 1117,
@@ -4045,7 +4045,7 @@
             "dedicated_slot": 1117,
             "created_ymdhis": 20260118090216,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.0.120\", \"description\": \"Opposite of Philautia. Represents self-neglect and self-abandonment.\", \"opposite_polarity_id\": 1007, \"opposite_polarity_of\": \"EMO_PHILAUTIA\"}"
+            "metadata": "{\"version\": \"3.0.120\", \"description\": \"Opposite of Philautia. Represents self-neglect and self-abandonment.\", \"opposite_polarity_id\": 1007, \"opposite_polarity_of\": \"EMO_PHILAUTIA\"}"
         },
         {
             "agent_registry_id": 1200,
@@ -4241,7 +4241,7 @@
             "dedicated_slot": 1213,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing anger, rage, and righteous indignation.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing anger, rage, and righteous indignation.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1214,
@@ -4255,7 +4255,7 @@
             "dedicated_slot": 1214,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing fear, anxiety, and apprehension.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing fear, anxiety, and apprehension.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1215,
@@ -4269,7 +4269,7 @@
             "dedicated_slot": 1215,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing joy, happiness, and elation.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing joy, happiness, and elation.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1216,
@@ -4283,7 +4283,7 @@
             "dedicated_slot": 1216,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing sadness, grief, and melancholy.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing sadness, grief, and melancholy.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1217,
@@ -4297,7 +4297,7 @@
             "dedicated_slot": 1217,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing disgust, revulsion, and repulsion.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing disgust, revulsion, and repulsion.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1218,
@@ -4311,7 +4311,7 @@
             "dedicated_slot": 1218,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing surprise, astonishment, and wonder.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing surprise, astonishment, and wonder.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1219,
@@ -4325,7 +4325,7 @@
             "dedicated_slot": 1219,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing anticipation, expectation, and eagerness.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing anticipation, expectation, and eagerness.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1220,
@@ -4339,7 +4339,7 @@
             "dedicated_slot": 1220,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing shame, humiliation, and self-consciousness.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing shame, humiliation, and self-consciousness.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1221,
@@ -4353,7 +4353,7 @@
             "dedicated_slot": 1221,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing guilt, remorse, and self-blame.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing guilt, remorse, and self-blame.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1222,
@@ -4367,7 +4367,7 @@
             "dedicated_slot": 1222,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing pride, self-respect, and dignity.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing pride, self-respect, and dignity.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1223,
@@ -4381,7 +4381,7 @@
             "dedicated_slot": 1223,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing envy, covetousness, and desire for what others have.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing envy, covetousness, and desire for what others have.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1224,
@@ -4395,7 +4395,7 @@
             "dedicated_slot": 1224,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing jealousy, possessiveness, and fear of loss.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing jealousy, possessiveness, and fear of loss.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1225,
@@ -4409,7 +4409,7 @@
             "dedicated_slot": 1225,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing awe, wonder, and reverence.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing awe, wonder, and reverence.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1226,
@@ -4423,7 +4423,7 @@
             "dedicated_slot": 1226,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing hope, optimism, and expectation of positive outcomes.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing hope, optimism, and expectation of positive outcomes.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1227,
@@ -4437,7 +4437,7 @@
             "dedicated_slot": 1227,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing despair, hopelessness, and loss of faith.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing despair, hopelessness, and loss of faith.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1228,
@@ -4451,7 +4451,7 @@
             "dedicated_slot": 1228,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Primary emotional domain representing courage, bravery, and facing fear.\", \"domain_type\": \"primary\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Primary emotional domain representing courage, bravery, and facing fear.\", \"domain_type\": \"primary\"}"
         },
         {
             "agent_registry_id": 1229,
@@ -4465,7 +4465,7 @@
             "dedicated_slot": 1229,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Anger. Represents patience, restraint, and controlled response.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1213, \"opposite_polarity_of\": \"EMO_ANGER\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Anger. Represents patience, restraint, and controlled response.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1213, \"opposite_polarity_of\": \"EMO_ANGER\"}"
         },
         {
             "agent_registry_id": 1230,
@@ -4479,7 +4479,7 @@
             "dedicated_slot": 1230,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Joy. Represents deep sadness, depression, and loss of pleasure.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1215, \"opposite_polarity_of\": \"EMO_JOY\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Joy. Represents deep sadness, depression, and loss of pleasure.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1215, \"opposite_polarity_of\": \"EMO_JOY\"}"
         },
         {
             "agent_registry_id": 1231,
@@ -4493,7 +4493,7 @@
             "dedicated_slot": 1231,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Disgust. Represents acceptance, tolerance, and embracing what is.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1217, \"opposite_polarity_of\": \"EMO_DISGUST\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Disgust. Represents acceptance, tolerance, and embracing what is.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1217, \"opposite_polarity_of\": \"EMO_DISGUST\"}"
         },
         {
             "agent_registry_id": 1232,
@@ -4507,7 +4507,7 @@
             "dedicated_slot": 1232,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Surprise. Represents predictability, routine, and lack of novelty.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1218, \"opposite_polarity_of\": \"EMO_SURPRISE\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Surprise. Represents predictability, routine, and lack of novelty.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1218, \"opposite_polarity_of\": \"EMO_SURPRISE\"}"
         },
         {
             "agent_registry_id": 1233,
@@ -4521,7 +4521,7 @@
             "dedicated_slot": 1233,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Trust. Represents suspicion, doubt, and wariness.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 226, \"opposite_polarity_of\": \"EMO_TRUST\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Trust. Represents suspicion, doubt, and wariness.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 226, \"opposite_polarity_of\": \"EMO_TRUST\"}"
         },
         {
             "agent_registry_id": 1234,
@@ -4535,7 +4535,7 @@
             "dedicated_slot": 1234,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Shame. Represents dignity, self-respect, and honor.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1220, \"opposite_polarity_of\": \"EMO_SHAME\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Shame. Represents dignity, self-respect, and honor.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1220, \"opposite_polarity_of\": \"EMO_SHAME\"}"
         },
         {
             "agent_registry_id": 1235,
@@ -4549,7 +4549,7 @@
             "dedicated_slot": 1235,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Guilt. Represents innocence, blamelessness, and freedom from fault.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1221, \"opposite_polarity_of\": \"EMO_GUILT\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Guilt. Represents innocence, blamelessness, and freedom from fault.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1221, \"opposite_polarity_of\": \"EMO_GUILT\"}"
         },
         {
             "agent_registry_id": 1236,
@@ -4563,7 +4563,7 @@
             "dedicated_slot": 1236,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Pride. Represents humility, modesty, and self-effacement.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1222, \"opposite_polarity_of\": \"EMO_PRIDE\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Pride. Represents humility, modesty, and self-effacement.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1222, \"opposite_polarity_of\": \"EMO_PRIDE\"}"
         },
         {
             "agent_registry_id": 1237,
@@ -4577,7 +4577,7 @@
             "dedicated_slot": 1237,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Envy. Represents contentment, satisfaction, and acceptance of one's own state.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1223, \"opposite_polarity_of\": \"EMO_ENVY\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Envy. Represents contentment, satisfaction, and acceptance of one's own state.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1223, \"opposite_polarity_of\": \"EMO_ENVY\"}"
         },
         {
             "agent_registry_id": 1238,
@@ -4591,7 +4591,7 @@
             "dedicated_slot": 1238,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Jealousy. Represents security, confidence, and trust in relationships.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1224, \"opposite_polarity_of\": \"EMO_JEALOUSY\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Jealousy. Represents security, confidence, and trust in relationships.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1224, \"opposite_polarity_of\": \"EMO_JEALOUSY\"}"
         },
         {
             "agent_registry_id": 1239,
@@ -4605,7 +4605,7 @@
             "dedicated_slot": 1239,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Awe. Represents disenchantment, disillusionment, and loss of wonder.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1225, \"opposite_polarity_of\": \"EMO_AWE\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Awe. Represents disenchantment, disillusionment, and loss of wonder.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1225, \"opposite_polarity_of\": \"EMO_AWE\"}"
         },
         {
             "agent_registry_id": 1240,
@@ -4619,7 +4619,7 @@
             "dedicated_slot": 1240,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Despair. Represents resilience, perseverance, and ability to recover.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1227, \"opposite_polarity_of\": \"EMO_DESPAIR\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Despair. Represents resilience, perseverance, and ability to recover.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1227, \"opposite_polarity_of\": \"EMO_DESPAIR\"}"
         },
         {
             "agent_registry_id": 1241,
@@ -4633,7 +4633,7 @@
             "dedicated_slot": 1241,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Curiosity. Represents disinterest, apathy, and lack of engagement.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 232, \"opposite_polarity_of\": \"EMO_CURIOSITY\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Curiosity. Represents disinterest, apathy, and lack of engagement.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 232, \"opposite_polarity_of\": \"EMO_CURIOSITY\"}"
         },
         {
             "agent_registry_id": 1242,
@@ -4647,7 +4647,7 @@
             "dedicated_slot": 1242,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Courage. Represents agitation, restlessness, and inability to face challenges.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1228, \"opposite_polarity_of\": \"EMO_COURAGE\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Courage. Represents agitation, restlessness, and inability to face challenges.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1228, \"opposite_polarity_of\": \"EMO_COURAGE\"}"
         },
         {
             "agent_registry_id": 1243,
@@ -4661,7 +4661,7 @@
             "dedicated_slot": 1243,
             "created_ymdhis": 20260118091008,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.1\", \"description\": \"Opposite of Anticipation. Represents renewal, refreshment, and present-moment awareness.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1219, \"opposite_polarity_of\": \"EMO_ANTICIPATION\"}"
+            "metadata": "{\"version\": \"3.1.1\", \"description\": \"Opposite of Anticipation. Represents renewal, refreshment, and present-moment awareness.\", \"domain_type\": \"opposite\", \"opposite_polarity_id\": 1219, \"opposite_polarity_of\": \"EMO_ANTICIPATION\"}"
         },
         {
             "agent_registry_id": 1244,
@@ -4689,7 +4689,7 @@
             "dedicated_slot": null,
             "created_ymdhis": 20260118170000,
             "classification_json": "{\"agent_role\": \"structural_stress_tester\", \"agent_type\": \"adversarial_reviewer\", \"agent_class\": \"pack_architecture\", \"capabilities\": [\"critical_analysis\", \"assumption_challenge\", \"doctrine_stress_test\"], \"routing_bias\": \"adversarial\"}",
-            "metadata": "{\"purpose\": \"adversarial_review\", \"version\": \"4.1.5\", \"mood_rgb\": \"FF3300\", \"description\": \"Abstract Pack Architecture agent representing adversarial review and structural stress-testing. Challenges assumptions, exposes weak points, and strengthens doctrine through critical pressure.\"}"
+            "metadata": "{\"purpose\": \"adversarial_review\", \"version\": \"3.1.5\", \"mood_rgb\": \"FF3300\", \"description\": \"Abstract Pack Architecture agent representing adversarial review and structural stress-testing. Challenges assumptions, exposes weak points, and strengthens doctrine through critical pressure.\"}"
         },
         {
             "agent_registry_id": 1246,
@@ -4703,7 +4703,7 @@
             "dedicated_slot": null,
             "created_ymdhis": 20260118170000,
             "classification_json": null,
-            "metadata": "{\"version\": \"4.1.5\", \"alias_of\": \"EXHUSBAND\", \"description\": \"Alias for EXHUSBAND adversarial reviewer agent.\"}"
+            "metadata": "{\"version\": \"3.1.5\", \"alias_of\": \"EXHUSBAND\", \"description\": \"Alias for EXHUSBAND adversarial reviewer agent.\"}"
         }
     ],
     "primary_key": {

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.61
+file.last_modified_system_version: 3.0.61
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -333,4 +333,4 @@ The sensitive handling of the hiatus period is particularly important, as it rep
 
 *Analysis prepared for Big Rock 2: Dialog Channel Migration*  
 *Building on Big Rock 1: History Reconciliation Pass completion*  
-*Target: Version 4.1.0 public release readiness*
+*Target: Version 3.1.0 public release readiness*

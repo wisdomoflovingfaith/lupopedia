@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,7 +8,7 @@ dialog:
   speaker: CURSOR
   target: @everyone @FLEET
   mood_RGB: "FF6600"
-  message: "Updated AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md to version 4.1.6. Header synchronized with current system version."
+  message: "Updated AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md to version 3.1.6. Header synchronized with current system version."
 tags:
   categories: ["documentation", "doctrine", "ai", "safety", "mandatory"]
   collections: ["core-docs", "doctrine"]

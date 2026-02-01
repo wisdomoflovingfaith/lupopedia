@@ -5,7 +5,7 @@
 
 ## 1. Purpose
 
-The Freedom Zone Doctrine defines the rules, expectations, and operational liberties that apply to Lupopedia **before the first stable release: 2026.4.0.1**.
+The Freedom Zone Doctrine defines the rules, expectations, and operational liberties that apply to Lupopedia **before the first stable release: 2026.3.0.1**.
 
 During this phase, the system is allowed to evolve rapidly and aggressively.  
 Backward compatibility is **not required**.  
@@ -20,7 +20,7 @@ This doctrine protects the creative, architectural, and experimental freedom nec
 
 The **Freedom Zone** is the period from:
 
-- **Project inception → 2026.4.0.1 (first stable release)**
+- **Project inception → 2026.3.0.1 (first stable release)**
 
 During this period:
 
@@ -119,7 +119,7 @@ Cascade, JetBrains, Cursor, and future agents must:
 - expect navigation changes  
 - expect ingestion changes  
 
-Agents must not assume stability until 2026.4.0.1.
+Agents must not assume stability until 2026.3.0.1.
 
 ### **Rule 7 — DB resets are allowed**
 The database may be:
@@ -146,7 +146,7 @@ During the Freedom Zone, all architectural decisions are founder‑level.
 
 The Freedom Zone ends at:
 
-### **Version 2026.4.0.1 — First Stable Release**
+### **Version 2026.3.0.1 — First Stable Release**
 
 At that moment:
 
@@ -182,7 +182,7 @@ Together, they form the **development spine** of Lupopedia.
 The Freedom Zone Doctrine exists to protect the early, fragile, experimental phase of the Lupopedia Semantic OS.  
 It ensures that the system can evolve without constraint until the architecture is fully revealed and ready for stabilization.
 
-Until **2026.4.0.1**, the system is allowed to:
+Until **2026.3.0.1**, the system is allowed to:
 
 - break  
 - rebuild  

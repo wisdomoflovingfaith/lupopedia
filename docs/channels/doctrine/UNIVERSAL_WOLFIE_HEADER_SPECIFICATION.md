@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.82
+file.last_modified_system_version: 3.0.82
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -157,7 +157,7 @@ A per‑file historical marker indicating the system version active when **this 
 
 Rules:
 
-- Must be a literal version string (e.g., `4.0.12`)  
+- Must be a literal version string (e.g., `3.0.12`)  
 - Never an atom reference  
 - Never a symbolic value  
 - Updated **only** when the file itself changes  
@@ -174,7 +174,7 @@ This field enables instant identification of:
 A simple grep reveals everything:
 
 ```bash
-grep -R "file.last_modified_system_version: 4.0.13" .
+grep -R "file.last_modified_system_version: 3.0.13" .
 ```
 
 This works without Git, diffs, IDE history, or external tooling.
@@ -321,7 +321,7 @@ Embed directly at the top:
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 ---
 ```
 
@@ -334,7 +334,7 @@ Use a top‑of‑file docstring:
 """
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 ---
 """
 ```
@@ -348,7 +348,7 @@ Use a block comment:
 /*
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 ---
 */
 ```
@@ -362,7 +362,7 @@ Use a block comment:
 /*
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 ---
 */
 ```
@@ -376,7 +376,7 @@ Use an HTML comment:
 <!--
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 ---
 -->
 ```
@@ -399,7 +399,7 @@ Contents:
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 ---
 ```
 
@@ -455,7 +455,7 @@ An extension of WHS (like LHP) that adds ecosystem-specific fields while maintai
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 ---
 ```
 

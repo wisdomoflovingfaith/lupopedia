@@ -4,7 +4,7 @@
  * WOLFIE HEADER
  * ======================================================================
  * wolfie.headers: explicit architecture with structured clarity for every file.
- * file.last_modified_system_version: 4.0.35
+ * file.last_modified_system_version: 3.0.35
  * header_atoms:
  *   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
  *   - GLOBAL_CURRENT_AUTHORS
@@ -22,7 +22,7 @@
  *   channels: ["dev"]
  * file:
  *   title: "Migration Orchestrator Failed State"
- *   description: "Explicit failure state for migrations that cannot proceed - guardrail added in 4.0.35"
+ *   description: "Explicit failure state for migrations that cannot proceed - guardrail added in 3.0.35"
  *   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
  *   status: published
  *   author: GLOBAL_CURRENT_AUTHORS

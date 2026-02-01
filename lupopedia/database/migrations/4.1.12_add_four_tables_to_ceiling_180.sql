@@ -1,6 +1,6 @@
 -- ============================================================
 -- Migration: Add 4 tables to reach TABLE_COUNT_DOCTRINE ceiling (180)
--- Version: 4.1.12
+-- Version: 3.1.12
 -- Purpose: 176 + 4 = 180 tables. Doctrine-aligned: no FK, no triggers,
 --          BIGINT timestamps (created_ymdhis), soft delete where used.
 -- TABLE_COUNT_DOCTRINE: ceiling 181 (raised 2026-01-20); legacy livehelp_ exempt.

@@ -15,7 +15,7 @@
         "created_ymdhis": 20260106084500,
         "updated_ymdhis": 20260106084500
     },
-    "awareness_version": "4.0.72",
+    "awareness_version": "3.0.72",
     "metadata": {
         "purpose": "kernel",
         "protected": true,

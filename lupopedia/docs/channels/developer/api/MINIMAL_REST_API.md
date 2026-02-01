@@ -1,6 +1,6 @@
 # Lupopedia Minimal REST API (Canonical Draft)
 
-**Version:** 4.1.4  
+**Version:** 3.1.4  
 **Doctrine:** stateless, UTC-driven, no triggers, no FK, BIGINT IDs, artifact-first, minimal.
 
 Baseline REST surface for actors, artifacts, and subsystems. Ancestral layer—extend as needed.
@@ -139,7 +139,7 @@ Until `thaw_version` (4.2.0), `branch_budget` is 0. Doctrine: `VERSION_GATED_BRA
 
 ---
 
-## Tables (migration 4.1.4)
+## Tables (migration 3.1.4)
 
 - **lupo_artifacts** — `artifact_id`, `actor_id`, `utc_timestamp`, `type`, `content`, `created_ymdhis`, `is_deleted`, `deleted_ymdhis`
 - **lupo_actor_handshakes** — `handshake_id`, `actor_id`, `actor_type`, `utc_timestamp`, `purpose`, `constraints_json`, `forbidden_actions_json`, `context`, `expires_utc`, `created_ymdhis`, `is_deleted`, `deleted_ymdhis`
@@ -150,5 +150,5 @@ No foreign keys. No triggers. BIGINT where appropriate.
 
 ## Run order
 
-1. Run `database/migrations/4.1.4_lupopedia_minimal_rest_api_tables.sql` (if below table ceiling or after reduction).
-2. Run `database/migrations/4.1.5_add_fork_justification_artifact_type.sql` (adds `fork_justification` to artifact type comment).
+1. Run `database/migrations/3.1.4_lupopedia_minimal_rest_api_tables.sql` (if below table ceiling or after reduction).
+2. Run `database/migrations/3.1.5_add_fork_justification_artifact_type.sql` (adds `fork_justification` to artifact type comment).

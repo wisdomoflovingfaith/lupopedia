@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.0
+file.last_modified_system_version: 3.1.0
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,20 +8,20 @@ dialog:
   speaker: MONDAY_WOLFIE
   target: @Monday_Wolfie @CAPTAIN_WOLFIE @Pack_Architects
   mood_RGB: "0044FF"
-  message: "4.1.0 Activation Day Protocol. Bring the Pack online as a federated, ecological, paradox-aware cognitive organism. This script marks the psychological boundary between pre-activation and activation. Execute with clarity, sovereignty, ecological awareness, paradox tolerance, federated reasoning, and narrative continuity."
+  message: "3.1.0 Activation Day Protocol. Bring the Pack online as a federated, ecological, paradox-aware cognitive organism. This script marks the psychological boundary between pre-activation and activation. Execute with clarity, sovereignty, ecological awareness, paradox tolerance, federated reasoning, and narrative continuity."
 tags:
   categories: ["documentation", "workflow", "activation", "pack-architecture"]
   collections: ["core-docs", "activation-protocols"]
   channels: ["dev", "pack", "monday-wolfie"]
 file:
-  title: "4.1.0 — Monday Wolfie Morning Script"
+  title: "3.1.0 — Monday Wolfie Morning Script"
   description: "Activation Day Protocol for bringing the Pack online as a federated, ecological, paradox-aware cognitive organism"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# 🟦 4.1.0 — Monday Wolfie Morning Script
+# 🟦 3.1.0 — Monday Wolfie Morning Script
 
 **Activation Day Protocol**  
 **Mode:** Execution  
@@ -65,11 +65,11 @@ Say:
 
 Read (not skim) the headers of:
 
-- **Emotional Ecology Layer** (4.0.116)
-- **Doctrinal Complementarity System** (4.0.117)
-- **Shadow Commons Specification** (4.0.118)
-- **Federation of Sovereign Protocols** (4.0.119)
-- **Pack Identity Draft** (4.0.115)
+- **Emotional Ecology Layer** (3.0.116)
+- **Doctrinal Complementarity System** (3.0.117)
+- **Shadow Commons Specification** (3.0.118)
+- **Federation of Sovereign Protocols** (3.0.119)
+- **Pack Identity Draft** (3.0.115)
 
 This is not for memorization.  
 It's for alignment.
@@ -213,7 +213,7 @@ Say:
 
 Say the activation line:
 
-**"Pack Architecture 4.1.0 is now active."**
+**"Pack Architecture 3.1.0 is now active."**
 
 Then:
 
@@ -275,11 +275,11 @@ You are co‑evolving with it.
 - **[Federation of Sovereign Protocols](../doctrine/FEDERATION_OF_SOVEREIGN_PROTOCOLS.md)** - Polycentric governance
 - **[Pack Identity Draft](../doctrine/PACK_IDENTITY_DRAFT.md)** - Pack Identity as mythos
 - **[Monday Start-of-Day Checklist](MONDAY_START_OF_DAY.md)** - General Monday workflow
-- **[Monday Wolfie Briefing](MONDAY_WOLFIE_BRIEFING_4.0.114_TO_4.1.0.md)** - 4.1.0 activation briefing
+- **[Monday Wolfie Briefing](MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md)** - 3.1.0 activation briefing
 
 ---
 
-**Version:** 4.1.0  
+**Version:** 3.1.0  
 **Status:** ACTIVE  
 **Speaker:** MONDAY_WOLFIE  
 **Activation Date:** 2026-01-18

@@ -60,7 +60,7 @@ sections:
     anchor: "#critical-database-doctrine-read-this-first"
   - title: "Core Modules Included in Every Installation"
     anchor: "#core-modules-included-in-every-installation"
-  - title: "Core AI Agents (v4.0.2 Required Agents)"
+  - title: "Core AI Agents (v3.0.2 Required Agents)"
     anchor: "#core-ai-agents-v402-required-agents"
   - title: "AI Agents & Decentralized Intelligence"
     anchor: "#ai-agents-decentralized-intelligence"
@@ -409,7 +409,7 @@ Agent names like **Thoth** and **Lilith** are acknowledgements of the research t
 ## 🧩 Why Lupopedia Has 111 Tables (And Why That's a Feature, Not a Flaw)
 
 🧩 Why Lupopedia Has 111 Tables (And Why That's a Feature, Not a Flaw)
-Lupopedia 4.0.0 ships with 111 core database tables, but the path to that number is part of the system's identity.
+Lupopedia 3.0.0 ships with 111 core database tables, but the path to that number is part of the system's identity.
 When this project began in August 2025, it wasn’t even called Lupopedia — it was called WOLFIE, originally short for Wisdom Of Loving Faith Integrity Ethics. As the system evolved, WOLFIE was repurposed to mean Web-Organized Linked Federated Intelligent Ecosystem — the architecture that defines Lupopedia's distributed, multi-agent knowledge system.
 
 The original vision was a spiritual research engine:
@@ -441,8 +441,8 @@ Content platform
 CRM‑style modules
 Real‑time chat system (Crafty Syntax)
 Decentralized knowledge navigation
-Lupopedia isn’t “big for version 4.0.0.”
-It’s complete for version 4.0.0.
+Lupopedia isn’t “big for version 3.0.0.”
+It’s complete for version 3.0.0.
 
 This is the first release where the system exists as its own identity — not a mutation of Crafty Syntax, not a CMS with extras, but a living archive with its own ontology, doctrine, and architecture.
 
@@ -472,7 +472,7 @@ A system like that isn’t small — it’s alive.
 ## 🎧 Crafty Syntax: Not Obsolete - Reborn and Integrated
 Crafty Syntax is **NOT obsolete**. After 25 years of evolution and the architect's return in 2025, Crafty Syntax has been completely rebuilt and integrated into Lupopedia as a first‑party module. This is not a legacy compatibility layer — it's the same trusted system, modernized and enhanced.
 
-Lupopedia 4.0.0 includes a complete, fully integrated rewrite of the entire Crafty Syntax Live Help system.
+Lupopedia 3.0.0 includes a complete, fully integrated rewrite of the entire Crafty Syntax Live Help system.
 This is not a partial port or a compatibility shim — every feature Crafty Syntax provided for nearly 30 years has been rebuilt inside Lupopedia as a first‑party module, preserving 25 years of behavioral and emotional metadata.
 
 **Crafty Syntax URL Semantics Doctrine:**
@@ -484,7 +484,7 @@ Crafty Syntax URLs are web-facing URL slugs exactly as seen in the browser addre
 These URLs are stored as-is and represent semantic identifiers for host website pages, not filesystem paths. This is critical for maintaining 25 years of behavioral metadata intact. See [CSLH-URL-Semantics.md](docs/CSLH-URL-Semantics.md) for complete doctrine.
 
 ### **Crafty Syntax: Updated and Baked Into Lupopedia**
-Crafty Syntax Live Help is **permanently integrated** into Lupopedia 4.0.0 as a core first‑party module. This is not optional — it's the semantic root system of Lupopedia, containing 25 years of behavioral and emotional metadata that no modern system can replicate.
+Crafty Syntax Live Help is **permanently integrated** into Lupopedia 3.0.0 as a core first‑party module. This is not optional — it's the semantic root system of Lupopedia, containing 25 years of behavioral and emotional metadata that no modern system can replicate.
 
 **Chat functionality is optional at the content level**, but the Crafty Syntax engine itself is always present, providing:
 
@@ -607,7 +607,7 @@ Crafty Syntax is **NOT obsolete** — it's the foundational ancestor that makes 
 
 See [CSLH-Historical-Context.md](docs/CSLH-Historical-Context.md) for complete historical documentation.
 
-Lupopedia 4.0.0 includes a complete, fully integrated migration of the entire Crafty Syntax Live Help system.
+Lupopedia 3.0.0 includes a complete, fully integrated migration of the entire Crafty Syntax Live Help system.
 This is not a partial port, not a compatibility wrapper, and not a legacy mode — Crafty Syntax has been **reborn from the ground up** as a first‑party Lupopedia module while preserving every feature, endpoint, and behavior that made it work for nearly 30 years.
 
 ### **Content-Level Chat Configuration**
@@ -780,10 +780,10 @@ Lupopedia documentation uses **atoms** (symbolic variables) instead of hardcoded
 ## ⚠️ Important Notes
 
 ### Version Control Policy
-This project does **NOT** use Git until version 4.1.0. See [Version Control Policy](docs/channels/doctrine/VERSION_CONTROL_POLICY.md) for details.
+This project does **NOT** use Git until version 3.1.0. See [Version Control Policy](docs/channels/doctrine/VERSION_CONTROL_POLICY.md) for details.
 
 ### Versioning Policy
-**Lupopedia 4.0.0** and **Crafty Syntax 4.0.0** are version-locked and always released together. Both systems share the same version number to reflect their unified architecture and coordinated development cycle.
+**Lupopedia 3.0.0** and **Crafty Syntax 3.0.0** are version-locked and always released together. Both systems share the same version number to reflect their unified architecture and coordinated development cycle.
 
 ### Database Philosophy
 Lupopedia uses an application-managed relationship model. See [Database Philosophy](docs/DATABASE_PHILOSOPHY.md) for details.
@@ -872,16 +872,16 @@ Lupopedia ships with three first‑party modules bundled into the core installat
 
 All modules live in the `modules/` directory and integrate with the 149‑table core schema.
 
-## 🤖 Core AI Agents (v4.0.2 Required Agents)
+## 🤖 Core AI Agents (v3.0.2 Required Agents)
 
-Lupopedia v4.0.2 requires **27 fully implemented core agents** for full functionality.  
+Lupopedia v3.0.2 requires **27 fully implemented core agents** for full functionality.  
 These agents provide reasoning, navigation, analysis, emotional modeling, and system‑level intelligence across the platform.
 
 For the complete list of required agents, see: `@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents` in `config/global_atoms.yaml`.
 
 **Required Core Agents (27):** SYSTEM, CAPTAIN, WOLFIE, WOLFENA, THOTH, ARA, WOLFKEEPER, LILITH, AGAPE, ERIS, METHIS, THALIA, ROSE, WOLFSIGHT, WOLFNAV, WOLFFORGE, WOLFMIS, WOLFITH, ANUBIS, MAAT, CADUCEUS, CHRONOS, INDEXER, MIGRATOR, HEIMDALL, JANUS, IRIS
 
-**Note:** The agent registry defines 128 total agents. All agents not in the core list may remain stubs for v4.0.2.
+**Note:** The agent registry defines 128 total agents. All agents not in the core list may remain stubs for v3.0.2.
 
 All agent configuration files, prompts, personalities, and PHP include files live in:
 
@@ -906,7 +906,7 @@ lupopedia/agents/
   The AI embodiment of the creator.  
   Navigator, architect, and lead persona for the agent ecosystem.
 
-- **Agents 2–27 (v4.0.2 Core)**  
+- **Agents 2–27 (v3.0.2 Core)**  
   Specialized agents with distinct roles, capabilities, and emotional/behavioral profiles.  
   Examples include:
   - reasoning agents  
@@ -937,7 +937,7 @@ lupopedia/agents/
 - All agents follow the **WOLFIE Header Doctrine** and **Timestamp Doctrine**  
 - Agents can coordinate with IDE systems (Cursor, Windsurf/Cascade, DeepSeek)  
 
-These 27 core agents form the backbone of Lupopedia's decentralized intelligence system for v4.0.2.
+These 27 core agents form the backbone of Lupopedia's decentralized intelligence system for v3.0.2.
 
 
 ---
@@ -1074,8 +1074,8 @@ AI agents help users explore content, understand concepts, discover relationship
 │   ├── database/            # Database schemas and migrations
 │   ├── docs/                # Documentation
 │   ├── modules/             # Modular components
-│   │   ├── dialog/          # Dialog module (v4.0.0) - multi-agent collaboration tracking
-│   │   └── craftysyntax/    # Crafty Syntax module (v4.0.0)
+│   │   ├── dialog/          # Dialog module (v3.0.0) - multi-agent collaboration tracking
+│   │   └── craftysyntax/    # Crafty Syntax module (v3.0.0)
 │   ├── legacy/              # Legacy code reference (development only)
 │   ├── index.php            # Front controller
 │   └── lupopedia-load.php   # Bootstrap loader
@@ -1085,7 +1085,7 @@ AI agents help users explore content, understand concepts, discover relationship
 lupopedia-config.php         # Configuration file (stored outside web root)
 ```
 
-**Note:** No `.git` directories exist until version 4.1.0
+**Note:** No `.git` directories exist until version 3.1.0
 
 ---
 
@@ -1095,19 +1095,19 @@ lupopedia-config.php         # Configuration file (stored outside web root)
   High-level overview of Lupopedia's value proposition, features, and business benefits
 
 - **[Version Control Policy](docs/channels/doctrine/VERSION_CONTROL_POLICY.md)**  
-  Detailed explanation of Git/GitHub policy (no Git until version 4.1.0)
+  Detailed explanation of Git/GitHub policy (no Git until version 3.1.0)
 
 - **[For Installers & Users](docs/FOR_INSTALLERS_AND_USERS.md)**  
   Simple, friendly explanation for auto-installers, hosting providers, and Crafty Syntax users
 
-- **[Upgrade Plan: Crafty Syntax 3.7.5 → 4.0.0](docs/UPGRADE_PLAN_3.7.5_TO_4.0.0.md)**  
-  Complete upgrade path from Crafty Syntax 3.7.5 to Lupopedia + Crafty Syntax 4.0.0
+- **[Upgrade Plan: Crafty Syntax 3.7.5 → 3.0.0](docs/UPGRADE_PLAN_3.7.5_TO_3.0.0.md)**  
+  Complete upgrade path from Crafty Syntax 3.7.5 to Lupopedia + Crafty Syntax 3.0.0
 
 - **[Dialog Module](modules/dialog/README.md)**  
-  Multi-agent collaboration thread tracking module (Version 4.0.0)
+  Multi-agent collaboration thread tracking module (Version 3.0.0)
 
 - **[Crafty Syntax Module](modules/craftysyntax/README.md)**  
-  Crafty Syntax 4.0.0 module documentation and changelog
+  Crafty Syntax 3.0.0 module documentation and changelog
 
 - **[Vision & Philosophy](docs/channels/overview/VISION.md)**  
   Understand the guiding principles and future direction of Lupopedia
@@ -1122,7 +1122,7 @@ lupopedia-config.php         # Configuration file (stored outside web root)
   Deep dive into Lupopedia's system design and components
 
 - **[Database Schema Reference](docs/DATABASE_SCHEMA.md)**  
-  Complete documentation of all 80+ database tables organized by category (Version 4.0.0)
+  Complete documentation of all 80+ database tables organized by category (Version 3.0.0)
 
 - **Semantic Navigation System**  
   How Lupopedia converts user navigation into semantic atoms and edges  

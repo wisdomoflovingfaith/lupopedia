@@ -1,4 +1,5 @@
 {
     "kiroAgent.configureMCP": "Disabled",
-    "chat.mcp.access": "none"
+    "chat.mcp.access": "none",
+    "ai-features.openAiCustom.customOpenAiModels": []
 }

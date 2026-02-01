@@ -1,5 +1,5 @@
 -- Migration: Add Dialog System help topics
--- Version: 4.1.6
+-- Version: 3.1.6
 -- Date: 2026-01-19
 -- Module: Help System
 -- Purpose: Add help topics for Dialog System, UTC_TIMEKEEPER, and Governance

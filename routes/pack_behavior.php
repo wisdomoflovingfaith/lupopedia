@@ -5,7 +5,7 @@
  * Routes for Pack behavioral endpoints (profile, compatibility, etc.)
  *
  * @package Lupopedia
- * @version 4.0.109
+ * @version 3.0.109
  * @author Captain Wolfie
  */
 

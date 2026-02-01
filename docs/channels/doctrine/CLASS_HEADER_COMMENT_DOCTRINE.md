@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: Kiro
   target: @everyone
@@ -21,7 +21,7 @@ file:
 
 # Class Header Comment Doctrine (MANDATORY)
 
-**Version:** 4.0.15  
+**Version:** 3.0.15  
 **Status:** MANDATORY (NON-NEGOTIABLE)  
 **Effective Date:** 2026-01-13
 

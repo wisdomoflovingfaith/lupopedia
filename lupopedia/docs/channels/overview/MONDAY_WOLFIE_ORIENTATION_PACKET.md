@@ -11,9 +11,9 @@ checkpoint.
 The operator will fill in detailed content manually.
 
 ## 1. SYSTEM VERSION STATUS (PLACEHOLDER)
-- Current unified version: 4.0.99
-- Previous documented versions: 4.0.34–4.0.98
-- All 4.1.x+ planned items reassigned to 4.0.99
+- Current unified version: 3.0.99
+- Previous documented versions: 3.0.34–3.0.98
+- All 3.1.x+ planned items reassigned to 3.0.99
 - Operator will insert detailed version notes here.
 
 ## 2. ARCHITECTURAL STATE (PLACEHOLDER)

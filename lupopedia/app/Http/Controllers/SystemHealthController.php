@@ -5,7 +5,7 @@
  * Provides HTTP endpoint for system health diagnostics.
  *
  * @package Lupopedia
- * @version 4.0.106
+ * @version 3.0.106
  * @author Captain Wolfie
  */
 
@@ -59,7 +59,7 @@ class SystemHealthController
                 'limits_subsystem' => $healthService->checkLimitsSubsystem(),
                 'pack_readiness' => $healthService->checkPackReadiness(),
                 'timestamp' => gmdate('Y-m-d H:i:s UTC'),
-                'version' => '4.0.106',
+                'version' => '3.0.106',
             ];
 
             header('Content-Type: application/json');

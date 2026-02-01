@@ -1,5 +1,5 @@
 -- Migration: Insert Symbolic Actor Meta Events
--- Version: 4.1.4
+-- Version: 3.1.4
 -- Date: 2026-01-18
 --
 -- Inserts symbolic, non-personal, doctrine-safe meta events into lupo_actor_meta.
@@ -7,7 +7,7 @@
 -- All events are tied to actor_id 0 (System Kernel Actor) as symbolic system events.
 --
 -- @package Lupopedia
--- @version 4.1.4
+-- @version 3.1.4
 -- @author CAPTAIN_WOLFIE
 
 -- ============================================================================

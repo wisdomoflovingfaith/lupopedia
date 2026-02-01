@@ -1,14 +1,14 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Added WOLFIE Header v4.0.0 for documentation consistency."
+  message: "Added WOLFIE Header v3.0.0 for documentation consistency."
 tags:
   categories: ["documentation", "installation", "user-guide"]
   collections: ["core-docs"]
@@ -25,9 +25,9 @@ file:
 
 ## Simple Explanation
 
-**Lupopedia 4.0.0 includes Crafty Syntax 4.0.0 â€” they are version-locked and released together.**
+**Lupopedia 3.0.0 includes Crafty Syntax 3.0.0 â€” they are version-locked and released together.**
 
-**Crafty Syntax 4.0.0 runs on the Lupopedia 4.0.0 platform, the same way an app runs on Windows.**
+**Crafty Syntax 3.0.0 runs on the Lupopedia 3.0.0 platform, the same way an app runs on Windows.**
 
 That's it.  
 No deep architecture talk.  
@@ -46,9 +46,9 @@ Here's the exact wording you can use for auto-installers, hosting providers, sup
 
 ---
 
-### **Lupopedia 4.0.0 + Crafty Syntax 4.0.0 Upgrade Notice**
+### **Lupopedia 3.0.0 + Crafty Syntax 3.0.0 Upgrade Notice**
 
-**Lupopedia 4.0.0** includes **Crafty Syntax 4.0.0** as an integrated firstâ€‘party module. Both systems share the same version number (4.0.0) and are always released together.
+**Lupopedia 3.0.0** includes **Crafty Syntax 3.0.0** as an integrated firstâ€‘party module. Both systems share the same version number (3.0.0) and are always released together.
 
 Crafty Syntax Live Help continues to be fully supported and is now built on top of a modern platform called **Lupopedia**.
 
@@ -62,8 +62,8 @@ Chat functionality is **optional at the content level**. Each content item can e
 This generalizes the original Crafty Syntax design (chat icons on selected pages) to a systemâ€‘wide capability activated only where needed.
 
 **Think of it like this:**
-- **Lupopedia 4.0.0** is the operating system
-- **Crafty Syntax 4.0.0** is the application running inside it
+- **Lupopedia 3.0.0** is the operating system
+- **Crafty Syntax 3.0.0** is the application running inside it
 
 This gives Crafty Syntax:
 - âœ… Better performance
@@ -81,10 +81,10 @@ You still get the same Live Help system â€” just running on a stronger foun
 
 ### What You Need to Know
 
-**Lupopedia 4.0.0 is the platform foundation.**  
-**Crafty Syntax 4.0.0 is the application that runs on it.**
+**Lupopedia 3.0.0 is the platform foundation.**  
+**Crafty Syntax 3.0.0 is the application that runs on it.**
 
-Both systems are version-locked at 4.0.0 and released together as a unified package.
+Both systems are version-locked at 3.0.0 and released together as a unified package.
 
 ### Installation Requirements
 
@@ -105,13 +105,13 @@ If your hosting supports PHP and MySQL, it works.
 4. Complete setup wizard
 
 **Upgrade from Crafty Syntax 3.7.5:**
-1. Upload Lupopedia 4.0.3 files to existing Crafty Syntax directory
+1. Upload Lupopedia 3.0.3 files to existing Crafty Syntax directory
 2. Setup wizard automatically detects `config.php` (only exists in Crafty Syntax 3.7.5)
 3. Setup enters upgrade mode and runs migration automatically
 4. Migration SQL (`database/migrations/craftysyntax_to_lupopedia_mysql.sql`) executes
-5. All 34 legacy tables are migrated to Lupopedia 4.0.3 schema
+5. All 34 legacy tables are migrated to Lupopedia 3.0.3 schema
 6. Legacy tables are dropped after successful migration
-7. Upgrade complete - system is now Lupopedia 4.0.3
+7. Upgrade complete - system is now Lupopedia 3.0.3
 
 **Upgrade from Crafty Syntax 3.7.5:**
 1. Upload all Lupopedia files to webroot (overlay on existing installation or new directory)
@@ -216,7 +216,7 @@ Nothing is forced on you.
 
 - **[Configuration Doctrine](../../doctrine/CONFIGURATION_DOCTRINE.md)** - WordPress-style configuration model that makes installation familiar
 - **[Database Philosophy](../../architecture/DATABASE_PHILOSOPHY.md)** - Why Lupopedia uses application-first validation for easier installation
-- **[Upgrade Plan 3.7.5 to 4.0.0](../modules/UPGRADE_PLAN_3.7.5_TO_4.0.0.md)** - Technical upgrade documentation for existing Crafty Syntax users
+- **[Upgrade Plan 3.7.5 to 3.0.0](../modules/UPGRADE_PLAN_3.7.5_TO_3.0.0.md)** - Technical upgrade documentation for existing Crafty Syntax users
 - **[Architecture](../../architecture/ARCHITECTURE.md)** - Complete system architecture for administrators who want technical details
 
 ---

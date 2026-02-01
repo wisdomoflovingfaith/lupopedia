@@ -19,7 +19,7 @@
     "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'",
     "`aal_metadata_json` json COMMENT 'Agent Awareness Layer metadata for WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE'",
     "`fleet_composition_json` json COMMENT 'Current fleet of agents in this channel with their roles'",
-    "`awareness_version` varchar(20) DEFAULT '4.0.72' COMMENT 'AAL protocol version for this channel'"
+    "`awareness_version` varchar(20) DEFAULT '3.0.72' COMMENT 'AAL protocol version for this channel'"
   ],
   "data": [],
   "indexes": [

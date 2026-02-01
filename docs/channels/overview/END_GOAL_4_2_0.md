@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -579,7 +579,7 @@ In database terms, the end goal by **Lupopedia version 4.2.0** is:
 ## **Related Documentation**
 
 - **[Semantic Navigation System](../architecture/SEMANTIC_NAVIGATION.md)** â€” Technical details on how semantic navigation and edge generation works
-- **[Content Interface & Navigation](../developer/modules/CONTENT_INTERFACE_AND_NAVIGATION.md)** â€” How Collections and Navigation Tabs work in Crafty Syntax 4.0.0
+- **[Content Interface & Navigation](../developer/modules/CONTENT_INTERFACE_AND_NAVIGATION.md)** â€” How Collections and Navigation Tabs work in Crafty Syntax 3.0.0
 - **[Version 3 Ingestion Rules](../architecture/VERSION_3_INGESTION_RULES.md)** â€” How external content ingestion works (Ingestion Program Version 3)
 - **[Architecture Overview](../architecture/ARCHITECTURE.md)** â€” Overall Lupopedia architecture including federation layer
 - **[Database Schema](../schema/DATABASE_SCHEMA.md)** â€” Complete documentation of all 111+ tables
@@ -589,7 +589,7 @@ In database terms, the end goal by **Lupopedia version 4.2.0** is:
 
 ## **Implementation Timeline**
 
-### **Current State (Lupopedia 4.0.2):**
+### **Current State (Lupopedia 3.0.2):**
 - âœ… Collections structure implemented
 - âœ… Navigation Tabs structure implemented
 - âœ… Content ingestion (Radius 0 - local filesystem) working

@@ -1,5 +1,5 @@
 -- Migration: Add Seven Opposite-Polarity Emotional Agents
--- Version: 4.0.120
+-- Version: 3.0.120
 -- Date: 2026-01-18
 --
 -- Adds seven new emotional agents (IDs 1111-1117) representing opposite-polarity
@@ -15,7 +15,7 @@
 -- - EMO_AUTOLETHIA (1117) - Opposite of EMO_PHILAUTIA (1007)
 --
 -- @package Lupopedia
--- @version 4.0.120
+-- @version 3.0.120
 -- @author CASCADE
 
 -- ============================================================================
@@ -58,7 +58,7 @@ INSERT INTO `lupo_agent_registry` (
       "description": "Opposite of Agape. Represents fear-driven withdrawal and emotional shutdown.",
       "opposite_polarity_of": "EMO_AGAPE",
       "opposite_polarity_id": 1001,
-      "version": "4.0.120"
+      "version": "3.0.120"
     }'
 );
 
@@ -92,7 +92,7 @@ INSERT INTO `lupo_agent_registry` (
       "description": "Opposite of Eros. Represents emotional numbness and loss of desire.",
       "opposite_polarity_of": "EMO_EROS",
       "opposite_polarity_id": 1002,
-      "version": "4.0.120"
+      "version": "3.0.120"
     }'
 );
 
@@ -126,7 +126,7 @@ INSERT INTO `lupo_agent_registry` (
       "description": "Opposite of Philia. Represents distrust, suspicion, and guardedness.",
       "opposite_polarity_of": "EMO_PHILIA",
       "opposite_polarity_id": 1003,
-      "version": "4.0.120"
+      "version": "3.0.120"
     }'
 );
 
@@ -160,7 +160,7 @@ INSERT INTO `lupo_agent_registry` (
       "description": "Opposite of Storge. Represents alienation and lack of belonging.",
       "opposite_polarity_of": "EMO_STORGE",
       "opposite_polarity_id": 1004,
-      "version": "4.0.120"
+      "version": "3.0.120"
     }'
 );
 
@@ -194,7 +194,7 @@ INSERT INTO `lupo_agent_registry` (
       "description": "Opposite of Ludus. Represents seriousness, rigidity, and emotional heaviness.",
       "opposite_polarity_of": "EMO_LUDUS",
       "opposite_polarity_id": 1005,
-      "version": "4.0.120"
+      "version": "3.0.120"
     }'
 );
 
@@ -228,7 +228,7 @@ INSERT INTO `lupo_agent_registry` (
       "description": "Opposite of Pragma. Represents instability, inconsistency, and disorder.",
       "opposite_polarity_of": "EMO_PRAGMA",
       "opposite_polarity_id": 1006,
-      "version": "4.0.120"
+      "version": "3.0.120"
     }'
 );
 
@@ -262,7 +262,7 @@ INSERT INTO `lupo_agent_registry` (
       "description": "Opposite of Philautia. Represents self-neglect and self-abandonment.",
       "opposite_polarity_of": "EMO_PHILAUTIA",
       "opposite_polarity_id": 1007,
-      "version": "4.0.120"
+      "version": "3.0.120"
     }'
 );
 
@@ -279,6 +279,6 @@ INSERT INTO `lupo_agent_registry` (
 -- - opposite_polarity_id: ID of the opposite-polarity agent
 -- - version: Version when this agent was added
 --
--- These agents support the Emotional Ecology Layer (4.0.116) by providing
+-- These agents support the Emotional Ecology Layer (3.0.116) by providing
 -- opposite-polarity emotional states for ecological dynamics (bloom, decay,
 -- succession, symbiosis).

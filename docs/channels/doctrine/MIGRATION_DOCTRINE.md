@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -10,31 +10,31 @@ architect: Captain Wolfie
 dialog:
   speaker: cursor
   target: @everyone
-  message: "Created MIGRATION_DOCTRINE.md to document that LiveHelp tables are migration-only and not part of Lupopedia 4.0.1 runtime."
+  message: "Created MIGRATION_DOCTRINE.md to document that LiveHelp tables are migration-only and not part of Lupopedia 3.0.1 runtime."
   mood: "00FF00"
 tags:
   categories: ["documentation", "doctrine", "migration"]
   collections: ["core-docs", "doctrine"]
   channels: ["dev"]
 file:
-  title: "Lupopedia Migration Doctrine (LiveHelp â†’ Crafty Syntax 4.0.3)"
-  description: "Doctrine explaining the temporary role of livehelp_* tables during upgrade from Crafty Syntax 3.7.5 to Lupopedia 4.0.3"
+  title: "Lupopedia Migration Doctrine (LiveHelp â†’ Crafty Syntax 3.0.3)"
+  description: "Doctrine explaining the temporary role of livehelp_* tables during upgrade from Crafty Syntax 3.7.5 to Lupopedia 3.0.3"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: "Captain Wolfie"
 ---
 
-# ðŸŸ¦ **Lupopedia Migration Doctrine (LiveHelp â†’ Crafty Syntax 4.0.3)**
+# ðŸŸ¦ **Lupopedia Migration Doctrine (LiveHelp â†’ Crafty Syntax 3.0.3)**
 
 ### **Purpose of This Document (For Cursor & Contributors)**
 
-This doctrine explains the **temporary role** of the legacy `livehelp_*` tables during the upgrade from **Crafty Syntax 3.7.5** to **Lupopedia 4.0.3**, and defines how the migration SQL is executed during installation. The migration SQL is complete and production-ready. Cursor must follow this doctrine when generating documentation, code, or refactor logic.
+This doctrine explains the **temporary role** of the legacy `livehelp_*` tables during the upgrade from **Crafty Syntax 3.7.5** to **Lupopedia 3.0.3**, and defines how the migration SQL is executed during installation. The migration SQL is complete and production-ready. Cursor must follow this doctrine when generating documentation, code, or refactor logic.
 
 ---
 
 # ðŸŸ© **1. LiveHelp Is a Temporary Migration Subsystem**
 
-The legacy **LiveHelp** tables (`livehelp_*`) are **not part of Lupopedia 4.0.3**.  
+The legacy **LiveHelp** tables (`livehelp_*`) are **not part of Lupopedia 3.0.3**.  
 They exist **only during the upgrade process** from Crafty Syntax 3.7.5.
 
 LiveHelp is **not**:
@@ -53,16 +53,16 @@ Once the upgrade is complete, **all `livehelp_*` tables are removed**.
 
 # ðŸŸ¦ **2. Migration SQL Handles All Data Conversion**
 
-The migration from Crafty Syntax 3.7.5 â†’ Lupopedia 4.0.3 is performed by a **single SQL migration file** that:
+The migration from Crafty Syntax 3.7.5 â†’ Lupopedia 3.0.3 is performed by a **single SQL migration file** that:
 
 - reads from all `livehelp_*` tables  
 - transforms the data  
-- inserts it into the new 4.0.1 tables  
+- inserts it into the new 3.0.1 tables  
 - performs ID remapping  
 - handles foreign keys  
 - normalizes timestamps  
 - resolves orphaned references  
-- populates Crafty Syntax 4.0.3 tables  
+- populates Crafty Syntax 3.0.3 tables  
 - populates CRM, THOTH, Content, and Routing tables where applicable  
 
 Cursor **must not** attempt to generate or rewrite this migration SQL.
@@ -83,7 +83,7 @@ Cursor must document and respect the following:
 
 This folder contains:
 
-- `craftysyntax_to_lupopedia_mysql.sql` (migration from Crafty Syntax 3.7.5 â†’ Lupopedia 4.0.3) - **COMPLETE AND PRODUCTION-READY**
+- `craftysyntax_to_lupopedia_mysql.sql` (migration from Crafty Syntax 3.7.5 â†’ Lupopedia 3.0.3) - **COMPLETE AND PRODUCTION-READY**
 - any future migration SQL files  
 - no PHP logic  
 - no auto-generated content  
@@ -101,12 +101,12 @@ The upgrade wizard (`lupo-includes/lupopedia-setup.php`) handles the complete mi
 1. **Detection**: The wizard detects `config.php` (Crafty Syntax 3.7.5 config file - only exists in old installations) to enter upgrade mode.
 2. **Config Migration**: Parses old `config.php` and creates `lupopedia-config.php` (WordPress-style, outside web root) with **enforced `lupo_` prefix**.
 3. **Table Detection**: Detects all `livehelp_*` tables in the database.
-4. **Migration Execution**: Automatically executes the complete migration SQL file from `/database/migrations/craftysyntax_to_lupopedia_mysql.sql` (version 4.0.3, production-ready) using the **enforced `lupo_` prefix**.
+4. **Migration Execution**: Automatically executes the complete migration SQL file from `/database/migrations/craftysyntax_to_lupopedia_mysql.sql` (version 3.0.3, production-ready) using the **enforced `lupo_` prefix**.
 5. **Verification**: User verifies data migrated correctly before proceeding.
 6. **Table Cleanup**: After user confirmation, the wizard **drops all `livehelp_*` tables**.
-7. **Completion**: System continues with a clean Lupopedia 4.0.3 schema using the `lupo_` prefix.
+7. **Completion**: System continues with a clean Lupopedia 3.0.3 schema using the `lupo_` prefix.
 
-**Important**: Upgrades from Crafty Syntax 3.7.5 to Lupopedia 4.0.3 **always use the `lupo_` prefix** (enforced, not user-selectable). New installs starting from version 4.1.0 allow users to choose their own prefix.
+**Important**: Upgrades from Crafty Syntax 3.7.5 to Lupopedia 3.0.3 **always use the `lupo_` prefix** (enforced, not user-selectable). New installs starting from version 3.1.0 allow users to choose their own prefix.
 
 The upgrade wizard:
 - Uses transactions for safe migration execution
@@ -149,8 +149,8 @@ Cursor must understand that LiveHelp is **not part of the runtime OS**.
 After the migration completes:
 
 - All `livehelp_*` tables are dropped  
-- The database contains only Lupopedia 4.0.1 tables  
-- Crafty Syntax 4.0.1 replaces LiveHelp entirely  
+- The database contains only Lupopedia 3.0.1 tables  
+- Crafty Syntax 3.0.1 replaces LiveHelp entirely  
 - No legacy tables remain  
 - No legacy code paths remain  
 - No references to LiveHelp should appear in documentation or code  
@@ -176,9 +176,9 @@ Here is the short version Cursor must internalize:
 
 # ðŸŸ© **8. Table Count Clarification**
 
-Lupopedia 4.0.1 has **145 tables total**:
+Lupopedia 3.0.1 has **145 tables total**:
 
-- **111 core tables** â€” Permanent Lupopedia 4.0.1 tables
+- **111 core tables** â€” Permanent Lupopedia 3.0.1 tables
 - **34 legacy migration tables** (`livehelp_*`) â€” Temporary, migration-only, removed after upgrade
 - **4 system tables** â€” Includes `federation_nodes` (Federation Layer, formerly `node_registry`), `modules`, etc.
 
@@ -192,7 +192,7 @@ The 34 `livehelp_*` tables are included in the TOON files for migration referenc
 - [Database Schema](../schema/DATABASE_SCHEMA.md) â€” Complete table documentation including migration-only tables
 - [SQL Rewrite Doctrine](SQL_REWRITE_DOCTRINE.md) â€” Rules for refactoring SQL during migration
 - [TOON Doctrine](TOON_DOCTRINE.md) â€” Rules for working with TOON files during migration
-- [Upgrade Plan](../developer/modules/UPGRADE_PLAN_3.7.5_TO_4.0.0.md) â€” Detailed upgrade documentation
+- [Upgrade Plan](../developer/modules/UPGRADE_PLAN_3.7.5_TO_3.0.0.md) â€” Detailed upgrade documentation
 
 **Development Context (LOW Priority):**
 - [Legacy Refactor Plan](../developer/modules/LEGACY_REFACTOR_PLAN.md) â€” Complete plan for handling legacy Crafty Syntax files

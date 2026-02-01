@@ -1,4 +1,4 @@
--- Version: 4.1.19
+-- Version: 3.1.19
 -- Purpose: Execute schema consolidation (dialog, analytics, truth, collections)
 -- Date: 2026-01-20
 -- Doctrine Table Ceiling: 180 (comment only; not enforced in SQL)

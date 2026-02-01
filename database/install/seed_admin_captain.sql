@@ -1,5 +1,5 @@
 -- ============================================================
--- Lupopedia 4.0.9 — Canonical Admin Seed
+-- Lupopedia 3.0.9 — Canonical Admin Seed
 -- Identity: email-only login
 -- Actor slug: derived from email (local + -at- + domain)
 -- Timestamp doctrine: BIGINT(14) UTC YYYYMMDDHHMMSS

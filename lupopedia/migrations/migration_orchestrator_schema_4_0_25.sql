@@ -1,4 +1,4 @@
--- Migration Orchestrator Schema - Version 4.0.25
+-- Migration Orchestrator Schema - Version 3.0.25
 -- Creates 8 tables for migration management in lupopedia_orchestration schema
 
 -- Create orchestration schema if not exists

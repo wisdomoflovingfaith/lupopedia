@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.35
+file.last_modified_system_version: 3.0.35
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -30,7 +30,7 @@ file:
 
 **Created:** 2026-01-15  
 **Status:** Validation in progress  
-**Version:** 4.0.35
+**Version:** 3.0.35
 
 ---
 
@@ -372,7 +372,7 @@ States remain 7, but use migration_files.file_status enum:
    - Validate transition logic works
    - Check state persistence
 
-### Before 4.0.36
+### Before 3.0.36
 
 - [ ] Run all 7 test cases above
 - [ ] Document failure paths

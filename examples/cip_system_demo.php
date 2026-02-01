@@ -1,7 +1,7 @@
 <?php
 /**
  * wolfie.headers: explicit architecture with structured clarity for every file.
- * file.last_modified_system_version: 4.0.75
+ * file.last_modified_system_version: 3.0.75
  * 
  * CIP System Demonstration
  * 
@@ -9,7 +9,7 @@
  * self-correction triggering, doctrine refinement, and emotional geometry calibration.
  * 
  * @package Lupopedia
- * @version 4.0.75
+ * @version 3.0.75
  * @author cascade (AI Assistant)
  */
 
@@ -34,7 +34,7 @@ class CIPSystemDemo {
      * Run complete CIP system demonstration
      */
     public function runDemo() {
-        echo "🚀 CIP SYSTEM DEMONSTRATION - Version 4.0.75\n";
+        echo "🚀 CIP SYSTEM DEMONSTRATION - Version 3.0.75\n";
         echo "===============================================\n\n";
         
         // Demo 1: High defensiveness critique

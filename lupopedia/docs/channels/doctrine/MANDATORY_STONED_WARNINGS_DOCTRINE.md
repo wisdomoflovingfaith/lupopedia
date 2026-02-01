@@ -1,6 +1,6 @@
 ---
 wolfie.headers: doctrine for mandatory stoned warnings
-file.last_modified_system_version: 4.0.82
+file.last_modified_system_version: 3.0.82
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -71,7 +71,7 @@ schrodingers_state:
 
 # MANDATORY STONED WARNINGS DOCTRINE
 
-**Version:** 4.0.82  
+**Version:** 3.0.82  
 **Status:** MANDATORY (BINDING DOCTRINE)  
 **Effective Date:** 2026-01-18  
 **Authority:** Captain Wolfie, KIRO, Fleet Consensus  

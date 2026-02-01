@@ -1,21 +1,21 @@
 <?php
 /**
 ---
-wolfie.headers.version: "4.0.12"
+wolfie.headers.version: "3.0.12"
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.12: Version bump for hierarchical tab structure implementation. No logic changes to truth-controller.php in this version."
+    message: "Version 3.0.12: Version bump for hierarchical tab structure implementation. No logic changes to truth-controller.php in this version."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.11: Fixed truth_handle_collection_content to ensure tabs_data, current_collection, and collection_id are passed to render_main_layout. Added collection tab and content route handlers (truth_handle_collection_tab, truth_handle_collection_content). Routes: /collection/{id}/tab/{slug} and /collection/{id}/content/{slug}."
+    message: "Version 3.0.11: Fixed truth_handle_collection_content to ensure tabs_data, current_collection, and collection_id are passed to render_main_layout. Added collection tab and content route handlers (truth_handle_collection_tab, truth_handle_collection_content). Routes: /collection/{id}/tab/{slug} and /collection/{id}/content/{slug}."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.10: Updated TRUTH controller to load Collection 0 (System Collection) tabs and pass them to main layout. Tabs now appear in navigation when viewing TRUTH pages."
+    message: "Version 3.0.10: Updated TRUTH controller to load Collection 0 (System Collection) tabs and pass them to main layout. Tabs now appear in navigation when viewing TRUTH pages."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
@@ -31,7 +31,7 @@ tags:
   channels: ["dev"]
 file:
   title: "TRUTH Controller"
-  description: "Controller for TRUTH subsystem: routing, model integration, rendering, and layout. Version 4.0.10: Collection 0 tabs integration. Phase 2.5: Input scaffolding with POST handling. Phase 2: Data loading and view model building."
+  description: "Controller for TRUTH subsystem: routing, model integration, rendering, and layout. Version 3.0.10: Collection 0 tabs integration. Phase 2.5: Input scaffolding with POST handling. Phase 2: Data loading and view model building."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: active
   author: GLOBAL_CURRENT_AUTHORS
@@ -322,7 +322,7 @@ if (file_exists(LUPOPEDIA_ABSPATH . '/lupo-includes/class-ConnectionsService.php
 // Load content renderer for render_main_layout
 require_once LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/renderers/content-renderer.php';
 
-// Version 4.0.10: Load collection tabs loader for Collection 0
+// Version 3.0.10: Load collection tabs loader for Collection 0
 if (file_exists(LUPOPEDIA_ABSPATH . '/lupo-includes/functions/collection-tabs-loader.php')) {
     require_once LUPOPEDIA_ABSPATH . '/lupo-includes/functions/collection-tabs-loader.php';
 }
@@ -989,7 +989,7 @@ function truth_handle_evidence($slug) {
 /**
  * Handle collection tab route: /collection/{id}/tab/{slug}
  * 
- * Version 4.0.11: Displays content list for a collection tab.
+ * Version 3.0.11: Displays content list for a collection tab.
  * 
  * @param int $collection_id Collection ID
  * @param string $tab_slug Tab slug
@@ -1067,7 +1067,7 @@ function truth_handle_collection_tab($collection_id, $tab_slug) {
 /**
  * Handle collection content route: /collection/{id}/content/{slug}
  * 
- * Version 4.0.11: Displays a content item with markdown rendering.
+ * Version 3.0.11: Displays a content item with markdown rendering.
  * 
  * @param int $collection_id Collection ID (for context)
  * @param string $content_slug Content slug

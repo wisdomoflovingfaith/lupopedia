@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -32,13 +32,13 @@ in_this_file_we_have:
   - Cursor Must Output Clean, Minimal, Doctrine-Aligned Code
 file:
   title: "Cursor Refactor Doctrine"
-  description: "Mandatory rules Cursor must follow when rewriting legacy Crafty Syntax PHP code for Lupopedia 4.0.0"
-  version: "4.0.1"
+  description: "Mandatory rules Cursor must follow when rewriting legacy Crafty Syntax PHP code for Lupopedia 3.0.0"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---
 
-# â­ **CURSOR REFACTOR DOCTRINE (Lupopedia 4.0.0)**
+# â­ **CURSOR REFACTOR DOCTRINE (Lupopedia 3.0.0)**
 ### **The Mandatory Rules Cursor Must Follow When Rewriting Legacy Crafty Syntax PHP**
 
 This doctrine is **non-negotiable**. Cursor must follow it for every refactor.
@@ -394,11 +394,11 @@ COLLATE=utf8mb4_unicode_ci
 5. **One thing at a time** â€” Focus on the specific request
 6. **Ask, don't guess** â€” When in doubt, ask for clarification
 
-**This is how legacy code is refactored into Lupopedia 4.0.0.**
+**This is how legacy code is refactored into Lupopedia 3.0.0.**
 
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.0*  
+*Version: 3.0.0*  
 *Author: Captain Wolfie*
 

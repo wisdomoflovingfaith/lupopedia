@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.112
+file.last_modified_system_version: 3.0.112
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -23,7 +23,7 @@ file:
 
 # Kritik Integration Protocol (KIP) Doctrine
 
-**Version:** 4.0.77 (Initial), 4.0.105 (PHP Implementation)  
+**Version:** 3.0.77 (Initial), 3.0.105 (PHP Implementation)  
 **Status:** ACTIVE  
 **Authority:** Multi-Agent Architectural Evolution  
 **Scope:** Critique integration and system evolution
@@ -36,9 +36,9 @@ The Kritik Integration Protocol (KIP) provides a structured framework for receiv
 
 ---
 
-## PHP Implementation (Version 4.0.105+)
+## PHP Implementation (Version 3.0.105+)
 
-As of Version 4.0.105, KIP has functional PHP implementations:
+As of Version 3.0.105, KIP has functional PHP implementations:
 
 ### KIPEngine
 **Location:** `lupo-includes/KIP/KIPEngine.php`
@@ -123,8 +123,8 @@ KIP will continue to evolve with:
 - Advanced critique pattern recognition
 - Automated integration recommendations
 - Enhanced feedback loop processing
-- Integration with Pack Architecture (4.1.0+)
+- Integration with Pack Architecture (3.1.0+)
 
 ---
 
-**KIP Status:** ACTIVE with functional PHP implementation as of Version 4.0.105.
+**KIP Status:** ACTIVE with functional PHP implementation as of Version 3.0.105.

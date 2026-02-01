@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.82
+file.last_modified_system_version: 3.0.82
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,20 +8,20 @@ dialog:
   speaker: KIRO
   target: @architecture_team @Monday_Wolfie
   mood_RGB: "0066FF"
-  message: "Created version plans documentation for 4.0.83 through 4.0.88 development cycle with structured implementation roadmap."
+  message: "Created version plans documentation for 3.0.83 through 3.0.88 development cycle with structured implementation roadmap."
 tags:
   categories: ["planning", "version", "architecture", "roadmap"]
   collections: ["core-docs", "planning"]
   channels: ["dev", "architecture", "planning"]
 file:
-  title: "Version Plans: 4.0.82 → 4.0.88"
-  description: "Structured development plans for versions 4.0.83 through 4.0.88 implementation cycle"
+  title: "Version Plans: 3.0.82 → 3.0.88"
+  description: "Structured development plans for versions 3.0.83 through 3.0.88 implementation cycle"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: planning
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# VERSION PLANS: 4.0.82 → 4.0.88
+# VERSION PLANS: 3.0.82 → 3.0.88
 
 **Planning Period:** 2026-01-18 to 2026-Q2  
 **Status:** Documentation Only - Not for Execution  
@@ -29,11 +29,11 @@ file:
 
 ## Overview
 
-This document outlines the planned development cycle from version 4.0.82 through 4.0.88, establishing a structured roadmap for system stabilization, architectural cleanup, and preparation for the 4.0.99 major release.
+This document outlines the planned development cycle from version 3.0.82 through 3.0.88, establishing a structured roadmap for system stabilization, architectural cleanup, and preparation for the 3.0.99 major release.
 
 **Important Note:** These are planning documents only. Implementation requires separate authorization and execution phases.
 
-## 4.0.83 — Trinity Separation Implementation
+## 3.0.83 — Trinity Separation Implementation
 
 ### Objectives
 - Implement physical Trinity Separation architecture
@@ -69,7 +69,7 @@ This document outlines the planned development cycle from version 4.0.82 through
 - Stream routing doctrine documented and operational
 - Header templates support stream metadata
 
-## 4.0.84 — Trigger Extraction & Service Layer Expansion
+## 3.0.84 — Trigger Extraction & Service Layer Expansion
 
 ### Objectives
 - Extract remaining database triggers to PHP
@@ -107,7 +107,7 @@ This document outlines the planned development cycle from version 4.0.82 through
 - NO_TRIGGERS_NO_PROCEDURES doctrine operational
 - Service layer fully documented
 
-## 4.0.85 — Schema Reduction & RPZ Migration
+## 3.0.85 — Schema Reduction & RPZ Migration
 
 ### Objectives
 - Achieve 120-table architectural target
@@ -147,7 +147,7 @@ This document outlines the planned development cycle from version 4.0.82 through
 - Schema documentation updated and accurate
 - RPZ governance established and documented
 
-## 4.0.86 — Emotional Geometry Integration
+## 3.0.86 — Emotional Geometry Integration
 
 ### Objectives
 - Integrate emotional geometry into header doctrine
@@ -186,7 +186,7 @@ This document outlines the planned development cycle from version 4.0.82 through
 - Emotional validation operational
 - Collapse logic enhanced with emotional awareness
 
-## 4.0.87 — Version Reconciliation & Implementation Sync
+## 3.0.87 — Version Reconciliation & Implementation Sync
 
 ### Objectives
 - Bring implementation to parity with documentation
@@ -202,7 +202,7 @@ This document outlines the planned development cycle from version 4.0.82 through
   - Resolve version drift across components
 
 - **Version Consistency**
-  - Update `version.php` to 4.0.87
+  - Update `version.php` to 3.0.87
   - Align all component versions
   - Resolve version reference inconsistencies
   - Establish version synchronization procedures
@@ -221,16 +221,16 @@ This document outlines the planned development cycle from version 4.0.82 through
 
 ### Success Criteria
 - Implementation matches documentation
-- All versions synchronized to 4.0.87
+- All versions synchronized to 3.0.87
 - Doctrine and implementation aligned
 - No unresolved superpositional states
 
-## 4.0.88 — Stability, Cleanup, and Pre-4.0.99 Prep
+## 3.0.88 — Stability, Cleanup, and Pre-3.0.99 Prep
 
 ### Objectives
 - Remove deprecated structures
 - Finalize Trinity Separation
-- Prepare 4.0.99 migration plan
+- Prepare 3.0.99 migration plan
 - Document architectural lessons learned
 
 ### Planned Changes
@@ -246,22 +246,22 @@ This document outlines the planned development cycle from version 4.0.82 through
   - Finalize stream governance
   - Document Trinity architecture
 
-- **4.0.99 Preparation**
-  - Create 4.0.99 migration plan
+- **3.0.99 Preparation**
+  - Create 3.0.99 migration plan
   - Document breaking changes
   - Prepare upgrade procedures
-  - Establish 4.0.99 development framework
+  - Establish 3.0.99 development framework
 
 - **Architectural Documentation**
-  - Document lessons learned from 4.0.x cycle
+  - Document lessons learned from 3.0.x cycle
   - Create architectural evolution summary
   - Document best practices discovered
-  - Prepare architectural guidance for 4.0.99
+  - Prepare architectural guidance for 3.0.99
 
 ### Success Criteria
 - All deprecated structures removed
 - Trinity Separation fully operational
-- 4.0.99 migration plan complete
+- 3.0.99 migration plan complete
 - Architectural lessons documented
 
 ## Implementation Guidelines
@@ -286,34 +286,34 @@ This document outlines the planned development cycle from version 4.0.82 through
 
 ## Success Metrics
 
-### Version 4.0.83 Success
+### Version 3.0.83 Success
 - Trinity Separation operational
 - Historical entries properly migrated
 - Stream routing functional
 
-### Version 4.0.84 Success
+### Version 3.0.84 Success
 - Zero database triggers
 - Service layer fully operational
 - Doctrine enforcement active
 
-### Version 4.0.85 Success
+### Version 3.0.85 Success
 - 120-table schema achieved
 - RPZ sandbox operational
 - Schema governance established
 
-### Version 4.0.86 Success
+### Version 3.0.86 Success
 - Emotional geometry integrated
 - Persona baselines documented
 - Emotional validation operational
 
-### Version 4.0.87 Success
+### Version 3.0.87 Success
 - Implementation-documentation parity
 - Version consistency achieved
 - Superposition states resolved
 
-### Version 4.0.88 Success
+### Version 3.0.88 Success
 - System stability achieved
-- 4.0.99 preparation complete
+- 3.0.99 preparation complete
 - Architectural lessons documented
 
 ## Timeline Considerations
@@ -328,7 +328,7 @@ This document outlines the planned development cycle from version 4.0.82 through
 - **Trinity Separation** - Required for subsequent stream-aware features
 - **Trigger Extraction** - Required for schema reduction
 - **Schema Reduction** - Required for stability improvements
-- **Version Sync** - Required for 4.0.99 preparation
+- **Version Sync** - Required for 3.0.99 preparation
 
 ### Risk Factors
 - **Complexity Accumulation** - Each version builds on previous changes
@@ -340,12 +340,12 @@ This document outlines the planned development cycle from version 4.0.82 through
 
 ## Conclusion
 
-The 4.0.82 → 4.0.88 development cycle focuses on system stabilization, architectural cleanup, and preparation for the 4.0.99 major release. Each version addresses specific architectural needs while building toward a stable, well-documented, and maintainable system.
+The 3.0.82 → 3.0.88 development cycle focuses on system stabilization, architectural cleanup, and preparation for the 3.0.99 major release. Each version addresses specific architectural needs while building toward a stable, well-documented, and maintainable system.
 
 **This is planning documentation only. Implementation requires separate authorization and execution phases.**
 
 **Status:** Planning Complete - Ready for Implementation Authorization  
 **Next Phase:** Architecture Team Review and Implementation Planning  
-**Target:** Stable 4.0.88 system ready for 4.0.99 development cycle  
+**Target:** Stable 3.0.88 system ready for 3.0.99 development cycle  
 
 ---

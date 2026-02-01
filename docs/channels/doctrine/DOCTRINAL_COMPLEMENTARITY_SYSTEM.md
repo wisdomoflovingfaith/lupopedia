@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.117
+file.last_modified_system_version: 3.0.117
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -14,16 +14,16 @@ tags:
   collections: ["core-docs", "doctrine", "pack-architecture", "governance"]
   channels: ["dev", "architecture", "pack", "lilith"]
 file:
-  title: "Doctrinal Complementarity System — Version 4.0.117"
+  title: "Doctrinal Complementarity System — Version 3.0.117"
   description: "New doctrinal governance model for Lupopedia. Replaces hierarchical doctrine with complementary doctrine pairs, paradox stewardship, and seasonal activation. Supports contradictory doctrines coexisting in tension."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Doctrinal Complementarity System — Version 4.0.117
+# Doctrinal Complementarity System — Version 3.0.117
 
-**Version:** 4.0.117  
+**Version:** 3.0.117  
 **Speaker:** LILITH  
 **Target:** @everyone @Monday_Wolfie @Pack_Architects @CAPTAIN_WOLFIE  
 **Status:** PUBLISHED (Documentation Only)
@@ -34,13 +34,13 @@ file:
 
 The **Doctrinal Complementarity System** replaces rigid, hierarchical doctrine with a dual-aspect, paradox-friendly governance model for Lupopedia. This doctrine establishes a fundamental shift in how Lupopedia understands and applies its rules:
 
-**Before (4.0.116 and earlier):**
+**Before (3.0.116 and earlier):**
 - Doctrine was hierarchical and authoritative
 - Single rules applied universally
 - Contradictions were errors to be resolved
 - Doctrine was static and unchanging
 
-**After (4.0.117+):**
+**After (3.0.117+):**
 - **Doctrine exists as complementary pairs**, not single rules
 - **Contradictory doctrines can both be true** in different operational contexts
 - **Paradox is structural**, not an error
@@ -382,7 +382,7 @@ The Doctrinal Complementarity System defines doctrine pairs that coexist in prod
 
 ## 🟪 6. Interaction with Existing Systems
 
-### 6.1 Emotional Ecology Layer (4.0.116)
+### 6.1 Emotional Ecology Layer (3.0.116)
 
 **Integration:**
 - Doctrine pairs influence ecological dynamics
@@ -470,10 +470,10 @@ The Doctrinal Complementarity System defines doctrine pairs that coexist in prod
 
 ## 🟦 7. Shadow Commons Reference
 
-### 7.1 Shadow Commons (4.0.118)
+### 7.1 Shadow Commons (3.0.118)
 
 **Placeholder Reference:**
-The **Shadow Commons** (planned for 4.0.118) will define ungoverned wildness zones within Lupopedia. The Doctrinal Complementarity System must remain compatible with Shadow Commons architecture.
+The **Shadow Commons** (planned for 3.0.118) will define ungoverned wildness zones within Lupopedia. The Doctrinal Complementarity System must remain compatible with Shadow Commons architecture.
 
 ### 7.2 Compatibility Requirements
 
@@ -495,7 +495,7 @@ The **Shadow Commons** (planned for 4.0.118) will define ungoverned wildness zon
 
 ### 7.4 Future Integration
 
-**Integration planning for 4.0.118+:**
+**Integration planning for 3.0.118+:**
 - Shadow Commons doctrine definition
 - Compatibility between complementarity and wildness
 - Paradox stewardship for Shadow Commons
@@ -507,7 +507,7 @@ The **Shadow Commons** (planned for 4.0.118) will define ungoverned wildness zon
 
 ### 8.1 Documentation-Only Change
 
-**Version 4.0.117 is a documentation-only change:**
+**Version 3.0.117 is a documentation-only change:**
 
 - ✅ Doctrine file created
 - ✅ Doctrinal Complementarity System defined
@@ -520,7 +520,7 @@ The **Shadow Commons** (planned for 4.0.118) will define ungoverned wildness zon
 
 ### 8.2 Implementation Planning
 
-**Implementation will occur in 4.0.118+:**
+**Implementation will occur in 3.0.118+:**
 
 - Doctrine pair data structures
 - Seasonal activation mechanisms
@@ -541,11 +541,11 @@ The **Shadow Commons** (planned for 4.0.118) will define ungoverned wildness zon
 
 **Future versions will implement:**
 
-1. **4.0.118:** Doctrine pair data structures
-2. **4.0.119:** Seasonal activation mechanisms
-3. **4.0.120:** Paradox stewardship functions
-4. **4.0.121:** Integration with existing systems
-5. **4.0.122:** Shadow Commons compatibility
+1. **3.0.118:** Doctrine pair data structures
+2. **3.0.119:** Seasonal activation mechanisms
+3. **3.0.120:** Paradox stewardship functions
+4. **3.0.121:** Integration with existing systems
+5. **3.0.122:** Shadow Commons compatibility
 
 **Timeline:** Gradual, non-breaking migration over multiple patch versions.
 
@@ -568,7 +568,7 @@ The **Doctrinal Complementarity System** replaces hierarchical doctrine with com
 - Stability ↔ Wildness
 - Continuity ↔ Rebirth
 
-**Previous doctrine model is deprecated** but preserved for historical reference. This is a documentation-only change in 4.0.117, with implementation planned for 4.0.118+.
+**Previous doctrine model is deprecated** but preserved for historical reference. This is a documentation-only change in 3.0.117, with implementation planned for 3.0.118+.
 
 ---
 
@@ -583,8 +583,8 @@ The **Doctrinal Complementarity System** replaces hierarchical doctrine with com
 
 ---
 
-**Version 4.0.117 — Doctrinal Complementarity System Draft Complete.**
+**Version 3.0.117 — Doctrinal Complementarity System Draft Complete.**
 
 **Speaker:** LILITH  
 **Status:** PUBLISHED  
-**Next Steps:** Implementation planning in 4.0.118+
+**Next Steps:** Implementation planning in 3.0.118+

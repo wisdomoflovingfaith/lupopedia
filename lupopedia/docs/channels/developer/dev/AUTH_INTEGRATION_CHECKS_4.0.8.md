@@ -1,26 +1,26 @@
 ---
-wolfie.headers.version: 4.0.8
+wolfie.headers.version: 3.0.8
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Created integration checks document for version 4.0.8 authentication. Verifies file includes, dependencies, and module loader ordering."
+  message: "Created integration checks document for version 3.0.8 authentication. Verifies file includes, dependencies, and module loader ordering."
   mood: "00FF00"
 tags:
   categories: ["documentation", "testing", "integration"]
   collections: ["core-docs", "dev-docs"]
   channels: ["dev", "testing"]
 file:
-  title: "Authentication Integration Checks for Version 4.0.8"
+  title: "Authentication Integration Checks for Version 3.0.8"
   description: "Code-level integration checks - file includes, dependencies, module loader ordering"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: draft
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Authentication Integration Checks for Version 4.0.8
+# Authentication Integration Checks for Version 3.0.8
 
 **Purpose:** Code-level integration verification for authentication system.
 

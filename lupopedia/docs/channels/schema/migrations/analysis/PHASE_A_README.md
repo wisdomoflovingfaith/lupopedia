@@ -115,5 +115,5 @@ $db->query("SELECT * FROM " . lupo_table('lupo_audit_log') . " WHERE ...");
 
 ---
 
-*Version: 4.0.3*  
+*Version: 3.0.3*  
 *Author: Captain Wolfie*

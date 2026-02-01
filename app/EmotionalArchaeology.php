@@ -6,7 +6,7 @@
  * for seed selection, flow-state detection, and relational breakthrough analysis.
  *
  * NOTE: This system uses a continuous emotional vector model for content analysis.
- * This is NOT the deprecated scalar (-1,1) or 5-tuple models from 4.0.x-4.2.x.
+ * This is NOT the deprecated scalar (-1,1) or 5-tuple models from 3.0.x-4.2.x.
  * This is a specialized analysis tool separate from the canonical 2-actor RGB mood model.
  *
  * For actor-based emotional geometry, see: doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md

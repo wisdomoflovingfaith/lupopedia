@@ -5,13 +5,13 @@
  * DEPRECATED as of 4.4.x - replaced by 2-Actor RGB Mood Model
  * See: doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md for current canonical model
  *
- * Previous scalar and 5-tuple emotional models (4.0.x–4.2.x) are deprecated
+ * Previous scalar and 5-tuple emotional models (3.0.x–4.2.x) are deprecated
  * and replaced by the 2-actor RGB mood geometry.
  *
  * HTTP endpoint for emotional geometry operations.
  *
  * @package Lupopedia
- * @version 4.0.108
+ * @version 3.0.108
  * @author Captain Wolfie
  */
 

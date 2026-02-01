@@ -1,4 +1,4 @@
--- 2026-01-20 Doctrine Corrections (Version 4.1.14)
+-- 2026-01-20 Doctrine Corrections (Version 3.1.14)
 -- - Fixed timestamp doctrine violations
 -- - Corrected lupo_crm_lead_messages column mismatch
 -- - Resolved livehelp_emailque migration gap
@@ -8,14 +8,14 @@
 /* 
 ======================================================================
    MIGRATION OVERVIEW
-   Upgrades Crafty Syntax Live Help versions 3.6.1 through 3.7.5 to 4.0.3.
+   Upgrades Crafty Syntax Live Help versions 3.6.1 through 3.7.5 to 3.0.3.
 
    There were no database changes between 3.6.1 and 3.7.5, so all versions
-   run this same migration to reach 4.0.0. EVERY TABLE CHANGED between
-   3.7.5 and 4.0.0 — this release is a complete rebuild of the system
+   run this same migration to reach 3.0.0. EVERY TABLE CHANGED between
+   3.7.5 and 3.0.0 — this release is a complete rebuild of the system
    after a 15-year hiatus from development.
 
-   Version 4.0.3 is a full architectural rewrite. Every table has been
+   Version 3.0.3 is a full architectural rewrite. Every table has been
    replaced, modernized, or migrated into the new Lupopedia domain model.
    This migration touches the entire system and redefines the core data
    structures for long-term scalability, clarity, and maintainability.
@@ -32,7 +32,7 @@
     Total tables present during migration: 145
 
       • 34 legacy Crafty Syntax tables (3.7.5)
-      • 111 core Lupopedia tables (4.0.3)
+      • 111 core Lupopedia tables (3.0.3)
       • 8 new Crafty Syntax module tables included in this migration
 
     After successful migration, all 34 legacy tables are dropped,
@@ -59,7 +59,7 @@ ALTER TABLE livehelp_autoinvite
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 ALTER TABLE livehelp_autoinvite
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 INSERT INTO lupo_crafty_syntax_auto_invite (
     crafty_syntax_auto_invite_id,
@@ -115,7 +115,7 @@ ALTER TABLE livehelp_channels
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_channels
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
 -- ======================================================================
@@ -127,7 +127,7 @@ ALTER TABLE livehelp_config
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 ALTER TABLE livehelp_config
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 UPDATE lupo_modules m
 JOIN livehelp_config c ON 1=1
@@ -195,7 +195,7 @@ ALTER TABLE livehelp_departments
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_departments
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 INSERT INTO lupo_departments (
     department_id,
@@ -232,7 +232,7 @@ ALTER TABLE livehelp_emailque
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_emailque
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- ======================================================================
 -- livehelp_emails               → lupo_crm_lead_messages
@@ -241,7 +241,7 @@ ALTER TABLE livehelp_emails
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_emails
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 INSERT INTO lupo_crm_lead_messages (
     crm_lead_message_id,
@@ -267,42 +267,42 @@ SELECT
 FROM livehelp_emails;
 
 -- ======================================================================
--- livehelp_identity_daily               → removed in Lupopedia 4.0.0
+-- livehelp_identity_daily               → removed in Lupopedia 3.0.0
 
 ALTER TABLE livehelp_identity_daily
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_identity_daily
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
 -- ======================================================================
--- livehelp_identity_monthly              → removed in Lupopedia 4.0.0
+-- livehelp_identity_monthly              → removed in Lupopedia 3.0.0
 
 ALTER TABLE livehelp_identity_monthly
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_identity_monthly
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
  
 -- ======================================================================
--- livehelp_keywords_daily              → removed in Lupopedia 4.0.0
+-- livehelp_keywords_daily              → removed in Lupopedia 3.0.0
 
 ALTER TABLE livehelp_keywords_daily
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_keywords_daily
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- ======================================================================
--- livehelp_keywords_monthly              → removed in Lupopedia 4.0.0
+-- livehelp_keywords_monthly              → removed in Lupopedia 3.0.0
 
 ALTER TABLE livehelp_keywords_monthly
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_keywords_monthly
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- ======================================================================
 -- livehelp_layerinvites              → crafty_syntax_layer_invites
@@ -311,7 +311,7 @@ ALTER TABLE livehelp_layerinvites
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_layerinvites
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 INSERT INTO lupo_crafty_syntax_layer_invites (
     layer_name,
@@ -350,7 +350,7 @@ ALTER TABLE livehelp_leads
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_leads
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 INSERT INTO  lupo_crm_leads
  (
@@ -393,7 +393,7 @@ ALTER TABLE livehelp_leavemessage
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_leavemessage
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
 INSERT INTO lupo_crafty_syntax_leave_message (
@@ -444,7 +444,7 @@ ALTER TABLE livehelp_messages
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_messages
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
 -- ======================================================================
@@ -455,7 +455,7 @@ ALTER TABLE livehelp_modules
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
   ALTER TABLE livehelp_modules
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
  
 -- ======================================================================
 -- livehelp_modules_dep -> crafty_chat_mod_departments
@@ -466,7 +466,7 @@ ALTER TABLE livehelp_modules_dep
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
   ALTER TABLE livehelp_modules_dep
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
  
 -- ======================================================================
 -- livehelp_operator_channels -> channels
@@ -475,7 +475,7 @@ ALTER TABLE livehelp_operator_channels
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_operator_channels
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- ======================================================================
 -- livehelp_operator_departments -> actor_departments
@@ -484,7 +484,7 @@ ALTER TABLE livehelp_operator_departments
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_operator_departments
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 INSERT INTO lupo_actor_departments (
     actor_department_id,
@@ -515,7 +515,7 @@ ALTER TABLE livehelp_operator_history
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_operator_history
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 INSERT INTO lupo_audit_log (
     audit_log_id,
@@ -562,7 +562,7 @@ ALTER TABLE livehelp_paths_firsts
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_paths_firsts
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
 
@@ -598,7 +598,7 @@ ALTER TABLE livehelp_paths_firsts
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_paths_firsts
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
 -- NOTE: visit_recno and exit_recno are recnos from livehelp_visits_monthly/livehelp_visits_daily
@@ -637,7 +637,7 @@ ALTER TABLE livehelp_paths_monthly
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_paths_monthly
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 TRUNCATE lupo_analytics_paths_monthly;
 
@@ -683,7 +683,7 @@ ALTER TABLE livehelp_qa
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_qa
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
 
@@ -891,7 +891,7 @@ ALTER TABLE livehelp_questions
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_questions
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
 INSERT INTO lupo_crafty_syntax_chat_questions (
@@ -932,7 +932,7 @@ ALTER TABLE livehelp_quick
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_quick
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 INSERT INTO lupo_actor_reply_templates (
     actor_reply_template_id,
@@ -965,7 +965,7 @@ ALTER TABLE livehelp_referers_daily
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
  
 ALTER TABLE livehelp_referers_daily
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- NOTE: livehelp_referers_daily.pageurl contains the web-facing URL slug exactly as seen in the browser.
 -- These values are NOT filesystem paths and must be treated as semantic slugs or identifiers.
@@ -1008,7 +1008,7 @@ ALTER TABLE livehelp_referers_monthly
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
  
 ALTER TABLE livehelp_referers_monthly
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
  
  
 -- ======================================================================
@@ -1018,7 +1018,7 @@ ALTER TABLE livehelp_sessions
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
  
 ALTER TABLE livehelp_sessions
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
  
  -- ======================================================================
   
@@ -1037,7 +1037,7 @@ ALTER TABLE livehelp_transcripts
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_transcripts
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
 INSERT INTO lupo_dialog_threads (
@@ -1138,7 +1138,7 @@ ALTER TABLE livehelp_users
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_users
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
 INSERT INTO lupo_auth_users (
@@ -1217,7 +1217,7 @@ ALTER TABLE livehelp_visits_daily
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_visits_daily
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- ======================================================================
 -- livehelp_users               → lupo_auth_users
@@ -1226,7 +1226,7 @@ ALTER TABLE livehelp_visits_monthly
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_visits_monthly
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- ======================================================================
 -- livehelp_users               → lupo_auth_users
@@ -1235,7 +1235,7 @@ ALTER TABLE livehelp_visit_track
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_visit_track
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- ======================================================================
 -- livehelp_users               → lupo_auth_users
@@ -1244,7 +1244,7 @@ ALTER TABLE livehelp_websites
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_websites
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 4.0.0 and should be deleted after successful migration.';
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
  

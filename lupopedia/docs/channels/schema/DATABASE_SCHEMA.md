@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_DEFAULT_STATUS
@@ -10,7 +10,7 @@ header_atoms:
 dialog:
   speaker: cursor
   target: @everyone
-  message: "Added Cursor note at top of file: version 4.0.1 authoritative, application modules vs kernel utilities, LiveHelp migration-only, migration SQL authoritative. Corrected version from 4.1.0 to 4.0.1."
+  message: "Added Cursor note at top of file: version 3.0.1 authoritative, application modules vs kernel utilities, LiveHelp migration-only, migration SQL authoritative. Corrected version from 3.1.0 to 3.0.1."
   mood: "00FF00"
 tags:
   categories: ["documentation", "database", "schema", "reference"]
@@ -18,7 +18,7 @@ tags:
   channels: ["dev", "architecture"]
 file:
   title: "Lupopedia Database Schema Reference"
-  description: "Complete documentation of all 145 database tables (111 core + 34 migration-only + 4 system) in Lupopedia 4.0.1"
+  description: "Complete documentation of all 145 database tables (111 core + 34 migration-only + 4 system) in Lupopedia 3.0.1"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: GLOBAL_DEFAULT_STATUS
   author: "Captain Wolfie"
@@ -29,7 +29,7 @@ file:
 ## **1. Lupopedia Version (Authoritative)**  
 The current Lupopedia version is:
 
-**`4.0.1`**
+**`3.0.1`**
 
 This version number is **authoritative** and must be used consistently across:
 
@@ -41,7 +41,7 @@ This version number is **authoritative** and must be used consistently across:
 - examples  
 - generated files  
 
-Cursor must **not** infer, propose, or autoâ€‘increment versions such as `4.1.0`.  
+Cursor must **not** infer, propose, or autoâ€‘increment versions such as `3.1.0`.  
 Version changes are **humanâ€‘controlled only**.
 
 ---
@@ -79,7 +79,7 @@ Cursor must **not** treat these as modules, must not add them to the module regi
 
 ## **3. LiveHelp Is Migrationâ€‘Only**
 
-The `livehelp_*` tables are **not part of Lupopedia 4.0.1**.
+The `livehelp_*` tables are **not part of Lupopedia 3.0.1**.
 
 They exist **only during the upgrade** from Crafty Syntax 3.7.5.
 
@@ -95,7 +95,7 @@ Cursor must understand:
 
 ## **4. Migration SQL File (Authoritative)**
 
-The migration from Crafty Syntax 3.7.5 â†’ Lupopedia 4.0.1 is handled by a **handâ€‘written SQL file** located at:
+The migration from Crafty Syntax 3.7.5 â†’ Lupopedia 3.0.1 is handled by a **handâ€‘written SQL file** located at:
 
 ```
 /database/migrations/
@@ -118,8 +118,8 @@ The install/upgrade wizard will execute this SQL file automatically.
 After the migration completes:
 
 - all `livehelp_*` tables are dropped  
-- the database contains only Lupopedia 4.0.1 tables  
-- Crafty Syntax 4.0.1 replaces LiveHelp entirely  
+- the database contains only Lupopedia 3.0.1 tables  
+- Crafty Syntax 3.0.1 replaces LiveHelp entirely  
 - Cursor must generate documentation and code **as if LiveHelp never existed**  
 
 ---
@@ -128,7 +128,7 @@ After the migration completes:
 
 Cursor must follow these rules:
 
-### âœ” Use version `4.0.1` everywhere  
+### âœ” Use version `3.0.1` everywhere  
 ### âœ” Only the 8 application modules belong in the `modules` table  
 ### âœ” LiveHelp is migrationâ€‘only  
 ### âœ” Migration SQL lives in `/database/migrations/`  
@@ -143,12 +143,12 @@ Cursor must follow these rules:
 
 ---
 
-# **LUPOPEDIA DATABASE SCHEMA (v4.0.1)**
-*145 Tables - Lupopedia 4.0.1 (111 core + 34 migration-only + 4 system)*
+# **LUPOPEDIA DATABASE SCHEMA (v3.0.1)**
+*145 Tables - Lupopedia 3.0.1 (111 core + 34 migration-only + 4 system)*
 
 ## **Quick Reference**
 - **Total Tables**: ~112 (77 core + 22 orchestration + 12 ephemeral + 1 system)
-- **Schema Federation**: Phase A implemented (4.0.3)
+- **Schema Federation**: Phase A implemented (3.0.3)
   - Core schema: `lupopedia` (77 tables, was 111)
   - Orchestration schema: `lupopedia_orchestration` (22 tables)
   - Ephemeral schema: `lupopedia_ephemeral` (12 tables)
@@ -226,13 +226,13 @@ Both reference systems provide authoritative schema information without requirin
 - `paths_daily` / `paths_monthly` - User journey analysis
 - `campaign_vars_daily` - Marketing attribution
 
-### **5. Crafty Syntax 4.0.1 System (First-Party Module)**
+### **5. Crafty Syntax 3.0.1 System (First-Party Module)**
 - `crafty_chat_transcripts` - Conversation history
 - `crafty_messages` - Internal communications
 - `crafty_operator_departments` - Support team structure
 - `crafty_user_profile` - User and operator profiles
 
-**Note:** The legacy `livehelp_*` tables (34 tables) are **migration-only** and are **NOT part of Lupopedia 4.0.1**. They exist only during the upgrade from Crafty Syntax 3.7.5 â†’ Lupopedia 4.0.1 and are dropped after migration completes. See [Migration Doctrine](../doctrine/MIGRATION_DOCTRINE.md) for details.
+**Note:** The legacy `livehelp_*` tables (34 tables) are **migration-only** and are **NOT part of Lupopedia 3.0.1**. They exist only during the upgrade from Crafty Syntax 3.7.5 â†’ Lupopedia 3.0.1 and are dropped after migration completes. See [Migration Doctrine](../doctrine/MIGRATION_DOCTRINE.md) for details.
 
 ### **6. System & Administration**
 - `domains` - Multi-tenant organization
@@ -263,17 +263,17 @@ Both reference systems provide authoritative schema information without requirin
 
 ## **Schema Statistics**
 - **Total Tables**: 145
-- **Core Tables**: 111 (permanent Lupopedia 4.0.1 tables)
+- **Core Tables**: 111 (permanent Lupopedia 3.0.1 tables)
 - **Legacy Crafty Syntax Migration Tables**: 34 (temporary, migration-only, removed after upgrade)
 - **System Tables**: 4 (includes federation_nodes, modules, etc.)
 
 **âš ï¸ IMPORTANT â€” Legacy Tables Are Migration-Only:**
 
-The 34 `livehelp_*` tables are **NOT part of Lupopedia 4.0.1**. They exist **only during the upgrade process** from Crafty Syntax 3.7.5 â†’ Lupopedia 4.0.1. These tables are:
+The 34 `livehelp_*` tables are **NOT part of Lupopedia 3.0.1**. They exist **only during the upgrade process** from Crafty Syntax 3.7.5 â†’ Lupopedia 3.0.1. These tables are:
 
 - Created only for migration purposes
 - Populated from old Crafty Syntax 3.7.5 database
-- Used by migration SQL to transform data into new 4.0.1 schema
+- Used by migration SQL to transform data into new 3.0.1 schema
 - **Dropped immediately after successful migration**
 
 **See [Migration Doctrine](../doctrine/MIGRATION_DOCTRINE.md)** for complete rules on LiveHelp migration.
@@ -1017,7 +1017,7 @@ Notes: Manages group modules.
 
 7. Legacy Migration Tables (Temporary â€” Migration-Only)
 
-âš ï¸ **IMPORTANT:** The following `livehelp_*` tables are **NOT part of Lupopedia 4.0.1**. They exist **only during the upgrade process** from Crafty Syntax 3.7.5 â†’ Lupopedia 4.0.1. These tables are created for migration, populated from old data, used by migration SQL, and **dropped immediately after successful migration**.
+âš ï¸ **IMPORTANT:** The following `livehelp_*` tables are **NOT part of Lupopedia 3.0.1**. They exist **only during the upgrade process** from Crafty Syntax 3.7.5 â†’ Lupopedia 3.0.1. These tables are created for migration, populated from old data, used by migration SQL, and **dropped immediately after successful migration**.
 
 See [Migration Doctrine](../doctrine/MIGRATION_DOCTRINE.md) for complete rules.
 

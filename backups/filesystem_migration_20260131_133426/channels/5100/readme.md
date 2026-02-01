@@ -50,7 +50,7 @@ VALUES (
     NULL,                             -- deleted_ymdhis
     NULL,                             -- aal_metadata_json
     NULL,                             -- fleet_composition_json
-    '4.0.72',                         -- awareness_version
+    '3.0.72',                         -- awareness_version
     5100,                             -- channel_number
     NULL,                             -- parent_channel_id
     0,                                -- is_kernel

@@ -1,9 +1,9 @@
 -- Multi-Agent Protocol Schema Extensions
 -- Implements Agent Awareness Layer (AAL), Reverse Shaka Handshake Protocol (RSHAP), 
--- and Channel Join Protocol (CJP) as defined in version 4.0.72
+-- and Channel Join Protocol (CJP) as defined in version 3.0.72
 -- 
 -- @package Lupopedia
--- @version 4.0.72
+-- @version 3.0.72
 -- @author kiro (AI Assistant)
 
 -- ============================================================================
@@ -15,7 +15,7 @@
 ALTER TABLE `lupo_channels` 
 ADD COLUMN `aal_metadata_json` JSON DEFAULT NULL COMMENT 'Agent Awareness Layer metadata for WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE',
 ADD COLUMN `fleet_composition_json` JSON DEFAULT NULL COMMENT 'Current fleet of agents in this channel with their roles',
-ADD COLUMN `awareness_version` VARCHAR(20) DEFAULT '4.0.72' COMMENT 'AAL protocol version for this channel';
+ADD COLUMN `awareness_version` VARCHAR(20) DEFAULT '3.0.72' COMMENT 'AAL protocol version for this channel';
 
 -- ============================================================================
 -- EXTEND lupo_actor_channel_roles TABLE FOR RSHAP AND CJP
@@ -26,7 +26,7 @@ ALTER TABLE `lupo_actor_channel_roles`
 ADD COLUMN `handshake_metadata_json` JSON DEFAULT NULL COMMENT 'RSHAP handshake identity and synchronization data',
 ADD COLUMN `awareness_snapshot_json` JSON DEFAULT NULL COMMENT 'CJP Awareness Snapshot (WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE)',
 ADD COLUMN `protocol_completion_status` ENUM('pending', 'aal_complete', 'rshap_complete', 'cjp_complete', 'ready') DEFAULT 'pending' COMMENT 'Multi-agent protocol completion status',
-ADD COLUMN `protocol_version` VARCHAR(20) DEFAULT '4.0.72' COMMENT 'Protocol version used for this actor-channel relationship',
+ADD COLUMN `protocol_version` VARCHAR(20) DEFAULT '3.0.72' COMMENT 'Protocol version used for this actor-channel relationship',
 ADD COLUMN `join_sequence_step` TINYINT DEFAULT 0 COMMENT 'Current step in 10-step CJP sequence (0-10)',
 ADD COLUMN `handshake_completed_ymdhis` BIGINT DEFAULT NULL COMMENT 'Timestamp when RSHAP was completed',
 ADD COLUMN `awareness_completed_ymdhis` BIGINT DEFAULT NULL COMMENT 'Timestamp when AAL was completed',
@@ -42,7 +42,7 @@ ADD COLUMN `persistent_identity_json` JSON DEFAULT NULL COMMENT 'RSHAP persisten
 ADD COLUMN `identity_signature` VARCHAR(255) DEFAULT NULL COMMENT 'Unique identity signature for handshake verification',
 ADD COLUMN `trust_level` ENUM('system', 'verified', 'standard', 'restricted', 'untrusted') DEFAULT 'standard' COMMENT 'Trust level for multi-agent interactions',
 ADD COLUMN `emotional_geometry_baseline` JSON DEFAULT NULL COMMENT 'Baseline emotional geometry for agent interactions',
-ADD COLUMN `doctrine_alignment_version` VARCHAR(20) DEFAULT '4.0.72' COMMENT 'Version of doctrine this actor aligns with';
+ADD COLUMN `doctrine_alignment_version` VARCHAR(20) DEFAULT '3.0.72' COMMENT 'Version of doctrine this actor aligns with';
 
 -- ============================================================================
 -- CREATE INDEXES FOR PERFORMANCE

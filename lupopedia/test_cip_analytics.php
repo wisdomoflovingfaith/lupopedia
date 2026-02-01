@@ -1,15 +1,15 @@
 <?php
 /**
  * wolfie.headers: explicit architecture with structured clarity for every file.
- * file.last_modified_system_version: 4.0.76
+ * file.last_modified_system_version: 3.0.76
  * 
  * CIP Analytics Testing Tool
  * 
  * Tests the CIP Analytics Engine, Doctrine Refinement Module, and 
- * Emotional Geometry Calibration components for version 4.0.75.
+ * Emotional Geometry Calibration components for version 3.0.75.
  * 
  * @package Lupopedia
- * @version 4.0.76
+ * @version 3.0.76
  * @author kiro (AI Assistant)
  */
 
@@ -44,7 +44,7 @@ class CIPAnalyticsTest {
      * Run comprehensive CIP analytics tests
      */
     public function runTests() {
-        echo "=== CIP Analytics Testing Tool v4.0.76 ===\n\n";
+        echo "=== CIP Analytics Testing Tool v3.0.76 ===\n\n";
         
         try {
             // Test 1: Database schema validation
@@ -136,7 +136,7 @@ class CIPAnalyticsTest {
         $sql = "INSERT INTO lupo_cip_events (
             critique_source, critique_content, response_content,
             event_status, created_ymdhis, event_version
-        ) VALUES (?, ?, ?, 'processed', ?, '4.0.75')";
+        ) VALUES (?, ?, ?, 'processed', ?, '3.0.75')";
         
         $stmt = $this->db->prepare($sql);
         $stmt->execute([

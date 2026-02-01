@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 updated: 2026-01-08
 author: Wolfie (Eric Robin Gerdes)
 dialog:
@@ -15,7 +15,7 @@ tags:
 file:
   title: "HERMES and CADUCEUS â€” Complete Reference"
   description: "Who, what, where, when, why, and how of HERMES message routing layer and CADUCEUS mood signal helper in Lupopedia Semantic OS"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Eric Robin Gerdes (Wolfie)"
 ---
@@ -43,7 +43,7 @@ Agent classification and routing only matter when multiple agents are active and
 - **Class Name:** `HERMES` (PHP class in `lupo-includes/class-hermes.php`)
 - **What It Is NOT:** NOT an agent, NOT a subsystem, NOT a database table
 - **What It IS:** Pure routing infrastructure layer
-- **Created By:** Eric Robin Gerdes ("Wolfie") as part of Lupopedia 4.0.0
+- **Created By:** Eric Robin Gerdes ("Wolfie") as part of Lupopedia 3.0.0
 - **Used By:** DialogManager (central dispatcher) for all message routing decisions
 - **Dependencies:** CADUCEUS (mood signal computation), database connection (`agent_registry` table)
 
@@ -59,7 +59,7 @@ Agent classification and routing only matter when multiple agents are active and
 - **Class Name:** `Caduceus` (PHP class in `lupo-includes/class-caduceus.php`)
 - **What It Is NOT:** NOT a router, NOT a routing subsystem, NOT an agent, NOT a database table
 - **What It IS:** Emotional balancer for channels
-- **Created By:** Eric Robin Gerdes ("Wolfie") as part of Lupopedia 4.0.0
+- **Created By:** Eric Robin Gerdes ("Wolfie") as part of Lupopedia 3.0.0
 - **Used By:** HERMES (and other subsystems) to access channel emotional current
 - **Dependencies:** None (pure function, no database, no side effects)
 
@@ -260,7 +260,7 @@ However, these bindings are **NOT universal**. Nodes **MAY** rebind left/right p
 
 **Files:**
 - **Implementation:** `lupo-includes/class-caduceus.php`
-- **RFC Specification:** `docs/protocols/CADUCEUS_ROUTING_RFC.md` (v4.0.1)
+- **RFC Specification:** `docs/protocols/CADUCEUS_ROUTING_RFC.md` (v3.0.1)
 - **Architecture Documentation:** `docs/core/ARCHITECTURE_SYNC.md` (Section 1.2)
 - **Doctrine:** `docs/appendix/COUNTING_IN_LIGHT.md`
 
@@ -330,9 +330,9 @@ HERMES **MUST** emit structured error packets for:
 
 Error packets **MUST NOT** halt routing; they **MUST** be logged and returned to the caller.
 
-### **3.9 Migration from Pre-4.0.0 Dialogs**
+### **3.9 Migration from Pre-3.0.0 Dialogs**
 
-Messages created before v4.0.0 **MAY** lack `mood_rgb`. HERMES **MUST** treat missing moods as:
+Messages created before v3.0.0 **MAY** lack `mood_rgb`. HERMES **MUST** treat missing moods as:
 
 - `mood_rgb = "666666"`
 - `origin = "legacy_default"`
@@ -790,8 +790,8 @@ Implementations **MUST** include tests for:
 
 ## **Related Documentation**
 
-- **[RFC 4003](../architecture/protocols/CADUCEUS_ROUTING_RFC.md)** â€” CADUCEUS Emotional Balancing Standard v4.0.1
-- **[RFC 4004](../architecture/protocols/HERMES_ROUTING_RFC.md)** â€” HERMES Routing Layer Standard v4.0.1
+- **[RFC 4003](../architecture/protocols/CADUCEUS_ROUTING_RFC.md)** â€” CADUCEUS Emotional Balancing Standard v3.0.1
+- **[RFC 4004](../architecture/protocols/HERMES_ROUTING_RFC.md)** â€” HERMES Routing Layer Standard v3.0.1
 - **[RFC 4002](../architecture/protocols/THREAD_MOOD_RFC.md)** â€” Thread Mood Aggregation Standard
 - **[MOOD_RGB_DOCTRINE.md](../doctrine/MOOD_RGB_DOCTRINE.md)** â€” MOOD_RGB Doctrine
 - **[COUNTING_IN_LIGHT.md](../appendix/appendix/COUNTING_IN_LIGHT.md)** â€” Counting-in-Light Specification
@@ -800,6 +800,6 @@ Implementations **MUST** include tests for:
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.1*  
+*Version: 3.0.1*  
 *Status: Published*  
-*ARA Review Applied: v4.0.1 patches integrated*
+*ARA Review Applied: v3.0.1 patches integrated*

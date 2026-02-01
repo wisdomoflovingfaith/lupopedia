@@ -1,5 +1,5 @@
 -- ======================================================================
--- ORCHESTRATOR SCHEMA DEPLOYMENT - Version 4.0.25
+-- ORCHESTRATOR SCHEMA DEPLOYMENT - Version 3.0.25
 -- Creates core tables in lupopedia_orchestration schema for migration
 -- orchestration, schema management, and system coordination.
 --
@@ -9,7 +9,7 @@
 -- - Establishes foundation for migration orchestrator subsystem
 -- - Maintains schema federation integrity
 --
--- Version: 4.0.25
+-- Version: 3.0.25
 -- Status: STABLE
 -- ======================================================================
 
@@ -30,7 +30,7 @@ CREATE SCHEMA IF NOT EXISTS lupopedia_orchestration
 CREATE TABLE IF NOT EXISTS lupopedia_orchestration.lupo_migration_tracking (
   `migration_tracking_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `migration_name` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Migration filename or identifier',
-  `migration_version` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Version this migration belongs to (e.g., 4.0.25)',
+  `migration_version` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Version this migration belongs to (e.g., 3.0.25)',
   `migration_type` ENUM('schema', 'data', 'rollback', 'validation') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'schema' COMMENT 'Type of migration',
   `execution_status` ENUM('pending', 'running', 'completed', 'failed', 'rolled_back') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending' COMMENT 'Current execution status',
   `execution_order` INT NOT NULL DEFAULT 0 COMMENT 'Order in which migrations should execute',
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS lupopedia_orchestration.lupo_migration_tracking (
 CREATE TABLE IF NOT EXISTS lupopedia_orchestration.lupo_schema_versions (
   `schema_version_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `schema_name` VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Schema name (lupopedia, lupopedia_orchestration, lupopedia_ephemeral)',
-  `version_string` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Schema version (e.g., 4.0.25)',
+  `version_string` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Schema version (e.g., 3.0.25)',
   `version_number` INT NOT NULL COMMENT 'Numeric version for comparisons (e.g., 40025)',
   `table_count` INT NOT NULL DEFAULT 0 COMMENT 'Number of tables in this schema',
   `last_migration_name` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Last migration that updated this schema',
@@ -141,14 +141,14 @@ INSERT INTO lupopedia_orchestration.lupo_schema_versions (
   is_deleted
 ) VALUES (
   'lupopedia_orchestration',
-  '4.0.25',
+  '3.0.25',
   40025,
   5,
   20260115000000,
   20260115000000,
   0
 ) ON DUPLICATE KEY UPDATE
-  version_string = '4.0.25',
+  version_string = '3.0.25',
   version_number = 40025,
   table_count = 5,
   updated_ymdhis = 20260115000000,

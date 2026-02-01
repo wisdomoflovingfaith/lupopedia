@@ -1,12 +1,12 @@
 <?php
 /**
- * Update WOLFIE Headers to 4.1.6 Standard
+ * Update WOLFIE Headers to 3.1.6 Standard
  * 
- * This script updates all files with old header versions to 4.1.6
+ * This script updates all files with old header versions to 3.1.6
  * and adds required header fields based on current standards.
  * 
  * Required updates:
- * - file.last_modified_system_version: 4.1.6
+ * - file.last_modified_system_version: 3.1.6
  * - header_atoms: GLOBAL_CURRENT_LUPOPEDIA_VERSION, GLOBAL_CURRENT_AUTHORS
  * - dialog.mood_RGB (not mood)
  * - Remove/simplify Wheeler Mode complexity
@@ -21,7 +21,7 @@ $old_version_pattern = '/file\.last_modified_system_version:\s*4\.(0\.|1\.[0-5])
 $mood_pattern = '/mood:\s*"/';
 $mood_rgb_pattern = '/mood_RGB:\s*"/';
 
-// Required header fields for 4.1.6
+// Required header fields for 3.1.6
 $required_atoms = [
     'GLOBAL_CURRENT_LUPOPEDIA_VERSION',
     'GLOBAL_CURRENT_AUTHORS'
@@ -39,11 +39,11 @@ function updateFileHeader($filepath) {
     $original = $content;
     $updated = false;
     
-    // Update version to 4.1.6
+    // Update version to 3.1.6
     if (preg_match('/file\.last_modified_system_version:\s*4\.(0\.|1\.[0-5])/', $content)) {
         $content = preg_replace(
             '/file\.last_modified_system_version:\s*4\.\d+\.\d+/',
-            'file.last_modified_system_version: 4.1.6',
+            'file.last_modified_system_version: 3.1.6',
             $content
         );
         $updated = true;

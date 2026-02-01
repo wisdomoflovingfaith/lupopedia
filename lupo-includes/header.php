@@ -30,7 +30,7 @@
         
     <!-- Recently Viewed Navigation Styles (global) -->
     <style>
-    /* Authentication Status Indicator (Version 4.0.8) */
+    /* Authentication Status Indicator (Version 3.0.8) */
     .auth-status-logged-in,
     .auth-status-logged-out {
         display: inline-flex;
@@ -595,7 +595,7 @@
                 <!-- User Profile Section -->
                 <div class="nav-user">
                     <?php
-                    // Version 4.0.9: Authentication status indicator with profile avatar
+                    // Version 3.0.9: Authentication status indicator with profile avatar
                     // Ensure auth UI helpers are loaded
                     if (!function_exists('lupo_render_login_status')) {
                         $auth_ui_helpers_path = defined('LUPOPEDIA_PATH') 

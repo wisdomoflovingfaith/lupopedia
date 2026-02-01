@@ -54,7 +54,7 @@ All tables beginning with `livehelp_` including but not limited to:
 - livehelp_visits_daily
 - livehelp_visits_monthly
 - livehelp_websites
-- livehelp_channels *(dropped post-migration in 4.1.17; may exist in source)*
+- livehelp_channels *(dropped post-migration in 3.1.17; may exist in source)*
 
 *(Add any other `livehelp_` tables detected in the import.)*
 

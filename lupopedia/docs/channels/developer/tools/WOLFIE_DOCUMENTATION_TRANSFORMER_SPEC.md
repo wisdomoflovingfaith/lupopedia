@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
@@ -213,7 +213,7 @@ The program runs in **four deterministic stages**:
 
 **Known Atom Patterns:**
 - Author names (e.g., "Captain Wolfie", "Eric Robin Gerdes")
-- Version strings (e.g., "4.0.1")
+- Version strings (e.g., "3.0.1")
 - Copyright strings
 - Project names
 - Status values (e.g., "published", "draft")
@@ -263,9 +263,9 @@ The program runs in **four deterministic stages**:
 ```
 Before:
   author: "Captain Wolfie"
-  version: "4.0.1"
+  version: "3.0.1"
 
-After (if GLOBAL_CURRENT_AUTHORS = "Captain Wolfie" and GLOBAL_CURRENT_VERSION = "4.0.1"):
+After (if GLOBAL_CURRENT_AUTHORS = "Captain Wolfie" and GLOBAL_CURRENT_VERSION = "3.0.1"):
   author: GLOBAL_CURRENT_AUTHORS
   version: GLOBAL_CURRENT_VERSION
 ```
@@ -279,7 +279,7 @@ After (if GLOBAL_CURRENT_AUTHORS = "Captain Wolfie" and GLOBAL_CURRENT_VERSION =
 **Create new header:**
 ```
 1. Build header YAML:
-   a. wolfie.headers.version: 4.0.1
+   a. wolfie.headers.version: 3.0.1
    b. dialog:
       - speaker: PYTHON_TOOL
       - target: @everyone
@@ -473,7 +473,7 @@ Every file MUST have:
 
 ```yaml
 ---
-wolfie.headers.version: 4.0.1
+wolfie.headers.version: 3.0.1
 dialog:
   speaker: PYTHON_TOOL
   target: @everyone
@@ -498,7 +498,7 @@ file:
 
 ```
 1. Initialize header dictionary
-2. Set wolfie.headers.version: "4.0.1"
+2. Set wolfie.headers.version: "3.0.1"
 3. Set dialog block:
    a. speaker: "PYTHON_TOOL"
    b. target: "@everyone"
@@ -622,7 +622,7 @@ from pathlib import Path
 from datetime import datetime
 
 # Constants
-WOLFIE_HEADER_VERSION = "4.0.1"
+WOLFIE_HEADER_VERSION = "3.0.1"
 EXCLUDED_DIRS = ['node_modules', 'vendor', '.git', '__pycache__', '.venv', 'venv']
 ATOM_SCOPES = ['FILE_', 'DIR_', 'DIRR_', 'MODULE_', 'GLOBAL_']
 

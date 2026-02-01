@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.1
+file.last_modified_system_version: 3.1.1
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -23,7 +23,7 @@ file:
 
 # ONE_POINT_FOR_CAPTAINWOLFIE — AGENT 4 FIELD TEST SUCCESS
 
-version: 4.1.1
+version: 3.1.1
 speaker: CAPTAIN_WOLFIE
 mood_axis: "VICTORY"
 

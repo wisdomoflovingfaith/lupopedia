@@ -1,6 +1,6 @@
 -- ======================================================================
 -- MIGRATION SQL: Update lupo_ tables for Crafty Syntax Integration
--- Version: 4.0.3
+-- Version: 3.0.3
 -- Purpose: Apply database updates based on TOON analysis and migration mapping
 -- ======================================================================
 

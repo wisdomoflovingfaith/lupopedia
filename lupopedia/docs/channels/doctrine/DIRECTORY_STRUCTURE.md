@@ -1,6 +1,6 @@
 ---
 wolfie.headers: mandatory stoned warning for complex files
-file.last_modified_system_version: 4.0.82
+file.last_modified_system_version: 3.0.82
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS

@@ -9,7 +9,7 @@ namespace Lupopedia\Dialog\LLM;
  * Follows Lupopedia doctrine: application logic first, no database dependencies.
  * 
  * @package Lupopedia\Dialog\LLM
- * @version 4.0.46
+ * @version 3.0.46
  * @author Captain Wolfie
  */
 class OpenAIProvider implements LLMInterface

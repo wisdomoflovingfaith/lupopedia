@@ -9,7 +9,7 @@
  *   php migrate_dialog_channels.php [--dry-run] [--dialogs-path=path]
  * 
  * @package Lupopedia
- * @version 4.0.66
+ * @version 3.0.66
  * @author Captain Wolfie
  */
 
@@ -30,7 +30,7 @@ $dialogsPath = $options['dialogs-path'] ?? 'dialogs';
 
 echo "=== DIALOG CHANNEL MIGRATION TOOL ===\n";
 echo "Big Rock 2: Dialog Channel Migration\n";
-echo "Version: 4.0.66\n\n";
+echo "Version: 3.0.66\n\n";
 
 try {
     // Initialize database connection
@@ -47,7 +47,7 @@ try {
     );
     echo "✅ Database connected successfully\n\n";
     
-    // LIMITS enforcement (dry-run mode in 4.0.103)
+    // LIMITS enforcement (dry-run mode in 3.0.103)
     // Check schema ceiling before migration (non-blocking, logs warnings only)
     if (file_exists(__DIR__ . '/lupo-includes/functions/limits_logger.php')) {
         require_once __DIR__ . '/lupo-includes/functions/limits_logger.php';

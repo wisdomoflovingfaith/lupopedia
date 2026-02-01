@@ -96,12 +96,12 @@
 
   ],
   "developer": [
-    { "filename": "AUTH_IMPLEMENTATION_PLAN_4.0.8.md", "slug": "developer-auth-implementation-plan-408", "title": "AUTH IMPLEMENTATION PLAN 4.0.8" },
-    { "filename": "AUTH_INTEGRATION_CHECKS_4.0.8.md", "slug": "developer-auth-integration-checks-408", "title": "AUTH INTEGRATION CHECKS 4.0.8" },
-    { "filename": "AUTH_READINESS_REPORT_4.0.8.md", "slug": "developer-auth-readiness-report-408", "title": "AUTH READINESS REPORT 4.0.8" },
-    { "filename": "AUTH_SCHEMA_SUMMARY_4.0.8.md", "slug": "developer-auth-schema-summary-408", "title": "AUTH SCHEMA SUMMARY 4.0.8" },
-    { "filename": "AUTH_SQL_VERIFICATION_4.0.8.md", "slug": "developer-auth-sql-verification-408", "title": "AUTH SQL VERIFICATION 4.0.8" },
-    { "filename": "AUTH_TESTING_CHECKLIST_4.0.8.md", "slug": "developer-auth-testing-checklist-408", "title": "AUTH TESTING CHECKLIST 4.0.8" },
+    { "filename": "AUTH_IMPLEMENTATION_PLAN_3.0.8.md", "slug": "developer-auth-implementation-plan-408", "title": "AUTH IMPLEMENTATION PLAN 3.0.8" },
+    { "filename": "AUTH_INTEGRATION_CHECKS_3.0.8.md", "slug": "developer-auth-integration-checks-408", "title": "AUTH INTEGRATION CHECKS 3.0.8" },
+    { "filename": "AUTH_READINESS_REPORT_3.0.8.md", "slug": "developer-auth-readiness-report-408", "title": "AUTH READINESS REPORT 3.0.8" },
+    { "filename": "AUTH_SCHEMA_SUMMARY_3.0.8.md", "slug": "developer-auth-schema-summary-408", "title": "AUTH SCHEMA SUMMARY 3.0.8" },
+    { "filename": "AUTH_SQL_VERIFICATION_3.0.8.md", "slug": "developer-auth-sql-verification-408", "title": "AUTH SQL VERIFICATION 3.0.8" },
+    { "filename": "AUTH_TESTING_CHECKLIST_3.0.8.md", "slug": "developer-auth-testing-checklist-408", "title": "AUTH TESTING CHECKLIST 3.0.8" },
     { "filename": "CONTRIBUTOR_TRAINING.md", "slug": "developer-contributor-training", "title": "CONTRIBUTOR TRAINING" },
     { "filename": "DOCUMENTATION_STYLE_GUIDE.md", "slug": "developer-documentation-style-guide", "title": "DOCUMENTATION STYLE GUIDE" },
     { "filename": "FOR_INSTALLERS_AND_USERS.md", "slug": "developer-for-installers-and-users", "title": "FOR INSTALLERS AND USERS" },

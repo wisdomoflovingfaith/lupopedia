@@ -1,25 +1,25 @@
 <?php
 /**
 ---
-wolfie.headers.version: "4.0.18"
+wolfie.headers.version: "3.0.18"
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.18: Updated load_collection_tabs() to load child tabs from database. Now loads root-level tabs AND their child tabs using collection_tab_parent_id. Properly counts child tabs excluding _slug metadata."
+    message: "Version 3.0.18: Updated load_collection_tabs() to load child tabs from database. Now loads root-level tabs AND their child tabs using collection_tab_parent_id. Properly counts child tabs excluding _slug metadata."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.12: Version bump for hierarchical tab structure implementation. No logic changes to collection-tabs-loader.php in this version."
+    message: "Version 3.0.12: Version bump for hierarchical tab structure implementation. No logic changes to collection-tabs-loader.php in this version."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.11: Updated collection tabs loader to include tab slug in tabs data structure. Stores slug as _slug key in sub-tabs array for URL generation in collection_tabs.php component."
+    message: "Version 3.0.11: Updated collection tabs loader to include tab slug in tabs data structure. Stores slug as _slug key in sub-tabs array for URL generation in collection_tabs.php component."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.10: Created collection tabs loader function to load and format tabs for Collection 0 (System Collection). Formats tabs for collection_tabs.php component display."
+    message: "Version 3.0.10: Created collection tabs loader function to load and format tabs for Collection 0 (System Collection). Formats tabs for collection_tabs.php component display."
     mood: "00FF00"
 tags:
   categories: ["function", "collections", "tabs"]
@@ -41,7 +41,7 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
 /**
  * Load collection tabs for a given collection ID
  * 
- * Version 4.0.10: Loads tabs for Collection 0 (System Collection) and formats
+ * Version 3.0.10: Loads tabs for Collection 0 (System Collection) and formats
  * them for the collection_tabs.php component.
  * 
  * @param int $collection_id Collection ID (0 for System Collection)
@@ -78,7 +78,7 @@ function load_collection_tabs($collection_id) {
         
         // Format tabs for collection_tabs.php component
         // Component expects: array('Main Tab Name' => ['Sub Tab 1', 'Sub Tab 2', ..., '_slug' => 'tab-slug'])
-        // Version 4.0.11: Include slug in tab data for URL generation
+        // Version 3.0.11: Include slug in tab data for URL generation
         foreach ($tabs as $tab) {
             $tab_name = $tab['name'];
             $tab_id = $tab['collection_tab_id'];

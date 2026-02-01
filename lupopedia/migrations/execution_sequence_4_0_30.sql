@@ -1,4 +1,4 @@
--- Migration Execution Sequence - Version 4.0.30
+-- Migration Execution Sequence - Version 3.0.30
 -- Execute these scripts in order for clean migration deployment
 
 -- ========================================
@@ -53,4 +53,4 @@ SOURCE migrations/verification_queries_4_0_30.sql;
 -- 3. Verify no duplicate mappings exist
 -- 4. Update TOON files with new schema structures
 -- 5. Update documentation with migration results
--- 6. Prepare for next phase (4.0.31+)
+-- 6. Prepare for next phase (3.0.31+)

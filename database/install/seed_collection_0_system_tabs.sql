@@ -1,15 +1,15 @@
 -- ============================================================
--- Lupopedia 4.0.10 — Collection 0 System Collection Seed
+-- Lupopedia 3.0.10 — Collection 0 System Collection Seed
 -- Initializes Collection 0 (Lupopedia System) and its 9 tabs
 -- ============================================================
 --
--- wolfie.headers.version: "4.0.10"
+-- wolfie.headers.version: "3.0.10"
 -- header_atoms:
 --   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 -- dialog:
 --   - speaker: CURSOR
 --     target: @everyone
---     message: "Version 4.0.10: Created seed SQL file for Collection 0 (System Collection) and 9 system tabs. All inserts are idempotent using ON DUPLICATE KEY UPDATE. Uses BIGINT UTC timestamp format."
+--     message: "Version 3.0.10: Created seed SQL file for Collection 0 (System Collection) and 9 system tabs. All inserts are idempotent using ON DUPLICATE KEY UPDATE. Uses BIGINT UTC timestamp format."
 --     mood: "00FF00"
 -- tags:
 --   categories: ["database", "seed", "collections"]

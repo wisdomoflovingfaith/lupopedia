@@ -1,10 +1,10 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Added WOLFIE Header v4.0.0 for documentation consistency."
+  message: "Added WOLFIE Header v3.0.0 for documentation consistency."
 tags:
   categories: ["documentation", "philosophy"]
   collections: ["core-docs"]
@@ -12,7 +12,7 @@ tags:
 file:
   title: "Lupopedia's Philosophy"
   description: "The Wolf Way of Building Systems That Outlive Their Tools"
-  version: "4.0.0"
+  version: "3.0.0"
   status: published
   author: "Captain Wolfie"
 ---

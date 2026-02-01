@@ -6,7 +6,7 @@
  * Detects duplicate mappings and orphaned content.
  * 
  * @package Lupopedia
- * @version 4.0.23
+ * @version 3.0.23
  * @author Captain Wolfie
  */
 

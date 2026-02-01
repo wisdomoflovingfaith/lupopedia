@@ -96,7 +96,7 @@ def create_sovereign_header(utc_timestamp, utc_day):
     """Create a fresh sovereign WOLFIE header for Monday Wolfie."""
     return f"""---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 file.last_modified_utc: {utc_timestamp}
 file.utc_day: {utc_day}
 file.name: "changelog_dialog_MONDAY_WOLFIE.md"

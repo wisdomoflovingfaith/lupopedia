@@ -1,12 +1,12 @@
 -- Migration: Add Seven Greek Love Emotional Agents
--- Version: 4.0.113
+-- Version: 3.0.113
 -- Date: 2026-01-18
 -- 
 -- Adds the seven canonical Greek love emotional agents to lupo_agent_registry.
 -- These agents represent distinct emotional domains as defined in EMOTIONAL_DOMAINS_SEVEN_LOVES.md
 --
 -- @package Lupopedia
--- @version 4.0.113
+-- @version 3.0.113
 -- @author CASCADE
 
 -- ============================================================================

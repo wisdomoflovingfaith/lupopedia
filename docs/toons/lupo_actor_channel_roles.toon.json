@@ -12,7 +12,7 @@
     "`handshake_metadata_json` json COMMENT 'RSHAP handshake identity and synchronization data'",
     "`awareness_snapshot_json` json COMMENT 'CJP Awareness Snapshot (WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE)'",
     "`protocol_completion_status` enum('pending','aal_complete','rshap_complete','cjp_complete','ready') DEFAULT 'pending' COMMENT 'Multi-agent protocol completion status'",
-    "`protocol_version` varchar(20) DEFAULT '4.0.72' COMMENT 'Protocol version used for this actor-channel relationship'",
+    "`protocol_version` varchar(20) DEFAULT '3.0.72' COMMENT 'Protocol version used for this actor-channel relationship'",
     "`join_sequence_step` tinyint DEFAULT 0 COMMENT 'Current step in 10-step CJP sequence (0-10)'",
     "`handshake_completed_ymdhis` bigint COMMENT 'Timestamp when RSHAP was completed'",
     "`awareness_completed_ymdhis` bigint COMMENT 'Timestamp when AAL was completed'",

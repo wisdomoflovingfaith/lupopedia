@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -17,7 +17,7 @@ tags:
 file:
   title: "Folder Naming Doctrine"
   description: "Mandatory rules for folder naming in Lupopedia. All folders must be lowercase with restricted character set."
-  version: "4.0.2"
+  version: "3.0.2"
   status: published
   author: "WOLFIE"
 ---
@@ -25,7 +25,7 @@ file:
 # Folder Naming Doctrine
 
 **⚠️ MANDATORY (NON-NEGOTIABLE)**  
-**Version 4.0.2**  
+**Version 3.0.2**  
 **Effective Date: 2025-01-06**
 
 ## Overview
@@ -454,7 +454,7 @@ lupo-agents-/          ❌ Trailing hyphen
 
 ## Document History
 
-- **2025-01-06**: Created folder naming doctrine (v4.0.2)
+- **2025-01-06**: Created folder naming doctrine (v3.0.2)
 - **2025-01-06**: Documented migration from uppercase `ARCHITECTURE/` to lowercase `architecture/`
 
 ---

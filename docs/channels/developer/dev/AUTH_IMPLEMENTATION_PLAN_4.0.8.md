@@ -1,32 +1,32 @@
 ---
-wolfie.headers.version: 4.0.8
+wolfie.headers.version: 3.0.8
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Created comprehensive implementation plan for version 4.0.8 authentication system. This plan covers login/logout routes, session handling, helper functions, password hashing upgrade, and actor linkage."
+  message: "Created comprehensive implementation plan for version 3.0.8 authentication system. This plan covers login/logout routes, session handling, helper functions, password hashing upgrade, and actor linkage."
   mood: "00FF00"
 tags:
   categories: ["documentation", "development", "authentication", "implementation"]
   collections: ["core-docs", "dev-docs"]
   channels: ["dev", "architecture"]
 file:
-  title: "Authentication Implementation Plan for Version 4.0.8"
+  title: "Authentication Implementation Plan for Version 3.0.8"
   description: "Step-by-step implementation plan for username/password login system"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: draft
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Authentication Implementation Plan for Version 4.0.8
+# Authentication Implementation Plan for Version 3.0.8
 
-**Purpose:** This document provides a detailed step-by-step implementation plan for building the username/password authentication system in Lupopedia version 4.0.8.
+**Purpose:** This document provides a detailed step-by-step implementation plan for building the username/password authentication system in Lupopedia version 3.0.8.
 
 **Status:** Ready for review before implementation
 
-**Based On:** Schema analysis from `docs/dev/AUTH_SCHEMA_SUMMARY_4.0.8.md`
+**Based On:** Schema analysis from `docs/dev/AUTH_SCHEMA_SUMMARY_3.0.8.md`
 
 ---
 
@@ -289,7 +289,7 @@ function lupo_verify_password($password, $hash) {
 #### `auth_handle_admin($slug)`
 - Route handler for `/admin` slug
 - Call `require_admin()` to check authentication and admin status
-- Render admin dashboard (minimal for 4.0.8)
+- Render admin dashboard (minimal for 3.0.8)
 - Show basic admin interface
 
 ---
@@ -381,10 +381,10 @@ lupo_start_session();
 #### `auth_handle_admin($slug)`
 - Extract admin sub-routes (e.g., `/admin/dashboard`, `/admin/users`)
 - Call `require_admin()` to enforce authentication and admin check
-- Render minimal admin dashboard for 4.0.8
+- Render minimal admin dashboard for 3.0.8
 - Show basic admin navigation
 
-**Admin Dashboard (Minimal for 4.0.8):**
+**Admin Dashboard (Minimal for 3.0.8):**
 - Welcome message with username
 - Logout link
 - Basic admin menu (placeholder for future features)
@@ -782,10 +782,10 @@ All new files must include WOLFIE headers:
 
 ---
 
-## Step 19: Future Enhancements (Not in 4.0.8)
+## Step 19: Future Enhancements (Not in 3.0.8)
 
 ### 19.1 Features for Future Versions
-- Google Sign-In (version 4.0.9)
+- Google Sign-In (version 3.0.9)
 - Password reset functionality
 - Email verification
 - Two-factor authentication
@@ -814,7 +814,7 @@ Before proceeding with implementation, review:
 
 ## Summary
 
-This implementation plan provides a complete roadmap for building the authentication system in version 4.0.8. The plan covers:
+This implementation plan provides a complete roadmap for building the authentication system in version 3.0.8. The plan covers:
 
 1. ✅ Password hashing upgrade (MD5 → bcrypt)
 2. ✅ Session management (database-backed)

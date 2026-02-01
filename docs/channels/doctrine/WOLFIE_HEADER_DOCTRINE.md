@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 file.last_modified_utc: 20260119044859
 file.lupopedia.UTC_TIMEKEEPER: UTC_TIMEKEEPER
 file.name: "WOLFIE_HEADER_DOCTRINE.md"
@@ -110,7 +110,7 @@ WOLFIE headers apply to:
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 [... rest of header ...]
 ---
 
@@ -157,7 +157,7 @@ wolfie.headers: explicit architecture with structured clarity for every file.
 
 ### 3.2 Version Field
 ```yaml
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 ```
 - **MANDATORY** - Must reflect current system version
 - **Updated** - Must be updated when file is modified
@@ -474,7 +474,7 @@ Automated tools processing WOLFIE headers MUST:
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -504,7 +504,7 @@ file:
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
@@ -554,7 +554,7 @@ This is architectural doctrine.
 
 ---
 
-## 12. Wheeler Mode Metadata Block (v4.0.82)
+## 12. Wheeler Mode Metadata Block (v3.0.82)
 
 ### 12.1 Wheeler Mode Definition
 ```yaml
@@ -583,7 +583,7 @@ Files created in Wheeler Mode exhibit:
 - **Superpositional development** - Multiple possible architectures until collapse
 - **Iterative revelation** - System revealed itself through interactions
 
-## 13. Superpositional Header Note (v4.0.82)
+## 13. Superpositional Header Note (v3.0.82)
 
 Files created during emergent architecture phases may contain:
 - **Superpositional metadata** - Multiple possible states until observed
@@ -595,7 +595,7 @@ Files created during emergent architecture phases may contain:
 
 Files exhibiting superpositional behavior should be handled with quantum-aware protocols until observer collapse resolves uncertainty to single truth state.
 
-## 14. Wheeler Mode Metadata Block (v4.0.82)
+## 14. Wheeler Mode Metadata Block (v3.0.82)
 
 ### 14.1 Wheeler Mode Definition
 ```yaml
@@ -616,7 +616,7 @@ Wheeler Mode metadata should be added when:
 - Truth was collapsed by designated observer
 - System revealed itself through reverse-20 workflow patterns
 
-## 15. Humor as Structural Metadata (v4.0.82)
+## 15. Humor as Structural Metadata (v3.0.82)
 
 Humor may appear in persona dialog blocks as part of the file's contextual truth. Humor is not decorative; it may reflect cognitive load management, pattern recognition, or emergent architecture.
 

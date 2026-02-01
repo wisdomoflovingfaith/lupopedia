@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -49,7 +49,7 @@ This procedure is **non‑destructive**, **non‑refactoring**, and strictly foc
 
 Increment the Lupopedia system version by one patch level.
 
-**Example:** `x.x.x` → `x.x.x+1` (e.g., `4.0.12` → `4.0.13`)
+**Example:** `x.x.x` → `x.x.x+1` (e.g., `3.0.12` → `3.0.13`)
 
 Update the version atom everywhere it appears:
 
@@ -154,7 +154,7 @@ Create or update migration documentation:
 - Backward compatibility notes
 - Rollback procedures (if applicable)
 
-**Template:** Follow the format of existing migration documents (e.g., `docs/migrations/4.0.7.md`)
+**Template:** Follow the format of existing migration documents (e.g., `docs/migrations/3.0.7.md`)
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.50
+file.last_modified_system_version: 3.0.50
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -62,7 +62,7 @@ file:
 **Timestamp (UTC):** 20260114190000
 **Agent:** KIRO
 **Action:** Complete HERMES/CADUCEUS definition updates and thread/channel terminology clarification
-**Summary:** Completed comprehensive documentation updates across 9 files. Updated CADUCEUS_ROUTING_RFC.md and HERMES_ROUTING_RFC.md with corrected core definitions (CADUCEUS as emotional balancer for channels, HERMES as routing subsystem). Updated README.md to clarify subsystem roles. Fixed incorrect path in migrations/4.0.7.md (docs/changelog_dialog.md → dialogs/changelog_dialog.md). Added thread vs channel clarifications to DIALOG_DOCTRINE.md, DIRECTORY_STRUCTURE.md, METADATA_GOVERNANCE.md, and AGENT_GUIDELINES.md. All documentation now consistently distinguishes between threads (database entities) and channels (multi-agent collaboration contexts with dialog files in /dialogs/).
+**Summary:** Completed comprehensive documentation updates across 9 files. Updated CADUCEUS_ROUTING_RFC.md and HERMES_ROUTING_RFC.md with corrected core definitions (CADUCEUS as emotional balancer for channels, HERMES as routing subsystem). Updated README.md to clarify subsystem roles. Fixed incorrect path in migrations/3.0.7.md (docs/changelog_dialog.md → dialogs/changelog_dialog.md). Added thread vs channel clarifications to DIALOG_DOCTRINE.md, DIRECTORY_STRUCTURE.md, METADATA_GOVERNANCE.md, and AGENT_GUIDELINES.md. All documentation now consistently distinguishes between threads (database entities) and channels (multi-agent collaboration contexts with dialog files in /dialogs/).
 # Dialog end
 
 # Dialog begin

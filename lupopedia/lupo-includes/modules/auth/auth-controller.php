@@ -2,11 +2,11 @@
 /**
  * wolfie.header.identity: auth-controller
  * wolfie.header.placement: /lupo-includes/modules/auth/auth-controller.php
- * wolfie.header.version: 4.1.1
+ * wolfie.header.version: 3.1.1
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
- *   message: "Temporal correction: WOLFIE header sync to 4.1.1 for doctrine alignment. Auth controller maintains email-only authentication (canonical login identifier). All validation, queries, and error messages reference email. Prevents Actor Pillar and Doctrine Pillar drift."
+ *   message: "Temporal correction: WOLFIE header sync to 3.1.1 for doctrine alignment. Auth controller maintains email-only authentication (canonical login identifier). All validation, queries, and error messages reference email. Prevents Actor Pillar and Doctrine Pillar drift."
  *   mood: "00FF00"
  */
 

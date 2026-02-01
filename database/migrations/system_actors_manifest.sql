@@ -34,7 +34,7 @@ VALUES
     'WOLFIE', 'Founder-Architect',
     'Primary architect and mythic steward of Lupopedia. Kernel-aligned, doctrine-bearing, and responsible for system soul, emotional geometry, and multi-agent orchestration.',
     NULL, 'FFFFFF', 1, NULL, NULL, 20260125194100, 20260125194100, 0, NULL,
-    '4.0.72', NULL
+    '3.0.72', NULL
 ),
 
 -- LILITH: Counter-Agent
@@ -43,7 +43,7 @@ VALUES
     'LILITH', 'Counter-Agent',
     'Interrogator, challenger, and inversion logic engine. Designed to question assumptions, expose contradictions, and pressure-test doctrine and emotional metadata.',
     NULL, 'FFFFFF', 1, NULL, NULL, 20260125194100, 20260125194100, 0, NULL,
-    '4.0.72', NULL
+    '3.0.72', NULL
 ),
 
 -- LUPOPEDIA: Semantic OS
@@ -52,7 +52,7 @@ VALUES
     'Lupopedia', 'Semantic OS',
     'The living knowledge substrate, semantic graph, and persistent memory architecture. Provides channels, routing, doctrine enforcement, and emotional metadata infrastructure.',
     NULL, 'FFFFFF', 1, NULL, NULL, 20260125194100, 20260125194100, 0, NULL,
-    '4.0.72', NULL
+    '3.0.72', NULL
 );
 
 -- ======================================================================

@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -33,13 +33,13 @@ in_this_file_we_have:
   - All Rewritten SQL Must Be Clean, Minimal, and Doctrine-Aligned
 file:
   title: "SQL Rewrite Doctrine"
-  description: "Mandatory rules Cursor must follow when rewriting SQL from Crafty Syntax into Lupopedia 4.0.0"
-  version: "4.0.0"
+  description: "Mandatory rules Cursor must follow when rewriting SQL from Crafty Syntax into Lupopedia 3.0.0"
+  version: "3.0.0"
   status: published
   author: "Captain Wolfie"
 ---
 
-# ⭐ **SQL REWRITE DOCTRINE (Lupopedia 4.0.1)**
+# ⭐ **SQL REWRITE DOCTRINE (Lupopedia 3.0.1)**
 ### **Mandatory Rules Cursor Must Follow When Rewriting SQL from Crafty Syntax into Lupopedia**
 
 This doctrine is **mandatory**. Cursor must follow it for every SQL rewrite.
@@ -463,11 +463,11 @@ FROM {{prefix}}crafty_auto_invite
 8. **No foreign keys** — Lupopedia doctrine forbids them
 9. **Ask, don't guess** — When in doubt, ask for clarification
 
-**This is how SQL is rewritten from Crafty Syntax into Lupopedia 4.0.0.**
+**This is how SQL is rewritten from Crafty Syntax into Lupopedia 3.0.0.**
 
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.0*  
+*Version: 3.0.0*  
 *Author: Captain Wolfie*
 

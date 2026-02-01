@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.18
+file.last_modified_system_version: 3.0.18
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -76,7 +76,7 @@ This is a **mandatory architectural requirement** to prevent token burn and ensu
 Cursor must scan documentation files and automatically identify repeated literal values such as:
 
 #### **Version Information**
-- Version numbers: `"4.0.2"`, `"4.0.1"`, `"3.7.5"`
+- Version numbers: `"3.0.2"`, `"3.0.1"`, `"3.7.5"`
 - Semantic OS version numbers
 - Schema version numbers
 - WOLFIE Headers version numbers
@@ -137,7 +137,7 @@ Cursor must scan documentation files and automatically identify repeated literal
 If Cursor sees the same literal value in **more than one file**, it must:
 
 1. **✔ Replace it with a symbolic atom reference**
-   - Example: `version: "4.0.2"` → `version: GLOBAL_CURRENT_LUPOPEDIA_VERSION`
+   - Example: `version: "3.0.2"` → `version: GLOBAL_CURRENT_LUPOPEDIA_VERSION`
 
 2. **✔ Add the atom to `global_atoms.yaml`** (ONLY when explicitly instructed)
    - Do NOT automatically add atoms without user approval
@@ -172,7 +172,7 @@ version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
 Cursor must **NEVER** rewrite it to:
 
 ```yaml
-version: "4.0.2"
+version: "3.0.2"
 ```
 
 This is **FORBIDDEN**.
@@ -202,7 +202,7 @@ Cursor must:
 When you bump:
 
 ```yaml
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.2" → "4.0.3"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "3.0.2" → "3.0.3"
 ```
 
 Cursor must:
@@ -295,7 +295,7 @@ Cursor must atomize all repeated patterns across these categories:
 - `"dev"`
 - `"Lupopedia LLC"`
 - `"Crafty Syntax"`
-- `"4.0.2"`
+- `"3.0.2"`
 - `"101 agents"`
 - `"27 core agents"`
 
@@ -394,17 +394,17 @@ Cursor must:
 ```yaml
 # File 1: README.md
 file:
-  version: "4.0.2"
+  version: "3.0.2"
   author: "Captain Wolfie"
 
 # File 2: CHANGELOG.md
 file:
-  version: "4.0.2"
+  version: "3.0.2"
   author: "Captain Wolfie"
 
 # File 3: HISTORY.md
 file:
-  version: "4.0.2"
+  version: "3.0.2"
   author: "Captain Wolfie"
 ```
 
@@ -435,7 +435,7 @@ file:
   author: GLOBAL_CURRENT_AUTHORS
 
 # config/global_atoms.yaml
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.2"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "3.0.2"
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie"
 ```
 

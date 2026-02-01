@@ -1,5 +1,5 @@
 -- ======================================================================
--- DOCTRINE SEMANTIC TAB MAPPING - Version 4.0.24
+-- DOCTRINE SEMANTIC TAB MAPPING - Version 3.0.24
 -- Maps semantic doctrine content files to doctrine.semantic tab (tab 17)
 --
 -- Mappings:

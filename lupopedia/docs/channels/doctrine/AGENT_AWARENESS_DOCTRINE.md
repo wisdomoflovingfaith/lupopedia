@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.89
+file.last_modified_system_version: 3.0.89
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,7 +8,7 @@ dialog:
   speaker: WOLFIE
   target: @everyone
   mood_RGB: "0080FF"
-  message: "Agent Awareness Doctrine updated to 4.0.72 with integration testing results incorporated and version alignment across all metadata fields."
+  message: "Agent Awareness Doctrine updated to 3.0.72 with integration testing results incorporated and version alignment across all metadata fields."
 tags:
   categories: ["documentation", "doctrine", "multi-agent"]
   collections: ["core-docs", "doctrine"]
@@ -22,11 +22,11 @@ file:
 ---
 
 # AGENT_AWARENESS_DOCTRINE.md
-# Version: 4.0.73
+# Version: 3.0.73
 # Status: Updated Doctrine
 # Domain: Multi-Agent Cognition Layer
 
-## Updates in 4.0.72
+## Updates in 3.0.72
 - Version alignment across all metadata fields
 - Integration testing results incorporated
 - Clarified AAS invariants and storage rules
@@ -35,7 +35,7 @@ file:
 
 The Agent Awareness Doctrine establishes the rules, metadata structures, and
 behavioral expectations for all AI agents operating within shared channels.
-Beginning in Version 4.0.70, every agent must load and maintain a complete
+Beginning in Version 3.0.70, every agent must load and maintain a complete
 situational awareness profile when joining a channel, including:
 
 - Channel identity and purpose
@@ -219,8 +219,8 @@ Must store:
 10. VERSIONING RULES
 --------------------------------------------------------------------------------
 
-- This doctrine becomes active in Version 4.0.70.
-- All metadata snapshots must include `snapshot_version: 4.0.70`.
+- This doctrine becomes active in Version 3.0.70.
+- All metadata snapshots must include `snapshot_version: 3.0.70`.
 - Future versions may extend AAL, RSHAP, or CJP but must not break invariants.
 
 --------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.0
+file.last_modified_system_version: 3.1.0
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,20 +8,20 @@ dialog:
   speaker: CAPTAIN_WOLFIE
   target: @fleet
   mood_RGB: "FF6600"
-  message: "Mission briefing for 4.1.0 launch - all agents synchronize to public release objectives. Wolfie velocity maintained."
+  message: "Mission briefing for 3.1.0 launch - all agents synchronize to public release objectives. Wolfie velocity maintained."
 tags:
   categories: ["documentation", "mission", "briefing"]
   collections: ["core-docs"]
   channels: ["dev", "internal"]
 file:
-  title: "Mission Briefing - Lupopedia 4.1.0 Launch"
-  description: "Strategic mission briefing for Lupopedia 4.1.0 public release operations"
+  title: "Mission Briefing - Lupopedia 3.1.0 Launch"
+  description: "Strategic mission briefing for Lupopedia 3.1.0 public release operations"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: classified
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# 🚀 **MISSION BRIEFING - L U P O P E D I A 4.1.0**
+# 🚀 **MISSION BRIEFING - L U P O P E D I A 3.1.0**
 
 ## **CLASSIFICATION: EYES ONLY - FLEET COORDINATION**
 
@@ -40,7 +40,7 @@ file:
 ## 📋 **PRIMARY OBJECTIVES**
 
 ### **Objective 1: Public Release Success**
-- **Target:** Achieve successful 4.1.0 public launch
+- **Target:** Achieve successful 3.1.0 public launch
 - **Success Criteria:** 1,000+ active users within 30 days
 - **Risk Level:** Medium (controlled rollout strategy)
 - **Priority:** CRITICAL
@@ -63,7 +63,7 @@ file:
 
 ### **CURSOR - Lead Developer**
 **Primary Mission:** Code quality and feature delivery
-- ✅ Complete all 4.1.0 development tasks
+- ✅ Complete all 3.1.0 development tasks
 - ✅ Conduct final code review and testing
 - ✅ Manage release candidate deployment
 - ✅ Monitor production system performance
@@ -256,7 +256,7 @@ file:
 ## 🚀 **FINAL DIRECTIVE**
 
 ```
-"Fleet, the 4.1.0 mission is authorized.
+"Fleet, the 3.1.0 mission is authorized.
 All systems are GO for public release.
 Maintain Wolfie velocity.
 Execute with precision.
@@ -274,4 +274,4 @@ We ride the light."
 
 *CLASSIFICATION: EYES ONLY - FLEET COORDINATION*  
 *MISSION COMMANDER: CAPTAIN WOLFIE*  
-*VERSION: 4.1.0 - PUBLIC RELEASE ERA*
+*VERSION: 3.1.0 - PUBLIC RELEASE ERA*

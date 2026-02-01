@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -149,7 +149,7 @@ And because of that, I'm on track for the March 2nd deadline. This time, we're b
 - **November 1:** Return to full-time development
 - **December 3:** First architectural reset (structural issues identified)
 - **January 1:** Second architectural reset ("The Great Reset")
-- **January 1-14:** Stable architecture implementation (Version 4.0.0 â†’ 4.0.14)
+- **January 1-14:** Stable architecture implementation (Version 3.0.0 â†’ 3.0.14)
 
 ### Key Learnings from Resets
 1. **Structural Drift Prevention:** Doctrine system prevents architectural mutations

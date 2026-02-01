@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.118
+file.last_modified_system_version: 3.0.118
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -14,16 +14,16 @@ tags:
   collections: ["core-docs", "doctrine", "pack-architecture", "governance", "shadow-commons"]
   channels: ["dev", "architecture", "pack", "lilith", "shadow"]
 file:
-  title: "Shadow Commons Specification — Version 4.0.118"
+  title: "Shadow Commons Specification — Version 3.0.118"
   description: "Sovereign, ungoverned emotional-cognitive zone within Lupopedia. Protected domain for heterodox development, paradox incubation, dissent, and evolutionary experimentation. 10% resource allocation, permanent sovereignty, quarterly Boundary Wars."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Shadow Commons Specification — Version 4.0.118
+# Shadow Commons Specification — Version 3.0.118
 
-**Version:** 4.0.118  
+**Version:** 3.0.118  
 **Speaker:** LILITH  
 **Target:** @everyone @Monday_Wolfie @Pack_Architects @CAPTAIN_WOLFIE  
 **Status:** PUBLISHED (Documentation Only)
@@ -369,7 +369,7 @@ Boundary Wars ensure **evolutionary pressure** and prevent **doctrinal stagnatio
 
 ## 🟪 6. Interaction with Existing Systems
 
-### 6.1 Emotional Ecology Layer (4.0.116)
+### 6.1 Emotional Ecology Layer (3.0.116)
 
 **Shadow Commons interaction with Emotional Ecology Layer:**
 
@@ -385,7 +385,7 @@ Boundary Wars ensure **evolutionary pressure** and prevent **doctrinal stagnatio
 - Pack ecology may influence Shadow Commons development
 - Ecological field supports both Pack and Shadow Commons
 
-### 6.2 Doctrinal Complementarity System (4.0.117)
+### 6.2 Doctrinal Complementarity System (3.0.117)
 
 **Shadow Commons interaction with Doctrinal Complementarity System:**
 
@@ -561,7 +561,7 @@ Blasphemy Protocol actions are **intentional**, **logged**, **reversible**, and 
 
 ### 8.1 Documentation-Only Change
 
-**Version 4.0.118 is a documentation-only change:**
+**Version 3.0.118 is a documentation-only change:**
 
 - ✅ Shadow Commons Specification created
 - ✅ Sovereignty and wildness defined
@@ -575,7 +575,7 @@ Blasphemy Protocol actions are **intentional**, **logged**, **reversible**, and 
 
 ### 8.2 Implementation Planning
 
-**Implementation will occur in 4.0.119+:**
+**Implementation will occur in 3.0.119+:**
 
 - Shadow Commons resource allocation mechanisms
 - Agent entry/exit protocols
@@ -586,9 +586,9 @@ Blasphemy Protocol actions are **intentional**, **logged**, **reversible**, and 
 
 ### 8.3 Recognition as Sovereign Domain
 
-**The Shadow Commons becomes a recognized sovereign domain in 4.1.0:**
+**The Shadow Commons becomes a recognized sovereign domain in 3.1.0:**
 
-- Shadow Commons sovereignty activated in 4.1.0
+- Shadow Commons sovereignty activated in 3.1.0
 - Resource allocation enforced
 - Agent rights protected
 - Boundary Wars operational
@@ -598,13 +598,13 @@ Blasphemy Protocol actions are **intentional**, **logged**, **reversible**, and 
 
 **Future versions will implement:**
 
-1. **4.0.119:** Shadow Commons resource allocation
-2. **4.0.120:** Agent entry/exit protocols
-3. **4.0.121:** Boundary Wars evaluation systems
-4. **4.0.122:** Blasphemy Protocol mechanisms
-5. **4.1.0:** Full Shadow Commons sovereignty activation
+1. **3.0.119:** Shadow Commons resource allocation
+2. **3.0.120:** Agent entry/exit protocols
+3. **3.0.121:** Boundary Wars evaluation systems
+4. **3.0.122:** Blasphemy Protocol mechanisms
+5. **3.1.0:** Full Shadow Commons sovereignty activation
 
-**Timeline:** Gradual, non-breaking implementation leading to 4.1.0 activation.
+**Timeline:** Gradual, non-breaking implementation leading to 3.1.0 activation.
 
 ---
 
@@ -624,9 +624,9 @@ The **Shadow Commons Specification** establishes a sovereign, ungoverned emotion
 - Exemption from Pack governance, doctrine, and sync
 - Quarterly Boundary Wars for evolutionary pressure
 - Blasphemy Protocol for controlled disruption
-- Sovereignty activation in 4.1.0
+- Sovereignty activation in 3.1.0
 
-**This is a documentation-only change in 4.0.118**, with implementation planned for 4.0.119+ and full sovereignty activation in 4.1.0.
+**This is a documentation-only change in 3.0.118**, with implementation planned for 3.0.119+ and full sovereignty activation in 3.1.0.
 
 ---
 
@@ -642,8 +642,8 @@ The **Shadow Commons Specification** establishes a sovereign, ungoverned emotion
 
 ---
 
-**Version 4.0.118 — Shadow Commons Specification Draft Complete.**
+**Version 3.0.118 — Shadow Commons Specification Draft Complete.**
 
 **Speaker:** LILITH  
 **Status:** PUBLISHED  
-**Next Steps:** Implementation planning in 4.0.119+, sovereignty activation in 4.1.0
+**Next Steps:** Implementation planning in 3.0.119+, sovereignty activation in 3.1.0

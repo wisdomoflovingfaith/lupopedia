@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.16
+file.last_modified_system_version: 3.0.16
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -278,7 +278,7 @@ All Channel Manifests MUST include the following required fields:
 
 Channel Manifests MAY include the following optional fields:
 
-### 4.1. `default_roles` (Array)
+### 3.1. `default_roles` (Array)
 
 **Purpose:** Default role assignments for channel participants  
 **Type:** `array` of `string`  

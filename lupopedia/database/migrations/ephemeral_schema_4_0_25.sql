@@ -1,5 +1,5 @@
 -- ======================================================================
--- EPHEMERAL SCHEMA DEPLOYMENT - Version 4.0.25
+-- EPHEMERAL SCHEMA DEPLOYMENT - Version 3.0.25
 -- Creates core tables in lupopedia_ephemeral schema for session data,
 -- cache, and temporary storage that can be safely purged.
 --
@@ -9,7 +9,7 @@
 -- - Establishes foundation for ephemeral data management
 -- - Maintains schema federation integrity
 --
--- Version: 4.0.25
+-- Version: 3.0.25
 -- Status: STABLE
 -- ======================================================================
 
@@ -142,14 +142,14 @@ INSERT INTO lupopedia_orchestration.lupo_schema_versions (
   is_deleted
 ) VALUES (
   'lupopedia_ephemeral',
-  '4.0.25',
+  '3.0.25',
   40025,
   5,
   20260115000000,
   20260115000000,
   0
 ) ON DUPLICATE KEY UPDATE
-  version_string = '4.0.25',
+  version_string = '3.0.25',
   version_number = 40025,
   table_count = 5,
   updated_ymdhis = 20260115000000,

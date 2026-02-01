@@ -81,7 +81,7 @@ function load_atoms($atom_name = null) {
             }
             
             // Extract GLOBAL_* atoms (simple key-value pairs at root level)
-            // Match lines like: GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.35"
+            // Match lines like: GLOBAL_CURRENT_LUPOPEDIA_VERSION: "3.0.35"
             if (preg_match_all('/^(GLOBAL_[A-Z_]+):\s*["\']?([^"\'\n]+)["\']?/m', $yaml_content, $atom_matches, PREG_SET_ORDER)) {
                 foreach ($atom_matches as $am) {
                     $atoms_cache[$am[1]] = trim($am[2], '"\'');
@@ -111,14 +111,14 @@ function get_atom($atom_name) {
 /**
  * Get the current Lupopedia version from atom
  * 
- * @return string The current version (e.g., "4.0.35")
+ * @return string The current version (e.g., "3.0.35")
  */
 function get_lupopedia_version() {
     $version = get_atom('GLOBAL_CURRENT_LUPOPEDIA_VERSION');
     if ($version === null) {
         // Fallback to version field if atom not found
         $atoms = load_atoms();
-        $version = isset($atoms['version']) ? $atoms['version'] : '4.0.35'; // Last resort fallback
+        $version = isset($atoms['version']) ? $atoms['version'] : '3.0.35'; // Last resort fallback
     }
     return $version;
 }
@@ -126,9 +126,9 @@ function get_lupopedia_version() {
 /**
  * Calculate version number from version string
  * Format: MAJOR * 10000 + MINOR * 100 + PATCH
- * Example: 4.0.35 = 40035
+ * Example: 3.0.35 = 40035
  * 
- * @param string $version Version string (e.g., "4.0.35")
+ * @param string $version Version string (e.g., "3.0.35")
  * @return int Version number for numeric comparisons
  */
 function calculate_version_num($version) {

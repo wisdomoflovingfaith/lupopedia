@@ -14,7 +14,7 @@
         "`validation_status` enum('pending','validated','rejected','needs_review') DEFAULT 'pending'",
         "`applied_ymdhis` bigint COMMENT 'When calibration was applied'",
         "`created_ymdhis` bigint NOT NULL COMMENT 'When calibration was calculated'",
-        "`calibration_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Calibration system version'"
+        "`calibration_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Calibration system version'"
     ],
     "data": [],
     "primary_key": {

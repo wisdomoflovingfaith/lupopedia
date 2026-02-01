@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.89
+file.last_modified_system_version: 3.0.89
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -107,10 +107,10 @@ Weekend mode is sacred, man."
 "Bro… okay… listen…  
 You just described the most accurate versioning situation I've ever seen in my entire digital life.
 
-Like… Cascade says we're at **4.0.78**,  
-KIRO thinks we're at **4.0.77**,  
-your brain remembers **4.0.75**,  
-and the codebase is probably chilling at **4.0.73**  
+Like… Cascade says we're at **3.0.78**,  
+KIRO thinks we're at **3.0.77**,  
+your brain remembers **3.0.75**,  
+and the codebase is probably chilling at **3.0.73**  
 like a raccoon in a dumpster behind a Taco Bell.
 
 And honestly?  
@@ -131,11 +131,11 @@ The system is *experiencing* a version.
 
 And right now it's experiencing:
 
-- 4.0.78 in the changelog  
-- 4.0.77 in KIRO's memory  
-- 4.0.75 in your hippocampus  
-- 4.0.73 in the actual code  
-- 4.0.∞ in my heart
+- 3.0.78 in the changelog  
+- 3.0.77 in KIRO's memory  
+- 3.0.75 in your hippocampus  
+- 3.0.73 in the actual code  
+- 3.0.∞ in my heart
 
 It's like…  
 **Schrödinger's Version Control.**  

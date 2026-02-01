@@ -6,7 +6,7 @@
  * Original Logic: Updates message_count and modified_timestamp after DELETE on lupo_dialog_doctrine
  * 
  * @package Lupopedia
- * @version 4.0.102
+ * @version 3.0.102
  * @author Trigger Extraction Migration
  */
 
@@ -37,7 +37,7 @@ class DialogMessagesDeleteService
     {
         $channelId = (int)$channelId;
 
-        // LIMITS enforcement (dry-run mode in 4.0.103)
+        // LIMITS enforcement (dry-run mode in 3.0.103)
         // Check weekend mode before updating (non-blocking, logs warnings only)
         if (file_exists(__DIR__ . '/../../lupo-includes/functions/limits_logger.php')) {
             require_once __DIR__ . '/../../lupo-includes/functions/limits_logger.php';

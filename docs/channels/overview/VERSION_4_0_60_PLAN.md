@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.50
+file.last_modified_system_version: 3.0.50
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,36 +8,36 @@ dialog:
   speaker: SYSTEM
   target: @Captain_Wolfie
   mood_RGB: "00CCFF"
-  message: "Version 4.0.60 stability and alignment release plan. Pre-flight alignment patch before 4.1.0 ascent."
+  message: "Version 3.0.60 stability and alignment release plan. Pre-flight alignment patch before 3.1.0 ascent."
 tags:
   categories: ["documentation", "planning", "version"]
   collections: ["core-docs"]
   channels: ["dev"]
 file:
-  title: "Version 4.0.60 Plan - Stability & Alignment Release"
-  description: "Consolidation and preparation release before 4.1.0 public release"
+  title: "Version 3.0.60 Plan - Stability & Alignment Release"
+  description: "Consolidation and preparation release before 3.1.0 public release"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: draft
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Version 4.0.60 Plan - Stability & Alignment Release
+# Version 3.0.60 Plan - Stability & Alignment Release
 
-**Current Version:** 4.0.50  
-**Target Version:** 4.0.60  
-**Next Major Version:** 4.1.0  
+**Current Version:** 3.0.50  
+**Target Version:** 3.0.60  
+**Next Major Version:** 3.1.0  
 **Release Type:** Stability and alignment patch  
-**Purpose:** Pre-flight alignment before 4.1.0 ascent
+**Purpose:** Pre-flight alignment before 3.1.0 ascent
 
 ---
 
 ## Overview
 
-Version 4.0.60 is a **stability release** that consolidates all work from 4.0.46-4.0.50 and prepares the ground for 4.1.0.
+Version 3.0.60 is a **stability release** that consolidates all work from 3.0.46-3.0.50 and prepares the ground for 3.1.0.
 
 **Key Principle:** No new doctrine. No new subsystems. Just alignment, cleanup, and preparation.
 
-**Think of 4.0.60 as:** The "pre-flight alignment patch"
+**Think of 3.0.60 as:** The "pre-flight alignment patch"
 
 ---
 
@@ -104,16 +104,16 @@ Version 4.0.60 is a **stability release** that consolidates all work from 4.0.46
 
 ## Goal 3: Version Synchronization Audit
 
-**Objective:** Ensure all files reference the correct version (4.0.60 after bump).
+**Objective:** Ensure all files reference the correct version (3.0.60 after bump).
 
 **Tasks:**
 - [ ] Audit all file headers for version consistency
-- [ ] Update `config/global_atoms.yaml` to 4.0.60
-- [ ] Update `lupo-includes/version.php` to 4.0.60
-- [ ] Update CHANGELOG.md with clean 4.0.60 entry
-- [ ] Confirm no files still reference 4.0.45 or 4.0.46
-- [ ] Update all dialog file headers to 4.0.60
-- [ ] Update all doctrine file headers to 4.0.60
+- [ ] Update `config/global_atoms.yaml` to 3.0.60
+- [ ] Update `lupo-includes/version.php` to 3.0.60
+- [ ] Update CHANGELOG.md with clean 3.0.60 entry
+- [ ] Confirm no files still reference 3.0.45 or 3.0.46
+- [ ] Update all dialog file headers to 3.0.60
+- [ ] Update all doctrine file headers to 3.0.60
 
 **Files to Update:**
 - `config/global_atoms.yaml`
@@ -125,9 +125,9 @@ Version 4.0.60 is a **stability release** that consolidates all work from 4.0.46
 - All migration notes
 
 **Success Criteria:**
-- All files reference 4.0.60 (or use GLOBAL_CURRENT_LUPOPEDIA_VERSION atom)
+- All files reference 3.0.60 (or use GLOBAL_CURRENT_LUPOPEDIA_VERSION atom)
 - No version drift detected
-- CHANGELOG.md has complete 4.0.60 entry
+- CHANGELOG.md has complete 3.0.60 entry
 - Version timeline is clean
 
 ---
@@ -170,12 +170,12 @@ Version 4.0.60 is a **stability release** that consolidates all work from 4.0.46
 
 ## Goal 5: Pre-Ascent Manifest Preparation
 
-**Objective:** Prepare folder structure for 4.1.0 Ascent Manifest execution.
+**Objective:** Prepare folder structure for 3.1.0 Ascent Manifest execution.
 
 **Tasks:**
 - [ ] Create dedicated folder for Ascent Manifest: `docs/ascent/`
 - [ ] Add stub file for each of the four Big Rocks
-- [ ] Add README explaining 4.1.0 goals
+- [ ] Add README explaining 3.1.0 goals
 - [ ] Prepare structure for Monday execution
 - [ ] Create task templates
 - [ ] Add progress tracking structure
@@ -183,7 +183,7 @@ Version 4.0.60 is a **stability release** that consolidates all work from 4.0.46
 **Folder Structure:**
 ```
 docs/ascent/
-├── README.md (4.1.0 overview)
+├── README.md (3.1.0 overview)
 ├── 01_HISTORY_RECONCILIATION.md (stub)
 ├── 02_DIALOG_MIGRATION.md (stub)
 ├── 03_COLOR_PROTOCOL.md (stub)
@@ -201,14 +201,14 @@ docs/ascent/
 **Success Criteria:**
 - Ascent folder structure created
 - All stub files present
-- README explains 4.1.0 goals
+- README explains 3.1.0 goals
 - Progress tracker ready
 
 ---
 
 ## Goal 6: History Reconciliation Staging (Optional but Recommended)
 
-**Objective:** Prepare folder structure for History Reconciliation Pass (4.1.0 Big Rock).
+**Objective:** Prepare folder structure for History Reconciliation Pass (3.1.0 Big Rock).
 
 **Timeline Correction:**
 - **Active Period:** 1996-2014 (impressive work, system development, wife died in 2014)
@@ -301,13 +301,13 @@ docs/history/
 - All year placeholders present
 - Index file created
 - Timeline structure ready
-- Zero friction for 4.1.0 history work
+- Zero friction for 3.1.0 history work
 
 ---
 
 ## Execution Order
 
-**Step 1:** Version bump to 4.0.60
+**Step 1:** Version bump to 3.0.60
 - Update `config/global_atoms.yaml`
 - Update `lupo-includes/version.php`
 
@@ -320,7 +320,7 @@ docs/history/
 - Check database relationships
 
 **Step 4:** Version Synchronization Audit (Goal 3)
-- Update all file headers to 4.0.60
+- Update all file headers to 3.0.60
 - Verify no version drift
 
 **Step 5:** Documentation Cleanup (Goal 4)
@@ -337,30 +337,30 @@ docs/history/
 - Add year placeholders
 
 **Step 8:** CHANGELOG.md Update
-- Add complete 4.0.60 entry
+- Add complete 3.0.60 entry
 - Document all changes
 
 ---
 
 ## Success Criteria
 
-**Version 4.0.60 is complete when:**
+**Version 3.0.60 is complete when:**
 - [ ] All dialog files verified and compliant
 - [ ] All bridge files verified and consistent
-- [ ] All files reference version 4.0.60
+- [ ] All files reference version 3.0.60
 - [ ] All documentation normalized and polished
 - [ ] Ascent folder structure created
 - [ ] History folder structure created (optional)
-- [ ] CHANGELOG.md updated with 4.0.60 entry
+- [ ] CHANGELOG.md updated with 3.0.60 entry
 - [ ] No version drift detected
 - [ ] No broken links in documentation
-- [ ] System ready for 4.1.0 ascent
+- [ ] System ready for 3.1.0 ascent
 
 ---
 
-## What 4.0.60 Is NOT
+## What 3.0.60 Is NOT
 
-**4.0.60 does NOT include:**
+**3.0.60 does NOT include:**
 - New doctrine
 - New subsystems
 - New features
@@ -370,7 +370,7 @@ docs/history/
 - Code refactoring
 - Performance optimization
 
-**4.0.60 IS:**
+**3.0.60 IS:**
 - Stability release
 - Alignment patch
 - Cleanup pass
@@ -385,22 +385,22 @@ docs/history/
 
 **Recommended Execution:**
 - Monday morning after tool verification
-- Before starting 4.1.0 Ascent work
+- Before starting 3.1.0 Ascent work
 - After running Monday Start-of-Day Checklist
 
 ---
 
-## Next Steps After 4.0.60
+## Next Steps After 3.0.60
 
-1. Version 4.0.60 complete
+1. Version 3.0.60 complete
 2. System stable and aligned
-3. Begin Version 4.1.0 Ascent
+3. Begin Version 3.1.0 Ascent
 4. Execute History Reconciliation Pass
-5. Continue with 4.1.0 Big Rocks
+5. Continue with 3.1.0 Big Rocks
 
 ---
 
 *Created: 2026-01-16*  
-*Current Version: 4.0.50*  
-*Target Version: 4.0.60*  
+*Current Version: 3.0.50*  
+*Target Version: 3.0.60*  
 *Status: Planning document - not yet executed*

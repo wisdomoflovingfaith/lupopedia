@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.115
+file.last_modified_system_version: 3.0.115
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -231,4 +231,4 @@ Understanding Wolfie = understanding Lupopedia.
 
 ---
 
-**Wolfie Cognitive Architecture Status:** DOCUMENTED as of Version 4.0.112. This document serves as the foundational explanation for understanding Lupopedia's Pack Architecture as an externalization of cognitive patterns.
+**Wolfie Cognitive Architecture Status:** DOCUMENTED as of Version 3.0.112. This document serves as the foundational explanation for understanding Lupopedia's Pack Architecture as an externalization of cognitive patterns.

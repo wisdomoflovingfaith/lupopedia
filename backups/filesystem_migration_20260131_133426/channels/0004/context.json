@@ -32,7 +32,7 @@
         ]
     },
     "temporal_context": {
-        "awareness_version": "4.0.71",
+        "awareness_version": "3.0.71",
         "creation_purpose": "validation_testing",
         "operational_scope": "test_environment"
     }

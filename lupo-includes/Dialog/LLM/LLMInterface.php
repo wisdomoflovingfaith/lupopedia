@@ -9,7 +9,7 @@ namespace Lupopedia\Dialog\LLM;
  * Supports multiple LLM providers with unified interface.
  * 
  * @package Lupopedia\Dialog\LLM
- * @version 4.0.46
+ * @version 3.0.46
  * @author Captain Wolfie
  */
 interface LLMInterface

@@ -2,12 +2,12 @@
 
 ## Introduction
 
-The v4.1.0 Ascent Master Plan orchestrates the execution of three major Big Rocks that transform Lupopedia from its current 4.0.x state into a comprehensive, historically complete, and emotionally rich semantic operating system ready for public release. This master plan ensures coordinated execution, dependency management, and quality assurance across all three major initiatives.
+The v3.1.0 Ascent Master Plan orchestrates the execution of three major Big Rocks that transform Lupopedia from its current 3.0.x state into a comprehensive, historically complete, and emotionally rich semantic operating system ready for public release. This master plan ensures coordinated execution, dependency management, and quality assurance across all three major initiatives.
 
 ## Glossary
 
 - **Ascent_Orchestrator**: The master coordination system managing all three Big Rocks
-- **Big_Rock**: A major feature initiative within the v4.1.0 release
+- **Big_Rock**: A major feature initiative within the v3.1.0 release
 - **Dependency_Manager**: The system managing execution order and inter-rock dependencies
 - **Quality_Gate**: Validation checkpoints ensuring readiness before proceeding
 - **Release_Coordinator**: The system managing final integration and release preparation
@@ -19,7 +19,7 @@ The v4.1.0 Ascent Master Plan orchestrates the execution of three major Big Rock
 
 ### Requirement 1: Big Rock Coordination
 
-**User Story:** As a release manager, I want coordinated execution of all three Big Rocks, so that v4.1.0 delivers a cohesive and complete system upgrade.
+**User Story:** As a release manager, I want coordinated execution of all three Big Rocks, so that v3.1.0 delivers a cohesive and complete system upgrade.
 
 #### Acceptance Criteria
 
@@ -75,7 +75,7 @@ The v4.1.0 Ascent Master Plan orchestrates the execution of three major Big Rock
 
 ### Requirement 5: Integration Validation
 
-**User Story:** As a system integrator, I want validation that all Big Rocks work together cohesively, so that v4.1.0 delivers a unified system experience.
+**User Story:** As a system integrator, I want validation that all Big Rocks work together cohesively, so that v3.1.0 delivers a unified system experience.
 
 #### Acceptance Criteria
 
@@ -99,11 +99,11 @@ The v4.1.0 Ascent Master Plan orchestrates the execution of three major Big Rock
 4. THE Ascent_Orchestrator SHALL update master documentation indexes with new content
 5. THE Ascent_Orchestrator SHALL ensure CHANGELOG.md reflects all Big Rock changes
 6. THE Ascent_Orchestrator SHALL validate that all examples work across integrated systems
-7. THE Ascent_Orchestrator SHALL generate unified v4.1.0 release documentation
+7. THE Ascent_Orchestrator SHALL generate unified v3.1.0 release documentation
 
 ### Requirement 7: Release Preparation
 
-**User Story:** As a release engineer, I want comprehensive release preparation processes, so that v4.1.0 can be deployed confidently to production environments.
+**User Story:** As a release engineer, I want comprehensive release preparation processes, so that v3.1.0 can be deployed confidently to production environments.
 
 #### Acceptance Criteria
 
@@ -113,7 +113,7 @@ The v4.1.0 Ascent Master Plan orchestrates the execution of three major Big Rock
 4. THE Release_Coordinator SHALL prepare rollback procedures for each Big Rock component
 5. THE Release_Coordinator SHALL generate deployment documentation and procedures
 6. THE Release_Coordinator SHALL validate system performance under integrated load
-7. THE Release_Coordinator SHALL certify v4.1.0 readiness for public release
+7. THE Release_Coordinator SHALL certify v3.1.0 readiness for public release
 
 ### Requirement 8: Risk Management
 

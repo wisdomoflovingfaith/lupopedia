@@ -6,7 +6,7 @@
  * and smart cross-reference suggestions.
  * 
  * @package Lupopedia
- * @version 4.0.66
+ * @version 3.0.66
  * @author Captain Wolfie
  */
 
@@ -52,7 +52,7 @@ try {
         'query' => $query,
         'sensitive_topic' => $isSensitive,
         'timestamp' => date('Y-m-d H:i:s'),
-        'version' => '4.0.65'
+        'version' => '3.0.65'
     ];
     
     echo json_encode($response, JSON_PRETTY_PRINT);
@@ -150,7 +150,7 @@ function generateResurgenceResponse($query) {
                     "• 222 tables inherited from Crafty Syntax legacy\n" .
                     "• Vision: Semantic operating system, not just web application\n\n" .
                     "**January 2026: The 16-Day Sprint**\n" .
-                    "• 26 version increments (4.0.0 → 4.0.65)\n" .
+                    "• 26 version increments (3.0.0 → 3.0.65)\n" .
                     "• 120 tables across 3 schemas (core, orchestration, ephemeral)\n" .
                     "• 128 AI agents defined and documented\n" .
                     "• 8-state migration orchestrator fully implemented\n" .

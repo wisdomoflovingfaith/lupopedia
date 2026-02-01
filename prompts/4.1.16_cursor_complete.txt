@@ -1,21 +1,21 @@
-# CURSOR INSTRUCTION — VERSION 4.1.16 COMPLETED
+# CURSOR INSTRUCTION — VERSION 3.1.16 COMPLETED
 # PURPOSE:
-# Version 4.1.16 patch bump completed successfully.
+# Version 3.1.16 patch bump completed successfully.
 
 ###############################################################################
 
 ## COMPLETED ACTIONS
-✅ Version atoms updated from 4.1.15 → 4.1.16
+✅ Version atoms updated from 3.1.15 → 3.1.16
 ✅ config/global_atoms.yaml: version updated
 ✅ lupo-includes/version.php: all version references updated
-✅ CHANGELOG.md: version 4.1.16 entry added
-✅ dialogs/changelog_dialog.md: version 4.1.16 entry added
-✅ dialogs/changelog_dialog-side.md: sync state updated to 4.1.16
-✅ docs/migrations/4.1.16.md: migration notes created
-✅ prompts/4.1.16_cursor_instruction.txt: marked completed
+✅ CHANGELOG.md: version 3.1.16 entry added
+✅ dialogs/changelog_dialog.md: version 3.1.16 entry added
+✅ dialogs/changelog_dialog-side.md: sync state updated to 3.1.16
+✅ docs/migrations/3.1.16.md: migration notes created
+✅ prompts/3.1.16_cursor_instruction.txt: marked completed
 
 ## SYSTEM STATUS
-- **Current Version**: 4.1.16
+- **Current Version**: 3.1.16
 - **Schema Changes**: None
 - **New Features**: None
 - **Backward Compatibility**: Maintained

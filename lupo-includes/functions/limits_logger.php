@@ -3,10 +3,10 @@
  * LIMITS Violation Logger
  * 
  * Logs LIMITS violations to storage/logs/lupopedia_limits.log
- * Used in dry-run enforcement mode (4.0.103).
+ * Used in dry-run enforcement mode (3.0.103).
  * 
  * @package Lupopedia
- * @version 4.0.106
+ * @version 3.0.106
  * @author CASCADE
  */
 

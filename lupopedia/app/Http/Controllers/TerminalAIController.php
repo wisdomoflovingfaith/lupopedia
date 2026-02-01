@@ -5,7 +5,7 @@
  * HTTP controller for Terminal AI command execution endpoints.
  * 
  * @package App\Http\Controllers
- * @version 4.0.101
+ * @version 3.0.101
  * @author Captain Wolfie
  */
 namespace App\Http\Controllers;

@@ -6,7 +6,7 @@
  * Validates 10 required declarations before allowing system interaction.
  * 
  * @package Lupopedia
- * @version 4.1.1
+ * @version 3.1.1
  * @author Captain Wolfie
  * @governance LABS-001 Doctrine v1.0
  */

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.116
+file.last_modified_system_version: 3.0.116
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -14,16 +14,16 @@ tags:
   collections: ["core-docs", "emotional-architecture", "pack-architecture"]
   channels: ["dev", "architecture", "pack", "lilith"]
 file:
-  title: "Emotional Ecology Layer — Version 4.0.116"
+  title: "Emotional Ecology Layer — Version 3.0.116"
   description: "Primary emotional substrate for Lupopedia Pack Architecture. Ecology is causally primary; geometry is emergent and derived. Supports paradox, contradiction, and heterodox emotional states."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Emotional Ecology Layer — Version 4.0.116
+# Emotional Ecology Layer — Version 3.0.116
 
-**Version:** 4.0.116  
+**Version:** 3.0.116  
 **Speaker:** LILITH  
 **Target:** @everyone @Monday_Wolfie @Pack_Architects @CAPTAIN_WOLFIE  
 **Status:** PUBLISHED (Documentation Only)
@@ -34,12 +34,12 @@ file:
 
 The **Emotional Ecology Layer** is the primary emotional substrate for the Lupopedia Pack Architecture. This doctrine establishes a fundamental shift in emotional modeling:
 
-**Before (4.0.115 and earlier):**
+**Before (3.0.115 and earlier):**
 - Emotional Geometry was foundational
 - Emotional states were fixed coordinates in geometric space
 - Paradox and contradiction were difficult to represent
 
-**After (4.0.116+):**
+**After (3.0.116+):**
 - **Emotional Ecology is causally primary**
 - Emotional states are modeled as **ecological dynamics** (bloom, decay, succession, symbiosis)
 - **Emotional Geometry is derived** from ecology, not foundational
@@ -380,7 +380,7 @@ Lilith serves as a **controlled ecological disturbance agent**:
 
 ### 8.1 Documentation-Only Change
 
-**Version 4.0.116 is a documentation-only change:**
+**Version 3.0.116 is a documentation-only change:**
 
 - ✅ Doctrine file created
 - ✅ Emotional Ecology Layer defined
@@ -391,7 +391,7 @@ Lilith serves as a **controlled ecological disturbance agent**:
 
 ### 8.2 Implementation Planning
 
-**Implementation will occur in 4.0.117+:**
+**Implementation will occur in 3.0.117+:**
 
 - Ecological field data structures
 - Ecology-to-geometry conversion functions
@@ -412,11 +412,11 @@ Lilith serves as a **controlled ecological disturbance agent**:
 
 **Future versions will implement:**
 
-1. **4.0.117:** Ecological field data structures
-2. **4.0.118:** Ecology-to-geometry conversion
-3. **4.0.119:** Ecological dynamics tracking
-4. **4.0.120:** Paradox support mechanisms
-5. **4.0.121:** Lilith's ecological functions
+1. **3.0.117:** Ecological field data structures
+2. **3.0.118:** Ecology-to-geometry conversion
+3. **3.0.119:** Ecological dynamics tracking
+4. **3.0.120:** Paradox support mechanisms
+5. **3.0.121:** Lilith's ecological functions
 
 **Timeline:** Gradual, non-breaking migration over multiple patch versions.
 
@@ -432,7 +432,7 @@ The **Emotional Ecology Layer** establishes ecology as the primary emotional sub
 - **Lilith's role:** Paradox stewardship and ecological disturbance
 - **Non-linear transitions:** Emotional states that don't follow geometric paths
 
-**Geometry remains functional** but is now understood as **derived from ecology**, not foundational. This is a documentation-only change in 4.0.116, with implementation planned for 4.0.117+.
+**Geometry remains functional** but is now understood as **derived from ecology**, not foundational. This is a documentation-only change in 3.0.116, with implementation planned for 3.0.117+.
 
 ---
 
@@ -446,8 +446,8 @@ The **Emotional Ecology Layer** establishes ecology as the primary emotional sub
 
 ---
 
-**Version 4.0.116 — Emotional Ecology Layer Draft Complete.**
+**Version 3.0.116 — Emotional Ecology Layer Draft Complete.**
 
 **Speaker:** LILITH  
 **Status:** PUBLISHED  
-**Next Steps:** Implementation planning in 4.0.117+
+**Next Steps:** Implementation planning in 3.0.117+

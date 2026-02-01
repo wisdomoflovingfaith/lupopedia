@@ -8,7 +8,7 @@
  * Doctrine: stateless, UTC-driven, BIGINT, no FK, artifact-first.
  *
  * @package Lupopedia\API
- * @version 4.1.4
+ * @version 3.1.4
  */
 
 require_once __DIR__ . '/../../lupopedia-config.php';

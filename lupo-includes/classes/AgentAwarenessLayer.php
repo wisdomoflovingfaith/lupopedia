@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Lupopedia v4.1.6 - Agent Awareness Layer (AAL)
+ * Lupopedia v3.1.6 - Agent Awareness Layer (AAL)
  * 
  * Implements the multi-agent coordination layer with:
  * - Lupopedia Actor Baseline State (LABS-001) validation

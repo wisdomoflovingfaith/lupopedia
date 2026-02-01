@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.112
+file.last_modified_system_version: 3.0.112
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -23,7 +23,7 @@ file:
 
 # Pack Memory Layer Doctrine
 
-**Version:** 4.0.110  
+**Version:** 3.0.110  
 **Status:** ACTIVE  
 **Authority:** Pack Architecture  
 **Scope:** Pack agent memory, episodic events, emotional/behavioral snapshots, handoff history
@@ -67,7 +67,7 @@ Common event types include:
 
 - **Per Agent**: Last 100 episodic events
 - **Automatic Pruning**: Oldest events removed when limit exceeded
-- **Non-Persistent**: Memory cleared on Pack session end (4.0.x)
+- **Non-Persistent**: Memory cleared on Pack session end (3.0.x)
 
 ---
 
@@ -105,7 +105,7 @@ Emotional snapshots are recorded:
 
 - **Per Agent**: Last 50 emotional snapshots
 - **Automatic Pruning**: Oldest snapshots removed when limit exceeded
-- **Non-Persistent**: Memory cleared on Pack session end (4.0.x)
+- **Non-Persistent**: Memory cleared on Pack session end (3.0.x)
 
 ---
 
@@ -139,7 +139,7 @@ Behavioral snapshots are recorded:
 
 - **Per Agent**: Last 50 behavioral snapshots
 - **Automatic Pruning**: Oldest snapshots removed when limit exceeded
-- **Non-Persistent**: Memory cleared on Pack session end (4.0.x)
+- **Non-Persistent**: Memory cleared on Pack session end (3.0.x)
 
 ---
 
@@ -177,13 +177,13 @@ Handoff events are automatically recorded:
 
 - **Global**: Last 200 handoff events (across all agents)
 - **Automatic Pruning**: Oldest events removed when limit exceeded
-- **Non-Persistent**: Memory cleared on Pack session end (4.0.x)
+- **Non-Persistent**: Memory cleared on Pack session end (3.0.x)
 
 ---
 
 ## Memory Decay Rules (Conceptual)
 
-### Current Implementation (4.0.x)
+### Current Implementation (3.0.x)
 
 Memory decay is implemented through **fixed limits**:
 - Episodic: 100 events per agent
@@ -203,11 +203,11 @@ Planned memory decay rules:
 
 ---
 
-## Non-Persistence in 4.0.x
+## Non-Persistence in 3.0.x
 
 ### Current Behavior
 
-**All Pack memory is non-persistent in version 4.0.x:**
+**All Pack memory is non-persistent in version 3.0.x:**
 - Memory stored in PackContext (in-memory arrays)
 - Memory cleared when Pack session ends
 - Memory cleared on server restart
@@ -306,8 +306,8 @@ lupo_pack_handoff_memory
 ## Integration with Pack Architecture
 
 The Pack Memory Layer integrates seamlessly with:
-- **Emotional Geometry (4.0.108)**: Emotional snapshots stored
-- **Behavioral Layer (4.0.109)**: Behavioral snapshots stored
+- **Emotional Geometry (3.0.108)**: Emotional snapshots stored
+- **Behavioral Layer (3.0.109)**: Behavioral snapshots stored
 - **Handoff Protocol**: Handoff events recorded with calibration data
 
 **Memory Pipeline:**
@@ -349,9 +349,9 @@ $handoffs = $service->handoffs('TerminalAI_001');
 
 ## Related Documentation
 
-- **[PACK_BEHAVIOR_DOCTRINE.md](docs/PACK_BEHAVIOR_DOCTRINE.md)** - Pack behavioral layer (4.0.109)
-- **[EMOTIONAL_GEOMETRY.md](docs/doctrine/EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (4.0.108)
+- **[PACK_BEHAVIOR_DOCTRINE.md](docs/PACK_BEHAVIOR_DOCTRINE.md)** - Pack behavioral layer (3.0.109)
+- **[EMOTIONAL_GEOMETRY.md](docs/doctrine/EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (3.0.108)
 
 ---
 
-**Pack Memory Layer Status:** ACTIVE as of Version 4.0.110. Non-persistent memory enabled. Persistence planned for 4.2.x.
+**Pack Memory Layer Status:** ACTIVE as of Version 3.0.110. Non-persistent memory enabled. Persistence planned for 4.2.x.

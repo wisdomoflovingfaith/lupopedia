@@ -6,7 +6,7 @@
  * Implements memory layer for Pack Architecture.
  *
  * @package Lupopedia
- * @version 4.0.110
+ * @version 3.0.110
  * @author Captain Wolfie
  */
 

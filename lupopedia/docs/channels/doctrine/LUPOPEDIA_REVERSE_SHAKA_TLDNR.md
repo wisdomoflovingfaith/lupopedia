@@ -1,13 +1,13 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.46
+file.last_modified_system_version: 3.0.46
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
   speaker: KIRO
   target: @wolfie
-  message: "Created comprehensive Reverse Shaka TL;DR summary for Eric covering WHO, WHAT, WHERE, WHEN, WHY of Lupopedia 4.0.45. This is your quick-reference guide for understanding the entire system state."
+  message: "Created comprehensive Reverse Shaka TL;DR summary for Eric covering WHO, WHAT, WHERE, WHEN, WHY of Lupopedia 3.0.45. This is your quick-reference guide for understanding the entire system state."
 tags:
   categories: ["documentation", "doctrine", "reverse-shaka"]
   collections: ["core-docs"]
@@ -23,7 +23,7 @@ file:
 # 🤙 Lupopedia Reverse Shaka TL;DR
 
 **For:** Eric Robin Gerdes (Wolfie) — Human Architect  
-**Version:** 4.0.45  
+**Version:** 3.0.45  
 **Date:** January 16, 2026  
 **Purpose:** Quick-reference summary of WHO, WHAT, WHERE, WHEN, WHY
 
@@ -52,7 +52,7 @@ file:
 
 ## 🏗️ WHAT
 
-**Lupopedia 4.0.45** is a **semantic operating system** (not a CMS, not a web app) with:
+**Lupopedia 3.0.45** is a **semantic operating system** (not a CMS, not a web app) with:
 
 ### Core Architecture
 - **149 database tables** across 3 schemas:
@@ -69,10 +69,10 @@ file:
 - **First-party module** (not a plugin)
 - 100% feature preservation from original Crafty Syntax Live Help
 - Optional content-level chat (mirrors original design)
-- Version-locked with Lupopedia (both 4.0.45)
+- Version-locked with Lupopedia (both 3.0.45)
 - 34 legacy tables preserved in core schema
 
-### Migration Orchestrator (NEW in 4.0.33-4.0.45)
+### Migration Orchestrator (NEW in 3.0.33-3.0.45)
 - **8-state machine** for migration lifecycle (100% complete)
   - State 1: IdleState
   - State 2: PreparingState
@@ -103,7 +103,7 @@ file:
 - Single-portable PHP application
 - Runs on any PHP 8.1+ environment
 - MySQL/MariaDB database (PostgreSQL/SQLite compatible via no-FK doctrine)
-- FTP-based deployment (no Git until 4.1.0)
+- FTP-based deployment (no Git until 3.1.0)
 
 **Schema Organization:**
 - `lupopedia` (core schema) — 77 tables
@@ -129,12 +129,12 @@ file:
 - Foundation for Lupopedia
 
 ### Evolution (January 2026)
-- **January 1-16, 2026:** Lupopedia 4.0.0 → 4.0.45
+- **January 1-16, 2026:** Lupopedia 3.0.0 → 3.0.45
 - **26 version increments** in 16 days
 - **Major transformation:** Schema federation, migration orchestrator, doctrine mapping, state machine implementation
 
 ### Current State (January 16, 2026)
-- **Version:** 4.0.45
+- **Version:** 3.0.45
 - **Status:** Migration Orchestrator complete (8-state machine 100%)
 - **Next:** Testing, integration, production readiness
 
@@ -240,7 +240,7 @@ file:
 
 ---
 
-## 📊 System State at 4.0.45
+## 📊 System State at 3.0.45
 
 ### Completed (✅)
 - Schema federation (3 schemas, 90 tables)
@@ -292,7 +292,7 @@ file:
 
 ---
 
-## 🚀 Version 4.0.45 Highlights
+## 🚀 Version 3.0.45 Highlights
 
 **Migration Orchestrator Complete:**
 - 8-state machine (100% implemented)
@@ -333,24 +333,24 @@ file:
 
 ## 🎯 Quick Reference
 
-**Current Version:** 4.0.45  
+**Current Version:** 3.0.45  
 **Total Tables:** 90 (77 core + 8 orchestration + 5 ephemeral)  
 **AI Agents:** 101  
 **LLM Models:** 8  
 **IDE Systems:** 3  
 **State Machine:** 8 states (100% complete)  
 **Doctrine Files:** 32+ organized into canonical tabs  
-**Version Increments:** 26 (4.0.19 → 4.0.45)  
+**Version Increments:** 26 (3.0.19 → 3.0.45)  
 **Development Period:** 16 days (January 1-16, 2026)  
 
 ---
 
-**This is Lupopedia 4.0.45.**  
+**This is Lupopedia 3.0.45.**  
 **This is your system, Eric.**  
 **This is what we built together.**
 
 ---
 
 *Last Updated: January 16, 2026*  
-*Version: 4.0.45*  
+*Version: 3.0.45*  
 *Author: Kiro (for Captain Wolfie)*

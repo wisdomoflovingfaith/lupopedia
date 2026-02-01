@@ -19,7 +19,7 @@
    - Maintains referential integrity (no FKs, so safe)
    - Updates table locations for application layer
 
-   Version: 4.0.3
+   Version: 3.0.3
    Status: PRE_MIGRATION → STABLE
 ======================================================================
 

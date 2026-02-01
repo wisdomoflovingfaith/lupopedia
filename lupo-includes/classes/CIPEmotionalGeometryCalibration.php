@@ -1,7 +1,7 @@
 <?php
 /**
  * wolfie.headers: explicit architecture with structured clarity for every file.
- * file.last_modified_system_version: 4.0.76
+ * file.last_modified_system_version: 3.0.76
  * 
  * CIP Emotional Geometry Calibration
  * 
@@ -10,14 +10,14 @@
  * and recommends recalibration of R/G/B vectors for agents and subsystems.
  * 
  * @package Lupopedia
- * @version 4.0.76
+ * @version 3.0.76
  * @author kiro (AI Assistant)
  */
 
 class CIPEmotionalGeometryCalibration {
     
     private $db;
-    private $version = '4.0.76';
+    private $version = '3.0.76';
     
     // Emotional geometry constants
     private $baseline_ranges = [

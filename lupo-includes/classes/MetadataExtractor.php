@@ -6,7 +6,7 @@
  * This component systematically processes historical markdown files to extract
  * structured metadata for dialog-based navigation and cross-reference intelligence.
  * 
- * @version 4.0.66
+ * @version 3.0.66
  * @author GLOBAL_CURRENT_AUTHORS
  */
 

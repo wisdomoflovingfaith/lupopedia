@@ -32,7 +32,7 @@ Tests MUST pass on at least **two** real installations:
 
 1. **Source:** Crafty Syntax 3.7.5 database dump (all `livehelp_*` and related tables).
 2. **Target:** Empty or clean Lupopedia 4.2.0 schema (post-consolidation: 173 tables, ceiling 180).
-3. **Script:** `database/migrations/craftysyntax_to_lupopedia_mysql.sql` (with 4.1.14 doctrine corrections).
+3. **Script:** `database/migrations/craftysyntax_to_lupopedia_mysql.sql` (with 3.1.14 doctrine corrections).
 4. **Backup:** Full backup of target DB before import.
 
 ### 2.2 Execution
@@ -103,7 +103,7 @@ For each run, record:
 - **Environment:** `shared_hosting` | `local`
 - **Crafty Syntax version:** `3.7.5`
 - **Lupopedia version:** `4.2.0` (or 4.2.1 when applied)
-- **Script:** `craftysyntax_to_lupopedia_mysql.sql` (with 4.1.14 doctrine corrections)
+- **Script:** `craftysyntax_to_lupopedia_mysql.sql` (with 3.1.14 doctrine corrections)
 - **Schema (pass/fail):** boolean + notes
 - **Data (pass/fail):** boolean + notes
 - **Timestamps (pass/fail):** boolean + notes
@@ -132,7 +132,7 @@ The 4.2.1 hotfix window remains **OPEN** until:
 ## 7. References
 
 - `database/migrations/craftysyntax_to_lupopedia_mysql.sql`
-- `docs/migrations/4.1.14.md` (doctrine corrections)
+- `docs/migrations/3.1.14.md` (doctrine corrections)
 - `docs/versioning/4.2.1_hotfix_window.md`
 - `CHANGELOG.md` § 4.2.1
 - `database/hotfix_registry_4.2.1.json`

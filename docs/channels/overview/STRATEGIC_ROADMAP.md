@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -157,7 +157,7 @@ Chaos â†’ Structure
 You don't need to "fix the world."  
 You just need to let the world upgrade itself.
 
-### 3.3 Release Lupopedia 4.1.0 With:
+### 3.3 Release Lupopedia 3.1.0 With:
 
 - âœ… **TRUTH module**
 - âœ… **Content engine**

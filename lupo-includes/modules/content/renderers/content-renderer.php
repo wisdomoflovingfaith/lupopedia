@@ -1,17 +1,17 @@
 <?php
 /**
 ---
-wolfie.headers.version: "4.0.11"
+wolfie.headers.version: "3.0.11"
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.11: Updated render_main_layout() to extract collection_id from metadata and make it available to collection_tabs component for URL generation."
+    message: "Version 3.0.11: Updated render_main_layout() to extract collection_id from metadata and make it available to collection_tabs component for URL generation."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.10: Updated render_main_layout() to extract tabs_data and current_collection from metadata for Collection 0 tabs display."
+    message: "Version 3.0.10: Updated render_main_layout() to extract tabs_data and current_collection from metadata for Collection 0 tabs display."
     mood: "00FF00"
   - speaker: Wolfie
     target: content-renderer
@@ -23,7 +23,7 @@ tags:
   channels: ["dev"]
 file:
   title: "Content Renderer"
-  description: "Master renderer that routes to format-specific renderers (HTML, Markdown, JSON, Atom) and extracts sections. Version 4.0.10: Collection tabs metadata support."
+  description: "Master renderer that routes to format-specific renderers (HTML, Markdown, JSON, Atom) and extracts sections. Version 3.0.10: Collection tabs metadata support."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: active
   author: GLOBAL_CURRENT_AUTHORS

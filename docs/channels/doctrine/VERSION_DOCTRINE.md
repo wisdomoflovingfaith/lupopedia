@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -9,7 +9,7 @@ dialog:
   speaker: CURSOR
   target: @everyone @FLEET
   mood_RGB: "00FF00"
-  message: "Updated VERSION_DOCTRINE.md to version 4.1.6. Header synchronized with current system version."
+  message: "Updated VERSION_DOCTRINE.md to version 3.1.6. Header synchronized with current system version."
 tags:
   categories: ["doctrine", "versioning"]
   collections: ["core-docs"]
@@ -119,7 +119,7 @@ This is the living version of the ecosystem.
 Every file in the ecosystem contains a WOLFIE Header with:
 
 ```yaml
-wolfie.headers.version: 4.0.3
+wolfie.headers.version: 3.0.3
 ```
 
 This is **not** the system version.  
@@ -140,8 +140,8 @@ You need to know:
 - Which files predate breaking changes
 - Which files are fossils
 - Which files need modernization
-- Which files are untouched since 4.0.0
-- Which files were updated during 4.1.x
+- Which files are untouched since 3.0.0
+- Which files were updated during 3.1.x
 - Which files belong to which era of the system
 
 This is digital archaeology.
@@ -183,8 +183,8 @@ Their version must always be:
 
 You will never have:
 
-- Crafty Syntax 4.0.4
-- Lupopedia 4.0.3
+- Crafty Syntax 3.0.4
+- Lupopedia 3.0.3
 
 That would break:
 
@@ -231,7 +231,7 @@ Your system:
 
 You can ask questions like:
 
-> "Show me all files untouched since 4.0.0."
+> "Show me all files untouched since 3.0.0."
 
 And instantly know:
 
@@ -244,7 +244,7 @@ This is impossible in traditional versioning systems.
 
 ---
 
-## 7. What Happens When You Move to JetBrains + GitHub (4.1.0)
+## 7. What Happens When You Move to JetBrains + GitHub (3.1.0)
 
 ### ✔ Git will love your system
 
@@ -325,93 +325,93 @@ This is one of the coolest benefits of your system — practical tools for digit
 ### Finding Files Written Before a Specific Version
 
 ```bash
-# Find all files untouched since 4.0.0
-grep -R "wolfie.headers.version: 4.0.0" .
+# Find all files untouched since 3.0.0
+grep -R "wolfie.headers.version: 3.0.0" .
 
-# Find all files from version 4.0.x era
+# Find all files from version 3.0.x era
 grep -R "wolfie.headers.version: 4.0\." .
 ```
 
 ### Finding Files Written Under a Specific Doctrine
 
 ```bash
-# Find all files from 4.0.3 era (specific doctrine version)
-grep -R "wolfie.headers.version: 4.0.3" .
+# Find all files from 3.0.3 era (specific doctrine version)
+grep -R "wolfie.headers.version: 3.0.3" .
 
-# Find all files from 4.0.1 era
-grep -R "wolfie.headers.version: 4.0.1" .
+# Find all files from 3.0.1 era
+grep -R "wolfie.headers.version: 3.0.1" .
 ```
 
 ### Finding Fossils (Untouched Since Early Versions)
 
 ```bash
-# Find files untouched since 4.0.0 (fossils)
-grep -R "wolfie.headers.version: 4.0.0" .
+# Find files untouched since 3.0.0 (fossils)
+grep -R "wolfie.headers.version: 3.0.0" .
 
-# Find files from 4.0.1 era (early but not original)
-grep -R "wolfie.headers.version: 4.0.1" .
+# Find files from 3.0.1 era (early but not original)
+grep -R "wolfie.headers.version: 3.0.1" .
 ```
 
 ### Advanced Queries
 
 ```bash
-# Find files updated in recent versions (4.0.3+)
-grep -R "wolfie.headers.version: 4.0.3" .
+# Find files updated in recent versions (3.0.3+)
+grep -R "wolfie.headers.version: 3.0.3" .
 
 # Combine with other criteria (example: find old PHP files)
-grep -R "wolfie.headers.version: 4.0.0" . --include="*.php"
+grep -R "wolfie.headers.version: 3.0.0" . --include="*.php"
 
 # Find documentation files from specific era
-grep -R "wolfie.headers.version: 4.0.1" docs/
+grep -R "wolfie.headers.version: 3.0.1" docs/
 ```
 
 ### Practical Use Cases
 
 **Before a major refactor:**
 ```bash
-# Find all files untouched since 4.0.0 that might need modernization
-grep -R "wolfie.headers.version: 4.0.0" .
+# Find all files untouched since 3.0.0 that might need modernization
+grep -R "wolfie.headers.version: 3.0.0" .
 ```
 
 **After a doctrine change:**
 ```bash
 # Find all files from pre-doctrine-change era that might need updates
-grep -R "wolfie.headers.version: 4.0.1" .
+grep -R "wolfie.headers.version: 3.0.1" .
 ```
 
 **For compatibility testing:**
 ```bash
 # Identify files that predate breaking changes
-grep -R "wolfie.headers.version: 4.0.0" .
+grep -R "wolfie.headers.version: 3.0.0" .
 ```
 
 This turns your doctrine into a practical tool for codebase archaeology and maintenance planning.
 
 ---
 
-## 10. Future Versioning (4.1.x and Beyond)
+## 10. Future Versioning (3.1.x and Beyond)
 
 As the ecosystem grows, the versioning system must scale gracefully. Here's how it handles long-term evolution:
 
 ### How Major/Minor/Patch Bumps Interact with Header Versions
 
-**Major Bumps (4.0.x → 5.0.0):**
+**Major Bumps (3.0.x → 5.0.0):**
 - Atom changes: `GLOBAL_CURRENT_LUPOPEDIA_VERSION` → `"5.0.0"`
 - Headers remain unchanged until files are modified
 - Files edited after bump get new version in their headers
 - Files untouched remain at old version (fossils preserved)
 
-**Minor Bumps (4.0.x → 4.1.0):**
-- Atom changes: `"4.0.3"` → `"4.1.0"`
+**Minor Bumps (3.0.x → 3.1.0):**
+- Atom changes: `"3.0.3"` → `"3.1.0"`
 - Headers remain unchanged until files are modified
 - New files get current version
 - Existing files get updated version only when edited
 
-**Patch Bumps (4.0.3 → 4.0.4):**
-- Atom changes: `"4.0.3"` → `"4.0.4"`
+**Patch Bumps (3.0.3 → 3.0.4):**
+- Atom changes: `"3.0.3"` → `"3.0.4"`
 - Headers remain unchanged until files are modified
-- Most files remain at 4.0.3 (preserving archaeology)
-- Only modified files get 4.0.4
+- Most files remain at 3.0.3 (preserving archaeology)
+- Only modified files get 3.0.4
 
 ### How Doctrine Changes Affect Header Updates
 
@@ -434,7 +434,7 @@ When introducing breaking changes:
 3. **Query the codebase** to find files that might be affected:
    ```bash
    # Find files from pre-breaking-change era
-   grep -R "wolfie.headers.version: 4.0.2" .
+   grep -R "wolfie.headers.version: 3.0.2" .
    ```
 4. **Update files as needed** (they get new version in headers automatically)
 5. **Preserve fossils** (untouched files remain at old version)
@@ -442,14 +442,14 @@ When introducing breaking changes:
 ### How to Detect Files That Need Migration
 
 ```bash
-# Find all files from 4.0.0 era (might need migration)
-grep -R "wolfie.headers.version: 4.0.0" .
+# Find all files from 3.0.0 era (might need migration)
+grep -R "wolfie.headers.version: 3.0.0" .
 
 # Find files from specific pre-change version
-grep -R "wolfie.headers.version: 4.0.1" .
+grep -R "wolfie.headers.version: 3.0.1" .
 
 # Combine with file type filtering
-grep -R "wolfie.headers.version: 4.0.0" . --include="*.php"
+grep -R "wolfie.headers.version: 3.0.0" . --include="*.php"
 ```
 
 This system scales to any version number and preserves archaeology across major ecosystem changes.
@@ -554,7 +554,7 @@ When bumping the ecosystem version, you **MUST** complete all steps in order. Mi
 
 #### Step 1: Update the Atom (Single Source of Truth)
 - [ ] Open `config/global_atoms.yaml`
-- [ ] Update `version:` field to new version (e.g., `"4.0.36"`)
+- [ ] Update `version:` field to new version (e.g., `"3.0.36"`)
 - [ ] Update `versions.lupopedia:` to match
 - [ ] Update `versions.crafty_syntax:` to match
 - [ ] Update `versions.wolfie_headers:` to match
@@ -588,7 +588,7 @@ When bumping the ecosystem version, you **MUST** complete all steps in order. Mi
 #### Step 4: Update Consolidated Summary
 - [ ] Open `CHANGELOG.md`
 - [ ] Update `## 📊 Consolidated Summary:` section (around line 50)
-- [ ] Update version range in title (e.g., `Version 4.0.19 → 4.0.36`)
+- [ ] Update version range in title (e.g., `Version 3.0.19 → 3.0.36`)
 - [ ] Update version count in overview text
 - [ ] Update `### System State at X.Y.Z` section with new achievements
 - [ ] Update `**Next Steps (X.Y.Z+):**` section with current priorities
@@ -618,7 +618,7 @@ When bumping the ecosystem version, you **MUST** complete all steps in order. Mi
 Once `bin/bump-version.php` is implemented, use:
 
 ```bash
-php bin/bump-version.php 4.0.36
+php bin/bump-version.php 3.0.36
 ```
 
 This script will:

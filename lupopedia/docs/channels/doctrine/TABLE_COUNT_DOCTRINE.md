@@ -21,7 +21,7 @@ dialog:
   speaker: CURSOR
   target: @everyone @CAPTAIN_WOLFIE @Monday_Wolfie
   mood_RGB: "00FF00"
-  message: "Updated TABLE_COUNT_DOCTRINE: 214 tables (8 under 222 limit). Legacy livehelp tables removed in 4.4.1. Table ceiling set to 222. File-Sovereignty active."
+  message: "Updated TABLE_COUNT_DOCTRINE: 214 tables (8 under 222 limit). Legacy livehelp tables removed in 4.3.1. Table ceiling set to 222. File-Sovereignty active."
 tags:
   categories: ["documentation", "doctrine", "database", "architecture"]
   collections: ["core-docs", "doctrine"]
@@ -48,12 +48,12 @@ system_context:
 ---
 
 # NEW_TABLE_COUNT_DOCTRINE_v1.0
-Effective Range: Versions 4.0.101 → 4.2.0
+Effective Range: Versions 3.0.101 → 4.2.0
 Status: ACTIVE ARCHITECTURE LAW
 
 ## Purpose
 This doctrine establishes the hard architectural limits for the Lupopedia
-database schema during the 4.0.x → 4.2.0 development cycle. It replaces
+database schema during the 3.0.x → 4.2.0 development cycle. It replaces
 the earlier 111-table ideal with a more realistic constraint that reflects
 current system truth, TOON-layer requirements, and Pack-era architecture.
 
@@ -101,7 +101,7 @@ application-level orchestration. The database remains a pure data store.
 7. **NO VIOLATION**: Current projected total 205 tables (17 under limit).
 
 ## Doctrine Notes
-- Legacy livehelp_ tables removed in version 4.1.17 (8 tables dropped)
+- Legacy livehelp_ tables removed in version 3.1.17 (8 tables dropped)
 - Table ceiling set to 222 to support system stability
 - Target operational count: 222 tables
 - Current schema count: 214 tables
@@ -120,7 +120,7 @@ application-level orchestration. The database remains a pure data store.
 - **IMMEDIATE ACTION REQUIRED**: Reduce TOON table count by 5 before migration
 
 ## Version Applicability
-- Applies to all versions 4.0.101 → 4.2.0
+- Applies to all versions 3.0.101 → 4.2.0
 - Does not modify historical versions
 - Will be reevaluated during 4.2.0 planning
 

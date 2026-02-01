@@ -6,7 +6,7 @@
  * Validates that metadata is properly extracted from .md files
  * Tests emotional intelligence integration and cross-reference suggestions
  * 
- * @version 4.0.66
+ * @version 3.0.66
  * @author GLOBAL_CURRENT_AUTHORS
  */
 

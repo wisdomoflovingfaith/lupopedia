@@ -75,7 +75,7 @@ WOLFIE Headers are the **metadata envelope** that wraps file content. They provi
 
 The `file.last_modified_system_version` field enables developers (and AI tools) to instantly identify:
 
-- **which files were touched in a given version** â€” `grep -R "file.last_modified_system_version: 4.0.13" .`
+- **which files were touched in a given version** â€” `grep -R "file.last_modified_system_version: 3.0.13" .`
 - **which files belong to older versions** â€” files with older version numbers
 - **which files need modernization** â€” compare against current system version
 - **which files were modified during debugging** â€” track debugging sessions
@@ -125,7 +125,7 @@ This line never changes and is always: `"explicit architecture with structured c
 The system version that was active when THIS file was last edited or changed.  
 - **MANDATORY** â€” Must be included in all WOLFIE Headers
 - This is a per-file historical marker (not the current global version)
-- Must be a literal version string (e.g., `4.1.6`), not an atom reference
+- Must be a literal version string (e.g., `3.1.6`), not an atom reference
 - Only updated when the file itself is modified
 - Not automatically updated when the global version changes
 - Not tied to any specific program stack
@@ -503,13 +503,13 @@ file:
 ```yaml
 # Located at: docs/agents/_dir_atoms.yaml
 DIR_DOCS_AUTHOR: "Documentation Team"
-DIRR_DOCS_VERSION: "4.0.1"
+DIRR_DOCS_VERSION: "3.0.1"
 ```
 
 #### In `module_atoms.yaml` (module-scoped):
 ```yaml
 # Located at: modules/craftysyntax/module_atoms.yaml
-MODULE_CRAFTYSYNTAX_VERSION: "4.0.1"
+MODULE_CRAFTYSYNTAX_VERSION: "3.0.1"
 MODULE_CRAFTYSYNTAX_AUTHOR: "Crafty Syntax Team"
 ```
 
@@ -517,7 +517,7 @@ MODULE_CRAFTYSYNTAX_AUTHOR: "Crafty Syntax Team"
 ```yaml
 # Located at: /config/global_atoms.yaml
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie"
-GLOBAL_CURRENT_VERSION: "4.0.1"
+GLOBAL_CURRENT_VERSION: "3.0.1"
 GLOBAL_LUPOPEDIA_COMPANY_STRUCTURE:
   company:
     name: "Lupopedia LLC"
@@ -700,7 +700,7 @@ file:
   modified: <YYYYMMDDHHIISS>
   status: draft | review | published
   author: "<STRING>"
-  version: "4.1.6"
+  version: "3.1.6"
   last_named: <YYYYMMDDHHIISS>
 ```
 
@@ -891,7 +891,7 @@ WOLFIE Headers MAY appear in:
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 dialog:
   speaker: COPILOT
   target: @everyone
@@ -901,10 +901,10 @@ tags:
 file:
   name: "INSTALLATION_GUIDE.md"
   title: "Installation Guide"
-  description: "How to install Lupopedia 4.0.12"
+  description: "How to install Lupopedia 3.0.12"
   status: published
   author: "Captain Wolfie"
-  version: "4.0.12"
+  version: "3.0.12"
 ---
 ```
 
@@ -952,21 +952,21 @@ Optional modules MUST follow their own rules.
 
 # ðŸ§¾ **13. Complete Examples**
 
-### Minimal Header (4.1.6 Standard)
+### Minimal Header (3.1.6 Standard)
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 file.last_modified_utc: 20260119041000
 file.lupopedia.UTC_TIMEKEEPER: UTC_TIMEKEEPER
 ---
 ```
 
-### Agentâ€‘Modified Header (4.1.6 Standard)
+### Agentâ€‘Modified Header (3.1.6 Standard)
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 file.last_modified_utc: 20260119041000
 file.lupopedia.UTC_TIMEKEEPER: UTC_TIMEKEEPER
 header_atoms:
@@ -980,11 +980,11 @@ dialog:
 ---
 ```
 
-### Complete Header Example (4.1.6 Standard)
+### Complete Header Example (3.1.6 Standard)
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 file.last_modified_utc: 20260119041000
 file.lupopedia.UTC_TIMEKEEPER: UTC_TIMEKEEPER
 header_atoms:
@@ -1001,7 +1001,7 @@ tags:
   channels: ["public", "dev"]
 file:
   title: "Example Documentation File"
-  description: "Example of complete WOLFIE Header following 4.1.6 standard"
+  description: "Example of complete WOLFIE Header following 3.1.6 standard"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
@@ -1009,11 +1009,11 @@ file:
 ---
 ```
 
-### Full Featured Header (4.1.6 Standard)
+### Full Featured Header (3.1.6 Standard)
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 file.last_modified_utc: 20260119041000
 file.lupopedia.UTC_TIMEKEEPER: UTC_TIMEKEEPER
 header_atoms:
@@ -1060,11 +1060,11 @@ file:
 ---
 ```
 
-### Header With Sections (Large Documentation File - 4.1.6 Standard)
+### Header With Sections (Large Documentation File - 3.1.6 Standard)
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -1166,16 +1166,16 @@ All agents working on Lupopedia MUST:
 
 # ðŸ•Šï¸ **17. Version History**
 
-- **v4.1.6** (2026-01-19) â€” Canonical specification update  
+- **v3.1.6** (2026-01-19) â€” Canonical specification update  
   - Added LABS-001 integration notice for `file.last_modified_system_version`
   - Clarified mandatory header atoms: Only `GLOBAL_CURRENT_LUPOPEDIA_VERSION` and `GLOBAL_CURRENT_AUTHORS` are mandatory
   - Standardized dialog block format with `mood_RGB` field (replaces `mood`)
   - Added versioning rules: `file.last_modified_system_version` and `file.last_named` fields
   - Documented purpose scope: Headers define metadata only, not schema/migrations/runtime logic
-  - Added complete 4.1.6 standard header example
+  - Added complete 3.1.6 standard header example
   - Clarified that dialog blocks are system-level announcements, not content
   
-- **v4.0.12** (2026-01-13) â€” Updated header format  
+- **v3.0.12** (2026-01-13) â€” Updated header format  
   - Replaced `wolfie.headers.version` with `wolfie.headers` constant signature
   - Signature line: `"explicit architecture with structured clarity for every file."` (never changes)
   - Added `file.last_modified_system_version` for per-file historical tracking
@@ -1185,7 +1185,7 @@ All agents working on Lupopedia MUST:
   - Works without Git, diffs, or IDE history
   - Cursor must preserve exact signature â€” never alter, reword, shorten, or "improve" it
   
-- **v4.0.1** (2026-01-09) â€” Added multi-scope atoms and sections modules  
+- **v3.0.1** (2026-01-09) â€” Added multi-scope atoms and sections modules  
   - Extended atoms system to support 5 scopes: FILE, DIR, DIRR, MODULE, GLOBAL
   - Added resolution order: FILE â†’ DIR â†’ DIRR â†’ MODULE â†’ GLOBAL (first match wins)
   - Added `file_atoms:` block for file-specific atoms (highest priority)
@@ -1201,18 +1201,18 @@ All agents working on Lupopedia MUST:
   - Added extraction rules and anchor generation guidelines
   - Documented directory inheritance (DIR vs DIRR) and parent directory walking
   
-- **v4.0.0** (2026-01-08) â€” Updated WHO section  
+- **v3.0.0** (2026-01-08) â€” Updated WHO section  
   - Corrected user base: 101 AI agents, 8 LLM models, 3 IDE modules (Cursor, Windsurf, Winston)
   - Added section 12 describing who uses WOLFIE Headers
   
-- **v4.0.0** (2026-01-06) â€” Clarified dialog behavior  
+- **v3.0.0** (2026-01-06) â€” Clarified dialog behavior  
   - Clarified that header dialog represents latest edit only  
   - Distinguished from inline dialogs (separate feature)  
   - Added behavior rules for reading vs writing  
   - Clarified database archiving requirements  
   - Removed redundant archiving notes (integrated into spec)  
   
-- **v4.0.0** (initial) â€” Unified with Lupopedia 4.0.0  
+- **v3.0.0** (initial) â€” Unified with Lupopedia 3.0.0  
   - Dialog block clarified as conversational lineage  
   - Required for all agentâ€‘modified files  
   - Updated examples and doctrine  

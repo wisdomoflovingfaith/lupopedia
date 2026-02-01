@@ -6,7 +6,7 @@
  * Captain Wolfie but don't have the architect field.
  * 
  * @package Lupopedia
- * @version 4.0.20
+ * @version 3.0.20
  * @author Captain Wolfie
  */
 

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -26,15 +26,15 @@ file:
 # **RFC 4000 â€” The WOLFIE Header Metadata Standard**  
 **Lupopedia Semantic OS â€” Request for Comments**  
 **Category:** Standards Track  
-**Version:** 4.0.1  
+**Version:** 3.0.1  
 **Updated:** 2026â€‘01â€‘08  
 **Author:** Eric Robin Gerdes ("Wolfie")  
-**Part of:** Lupopedia 4.0.1 Standards Track
+**Part of:** Lupopedia 3.0.1 Standards Track
 
 ---
 
 ## **Status of This Memo**
-This document specifies the **WOLFIE Header Metadata Standard**, a required metadata format for all files created or modified within the Lupopedia 4.0.1 ecosystem. This RFC defines the structure, semantics, behavioral rules, and validation requirements for WOLFIE Headers across all agents, IDEs, modules, and nodes.
+This document specifies the **WOLFIE Header Metadata Standard**, a required metadata format for all files created or modified within the Lupopedia 3.0.1 ecosystem. This RFC defines the structure, semantics, behavioral rules, and validation requirements for WOLFIE Headers across all agents, IDEs, modules, and nodes.
 
 Distribution of this memo is unlimited.
 
@@ -87,7 +87,7 @@ A WOLFIE Header is a YAML frontmatter block enclosed in `---` delimiters.
 
 ```
 ---
-wolfie.headers.version: 4.0.1
+wolfie.headers.version: 3.0.1
 updated: YYYY-MM-DD
 author: Wolfie (Eric Robin Gerdes)
 dialog:
@@ -105,14 +105,14 @@ sections:
 file:
   title: "<STRING>"
   description: "<STRING>"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published | draft | review
   author: "<STRING>"
 ---
 ```
 
 ### **3.2 Required Fields**
-- `wolfie.headers.version` â€” MUST be "4.0.1" for this RFC
+- `wolfie.headers.version` â€” MUST be "3.0.1" for this RFC
 - `updated` â€” Date in YYYY-MM-DD format
 - `author` â€” Author identifier (e.g., "Wolfie (Eric Robin Gerdes)")
 - `dialog.speaker` â€” Agent key when file is created/modified by an agent
@@ -209,7 +209,7 @@ Agents:
 ### **5.3 When Creating a File**
 Agents:
 
-- **MUST** include a WOLFIE Header with `wolfie.headers.version: 4.0.1`
+- **MUST** include a WOLFIE Header with `wolfie.headers.version: 3.0.1`
 - **MUST** include a `dialog:` block with initial message
 - **MUST** insert the initial dialog into the `dialog_messages` table
 - **MUST** set `dialog.speaker` to their agent key
@@ -235,7 +235,7 @@ IDE modules (Cursor, Windsurf, Winston):
 
 A valid WOLFIE Header:
 
-- **MUST** contain `wolfie.headers.version: 4.0.1`
+- **MUST** contain `wolfie.headers.version: 3.0.1`
 - **MUST** be valid YAML syntax
 - **MUST** be enclosed in `---` delimiters
 - **MUST** be under 10,000 characters total
@@ -264,11 +264,11 @@ Agents **MUST NOT** bypass WOLFIE Header requirements, as this would compromise 
 
 ## **9. Versioning**
 
-This RFC defines **WOLFIE Headers v4.0.1**, aligned with:
+This RFC defines **WOLFIE Headers v3.0.1**, aligned with:
 
-- Lupopedia 4.0.1
-- Crafty Syntax 4.0.1
-- Schema 4.0.1
+- Lupopedia 3.0.1
+- Crafty Syntax 3.0.1
+- Schema 3.0.1
 
 All future versions **MUST** maintain backward compatibility unless superseded by a new RFC. Version 3.0.0 and v2.x headers remain valid but are deprecated.
 
@@ -297,13 +297,13 @@ United States
 
 ## **12. Change Log**
 
-- **v4.0.1 (2026-01-09)** â€” Added sections module
+- **v3.0.1 (2026-01-09)** â€” Added sections module
   - Added optional `sections:` module for programmatic file TOC
   - Extracts `##` headings and generates anchor links
   - Enables agents to understand file structure before reading
   - Mirrors `content_sections` field in `lupo_contents` table
   
-- **v4.0.0 (2026-01-08)** â€” Initial RFC specification
+- **v3.0.0 (2026-01-08)** â€” Initial RFC specification
   - Formalized WOLFIE Header standard in RFC format
   - Defined canonical format and behavioral rules
   - Established validation requirements
@@ -318,7 +318,7 @@ United States
 - *RFC 4004 â€” Node Federation Protocol (pending)*
 
 *Last Updated: January 2026*  
-*Version: 4.0.1*  
+*Version: 3.0.1*  
 *Category: Standards Track*  
 *Status: Published*  
-*Part of: Lupopedia 4.0.1 Standards Track*
+*Part of: Lupopedia 3.0.1 Standards Track*

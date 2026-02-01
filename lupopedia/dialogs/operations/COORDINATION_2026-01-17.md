@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.75
+file.last_modified_system_version: 3.0.75
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -34,14 +34,14 @@ file:
 **Context**: Overnight offline period coordination
 
 **Handoff Details**:
-- **Context Transfer**: Complete version arc (4.0.70 → 4.0.75)
+- **Context Transfer**: Complete version arc (3.0.70 → 3.0.75)
 - **Mission Assignment**: Forward momentum maintenance
 - **Responsibility Delegation**: System integrity maintenance
 - **Continuity Assurance**: Thread continuation exactly where it is
 
 **Dependencies**:
 - Full context from dialogs/changelog_dialog.md
-- Version arc understanding (4.0.70 → 4.0.75)
+- Version arc understanding (3.0.70 → 3.0.75)
 - System integrity maintenance (pono)
 - Forward momentum continuation
 
@@ -140,7 +140,7 @@ file:
 ### Operational Dependencies
 - **CIP System**: Self-correcting governance active
 - **Table Governance**: 111-table rule enforcement
-- **Doctrine Alignment**: All components at 4.0.75
+- **Doctrine Alignment**: All components at 3.0.75
 - **System Integrity**: All pono maintained
 
 ---

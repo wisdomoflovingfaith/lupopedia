@@ -6,7 +6,7 @@
  * have the architect field in their headers.
  * 
  * @package Lupopedia
- * @version 4.0.20
+ * @version 3.0.20
  * @author Captain Wolfie
  */
 

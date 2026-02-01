@@ -1,5 +1,5 @@
 -- ============================================================================
--- Crafty Syntax 4.0.0 - Database Migration
+-- Crafty Syntax 3.0.0 - Database Migration
 -- ============================================================================
 -- Migration: 0007
 -- Description: Create evolutionary genome table for genetic algorithm-based agent evolution

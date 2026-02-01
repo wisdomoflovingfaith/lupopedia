@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -27,7 +27,7 @@ in_this_file_we_have:
   - Testing and Validation
 file:
   title: "Legacy Crafty Syntax Refactoring Plan"
-  description: "Comprehensive plan for refactoring legacy Crafty Syntax files from legacy/craftysyntax/ to lupopedia/ following Lupopedia 4.0.0 doctrine"
+  description: "Comprehensive plan for refactoring legacy Crafty Syntax files from legacy/craftysyntax/ to lupopedia/ following Lupopedia 3.0.0 doctrine"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: "Captain Wolfie"
@@ -36,7 +36,7 @@ file:
 # â­ **LEGACY CRAFTY SYNTAX REFACTORING PLAN**
 ### **Converting Files from `legacy/craftysyntax/` to `lupopedia/`**
 
-This document provides a comprehensive plan for refactoring legacy Crafty Syntax files into Lupopedia 4.0.0.
+This document provides a comprehensive plan for refactoring legacy Crafty Syntax files into Lupopedia 3.0.0.
 
 ---
 
@@ -44,7 +44,7 @@ This document provides a comprehensive plan for refactoring legacy Crafty Syntax
 
 ### **1.1 Purpose**
 
-Refactor all PHP files from `legacy/craftysyntax/` into the Lupopedia 4.0.0 structure in `lupopedia/`, following all Lupopedia doctrines:
+Refactor all PHP files from `legacy/craftysyntax/` into the Lupopedia 3.0.0 structure in `lupopedia/`, following all Lupopedia doctrines:
 
 - [CURSOR_REFACTOR_DOCTRINE.md](CURSOR_REFACTOR_DOCTRINE.md)
 - [SQL_REWRITE_DOCTRINE.md](SQL_REWRITE_DOCTRINE.md)
@@ -550,7 +550,7 @@ After refactoring:
 
 ## **â­ Summary**
 
-This plan provides a structured approach to refactoring legacy Crafty Syntax files into Lupopedia 4.0.0.
+This plan provides a structured approach to refactoring legacy Crafty Syntax files into Lupopedia 3.0.0.
 
 **Key Principles:**
 1. Use TOON files as source of truth
@@ -560,11 +560,11 @@ This plan provides a structured approach to refactoring legacy Crafty Syntax fil
 5. Follow all Lupopedia doctrines
 6. Test thoroughly after each conversion
 
-**This is how legacy code becomes Lupopedia 4.0.0.**
+**This is how legacy code becomes Lupopedia 3.0.0.**
 
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.0*  
+*Version: 3.0.0*  
 *Author: Captain Wolfie*
 

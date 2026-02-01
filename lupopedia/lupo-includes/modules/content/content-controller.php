@@ -6,7 +6,7 @@
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: content-controller
- *   message: "Version 4.0.18: Added content_handle_collection_tab() function to handle /collection/{id}/tab/{slug} routes for content items. Loads content items from collection_tab_map and renders content list with proper navigation context."
+ *   message: "Version 3.0.18: Added content_handle_collection_tab() function to handle /collection/{id}/tab/{slug} routes for content items. Loads content items from collection_tab_map and renders content list with proper navigation context."
  * wolfie.header.mood.label: focused
  * wolfie.header.mood.rgb: "336699"
  */

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.35
+file.last_modified_system_version: 3.0.35
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -37,7 +37,7 @@ file:
 ## Timeline: Orchestrator Development
 
 ```
-4.0.25 ────────────────────────────────────────────────────────────────
+3.0.25 ────────────────────────────────────────────────────────────────
        │
        ├─ Orchestrator Schema Created (8 tables)
        ├─ Ephemeral Schema Created (5 tables)
@@ -48,22 +48,22 @@ file:
        └─ ❓ STATE MODEL VALIDATION: NOT DONE
           └─ Model designed but never tested against real scenarios
 
-4.0.26 ────────────────────────────────────────────────────────────────
+3.0.26 ────────────────────────────────────────────────────────────────
        │
        └─ SQL Doctrine Mapping
           └─ Infrastructure work, no state model validation
 
-4.0.27-4.0.29 ──────────────────────────────────────────────────────────
+3.0.27-3.0.29 ──────────────────────────────────────────────────────────
        │
        └─ Doctrine Mapping Continuation
           └─ Content organization, no state model validation
 
-4.0.30 ────────────────────────────────────────────────────────────────
+3.0.30 ────────────────────────────────────────────────────────────────
        │
        └─ Doctrine Mapping Consolidation
           └─ Migration preparation, no state model validation
 
-4.0.31 ────────────────────────────────────────────────────────────────
+3.0.31 ────────────────────────────────────────────────────────────────
        │
        ├─ ✅ Migrations Actually Executed
        │  └─ Real database operations happened here
@@ -74,7 +74,7 @@ file:
        └─ ❓ STATE MODEL VALIDATION: NOT DONE
           └─ Migrations executed manually, not through state machine
 
-4.0.32 ────────────────────────────────────────────────────────────────
+3.0.32 ────────────────────────────────────────────────────────────────
        │
        ├─ Unified Timeline Created
        ├─ Orchestrator Execution Logic Designed
@@ -82,7 +82,7 @@ file:
        └─ ❓ STATE MODEL VALIDATION: NOT DONE
           └─ Design work, no validation
 
-4.0.33 ────────────────────────────────────────────────────────────────
+3.0.33 ────────────────────────────────────────────────────────────────
        │
        ├─ State Machine Foundation Created
        │  └─ Interfaces and base classes
@@ -90,7 +90,7 @@ file:
        └─ ❓ STATE MODEL VALIDATION: NOT DONE
           └─ Skeleton built, no validation
 
-4.0.34 ────────────────────────────────────────────────────────────────
+3.0.34 ────────────────────────────────────────────────────────────────
        │
        ├─ ✅ State Machine Core Implemented
        │  ├─ StateInterface
@@ -103,7 +103,7 @@ file:
        └─ ❓ STATE MODEL VALIDATION: NOT DONE
           └─ 2/7 states implemented, but never tested with real migration
 
-4.0.35 ────────────────────────────────────────────────────────────────
+3.0.35 ────────────────────────────────────────────────────────────────
        │
        ├─ ✅ Migration Model Bridge Enhanced
        │  └─ 30+ methods connecting states to 8 tables
@@ -145,8 +145,8 @@ file:
 > **"Where did we validate the state model against reality?"**
 
 **Answer:** Nowhere. The state model was:
-- Conceived in 4.0.25
-- Implemented in 4.0.34-4.0.35
+- Conceived in 3.0.25
+- Implemented in 3.0.34-3.0.35
 - **Never validated against real migration scenarios**
 
 ---
@@ -164,7 +164,7 @@ file:
    - Now we have a cathedral built around an untested heart
 
 3. **The Right Moment to Pause**
-   - 4.0.35 is the perfect moment
+   - 3.0.35 is the perfect moment
    - Bridge is built, but only 2/7 states implemented
    - Can still adjust without massive refactoring
 

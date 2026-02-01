@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.78
+file.last_modified_system_version: 3.0.78
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -14,14 +14,14 @@ tags:
   collections: ["doctrine", "governance"]
   channels: ["doctrine", "governance"]
 file:
-  title: "Trigger and Procedure Inventory - Version 4.0.75"
+  title: "Trigger and Procedure Inventory - Version 3.0.75"
   description: "Inventory and classification of all database-embedded logic violating doctrine"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: active
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# TRIGGER AND PROCEDURE INVENTORY - VERSION 4.0.75
+# TRIGGER AND PROCEDURE INVENTORY - VERSION 3.0.75
 
 ## 🚨 DOCTRINE VIOLATION SUMMARY
 

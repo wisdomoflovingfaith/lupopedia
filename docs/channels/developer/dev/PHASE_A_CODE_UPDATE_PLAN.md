@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.20
+file.last_modified_system_version: 3.0.20
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -399,7 +399,7 @@ After all phases complete:
 
 2. **Version Control**
    ```bash
-   # If using git (after 4.1.0)
+   # If using git (after 3.1.0)
    git commit -m "Pre-Phase A code update checkpoint"
    ```
 

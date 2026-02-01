@@ -1,6 +1,6 @@
 <?php
 /**
- * Generate seed SQL files for Lupopedia 4.0.11
+ * Generate seed SQL files for Lupopedia 3.0.11
  * 
  * Scans documentation directories and generates:
  * 1. seed_collection_0_content.sql - Inserts content into lupo_contents
@@ -26,7 +26,7 @@ $tabMapping = [
 // Note: ui-ux directory doesn't exist, so tab 6 will have no content initially
 
 // Set timestamp
-$now = 20260113000000; // Version 4.0.11 timestamp
+$now = 20260113000000; // Version 3.0.11 timestamp
 $nodeId = 1;
 
 // Content counter (start after existing content)
@@ -158,17 +158,17 @@ foreach ($tabMapping as $dir => $tabId) {
 
 // Generate content seed SQL file
 $contentSql = "-- ============================================================\n";
-$contentSql .= "-- Lupopedia 4.0.11 — Collection 0 System Documentation Content Seed\n";
+$contentSql .= "-- Lupopedia 3.0.11 — Collection 0 System Documentation Content Seed\n";
 $contentSql .= "-- Inserts system documentation files as content items\n";
 $contentSql .= "-- ============================================================\n";
 $contentSql .= "--\n";
-$contentSql .= "-- wolfie.headers.version: \"4.0.11\"\n";
+$contentSql .= "-- wolfie.headers.version: \"3.0.11\"\n";
 $contentSql .= "-- header_atoms:\n";
 $contentSql .= "--   - GLOBAL_CURRENT_LUPOPEDIA_VERSION\n";
 $contentSql .= "-- dialog:\n";
 $contentSql .= "--   - speaker: CURSOR\n";
 $contentSql .= "--     target: @everyone\n";
-$contentSql .= "--     message: \"Version 4.0.11: Created seed SQL file for inserting system documentation content into lupo_contents. All inserts are idempotent using ON DUPLICATE KEY UPDATE. Uses BIGINT UTC timestamp format.\"\n";
+$contentSql .= "--     message: \"Version 3.0.11: Created seed SQL file for inserting system documentation content into lupo_contents. All inserts are idempotent using ON DUPLICATE KEY UPDATE. Uses BIGINT UTC timestamp format.\"\n";
 $contentSql .= "--     mood: \"00FF00\"\n";
 $contentSql .= "-- tags:\n";
 $contentSql .= "--   categories: [\"database\", \"seed\", \"content\"]\n";
@@ -278,17 +278,17 @@ $contentSql .= "-- ============================================================\
 
 // Generate map seed SQL file
 $mapSql = "-- ============================================================\n";
-$mapSql .= "-- Lupopedia 4.0.11 — Collection 0 Tab Content Mapping Seed\n";
+$mapSql .= "-- Lupopedia 3.0.11 — Collection 0 Tab Content Mapping Seed\n";
 $mapSql .= "-- Maps system documentation content to Collection 0 tabs\n";
 $mapSql .= "-- ============================================================\n";
 $mapSql .= "--\n";
-$mapSql .= "-- wolfie.headers.version: \"4.0.11\"\n";
+$mapSql .= "-- wolfie.headers.version: \"3.0.11\"\n";
 $mapSql .= "-- header_atoms:\n";
 $mapSql .= "--   - GLOBAL_CURRENT_LUPOPEDIA_VERSION\n";
 $mapSql .= "-- dialog:\n";
 $mapSql .= "--   - speaker: CURSOR\n";
 $mapSql .= "--     target: @everyone\n";
-$mapSql .= "--     message: \"Version 4.0.11: Created seed SQL file for mapping system documentation content to Collection 0 tabs in lupo_collection_tab_map. All inserts are idempotent using ON DUPLICATE KEY UPDATE.\"\n";
+$mapSql .= "--     message: \"Version 3.0.11: Created seed SQL file for mapping system documentation content to Collection 0 tabs in lupo_collection_tab_map. All inserts are idempotent using ON DUPLICATE KEY UPDATE.\"\n";
 $mapSql .= "--     mood: \"00FF00\"\n";
 $mapSql .= "-- tags:\n";
 $mapSql .= "--   categories: [\"database\", \"seed\", \"mapping\"]\n";

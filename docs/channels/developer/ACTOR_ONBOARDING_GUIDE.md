@@ -23,7 +23,7 @@ file:
 
 # ACTOR ONBOARDING GUIDE
 
-**Version**: 4.1.6  
+**Version**: 3.1.6  
 **Status**: Active  
 **Governance**: LABS-001 Doctrine v1.0
 

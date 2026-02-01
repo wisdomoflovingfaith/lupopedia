@@ -1,29 +1,29 @@
 ---
 architect: Captain Wolfie
-wolfie.headers.version: 4.0.8
+wolfie.headers.version: 3.0.8
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Created authentication schema summary for version 4.0.8 development. This document describes the existing authentication tables and their relationships based on TOON file analysis."
+  message: "Created authentication schema summary for version 3.0.8 development. This document describes the existing authentication tables and their relationships based on TOON file analysis."
   mood: "00FF00"
 tags:
   categories: ["documentation", "development", "authentication"]
   collections: ["core-docs", "dev-docs"]
   channels: ["dev", "architecture"]
 file:
-  title: "Authentication Schema Summary for Version 4.0.8"
+  title: "Authentication Schema Summary for Version 3.0.8"
   description: "Complete schema analysis of authentication tables for implementing username/password login system"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: draft
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Authentication Schema Summary for Version 4.0.8
+# Authentication Schema Summary for Version 3.0.8
 
-**Purpose:** This document provides a complete schema analysis of the existing authentication tables in Lupopedia, based on TOON file inspection. This summary is required before implementing the username/password login system in version 4.0.8.
+**Purpose:** This document provides a complete schema analysis of the existing authentication tables in Lupopedia, based on TOON file inspection. This summary is required before implementing the username/password login system in version 3.0.8.
 
 **Source:** TOON files in `database/toon_data/` (authoritative schema representation)
 - **IMPORTANT:** CSV files in `database/csv_data/` are NOT authoritative and may be outdated
@@ -48,7 +48,7 @@ file:
 - **Password Storage:** `password_hash` (VARCHAR(255), NULLABLE)
   - Comment: "NULL for OAuth users"
   - Example: "1e9e9f6fef3369cdc763284d80ae5feb" (appears to be MD5 hash)
-  - **Note:** For version 4.0.8, we will need to verify the hashing algorithm and potentially upgrade to bcrypt/argon2
+  - **Note:** For version 3.0.8, we will need to verify the hashing algorithm and potentially upgrade to bcrypt/argon2
 
 - **Email:** `email` (VARCHAR(100), NULLABLE)
   - Indexed: `idx_email`
@@ -57,7 +57,7 @@ file:
 - **Display Name:** `display_name` (VARCHAR(42), NOT NULL)
   - Example: "captain"
 
-- **OAuth Fields:** (for future Google Sign-In in 4.0.9)
+- **OAuth Fields:** (for future Google Sign-In in 3.0.9)
   - `auth_provider` (VARCHAR(50), NULLABLE) - e.g., "google", "github"
   - `provider_id` (VARCHAR(255), NULLABLE) - Provider-specific user ID
   - Unique constraint: `unique_provider_user` on (`auth_provider`, `provider_id`)
@@ -370,7 +370,7 @@ file:
 
 ## 8. OAuth Providers: `lupo_auth_providers`
 
-**Purpose:** Stores OAuth provider configuration (for future Google Sign-In in 4.0.9).
+**Purpose:** Stores OAuth provider configuration (for future Google Sign-In in 3.0.9).
 
 **Primary Key:** `auth_provider_id` (BIGINT, AUTO_INCREMENT)
 
@@ -387,13 +387,13 @@ file:
 - `created_ymdhis` (BIGINT, NOT NULL)
 - `updated_ymdhis` (BIGINT, NOT NULL)
 
-**Note:** This table is for future use (version 4.0.9). Not needed for version 4.0.8.
+**Note:** This table is for future use (version 3.0.9). Not needed for version 3.0.8.
 
 ---
 
 ## Schema Relationships Summary
 
-### Authentication Flow (Version 4.0.8):
+### Authentication Flow (Version 3.0.8):
 
 1. **User Login:**
    - User provides `username` and `password`
@@ -425,7 +425,7 @@ file:
 
 ### 1. Password Hashing
 - **Current:** Appears to use MD5 (based on sample hash format)
-- **Recommendation:** Upgrade to bcrypt or argon2id for version 4.0.8
+- **Recommendation:** Upgrade to bcrypt or argon2id for version 3.0.8
 - **Action:** Verify current hashing algorithm and create migration if needed
 
 ### 2. Actor Linkage

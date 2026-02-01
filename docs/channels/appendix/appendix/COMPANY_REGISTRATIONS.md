@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -18,7 +18,7 @@ in_this_file_we_have:
 file:
   title: "Company Registrations"
   description: "Legal registrations and business entity information for Lupopedia LLC and Crafty Syntax"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---
@@ -157,7 +157,7 @@ These documents serve as legal proof of business registration and should be pres
 ---
 
 *Last Updated: 2026-01-09*  
-*Version: 4.0.1*  
+*Version: 3.0.1*  
 *Author: Captain Wolfie*
 
 ---

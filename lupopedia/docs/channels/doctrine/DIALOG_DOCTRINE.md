@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 file.last_modified_utc: 20260119054744
 file.utc_day: 20260119
 file.name: "DIALOG_DOCTRINE.md"
@@ -59,11 +59,11 @@ system_context:
 
 # ðŸ’¬ Dialog System Doctrine (MANDATORY)
 
-**Version:** GLOBAL_CURRENT_LUPOPEDIA_VERSION (4.1.6)  
+**Version:** GLOBAL_CURRENT_LUPOPEDIA_VERSION (3.1.6)  
 **Status:** MANDATORY (NON-NEGOTIABLE)  
 **Effective Date:** 2026-01-14  
 **Last Updated:** 2026-01-19 (UTC Day 019)  
-**System Version:** 4.1.6
+**System Version:** 3.1.6
 
 ## Overview
 
@@ -306,7 +306,7 @@ Lupopedia uses a multi-IDE, multi-AI workflow where different tools and agents h
 - **Dialog Focus:** Legacy integration, stability concerns, careful changes
 
 **JetBrains (Junie)** â€” Version control, planning, release discipline
-- **Scope:** Version control, releases, deployment (begins at version 4.1.0)
+- **Scope:** Version control, releases, deployment (begins at version 3.1.0)
 - **Responsibilities:** GitHub commits, version tagging, release preparation, CHANGELOG updates
 - **Dialog Focus:** Release decisions, version bumps, deployment status
 
@@ -466,7 +466,7 @@ Every dialog entry MUST include:
 - **Examples:** 0066FF (blue), 00FF00 (green), FF6600 (orange)
 - **Purpose:** Emotional context of change
 - **Meaning:** Reflects agent's assessment of change impact
-- **Standard:** WOLFIE Header 4.1.6 standard requires `mood_RGB` (not `mood`)
+- **Standard:** WOLFIE Header 3.1.6 standard requires `mood_RGB` (not `mood`)
 
 **Message Field:**
 - **Format:** Plain text description
@@ -486,7 +486,7 @@ Agents writing dialog entries MUST:
 - **Use UTC timestamps** - All timestamps in YYYYMMDDHHIISS format (BIGINT)
 - **Comply with GOV-AD-PROHIBIT-001** - No commercial content, no ads, no promotional material
 - **Reference governance** - Include governance artifact codes when relevant (e.g., LABS-001, GOV-AD-PROHIBIT-001)
-- **Use mood_RGB** - Field name must be `mood_RGB` (WOLFIE Header 4.1.6 standard)
+- **Use mood_RGB** - Field name must be `mood_RGB` (WOLFIE Header 3.1.6 standard)
 
 ### 6.4 Multi-Agent Coordination
 When multiple agents work on the same file:
@@ -645,11 +645,11 @@ Dialog system helps enforce lane boundaries:
 
 ## 11. Dialog File Examples
 
-### 11.1 Complete Dialog File Example (4.1.6 Standard)
+### 11.1 Complete Dialog File Example (3.1.6 Standard)
 ```markdown
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -717,11 +717,11 @@ This file maintains the complete dialog history for example_file.md. All changes
 *Dialog history continues with older entries below...*
 ```
 
-### 11.2 Minimal Dialog File Example (4.1.6 Standard)
+### 11.2 Minimal Dialog File Example (3.1.6 Standard)
 ```markdown
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -761,7 +761,7 @@ file:
 
 ## 12. Dialog Update Examples
 
-### 12.1 Adding New Dialog Entry (4.1.6 Standard)
+### 12.1 Adding New Dialog Entry (3.1.6 Standard)
 **Step 1: Create new entry at top of dialog file**
 ```markdown
 ## 2026-01-19 03:41:52 UTC
@@ -788,7 +788,7 @@ dialog:
   message: "Added new section on dialog update procedures. Compliant with GOV-AD-PROHIBIT-001 and Temporal Pillar."
 ```
 
-### 12.2 Multi-Agent Dialog Sequence (4.1.6 Standard)
+### 12.2 Multi-Agent Dialog Sequence (3.1.6 Standard)
 ```markdown
 ## 2026-01-19 17:30:00 UTC
 **Speaker:** CURSOR
@@ -821,7 +821,7 @@ dialog:
 **Message:** "Initial requirements documented. Needs legacy review."
 ```
 
-### 12.3 Agent Handoff Example (4.1.6 Standard)
+### 12.3 Agent Handoff Example (3.1.6 Standard)
 ```markdown
 ## 2026-01-19 18:00:00 UTC
 **Speaker:** KIRO
@@ -899,10 +899,10 @@ Dialog threads must maintain:
 
 ### 14.3 System Integration Validation
 Dialog system integration requires:
-- **WOLFIE header compliance** - All dialog files have proper headers (version 4.1.6 standard)
+- **WOLFIE header compliance** - All dialog files have proper headers (version 3.1.6 standard)
 - **Patch discipline alignment** - Dialog entries match patch changes
 - **Agent lane respect** - Agents work within their designated lanes
-- **Version consistency** - Dialog entries reflect correct system versions (currently 4.1.6)
+- **Version consistency** - Dialog entries reflect correct system versions (currently 3.1.6)
 - **Temporal Pillar compliance** - All timestamps from UTC_TIMEKEEPER
 - **Governance compliance** - All entries comply with active governance artifacts
 

@@ -75,7 +75,7 @@ DB_SNAPSHOT_PROTOCOL.md: Snapshot lifecycle and governance rules.
 
 PRE_RELEASE_SCHEMA_RULES.md: Freedom Zone schema rules and TOON use.
 
-FREEDOM_ZONE_DOCTRINE.md: Pre-2026.4.0.1 rapid-evolution doctrine.
+FREEDOM_ZONE_DOCTRINE.md: Pre-2026.3.0.1 rapid-evolution doctrine.
 
 SEMANTIC_LAYER_MODEL.md: Four-layer semantic architecture doctrine.
 

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.16
+file.last_modified_system_version: 3.0.16
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -122,7 +122,7 @@ UTC_TIMEKEEPER (agent_registry_id: 5, dedicated_slot: 5) provides authoritative 
 
 ## 4. IDE Agents: Approximated Timestamps
 
-### 4.1. IDE Agent Rules
+### 3.1. IDE Agent Rules
 
 **IDE agents MAY:**
 

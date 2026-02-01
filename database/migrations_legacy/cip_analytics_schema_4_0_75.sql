@@ -1,9 +1,9 @@
 -- CIP Analytics & Self-Correcting Architecture Schema
 -- Implements CIP Analytics Engine, Doctrine Refinement Module, and Emotional Geometry Calibration
--- as defined in version 4.0.75
+-- as defined in version 3.0.75
 -- 
 -- @package Lupopedia
--- @version 4.0.75
+-- @version 3.0.75
 -- @author kiro (AI Assistant)
 
 -- ============================================================================
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `lupo_cip_analytics` (
   `trend_analysis_json` JSON DEFAULT NULL COMMENT 'Historical trend data',
   `calculated_ymdhis` BIGINT NOT NULL COMMENT 'When analytics were calculated',
   `recalculated_ymdhis` BIGINT DEFAULT NULL COMMENT 'Last recalculation timestamp',
-  `analytics_version` VARCHAR(20) DEFAULT '4.0.75' COMMENT 'Analytics engine version',
+  `analytics_version` VARCHAR(20) DEFAULT '3.0.75' COMMENT 'Analytics engine version',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_event_analytics` (`event_id`),
   KEY `idx_defensiveness_index` (`defensiveness_index`),
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `lupo_doctrine_refinements` (
   `approved_by` VARCHAR(100) DEFAULT NULL COMMENT 'Who approved the change',
   `applied_ymdhis` BIGINT DEFAULT NULL COMMENT 'When change was applied',
   `created_ymdhis` BIGINT NOT NULL COMMENT 'When refinement was proposed',
-  `refinement_version` VARCHAR(20) DEFAULT '4.0.75' COMMENT 'Refinement module version',
+  `refinement_version` VARCHAR(20) DEFAULT '3.0.75' COMMENT 'Refinement module version',
   PRIMARY KEY (`id`),
   KEY `idx_cip_event` (`cip_event_id`),
   KEY `idx_doctrine_file` (`doctrine_file_path`(255)),
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `lupo_doctrine_evolution_audit` (
   `step_metadata_json` JSON DEFAULT NULL COMMENT 'Step-specific metadata',
   `started_ymdhis` BIGINT DEFAULT NULL COMMENT 'When step started',
   `completed_ymdhis` BIGINT DEFAULT NULL COMMENT 'When step completed',
-  `audit_version` VARCHAR(20) DEFAULT '4.0.75' COMMENT 'Audit system version',
+  `audit_version` VARCHAR(20) DEFAULT '3.0.75' COMMENT 'Audit system version',
   PRIMARY KEY (`id`),
   KEY `idx_refinement_step` (`refinement_id`, `evolution_step`),
   KEY `idx_step_status` (`step_status`),
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `lupo_emotional_geometry_calibrations` (
   `validation_status` ENUM('pending', 'validated', 'rejected', 'needs_review') DEFAULT 'pending',
   `applied_ymdhis` BIGINT DEFAULT NULL COMMENT 'When calibration was applied',
   `created_ymdhis` BIGINT NOT NULL COMMENT 'When calibration was calculated',
-  `calibration_version` VARCHAR(20) DEFAULT '4.0.75' COMMENT 'Calibration system version',
+  `calibration_version` VARCHAR(20) DEFAULT '3.0.75' COMMENT 'Calibration system version',
   PRIMARY KEY (`id`),
   KEY `idx_analytics_ref` (`cip_analytics_id`),
   KEY `idx_target` (`calibration_target`, `target_identifier`(100)),
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `lupo_calibration_impacts` (
   `after_metrics_json` JSON DEFAULT NULL COMMENT 'Metrics after calibration',
   `observation_period_hours` INT UNSIGNED DEFAULT 24 COMMENT 'Observation period length',
   `measured_ymdhis` BIGINT NOT NULL COMMENT 'When impact was measured',
-  `impact_version` VARCHAR(20) DEFAULT '4.0.75' COMMENT 'Impact tracking version',
+  `impact_version` VARCHAR(20) DEFAULT '3.0.75' COMMENT 'Impact tracking version',
   PRIMARY KEY (`id`),
   KEY `idx_calibration_impact` (`calibration_id`, `impact_type`),
   KEY `idx_impact_measurement` (`impact_measurement`),
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `lupo_cip_propagation_tracking` (
   `dependencies_json` JSON DEFAULT NULL COMMENT 'Dependencies for this propagation step',
   `started_ymdhis` BIGINT DEFAULT NULL COMMENT 'When propagation started',
   `completed_ymdhis` BIGINT DEFAULT NULL COMMENT 'When propagation completed',
-  `propagation_version` VARCHAR(20) DEFAULT '4.0.75' COMMENT 'Propagation tracking version',
+  `propagation_version` VARCHAR(20) DEFAULT '3.0.75' COMMENT 'Propagation tracking version',
   PRIMARY KEY (`id`),
   KEY `idx_event_level` (`cip_event_id`, `propagation_level`),
   KEY `idx_subsystem` (`affected_subsystem`),
@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `lupo_multi_agent_critique_sync` (
   `resolution_strategy` VARCHAR(255) DEFAULT NULL COMMENT 'Strategy for resolving conflicts',
   `sync_started_ymdhis` BIGINT DEFAULT NULL COMMENT 'When sync process started',
   `sync_completed_ymdhis` BIGINT DEFAULT NULL COMMENT 'When sync was completed',
-  `sync_version` VARCHAR(20) DEFAULT '4.0.75' COMMENT 'Sync protocol version',
+  `sync_version` VARCHAR(20) DEFAULT '3.0.75' COMMENT 'Sync protocol version',
   PRIMARY KEY (`id`),
   KEY `idx_event_agent` (`cip_event_id`, `agent_id`),
   KEY `idx_sync_status` (`sync_status`),

@@ -38,7 +38,7 @@ if (function_exists('get_lupopedia_version')) {
 // Fallback to hard-coded version if atom loader fails (backward compatibility)
 $current_version = $version_from_atom !== null ? $version_from_atom : '2026.3.8.0';
 
-// LIMITS enforcement (dry-run mode in 4.0.103)
+// LIMITS enforcement (dry-run mode in 3.0.103)
 // Check version bump before applying (non-blocking, logs warnings only)
 if (file_exists(__DIR__ . '/functions/limits_logger.php')) {
     require_once __DIR__ . '/functions/limits_logger.php';
@@ -78,7 +78,7 @@ if (!defined('LUPOPEDIA_DB_VERSION')) {
  * The Lupopedia version number (for numeric comparisons)
  * 
  * Format: MAJOR * 10000 + MINOR * 100 + PATCH
- * Example: 1.0.1 = 10001, 1.2.3 = 10203, 4.0.0 = 40000
+ * Example: 1.0.1 = 10001, 1.2.3 = 10203, 3.0.0 = 40000
  * 
  * Calculated from LUPOPEDIA_VERSION
  * 
@@ -115,7 +115,7 @@ if (!defined('LUPOPEDIA_VERSION_DATE')) {
  * 
  * Loads from atom if available, otherwise returns constant
  * 
- * @return string The version string (e.g., "4.0.35")
+ * @return string The version string (e.g., "3.0.35")
  */
 function lupopedia_get_version() {
     // Try to load from atom first (most up-to-date)

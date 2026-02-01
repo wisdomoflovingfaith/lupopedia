@@ -2,11 +2,11 @@
 /**
  * wolfie.header.identity: redirect-helpers
  * wolfie.header.placement: /lupo-includes/functions/redirect-helpers.php
- * wolfie.header.version: 4.0.9
+ * wolfie.header.version: 3.0.9
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
- *   message: "Created safe redirect helper function for version 4.0.9. Handles 'headers already sent' errors by checking if headers are sent before using header() redirect. If headers are already sent, falls back to meta refresh, JavaScript redirect, and clickable link (old-school approach that always works)."
+ *   message: "Created safe redirect helper function for version 3.0.9. Handles 'headers already sent' errors by checking if headers are sent before using header() redirect. If headers are already sent, falls back to meta refresh, JavaScript redirect, and clickable link (old-school approach that always works)."
  *   mood: "00FF00"
  */
 

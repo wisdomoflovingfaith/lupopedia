@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
@@ -72,7 +72,7 @@ LHP **adds** additional required and optional fields while maintaining WHS compa
 ```yaml
 # WHS Core (inherited)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 
 # LHP Extensions
 dialog: {...}           # Required in LHP
@@ -460,7 +460,7 @@ The smallest valid LHP header (WHS core + LHP required fields):
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 dialog:
   speaker: "CASCADE"
   target: "@everyone"
@@ -484,7 +484,7 @@ Full example with all common LHP fields:
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 dialog:
   speaker: "CURSOR"
   target: "@everyone"

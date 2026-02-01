@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -453,7 +453,7 @@ Multi-file patches are allowed **only** when:
 - Must maintain version consistency across all systems
 
 **Release Patch Examples:**
-- Bump version from 4.0.13 to 4.0.14
+- Bump version from 3.0.13 to 3.0.14
 - Prepare release notes and changelog
 - Update deployment configuration
 - Tag release in version control system
@@ -577,7 +577,7 @@ WORKFLOW:
 3. File Selection: Identified DATABASE_SCHEMA.md as target
 4. Modification: Added lupo_user_preferences table documentation
 5. Dialog Writing: Created entry in changelog_dialog.md
-6. Header Update: Updated version to 4.0.14, dialog block updated
+6. Header Update: Updated version to 3.0.14, dialog block updated
 7. Validation: Verified YAML syntax, content accuracy, consistency
 8. Termination: Task completed successfully
 
@@ -700,7 +700,7 @@ COMPLETE HEADER UPDATE EXAMPLE:
 BEFORE PATCH:
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.13
+file.last_modified_system_version: 3.0.13
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
@@ -726,7 +726,7 @@ file:
 AFTER KIRO PATCH:
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -752,7 +752,7 @@ file:
 ---
 
 CHANGES MADE:
-- Version: 4.0.13 → 4.0.14
+- Version: 3.0.13 → 3.0.14
 - Dialog block: Completely updated to reflect new changes
 - Header atoms: Added GLOBAL_CURRENT_AUTHORS
 - Tags: Enhanced categories and collections

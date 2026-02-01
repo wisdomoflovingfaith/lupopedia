@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.50
+file.last_modified_system_version: 3.0.50
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -74,5 +74,5 @@ file:
 ---
 
 *Last Updated: January 16, 2026*  
-*Version: 4.0.46*  
+*Version: 3.0.46*  
 *Author: Captain Wolfie*

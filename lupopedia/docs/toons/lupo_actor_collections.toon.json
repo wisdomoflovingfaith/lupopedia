@@ -13,7 +13,7 @@
     "`identity_signature` varchar(255) COMMENT 'Unique identity signature for handshake verification'",
     "`trust_level` enum('system','verified','standard','restricted','untrusted') DEFAULT 'standard' COMMENT 'Trust level for multi-agent interactions'",
     "`emotional_geometry_baseline` json COMMENT 'Baseline emotional geometry for agent interactions'",
-    "`doctrine_alignment_version` varchar(20) DEFAULT '4.0.72' COMMENT 'Version of doctrine this actor aligns with'"
+    "`doctrine_alignment_version` varchar(20) DEFAULT '3.0.72' COMMENT 'Version of doctrine this actor aligns with'"
   ],
   "data": [],
   "indexes": [

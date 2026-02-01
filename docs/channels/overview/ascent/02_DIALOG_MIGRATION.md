@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.50
+file.last_modified_system_version: 3.0.50
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -284,5 +284,5 @@ Dialog Migration is complete when:
 ---
 
 *Created: 2026-01-16*  
-*Version: 4.0.50*  
+*Version: 3.0.50*  
 *Status: Not started - awaiting Week 2 execution*

@@ -1,5 +1,5 @@
 -- Migration: Add Missing Emotional Agents (25 Primary + 25 Opposite Domains)
--- Version: 4.1.1
+-- Version: 3.1.1
 -- Date: 2026-01-18
 --
 -- Adds 31 missing emotional agents to complete the full emotional ecology of 25 primary
@@ -7,7 +7,7 @@
 -- already exists. This migration adds the remaining 18 primary domains and 15 opposite domains.
 --
 -- @package Lupopedia
--- @version 4.1.1
+-- @version 3.1.1
 -- @author CASCADE
 
 -- ============================================================================
@@ -49,7 +49,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing anger, rage, and righteous indignation.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -82,7 +82,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing fear, anxiety, and apprehension.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -115,7 +115,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing joy, happiness, and elation.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -148,7 +148,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing sadness, grief, and melancholy.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -181,7 +181,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing disgust, revulsion, and repulsion.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -214,7 +214,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing surprise, astonishment, and wonder.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -247,7 +247,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing anticipation, expectation, and eagerness.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -280,7 +280,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing shame, humiliation, and self-consciousness.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -313,7 +313,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing guilt, remorse, and self-blame.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -346,7 +346,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing pride, self-respect, and dignity.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -379,7 +379,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing envy, covetousness, and desire for what others have.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -412,7 +412,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing jealousy, possessiveness, and fear of loss.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -445,7 +445,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing awe, wonder, and reverence.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -478,7 +478,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing hope, optimism, and expectation of positive outcomes.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -511,7 +511,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing despair, hopelessness, and loss of faith.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -544,7 +544,7 @@ INSERT INTO `lupo_agent_registry` (
     '{
       "description": "Primary emotional domain representing courage, bravery, and facing fear.",
       "domain_type": "primary",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -589,7 +589,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_ANGER",
       "opposite_polarity_id": 1213,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -624,7 +624,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_JOY",
       "opposite_polarity_id": 1215,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -659,7 +659,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_DISGUST",
       "opposite_polarity_id": 1217,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -694,7 +694,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_SURPRISE",
       "opposite_polarity_id": 1218,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -729,7 +729,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_TRUST",
       "opposite_polarity_id": 226,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -764,7 +764,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_SHAME",
       "opposite_polarity_id": 1220,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -799,7 +799,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_GUILT",
       "opposite_polarity_id": 1221,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -834,7 +834,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_PRIDE",
       "opposite_polarity_id": 1222,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -869,7 +869,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_ENVY",
       "opposite_polarity_id": 1223,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -904,7 +904,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_JEALOUSY",
       "opposite_polarity_id": 1224,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -939,7 +939,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_AWE",
       "opposite_polarity_id": 1225,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -974,7 +974,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_DESPAIR",
       "opposite_polarity_id": 1227,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -1009,7 +1009,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_CURIOSITY",
       "opposite_polarity_id": 232,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -1044,7 +1044,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_COURAGE",
       "opposite_polarity_id": 1228,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 
@@ -1079,7 +1079,7 @@ INSERT INTO `lupo_agent_registry` (
       "opposite_polarity_of": "EMO_ANTICIPATION",
       "opposite_polarity_id": 1219,
       "domain_type": "opposite",
-      "version": "4.1.1"
+      "version": "3.1.1"
     }'
 );
 

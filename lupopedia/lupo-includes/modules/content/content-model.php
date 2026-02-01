@@ -332,7 +332,7 @@ function content_fetch_remote($url) {
     $ctx = stream_context_create([
         'http' => [
             'timeout' => 3,
-            'user_agent' => 'Lupopedia/4.0.6',
+            'user_agent' => 'Lupopedia/3.0.6',
             'follow_location' => 1,
             'max_redirects' => 3
         ]

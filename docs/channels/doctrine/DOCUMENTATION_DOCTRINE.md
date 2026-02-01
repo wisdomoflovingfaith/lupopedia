@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -289,7 +289,7 @@ Global constants (versions, company info, agent lists) must use `GLOBAL_*` atoms
 When modifying documentation:
 
 - Follow the same rules as modifying code
-- Use version control (after 4.1.0)
+- Use version control (after 3.1.0)
 - Test resolution (when resolver exists)
 - Validate atom references
 - Update `header_atoms:` when adding new references

@@ -1,5 +1,5 @@
 -- Migration: Lupopedia Minimal REST API tables (Canonical Draft)
--- Version: 4.1.4
+-- Version: 3.1.4
 -- Date: 2026-01-19
 --
 -- Creates lupo_artifacts and lupo_actor_handshakes for the minimal REST API.
@@ -8,7 +8,7 @@
 -- NOTE: Table count. If at ceiling (135), run after table reduction per TABLE_REDUCTION_PLAN.
 --
 -- @package Lupopedia
--- @version 4.1.4
+-- @version 3.1.4
 
 -- ============================================================================
 -- lupo_artifacts — Artifact registry (every change is an artifact)

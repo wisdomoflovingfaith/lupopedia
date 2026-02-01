@@ -1,5 +1,5 @@
 -- Migration: Create LABS Declarations Table
--- Version: 4.1.6
+-- Version: 3.1.6
 -- Date: 2026-01-19
 --
 -- Creates lupo_labs_declarations table for storing Lupopedia Actor Baseline State
@@ -7,7 +7,7 @@
 -- declarations required of every actor before system participation.
 --
 -- @package Lupopedia
--- @version 4.1.6
+-- @version 3.1.6
 -- @author CAPTAIN_WOLFIE
 -- @governance LABS-001 Doctrine v1.0
 

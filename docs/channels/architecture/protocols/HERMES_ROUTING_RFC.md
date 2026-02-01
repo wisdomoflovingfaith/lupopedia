@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -26,15 +26,15 @@ file:
 # **RFC 4004 â€” HERMES Routing Layer Standard**  
 **Lupopedia Semantic OS â€” Request for Comments**  
 **Category:** Standards Track  
-**Version:** 4.0.1  
+**Version:** 3.0.1  
 **Updated:** 2026â€‘01â€‘08  
 **Author:** Eric Robin Gerdes ("Wolfie")  
-**Part of:** Lupopedia 4.0.1 Standards Track
+**Part of:** Lupopedia 3.0.1 Standards Track
 
 ---
 
 ## **Status of This Memo**
-This document defines the **HERMES Routing Layer Standard** for Lupopedia 4.0.1. It specifies how messages are routed to agents based on mood signals, explicit directives, agent pools, and routing currents computed by CADUCEUS. HERMES is the central routing infrastructure that enables multiâ€‘agent coordination, emotional continuity, and deterministic message delivery across the Lupopedia ecosystem.
+This document defines the **HERMES Routing Layer Standard** for Lupopedia 3.0.1. It specifies how messages are routed to agents based on mood signals, explicit directives, agent pools, and routing currents computed by CADUCEUS. HERMES is the central routing infrastructure that enables multiâ€‘agent coordination, emotional continuity, and deterministic message delivery across the Lupopedia ecosystem.
 
 Distribution of this memo is unlimited.
 
@@ -506,12 +506,12 @@ A valid HERMES routing decision:
 
 ## **14. Versioning**
 
-This RFC defines **HERMES Routing v4.0.1**, aligned with:
+This RFC defines **HERMES Routing v3.0.1**, aligned with:
 
-- RFC 4000 â€” WOLFIE Headers v4.0.1  
-- RFC 4002 â€” Thread Mood Aggregation v4.0.1  
-- CADUCEUS Current Computation v4.0.1  
-- Lupopedia Schema v4.0.1  
+- RFC 4000 â€” WOLFIE Headers v3.0.1  
+- RFC 4002 â€” Thread Mood Aggregation v3.0.1  
+- CADUCEUS Current Computation v3.0.1  
+- Lupopedia Schema v3.0.1  
 
 Future versions **MUST** remain backward compatible unless superseded by a new RFC.
 
@@ -543,7 +543,7 @@ United States
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.1*  
+*Version: 3.0.1*  
 *Category: Standards Track*  
 *Status: Published*  
-*Part of: Lupopedia 4.0.1 Standards Track*
+*Part of: Lupopedia 3.0.1 Standards Track*

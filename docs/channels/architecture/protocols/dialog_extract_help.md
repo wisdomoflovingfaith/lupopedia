@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -112,12 +112,12 @@ php agent dialog:extract -d docs/ --to-db --new-thread "Documentation Updates"
 
 ### Store to Database (Existing Thread)
 ```bash
-php agent dialog:extract -f CHANGELOG.md --to-db --thread-name "Version 4.0.0"
+php agent dialog:extract -f CHANGELOG.md --to-db --thread-name "Version 3.0.0"
 ```
 
 ### Extract from Database Thread
 ```bash
-php agent dialog:extract --from-thread-name "Version 4.0.0" -o dialog_thread_version_4.0.0.md
+php agent dialog:extract --from-thread-name "Version 3.0.0" -o dialog_thread_version_3.0.0.md
 ```
 
 ### Filter by Speaker
@@ -224,7 +224,7 @@ Used for consolidated dialog history across entire repository.
 ```
 dialog_thread_[thread_name].md
 ```
-Example: `dialog_thread_version_4.0.0.md`
+Example: `dialog_thread_version_3.0.0.md`
 
 ### File-Specific History
 ```

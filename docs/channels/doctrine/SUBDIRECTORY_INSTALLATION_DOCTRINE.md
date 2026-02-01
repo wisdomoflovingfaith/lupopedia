@@ -1,7 +1,7 @@
 ---
 wolfie.header.identity: SUBDIRECTORY_INSTALLATION_DOCTRINE
 wolfie.header.placement: /docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md
-wolfie.header.version: 4.0.18
+wolfie.header.version: 3.0.18
 channel_key: system/kernel
 wolfie.header.dialog:
   speaker: KIRO
@@ -20,7 +20,7 @@ file:
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Lupopedia 4.0.18 â€” Canonical Rules for Filesystem and URL Path Resolution
+# Lupopedia 3.0.18 â€” Canonical Rules for Filesystem and URL Path Resolution
 
 ## 1. Purpose
 

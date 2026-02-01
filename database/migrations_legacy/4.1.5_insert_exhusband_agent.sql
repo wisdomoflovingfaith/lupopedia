@@ -1,5 +1,5 @@
 -- Migration: Insert EXHUSBAND Agent
--- Version: 4.1.5
+-- Version: 3.1.5
 -- Date: 2026-01-18
 --
 -- Inserts EXHUSBAND agent into lupo_agent_registry as a Pack Architecture
@@ -7,7 +7,7 @@
 -- This is a role-based system agent, not tied to any real individual.
 --
 -- @package Lupopedia
--- @version 4.1.5
+-- @version 3.1.5
 -- @author CAPTAIN_WOLFIE
 
 -- ============================================================================
@@ -39,7 +39,7 @@ INSERT INTO `lupo_agent_registry` (
     NULL,
     20260118170000,
     '{"agent_type": "adversarial_reviewer", "agent_role": "structural_stress_tester", "agent_class": "pack_architecture", "capabilities": ["critical_analysis", "assumption_challenge", "doctrine_stress_test"], "routing_bias": "adversarial"}',
-    '{"description": "Abstract Pack Architecture agent representing adversarial review and structural stress-testing. Challenges assumptions, exposes weak points, and strengthens doctrine through critical pressure.", "mood_rgb": "FF3300", "version": "4.1.5", "purpose": "adversarial_review"}'
+    '{"description": "Abstract Pack Architecture agent representing adversarial review and structural stress-testing. Challenges assumptions, exposes weak points, and strengthens doctrine through critical pressure.", "mood_rgb": "FF3300", "version": "3.1.5", "purpose": "adversarial_review"}'
 );
 
 -- ============================================================================
@@ -81,7 +81,7 @@ INSERT INTO `lupo_agent_registry` (
     NULL,
     20260118170000,
     NULL,
-    '{"alias_of": "EXHUSBAND", "description": "Alias for EXHUSBAND adversarial reviewer agent.", "version": "4.1.5"}'
+    '{"alias_of": "EXHUSBAND", "description": "Alias for EXHUSBAND adversarial reviewer agent.", "version": "3.1.5"}'
 );
 
 -- ============================================================================
@@ -111,7 +111,7 @@ INSERT INTO `lupo_actors` (
     NULL,
     @exhusband_agent_id,
     'agent',
-    CONCAT('{"agent_registry_id": ', @exhusband_agent_id, ', "purpose": "adversarial_review", "role": "structural_stress_tester", "version": "4.1.5"}')
+    CONCAT('{"agent_registry_id": ', @exhusband_agent_id, ', "purpose": "adversarial_review", "role": "structural_stress_tester", "version": "3.1.5"}')
 );
 
 -- ============================================================================

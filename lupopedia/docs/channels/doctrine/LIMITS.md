@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 file.last_modified_utc: 20260119054602
 file.utc_day: 20260119
 file.name: "LIMITS.md"
@@ -46,7 +46,7 @@ system_context:
 ---
 
 # LUP0_LIMITS_DOCTRINE_v1.0
-Effective Range: 4.0.101 → 4.2.0
+Effective Range: 3.0.101 → 4.2.0
 Status: ACTIVE KERNEL GOVERNANCE
 
 This file defines the hard limits that protect Lupopedia from
@@ -94,7 +94,7 @@ Weekend mode is for:
 
 ## 2.2 Minor Version Lock
 During weekend mode:
-- Version may NOT advance from 4.0.x → 4.1.x
+- Version may NOT advance from 3.0.x → 3.1.x
 - Only patch-level notes allowed (non-binding)
 
 ============================================================
@@ -154,18 +154,18 @@ Weekend creativity must be:
 
 ## 5.1 Enforcement Evolution
 
-**Version 4.0.103:** Dry-run enforcement mode activated
+**Version 3.0.103:** Dry-run enforcement mode activated
 - All LIMITS violations logged to `storage/logs/lupopedia_limits.log`
 - Non-blocking warnings only
 - No exceptions thrown
 - No execution blocking
 
-**Version 4.0.105:** Full enforcement preparation
+**Version 3.0.105:** Full enforcement preparation
 - Dry-run mode continues
 - System health checks added (`SystemHealthService`)
 - Pack Architecture pre-activation complete
 
-**Version 4.1.0 (Planned):** Full enforcement activation
+**Version 3.1.0 (Planned):** Full enforcement activation
 - LIMITS violations will block execution
 - Exceptions thrown for critical violations
 - Pack-level limits introduced
@@ -173,7 +173,7 @@ Weekend creativity must be:
 - Dual-system governance active (Execution Mode vs Creative Mode)
 - Mode-specific enforcement (blocking in Execution Mode, dry-run in Creative Mode)
 
-## 5.2 Current Enforcement (4.0.103-4.0.106)
+## 5.2 Current Enforcement (3.0.103-3.0.106)
 
 - Cascade must reject tasks that violate these limits.
 - Terminal_AI_005 (UTC_TIMEKEEPER) determines the day.
@@ -181,7 +181,7 @@ Weekend creativity must be:
 - Monday Wolfie receives a summary of weekend activity.
 - All violations logged to `storage/logs/lupopedia_limits.log` (non-blocking)
 
-## 5.3 Pack Architecture Limits (4.1.0+)
+## 5.3 Pack Architecture Limits (3.1.0+)
 
 Pack Architecture will introduce additional limits:
 - Pack-level table count limits

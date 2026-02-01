@@ -5,7 +5,7 @@
  * Comprehensive testing for historical continuity validation
  * 
  * @package Lupopedia
- * @version 4.0.61
+ * @version 3.0.61
  * @author Captain Wolfie
  */
 
@@ -151,7 +151,7 @@ class ContinuityValidatorTest {
         $this->assert(empty($versionWarnings), 'All files should have consistent version');
         
         // Test version mismatch detection
-        $this->changeFileVersion('2014.md', '4.0.50');
+        $this->changeFileVersion('2014.md', '3.0.50');
         $result = $this->validator->validateContinuity();
         $versionWarnings = array_filter($result['warnings'], function($w) {
             return strpos($w, 'Version mismatch') !== false;
@@ -243,19 +243,19 @@ class ContinuityValidatorTest {
     }
     
     private function getCraftySyntaxContent($year) {
-        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 4.0.61\n---\n\n# Year {$year}\n\n## Events\n- Crafty Syntax development continued\n- Live help system improvements\n\n## Achievements\n- Version updates released\n";
+        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 3.0.61\n---\n\n# Year {$year}\n\n## Events\n- Crafty Syntax development continued\n- Live help system improvements\n\n## Achievements\n- Version updates released\n";
     }
     
     private function getHiatusStartContent() {
-        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 4.0.61\n---\n\n# Year 2014 - The Pivot Point\n\n## Personal Event\n- Wife passed away\n- Creative work paused\n\n## Cross-Reference\nSee `hiatus.md` for complete documentation\n";
+        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 3.0.61\n---\n\n# Year 2014 - The Pivot Point\n\n## Personal Event\n- Wife passed away\n- Creative work paused\n\n## Cross-Reference\nSee `hiatus.md` for complete documentation\n";
     }
     
     private function getHiatusContent() {
-        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 4.0.61\n---\n\n# 2014-2025: Hiatus Period\n\n## Overview\nPersonal recovery and reflection period\n\n## Key Details\n- Key Note: Eric's wife passed away, leading to extended break\n- No milestones or implementations during this time\n\n## System Impact\n- Foundation preserved through dormancy\n- Emotional geometry: grief axis integration\n\n## Cross-Reference\nSee `2014.md` for pivot point details\n";
+        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 3.0.61\n---\n\n# 2014-2025: Hiatus Period\n\n## Overview\nPersonal recovery and reflection period\n\n## Key Details\n- Key Note: Eric's wife passed away, leading to extended break\n- No milestones or implementations during this time\n\n## System Impact\n- Foundation preserved through dormancy\n- Emotional geometry: grief axis integration\n\n## Cross-Reference\nSee `2014.md` for pivot point details\n";
     }
     
     private function getResurgenceContent($year) {
-        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 4.0.61\n---\n\n# Year {$year}\n\n## Events\n- Lupopedia development accelerated\n- WOLFIE architecture implemented\n\n## Achievements\n- Semantic OS components built\n- Integration with previous work\n\n## Cross-Reference\nSee `hiatus.md` for context\n";
+        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 3.0.61\n---\n\n# Year {$year}\n\n## Events\n- Lupopedia development accelerated\n- WOLFIE architecture implemented\n\n## Achievements\n- Semantic OS components built\n- Integration with previous work\n\n## Cross-Reference\nSee `hiatus.md` for context\n";
     }
     
     private function removeTestFile($path) {
@@ -311,7 +311,7 @@ class ContinuityValidatorTest {
     private function restoreFileVersion($file) {
         $fullPath = $this->testHistoryPath . '/' . $file;
         $content = file_get_contents($fullPath);
-        $content = preg_replace('/file\.last_modified_system_version: [\d.]+/', "file.last_modified_system_version: 4.0.61", $content);
+        $content = preg_replace('/file\.last_modified_system_version: [\d.]+/', "file.last_modified_system_version: 3.0.61", $content);
         file_put_contents($fullPath, $content);
     }
     

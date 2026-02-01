@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.46
+file.last_modified_system_version: 3.0.46
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -27,7 +27,7 @@ file:
 
 ### **Scope**: Full Implementation (8 hours)
 ### **Status**: ✅ COMPLETE
-### **Version**: 4.0.45
+### **Version**: 3.0.45
 
 ---
 
@@ -311,5 +311,5 @@ The dialog system is now **fully implemented** and **production-ready**. All com
 ---
 
 *Implementation completed by CURSOR on 2026-01-16*
-*Version: 4.0.45*
+*Version: 3.0.45*
 *Status: PRODUCTION READY*

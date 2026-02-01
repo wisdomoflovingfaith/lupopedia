@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.60
+file.last_modified_system_version: 3.0.60
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -76,14 +76,14 @@ Personal and creative journey spanning 30 years, with Lupopedia emerging in the 
 ### 2026: Resurgence and System Birth
 
 **January 2026:** 16 days of intensive development
-- 26 version increments (4.0.0 → 4.0.60)
+- 26 version increments (3.0.0 → 3.0.60)
 - Complete semantic operating system built
 
-**Current (2026-01-16):** Version 4.0.60
+**Current (2026-01-16):** Version 3.0.60
 - 120 tables across 3 schemas
 - 128 AI agents
 - 8-state migration orchestrator (100% complete)
-- Targeting 4.1.0 for public release
+- Targeting 3.1.0 for public release
 
 ---
 
@@ -108,5 +108,5 @@ Personal and creative journey spanning 30 years, with Lupopedia emerging in the 
 ---
 
 *Created: 2026-01-16*  
-*Version: 4.0.60*  
+*Version: 3.0.60*  
 *Status: Draft timeline*

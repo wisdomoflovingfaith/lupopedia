@@ -7,7 +7,7 @@
  * Integrates with DialogHistoryManager for emotionally intelligent visual feedback.
  * 
  * @package Lupopedia
- * @version 4.0.66
+ * @version 3.0.66
  * @author GLOBAL_CURRENT_AUTHORS
  */
 
@@ -451,7 +451,7 @@ class ColorProtocol {
             'emotional_mappings' => $this->emotionalMappings,
             'era_colors' => $this->eraColors,
             'sensitivity_colors' => $this->sensitivityColors,
-            'version' => '4.0.66',
+            'version' => '3.0.66',
             'exported_at' => date('YmdHis')
         ];
     }

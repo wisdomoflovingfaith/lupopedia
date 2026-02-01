@@ -21,7 +21,7 @@ Write-Host "Check version: Select-String -Path $Root\lupo-includes\version.php -
 # PHASE 2: BACKUP
 # ---------------------------------------------------------------------------
 $ts = Get-Date -Format "yyyyMMdd_HHmmss"
-$BackupDir = "$env:TEMP\backup_4.1.20_$ts"
+$BackupDir = "$env:TEMP\backup_3.1.20_$ts"
 Write-Host "`n--- PHASE 2: BACKUP ---" -ForegroundColor Yellow
 New-Item -ItemType Directory -Force -Path $BackupDir | Out-Null
 Copy-Item -Recurse -Force "$Root\database\toon_data" "$BackupDir\toon_backup"

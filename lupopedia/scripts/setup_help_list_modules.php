@@ -2,7 +2,7 @@
 /**
  * wolfie.header.identity: setup-help-list-modules
  * wolfie.header.placement: /scripts/setup_help_list_modules.php
- * wolfie.header.version: 4.1.1
+ * wolfie.header.version: 3.1.1
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone

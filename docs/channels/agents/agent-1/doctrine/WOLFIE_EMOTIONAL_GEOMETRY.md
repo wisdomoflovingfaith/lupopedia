@@ -36,7 +36,7 @@ file:
 
 **Replacement:** The 2-Actor RGB Mood Model replaces all agent-specific and domain-specific emotional geometry models.
 
-Previous scalar and 5-tuple emotional models (4.0.x–4.2.x) are deprecated and replaced by the 2-actor RGB mood geometry.
+Previous scalar and 5-tuple emotional models (3.0.x–4.2.x) are deprecated and replaced by the 2-actor RGB mood geometry.
 
 ---
 

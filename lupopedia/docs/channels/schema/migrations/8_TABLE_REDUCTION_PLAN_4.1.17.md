@@ -1,6 +1,6 @@
 # 8‑Table Reduction Plan (Doctrine Compliance)
 
-**Target version:** 4.1.17  
+**Target version:** 3.1.17  
 **Purpose:** Reduce table count toward doctrine target.  
 **Status:** Plan; execute after freeze lift or approval.
 
@@ -31,7 +31,7 @@
 
 ## Patch Version Recommendation
 
-- Perform reduction in **4.1.17**
+- Perform reduction in **3.1.17**
 - Document in CHANGELOG + dialogs
 - Regenerate TOON files after DROP
 

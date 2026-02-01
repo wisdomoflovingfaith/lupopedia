@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -91,14 +91,14 @@ Versioning doctrine ensures:
 **Lupopedia uses semantic versioning: `MAJOR.MINOR.PATCH`**
 
 **Current Version Structure:**
-- **Format:** `X.Y.Z` (e.g., 4.0.14)
+- **Format:** `X.Y.Z` (e.g., 3.0.14)
 - **Components:** Three numeric components separated by dots
 - **Range:** Each component can be 0-999 (practical limit)
 - **Ordering:** Lexicographic ordering with numeric comparison
 
 **Version Examples:**
-- `4.0.14` - Major 4, Minor 0, Patch 14
-- `4.1.0` - Major 4, Minor 1, Patch 0
+- `3.0.14` - Major 4, Minor 0, Patch 14
+- `3.1.0` - Major 4, Minor 1, Patch 0
 - `5.0.0` - Major 5, Minor 0, Patch 0
 
 ### 2.2 Major Version Component
@@ -227,19 +227,19 @@ Versioning doctrine ensures:
 **The following version changes are FORBIDDEN:**
 
 **Skipping Version Numbers:**
-- ❌ `4.0.14` → `4.0.16` (skipping 4.0.15)
-- ❌ `4.0.14` → `4.2.0` (skipping 4.1.x)
-- ❌ `4.0.14` → `6.0.0` (skipping 5.x.x)
+- ❌ `3.0.14` → `3.0.16` (skipping 3.0.15)
+- ❌ `3.0.14` → `4.2.0` (skipping 3.1.x)
+- ❌ `3.0.14` → `6.0.0` (skipping 5.x.x)
 
 **Backward Version Movement:**
-- ❌ `4.0.14` → `4.0.13` (moving backward)
-- ❌ `4.1.0` → `4.0.15` (moving backward)
+- ❌ `3.0.14` → `3.0.13` (moving backward)
+- ❌ `3.1.0` → `3.0.15` (moving backward)
 - ❌ `5.0.0` → `4.9.9` (moving backward)
 
 **Invalid Version Formats:**
-- ❌ `4.0.14-beta` (pre-release suffixes not used)
-- ❌ `4.0.14.1` (four-component versions not allowed)
-- ❌ `v4.0.14` (prefix not part of version number)
+- ❌ `3.0.14-beta` (pre-release suffixes not used)
+- ❌ `3.0.14.1` (four-component versions not allowed)
+- ❌ `v3.0.14` (prefix not part of version number)
 
 ### 3.5 Rollback Rules
 **Version rollback is governed by strict rules:**
@@ -515,13 +515,13 @@ Versioning doctrine ensures:
 
 **Example 1: Patch Version Increment**
 ```
-Current Version: 4.0.14
+Current Version: 3.0.14
 Change: Fix typo in documentation
-New Version: 4.0.15
+New Version: 3.0.15
 Reasoning: Documentation fix is a patch-level change
 Process:
 1. Identify change as patch-level (documentation fix)
-2. Increment patch version: 4.0.14 → 4.0.15
+2. Increment patch version: 3.0.14 → 3.0.15
 3. Update all system files with new version
 4. Document change in changelog and dialog system
 5. Validate version consistency across system
@@ -529,13 +529,13 @@ Process:
 
 **Example 2: Minor Version Increment**
 ```
-Current Version: 4.0.15
+Current Version: 3.0.15
 Change: Add new API endpoint for user preferences
-New Version: 4.1.0
+New Version: 3.1.0
 Reasoning: New functionality is a minor-level change
 Process:
 1. Identify change as minor-level (new feature)
-2. Increment minor version, reset patch: 4.0.15 → 4.1.0
+2. Increment minor version, reset patch: 3.0.15 → 3.1.0
 3. Update all system files with new version
 4. Document new feature in changelog and documentation
 5. Coordinate with all agents for version update
@@ -543,13 +543,13 @@ Process:
 
 **Example 3: Major Version Increment**
 ```
-Current Version: 4.1.0
+Current Version: 3.1.0
 Change: Breaking change to API authentication system
 New Version: 5.0.0
 Reasoning: Breaking change requires major version increment
 Process:
 1. Identify change as major-level (breaking change)
-2. Increment major version, reset minor/patch: 4.1.0 → 5.0.0
+2. Increment major version, reset minor/patch: 3.1.0 → 5.0.0
 3. Plan migration strategy for existing users
 4. Update all system files with new version
 5. Coordinate comprehensive testing and validation
@@ -561,28 +561,28 @@ Process:
 **Example 1: Forbidden Version Jump**
 ```
 ❌ INCORRECT:
-Current Version: 4.0.14
+Current Version: 3.0.14
 Change: Add new feature
-Attempted Version: 4.0.16 (skipping 4.0.15)
+Attempted Version: 3.0.16 (skipping 3.0.15)
 Problem: Skipping version numbers is forbidden
 
 ✅ CORRECT:
-Current Version: 4.0.14
+Current Version: 3.0.14
 Change: Add new feature
-Correct Version: 4.1.0 (new feature = minor increment)
+Correct Version: 3.1.0 (new feature = minor increment)
 Process: Increment minor version, reset patch version
 ```
 
 **Example 2: Wrong Version Level**
 ```
 ❌ INCORRECT:
-Current Version: 4.0.14
+Current Version: 3.0.14
 Change: Breaking API change
-Attempted Version: 4.0.15 (patch increment)
+Attempted Version: 3.0.15 (patch increment)
 Problem: Breaking change requires major version increment
 
 ✅ CORRECT:
-Current Version: 4.0.14
+Current Version: 3.0.14
 Change: Breaking API change
 Correct Version: 5.0.0 (breaking change = major increment)
 Process: Increment major version, reset minor and patch
@@ -591,15 +591,15 @@ Process: Increment major version, reset minor and patch
 **Example 3: Backward Version Movement**
 ```
 ❌ INCORRECT:
-Current Version: 4.0.14
+Current Version: 3.0.14
 Change: Rollback to previous state
-Attempted Version: 4.0.13 (moving backward)
+Attempted Version: 3.0.13 (moving backward)
 Problem: Backward version movement is forbidden
 
 ✅ CORRECT:
-Current Version: 4.0.14
+Current Version: 3.0.14
 Change: Rollback to previous state
-Correct Version: 4.0.14 (version stays same during rollback)
+Correct Version: 3.0.14 (version stays same during rollback)
 Process: Rollback system state, keep version number, document rollback
 ```
 
@@ -608,7 +608,7 @@ Process: Rollback system state, keep version number, document rollback
 **Example 1: Authorized Development Reset**
 ```
 Situation: Major architectural change during development
-Current Version: 4.0.14
+Current Version: 3.0.14
 Reset Justification: Fundamental change to semantic OS architecture
 Reset Process:
 1. Document complete justification for reset
@@ -624,19 +624,19 @@ Reset Process:
 ```
 ❌ INCORRECT:
 Situation: Complex bug that's difficult to fix
-Current Version: 4.0.14
+Current Version: 3.0.14
 Attempted Reset: Reset system to avoid fixing bug
 Problem: Convenience resets are forbidden
 
 ✅ CORRECT:
 Situation: Complex bug that's difficult to fix
-Current Version: 4.0.14
+Current Version: 3.0.14
 Correct Approach: Fix bug through proper patch process
 Process:
 1. Analyze bug and develop proper fix
 2. Implement fix following patch discipline
 3. Test fix thoroughly
-4. Increment patch version: 4.0.14 → 4.0.15
+4. Increment patch version: 3.0.14 → 3.0.15
 5. Document fix in changelog and dialog system
 ```
 
@@ -645,7 +645,7 @@ Process:
 **Example 1: Major Doctrine Change**
 ```
 Change: Modify WOLFIE header format (breaking change)
-Current Version: 4.0.14
+Current Version: 3.0.14
 Impact Analysis: Breaking change affects all system files
 Version Decision: Major increment required
 New Version: 5.0.0
@@ -654,7 +654,7 @@ Process:
 2. Plan migration strategy for all existing files
 3. Coordinate with all agents for system-wide update
 4. Execute doctrine change and file updates
-5. Increment major version: 4.0.14 → 5.0.0
+5. Increment major version: 3.0.14 → 5.0.0
 6. Document breaking change and migration path
 7. Validate all system files work with new doctrine
 ```
@@ -662,15 +662,15 @@ Process:
 **Example 2: Minor Doctrine Enhancement**
 ```
 Change: Add new optional WOLFIE header field
-Current Version: 4.0.14
+Current Version: 3.0.14
 Impact Analysis: Enhancement doesn't break existing files
 Version Decision: Minor increment required
-New Version: 4.1.0
+New Version: 3.1.0
 Process:
 1. Identify doctrine change as enhancement
 2. Plan gradual adoption of new field
 3. Update doctrine documentation
-4. Increment minor version: 4.0.14 → 4.1.0
+4. Increment minor version: 3.0.14 → 3.1.0
 5. Document enhancement in changelog
 6. Coordinate gradual adoption across system files
 ```

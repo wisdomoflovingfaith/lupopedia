@@ -1,6 +1,6 @@
 ﻿---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.16
+file.last_modified_system_version: 3.0.16
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -56,7 +56,7 @@ agents/0001/
 
 ## Current Status
 
-This directory structure is being initialized as part of Lupopedia 4.0.16. The contents will grow over time as WOLFIE's capabilities are developed and documented.
+This directory structure is being initialized as part of Lupopedia 3.0.16. The contents will grow over time as WOLFIE's capabilities are developed and documented.
 
 ## Related Documentation
 

@@ -1,5 +1,5 @@
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.89
+file.last_modified_system_version: 3.0.89
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -21,7 +21,7 @@ file:
 ---
 
 # CRITIQUE_INTEGRATION_PROTOCOL.md
-# Version: 4.0.73
+# Version: 3.0.73
 # Status: Doctrine
 # Domain: System Governance Layer
 # Purpose: Formalize critique as a first-class architectural input, enabling
@@ -99,7 +99,7 @@ Each critique event generates a CIP record with fields:
 - notes
 
 This metadata is stored in:
-- lupo_cip_events (new table, defined in v4.0.73)
+- lupo_cip_events (new table, defined in v3.0.73)
 - doctrine change logs
 - dialogs/changelog_dialog.md
 
@@ -151,30 +151,30 @@ Record CIP metadata for audit and future analysis.
 
 ## 7. VERSIONING RULES
 
-- CIP becomes active in Version 4.0.73.
+- CIP becomes active in Version 3.0.73.
 - Future versions may extend CIP but must preserve invariants.
-- CIP metadata schema introduced in 4.0.73.
+- CIP metadata schema introduced in 3.0.73.
 
 ---
 
 ## 8. IMPLEMENTATION PHASES
 
-### Phase 1 — Schema Foundation (4.0.73-alpha)
+### Phase 1 — Schema Foundation (3.0.73-alpha)
 - Database table design and creation
 - Metadata model definition
 - Basic event storage structure
 
-### Phase 2 — Event Pipeline (4.0.73-beta)
+### Phase 2 — Event Pipeline (3.0.73-beta)
 - Critique ingestion mechanism
 - Automated calculation engines (DI, IV, AIS)
 - Integration velocity tracking
 
-### Phase 3 — Integration Layer (4.0.73-rc)
+### Phase 3 — Integration Layer (3.0.73-rc)
 - Doctrine update automation
 - Cross-layer propagation rules
 - Protocol hooks implementation
 
-### Phase 4 — Testing & Validation (4.0.73-final)
+### Phase 4 — Testing & Validation (3.0.73-final)
 - Comprehensive CIP validation
 - Defensiveness monitoring
 - Integration velocity measurement

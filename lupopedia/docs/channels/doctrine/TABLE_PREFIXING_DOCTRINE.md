@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -11,7 +11,7 @@ architect: Captain Wolfie
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Updated TABLE_PREFIXING_DOCTRINE.md for version 4.0.9: Added CRITICAL prefix validation rule. Table prefixes MUST contain only lowercase letters, numbers, and underscores. Hyphens, spaces, uppercase, symbols, unicode, and emoji are FORBIDDEN. Added mandatory validation rule to prevent invalid prefixes."
+  message: "Updated TABLE_PREFIXING_DOCTRINE.md for version 3.0.9: Added CRITICAL prefix validation rule. Table prefixes MUST contain only lowercase letters, numbers, and underscores. Hyphens, spaces, uppercase, symbols, unicode, and emoji are FORBIDDEN. Added mandatory validation rule to prevent invalid prefixes."
   mood: "FF0000"
 tags:
   categories: ["documentation", "doctrine", "schema", "naming"]
@@ -25,7 +25,7 @@ file:
   author: "Captain Wolfie"
 ---
 
-# ðŸŸ¦ **Table Prefixing and Primary Key Naming Doctrine (Lupopedia 4.0.1)**
+# ðŸŸ¦ **Table Prefixing and Primary Key Naming Doctrine (Lupopedia 3.0.1)**
 
 ## **Mandatory Rules for Table and Column Naming**
 
@@ -39,8 +39,8 @@ This doctrine defines the mandatory rules for table prefixing, primary key namin
 
 **Prefix Behavior by Installation Type:**
 
-- **Upgrades from Crafty Syntax 3.7.5 to Lupopedia 4.0.3**: The prefix `"lupo_"` is **enforced** (hardcoded during migration)
-- **New installs starting from version 4.1.0**: The user **chooses** their own prefix during setup, stored in `lupopedia-config.php`
+- **Upgrades from Crafty Syntax 3.7.5 to Lupopedia 3.0.3**: The prefix `"lupo_"` is **enforced** (hardcoded during migration)
+- **New installs starting from version 3.1.0**: The user **chooses** their own prefix during setup, stored in `lupopedia-config.php`
 
 ---
 
@@ -106,7 +106,7 @@ $table_name = LUPO_TABLE_PREFIX . 'atoms';     // Results in: lupo_atoms
 **Important for SQL Queries:**
 - All SQL queries **must** read the prefix from `lupopedia-config.php` (via `LUPO_PREFIX` constant)
 - Never hardcode table names in SQL - always use the dynamic prefix
-- Migration SQL for upgrades (3.7.5 â†’ 4.0.3) uses `lupo_` prefix (enforced)
+- Migration SQL for upgrades (3.7.5 â†’ 3.0.3) uses `lupo_` prefix (enforced)
 - Application code must always use `LUPO_PREFIX . 'table_name'` pattern
 
 **Correct usage:**
@@ -133,7 +133,7 @@ SELECT * FROM contents;
 - Never hardcode table names (except in migration SQL where `lupo_` is enforced for upgrades)
 - Never create unprefixed tables
 - Read prefix from `lupopedia-config.php` (via `LUPO_PREFIX` constant) for all SQL queries
-- Remember: Upgrades (3.7.5â†’4.0.3) enforce `lupo_` prefix, new installs (4.1.0+) allow user selection
+- Remember: Upgrades (3.7.5â†’3.0.3) enforce `lupo_` prefix, new installs (3.1.0+) allow user selection
 
 ---
 
@@ -316,12 +316,12 @@ $query = "SELECT content_id, title, slug FROM {$table} WHERE node_id = ?";
 ---
 
 *Last Updated: January 12, 2026*  
-*Version: 4.0.9*  
+*Version: 3.0.9*  
 *Author: Captain Wolfie*
 
 ---
 
 ## **ðŸŸ© Version History**
 
-- **4.0.9** (2026-01-12) - Added CRITICAL prefix validation rule. Hyphens are now FORBIDDEN in table prefixes. Added mandatory validation to prevent invalid prefixes.
-- **4.0.1** (2026-01-08) - Initial doctrine document created
+- **3.0.9** (2026-01-12) - Added CRITICAL prefix validation rule. Hyphens are now FORBIDDEN in table prefixes. Added mandatory validation to prevent invalid prefixes.
+- **3.0.1** (2026-01-08) - Initial doctrine document created

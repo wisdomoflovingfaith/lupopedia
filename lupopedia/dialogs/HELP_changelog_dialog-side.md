@@ -1,7 +1,7 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "HELP_changelog_dialog-side.md"
-file.last_modified_system_version: 4.1.11
+file.last_modified_system_version: 3.1.11
 file.last_modified_utc: 20260119201000
 file.utc_day: 20260119
 UTC_TIMEKEEPER__CHANNEL_ID: "dev"
@@ -47,12 +47,12 @@ tags:
 file:
   title: "HELP CHANGELOG — SYNC SPECIFICATION"
   description: "Defines the HELP changelog dialog-side responsibilities, commentary, and cross-references"
-  version: 4.1.11
+  version: 3.1.11
   status: active
   author: GLOBAL_CURRENT_AUTHORS
 
 system_context:
-  sync_state: "4.1.11"
+  sync_state: "3.1.11"
   sync_pair_established: true
   help_subsystem: "active"
   governance_active:

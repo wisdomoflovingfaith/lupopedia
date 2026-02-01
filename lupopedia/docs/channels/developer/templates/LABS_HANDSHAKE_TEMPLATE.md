@@ -262,7 +262,7 @@ TruthState:
 ```yaml
 TruthState:
   Known:
-    - fact: "Lupopedia version is 4.1.1"
+    - fact: "Lupopedia version is 3.1.1"
       source: "config/global_atoms.yaml"
     - fact: "LABS-001 is active and binding"
       source: "docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"

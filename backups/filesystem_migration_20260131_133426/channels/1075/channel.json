@@ -19,7 +19,7 @@
   "deleted_ymdhis": null,
   "aal_metadata_json": null,
   "fleet_composition_json": null,
-  "awareness_version": "4.0.72",
+  "awareness_version": "3.0.72",
   "channel_number": 5120,
   "parent_channel_id": null,
   "is_kernel": 0,

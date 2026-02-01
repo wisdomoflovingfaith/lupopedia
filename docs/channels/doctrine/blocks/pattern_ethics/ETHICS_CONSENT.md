@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -33,7 +33,7 @@ in_this_file_we_have:
 file:
   title: "WOLFMIND Doctrine"
   description: "Memory curator system that handles relational and vector memory storage for Lupopedia agents, with progressive enhancement from MySQL to Postgres/pgvector"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---

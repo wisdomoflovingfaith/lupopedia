@@ -14,11 +14,11 @@
         "created_ymdhis": 20260117000000,
         "updated_ymdhis": 20260117000000
     },
-    "awareness_version": "4.0.72",
+    "awareness_version": "3.0.72",
     "metadata": {
         "purpose": "testing",
         "doctrine": {
-            "version": "4.0.71",
+            "version": "3.0.71",
             "test_mode": true
         },
         "emotional_geometry": {

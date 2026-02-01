@@ -1,6 +1,6 @@
 ﻿---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.2
+file.last_modified_system_version: 3.1.2
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -65,13 +65,13 @@ Based on TOON analysis, external_ai agents have:
 
 ```sql
 -- Migration: Add ChatGPT as External UTC Mirror Agent
--- Version: 4.1.2
+-- Version: 3.1.2
 -- Date: 2026-01-18
 --
 -- Adds ChatGPT to agent registry as external_ai agent with UTC mirror capability
 --
 -- @package Lupopedia
--- @version 4.1.2
+-- @version 3.1.2
 -- @author CAPTAIN_WOLFIE
 
 INSERT INTO `lupo_agent_registry` (

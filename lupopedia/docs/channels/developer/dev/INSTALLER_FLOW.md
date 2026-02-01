@@ -21,7 +21,7 @@ START
 │     ├── Run upgrade wizard:
 │     │     ├── Step 1: Show detected livehelp_* tables, prompt to run migration
 │     │     ├── Step 2: Execute /database/migrations/craftysyntax_to_lupopedia_mysql.sql
-│     │     │         └── Migration SQL is complete and ready for production (version 4.0.3)
+│     │     │         └── Migration SQL is complete and ready for production (version 3.0.3)
 │     │     ├── Step 3: User verifies data migrated correctly
 │     │     ├── Step 4: Drop all livehelp_* tables (with user confirmation)
 │     │     └── Step 5: Upgrade complete, redirect to Lupopedia
@@ -30,8 +30,8 @@ START
 ├── 3. Run Setup Wizard (FRESH INSTALL ONLY)
 │     ├── Display welcome screen
 │     ├── Ask for database credentials
-│     ├── Ask for table prefix (version 4.1.0+: user-selected, default 'lupo_')
-│     │     └── NOTE: Upgrades (3.7.5→4.0.3) enforce 'lupo_' prefix, no user choice
+│     ├── Ask for table prefix (version 3.1.0+: user-selected, default 'lupo_')
+│     │     └── NOTE: Upgrades (3.7.5→3.0.3) enforce 'lupo_' prefix, no user choice
 │     ├── Ask for node configuration (auto-detected from URL, user can override)
 │     ├── Ask for admin account details
 │     └── Validate inputs

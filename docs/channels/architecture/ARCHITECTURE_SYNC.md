@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -9,7 +9,7 @@ dialog:
   speaker: KIRO
   target: @everyone
   mood_RGB: "0066FF"
-  message: "Updated ARCHITECTURE_SYNC.md for Phase 2: Updated to version 4.0.14, enhanced cross-references, and ensured consistency with new core documentation structure and governance framework."
+  message: "Updated ARCHITECTURE_SYNC.md for Phase 2: Updated to version 3.0.14, enhanced cross-references, and ensured consistency with new core documentation structure and governance framework."
 tags:
   categories: ["documentation", "architecture", "reference"]
   collections: ["core-docs", "architecture"]

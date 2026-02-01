@@ -7,8 +7,8 @@ Scans all lupo_* TOON files and generates:
 2. ALTER statements to rename primary keys to follow "singular + _id" convention
 3. CREATE TABLE statement for missing tables like lupo_collection_tab_paths
 
-WOLFIE Headers v4.0.2:
-- wolfie.headers.version: 4.0.2
+WOLFIE Headers v3.0.2:
+- wolfie.headers.version: 3.0.2
 - dialog.speaker: CURSOR
 - dialog.target: @everyone
 - dialog.message: "Generated script to create migration SQL from TOON metadata"

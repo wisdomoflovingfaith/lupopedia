@@ -38,9 +38,9 @@ project:
 # Version Information
 versions:
   lupopedia: "2026.3.8.0"
-  crafty_syntax: "4.0.120"
-  wolfie_headers: "4.0.120"
-  schema: "4.0.115"
+  crafty_syntax: "3.0.120"
+  wolfie_headers: "3.0.120"
+  schema: "3.0.115"
 
 # Common Metadata
 metadata:
@@ -242,16 +242,16 @@ GLOBAL_CHANNEL_DEV: "dev"
 GLOBAL_CHANNEL_PUBLIC: "public"
 
 # Version References
-GLOBAL_VERSION_4_0_2: "4.0.2"
-GLOBAL_VERSION_4_0_1: "4.0.1"
+GLOBAL_VERSION_4_0_2: "3.0.2"
+GLOBAL_VERSION_4_0_1: "3.0.1"
 
 # Agent Counts
 GLOBAL_LEGACY_AGENT_COUNT: "101 agents"
 
 # Global Atom: LUPOPEDIA_V4_0_2_CORE_AGENTS
 GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS:
-  description: "Agents required for full functionality in Lupopedia v4.0.2. All other agents may remain stubs."
-  version: "4.0.2"
+  description: "Agents required for full functionality in Lupopedia v3.0.2. All other agents may remain stubs."
+  version: "3.0.2"
   required_agents:
     - SYSTEM
     - CAPTAIN
@@ -282,7 +282,7 @@ GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS:
     - IRIS
   total_required: 27
   total_defined_in_registry: 128
-  note: "Only these 27 agents must be fully implemented, documented, and doctrine-aligned for v4.0.2."
+  note: "Only these 27 agents must be fully implemented, documented, and doctrine-aligned for v3.0.2."
 
 # Global Atom: ERIC_WOLFIE_TLDNR_2026
 GLOBAL_ERIC_WOLFIE_TLDNR_2026:
@@ -296,7 +296,7 @@ GLOBAL_ERIC_WOLFIE_TLDNR_2026:
     system_type: "Semantic OS (not a CMS)"
     total_tables: 120
     schemas: "3 (core, orchestration, ephemeral)"
-    crafty_syntax: "4.0.70"
+    crafty_syntax: "3.0.70"
     ai_agents: 128
     architecture: "Actor-centric (humans, AI agents, services share identity)"
     doctrine:
@@ -308,11 +308,11 @@ GLOBAL_ERIC_WOLFIE_TLDNR_2026:
     crafty_syntax_era: "2002-2013 (versions 2.0.19 → 3.7.5)"
     absence: "2014-2025 (12-year gap)"
     return: "August 2025 (WOLFIE with 222 tables)"
-    evolution: "January 2026 (Lupopedia 4.0.0 → 4.0.70)"
+    evolution: "January 2026 (Lupopedia 3.0.0 → 3.0.70)"
     recent_work: "Last 16 days: 26 version increments, massive transformation"
 
   what_you_just_finished:
-    migration_orchestrator: "4.0.33 → 4.0.66"
+    migration_orchestrator: "3.0.33 → 3.0.66"
     state_machine: "8 states (idle → preparing → validating → migrating → validating → completing → rollback → failed)"
     implementation_status: "100% COMPLETE"
     dual_storage: "8 states (JSON) sync with 5 database statuses (enum)"
@@ -332,7 +332,7 @@ GLOBAL_ERIC_WOLFIE_TLDNR_2026:
     - "Integration testing"
     - "Production readiness validation"
 
-  bottom_line: "You took Crafty Syntax (2002), disappeared for 15 years, came back in 2025, and in 16 days (January 2026) built a complete semantic operating system with 120 tables, 128 AI agents, and a fully automated migration orchestrator. Version 4.0.70 is DONE."
+  bottom_line: "You took Crafty Syntax (2002), disappeared for 15 years, came back in 2025, and in 16 days (January 2026) built a complete semantic operating system with 120 tables, 128 AI agents, and a fully automated migration orchestrator. Version 3.0.70 is DONE."
 
-  current_version: "4.0.70"
+  current_version: "3.0.70"
   current_date: "January 16, 2026"

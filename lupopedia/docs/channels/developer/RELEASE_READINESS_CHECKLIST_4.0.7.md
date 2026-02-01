@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
@@ -10,26 +10,26 @@ author: GLOBAL_CURRENT_AUTHORS
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Created release readiness checklist for 4.0.7 to ensure stability, doctrine alignment, and readiness for version bump. Checklist covers doctrine compliance, schema alignment, ConnectionsService fixes, TRUTH subsystem integrity, UI/UX stability, changelog, and manual verification steps."
+  message: "Created release readiness checklist for 3.0.7 to ensure stability, doctrine alignment, and readiness for version bump. Checklist covers doctrine compliance, schema alignment, ConnectionsService fixes, TRUTH subsystem integrity, UI/UX stability, changelog, and manual verification steps."
   mood: "FF6600"
 tags:
-  categories: ["documentation", "checklist", "release", "4.0.7"]
+  categories: ["documentation", "checklist", "release", "3.0.7"]
   collections: ["core-docs"]
   channels: ["dev", "release"]
 file:
-  title: "LUPOPEDIA 4.0.7 — Release Readiness Checklist"
-  description: "Ensure 4.0.7 is stable, doctrine-aligned, and ready for version bump. Covers doctrine compliance, schema alignment, ConnectionsService fixes, TRUTH subsystem integrity, UI/UX stability, changelog, and manual verification."
+  title: "LUPOPEDIA 3.0.7 — Release Readiness Checklist"
+  description: "Ensure 3.0.7 is stable, doctrine-aligned, and ready for version bump. Covers doctrine compliance, schema alignment, ConnectionsService fixes, TRUTH subsystem integrity, UI/UX stability, changelog, and manual verification."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: draft
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# LUPOPEDIA 4.0.7 — RELEASE READINESS CHECKLIST
+# LUPOPEDIA 3.0.7 — RELEASE READINESS CHECKLIST
 
 **Status:** Draft  
 **Author:** Founder (Eric)  
 **Version:** GLOBAL_CURRENT_LUPOPEDIA_VERSION  
-**Purpose:** Ensure 4.0.7 is stable, doctrine‑aligned, and ready for version bump.
+**Purpose:** Ensure 3.0.7 is stable, doctrine‑aligned, and ready for version bump.
 
 ---
 
@@ -61,7 +61,7 @@ file:
 - All TRUTH Phase 1, 2, and 2.5 work is complete and verified
 - content-model.php is fully schema-aligned
 - ConnectionsService is 50% complete (3 of 6 functions fixed)
-- No version bump performed (still 4.0.6)
+- No version bump performed (still 3.0.6)
 - No schema changes introduced
 
 ---
@@ -75,14 +75,14 @@ file:
 - [x] No direct DB calls in UI components (verified: UI components use functions, no direct DB)
 
 ### Database Security Doctrine
-- [x] No schema changes introduced in 4.0.7 (verified: no new tables/columns in code)
+- [x] No schema changes introduced in 3.0.7 (verified: no new tables/columns in code)
 - [x] No new tables, columns, foreign keys, triggers, or stored procedures (verified)
 - [x] All DB access goes through models or ConnectionsService (verified: truth-model.php, content-model.php)
 
 ### Version Doctrine
-- [x] No hardcoded "4.0.7" anywhere in code (verified: grep shows only 4.0.6)
+- [x] No hardcoded "3.0.7" anywhere in code (verified: grep shows only 3.0.6)
 - [x] All files reference GLOBAL_CURRENT_LUPOPEDIA_VERSION (verified: headers use version atom)
-- [x] Version bump not performed yet (must be explicit) (verified: version atom still 4.0.6)
+- [x] Version bump not performed yet (must be explicit) (verified: version atom still 3.0.6)
 
 ### Dialog Doctrine
 - [x] All modified files include WOLFIE headers (verified: truth-*.php, content-model.php have headers)
@@ -170,7 +170,7 @@ Cursor must verify:
 
 ### Phase 2.6 — Persistence (Upcoming)
 - [x] Not implemented yet (verified: no persistence code present)
-- [x] No accidental DB writes in 4.0.7 (verified: receiver functions only log)
+- [x] No accidental DB writes in 3.0.7 (verified: receiver functions only log)
 
 ---
 
@@ -208,7 +208,7 @@ Cursor must verify:
 ### WOLFIE Headers
 - [x] All modified files updated (verified: truth-*.php, content-model.php have updated headers)
 - [x] All headers reference version atom (verified: headers use GLOBAL_CURRENT_LUPOPEDIA_VERSION)
-- [x] All headers include Phase 4.0.7 dialog entries (verified: headers include dialog blocks)
+- [x] All headers include Phase 3.0.7 dialog entries (verified: headers include dialog blocks)
 
 ---
 
@@ -229,12 +229,12 @@ Check for:
 ---
 
 ## 🟩 8. Final Founder Approval
-Before bumping to 4.0.7:
+Before bumping to 3.0.7:
 
 - [ ] All checklist items passed (⚠️ PENDING: 3 ConnectionsService functions need fixes)
 - [x] Cursor confirms schema alignment using TOON files (verified: content-model.php aligned, ConnectionsService partially aligned)
 - [ ] No outstanding incremental fixes in ConnectionsService (⚠️ PENDING: getSiblingAtoms, getRelatedContent, getEdgeTypeSummary)
-- [x] No pending TRUTH Phase 2.6 work inside 4.0.7 (verified: Phase 2.6 not started)
+- [x] No pending TRUTH Phase 2.6 work inside 3.0.7 (verified: Phase 2.6 not started)
 - [ ] Founder signs off (pending)
 
 ---
@@ -246,7 +246,7 @@ When everything above is green:
 - [ ] Update WOLFIE headers
 - [ ] Update changelog
 - [ ] Commit with message:
-  "Version bump: 4.0.7 — TRUTH Phase 1–2.5 + Schema Alignment"
+  "Version bump: 3.0.7 — TRUTH Phase 1–2.5 + Schema Alignment"
 - [ ] Tag release
 
 ---

@@ -2,7 +2,7 @@
 /**
  * wolfie.header.identity: semantic-map
  * wolfie.header.placement: /lupo-includes/ui/components/semantic_map.php
- * wolfie.header.version: 4.0.6
+ * wolfie.header.version: 3.0.6
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
@@ -15,7 +15,7 @@
  * file:
  *   title: "Semantic Map Component"
  *   description: "Left panel component visualizing semantic relationships and atom hierarchy"
- *   version: 4.0.6
+ *   version: 3.0.6
  *   status: published
  *   author: "Captain Wolfie"
  */

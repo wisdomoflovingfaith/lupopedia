@@ -23,7 +23,7 @@ file:
 
 # LUPOPEDIA DEVELOPER GUIDELINES
 
-**Version**: 4.1.6  
+**Version**: 3.1.6  
 **Last Updated**: 2026-01-19  
 **Governance**: LABS-001 Doctrine v1.0, Genesis Doctrine v1.0.0
 

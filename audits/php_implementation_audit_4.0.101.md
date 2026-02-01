@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.101
+file.last_modified_system_version: 3.0.101
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,42 +8,42 @@ dialog:
   speaker: CASCADE
   target: @FLEET @Monday_Wolfie @Weekend_Wolfie
   mood_RGB: "FFFF00"
-  message: "PHP Implementation Audit for 4.0.101 - READ-ONLY analysis of expected vs actual implementation state."
+  message: "PHP Implementation Audit for 3.0.101 - READ-ONLY analysis of expected vs actual implementation state."
 tags:
   categories: ["audit", "php", "implementation"]
   collections: ["core-docs", "audits"]
   channels: ["dev", "governance"]
 file:
-  title: "PHP Implementation Audit for Version 4.0.101"
-  description: "Comprehensive audit of PHP implementation against 4.0.101 requirements. READ-ONLY analysis."
+  title: "PHP Implementation Audit for Version 3.0.101"
+  description: "Comprehensive audit of PHP implementation against 3.0.101 requirements. READ-ONLY analysis."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: active
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# PHP IMPLEMENTATION AUDIT FOR VERSION 4.0.101
+# PHP IMPLEMENTATION AUDIT FOR VERSION 3.0.101
 
 **Audit Date:** 2026-01-18  
 **Audit Type:** READ-ONLY Implementation Verification  
-**System Version:** 4.0.101  
+**System Version:** 3.0.101  
 **Status:** ✅ COMPLETE
 
 ---
 
 ## EXECUTIVE SUMMARY
 
-This audit examines PHP implementation against the requirements documented in `CHANGELOG.md` and `dialogs/changelog_dialog.md` for version 4.0.101. The audit identifies:
+This audit examines PHP implementation against the requirements documented in `CHANGELOG.md` and `dialogs/changelog_dialog.md` for version 3.0.101. The audit identifies:
 
 - ✅ **Correctly Implemented:** Terminal AI components, version references in new files, trigger replacement services (partial)
 - ⚠️ **Schema Drift:** Dialog system PHP files still reference old column names
 - ❌ **Missing:** LIMITS.md enforcement logic, schema alignment in PHP code
-- ⚠️ **Version Drift:** Many legacy files still reference older versions (4.0.66, 4.0.76, etc.)
+- ⚠️ **Version Drift:** Many legacy files still reference older versions (3.0.66, 3.0.76, etc.)
 
 ---
 
 ## 1. REQUIREMENTS EXTRACTION
 
-### 1.1 Requirements from CHANGELOG.md (4.0.101)
+### 1.1 Requirements from CHANGELOG.md (3.0.101)
 
 #### Added
 - **LIMITS.md Doctrine**: Created comprehensive architectural limits doctrine
@@ -61,10 +61,10 @@ This audit examines PHP implementation against the requirements documented in `C
 
 #### Updated
 - **TOON Layer Regeneration**: All 131 TOON files regenerated
-- **Version References**: Updated from 4.0.100 → 4.0.101 across codebase
+- **Version References**: Updated from 3.0.100 → 3.0.101 across codebase
 - **Terminal AI Documentation**: Added version docblocks
 
-### 1.2 Requirements from dialogs/changelog_dialog.md (4.0.101)
+### 1.2 Requirements from dialogs/changelog_dialog.md (3.0.101)
 
 - Schema reconciliation complete
 - TOON layer verified
@@ -109,7 +109,7 @@ This audit examines PHP implementation against the requirements documented in `C
 
 #### Issue 1: MessageBuilder.php Uses Old Column Names
 **File:** `lupo-includes/DialogChannelMigration/MessageBuilder.php`  
-**Version Tag:** `@version 4.0.66` (should be 4.0.101)
+**Version Tag:** `@version 3.0.66` (should be 3.0.101)
 
 **Problems:**
 1. **Line 69-71:** INSERT statement uses old columns:
@@ -136,7 +136,7 @@ This audit examines PHP implementation against the requirements documented in `C
 
 #### Issue 2: ChannelBuilder.php Uses Old Column Names
 **File:** `lupo-includes/DialogChannelMigration/ChannelBuilder.php`  
-**Version Tag:** `@version 4.0.66` (should be 4.0.101)
+**Version Tag:** `@version 3.0.66` (should be 3.0.101)
 
 **Problems:**
 1. **Line 50-53:** INSERT statement uses `created_timestamp`/`modified_timestamp` instead of `created_ymdhis`/`updated_ymdhis`
@@ -161,14 +161,14 @@ This audit examines PHP implementation against the requirements documented in `C
 
 #### Issue 4: Legacy Files Still Reference Old Versions
 **Files with outdated version tags:**
-- `lupo-includes/DialogChannelMigration/MessageBuilder.php`: `@version 4.0.66`
-- `lupo-includes/DialogChannelMigration/ChannelBuilder.php`: `@version 4.0.66`
-- `lupo-includes/DialogChannelMigration/DialogParser.php`: `@version 4.0.66`
-- `lupo-includes/classes/CIPEventPipeline.php`: `@version 4.0.78`
-- `lupo-includes/classes/CIPEmotionalGeometryCalibration.php`: `@version 4.0.76`
-- `lupo-includes/classes/CIPDoctrineRefinementModule.php`: `@version 4.0.76`
-- `lupo-includes/classes/CIPAnalyticsEngine.php`: `@version 4.0.76`
-- Many other files with versions 4.0.66, 4.0.76, 4.0.78, etc.
+- `lupo-includes/DialogChannelMigration/MessageBuilder.php`: `@version 3.0.66`
+- `lupo-includes/DialogChannelMigration/ChannelBuilder.php`: `@version 3.0.66`
+- `lupo-includes/DialogChannelMigration/DialogParser.php`: `@version 3.0.66`
+- `lupo-includes/classes/CIPEventPipeline.php`: `@version 3.0.78`
+- `lupo-includes/classes/CIPEmotionalGeometryCalibration.php`: `@version 3.0.76`
+- `lupo-includes/classes/CIPDoctrineRefinementModule.php`: `@version 3.0.76`
+- `lupo-includes/classes/CIPAnalyticsEngine.php`: `@version 3.0.76`
+- Many other files with versions 3.0.66, 3.0.76, 3.0.78, etc.
 
 **Impact:** Version tracking inconsistency. Not critical for functionality, but violates version doctrine.
 
@@ -195,7 +195,7 @@ This audit examines PHP implementation against the requirements documented in `C
 
 #### ✅ Correctly Implemented
 All Terminal AI components are correctly implemented:
-- Version tags updated to 4.0.101
+- Version tags updated to 3.0.101
 - Proper namespace structure
 - Correct interface implementation
 - Service routing works correctly
@@ -212,9 +212,9 @@ All Terminal AI components are correctly implemented:
 #### ✅ Correctly Implemented
 `lupo-includes/version.php` correctly:
 - Loads version from atom (`GLOBAL_CURRENT_LUPOPEDIA_VERSION`)
-- Falls back to hard-coded `4.0.101` if atom loader fails
+- Falls back to hard-coded `3.0.101` if atom loader fails
 - Provides version helper functions
-- Version tag updated to 4.0.101
+- Version tag updated to 3.0.101
 
 ---
 
@@ -244,10 +244,10 @@ All Terminal AI components are correctly implemented:
 
 | Requirement | Expected | Actual | Status |
 |------------|----------|--------|--------|
-| Update version atom | 4.0.101 | ✅ Done | ✅ |
-| Update version.php | 4.0.101 | ✅ Done | ✅ |
-| Update Terminal AI components | 4.0.101 | ✅ Done | ✅ |
-| Update all PHP docblocks | 4.0.101 | ⚠️ Partial | ⚠️ |
+| Update version atom | 3.0.101 | ✅ Done | ✅ |
+| Update version.php | 3.0.101 | ✅ Done | ✅ |
+| Update Terminal AI components | 3.0.101 | ✅ Done | ✅ |
+| Update all PHP docblocks | 3.0.101 | ⚠️ Partial | ⚠️ |
 
 ### 4.4 LIMITS.md Enforcement
 
@@ -274,9 +274,9 @@ All Terminal AI components are correctly implemented:
 - `app/Services/TriggerReplacements/DialogMessagesDeleteService.php`
 
 ### 5.2 Version Doctrine
-**Violation:** Many PHP files still reference old versions (4.0.66, 4.0.76, 4.0.78).
+**Violation:** Many PHP files still reference old versions (3.0.66, 3.0.76, 3.0.78).
 
-**Doctrine:** All version references should reflect current system version (4.0.101) or be historical.
+**Doctrine:** All version references should reflect current system version (3.0.101) or be historical.
 
 **Impact:** Low - documentation inconsistency only.
 
@@ -301,7 +301,7 @@ All Terminal AI components are correctly implemented:
 - `modified_timestamp` - not in TOON (should use `updated_ymdhis`)
 - `message_id` - not in TOON (should use `dialog_message_id`)
 
-**TOON Authority:** TOON files are authoritative source of truth per 4.0.101 requirements.
+**TOON Authority:** TOON files are authoritative source of truth per 3.0.101 requirements.
 
 **Impact:** PHP code will fail at runtime when executing queries.
 
@@ -322,17 +322,17 @@ Terminal AI implementation is complete and correct:
 
 ### 8.1 Summary
 - **Correct:** Version atom, version.php, Terminal AI components
-- **Incorrect:** Many legacy files still reference 4.0.66, 4.0.76, 4.0.78
+- **Incorrect:** Many legacy files still reference 3.0.66, 3.0.76, 3.0.78
 - **Impact:** Documentation inconsistency, not functional
 
 ### 8.2 Files Requiring Version Updates
-- `lupo-includes/DialogChannelMigration/MessageBuilder.php`: 4.0.66 → 4.0.101
-- `lupo-includes/DialogChannelMigration/ChannelBuilder.php`: 4.0.66 → 4.0.101
-- `lupo-includes/DialogChannelMigration/DialogParser.php`: 4.0.66 → 4.0.101
-- `lupo-includes/classes/CIPEventPipeline.php`: 4.0.78 → 4.0.101
-- `lupo-includes/classes/CIPEmotionalGeometryCalibration.php`: 4.0.76 → 4.0.101
-- `lupo-includes/classes/CIPDoctrineRefinementModule.php`: 4.0.76 → 4.0.101
-- `lupo-includes/classes/CIPAnalyticsEngine.php`: 4.0.76 → 4.0.101
+- `lupo-includes/DialogChannelMigration/MessageBuilder.php`: 3.0.66 → 3.0.101
+- `lupo-includes/DialogChannelMigration/ChannelBuilder.php`: 3.0.66 → 3.0.101
+- `lupo-includes/DialogChannelMigration/DialogParser.php`: 3.0.66 → 3.0.101
+- `lupo-includes/classes/CIPEventPipeline.php`: 3.0.78 → 3.0.101
+- `lupo-includes/classes/CIPEmotionalGeometryCalibration.php`: 3.0.76 → 3.0.101
+- `lupo-includes/classes/CIPDoctrineRefinementModule.php`: 3.0.76 → 3.0.101
+- `lupo-includes/classes/CIPAnalyticsEngine.php`: 3.0.76 → 3.0.101
 
 ---
 
@@ -344,11 +344,11 @@ Terminal AI implementation is complete and correct:
    - Replace `created_timestamp`/`modified_timestamp` with `created_ymdhis`/`updated_ymdhis`
    - Replace `message_id` with `dialog_message_id`
    - Update truncation from 272 to 1000 characters
-   - Update version tag to 4.0.101
+   - Update version tag to 3.0.101
 
 2. **Update ChannelBuilder.php:**
    - Replace `created_timestamp`/`modified_timestamp` with `created_ymdhis`/`updated_ymdhis`
-   - Update version tag to 4.0.101
+   - Update version tag to 3.0.101
 
 3. **Update Trigger Replacement Services:**
    - Replace `modified_timestamp` with `updated_ymdhis` in both insert and delete services
@@ -372,8 +372,8 @@ Terminal AI implementation is complete and correct:
 
 ### 9.3 Medium Priority (Version Consistency)
 7. **Update Legacy Version Tags:**
-   - Update all `@version` tags in DialogChannelMigration files to 4.0.101
-   - Update CIP class version tags to 4.0.101 (or document as historical)
+   - Update all `@version` tags in DialogChannelMigration files to 3.0.101
+   - Update CIP class version tags to 3.0.101 (or document as historical)
 
 ### 9.4 Low Priority (Documentation)
 8. **Document Schema Migration:**
@@ -402,7 +402,7 @@ Terminal AI implementation is complete and correct:
 ## 11. CONCLUSION
 
 ### 11.1 Summary
-The 4.0.101 requirements were **partially implemented**:
+The 3.0.101 requirements were **partially implemented**:
 - ✅ Terminal AI components: Complete and correct
 - ✅ Version atom system: Working correctly
 - ✅ SQL schema files: Updated to match TOON files

@@ -2,11 +2,11 @@
 /**
  * wolfie.header.identity: auth-helpers
  * wolfie.header.placement: /lupo-includes/functions/auth-helpers.php
- * wolfie.header.version: 4.0.9
+ * wolfie.header.version: 3.0.9
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
- *   message: "Updated actor slug generation to use email instead of username for version 4.0.9. Actor slugs are now derived from the email address (local part before @) to align with email-only login. Example: lupopedia@gmail.com -> slug 'lupopedia'. This ensures consistency since email is the canonical login identifier."
+ *   message: "Updated actor slug generation to use email instead of username for version 3.0.9. Actor slugs are now derived from the email address (local part before @) to align with email-only login. Example: lupopedia@gmail.com -> slug 'lupopedia'. This ensures consistency since email is the canonical login identifier."
  *   mood: "00FF00"
  */
 

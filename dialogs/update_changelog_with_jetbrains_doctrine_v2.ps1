@@ -1,6 +1,6 @@
 $newEntry = @"
-## [4.0.95] - 2026-01-17
-### Version 4.0.95 — JETBRAINS 4.1.x BRANCH HANDING DOCTRINE ESTABLISHED 🚀
+## [3.0.95] - 2026-01-17
+### Version 3.0.95 — JETBRAINS 3.1.x BRANCH HANDING DOCTRINE ESTABLISHED 🚀
 
 **Date:** 2026-01-17  
 **Type:** Doctrine Creation & Branch Management  
@@ -8,9 +8,9 @@ $newEntry = @"
 **Migration ID:** jetbrains_branch_handling_doctrine_4_0_95
 
 ### Summary
-Version 4.0.95 establishes the comprehensive JetBrains 4.1.x Branch Handling Doctrine to govern multi-branch development in Lupopedia v4.1.x series. This doctrine provides clear protocols for branch creation, switching, merging, and version management while preventing the version drift and system instability that occurred during the 4.0.x development cycle.
+Version 3.0.95 establishes the comprehensive JetBrains 3.1.x Branch Handling Doctrine to govern multi-branch development in Lupopedia v3.1.x series. This doctrine provides clear protocols for branch creation, switching, merging, and version management while preventing the version drift and system instability that occurred during the 3.0.x development cycle.
 
-### 🚀 JETBRAINS 4.1.X BRANCH HANDING DOCTRINE ESTABLISHED
+### 🚀 JETBRAINS 3.1.X BRANCH HANDING DOCTRINE ESTABLISHED
 
 #### **Comprehensive Framework Created**
 - **Document**: `docs/doctrine/JETBRAINS_4_1_X_BRANCH_HANDLING_DOCTRINE.md`
@@ -50,23 +50,23 @@ Version 4.0.95 establishes the comprehensive JetBrains 4.1.x Branch Handling Doc
 
 #### **Development Framework Ready**
 - **Architecture**: Comprehensive branch management system established
-- **Documentation**: Complete doctrine and procedures for 4.1.x development
+- **Documentation**: Complete doctrine and procedures for 3.1.x development
 - **Version Control**: Disciplined version management with Lupo-Flow model
 - **Stability**: System protected from version drift and branch conflicts
 
-#### **Foundation for 4.1.0 Development**
+#### **Foundation for 3.1.0 Development**
 - **Clean Development Environment**: Ready for multi-branch coordination
 - **Decision Support**: Complete technical context for system evolution
 - **Production Readiness**: Established protocols for stable, scalable development
 
-**This doctrine provides the foundation for organized multi-branch development in Lupopedia v4.1.x, preventing the chaos and version drift of the 4.0.x cycle while supporting rapid, stable feature development and production deployment.**
+**This doctrine provides the foundation for organized multi-branch development in Lupopedia v3.1.x, preventing the chaos and version drift of the 3.0.x cycle while supporting rapid, stable feature development and production deployment.**
 "@
 
-$insertPoint = $content.IndexOf('## [4.0.94] - 2026-01-17')
+$insertPoint = $content.IndexOf('## [3.0.94] - 2026-01-17')
 if ($insertPoint -ge 0) {
     $newContent = $content.Substring(0, $insertPoint) + $newEntry + "`n`n" + $content.Substring($insertPoint)
     $newContent | Set-Content '../CHANGELOG.md' -Encoding UTF8
-    Write-Host 'CHANGELOG.md updated with JetBrains 4.1.x Branch Handling Doctrine'
+    Write-Host 'CHANGELOG.md updated with JetBrains 3.1.x Branch Handling Doctrine'
 } else {
     Write-Host 'Insertion point not found in CHANGELOG.md'
 }

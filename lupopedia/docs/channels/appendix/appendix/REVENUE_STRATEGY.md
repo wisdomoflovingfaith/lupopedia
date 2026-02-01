@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -63,7 +63,7 @@ Since the January 1 reset, Lupopedia has undergone a complete architectural stab
 - Documentation system normalized
 - Atomization system implemented
 - Crossâ€‘reference matrix completed
-- Version 4.0.14 released
+- Version 3.0.14 released
 - Core architecture and metadata validated
 
 This means Lupopedia is no longer "in progress" â€” it is a readyâ€‘toâ€‘deploy platform with real value.

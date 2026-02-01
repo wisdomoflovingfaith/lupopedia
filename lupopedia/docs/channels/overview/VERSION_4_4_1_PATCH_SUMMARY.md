@@ -13,7 +13,7 @@ file.channel: doctrine
 
 ## 🎯 Release Overview
 
-Version 4.4.1 completes the TOON migration analysis and schema optimization work begun in 4.4.0. This patch release focuses on comprehensive TOON database analysis, legacy cleanup, migration generation, and critical bug fixes.
+Version 4.4.1 completes the TOON migration analysis and schema optimization work begun in 4.3.0. This patch release focuses on comprehensive TOON database analysis, legacy cleanup, migration generation, and critical bug fixes.
 
 ## 📋 Files Updated
 
@@ -23,7 +23,7 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 - ✅ `dialogs/changelog_dialog_current.md` - Updated version and dialog message
 
 ### **Documentation Files**
-- ✅ `docs/migrations/4.4.1.md` - Created comprehensive migration documentation
+- ✅ `docs/migrations/4.3.1.md` - Created comprehensive migration documentation
 - ✅ `docs/ARCHITECTURE/ARCHITECTURE_MAP_v4_0_70.md` - Updated version and date
 - ✅ `docs/doctrine/TABLE_COUNT_DOCTRINE.md` - Updated table count and system context
 - ✅ `.cursorrules` - Updated version reference in cursor rules

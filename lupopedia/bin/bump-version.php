@@ -6,10 +6,10 @@
  * Automates the version bump process according to VERSION_DOCTRINE.md
  * Ensures all version references are updated consistently
  * 
- * Usage: php bin/bump-version.php 4.0.36
+ * Usage: php bin/bump-version.php 3.0.36
  * 
  * @package Lupopedia
- * @version 4.0.35
+ * @version 3.0.35
  */
 
 // Prevent web access
@@ -20,7 +20,7 @@ if (php_sapi_name() !== 'cli') {
 // Get version from command line
 if ($argc < 2) {
     echo "Usage: php bin/bump-version.php <version>\n";
-    echo "Example: php bin/bump-version.php 4.0.36\n";
+    echo "Example: php bin/bump-version.php 3.0.36\n";
     exit(1);
 }
 
@@ -28,7 +28,7 @@ $new_version = trim($argv[1]);
 
 // Validate version format (semantic versioning: MAJOR.MINOR.PATCH)
 if (!preg_match('/^\d+\.\d+\.\d+$/', $new_version)) {
-    echo "ERROR: Invalid version format. Must be MAJOR.MINOR.PATCH (e.g., 4.0.36)\n";
+    echo "ERROR: Invalid version format. Must be MAJOR.MINOR.PATCH (e.g., 3.0.36)\n";
     exit(1);
 }
 
@@ -204,11 +204,11 @@ $changelog_content = preg_replace(
 echo "  Step 3a: Updating consolidated summary...\n";
 $changelog_content = preg_replace(
     '/## 📊 Consolidated Summary: Version \d+\.\d+\.\d+ → \d+\.\d+\.\d+/',
-    "## 📊 Consolidated Summary: Version 4.0.19 → {$new_version}",
+    "## 📊 Consolidated Summary: Version 3.0.19 → {$new_version}",
     $changelog_content
 );
 
-// Calculate version count (from 4.0.19 to new version)
+// Calculate version count (from 3.0.19 to new version)
 list($major, $minor, $patch) = explode('.', $new_version);
 $version_count = (($major - 4) * 1000) + ($minor * 100) + $patch - 19;
 $changelog_content = preg_replace(

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.76
+file.last_modified_system_version: 3.0.76
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -24,7 +24,7 @@ file:
 # QUARANTINE INVENTORY - DATABASE LOGIC VIOLATIONS
 
 **Date**: 2026-01-17  
-**Version**: 4.0.76  
+**Version**: 3.0.76  
 **Authority**: Captain Wolfie Fleet Directive  
 **Status**: QUARANTINED STRUCTURES - NOT TRUSTED ARCHITECTURE  
 

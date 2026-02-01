@@ -3,10 +3,10 @@
  * Kritik Integration Protocol Validator
  *
  * Validates critique structure and content for KIP processing.
- * Implements Kritik Integration Protocol as defined in version 4.0.77.
+ * Implements Kritik Integration Protocol as defined in version 3.0.77.
  *
  * @package Lupopedia
- * @version 4.0.106
+ * @version 3.0.106
  * @author Captain Wolfie
  */
 

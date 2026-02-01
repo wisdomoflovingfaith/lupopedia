@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.46
+file.last_modified_system_version: 3.0.46
 dialog:
   speaker: KIRO
   target: @copilot
@@ -12,7 +12,7 @@ tags:
 file:
   title: "Copilot Quick Reference - Lupopedia Core Concepts"
   description: "Essential Lupopedia concepts for AI assistants without full context"
-  version: "4.0.46"
+  version: "3.0.46"
   status: published
   author: "Kiro"
 ---
@@ -21,7 +21,7 @@ file:
 
 **For:** GitHub Copilot, Claude, Gemini, and other AI assistants  
 **Purpose:** Quick reference for core Lupopedia concepts  
-**Version:** 4.0.46
+**Version:** 3.0.46
 
 ---
 
@@ -61,7 +61,7 @@ mood: "88CCFF"
 
 ### Historical Note
 - DIALOG was formerly called "ROSE" (Rosetta Stone Agent)
-- Renamed to DIALOG in version 4.0.17
+- Renamed to DIALOG in version 3.0.17
 - All references to ROSE are now historical/deprecated
 
 ---
@@ -109,7 +109,7 @@ YAML frontmatter at the top of every Lupopedia file providing metadata, versioni
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.46
+file.last_modified_system_version: 3.0.46
 ---
 ```
 
@@ -117,7 +117,7 @@ file.last_modified_system_version: 4.0.46
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.46
+file.last_modified_system_version: 3.0.46
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -196,7 +196,7 @@ Read-only `.toon` files in `database/toon_data/` containing exact table structur
 - **No stored procedures** - Database is storage only
 - **TOON read-only** - Schema reference only
 
-### Schema Architecture (v4.0.46)
+### Schema Architecture (v3.0.46)
 - **Core schema** (`lupopedia`) - 77 tables
 - **Orchestration schema** (`lupopedia_orchestration`) - 8 tables
 - **Ephemeral schema** (`lupopedia_ephemeral`) - 5 tables
@@ -224,7 +224,7 @@ Read-only `.toon` files in `database/toon_data/` containing exact table structur
 
 ---
 
-## 🚀 Migration Orchestrator (v4.0.46)
+## 🚀 Migration Orchestrator (v3.0.46)
 
 ### What It Is
 8-state machine for managing database migrations across federated schemas.
@@ -240,7 +240,7 @@ Read-only `.toon` files in `database/toon_data/` containing exact table structur
 8. **failed** - Terminal failure (manual intervention required)
 
 ### Status
-**100% COMPLETE** as of version 4.0.46
+**100% COMPLETE** as of version 3.0.46
 
 ---
 
@@ -281,7 +281,7 @@ Emotional coordinate system using RGB hex values (RRGGBB).
 ## 🔧 Version System
 
 ### Current Version
-**4.0.46** (as of January 16, 2026)
+**3.0.46** (as of January 16, 2026)
 
 ### Version Atoms
 - `GLOBAL_CURRENT_LUPOPEDIA_VERSION` - Current system version
@@ -331,5 +331,5 @@ If you encounter concepts not covered here:
 ---
 
 **Last Updated:** January 16, 2026  
-**Version:** 4.0.46  
+**Version:** 3.0.46  
 **For:** All AI assistants working with Lupopedia

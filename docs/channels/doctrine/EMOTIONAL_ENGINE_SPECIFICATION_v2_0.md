@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.99
+file.last_modified_system_version: 3.0.99
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -31,7 +31,7 @@ file:
 ---
 
 # EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md
-# Version: 4.0.90
+# Version: 3.0.90
 # Status: Doctrine
 # Domain: Emotional Processing Layer
 # Purpose: Define the seven-domain emotional architecture that replaces the

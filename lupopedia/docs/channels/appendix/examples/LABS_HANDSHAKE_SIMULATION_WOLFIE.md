@@ -150,7 +150,7 @@ works correctly, and validating revalidation timestamp calculation.
 ```yaml
 TruthState:
   Known:
-    - fact: "Lupopedia version is 4.1.1"
+    - fact: "Lupopedia version is 3.1.1"
       source: "config/global_atoms.yaml"
     - fact: "LABS-001 is active and binding"
       source: "docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"
@@ -337,7 +337,7 @@ The `declarations_json` field stores all 10 declarations as a structured JSON ob
   "declaration_8_truth_state": {
     "known": [
       {
-        "fact": "Lupopedia version is 4.1.1",
+        "fact": "Lupopedia version is 3.1.1",
         "source": "config/global_atoms.yaml"
       },
       {
@@ -485,7 +485,7 @@ INSERT INTO `lupo_labs_declarations` (
       },
       "declaration_8_truth_state": {
         "known": [
-          {"fact": "Lupopedia version is 4.1.1", "source": "config/global_atoms.yaml"},
+          {"fact": "Lupopedia version is 3.1.1", "source": "config/global_atoms.yaml"},
           {"fact": "LABS-001 is active and binding", "source": "docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"},
           {"fact": "GOV-AD-PROHIBIT-001 is established", "source": "docs/doctrine/GOV_AD_PROHIBIT_001.md"}
         ],

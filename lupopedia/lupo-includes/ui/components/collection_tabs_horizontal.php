@@ -1,13 +1,13 @@
 <?php
 /**
 ---
-wolfie.headers.version: "4.0.11"
+wolfie.headers.version: "3.0.11"
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.11: Created horizontal collection tabs navigation bar component. Renders Collection 0 system tabs as a visible horizontal navigation bar at the top of the page."
+    message: "Version 3.0.11: Created horizontal collection tabs navigation bar component. Renders Collection 0 system tabs as a visible horizontal navigation bar at the top of the page."
     mood: "00FF00"
 tags:
   categories: ["component", "ui", "collections"]

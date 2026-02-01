@@ -2,7 +2,7 @@
 /**
  * wolfie.header.identity: list-controller
  * wolfie.header.placement: /lupo-includes/modules/list/list-controller.php
- * wolfie.header.version: 4.1.1
+ * wolfie.header.version: 3.1.1
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone

@@ -1,4 +1,4 @@
--- Agents Table Migration - Version 4.0.26
+-- Agents Table Migration - Version 3.0.26
 -- Creates agents table in core schema for identity anchoring
 
 USE lupopedia;

@@ -1,4 +1,4 @@
--- Doctrine Versioning Tab Mapping - Version 4.0.26
+-- Doctrine Versioning Tab Mapping - Version 3.0.26
 -- Maps versioning doctrine content to doctrine.versioning tab (tab 21)
 -- Uses safe three-step pattern for unique constraint handling
 

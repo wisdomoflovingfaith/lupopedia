@@ -280,7 +280,7 @@ print_r($validation);
 
 - **4.2.3** - Current version with full Cascade compatibility
 - **4.2.0** - Added governance compliance fields
-- **4.1.0** - Initial canonical template structure
+- **3.1.0** - Initial canonical template structure
 
 ## References
 

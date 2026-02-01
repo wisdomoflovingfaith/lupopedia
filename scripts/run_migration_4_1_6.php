@@ -1,11 +1,11 @@
 <?php
 /**
- * Execute Migration 4.1.6 - LABS Declarations Tables
+ * Execute Migration 3.1.6 - LABS Declarations Tables
  * 
  * Creates lupo_labs_declarations and lupo_labs_violations tables
  * 
  * @package Lupopedia
- * @version 4.1.6
+ * @version 3.1.6
  * @author CAPTAIN_WOLFIE
  * @governance LABS-001 Doctrine v1.0
  */
@@ -14,13 +14,13 @@ require_once __DIR__ . '/../lupopedia-config.php';
 require_once __DIR__ . '/../lupo-includes/bootstrap.php';
 
 // Load migration SQL
-$migration_file = __DIR__ . '/../database/migrations/4.1.6_create_labs_declarations_table.sql';
+$migration_file = __DIR__ . '/../database/migrations/3.1.6_create_labs_declarations_table.sql';
 
 if (!file_exists($migration_file)) {
     die("ERROR: Migration file not found: {$migration_file}\n");
 }
 
-echo "=== Lupopedia Migration 4.1.6 - LABS Declarations Tables ===\n\n";
+echo "=== Lupopedia Migration 3.1.6 - LABS Declarations Tables ===\n\n";
 echo "Reading migration file...\n";
 
 $sql = file_get_contents($migration_file);
@@ -70,7 +70,7 @@ try {
     echo "Errors: {$error_count}\n";
     
     if ($error_count === 0) {
-        echo "\n✓ Migration 4.1.6 completed successfully!\n";
+        echo "\n✓ Migration 3.1.6 completed successfully!\n";
         echo "LABS declarations and violations tables are now active.\n";
     } else {
         echo "\n⚠ Migration completed with errors. Please review above.\n";

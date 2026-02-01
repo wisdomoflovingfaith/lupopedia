@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.50
+file.last_modified_system_version: 3.0.50
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,23 +8,23 @@ dialog:
   speaker: SYSTEM
   target: @Captain_Wolfie
   mood_RGB: "FFAA00"
-  message: "Clean Ascent Manifest for version 4.1.0 public release preparation."
+  message: "Clean Ascent Manifest for version 3.1.0 public release preparation."
 tags:
   categories: ["documentation", "planning"]
   collections: ["core-docs"]
   channels: ["dev"]
 file:
-  title: "Version 4.1.0 Ascent Manifest (Clean)"
-  description: "Task sequence for preparing Lupopedia version 4.1.0 public release"
+  title: "Version 3.1.0 Ascent Manifest (Clean)"
+  description: "Task sequence for preparing Lupopedia version 3.1.0 public release"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Version 4.1.0 Ascent Manifest (Clean)
+# Version 3.1.0 Ascent Manifest (Clean)
 
-**Current Version:** 4.0.50  
-**Target Version:** 4.1.0  
+**Current Version:** 3.0.50  
+**Target Version:** 3.1.0  
 **Purpose:** Public release preparation  
 **Status:** Not started (awaiting Monday execution)
 
@@ -32,7 +32,7 @@ file:
 
 ## Mission Overview
 
-Version 4.1.0 represents the first public release of Lupopedia Semantic OS. This version must include:
+Version 3.1.0 represents the first public release of Lupopedia Semantic OS. This version must include:
 - Complete documentation of system history (2002-2026)
 - Reconciliation of 2014-2025 gap period
 - Production-ready deployment infrastructure
@@ -44,7 +44,7 @@ Version 4.1.0 represents the first public release of Lupopedia Semantic OS. This
 
 ## Phase 1: History Reconciliation (2014-2025)
 
-**Objective:** Document the 12-year gap between Crafty Syntax 3.7.5 (2013) and Lupopedia 4.0.0 (2025).
+**Objective:** Document the 12-year gap between Crafty Syntax 3.7.5 (2013) and Lupopedia 3.0.0 (2025).
 
 **Tasks:**
 1. Document Crafty Syntax final version (3.7.5, 2013)
@@ -128,7 +128,7 @@ Version 4.1.0 represents the first public release of Lupopedia Semantic OS. This
 - Initial commit created
 - Git workflow documentation
 
-**Status:** Not started (blocked until 4.1.0 ready)
+**Status:** Not started (blocked until 3.1.0 ready)
 
 ---
 
@@ -181,20 +181,20 @@ Version 4.1.0 represents the first public release of Lupopedia Semantic OS. This
 
 ---
 
-## Phase 7: Version 4.1.0 Release
+## Phase 7: Version 3.1.0 Release
 
-**Objective:** Execute version 4.1.0 release.
+**Objective:** Execute version 3.1.0 release.
 
 **Tasks:**
-1. Update all version references to 4.1.0
-2. Update CHANGELOG.md with 4.1.0 entry
+1. Update all version references to 3.1.0
+2. Update CHANGELOG.md with 3.1.0 entry
 3. Create release notes
 4. Tag release in Git
 5. Deploy to production
 6. Announce release
 
 **Deliverables:**
-- Version 4.1.0 released
+- Version 3.1.0 released
 - CHANGELOG.md updated
 - Release notes published
 - Git tag created
@@ -229,14 +229,14 @@ Version 4.1.0 represents the first public release of Lupopedia Semantic OS. This
 
 ## Success Criteria
 
-**Version 4.1.0 is ready when:**
+**Version 3.1.0 is ready when:**
 - [ ] History reconciliation complete (2002-2026)
 - [ ] Dialog system migrated to database
 - [ ] Color protocol integrated
 - [ ] Git repository initialized
 - [ ] Public documentation complete
 - [ ] Production deployment tested
-- [ ] All version references updated to 4.1.0
+- [ ] All version references updated to 3.1.0
 - [ ] CHANGELOG.md updated
 - [ ] Release notes published
 
@@ -254,6 +254,6 @@ Version 4.1.0 represents the first public release of Lupopedia Semantic OS. This
 ---
 
 *Created: 2026-01-16*  
-*Version: 4.0.50*  
-*Target: 4.1.0*  
+*Version: 3.0.50*  
+*Target: 3.1.0*  
 *Status: Ready for execution*

@@ -1,6 +1,6 @@
 -- ============================================================
 -- Backup Table Template
--- Version: 4.1.1
+-- Version: 3.1.1
 -- Purpose: Standardized template for creating backup tables
 -- Doctrine: No foreign keys, temporal integrity, signed integers
 -- ============================================================

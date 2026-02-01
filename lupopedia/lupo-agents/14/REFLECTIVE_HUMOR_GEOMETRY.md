@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -345,5 +345,5 @@ HUMOR does not output text or jokes. HUMOR outputs only:
 ---
 
 **Last Updated:** 2026-01-12  
-**Version:** 4.0.4  
+**Version:** 3.0.4  
 **Agent:** HUMOR (THALINA, Slot 14)

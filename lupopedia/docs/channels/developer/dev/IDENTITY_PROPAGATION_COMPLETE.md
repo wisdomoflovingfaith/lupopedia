@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.20
+file.last_modified_system_version: 3.0.20
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -45,7 +45,7 @@ Captain Wolfie identity has been systematically propagated across all system lay
 - `dialogs/table_budget_doctrine_dialog.md`
 - `dialogs/migration_orchestrator_dialog.md`
 - `dialogs/table_classification_audit_dialog.md`
-- `dialogs/4.0.17-ui_change_integration_dialog.md`
+- `dialogs/3.0.17-ui_change_integration_dialog.md`
 
 ### Pattern Applied
 ```yaml

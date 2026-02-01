@@ -1,5 +1,5 @@
 -- ======================================================================
--- TOON FILES TAB MAPPING - Version 4.0.23
+-- TOON FILES TAB MAPPING - Version 3.0.23
 -- Maps TOON-related content files to correct collection tabs
 --
 -- Mappings:

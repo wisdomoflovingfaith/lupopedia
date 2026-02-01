@@ -1,4 +1,4 @@
--- Migration Verification Queries - Version 4.0.30
+-- Migration Verification Queries - Version 3.0.30
 -- Run these queries after executing all migrations to verify success
 
 -- ========================================

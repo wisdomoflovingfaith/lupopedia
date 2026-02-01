@@ -1,8 +1,8 @@
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.78
+file.last_modified_system_version: 3.0.78
 
 # CIP_ANALYTICS_ENGINE.md
-# Version: 4.0.78
+# Version: 3.0.78
 # Status: Implementation
 # Domain: Governance Analytics
 

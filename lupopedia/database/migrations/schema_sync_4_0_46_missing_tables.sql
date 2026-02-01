@@ -1,4 +1,4 @@
--- Schema Synchronization Migration - Version 4.0.46
+-- Schema Synchronization Migration - Version 3.0.46
 -- Adds missing tables from TOON file definitions to match schema
 -- 
 -- Current Status: 111 tables in SQL, 120 TOON files

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.50
+file.last_modified_system_version: 3.0.50
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -9,17 +9,17 @@ tags:
   collections: ["core-docs"]
   channels: ["dev"]
 file:
-  title: "Version 4.1.0 Progress Tracker"
-  description: "Daily progress tracking for 4.1.0 ascent tasks"
+  title: "Version 3.1.0 Progress Tracker"
+  description: "Daily progress tracking for 3.1.0 ascent tasks"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: active
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Version 4.1.0 Progress Tracker
+# Version 3.1.0 Progress Tracker
 
-**Current Version:** 4.0.50  
-**Target Version:** 4.1.0  
+**Current Version:** 3.0.50  
+**Target Version:** 3.1.0  
 **Last Updated:** 2026-01-16
 
 ---
@@ -151,10 +151,10 @@ file:
 
 ## Week 6: Release
 
-**Target:** Execute version 4.1.0 release
+**Target:** Execute version 3.1.0 release
 
 ### Tasks
-- [ ] Update all version references to 4.1.0
+- [ ] Update all version references to 3.1.0
 - [ ] Update CHANGELOG.md
 - [ ] Create release notes
 - [ ] Tag release in Git
@@ -190,5 +190,5 @@ file:
 ---
 
 *Created: 2026-01-16*  
-*Version: 4.0.50*  
+*Version: 3.0.50*  
 *Status: Active tracking*

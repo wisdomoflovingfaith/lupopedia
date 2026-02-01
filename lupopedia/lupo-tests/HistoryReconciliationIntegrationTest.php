@@ -6,7 +6,7 @@
  * Tests integration between parser, validator, and timeline components
  * 
  * @package Lupopedia
- * @version 4.0.61
+ * @version 3.0.61
  * @author Captain Wolfie
  */
 
@@ -317,27 +317,27 @@ class HistoryReconciliationIntegrationTest {
     }
     
     private function generateCraftySyntaxContent($year) {
-        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 4.0.61\n---\n\n# Year {$year}\n\n## Events\n- Crafty Syntax development activities\n- Live help system improvements\n\n## Achievements\n- Version releases and updates\n- User base expansion\n\n## Cross-References\nSee `TIMELINE_1996_2026.md` for complete timeline\n";
+        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 3.0.61\n---\n\n# Year {$year}\n\n## Events\n- Crafty Syntax development activities\n- Live help system improvements\n\n## Achievements\n- Version releases and updates\n- User base expansion\n\n## Cross-References\nSee `TIMELINE_1996_2026.md` for complete timeline\n";
     }
     
     private function generatePivotPointContent() {
-        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 4.0.61\n---\n\n# Year 2014 - The Pivot Point\n\n## Personal Context\n- Personal tragedy occurred\n- Creative work paused indefinitely\n- 11-year absence period began\n\n## System Impact\n- All projects entered dormant state\n- Crafty Syntax 3.7.5 remained final version\n- Foundation preserved for future return\n\n## Cross-References\nSee `hiatus.md` for complete hiatus documentation\nSee `TIMELINE_1996_2026.md` for timeline context\n";
+        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 3.0.61\n---\n\n# Year 2014 - The Pivot Point\n\n## Personal Context\n- Personal tragedy occurred\n- Creative work paused indefinitely\n- 11-year absence period began\n\n## System Impact\n- All projects entered dormant state\n- Crafty Syntax 3.7.5 remained final version\n- Foundation preserved for future return\n\n## Cross-References\nSee `hiatus.md` for complete hiatus documentation\nSee `TIMELINE_1996_2026.md` for timeline context\n";
     }
     
     private function generateHiatusContent() {
-        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 4.0.61\n---\n\n# 2014-2025: Hiatus Period\n\n## Overview\nDeliberate pause due to profound personal loss and life circumstances\n\n## Key Details\n- Key Note: Eric's wife passed away, leading to extended break\n- No active computer-based work occurred during this period\n- Focus on personal healing and recovery\n\n## System Impact\n- Project's philosophical roots remained intact\n- Foundation set for resurgence in 2026\n- Emotional geometry: grief axis integration\n\n## Cross-References\nSee `2014.md` for pivot point details\nSee `TIMELINE_1996_2026.md` for complete timeline\nSee `1996-2013/2013.md` for pre-hiatus context\n";
+        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 3.0.61\n---\n\n# 2014-2025: Hiatus Period\n\n## Overview\nDeliberate pause due to profound personal loss and life circumstances\n\n## Key Details\n- Key Note: Eric's wife passed away, leading to extended break\n- No active computer-based work occurred during this period\n- Focus on personal healing and recovery\n\n## System Impact\n- Project's philosophical roots remained intact\n- Foundation set for resurgence in 2026\n- Emotional geometry: grief axis integration\n\n## Cross-References\nSee `2014.md` for pivot point details\nSee `TIMELINE_1996_2026.md` for complete timeline\nSee `1996-2013/2013.md` for pre-hiatus context\n";
     }
     
     private function generateResurgenceContent($year) {
-        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 4.0.61\n---\n\n# Year {$year}\n\n## Events\n" . ($year == 2025 ? "- Return after 11-year absence\n- WOLFIE architecture emerges\n- Lupopedia development begins" : "- 16-day intensive development sprint\n- 26 version increments completed\n- Semantic OS fully assembled") . "\n\n## Achievements\n- " . ($year == 2025 ? "222-table initial architecture\n- Foundation for semantic OS" : "120 tables across 3 schemas\n- 128 AI agents implemented\n- 8-state migration orchestrator") . "\n\n## Cross-References\nSee `hiatus.md` for hiatus context\nSee `TIMELINE_1996_2026.md` for complete timeline\n" . ($year == 2026 ? "See `1996-2013/2013.md` for historical continuity" : "") . "\n";
+        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 3.0.61\n---\n\n# Year {$year}\n\n## Events\n" . ($year == 2025 ? "- Return after 11-year absence\n- WOLFIE architecture emerges\n- Lupopedia development begins" : "- 16-day intensive development sprint\n- 26 version increments completed\n- Semantic OS fully assembled") . "\n\n## Achievements\n- " . ($year == 2025 ? "222-table initial architecture\n- Foundation for semantic OS" : "120 tables across 3 schemas\n- 128 AI agents implemented\n- 8-state migration orchestrator") . "\n\n## Cross-References\nSee `hiatus.md` for hiatus context\nSee `TIMELINE_1996_2026.md` for complete timeline\n" . ($year == 2026 ? "See `1996-2013/2013.md` for historical continuity" : "") . "\n";
     }
     
     private function generateTimelineContent() {
-        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 4.0.61\n---\n\n# Timeline 1996-2026\n\n## Era Overview\n- **1996-2013**: Crafty Syntax Era (Active Development)\n- **2014-2025**: Hiatus Period (Personal Recovery)\n- **2025-2026**: Lupopedia Resurgence (System Development)\n\n## Cross-References\n- See `1996-2013/` for Crafty Syntax documentation\n- See `2014-2025/hiatus.md` for hiatus period\n- See `2025-2026/` for resurgence documentation\n- See `HISTORY_INDEX.md` for navigation\n";
+        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 3.0.61\n---\n\n# Timeline 1996-2026\n\n## Era Overview\n- **1996-2013**: Crafty Syntax Era (Active Development)\n- **2014-2025**: Hiatus Period (Personal Recovery)\n- **2025-2026**: Lupopedia Resurgence (System Development)\n\n## Cross-References\n- See `1996-2013/` for Crafty Syntax documentation\n- See `2014-2025/hiatus.md` for hiatus period\n- See `2025-2026/` for resurgence documentation\n- See `HISTORY_INDEX.md` for navigation\n";
     }
     
     private function generateIndexContent() {
-        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 4.0.61\n---\n\n# History Index\n\n## Navigation\n- **Complete Timeline**: `TIMELINE_1996_2026.md`\n- **Crafty Syntax Era**: `1996-2013/`\n- **Hiatus Period**: `2014-2025/hiatus.md`\n- **Resurgence Era**: `2025-2026/`\n\n## Key Documents\n- **Pivot Point**: `2014-2025/2014.md`\n- **Hiatus Documentation**: `2014-2025/hiatus.md`\n- **Return Documentation**: `2025-2026/2025.md`\n";
+        return "---\nwolfie.headers: explicit architecture\nfile.last_modified_system_version: 3.0.61\n---\n\n# History Index\n\n## Navigation\n- **Complete Timeline**: `TIMELINE_1996_2026.md`\n- **Crafty Syntax Era**: `1996-2013/`\n- **Hiatus Period**: `2014-2025/hiatus.md`\n- **Resurgence Era**: `2025-2026/`\n\n## Key Documents\n- **Pivot Point**: `2014-2025/2014.md`\n- **Hiatus Documentation**: `2014-2025/hiatus.md`\n- **Return Documentation**: `2025-2026/2025.md`\n";
     }
     
     private function simulateHistoryParser() {
@@ -350,7 +350,7 @@ class HistoryReconciliationIntegrationTest {
                 'type' => $this->detectDocumentType($doc),
                 'era' => $this->detectDocumentEra($doc),
                 'cross_refs' => $this->extractCrossReferences($doc),
-                'version' => '4.0.61'
+                'version' => '3.0.61'
             ];
         }
         

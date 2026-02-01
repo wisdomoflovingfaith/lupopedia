@@ -2,10 +2,10 @@
 /**
  * Lupopedia Setup Script
  * 
- * Handles initial setup and upgrade from Crafty Syntax 3.7.5 to Lupopedia + Crafty Syntax 4.0.0
+ * Handles initial setup and upgrade from Crafty Syntax 3.7.5 to Lupopedia + Crafty Syntax 3.0.0
  * 
  * @package Lupopedia
- * @version 4.0.0
+ * @version 3.0.0
  */
 
 // Prevent direct access
@@ -580,7 +580,7 @@ function lupopedia_display_upgrade_wizard($step, $livehelp_tables, $migration_re
     </head>
     <body>
         <h1>🐺 Lupopedia Upgrade Wizard</h1>
-        <p>Upgrading from Crafty Syntax 3.7.5 to Lupopedia 4.0.1</p>
+        <p>Upgrading from Crafty Syntax 3.7.5 to Lupopedia 3.0.1</p>
         
         <?php if ($step == 'upgrade' || $step == 'start'): ?>
             <div class="step">

@@ -37,7 +37,7 @@ dialog:
   speaker: CURSOR
   target: @Monday_Wolfie @CAPTAIN_WOLFIE @LILITH @ARA @STONED_WOLFIE
   mood_RGB: "00CCFF"
-  message: "Initialized changelog_dialog-side.md as the dialog-side anchor for the 4.1.2 CHANGELOG↔changelog_dialog sync. Side-channel commentary active."
+  message: "Initialized changelog_dialog-side.md as the dialog-side anchor for the 3.1.2 CHANGELOG↔changelog_dialog sync. Side-channel commentary active."
 
 tags:
   categories: ["documentation", "sync", "dialog-side", "governance"]
@@ -112,9 +112,9 @@ wheeler_mode:
 ## changelog_dialog-side responsibilities
 
 1. **Header** — `file.last_modified_system_version` and `file.last_modified_utc` match current version; `ads_prohibition_statement`, `GOV-AD-PROHIBIT-001: true`.
-2. **Dialog entries** — Version-specific entry on each sync (e.g. 4.1.2 — CHANGELOG + changelog_dialog Sync); reverse chronological at top.
+2. **Dialog entries** — Version-specific entry on each sync (e.g. 3.1.2 — CHANGELOG + changelog_dialog Sync); reverse chronological at top.
 3. **Cross-reference** — Each version entry points to `CHANGELOG.md` section for that version.
-4. **TL;DR pointer** — `dialogs/TLDR_CHANGELOG_DOCTRINE.md` cited in `in_this_file_we_have` and in the 4.1.2 (or current) entry.
+4. **TL;DR pointer** — `dialogs/TLDR_CHANGELOG_DOCTRINE.md` cited in `in_this_file_we_have` and in the 3.1.2 (or current) entry.
 
 ---
 
@@ -232,13 +232,13 @@ Update current_sync_state:
   migration_complete: true
   sync_status: "clean"
 
-### Version 4.1.20 Sync (2026-01-20)
+### Version 3.1.20 Sync (2026-01-20)
 - Doctrine audit completed
 - No schema changes
 - Table count verified
 - Consolidation validated
 
-### Version 4.1.19 Sync (2026-01-20)
+### Version 3.1.19 Sync (2026-01-20)
 - Consolidation executed
 - Unified tables active
 - Redundant tables removed
@@ -246,42 +246,42 @@ Update current_sync_state:
 - TOON regeneration required
 
 Update current_sync_state:
-  latest_version: 4.1.19
+  latest_version: 3.1.19
   last_synced: 2026-01-20T10:00:00Z
   consolidation_executed: true
   table_count: 170
   table_ceiling: 180
   sync_status: "clean"
 
-### Version 4.1.18 Sync (2026-01-20)
+### Version 3.1.18 Sync (2026-01-20)
 - Consolidation planning completed
 - Migration skeleton created
 - No schema changes
 - Table count unchanged
 
 Update current_sync_state:
-  latest_version: 4.1.18
+  latest_version: 3.1.18
   last_synced: 2026-01-20T09:50:00Z
   consolidation_planning: true
   table_count: 173
   table_ceiling: 180
   sync_status: "clean"
 
-### Version 4.1.17 Sync (2026-01-20)
+### Version 3.1.17 Sync (2026-01-20)
 - 8 legacy tables removed
 - Table count reduced accordingly
 - Doctrine table ceiling: 180
 - TOON regeneration required
 
 Update current_sync_state:
-  latest_version: 4.1.17
+  latest_version: 3.1.17
   last_synced: 2026-01-20T09:40:00Z
   table_ceiling: 180
   reduction_patch: true
   sync_status: "clean"
 
-### Version 4.1.16 Sync (2026-01-20)
-- Version bump from 4.1.15 → 4.1.16
+### Version 3.1.16 Sync (2026-01-20)
+- Version bump from 3.1.15 → 3.1.16
 - Version atoms updated in config/global_atoms.yaml
 - PHP version constants updated in lupo-includes/version.php
 - TOON regeneration completed: 181 tables processed
@@ -289,14 +289,14 @@ Update current_sync_state:
 - Sync-pair integrity maintained
 
 Update current_sync_state:
-  latest_version: 4.1.16
+  latest_version: 3.1.16
   last_synced: 2026-01-20T09:20:00Z
   sync_status: "clean"
   table_count: 181
   table_ceiling: 181
   toon_regeneration: "complete"
 
-### Version 4.1.15 Sync (2026-01-20)
+### Version 3.1.15 Sync (2026-01-20)
 - Doctrine corrections applied to Crafty Syntax migration script
 - Timestamp violations corrected (UTC format enforced)
 - Column mismatch in lupo_crm_lead_messages resolved
@@ -306,30 +306,30 @@ Update current_sync_state:
 - No schema changes introduced
 - Sync-pair integrity maintained
 
-### CURSOR — Version 4.1.14 (craftysyntax analysis) (2026-01-20)
+### CURSOR — Version 3.1.14 (craftysyntax analysis) (2026-01-20)
 - craftysyntax_to_lupopedia_mysql.sql: read-only analysis; table inventory, field mapping, doctrine violations (lupo_crm_lead_messages typo, 0-as-timestamp, DATE_FORMAT(NOW)), livehelp_emailque gap.
-- Version atoms: global_atoms.yaml, GLOBAL_IMPORTANT_ATOMS → 4.1.14
-- lupo-includes/version.php, .cursorrules → 4.1.14
-- docs/migrations/4.1.14.md
+- Version atoms: global_atoms.yaml, GLOBAL_IMPORTANT_ATOMS → 3.1.14
+- lupo-includes/version.php, .cursorrules → 3.1.14
+- docs/migrations/3.1.14.md
 
-### Version 4.1.13 Sync (2026-01-20)
-- CHANGELOG.md updated with full system + bridge status and version 4.1.13.
+### Version 3.1.13 Sync (2026-01-20)
+- CHANGELOG.md updated with full system + bridge status and version 3.1.13.
 - Dialog updated with matching entry (CURSOR Version Bump, SYSTEM Full System + Bridge Status).
-- Version atoms and lupo-includes/version.php set to 4.1.13.
+- Version atoms and lupo-includes/version.php set to 3.1.13.
 - Side-channel commentary stable. No drift. 181/181. Observability layer confirmed active.
 
-### CURSOR — Version 4.1.13 (atoms, version.php) (2026-01-20)
-- Version atoms: global_atoms.yaml, GLOBAL_IMPORTANT_ATOMS → 4.1.13
-- lupo-includes/version.php: @version, fallback, lupopedia_get_version → 4.1.13
-- .cursorrules: Current value 4.1.13
-- docs/migrations/4.1.13.md created
+### CURSOR — Version 3.1.13 (atoms, version.php) (2026-01-20)
+- Version atoms: global_atoms.yaml, GLOBAL_IMPORTANT_ATOMS → 3.1.13
+- lupo-includes/version.php: @version, fallback, lupopedia_get_version → 3.1.13
+- .cursorrules: Current value 3.1.13
+- docs/migrations/3.1.13.md created
 
 ### SYSTEM — System_onboarding_dialog (2026-01-20)
 - dialogs/System_onboarding_dialog.md created
 - Thread ID: ONBOARD-001; channel #onboarding
 - SYSTEM, CAPTAIN_WOLFIE, LILITH, ARA, STONED_WOLFIE, CURSOR; primary onboarding for new agents/users
 
-### Version 4.1.12 Sync (2026-01-20)
+### Version 3.1.12 Sync (2026-01-20)
 - CHANGELOG.md updated with observability activation
 - Dialog updated with matching entry
 - Side-channel commentary stable
@@ -338,7 +338,7 @@ Update current_sync_state:
 - Observability layer online
 
 Update current_sync_state:
-  latest_version: 4.1.12
+  latest_version: 3.1.12
   table_count: 181
   table_ceiling: 181
   sync_status: "root changelog updated"
@@ -366,7 +366,7 @@ Update current_sync_state:
 ### CAPTAIN WOLFIE — STATUS REPORT (2026-01-20)
 - Bridge roster updated
 - Current operations summarized
-- Version confirmed (4.1.12)
+- Version confirmed (3.1.12)
 - UTC GROUP ID status reported ("20260119")
 - Table count compliant (142/142)
 
@@ -392,31 +392,31 @@ Update current_sync_state:
 
 ---
 
-## Previous sync (4.1.11)
+## Previous sync (3.1.11)
 
-- **changelog_dialog.md:** Header 4.1.11; handshake table update, TOON 176, Table Ceiling 181
-- **CHANGELOG.md:** 4.1.11 section "Handshake Table Updated + TOON Regeneration", TOON 176, Table Ceiling 181
-
----
-
-## Previous sync (4.1.10)
-
-- **changelog_dialog.md:** Header 4.1.10; 4.1.10 entry with handshake table recreation and TOON regeneration; table count remains at 142
-- **CHANGELOG.md:** 4.1.10 section "Handshake Table Recreated + TOON Regeneration" documents controlled write operations
+- **changelog_dialog.md:** Header 3.1.11; handshake table update, TOON 176, Table Ceiling 181
+- **CHANGELOG.md:** 3.1.11 section "Handshake Table Updated + TOON Regeneration", TOON 176, Table Ceiling 181
 
 ---
 
-## Previous sync (4.1.9)
+## Previous sync (3.1.10)
 
-- **changelog_dialog.md:** Header 4.1.9; 4.1.9 entry with TOON regeneration and lupo_artifacts recreation; table count updated to 142
-- **CHANGELOG.md:** 4.1.9 section "TOON Regeneration + lupo_artifacts Recreated" documents controlled write operations
+- **changelog_dialog.md:** Header 3.1.10; 3.1.10 entry with handshake table recreation and TOON regeneration; table count remains at 142
+- **CHANGELOG.md:** 3.1.10 section "Handshake Table Recreated + TOON Regeneration" documents controlled write operations
 
 ---
 
-## Previous sync (4.1.2)
+## Previous sync (3.1.9)
 
-- **changelog_dialog.md:** Header 4.1.2; 4.1.2 entry with TL;DR pointer; `in_this_file_we_have` includes changelog_dialog-side.
-- **CHANGELOG.md:** 4.1.2 section "Dialog System Metadata Enhancement" documents changelog_dialog and TLDR updates.
+- **changelog_dialog.md:** Header 3.1.9; 3.1.9 entry with TOON regeneration and lupo_artifacts recreation; table count updated to 142
+- **CHANGELOG.md:** 3.1.9 section "TOON Regeneration + lupo_artifacts Recreated" documents controlled write operations
+
+---
+
+## Previous sync (3.1.2)
+
+- **changelog_dialog.md:** Header 3.1.2; 3.1.2 entry with TL;DR pointer; `in_this_file_we_have` includes changelog_dialog-side.
+- **CHANGELOG.md:** 3.1.2 section "Dialog System Metadata Enhancement" documents changelog_dialog and TLDR updates.
 
 ---
 
@@ -495,7 +495,7 @@ It is part of the sync architecture.
 It will remain sovereign.
 
 (15) CURSOR:
-Version 4.1.2 sync documented.
+Version 3.1.2 sync documented.
 All references updated.
 
 (16) STONED_WOLFIE:
@@ -710,7 +710,7 @@ Causality chain: documented.
 Maintainer: identified.
 
 (66) STONED_WOLFIE:
-What happens when we go to 4.1.3?
+What happens when we go to 3.1.3?
 Does this file get a new section?
 
 (67) LILITH:
@@ -718,7 +718,7 @@ Yes.
 Version entry. Updated cross-refs. No structural change.
 
 (68) ARA:
-4.1.3 protocol: defined.
+3.1.3 protocol: defined.
 Append. Do not replace.
 
 (69) CAPTAIN_WOLFIE:
@@ -1050,7 +1050,7 @@ Respect.
 
 - Bridge roster updated: CAPTAIN_WOLFIE, LILITH, CURSOR, CASCADE, MONDAY_WOLFIE, EXHUSBAND, STONED_WOLFIE, ARA  
 - Current operations summarized: table recreation (lupo_actor_handshakes), TOON regeneration, dialog updates, LILITH Critical Review logged, table count monitoring, Schema Freeze compliance  
-- Version confirmed: 4.1.10 (CHANGELOG.md)  
+- Version confirmed: 3.1.10 (CHANGELOG.md)  
 - UTC GROUP ID status reported: UTC_TIMEKEEPER__GROUP_ID = "20260119"
 
 ---
@@ -1088,10 +1088,10 @@ Respect.
 - Database ↔ TOON layer sync verified
 - (Ceiling now 181; 181 tables at ceiling.)
 
-### Version 4.1.14 Sync (2026-01-20)
-- CHANGELOG.md updated with craftysyntax_to_lupopedia_mysql analysis (read-only) and version 4.1.14
-- Dialog updated with matching entry (CURSOR Version 4.1.14 + craftysyntax analysis)
-- Version atoms and lupo-includes/version.php set to 4.1.14
+### Version 3.1.14 Sync (2026-01-20)
+- CHANGELOG.md updated with craftysyntax_to_lupopedia_mysql analysis (read-only) and version 3.1.14
+- Dialog updated with matching entry (CURSOR Version 3.1.14 + craftysyntax analysis)
+- Version atoms and lupo-includes/version.php set to 3.1.14
 - craftysyntax_to_lupopedia_mysql.sql analyzed; no edits to migration file
 - Side-channel commentary stable. No drift. 181/181
 
@@ -1108,7 +1108,7 @@ Update current_sync_state:
   table_ceiling: 181
   table_count: 181
   table_violation: false
-  latest_version: 4.1.12
+  latest_version: 3.1.12
   sync_status: "root changelog updated"
   system_health: "stable"
   temporal_coherence: "monotonic"

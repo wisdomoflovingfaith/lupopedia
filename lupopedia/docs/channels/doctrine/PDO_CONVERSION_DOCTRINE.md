@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -27,13 +27,13 @@ in_this_file_we_have:
   - Ask for Clarification if PDO_DB Method Is Unknown
 file:
   title: "PDO Conversion Doctrine"
-  description: "Mandatory rules Cursor must follow when converting mysqli SQL calls to the custom PDO_DB class in Lupopedia 4.0.0"
-  version: "4.0.0"
+  description: "Mandatory rules Cursor must follow when converting mysqli SQL calls to the custom PDO_DB class in Lupopedia 3.0.0"
+  version: "3.0.0"
   status: published
   author: "Captain Wolfie"
 ---
 
-# ⭐ **PDO CONVERSION DOCTRINE (Lupopedia 4.0.1)**
+# ⭐ **PDO CONVERSION DOCTRINE (Lupopedia 3.0.1)**
 ### **Mandatory Rules Cursor Must Follow When Converting mysqli SQL Calls to the Custom PDO Class**
 
 This doctrine is **mandatory**. Cursor must follow it for every mysqli → PDO conversion.
@@ -309,11 +309,11 @@ $db->execute($sql, $params);
 9. **Don't change INSERT/UPDATE/DELETE logic** — Use `execute()` method
 10. **Ask, don't guess** — When in doubt, ask for clarification
 
-**This is how mysqli code is converted to PDO_DB in Lupopedia 4.0.0.**
+**This is how mysqli code is converted to PDO_DB in Lupopedia 3.0.0.**
 
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.0*  
+*Version: 3.0.0*  
 *Author: Captain Wolfie*
 

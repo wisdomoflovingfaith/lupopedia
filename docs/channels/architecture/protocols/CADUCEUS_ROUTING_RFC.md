@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -9,7 +9,7 @@ author: Wolfie (Eric Robin Gerdes)
 dialog:
   speaker: cursor
   target: documentation
-  message: "Created RFC 4003 v4.0.1 - CADUCEUS Routing Currents Standard: Defines deterministic, federation-safe mood-to-routing signal conversion with precision guarantees, void handling, skew detection, and performance optimization."
+  message: "Created RFC 4003 v3.0.1 - CADUCEUS Routing Currents Standard: Defines deterministic, federation-safe mood-to-routing signal conversion with precision guarantees, void handling, skew detection, and performance optimization."
   mood: "00FF00"
 tags:
   categories: ["documentation", "specification", "rfc", "standards", "routing", "caduceus"]
@@ -26,15 +26,15 @@ file:
 # **RFC 4003 â€” CADUCEUS Emotional Balancing Standard**  
 **Lupopedia Semantic OS â€” Request for Comments**  
 **Category:** Standards Track  
-**Version:** 4.0.1  
+**Version:** 3.0.1  
 **Updated:** 2026â€‘01â€‘08  
 **Author:** Eric Robin Gerdes ("Wolfie")  
-**Part of:** Lupopedia 4.0.1 Standards Track
+**Part of:** Lupopedia 3.0.1 Standards Track
 
 ---
 
 ## **Status of This Memo**
-This document defines the **CADUCEUS Emotional Balancing Standard** for Lupopedia 4.0.1. It specifies how CADUCEUS computes channel emotional current by reading and blending the moods of polar agents within a channel. CADUCEUS produces normalized emotional currents (`left`, `right`) that HERMES may optionally use as context for routing decisions. CADUCEUS is a pure function with no side effects, ensuring portable, federationâ€‘safe emotional context computation across all nodes and runtimes.
+This document defines the **CADUCEUS Emotional Balancing Standard** for Lupopedia 3.0.1. It specifies how CADUCEUS computes channel emotional current by reading and blending the moods of polar agents within a channel. CADUCEUS produces normalized emotional currents (`left`, `right`) that HERMES may optionally use as context for routing decisions. CADUCEUS is a pure function with no side effects, ensuring portable, federationâ€‘safe emotional context computation across all nodes and runtimes.
 
 Distribution of this memo is unlimited.
 
@@ -489,18 +489,18 @@ A valid CADUCEUS computation:
 
 ## **15. Versioning**
 
-This RFC defines **CADUCEUS Emotional Balancing v4.0.1**, aligned with:
+This RFC defines **CADUCEUS Emotional Balancing v3.0.1**, aligned with:
 
-- RFC 4000 â€” WOLFIE Headers v4.0.1  
-- RFC 4002 â€” Thread Mood Aggregation v4.0.1  
-- RFC 4004 â€” HERMES Routing Layer v4.0.1  
-- Countingâ€‘inâ€‘Light v4.0.1  
-- Lupopedia Schema v4.0.1  
+- RFC 4000 â€” WOLFIE Headers v3.0.1  
+- RFC 4002 â€” Thread Mood Aggregation v3.0.1  
+- RFC 4004 â€” HERMES Routing Layer v3.0.1  
+- Countingâ€‘inâ€‘Light v3.0.1  
+- Lupopedia Schema v3.0.1  
 
 **Version History:**
 
-- **v4.0.0:** Initial specification  
-- **v4.0.1:** Added precision guarantees, void handling, skew detection, performance considerations
+- **v3.0.0:** Initial specification  
+- **v3.0.1:** Added precision guarantees, void handling, skew detection, performance considerations
 
 Future versions **MUST** remain backward compatible unless superseded by a new RFC.
 
@@ -527,7 +527,7 @@ United States
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.1*  
+*Version: 3.0.1*  
 *Category: Standards Track*  
 *Status: Published*  
-*Part of: Lupopedia 4.0.1 Standards Track*
+*Part of: Lupopedia 3.0.1 Standards Track*

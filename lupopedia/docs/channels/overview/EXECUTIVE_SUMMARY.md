@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: cursor
   target: @everyone
@@ -13,14 +13,14 @@ tags:
 file:
   title: "Lupopedia Executive Summary"
   description: "High-level overview of Lupopedia's value proposition, features, and business benefits"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---
 
 # 📊 Lupopedia — Executive Summary
 
-**Version 4.0.1 | January 2026**
+**Version 3.0.1 | January 2026**
 
 ---
 

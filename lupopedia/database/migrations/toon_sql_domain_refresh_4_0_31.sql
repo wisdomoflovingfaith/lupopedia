@@ -1,5 +1,5 @@
 -- ======================================================================
--- TOON/SQL DOMAIN REFRESH MIGRATION - Version 4.0.31
+-- TOON/SQL DOMAIN REFRESH MIGRATION - Version 3.0.31
 -- Domain normalization, SQL doctrine alignment, and index repair
 --
 -- This migration:

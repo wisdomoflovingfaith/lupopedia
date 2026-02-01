@@ -3,7 +3,7 @@
 ## 🎯 **Authoritative Mapping Document**
 
 **File**: `craftysyntax_to_lupopedia_mysql.sql`  
-**Purpose**: Complete migration from Crafty Syntax Live Help (3.7.5) to Lupopedia (4.0.3)  
+**Purpose**: Complete migration from Crafty Syntax Live Help (3.7.5) to Lupopedia (3.0.3)  
 **Status**: Authoritative mapping between legacy and new table structures
 
 ---
@@ -14,7 +14,7 @@
 - **Total Tables Processed**: 145 legacy tables → 111 core Lupopedia tables
 - **New Tables Created**: 8 Crafty Syntax module tables for legacy compatibility
 - **Deprecated Tables**: 34 legacy tables marked for retention during migration
-- **Migration Type**: Complete architectural rewrite (3.7.5 → 4.0.3)
+- **Migration Type**: Complete architectural rewrite (3.7.5 → 3.0.3)
 
 ---
 
@@ -143,7 +143,7 @@
 - ✅ Gradual migration path available
 
 ### **Forward Compatibility**
-- ✅ All new tables follow Lupopedia 4.0.3 schema
+- ✅ All new tables follow Lupopedia 3.0.3 schema
 - ✅ Proper UTF-8MB4 Unicode collation
 - ✅ InnoDB engine for transactional integrity
 
@@ -172,7 +172,7 @@
 
 ## 🎖 **Migration Authority**
 
-This SQL file serves as the **authoritative mapping** between Crafty Syntax Live Help 3.7.5 and Lupopedia 4.0.3. All table transformations, column mappings, and data relationships are explicitly defined here.
+This SQL file serves as the **authoritative mapping** between Crafty Syntax Live Help 3.7.5 and Lupopedia 3.0.3. All table transformations, column mappings, and data relationships are explicitly defined here.
 
 **No manual table modifications should be made without consulting this document.**
 

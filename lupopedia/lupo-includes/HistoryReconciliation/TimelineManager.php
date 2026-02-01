@@ -7,7 +7,7 @@
  * 
  * @package Lupopedia
  * @subpackage HistoryReconciliation
- * @version 4.0.61
+ * @version 3.0.61
  * @author Captain Wolfie
  */
 
@@ -458,11 +458,11 @@ class TimelineManager {
             // Add version milestones for 2026
             if (in_array(2026, $years)) {
                 $versionMilestones = [
-                    '4.0.0' => 'Foundation established',
-                    '4.0.19' => 'Schema federation complete',
-                    '4.0.35' => 'Migration orchestrator complete',
-                    '4.0.50' => 'System stabilization',
-                    '4.0.61' => 'History Reconciliation Pass'
+                    '3.0.0' => 'Foundation established',
+                    '3.0.19' => 'Schema federation complete',
+                    '3.0.35' => 'Migration orchestrator complete',
+                    '3.0.50' => 'System stabilization',
+                    '3.0.61' => 'History Reconciliation Pass'
                 ];
                 
                 foreach ($versionMilestones as $version => $description) {
@@ -689,14 +689,14 @@ class TimelineManager {
         $content[] = "  speaker: WOLFIE";
         $content[] = "  target: @historians";
         $content[] = "  mood_RGB: \"0066CC\"";
-        $content[] = "  message: \"Complete historical timeline from Crafty Syntax origins to Lupopedia v4.1.0\"";
+        $content[] = "  message: \"Complete historical timeline from Crafty Syntax origins to Lupopedia v3.1.0\"";
         $content[] = "tags:";
         $content[] = "  categories: [\"documentation\", \"history\", \"timeline\"]";
         $content[] = "  collections: [\"historical-records\", \"master-timeline\"]";
         $content[] = "  channels: [\"public\", \"historical\"]";
         $content[] = "file:";
         $content[] = "  title: \"Lupopedia Historical Timeline (1996-2026)\"";
-        $content[] = "  description: \"Complete chronological timeline from Crafty Syntax origins through Lupopedia v4.1.0\"";
+        $content[] = "  description: \"Complete chronological timeline from Crafty Syntax origins through Lupopedia v3.1.0\"";
         $content[] = "  version: {$version}";
         $content[] = "  status: published";
         $content[] = "  author: {$author}";
@@ -1161,7 +1161,7 @@ class SimpleAtomLoader {
         
         // Fallback values
         if (!isset($this->atoms['GLOBAL_CURRENT_LUPOPEDIA_VERSION'])) {
-            $this->atoms['GLOBAL_CURRENT_LUPOPEDIA_VERSION'] = '4.0.61';
+            $this->atoms['GLOBAL_CURRENT_LUPOPEDIA_VERSION'] = '3.0.61';
         }
         if (!isset($this->atoms['GLOBAL_CURRENT_AUTHORS'])) {
             $this->atoms['GLOBAL_CURRENT_AUTHORS'] = 'Captain Wolfie';

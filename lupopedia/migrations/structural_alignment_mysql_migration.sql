@@ -2,7 +2,7 @@
 -- STRUCTURAL ALIGNMENT & MYSQL MIGRATION PROPOSAL
 -- ======================================================================
 -- Purpose: Align current MySQL schema with TOON definitions
--- Version: 4.0.45
+-- Version: 3.0.45
 -- Created: 2026-01-16
 -- Status: FOR HUMAN REVIEW ONLY (human_in_the_loop: true)
 -- 
@@ -250,7 +250,7 @@ CALL validate_doctrine_compliance();
 -- Create summary report
 SELECT 
   'STRUCTURAL ALIGNMENT MIGRATION SUMMARY' as report_title,
-  'Version 4.0.45' as migration_version,
+  'Version 3.0.45' as migration_version,
   'FOR HUMAN REVIEW ONLY' as status,
   COUNT(*) as total_toon_tables,
   SUM(CASE WHEN toon_exists = 1 THEN 1 ELSE 0 END) as toon_tables_found,

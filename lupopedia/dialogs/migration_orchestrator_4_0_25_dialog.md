@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.25
+file.last_modified_system_version: 3.0.25
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -15,7 +15,7 @@ tags:
   collections: ["core-docs"]
   channels: ["public", "dev"]
 file:
-  title: "Migration Orchestrator 4.0.25 Dialog"
+  title: "Migration Orchestrator 3.0.25 Dialog"
   description: "Complete migration system architecture with state machine, handlers, validation, and rollback capabilities"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
@@ -23,7 +23,7 @@ file:
   author: "Captain Wolfie"
 ---
 
-# Migration Orchestrator 4.0.25 Architecture Complete
+# Migration Orchestrator 3.0.25 Architecture Complete
 
 ## **WOLFIE**: System Architecture Established
 

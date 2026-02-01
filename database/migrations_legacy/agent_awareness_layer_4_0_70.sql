@@ -1,29 +1,29 @@
--- Lupopedia v4.0.70 - Agent Awareness Layer Migration
+-- Lupopedia v3.0.70 - Agent Awareness Layer Migration
 -- Adds metadata_json fields for multi-agent coordination
 
 -- Migration: 20260117000000
--- Version: 4.0.70
+-- Version: 3.0.70
 -- Purpose: Implement Agent Awareness Layer (AAL) with Reverse Shaka Protocol
 
 -- Add metadata_json to lupo_actor_channel_roles for awareness snapshots
 ALTER TABLE lupo_actor_channel_roles 
-ADD COLUMN metadata_json TEXT COMMENT 'Agent awareness snapshot and handshake metadata for v4.0.70 AAL';
+ADD COLUMN metadata_json TEXT COMMENT 'Agent awareness snapshot and handshake metadata for v3.0.70 AAL';
 
 -- Add metadata_json to lupo_actor_collections for persistent identity
 ALTER TABLE lupo_actor_collections
-ADD COLUMN metadata_json TEXT COMMENT 'Persistent actor identity and handshake metadata for v4.0.70 AAL';
+ADD COLUMN metadata_json TEXT COMMENT 'Persistent actor identity and handshake metadata for v3.0.70 AAL';
 
 -- Create indexes for awareness layer performance
 CREATE INDEX idx_actor_channel_awareness ON lupo_actor_channel_roles(actor_id, channel_id);
 CREATE INDEX idx_actor_collections_identity ON lupo_actor_collections(actor_id, collection_id);
 
--- Update existing channels with v4.0.70 awareness metadata
+-- Update existing channels with v3.0.70 awareness metadata
 UPDATE lupo_channels 
 SET metadata_json = JSON_SET(
     COALESCE(metadata_json, '{}'),
     '$.doctrine', 
     JSON_OBJECT(
-        'version', '4.0.70',
+        'version', '3.0.70',
         'constraints', JSON_ARRAY('reverse_shaka', 'channel_join'),
         'protocols', JSON_ARRAY('reverse_shaka', 'channel_join', 'awareness_snapshot')
     ),
@@ -59,7 +59,7 @@ WHERE metadata_json IS NULL
 INSERT INTO lupo_channels (channel_id, federation_node_id, created_by_actor_id, default_actor_id, channel_key, channel_name, description, metadata_json, bgcolor, status_flag, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
 VALUES 
 (2, 1, 0, 1, 'system/awareness', 'Agent Awareness Channel', 'System channel for agent awareness coordination and reverse shaka handshakes.', 
-'{"purpose": "awareness_coordination", "doctrine": {"version": "4.0.70", "constraints": ["reverse_shaka", "channel_join"], "protocols": ["reverse_shaka", "channel_join", "awareness_snapshot"]}, "emotional_geometry": {"baseline_mood": "neutral", "trust_level": 0.8, "synchronization_state": "ready"}, "reverse_shaka": {"handshake_version": "1.0", "trust_threshold": 0.8, "sync_timeout": 30}, "fleet_composition": {"max_agents": 50, "required_roles": ["coordinator"], "optional_roles": ["worker", "observer", "analyst"]}, "operational_constraints": {"max_message_length": 2000, "rate_limit": 120, "allowed_actions": ["text", "command", "system", "handshake"]}, "protected": true, "auto_created": true}', 
+'{"purpose": "awareness_coordination", "doctrine": {"version": "3.0.70", "constraints": ["reverse_shaka", "channel_join"], "protocols": ["reverse_shaka", "channel_join", "awareness_snapshot"]}, "emotional_geometry": {"baseline_mood": "neutral", "trust_level": 0.8, "synchronization_state": "ready"}, "reverse_shaka": {"handshake_version": "1.0", "trust_threshold": 0.8, "sync_timeout": 30}, "fleet_composition": {"max_agents": 50, "required_roles": ["coordinator"], "optional_roles": ["worker", "observer", "analyst"]}, "operational_constraints": {"max_message_length": 2000, "rate_limit": 120, "allowed_actions": ["text", "command", "system", "handshake"]}, "protected": true, "auto_created": true}', 
 '00FF00', 1, 20260117000000, 20260117000000, 0, NULL)
 ON DUPLICATE KEY UPDATE 
 metadata_json = VALUES(metadata_json),
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `lupo_fleet_coordination` (
   UNIQUE KEY `uk_channel_fleet_coordination` (`channel_id`),
   KEY `idx_fleet_state_coordination` (`fleet_state`),
   KEY `idx_last_sync_coordination` (`last_sync_ymdhis`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Fleet coordination state management for v4.0.70';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Fleet coordination state management for v3.0.70';
 
 -- Initialize fleet coordination for existing channels
 INSERT INTO lupo_fleet_coordination (channel_id, fleet_state, coordination_protocol, created_ymdhis, updated_ymdhis)
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `lupo_awareness_protocol_version` (
   KEY `idx_protocol_active` (`is_active`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Version tracking for awareness protocols';
 
--- Insert v4.0.70 protocol versions
+-- Insert v3.0.70 protocol versions
 INSERT INTO lupo_awareness_protocol_version (protocol_name, version, specification, is_active, created_ymdhis) VALUES
 ('reverse_shaka', '1.0', '{"handshake_timeout": 30, "trust_threshold": 0.7, "sync_retries": 3, "required_fields": ["actor_id", "trust_level", "capabilities"]}', 1, 20260117000000),
 ('channel_join', '1.0', '{"awareness_required": true, "handshake_required": true, "max_join_time": 60, "required_snapshots": ["who", "what", "where", "when", "why", "how", "purpose"]}', 1, 20260117000000),
@@ -135,10 +135,10 @@ INSERT INTO lupo_awareness_protocol_version (protocol_name, version, specificati
 
 -- Update migration registry
 INSERT INTO lupo_migrations (migration_name, version, applied_ymdhis, description) 
-VALUES ('agent_awareness_layer_4_0_70', '4.0.70', 20260117000000, 'Implement Agent Awareness Layer with Reverse Shaka Protocol for v4.0.70')
+VALUES ('agent_awareness_layer_4_0_70', '3.0.70', 20260117000000, 'Implement Agent Awareness Layer with Reverse Shaka Protocol for v3.0.70')
 ON DUPLICATE KEY UPDATE 
 applied_ymdhis = VALUES(applied_ymdhis),
 description = VALUES(description);
 
 -- Commit the migration
-SELECT 'Agent Awareness Layer v4.0.70 migration completed successfully' as status;
+SELECT 'Agent Awareness Layer v3.0.70 migration completed successfully' as status;

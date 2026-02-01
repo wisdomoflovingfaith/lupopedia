@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -28,8 +28,8 @@ in_this_file_we_have:
   - Never Rewrite Based on Assumptions
 file:
   title: "SQL Refactor Mapping Doctrine"
-  description: "Focused rules for mapping SQL queries using refactor TOON files in Lupopedia 4.0.0"
-  version: "4.0.0"
+  description: "Focused rules for mapping SQL queries using refactor TOON files in Lupopedia 3.0.0"
+  version: "3.0.0"
   status: published
   author: "Captain Wolfie"
 ---
@@ -319,6 +319,6 @@ SELECT * FROM {{prefix}}crafty_auto_invite
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.0*  
+*Version: 3.0.0*  
 *Author: Captain Wolfie*
 

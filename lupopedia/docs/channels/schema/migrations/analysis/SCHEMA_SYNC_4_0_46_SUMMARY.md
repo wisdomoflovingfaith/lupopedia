@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.46
+file.last_modified_system_version: 3.0.46
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,23 +8,23 @@ dialog:
   speaker: CURSOR
   target: @Captain_Wolfie
   mood_RGB: "00FF00"
-  message: "Created schema synchronization migration for version 4.0.46. Identified 2 missing core schema tables from TOON file definitions and created migration SQL file respecting doctrine compliance and table budget limits."
+  message: "Created schema synchronization migration for version 3.0.46. Identified 2 missing core schema tables from TOON file definitions and created migration SQL file respecting doctrine compliance and table budget limits."
 tags:
   categories: ["documentation", "migrations", "schema"]
   collections: ["core-docs"]
   channels: ["dev"]
 file:
-  title: "Schema Synchronization Summary - Version 4.0.46"
+  title: "Schema Synchronization Summary - Version 3.0.46"
   description: "Summary of schema synchronization analysis and migration file creation"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Schema Synchronization Summary - Version 4.0.46
+# Schema Synchronization Summary - Version 3.0.46
 
 **Date:** 2026-01-16  
-**Version:** 4.0.46  
+**Version:** 3.0.46  
 **Migration File:** `database/migrations/schema_sync_4_0_46_missing_tables.sql`
 
 ---

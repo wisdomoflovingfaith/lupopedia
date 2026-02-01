@@ -1,15 +1,15 @@
 -- ============================================================
--- Lupopedia 4.0.11 — Collection 0 Tab Content Mapping Seed
+-- Lupopedia 3.0.11 — Collection 0 Tab Content Mapping Seed
 -- Maps system documentation content to Collection 0 tabs
 -- ============================================================
 --
--- wolfie.headers.version: "4.0.11"
+-- wolfie.headers.version: "3.0.11"
 -- header_atoms:
 --   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 -- dialog:
 --   - speaker: CURSOR
 --     target: @everyone
---     message: "Version 4.0.11: Created seed SQL file for mapping system documentation content to Collection 0 tabs in lupo_collection_tab_map. All inserts are idempotent using ON DUPLICATE KEY UPDATE."
+--     message: "Version 3.0.11: Created seed SQL file for mapping system documentation content to Collection 0 tabs in lupo_collection_tab_map. All inserts are idempotent using ON DUPLICATE KEY UPDATE."
 --     mood: "00FF00"
 -- tags:
 --   categories: ["database", "seed", "mapping"]

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.50
+file.last_modified_system_version: 3.0.50
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -9,17 +9,17 @@ tags:
   collections: ["core-docs"]
   channels: ["dev"]
 file:
-  title: "Version 4.1.0 Ascent - Overview"
-  description: "Planning and tracking for version 4.1.0 public release preparation"
+  title: "Version 3.1.0 Ascent - Overview"
+  description: "Planning and tracking for version 3.1.0 public release preparation"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: planning
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Version 4.1.0 Ascent - Overview
+# Version 3.1.0 Ascent - Overview
 
-**Current Version:** 4.0.50  
-**Target Version:** 4.1.0  
+**Current Version:** 3.0.50  
+**Target Version:** 3.1.0  
 **Purpose:** Public release preparation  
 **Status:** Planning phase
 
@@ -27,7 +27,7 @@ file:
 
 ## Mission
 
-Version 4.1.0 represents the first public release of Lupopedia Semantic OS. This directory contains all planning, tracking, and execution documentation for the ascent to public release.
+Version 3.1.0 represents the first public release of Lupopedia Semantic OS. This directory contains all planning, tracking, and execution documentation for the ascent to public release.
 
 ---
 
@@ -57,34 +57,34 @@ Version 4.1.0 represents the first public release of Lupopedia Semantic OS. This
 
 **File:** `PROGRESS_TRACKER.md`
 
-Track daily progress, blockers, and completion status for all 4.1.0 tasks.
+Track daily progress, blockers, and completion status for all 3.1.0 tasks.
 
 ---
 
 ## Timeline
 
 **Estimated Duration:** 4-6 weeks  
-**Start Date:** TBD (after 4.0.60 stability release)  
+**Start Date:** TBD (after 3.0.60 stability release)  
 **Target Completion:** TBD
 
 ---
 
 ## Success Criteria
 
-Version 4.1.0 is ready when:
+Version 3.1.0 is ready when:
 - [ ] History reconciliation complete (1996-2026)
 - [ ] Dialog system migrated to database
 - [ ] Color protocol integrated
 - [ ] Git repository initialized
 - [ ] Public documentation complete
 - [ ] Production deployment tested
-- [ ] All version references updated to 4.1.0
+- [ ] All version references updated to 3.1.0
 
 ---
 
 ## Related Documentation
 
-- **Version 4.0.60 Plan:** `docs/VERSION_4_0_60_PLAN.md`
+- **Version 3.0.60 Plan:** `docs/VERSION_4_0_60_PLAN.md`
 - **Ascent Manifest:** `docs/V4_1_0_ASCENT_MANIFEST_CLEAN.md`
 - **Monday Start:** `docs/MONDAY_START_OF_DAY.md`
 - **History Documentation:** `docs/history/`
@@ -92,5 +92,5 @@ Version 4.1.0 is ready when:
 ---
 
 *Created: 2026-01-16*  
-*Version: 4.0.50*  
+*Version: 3.0.50*  
 *Status: Planning phase*

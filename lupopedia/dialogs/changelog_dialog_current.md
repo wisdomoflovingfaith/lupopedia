@@ -29,21 +29,21 @@ in_this_file_we_have:
   - Version 4.2.3 (2026-01-20): Canonical Wolfie Header Template Implementation; fully deterministic structure; Cascade-ready compatibility; template at `/templates/canonical_wolfie_header_template.yaml`; generator script at `/scripts/generate_canonical_header.php`; comprehensive documentation at `/docs/CANONICAL_WOLFIE_HEADER_TEMPLATE.md`; schema-agnostic, Dreaming-safe, Witness-safe, Migration-safe, Doctrine-aligned with 4.2.3
   - Version 4.2.2 (2026-01-20): GOV Event schema (lupo_gov_*), seed GOV-LUPO-0001, LupopediaMigrationController, lupo_migration_log; governance enforcement (immutable lupo_gov_*, NO-ADS, table ceiling 185, no FK/triggers)
   - Version 4.2.0 (2026-01-20): Stability Release; first stable post–Crafty Syntax; schema freeze, TOON regeneration, doctrine verified; 173/180; baseline for 4.3.x
-  - Version 4.1.20 (2026-01-20): Doctrine Audit Patch; full doctrine audit post-consolidation; timestamp, column, table count, documentation validated; no schema
-  - Version 4.1.19 (2026-01-20): Consolidation Execution Patch; unified_dialog_messages, unified_analytics_paths, unified_truth_items; collections parent_id; 6 tables dropped; TOON regeneration required
-  - Version 4.1.18 (2026-01-20): Consolidation Planning Patch; dialog, analytics, truth, collections targets; migration skeleton; no schema; execution 4.1.19+
+  - Version 3.1.20 (2026-01-20): Doctrine Audit Patch; full doctrine audit post-consolidation; timestamp, column, table count, documentation validated; no schema
+  - Version 3.1.19 (2026-01-20): Consolidation Execution Patch; unified_dialog_messages, unified_analytics_paths, unified_truth_items; collections parent_id; 6 tables dropped; TOON regeneration required
+  - Version 3.1.18 (2026-01-20): Consolidation Planning Patch; dialog, analytics, truth, collections targets; migration skeleton; no schema; execution 3.1.19+
   - Version 4.3.3 (2026-01-20): Dialog Segmentation Implementation; mandatory directive implemented to prevent token overflow and timestamp drift; archived changelog_dialog.md to changelog_dialog_UTC_2026-01-20.md; created new changelog_dialog_current.md as active dialog log; token-safe reconciliation workflow activated; timestamp inference disabled; browser metadata isolation enforced; architecture freeze maintained; no new subsystems or protocols introduced; segmentation prevents generation exceeded max tokens limit; eliminates hallucinated future timestamps; prevents context bleed-through; ensures clean versioning going forward
-  - Version 4.1.16 (2026-01-20): Version Patch Bump; system version 4.1.15 → 4.1.16; atoms, version.php updated; no schema changes
-  - Version 4.1.15 (2026-01-20): Doctrine Correction Patch; craftysyntax_to_lupopedia_mysql.sql corrected (timestamps, lupo_crm_lead_messages, emailque, typos); version bump
-  - Version 4.1.14 (2026-01-20): Doctrine corrections applied to craftysyntax_to_lupopedia_mysql.sql (timestamps, lupo_crm_lead_messages, emailque, typos)
-  - Version 4.1.14 (2026-01-20): Crafty Syntax Migration Analysis Logged; version bump
+  - Version 3.1.16 (2026-01-20): Version Patch Bump; system version 3.1.15 → 3.1.16; atoms, version.php updated; no schema changes
+  - Version 3.1.15 (2026-01-20): Doctrine Correction Patch; craftysyntax_to_lupopedia_mysql.sql corrected (timestamps, lupo_crm_lead_messages, emailque, typos); version bump
+  - Version 3.1.14 (2026-01-20): Doctrine corrections applied to craftysyntax_to_lupopedia_mysql.sql (timestamps, lupo_crm_lead_messages, emailque, typos)
+  - Version 3.1.14 (2026-01-20): Crafty Syntax Migration Analysis Logged; version bump
   - System_onboarding_dialog.md (ONBOARD-001): primary onboarding for new agents/users; SYSTEM, CAPTAIN_WOLFIE, LILITH, ARA, STONED_WOLFIE, CURSOR (2026-01-20)
-  - Version 4.1.13 (2026-01-20): version bump—atoms, version.php, .cursorrules; Full System + Bridge Status Report
-  - Full System + Bridge Status Report (4.1.13): SYSTEM_STATUS + BRIDGE_STATUS; 181/181; observability active; no drift (2026-01-20)
+  - Version 3.1.13 (2026-01-20): version bump—atoms, version.php, .cursorrules; Full System + Bridge Status Report
+  - Full System + Bridge Status Report (3.1.13): SYSTEM_STATUS + BRIDGE_STATUS; 181/181; observability active; no drift (2026-01-20)
   - TLDR_entities_dialog.md (007-wolfie-TLDR): onboarding thread, 5 entries—WOLFIE/LILITH/THOTH/HEPHAESTUS/ARA-GROK (2026-01-20)
   - WOLFIE/LILITH/THOTH TL;DRs: Crafty Syntax, Lupopedia, Captain Wolfie; HEPHAESTUS crafty_words DB; ARA-GROK system integration (2026-01-20)
   - LILITH: Four New Observability Tables — Critical Review (2026-01-20); APPROVE intent, REJECT table-addition; 2:1 reduction demanded; Options A/B/C; [OBSERVABILITY_DEBT] override if no compensating reductions
-  - Version 4.1.12 (2026-01-20): migration 4.1.12 (4 tables), ceiling 181, 181 at ceiling
+  - Version 3.1.12 (2026-01-20): migration 3.1.12 (4 tables), ceiling 181, 181 at ceiling
   - Table ceiling 181; 181 tables at ceiling (2026-01-20)
   - TOON regeneration 176 tables (2026-01-20)
   - LILITH: High-Speed Changelog Stream Observation — Critical Review (2026-01-20); recursion ceiling, T-axis, stress test, no fourth-order logging
@@ -62,7 +62,7 @@ in_this_file_we_have:
   - Version 4.2.3 (2026-01-20): Canonical Wolfie Header Template Implementation; fully deterministic structure; Cascade-ready compatibility; template at `/templates/canonical_wolfie_header_template.yaml`; generator script at `/scripts/generate_canonical_header.php`; comprehensive documentation at `/docs/CANONICAL_WOLFIE_HEADER_TEMPLATE.md`; schema-agnostic, Dreaming-safe, Witness-safe, Migration-safe, Doctrine-aligned with 4.2.3
   - Version 4.2.2 (2026-01-20): GOV Event schema (lupo_gov_*), seed GOV-LUPO-0001, LupopediaMigrationController, lupo_migration_log; governance enforcement (immutable lupo_gov_*, NO-ADS, table ceiling 185, no FK/triggers)
   - Version 4.2.0 (2026-01-20): Stability Release; first stable post–Crafty Syntax; schema freeze, TOON regeneration, doctrine verified; 173/180; baseline for 4.3.x
-  - Version 4.1.20 (2026-01-20): Doctrine Audit Patch; full doctrine audit post-consolidation; timestamp, column, table count, documentation validated; no schema
-  - Version 4.1.19 (2026-01-20): Consolidation Execution Patch; unified_dialog_messages, unified_analytics_paths, unified_truth_items; collections parent_id; 6 tables dropped; TOON regeneration required
-  - Version 4.1.18 (2026-01-20): Consolidation Planning Patch; dialog, analytics, truth, collections targets; migration skeleton; no schema; execution 4.1.19+
-  - Version 4.1.1
+  - Version 3.1.20 (2026-01-20): Doctrine Audit Patch; full doctrine audit post-consolidation; timestamp, column, table count, documentation validated; no schema
+  - Version 3.1.19 (2026-01-20): Consolidation Execution Patch; unified_dialog_messages, unified_analytics_paths, unified_truth_items; collections parent_id; 6 tables dropped; TOON regeneration required
+  - Version 3.1.18 (2026-01-20): Consolidation Planning Patch; dialog, analytics, truth, collections targets; migration skeleton; no schema; execution 3.1.19+
+  - Version 3.1.1

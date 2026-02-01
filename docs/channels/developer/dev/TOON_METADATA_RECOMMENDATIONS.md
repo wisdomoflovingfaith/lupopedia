@@ -1,5 +1,5 @@
 ---
-wolfie.headers.version: 4.0.2
+wolfie.headers.version: 3.0.2
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS

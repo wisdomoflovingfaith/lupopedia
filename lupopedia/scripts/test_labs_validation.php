@@ -9,7 +9,7 @@
  * - Revalidation cycle
  * 
  * @package Lupopedia
- * @version 4.1.6
+ * @version 3.1.6
  * @author CAPTAIN_WOLFIE
  * @governance LABS-001 Doctrine v1.0
  */

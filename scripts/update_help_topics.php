@@ -2,7 +2,7 @@
 /**
  * wolfie.header.identity: update-help-topics
  * wolfie.header.placement: /scripts/update_help_topics.php
- * wolfie.header.version: 4.1.1
+ * wolfie.header.version: 3.1.1
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone

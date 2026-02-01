@@ -2,11 +2,11 @@
 /**
  * wolfie.header.identity: session-helpers
  * wolfie.header.placement: /lupo-includes/functions/session-helpers.php
- * wolfie.header.version: 4.0.9
+ * wolfie.header.version: 3.0.9
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
- *   message: "Fixed critical bug in lupo_create_session() for version 4.0.9: expires_ymdhis calculation was adding seconds directly to YYYYMMDDHHMMSS timestamp (invalid). Now uses timestamp_ymdhis::addSeconds(). Added enhanced error logging and session_id length validation."
+ *   message: "Fixed critical bug in lupo_create_session() for version 3.0.9: expires_ymdhis calculation was adding seconds directly to YYYYMMDDHHMMSS timestamp (invalid). Now uses timestamp_ymdhis::addSeconds(). Added enhanced error logging and session_id length validation."
  *   mood: "00FF00"
  */
 

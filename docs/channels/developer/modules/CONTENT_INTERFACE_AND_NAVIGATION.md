@@ -1,13 +1,13 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Created CONTENT_INTERFACE_AND_NAVIGATION.md documenting how Crafty Syntax 4.0.0 organizes content using the Lupopedia Semantic Operating System through Collections and Navigation Tabs."
+  message: "Created CONTENT_INTERFACE_AND_NAVIGATION.md documenting how Crafty Syntax 3.0.0 organizes content using the Lupopedia Semantic Operating System through Collections and Navigation Tabs."
   mood: "00FF00"
 tags:
   categories: ["documentation", "content-interface", "semantic-navigation"]
@@ -44,7 +44,7 @@ sections:
     anchor: "#summary"
 file:
   title: "Content Interface & Semantic Navigation Tabs"
-  description: "How Crafty Syntax 4.0.0 Organizes Content Using the Lupopedia Semantic Operating System"
+  description: "How Crafty Syntax 3.0.0 Organizes Content Using the Lupopedia Semantic Operating System"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
@@ -52,13 +52,13 @@ file:
 
 # **Content Interface & Semantic Navigation Tabs**
 
-### *How Crafty Syntax 4.0.0 Organizes Content Using the Lupopedia Semantic Operating System*
+### *How Crafty Syntax 3.0.0 Organizes Content Using the Lupopedia Semantic Operating System*
 
 ---
 
 ## **Overview**
 
-Crafty Syntax 4.0.0 introduces a modern Content Interface powered by the Lupopedia Semantic Operating System. This interface allows website owners to organize their site's content using **Collections** and **Navigation Tabs**, creating a flexible, organic structure that automatically generates semantic meaning.
+Crafty Syntax 3.0.0 introduces a modern Content Interface powered by the Lupopedia Semantic Operating System. This interface allows website owners to organize their site's content using **Collections** and **Navigation Tabs**, creating a flexible, organic structure that automatically generates semantic meaning.
 
 Unlike traditional CMS systems that force a rigid taxonomy, Lupopedia lets each website define its own navigation structure. The system then converts those choices into semantic edges, allowing content to be discovered, reorganized, and understood in a deeper way.
 
@@ -274,7 +274,7 @@ Every Crafty Syntax installation becomes a node in a larger semantic ecosystem.
 
 ## **8. Summary**
 
-The Content Interface in Crafty Syntax 4.0.0 is more than a file manager.
+The Content Interface in Crafty Syntax 3.0.0 is more than a file manager.
 
 **It is a semantic navigation engine** that:
 
@@ -292,8 +292,8 @@ The Content Interface in Crafty Syntax 4.0.0 is more than a file manager.
 ## **Related Documentation**
 
 - **[Semantic Navigation System](../../architecture/SEMANTIC_NAVIGATION.md)** â€” Technical details on how semantic navigation works at the database and API level
-- **[Crafty Syntax Module](../modules/craftysyntax/README.md)** â€” Complete Crafty Syntax 4.0.0 module documentation
-- **[Upgrade Plan: Crafty Syntax 3.7.5 â†’ 4.0.0](UPGRADE_PLAN_3.7.5_TO_4.0.0.md)** â€” Upgrade path from Crafty Syntax 3.7.5
+- **[Crafty Syntax Module](../modules/craftysyntax/README.md)** â€” Complete Crafty Syntax 3.0.0 module documentation
+- **[Upgrade Plan: Crafty Syntax 3.7.5 â†’ 3.0.0](UPGRADE_PLAN_3.7.5_TO_3.0.0.md)** â€” Upgrade path from Crafty Syntax 3.7.5
 - **[Architecture Overview](../../architecture/ARCHITECTURE.md)** â€” Overall Lupopedia architecture including semantic layer
 
 ---

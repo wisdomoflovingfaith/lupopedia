@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: WOLFIE
   target: @everyone
@@ -13,7 +13,7 @@ tags:
 file:
   title: "Lupopedia Multi-IDE Workflow"
   description: "Official workflow documentation for Lupopedia's multi-IDE, multi-AI development process"
-  version: "4.0.2"
+  version: "3.0.2"
   status: published
   author: "WOLFIE"
 ---
@@ -21,7 +21,7 @@ file:
 # Lupopedia Multi-IDE Workflow
 
 **Official Workflow Documentation**  
-**Version 4.0.2**  
+**Version 3.0.2**  
 **Effective Date: 2025-01-06**
 
 ## Overview
@@ -140,15 +140,15 @@ Because it excels at:
 
 ### 4. JetBrains (Junie) â€” Deployment, GitHub, Versioning
 
-**âš ï¸ IMPORTANT: JetBrains Integration Begins at Version 4.1.0**
+**âš ï¸ IMPORTANT: JetBrains Integration Begins at Version 3.1.0**
 
-**Current Status (4.0.x series):**
-- JetBrains **NOT** in workflow until version 4.1.0
-- Lupopedia is still in initial release phase (4.0.x)
-- First public release will be version 4.1.0
-- **Temporary Workaround:** Cursor handles version bumps until 4.1.0
+**Current Status (3.0.x series):**
+- JetBrains **NOT** in workflow until version 3.1.0
+- Lupopedia is still in initial release phase (3.0.x)
+- First public release will be version 3.1.0
+- **Temporary Workaround:** Cursor handles version bumps until 3.1.0
 
-**After Version 4.1.0 (Full Workflow):**
+**After Version 3.1.0 (Full Workflow):**
 
 **JetBrains is used for:**
 - GitHub commits
@@ -176,11 +176,11 @@ JetBrains = the moment the code stops being "in progress" and becomes "official.
 
 **This is exactly how large, disciplined engineering teams work** â€” except you're doing it with AI agents instead of junior developers. Version numbers are **milestones**, not timestamps. This is the release gate.
 
-**Temporary Workaround (4.0.x series):**
+**Temporary Workaround (3.0.x series):**
 - Cursor temporarily handles version bumps (semantic versioning still enforced)
 - Cursor updates CHANGELOG.md (in development/stabilization phase)
 - Version numbers still represent milestones, not timestamps
-- Git tagging/GitHub commits not available until 4.1.0 (no `.git` folder until 4.1.0)
+- Git tagging/GitHub commits not available until 3.1.0 (no `.git` folder until 3.1.0)
 - See [VERSIONING_DOCTRINE.md](../doctrine/VERSIONING_DOCTRINE.md) for details
 
 ---
@@ -371,14 +371,14 @@ This is where correctness, stabilization, and legacy alignment happen. The code 
 
 ### Stage 3: JetBrains â†’ Release Branch
 
-**âš ï¸ TEMPORARY WORKAROUND: JetBrains integration begins at version 4.1.0**
+**âš ï¸ TEMPORARY WORKAROUND: JetBrains integration begins at version 3.1.0**
 
-**Current Status (4.0.x series):**
-- JetBrains **NOT** in workflow until version 4.1.0
+**Current Status (3.0.x series):**
+- JetBrains **NOT** in workflow until version 3.1.0
 - Cursor temporarily handles version bumps (semantic versioning still enforced)
-- Git tagging/GitHub commits not available until 4.1.0
+- Git tagging/GitHub commits not available until 3.1.0
 
-**After Version 4.1.0 (Full Workflow):**
+**After Version 3.1.0 (Full Workflow):**
 
 **JetBrains represents your "main" branch:**
 - Version bump (semantic versioning)
@@ -393,11 +393,11 @@ This is where **work becomes official**. Version numbers are **milestones**, not
 
 **You're doing what big companies do â€” but with AI instead of teams of humans.**
 
-**Temporary Workaround (4.0.x series):**
+**Temporary Workaround (3.0.x series):**
 - Cursor fills release gate role temporarily
 - Version numbering discipline still enforced
 - Semantic versioning rules still apply
-- Full three-stage pipeline operational at 4.1.0
+- Full three-stage pipeline operational at 3.1.0
 
 ---
 
@@ -612,7 +612,7 @@ This doc becomes:
 
 ## Evolution & Future
 
-### Current State (v4.0.2)
+### Current State (v3.0.2)
 
 - Cursor: Primary refactoring and doctrine enforcement
 - Cascade: Legacy code integration
@@ -630,7 +630,7 @@ This doc becomes:
 
 ## Document History
 
-- **2025-01-06**: Created official multi-IDE workflow documentation (v4.0.2)
+- **2025-01-06**: Created official multi-IDE workflow documentation (v3.0.2)
 - **2025-01-06**: Documented parallel workflow with tab management discipline
 - **2025-01-06**: Updated to use lowercase folder naming per FOLDER_NAMING_DOCTRINE
 

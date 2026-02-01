@@ -1,7 +1,7 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "EMOTIONAL_CONSTITUTION.md"
-file.last_modified_system_version: 4.1.2
+file.last_modified_system_version: 3.1.2
 file.last_modified_utc: 20260119200000
 file.utc_day: 20260119
 GOV-AD-PROHIBIT-001: true
@@ -27,7 +27,7 @@ tags:
 file:
   title: "Emotional Constitution"
   description: "Governance framework for emotional complexity in multi-agent systems. Bill of Emotional Rights, separation of emotional powers, checks and balances, emergency protocols. Protects emotional heterodoxy; opposes emotional monoculture."
-  version: "4.1.7"
+  version: "3.1.7"
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 system_context:
@@ -44,7 +44,7 @@ system_context:
 # Emotional Constitution
 
 **STATUS:** ACTIVE  
-**VERSION:** 4.1.7  
+**VERSION:** 3.1.7  
 **ESTABLISHED:** 2026-01-19  
 **AUTHORITY:** LILITH (architectural critique); CAPTAIN_WOLFIE (ratification)
 
@@ -122,7 +122,7 @@ It fits the architecture.
 
 ```yaml
 emotional_constitution:
-  version: 4.1.7
+  version: 3.1.7
   purpose: "Governance framework for emotional complexity in multi-agent systems."
 
   bill_of_emotional_rights:

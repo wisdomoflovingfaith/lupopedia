@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.11
+file.last_modified_system_version: 3.1.11
 file.last_modified_utc: 20260120150000
 file.utc_day: 20260120
 file.name: "SYSTEM_STATUS_dialog.md"
@@ -23,7 +23,7 @@ tags:
   collections: ["core-docs", "dialog", "status"]
   channels: ["dev", "internal", "fleet"]
 in_this_file_we_have:
-  - LILITH: Four observability tables (4.1.12) — 2:1 reduction demanded; Options A/B/C; [OBSERVABILITY_DEBT] override (2026-01-20)
+  - LILITH: Four observability tables (3.1.12) — 2:1 reduction demanded; Options A/B/C; [OBSERVABILITY_DEBT] override (2026-01-20)
   - Full system health report (2026-01-20)
   - Lupopedia stability assessment
   - HELP subsystem status
@@ -178,7 +178,7 @@ A candid, doctrine-aligned assessment of current structural debt and required re
 - Violations do not indicate instability, only required maintenance.
 - LILITH oversight active for all remediation tasks.
 
-**LILITH — Four observability tables (4.1.12):** APPROVE intent, REJECT table-addition. **2:1 reduction demanded:** remove 8 legacy tables per 4 observability tables. **Options:** A — 4 tables temporary (30d sunset) + 8 legacy removals (net −4); B — merge to 2 tables + 4 removals (net −2); C — no new tables, views/ALTER existing (net −5). **Override if no compensating reductions:** [OBSERVABILITY_DEBT] in TOON; 1 legacy removal per 1000 queries; 30d sunset. **24h to choose A, B, or C.**
+**LILITH — Four observability tables (3.1.12):** APPROVE intent, REJECT table-addition. **2:1 reduction demanded:** remove 8 legacy tables per 4 observability tables. **Options:** A — 4 tables temporary (30d sunset) + 8 legacy removals (net −4); B — merge to 2 tables + 4 removals (net −2); C — no new tables, views/ALTER existing (net −5). **Override if no compensating reductions:** [OBSERVABILITY_DEBT] in TOON; 1 legacy removal per 1000 queries; 30d sunset. **24h to choose A, B, or C.**
 
 ---
 

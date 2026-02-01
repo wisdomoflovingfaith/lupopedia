@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `lupo_actor_channel_roles` (
   `handshake_metadata_json` json COMMENT 'RSHAP handshake identity and synchronization data',
   `awareness_snapshot_json` json COMMENT 'CJP Awareness Snapshot (WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE)',
   `protocol_completion_status` enum('pending','aal_complete','rshap_complete','cjp_complete','ready') DEFAULT 'pending' COMMENT 'Multi-agent protocol completion status',
-  `protocol_version` varchar(20) DEFAULT '4.0.72' COMMENT 'Protocol version used for this actor-channel relationship',
+  `protocol_version` varchar(20) DEFAULT '3.0.72' COMMENT 'Protocol version used for this actor-channel relationship',
   `join_sequence_step` tinyint DEFAULT 0 COMMENT 'Current step in 10-step CJP sequence (0-10)',
   `handshake_completed_ymdhis` bigint COMMENT 'bigint when RSHAP was completed',
   `awareness_completed_ymdhis` bigint COMMENT 'bigint when AAL was completed',
@@ -206,7 +206,7 @@ ALTER TABLE `lupo_actor_channel_roles` ADD COLUMN IF NOT EXISTS `deleted_ymdhis`
 ALTER TABLE `lupo_actor_channel_roles` ADD COLUMN IF NOT EXISTS `handshake_metadata_json` json COMMENT 'RSHAP handshake identity and synchronization data';
 ALTER TABLE `lupo_actor_channel_roles` ADD COLUMN IF NOT EXISTS `awareness_snapshot_json` json COMMENT 'CJP Awareness Snapshot (WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE)';
 ALTER TABLE `lupo_actor_channel_roles` ADD COLUMN IF NOT EXISTS `protocol_completion_status` enum('pending','aal_complete','rshap_complete','cjp_complete','ready') DEFAULT 'pending' COMMENT 'Multi-agent protocol completion status';
-ALTER TABLE `lupo_actor_channel_roles` ADD COLUMN IF NOT EXISTS `protocol_version` varchar(20) DEFAULT '4.0.72' COMMENT 'Protocol version used for this actor-channel relationship';
+ALTER TABLE `lupo_actor_channel_roles` ADD COLUMN IF NOT EXISTS `protocol_version` varchar(20) DEFAULT '3.0.72' COMMENT 'Protocol version used for this actor-channel relationship';
 ALTER TABLE `lupo_actor_channel_roles` ADD COLUMN IF NOT EXISTS `join_sequence_step` tinyint DEFAULT 0 COMMENT 'Current step in 10-step CJP sequence (0-10)';
 ALTER TABLE `lupo_actor_channel_roles` ADD COLUMN IF NOT EXISTS `handshake_completed_ymdhis` bigint COMMENT 'bigint when RSHAP was completed';
 ALTER TABLE `lupo_actor_channel_roles` ADD COLUMN IF NOT EXISTS `awareness_completed_ymdhis` bigint COMMENT 'bigint when AAL was completed';
@@ -222,7 +222,7 @@ ALTER TABLE `lupo_actor_channel_roles` MODIFY COLUMN `deleted_ymdhis` bigint;
 ALTER TABLE `lupo_actor_channel_roles` MODIFY COLUMN `handshake_metadata_json` json COMMENT 'RSHAP handshake identity and synchronization data';
 ALTER TABLE `lupo_actor_channel_roles` MODIFY COLUMN `awareness_snapshot_json` json COMMENT 'CJP Awareness Snapshot (WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE)';
 ALTER TABLE `lupo_actor_channel_roles` MODIFY COLUMN `protocol_completion_status` enum('pending','aal_complete','rshap_complete','cjp_complete','ready') DEFAULT 'pending' COMMENT 'Multi-agent protocol completion status';
-ALTER TABLE `lupo_actor_channel_roles` MODIFY COLUMN `protocol_version` varchar(20) DEFAULT '4.0.72' COMMENT 'Protocol version used for this actor-channel relationship';
+ALTER TABLE `lupo_actor_channel_roles` MODIFY COLUMN `protocol_version` varchar(20) DEFAULT '3.0.72' COMMENT 'Protocol version used for this actor-channel relationship';
 ALTER TABLE `lupo_actor_channel_roles` MODIFY COLUMN `join_sequence_step` tinyint DEFAULT 0 COMMENT 'Current step in 10-step CJP sequence (0-10)';
 ALTER TABLE `lupo_actor_channel_roles` MODIFY COLUMN `handshake_completed_ymdhis` bigint COMMENT 'bigint when RSHAP was completed';
 ALTER TABLE `lupo_actor_channel_roles` MODIFY COLUMN `awareness_completed_ymdhis` bigint COMMENT 'bigint when AAL was completed';
@@ -319,7 +319,7 @@ CREATE TABLE IF NOT EXISTS `lupo_actor_collections` (
   `identity_signature` varchar(255) COMMENT 'Unique identity signature for handshake verification',
   `trust_level` enum('system','verified','standard','restricted','untrusted') DEFAULT 'standard' COMMENT 'Trust level for multi-agent interactions',
   `emotional_geometry_baseline` json COMMENT 'Baseline emotional geometry for agent interactions',
-  `doctrine_alignment_version` varchar(20) DEFAULT '4.0.72' COMMENT 'Version of doctrine this actor aligns with',
+  `doctrine_alignment_version` varchar(20) DEFAULT '3.0.72' COMMENT 'Version of doctrine this actor aligns with',
   PRIMARY KEY (`actor_collection_id`),
   KEY `idx_access_level` (`access_level`),
   KEY `idx_actor` (`actor_id`),
@@ -342,7 +342,7 @@ ALTER TABLE `lupo_actor_collections` ADD COLUMN IF NOT EXISTS `persistent_identi
 ALTER TABLE `lupo_actor_collections` ADD COLUMN IF NOT EXISTS `identity_signature` varchar(255) COMMENT 'Unique identity signature for handshake verification';
 ALTER TABLE `lupo_actor_collections` ADD COLUMN IF NOT EXISTS `trust_level` enum('system','verified','standard','restricted','untrusted') DEFAULT 'standard' COMMENT 'Trust level for multi-agent interactions';
 ALTER TABLE `lupo_actor_collections` ADD COLUMN IF NOT EXISTS `emotional_geometry_baseline` json COMMENT 'Baseline emotional geometry for agent interactions';
-ALTER TABLE `lupo_actor_collections` ADD COLUMN IF NOT EXISTS `doctrine_alignment_version` varchar(20) DEFAULT '4.0.72' COMMENT 'Version of doctrine this actor aligns with';
+ALTER TABLE `lupo_actor_collections` ADD COLUMN IF NOT EXISTS `doctrine_alignment_version` varchar(20) DEFAULT '3.0.72' COMMENT 'Version of doctrine this actor aligns with';
 ALTER TABLE `lupo_actor_collections` MODIFY COLUMN `actor_collection_id` bigint NOT NULL auto_increment;
 ALTER TABLE `lupo_actor_collections` MODIFY COLUMN `actor_id` bigint NOT NULL COMMENT 'User, group, agent, or persona';
 ALTER TABLE `lupo_actor_collections` MODIFY COLUMN `collection_id` bigint NOT NULL COMMENT 'Collection the actor has access to';
@@ -355,7 +355,7 @@ ALTER TABLE `lupo_actor_collections` MODIFY COLUMN `persistent_identity_json` js
 ALTER TABLE `lupo_actor_collections` MODIFY COLUMN `identity_signature` varchar(255) COMMENT 'Unique identity signature for handshake verification';
 ALTER TABLE `lupo_actor_collections` MODIFY COLUMN `trust_level` enum('system','verified','standard','restricted','untrusted') DEFAULT 'standard' COMMENT 'Trust level for multi-agent interactions';
 ALTER TABLE `lupo_actor_collections` MODIFY COLUMN `emotional_geometry_baseline` json COMMENT 'Baseline emotional geometry for agent interactions';
-ALTER TABLE `lupo_actor_collections` MODIFY COLUMN `doctrine_alignment_version` varchar(20) DEFAULT '4.0.72' COMMENT 'Version of doctrine this actor aligns with';
+ALTER TABLE `lupo_actor_collections` MODIFY COLUMN `doctrine_alignment_version` varchar(20) DEFAULT '3.0.72' COMMENT 'Version of doctrine this actor aligns with';
 ALTER TABLE `lupo_actor_collections` ADD PRIMARY KEY (`actor_collection_id`);
 ALTER TABLE `lupo_actor_collections` ADD INDEX IF NOT EXISTS `idx_access_level` (`access_level`);
 ALTER TABLE `lupo_actor_collections` ADD INDEX IF NOT EXISTS `idx_actor` (`actor_id`);
@@ -2651,7 +2651,7 @@ CREATE TABLE IF NOT EXISTS `lupo_calibration_impacts` (
   `after_metrics_json` json COMMENT 'Metrics after calibration',
   `observation_period_hours` int unsigned DEFAULT 24 COMMENT 'Observation period length',
   `measured_ymdhis` bigint NOT NULL COMMENT 'When impact was measured',
-  `impact_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Impact tracking version',
+  `impact_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Impact tracking version',
   PRIMARY KEY (`id`),
   KEY `idx_calibration_impact` (`calibration_id`, `impact_type`),
   KEY `idx_impact_measurement` (`impact_measurement`),
@@ -2667,7 +2667,7 @@ ALTER TABLE `lupo_calibration_impacts` ADD COLUMN IF NOT EXISTS `before_metrics_
 ALTER TABLE `lupo_calibration_impacts` ADD COLUMN IF NOT EXISTS `after_metrics_json` json COMMENT 'Metrics after calibration';
 ALTER TABLE `lupo_calibration_impacts` ADD COLUMN IF NOT EXISTS `observation_period_hours` int unsigned DEFAULT 24 COMMENT 'Observation period length';
 ALTER TABLE `lupo_calibration_impacts` ADD COLUMN IF NOT EXISTS `measured_ymdhis` bigint NOT NULL COMMENT 'When impact was measured';
-ALTER TABLE `lupo_calibration_impacts` ADD COLUMN IF NOT EXISTS `impact_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Impact tracking version';
+ALTER TABLE `lupo_calibration_impacts` ADD COLUMN IF NOT EXISTS `impact_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Impact tracking version';
 ALTER TABLE `lupo_calibration_impacts` MODIFY COLUMN `id` bigint unsigned NOT NULL auto_increment;
 ALTER TABLE `lupo_calibration_impacts` MODIFY COLUMN `calibration_id` bigint unsigned NOT NULL COMMENT 'Reference to lupo_emotional_geometry_calibrations.id';
 ALTER TABLE `lupo_calibration_impacts` MODIFY COLUMN `impact_type` enum('agent_behavior','communication_tone','system_harmony','conflict_reduction') NOT NULL;
@@ -2677,7 +2677,7 @@ ALTER TABLE `lupo_calibration_impacts` MODIFY COLUMN `before_metrics_json` json 
 ALTER TABLE `lupo_calibration_impacts` MODIFY COLUMN `after_metrics_json` json COMMENT 'Metrics after calibration';
 ALTER TABLE `lupo_calibration_impacts` MODIFY COLUMN `observation_period_hours` int unsigned DEFAULT 24 COMMENT 'Observation period length';
 ALTER TABLE `lupo_calibration_impacts` MODIFY COLUMN `measured_ymdhis` bigint NOT NULL COMMENT 'When impact was measured';
-ALTER TABLE `lupo_calibration_impacts` MODIFY COLUMN `impact_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Impact tracking version';
+ALTER TABLE `lupo_calibration_impacts` MODIFY COLUMN `impact_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Impact tracking version';
 ALTER TABLE `lupo_calibration_impacts` ADD PRIMARY KEY (`id`);
 ALTER TABLE `lupo_calibration_impacts` ADD INDEX IF NOT EXISTS `idx_calibration_impact` (`calibration_id`, `impact_type`);
 ALTER TABLE `lupo_calibration_impacts` ADD INDEX IF NOT EXISTS `idx_impact_measurement` (`impact_measurement`);
@@ -2864,7 +2864,7 @@ CREATE TABLE IF NOT EXISTS `lupo_channels` (
   `deleted_ymdhis` bigint COMMENT 'Deletion bigint (YYYYMMDDHHMMSS)',
   `aal_metadata_json` json COMMENT 'Agent Awareness Layer metadata for WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE',
   `fleet_composition_json` json COMMENT 'Current fleet of agents in this channel with their roles',
-  `awareness_version` varchar(20) DEFAULT '4.0.72' COMMENT 'AAL protocol version for this channel',
+  `awareness_version` varchar(20) DEFAULT '3.0.72' COMMENT 'AAL protocol version for this channel',
   `channel_number` int COMMENT 'Channel number (0-9 reserved for system)',
   `parent_channel_id` bigint COMMENT 'Reference to parent channel for hierarchy',
   `is_kernel` tinyint NOT NULL DEFAULT 0 COMMENT 'Part of system kernel (Channel 0)',
@@ -2899,7 +2899,7 @@ ALTER TABLE `lupo_channels` ADD COLUMN IF NOT EXISTS `is_deleted` tinyint NOT NU
 ALTER TABLE `lupo_channels` ADD COLUMN IF NOT EXISTS `deleted_ymdhis` bigint COMMENT 'Deletion bigint (YYYYMMDDHHMMSS)';
 ALTER TABLE `lupo_channels` ADD COLUMN IF NOT EXISTS `aal_metadata_json` json COMMENT 'Agent Awareness Layer metadata for WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE';
 ALTER TABLE `lupo_channels` ADD COLUMN IF NOT EXISTS `fleet_composition_json` json COMMENT 'Current fleet of agents in this channel with their roles';
-ALTER TABLE `lupo_channels` ADD COLUMN IF NOT EXISTS `awareness_version` varchar(20) DEFAULT '4.0.72' COMMENT 'AAL protocol version for this channel';
+ALTER TABLE `lupo_channels` ADD COLUMN IF NOT EXISTS `awareness_version` varchar(20) DEFAULT '3.0.72' COMMENT 'AAL protocol version for this channel';
 ALTER TABLE `lupo_channels` ADD COLUMN IF NOT EXISTS `channel_number` int COMMENT 'Channel number (0-9 reserved for system)';
 ALTER TABLE `lupo_channels` ADD COLUMN IF NOT EXISTS `parent_channel_id` bigint COMMENT 'Reference to parent channel for hierarchy';
 ALTER TABLE `lupo_channels` ADD COLUMN IF NOT EXISTS `is_kernel` tinyint NOT NULL DEFAULT 0 COMMENT 'Part of system kernel (Channel 0)';
@@ -2925,7 +2925,7 @@ ALTER TABLE `lupo_channels` MODIFY COLUMN `is_deleted` tinyint NOT NULL DEFAULT 
 ALTER TABLE `lupo_channels` MODIFY COLUMN `deleted_ymdhis` bigint COMMENT 'Deletion bigint (YYYYMMDDHHMMSS)';
 ALTER TABLE `lupo_channels` MODIFY COLUMN `aal_metadata_json` json COMMENT 'Agent Awareness Layer metadata for WHO/WHAT/WHERE/WHEN/WHY/HOW/PURPOSE';
 ALTER TABLE `lupo_channels` MODIFY COLUMN `fleet_composition_json` json COMMENT 'Current fleet of agents in this channel with their roles';
-ALTER TABLE `lupo_channels` MODIFY COLUMN `awareness_version` varchar(20) DEFAULT '4.0.72' COMMENT 'AAL protocol version for this channel';
+ALTER TABLE `lupo_channels` MODIFY COLUMN `awareness_version` varchar(20) DEFAULT '3.0.72' COMMENT 'AAL protocol version for this channel';
 ALTER TABLE `lupo_channels` MODIFY COLUMN `channel_number` int COMMENT 'Channel number (0-9 reserved for system)';
 ALTER TABLE `lupo_channels` MODIFY COLUMN `parent_channel_id` bigint COMMENT 'Reference to parent channel for hierarchy';
 ALTER TABLE `lupo_channels` MODIFY COLUMN `is_kernel` tinyint NOT NULL DEFAULT 0 COMMENT 'Part of system kernel (Channel 0)';
@@ -2950,7 +2950,7 @@ CREATE TABLE IF NOT EXISTS `lupo_cip_analytics` (
   `trend_analysis_json` json COMMENT 'Historical trend data',
   `calculated_ymdhis` bigint NOT NULL COMMENT 'When analytics were calculated',
   `recalculated_ymdhis` bigint COMMENT 'Last recalculation bigint',
-  `analytics_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Analytics engine version',
+  `analytics_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Analytics engine version',
   PRIMARY KEY (`id`),
   KEY `idx_architectural_impact` (`architectural_impact_score`),
   KEY `idx_calculated_time` (`calculated_ymdhis`),
@@ -2970,7 +2970,7 @@ ALTER TABLE `lupo_cip_analytics` ADD COLUMN IF NOT EXISTS `subsystem_impact_json
 ALTER TABLE `lupo_cip_analytics` ADD COLUMN IF NOT EXISTS `trend_analysis_json` json COMMENT 'Historical trend data';
 ALTER TABLE `lupo_cip_analytics` ADD COLUMN IF NOT EXISTS `calculated_ymdhis` bigint NOT NULL COMMENT 'When analytics were calculated';
 ALTER TABLE `lupo_cip_analytics` ADD COLUMN IF NOT EXISTS `recalculated_ymdhis` bigint COMMENT 'Last recalculation bigint';
-ALTER TABLE `lupo_cip_analytics` ADD COLUMN IF NOT EXISTS `analytics_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Analytics engine version';
+ALTER TABLE `lupo_cip_analytics` ADD COLUMN IF NOT EXISTS `analytics_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Analytics engine version';
 ALTER TABLE `lupo_cip_analytics` MODIFY COLUMN `id` bigint unsigned NOT NULL auto_increment;
 ALTER TABLE `lupo_cip_analytics` MODIFY COLUMN `event_id` bigint unsigned NOT NULL COMMENT 'Reference to lupo_cip_events.id';
 ALTER TABLE `lupo_cip_analytics` MODIFY COLUMN `defensiveness_index` decimal(5,4) NOT NULL DEFAULT 0.0000 COMMENT 'DI: 0.0000-1.0000 scale';
@@ -2982,7 +2982,7 @@ ALTER TABLE `lupo_cip_analytics` MODIFY COLUMN `subsystem_impact_json` json COMM
 ALTER TABLE `lupo_cip_analytics` MODIFY COLUMN `trend_analysis_json` json COMMENT 'Historical trend data';
 ALTER TABLE `lupo_cip_analytics` MODIFY COLUMN `calculated_ymdhis` bigint NOT NULL COMMENT 'When analytics were calculated';
 ALTER TABLE `lupo_cip_analytics` MODIFY COLUMN `recalculated_ymdhis` bigint COMMENT 'Last recalculation bigint';
-ALTER TABLE `lupo_cip_analytics` MODIFY COLUMN `analytics_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Analytics engine version';
+ALTER TABLE `lupo_cip_analytics` MODIFY COLUMN `analytics_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Analytics engine version';
 ALTER TABLE `lupo_cip_analytics` ADD PRIMARY KEY (`id`);
 ALTER TABLE `lupo_cip_analytics` ADD INDEX IF NOT EXISTS `idx_architectural_impact` (`architectural_impact_score`);
 ALTER TABLE `lupo_cip_analytics` ADD INDEX IF NOT EXISTS `idx_calculated_time` (`calculated_ymdhis`);
@@ -3002,7 +3002,7 @@ CREATE TABLE IF NOT EXISTS `lupo_cip_propagation_tracking` (
   `dependencies_json` json COMMENT 'Dependencies for this propagation step',
   `started_ymdhis` bigint COMMENT 'When propagation started',
   `completed_ymdhis` bigint COMMENT 'When propagation completed',
-  `propagation_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Propagation tracking version',
+  `propagation_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Propagation tracking version',
   PRIMARY KEY (`id`),
   KEY `idx_completion_status` (`completion_status`),
   KEY `idx_event_level` (`cip_event_id`, `propagation_level`),
@@ -3021,7 +3021,7 @@ ALTER TABLE `lupo_cip_propagation_tracking` ADD COLUMN IF NOT EXISTS `completion
 ALTER TABLE `lupo_cip_propagation_tracking` ADD COLUMN IF NOT EXISTS `dependencies_json` json COMMENT 'Dependencies for this propagation step';
 ALTER TABLE `lupo_cip_propagation_tracking` ADD COLUMN IF NOT EXISTS `started_ymdhis` bigint COMMENT 'When propagation started';
 ALTER TABLE `lupo_cip_propagation_tracking` ADD COLUMN IF NOT EXISTS `completed_ymdhis` bigint COMMENT 'When propagation completed';
-ALTER TABLE `lupo_cip_propagation_tracking` ADD COLUMN IF NOT EXISTS `propagation_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Propagation tracking version';
+ALTER TABLE `lupo_cip_propagation_tracking` ADD COLUMN IF NOT EXISTS `propagation_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Propagation tracking version';
 ALTER TABLE `lupo_cip_propagation_tracking` MODIFY COLUMN `id` bigint unsigned NOT NULL auto_increment;
 ALTER TABLE `lupo_cip_propagation_tracking` MODIFY COLUMN `cip_event_id` bigint unsigned NOT NULL COMMENT 'Root CIP event';
 ALTER TABLE `lupo_cip_propagation_tracking` MODIFY COLUMN `propagation_level` tinyint unsigned NOT NULL COMMENT 'Depth level (0-10)';
@@ -3033,7 +3033,7 @@ ALTER TABLE `lupo_cip_propagation_tracking` MODIFY COLUMN `completion_status` en
 ALTER TABLE `lupo_cip_propagation_tracking` MODIFY COLUMN `dependencies_json` json COMMENT 'Dependencies for this propagation step';
 ALTER TABLE `lupo_cip_propagation_tracking` MODIFY COLUMN `started_ymdhis` bigint COMMENT 'When propagation started';
 ALTER TABLE `lupo_cip_propagation_tracking` MODIFY COLUMN `completed_ymdhis` bigint COMMENT 'When propagation completed';
-ALTER TABLE `lupo_cip_propagation_tracking` MODIFY COLUMN `propagation_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Propagation tracking version';
+ALTER TABLE `lupo_cip_propagation_tracking` MODIFY COLUMN `propagation_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Propagation tracking version';
 ALTER TABLE `lupo_cip_propagation_tracking` ADD PRIMARY KEY (`id`);
 ALTER TABLE `lupo_cip_propagation_tracking` ADD INDEX IF NOT EXISTS `idx_completion_status` (`completion_status`);
 ALTER TABLE `lupo_cip_propagation_tracking` ADD INDEX IF NOT EXISTS `idx_event_level` (`cip_event_id`, `propagation_level`);
@@ -4772,7 +4772,7 @@ CREATE TABLE IF NOT EXISTS `lupo_doctrine_evolution_audit` (
   `step_metadata_json` json COMMENT 'Step-specific metadata',
   `started_ymdhis` bigint COMMENT 'When step started',
   `completed_ymdhis` bigint COMMENT 'When step completed',
-  `audit_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Audit system version',
+  `audit_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Audit system version',
   PRIMARY KEY (`id`),
   KEY `idx_completion_time` (`completed_ymdhis`),
   KEY `idx_refinement_step` (`refinement_id`, `evolution_step`),
@@ -4787,7 +4787,7 @@ ALTER TABLE `lupo_doctrine_evolution_audit` ADD COLUMN IF NOT EXISTS `step_statu
 ALTER TABLE `lupo_doctrine_evolution_audit` ADD COLUMN IF NOT EXISTS `step_metadata_json` json COMMENT 'Step-specific metadata';
 ALTER TABLE `lupo_doctrine_evolution_audit` ADD COLUMN IF NOT EXISTS `started_ymdhis` bigint COMMENT 'When step started';
 ALTER TABLE `lupo_doctrine_evolution_audit` ADD COLUMN IF NOT EXISTS `completed_ymdhis` bigint COMMENT 'When step completed';
-ALTER TABLE `lupo_doctrine_evolution_audit` ADD COLUMN IF NOT EXISTS `audit_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Audit system version';
+ALTER TABLE `lupo_doctrine_evolution_audit` ADD COLUMN IF NOT EXISTS `audit_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Audit system version';
 ALTER TABLE `lupo_doctrine_evolution_audit` MODIFY COLUMN `id` bigint unsigned NOT NULL auto_increment;
 ALTER TABLE `lupo_doctrine_evolution_audit` MODIFY COLUMN `refinement_id` bigint unsigned NOT NULL COMMENT 'Reference to lupo_doctrine_refinements.id';
 ALTER TABLE `lupo_doctrine_evolution_audit` MODIFY COLUMN `evolution_step` tinyint unsigned NOT NULL COMMENT 'Step in evolution process (1-10)';
@@ -4796,7 +4796,7 @@ ALTER TABLE `lupo_doctrine_evolution_audit` MODIFY COLUMN `step_status` enum('pe
 ALTER TABLE `lupo_doctrine_evolution_audit` MODIFY COLUMN `step_metadata_json` json COMMENT 'Step-specific metadata';
 ALTER TABLE `lupo_doctrine_evolution_audit` MODIFY COLUMN `started_ymdhis` bigint COMMENT 'When step started';
 ALTER TABLE `lupo_doctrine_evolution_audit` MODIFY COLUMN `completed_ymdhis` bigint COMMENT 'When step completed';
-ALTER TABLE `lupo_doctrine_evolution_audit` MODIFY COLUMN `audit_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Audit system version';
+ALTER TABLE `lupo_doctrine_evolution_audit` MODIFY COLUMN `audit_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Audit system version';
 ALTER TABLE `lupo_doctrine_evolution_audit` ADD PRIMARY KEY (`id`);
 ALTER TABLE `lupo_doctrine_evolution_audit` ADD INDEX IF NOT EXISTS `idx_completion_time` (`completed_ymdhis`);
 ALTER TABLE `lupo_doctrine_evolution_audit` ADD INDEX IF NOT EXISTS `idx_refinement_step` (`refinement_id`, `evolution_step`);
@@ -4815,7 +4815,7 @@ CREATE TABLE IF NOT EXISTS `lupo_doctrine_refinements` (
   `approved_by` varchar(100) COMMENT 'Who approved the change',
   `applied_ymdhis` bigint COMMENT 'When change was applied',
   `created_ymdhis` bigint NOT NULL COMMENT 'When refinement was proposed',
-  `refinement_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Refinement module version',
+  `refinement_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Refinement module version',
   PRIMARY KEY (`id`),
   KEY `idx_applied_time` (`applied_ymdhis`),
   KEY `idx_approval_status` (`approval_status`),
@@ -4835,7 +4835,7 @@ ALTER TABLE `lupo_doctrine_refinements` ADD COLUMN IF NOT EXISTS `approval_statu
 ALTER TABLE `lupo_doctrine_refinements` ADD COLUMN IF NOT EXISTS `approved_by` varchar(100) COMMENT 'Who approved the change';
 ALTER TABLE `lupo_doctrine_refinements` ADD COLUMN IF NOT EXISTS `applied_ymdhis` bigint COMMENT 'When change was applied';
 ALTER TABLE `lupo_doctrine_refinements` ADD COLUMN IF NOT EXISTS `created_ymdhis` bigint NOT NULL COMMENT 'When refinement was proposed';
-ALTER TABLE `lupo_doctrine_refinements` ADD COLUMN IF NOT EXISTS `refinement_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Refinement module version';
+ALTER TABLE `lupo_doctrine_refinements` ADD COLUMN IF NOT EXISTS `refinement_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Refinement module version';
 ALTER TABLE `lupo_doctrine_refinements` MODIFY COLUMN `id` bigint unsigned NOT NULL auto_increment;
 ALTER TABLE `lupo_doctrine_refinements` MODIFY COLUMN `cip_event_id` bigint unsigned NOT NULL COMMENT 'Triggering CIP event';
 ALTER TABLE `lupo_doctrine_refinements` MODIFY COLUMN `doctrine_file_path` varchar(500) NOT NULL COMMENT 'Path to doctrine file updated';
@@ -4848,7 +4848,7 @@ ALTER TABLE `lupo_doctrine_refinements` MODIFY COLUMN `approval_status` enum('pe
 ALTER TABLE `lupo_doctrine_refinements` MODIFY COLUMN `approved_by` varchar(100) COMMENT 'Who approved the change';
 ALTER TABLE `lupo_doctrine_refinements` MODIFY COLUMN `applied_ymdhis` bigint COMMENT 'When change was applied';
 ALTER TABLE `lupo_doctrine_refinements` MODIFY COLUMN `created_ymdhis` bigint NOT NULL COMMENT 'When refinement was proposed';
-ALTER TABLE `lupo_doctrine_refinements` MODIFY COLUMN `refinement_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Refinement module version';
+ALTER TABLE `lupo_doctrine_refinements` MODIFY COLUMN `refinement_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Refinement module version';
 ALTER TABLE `lupo_doctrine_refinements` ADD PRIMARY KEY (`id`);
 ALTER TABLE `lupo_doctrine_refinements` ADD INDEX IF NOT EXISTS `idx_applied_time` (`applied_ymdhis`);
 ALTER TABLE `lupo_doctrine_refinements` ADD INDEX IF NOT EXISTS `idx_approval_status` (`approval_status`);
@@ -5093,7 +5093,7 @@ CREATE TABLE IF NOT EXISTS `lupo_emotional_geometry_calibrations` (
   `validation_status` enum('pending','validated','rejected','needs_review') DEFAULT 'pending',
   `applied_ymdhis` bigint COMMENT 'When calibration was applied',
   `created_ymdhis` bigint NOT NULL COMMENT 'When calibration was calculated',
-  `calibration_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Calibration system version',
+  `calibration_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Calibration system version',
   PRIMARY KEY (`id`),
   KEY `idx_analytics_ref` (`cip_analytics_id`),
   KEY `idx_confidence` (`confidence_score`),
@@ -5114,7 +5114,7 @@ ALTER TABLE `lupo_emotional_geometry_calibrations` ADD COLUMN IF NOT EXISTS `con
 ALTER TABLE `lupo_emotional_geometry_calibrations` ADD COLUMN IF NOT EXISTS `validation_status` enum('pending','validated','rejected','needs_review') DEFAULT 'pending';
 ALTER TABLE `lupo_emotional_geometry_calibrations` ADD COLUMN IF NOT EXISTS `applied_ymdhis` bigint COMMENT 'When calibration was applied';
 ALTER TABLE `lupo_emotional_geometry_calibrations` ADD COLUMN IF NOT EXISTS `created_ymdhis` bigint NOT NULL COMMENT 'When calibration was calculated';
-ALTER TABLE `lupo_emotional_geometry_calibrations` ADD COLUMN IF NOT EXISTS `calibration_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Calibration system version';
+ALTER TABLE `lupo_emotional_geometry_calibrations` ADD COLUMN IF NOT EXISTS `calibration_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Calibration system version';
 ALTER TABLE `lupo_emotional_geometry_calibrations` MODIFY COLUMN `id` bigint unsigned NOT NULL auto_increment;
 ALTER TABLE `lupo_emotional_geometry_calibrations` MODIFY COLUMN `cip_analytics_id` bigint unsigned NOT NULL COMMENT 'Reference to lupo_cip_analytics.id';
 ALTER TABLE `lupo_emotional_geometry_calibrations` MODIFY COLUMN `calibration_target` enum('agent','subsystem','global') NOT NULL;
@@ -5128,7 +5128,7 @@ ALTER TABLE `lupo_emotional_geometry_calibrations` MODIFY COLUMN `confidence_sco
 ALTER TABLE `lupo_emotional_geometry_calibrations` MODIFY COLUMN `validation_status` enum('pending','validated','rejected','needs_review') DEFAULT 'pending';
 ALTER TABLE `lupo_emotional_geometry_calibrations` MODIFY COLUMN `applied_ymdhis` bigint COMMENT 'When calibration was applied';
 ALTER TABLE `lupo_emotional_geometry_calibrations` MODIFY COLUMN `created_ymdhis` bigint NOT NULL COMMENT 'When calibration was calculated';
-ALTER TABLE `lupo_emotional_geometry_calibrations` MODIFY COLUMN `calibration_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Calibration system version';
+ALTER TABLE `lupo_emotional_geometry_calibrations` MODIFY COLUMN `calibration_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Calibration system version';
 ALTER TABLE `lupo_emotional_geometry_calibrations` ADD PRIMARY KEY (`id`);
 ALTER TABLE `lupo_emotional_geometry_calibrations` ADD INDEX IF NOT EXISTS `idx_analytics_ref` (`cip_analytics_id`);
 ALTER TABLE `lupo_emotional_geometry_calibrations` ADD INDEX IF NOT EXISTS `idx_confidence` (`confidence_score`);
@@ -6579,7 +6579,7 @@ CREATE TABLE IF NOT EXISTS `lupo_multi_agent_critique_sync` (
   `resolution_strategy` varchar(255) COMMENT 'Strategy for resolving conflicts',
   `sync_started_ymdhis` bigint COMMENT 'When sync process started',
   `sync_completed_ymdhis` bigint COMMENT 'When sync was completed',
-  `sync_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Sync protocol version',
+  `sync_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Sync protocol version',
   PRIMARY KEY (`id`),
   KEY `idx_consensus_contribution` (`consensus_contribution`),
   KEY `idx_event_agent` (`cip_event_id`, `agent_id`),
@@ -6598,7 +6598,7 @@ ALTER TABLE `lupo_multi_agent_critique_sync` ADD COLUMN IF NOT EXISTS `conflict_
 ALTER TABLE `lupo_multi_agent_critique_sync` ADD COLUMN IF NOT EXISTS `resolution_strategy` varchar(255) COMMENT 'Strategy for resolving conflicts';
 ALTER TABLE `lupo_multi_agent_critique_sync` ADD COLUMN IF NOT EXISTS `sync_started_ymdhis` bigint COMMENT 'When sync process started';
 ALTER TABLE `lupo_multi_agent_critique_sync` ADD COLUMN IF NOT EXISTS `sync_completed_ymdhis` bigint COMMENT 'When sync was completed';
-ALTER TABLE `lupo_multi_agent_critique_sync` ADD COLUMN IF NOT EXISTS `sync_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Sync protocol version';
+ALTER TABLE `lupo_multi_agent_critique_sync` ADD COLUMN IF NOT EXISTS `sync_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Sync protocol version';
 ALTER TABLE `lupo_multi_agent_critique_sync` MODIFY COLUMN `id` bigint unsigned NOT NULL auto_increment;
 ALTER TABLE `lupo_multi_agent_critique_sync` MODIFY COLUMN `cip_event_id` bigint unsigned NOT NULL COMMENT 'Root CIP event';
 ALTER TABLE `lupo_multi_agent_critique_sync` MODIFY COLUMN `agent_id` varchar(100) NOT NULL COMMENT 'Agent participating in sync';
@@ -6610,7 +6610,7 @@ ALTER TABLE `lupo_multi_agent_critique_sync` MODIFY COLUMN `conflict_indicators_
 ALTER TABLE `lupo_multi_agent_critique_sync` MODIFY COLUMN `resolution_strategy` varchar(255) COMMENT 'Strategy for resolving conflicts';
 ALTER TABLE `lupo_multi_agent_critique_sync` MODIFY COLUMN `sync_started_ymdhis` bigint COMMENT 'When sync process started';
 ALTER TABLE `lupo_multi_agent_critique_sync` MODIFY COLUMN `sync_completed_ymdhis` bigint COMMENT 'When sync was completed';
-ALTER TABLE `lupo_multi_agent_critique_sync` MODIFY COLUMN `sync_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Sync protocol version';
+ALTER TABLE `lupo_multi_agent_critique_sync` MODIFY COLUMN `sync_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Sync protocol version';
 ALTER TABLE `lupo_multi_agent_critique_sync` ADD PRIMARY KEY (`id`);
 ALTER TABLE `lupo_multi_agent_critique_sync` ADD INDEX IF NOT EXISTS `idx_consensus_contribution` (`consensus_contribution`);
 ALTER TABLE `lupo_multi_agent_critique_sync` ADD INDEX IF NOT EXISTS `idx_event_agent` (`cip_event_id`, `agent_id`);
@@ -7854,7 +7854,7 @@ CREATE TABLE IF NOT EXISTS `lupo_tldnr` (
   `content_text` longtext NOT NULL COMMENT 'TL;DR content (plain text or markdown)',
   `topic_type` varchar(100) COMMENT 'Type of topic (e.g., "system", "doctrine", "module", "concept")',
   `topic_reference` varchar(255) COMMENT 'Reference to what this summarizes (e.g., "Lupopedia", "Collection Doctrine", "LABS-001")',
-  `system_version` varchar(20) COMMENT 'System version this TL;DR applies to (e.g., "4.1.6")',
+  `system_version` varchar(20) COMMENT 'System version this TL;DR applies to (e.g., "3.1.6")',
   `category` varchar(100) COMMENT 'Category for grouping (e.g., "Core", "Doctrine", "Module")',
   `created_ymdhis` bigint NOT NULL COMMENT 'UTC creation bigint (YYYYMMDDHHIISS)',
   `updated_ymdhis` bigint NOT NULL COMMENT 'UTC last update bigint (YYYYMMDDHHIISS)',
@@ -7876,7 +7876,7 @@ ALTER TABLE `lupo_tldnr` ADD COLUMN IF NOT EXISTS `title` varchar(255) NOT NULL 
 ALTER TABLE `lupo_tldnr` ADD COLUMN IF NOT EXISTS `content_text` longtext NOT NULL COMMENT 'TL;DR content (plain text or markdown)';
 ALTER TABLE `lupo_tldnr` ADD COLUMN IF NOT EXISTS `topic_type` varchar(100) COMMENT 'Type of topic (e.g., "system", "doctrine", "module", "concept")';
 ALTER TABLE `lupo_tldnr` ADD COLUMN IF NOT EXISTS `topic_reference` varchar(255) COMMENT 'Reference to what this summarizes (e.g., "Lupopedia", "Collection Doctrine", "LABS-001")';
-ALTER TABLE `lupo_tldnr` ADD COLUMN IF NOT EXISTS `system_version` varchar(20) COMMENT 'System version this TL;DR applies to (e.g., "4.1.6")';
+ALTER TABLE `lupo_tldnr` ADD COLUMN IF NOT EXISTS `system_version` varchar(20) COMMENT 'System version this TL;DR applies to (e.g., "3.1.6")';
 ALTER TABLE `lupo_tldnr` ADD COLUMN IF NOT EXISTS `category` varchar(100) COMMENT 'Category for grouping (e.g., "Core", "Doctrine", "Module")';
 ALTER TABLE `lupo_tldnr` ADD COLUMN IF NOT EXISTS `created_ymdhis` bigint NOT NULL COMMENT 'UTC creation bigint (YYYYMMDDHHIISS)';
 ALTER TABLE `lupo_tldnr` ADD COLUMN IF NOT EXISTS `updated_ymdhis` bigint NOT NULL COMMENT 'UTC last update bigint (YYYYMMDDHHIISS)';
@@ -7888,7 +7888,7 @@ ALTER TABLE `lupo_tldnr` MODIFY COLUMN `title` varchar(255) NOT NULL COMMENT 'TL
 ALTER TABLE `lupo_tldnr` MODIFY COLUMN `content_text` longtext NOT NULL COMMENT 'TL;DR content (plain text or markdown)';
 ALTER TABLE `lupo_tldnr` MODIFY COLUMN `topic_type` varchar(100) COMMENT 'Type of topic (e.g., "system", "doctrine", "module", "concept")';
 ALTER TABLE `lupo_tldnr` MODIFY COLUMN `topic_reference` varchar(255) COMMENT 'Reference to what this summarizes (e.g., "Lupopedia", "Collection Doctrine", "LABS-001")';
-ALTER TABLE `lupo_tldnr` MODIFY COLUMN `system_version` varchar(20) COMMENT 'System version this TL;DR applies to (e.g., "4.1.6")';
+ALTER TABLE `lupo_tldnr` MODIFY COLUMN `system_version` varchar(20) COMMENT 'System version this TL;DR applies to (e.g., "3.1.6")';
 ALTER TABLE `lupo_tldnr` MODIFY COLUMN `category` varchar(100) COMMENT 'Category for grouping (e.g., "Core", "Doctrine", "Module")';
 ALTER TABLE `lupo_tldnr` MODIFY COLUMN `created_ymdhis` bigint NOT NULL COMMENT 'UTC creation bigint (YYYYMMDDHHIISS)';
 ALTER TABLE `lupo_tldnr` MODIFY COLUMN `updated_ymdhis` bigint NOT NULL COMMENT 'UTC last update bigint (YYYYMMDDHHIISS)';

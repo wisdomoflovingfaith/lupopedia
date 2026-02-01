@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.99
+file.last_modified_system_version: 3.0.99
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,24 +8,24 @@ dialog:
   speaker: CASCADE
   target: @JETBRAINS @MONDAY_WOLFIE @DEVELOPMENT_TEAM
   mood_RGB: "0066FF"
-  message: "JetBrains 4.0.99 Branch Handling Doctrine created to govern multi-branch development for Lupopedia v4.0.99 series, establishing clear protocols for branch management, immutability, and coordination while preventing version drift and ensuring system stability."
+  message: "JetBrains 3.0.99 Branch Handling Doctrine created to govern multi-branch development for Lupopedia v3.0.99 series, establishing clear protocols for branch management, immutability, and coordination while preventing version drift and ensuring system stability."
 tags:
   categories: ["documentation", "doctrine", "branch-management", "jetbrains", "development"]
   collections: ["core-docs", "doctrine", "development-guidelines"]
   channels: ["dev", "documentation"]
 file:
-  title: "JetBrains 4.0.99 Branch Handling Doctrine"
-  description: "Comprehensive doctrine for managing multiple concurrent development branches in Lupopedia v4.0.99, preventing branch conflicts, version drift, and ensuring system stability through proper branch isolation and coordination protocols."
+  title: "JetBrains 3.0.99 Branch Handling Doctrine"
+  description: "Comprehensive doctrine for managing multiple concurrent development branches in Lupopedia v3.0.99, preventing branch conflicts, version drift, and ensuring system stability through proper branch isolation and coordination protocols."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# JetBrains 4.0.99 Branch Handling Doctrine
+# JetBrains 3.0.99 Branch Handling Doctrine
 
 ## Purpose
 
-To establish clear protocols for managing multiple concurrent development branches in Lupopedia v4.0.99 series, preventing branch conflicts, version drift, and ensuring system stability through proper branch isolation and coordination.
+To establish clear protocols for managing multiple concurrent development branches in Lupopedia v3.0.99 series, preventing branch conflicts, version drift, and ensuring system stability through proper branch isolation and coordination.
 
 ## Branch Architecture
 
@@ -175,4 +175,4 @@ To establish clear protocols for managing multiple concurrent development branch
 
 ---
 
-*This doctrine establishes comprehensive protocols for managing multiple concurrent development branches while maintaining system stability and preventing the version drift that occurred during the 4.0.x cycle.*
+*This doctrine establishes comprehensive protocols for managing multiple concurrent development branches while maintaining system stability and preventing the version drift that occurred during the 3.0.x cycle.*

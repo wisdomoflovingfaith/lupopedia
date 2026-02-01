@@ -6,7 +6,7 @@
  * Implements synchronization layer for Pack Architecture.
  *
  * @package Lupopedia
- * @version 4.0.112
+ * @version 3.0.112
  * @author Captain Wolfie
  */
 

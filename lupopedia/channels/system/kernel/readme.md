@@ -16,7 +16,7 @@
 - **Created By Actor ID**: 0 (System Agent)
 - **Default Actor ID**: 1 (Captain Wolfie)
 - **Background Color**: #FFFFFF
-- **Awareness Version**: 4.0.72
+- **Awareness Version**: 3.0.72
 
 ## Access Rules
 - **System Channel**: OS-level operations only

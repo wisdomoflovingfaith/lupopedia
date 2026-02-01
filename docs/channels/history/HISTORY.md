@@ -4,7 +4,7 @@
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
@@ -105,7 +105,7 @@ It explains why Lupopedia rejects foreign keys, forbids triggers, forbids stored
 - Built **222 tables by December 31, 2025**.
 - Executed **The Great Reset on January 1, 2026**.
 - From scratch, built a coherent **103â€‘table semantic OS in six days**.
-- **This is the rebirth â€” the moment Crafty Syntax became Lupopedia 4.0.0.**
+- **This is the rebirth â€” the moment Crafty Syntax became Lupopedia 3.0.0.**
 
 ---
 

@@ -1,9 +1,9 @@
 -- Dialog System Schema for Big Rock 2: Dialog Channel Migration
 -- Creates dialog_channels and dialog_messages tables for database-backed dialog storage
--- Updated to match actual database schema per TOON files (4.0.101)
+-- Updated to match actual database schema per TOON files (3.0.101)
 -- 
 -- @package Lupopedia
--- @version 4.0.101
+-- @version 3.0.101
 -- @author Captain Wolfie
 
 -- Dialog Channels Table

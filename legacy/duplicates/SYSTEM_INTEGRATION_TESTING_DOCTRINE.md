@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.72
+file.last_modified_system_version: 3.0.72
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -22,12 +22,12 @@ file:
 ---
 
 # SYSTEM_INTEGRATION_TESTING_DOCTRINE.md
-# Version: 4.0.72
+# Version: 3.0.72
 # Status: Updated Doctrine
 # Domain: System Integration Layer
 
-## Updates in 4.0.72
-- Added validation results from 4.0.71 testing
+## Updates in 3.0.72
+- Added validation results from 3.0.71 testing
 - Updated invariants based on empirical findings
 - Marked testing framework as complete and validated
 
@@ -87,7 +87,7 @@ Phase 1: Migration tests → Phase 2: AAL tests → Phase 3: RSHAP tests → Pha
 - ✅ Database schema extensions properly deployed
 - ✅ TOON file alignment confirmed across all components
 - ✅ Cross-system integration maintains consistency
-- ✅ Protocol versioning (4.0.72) aligned throughout system
+- ✅ Protocol versioning (3.0.72) aligned throughout system
 - ✅ Communication blocking enforced before protocol completion
 - ✅ Fleet synchronization operational across all layers
 - ✅ Emotional geometry integration stable and consistent
@@ -98,4 +98,4 @@ Phase 1: Migration tests → Phase 2: AAL tests → Phase 3: RSHAP tests → Pha
 The System Integration Testing has successfully validated all components of the multi-agent coordination architecture. All phases passed with no critical failures or blockers detected.
 
 ## 8. VERSIONING RULES
-Active in 4.0.72. Testing framework established and validated. Future versions may extend testing scope but must maintain core validation requirements.
+Active in 3.0.72. Testing framework established and validated. Future versions may extend testing scope but must maintain core validation requirements.

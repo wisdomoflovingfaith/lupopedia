@@ -4,7 +4,7 @@
  * WOLFIE HEADER
  * ======================================================================
  * wolfie.headers: explicit architecture with structured clarity for every file.
- * file.last_modified_system_version: 4.0.35
+ * file.last_modified_system_version: 3.0.35
  * header_atoms:
  *   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
  *   - GLOBAL_CURRENT_AUTHORS
@@ -48,7 +48,7 @@ use Lupopedia\MigrationOrchestrator\Orchestrator;
  * 5. validating_post - Post-migration validation checks
  * 6. completing - Finalizing migration, updating state
  * 7. rolling_back - Executing rollback (if migration failed)
- * 8. failed - Explicit failure state (guardrail added 4.0.35)
+ * 8. failed - Explicit failure state (guardrail added 3.0.35)
  * 
  * Each state must implement:
  * - State identification (name, ID)

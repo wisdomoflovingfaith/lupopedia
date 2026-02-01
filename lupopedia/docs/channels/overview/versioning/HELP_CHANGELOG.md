@@ -1,7 +1,7 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "HELP_CHANGELOG.md"
-file.last_modified_system_version: 4.1.11
+file.last_modified_system_version: 3.1.11
 file.last_modified_utc: 20260119201000
 file.utc_day: 20260119
 UTC_TIMEKEEPER__CHANNEL_ID: "dev"
@@ -32,7 +32,7 @@ tags:
 file:
   title: "HELP Changelog"
   description: "Primary history log for the HELP subsystem"
-  version: 4.1.11
+  version: 3.1.11
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 
@@ -57,5 +57,5 @@ Primary history log for the HELP subsystem.
 ---
 
 **Last Updated:** 2026-01-20  
-**Version:** 4.1.11  
+**Version:** 3.1.11  
 **Status:** Active sync-pair subsystem

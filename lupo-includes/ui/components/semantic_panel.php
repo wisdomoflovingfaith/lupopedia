@@ -2,7 +2,7 @@
 /**
  * wolfie.header.identity: semantic-panel
  * wolfie.header.placement: /lupo-includes/ui/components/semantic_panel.php
- * wolfie.header.version: 4.0.6
+ * wolfie.header.version: 3.0.6
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
@@ -15,7 +15,7 @@
  * file:
  *   title: "Semantic Panel Component"
  *   description: "Sliding panel component displaying semantic metadata and relationships"
- *   version: 4.0.6
+ *   version: 3.0.6
  *   status: published
  *   author: "Captain Wolfie"
  */

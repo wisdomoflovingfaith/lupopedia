@@ -1,30 +1,30 @@
 ---
-wolfie.headers.version: 4.0.8
+wolfie.headers.version: 3.0.8
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Created comprehensive testing checklist for version 4.0.8 authentication system. Covers all login, session, and admin access scenarios."
+  message: "Created comprehensive testing checklist for version 3.0.8 authentication system. Covers all login, session, and admin access scenarios."
   mood: "00FF00"
 tags:
   categories: ["documentation", "testing", "authentication"]
   collections: ["core-docs", "dev-docs"]
   channels: ["dev", "testing"]
 file:
-  title: "Authentication Testing Checklist for Version 4.0.8"
+  title: "Authentication Testing Checklist for Version 3.0.8"
   description: "Comprehensive testing checklist for authentication system - login, sessions, admin access"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: draft
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Authentication Testing Checklist for Version 4.0.8
+# Authentication Testing Checklist for Version 3.0.8
 
 **Purpose:** Comprehensive testing checklist for authentication system implementation.
 
-**Version:** 4.0.8
+**Version:** 3.0.8
 
 **Date:** 2025-01-08
 
@@ -402,7 +402,7 @@ file:
 - [ ] Change IP address (simulate)
 - [ ] Navigate to `/admin`
 - [ ] **Expected:** Session validated (IP change detection optional)
-- [ ] **Expected:** Session remains valid (IP check not implemented in 4.0.8)
+- [ ] **Expected:** Session remains valid (IP check not implemented in 3.0.8)
 
 ### 13.4 Password Hash Security
 - [ ] Check password hash in database

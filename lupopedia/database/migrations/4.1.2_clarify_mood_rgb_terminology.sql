@@ -1,5 +1,5 @@
 -- Migration: Clarify mood_rgb Terminology - Emotional Polarity Tensor Documentation
--- Version: 4.1.2
+-- Version: 3.1.2
 -- Date: 2026-01-18
 --
 -- Updates column comments to clarify that mood_rgb represents an emotional polarity
@@ -11,7 +11,7 @@
 -- Hex encoding is coincidental and carries no color semantics.
 --
 -- @package Lupopedia
--- @version 4.1.2
+-- @version 3.1.2
 -- @author CAPTAIN_WOLFIE
 
 -- ============================================================================

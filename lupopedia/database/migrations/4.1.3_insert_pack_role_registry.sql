@@ -1,5 +1,5 @@
 -- Migration: Insert Pack Role Registry
--- Version: 4.1.3
+-- Version: 3.1.3
 -- Date: 2026-01-18
 --
 -- Creates lupo_pack_role_registry table and inserts discovered agent roles
@@ -7,7 +7,7 @@
 -- they are discovered through resonance, constraint testing, and emergent behavior.
 --
 -- @package Lupopedia
--- @version 4.1.3
+-- @version 3.1.3
 -- @author CAPTAIN_WOLFIE
 
 -- ============================================================================

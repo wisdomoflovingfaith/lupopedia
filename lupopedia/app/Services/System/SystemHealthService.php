@@ -6,7 +6,7 @@
  * Non-blocking, pure diagnostics with no exceptions.
  *
  * @package Lupopedia
- * @version 4.0.106
+ * @version 3.0.106
  * @author Captain Wolfie
  */
 
@@ -257,7 +257,7 @@ class SystemHealthService
 
             return [
                 'status' => 'ok',
-                'message' => 'Pack Architecture pre-activation complete (ready for 4.1.0)',
+                'message' => 'Pack Architecture pre-activation complete (ready for 3.1.0)',
             ];
         } catch (\Exception $e) {
             return [

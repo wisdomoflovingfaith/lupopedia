@@ -32,7 +32,7 @@ Top-Level Contents:
 - DEVELOPER_GUIDELINES.md
 - LUPOPEDIA_HELP.md
 - modules/
-- RELEASE_READINESS_CHECKLIST_4.0.7.md
+- RELEASE_READINESS_CHECKLIST_3.0.7.md
 - specifications/
 - templates/
 - testing/

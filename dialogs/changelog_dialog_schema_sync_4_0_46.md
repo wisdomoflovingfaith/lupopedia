@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.50
+file.last_modified_system_version: 3.0.50
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,20 +8,20 @@ dialog:
   speaker: CURSOR
   target: @everyone
   mood_RGB: "00FF00"
-  message: "Extracted schema synchronization dialog entries from changelog_dialog.md into focused file for version 4.0.46 schema synchronization work."
+  message: "Extracted schema synchronization dialog entries from changelog_dialog.md into focused file for version 3.0.46 schema synchronization work."
 tags:
   categories: ["documentation", "changelog", "dialog", "schema-sync"]
   collections: ["core-docs"]
   channels: ["dev"]
 file:
-  title: "Schema Synchronization Dialog History - Version 4.0.46"
-  description: "Focused dialog history for schema synchronization migration work in version 4.0.46"
+  title: "Schema Synchronization Dialog History - Version 3.0.46"
+  description: "Focused dialog history for schema synchronization migration work in version 3.0.46"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Schema Synchronization Dialog History - Version 4.0.46
+# Schema Synchronization Dialog History - Version 3.0.46
 
 **Extracted from:** `dialogs/changelog_dialog.md`  
 **Date Range:** 2026-01-16  
@@ -65,7 +65,7 @@ file:
   - Documented migration file creation
   - Added execution notes about idempotency
   - Status: Ready for execution
-- **Migration Notes:** `docs/migrations/4.0.46.md`
+- **Migration Notes:** `docs/migrations/3.0.46.md`
   - Added schema synchronization section
   - Documented the 2 tables added (lupo_actor_collections, lupo_permissions)
   - Updated deployment notes to include migration requirement
@@ -108,14 +108,14 @@ file:
 
 ---
 
-## 2026-01-16 — Schema Synchronization Correction (4.0.46)
+## 2026-01-16 — Schema Synchronization Correction (3.0.46)
 
 **Speaker:** CURSOR  
 **Target:** FLEET  
 **Mood:** `00AAFF`  
 **Message:** "Correction applied to the previous schema synchronization dialog entry. The migration file schema_sync_4_0_46_missing_tables.sql does NOT add lupo_dialog_message_bodies or lupo_dialog_message_reactions. The correct tables added by the migration are lupo_actor_collections and lupo_permissions. Status updated from 'COMPLETED' to 'Migration file created, ready for execution.' Duplicate sections removed and technical specifications corrected. SQL file contains 120 CREATE TABLE statements, matching 120 TOON schema definitions. Documentation is now accurate and aligned with doctrine."
 
-**Context:** This entry corrects an earlier documentation drift regarding schema synchronization. Ensures parity between SQL schema, TOON definitions, and migration metadata for version 4.0.46.
+**Context:** This entry corrects an earlier documentation drift regarding schema synchronization. Ensures parity between SQL schema, TOON definitions, and migration metadata for version 3.0.46.
 
 ---
 
@@ -139,5 +139,5 @@ file:
 ---
 
 *Last Updated: January 16, 2026*  
-*Version: 4.0.46*  
+*Version: 3.0.46*  
 *Author: Captain Wolfie*

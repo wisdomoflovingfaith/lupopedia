@@ -1,5 +1,5 @@
 -- Migration: Create lupo_tldnr table for TL;DR summaries
--- Version: 4.1.6
+-- Version: 3.1.6
 -- Date: 2026-01-19
 -- Module: Help System / Documentation
 -- Purpose: Store concise TL;DR summaries for quick reference
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `lupo_tldnr` (
     `content_text` LONGTEXT NOT NULL COMMENT 'TL;DR content (plain text or markdown)',
     `topic_type` VARCHAR(100) DEFAULT NULL COMMENT 'Type of topic (e.g., "system", "doctrine", "module", "concept")',
     `topic_reference` VARCHAR(255) DEFAULT NULL COMMENT 'Reference to what this summarizes (e.g., "Lupopedia", "Collection Doctrine", "LABS-001")',
-    `system_version` VARCHAR(20) DEFAULT NULL COMMENT 'System version this TL;DR applies to (e.g., "4.1.6")',
+    `system_version` VARCHAR(20) DEFAULT NULL COMMENT 'System version this TL;DR applies to (e.g., "3.1.6")',
     `category` VARCHAR(100) DEFAULT NULL COMMENT 'Category for grouping (e.g., "Core", "Doctrine", "Module")',
     `created_ymdhis` BIGINT NOT NULL COMMENT 'UTC creation timestamp (YYYYMMDDHHIISS)',
     `updated_ymdhis` BIGINT NOT NULL COMMENT 'UTC last update timestamp (YYYYMMDDHHIISS)',
@@ -56,7 +56,7 @@ WHAT YOU DO BUILD:
 - The tools (tab editor, content editor)
 - The doctrine (rules in text files)
 
-CURRENT STATUS (4.1.6):
+CURRENT STATUS (3.1.6):
 - LABS-001: Actor baseline state (10 declarations required)
 - GOV-AD-PROHIBIT-001: No ads in system output
 - WOLFIE Headers: Metadata on every file (version tracking)
@@ -64,7 +64,7 @@ CURRENT STATUS (4.1.6):
 - Help System: Documentation module
 - List System: Browse entities
 
-BOTTOM LINE: Lupopedia is a semantic OS that records user-defined meaning. You build the infrastructure; users define their own collections, tabs, and content. The system records it, doesn''t impose it.', 'system', 'Lupopedia', '4.1.6', 'Core', 20260119040000, 20260119040000, 0)
+BOTTOM LINE: Lupopedia is a semantic OS that records user-defined meaning. You build the infrastructure; users define their own collections, tabs, and content. The system records it, doesn''t impose it.', 'system', 'Lupopedia', '3.1.6', 'Core', 20260119040000, 20260119040000, 0)
 ON DUPLICATE KEY UPDATE
     `title` = VALUES(`title`),
     `content_text` = VALUES(`content_text`),
@@ -91,7 +91,7 @@ EXAMPLES:
 - "Desktop" Collection → WHO, WHAT, WHERE, WHEN, WHY, HOW, DO
 - "County of Honolulu" Collection → Departments, Parks & Recreation, Activities & Programs, Contact
 
-YOU DON''T BUILD EVERY SYSTEM - users define their own tabs based on their needs.', 'doctrine', 'Collection Doctrine', '4.1.6', 'Doctrine', 20260119040000, 20260119040000, 0)
+YOU DON''T BUILD EVERY SYSTEM - users define their own tabs based on their needs.', 'doctrine', 'Collection Doctrine', '3.1.6', 'Doctrine', 20260119040000, 20260119040000, 0)
 ON DUPLICATE KEY UPDATE
     `title` = VALUES(`title`),
     `content_text` = VALUES(`content_text`),

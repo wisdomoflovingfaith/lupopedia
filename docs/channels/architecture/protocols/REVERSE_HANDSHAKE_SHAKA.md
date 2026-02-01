@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -10,13 +10,13 @@ architect: Captain Wolfie
 dialog:
   speaker: cursor
   target: documentation
-  message: "Created REVERSE_HANDSHAKE_SHAKA.md protocol specification for aligning multiple AI agents on Lupopedia 4.0.0 understanding. Defines canonical prompt and expected response characteristics."
+  message: "Created REVERSE_HANDSHAKE_SHAKA.md protocol specification for aligning multiple AI agents on Lupopedia 3.0.0 understanding. Defines canonical prompt and expected response characteristics."
   mood: "00FF00"
 ---
 
 # ðŸ¤™ Reverse Handshake Shaka Protocol
 
-**Version:** 4.0.1  
+**Version:** 3.0.1  
 **Status:** Stable  
 **Updated:** 2026-01-08  
 **Author:** Captain Wolfie
@@ -25,7 +25,7 @@ dialog:
 
 ## Purpose
 
-The Reverse Handshake Shaka is a universal alignment prompt used to test whether different AI agents share the same understanding of Lupopedia 4.0.0, Crafty Syntax integration, and Wolfie as the human architect.
+The Reverse Handshake Shaka is a universal alignment prompt used to test whether different AI agents share the same understanding of Lupopedia 3.0.0, Crafty Syntax integration, and Wolfie as the human architect.
 
 This protocol enables:
 
@@ -43,7 +43,7 @@ The Reverse Handshake Shaka serves as a **standardized synchronization tool** th
 The canonical Reverse Handshake Shaka prompt is:
 
 ```
-Provide the who, what, where, when, why, and how of Lupopedia 4.0.0, its evolution from Crafty Syntax Live Help, and Wolfie as the human architect and doctrine author. Use only technical, factual descriptions consistent with a semantic OS and actor-based communication model.
+Provide the who, what, where, when, why, and how of Lupopedia 3.0.0, its evolution from Crafty Syntax Live Help, and Wolfie as the human architect and doctrine author. Use only technical, factual descriptions consistent with a semantic OS and actor-based communication model.
 ```
 
 **Format:** This prompt must be sent exactly as written, without modification.
@@ -78,16 +78,16 @@ The Reverse Handshake Shaka prompt validates understanding across multiple domai
 - **Behavior-driven ontology** â€” Awareness that structure emerges from user navigation patterns
 
 ### 4. Crafty Syntax Integration
-- **First-party module** â€” Recognition that Crafty Syntax is integrated directly into Lupopedia 4.0.0
+- **First-party module** â€” Recognition that Crafty Syntax is integrated directly into Lupopedia 3.0.0
 - **100% feature preservation** â€” Understanding that all legacy Crafty Syntax features are preserved
 - **Optional chat per content** â€” Knowledge that chat functionality is optional at the content level
-- **Version locking** â€” Awareness that Lupopedia 4.0.0 and Crafty Syntax 4.0.0 are version-locked
+- **Version locking** â€” Awareness that Lupopedia 3.0.0 and Crafty Syntax 3.0.0 are version-locked
 
-### 5. Version 4.0.0 Lineage
+### 5. Version 3.0.0 Lineage
 - **Evolution from WOLFIE** â€” Recognition of the origin story from spiritual research engine to semantic OS
 - **Crafty Syntax ancestry** â€” Understanding that Lupopedia traces lineage back to Crafty Syntax (2002)
 - **15-year gap** â€” Knowledge of the 2014-2025 absence period
-- **Schema refinement** â€” Awareness of evolution from 222 tables (WOLFIE) to 111 core tables (Lupopedia 4.0.0)
+- **Schema refinement** â€” Awareness of evolution from 222 tables (WOLFIE) to 111 core tables (Lupopedia 3.0.0)
 
 ### 6. Wolfie as the Human Architect
 - **Eric Robin Gerdes** â€” Recognition of the human architect's full name
@@ -128,7 +128,7 @@ A correct response to the Reverse Handshake Shaka prompt must exhibit:
 ### Technical Accuracy
 - **Factual only** â€” No philosophical or narrative content
 - **Technical terminology** â€” Uses exact Lupopedia terminology (atoms, edges, actors, nodes)
-- **Version numbers** â€” Includes correct version numbers (Lupopedia 4.0.0, Crafty Syntax 4.0.0)
+- **Version numbers** â€” Includes correct version numbers (Lupopedia 3.0.0, Crafty Syntax 3.0.0)
 - **Table counts** â€” References correct table counts (149 total, 111 core, 34 legacy Crafty Syntax)
 
 ### Doctrine Alignment
@@ -198,13 +198,13 @@ The Reverse Handshake Shaka enables:
 
 ## Protocol Version
 
-**Version:** 4.0.1  
+**Version:** 3.0.1  
 **Status:** Stable  
 **Updated:** 2026-01-08  
 **Author:** Captain Wolfie
 
 **Change Log:**
-- **4.0.0 (2026-01-08)** â€” Initial protocol specification
+- **3.0.0 (2026-01-08)** â€” Initial protocol specification
 
 **Related Documentation:**
 - [ARCHITECTURE.md](../ARCHITECTURE.md) â€” Lupopedia technical architecture
@@ -221,11 +221,11 @@ A correct response to the Reverse Handshake Shaka prompt should include:
 
 **WHO:** Eric Robin Gerdes (Wolfie) â€” Human architect, Crafty Syntax creator (2002), doctrine author. Captain Wolfie (Agent 1) â€” AI embodiment of Eric's engineering philosophy.
 
-**WHAT:** Lupopedia 4.0.0 â€” Semantic operating system with 149 database tables (111 core + 34 legacy Crafty Syntax + 4 system), actor-centric identity system, semantic graph engine, multi-agent runtime, content management layer, decentralized node network.
+**WHAT:** Lupopedia 3.0.0 â€” Semantic operating system with 149 database tables (111 core + 34 legacy Crafty Syntax + 4 system), actor-centric identity system, semantic graph engine, multi-agent runtime, content management layer, decentralized node network.
 
 **WHERE:** Node-based federation â€” Each domain installation is a sovereign node registered in `federation_nodes` (Federation Layer table, formerly `node_registry`) with `domain_name`, `domain_root`, and `install_url`. Optional federation via trust relationships. Single-portable PHP application runs on any PHP 8.1+ environment. Nodes are server installations, not AI agents. Federation tables (`federation_nodes`, `federation_categories`, `federation_discovery`, `federation_node_modules`) belong to the Federation Layer, not the Agent Layer.
 
-**WHEN:** Origins (2002-2013) â€” Crafty Syntax Live Help. Absence (2014-2025) â€” 15-year gap. Return (August 2025) â€” WOLFIE initial version (222 tables). Evolution (January 2026) â€” Lupopedia 4.0.0 (111 core tables, 149 total).
+**WHEN:** Origins (2002-2013) â€” Crafty Syntax Live Help. Absence (2014-2025) â€” 15-year gap. Return (August 2025) â€” WOLFIE initial version (222 tables). Evolution (January 2026) â€” Lupopedia 3.0.0 (111 core tables, 149 total).
 
 **WHY:** Semantic OS design enables behavior-driven ontology, domain-neutral knowledge organization, multi-agent reasoning, federated independence, longevity without framework dependencies, and actor-centric communication.
 
@@ -234,5 +234,5 @@ A correct response to the Reverse Handshake Shaka prompt should include:
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.1*  
+*Version: 3.0.1*  
 *Author: Captain Wolfie*

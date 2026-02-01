@@ -1,5 +1,5 @@
 -- Migration: Fix lupo_permissions ID columns to remove UNSIGNED
--- Version: 4.0.3
+-- Version: 3.0.3
 -- Date: 2026-01-11
 -- 
 -- This migration removes UNSIGNED from ID columns in lupo_permissions table

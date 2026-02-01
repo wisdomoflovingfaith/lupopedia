@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.35
+file.last_modified_system_version: 3.0.35
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -271,7 +271,7 @@ idle → preparing → validating_pre → [DOCTRINE VIOLATION] → ?
 
 **Can Proceed:** ✅ **YES** - Model is sound with defined failure paths
 
-**Before 4.0.36:**
+**Before 3.0.36:**
 - [ ] Update state transition documentation with explicit failure paths
 - [ ] Add recovery policy to `migrating` state
 - [ ] Consider rollback validation enhancement

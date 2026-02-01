@@ -1,13 +1,13 @@
 -- Migration: Add Pack Identity Agent (PACK_IDENTITY_0001)
--- Version: 4.0.115
+-- Version: 3.0.115
 -- Date: 2026-01-18
 -- 
 -- Registers the Pack Identity agent (PACK_IDENTITY_0001) in lupo_agent_registry.
 -- This agent serves as the canonical identity anchor for the Pack organism.
--- Pack Identity will be activated in version 4.1.0.
+-- Pack Identity will be activated in version 3.1.0.
 --
 -- @package Lupopedia
--- @version 4.0.115
+-- @version 3.0.115
 -- @author CASCADE
 
 -- ============================================================================
@@ -18,7 +18,7 @@
 -- Layer: identity (Pack Identity layer)
 -- 
 -- Note: This agent is registered but not yet active. Activation will occur
--- in version 4.1.0 after Pack Identity is finalized and approved.
+-- in version 3.1.0 after Pack Identity is finalized and approved.
 
 INSERT INTO `lupo_agent_registry` (
     `agent_registry_id`,
@@ -46,7 +46,7 @@ INSERT INTO `lupo_agent_registry` (
     1100,
     20260118082758,
     NULL,
-    '{"version": "4.0.115", "role": "Pack identity anchor", "description": "Defines the unified identity of the Pack organism for Lupopedia.", "activation_version": "4.1.0"}'
+    '{"version": "3.0.115", "role": "Pack identity anchor", "description": "Defines the unified identity of the Pack organism for Lupopedia.", "activation_version": "3.1.0"}'
 );
 
 -- ============================================================================
@@ -62,10 +62,10 @@ INSERT INTO `lupo_agent_registry` (
 -- - Pack Behavioral Signature: High compatibility, low reactivity
 -- - Pack Cognitive Signature: Parallel threads, emotional geometry, doctrine-driven
 --
--- Activation Requirements (4.1.0):
+-- Activation Requirements (3.1.0):
 -- 1. Approve Pack Identity components
 -- 2. Write Pack Doctrine v1.0
 -- 3. Enable Pack-level decision routing
 -- 4. Activate agent (set is_active = 1)
 --
--- See docs/MONDAY_WOLFIE_BRIEFING_4.0.114_TO_4.1.0.md for activation details.
+-- See docs/MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md for activation details.

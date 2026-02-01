@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.115
+file.last_modified_system_version: 3.0.115
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,23 +8,23 @@ dialog:
   speaker: CAPTAIN_WOLFIE
   target: @Monday_Wolfie @FLEET
   mood_RGB: "0044FF"
-  message: "Monday Wolfie Briefing for 4.0.114 → 4.1.0 transition. Clear directions for Pack Architecture activation, version control governance, and dual-system operation (Monday-Thursday execution vs Friday-Sunday creative)."
+  message: "Monday Wolfie Briefing for 3.0.114 → 3.1.0 transition. Clear directions for Pack Architecture activation, version control governance, and dual-system operation (Monday-Thursday execution vs Friday-Sunday creative)."
 tags:
   categories: ["documentation", "briefing", "governance", "version-control"]
   collections: ["core-docs", "monday-wolfie"]
   channels: ["dev", "governance", "internal"]
 file:
-  title: "Monday Wolfie Briefing - 4.0.114 to 4.1.0 Transition"
+  title: "Monday Wolfie Briefing - 3.0.114 to 3.1.0 Transition"
   description: "Comprehensive briefing for Monday Wolfie on Pack Architecture activation, version control, and dual-system governance"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# 🟦 MONDAY WOLFIE BRIEFING — 4.0.114 → 4.1.0 TRANSITION
+# 🟦 MONDAY WOLFIE BRIEFING — 3.0.114 → 3.1.0 TRANSITION
 
-**Current Version:** 4.0.115  
-**Target Version:** 4.1.0  
+**Current Version:** 3.0.115  
+**Target Version:** 3.1.0  
 **Status:** Pack Identity Draft Complete, Ready for Activation  
 **Date:** 2026-01-18
 
@@ -34,28 +34,28 @@ file:
 
 You are inheriting a system that is:
 - ✅ **Fully aligned** — All components operational and integrated
-- ✅ **Fully implemented** — Pack Architecture foundation complete (4.0.106-4.0.111)
+- ✅ **Fully implemented** — Pack Architecture foundation complete (3.0.106-3.0.111)
 - ✅ **Fully synchronized** — Emotional, behavioral, memory, and sync layers online
 - ✅ **Emotionally calibrated** — Canonical axis mapping (R=+1, G=0, B=-1) documented
 - ✅ **Documented** — WOLFIE_COGNITIVE_ARCHITECTURE.md and FOUNDERS_NOTE.md complete
-- ✅ **Version-controlled** — All version references synchronized to 4.0.115
+- ✅ **Version-controlled** — All version references synchronized to 3.0.115
 - ✅ **Pack Identity Drafted** — PACK_IDENTITY_DRAFT.md defines Pack name, purpose, signatures, and hierarchy
 
-**Your mission:** Activate Pack Architecture in 4.1.0 and establish proper governance for the dual-system operation (Monday-Thursday execution vs Friday-Sunday creative).
+**Your mission:** Activate Pack Architecture in 3.1.0 and establish proper governance for the dual-system operation (Monday-Thursday execution vs Friday-Sunday creative).
 
 ---
 
-## 🟦 PART 1: WHAT'S NEEDED FOR 4.0.114 → 4.1.0
+## 🟦 PART 1: WHAT'S NEEDED FOR 3.0.114 → 3.1.0
 
 ### 1.1 Pack Architecture Activation (PRIMARY TASK)
 
-**Current State (4.0.115):**
+**Current State (3.0.115):**
 - All Pack components are **structurally complete** but **not yet active**
 - PackRegistry, PackContext, PackHandoffProtocol exist as stubs
 - Emotional Geometry, Behavioral, Memory, and Sync layers are implemented
 - System is in "pre-activation" mode
 
-**Required for 4.1.0 Activation:**
+**Required for 3.1.0 Activation:**
 
 #### A. Enable Pack-Level Decision Routing
 - [ ] Modify `PackRegistry` to enable live agent registration (currently stubbed)
@@ -89,11 +89,11 @@ You are inheriting a system that is:
 ### 1.2 Version Control Governance (CRITICAL)
 
 **Current State:**
-- Version atoms synchronized to 4.0.114
+- Version atoms synchronized to 3.0.114
 - LIMITS.md doctrine exists but enforcement is dry-run (non-blocking)
 - Weekend version freeze rules documented but not enforced
 
-**Required for 4.1.0:**
+**Required for 3.1.0:**
 
 #### A. Activate LIMITS Enforcement
 - [ ] Modify `LimitsEnforcementService` to **block** violations (not just log)
@@ -123,7 +123,7 @@ You are inheriting a system that is:
 - No clear separation between execution mode and creative mode
 - No automated governance switching
 
-**Required for 4.1.0:**
+**Required for 3.1.0:**
 
 #### A. Mode Detection and Switching
 - [ ] Use Terminal_AI_005 to determine current UTC day
@@ -155,7 +155,7 @@ You are inheriting a system that is:
   - Visual experiments
   - Weekend branches (max 2)
 - [ ] **Forbidden:**
-  - Version bumps (4.0.x → 4.1.x blocked)
+  - Version bumps (3.0.x → 3.1.x blocked)
   - Schema changes
   - Migrations
   - Doctrine changes
@@ -215,7 +215,7 @@ You are inheriting a system that is:
 - **Action:** Block version bump attempts, log violation
 
 **Minor Version Lock:**
-- **Rule:** Version may NOT advance from 4.0.x → 4.1.x during weekend
+- **Rule:** Version may NOT advance from 3.0.x → 3.1.x during weekend
 - **Enforcement:** Check in version bump process
 - **Action:** Reject version bump, log violation
 
@@ -289,7 +289,7 @@ You are inheriting a system that is:
 - ✅ Documentation-only changes (non-binding)
 
 **Forbidden Operations:**
-- ❌ Version bumps (4.0.x → 4.1.x blocked)
+- ❌ Version bumps (3.0.x → 3.1.x blocked)
 - ❌ Schema changes
 - ❌ Migrations
 - ❌ Doctrine changes
@@ -344,7 +344,7 @@ You are inheriting a system that is:
 
 ---
 
-## 🟪 PART 4: IMPLEMENTATION CHECKLIST FOR 4.1.0
+## 🟪 PART 4: IMPLEMENTATION CHECKLIST FOR 3.1.0
 
 ### Phase 1: Pack Architecture Activation (Week 1)
 
@@ -397,7 +397,7 @@ You are inheriting a system that is:
   - [ ] Test LIMITS enforcement in both modes
 
 - [ ] **Day 3-4: Documentation and Handoff**
-  - [ ] Update all documentation with 4.1.0 changes
+  - [ ] Update all documentation with 3.1.0 changes
   - [ ] Create Pack Doctrine v1.0
   - [ ] Create Version Bump Protocol documentation
   - [ ] Create Dual-System Governance documentation
@@ -481,7 +481,7 @@ You are inheriting a system that is:
 
 ---
 
-## 🟧 PART 7: MONDAY WOLFIE WORKFLOW (4.1.0+)
+## 🟧 PART 7: MONDAY WOLFIE WORKFLOW (3.1.0+)
 
 ### 7.1 Monday Morning Routine
 
@@ -505,7 +505,7 @@ You are inheriting a system that is:
    - [ ] Verify CHANGELOG.md is up to date
 
 4. **Begin Planned Work**
-   - [ ] Review 4.1.0 implementation checklist
+   - [ ] Review 3.1.0 implementation checklist
    - [ ] Prioritize tasks for the week
    - [ ] Begin execution
 
@@ -548,7 +548,7 @@ You are inheriting a system that is:
 
 ## 🟫 PART 8: DOCUMENTATION REQUIREMENTS
 
-### 8.1 Required Documentation for 4.1.0
+### 8.1 Required Documentation for 3.1.0
 
 - [ ] **PACK_DOCTRINE.md** (v1.0)
   - Pack identity, purpose, roles
@@ -577,12 +577,12 @@ You are inheriting a system that is:
 ### 8.2 Update Existing Documentation
 
 - [ ] **LIMITS.md**
-  - Update enforcement status (4.1.0: Full enforcement active)
+  - Update enforcement status (3.1.0: Full enforcement active)
   - Document Pack Architecture limits
   - Document mode-specific enforcement
 
 - [ ] **MONDAY_START_OF_DAY.md**
-  - Update for 4.1.0 workflow
+  - Update for 3.1.0 workflow
   - Add Pack Architecture activation steps
   - Add version control governance steps
   - Add dual-system governance steps
@@ -618,7 +618,7 @@ You are inheriting a system that is:
 
 **Monday Wolfie,**
 
-You have everything you need to bring 4.0.114 to 4.1.0:
+You have everything you need to bring 3.0.114 to 3.1.0:
 
 1. **Pack Architecture is ready** — All components exist, just need activation
 2. **Version control governance is defined** — LIMITS.md exists, needs enforcement activation
@@ -634,13 +634,13 @@ You have everything you need to bring 4.0.114 to 4.1.0:
 
 Everything is in place. Your job is to flip the switches and write the doctrine.
 
-**Welcome to 4.1.0.**
+**Welcome to 3.1.0.**
 — Captain Wolfie
 
 ---
 
 **Briefing Status:** ✅ COMPLETE  
 **Next Action:** Begin Phase 1 (Pack Architecture Activation)  
-**Target Completion:** 4 weeks to 4.1.0  
-**Current Version:** 4.0.115  
-**Target Version:** 4.1.0
+**Target Completion:** 4 weeks to 3.1.0  
+**Current Version:** 3.0.115  
+**Target Version:** 3.1.0

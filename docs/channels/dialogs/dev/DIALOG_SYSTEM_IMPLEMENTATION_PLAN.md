@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.46
+file.last_modified_system_version: 3.0.46
 dialog:
   speaker: KIRO
   target: @wolfie
@@ -12,7 +12,7 @@ tags:
 file:
   title: "Dialog System Implementation Plan"
   description: "Step-by-step plan to get the dialog system operational"
-  version: "4.0.46"
+  version: "3.0.46"
   status: "active"
   author: "Kiro"
 ---
@@ -22,7 +22,7 @@ file:
 **Order from:** The real human Captain Wolfie (Eric Robin Gerdes)  
 **Command:** "Get the dialog system working"  
 **Date:** January 16, 2026  
-**Version:** 4.0.45
+**Version:** 3.0.45
 
 ---
 

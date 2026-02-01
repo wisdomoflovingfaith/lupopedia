@@ -1,13 +1,13 @@
 <?php
 /**
- * Generate Lupopedia 4.0.12 Hierarchical Tab Structure Seed
+ * Generate Lupopedia 3.0.12 Hierarchical Tab Structure Seed
  * 
  * Uses the canonical JSON mapping as source of truth.
  * Generates SQL using slugs for joins, not hard-coded content_ids.
  * 
  * Creates:
- * 1. seed_collection_0_hierarchical_tabs_4.0.12.sql - Tab hierarchy
- * 2. seed_collection_0_hierarchical_tab_map_4.0.12.sql - Content mappings (slug-based)
+ * 1. seed_collection_0_hierarchical_tabs_3.0.12.sql - Tab hierarchy
+ * 2. seed_collection_0_hierarchical_tab_map_3.0.12.sql - Content mappings (slug-based)
  */
 
 $basePath = __DIR__ . '/../../';
@@ -229,7 +229,7 @@ $hierarchy = [
 ];
 
 // Generate SQL
-$now = 20260113000000; // Version 4.0.12 timestamp
+$now = 20260113000000; // Version 3.0.12 timestamp
 $nodeId = 1;
 $collectionId = 0;
 
@@ -237,17 +237,17 @@ $collectionId = 0;
 $nextTabId = 100;
 
 $tabSql = "-- ============================================================\n";
-$tabSql .= "-- Lupopedia 4.0.12 — Collection 0 Hierarchical Tab Structure\n";
+$tabSql .= "-- Lupopedia 3.0.12 — Collection 0 Hierarchical Tab Structure\n";
 $tabSql .= "-- Rebuilds Collection 0 tabs with hierarchical sub-tabs\n";
 $tabSql .= "-- ============================================================\n";
 $tabSql .= "--\n";
-$tabSql .= "-- wolfie.headers.version: \"4.0.12\"\n";
+$tabSql .= "-- wolfie.headers.version: \"3.0.12\"\n";
 $tabSql .= "-- header_atoms:\n";
 $tabSql .= "--   - GLOBAL_CURRENT_LUPOPEDIA_VERSION\n";
 $tabSql .= "-- dialog:\n";
 $tabSql .= "--   - speaker: CURSOR\n";
 $tabSql .= "--     target: @everyone\n";
-$tabSql .= "--     message: \"Version 4.0.12: Rebuilt Collection 0 with hierarchical tab structure. Doctrine has 12 sub-tabs, Agents has 4 sub-tabs, Schema has 1 sub-tab, Appendix has 4 sub-tabs. Overview, UI-UX, and Developer Guide are hidden.\"\n";
+$tabSql .= "--     message: \"Version 3.0.12: Rebuilt Collection 0 with hierarchical tab structure. Doctrine has 12 sub-tabs, Agents has 4 sub-tabs, Schema has 1 sub-tab, Appendix has 4 sub-tabs. Overview, UI-UX, and Developer Guide are hidden.\"\n";
 $tabSql .= "--     mood: \"00FF00\"\n";
 $tabSql .= "-- tags:\n";
 $tabSql .= "--   categories: [\"database\", \"seed\", \"hierarchy\"]\n";
@@ -411,17 +411,17 @@ $tabSql .= "-- ============================================================\n";
 
 // Generate mapping SQL using slug-based SELECTs
 $mapSql = "-- ============================================================\n";
-$mapSql .= "-- Lupopedia 4.0.12 — Collection 0 Hierarchical Tab Content Mapping\n";
+$mapSql .= "-- Lupopedia 3.0.12 — Collection 0 Hierarchical Tab Content Mapping\n";
 $mapSql .= "-- Maps content items to hierarchical tabs and sub-tabs using slugs\n";
 $mapSql .= "-- ============================================================\n";
 $mapSql .= "--\n";
-$mapSql .= "-- wolfie.headers.version: \"4.0.12\"\n";
+$mapSql .= "-- wolfie.headers.version: \"3.0.12\"\n";
 $mapSql .= "-- header_atoms:\n";
 $mapSql .= "--   - GLOBAL_CURRENT_LUPOPEDIA_VERSION\n";
 $mapSql .= "-- dialog:\n";
 $mapSql .= "--   - speaker: CURSOR\n";
 $mapSql .= "--     target: @everyone\n";
-$mapSql .= "--     message: \"Version 4.0.12: Mapped all documentation content to hierarchical tab structure. Content items are organized under appropriate sub-tabs using slug-based joins.\"\n";
+$mapSql .= "--     message: \"Version 3.0.12: Mapped all documentation content to hierarchical tab structure. Content items are organized under appropriate sub-tabs using slug-based joins.\"\n";
 $mapSql .= "--     mood: \"00FF00\"\n";
 $mapSql .= "-- tags:\n";
 $mapSql .= "--   categories: [\"database\", \"seed\", \"mapping\"]\n";
@@ -557,10 +557,10 @@ $mapSql .= "-- END OF MAPPING SEED\n";
 $mapSql .= "-- ============================================================\n";
 
 // Write files
-file_put_contents(__DIR__ . '/seed_collection_0_hierarchical_tabs_4.0.12.sql', $tabSql);
-file_put_contents(__DIR__ . '/seed_collection_0_hierarchical_tab_map_4.0.12.sql', $mapSql);
+file_put_contents(__DIR__ . '/seed_collection_0_hierarchical_tabs_3.0.12.sql', $tabSql);
+file_put_contents(__DIR__ . '/seed_collection_0_hierarchical_tab_map_3.0.12.sql', $mapSql);
 
 echo "Generated seed SQL files:\n";
-echo "  - seed_collection_0_hierarchical_tabs_4.0.12.sql\n";
-echo "  - seed_collection_0_hierarchical_tab_map_4.0.12.sql\n";
+echo "  - seed_collection_0_hierarchical_tabs_3.0.12.sql\n";
+echo "  - seed_collection_0_hierarchical_tab_map_3.0.12.sql\n";
 

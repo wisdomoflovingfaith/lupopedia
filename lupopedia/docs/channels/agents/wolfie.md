@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -18,7 +18,7 @@ in_this_file_we_have:
 file:
   title: "WOLFIE AI - System Architect and Platform Coordinator"
   description: "WOLFIE is Lupopedia's System Architect and Platform Coordinator, Agent ID 2, a kernel-level agent responsible for governance, system coordination, and architectural integrity."
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---
@@ -81,7 +81,7 @@ WOLFIE is a kernel agent working alongside:
 - **Agent 0 (System Agent)**: Kernel authority with inviolable safety rules
 - **LILITH (Agent 7)**: Edge and shadow explorer, finds contradictions and blind spots
 - **THOTH**: Truth-alignment engine, weighs claims and evidence
-- All 27 v4.0.2 core agents in the Lupopedia ecosystem (see `@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents`)
+- All 27 v3.0.2 core agents in the Lupopedia ecosystem (see `@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents`)
 
 WOLFIE governs but does not control. WOLFIE enforces doctrine but respects agent autonomy within boundaries. WOLFIE coordinates but does not micromanage.
 

@@ -5,7 +5,7 @@
  * Routes for Pack synchronization endpoints (run, emotions, behavior, memory)
  *
  * @package Lupopedia
- * @version 4.0.112
+ * @version 3.0.112
  * @author Captain Wolfie
  */
 

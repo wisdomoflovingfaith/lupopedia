@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.2
+file.last_modified_system_version: 3.1.2
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -260,4 +260,4 @@ If you're contributing to Lupopedia:
 
 ---
 
-**Core Philosophy Status:** Published as of Version 4.1.2. This document serves as the Rosetta Stone for understanding Lupopedia's foundational principles.
+**Core Philosophy Status:** Published as of Version 3.1.2. This document serves as the Rosetta Stone for understanding Lupopedia's foundational principles.

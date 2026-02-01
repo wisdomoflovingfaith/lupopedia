@@ -7,7 +7,7 @@
  * 
  * @package Lupopedia
  * @subpackage HistoryReconciliation
- * @version 4.0.61
+ * @version 3.0.61
  * @author Captain Wolfie
  */
 
@@ -409,7 +409,7 @@ class DocumentationGenerator {
             
             $sections[] = "## Major Achievements";
             $sections[] = "";
-            $sections[] = "- **26 version increments** (4.0.0 → 4.0.60)";
+            $sections[] = "- **26 version increments** (3.0.0 → 3.0.60)";
             $sections[] = "- **120 tables** across 3 schemas (core, orchestration, ephemeral)";
             $sections[] = "- **128 AI agents** defined and documented";
             $sections[] = "- **8-state migration orchestrator** fully implemented";
@@ -427,11 +427,11 @@ class DocumentationGenerator {
             
             $sections[] = "## Version Timeline";
             $sections[] = "";
-            $sections[] = "- **4.0.0-4.0.19:** Foundation and schema design";
-            $sections[] = "- **4.0.20-4.0.35:** Migration orchestrator development";
-            $sections[] = "- **4.0.36-4.0.50:** State machine completion";
-            $sections[] = "- **4.0.51-4.0.60:** Documentation and alignment";
-            $sections[] = "- **4.0.61+:** History Reconciliation Pass (Big Rock 1)";
+            $sections[] = "- **3.0.0-3.0.19:** Foundation and schema design";
+            $sections[] = "- **3.0.20-3.0.35:** Migration orchestrator development";
+            $sections[] = "- **3.0.36-3.0.50:** State machine completion";
+            $sections[] = "- **3.0.51-3.0.60:** Documentation and alignment";
+            $sections[] = "- **3.0.61+:** History Reconciliation Pass (Big Rock 1)";
             $sections[] = "";
         }
         
@@ -536,7 +536,7 @@ class AtomLoader {
         
         // Fallback values
         if (!isset($this->atoms['GLOBAL_CURRENT_LUPOPEDIA_VERSION'])) {
-            $this->atoms['GLOBAL_CURRENT_LUPOPEDIA_VERSION'] = '4.0.61';
+            $this->atoms['GLOBAL_CURRENT_LUPOPEDIA_VERSION'] = '3.0.61';
         }
         if (!isset($this->atoms['GLOBAL_CURRENT_AUTHORS'])) {
             $this->atoms['GLOBAL_CURRENT_AUTHORS'] = 'Captain Wolfie';

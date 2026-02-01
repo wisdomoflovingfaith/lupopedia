@@ -1,11 +1,11 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Added WOLFIE Header v4.0.0 for documentation consistency."
+  message: "Added WOLFIE Header v3.0.0 for documentation consistency."
 tags:
   categories: ["documentation", "semantic-navigation"]
   collections: ["core-docs"]
@@ -13,7 +13,7 @@ tags:
 file:
   title: "Semantic Navigation System"
   description: "How Lupopedia converts user navigation into semantic atoms and edges"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---

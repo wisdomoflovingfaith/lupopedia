@@ -6,7 +6,7 @@
  * Integrates with ContinuityValidator to ensure timeline integrity
  * 
  * @package Lupopedia
- * @version 4.0.61
+ * @version 3.0.61
  * @author Captain Wolfie
  */
 
@@ -250,7 +250,7 @@ class TimelineGenerator {
         return [
             'title' => 'Lupopedia Historical Timeline 1996-2026',
             'description' => 'Complete chronological history from Crafty Syntax origins to Lupopedia resurgence',
-            'version' => '4.0.61',
+            'version' => '3.0.61',
             'generated_date' => date('Y-m-d H:i:s'),
             'total_span' => '30 years',
             'eras_count' => count($this->timelineData['eras']),
@@ -371,7 +371,7 @@ class TimelineGenerator {
                 ],
                 [
                     'year' => 2026,
-                    'title' => 'Lupopedia 4.0.61',
+                    'title' => 'Lupopedia 3.0.61',
                     'description' => 'Semantic operating system with 120 tables, 128 agents',
                     'era' => 'resurgence',
                     'type' => 'system_completion',
@@ -639,7 +639,7 @@ class TimelineGenerator {
      */
     
     private function applyWolfieHeaders($content, $title) {
-        $header = "---\nwolfie.headers: explicit architecture with structured clarity for every file.\nfile.last_modified_system_version: 4.0.61\nheader_atoms:\n  - GLOBAL_CURRENT_LUPOPEDIA_VERSION\n  - GLOBAL_CURRENT_AUTHORS\ntags:\n  categories: [\"documentation\", \"history\", \"timeline\"]\n  collections: [\"core-docs\"]\n  channels: [\"dev\", \"public\"]\nfile:\n  title: \"{$title}\"\n  description: \"Generated historical timeline and navigation\"\n  version: GLOBAL_CURRENT_LUPOPEDIA_VERSION\n  status: published\n  author: GLOBAL_CURRENT_AUTHORS\n---\n\n";
+        $header = "---\nwolfie.headers: explicit architecture with structured clarity for every file.\nfile.last_modified_system_version: 3.0.61\nheader_atoms:\n  - GLOBAL_CURRENT_LUPOPEDIA_VERSION\n  - GLOBAL_CURRENT_AUTHORS\ntags:\n  categories: [\"documentation\", \"history\", \"timeline\"]\n  collections: [\"core-docs\"]\n  channels: [\"dev\", \"public\"]\nfile:\n  title: \"{$title}\"\n  description: \"Generated historical timeline and navigation\"\n  version: GLOBAL_CURRENT_LUPOPEDIA_VERSION\n  status: published\n  author: GLOBAL_CURRENT_AUTHORS\n---\n\n";
         
         return $header . $content;
     }
@@ -748,7 +748,7 @@ class TimelineGenerator {
         return [
             'title' => 'History Index',
             'description' => 'Navigation and quick access for historical documentation',
-            'version' => '4.0.61',
+            'version' => '3.0.61',
             'generated_date' => date('Y-m-d H:i:s')
         ];
     }
@@ -790,7 +790,7 @@ class TimelineGenerator {
         return [
             'title' => 'Project Milestones',
             'description' => 'Major events and achievements across project history',
-            'version' => '4.0.61',
+            'version' => '3.0.61',
             'generated_date' => date('Y-m-d H:i:s')
         ];
     }
@@ -830,7 +830,7 @@ class TimelineGenerator {
         return [
             [
                 'year' => 2026,
-                'title' => 'Version 4.1.0 Release',
+                'title' => 'Version 3.1.0 Release',
                 'description' => 'First public release of Lupopedia',
                 'probability' => 'high'
             ],

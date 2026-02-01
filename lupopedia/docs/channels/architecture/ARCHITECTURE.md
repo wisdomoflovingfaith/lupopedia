@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.115
+file.last_modified_system_version: 3.0.115
 channel_key: system/kernel
 dialog:
   speaker: CURSOR
@@ -14,7 +14,7 @@ tags:
 file:
   title: "Technical Architecture"
   description: "Deep dive into Lupopedia's system design and components"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---
@@ -60,7 +60,7 @@ Lupopedia's architecture is designed to be powerful, modular, and approachable. 
 
 Each layer is independent yet deeply integrated, allowing Lupopedia to evolve with user behavior and scale across a distributed ecosystem.
 
-**Database Schema:** For complete database structure details, see **[Database Schema Reference](../schema/DATABASE_SCHEMA.md)** â€” comprehensive documentation of all 131 tables (as verified in TOON files, Version 4.0.101). See [Migration Doctrine](../doctrine/MIGRATION_DOCTRINE.md).
+**Database Schema:** For complete database structure details, see **[Database Schema Reference](../schema/DATABASE_SCHEMA.md)** â€” comprehensive documentation of all 131 tables (as verified in TOON files, Version 3.0.101). See [Migration Doctrine](../doctrine/MIGRATION_DOCTRINE.md).
 
 ---
 

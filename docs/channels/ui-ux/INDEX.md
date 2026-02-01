@@ -25,7 +25,7 @@ file:
 Purpose: Interface and UX documentation for Lupopedia.
 
 Files:
-- [4.0.17-UI_DROP_MENU_DATA_REQUIREMENTS.md](4.0.17-UI_DROP_MENU_DATA_REQUIREMENTS.md)
+- [3.0.17-UI_DROP_MENU_DATA_REQUIREMENTS.md](3.0.17-UI_DROP_MENU_DATA_REQUIREMENTS.md)
 
 Related Channels:
 - [developer](../developer/README.md)

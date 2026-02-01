@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CAPTAIN
   target: @vscode
@@ -14,13 +14,13 @@ tags:
 file:
   title: "VS Code Guardrail Doctrine"
   description: "Explicit boundaries and governance rules for VS Code's interaction with Lupopedia codebase"
-  version: "4.0.1"
+  version: "3.0.1"
   status: "published"
   author: "Captain Wolfie"
 ---
 
 # VS CODE GUARDRAIL DOCTRINE
-### Lupopedia Cluster Governance — Version 4.0.1
+### Lupopedia Cluster Governance — Version 3.0.1
 
 ---
 

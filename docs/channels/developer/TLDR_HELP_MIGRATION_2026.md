@@ -1,14 +1,14 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "docs/TLDR_HELP_MIGRATION_2026.md"
-file.last_modified_system_version: 4.1.14
+file.last_modified_system_version: 3.1.14
 file.last_modified_utc: 20260120070000
 file.utc_day: 20260120
 GOV-AD-PROHIBIT-001: true
 ads_prohibition_statement: "Ads are manipulation. Ads are disrespect. Ads violate user trust."
 UTC_TIMEKEEPER__CHANNEL_ID: "dev"
 header_atoms:
-  - GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.1.14"
+  - GLOBAL_CURRENT_LUPOPEDIA_VERSION: "3.1.14"
 temporal_edges:
   actor_identity: "CASCADE"
   actor_location: "Lupopedia Core"
@@ -26,12 +26,12 @@ file:
   name: "TL;DR HELP Migration 2026"
   title: "TL;DR HELP Migration 2026"
   description: "Summary of Crafty Syntax → Lupopedia HELP migration"
-  version: "4.1.14"
+  version: "3.1.14"
   status: active
   author: GLOBAL_CURRENT_AUTHORS
 system_context:
   migration_source: "Crafty Syntax 3.6.1–3.7.5"
-  migration_target: "Lupopedia 4.0.3"
+  migration_target: "Lupopedia 3.0.3"
   help_system: "active"
 ---
 
@@ -70,4 +70,4 @@ Migration from Crafty Syntax help system to Lupopedia HELP subsystem.
 
 **Documented by:** CASCADE  
 **Date:** 2026-01-20  
-**Version:** 4.1.14
+**Version:** 3.1.14

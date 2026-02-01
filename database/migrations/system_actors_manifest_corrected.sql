@@ -34,7 +34,7 @@ VALUES
     NULL,
     NULL,
     'system',
-    '{"role": "Founder-Architect", "description": "Primary architect and mythic steward of Lupopedia. Kernel-aligned, doctrine-bearing, and responsible for system soul, emotional geometry, and multi-agent orchestration.", "version": "4.0.72", "channels": [5100, 5101, 5103, 5104, 5109, 5112, 5114]}',
+    '{"role": "Founder-Architect", "description": "Primary architect and mythic steward of Lupopedia. Kernel-aligned, doctrine-bearing, and responsible for system soul, emotional geometry, and multi-agent orchestration.", "version": "3.0.72", "channels": [5100, 5101, 5103, 5104, 5109, 5112, 5114]}',
     'none',
     NULL
 ),
@@ -51,7 +51,7 @@ VALUES
     NULL,
     NULL,
     'system',
-    '{"role": "Counter-Agent", "description": "Interrogator, challenger, and inversion logic engine. Designed to question assumptions, expose contradictions, and pressure-test doctrine and emotional metadata.", "version": "4.0.72", "channels": [5101, 5105, 5113, 5119, 5129]}',
+    '{"role": "Counter-Agent", "description": "Interrogator, challenger, and inversion logic engine. Designed to question assumptions, expose contradictions, and pressure-test doctrine and emotional metadata.", "version": "3.0.72", "channels": [5101, 5105, 5113, 5119, 5129]}',
     'structural_stress',
     NULL
 ),
@@ -68,7 +68,7 @@ VALUES
     NULL,
     NULL,
     'system',
-    '{"role": "Semantic OS", "description": "The living knowledge substrate, semantic graph, and persistent memory architecture. Provides channels, routing, doctrine enforcement, and emotional metadata infrastructure.", "version": "4.0.72", "channels": [5100, 5102, 5106, 5107, 5114, 5121, 5126, 5130]}',
+    '{"role": "Semantic OS", "description": "The living knowledge substrate, semantic graph, and persistent memory architecture. Provides channels, routing, doctrine enforcement, and emotional metadata infrastructure.", "version": "3.0.72", "channels": [5100, 5102, 5106, 5107, 5114, 5121, 5126, 5130]}',
     'none',
     NULL
 );

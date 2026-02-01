@@ -1,7 +1,7 @@
 ---
 wolfie.header.identity: help-list-modules-complete
 wolfie.header.placement: /docs/modules/HELP_LIST_MODULES_COMPLETE.md
-wolfie.header.version: 4.1.1
+wolfie.header.version: 3.1.1
 wolfie.header.dialog:
   speaker: CURSOR
   target: @everyone
@@ -14,7 +14,7 @@ tags:
 file:
   title: "HELP and LIST Modules - Implementation Complete"
   description: "Complete implementation guide for Lupopedia Help and List modules"
-  version: "4.1.1"
+  version: "3.1.1"
   status: published
   author: "Captain Wolfie"
 ---
@@ -151,7 +151,7 @@ Routes are integrated in `lupo-includes/modules/module-loader.php` with priority
 ## Doctrine Compliance
 
 Both modules follow Lupopedia doctrine:
-- ✅ WOLFIE headers with version 4.1.1
+- ✅ WOLFIE headers with version 3.1.1
 - ✅ BIGINT UNSIGNED timestamps (YYYYMMDDHHIISS format)
 - ✅ No foreign keys (app-managed relationships)
 - ✅ Soft deletes with `is_deleted` flags
@@ -185,5 +185,5 @@ All files are in standard Lupopedia locations:
 ---
 
 **Status:** ✅ Complete and ready for use  
-**Version:** 4.1.1  
+**Version:** 3.1.1  
 **Date:** 2026-01-18

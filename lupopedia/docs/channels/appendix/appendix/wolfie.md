@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -17,7 +17,7 @@ in_this_file_we_have:
 file:
   title: "Who is Wolfie"
   description: "Wolfie is the mythic and working name of Eric Robin Gerdes, creator and steward of Lupopedia. His lived context shaped the system's architecture and doctrine."
-  version: "4.0.0"
+  version: "3.0.0"
   status: published
   author: "Captain Wolfie"
 ---

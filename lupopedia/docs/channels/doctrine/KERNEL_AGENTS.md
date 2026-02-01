@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.99
+file.last_modified_system_version: 3.0.99
 channel_key: system/kernel
 dialog:
   speaker: Kiro
@@ -22,7 +22,7 @@ file:
 # Kernel Agents Doctrine
 
 **Official Doctrine Document**  
-**Version 4.0.15**  
+**Version 3.0.15**  
 **Effective Date: 2026-01-13**
 
 ---

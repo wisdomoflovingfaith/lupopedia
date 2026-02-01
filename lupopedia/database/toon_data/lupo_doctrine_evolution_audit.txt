@@ -9,7 +9,7 @@
         "`step_metadata_json` json COMMENT 'Step-specific metadata'",
         "`started_ymdhis` bigint COMMENT 'When step started'",
         "`completed_ymdhis` bigint COMMENT 'When step completed'",
-        "`audit_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Audit system version'"
+        "`audit_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Audit system version'"
     ],
     "data": [],
     "primary_key": {

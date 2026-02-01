@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.115
+file.last_modified_system_version: 3.0.115
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -25,8 +25,8 @@ file:
 
 **Purpose:** Resume Lupopedia work after weekend hibernation with full context and tool verification.
 
-**Current Version:** 4.0.114  
-**Next Target:** 4.1.0 (Pack Architecture Activation)
+**Current Version:** 3.0.114  
+**Next Target:** 3.1.0 (Pack Architecture Activation)
 
 ---
 
@@ -82,9 +82,9 @@ database/migrations/schema_sync_4_0_46_missing_tables.sql
 
 ---
 
-### Step 4: Review 4.0.114 → 4.1.0 Transition Briefing
+### Step 4: Review 3.0.114 → 3.1.0 Transition Briefing
 **Load and review Monday Wolfie Briefing:**
-- [ ] Read `docs/MONDAY_WOLFIE_BRIEFING_4.0.114_TO_4.1.0.md`
+- [ ] Read `docs/MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md`
 - [ ] Review Pack Architecture activation requirements
 - [ ] Review version control governance requirements
 - [ ] Review dual-system governance requirements
@@ -122,14 +122,14 @@ database/migrations/schema_sync_4_0_46_missing_tables.sql
 
 ### Step 7: Re-open CHANGELOG.md
 **Verify changelog status:**
-- [ ] Confirm current version: 4.0.50
-- [ ] Review all 4.0.50 entries
-- [ ] Prepare 4.1.0 section structure
+- [ ] Confirm current version: 3.0.50
+- [ ] Review all 3.0.50 entries
+- [ ] Prepare 3.1.0 section structure
 - [ ] Document any weekend work (if applicable)
 - [ ] Verify version consistency across files
 
-**Current Version:** 4.0.50  
-**Next Version:** 4.1.0 (when ready for public release)
+**Current Version:** 3.0.50  
+**Next Version:** 3.1.0 (when ready for public release)
 
 ---
 
@@ -140,7 +140,7 @@ database/migrations/schema_sync_4_0_46_missing_tables.sql
 - [ ] Re-enable autonomous operations (if applicable)
 - [ ] Confirm Fleet Silence Protocol active
 - [ ] Set cognitive load limit: 9 agents max
-- [ ] Begin first task from v4.1.0 Ascent Manifest
+- [ ] Begin first task from v3.1.0 Ascent Manifest
 
 **Operational Mode:** Normal (execution enabled)  
 **Fleet Protocol:** One-Voice Protocol active  
@@ -166,10 +166,10 @@ database/migrations/schema_sync_4_0_46_missing_tables.sql
 1. Load `TO_DO_FOR_VERSION_4_1_0.md`
 2. Begin History Reconciliation Pass
 3. Document 2014-2025 gap
-4. Continue v4.1.0 Ascent tasks
+4. Continue v3.1.0 Ascent tasks
 
 ---
 
 *Created: 2026-01-16*  
-*Version: 4.0.50*  
+*Version: 3.0.50*  
 *Status: Ready for Monday execution*

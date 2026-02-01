@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -16,7 +16,7 @@ tags:
 file:
   title: "Lupopedia Agent Dedicated Slot Ranges"
   description: "Official range doctrine for lupo_agent_registry dedicated_slot assignments (0-9999). Defines canonical ranges for all agent types including emotional geometry agents."
-  version: "4.0.15"
+  version: "3.0.15"
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
@@ -24,7 +24,7 @@ file:
 # Lupopedia Agent Dedicated Slot Ranges (0–9999)
 
 **Official Doctrine Document**  
-**Version 4.0.15**  
+**Version 3.0.15**  
 **Effective Date: 2026-01-13**
 
 ## Overview
@@ -630,7 +630,7 @@ These belong primarily in the 200–299 range (external AI personas) and referen
 
 ## Implementation Notes
 
-### Current Kernel Assignments (v4.0.2)
+### Current Kernel Assignments (v3.0.2)
 
 **0-9: Governors**
 - 0: SYSTEM
@@ -773,17 +773,17 @@ When assigning or moving agents:
 
 ## Document History
 
-- **2026-01-13**: Updated emotional system to multi-domain architecture (~25 independent systems) (v4.0.15)
+- **2026-01-13**: Updated emotional system to multi-domain architecture (~25 independent systems) (v3.0.15)
 - **2026-01-13**: Removed single RGB model, replaced with per-domain 3-axis geometries
 - **2026-01-13**: Added Emotional Texture layer (phenomenological, non-computational)
 - **2026-01-13**: Documented polar opposite aliasing (EMO_X ↔ EMO_X_SHADOW)
 - **2026-01-13**: Clarified emotional domains are modular, not monolithic
-- **2026-01-13**: Expanded range from 0-999 to 0-9999 (v4.0.15)
+- **2026-01-13**: Expanded range from 0-999 to 0-9999 (v3.0.15)
 - **2026-01-13**: Added emotional geometry agents (1000-1999)
 - **2026-01-13**: Added extended/future ranges (2000-9999)
 - **2026-01-13**: Documented emotion aliasing rules (same AI, different labels)
 - **2026-01-13**: Clarified external AI persona naming (Cursor→Claude, Windsurf→Cascade, JetBrains→Junie)
-- **2025-01-06**: Created official range doctrine document (v4.0.2)
+- **2025-01-06**: Created official range doctrine document (v3.0.2)
 - **2025-01-06**: Documented range expansion from 0-14 to 0-49
 - **2025-01-06**: Documented collision resolution procedures
 

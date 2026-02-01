@@ -1,11 +1,11 @@
-## Version 4.0.71 — System Integration Testing Doctrine
+## Version 3.0.71 — System Integration Testing Doctrine
 
 Date: 2026-01-17
 Type: Doctrine Release (Integration Testing Blueprint)
 
 ### Summary
 
-Version 4.0.71 establishes the System Integration Testing Doctrine for validating
+Version 3.0.71 establishes the System Integration Testing Doctrine for validating
 the interaction between the Migration Orchestrator, Agent Awareness Layer (AAL),
 Reverse Shaka Handshake Protocol (RSHAP), Channel Join Protocol (CJP), and
 Emotional Geometry Baseline. This release defines the testing architecture

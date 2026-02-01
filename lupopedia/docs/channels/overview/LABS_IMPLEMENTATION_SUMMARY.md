@@ -59,7 +59,7 @@ PHP class implementing:
 - Revalidation tracking
 
 ### 3. Database Migration
-**Path**: `database/migrations/4.1.6_create_labs_declarations_table.sql`
+**Path**: `database/migrations/3.1.6_create_labs_declarations_table.sql`
 
 Creates two tables:
 - `lupo_labs_declarations` - Stores LABS declarations and certificates
@@ -145,7 +145,7 @@ Reusable template for actors to complete LABS declarations with:
 
 1. **Run Database Migration**
    ```sql
-   -- Execute: database/migrations/4.1.6_create_labs_declarations_table.sql
+   -- Execute: database/migrations/3.1.6_create_labs_declarations_table.sql
    ```
 
 2. **Test LABS Validation**

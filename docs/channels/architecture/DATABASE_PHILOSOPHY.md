@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 channel_key: system/kernel
 dialog:
   speaker: CURSOR
@@ -14,7 +14,7 @@ tags:
 file:
   title: "Lupopedia Database Doctrine"
   description: "Non-negotiable database philosophy: application logic first, database logic second"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---

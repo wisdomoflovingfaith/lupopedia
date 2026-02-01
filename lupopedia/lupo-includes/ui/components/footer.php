@@ -2,7 +2,7 @@
 /**
  * wolfie.header.identity: footer
  * wolfie.header.placement: /lupo-includes/ui/components/footer.php
- * wolfie.header.version: 4.0.6
+ * wolfie.header.version: 3.0.6
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
@@ -15,7 +15,7 @@
  * file:
  *   title: "Footer Component with Semantic Navigation Bar"
  *   description: "Global footer with semantic navigation icons and Crafty Syntax live help integration"
- *   version: 4.0.6
+ *   version: 3.0.6
  *   status: published
  *   author: "Captain Wolfie"
  */

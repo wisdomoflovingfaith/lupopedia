@@ -1,4 +1,4 @@
--- Migration Orchestrator Schema Cleanup - Version 4.0.25
+-- Migration Orchestrator Schema Cleanup - Version 3.0.25
 -- Drops existing tables to allow clean recreation
 
 USE lupopedia_orchestration;

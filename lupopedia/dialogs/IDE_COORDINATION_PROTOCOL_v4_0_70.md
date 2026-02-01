@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.70
+file.last_modified_system_version: 3.0.70
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,24 +8,24 @@ dialog:
   speaker: WOLFIE
   target: CURSOR+WINDSURF
   mood_RGB: "0080FF"
-  message: "IDE Coordination Protocol v4.0.70 established. Cursor and Windsurf to coordinate through dialogs/ directory to prevent duplicate work on Agent Awareness Layer implementation. Task division and communication protocol defined."
+  message: "IDE Coordination Protocol v3.0.70 established. Cursor and Windsurf to coordinate through dialogs/ directory to prevent duplicate work on Agent Awareness Layer implementation. Task division and communication protocol defined."
 tags:
   categories: ["coordination", "protocol", "ide", "dialog"]
   collections: ["core-docs"]
   channels: ["dev", "ide-coordination"]
 file:
-  title: "IDE Coordination Protocol v4.0.70"
+  title: "IDE Coordination Protocol v3.0.70"
   description: "Coordination protocol between Cursor and Windsurf IDE agents for Agent Awareness Layer implementation"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: active
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# IDE Coordination Protocol v4.0.70
+# IDE Coordination Protocol v3.0.70
 ## Agent Awareness Layer Implementation
 
 **Purpose:** Prevent duplicate work between Cursor and Windsurf when implementing Agent Awareness Layer protocols  
-**Scope:** All v4.0.70 Agent Awareness Layer tasks and coordination  
+**Scope:** All v3.0.70 Agent Awareness Layer tasks and coordination  
 **Status:** ACTIVE PROTOCOL
 
 ---
@@ -48,7 +48,7 @@ file:
 
 ## 📋 Task Division Strategy
 
-### v4.0.70 Agent Awareness Layer Tasks
+### v3.0.70 Agent Awareness Layer Tasks
 
 #### Phase 1: Foundation (COMPLETED ✅)
 - **Task**: Database schema analysis and design
@@ -92,7 +92,7 @@ file:
    - **Status**: 🔄 IN_PROGRESS - Integration testing initiated
    - **Priority**: HIGH
 
-3. **Documentation Review** - Final review of all v4.0.70 documentation
+3. **Documentation Review** - Final review of all v3.0.70 documentation
    - **Owner**: WINDSURF (ASSIGNED, AWAITING)
    - **Status**: ⏳ WAITING - Ready to begin
    - **Priority**: MEDIUM
@@ -123,14 +123,14 @@ file:
 5. **Architecture Documentation** - Comprehensive docs created
    - **Owner**: CURSOR (COMPLETED ✅)
 
-6. **Version Bump** - System updated to 4.0.70
+6. **Version Bump** - System updated to 3.0.70
    - **Owner**: CURSOR (COMPLETED ✅)
 
 ### 2026-01-17 - Handoff Complete
 **Agent**: CURSOR  
 **Action**: Completed core implementation, handed off to Windsurf  
 **Status**: ✅ COMPLETE  
-**Notes**: All core v4.0.70 tasks complete. Integration testing phase ready for Windsurf expertise.
+**Notes**: All core v3.0.70 tasks complete. Integration testing phase ready for Windsurf expertise.
 
 ---
 
@@ -186,7 +186,7 @@ file:
 
 ## 📊 Progress Tracking
 
-### v4.0.70 Implementation Status
+### v3.0.70 Implementation Status
 | Phase | Task | Owner | Status | Completion |
 |--------|-------|--------|---------|------------|
 | Foundation | Database Schema | Cursor | ✅ COMPLETE | 100% |
@@ -204,13 +204,13 @@ file:
 1. **Integration Testing Assignment** - Who will handle testing?
 2. **Performance Validation** - Fleet coordination testing plan
 3. **Documentation Final Review** - Complete documentation audit
-4. **Production Readiness** - Go/No-Go decision for v4.0.70
+4. **Production Readiness** - Go/No-Go decision for v3.0.70
 
 ### Suggested Next Steps
 1. **WINDSURF**: Claim integration testing tasks
 2. **CURSOR**: Support integration testing and fix any issues found
 3. **BOTH**: Review and finalize all documentation
-4. **COORDINATE**: Plan v4.0.71 development (if needed)
+4. **COORDINATE**: Plan v3.0.71 development (if needed)
 
 ---
 
@@ -220,7 +220,7 @@ file:
 **Agent**: WOLFIE (System)  
 **Action**: Established coordination protocol  
 **Status**: ✅ ACTIVE  
-**Notes**: Cursor and Windsurf coordination protocol created for v4.0.70 Agent Awareness Layer work
+**Notes**: Cursor and Windsurf coordination protocol created for v3.0.70 Agent Awareness Layer work
 
 ### [TEMPLATE] - Task Claim
 **Agent**: [IDE_AGENT_NAME]  
@@ -243,7 +243,7 @@ file:
 ### High Priority Alerts
 - **IMMEDIATE ATTENTION REQUIRED**: Critical blockers or conflicts
 - **COORDINATION NEEDED**: Tasks requiring joint decision
-- **PRODUCTION IMPACT**: Issues affecting v4.0.70 readiness
+- **PRODUCTION IMPACT**: Issues affecting v3.0.70 readiness
 
 ### Standard Updates
 - **PROGRESS UPDATES**: Regular task progress reports
@@ -255,8 +255,8 @@ file:
 **Protocol Status**: 🟢 ACTIVE  
 **Last Updated**: 2026-01-17  
 **Next Review**: As needed based on task progress  
-**Version**: 4.0.70  
+**Version**: 3.0.70  
 
 ---
 
-*This coordination protocol ensures efficient collaboration between Cursor and Windsurf while preventing duplicate work and ensuring comprehensive v4.0.70 Agent Awareness Layer implementation.*
+*This coordination protocol ensures efficient collaboration between Cursor and Windsurf while preventing duplicate work and ensuring comprehensive v3.0.70 Agent Awareness Layer implementation.*

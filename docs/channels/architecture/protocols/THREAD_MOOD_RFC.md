@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -26,15 +26,15 @@ file:
 # **RFC 4002 â€” Thread Mood Aggregation Standard**  
 **Lupopedia Semantic OS â€” Request for Comments**  
 **Category:** Standards Track  
-**Version:** 4.0.1  
+**Version:** 3.0.1  
 **Updated:** 2026â€‘01â€‘08  
 **Author:** Eric Robin Gerdes ("Wolfie")  
-**Part of:** Lupopedia 4.0.1 Standards Track
+**Part of:** Lupopedia 3.0.1 Standards Track
 
 ---
 
 ## **Status of This Memo**
-This document defines the **Thread Mood Aggregation Standard** for Lupopedia 4.0.1. It specifies how individual dialog message moods (`mood_rgb`) are aggregated into a single **threadâ€‘level mood**, enabling emotional continuity, analytics, and routing context across multiâ€‘agent conversations.
+This document defines the **Thread Mood Aggregation Standard** for Lupopedia 3.0.1. It specifies how individual dialog message moods (`mood_rgb`) are aggregated into a single **threadâ€‘level mood**, enabling emotional continuity, analytics, and routing context across multiâ€‘agent conversations.
 
 Distribution of this memo is unlimited.
 
@@ -225,11 +225,11 @@ A valid thread mood:
 
 ## **10. Versioning**
 
-This RFC defines **Thread Mood Aggregation v4.0.1**, aligned with:
+This RFC defines **Thread Mood Aggregation v3.0.1**, aligned with:
 
-- Countingâ€‘inâ€‘Light v4.0.1  
-- WOLFIE Headers v4.0.1  
-- Lupopedia Schema v4.0.1  
+- Countingâ€‘inâ€‘Light v3.0.1  
+- WOLFIE Headers v3.0.1  
+- Lupopedia Schema v3.0.1  
 
 Future versions **MUST** remain backward compatible unless superseded by a new RFC.
 
@@ -254,7 +254,7 @@ United States
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.1*  
+*Version: 3.0.1*  
 *Category: Standards Track*  
 *Status: Published*  
-*Part of: Lupopedia 4.0.1 Standards Track*
+*Part of: Lupopedia 3.0.1 Standards Track*

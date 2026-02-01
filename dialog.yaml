@@ -1,10 +1,10 @@
-# 🐺 Lupopedia Inline Dialog Specification (Updated 4.0.0)
+# 🐺 Lupopedia Inline Dialog Specification (Updated 3.0.0)
 # This file defines the universal communication protocol for all AI agents, IDEs, humans, and automated tools operating within Lupopedia.
 # Inline Dialog ensures synchronized awareness, traceability, and coordinated action across the entire semantic OS.
 
 ---
 dialog_specification:
-  version: "4.0.0"
+  version: "3.0.0"
   
   purpose: |
     Inline Dialog is the required communication format for:
@@ -123,7 +123,7 @@ dialog_specification:
       - "markdown inside the message"
     
     version_control: |
-      Version-control rules will be defined in 4.0.1+.
+      Version-control rules will be defined in 3.0.1+.
 
   integration_with_dialog_database:
     description: |

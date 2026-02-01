@@ -1,5 +1,5 @@
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.71
+file.last_modified_system_version: 3.0.71
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -7,7 +7,7 @@ dialog:
   speaker: WOLFIE
   target: @everyone
   mood_RGB: "0080FF"
-  message: "System Integration Testing Doctrine v4.0.71 established. Defines comprehensive testing framework for validating interactions between Migration Orchestrator, Agent Awareness Layer (AAL), Reverse Shaka Handshake Protocol (RSHAP), Channel Join Protocol (CJP), and Emotional Geometry systems."
+  message: "System Integration Testing Doctrine v3.0.71 established. Defines comprehensive testing framework for validating interactions between Migration Orchestrator, Agent Awareness Layer (AAL), Reverse Shaka Handshake Protocol (RSHAP), Channel Join Protocol (CJP), and Emotional Geometry systems."
 tags:
   categories: ["documentation", "doctrine", "testing"]
   collections: ["core-docs"]
@@ -21,7 +21,7 @@ file:
 ---
 
 # SYSTEM_INTEGRATION_TESTING_DOCTRINE.md
-# Version: 4.0.71
+# Version: 3.0.71
 # Status: Draft Doctrine
 # Domain: System Integration Layer
 # Purpose: Define the integration testing architecture required to validate
@@ -33,7 +33,7 @@ file:
 ## 1. PURPOSE
 
 This doctrine defines the integration testing architecture for validating the
-behavior of all major subsystems introduced up to Version 4.0.70. It ensures
+behavior of all major subsystems introduced up to Version 3.0.70. It ensures
 that the system behaves coherently when multiple layers interact, including:
 
 - Migration Orchestrator (8-state machine)
@@ -141,7 +141,7 @@ Does not apply to:
 
 ## 6. VERSIONING RULES
 
-- Integration testing doctrine becomes active in Version 4.0.71
+- Integration testing doctrine becomes active in Version 3.0.71
 - Future versions may extend testing domains
 - No doctrine may override integration invariants
 

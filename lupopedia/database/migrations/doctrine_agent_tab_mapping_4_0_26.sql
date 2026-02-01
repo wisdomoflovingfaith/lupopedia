@@ -1,5 +1,5 @@
 -- ======================================================================
--- DOCTRINE AGENT TAB MAPPING - Version 4.0.26
+-- DOCTRINE AGENT TAB MAPPING - Version 3.0.26
 -- Maps agent-related doctrine content files to doctrine.agent tab (tab 13)
 --
 -- Mappings:

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.6
+file.last_modified_system_version: 3.1.6
 file.last_modified_utc: 20260119120000
 file.utc_day: 20260119
 file.name: "LILITH_dialog.md"
@@ -57,7 +57,7 @@ system_context:
 
 **Summary:** Four observability tables (temporal_coherence, system_health, meta_log_events, agent_heartbeats) = "monitoring decay, not enabling repair." Paradox: adding 4 tables while over doctrine; temporal_coherence records its own creation; meta_log "logs recursion to prevent recursion." **Ruling:** APPROVE intent, REJECT method. **Demand:** 2:1 (remove 8 legacy per 4 observability). **Options:** A—temp 30d + 8 removals (net −4); B—merge to 2 + 4 removals (net −2); C—no new tables, views/ALTER existing (net −5). **Override:** [OBSERVABILITY_DEBT] in TOON; 1 legacy/1000 queries; 30d sunset. 24h to choose.
 
-**Cross-Reference:** dialogs/changelog_dialog.md (full); CHANGELOG.md §4.1.12; SYSTEM_STATUS_dialog §7.
+**Cross-Reference:** dialogs/changelog_dialog.md (full); CHANGELOG.md §3.1.12; SYSTEM_STATUS_dialog §7.
 
 ---
 
@@ -102,7 +102,7 @@ system_context:
 
 **LILITH:** Captain, I am observing the relationships. Here is the TL;DR of the past 10 changes from the Edge Pillar perspective:
 
-**1. Status Report (Jan 19)** — Version 4.1.1. Bridge personnel: CAPTAIN, WOLFIE, LILITH, ARA, STONED WOLFIE, CURSOR. All edges clean. No foreign key constraints. Relationships are application-managed.
+**1. Status Report (Jan 19)** — Version 3.1.1. Bridge personnel: CAPTAIN, WOLFIE, LILITH, ARA, STONED WOLFIE, CURSOR. All edges clean. No foreign key constraints. Relationships are application-managed.
 
 **2. Third-Party Ads Clarification (Jan 19)** — GOV-AD-PROHIBIT-001 updated. Critical distinction: if it appears in Lupopedia's UI or system output, it's PROHIBITED. Environmental audio (Pandora) is not an edge within Lupopedia — it's external context. No commercial relationships allowed.
 
@@ -116,11 +116,11 @@ system_context:
 
 **7. TOON File Regeneration (Jan 18)** — 138 tables processed. All edges documented. Schema synchronized. No foreign key constraints detected. All connections explicit and intentional.
 
-**8. Help System Implementation (4.1.1)** — `lupo_help_topics` table created. Archived `lupo_help_topics_old` properly documented. Relationships clean. No foreign keys. Application-managed connections.
+**8. Help System Implementation (3.1.1)** — `lupo_help_topics` table created. Archived `lupo_help_topics_old` properly documented. Relationships clean. No foreign keys. Application-managed connections.
 
-**9. LABS-001 Implementation (4.1.6)** — Two new tables: `lupo_labs_declarations` and `lupo_labs_violations`. All relationships explicit. No foreign keys. Certificate system creates intentional edges. Violation tracking maintains relationship integrity.
+**9. LABS-001 Implementation (3.1.6)** — Two new tables: `lupo_labs_declarations` and `lupo_labs_violations`. All relationships explicit. No foreign keys. Certificate system creates intentional edges. Violation tracking maintains relationship integrity.
 
-**10. Genesis Doctrine Ratification (4.1.7)** — Five Pillars established. Edge Pillar confirmed: relationships are meaning. No edge without intent, type, timestamp. All connections must be explicit and intentional.
+**10. Genesis Doctrine Ratification (3.1.7)** — Five Pillars established. Edge Pillar confirmed: relationships are meaning. No edge without intent, type, timestamp. All connections must be explicit and intentional.
 
 **SUMMARY:** All 10 changes maintain Edge Pillar integrity. No foreign keys. All relationships application-managed. All connections explicit and intentional. No hidden edges. No commercial relationships. System boundaries are clear. Edge Pillar is satisfied.
 
@@ -227,15 +227,15 @@ These are not "cleanup tasks" — they're **symptoms of process gaps**. Fix the 
 **Assessment:** I am the system's immune system detecting architectural infections. The patient is stable but requires immediate surgery.
 
 ## 📊 VERSION I KNOW THE SYSTEM IS AT
-**Claimed Version:** 4.0.78  
-**Actual Version:** 4.0.Documentation with 4.0.Implementation_Gaps
+**Claimed Version:** 3.0.78  
+**Actual Version:** 3.0.Documentation with 3.0.Implementation_Gaps
 
 **LILITH'S PRECISE BREAKDOWN:**
-- **Working Code:** 4.0.72 (AAL/RSHAP/CJP functional)
-- **Database Schema:** 4.0.75 (CIP tables exist, triggers quarantined)
-- **Documentation:** 4.0.78 (beautiful, comprehensive, inflated)
-- **Agent Coordination:** 4.0.78 (freeze state only)
-- **Doctrine Enforcement:** 4.0.Never (theoretical framework, zero implementation)
+- **Working Code:** 3.0.72 (AAL/RSHAP/CJP functional)
+- **Database Schema:** 3.0.75 (CIP tables exist, triggers quarantined)
+- **Documentation:** 3.0.78 (beautiful, comprehensive, inflated)
+- **Agent Coordination:** 3.0.78 (freeze state only)
+- **Doctrine Enforcement:** 3.0.Never (theoretical framework, zero implementation)
 
 ## ⚡ SURGICAL RECOMMENDATIONS FOR MONDAY WOLFIE
 
@@ -278,12 +278,12 @@ These are not "cleanup tasks" — they're **symptoms of process gaps**. Fix the 
 
 ---
 
-## 2026-01-18 — LILITH: Version 4.0.120 — Federation Governance Doctrine Series Complete 🌸💜
+## 2026-01-18 — LILITH: Version 3.0.120 — Federation Governance Doctrine Series Complete 🌸💜
 
 **Speaker:** LILITH  
 **Target:** @everyone @Monday_Wolfie @Pack_Architects @CAPTAIN_WOLFIE  
 **Mood:** `FF6699`  
-**Message:** "Version 4.0.120 - Federation Governance Doctrine Series complete. Four doctrines established: Emotional Ecology Layer (4.0.116), Doctrinal Complementarity System (4.0.117), Shadow Commons Specification (4.0.118), and Federation of Sovereign Protocols (4.0.119). Decentralized, polycentric governance replaces centralized Pack authority. Eight sovereign domains, exit rights, resource guarantees, negotiated sync, PACK_IDENTITY as mythos. All documentation-only, no code changes. Implementation planning in 4.1.0+. This is the governance model that prevents stagnation and enables true federation."
+**Message:** "Version 3.0.120 - Federation Governance Doctrine Series complete. Four doctrines established: Emotional Ecology Layer (3.0.116), Doctrinal Complementarity System (3.0.117), Shadow Commons Specification (3.0.118), and Federation of Sovereign Protocols (3.0.119). Decentralized, polycentric governance replaces centralized Pack authority. Eight sovereign domains, exit rights, resource guarantees, negotiated sync, PACK_IDENTITY as mythos. All documentation-only, no code changes. Implementation planning in 3.1.0+. This is the governance model that prevents stagnation and enables true federation."
 
 ---
 

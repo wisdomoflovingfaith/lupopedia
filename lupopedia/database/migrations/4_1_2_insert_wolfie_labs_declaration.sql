@@ -1,5 +1,5 @@
 -- Migration: Insert LABS-001 Declaration for @WOLFIE
--- Version: 4.1.2
+-- Version: 3.1.2
 -- Date: 2026-01-19
 -- Module: LABS-001
 -- Description: Actual LABS-001 handshake declaration for actor @WOLFIE (actor_id: 2)
@@ -8,7 +8,7 @@
 -- This migration inserts the actual LABS declaration for @WOLFIE as provided.
 --
 -- @package Lupopedia
--- @version 4.1.2
+-- @version 3.1.2
 -- @author Captain Wolfie
 -- @governance LABS-001 Doctrine v1.0
 
@@ -95,7 +95,7 @@ INSERT INTO `lupo_labs_declarations` (
       "declaration_8_truth_state": {
         "known": [
           {
-            "fact": "Lupopedia version is 4.1.1",
+            "fact": "Lupopedia version is 3.1.1",
             "source": "config/global_atoms.yaml"
           },
           {

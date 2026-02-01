@@ -1,17 +1,17 @@
 <?php
 /**
 ---
-wolfie.headers.version: "4.0.12"
+wolfie.headers.version: "3.0.12"
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.12: Version bump for hierarchical tab structure implementation. No logic changes to truth-model.php in this version."
+    message: "Version 3.0.12: Version bump for hierarchical tab structure implementation. No logic changes to truth-model.php in this version."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
-    message: "Version 4.0.11: Added collection tab content loading functions (truth_get_content_for_tab, truth_get_tab_by_slug, truth_get_content_by_slug) for loading system documentation content mapped to Collection 0 tabs. Functions query lupo_collection_tab_map and lupo_contents tables."
+    message: "Version 3.0.11: Added collection tab content loading functions (truth_get_content_for_tab, truth_get_tab_by_slug, truth_get_content_by_slug) for loading system documentation content mapped to Collection 0 tabs. Functions query lupo_collection_tab_map and lupo_contents tables."
     mood: "00FF00"
   - speaker: CURSOR
     target: @everyone
@@ -517,7 +517,7 @@ function truth_receive_evidence($payload) {
 
 /**
  * ---------------------------------------------------------
- * TRUTH Phase 4.0.11: Collection Tab Content Loading
+ * TRUTH Phase 3.0.11: Collection Tab Content Loading
  * ---------------------------------------------------------
  * 
  * Functions to load content items mapped to collection tabs.
@@ -526,7 +526,7 @@ function truth_receive_evidence($payload) {
 /**
  * Get content items mapped to a collection tab
  * 
- * Version 4.0.11: Loads content items from lupo_collection_tab_map
+ * Version 3.0.11: Loads content items from lupo_collection_tab_map
  * for a specific collection tab, ordered by sort_order.
  * 
  * @param int $collection_tab_id Collection tab ID
@@ -574,7 +574,7 @@ function truth_get_content_for_tab($collection_tab_id) {
 /**
  * Get collection tab by slug
  * 
- * Version 4.0.11: Gets collection tab information by slug.
+ * Version 3.0.11: Gets collection tab information by slug.
  * 
  * @param int $collection_id Collection ID
  * @param string $tab_slug Tab slug
@@ -611,7 +611,7 @@ function truth_get_tab_by_slug($collection_id, $tab_slug) {
 /**
  * Get content by slug
  * 
- * Version 4.0.11: Gets content item by slug for display.
+ * Version 3.0.11: Gets content item by slug for display.
  * 
  * @param string $slug Content slug
  * @return array|null Content row or null if not found

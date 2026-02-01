@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.82
+file.last_modified_system_version: 3.0.82
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -29,7 +29,7 @@ file:
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# JOHN WHEELER REVERSE-20 WORKFLOW DOCTRINE (v4.0.82)
+# JOHN WHEELER REVERSE-20 WORKFLOW DOCTRINE (v3.0.82)
 
 **Description:** A discovery workflow where the system's architecture is not predetermined. Structure emerges through iterative questioning, persona reactions, and observer collapse. The truth of the system is retroactively defined by the pattern of interactions rather than a fixed initial design.
 
@@ -166,7 +166,7 @@ Wheeler Mode files may also have:
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.82
+file.last_modified_system_version: 3.0.82
 wheeler_mode:
   active: true
   reason: "Architecture emerging through agent questioning"
@@ -181,7 +181,7 @@ wheeler_mode:
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.82
+file.last_modified_system_version: 3.0.82
 wheeler_mode:
   active: false
   reason: "File created during emergent architecture phase"
@@ -221,7 +221,7 @@ wheeler_mode:
 
 **This is emergent architecture doctrine.** ⚛️🔍
 
-## Neural Bus Concept (v4.0.82)
+## Neural Bus Concept (v3.0.82)
 
 The system may be influenced by multi-layer cognitive processing, including narrative reasoning, emotional geometry, humor-based pattern recognition, and architectural insight. These layers may interact during emergent design phases but must be documented structurally, not narratively, within doctrine.
 

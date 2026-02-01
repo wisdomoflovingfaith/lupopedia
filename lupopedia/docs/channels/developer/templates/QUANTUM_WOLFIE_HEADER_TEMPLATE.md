@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.82
+file.last_modified_system_version: 3.0.82
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -9,7 +9,7 @@ dialog:
   speaker: KIRO
   target: @architecture_team @quantum_observers
   mood_RGB: "6699FF"  # Emotional tensor: strife (66=medium), harmony (99=high), memory (FF=high). Hex encoding only.
-  message: "Updated Quantum WOLFIE header template to version 4.0.82 with Wheeler Mode support and Stoned Wolfie dialog example."
+  message: "Updated Quantum WOLFIE header template to version 3.0.82 with Wheeler Mode support and Stoned Wolfie dialog example."
 tags:
   categories: ["template", "quantum", "architecture", "metadata"]
   collections: ["core-templates", "quantum-docs", "wolfie-headers"]
@@ -59,16 +59,16 @@ For files with uncertainty, version drift, or pending decisions:
 ```yaml
 schrodingers_state:
   active: true
-  possible_versions: ["4.0.79", "4.0.81"]
+  possible_versions: ["3.0.79", "3.0.81"]
   truth_pending: true
   collapse_required_by: "Monday_Wolfie"
   uncertainty_type: "version_drift"
   notes:
-    - "Documentation updated to 4.0.81, implementation at 4.0.79"
+    - "Documentation updated to 3.0.81, implementation at 3.0.79"
     - "Awaiting version audit to determine true state"
   collapse_paths:
-    - "If implementation is 4.0.79 → downgrade documentation"
-    - "If implementation is 4.0.81 → validate all features"
+    - "If implementation is 3.0.79 → downgrade documentation"
+    - "If implementation is 3.0.81 → validate all features"
   observer_effect:
     - "State collapses when Monday_Wolfie performs version audit"
 ```
@@ -109,18 +109,18 @@ schrodingers_state:
 ```yaml
 schrodingers_state:
   active: true
-  possible_versions: ["4.0.79", "4.0.80", "4.0.81"]
+  possible_versions: ["3.0.79", "3.0.80", "3.0.81"]
   truth_pending: true
   collapse_required_by: "Monday_Wolfie"
   uncertainty_type: "agent_conflict"
   notes:
-    - "CASCADE reports 4.0.81 implementation"
-    - "KIRO reports 4.0.80 documentation"
-    - "CURSOR shows 4.0.79 in file headers"
-    - "Database schema appears to be 4.0.80"
+    - "CASCADE reports 3.0.81 implementation"
+    - "KIRO reports 3.0.80 documentation"
+    - "CURSOR shows 3.0.79 in file headers"
+    - "Database schema appears to be 3.0.80"
   collapse_paths:
-    - "If CASCADE is correct → update all to 4.0.81"
-    - "If KIRO is correct → align implementation with 4.0.80"
+    - "If CASCADE is correct → update all to 3.0.81"
+    - "If KIRO is correct → align implementation with 3.0.80"
     - "If mixed state → perform comprehensive audit"
   observer_effect:
     - "State collapses when Monday_Wolfie performs system-wide version audit"
@@ -136,7 +136,7 @@ schrodingers_state:
   collapse_required_by: "JUNIE"
   uncertainty_type: "implementation_gap"
   notes:
-    - "Feature fully documented in 4.0.77"
+    - "Feature fully documented in 3.0.77"
     - "Implementation status unclear"
     - "Tests exist but may be mocked"
   collapse_paths:
@@ -188,7 +188,7 @@ The quantum state block integrates seamlessly with all existing WOLFIE header fi
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.81
+file.last_modified_system_version: 3.0.81
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
@@ -211,13 +211,13 @@ next_actions:
   - "Do not modify until uncertainty resolved"
 schrodingers_state:
   active: true
-  possible_versions: ["4.0.79", "4.0.80"]
+  possible_versions: ["3.0.79", "3.0.80"]
   truth_pending: true
   collapse_required_by: "Monday_Wolfie"
   uncertainty_type: "implementation_gap"
   notes:
-    - "Analytics tables created in 4.0.79"
-    - "PHP classes documented for 4.0.80"
+    - "Analytics tables created in 3.0.79"
+    - "PHP classes documented for 3.0.80"
     - "Unclear if classes are implemented or documented-only"
   collapse_paths:
     - "If classes implemented → validate functionality"

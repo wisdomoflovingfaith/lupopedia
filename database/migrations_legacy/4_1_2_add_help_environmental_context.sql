@@ -1,5 +1,5 @@
 -- Migration: Add HELP and Environmental Context help topics
--- Version: 4.1.2
+-- Version: 3.1.2
 -- Date: 2026-01-19
 -- Module: Help System
 -- Purpose: Add clear definitions for Lupopedia HELP and Environmental Context

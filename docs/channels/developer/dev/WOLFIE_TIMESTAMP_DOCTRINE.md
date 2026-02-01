@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -16,7 +16,7 @@ tags:
 file:
   title: "WOLFIE Timestamp Doctrine"
   description: "Strict timestamp format requirement: YYYYMMDDHHIISS (UTC, zero-padded, numeric) for all code, migrations, and data models"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---
@@ -202,7 +202,7 @@ $timestamp = strtotime('now');
 
 ## Version History
 
-- **4.0.0** (2026-01-05) - Initial formal doctrine document created
+- **3.0.0** (2026-01-05) - Initial formal doctrine document created
 
 ---
 

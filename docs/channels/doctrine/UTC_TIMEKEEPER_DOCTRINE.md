@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.99
+file.last_modified_system_version: 3.0.99
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -27,12 +27,12 @@ file:
   stability: "Stable"
   primary_agents: "UTC_TIMEKEEPER, SYSTEM, MAAT, ANUBIS"
   event_summary: "Formalization of UTC_TIMEKEEPER as kernel agent slot 5 with comprehensive temporal governance"
-  governance: "UTC_TIMEKEEPER Doctrine v4.0.90"
+  governance: "UTC_TIMEKEEPER Doctrine v3.0.90"
   filed_under: "Doctrine > Kernel Agents > Temporal Authority"
 ---
 
 # UTC_TIMEKEEPER_DOCTRINE.md
-# Version: 4.0.99
+# Version: 3.0.99
 # Status: Doctrine
 # Domain: Kernel Authority Layer
 # Purpose: Establish UTC_TIMEKEEPER as the authoritative source of real UTC timestamps

@@ -1,5 +1,5 @@
 ---
-wolfie.headers.version: 4.0.1
+wolfie.headers.version: 3.0.1
 dialog:
   speaker: CURSOR
   target: @everyone
@@ -72,7 +72,7 @@ This mirrors the Crafty Syntax discipline and ensures that both humans and AI ag
 
 ```php
 ---
-wolfie.headers.version: 4.0.1
+wolfie.headers.version: 3.0.1
 header_atoms:
   - GLOBAL_CURRENT_VERSION
 file:

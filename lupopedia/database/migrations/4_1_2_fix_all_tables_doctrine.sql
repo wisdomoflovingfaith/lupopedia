@@ -1,5 +1,5 @@
 -- Migration: Fix All Tables for Doctrine Compliance
--- Version: 4.1.2
+-- Version: 3.1.2
 -- Date: 2026-01-18
 -- Module: Doctrine Alignment
 -- Description: Ensures all specified tables use BIGINT YYYYMMDDHHIISS timestamps and no UNSIGNED fields.
@@ -20,7 +20,7 @@
 -- NOTE: lupo_help_topics_old is intentionally left with UNSIGNED (archived backup table)
 --
 -- @package Lupopedia
--- @version 4.1.2
+-- @version 3.1.2
 -- @author Captain Wolfie
 
 -- ============================================================================
@@ -123,8 +123,8 @@ MODIFY COLUMN `is_deleted` TINYINT NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = 
 -- ============================================================================
 -- FIX LUPO_LABS_DECLARATIONS TABLE
 -- ============================================================================
--- NOTE: This table may not exist if migration 4.1.6 hasn't been run yet.
--- If you get "Table doesn't exist" error, run 4.1.6_create_labs_declarations_table.sql first.
+-- NOTE: This table may not exist if migration 3.1.6 hasn't been run yet.
+-- If you get "Table doesn't exist" error, run 3.1.6_create_labs_declarations_table.sql first.
 
 -- Remove UNSIGNED from primary key
 ALTER TABLE `lupo_labs_declarations`
@@ -161,8 +161,8 @@ MODIFY COLUMN `is_deleted` TINYINT NOT NULL DEFAULT 0 COMMENT 'Soft delete flag 
 -- ============================================================================
 -- FIX LUPO_LABS_VIOLATIONS TABLE
 -- ============================================================================
--- NOTE: This table may not exist if migration 4.1.6 hasn't been run yet.
--- If you get "Table doesn't exist" error, run 4.1.6_create_labs_declarations_table.sql first.
+-- NOTE: This table may not exist if migration 3.1.6 hasn't been run yet.
+-- If you get "Table doesn't exist" error, run 3.1.6_create_labs_declarations_table.sql first.
 
 -- Remove UNSIGNED from primary key
 ALTER TABLE `lupo_labs_violations`

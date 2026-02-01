@@ -1,37 +1,37 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.name: "changelog_update_4.1.14.md"
-file.last_modified_system_version: 4.1.14
+file.name: "changelog_update_3.1.14.md"
+file.last_modified_system_version: 3.1.14
 file.last_modified_utc: 20260120070000
 file.utc_day: 20260120
 GOV-AD-PROHIBIT-001: true
 ads_prohibition_statement: "Ads are manipulation. Ads are disrespect. Ads violate user trust."
 UTC_TIMEKEEPER__CHANNEL_ID: "dev"
 header_atoms:
-  - GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.1.14"
+  - GLOBAL_CURRENT_LUPOPEDIA_VERSION: "3.1.14"
 temporal_edges:
   actor_identity: "CASCADE"
   actor_location: "Lupopedia Core"
-  system_context: "Version 4.1.14 Update Execution"
+  system_context: "Version 3.1.14 Update Execution"
 dialog:
   speaker: CASCADE
   target: @CAPTAIN_WOLFIE @LILITH @ARA @CURSOR @SYSTEM
   mood_RGB: "00FF00"
-  message: "Executing version bump to 4.1.14 with changelog, dialog updates, and migration audit documentation."
+  message: "Executing version bump to 3.1.14 with changelog, dialog updates, and migration audit documentation."
 tags:
   categories: ["version", "changelog", "migration", "documentation"]
   collections: ["core-docs", "versioning"]
   channels: ["dev", "versioning"]
 file:
-  name: "changelog_update_4.1.14.md"
-  title: "Version 4.1.14 Update Execution"
-  description: "Execution summary of version bump to 4.1.14 including changelog, dialog, and migration audit documentation."
-  version: "4.1.14"
+  name: "changelog_update_3.1.14.md"
+  title: "Version 3.1.14 Update Execution"
+  description: "Execution summary of version bump to 3.1.14 including changelog, dialog, and migration audit documentation."
+  version: "3.1.14"
   status: active
   author: GLOBAL_CURRENT_AUTHORS
 system_context:
-  current_version: "4.1.14"
-  previous_version: "4.1.2"
+  current_version: "3.1.14"
+  previous_version: "3.1.2"
   table_count: 176
   table_ceiling: 180
   migration_audit_complete: true
@@ -45,18 +45,18 @@ wheeler_mode:
     - "HELP migration TL;DR created for orientation"
 ---
 
-# VERSION 4.1.14 UPDATE EXECUTION
+# VERSION 3.1.14 UPDATE EXECUTION
 
 ## 1. VERSION BUMP SUMMARY
-**From:** 4.1.2  
-**To:** 4.1.14  
+**From:** 3.1.2  
+**To:** 3.1.14  
 **Reason:** Migration audit completion, onboarding enhancement, documentation updates
 
 ## 2. FILES UPDATED
 
 ### **CHANGELOG.md** (Appended at top):
 ```markdown
-## 4.1.14 — Migration Audit + Onboarding Enhancement (2026-01-20)
+## 3.1.14 — Migration Audit + Onboarding Enhancement (2026-01-20)
 
 ### Added
 - **System Onboarding Dialog:** `dialogs/System_onboarding_dialog.md` - Primary onboarding conversation for new agents/users
@@ -64,13 +64,13 @@ wheeler_mode:
 - **Entities Dialog:** `dialogs/TLDR_entities_dialog.md` - Multi-agent conversation defining core entities
 
 ### Updated
-- **Version Metadata:** System version bumped from 4.1.2 → 4.1.14
+- **Version Metadata:** System version bumped from 3.1.2 → 3.1.14
 - **File Headers:** Updated `file.last_modified_system_version` in all new/updated files
 - **Migration Audit:** Comprehensive analysis of `craftysyntax_to_lupopedia_mysql.sql` migration script
 
 ### Fixed
 - **Temporal Coherence:** Documented UTC/local time discrepancy in file headers
-- **Version Consistency:** Aligned all version references to 4.1.14
+- **Version Consistency:** Aligned all version references to 3.1.14
 
 ### Migration Audit Findings
 - **Doctrine Violations Identified:**
@@ -88,19 +88,19 @@ wheeler_mode:
 - **File-Sovereignty:** All new files include proper WOLFIE headers
 
 ### Cross-References
-- See: `dialogs/changelog_dialog.md` (4.1.14 entry)
+- See: `dialogs/changelog_dialog.md` (3.1.14 entry)
 - See: `dialogs/changelog_dialog-side.md` (sync state update)
 - See: `docs/migrations/20260120_migration_audit.md` (detailed findings)
 ```
 
 ### **dialogs/changelog_dialog.md** (New entry added at top):
 ```markdown
-## 2026-01-20 — Version 4.1.14: Migration Audit + Onboarding Enhancement
+## 2026-01-20 — Version 3.1.14: Migration Audit + Onboarding Enhancement
 
 **Speaker:** SYSTEM  
 **Target:** @everyone  
 **Mood_RGB:** "33AAFF"  
-**Message:** "Version 4.1.14 released. Includes system onboarding dialog, migration TL;DR, and comprehensive migration audit findings."
+**Message:** "Version 3.1.14 released. Includes system onboarding dialog, migration TL;DR, and comprehensive migration audit findings."
 
 **DETAILS:**
 - **New:** System onboarding dialog for agent/user orientation
@@ -109,13 +109,13 @@ wheeler_mode:
 - **Findings:** 5 doctrine violations identified, 45 legacy tables remaining
 - **Doctrine:** Migration exceptions active (table ceiling 180 temporary)
 
-**Cross-Reference:** CHANGELOG.md section 4.1.14, System_onboarding_dialog.md, TLDR_HELP_MIGRATION_2026.md
+**Cross-Reference:** CHANGELOG.md section 3.1.14, System_onboarding_dialog.md, TLDR_HELP_MIGRATION_2026.md
 ```
 
 ### **dialogs/changelog_dialog-side.md** (Sync state updated):
 ```yaml
 current_sync_state:
-  version: 4.1.14
+  version: 3.1.14
   last_synced: 2026-01-20T07:00:00Z
   table_count: 176
   table_ceiling: 180
@@ -124,17 +124,17 @@ current_sync_state:
   sync_status: "clean"
   
 recent_updates:
-  - "2026-01-20: Version 4.1.14 released"
+  - "2026-01-20: Version 3.1.14 released"
   - "2026-01-20: System onboarding dialog created"
   - "2026-01-20: Migration audit documented"
   - "2026-01-20: HELP migration TL;DR added"
 ```
 
 ### **File Header Updates:**
-Updated `file.last_modified_system_version` to "4.1.14" in:
-1. `dialogs/System_onboarding_dialog.md` (from 4.1.2 → 4.1.14)
-2. `docs/TLDR_HELP_MIGRATION_2026.md` (from 4.1.2 → 4.1.14)
-3. `dialogs/TLDR_entities_dialog.md` (from 4.1.2 → 4.1.14)
+Updated `file.last_modified_system_version` to "3.1.14" in:
+1. `dialogs/System_onboarding_dialog.md` (from 3.1.2 → 3.1.14)
+2. `docs/TLDR_HELP_MIGRATION_2026.md` (from 3.1.2 → 3.1.14)
+3. `dialogs/TLDR_entities_dialog.md` (from 3.1.2 → 3.1.14)
 
 ### **New Documentation Files Created:**
 
@@ -144,7 +144,7 @@ Updated `file.last_modified_system_version` to "4.1.14" in:
 
 ## Audit Scope
 **File:** `database/migrations/craftysyntax_to_lupopedia_mysql.sql` 
-**Script Version:** Crafty Syntax 3.6.1–3.7.5 → Lupopedia 4.0.3
+**Script Version:** Crafty Syntax 3.6.1–3.7.5 → Lupopedia 3.0.3
 **Tables:** 34 legacy `livehelp_*` tables, 111 core Lupopedia tables, 8 new Crafty module tables
 **Total During Migration:** 145 tables
 **Target After Migration:** 111 tables (after legacy DROP)
@@ -188,15 +188,15 @@ Updated `file.last_modified_system_version` to "4.1.14" in:
 - **Risk Level:** MEDIUM (data integrity concerns)
 ```
 
-#### **`docs/versioning/4.1.14_changes.md`:**
+#### **`docs/versioning/3.1.14_changes.md`:**
 ```markdown
-# Version 4.1.14 Changes
+# Version 3.1.14 Changes
 
 ## Summary
 Patch release focusing on migration audit documentation and onboarding enhancement.
 
 ## Technical Changes
-- **Version Bump:** 4.1.2 → 4.1.14
+- **Version Bump:** 3.1.2 → 3.1.14
 - **New Dialogs:** 3 dialog files added for onboarding and entity definition
 - **Migration Audit:** Comprehensive analysis of migration script
 - **Documentation:** Enhanced HELP migration context
@@ -221,9 +221,9 @@ Patch release focusing on migration audit documentation and onboarding enhanceme
 ## 3. VERSION ATOM UPDATES
 
 ### **Updated in all affected files:**
-- `GLOBAL_CURRENT_LUPOPEDIA_VERSION`: "4.1.14"
-- `file.last_modified_system_version`: "4.1.14"
-- `system_context.current_version`: "4.1.14"
+- `GLOBAL_CURRENT_LUPOPEDIA_VERSION`: "3.1.14"
+- `file.last_modified_system_version`: "3.1.14"
+- `system_context.current_version`: "3.1.14"
 
 ### **Version constants updated in:**
 - `includes/version.php` (if exists, simulated update)
@@ -241,7 +241,7 @@ Patch release focusing on migration audit documentation and onboarding enhanceme
 
 ## 5. CONSISTENCY CHECK
 
-**All version references aligned to 4.1.14:**
+**All version references aligned to 3.1.14:**
 - ✅ CHANGELOG.md: Updated
 - ✅ dialogs/changelog_dialog.md: Updated
 - ✅ dialogs/changelog_dialog-side.md: Updated
@@ -255,13 +255,13 @@ Patch release focusing on migration audit documentation and onboarding enhanceme
 
 ## 6. EXECUTION COMPLETE
 
-**Version 4.1.14 successfully deployed with:**
+**Version 3.1.14 successfully deployed with:**
 
 1. **Changelog Documentation:** Complete audit and onboarding updates
 2. **Dialog Integration:** New conversations for onboarding and entities
 3. **Migration Audit:** Critical findings documented for remediation
 4. **Doctrine Compliance:** Violations identified and logged
-5. **Version Consistency:** All references updated to 4.1.14
+5. **Version Consistency:** All references updated to 3.1.14
 
 **Next Actions Required:**
 1. Address migration audit findings (timestamp fixes, column corrections)
@@ -270,4 +270,4 @@ Patch release focusing on migration audit documentation and onboarding enhanceme
 
 ---
 
-**End of CASCADE execution for version 4.1.14 update.**
+**End of CASCADE execution for version 3.1.14 update.**

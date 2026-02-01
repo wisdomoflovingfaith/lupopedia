@@ -6,7 +6,7 @@
  * Kernel-level temporal authority for deterministic time queries.
  * 
  * @package App\TerminalAI\Agents
- * @version 4.0.101
+ * @version 3.0.101
  * @author Captain Wolfie
  * @see docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md
  */

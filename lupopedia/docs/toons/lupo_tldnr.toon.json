@@ -7,7 +7,7 @@
     "`content_text` longtext NOT NULL COMMENT 'TL;DR content (plain text or markdown)'",
     "`topic_type` varchar(100) COMMENT 'Type of topic (e.g., \"system\", \"doctrine\", \"module\", \"concept\")'",
     "`topic_reference` varchar(255) COMMENT 'Reference to what this summarizes (e.g., \"Lupopedia\", \"Collection Doctrine\", \"LABS-001\")'",
-    "`system_version` varchar(20) COMMENT 'System version this TL;DR applies to (e.g., \"4.1.6\")'",
+    "`system_version` varchar(20) COMMENT 'System version this TL;DR applies to (e.g., \"3.1.6\")'",
     "`category` varchar(100) COMMENT 'Category for grouping (e.g., \"Core\", \"Doctrine\", \"Module\")'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'UTC creation timestamp (YYYYMMDDHHIISS)'",
     "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC last update timestamp (YYYYMMDDHHIISS)'",

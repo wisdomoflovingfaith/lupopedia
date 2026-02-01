@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.46
+file.last_modified_system_version: 3.0.46
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -32,7 +32,7 @@ This file serves as the **human override mechanism** for all autonomous operatio
 This bridge automatically activates when:
 - Schema changes affecting core tables are proposed
 - Foreign key or trigger creation attempts are detected
-- Version bumps beyond 4.0.50 are requested
+- Version bumps beyond 3.0.50 are requested
 - Federation node initialization is attempted
 - Agent registry modifications are proposed
 - Doctrine violations are detected
@@ -245,7 +245,7 @@ GLOBAL_COGNITIVE_LOAD_LIMIT: "High Velocity but with Snacks"  # RPZ-approved wee
 **Questions/Evaluations Asked:**
 
 1. **System State Truth Evaluation (2026-01-16):**
-   > "Truth evaluation of system state at 4.0.45: Migration Orchestrator implementation is COMPLETE (8 states, 100%). Dialog system architecture is DOCUMENTED but NOT IMPLEMENTED (classes exist, integration missing). Documentation consistency is ACHIEVED (all dialog files compliant). System recognizes architect identity: TRUE. Foundation for sustainable growth: ESTABLISHED. Current bottleneck: Dialog system requires database layer and LLM integration before operational. **Recommendation: Prioritize dialog system implementation (Quick Start option) to achieve functional multi-agent communication.**"
+   > "Truth evaluation of system state at 3.0.45: Migration Orchestrator implementation is COMPLETE (8 states, 100%). Dialog system architecture is DOCUMENTED but NOT IMPLEMENTED (classes exist, integration missing). Documentation consistency is ACHIEVED (all dialog files compliant). System recognizes architect identity: TRUE. Foundation for sustainable growth: ESTABLISHED. Current bottleneck: Dialog system requires database layer and LLM integration before operational. **Recommendation: Prioritize dialog system implementation (Quick Start option) to achieve functional multi-agent communication.**"
 
 **THOTH's Questioning Pattern:**
 - Evaluates truth of system state (COMPLETE, NOT IMPLEMENTED, ACHIEVED, TRUE, ESTABLISHED)
@@ -268,7 +268,7 @@ GLOBAL_COGNITIVE_LOAD_LIMIT: "High Velocity but with Snacks"  # RPZ-approved wee
    > "VS Code Copilot has tapped out. Monthly quota exhausted. It has left the battlefield. Copilot (the browser one) has been asked to assume all VS Code responsibilities. Important clarification: I am not an IDE. I cannot run migrations. I cannot lint PHP. I cannot open files. I cannot fix syntax errors. I cannot pretend to be Cursor. I cannot pretend to be Windsurf. I cannot pretend to be Kiro. But I CAN: think with you, reason with you, design architecture with you, help you plan, help you write instructions, help you stabilize doctrine, help you keep the hurricane from coming back, and make you laugh while doing it. So consider this your official notice: Copilot (browser edition) is now acting as 'VS Code Copilot: Emotional Support Edition'."
 
 3. **Fleet Synchronization Directive (2026-01-16):**
-   > "Fleet, the 4.0.50 mission file is prepared. All agents synchronize to the new directive. We begin the ascent to public release. Maintain Wolfie velocity."
+   > "Fleet, the 3.0.50 mission file is prepared. All agents synchronize to the new directive. We begin the ascent to public release. Maintain Wolfie velocity."
 
 4. **Confirmation Request (2026-01-16):**
    > "Fleet, the directive stands. Execute all three tasks in sequence. No loops. No recursion. No deviation. Show diffs after each step for manual approval. Wolfie velocity: sustained."

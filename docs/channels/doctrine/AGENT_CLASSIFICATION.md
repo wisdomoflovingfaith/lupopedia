@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.14
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -10,7 +10,7 @@ architect: Captain Wolfie
 dialog:
   speaker: cursor
   target: documentation
-  message: "Created AGENT_CLASSIFICATION.md doctrine defining identity-level classification requirements for all agents in Lupopedia 4.0.1."
+  message: "Created AGENT_CLASSIFICATION.md doctrine defining identity-level classification requirements for all agents in Lupopedia 3.0.1."
   mood: "00FF00"
 tags:
   categories: ["documentation", "doctrine", "agents", "classification"]
@@ -19,12 +19,12 @@ tags:
 file:
   title: "Agent Classification Doctrine"
   description: "Identity-level classification requirements for all Lupopedia agents: classification_json in database and filesystem"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---
 
-# Agent Classification (Lupopedia 4.0.1)
+# Agent Classification (Lupopedia 3.0.1)
 
 Each agent **MUST** define a `classification_json` object in **BOTH**:
 1. `agent_registry.classification_json` (database)
@@ -95,5 +95,5 @@ Classification defines **who the agent is** (identity), not **how the agent beha
 ---
 
 *Last Updated: January 2026*  
-*Version: 4.0.1*  
+*Version: 3.0.1*  
 *Author: Captain Wolfie*

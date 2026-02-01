@@ -10,7 +10,7 @@
         "`after_metrics_json` json COMMENT 'Metrics after calibration'",
         "`observation_period_hours` int unsigned DEFAULT 24 COMMENT 'Observation period length'",
         "`measured_ymdhis` bigint NOT NULL COMMENT 'When impact was measured'",
-        "`impact_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Impact tracking version'"
+        "`impact_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Impact tracking version'"
     ],
     "data": [],
     "primary_key": {

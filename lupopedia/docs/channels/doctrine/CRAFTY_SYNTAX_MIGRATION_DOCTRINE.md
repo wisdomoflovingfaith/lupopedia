@@ -41,7 +41,7 @@ This doctrine is derived **exclusively** from the existing migration SQL file `c
 
 ### Scope
 - **Source**: Crafty Syntax Live Help versions 3.6.1 through 3.7.5
-- **Target**: Lupopedia v4.0.3
+- **Target**: Lupopedia v3.0.3
 - **Total Legacy Tables**: 34
 - **Migration Method**: Explicit INSERT INTO ... SELECT statements
 - **Post-Migration**: All legacy tables are dropped
@@ -91,10 +91,10 @@ This doctrine is derived **exclusively** from the existing migration SQL file `c
 |--------------|--------|----------------------|
 | `livehelp_channels` | No target mapping | Dropped |
 | `livehelp_emailque` | Out of scope (lupo_crm_lead_message_sends) | Dropped |
-| `livehelp_identity_daily` | Removed in Lupopedia 4.0.0 | Dropped |
-| `livehelp_identity_monthly` | Removed in Lupopedia 4.0.0 | Dropped |
-| `livehelp_keywords_daily` | Removed in Lupopedia 4.0.0 | Dropped |
-| `livehelp_keywords_monthly` | Removed in Lupopedia 4.0.0 | Dropped |
+| `livehelp_identity_daily` | Removed in Lupopedia 3.0.0 | Dropped |
+| `livehelp_identity_monthly` | Removed in Lupopedia 3.0.0 | Dropped |
+| `livehelp_keywords_daily` | Removed in Lupopedia 3.0.0 | Dropped |
+| `livehelp_keywords_monthly` | Removed in Lupopedia 3.0.0 | Dropped |
 | `livehelp_messages` | Crafty didn't store post-chat messages | Dropped |
 | `livehelp_modules` | No target mapping | Dropped |
 | `livehelp_modules_dep` | No target mapping | Dropped |

@@ -2,11 +2,11 @@
 /**
  * wolfie.header.identity: module-loader
  * wolfie.header.placement: /lupo-includes/modules/module-loader.php
- * wolfie.header.version: 4.1.1
+ * wolfie.header.version: 3.1.1
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
- *   message: "Version 4.1.1: Added HELP and LIST module routes. HELP handles /help documentation system. LIST handles /list entity introspection. Both routes have priority before TRUTH and CONTENT."
+ *   message: "Version 3.1.1: Added HELP and LIST module routes. HELP handles /help documentation system. LIST handles /list entity introspection. Both routes have priority before TRUTH and CONTENT."
  * wolfie.header.mood.label: focused
  * wolfie.header.mood.rgb: "00FF00"
  */

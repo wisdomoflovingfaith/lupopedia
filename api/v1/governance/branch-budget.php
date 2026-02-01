@@ -9,7 +9,7 @@
  * Doctrine: VERSION_GATED_BRANCH_FREEZE_PROTOCOL.
  *
  * @package Lupopedia\API
- * @version 4.1.5
+ * @version 3.1.5
  */
 
 require_once __DIR__ . '/../../../lupopedia-config.php';

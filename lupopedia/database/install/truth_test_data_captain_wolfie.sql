@@ -1,7 +1,7 @@
 -- TRUTH Module Test Data: Captain WOLFIE
 -- Purpose: Seed database with test question/answer for testing /who/captain_wolfie route
 -- Created: 2026-01-12
--- Version: 4.0.7
+-- Version: 3.0.7
 
 -- Note: Uses table prefix from config (typically 'lupo_')
 -- Adjust table_prefix if your installation uses a different prefix

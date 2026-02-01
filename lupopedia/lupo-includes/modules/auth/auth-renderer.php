@@ -2,11 +2,11 @@
 /**
  * wolfie.header.identity: auth-renderer
  * wolfie.header.placement: /lupo-includes/modules/auth/auth-renderer.php
- * wolfie.header.version: 4.1.1
+ * wolfie.header.version: 3.1.1
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
- *   message: "Refreshed login form page for version 4.1.1. Updated WOLFIE header version to current ecosystem version. Login form continues to use email-only authentication with proper email input type and autocomplete attributes."
+ *   message: "Refreshed login form page for version 3.1.1. Updated WOLFIE header version to current ecosystem version. Login form continues to use email-only authentication with proper email input type and autocomplete attributes."
  *   mood: "00FF00"
  */
 
@@ -196,7 +196,7 @@ function login_form($error_message = null, $redirect_url = '/') {
 /**
  * Render admin dashboard
  * 
- * Minimal admin dashboard placeholder for version 4.0.8.
+ * Minimal admin dashboard placeholder for version 3.0.8.
  * 
  * @param array $user Current user data from current_user()
  * @return string Rendered admin dashboard HTML
@@ -510,7 +510,7 @@ function admin_dashboard($user) {
     <div class="admin-content">
         <div class="welcome-card">
             <h2>Welcome, ' . $display_name . '!</h2>
-            <p>This is the Lupopedia admin dashboard. Version 4.0.8 provides basic authentication and admin access control. Additional admin features will be added in future versions.</p>
+            <p>This is the Lupopedia admin dashboard. Version 3.0.8 provides basic authentication and admin access control. Additional admin features will be added in future versions.</p>
             
             <div class="info-grid">
                 <div class="info-item">

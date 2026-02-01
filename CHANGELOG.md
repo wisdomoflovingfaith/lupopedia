@@ -36,6 +36,38 @@ January architecture rebuild completed with major structural changes and Crafty 
 - Added filesystem migration scripts
 - Repo cleaned and pushed (commit 47731d9)
 
+## 2026-01-31 — Channels and Edges Controllers + UI Skeletons
+
+### Added
+- Added ChannelsController.php and routing for /lupopedia/channels/<id>
+- Added EdgesController.php and routing for /lupopedia/edges/<id>
+- Added placeholder views for channels and edges
+- Implemented 3-panel channel UI skeleton (threads panel, sidebar panel, tabs panel)
+- Updated layout to hide semantic-nav-bar on channel and edge pages
+- Updated module-loader.php with new routing entries
+- Updated auth-ui-helpers.php and main_layout.php for layout behavior
+- Added new module directories for channels and operator
+
+### Notes
+- No doctrine changes, no schema changes, no TOON changes
+
+
+
+## 2026-01-31 — Channels and Edges Controllers + UI Skeletons
+
+### Added
+- Added ChannelsController.php and routing for /lupopedia/channels/<id>
+- Added EdgesController.php and routing for /lupopedia/edges/<id>
+- Added placeholder views for channels and edges
+- Implemented 3-panel channel UI skeleton (threads panel, sidebar panel, tabs panel)
+- Updated layout to hide semantic-nav-bar on channel and edge pages
+- Updated module-loader.php with new routing entries
+- Updated auth-ui-helpers.php and main_layout.php for layout behavior
+- Added new module directories for channels and operator
+
+### Notes
+- No doctrine changes, no schema changes, no TOON changes
+
 ## [2026.1.1.12] - 2026-01-24 20:32:00
 - Version boundary synced across canonical changelog and global atoms.
 
@@ -62,17 +94,6 @@ This completes the prefix normalization era. Future schema changes must:
 
 The schema is now fully aligned with Lupopedia's naming doctrine and ready for the next phase of development.
 
-## [2026.1.1.4] - 2026-01-27
-### Added
-- Integrated Emotional Geometry Doctrine v4.1 (Light-Emotion Isomorphism section added)
-- Added mood_rgb and mood_framework fields to lupo_dialog_messages
-- Phase 1 emotional framework migration initiated
-
-### Changed
-- Updated emotional metadata architecture to support pluralistic frameworks
-
-### Notes
-- This patch is part of the ongoing Crafty Syntax -> Lupopedia migration work
 
 ## [2026.3.8.0] – Crafty Syntax Subsystem Activation + AI→Human Escalation Engine
 
@@ -112,6 +133,18 @@ The schema is now fully aligned with Lupopedia's naming doctrine and ready for t
 - Raised table ceiling doctrine/config references to 222 and added optimization trigger at 223+.
 
 ## [2026.1.1.14] - 2026-01-27
+### Added
+- Integrated Emotional Geometry Doctrine v4.1 (Light-Emotion Isomorphism section added)
+- Added mood_rgb and mood_framework fields to lupo_dialog_messages
+- Phase 1 emotional framework migration initiated
+
+### Changed
+- Updated emotional metadata architecture to support pluralistic frameworks
+
+### Notes
+- This patch is part of the ongoing Crafty Syntax -> Lupopedia migration work
+
+## [2026.1.1.4] - 2026-01-27
 ### Added
 - Integrated Emotional Geometry Doctrine v4.1 (Light-Emotion Isomorphism section added)
 - Added mood_rgb and mood_framework fields to lupo_dialog_messages

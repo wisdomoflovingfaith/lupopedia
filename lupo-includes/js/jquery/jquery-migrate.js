@@ -394,7 +394,7 @@ migratePatchFunc( jQuery, "ajax", function() {
 // Only trigger the logic in jQuery <4 as the JSON-to-JSONP auto-promotion
 // behavior is gone in jQuery 4.0 and as it has security implications, we don't
 // want to restore the legacy behavior.
-if ( !jQueryVersionSince( "4.0.0" ) ) {
+if ( !jQueryVersionSince( "3.0.0" ) ) {
 
 	// Register this prefilter before the jQuery one. Otherwise, a promoted
 	// request is transformed into one with the script dataType and we can't
@@ -566,8 +566,8 @@ if ( jQueryVersionSince( "3.4.0" ) && typeof Proxy !== "undefined" ) {
 // In jQuery >=4 where jQuery.cssNumber is missing fill it with the latest 3.x version:
 // https://github.com/jquery/jquery/blob/3.6.0/src/css.js#L212-L233
 // This way, number values for the CSS properties below won't start triggering
-// Migrate warnings when jQuery gets updated to >=4.0.0 (gh-438).
-if ( jQueryVersionSince( "4.0.0" ) ) {
+// Migrate warnings when jQuery gets updated to >=3.0.0 (gh-438).
+if ( jQueryVersionSince( "3.0.0" ) ) {
 
 	// We need to keep this as a local variable as we need it internally
 	// in a `jQuery.fn.css` patch and this usage shouldn't warn.

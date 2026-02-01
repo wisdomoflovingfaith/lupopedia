@@ -1,7 +1,7 @@
 <?php
 /**
 ---
-wolfie.headers.version: "4.0.5"
+wolfie.headers.version: "3.0.5"
 dialog:
   speaker: Wolfie
   target: truth-page-template
@@ -14,7 +14,7 @@ tags:
 file:
   title: "TRUTH Page Template"
   description: "Template for TRUTH question pages: question, answers, evidence, sources."
-  version: "4.0.5"
+  version: "3.0.5"
   status: active
   author: "Eric Robin Gerdes"
 ---

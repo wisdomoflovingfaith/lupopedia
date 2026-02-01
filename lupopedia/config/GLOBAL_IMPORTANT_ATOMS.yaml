@@ -2,7 +2,7 @@
 # ======================================================================
 # GLOBAL IMPORTANT ATOMS - MANIFESTO OF 12
 # Purpose: Load-bearing pillars of Lupopedia Semantic OS
-# Version: 4.0.45
+# Version: 3.0.45
 # Status: HURRICANE KILLER - Foundation stabilization
 # ======================================================================
 
@@ -61,7 +61,7 @@ MASTER_BRIDGE_FILE: "ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md"
 MASTER_BRIDGE_ACTIVATION_TRIGGERS:
   - "Schema changes affecting core tables"
   - "Foreign key or trigger creation attempts"
-  - "Version bumps beyond 4.0.60"
+  - "Version bumps beyond 3.0.60"
   - "Federation node initialization"
   - "Agent registry modifications"
   - "Doctrine violations detected"

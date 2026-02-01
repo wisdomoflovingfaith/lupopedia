@@ -1,5 +1,5 @@
 -- Migration: Create lupo_help_topics table
--- Version: 4.1.1
+-- Version: 3.1.1
 -- Date: 2026-01-18
 -- Module: Help System
 

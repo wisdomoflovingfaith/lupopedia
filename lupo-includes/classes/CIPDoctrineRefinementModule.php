@@ -1,7 +1,7 @@
 <?php
 /**
  * wolfie.headers: explicit architecture with structured clarity for every file.
- * file.last_modified_system_version: 4.0.76
+ * file.last_modified_system_version: 3.0.76
  * 
  * CIP Doctrine Refinement Module
  * 
@@ -10,14 +10,14 @@
  * of critique → doctrine evolution.
  * 
  * @package Lupopedia
- * @version 4.0.76
+ * @version 3.0.76
  * @author kiro (AI Assistant)
  */
 
 class CIPDoctrineRefinementModule {
     
     private $db;
-    private $version = '4.0.76';
+    private $version = '3.0.76';
     private $doctrine_base_path = 'docs/doctrine/';
     
     public function __construct($database_connection) {

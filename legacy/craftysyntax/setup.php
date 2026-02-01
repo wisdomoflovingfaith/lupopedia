@@ -3454,13 +3454,13 @@ the newest version of the Live Help and not lose any of your data...<br>
 <option value=upgrade501 <?php if ($installationtype == "upgrade501"){ print " SELECTED "; } ?> >UPGRADE from version 5.0.1 </option>
 <option value=upgrade500 <?php if ($installationtype == "upgrade500"){ print " SELECTED "; } ?> >UPGRADE from version 5.0.0 </option>
 
-<option value=upgrade406 <?php if ($installationtype == "upgrade406"){ print " SELECTED "; } ?> >UPGRADE from version 4.0.6 </option>
-<option value=upgrade405 <?php if ($installationtype == "upgrade405"){ print " SELECTED "; } ?> >UPGRADE from version 4.0.5 </option>
-<option value=upgrade404 <?php if ($installationtype == "upgrade404"){ print " SELECTED "; } ?> >UPGRADE from version 4.0.4 </option>
-<option value=upgrade403 <?php if ($installationtype == "upgrade403"){ print " SELECTED "; } ?> >UPGRADE from version 4.0.3 </option>
-<option value=upgrade402 <?php if ($installationtype == "upgrade402"){ print " SELECTED "; } ?> >UPGRADE from version 4.0.2 </option>
-<option value=upgrade401 <?php if ($installationtype == "upgrade401"){ print " SELECTED "; } ?> >UPGRADE from version 4.0.1 </option>
-<option value=upgrade400 <?php if ($installationtype == "upgrade400"){ print " SELECTED "; } ?> >UPGRADE from version 4.0.0 </option>
+<option value=upgrade406 <?php if ($installationtype == "upgrade406"){ print " SELECTED "; } ?> >UPGRADE from version 3.0.6 </option>
+<option value=upgrade405 <?php if ($installationtype == "upgrade405"){ print " SELECTED "; } ?> >UPGRADE from version 3.0.5 </option>
+<option value=upgrade404 <?php if ($installationtype == "upgrade404"){ print " SELECTED "; } ?> >UPGRADE from version 3.0.4 </option>
+<option value=upgrade403 <?php if ($installationtype == "upgrade403"){ print " SELECTED "; } ?> >UPGRADE from version 3.0.3 </option>
+<option value=upgrade402 <?php if ($installationtype == "upgrade402"){ print " SELECTED "; } ?> >UPGRADE from version 3.0.2 </option>
+<option value=upgrade401 <?php if ($installationtype == "upgrade401"){ print " SELECTED "; } ?> >UPGRADE from version 3.0.1 </option>
+<option value=upgrade400 <?php if ($installationtype == "upgrade400"){ print " SELECTED "; } ?> >UPGRADE from version 3.0.0 </option>
 
 <option value=upgrade362 <?php if ($installationtype == "upgrade362"){ print " SELECTED "; } ?> >UPGRADE from version 3.6.2 </option>  
 <option value=upgrade361 <?php if ($installationtype == "upgrade361"){ print " SELECTED "; } ?> >UPGRADE from version 3.6.1 </option>

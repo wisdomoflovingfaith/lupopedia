@@ -2,7 +2,7 @@
 
 ## Overview
 
-The v4.1.0 Ascent Master Plan orchestrates three major Big Rocks to transform Lupopedia into a historically complete, dialog-modernized, and emotionally enhanced semantic operating system. The design ensures coordinated execution, quality assurance, and seamless integration while maintaining system stability and backwards compatibility throughout the ascent process.
+The v3.1.0 Ascent Master Plan orchestrates three major Big Rocks to transform Lupopedia into a historically complete, dialog-modernized, and emotionally enhanced semantic operating system. The design ensures coordinated execution, quality assurance, and seamless integration while maintaining system stability and backwards compatibility throughout the ascent process.
 
 ## Architecture
 
@@ -18,7 +18,7 @@ The Ascent Master Plan coordinates three sequential Big Rocks:
 
 ```mermaid
 graph TD
-    A[v4.1.0 Ascent Start] --> B[Big Rock 1: History Reconciliation]
+    A[v3.1.0 Ascent Start] --> B[Big Rock 1: History Reconciliation]
     B --> C{Quality Gate 1}
     C -->|Pass| D[Big Rock 2: Dialog Migration]
     C -->|Fail| E[Rollback & Fix]
@@ -32,7 +32,7 @@ graph TD
     I -->|Fail| K[Rollback & Fix]
     K --> G
     J --> L{Release Readiness}
-    L -->|Pass| M[v4.1.0 Release]
+    L -->|Pass| M[v3.1.0 Release]
     L -->|Fail| N[Final Fixes]
     N --> J
 ```
@@ -44,7 +44,7 @@ graph TD
 **Purpose**: Master coordination system managing execution, dependencies, and quality gates across all Big Rocks.
 
 **Key Methods**:
-- `executeAscentPlan()` - Orchestrates complete v4.1.0 ascent process
+- `executeAscentPlan()` - Orchestrates complete v3.1.0 ascent process
 - `validateBigRockCompletion(bigRockId)` - Validates Big Rock completion criteria
 - `runQualityGate(gateId)` - Executes quality validation at checkpoints
 - `generateProgressReport()` - Creates unified progress tracking across all initiatives
@@ -80,16 +80,16 @@ graph TD
 
 ### Release Coordinator
 
-**Purpose**: Manages final integration, validation, and release preparation for v4.1.0.
+**Purpose**: Manages final integration, validation, and release preparation for v3.1.0.
 
 **Key Methods**:
 - `validateSystemIntegration()` - Ensures all Big Rocks work cohesively together
-- `prepareReleaseDocumentation()` - Generates unified v4.1.0 release documentation
+- `prepareReleaseDocumentation()` - Generates unified v3.1.0 release documentation
 - `validateMigrationProcedures()` - Ensures smooth upgrade path for existing installations
-- `certifyReleaseReadiness()` - Final certification that v4.1.0 is ready for public release
+- `certifyReleaseReadiness()` - Final certification that v3.1.0 is ready for public release
 
 **Dependencies**: Completed Big Rocks and comprehensive system validation
-**Output**: Release-ready v4.1.0 with complete documentation and migration procedures
+**Output**: Release-ready v3.1.0 with complete documentation and migration procedures
 
 ## Data Models
 
@@ -171,7 +171,7 @@ QualityGate:
 **Validates: Requirements 2.6, 3.7, 8.4**
 
 ### Property 8: Release Readiness Validation
-*For any* v4.1.0 release candidate, all completion criteria should be met before certification.
+*For any* v3.1.0 release candidate, all completion criteria should be met before certification.
 **Validates: Requirements 7.1, 7.2, 7.7**
 
 ## Error Handling
@@ -218,11 +218,11 @@ QualityGate:
 
 ### Comprehensive Testing Approach
 
-The v4.1.0 Ascent Master Plan uses multi-level testing:
+The v3.1.0 Ascent Master Plan uses multi-level testing:
 
 **Unit Tests**: Individual Big Rock component validation
 **Integration Tests**: Cross-Big Rock integration validation  
-**System Tests**: Complete v4.1.0 system validation
+**System Tests**: Complete v3.1.0 system validation
 **Performance Tests**: System performance under integrated load
 **Regression Tests**: Ensure no functionality degradation
 
@@ -251,7 +251,7 @@ The v4.1.0 Ascent Master Plan uses multi-level testing:
 ### Release Readiness Testing
 
 **Migration Testing**
-- Test upgrade procedures from v4.0.x to v4.1.0
+- Test upgrade procedures from v3.0.x to v3.1.0
 - Validate data preservation during migration process
 - Test rollback procedures for failed migrations
 

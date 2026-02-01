@@ -1,4 +1,4 @@
--- Version: 4.1.17
+-- Version: 3.1.17
 -- Purpose: Drop deprecated legacy tables and enforce table ceiling
 -- Date: 2026-01-20
 -- Notes: No data migrations; all tables confirmed safe to remove

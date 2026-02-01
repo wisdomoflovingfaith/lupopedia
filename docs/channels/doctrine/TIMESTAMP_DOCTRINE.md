@@ -1,12 +1,12 @@
 ---
 wolfie.header.identity: TIMESTAMP_DOCTRINE
 wolfie.header.placement: /docs/doctrine/TIMESTAMP_DOCTRINE.md
-wolfie.header.version: 4.0.9
+wolfie.header.version: 3.0.9
 channel_key: system/kernel
 wolfie.header.dialog:
   speaker: CURSOR
   target: @everyone
-  message: "Created canonical Timestamp Doctrine for version 4.0.9. This is the FINAL, AUTHORITATIVE version. All AI agents MUST follow this doctrine without exception. All timestamps MUST be BIGINT(14) YYYYMMDDHHMMSS UTC format. No exceptions."
+  message: "Created canonical Timestamp Doctrine for version 3.0.9. This is the FINAL, AUTHORITATIVE version. All AI agents MUST follow this doctrine without exception. All timestamps MUST be BIGINT(14) YYYYMMDDHHMMSS UTC format. No exceptions."
   mood: "FF0000"
 tags:
   categories: ["doctrine", "database", "standards"]

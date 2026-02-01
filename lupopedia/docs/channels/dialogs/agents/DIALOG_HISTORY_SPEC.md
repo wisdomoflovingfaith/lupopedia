@@ -1,7 +1,7 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 dialog:
   speaker: COPILOT
   target: @CURSOR
@@ -21,7 +21,7 @@ in_this_file_we_have:
 file:
   title: "Dialog History File Specification"
   description: "Specification for generating and maintaining changelog_dialog.md - consolidated record of all Inline Dialog messages across the Lupopedia codebase"
-  version: "4.0.1"
+  version: "3.0.1"
   status: published
   author: "Captain Wolfie"
 ---
@@ -200,7 +200,7 @@ dialog:
   speaker: COPILOT
   target: @CURSOR
   mood_RGB: "00A0FF"
-  message: Update CHANGELOG.md to include recent work: Inline Dialog Spec 4.0.0, Counting-in-Light Doctrine, mood_rgb column, CHAR(6) philosophy, and WOLFIE Header updates.
+  message: Update CHANGELOG.md to include recent work: Inline Dialog Spec 3.0.0, Counting-in-Light Doctrine, mood_rgb column, CHAR(6) philosophy, and WOLFIE Header updates.
 ---
 Source: CHANGELOG.md (lines 3-6)
 

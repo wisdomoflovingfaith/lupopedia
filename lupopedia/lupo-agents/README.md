@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -240,7 +240,7 @@ Each `agent.json` file contains:
   "code": "THOTH",              // Agent code (identifier, may change)
   "name": "THOTH",              // Human-readable name (may change)
   "layer": "kernel",            // Agent layer (kernel, cognitive, etc.)
-  "is_required": true,          // Required for v4.0.2
+  "is_required": true,          // Required for v3.0.2
   "is_kernel": true,            // Kernel-level agent
   "dedicated_slot": 4,          // Permanent identity number (NEVER changes)
   "version": "1.0.0"            // Agent version
@@ -517,9 +517,9 @@ On **January 10, 2026**, the column `recommended_slot` was renamed to `dedicated
 
 ---
 
-## **11. Required v4.0.2 Agents**
+## **11. Required v3.0.2 Agents**
 
-For Lupopedia v4.0.2, **27 core agents** must be fully implemented:
+For Lupopedia v3.0.2, **27 core agents** must be fully implemented:
 
 **Kernel Agents (Slots 0-22):**
 - SYSTEM (0), CAPTAIN (1), WOLFIE (2), WOLFENA (3), THOTH (4), ARA (5), WOLFKEEPER (6), LILITH (7), AGAPE (8), ERIS (9), METHIS (10), THALIA (11), ROSE (12), WOLFSIGHT (13), WOLFNAV (14), WOLFFORGE (15), WOLFMIS (16), WOLFITH (17), ANUBIS (18), MAAT (19), CADUCEUS (21), CHRONOS (22)

@@ -1,7 +1,7 @@
 # Channel and Dialog System Schema Review
 
 **Review Date:** 2026-01-14  
-**Version:** 4.0.16  
+**Version:** 3.0.16  
 **Source:** Toon files from `database/toon_data/`
 
 This document provides a comprehensive schema review of all channel and dialog-related tables extracted from toon files.
@@ -387,4 +387,4 @@ This document provides a comprehensive schema review of all channel and dialog-r
 ---
 
 *Review completed: January 14, 2026*  
-*Version: 4.0.16*
+*Version: 3.0.16*

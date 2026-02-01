@@ -1,15 +1,15 @@
 -- ============================================================
--- Lupopedia 4.0.12 — Collection 0 Hierarchical Tab Content Mapping
+-- Lupopedia 3.0.12 — Collection 0 Hierarchical Tab Content Mapping
 -- Maps content items to hierarchical tabs and sub-tabs
 -- ============================================================
 --
--- wolfie.headers.version: "4.0.12"
+-- wolfie.headers.version: "3.0.12"
 -- header_atoms:
 --   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 -- dialog:
 --   - speaker: CURSOR
 --     target: @everyone
---     message: "Version 4.0.12: Mapped all documentation content to hierarchical tab structure. Content items are organized under appropriate sub-tabs."
+--     message: "Version 3.0.12: Mapped all documentation content to hierarchical tab structure. Content items are organized under appropriate sub-tabs."
 --     mood: "00FF00"
 -- tags:
 --   categories: ["database", "seed", "mapping"]

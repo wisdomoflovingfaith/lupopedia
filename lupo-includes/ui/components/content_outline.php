@@ -2,7 +2,7 @@
 /**
  * wolfie.header.identity: content-outline
  * wolfie.header.placement: /lupo-includes/ui/components/content_outline.php
- * wolfie.header.version: 4.0.6
+ * wolfie.header.version: 3.0.6
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
@@ -15,7 +15,7 @@
  * file:
  *   title: "Content Outline Component"
  *   description: "Right panel component displaying content section navigation"
- *   version: 4.0.6
+ *   version: 3.0.6
  *   status: published
  *   author: "Captain Wolfie"
  */

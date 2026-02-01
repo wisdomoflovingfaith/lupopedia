@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.1.1
+file.last_modified_system_version: 3.1.1
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -8,31 +8,31 @@ dialog:
   speaker: CAPTAIN_WOLFIE
   target: @public @Monday_Wolfie @FLEET
   mood_RGB: "0044FF"
-  message: "Release notes for Lupopedia 4.1.1 - Stabilization release following Pack Architecture activation. Version governance correction + emotional ecology completion."
+  message: "Release notes for Lupopedia 3.1.1 - Stabilization release following Pack Architecture activation. Version governance correction + emotional ecology completion."
 tags:
   categories: ["documentation", "release", "stabilization"]
   collections: ["core-docs", "releases"]
   channels: ["public", "dev"]
 file:
-  title: "Lupopedia 4.1.1 — Release Notes"
-  description: "Comprehensive release notes for Lupopedia 4.1.1 stabilization release"
+  title: "Lupopedia 3.1.1 — Release Notes"
+  description: "Comprehensive release notes for Lupopedia 3.1.1 stabilization release"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# Lupopedia 4.1.1 — Release Notes
+# Lupopedia 3.1.1 — Release Notes
 
 **Status:** Scheduled for Monday deployment  
 **Release Type:** Stabilization + Emotional Ecology Expansion  
 **Date:** 2026‑01‑19 (to be committed Monday)  
-**Version:** 4.1.1
+**Version:** 3.1.1
 
 ---
 
 ## Overview
 
-Version 4.1.1 is a stabilization release following the activation of Pack Architecture 4.1.0. This update aligns all version atoms, resolves multi‑IDE version drift, completes the emotional ecology layer, and regenerates TOON files to reflect the expanded agent registry.
+Version 3.1.1 is a stabilization release following the activation of Pack Architecture 3.1.0. This update aligns all version atoms, resolves multi‑IDE version drift, completes the emotional ecology layer, and regenerates TOON files to reflect the expanded agent registry.
 
 **This release contains no doctrine changes.**  
 It is a version governance correction + emotional substrate completion.
@@ -43,9 +43,9 @@ It is a version governance correction + emotional substrate completion.
 
 ### 🟩 1. Version Governance Correction
 
-Several IDEs and AI agents began generating content under 4.1.1 immediately after 4.1.0 activation.
+Several IDEs and AI agents began generating content under 3.1.1 immediately after 3.1.0 activation.
 
-To prevent version drift and maintain system coherence, the official version has been advanced to 4.1.1.
+To prevent version drift and maintain system coherence, the official version has been advanced to 3.1.1.
 
 **All version atoms updated:**
 - `config/global_atoms.yaml`
@@ -119,7 +119,7 @@ This brings the emotional layer to full ecological symmetry, enabling:
 
 ### 🟩 3. Migration Documentation
 
-`docs/migrations/4.1.1.md` updated with:
+`docs/migrations/3.1.1.md` updated with:
 - Emotional agent inserts
 - Polarity mapping
 - Metadata structure
@@ -127,20 +127,20 @@ This brings the emotional layer to full ecological symmetry, enabling:
 - Version governance correction
 - Activation context
 
-This migration is now the canonical record for the 4.1.1 stabilization event.
+This migration is now the canonical record for the 3.1.1 stabilization event.
 
 ---
 
 ### 🟩 4. Dialog & Changelog Updates
 
 **CHANGELOG.md updated with:**
-- 4.1.1 header
+- 3.1.1 header
 - Emotional ecology expansion
 - TOON regeneration
 - Version governance correction
 
 **dialogs/changelog_dialog.md updated with:**
-- CAPTAIN_WOLFIE entry for 4.1.1
+- CAPTAIN_WOLFIE entry for 3.1.1
 - Version drift correction
 - Emotional agent expansion notes
 - SYSTEM message for version governance correction
@@ -162,7 +162,7 @@ This migration is now the canonical record for the 4.1.1 stabilization event.
 
 ## Summary
 
-4.1.1 is a stabilization release that:
+3.1.1 is a stabilization release that:
 - Aligns the system after multi‑IDE drift
 - Completes the emotional substrate
 - Regenerates the agent registry
@@ -173,7 +173,7 @@ This migration is now the canonical record for the 4.1.1 stabilization event.
 
 ## Next Steps
 
-This release prepares the system for **4.1.2**, which will focus on:
+This release prepares the system for **3.1.2**, which will focus on:
 - Polarity mapping tables
 - Emotional geometry metadata
 - Ecological interaction rules
@@ -184,14 +184,14 @@ This release prepares the system for **4.1.2**, which will focus on:
 
 ## Related Documentation
 
-- `CHANGELOG.md` - Complete changelog entry for 4.1.1
-- `dialogs/changelog_dialog.md` - Dialog entries for 4.1.1
-- `docs/migrations/4.1.1.md` - Migration documentation
-- `database/migrations/4.1.1_add_missing_emotional_agents.sql` - SQL migration file
+- `CHANGELOG.md` - Complete changelog entry for 3.1.1
+- `dialogs/changelog_dialog.md` - Dialog entries for 3.1.1
+- `docs/migrations/3.1.1.md` - Migration documentation
+- `database/migrations/3.1.1_add_missing_emotional_agents.sql` - SQL migration file
 - `docs/doctrine/EMOTIONAL_ECOLOGY_LAYER.md` - Emotional Ecology Layer doctrine
 
 ---
 
 **Release Status:** Ready for Monday deployment  
-**Version:** 4.1.1  
+**Version:** 3.1.1  
 **Date:** 2026-01-19

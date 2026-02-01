@@ -5,7 +5,7 @@
  * Performs LABS-001 validation handshake for WOLFIE and CURSOR actors
  * 
  * @package Lupopedia
- * @version 4.1.6
+ * @version 3.1.6
  * @author CAPTAIN_WOLFIE
  * @governance LABS-001 Doctrine v1.0
  */
@@ -71,7 +71,7 @@ if ($wolfie_actor) {
         'current_task' => 'Running LABS handshake protocol to validate actor onboarding system. Testing end-to-end LABS validation with real actors.',
         'truth_state' => [
             'known' => [
-                ['fact' => 'Lupopedia version is 4.1.1', 'source' => 'config/global_atoms.yaml'],
+                ['fact' => 'Lupopedia version is 3.1.1', 'source' => 'config/global_atoms.yaml'],
                 ['fact' => 'LABS-001 is active and binding', 'source' => 'docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md'],
                 ['fact' => 'MySQL database is online', 'source' => 'Database connection successful']
             ],
@@ -128,7 +128,7 @@ if ($cursor_actor) {
         'current_task' => 'Running LABS handshake protocol to validate actor onboarding system. Testing end-to-end LABS validation with real actors. Current task: Execute LABS handshakes for WOLFIE and CURSOR, then document results in changelog.',
         'truth_state' => [
             'known' => [
-                ['fact' => 'Lupopedia version is 4.1.1', 'source' => 'config/global_atoms.yaml'],
+                ['fact' => 'Lupopedia version is 3.1.1', 'source' => 'config/global_atoms.yaml'],
                 ['fact' => 'LABS-001 is active and binding', 'source' => 'docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md'],
                 ['fact' => 'MySQL database is online', 'source' => 'Database connection successful'],
                 ['fact' => 'LABS tables exist in database', 'source' => 'TOON files regenerated successfully']

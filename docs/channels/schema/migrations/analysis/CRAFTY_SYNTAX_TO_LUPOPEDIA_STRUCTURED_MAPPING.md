@@ -122,7 +122,7 @@
 ✅ **Gradual migration path** available for legacy applications
 
 ### **Forward Compatibility**
-✅ **All new tables follow** Lupopedia 4.0.3 schema standards
+✅ **All new tables follow** Lupopedia 3.0.3 schema standards
 ✅ **Proper indexing** and relationships for performance
 ✅ **JSON configuration** modernization completed
 
@@ -142,7 +142,7 @@
 ### **Configuration JSON Structure**
 ```json
 {
-  "version": "4.0.3",
+  "version": "3.0.3",
   "site_title": "Lupopedia",
   "use_flush": true,
   "membernum": 1000,

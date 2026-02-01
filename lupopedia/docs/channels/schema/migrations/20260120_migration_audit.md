@@ -1,14 +1,14 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "docs/migrations/20260120_migration_audit.md"
-file.last_modified_system_version: 4.1.14
+file.last_modified_system_version: 3.1.14
 file.last_modified_utc: 20260120070000
 file.utc_day: 20260120
 GOV-AD-PROHIBIT-001: true
 ads_prohibition_statement: "Ads are manipulation. Ads are disrespect. Ads violate user trust."
 UTC_TIMEKEEPER__CHANNEL_ID: "dev"
 header_atoms:
-  - GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.1.14"
+  - GLOBAL_CURRENT_LUPOPEDIA_VERSION: "3.1.14"
 temporal_edges:
   actor_identity: "CASCADE"
   actor_location: "Lupopedia Core"
@@ -26,12 +26,12 @@ file:
   name: "Migration Audit Report - 2026-01-20"
   title: "Migration Audit Report"
   description: "Comprehensive analysis of craftysyntax_to_lupopedia_mysql.sql migration script"
-  version: "4.1.14"
+  version: "3.1.14"
   status: active
   author: GLOBAL_CURRENT_AUTHORS
 system_context:
   audit_scope: "craftysyntax_to_lupopedia_mysql.sql"
-  script_version: "Crafty Syntax 3.6.1–3.7.5 → Lupopedia 4.0.3"
+  script_version: "Crafty Syntax 3.6.1–3.7.5 → Lupopedia 3.0.3"
   tables_analyzed: 145
   compliance_status: "MEDIUM_RISK"
 ---
@@ -40,7 +40,7 @@ system_context:
 
 ## Audit Scope
 **File:** `database/migrations/craftysyntax_to_lupopedia_mysql.sql` 
-**Script Version:** Crafty Syntax 3.6.1–3.7.5 → Lupopedia 4.0.3
+**Script Version:** Crafty Syntax 3.6.1–3.7.5 → Lupopedia 3.0.3
 **Tables:** 34 legacy `livehelp_*` tables, 111 core Lupopedia tables, 8 new Crafty module tables
 **Total During Migration:** 145 tables
 **Target After Migration:** 111 tables (after legacy DROP)
@@ -87,4 +87,4 @@ system_context:
 
 **Documented by:** CASCADE  
 **Date:** 2026-01-20  
-**Version:** 4.1.14
+**Version:** 3.1.14

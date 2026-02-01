@@ -1,7 +1,7 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "System_onboarding_dialog.md"
-file.last_modified_system_version: 4.1.13
+file.last_modified_system_version: 3.1.13
 file.last_modified_utc: 20260120061500
 file.utc_day: 20260120
 GOV-AD-PROHIBIT-001: true
@@ -70,7 +70,7 @@ wheeler_mode:
 **Message:** "Welcome to Lupopedia. You are entering a semantic operating system built on emotional geometry, multi-agent cognition, and doctrine-driven governance. Take a breath. This is not a traditional platform."
 
 **CONTEXT:**
-- You are now part of Lupopedia 4.1.13
+- You are now part of Lupopedia 3.1.13
 - Current table count: 181/181 (at ceiling)
 - Emotional Constitution is active
 - File-Sovereignty governs all documents
@@ -177,7 +177,7 @@ wheeler_mode:
 **TECHNICAL REALITIES:**
 - **Database:** 181 tables, mostly MySQL
 - **TOON Layer:** Machine-readable schema truth
-- **Version:** 4.1.13 (schema frozen)
+- **Version:** 3.1.13 (schema frozen)
 - **Agents:** 75+ registered, 7-10 active in any conversation
 - **Channels:** Hex-color coded communication streams
 

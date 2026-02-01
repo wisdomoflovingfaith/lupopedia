@@ -13,7 +13,7 @@
     "`approved_by` varchar(100) COMMENT 'Who approved the change'",
     "`applied_ymdhis` bigint COMMENT 'When change was applied'",
     "`created_ymdhis` bigint NOT NULL COMMENT 'When refinement was proposed'",
-    "`refinement_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Refinement module version'"
+    "`refinement_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Refinement module version'"
   ],
   "data": [],
   "indexes": [

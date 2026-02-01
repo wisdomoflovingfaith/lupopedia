@@ -1,12 +1,12 @@
-# Bulk Header Update to 4.1.6
+# Bulk Header Update to 3.1.6
 
 ## What This Does
 
-Updates all files with old WOLFIE header versions to 4.1.6 and adds required fields.
+Updates all files with old WOLFIE header versions to 3.1.6 and adds required fields.
 
 ## Required Updates
 
-1. **Version:** `file.last_modified_system_version: 4.1.6`
+1. **Version:** `file.last_modified_system_version: 3.1.6`
 2. **Header Atoms:** Must include:
    - `GLOBAL_CURRENT_LUPOPEDIA_VERSION`
    - `GLOBAL_CURRENT_AUTHORS`
@@ -28,13 +28,13 @@ See `scripts/update_headers_to_4_1_6.php` for automated update script.
 
 ## Manual Updates Completed
 
-- ✅ VERSION_DOCTRINE.md (4.0.35 → 4.1.6)
-- ✅ AGENT_RUNTIME.md (4.0.14 → 4.1.6)
-- ✅ PATCH_DISCIPLINE.md (4.0.14 → 4.1.6)
-- ✅ METADATA_GOVERNANCE.md (4.0.14 → 4.1.6)
-- ✅ AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md (4.0.14 → 4.1.6, mood → mood_RGB)
-- ✅ AI_INTEGRATION_SAFETY_DOCTRINE.md (4.0.14 → 4.1.6, mood → mood_RGB)
-- ✅ DIALOG_FILE_ORDERING_DOCTRINE.md (4.0.15 → 4.1.6, mood → mood_RGB)
+- ✅ VERSION_DOCTRINE.md (3.0.35 → 3.1.6)
+- ✅ AGENT_RUNTIME.md (3.0.14 → 3.1.6)
+- ✅ PATCH_DISCIPLINE.md (3.0.14 → 3.1.6)
+- ✅ METADATA_GOVERNANCE.md (3.0.14 → 3.1.6)
+- ✅ AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md (3.0.14 → 3.1.6, mood → mood_RGB)
+- ✅ AI_INTEGRATION_SAFETY_DOCTRINE.md (3.0.14 → 3.1.6, mood → mood_RGB)
+- ✅ DIALOG_FILE_ORDERING_DOCTRINE.md (3.0.15 → 3.1.6, mood → mood_RGB)
 
 ## Remaining Files
 

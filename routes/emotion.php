@@ -5,7 +5,7 @@
  * Routes for emotional geometry endpoints (affinity, intensity, etc.)
  *
  * @package Lupopedia
- * @version 4.0.108
+ * @version 3.0.108
  * @author Captain Wolfie
  */
 

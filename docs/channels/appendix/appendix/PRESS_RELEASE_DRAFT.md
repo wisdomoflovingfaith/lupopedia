@@ -1,14 +1,14 @@
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.15
+file.last_modified_system_version: 3.0.15
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
   speaker: Captain Wolfie
   target: @everyone
-  message: "Press release draft for version 4.1.0 launch. This is a work in progress and will be finalized when version 4.1.0 is complete."
+  message: "Press release draft for version 3.1.0 launch. This is a work in progress and will be finalized when version 3.1.0 is complete."
   mood: "FFD700"
 tags:
   categories: ["documentation", "press", "announcement"]
@@ -16,7 +16,7 @@ tags:
   channels: ["public"]
 file:
   title: "Press Release Draft — The Return of Wolfie"
-  description: "Draft press release for Lupopedia 4.1.0 launch. Work in progress."
+  description: "Draft press release for Lupopedia 3.1.0 launch. Work in progress."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: draft
   author: GLOBAL_CURRENT_AUTHORS
@@ -24,7 +24,7 @@ file:
 
 # PRESS RELEASE DRAFT — The Return of Wolfie
 
-**STATUS: DRAFT — To be finalized for version 4.1.0 launch**
+**STATUS: DRAFT — To be finalized for version 3.1.0 launch**
 
 ---
 
@@ -126,4 +126,4 @@ It's the next chapter of a story that began before most of today's web even exis
 
 ---
 
-*This press release is a draft and will be finalized for the Lupopedia 4.1.0 launch.*
+*This press release is a draft and will be finalized for the Lupopedia 3.1.0 launch.*

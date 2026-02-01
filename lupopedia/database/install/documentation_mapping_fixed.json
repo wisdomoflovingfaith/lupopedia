@@ -4,7 +4,7 @@
         {
             "filename": "AGENT_CLASSIFICATION.md",
             "slug": "agent-classification",
-            "title": "Agent Classification (Lupopedia 4.0.1)"
+            "title": "Agent Classification (Lupopedia 3.0.1)"
         },
         {
             "filename": "AGENT_FILESYSTEM_DOCTRINE.md",
@@ -54,7 +54,7 @@
         {
             "filename": "CHARSET_COLLATION_DOCTRINE.md",
             "slug": "charset-collation-doctrine",
-            "title": "=ƒƒª **Charset and Collation Doctrine (Lupopedia 4.0.1)**"
+            "title": "=ƒƒª **Charset and Collation Doctrine (Lupopedia 3.0.1)**"
         },
         {
             "filename": "CONFIGURATION_DOCTRINE.md",
@@ -74,7 +74,7 @@
         {
             "filename": "CURSOR_REFACTOR_DOCTRINE.md",
             "slug": "cursor-refactor-doctrine",
-            "title": "G¡É **CURSOR REFACTOR DOCTRINE (Lupopedia 4.0.0)**"
+            "title": "G¡É **CURSOR REFACTOR DOCTRINE (Lupopedia 3.0.0)**"
         },
         {
             "filename": "CURSOR_ROLE_DOCTRINE.md",
@@ -149,7 +149,7 @@
         {
             "filename": "MIGRATION_DOCTRINE.md",
             "slug": "migration-doctrine",
-            "title": "=ƒƒª **Lupopedia Migration Doctrine (LiveHelp GåÆ Crafty Syntax 4.0.3)**"
+            "title": "=ƒƒª **Lupopedia Migration Doctrine (LiveHelp GåÆ Crafty Syntax 3.0.3)**"
         },
         {
             "filename": "MODULE_DOCTRINE.md",
@@ -194,7 +194,7 @@
         {
             "filename": "PDO_CONVERSION_DOCTRINE.md",
             "slug": "pdo-conversion-doctrine",
-            "title": "G¡É **PDO CONVERSION DOCTRINE (Lupopedia 4.0.1)**"
+            "title": "G¡É **PDO CONVERSION DOCTRINE (Lupopedia 3.0.1)**"
         },
         {
             "filename": "REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md",
@@ -219,7 +219,7 @@
         {
             "filename": "SQL_REWRITE_DOCTRINE.md",
             "slug": "sql-rewrite-doctrine",
-            "title": "G¡É **SQL REWRITE DOCTRINE (Lupopedia 4.0.1)**"
+            "title": "G¡É **SQL REWRITE DOCTRINE (Lupopedia 3.0.1)**"
         },
         {
             "filename": "SQL_TYPE_DOCTRINE.md",
@@ -229,7 +229,7 @@
         {
             "filename": "SUBDIRECTORY_INSTALLATION_DOCTRINE.md",
             "slug": "subdirectory-installation-doctrine",
-            "title": "Lupopedia 4.0.9 GÇö Canonical Rules for Filesystem and URL Path Resolution"
+            "title": "Lupopedia 3.0.9 GÇö Canonical Rules for Filesystem and URL Path Resolution"
         },
         {
             "filename": "SYSTEM_AGENT_SAFETY_DOCTRINE.md",
@@ -239,7 +239,7 @@
         {
             "filename": "TABLE_PREFIXING_DOCTRINE.md",
             "slug": "table-prefixing-doctrine",
-            "title": "=ƒƒª **Table Prefixing and Primary Key Naming Doctrine (Lupopedia 4.0.1)**"
+            "title": "=ƒƒª **Table Prefixing and Primary Key Naming Doctrine (Lupopedia 3.0.1)**"
         },
         {
             "filename": "TIMESTAMP_DOCTRINE.md",
@@ -360,7 +360,7 @@
         {
             "filename": "WOLFIE_HEADER_SPECIFICATION.md",
             "slug": "wolfie-header-specification",
-            "title": "=ƒÉ¦ **WOLFIE Header Specification v4.0.0**"
+            "title": "=ƒÉ¦ **WOLFIE Header Specification v3.0.0**"
         },
         {
             "filename": "lilith.md",

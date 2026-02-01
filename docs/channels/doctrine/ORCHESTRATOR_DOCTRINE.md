@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.26
+file.last_modified_system_version: 3.0.26
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
@@ -28,7 +28,7 @@ file:
 
 ### **Purpose of This Document (For Cursor & Contributors)**
 
-This doctrine explains the **Migration Orchestrator** subsystem introduced in version 4.0.25, which provides automated migration tracking, schema versioning, table classification, state machine management, and validation infrastructure. The orchestrator enables controlled, auditable, and reversible database migrations across Lupopedia's federated schema architecture.
+This doctrine explains the **Migration Orchestrator** subsystem introduced in version 3.0.25, which provides automated migration tracking, schema versioning, table classification, state machine management, and validation infrastructure. The orchestrator enables controlled, auditable, and reversible database migrations across Lupopedia's federated schema architecture.
 
 ---
 
@@ -40,7 +40,7 @@ Lupopedia uses **schema federation** to organize tables across multiple schemas:
 - **`lupopedia_orchestration`** (orchestration schema) - 5 migration management tables
 - **`lupopedia_ephemeral`** (ephemeral schema) - 5 temporary/session tables
 
-**Total: 87 tables across 3 schemas** (as of version 4.0.25)
+**Total: 87 tables across 3 schemas** (as of version 3.0.25)
 
 This architecture:
 - Reduces cognitive load by separating concerns
@@ -264,6 +264,6 @@ Planned enhancements for the orchestrator subsystem:
 
 ---
 
-**Version:** 4.0.26  
+**Version:** 3.0.26  
 **Status:** STABLE  
 **Last Updated:** 2026-01-15

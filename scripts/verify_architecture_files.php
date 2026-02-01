@@ -2,7 +2,7 @@
 /**
  * wolfie.header.identity: verify-architecture-files
  * wolfie.header.placement: /scripts/verify_architecture_files.php
- * wolfie.header.version: 4.1.1
+ * wolfie.header.version: 3.1.1
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone

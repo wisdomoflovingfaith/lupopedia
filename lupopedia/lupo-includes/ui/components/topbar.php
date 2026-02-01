@@ -6,7 +6,7 @@
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone
- *   message: "Version 4.0.18: Removed static Collections link, integrated Collections dropdown component into navigation bar. Collections dropdown now appears after Agents link with Save/Load/Edit actions."
+ *   message: "Version 3.0.18: Removed static Collections link, integrated Collections dropdown component into navigation bar. Collections dropdown now appears after Agents link with Save/Load/Edit actions."
  * wolfie.header.mood.label: focused
  * wolfie.header.mood.rgb: "00FF00"
  */
