@@ -1,4 +1,22 @@
---
+<!-- WOLFIE FILE PASSPORT
+     Header-Version: 2.2 -->
+
+taxonomy_key: wolfie.header.taxonomy
+taxonomy_version: 2.2
+
+file.purpose: Primary documentation and entry point for Lupopedia semantic OS.
+file.created_utc: 2026-02-01
+file.last_modified_utc: 2026-02-01
+
+file.package: lupopedia
+file.subpackage: misc
+file.module: shared
+file.aspect: doctrine
+
+file.utc_epoch: wolfie-winter-2026
+file.updated_by: agent:cascade
+
+-->
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 2026.3.7.6
 file.channel: doctrine
@@ -24,7 +42,7 @@ in_this_file_we_have:
   - Crafty Syntax Compatibility: 100% Feature Preservation
   - Quick Start
   - Wolfie Header Update Requirements
-  - Why Lupopedia Is Different (see docs/WHY_LUPOPEDIA_IS_DIFFERENT.md)
+  - Why Lupopedia Is Different (see docs/channels/overview/WHY_LUPOPEDIA_IS_DIFFERENT.md)
   - INSTALLATION
   - REQUIREMENTS
   - DATABASE_PHILOSOPHY
@@ -145,6 +163,8 @@ Lupopedia is governed by a strict canonical doctrine that defines:
 
 📘 **[`docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md`](docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md)**
 
+📘 **[`docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md`](docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md)** — Common AI corrections: database (no FKs, no triggers, no display widths, no UNSIGNED), time (UTC YYYYMMDDHHIISS only), state (no deadlines), identity (BIGINT only), advertising/humor/psychological manipulation prohibitions, and filename rules. **All AI agents must read this before generating code or SQL.**
+
 Any AI coding agent (JetBrains, Cursor, Claude, etc.) must be initialized with this doctrine before making changes to the codebase.
 
 ## NO ADS, NO SEO, NO MARKETING — ABSOLUTE PROHIBITION
@@ -165,7 +185,7 @@ Lupopedia recommendations are based solely on DATA and SYSTEM LOGIC — never mo
 
 This rule is absolute. No exceptions. No negotiations. No amount of money can override this doctrine.
 
-**🚨 Trauma Boundary**: This prohibition also protects the system architect from PTSD-like responses to advertising manipulation. See [PTSD & Emotional Harm From Advertising Manipulation](docs/doctrine/PTSD_ADVERTISING_HARM_BOUNDARY.md) for complete context.
+**🚨 Trauma Boundary**: This prohibition also protects the system architect from PTSD-like responses to advertising manipulation. See [PTSD & Emotional Harm From Advertising Manipulation](docs/channels/doctrine/PTSD_ADVERTISING_HARM_BOUNDARY.md) for complete context.
 
 ## What You Don't Build
 
@@ -356,9 +376,9 @@ Lupopedia is NOT a content management system. Every installation exists as a sem
 - The system works alongside, not instead of, the host website's existing CMS or routing
 
 Every Lupopedia installation creates a parallel semantic index of the host site's content without duplicating or replacing it. See doctrine files:
-- [CSLH-URL-Semantics.md](docs/CSLH-URL-Semantics.md)
-- [Lupopedia-Reference-Layer-Doctrine.md](docs/Lupopedia-Reference-Layer-Doctrine.md)
-- [CSLH-Historical-Context.md](docs/CSLH-Historical-Context.md)
+- [CSLH-URL-Semantics.md](docs/channels/doctrine/CSLH-URL-Semantics.md)
+- [Lupopedia-Reference-Layer-Doctrine.md](docs/channels/doctrine/Lupopedia-Reference-Layer-Doctrine.md)
+- [CSLH-Historical-Context.md](docs/channels/history/CSLH-Historical-Context.md)
 
 **In One Sentence**
 
@@ -400,10 +420,10 @@ The spiritual engine evolved, and WOLFIE was repurposed to mean **Web-Organized 
 
 **Important:** Lupopedia is explicitly **not** a religious website. It is a **domain‑neutral Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)** that can be applied to any domain: technology, science, gaming, history, products, fandoms, social systems, or personal knowledge. Religion and mythology are part of the *origin story*, not the destination or the scope.
 
-Agent names like **Thoth** and **Lilith** are acknowledgements of the research that shaped the architecture, not instructions about what Lupopedia must be used for. They are symbolic, not prescriptive. See [docs/doctrine/non_religious_position.md](docs/doctrine/non_religious_position.md) for the complete doctrine.
+Agent names like **Thoth** and **Lilith** are acknowledgements of the research that shaped the architecture, not instructions about what Lupopedia must be used for. They are symbolic, not prescriptive. See [docs/channels/doctrine/non_religious_position.md](docs/channels/doctrine/non_religious_position.md) for the complete doctrine.
 
 > **📖 For the complete origin story, see [HISTORY.md](HISTORY.md)** — the lineage from Crafty Syntax (2002) through transformation, loss, rediscovery, and rebirth as a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE).  
-> **📝 For the personal narrative, see [docs/appendix/FOUNDERS_NOTE.md](docs/appendix/FOUNDERS_NOTE.md)** — Eric "Wolfie" Gerdes's account of the journey from Crafty Syntax through Sales Syntax, silence, faith, and rebirth as Lupopedia.
+> **📝 For the personal narrative, see [docs/channels/appendix/appendix/FOUNDERS_NOTE.md](docs/channels/appendix/appendix/FOUNDERS_NOTE.md)** — Eric "Wolfie" Gerdes's account of the journey from Crafty Syntax through Sales Syntax, silence, faith, and rebirth as Lupopedia.
 
 
 ## 🧩 Why Lupopedia Has 111 Tables (And Why That's a Feature, Not a Flaw)
@@ -421,7 +441,7 @@ It was becoming something much larger — a platform capable of organizing any d
 
 The spiritual engine evolved into the Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE), and WOLFIE evolved into Lupopedia.
 
-The schema was refined, unified, and optimized from 222 tables down to 111 core tables — not by removing capability, but by discovering the deeper architecture hidden inside the idea. The current count is **131 tables total** (as verified in TOON files). See [Migration Doctrine](docs/doctrine/MIGRATION_DOCTRINE.md) for details.
+The schema was refined, unified, and optimized from 222 tables down to 111 core tables — not by removing capability, but by discovering the deeper architecture hidden inside the idea. The current count is **131 tables total** (as verified in TOON files). See [Migration Doctrine](docs/channels/doctrine/MIGRATION_DOCTRINE.md) for details.
 
 This isn’t bloat.
 It’s the natural shape of a system that isn’t just an app, but a semantic OS.
@@ -481,7 +501,7 @@ Crafty Syntax URLs are web-facing URL slugs exactly as seen in the browser addre
 - Treated as filesystem paths
 - Modified from their original stored form
 
-These URLs are stored as-is and represent semantic identifiers for host website pages, not filesystem paths. This is critical for maintaining 25 years of behavioral metadata intact. See [CSLH-URL-Semantics.md](docs/CSLH-URL-Semantics.md) for complete doctrine.
+These URLs are stored as-is and represent semantic identifiers for host website pages, not filesystem paths. This is critical for maintaining 25 years of behavioral metadata intact. See [CSLH-URL-Semantics.md](docs/channels/doctrine/CSLH-URL-Semantics.md) for complete doctrine.
 
 ### **Crafty Syntax: Updated and Baked Into Lupopedia**
 Crafty Syntax Live Help is **permanently integrated** into Lupopedia 3.0.0 as a core first‑party module. This is not optional — it's the semantic root system of Lupopedia, containing 25 years of behavioral and emotional metadata that no modern system can replicate.
@@ -582,11 +602,11 @@ But now it lives inside a platform that can grow, evolve, and scale far beyond w
    # Set up the database
    # ⚠️ REMINDER: The database schema contains NO foreign keys, NO functions, NO procedures, NO triggers, NO views.
    # TRIGGERS ARE FORBIDDEN (MANDATORY). All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format.
-   # This is core doctrine. See docs/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md and docs/doctrine/NO_TRIGGERS_DOCTRINE.md
+   # This is core doctrine. See docs/channels/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md and docs/channels/doctrine/NO_TRIGGERS_DOCTRINE.md
    mysql -u root -p < database/install/lupopedia_mysql.sql
    
    # Configure your web server
-   # See docs/GETTING_STARTED/INSTALLATION.md for details
+   # See docs/channels/doctrine/INSTALLATION_LIFECYCLE_DOCTRINE.md for details
    ```
 
 3. **First Run**
@@ -605,7 +625,7 @@ Crafty Syntax is **NOT obsolete** — it's the foundational ancestor that makes 
 - The system is alive, evolving, and architecturally relevant
 - Represents the semantic root of Lupopedia's knowledge graph
 
-See [CSLH-Historical-Context.md](docs/CSLH-Historical-Context.md) for complete historical documentation.
+See [CSLH-Historical-Context.md](docs/channels/history/CSLH-Historical-Context.md) for complete historical documentation.
 
 Lupopedia 3.0.0 includes a complete, fully integrated migration of the entire Crafty Syntax Live Help system.
 This is not a partial port, not a compatibility wrapper, and not a legacy mode — Crafty Syntax has been **reborn from the ground up** as a first‑party Lupopedia module while preserving every feature, endpoint, and behavior that made it work for nearly 30 years.
@@ -733,48 +753,49 @@ Lupopedia documentation uses **atoms** (symbolic variables) instead of hardcoded
 - **Future documentation reader UI** will be built directly into Lupopedia to render documentation as a book for browsers
 - **All AI systems must read documentation with atoms and scopes**, not as plain text
 
-**See:** [Atom Resolution Specification](docs/doctrine/ATOM_RESOLUTION_SPECIFICATION.md) for complete atom resolution engine specification.
+**See:** [Atom Resolution Specification](docs/channels/doctrine/ATOM_RESOLUTION_SPECIFICATION.md) for complete atom resolution engine specification.
 
 ### Getting Started
-- [Installation Flow](docs/dev/INSTALLER_FLOW.md) — Installation process flow and node creation
-- [For Installers and Users](docs/dev/FOR_INSTALLERS_AND_USERS.md) — User-friendly explanations for installers and end users
+- [Installation Flow](docs/channels/developer/dev/INSTALLER_FLOW.md) — Installation process flow and node creation
+- [For Installers and Users](docs/channels/developer/dev/FOR_INSTALLERS_AND_USERS.md) — User-friendly explanations for installers and end users
 
 ### For Developers
 - **[Documentation Index](docs/README.md)** — Complete documentation index organized by category
-- **[Documentation Doctrine](docs/doctrine/DOCUMENTATION_DOCTRINE.md)** — Documentation is software, data, for machines
-- **[Dialog Doctrine](docs/doctrine/DIALOG_DOCTRINE.md)** — **MANDATORY: All dialog files must live in `/dialogs/` directory**
-- **[Single Task Patch Doctrine](docs/doctrine/SINGLE_TASK_PATCH_DOCTRINE.md)** — **MANDATORY: One task per patch, reversible changes only**
-- **[Atom Resolution Specification](docs/doctrine/ATOM_RESOLUTION_SPECIFICATION.md)** — Complete atom resolution engine specification
-- **[Subdirectory Installation Doctrine](docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md)** - **MANDATORY: All paths must use LUPOPEDIA_PUBLIC_PATH**
-- [Architecture Overview](docs/core/ARCHITECTURE.md) — Technical architecture (4 layers: Content, Semantic, AI Agent Framework, Decentralized Network)
-- [Architecture Sync (January 2026)](docs/core/ARCHITECTURE_SYNC.md) - **Authoritative reference for HERMES, CADUCEUS, IRIS, DialogManager, and THOTH subsystems**
-- [Why Lupopedia Doesn't Use Frameworks](docs/core/WHY_NO_FRAMEWORKS.md) - **Philosophy and reasoning behind framework-free, first-principles architecture**
-- **[Directory Structure](docs/core/DIRECTORY_STRUCTURE.md)** — **MANDATORY: Canonical directory layout and file organization principles**
-- **[Metadata Governance](docs/core/METADATA_GOVERNANCE.md)** — **MANDATORY: Metadata management and governance rules for WOLFIE headers, atoms, and cross-references**
-- **[Patch Discipline](docs/core/PATCH_DISCIPLINE.md)** — **MANDATORY: Comprehensive patch discipline principles and development workflow governance**
-- [Cursor Refactor Doctrine](docs/doctrine/CURSOR_REFACTOR_DOCTRINE.md) - **MANDATORY rules for rewriting legacy Crafty Syntax PHP code**
-- [SQL Rewrite Doctrine](docs/doctrine/SQL_REWRITE_DOCTRINE.md) - **MANDATORY rules for rewriting SQL from Crafty Syntax into Lupopedia**
-- [SQL Refactor Mapping Doctrine](docs/doctrine/SQL_REFACTOR_MAPPING_DOCTRINE.md) - **Focused mapping rules for SQL refactoring using refactor TOON files**
-- [PDO Conversion Doctrine](docs/doctrine/PDO_CONVERSION_DOCTRINE.md) - **MANDATORY rules for converting mysqli SQL calls to the custom PDO_DB class**
-- [TOON Doctrine](docs/doctrine/TOON_DOCTRINE.md) - **MANDATORY rules for working with TOON format files (refactor files, toon data files, agent files)**
-- [Legacy Refactor Plan](docs/modules/LEGACY_REFACTOR_PLAN.md) - **Comprehensive plan for refactoring legacy Crafty Syntax files from legacy/craftysyntax/ to lupopedia/**
-- [Database Schema](docs/schema/DATABASE_SCHEMA.md) - **Comprehensive documentation of all 149 tables organized by category**
-- [WOLFIE Header Specification](docs/agents/WOLFIE_HEADER_SPECIFICATION.md) - Universal metadata format for all files
-- [Inline Dialog Specification](docs/agents/INLINE_DIALOG_SPECIFICATION.md) - Multi-agent communication format
+- **[Documentation Doctrine](docs/channels/doctrine/DOCUMENTATION_DOCTRINE.md)** — Documentation is software, data, for machines
+- **[Dialog Doctrine](docs/channels/doctrine/DIALOG_DOCTRINE.md)** — **MANDATORY: All dialog files must live in `/dialogs/` directory**
+- **[Single Task Patch Doctrine](docs/channels/doctrine/SINGLE_TASK_PATCH_DOCTRINE.md)** — **MANDATORY: One task per patch, reversible changes only**
+- **[Atom Resolution Specification](docs/channels/doctrine/ATOM_RESOLUTION_SPECIFICATION.md)** — Complete atom resolution engine specification
+- **[Subdirectory Installation Doctrine](docs/channels/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md)** - **MANDATORY: All paths must use LUPOPEDIA_PUBLIC_PATH**
+- [Architecture Overview](docs/channels/architecture/ARCHITECTURE.md) — Technical architecture (4 layers: Content, Semantic, AI Agent Framework, Decentralized Network)
+- [Architecture Sync (January 2026)](docs/channels/architecture/ARCHITECTURE_SYNC.md) - **Authoritative reference for HERMES, CADUCEUS, IRIS, DialogManager, and THOTH subsystems**
+- [Why Lupopedia Doesn't Use Frameworks](docs/channels/doctrine/WHY_NO_FRAMEWORKS.md) - **Philosophy and reasoning behind framework-free, first-principles architecture**
+- **[Directory Structure](docs/channels/doctrine/DIRECTORY_STRUCTURE.md)** — **MANDATORY: Canonical directory layout and file organization principles**
+- **[Metadata Governance](docs/channels/doctrine/METADATA_GOVERNANCE.md)** — **MANDATORY: Metadata management and governance rules for WOLFIE headers, atoms, and cross-references**
+- **[Patch Discipline](docs/channels/doctrine/PATCH_DISCIPLINE.md)** — **MANDATORY: Comprehensive patch discipline principles and development workflow governance**
+- [Cursor Refactor Doctrine](docs/channels/doctrine/CURSOR_REFACTOR_DOCTRINE.md) - **MANDATORY rules for rewriting legacy Crafty Syntax PHP code**
+- [SQL Rewrite Doctrine](docs/channels/doctrine/SQL_REWRITE_DOCTRINE.md) - **MANDATORY rules for rewriting SQL from Crafty Syntax into Lupopedia**
+- [SQL Refactor Mapping Doctrine](docs/channels/doctrine/SQL_REFACTOR_MAPPING_DOCTRINE.md) - **Focused mapping rules for SQL refactoring using refactor TOON files**
+- [PDO Conversion Doctrine](docs/channels/doctrine/PDO_CONVERSION_DOCTRINE.md) - **MANDATORY rules for converting mysqli SQL calls to the custom PDO_DB class**
+- [TOON Doctrine](docs/channels/doctrine/TOON_DOCTRINE.md) - **MANDATORY rules for working with TOON format files (refactor files, toon data files, agent files)**
+- [Legacy Refactor Plan](docs/channels/developer/modules/LEGACY_REFACTOR_PLAN.md) - **Comprehensive plan for refactoring legacy Crafty Syntax files from legacy/craftysyntax/ to lupopedia/**
+- [Database Schema](docs/channels/schema/DATABASE_SCHEMA.md) - **Comprehensive documentation of all 149 tables organized by category**
+- [WOLFIE Header Specification](docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md) - Universal metadata format for all files
+- [Inline Dialog Specification](docs/channels/dialogs/agents/INLINE_DIALOG_SPECIFICATION.md) - Multi-agent communication format
 
 ### Core Doctrine Files
-- **[CSLH-URL-Semantics.md](docs/CSLH-URL-Semantics.md)** — Crafty Syntax URL semantics: URLs as web-facing slugs, not filesystem paths
-- **[Lupopedia-Reference-Layer-Doctrine.md](docs/Lupopedia-Reference-Layer-Doctrine.md)** — Lupopedia as semantic reference layer, not CMS
-- **[CSLH-Historical-Context.md](docs/CSLH-Historical-Context.md)** — Crafty Syntax history, restoration, and architectural relevance
+- **[Master Doctrine of AI Corrections](docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md)** — Common AI corrections (database, time, state, identity, integer types, advertising/humor/psychological manipulation, filenames). **Required reading for all AI agents.**
+- **[CSLH-URL-Semantics.md](docs/channels/doctrine/CSLH-URL-Semantics.md)** — Crafty Syntax URL semantics: URLs as web-facing slugs, not filesystem paths
+- **[Lupopedia-Reference-Layer-Doctrine.md](docs/channels/doctrine/Lupopedia-Reference-Layer-Doctrine.md)** — Lupopedia as semantic reference layer, not CMS
+- **[CSLH-Historical-Context.md](docs/channels/history/CSLH-Historical-Context.md)** — Crafty Syntax history, restoration, and architectural relevance
 
 ### For Administrators
-- [Installation Flow](docs/dev/INSTALLER_FLOW.md) — Installation process flow
-- [For Installers and Users](docs/dev/FOR_INSTALLERS_AND_USERS.md) — User-friendly setup guide
+- [Installation Flow](docs/channels/developer/dev/INSTALLER_FLOW.md) — Installation process flow
+- [For Installers and Users](docs/channels/developer/dev/FOR_INSTALLERS_AND_USERS.md) — User-friendly setup guide
 
 ## 🔗 Resources
 
 - [Changelog](docs/channels/overview/versioning/CHANGELOG.md)
-- [Contributing](docs/DEVELOPMENT/CONTRIBUTING.md)
+- [Contributing](CONTRIBUTING.md)
 - [Code of Conduct](docs/CODE_OF_CONDUCT.md)
 
 ## ⚠️ Important Notes
@@ -786,7 +807,7 @@ This project does **NOT** use Git until version 3.1.0. See [Version Control Poli
 **Lupopedia 3.0.0** and **Crafty Syntax 3.0.0** are version-locked and always released together. Both systems share the same version number to reflect their unified architecture and coordinated development cycle.
 
 ### Database Philosophy
-Lupopedia uses an application-managed relationship model. See [Database Philosophy](docs/DATABASE_PHILOSOPHY.md) for details.
+Lupopedia uses an application-managed relationship model. See [Database Philosophy](docs/channels/architecture/DATABASE_PHILOSOPHY.md) for details.
 
 ---
 
@@ -796,13 +817,13 @@ Lupopedia uses an application-managed relationship model. See [Database Philosop
 > 
 > **If you add any of these, you will make Captain cry.**
 > 
-> The database stores raw facts. The agents enforce correctness. [ANIBUS](docs/doctrine/ANIBUS_DOCTRINE.md) heals and maintains lineage.
+> The database stores raw facts. The agents enforce correctness. [ANIBUS](docs/channels/doctrine/ANIBUS_DOCTRINE.md) heals and maintains lineage.
 > 
 > **⚠️ TRIGGERS ARE FORBIDDEN (MANDATORY):** Triggers must never be created, suggested, or added. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. Triggers interfere with data merging, historical accuracy, ANIBUS repair operations, and federation sync.
 > 
 > **⚠️ STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** Stored procedures and functions must never be created, suggested, or added. The database is for storage, not computation. All logic must be in application code. Stored procedures/functions interfere with data merging, federation across different database engines, ANIBUS repair operations, and version control.
 > 
-> **See [NO FOREIGN KEYS DOCTRINE](docs/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md), [NO TRIGGERS DOCTRINE](docs/doctrine/NO_TRIGGERS_DOCTRINE.md), [NO STORED PROCEDURES DOCTRINE](docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md), and [ANIBUS DOCTRINE](docs/doctrine/ANIBUS_DOCTRINE.md) for complete details.**
+> **See [NO FOREIGN KEYS DOCTRINE](docs/channels/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md), [NO TRIGGERS DOCTRINE](docs/channels/doctrine/NO_TRIGGERS_DOCTRINE.md), [NO STORED PROCEDURES DOCTRINE](docs/channels/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md), and [ANIBUS DOCTRINE](docs/channels/doctrine/ANIBUS_DOCTRINE.md) for complete details.**
 > 
 > This is **non-negotiable core doctrine**. All AI tools (Cursor, Copilot, DeepSeek, Claude, Gemini, Grok, Windsurf) must follow this rule.
 
@@ -825,7 +846,7 @@ Lupopedia uses an application-managed relationship model. See [Database Philosop
 > - ❌ WRONG: `$timestamp = time();` (epoch seconds)
 > - ❌ WRONG: `created_at DATETIME NOT NULL` (wrong column type)
 > 
-> **See [TIMESTAMP DOCTRINE](docs/doctrine/TIMESTAMP_DOCTRINE.md) for complete canonical documentation.**
+> **See [TIMESTAMP DOCTRINE](docs/channels/doctrine/TIMESTAMP_DOCTRINE.md) for complete canonical documentation.**
 > 
 > **This doctrine is absolute and binding. All AI agents MUST read and follow it before generating any timestamp-related code.**
 
@@ -848,14 +869,14 @@ Lupopedia uses an application-managed relationship model. See [Database Philosop
 > 
 > **CRITICAL:** `LUPOPEDIA_PUBLIC_PATH` is automatically set to `'/' . basename(__DIR__)`, which evaluates to the folder name (e.g., `/lupopedia`). This ensures Lupopedia works in any subdirectory without code changes.
 > 
-> **See [SUBDIRECTORY INSTALLATION DOCTRINE](docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md) for complete details.**
+> **See [SUBDIRECTORY INSTALLATION DOCTRINE](docs/channels/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md) for complete details.**
 > 
 > **This doctrine is absolute and binding. All AI agents MUST read and follow it before generating any path-related code.**
 
 ---
 
 ### Multi-Agent Coordination
-Lupopedia supports multiple AI agents and IDE systems working simultaneously. All agents must use the [Inline Dialog format](docs/INLINE_DIALOG_SPECIFICATION.md) for cross-agent communication.
+Lupopedia supports multiple AI agents and IDE systems working simultaneously. All agents must use the [Inline Dialog format](docs/channels/dialogs/agents/INLINE_DIALOG_SPECIFICATION.md) for cross-agent communication.
 
 
 ## Core Modules Included in Every Installation
@@ -900,7 +921,7 @@ lupopedia/agents/
 ### **Agent Identification**
 - **Agent 0 — System Agent**  
   The kernel authority and internal system controller. Handles core logic, safety, governance, and fallback behavior.  
-  **See [System Agent Safety Doctrine](docs/SYSTEM_AGENT_SAFETY_DOCTRINE.md)** for complete kernel-level governance rules and anti-adversarial protections.
+  **See [System Agent Safety Doctrine](docs/channels/doctrine/SYSTEM_AGENT_SAFETY_DOCTRINE.md)** for complete kernel-level governance rules and anti-adversarial protections.
 
 - **Agent 1 — Captain Wolfie**  
   The AI embodiment of the creator.  
@@ -925,7 +946,7 @@ lupopedia/agents/
   - PHP include files  
   - faucet definitions (model switching rules)  
   - memory and style profiles
-- **Memory System:** Agents use [WOLFMIND](docs/WOLFMIND_DOCTRINE.md) for memory storage and retrieval
+- **Memory System:** Agents use [WOLFMIND](docs/channels/doctrine/WOLFMIND_DOCTRINE.md) for memory storage and retrieval
   - **CRITICAL:** MySQL is baseline - all features MUST work on MySQL alone
   - Relational memory (MySQL) - always available, required
   - Vector memory (Postgres/pgvector) - optional enhancement, detected at runtime
@@ -952,7 +973,7 @@ It's part CMS, part wiki, part knowledge graph, and part personal navigation sys
 
 # 🚀 **What Makes Lupopedia Different**
 
-> 📖 **For a comprehensive explanation of why Lupopedia is fundamentally different from any existing knowledge system, see [Why Lupopedia Is Different](docs/WHY_LUPOPEDIA_IS_DIFFERENT.md).**
+> 📖 **For a comprehensive explanation of why Lupopedia is fundamentally different from any existing knowledge system, see [Why Lupopedia Is Different](docs/channels/overview/WHY_LUPOPEDIA_IS_DIFFERENT.md).**
 
 ### **🧠 Semantic Navigation (Core Innovation)**
 Lupopedia doesn't force users into a predefined taxonomy.  
@@ -997,9 +1018,9 @@ Lupopedia follows strict database design principles to ensure portability, perfo
 - ❌ Database Functions
 - ❌ Engine-Specific Features
 
-> **⚠️ TRIGGERS ARE FORBIDDEN (MANDATORY):** Triggers must never be created, suggested, or added. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. See [NO_TRIGGERS_DOCTRINE.md](docs/doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
+> **⚠️ TRIGGERS ARE FORBIDDEN (MANDATORY):** Triggers must never be created, suggested, or added. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. See [NO_TRIGGERS_DOCTRINE.md](docs/channels/doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
 
-> **⚠️ STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** Stored procedures and functions must never be created, suggested, or added. The database is for storage, not computation. All logic must be in application code. See [NO_STORED_PROCEDURES_DOCTRINE.md](docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md) for complete requirements.
+> **⚠️ STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** Stored procedures and functions must never be created, suggested, or added. The database is for storage, not computation. All logic must be in application code. See [NO_STORED_PROCEDURES_DOCTRINE.md](docs/channels/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md) for complete requirements.
 
 #### **What We Use Instead**
 - ✅ Application-managed relationships
@@ -1043,10 +1064,10 @@ Lupopedia includes a built‑in **AI Agent Framework** that provides intelligent
   Agents can route queries to different language models depending on domain, task, or performance needs.
 
 - **Dialog‑Driven Interaction**  
-  Agents maintain context, support multi-turn conversations, and adapt to user behavior. All agents use the [Inline Dialog format](docs/INLINE_DIALOG_SPECIFICATION.md) for cross-agent coordination.
+  Agents maintain context, support multi-turn conversations, and adapt to user behavior. All agents use the [Inline Dialog format](docs/channels/dialogs/agents/INLINE_DIALOG_SPECIFICATION.md) for cross-agent coordination.
 
 - **Multi-Agent Coordination**  
-  Multiple AI agents and IDE systems (Cursor, Windsurf/Cascade, DeepSeek, etc.) work simultaneously on Lupopedia. The [Inline Dialog Specification](docs/INLINE_DIALOG_SPECIFICATION.md) ensures all agents remain synchronized and aware of each other's actions.
+  Multiple AI agents and IDE systems (Cursor, Windsurf/Cascade, DeepSeek, etc.) work simultaneously on Lupopedia. The [Inline Dialog Specification](docs/channels/dialogs/agents/INLINE_DIALOG_SPECIFICATION.md) ensures all agents remain synchronized and aware of each other's actions.
 
 - **Tool-Enabled Reasoning**  
   Agents can call internal tools to search content, traverse the semantic graph, inspect atoms/edges, analyze references, and query other Lupopedia nodes.
@@ -1097,10 +1118,10 @@ lupopedia-config.php         # Configuration file (stored outside web root)
 - **[Version Control Policy](docs/channels/doctrine/VERSION_CONTROL_POLICY.md)**  
   Detailed explanation of Git/GitHub policy (no Git until version 3.1.0)
 
-- **[For Installers & Users](docs/FOR_INSTALLERS_AND_USERS.md)**  
+- **[For Installers & Users](docs/channels/developer/dev/FOR_INSTALLERS_AND_USERS.md)**  
   Simple, friendly explanation for auto-installers, hosting providers, and Crafty Syntax users
 
-- **[Upgrade Plan: Crafty Syntax 3.7.5 → 3.0.0](docs/UPGRADE_PLAN_3.7.5_TO_3.0.0.md)**  
+- **[Upgrade Plan: Crafty Syntax 3.7.5 → 4.0.0](docs/channels/developer/modules/UPGRADE_PLAN_3.7.5_TO_4.0.0.md)**  
   Complete upgrade path from Crafty Syntax 3.7.5 to Lupopedia + Crafty Syntax 3.0.0
 
 - **[Dialog Module](modules/dialog/README.md)**  
@@ -1112,38 +1133,38 @@ lupopedia-config.php         # Configuration file (stored outside web root)
 - **[Vision & Philosophy](docs/channels/overview/VISION.md)**  
   Understand the guiding principles and future direction of Lupopedia
   
-- **[Why Lupopedia Is Different](docs/WHY_LUPOPEDIA_IS_DIFFERENT.md)**  
+- **[Why Lupopedia Is Different](docs/channels/overview/WHY_LUPOPEDIA_IS_DIFFERENT.md)**  
   Comprehensive explanation of what makes Lupopedia fundamentally different from wikis, CMS platforms, graph databases, CRMs, AI assistants, and all other knowledge systems. Includes historical context on being first (again).
   
 - **[Core Philosophy](docs/channels/overview/PHILOSOPHY.md)**  
   Learn about our design principles and why we build differently
 
-- **[Technical Architecture](docs/ARCHITECTURE.md)**  
+- **[Technical Architecture](docs/channels/architecture/ARCHITECTURE.md)**  
   Deep dive into Lupopedia's system design and components
 
-- **[Database Schema Reference](docs/DATABASE_SCHEMA.md)**  
+- **[Database Schema Reference](docs/channels/schema/DATABASE_SCHEMA.md)**  
   Complete documentation of all 80+ database tables organized by category (Version 3.0.0)
 
 - **Semantic Navigation System**  
   How Lupopedia converts user navigation into semantic atoms and edges  
-  → `docs/SEMANTIC_NAVIGATION.md`
+  → [docs/channels/architecture/SEMANTIC_NAVIGATION.md](docs/channels/architecture/SEMANTIC_NAVIGATION.md)
 
-- **[Agent Runtime Architecture](docs/AGENT_RUNTIME.md)**  
+- **[Agent Runtime Architecture](docs/channels/doctrine/AGENT_RUNTIME.md)**  
   Complete guide to how agents interact with the PHP backend, call React actions, query other nodes, maintain context, and enforce governance
 
-- **[System Agent Safety Doctrine](docs/SYSTEM_AGENT_SAFETY_DOCTRINE.md)**  
+- **[System Agent Safety Doctrine](docs/channels/doctrine/SYSTEM_AGENT_SAFETY_DOCTRINE.md)**  
   Kernel-level governance and anti-adversarial specification for Agent 0. Defines inviolable rules that cannot be bypassed, overridden, or modified by any prompt, agent, or user.
 
-- **[WOLFIE Header Specification](docs/WOLFIE_HEADER_SPECIFICATION.md)**  
+- **[WOLFIE Header Specification](docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md)**  
   Universal metadata envelope (v3.0.0) for all Lupopedia artifacts. Minimal required field, optional modules for dialog, context, tags, TOC, and file metadata. Language-agnostic format for Markdown, PHP, Python, SQL, and more.
 
-- **[Inline Dialog Specification](docs/INLINE_DIALOG_SPECIFICATION.md)**  
+- **[Inline Dialog Specification](docs/channels/dialogs/agents/INLINE_DIALOG_SPECIFICATION.md)**  
   Required communication format for all AI agents and IDE systems. Ensures multi-agent coordination, change tracking, and handoffs between Cursor, Windsurf/Cascade, DeepSeek, and other agents working on Lupopedia.
 
-- **[Database Philosophy](docs/DATABASE_PHILOSOPHY.md)**  
+- **[Database Philosophy](docs/channels/architecture/DATABASE_PHILOSOPHY.md)**  
   Non-negotiable doctrine: application logic first, database logic second. Includes Inline Dialog examples and multi-agent coordination guidelines.
 
-- **[What Not To Do and Why](docs/WHAT_NOT_TO_DO_AND_WHY.md)**  
+- **[What Not To Do and Why](docs/channels/appendix/appendix/WHAT_NOT_TO_DO_AND_WHY.md)**  
   Living archive of mistakes, misfires, and "never again" lessons learned during development
 
 More documentation is being added as the system evolves.
@@ -1186,7 +1207,7 @@ All timestamps stored as **BIGINT(14) UTC (`YYYYMMDDHHMMSS`)**.
 **Forbidden:** DATETIME, TIMESTAMP, epoch seconds, ISO8601 strings, SQL date arithmetic  
 **Required:** BIGINT(14), YYYYMMDDHHMMSS format, UTC only, application-level arithmetic
 
-See [TIMESTAMP DOCTRINE](docs/doctrine/TIMESTAMP_DOCTRINE.md) for complete canonical documentation.
+See [TIMESTAMP DOCTRINE](docs/channels/doctrine/TIMESTAMP_DOCTRINE.md) for complete canonical documentation.
 
 ### **🔗 Application‑Managed Integrity**
 No foreign keys — all relationships handled in PHP for:
@@ -1289,7 +1310,7 @@ For support or inquiries, contact the project maintainer.
 - **Time Handling**: All timestamps stored as **BIGINT(14) UTC (YYYYMMDDHHMMSS)**
   - **CRITICAL:** Never add seconds directly to YYYYMMDDHHMMSS timestamps
   - Use `timestamp_ymdhis::addSeconds()` for arithmetic
-  - See [TIMESTAMP DOCTRINE](docs/doctrine/TIMESTAMP_DOCTRINE.md) for complete requirements
+  - See [TIMESTAMP DOCTRINE](docs/channels/doctrine/TIMESTAMP_DOCTRINE.md) for complete requirements
 - **Application-Managed Integrity**: No database-level foreign keys for maximum performance and security
   - All relationships managed at application level
   - Enables soft-delete functionality

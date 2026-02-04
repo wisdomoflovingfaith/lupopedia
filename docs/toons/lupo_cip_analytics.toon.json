@@ -12,7 +12,7 @@
     "`trend_analysis_json` json COMMENT 'Historical trend data'",
     "`calculated_ymdhis` bigint NOT NULL COMMENT 'When analytics were calculated'",
     "`recalculated_ymdhis` bigint COMMENT 'Last recalculation timestamp'",
-    "`analytics_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Analytics engine version'"
+    "`analytics_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Analytics engine version'"
   ],
   "data": [],
   "indexes": [

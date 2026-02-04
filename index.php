@@ -1,4 +1,31 @@
 <?php
+/* ⧉ WOLFIE v2.6 ⧉
+   nav: mech | myth | rel | docs
+   
+   ## NAV
+   pkg: lupopedia
+   mod: kernel
+   asp: controller
+   pur: Front controller and routing dispatcher for Lupopedia application.
+   
+   ## META
+   cre: 2026-02-01T00:00:00Z
+   mod: 2026-02-01T00:00:00Z
+   upd: cascade#1
+   tax: wolfie.header.taxonomy@2.3
+   
+   ## MYTH
+   epo: wolfie-winter-2026
+   sig: routing-focus
+   
+   ## REL
+   → 
+   ← 
+   ↔ 
+   
+   ## DOCS
+   */
+
 /**
  * Front to the Lupopedia application. This file is designed to be placed directly inside the Lupopedia directory (or whatever you rename it to) under your web server's public root.
  * It dynamically detects the folder name for the public path, so it works even if you rename the 'lupopedia' folder.

@@ -12,7 +12,7 @@
     "`dependencies_json` json COMMENT 'Dependencies for this propagation step'",
     "`started_ymdhis` bigint COMMENT 'When propagation started'",
     "`completed_ymdhis` bigint COMMENT 'When propagation completed'",
-    "`propagation_version` varchar(20) DEFAULT '3.0.75' COMMENT 'Propagation tracking version'"
+    "`propagation_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Propagation tracking version'"
   ],
   "data": [],
   "indexes": [

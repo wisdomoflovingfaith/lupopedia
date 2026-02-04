@@ -6,13 +6,16 @@
     "`code` varchar(64) NOT NULL",
     "`name` varchar(255) NOT NULL",
     "`layer` varchar(64) NOT NULL",
-    "`is_required` tinyint(1) NOT NULL DEFAULT 0",
-    "`is_active` tinyint(1) NOT NULL DEFAULT 0",
-    "`is_kernel` tinyint(1) NOT NULL DEFAULT 0",
+    "`is_required` tinyint NOT NULL DEFAULT 0",
+    "`is_active` tinyint NOT NULL DEFAULT 0",
+    "`is_kernel` tinyint NOT NULL DEFAULT 0",
     "`dedicated_slot` int",
     "`created_ymdhis` bigint NOT NULL",
     "`classification_json` json COMMENT 'Agent classification and routing identity metadata (agent_class, subclass, routing_bias, capabilities)'",
-    "`metadata` json NOT NULL"
+    "`metadata` json NOT NULL",
+    "`agent_class` varchar(64) NOT NULL DEFAULT 'production'",
+    "`can_use_humor` tinyint NOT NULL DEFAULT 0",
+    "`can_use_emotion` tinyint NOT NULL DEFAULT 0"
   ],
   "data": [],
   "indexes": [

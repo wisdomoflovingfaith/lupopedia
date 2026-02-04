@@ -1,4 +1,31 @@
 <?php
+/* ⧉ WOLFIE HEADER v2.4 ⧉
+w3_views: mechanical | relational | mythic | docs
+
+◈ w3_MECHANICAL (REQUIRED)
+w3_created_day_utc: 2026-02-01T00:00:00Z
+w3_modified_day_utc: 2026-02-01T00:00:00Z
+w3_updated_by: cascade
+w3_taxonomy_key: wolfie.header.taxonomy
+w3_taxonomy_version: 2.4
+w3_package: crafty_syntax
+w3_subpackage: generator
+w3_module: builders
+w3_aspect: service
+w3_purpose: Generates JavaScript for live chat widget and visitor tracking.
+w3_mutation_notes: Upgraded from WOLFIE HEADER v2.2 to v2.4 format
+
+◈ w3_RELATIONAL (RECOMMENDED, STRUCTURAL ONLY)
+w3_nourishes→:
+w3_nourished_by←:
+w3_tensions↔:
+
+◈ w3_MYTHIC (OPTIONAL)
+w3_epoch: wolfie-winter-2026
+w3_signature:
+
+◈ w3_DOCS (OPTIONAL — ENHANCED DOCUMENTATION)
+*/
 //===========================================================================
 //* --    ~~                CRAFTY SYNTAX Live Help                ~~    -- *
 //===========================================================================

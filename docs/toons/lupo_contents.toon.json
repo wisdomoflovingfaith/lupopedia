@@ -5,7 +5,7 @@
     "`content_parent_id` bigint COMMENT 'Parent content ID for hierarchical relationships'",
     "`federation_node_id` bigint DEFAULT 1 COMMENT 'Domain scope, NULL for global content'",
     "`group_id` bigint COMMENT 'Optional group restriction'",
-    "`user_id` bigint COMMENT 'Author of the content'",
+    "`actor_id` bigint COMMENT 'Actor who created or last modified the content'",
     "`title` varchar(255) NOT NULL COMMENT 'Content title'",
     "`slug` varchar(255) NOT NULL COMMENT 'URL-friendly identifier, unique within domain'",
     "`custom_path` varchar(255) COMMENT 'Semantic routing override; not a filesystem path'",
@@ -13,7 +13,7 @@
     "`seo_keywords` varchar(500)",
     "`body` longtext COMMENT 'Main content body'",
     "`content_type` varchar(50) DEFAULT 'article' COMMENT 'Type of content (article, page, post, etc.)'",
-    "`format` varchar(20) DEFAULT 'html' COMMENT 'Content format (html, markdown, etc.)'",
+    "`format` varchar(20) DEFAULT 'markdown' COMMENT 'Content format (html, markdown, etc.)'",
     "`content_url` varchar(2000) COMMENT 'content URL if content is referenced by url such as lupopedia.com/content/lupopedia'",
     "`default_collection_id` bigint COMMENT 'Default collection ID'",
     "`source_url` varchar(2000) COMMENT 'Original source URL if content is imported'",
@@ -32,7 +32,10 @@
     "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = not active'",
     "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'",
     "`content_sections` json COMMENT 'Cached list of section anchors extracted from the content body'",
-    "`version_number` int NOT NULL DEFAULT 1 COMMENT 'Monotonic version number for the live content row'"
+    "`version_number` int NOT NULL DEFAULT 1 COMMENT 'Monotonic version number for the live content row'",
+    "`file_path_from_root` varchar(500) COMMENT 'Filesystem path for header generation'",
+    "`tags` json COMMENT 'Array of tags for header projection'",
+    "`dialog_notes` text COMMENT 'Short note about last agent action'"
   ],
   "data": [],
   "indexes": [
@@ -136,7 +139,7 @@
     {
       "index_name": "idx_user",
       "columns": [
-        "user_id"
+        "actor_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

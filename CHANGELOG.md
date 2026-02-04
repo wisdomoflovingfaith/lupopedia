@@ -1,4 +1,22 @@
----
+<!-- WOLFIE FILE PASSPORT
+     Header-Version: 2.2 -->
+
+taxonomy_key: wolfie.header.taxonomy
+taxonomy_version: 2.2
+
+file.purpose: High-level meta-log documenting version history and major changes.
+file.created_utc: 2026-02-01
+file.last_modified_utc: 2026-02-01
+
+file.package: lupopedia
+file.subpackage: misc
+file.module: shared
+file.aspect: doctrine
+
+file.utc_epoch: wolfie-winter-2026
+file.updated_by: agent:cascade
+
+-->-
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 2026.3.8.0
 file.channel: versioning

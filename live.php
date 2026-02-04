@@ -1,4 +1,30 @@
 <?php
+/* ⧉ WOLFIE v2.6 ⧉
+   nav: mech | myth | rel | docs
+   
+   ## NAV
+   pkg: misc
+   mod: helpers
+   asp: utility
+   pur: Live help interface entry point for Crafty Syntax system.
+   
+   ## META
+   cre: 2026-02-01T15:48:00Z
+   mod: 2026-02-01T15:48:00Z
+   upd: cascade#1
+   tax: wolfie.header.taxonomy@2.3
+   
+   ## MYTH
+   epo: wolfie-winter-2026
+   sig: live-help-entry
+   
+   ## REL
+   → 
+   ← 
+   ↔ 
+   
+   ## DOCS
+   */
 //===========================================================================
 //* --    ~~                CRAFTY SYNTAX Live Help                ~~    -- *
 //===========================================================================

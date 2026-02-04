@@ -3,6 +3,7 @@
   "fields": [
     "`operator_id` bigint NOT NULL auto_increment",
     "`anchor_agent_id` int",
+    "`channel_id` bigint NOT NULL DEFAULT 1",
     "`metadata_json` json COMMENT 'Structured metadata for operator identity, preferences, and system state'",
     "`auth_user_id` bigint NOT NULL",
     "`actor_id` bigint NOT NULL",

@@ -1,0 +1,466 @@
+{
+  "wolfie.header.taxonomy": {
+    "version": "2.3",
+    "last_updated_utc": "2026-02-01T15:48:00Z",
+    "epoch": "wolfie-winter-2026",
+
+    "directory_patterns": {
+      "": {
+        "package": "misc",
+        "subpackage": "utils",
+        "description": "Root level defaults"
+      },
+      "app/": {
+        "package": "lupopedia",
+        "subpackage": "app",
+        "description": "Application subsystem"
+      },
+      "kernel/": {
+        "package": "lupopedia",
+        "subpackage": "kernel",
+        "description": "Core runtime and orchestration"
+      },
+      "src/": {
+        "package": "lupopedia",
+        "subpackage": "kernel",
+        "description": "Source code directory"
+      },
+      "api/": {
+        "package": "lupopedia",
+        "subpackage": "kernel",
+        "module": "routing",
+        "description": "API endpoints and routing"
+      },
+      "routes/": {
+        "package": "lupopedia",
+        "subpackage": "kernel",
+        "module": "routing",
+        "description": "Route definitions"
+      },
+      "config/": {
+        "package": "misc",
+        "subpackage": "shared",
+        "module": "config",
+        "description": "Configuration files"
+      },
+      "database/": {
+        "package": "lupopedia",
+        "subpackage": "storage",
+        "module": "database",
+        "description": "Database schemas and migrations"
+      },
+      "migrations/": {
+        "package": "lupopedia",
+        "subpackage": "storage",
+        "module": "database",
+        "description": "Database migrations"
+      },
+      "storage/": {
+        "package": "lupopedia",
+        "subpackage": "storage",
+        "description": "Storage layer"
+      },
+      "cache/": {
+        "package": "lupopedia",
+        "subpackage": "storage",
+        "module": "cache",
+        "description": "Cache storage"
+      },
+      "vendor/": {
+        "package": "misc",
+        "subpackage": "shared",
+        "description": "Third-party dependencies (excluded from processing)"
+      },
+      "node_modules/": {
+        "package": "misc",
+        "subpackage": "shared",
+        "description": "Node.js dependencies (excluded from processing)"
+      },
+      "docs/": {
+        "package": "misc",
+        "subpackage": "shared",
+        "module": "doctrine",
+        "description": "Documentation and doctrine files"
+      },
+      "tests/": {
+        "package": "misc",
+        "subpackage": "utils",
+        "module": "helpers",
+        "aspect": "test",
+        "description": "Test files"
+      },
+      "lupo-tests/": {
+        "package": "misc",
+        "subpackage": "utils",
+        "module": "helpers",
+        "aspect": "test",
+        "description": "Lupopedia test files"
+      },
+      "legacy/": {
+        "package": "crafty_syntax",
+        "subpackage": "parser",
+        "description": "Legacy Crafty Syntax code"
+      },
+      "crafty_runtime.txt": {
+        "package": "crafty_syntax",
+        "subpackage": "parser",
+        "description": "Crafty Syntax runtime configuration"
+      },
+      "agents/": {
+        "package": "lupopedia",
+        "subpackage": "agents",
+        "description": "Agent implementations"
+      },
+      "ai-actors/": {
+        "package": "lupopedia",
+        "subpackage": "agents",
+        "module": "communication",
+        "description": "AI actor implementations"
+      },
+      "lupo-agents/": {
+        "package": "lupopedia",
+        "subpackage": "agents",
+        "module": "core",
+        "description": "Lupopedia agent definitions"
+      },
+      "lupo-includes/": {
+        "package": "lupopedia",
+        "subpackage": "kernel",
+        "module": "middleware",
+        "description": "Core includes and middleware"
+      },
+      "images/": {
+        "package": "lupopedia",
+        "subpackage": "ui",
+        "module": "assets",
+        "description": "Image assets"
+      },
+      "templates/": {
+        "package": "lupopedia",
+        "subpackage": "ui",
+        "module": "templates",
+        "description": "Template files"
+      },
+      "scripts/": {
+        "package": "misc",
+        "subpackage": "utils",
+        "module": "helpers",
+        "description": "Utility scripts"
+      },
+      "bin/": {
+        "package": "misc",
+        "subpackage": "utils",
+        "module": "helpers",
+        "description": "Binary scripts"
+      },
+      "uploads/": {
+        "package": "lupopedia",
+        "subpackage": "storage",
+        "module": "filesystem",
+        "description": "User upload storage"
+      },
+      "backups/": {
+        "package": "lupopedia",
+        "subpackage": "storage",
+        "module": "filesystem",
+        "description": "Backup storage"
+      }
+    },
+
+    "file_patterns": {
+      "index.*": {
+        "module": "routing",
+        "aspect": "controller",
+        "description": "Entry point controllers"
+      },
+      "*.controller.php": {
+        "aspect": "controller",
+        "description": "Controller classes"
+      },
+      "*.model.php": {
+        "aspect": "model",
+        "description": "Model classes"
+      },
+      "*.view.php": {
+        "aspect": "view",
+        "description": "View templates"
+      },
+      "*.middleware.php": {
+        "aspect": "middleware",
+        "description": "Middleware classes"
+      },
+      "*.service.php": {
+        "aspect": "service",
+        "description": "Service classes"
+      },
+      "*.repository.php": {
+        "aspect": "repository",
+        "description": "Repository classes"
+      },
+      "*.entity.php": {
+        "aspect": "entity",
+        "description": "Entity classes"
+      },
+      "*.component.php": {
+        "aspect": "component",
+        "description": "Component classes"
+      },
+      "*.helper.php": {
+        "aspect": "utility",
+        "description": "Helper functions"
+      },
+      "*.util.php": {
+        "aspect": "utility",
+        "description": "Utility functions"
+      },
+      "config.*": {
+        "aspect": "config",
+        "description": "Configuration files"
+      },
+      "*.config.php": {
+        "aspect": "config",
+        "description": "PHP configuration files"
+      },
+      "*.doctrine.md": {
+        "aspect": "doctrine",
+        "description": "Doctrine documentation"
+      },
+      "*.migration.php": {
+        "aspect": "migration",
+        "description": "Database migration files"
+      },
+      "*.test.php": {
+        "aspect": "test",
+        "description": "Test files"
+      },
+      "test.*": {
+        "aspect": "test",
+        "description": "Test files"
+      },
+      "*.css": {
+        "aspect": "style",
+        "description": "Stylesheet files"
+      },
+      "*.scss": {
+        "aspect": "style",
+        "description": "SASS stylesheets"
+      },
+      "*.js": {
+        "module": "assets",
+        "aspect": "component",
+        "description": "JavaScript files"
+      },
+      "*.jsx": {
+        "module": "assets",
+        "aspect": "component",
+        "description": "React components"
+      },
+      "*.ts": {
+        "module": "assets",
+        "aspect": "component",
+        "description": "TypeScript files"
+      },
+      "*.tsx": {
+        "module": "assets",
+        "aspect": "component",
+        "description": "TypeScript React components"
+      },
+      "*.vue": {
+        "module": "assets",
+        "aspect": "component",
+        "description": "Vue components"
+      },
+      "*.svelte": {
+        "module": "assets",
+        "aspect": "component",
+        "description": "Svelte components"
+      },
+      "*.html": {
+        "module": "assets",
+        "aspect": "view",
+        "description": "HTML templates"
+      },
+      "*.htm": {
+        "module": "assets",
+        "aspect": "view",
+        "description": "HTML templates"
+      },
+      "*.md": {
+        "module": "doctrine",
+        "aspect": "docs",
+        "description": "Markdown documentation"
+      },
+      "README.*": {
+        "module": "doctrine",
+        "aspect": "docs",
+        "description": "Documentation files"
+      },
+      "CHANGELOG.*": {
+        "module": "doctrine",
+        "aspect": "docs",
+        "description": "Changelog files"
+      },
+      "*.json": {
+        "aspect": "config",
+        "description": "JSON configuration files (excluded from processing)"
+      },
+      "*.yaml": {
+        "aspect": "config",
+        "description": "YAML configuration files (excluded from processing)"
+      },
+      "*.yml": {
+        "aspect": "config",
+        "description": "YAML configuration files (excluded from processing)"
+      },
+      "*.xml": {
+        "aspect": "config",
+        "description": "XML configuration files (excluded from processing)"
+      },
+      "*.csv": {
+        "aspect": "config",
+        "description": "CSV data files (excluded from processing)"
+      }
+    },
+
+    "defaults": {
+      "package": "misc",
+      "subpackage": "utils",
+      "module": "helpers",
+      "aspect": "utility"
+    },
+
+    "packages": {
+      "lupopedia": {
+        "description": "Core knowledge graph and agent architecture",
+        "subpackages": {
+          "kernel": {
+            "description": "Core runtime and orchestration",
+            "modules": [
+              "doctrine",
+              "routing",
+              "authentication",
+              "middleware",
+              "scheduler",
+              "events"
+            ]
+          },
+          "ui": {
+            "description": "User interface layer",
+            "modules": [
+              "components",
+              "pages",
+              "layouts",
+              "theme",
+              "assets"
+            ]
+          },
+          "agents": {
+            "description": "Agent implementations",
+            "modules": [
+              "core",
+              "communication",
+              "orchestration",
+              "specialized"
+            ]
+          },
+          "storage": {
+            "description": "Persistence layer",
+            "modules": [
+              "database",
+              "cache",
+              "filesystem",
+              "memory"
+            ]
+          }
+        }
+      },
+
+      "crafty_syntax": {
+        "description": "Parsing and transformation tools",
+        "subpackages": {
+          "parser": {
+            "description": "Parsing utilities",
+            "modules": [
+              "lexer",
+              "grammar",
+              "transformer",
+              "validator"
+            ]
+          },
+          "generator": {
+            "description": "Code and content generation",
+            "modules": [
+              "templates",
+              "builders",
+              "scaffolders"
+            ]
+          }
+        }
+      },
+
+      "game": {
+        "description": "Game engine and interactive systems",
+        "subpackages": {
+          "engine": {
+            "description": "Core mechanics",
+            "modules": [
+              "physics",
+              "ai",
+              "rendering",
+              "audio"
+            ]
+          },
+          "content": {
+            "description": "Narrative and assets",
+            "modules": [
+              "worlds",
+              "characters",
+              "quests",
+              "dialog"
+            ]
+          }
+        }
+      },
+
+      "misc": {
+        "description": "Shared and utility code",
+        "subpackages": {
+          "utils": {
+            "description": "General utilities",
+            "modules": [
+              "helpers",
+              "validators",
+              "formatters"
+            ]
+          },
+          "shared": {
+            "description": "Cross-cutting concerns",
+            "modules": [
+              "config",
+              "constants",
+              "types",
+              "interfaces"
+            ]
+          }
+        }
+      }
+    },
+
+    "aspects": {
+      "controller": "Request handling and coordination",
+      "model": "Data and business logic",
+      "view": "Presentation layer",
+      "middleware": "Request/response pipeline",
+      "service": "Business logic and integrations",
+      "repository": "Data access abstraction",
+      "entity": "Domain objects",
+      "component": "Reusable UI components",
+      "utility": "Helper and support code",
+      "config": "Configuration",
+      "doctrine": "Architectural rules",
+      "migration": "Schema changes",
+      "test": "Testing",
+      "style": "Visual styling"
+    }
+  }
+}

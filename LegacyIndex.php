@@ -1,4 +1,31 @@
 <?php
+/* ⧉ WOLFIE HEADER v2.4 ⧉
+w3_views: mechanical | relational | mythic | docs
+
+◈ w3_MECHANICAL (REQUIRED)
+w3_created_day_utc: 2026-02-01T15:48:00Z
+w3_modified_day_utc: 2026-02-01T15:48:00Z
+w3_updated_by: cascade
+w3_taxonomy_key: wolfie.header.taxonomy
+w3_taxonomy_version: 2.4
+w3_package: misc
+w3_subpackage: utils
+w3_module: helpers
+w3_aspect: utility
+w3_purpose: Legacy index fallback for Crafty Syntax Live Help system.
+w3_mutation_notes: Added WOLFIE HEADER v2.4
+
+◈ w3_RELATIONAL (RECOMMENDED, STRUCTURAL ONLY)
+w3_nourishes→:
+w3_nourished_by←:
+w3_tensions↔:
+
+◈ w3_MYTHIC (OPTIONAL)
+w3_epoch: wolfie-winter-2026
+w3_signature:
+
+◈ w3_DOCS (OPTIONAL — ENHANCED DOCUMENTATION)
+*/
 //===========================================================================
 //* --    ~~                CRAFTY SYNTAX Live Help                ~~    -- *
 //===========================================================================

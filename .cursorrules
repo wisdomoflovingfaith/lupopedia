@@ -7,7 +7,7 @@
 1. **NEVER hard-code version numbers in any file**
    - All version references must use the `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom
    - Atom is defined in `config/global_atoms.yaml`
-   - Current value: `"4.4.1"`
+   - Current value: `"4.0.1"`
 
 2. **WOLFIE Header version is NOT the system version**
    - `wolfie.headers.version` is a historical record (literal string)
@@ -50,15 +50,21 @@
    - `wolfie.headers.version` is a literal string (not an atom)
    - `dialog` block is mandatory when agents create/modify files
 
-## Database Rules
+## Database Rules (Master Doctrine of AI Corrections)
 
-1. **All ID columns use BIGINT(20) UNSIGNED**
-   - Primary keys: `id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY`
-   - Foreign keys: `{table}_id BIGINT(20) UNSIGNED NOT NULL DEFAULT 1`
+1. **No foreign keys, triggers, stored procedures, or database logic**
+   - All relationships are application-managed (soft-reference only)
+   - Database is dumb storage only; all intelligence lives in the application
 
-2. **No foreign keys, triggers, stored procedures**
-   - All logic in application layer
-   - Database is for storage only
+2. **Integer types: NO display widths, NO UNSIGNED**
+   - Use `BIGINT`, `INT`, `SMALLINT`, `TINYINT` only — no parentheses
+   - Forbidden: `BIGINT(14)`, `INT(11)`, `TINYINT(1)`, `UNSIGNED`, `BOOLEAN`/`BOOL`
+   - Primary keys: `id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY`
+   - Reference columns: `{table}_id BIGINT NOT NULL DEFAULT 1`
+
+3. **Timestamps: BIGINT, YYYYMMDDHHIISS UTC only**
+   - No DATETIME, TIMESTAMP, epoch seconds, or ISO8601
+   - Use `gmdate('YmdHis')` and `timestamp_ymdhis::addSeconds()` for arithmetic — never add seconds directly to YYYYMMDDHHIISS
 
 ## Architecture Rules
 
@@ -67,9 +73,9 @@
    - Schema-first, doctrine-driven, OS-layered
    - DO NOT attempt to "modernize" or "simplify" the architecture
 
-2. **Follow all doctrine files in `docs/doctrine/`**
-   - Doctrine files are MANDATORY
-   - Read relevant doctrine before making changes
+2. **Follow doctrine: `docs/doctrine/`, `docs/channels/doctrine/`, and Master Doctrine**
+   - **Required:** [Master Doctrine of AI Corrections](docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md) — database, time, state, identity, integer types, advertising/humor/psychological manipulation, filenames
+   - Doctrine files are MANDATORY; read before making changes
 
 ## File Organization
 
@@ -83,8 +89,16 @@
    - Component templates: `/lupo-includes/ui/components/`
    - Components receive data arrays, output HTML only
 
+## AI Behavior (from Master Doctrine)
+
+- **Time:** UTC only; no local time, no deadlines, no "24 hours" / "grace periods" — state transitions only
+- **Humor/sarcasm/role-play:** Only in dialog-class agents; production agents (schema, doctrine, migrations, validation) must remain literal and neutral
+- **Filenames:** Lowercase a–z, digits 0–9, underscore only; no uppercase, hyphens, spaces, or Unicode
+- **No advertising, manipulation, or psychological exploitation** — see Master Doctrine sections 8 and 11
+
 ## Related Documentation
 
-- `docs/doctrine/VERSION_DOCTRINE.md` - Complete versioning doctrine
+- [Master Doctrine of AI Corrections](docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md) — **Required for all AI agents**
+- `docs/channels/doctrine/TIMESTAMP_DOCTRINE.md` - Canonical timestamp rules
 - `config/global_atoms.yaml` - Atom definitions
-- `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - WOLFIE Header specification
+- `docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md` - WOLFIE Header specification

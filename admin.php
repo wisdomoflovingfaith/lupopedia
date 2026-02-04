@@ -1,4 +1,30 @@
 <?php
+/* ⧉ WOLFIE v2.6 ⧉
+   nav: mech | myth | rel | docs
+   
+   ## NAV
+   pkg: lupopedia
+   mod: ui
+   asp: controller
+   pur: Administrative interface for Crafty Syntax Live Help system.
+   
+   ## META
+   cre: 2026-02-01T00:00:00Z
+   mod: 2026-02-01T00:00:00Z
+   upd: cascade#1
+   tax: wolfie.header.taxonomy@2.3
+   
+   ## MYTH
+   epo: wolfie-winter-2026
+   sig: admin-focus
+   
+   ## REL
+   → 
+   ← 
+   ↔ 
+   
+   ## DOCS
+   */
 //===========================================================================
 //* --    ~~                CRAFTY SYNTAX Live Help                ~~    -- *
 //===========================================================================
