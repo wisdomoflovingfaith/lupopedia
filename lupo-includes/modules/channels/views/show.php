@@ -211,4 +211,137 @@ $current_actor_id = isset($current_actor_id) ? (int) $current_actor_id : 0;
     setInterval(tick, pollInterval);
     tick();
 })();
+
+// Pending visitors poll, sound, title flash, accept (legacy: admin_users peoplestring + accept)
+(function() {
+    var listEl = document.getElementById('channel-people-list');
+    if (!listEl) return;
+    var channelId = listEl.getAttribute('data-channel-id') || '0';
+    var departmentId = listEl.getAttribute('data-department-id') || '0';
+    var base = listEl.getAttribute('data-base') || '';
+    var pendingUrl = listEl.getAttribute('data-pending-url') || (base + 'api/operator/pending-visitors');
+    var acceptUrl = listEl.getAttribute('data-accept-url') || (base + 'api/operator/accept-visitor');
+    var soundUrl = listEl.getAttribute('data-sound-url') || (base + 'legacy/craftysyntax/sounds/new_chats.wav');
+    var pendingList = document.getElementById('channel-pending-list');
+    var pendingSection = document.getElementById('channel-pending-section');
+    var normalTitle = document.title;
+    var lastPendingCount = 0;
+    var firstPendingPoll = true;
+    var userHasInteracted = false;
+    var titleFlashInterval = null;
+
+    function playNewChatSound() {
+        if (!userHasInteracted) return;
+        try {
+            var a = new Audio(soundUrl);
+            a.volume = 0.5;
+            a.play().catch(function() {});
+        } catch (e) {}
+    }
+
+    function startTitleFlash() {
+        if (titleFlashInterval) return;
+        var alt = '⚠ New Chat Request!';
+        var t = true;
+        titleFlashInterval = setInterval(function() {
+            document.title = t ? alt : normalTitle;
+            t = !t;
+        }, 1000);
+    }
+
+    function stopTitleFlash() {
+        if (titleFlashInterval) {
+            clearInterval(titleFlashInterval);
+            titleFlashInterval = null;
+        }
+        document.title = normalTitle;
+    }
+
+    document.addEventListener('click', function() { userHasInteracted = true; stopTitleFlash(); }, { once: false });
+    document.addEventListener('keydown', function() { userHasInteracted = true; stopTitleFlash(); }, { once: false });
+
+    function renderPendingList(pending) {
+        if (!pendingList) return;
+        pendingList.innerHTML = '';
+        pending.forEach(function(p) {
+            var li = document.createElement('li');
+            li.className = 'channel-person-item channel-pending-item channel-pending-blink';
+            li.setAttribute('data-visitor-session-id', p.visitor_session_id || '');
+            li.setAttribute('data-dialog-thread-id', String(p.dialog_thread_id || ''));
+            li.setAttribute('data-department-id', String(p.department_id || ''));
+            var name = document.createElement('span');
+            name.className = 'channel-person-name';
+            name.textContent = 'Visitor ' + (p.visitor_session_id || '').substring(0, 8);
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'channel-accept-visitor-btn';
+            btn.setAttribute('aria-label', 'Accept chat');
+            btn.textContent = 'Accept';
+            btn.addEventListener('click', function() { doAccept(p); });
+            li.appendChild(name);
+            li.appendChild(btn);
+            pendingList.appendChild(li);
+        });
+        if (pendingSection) pendingSection.style.display = pending.length ? '' : 'none';
+    }
+
+    function doAccept(p) {
+        var form = new FormData();
+        form.append('operator_channel_id', channelId);
+        form.append('dialog_thread_id', String(p.dialog_thread_id || ''));
+        form.append('visitor_session_id', p.visitor_session_id || '');
+        form.append('department_id', String(p.department_id || ''));
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', acceptUrl, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState !== 4) return;
+            try {
+                var data = JSON.parse(xhr.responseText || '{}');
+                if (data.ok) {
+                    window.location.href = base + 'channels/' + channelId + '/?thread=' + (p.dialog_thread_id || '');
+                }
+            } catch (e) {}
+        };
+        xhr.send(form);
+    }
+
+    pendingList && pendingList.querySelectorAll('.channel-accept-visitor-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var li = btn.closest('.channel-pending-item');
+            if (!li) return;
+            doAccept({
+                visitor_session_id: li.getAttribute('data-visitor-session-id'),
+                dialog_thread_id: li.getAttribute('data-dialog-thread-id'),
+                department_id: li.getAttribute('data-department-id')
+            });
+        });
+    });
+
+    function pollPending() {
+        var url = pendingUrl + '?department_id=' + encodeURIComponent(departmentId) + '&channel_id=' + encodeURIComponent(channelId);
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState !== 4) return;
+            try {
+                var data = JSON.parse(xhr.responseText || '{}');
+                var pending = data.pending_visitors || [];
+                if (firstPendingPoll) {
+                    firstPendingPoll = false;
+                    lastPendingCount = pending.length;
+                } else if (pending.length > lastPendingCount) {
+                    playNewChatSound();
+                    startTitleFlash();
+                }
+                lastPendingCount = pending.length;
+                renderPendingList(pending);
+            } catch (e) {}
+        };
+        xhr.send();
+    }
+
+    setInterval(pollPending, 3000);
+    pollPending();
+})();
 </script>

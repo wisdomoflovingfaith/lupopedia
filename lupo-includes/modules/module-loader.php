@@ -161,7 +161,57 @@ function lupo_route_slug($slug) {
             exit;
         }
     }
-    
+
+    // Crafty Syntax visitor: livehelp_js.php (legacy livehelp_js.php equivalent)
+    if ($normalized_slug === 'livehelp_js' || $normalized_slug === 'livehelp-js') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $livehelp_js_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'crafty_syntax' . DIRECTORY_SEPARATOR . 'livehelp-js.php';
+        if (file_exists($livehelp_js_path)) {
+            require $livehelp_js_path;
+            exit;
+        }
+    }
+
+    // Crafty Syntax visitor: image.php (getstate, getcredit, userstat)
+    if ($normalized_slug === 'image' && (empty($_GET['what']) || in_array((string)$_GET['what'], ['getstate', 'getcredit', 'userstat'], true))) {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $visitor_image_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'crafty_syntax' . DIRECTORY_SEPARATOR . 'visitor-image.php';
+        if (file_exists($visitor_image_path)) {
+            require $visitor_image_path;
+            exit;
+        }
+    }
+
+    // Crafty Syntax visitor: livehelp.php and chat (same entry; redirects to choosedepartment when no department)
+    if ($normalized_slug === 'livehelp' || $normalized_slug === 'chat') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $livehelp_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'crafty_syntax' . DIRECTORY_SEPARATOR . 'livehelp.php';
+        if (file_exists($livehelp_path)) {
+            require $livehelp_path;
+            exit;
+        }
+    }
+
+    // Crafty Syntax visitor: choosedepartment.php
+    if ($normalized_slug === 'choosedepartment') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $choosedepartment_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'crafty_syntax' . DIRECTORY_SEPARATOR . 'choosedepartment.php';
+        if (file_exists($choosedepartment_path)) {
+            require $choosedepartment_path;
+            exit;
+        }
+    }
+
+    // Crafty Syntax visitor: visitor-chat-stream.php (iframe content for livehelp.php)
+    if ($normalized_slug === 'visitor-chat-stream') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $stream_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'crafty_syntax' . DIRECTORY_SEPARATOR . 'visitor-chat-stream.php';
+        if (file_exists($stream_path)) {
+            require $stream_path;
+            exit;
+        }
+    }
+
     // CANONICAL CONTENT ROUTE: /content/<slug>
     if (preg_match('#^content/(.+)$#', $slug, $matches)) {
         $content_slug = $matches[1];
@@ -294,6 +344,26 @@ function lupo_route_slug($slug) {
         $check_api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channel-check-api.php';
         if (file_exists($check_api_path)) {
             require_once $check_api_path;
+            exit;
+        }
+    }
+
+    // API: Operator pending visitors (GET). Legacy: admin_users peoplestring — unassigned visitors.
+    if (preg_match('#^api/operator/pending-visitors$#', $slug)) {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'operator-pending-visitors-api.php';
+        if (file_exists($api_path)) {
+            require_once $api_path;
+            exit;
+        }
+    }
+
+    // API: Operator accept visitor (POST). Moves visitor onto operator's channel.
+    if (preg_match('#^api/operator/accept-visitor$#', $slug)) {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'operator-accept-visitor-api.php';
+        if (file_exists($api_path)) {
+            require_once $api_path;
             exit;
         }
     }

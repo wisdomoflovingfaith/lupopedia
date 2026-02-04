@@ -170,6 +170,53 @@
     font-size: 0.875rem;
 }
 
+/* Pending visitors (New chat request) — legacy highlight + accept */
+.channel-pending-section .channel-people-section-title {
+    color: #c62828;
+    font-weight: 700;
+}
+
+.channel-pending-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.channel-pending-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.25rem 0.75rem;
+    padding: 0.4rem 0.5rem;
+    background: #fff3e0;
+    border: 1px solid #ffcc80;
+    border-radius: 4px;
+}
+
+.channel-pending-blink {
+    animation: channel-pending-blink 1.2s ease-in-out infinite;
+}
+
+@keyframes channel-pending-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+}
+
+.channel-accept-visitor-btn {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    background: #2e7d32;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.channel-accept-visitor-btn:hover {
+    background: #1b5e20;
+}
+
 /* Panel 3: Unified message composer bar (bottom) */
 .channel-composer-bar {
     flex-shrink: 0;
@@ -238,8 +285,8 @@
 /* Floating typing-preview panel (top-right, Crafty Syntax style) */
 .channel-typing-preview-panel {
     position: fixed;
-    top: 60px;
-    right: 20px;
+    top: 110px;
+    right: 320px;
     width: 280px;
     max-height: 320px;
     z-index: 9999;

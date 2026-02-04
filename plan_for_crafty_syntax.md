@@ -2,13 +2,180 @@
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 2026.3.7.6
 file.channel: doctrine
-file.last_modified_utc: 20260128134601
+file.last_modified_utc: 20250204120000
 file.name: "plan_for_crafty_syntax.md"
 ---
 
 UPDATED DOCTRINE VERSION
 Crafty Syntax → Lupopedia Migration Sprint (Cycles + Consecration)
 System Version: 2026.3.7.6
+
+---
+
+# Crafty Syntax → Lupopedia Migration Plan (Updated Progress & Next Phases)
+
+## Phase 1 — Core Foundations (COMPLETED)
+
+### 1. Doctrine Alignment & Schema Mapping
+- Canonical mapping from legacy Crafty Syntax tables → Lupopedia TOON schema.
+- Established visitor = `actor_id = 0` model.
+- Confirmed department, operator, and channel relationships.
+- Defined pending vs active visitor states in `lupo_sessions.metadata`.
+
+### 2. Visitor Session System
+- Implemented `visitor-session-helper.php` with:
+  - session resolution
+  - pending/active state
+  - thread association
+  - channel assignment after acceptance
+- Corrected TOON mismatch: `lupo_sessions.metadata` (not `metadata_json`).
+- All session reads/writes now use canonical TOON column names.
+
+### 3. Visitor Entry Pipeline
+- `livehelp.php` rebuilt with:
+  - redirect to `choosedepartment.php` when no department
+  - clean single-page layout (no framesets)
+  - iframe for message stream
+  - session creation + last_seen updates
+- `choosedepartment.php` rebuilt with operator availability logic.
+
+### 4. Online/Offline Widget
+- `visitor-image.php` rebuilt with:
+  - operator availability checks
+  - department metadata images
+  - legacy fallback chain
+  - visitor session updates
+- `livehelp-js.php` rebuilt with:
+  - online/offline icon
+  - click-to-open chat
+  - control image polling
+  - legacy parameters preserved
+
+### 5. Visitor Chat Stream (Pending → Active Flow)
+- `visitor-chat-stream.php` now:
+  - creates only a `lupo_dialog_thread` (no visitor channel)
+  - stores pending state in session metadata
+  - implements primary polling, secondary polling, fallback reload
+  - implements operator typing preview
+  - implements message send form
+  - updates session presence on every poll
+
+### 6. Operator Acceptance Flow
+- **Corrected legacy behavior restored**:
+  - visitors start with **no channel**
+  - all operators in department see pending visitors
+  - acceptance moves visitor thread → operator's channel
+  - visitor becomes "active" in session metadata
+  - visitor disappears from other operators' pending lists
+- Operator cockpit updated with:
+  - pending visitor panel
+  - highlight + blink
+  - sound alert
+  - title flashing
+  - Accept button → POST accept-visitor → redirect to thread
+- APIs implemented:
+  - `GET api/operator/pending-visitors`
+  - `POST api/operator/accept-visitor`
+
+### 7. SQL/TOON Audit
+- Full scan of all Crafty Syntax module SQL references.
+- Only mismatch found: `lupo_sessions.metadata` (corrected).
+- All other tables/columns match TOON schema.
+- Report generated: `CRAFTY_SYNTAX_SQL_TOON_REPORT.md`.
+
+---
+
+## Phase 2 — Operator Cockpit Enhancements (NEXT)
+
+### A. Operator-Side Message Stream Improvements
+- Style operator message list.
+- Add timestamps, alignment, colors.
+- Add unread indicators.
+- Add scroll-to-bottom behavior.
+
+### B. Operator Typing Preview
+- Show visitor typing (optional; legacy didn't show this).
+- Use existing typing API.
+
+### C. Operator Sound Alerts
+- Sound on:
+  - new message
+  - visitor reply
+  - visitor reconnect
+- Respect "user interacted" rule for autoplay.
+
+### D. Operator Presence & Status
+- Show operator availability in cockpit.
+- Integrate `lupo_operator_status` more deeply.
+- Add "max chat capacity" indicators.
+
+---
+
+## Phase 3 — Visitor UI Completion
+
+### A. Visitor Message Styling
+- Bubble layout
+- Timestamps
+- Operator name/label
+- Auto-scroll
+- Smooth fade-in for new messages
+
+### B. Visitor-Side Alerts
+- Sound on operator reply
+- Optional "operator joined the chat" banner
+- Optional "operator is typing" animation
+
+### C. Visitor Transcript View
+- Printable transcript
+- Export to text/HTML
+- Legacy compatibility
+
+---
+
+## Phase 4 — Invite Systems
+
+### A. Auto-Invite
+- Rebuild legacy auto-invite logic using:
+  - session metadata
+  - operator availability
+  - department settings
+
+### B. Layer Invites
+- Rebuild floating invite layer
+- Use modern CSS instead of absolute frames
+- Respect legacy timing + behavior
+
+---
+
+## Phase 5 — Department & Routing Enhancements
+
+### A. Department Load Balancing
+- Operator capacity
+- Active chat count
+- Availability status
+- Round-robin or "least busy" routing
+
+### B. Multi-Department Operators
+- Operators assigned to multiple departments
+- Unified pending list
+- Unified acceptance flow
+
+---
+
+## Phase 6 — Cleanup & Doctrine Consolidation
+
+### A. Remove Legacy Artifacts
+- Remove unused legacy files
+- Remove unused JS/CSS
+- Remove dead routes
+
+### B. Documentation
+- Update doctrine files
+- Update TOONs if needed
+- Update module README
+- Add developer onboarding notes
+
+---
 
 🜁 DAY 0 — CONSECRATION (MANDATORY)
 Before any code is written, the system, the builder, and the tools must be aligned.

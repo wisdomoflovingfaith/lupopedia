@@ -22,16 +22,34 @@ if ($method !== 'GET') {
 }
 
 $actor_id = null;
-if (function_exists('current_user')) {
-    $user = current_user();
-    if ($user && !empty($user['actor_id'])) {
-        $actor_id = (int) $user['actor_id'];
+$visitor_mode = false;
+$dialog_thread_id_visitor = 0;
+
+$visitor_sid = '';
+$app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+$helper_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'crafty_syntax' . DIRECTORY_SEPARATOR . 'visitor-session-helper.php';
+if (is_file($helper_path)) {
+    require_once $helper_path;
+    $visitor_sid = function_exists('crafty_syntax_visitor_session_id') ? crafty_syntax_visitor_session_id() : '';
+}
+if ($visitor_sid !== '' && function_exists('crafty_syntax_validate_visitor_session') && crafty_syntax_validate_visitor_session($visitor_sid)) {
+    $actor_id = 0;
+    $visitor_mode = true;
+    $dialog_thread_id_visitor = isset($_GET['dialog_thread_id']) ? (int) $_GET['dialog_thread_id'] : 0;
+}
+
+if (!$visitor_mode) {
+    if (function_exists('current_user')) {
+        $user = current_user();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    }
+    if (!$actor_id && function_exists('lupo_validate_session')) {
+        $actor_id = lupo_validate_session();
     }
 }
-if (!$actor_id && function_exists('lupo_validate_session')) {
-    $actor_id = lupo_validate_session();
-}
-if (!$actor_id) {
+if ($actor_id === null) {
     header('Content-Type: application/json');
     echo json_encode(['refresh' => false]);
     exit;
@@ -51,23 +69,48 @@ if (strlen($after_ymdhis) !== 14) {
     $after_ymdhis = '0';
 }
 
-if ($channel_id <= 0) {
+if ($channel_id < 0) {
     header('Content-Type: application/json');
     echo json_encode(['refresh' => false]);
     exit;
 }
 
-$stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channels WHERE actor_id = :actor_id AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
-$stmt->execute([':actor_id' => $actor_id, ':channel_id' => $channel_id]);
-if ($stmt->fetch() === false) {
-    header('Content-Type: application/json');
-    echo json_encode(['refresh' => false]);
-    exit;
+if ($visitor_mode) {
+    if ($dialog_thread_id_visitor <= 0) {
+        header('Content-Type: application/json');
+        echo json_encode(['refresh' => false]);
+        exit;
+    }
+    if ($channel_id === 0) {
+        $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}dialog_threads WHERE dialog_thread_id = :tid AND channel_id IS NULL AND is_deleted = 0 LIMIT 1");
+        $stmt->execute([':tid' => $dialog_thread_id_visitor]);
+    } else {
+        $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}dialog_threads WHERE dialog_thread_id = :tid AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
+        $stmt->execute([':tid' => $dialog_thread_id_visitor, ':channel_id' => $channel_id]);
+    }
+    if ($stmt->fetch() === false) {
+        header('Content-Type: application/json');
+        echo json_encode(['refresh' => false]);
+        exit;
+    }
+    if ($channel_id === 0) {
+        $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}dialog_messages WHERE dialog_thread_id = :tid AND channel_id IS NULL AND is_deleted = 0 AND created_ymdhis > :after LIMIT 1");
+        $stmt->execute([':tid' => $dialog_thread_id_visitor, ':after' => $after_ymdhis]);
+    } else {
+        $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}dialog_messages WHERE dialog_thread_id = :tid AND channel_id = :channel_id AND is_deleted = 0 AND created_ymdhis > :after LIMIT 1");
+        $stmt->execute([':tid' => $dialog_thread_id_visitor, ':channel_id' => $channel_id, ':after' => $after_ymdhis]);
+    }
+} else {
+    $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channels WHERE actor_id = :actor_id AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute([':actor_id' => $actor_id, ':channel_id' => $channel_id]);
+    if ($stmt->fetch() === false) {
+        header('Content-Type: application/json');
+        echo json_encode(['refresh' => false]);
+        exit;
+    }
+    $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}dialog_messages WHERE channel_id = :channel_id AND is_deleted = 0 AND created_ymdhis > :after LIMIT 1");
+    $stmt->execute([':channel_id' => $channel_id, ':after' => $after_ymdhis]);
 }
-
-// Legacy: SELECT timeof FROM livehelp_messages WHERE typeof != 'writediv' AND timeof > $message_test
-$stmt = $db->prepare("SELECT 1 FROM {$table_prefix}dialog_messages WHERE channel_id = :channel_id AND is_deleted = 0 AND created_ymdhis > :after LIMIT 1");
-$stmt->execute([':channel_id' => $channel_id, ':after' => $after_ymdhis]);
 $refresh = $stmt->fetch() !== false;
 
 header('Content-Type: application/json; charset=utf-8');

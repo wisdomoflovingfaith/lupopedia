@@ -22,16 +22,35 @@ if ($method !== 'GET') {
 }
 
 $actor_id = null;
-if (function_exists('current_user')) {
-    $user = current_user();
-    if ($user && !empty($user['actor_id'])) {
-        $actor_id = (int) $user['actor_id'];
+$visitor_mode = false;
+$dialog_thread_id_visitor = 0;
+
+// Visitor mode: cslhVISITOR present and valid → actor_id = 0, restrict to dialog_thread_id
+$visitor_sid = '';
+$app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+$visitor_helper_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'crafty_syntax' . DIRECTORY_SEPARATOR . 'visitor-session-helper.php';
+if (is_file($visitor_helper_path)) {
+    require_once $visitor_helper_path;
+    $visitor_sid = function_exists('crafty_syntax_visitor_session_id') ? crafty_syntax_visitor_session_id() : '';
+    if ($visitor_sid !== '' && function_exists('crafty_syntax_validate_visitor_session') && crafty_syntax_validate_visitor_session($visitor_sid)) {
+        $actor_id = 0;
+        $visitor_mode = true;
+        $dialog_thread_id_visitor = isset($_GET['dialog_thread_id']) ? (int) $_GET['dialog_thread_id'] : 0;
     }
 }
-if (!$actor_id && function_exists('lupo_validate_session')) {
-    $actor_id = lupo_validate_session();
+
+if (!$visitor_mode) {
+    if (function_exists('current_user')) {
+        $user = current_user();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    }
+    if (!$actor_id && function_exists('lupo_validate_session')) {
+        $actor_id = lupo_validate_session();
+    }
 }
-if (!$actor_id) {
+if ($actor_id === null) {
     http_response_code(401);
     header('Content-Type: application/json');
     echo json_encode(['error' => 'Not authenticated']);
@@ -53,25 +72,57 @@ if (strlen($after_ymdhis) !== 14) {
     $after_ymdhis = '0';
 }
 
-if ($channel_id <= 0) {
+if ($channel_id < 0) {
     header('Content-Type: application/json');
     echo json_encode(['error' => 'channel_id required', 'messages' => [], 'thread_colors' => [], 'actor_names' => []]);
     exit;
 }
 
-// Verify channel access
-$stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channels WHERE actor_id = :actor_id AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
-$stmt->execute([':actor_id' => $actor_id, ':channel_id' => $channel_id]);
-if ($stmt->fetch() === false) {
-    http_response_code(403);
-    header('Content-Type: application/json');
-    echo json_encode(['error' => 'Access denied', 'messages' => [], 'thread_colors' => [], 'actor_names' => []]);
-    exit;
+if ($visitor_mode) {
+    if ($dialog_thread_id_visitor <= 0) {
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'dialog_thread_id required for visitor', 'messages' => [], 'thread_colors' => [], 'actor_names' => []]);
+        exit;
+    }
+    // Pending: channel_id=0, thread has channel_id IS NULL. Accepted: channel_id>0, thread belongs to that channel.
+    if ($channel_id === 0) {
+        $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}dialog_threads WHERE dialog_thread_id = :tid AND channel_id IS NULL AND is_deleted = 0 LIMIT 1");
+        $stmt->execute([':tid' => $dialog_thread_id_visitor]);
+    } else {
+        $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}dialog_threads WHERE dialog_thread_id = :tid AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
+        $stmt->execute([':tid' => $dialog_thread_id_visitor, ':channel_id' => $channel_id]);
+    }
+    if ($stmt->fetch() === false) {
+        http_response_code(403);
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Access denied', 'messages' => [], 'thread_colors' => [], 'actor_names' => []]);
+        exit;
+    }
+} else {
+    // Verify channel access (operator)
+    $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channels WHERE actor_id = :actor_id AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute([':actor_id' => $actor_id, ':channel_id' => $channel_id]);
+    if ($stmt->fetch() === false) {
+        http_response_code(403);
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Access denied', 'messages' => [], 'thread_colors' => [], 'actor_names' => []]);
+        exit;
+    }
 }
 
-// New messages: created_ymdhis > after_ymdhis, ORDER BY created_ymdhis ASC (legacy ORDER BY timeof)
-$stmt = $db->prepare("SELECT m.dialog_message_id, m.dialog_thread_id, m.channel_id, m.from_actor_id, m.to_actor_id, m.message_text, m.message_type, m.created_ymdhis FROM {$table_prefix}dialog_messages m WHERE m.channel_id = :channel_id AND m.is_deleted = 0 AND m.created_ymdhis > :after ORDER BY m.created_ymdhis ASC LIMIT 200");
-$stmt->execute([':channel_id' => $channel_id, ':after' => $after_ymdhis]);
+// Visitor: only this thread's messages. Pending thread: channel_id IS NULL. Order by created_ymdhis ASC (legacy timeof).
+if ($visitor_mode) {
+    if ($channel_id === 0) {
+        $stmt = $db->prepare("SELECT m.dialog_message_id, m.dialog_thread_id, m.channel_id, m.from_actor_id, m.to_actor_id, m.message_text, m.message_type, m.created_ymdhis FROM {$table_prefix}dialog_messages m WHERE m.dialog_thread_id = :dialog_thread_id AND m.channel_id IS NULL AND m.is_deleted = 0 AND m.created_ymdhis > :after ORDER BY m.created_ymdhis ASC LIMIT 200");
+        $stmt->execute([':dialog_thread_id' => $dialog_thread_id_visitor, ':after' => $after_ymdhis]);
+    } else {
+        $stmt = $db->prepare("SELECT m.dialog_message_id, m.dialog_thread_id, m.channel_id, m.from_actor_id, m.to_actor_id, m.message_text, m.message_type, m.created_ymdhis FROM {$table_prefix}dialog_messages m WHERE m.dialog_thread_id = :dialog_thread_id AND m.channel_id = :channel_id AND m.is_deleted = 0 AND m.created_ymdhis > :after ORDER BY m.created_ymdhis ASC LIMIT 200");
+        $stmt->execute([':dialog_thread_id' => $dialog_thread_id_visitor, ':channel_id' => $channel_id, ':after' => $after_ymdhis]);
+    }
+} else {
+    $stmt = $db->prepare("SELECT m.dialog_message_id, m.dialog_thread_id, m.channel_id, m.from_actor_id, m.to_actor_id, m.message_text, m.message_type, m.created_ymdhis FROM {$table_prefix}dialog_messages m WHERE m.channel_id = :channel_id AND m.is_deleted = 0 AND m.created_ymdhis > :after ORDER BY m.created_ymdhis ASC LIMIT 200");
+    $stmt->execute([':channel_id' => $channel_id, ':after' => $after_ymdhis]);
+}
 $messages = [];
 $thread_ids = [];
 $actor_ids = [];

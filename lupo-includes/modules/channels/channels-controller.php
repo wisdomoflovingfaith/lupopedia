@@ -153,12 +153,97 @@ function channels_handle_show($channel_id) {
         $operators[] = $row;
     }
 
-    // Visitors/actors in this channel (lupo_actor_channels + lupo_actors)
+    // Department for this operator/channel (for pending-visitors poll)
+    $department_id = 0;
+    try {
+        $stmt = $db->prepare("SELECT department_id FROM {$table_prefix}channels WHERE channel_id = :cid AND is_deleted = 0 LIMIT 1");
+        $stmt->execute([':cid' => $channel_id]);
+        $r = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($r && isset($r['department_id'])) {
+            $department_id = (int) $r['department_id'];
+        }
+    } catch (Throwable $e) {
+        // ignore
+    }
+    if ($department_id <= 0) {
+        $stmt = $db->prepare("SELECT department_id FROM {$table_prefix}actor_departments WHERE actor_id = :aid AND is_deleted = 0 LIMIT 1");
+        $stmt->execute([':aid' => $actor_id]);
+        $r = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($r && !empty($r['department_id'])) {
+            $department_id = (int) $r['department_id'];
+        }
+    }
+
+    // Pending visitors (session metadata crafty_syntax.status = pending, department_id match) — initial load; panel will poll
+    $pending_visitors = [];
+    $meta_col = 'metadata_json';
+    try {
+        $stmt = $db->prepare("SELECT session_id, last_seen_ymdhis, created_ymdhis, {$meta_col} FROM {$table_prefix}sessions WHERE actor_id = 0 AND is_deleted = 0 AND {$meta_col} IS NOT NULL AND {$meta_col} != ''");
+        $stmt->execute();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $meta = json_decode($row[$meta_col] ?? '{}', true);
+            if (!is_array($meta) || empty($meta['crafty_syntax'])) {
+                continue;
+            }
+            $cs = $meta['crafty_syntax'];
+            if ((isset($cs['status']) ? (string) $cs['status'] : '') !== 'pending') {
+                continue;
+            }
+            if ($department_id > 0 && (isset($cs['department_id']) ? (int) $cs['department_id'] : 0) !== $department_id) {
+                continue;
+            }
+            $tid = isset($cs['dialog_thread_id']) ? (int) $cs['dialog_thread_id'] : 0;
+            if ($tid <= 0) {
+                continue;
+            }
+            $pending_visitors[] = [
+                'visitor_session_id' => $row['session_id'],
+                'dialog_thread_id'   => $tid,
+                'department_id'      => (int)($cs['department_id'] ?? 0),
+                'created_ymdhis'     => $row['created_ymdhis'] ?? $row['last_seen_ymdhis'] ?? '',
+            ];
+        }
+    } catch (Throwable $e) {
+        // ignore
+    }
+
+    // Visitors/actors in this channel: lupo_actor_channels (operators/other actors) + sessions with metadata.crafty_syntax.channel_id = this channel, status = active
     $visitors = [];
     $stmt = $db->prepare("SELECT ac.actor_channel_id, ac.actor_id, ac.channel_id, ac.status, ac.channel_color, a.name AS actor_name, a.slug AS actor_slug, a.actor_type FROM {$table_prefix}actor_channels ac LEFT JOIN {$table_prefix}actors a ON a.actor_id = ac.actor_id AND a.is_deleted = 0 WHERE ac.channel_id = :channel_id AND ac.is_deleted = 0 ORDER BY ac.updated_ymdhis DESC");
     $stmt->execute([':channel_id' => $channel_id]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $visitors[] = $row;
+    }
+    try {
+        $stmt = $db->prepare("SELECT session_id, last_seen_ymdhis, {$meta_col} FROM {$table_prefix}sessions WHERE actor_id = 0 AND is_deleted = 0 AND {$meta_col} IS NOT NULL AND {$meta_col} != ''");
+        $stmt->execute();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $meta = json_decode($row[$meta_col] ?? '{}', true);
+            if (!is_array($meta) || empty($meta['crafty_syntax'])) {
+                continue;
+            }
+            $cs = $meta['crafty_syntax'];
+            if ((isset($cs['status']) ? (string) $cs['status'] : '') !== 'active') {
+                continue;
+            }
+            if ((isset($cs['channel_id']) ? (int) $cs['channel_id'] : 0) !== $channel_id) {
+                continue;
+            }
+            $tid = isset($cs['dialog_thread_id']) ? (int) $cs['dialog_thread_id'] : 0;
+            $visitors[] = [
+                'actor_channel_id' => 0,
+                'actor_id'         => 0,
+                'channel_id'       => $channel_id,
+                'status'           => 'A',
+                'actor_name'       => 'Visitor ' . substr($row['session_id'], 0, 8),
+                'actor_slug'       => 'visitor-' . substr($row['session_id'], 0, 8),
+                'actor_type'       => 'anonymous',
+                'visitor_session_id' => $row['session_id'],
+                'dialog_thread_id'   => $tid,
+            ];
+        }
+    } catch (Throwable $e) {
+        // ignore
     }
 
     // Load render_main_layout if not already loaded
@@ -200,6 +285,8 @@ function channels_handle_show($channel_id) {
         'actor_names'             => $actor_names,
         'operators'               => $operators,
         'visitors'                => $visitors,
+        'pending_visitors'        => $pending_visitors,
+        'department_id'           => $department_id,
         'current_actor_id'       => $actor_id,
         'current_actor_name'     => $current_actor_name,
         'channel_public_path'    => $public_path,
