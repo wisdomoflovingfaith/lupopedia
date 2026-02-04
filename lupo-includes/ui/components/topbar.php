@@ -172,6 +172,10 @@ $avatarTimestamp = file_exists(str_replace(LUPOPEDIA_PUBLIC_PATH, LUPOPEDIA_PATH
                             <span class="dropdown-icon">📜</span>
                             My History
                         </a>
+                        <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/my-channel.php" class="dropdown-item">
+                            <span class="dropdown-icon">📡</span>
+                            My Channel
+                        </a>
                         
                         <div class="dropdown-divider"></div>
 

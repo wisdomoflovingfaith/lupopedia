@@ -81,30 +81,41 @@ This doctrine is derived **exclusively** from the existing migration SQL file `c
 |--------------|----------------|----------------------|
 | `livehelp_config` | `lupo_modules.config_json` | Converted to JSON configuration |
 | `livehelp_qa` | `lupo_truth_questions`, `lupo_truth_answers`, `lupo_collections`, `lupo_collection_tabs` | Complex multi-table mapping |
-| `livehelp_paths_firsts` | `lupo_analytics_paths_daily`, `lupo_analytics_paths_monthly` | Content ID resolution (stored as 0) |
-| `livehelp_paths_monthly` | `lupo_analytics_paths_monthly` | Content ID resolution (stored as 0) |
-| `livehelp_referers_daily` | `lupo_analytics_referers_daily` | URL slug handling (content_id = 0) |
+| `livehelp_paths_firsts` | `lupo_unified_analytics_paths` | INSERT from paths_firsts; content_id resolution as needed |
+| `livehelp_paths_monthly` | `lupo_unified_analytics_paths` | INSERT from paths_monthly |
+| `livehelp_referers_daily` | `lupo_unified_referers` | INSERT from referers_daily |
+| `livehelp_referers_monthly` | `lupo_unified_referers` | INSERT from referers_monthly |
+
+### ✅ **Visits, Referers, and Websites (Migrated — Not Dropped)**
+
+These legacy tables **are migrated** in `import_from_old_crafty_syntax.sql`. They are **not** dropped without target.
+
+| Legacy Table(s) | Target Table | Migration Type |
+|-----------------|--------------|----------------|
+| `livehelp_visits_daily` | `lupo_unified_visits` | INSERT INTO lupo_unified_visits |
+| `livehelp_visits_monthly` | `lupo_unified_visits` | INSERT INTO lupo_unified_visits |
+| `livehelp_referers_daily` | `lupo_unified_referers` | INSERT INTO lupo_unified_referers |
+| `livehelp_referers_monthly` | `lupo_unified_referers` | INSERT INTO lupo_unified_referers |
+| `livehelp_websites` | `lupo_federation_nodes` | INSERT INTO lupo_federation_nodes (after DELETE guard for node 0) |
+
+**Note:** `livehelp_visit_track` is only ALTERed/deprecated in the SQL; no INSERT from that table. Visit data is migrated from `livehelp_visits_daily` and `livehelp_visits_monthly` into `lupo_unified_visits`.
 
 ### ❌ **Dropped Tables (Not Migrated)**
 
 | Legacy Table | Reason | Post-Migration Status |
 |--------------|--------|----------------------|
-| `livehelp_channels` | No target mapping | Dropped |
+| `livehelp_channels` | No INSERT into lupo_channels in migration SQL | Dropped |
 | `livehelp_emailque` | Out of scope (lupo_crm_lead_message_sends) | Dropped |
 | `livehelp_identity_daily` | Removed in Lupopedia 3.0.0 | Dropped |
-| `livehelp_identity_monthly` | Removed in Lupopedia 3.0.0 | Dropped |
 | `livehelp_keywords_daily` | Removed in Lupopedia 3.0.0 | Dropped |
 | `livehelp_keywords_monthly` | Removed in Lupopedia 3.0.0 | Dropped |
 | `livehelp_messages` | Crafty didn't store post-chat messages | Dropped |
 | `livehelp_modules` | No target mapping | Dropped |
 | `livehelp_modules_dep` | No target mapping | Dropped |
-| `livehelp_operator_channels` | No target mapping | Dropped |
+| `livehelp_operator_channels` | No target table; dropped with no INSERT | Dropped |
 | `livehelp_sessions` | No target mapping | Dropped |
 | `livehelp_smilies` | Replaced by token system | Preserved as archive |
-| `livehelp_visits_daily` | No target mapping | Dropped |
-| `livehelp_visits_monthly` | No target mapping | Dropped |
-| `livehelp_visit_track` | No target mapping | Dropped |
-| `livehelp_websites` | No target mapping | Dropped |
+| `livehelp_visit_track` | No INSERT in SQL; visit data from visits_daily/monthly → lupo_unified_visits | Dropped |
 
 ---
 
@@ -317,6 +328,26 @@ Complex multi-table mapping:
 5. **Analytics Migration** (URL-based analytics)
 6. **Validation Checks**
 7. **Legacy Table Cleanup**
+
+---
+
+## 🔢 **Explicit ID Assignment vs auto_increment**
+
+Per Lupopedia doctrine: **no reliance on auto_increment for identity** where explicit ID assignment is required. IDs must be checked for availability before insert for any table using explicit IDs.
+
+### **Tables Using Explicit ID Assignment**
+
+| Table | Identity Column | Rule |
+|-------|-----------------|------|
+| `lupo_channels` | `channel_id` | Uses explicit ID ranges. IDs must be checked for availability before insert. |
+
+All other migration target tables (e.g. `lupo_auth_users`, `lupo_departments`, `lupo_dialog_messages`, `lupo_unified_visits`, `lupo_federation_nodes`, etc.) use **auto_increment** for their primary key unless added to this list. This section is documentation only; no schema changes. As doctrine is updated, any additional tables that use explicit ID ranges must be listed here.
+
+### **Summary**
+
+- **Explicit ID:** `lupo_channels` (channel ID ranges).
+- **auto_increment:** All other tables in the migration unless explicitly documented above.
+- **Rule:** For explicit-ID tables, ID availability must be checked before insert.
 
 ---
 

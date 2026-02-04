@@ -14,27 +14,32 @@
 
 | Legacy Table | New Table | Migration Type | Key Changes |
 |-------------|-----------|--------------|-------------|
-| `livehelp_users` | `lupo_users` | **Direct Mapping** | ✅ Preserved all columns, added UTC timestamps |
+| `livehelp_users` | `lupo_auth_users` | **Direct Mapping** | ✅ Preserved columns, UTC timestamps; operators first, then rest |
 | `livehelp_departments` | `lupo_departments` | **Direct Mapping** | ✅ Added federation_node_id, JSON settings |
-| `livehelp_operator_channels` | `lupo_actor_departments` | **Rename** | ✅ operator_channels → actor_departments |
+| `livehelp_operator_channels` | — | **Dropped** | ❌ No INSERT in migration SQL; dropped with no target table |
+| `livehelp_operator_departments` | `lupo_actor_departments` | **Direct Mapping** | ✅ user_id → actor_id, column mapping |
 | `livehelp_operator_history` | `lupo_audit_log` | **Transform** | ✅ Added entity_type, payload_json |
 
 ### **Communication & Dialog System**
 
 | Legacy Table | New Table | Migration Type | Key Changes |
 |-------------|-----------|--------------|-------------|
-| `livehelp_messages` | `lupo_dialog_messages` | **Direct Mapping** | ✅ Preserved message structure, added UTC timestamps |
-| `livehelp_autoinvite` | `lupo_crafty_syntax_auto_invite` | **Legacy Module** | ✅ Preserved for compatibility, marked DEPRECATED |
-| `livehelp_channels` | `lupo_channels` | **Direct Mapping** | ✅ Enhanced with proper UTF-8MB4 |
+| `livehelp_messages` | — | **Dropped** | Crafty did not store post-chat messages; no INSERT |
+| `livehelp_autoinvite` | `lupo_crafty_syntax_auto_invite` | **Legacy Module** | ✅ Preserved for compatibility |
+| `livehelp_channels` | — | **Dropped** | ❌ No INSERT into lupo_channels in migration SQL; dropped with no target |
+| `livehelp_transcripts` | `lupo_dialog_threads`, `lupo_dialog_messages` | **Multi-table** | ✅ recno → thread_id and message_id; transcript → message_body |
 
 ### **Analytics & Tracking System**
 
 | Legacy Table | New Table | Migration Type | Key Changes |
 |-------------|-----------|--------------|-------------|
-| `livehelp_visits_monthly` | `lupo_analytics_visits_monthly` | **Direct Mapping** | ✅ Preserved aggregation logic |
-| `livehelp_visits_daily` | `lupo_analytics_visits_daily` | **Direct Mapping** | ✅ Enhanced with slug resolution |
-| `livehelp_paths_firsts` | `lupo_analytics_paths_firsts` | **Direct Mapping** | ✅ Added content_id foreign keys |
-| `livehelp_paths_monthly` | `lupo_analytics_paths_monthly` | **Direct Mapping** | ✅ Enhanced with proper JOINs |
+| `livehelp_visits_daily` | `lupo_unified_visits` | **INSERT** | ✅ Migrated in import_from_old_crafty_syntax.sql |
+| `livehelp_visits_monthly` | `lupo_unified_visits` | **INSERT** | ✅ Migrated in import_from_old_crafty_syntax.sql |
+| `livehelp_referers_daily` | `lupo_unified_referers` | **INSERT** | ✅ Migrated in import SQL |
+| `livehelp_referers_monthly` | `lupo_unified_referers` | **INSERT** | ✅ Migrated in import SQL |
+| `livehelp_paths_firsts` | `lupo_unified_analytics_paths` | **INSERT** | ✅ Migrated in import SQL |
+| `livehelp_paths_monthly` | `lupo_unified_analytics_paths` | **INSERT** | ✅ Migrated in import SQL |
+| `livehelp_websites` | `lupo_federation_nodes` | **INSERT** | ✅ Migrated in import SQL (node 0 guard) |
 
 ### **Lead Management System**
 

@@ -26,10 +26,24 @@ file:
 
 Lupopedia is a portable, nonâ€‘intrusive, dropâ€‘in application designed to run inside any subdirectory of a host website.
 
+### 1.0. Subdirectory-Only Rule (Mandatory)
+
+**Lupopedia is always installed inside a subdirectory of the document root.** Example: `/public_html/lupopedia/`. The document root may contain other files and folders above Lupopedia. Lupopedia must **never** assume it is the web root. All routing, asset URLs, link generation, and path resolution must respect that the project lives in a subfolder. The parent directory is not part of the project and must not be referenced, modified, or assumed. This layout is required for compatibility with auto installers such as Softaculous and Installatron.
+
+### 1.0.1. No Hardcoded Folder Name (Mandatory)
+
+**Lupopedia must NEVER hardcode the directory name "lupopedia" or assume the project lives in a folder named `/lupopedia/`.** Existing installations may use any folder name (e.g. `/livehelp/`, `/support/`, `/helpdesk/`). All internal paths, URLs, redirects, asset references, and routing **MUST ALWAYS** use the `LUPOPEDIA_PUBLIC_PATH` constant defined in `lupopedia-config.php`.
+
+**Examples:**
+- Do NOT generate links like `/lupopedia/channels/123/`
+- Instead use: `LUPOPEDIA_PUBLIC_PATH . "/channels/123/"`
+
+This rule applies to: PHP routing and redirects, menu links, asset URLs, includes and requires (when outputting URLs/paths), JS-generated URLs, and any code that constructs internal paths. All future code generation must use `LUPOPEDIA_PUBLIC_PATH` exclusively for internal paths.
+
 It must never assume:
 
 - the web root
-- a fixed folder name
+- a fixed folder name (including "lupopedia")
 - a specific server layout
 - rewrite rules
 - a particular hosting environment
@@ -191,19 +205,22 @@ LUPOPEDIA_PUBLIC_PATH . '/assets/css/...'
 
 ### Usage Requirements
 
-`LUPOPEDIA_PUBLIC_PATH` **MUST** be used for:
+`LUPOPEDIA_PUBLIC_PATH` **MUST** be used for all internal paths. Never hardcode `/lupopedia` or any folder name. Use **only** this constant for:
 
-- `<a href="...">`
+- `<a href="...">` (menu links, navigation)
 - `<form action="...">`
 - `<script src="...">`
 - `<link rel="stylesheet" href="...">`
 - redirects (`header("Location: ...")`)
+- PHP routing and redirects
 - router paths
 - module links
 - admin links
 - login/logout links
 - AJAX endpoints
 - REST endpoints
+- JS-generated URLs (pass the public path from PHP or a data attribute)
+- any code that constructs internal URLs or paths
 
 ---
 
@@ -212,10 +229,11 @@ LUPOPEDIA_PUBLIC_PATH . '/assets/css/...'
 **Cursor MUST NOT:**
 
 - assume Lupopedia is installed at `/`
-- assume Lupopedia is installed at `/lupopedia`
-- generate absolute URLs like `/admin`
-- generate asset paths like `/css/style.css`
-- hardcode folder names
+- assume Lupopedia is installed at `/lupopedia` or any fixed folder name
+- hardcode the directory name "lupopedia" in URLs, links, redirects, or asset paths
+- generate absolute URLs like `/admin` or `/lupopedia/channels/123/` (always use `LUPOPEDIA_PUBLIC_PATH . "/channels/123/"` etc.)
+- generate asset paths like `/css/style.css` without the public path prefix
+- hardcode folder names (installations may use `/livehelp/`, `/support/`, `/helpdesk/`, etc.)
 - use relative paths like `../` for public URLs
 - mix filesystem paths and URL paths
 
@@ -373,18 +391,19 @@ LUPOPEDIA_PUBLIC_PATH = URL path derived from filesystem path
 
 ### Core Principle
 
-**Lupopedia is portable and must function correctly in ANY subdirectory.**
+**Lupopedia is always installed in a subdirectory of the document root; it must never assume it is the web root.** Lupopedia is portable and must function correctly in ANY subdirectory. All generated code and future work must respect this rule.
 
 ---
 
 ## 10. Summary (Non-Negotiable)
 
-- âœ… **ALWAYS** use `LUPOPEDIA_PUBLIC_PATH` for internal paths
+- âœ… **ALWAYS** assume Lupopedia lives in a subdirectory of the document root; never assume it is the web root
+- âœ… **ALWAYS** use `LUPOPEDIA_PUBLIC_PATH` exclusively for internal paths, URLs, redirects, assets, and routing
 - âœ… **ALWAYS** use `LUPOPEDIA_PATH` for filesystem operations
 - âœ… **ALWAYS** check if constants are defined before using
 - âœ… **ALWAYS** provide fallback to `/` for backward compatibility
 - âŒ **NEVER** assume Lupopedia is at web root
-- âŒ **NEVER** hardcode root paths like `/login` or `/admin`
+- âŒ **NEVER** hardcode the folder name "lupopedia" or paths like `/lupopedia/...`, `/login`, or `/admin` (use `LUPOPEDIA_PUBLIC_PATH` only)
 - âŒ **NEVER** use relative paths without public path prefix
 - âŒ **NEVER** mix filesystem paths and URL paths
 

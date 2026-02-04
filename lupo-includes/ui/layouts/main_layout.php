@@ -706,13 +706,9 @@ if (file_exists(LUPO_UI_PATH . '/components/topbar.php')) {
     include LUPO_UI_PATH . '/components/topbar.php';
 }
 
-// Determine if semantic nav bar should be hidden
+// Determine if semantic nav bar should be hidden (channel operator interface)
 $hide_semantic_nav = false;
-if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/lupopedia/channels/') !== false) {
-    $hide_semantic_nav = true;
-}
-// Also check if path starts with /channels/ (without lupopedia prefix)
-if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/channels/') === 0) {
+if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/channels/') !== false) {
     $hide_semantic_nav = true;
 }
 ?>

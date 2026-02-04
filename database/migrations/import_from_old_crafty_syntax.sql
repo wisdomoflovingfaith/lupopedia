@@ -530,7 +530,7 @@ INSERT INTO lupo_crafty_syntax_leave_message (
     deleted_ymdhis
 )
 SELECT
-    id AS leave_message_id,
+    id AS crafty_syntax_leave_message_id,
     department AS department_id,
     email,
     NULL AS phone,
@@ -778,7 +778,7 @@ ON DUPLICATE KEY UPDATE
 
 INSERT INTO lupo_collections (
     federations_node_id,
-    user_id,
+    actor_id,
     group_id,
     name,
     slug,
@@ -1108,7 +1108,97 @@ WHERE NOT EXISTS (
     SELECT 1 FROM lupo_auth_users x WHERE x.username = u.username
 );
 
+-- ======================================================================
+-- Phase 1: Create lupo_actors for each imported operator (actor_type from TOON: 'user')
+-- Then lupo_operators, then fix lupo_actor_departments.actor_id
+-- See: docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md Phase 1
+-- ======================================================================
 
+INSERT INTO lupo_actors (
+    actor_type,
+    slug,
+    name,
+    created_ymdhis,
+    updated_ymdhis,
+    is_active,
+    is_deleted,
+    deleted_ymdhis,
+    actor_source_id,
+    actor_source_type,
+    metadata,
+    adversarial_role,
+    adversarial_oversight_actor_id,
+    avatar_hash
+)
+SELECT
+    'user',
+    au.username,
+    au.display_name,
+    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S'),
+    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S'),
+    1,
+    0,
+    NULL,
+    au.auth_user_id,
+    'lupo_auth_users',
+    NULL,
+    'none',
+    NULL,
+    NULL
+FROM lupo_auth_users au
+INNER JOIN livehelp_users u ON u.username = au.username
+WHERE u.isoperator = 'Y'
+AND NOT EXISTS (
+    SELECT 1 FROM lupo_actors a2
+    WHERE a2.actor_source_id = au.auth_user_id
+    AND a2.actor_source_type = 'lupo_auth_users'
+);
+
+INSERT INTO lupo_operators (
+    anchor_agent_id,
+    channel_id,
+    metadata_json,
+    auth_user_id,
+    actor_id,
+    department_id,
+    is_active,
+    availability_status,
+    created_ymdhis,
+    updated_ymdhis,
+    pono_score,
+    pilau_score,
+    kapakai_score
+)
+SELECT
+    NULL,
+    1,
+    NULL,
+    au.auth_user_id,
+    a.actor_id,
+    od.department,
+    1,
+    'offline',
+    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S'),
+    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S'),
+    1.00,
+    0.00,
+    0.50
+FROM livehelp_operator_departments od
+INNER JOIN livehelp_users u ON u.user_id = od.user_id
+INNER JOIN lupo_auth_users au ON au.username = u.username
+INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
+WHERE u.isoperator = 'Y'
+AND NOT EXISTS (
+    SELECT 1 FROM lupo_operators o2
+    WHERE o2.auth_user_id = au.auth_user_id AND o2.department_id = od.department
+);
+
+UPDATE lupo_actor_departments ad
+INNER JOIN livehelp_operator_departments od ON ad.actor_department_id = od.recno
+INNER JOIN livehelp_users u ON u.user_id = od.user_id
+INNER JOIN lupo_auth_users au ON au.username = u.username
+INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
+SET ad.actor_id = a.actor_id;
 
 -- ======================================================================
 -- livehelp_referers_daily               → lupo_unified_referers
@@ -1420,7 +1510,6 @@ INSERT INTO `lupo_dialog_messages` (
     `metadata_json`,
     `mood_rgb`,
     `mood_framework`,
-    `weight`,
     `created_ymdhis`,
     `updated_ymdhis`,
     `is_deleted`,
@@ -1438,7 +1527,6 @@ SELECT
     NULL,
     NULL,
     'western_analytical',
-    1.00,
     `starttime`,
     `endtime`,
     0,

@@ -151,6 +151,16 @@ function lupo_route_slug($slug) {
             }
         }
     }
+
+    // My Channel entry point (slug may be my-channel or my-channel.php)
+    if ($normalized_slug === 'my-channel') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $my_channel = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'my-channel.php';
+        if (file_exists($my_channel)) {
+            require $my_channel;
+            exit;
+        }
+    }
     
     // CANONICAL CONTENT ROUTE: /content/<slug>
     if (preg_match('#^content/(.+)$#', $slug, $matches)) {
@@ -248,31 +258,65 @@ function lupo_route_slug($slug) {
         return render_main_layout($context);
     }
 
-    // CHANNELS ROUTE: /channels/{channel_id}
-    if (preg_match('#^channels/(\d+)$#', $slug, $matches)) {
-        $channel_id = (int)$matches[1];
+    // API: Channel typing preview (GET = operator poll, POST = visitor submit draft)
+    if (preg_match('#^api/channel/typing$#', $slug)) {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $typing_api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channel-typing-api.php';
+        if (file_exists($typing_api_path)) {
+            require_once $typing_api_path;
+            exit;
+        }
+    }
 
-        // Load ChannelsController
-        $channels_controller_path = LUPOPEDIA_ABSPATH . '/lupopedia/app/Http/Controllers/ChannelsController.php';
+    // API: Channel send message (POST). Legacy: admin_chat_bot whattodo=send.
+    if (preg_match('#^api/channel/send$#', $slug)) {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $send_api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channel-send-api.php';
+        if (file_exists($send_api_path)) {
+            require_once $send_api_path;
+            exit;
+        }
+    }
+
+    // API: Channel messages poll (GET). Legacy: xmlhttp whattodo=messages.
+    if (preg_match('#^api/channel/messages$#', $slug)) {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $messages_api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channel-messages-api.php';
+        if (file_exists($messages_api_path)) {
+            require_once $messages_api_path;
+            exit;
+        }
+    }
+
+    // API: Channel check (GET). Legacy: admin_image what=messagecheck; returns refresh flag for fallback.
+    if (preg_match('#^api/channel/check$#', $slug)) {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $check_api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channel-check-api.php';
+        if (file_exists($check_api_path)) {
+            require_once $check_api_path;
+            exit;
+        }
+    }
+
+    // CHANNELS ROUTE: /channels/{channel_id}/ or /channels/{channel_id}
+    if (preg_match('#^channels/(\d+)/?$#', $slug, $matches)) {
+        $channel_id = (int)$matches[1];
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $channels_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channels-controller.php';
         if (file_exists($channels_controller_path)) {
             require_once $channels_controller_path;
-            $controller = new ChannelsController();
-            $controller->show($channel_id);
-            return '';
-        } else {
-            // Fallback if controller not found
-            $content_renderer = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/renderers/content-renderer.php';
-            if (file_exists($content_renderer)) {
-                require_once $content_renderer;
+            if (function_exists('channels_handle_show')) {
+                return channels_handle_show($channel_id);
             }
-
-            $page_body = '<p>channel interface goes here</p>';
-            $context = [
-                'page_body' => $page_body,
-                'page_title' => 'Channel ' . $channel_id
-            ];
-            return render_main_layout($context);
         }
+        $content_renderer = $app_root . '/lupo-includes/modules/content/renderers/content-renderer.php';
+        if (file_exists($content_renderer)) {
+            require_once $content_renderer;
+        }
+        return render_main_layout([
+            'page_body' => '<p>Channel interface unavailable.</p>',
+            'page_title' => 'Channel ' . $channel_id,
+        ]);
     }
 
     // EDGES ROUTE: /edges/{edge_id}

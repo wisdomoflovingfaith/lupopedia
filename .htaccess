@@ -1,52 +1,37 @@
 # Lupopedia .htaccess
-# URL Rewriting for clean URLs
-# Routes: /who/captain_wolfie, /truth/captain_wolfie, /content/slug, etc.
+# Clean URLs without hardcoding the installation directory
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
-# RewriteBase: Adjust this to match your installation path
-# If Lupopedia is installed at /lupopedia/, use: RewriteBase /lupopedia/
-# If Lupopedia is installed at root, use: RewriteBase /
-# If Lupopedia is installed at /subfolder/, use: RewriteBase /subfolder/
-RewriteBase /lupopedia/
+# DO NOT SET RewriteBase — this allows Lupopedia to run in ANY subfolder
+# Apache automatically detects the current directory.
 
 # Prevent directory listing
 Options -Indexes
 
-# IMPORTANT: Allow static assets (CSS, JS, images) to be served directly
-# This must come BEFORE the rewrite rule that routes everything to index.php
-
-# Allow CSS, JS, images, fonts, and other static assets
+# Allow static assets to be served directly
 RewriteCond %{REQUEST_FILENAME} -f
-RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json|xml|map|md)$ [NC]
+RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json|xml|map)$ [NC]
 RewriteRule ^ - [L]
 
-# Allow access to existing files and directories (skip rewrite)
+# Allow access to existing files and directories
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Internal rewrite for /admin to admin.php
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^admin/?$ admin.php [L,QSA]
-
-# Allow access to crafty_syntax subsystem (skip rewrite)
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^lupopedia/crafty_syntax(/.*)?$ lupopedia/crafty_syntax/index.php [L,QSA]
+# Explicit entry points
+RewriteRule ^my-channel\.php$ - [L]
 
 # Block PHP files in lupo-includes (security)
-RewriteCond %{REQUEST_URI} ^/lupopedia/lupo-includes/.*\.php$ [NC]
+RewriteCond %{REQUEST_URI} ^.*/lupo-includes/.*\.php$ [NC]
 RewriteRule ^ - [F,L]
 
 # Block access to sensitive directories
-RewriteCond %{REQUEST_URI} ^/lupopedia/(database|config|\.git)/ [NC]
+RewriteCond %{REQUEST_URI} ^.*/(database|config|\.git)/ [NC]
 RewriteRule ^ - [F,L]
 
-# Rewrite all other requests to index.php with slug parameter
-# Extract the path after /lupopedia/ and pass it as slug
+# Route everything else to index.php
 RewriteRule ^(.*)$ index.php?slug=$1 [L,QSA]
 
 # Security: Deny access to hidden files
@@ -71,8 +56,7 @@ RewriteRule ^(.*)$ index.php?slug=$1 [L,QSA]
 </IfModule>
 
 # Prevent access to sensitive file types
-# MD allowed for documentation access
-<FilesMatch "\.(sql|log|yaml|yml|json|bak|backup|old)$">
+<FilesMatch "\.(sql|log|md|yaml|yml|json|bak|backup|old)$">
     Order allow,deny
     Deny from all
 </FilesMatch>

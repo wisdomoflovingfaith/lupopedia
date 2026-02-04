@@ -1,9 +1,0 @@
-{
-  "code": "DATAMAPPER",
-  "name": "DATAMAPPER",
-  "layer": "data",
-  "is_required": false,
-  "is_kernel": false,
-  "recommended_slot": 75,
-  "version": "1.0.0"
-}
