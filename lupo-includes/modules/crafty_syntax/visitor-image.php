@@ -2,7 +2,7 @@
 /**
  * Visitor image endpoint (legacy image.php equivalent).
  * Serves getstate (online/offline icon) and getcredit (credit line image)
- * using Lupopedia schema: lupo_operators, lupo_operator_status, lupo_departments, lupo_department_metadata.
+ * using Lupopedia schema: lupo_channel_roles + lupo_channels for staffed departments, lupo_department_metadata.
  * All paths use LUPOPEDIA_PUBLIC_PATH for URLs.
  */
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
@@ -37,8 +37,8 @@ if ($what === 'userstat') {
             // ignore
         }
     }
-    $base_path = defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : '';
-    $legacy_images = $base_path . 'legacy' . DIRECTORY_SEPARATOR . 'craftysyntax' . DIRECTORY_SEPARATOR;
+    $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : (defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : '');
+    $legacy_images = $app_root . DIRECTORY_SEPARATOR . 'legacy' . DIRECTORY_SEPARATOR . 'craftysyntax' . DIRECTORY_SEPARATOR;
     $filepath = $legacy_images . 'images' . DIRECTORY_SEPARATOR . 'browse.gif';
     if (!is_file($filepath)) {
         $filepath = $legacy_images . 'images' . DIRECTORY_SEPARATOR . 'controlimage_noaction.gif';
@@ -88,23 +88,19 @@ if ($session_id !== '' && $what === 'getstate') {
     }
 }
 
-// Any operator online in this department? (Legacy: livehelp_users + livehelp_operator_departments, isonline='Y', isoperator='Y')
+// Any channel in this department with at least one role? (lupo_channel_roles + lupo_channels)
 $noonehome = true;
 try {
     if ($department !== 0) {
         $stmt = $db->prepare(
-            "SELECT 1 FROM {$prefix}operators o " .
-            "WHERE o.department_id = :dept AND o.is_active = 1 AND (o.availability_status = 'online' OR EXISTS (" .
-            "  SELECT 1 FROM {$prefix}operator_status os WHERE os.operator_id = o.operator_id AND os.status = 'online'" .
-            ")) LIMIT 1"
+            "SELECT 1 FROM {$prefix}channel_roles r " .
+            "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
+            "WHERE c.department_id = :dept AND r.is_deleted = 0 LIMIT 1"
         );
         $stmt->execute([':dept' => $department]);
     } else {
         $stmt = $db->prepare(
-            "SELECT 1 FROM {$prefix}operators o " .
-            "WHERE o.is_active = 1 AND (o.availability_status = 'online' OR EXISTS (" .
-            "  SELECT 1 FROM {$prefix}operator_status os WHERE os.operator_id = o.operator_id AND os.status = 'online'" .
-            ")) LIMIT 1"
+            "SELECT 1 FROM {$prefix}channel_roles WHERE is_deleted = 0 LIMIT 1"
         );
         $stmt->execute([]);
     }
@@ -112,21 +108,7 @@ try {
         $noonehome = false;
     }
 } catch (Throwable $e) {
-    // Fallback without operator_status table
-    try {
-        if ($department !== 0) {
-            $stmt = $db->prepare("SELECT 1 FROM {$prefix}operators WHERE department_id = :dept AND is_active = 1 AND availability_status = 'online' LIMIT 1");
-            $stmt->execute([':dept' => $department]);
-        } else {
-            $stmt = $db->prepare("SELECT 1 FROM {$prefix}operators WHERE is_active = 1 AND availability_status = 'online' LIMIT 1");
-            $stmt->execute([]);
-        }
-        if ($stmt->fetch()) {
-            $noonehome = false;
-        }
-    } catch (Throwable $e2) {
-        // leave noonehome true
-    }
+    // leave noonehome true
 }
 
 // Department metadata for online/offline image paths and creditline
@@ -168,10 +150,10 @@ try {
     // use defaults
 }
 
-// Base path for image files: legacy craftysyntax images or project assets
-$base_path = defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : '';
-$legacy_images = $base_path . 'legacy' . DIRECTORY_SEPARATOR . 'craftysyntax' . DIRECTORY_SEPARATOR;
-$asset_images = $base_path . 'lupopedia' . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'visitor-images' . DIRECTORY_SEPARATOR;
+// Base path for image files: legacy craftysyntax images or project assets (from config, never hardcode folder name)
+$app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : (defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : '');
+$legacy_images = $app_root . DIRECTORY_SEPARATOR . 'legacy' . DIRECTORY_SEPARATOR . 'craftysyntax' . DIRECTORY_SEPARATOR;
+$asset_images = $app_root . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'visitor-images' . DIRECTORY_SEPARATOR;
 function resolve_image_path($relative, $legacy, $asset) {
     $path = $legacy . str_replace('/', DIRECTORY_SEPARATOR, $relative);
     if (is_file($path)) {

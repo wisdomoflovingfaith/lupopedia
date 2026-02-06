@@ -183,9 +183,11 @@ function lupo_create_session($actor_id, $auth_method = 'password', $auth_provide
     
     $db = $GLOBALS['mydatabase'];
     
-    // Verify database connection is valid PDO object
-    if (!($db instanceof PDO)) {
-        $error_msg = "AUTH ERROR: Database connection is not a PDO object in lupo_create_session()";
+    // Accept PDO or PDO_DB (DatabaseFactory returns PDO_DB)
+    $is_pdo = $db instanceof PDO;
+    $is_pdo_db = (class_exists('PDO_DB', false) && $db instanceof PDO_DB);
+    if (!$is_pdo && !$is_pdo_db) {
+        $error_msg = "AUTH ERROR: Database connection is not PDO or PDO_DB in lupo_create_session()";
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
             error_log($error_msg);
             if (ini_get('display_errors') && !headers_sent()) {
@@ -442,13 +444,13 @@ function lupo_create_session($actor_id, $auth_method = 'password', $auth_provide
         
         // Verify row was affected (inserted or updated)
         $row_count = $stmt->rowCount();
-        if ($row_count === 0) {
-            $action = $existing_session ? 'UPDATE' : 'INSERT';
+        if ($row_count === 0 && !$existing_session) {
             if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                error_log("AUTH ERROR: {$action} executed but no rows affected - Session ID: " . substr($session_id, 0, 8) . "...");
+                error_log("AUTH ERROR: INSERT executed but no rows affected - Session ID: " . substr($session_id, 0, 8) . "...");
             }
-            throw new Exception("{$action} executed but no rows affected");
+            throw new Exception("INSERT executed but no rows affected");
         }
+        // UPDATE with 0 rows affected is OK: session already exists with same data (e.g. already logged in)
 
         // Debug logging for successful session creation/upgrade
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {

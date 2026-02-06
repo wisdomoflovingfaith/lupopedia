@@ -33,27 +33,17 @@ class LupoUploadHandler {
         global $wpdb;
         if (isset($wpdb)) {
             $this->db = $wpdb;
+        } elseif (defined('LUPOPEDIA_CONFIG_LOADED') && class_exists('DatabaseFactory')) {
+            $this->db = DatabaseFactory::getConnection();
+        } elseif (!empty($GLOBALS['mydatabase'])) {
+            $this->db = $GLOBALS['mydatabase'];
         } else {
-            try {
-                $dsn = sprintf(
-                    "mysql:host=%s;port=%s;dbname=%s;charset=%s",
-                    DB_HOST,
-                    DB_PORT,
-                    DB_NAME,
-                    DB_CHARSET
-                );
-                $this->db = new PDO($dsn, DB_USER, DB_PASSWORD, [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-                ]);
-            } catch (PDOException $e) {
-                throw new Exception("Database connection failed: " . $e->getMessage());
-            }
+            throw new Exception("Database connection unavailable. Use DatabaseFactory::getConnection() or load Lupopedia bootstrap.");
         }
     }
 
     private function ensureUploadDirectories() {
-        $dirs = ['agents', 'channels', 'operators', 'content', 'temp'];
+        $dirs = ['agents', 'channels', 'content', 'temp'];
 
         foreach ($dirs as $dir) {
             $path = $this->uploadsRoot . '/' . $dir;
@@ -85,7 +75,7 @@ class LupoUploadHandler {
      * Upload a file with hash-based filename
      *
      * @param array $file $_FILES array element
-     * @param string $entityType 'agent', 'channel', 'operator', or 'content'
+     * @param string $entityType 'agent', 'channel', or 'content'
      * @param int $entityId Database ID of the entity
      * @param string $fileType Type classification (metadata, avatar, document, etc.)
      * @return array Upload result with file info
@@ -97,7 +87,7 @@ class LupoUploadHandler {
         }
 
         // Validate entity type
-        $validTypes = ['agent', 'channel', 'operator', 'content'];
+        $validTypes = ['agent', 'channel', 'content'];
         if (!in_array($entityType, $validTypes)) {
             throw new Exception("Invalid entity type: $entityType");
         }
@@ -196,7 +186,7 @@ class LupoUploadHandler {
     private function findFileByHash($hash, $entityType) {
         $table = $this->getFileTableName($entityType);
 
-        if ($this->db instanceof PDO) {
+        if ($this->db instanceof PDO || $this->db instanceof PDO_DB) {
             $stmt = $this->db->prepare("
                 SELECT file_id, file_path, file_hash
                 FROM $table
@@ -240,7 +230,7 @@ class LupoUploadHandler {
             'is_deleted' => 0
         ];
 
-        if ($this->db instanceof PDO) {
+        if ($this->db instanceof PDO || $this->db instanceof PDO_DB) {
             $columns = array_keys($data);
             $placeholders = array_map(function($col) { return ":$col"; }, $columns);
 
@@ -274,7 +264,6 @@ class LupoUploadHandler {
         $tableMap = [
             'agent' => $prefix . 'agent_files',
             'channel' => $prefix . 'channel_files',
-            'operator' => $prefix . 'operator_files',
             'content' => $prefix . 'content_files'
         ];
 
@@ -288,7 +277,6 @@ class LupoUploadHandler {
         $columnMap = [
             'agent' => 'agent_id',
             'channel' => 'channel_id',
-            'operator' => 'operator_id',
             'content' => 'content_id'
         ];
 
@@ -329,7 +317,7 @@ class LupoUploadHandler {
      * Delete a file (soft delete in database, optionally remove from filesystem)
      *
      * @param int $fileId File ID in database
-     * @param string $entityType Entity type (agent, channel, operator, content)
+     * @param string $entityType Entity type (agent, channel, content)
      * @param bool $removePhysical Whether to remove physical file
      * @return bool Success status
      */
@@ -338,7 +326,7 @@ class LupoUploadHandler {
         $now = gmdate('YmdHis');
 
         // Get file info before deleting
-        if ($this->db instanceof PDO) {
+        if ($this->db instanceof PDO || $this->db instanceof PDO_DB) {
             $stmt = $this->db->prepare("
                 SELECT file_path FROM $table WHERE file_id = :file_id LIMIT 1
             ");
@@ -355,7 +343,7 @@ class LupoUploadHandler {
         }
 
         // Soft delete in database
-        if ($this->db instanceof PDO) {
+        if ($this->db instanceof PDO || $this->db instanceof PDO_DB) {
             $stmt = $this->db->prepare("
                 UPDATE $table
                 SET is_deleted = 1, deleted_ymdhis = :now, updated_ymdhis = :now
@@ -394,7 +382,7 @@ class LupoUploadHandler {
     public function getFileInfo($fileId, $entityType) {
         $table = $this->getFileTableName($entityType);
 
-        if ($this->db instanceof PDO) {
+        if ($this->db instanceof PDO || $this->db instanceof PDO_DB) {
             $stmt = $this->db->prepare("
                 SELECT * FROM $table WHERE file_id = :file_id AND is_deleted = 0 LIMIT 1
             ");
@@ -418,7 +406,7 @@ class LupoUploadHandler {
         $table = $this->getFileTableName($entityType);
         $entityIdColumn = $this->getEntityIdColumn($entityType);
 
-        if ($this->db instanceof PDO) {
+        if ($this->db instanceof PDO || $this->db instanceof PDO_DB) {
             $stmt = $this->db->prepare("
                 SELECT * FROM $table
                 WHERE $entityIdColumn = :entity_id AND is_deleted = 0

@@ -1,9 +1,9 @@
 <?php
 /**
- * Channels controller — operator 3-panel interface for a channel.
- * Resolves session actor_id, verifies channel access via lupo_actor_channels,
- * loads threads (dialog_threads), operators/visitors (lupo_operators, lupo_actors, lupo_actor_channels),
- * and renders the operator interface view.
+ * Channels controller — channel 3-panel interface.
+ * Resolves session actor_id, verifies channel access via lupo_channel_roles / lupo_actor_channels,
+ * loads threads (dialog_threads), channel roles/visitors (lupo_channel_roles, lupo_actors, lupo_actor_channels),
+ * and renders the channel interface view.
  * All paths use LUPOPEDIA_PUBLIC_PATH. New schema only.
  */
 
@@ -90,6 +90,14 @@ function channels_handle_show($channel_id) {
         ]);
     }
 
+    // Actor's role in this channel (lupo_channel_roles) — used for Channel Log button and role-based authority
+    $actor_has_channel_role = false;
+    $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute([':channel_id' => $channel_id, ':actor_id' => $actor_id]);
+    if ($stmt->fetch() !== false) {
+        $actor_has_channel_role = true;
+    }
+
     // All active threads (dialog_threads) for composer dropdown and thread bg_color map
     $threads = [];
     $thread_colors = [];
@@ -145,15 +153,15 @@ function channels_handle_show($channel_id) {
         }
     }
 
-    // Operators for this channel (lupo_operators + lupo_actors)
+    // Channel roles for this channel (lupo_channel_roles + lupo_actors)
     $operators = [];
-    $stmt = $db->prepare("SELECT o.operator_id, o.actor_id, o.channel_id, o.availability_status, a.name AS actor_name, a.slug AS actor_slug FROM {$table_prefix}operators o LEFT JOIN {$table_prefix}actors a ON a.actor_id = o.actor_id AND a.is_deleted = 0 WHERE o.channel_id = :channel_id AND o.is_active = 1");
+    $stmt = $db->prepare("SELECT r.channel_role_id, r.actor_id, r.channel_id, r.role_type, a.name AS actor_name, a.slug AS actor_slug FROM {$table_prefix}channel_roles r LEFT JOIN {$table_prefix}actors a ON a.actor_id = r.actor_id AND a.is_deleted = 0 WHERE r.channel_id = :channel_id AND r.is_deleted = 0");
     $stmt->execute([':channel_id' => $channel_id]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $operators[] = $row;
     }
 
-    // Department for this operator/channel (for pending-visitors poll)
+    // Department for this channel (for pending-visitors poll)
     $department_id = 0;
     try {
         $stmt = $db->prepare("SELECT department_id FROM {$table_prefix}channels WHERE channel_id = :cid AND is_deleted = 0 LIMIT 1");
@@ -207,7 +215,7 @@ function channels_handle_show($channel_id) {
         // ignore
     }
 
-    // Visitors/actors in this channel: lupo_actor_channels (operators/other actors) + sessions with metadata.crafty_syntax.channel_id = this channel, status = active
+    // Visitors/actors in this channel: lupo_actor_channels (channel roles/other actors) + sessions with metadata.crafty_syntax.channel_id = this channel, status = active
     $visitors = [];
     $stmt = $db->prepare("SELECT ac.actor_channel_id, ac.actor_id, ac.channel_id, ac.status, ac.channel_color, a.name AS actor_name, a.slug AS actor_slug, a.actor_type FROM {$table_prefix}actor_channels ac LEFT JOIN {$table_prefix}actors a ON a.actor_id = ac.actor_id AND a.is_deleted = 0 WHERE ac.channel_id = :channel_id AND ac.is_deleted = 0 ORDER BY ac.updated_ymdhis DESC");
     $stmt->execute([':channel_id' => $channel_id]);
@@ -292,6 +300,7 @@ function channels_handle_show($channel_id) {
         'channel_public_path'    => $public_path,
         'initial_after_ymdhis'   => $initial_after_ymdhis,
         'selected_thread_id'     => $selected_thread_id,
+        'actor_has_channel_role' => $actor_has_channel_role,
     ], EXTR_SKIP);
     include $view_path;
     $page_body = ob_get_clean();
@@ -300,4 +309,573 @@ function channels_handle_show($channel_id) {
         'page_body'  => $page_body,
         'page_title' => $channel['channel_name'],
     ]);
+}
+
+/**
+ * Handle GET /channels/{channel_id}/log — show channel governance log.
+ * Loads channel, actor's role (lupo_channel_roles), log entries (lupo_channel_logs), log types (lupo_channel_log_types).
+ * View shows "New Log Entry" button only if actor has a role in lupo_channel_roles.
+ *
+ * @param int $channel_id Channel ID
+ * @return string HTML from render_main_layout
+ */
+function channels_handle_log_show($channel_id) {
+    $channel_id = (int) $channel_id;
+    $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+
+    $actor_id = null;
+    if (function_exists('current_user')) {
+        $user = current_user();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    }
+    if (!$actor_id && function_exists('lupo_validate_session')) {
+        $actor_id = lupo_validate_session();
+    }
+    if (!$actor_id) {
+        $login_url = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login?redirect=' . urlencode((defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/channels/' . $channel_id . '/log');
+        if (function_exists('lupo_safe_redirect')) {
+            lupo_safe_redirect($login_url, 0, 'Please sign in to view the channel log.');
+        } else {
+            header('Location: ' . $login_url);
+        }
+        exit;
+    }
+
+    $db = $GLOBALS['mydatabase'] ?? null;
+    if (!$db) {
+        if (!function_exists('render_main_layout')) {
+            $renderer = $app_root . '/lupo-includes/modules/content/renderers/content-renderer.php';
+            if (file_exists($renderer)) {
+                require_once $renderer;
+            }
+        }
+        return render_main_layout([
+            'page_body' => '<p>Database unavailable.</p>',
+            'page_title' => 'Channel Log',
+        ]);
+    }
+
+    $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channels WHERE actor_id = :actor_id AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute([':actor_id' => $actor_id, ':channel_id' => $channel_id]);
+    if ($stmt->fetch() === false) {
+        if (!function_exists('render_main_layout')) {
+            $renderer = $app_root . '/lupo-includes/modules/content/renderers/content-renderer.php';
+            if (file_exists($renderer)) {
+                require_once $renderer;
+            }
+        }
+        return render_main_layout([
+            'page_body' => '<p>You do not have access to this channel.</p>',
+            'page_title' => 'Access denied',
+        ]);
+    }
+
+    $stmt = $db->prepare("SELECT channel_id, channel_name, channel_key, channel_slug, status_flag FROM {$table_prefix}channels WHERE channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute([':channel_id' => $channel_id]);
+    $channel = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$channel) {
+        if (!function_exists('render_main_layout')) {
+            $renderer = $app_root . '/lupo-includes/modules/content/renderers/content-renderer.php';
+            if (file_exists($renderer)) {
+                require_once $renderer;
+            }
+        }
+        return render_main_layout([
+            'page_body' => '<p>Channel not found.</p>',
+            'page_title' => 'Channel Log',
+        ]);
+    }
+
+    $actor_role = null;
+    $stmt = $db->prepare("SELECT channel_role_id, role_type FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute([':channel_id' => $channel_id, ':actor_id' => $actor_id]);
+    $actor_role = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $log_entries = [];
+    $stmt = $db->prepare("SELECT l.channel_log_id, l.channel_id, l.actor_id, l.role_type, l.log_type_id, l.log_text, l.metadata_json, l.pinned, l.created_ymdhis, l.updated_ymdhis FROM {$table_prefix}channel_logs l WHERE l.channel_id = :channel_id AND l.is_deleted = 0 ORDER BY l.pinned DESC, l.created_ymdhis DESC");
+    $stmt->execute([':channel_id' => $channel_id]);
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $log_entries[] = $row;
+    }
+
+    $log_types = [];
+    $stmt = $db->query("SELECT log_type_id, type_key, type_label, description FROM {$table_prefix}channel_log_types WHERE is_deleted = 0 ORDER BY type_label");
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $log_types[] = $row;
+    }
+
+    $actor_ids = array_unique(array_filter(array_column($log_entries, 'actor_id')));
+    $actor_names = [];
+    if (!empty($actor_ids)) {
+        $placeholders = implode(',', array_fill(0, count($actor_ids), '?'));
+        $stmt = $db->prepare("SELECT actor_id, name FROM {$table_prefix}actors WHERE actor_id IN ($placeholders) AND is_deleted = 0");
+        $stmt->execute(array_values($actor_ids));
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $actor_names[(int) $row['actor_id']] = $row['name'];
+        }
+    }
+
+    $log_type_map = [];
+    foreach ($log_types as $lt) {
+        $log_type_map[(int) $lt['log_type_id']] = $lt;
+    }
+
+    if (!function_exists('render_main_layout')) {
+        $renderer = $app_root . '/lupo-includes/modules/content/renderers/content-renderer.php';
+        if (file_exists($renderer)) {
+            require_once $renderer;
+        }
+    }
+
+    $public_path = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+    $view_path = $app_root . '/lupo-includes/modules/channels/views/channel-log.php';
+    if (!file_exists($view_path)) {
+        return render_main_layout([
+            'page_body' => '<p>Channel log view not found.</p>',
+            'page_title' => $channel['channel_name'] . ' — Log',
+        ]);
+    }
+
+    ob_start();
+    extract([
+        'channel_id'          => $channel_id,
+        'channel'             => $channel,
+        'actor_role'          => $actor_role,
+        'log_entries'         => $log_entries,
+        'log_types'           => $log_types,
+        'log_type_map'        => $log_type_map,
+        'actor_names'         => $actor_names,
+        'channel_public_path' => $public_path,
+    ], EXTR_SKIP);
+    include $view_path;
+    $page_body = ob_get_clean();
+
+    return render_main_layout([
+        'page_body'  => $page_body,
+        'page_title' => $channel['channel_name'] . ' — Channel Log',
+    ]);
+}
+
+/**
+ * Handle POST /channels/{channel_id}/log/create — create a new channel log entry.
+ * Validates actor has a role in lupo_channel_roles; inserts into lupo_channel_logs; redirects to GET log.
+ *
+ * @param int $channel_id Channel ID
+ * @return void Redirects or outputs error
+ */
+function channels_handle_log_create($channel_id) {
+    $channel_id = (int) $channel_id;
+    $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+
+    $actor_id = null;
+    if (function_exists('current_user')) {
+        $user = current_user();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    }
+    if (!$actor_id && function_exists('lupo_validate_session')) {
+        $actor_id = lupo_validate_session();
+    }
+    if (!$actor_id) {
+        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+        header('Location: ' . $base . '/login?redirect=' . urlencode($base . '/channels/' . $channel_id . '/log'));
+        exit;
+    }
+
+    $db = $GLOBALS['mydatabase'] ?? null;
+    if (!$db) {
+        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+        header('Location: ' . $base . '/channels/' . $channel_id . '/log');
+        exit;
+    }
+
+    $stmt = $db->prepare("SELECT channel_role_id, role_type FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute([':channel_id' => $channel_id, ':actor_id' => $actor_id]);
+    $role_row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$role_row) {
+        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+        header('Location: ' . $base . '/channels/' . $channel_id . '/log');
+        exit;
+    }
+
+    $log_type_id = isset($_POST['log_type_id']) ? (int) $_POST['log_type_id'] : 0;
+    $log_text = isset($_POST['log_text']) ? trim((string) $_POST['log_text']) : '';
+    $metadata_json = null;
+    if (isset($_POST['metadata_json']) && trim((string) $_POST['metadata_json']) !== '') {
+        $dec = json_decode(trim((string) $_POST['metadata_json']), true);
+        $metadata_json = (json_last_error() === JSON_ERROR_NONE && $dec !== null) ? json_encode($dec) : null;
+    }
+
+    if ($log_type_id <= 0 || $log_text === '') {
+        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+        header('Location: ' . $base . '/channels/' . $channel_id . '/log');
+        exit;
+    }
+
+    $now = date('YmdHis');
+    $role_type = $role_row['role_type'];
+
+    $stmt = $db->prepare(
+        "INSERT INTO {$table_prefix}channel_logs (channel_id, actor_id, role_type, log_type_id, log_text, metadata_json, created_ymdhis, updated_ymdhis, is_deleted) " .
+        "VALUES (:channel_id, :actor_id, :role_type, :log_type_id, :log_text, :metadata_json, :created_ymdhis, :updated_ymdhis, 0)"
+    );
+    $stmt->execute([
+        ':channel_id'     => $channel_id,
+        ':actor_id'       => $actor_id,
+        ':role_type'      => $role_type,
+        ':log_type_id'    => $log_type_id,
+        ':log_text'       => $log_text,
+        ':metadata_json'  => $metadata_json,
+        ':created_ymdhis' => $now,
+        ':updated_ymdhis' => $now,
+    ]);
+
+    $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+    header('Location: ' . $base . '/channels/' . $channel_id . '/log');
+    exit;
+}
+
+/**
+ * Handle GET /channels/my-channels — list all channels the current actor has a role in (lupo_channel_roles).
+ * Replaces single "My Channel" with multi-channel list; authority is role-based, not creator-based.
+ *
+ * @return string HTML from render_main_layout
+ */
+function channels_handle_my_channels() {
+    $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+
+    $actor_id = null;
+    if (function_exists('current_user')) {
+        $user = current_user();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    }
+    if (!$actor_id && function_exists('lupo_validate_session')) {
+        $actor_id = lupo_validate_session();
+    }
+    if (!$actor_id) {
+        $login_url = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login?redirect=' . urlencode((defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/channels/my-channels');
+        if (function_exists('lupo_safe_redirect')) {
+            lupo_safe_redirect($login_url, 0, 'Please sign in to view your channels.');
+        } else {
+            header('Location: ' . $login_url);
+        }
+        exit;
+    }
+
+    $db = $GLOBALS['mydatabase'] ?? null;
+    if (!$db) {
+        if (!function_exists('render_main_layout')) {
+            $renderer = $app_root . '/lupo-includes/modules/content/renderers/content-renderer.php';
+            if (file_exists($renderer)) {
+                require_once $renderer;
+            }
+        }
+        return render_main_layout([
+            'page_body' => '<p>Database unavailable.</p>',
+            'page_title' => 'My Channels',
+        ]);
+    }
+
+    $roles = [];
+    $stmt = $db->prepare("SELECT channel_id, role_type FROM {$table_prefix}channel_roles WHERE actor_id = :actor_id AND is_deleted = 0 ORDER BY channel_id ASC");
+    $stmt->execute([':actor_id' => $actor_id]);
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $roles[] = $row;
+    }
+
+    $my_channels = [];
+    foreach ($roles as $r) {
+        $cid = (int) $r['channel_id'];
+        $stmt = $db->prepare("SELECT channel_id, channel_name, channel_key, channel_slug, status_flag FROM {$table_prefix}channels WHERE channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
+        $stmt->execute([':channel_id' => $cid]);
+        $ch = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($ch) {
+            $my_channels[] = [
+                'channel_id'   => $cid,
+                'channel_name' => $ch['channel_name'] ?? ('Channel ' . $cid),
+                'role_type'     => $r['role_type'],
+            ];
+        }
+    }
+
+    if (!function_exists('render_main_layout')) {
+        $renderer = $app_root . '/lupo-includes/modules/content/renderers/content-renderer.php';
+        if (file_exists($renderer)) {
+            require_once $renderer;
+        }
+    }
+
+    $public_path = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+    $view_path = $app_root . '/lupo-includes/modules/channels/views/my-channels.php';
+    if (!file_exists($view_path)) {
+        return render_main_layout([
+            'page_body' => '<p>My Channels view not found.</p>',
+            'page_title' => 'My Channels',
+        ]);
+    }
+
+    ob_start();
+    extract([
+        'my_channels'        => $my_channels,
+        'channel_public_path' => $public_path,
+    ], EXTR_SKIP);
+    include $view_path;
+    $page_body = ob_get_clean();
+
+    return render_main_layout([
+        'page_body'  => $page_body,
+        'page_title' => 'My Channels',
+    ]);
+}
+
+/**
+ * Handle GET /channels/{channel_id}/edit — channel edit page (captain/administrator/monitor only).
+ * Loads channel (name, description, website_link) and all roles; passes to edit view.
+ *
+ * @param int $channel_id Channel ID
+ * @return string HTML or redirect
+ */
+function channels_handle_edit_channel($channel_id) {
+    $channel_id = (int) $channel_id;
+    $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+
+    $actor_id = null;
+    if (function_exists('current_user')) {
+        $user = current_user();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    }
+    if (!$actor_id && function_exists('lupo_validate_session')) {
+        $actor_id = lupo_validate_session();
+    }
+    if (!$actor_id) {
+        header('Location: ' . $base . '/login?redirect=' . urlencode($base . '/channels/' . $channel_id . '/edit'));
+        exit;
+    }
+
+    $db = $GLOBALS['mydatabase'] ?? null;
+    if (!$db) {
+        header('Location: ' . $base . '/channels/' . $channel_id . '/');
+        exit;
+    }
+
+    $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute([':channel_id' => $channel_id, ':actor_id' => $actor_id]);
+    if ($stmt->fetch() === false) {
+        header('Location: ' . $base . '/channels/' . $channel_id . '/');
+        exit;
+    }
+
+    $stmt = $db->prepare("SELECT channel_id, channel_name, description, website_link FROM {$table_prefix}channels WHERE channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute([':channel_id' => $channel_id]);
+    $channel = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$channel) {
+        header('Location: ' . $base . '/channels/' . $channel_id . '/');
+        exit;
+    }
+
+    $roles = [];
+    $stmt = $db->prepare("SELECT channel_role_id, channel_id, actor_id, role_type FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND is_deleted = 0 ORDER BY role_type, actor_id");
+    $stmt->execute([':channel_id' => $channel_id]);
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $roles[] = $row;
+    }
+
+    $captain = [];
+    $administrators = [];
+    $monitors = [];
+    foreach ($roles as $r) {
+        $r['actor_id'] = (int) $r['actor_id'];
+        if ($r['role_type'] === 'captain') {
+            $captain[] = $r;
+        } elseif ($r['role_type'] === 'administrator') {
+            $administrators[] = $r;
+        } else {
+            $monitors[] = $r;
+        }
+    }
+
+    $actor_ids = array_unique(array_filter(array_column($roles, 'actor_id')));
+    $actor_names = [];
+    if (!empty($actor_ids)) {
+        $placeholders = implode(',', array_fill(0, count($actor_ids), '?'));
+        $stmt = $db->prepare("SELECT actor_id, name FROM {$table_prefix}actors WHERE actor_id IN ($placeholders) AND is_deleted = 0");
+        $stmt->execute(array_values($actor_ids));
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $actor_names[(int) $row['actor_id']] = $row['name'];
+        }
+    }
+
+    if (!function_exists('render_main_layout')) {
+        $renderer = $app_root . '/lupo-includes/modules/content/renderers/content-renderer.php';
+        if (file_exists($renderer)) {
+            require_once $renderer;
+        }
+    }
+
+    $view_path = $app_root . '/lupo-includes/modules/channels/views/edit-channel.php';
+    if (!file_exists($view_path)) {
+        return render_main_layout([
+            'page_body' => '<p>Edit channel view not found.</p>',
+            'page_title' => 'Edit Channel',
+        ]);
+    }
+
+    ob_start();
+    extract([
+        'channel_id'           => $channel_id,
+        'channel'              => $channel,
+        'captain'              => $captain,
+        'administrators'       => $administrators,
+        'monitors'             => $monitors,
+        'actor_names'          => $actor_names,
+        'channel_public_path'  => $base,
+    ], EXTR_SKIP);
+    include $view_path;
+    $page_body = ob_get_clean();
+
+    return render_main_layout([
+        'page_body'  => $page_body,
+        'page_title' => 'Edit Channel — ' . ($channel['channel_name'] ?? 'Channel'),
+    ]);
+}
+
+/**
+ * Handle POST /channels/{channel_id}/edit/save — save channel edit form.
+ * Updates lupo_channels (name, description, website_link) and lupo_channel_roles (captain, admins, monitors).
+ *
+ * @param int $channel_id Channel ID
+ */
+function channels_handle_edit_channel_save($channel_id) {
+    $channel_id = (int) $channel_id;
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+
+    $actor_id = null;
+    if (function_exists('current_user')) {
+        $user = current_user();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    }
+    if (!$actor_id && function_exists('lupo_validate_session')) {
+        $actor_id = lupo_validate_session();
+    }
+    if (!$actor_id) {
+        header('Location: ' . $base . '/login?redirect=' . urlencode($base . '/channels/' . $channel_id . '/edit'));
+        exit;
+    }
+
+    $db = $GLOBALS['mydatabase'] ?? null;
+    if (!$db) {
+        header('Location: ' . $base . '/channels/' . $channel_id . '/edit');
+        exit;
+    }
+
+    $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute([':channel_id' => $channel_id, ':actor_id' => $actor_id]);
+    if ($stmt->fetch() === false) {
+        header('Location: ' . $base . '/channels/' . $channel_id . '/');
+        exit;
+    }
+
+    $channel_name = isset($_POST['channel_name']) ? trim((string) $_POST['channel_name']) : '';
+    $description = isset($_POST['description']) ? trim((string) $_POST['description']) : '';
+    $website_link = isset($_POST['website_link']) ? trim((string) $_POST['website_link']) : '';
+    $website_link = strlen($website_link) > 512 ? substr($website_link, 0, 512) : $website_link;
+
+    $captain_actor_id = isset($_POST['captain_actor_id']) ? (int) $_POST['captain_actor_id'] : 0;
+    $administrator_actor_ids = isset($_POST['administrator_actor_ids']) && is_array($_POST['administrator_actor_ids'])
+        ? array_values(array_unique(array_filter(array_map('intval', $_POST['administrator_actor_ids']))))
+        : [];
+    $monitor_actor_ids = isset($_POST['monitor_actor_ids']) && is_array($_POST['monitor_actor_ids'])
+        ? array_values(array_unique(array_filter(array_map('intval', $_POST['monitor_actor_ids']))))
+        : [];
+
+    $now = date('YmdHis');
+
+    if ($channel_name !== '') {
+        $stmt = $db->prepare("UPDATE {$table_prefix}channels SET channel_name = :name, description = :desc, website_link = :link, updated_ymdhis = :now WHERE channel_id = :cid");
+        $stmt->execute([
+            ':name' => $channel_name,
+            ':desc' => $description,
+            ':link' => $website_link === '' ? null : $website_link,
+            ':now'  => $now,
+            ':cid'  => $channel_id,
+        ]);
+    }
+
+    $now_char = $now;
+
+    // Ensure exactly one captain: soft-delete all current captains, then insert/restore one for captain_actor_id
+    $stmt = $db->prepare("UPDATE {$table_prefix}channel_roles SET is_deleted = 1, deleted_ymdhis = :now WHERE channel_id = :cid AND role_type = 'captain'");
+    $stmt->execute([':now' => $now_char, ':cid' => $channel_id]);
+
+    if ($captain_actor_id > 0) {
+        $stmt = $db->prepare("SELECT channel_role_id FROM {$table_prefix}channel_roles WHERE channel_id = :cid AND actor_id = :aid AND role_type = 'captain' LIMIT 1");
+        $stmt->execute([':cid' => $channel_id, ':aid' => $captain_actor_id]);
+        $existing = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($existing) {
+            $stmt = $db->prepare("UPDATE {$table_prefix}channel_roles SET is_deleted = 0, deleted_ymdhis = NULL, updated_ymdhis = :now WHERE channel_role_id = :id");
+            $stmt->execute([':now' => $now_char, ':id' => $existing['channel_role_id']]);
+        } else {
+            $stmt = $db->prepare("INSERT INTO {$table_prefix}channel_roles (channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:cid, :aid, 'captain', :now, :now, 0)");
+            $stmt->execute([':cid' => $channel_id, ':aid' => $captain_actor_id, ':now' => $now_char]);
+        }
+    }
+
+    // Administrators: soft-delete all, then restore/insert for each in list
+    $stmt = $db->prepare("UPDATE {$table_prefix}channel_roles SET is_deleted = 1, deleted_ymdhis = :now WHERE channel_id = :cid AND role_type = 'administrator'");
+    $stmt->execute([':now' => $now_char, ':cid' => $channel_id]);
+
+    foreach ($administrator_actor_ids as $aid) {
+        if ($aid <= 0) {
+            continue;
+        }
+        $stmt = $db->prepare("SELECT channel_role_id, is_deleted FROM {$table_prefix}channel_roles WHERE channel_id = :cid AND actor_id = :aid AND role_type = 'administrator' LIMIT 1");
+        $stmt->execute([':cid' => $channel_id, ':aid' => $aid]);
+        $existing = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($existing) {
+            if (!empty($existing['is_deleted'])) {
+                $stmt = $db->prepare("UPDATE {$table_prefix}channel_roles SET is_deleted = 0, deleted_ymdhis = NULL, updated_ymdhis = :now WHERE channel_role_id = :id");
+                $stmt->execute([':now' => $now_char, ':id' => $existing['channel_role_id']]);
+            }
+        } else {
+            $stmt = $db->prepare("INSERT INTO {$table_prefix}channel_roles (channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:cid, :aid, 'administrator', :now, :now, 0)");
+            $stmt->execute([':cid' => $channel_id, ':aid' => $aid, ':now' => $now_char]);
+        }
+    }
+
+    // Monitors: same as administrators
+    $stmt = $db->prepare("UPDATE {$table_prefix}channel_roles SET is_deleted = 1, deleted_ymdhis = :now WHERE channel_id = :cid AND role_type = 'monitor'");
+    $stmt->execute([':now' => $now_char, ':cid' => $channel_id]);
+    foreach ($monitor_actor_ids as $aid) {
+        if ($aid <= 0) {
+            continue;
+        }
+        $stmt = $db->prepare("SELECT channel_role_id FROM {$table_prefix}channel_roles WHERE channel_id = :cid AND actor_id = :aid AND role_type = 'monitor' LIMIT 1");
+        $stmt->execute([':cid' => $channel_id, ':aid' => $aid]);
+        $existing = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($existing) {
+            $stmt = $db->prepare("UPDATE {$table_prefix}channel_roles SET is_deleted = 0, deleted_ymdhis = NULL, updated_ymdhis = :now WHERE channel_role_id = :id");
+            $stmt->execute([':now' => $now_char, ':id' => $existing['channel_role_id']]);
+        } else {
+            $stmt = $db->prepare("INSERT INTO {$table_prefix}channel_roles (channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:cid, :aid, 'monitor', :now, :now, 0)");
+            $stmt->execute([':cid' => $channel_id, ':aid' => $aid, ':now' => $now_char]);
+        }
+    }
+
+    header('Location: ' . $base . '/channels/' . $channel_id . '/edit');
+    exit;
 }

@@ -50,6 +50,13 @@
    - `wolfie.headers.version` is a literal string (not an atom)
    - `dialog` block is mandatory when agents create/modify files
 
+## Database Access (MANDATORY — Doctrine 17.2)
+
+- **All** database access must use **DatabaseFactory::getConnection()** or **lupo_get_db()**. Both return the **PDO_DB** wrapper.
+- **Forbidden:** `new PDO()`, `new PDO_DB(...)`, mysqli_*, pg_connect, any new DB wrapper, bypassing DatabaseFactory or PDO_DB.
+- Use: `$db = DatabaseFactory::getConnection();` then `$db->query()`, `$db->fetchRow()`, `$db->fetchAll()`, `$db->prepare()`, `$db->exec()`, `$db->lastInsertId()` as needed.
+- SQL must be parameterized, cross-compatible (MySQL/PostgreSQL), and only inside repository classes. Refuse and propose a compliant alternative if violated.
+
 ## Database Rules (Master Doctrine of AI Corrections)
 
 1. **No foreign keys, triggers, stored procedures, or database logic**
@@ -96,8 +103,18 @@
 - **Filenames:** Lowercase a–z, digits 0–9, underscore only; no uppercase, hyphens, spaces, or Unicode
 - **No advertising, manipulation, or psychological exploitation** — see Master Doctrine sections 8 and 11
 
+## Installation Path Doctrine (MANDATORY)
+
+- **Never** assume the install folder is named "lupopedia" or any specific name.
+- **Never** assume installation at web root.
+- **URLs:** Use only `$base` or `LUPOPEDIA_PUBLIC_PATH` (from `lupopedia-config.php`).
+- **Filesystem paths:** Use only `LUPOPEDIA_PATH` or `LUPOPEDIA_ABSPATH`.
+- Refuse requests that hardcode paths or folder names; propose compliant alternatives.
+- **[Installation Path Doctrine](docs/doctrine/INSTALLATION_PATH_DOCTRINE.md)** — Full rules.
+
 ## Related Documentation
 
+- **[Lupopedia Doctrine v1.1](docs/doctrine/LUPOPEDIA_DOCTRINE_v1.1.md)** — Canonical architecture & development rules (file headers, PHP OOP, config, DB, layout, controller/service/repository, DTOs, refusal). Supersedes implicit conventions.
 - [Master Doctrine of AI Corrections](docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md) — **Required for all AI agents**
 - `docs/channels/doctrine/TIMESTAMP_DOCTRINE.md` - Canonical timestamp rules
 - `config/global_atoms.yaml` - Atom definitions

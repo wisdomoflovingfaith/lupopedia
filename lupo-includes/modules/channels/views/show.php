@@ -10,6 +10,7 @@ $channel_id = isset($channel_id) ? (int) $channel_id : 0;
 $selected_thread_id = isset($selected_thread_id) ? (int) $selected_thread_id : 0;
 $initial_after_ymdhis = isset($initial_after_ymdhis) ? (string) $initial_after_ymdhis : '0';
 $current_actor_id = isset($current_actor_id) ? (int) $current_actor_id : 0;
+$actor_has_channel_role = isset($actor_has_channel_role) ? $actor_has_channel_role : false;
 ?>
 <link rel="stylesheet" href="<?= $base ?>/lupo-includes/modules/channels/channel-interface.css">
 <div class="channel-operator-interface" id="channel-operator-interface"
@@ -25,11 +26,15 @@ $current_actor_id = isset($current_actor_id) ? (int) $current_actor_id : 0;
     ?>
     <!-- Rooms bar (legacy admin_rooms.php): presence / status -->
     <header class="channel-interface-header channel-rooms-bar">
-        <h1 class="channel-interface-title"><?= $channel_name ?></h1>
+        <h1 class="channel-interface-title"><?= htmlspecialchars($channel['channel_name'] ?? 'Channel') ?></h1>
         <div class="channel-rooms-actions">
-            <a href="<?= $base ?>/my-channel.php" class="channel-interface-mylink">My Channel</a>
+            <a href="<?= $base ?>/channels/my-channels" class="channel-interface-mylink">My Channels</a>
             <span class="channel-presence-dot" aria-hidden="true"></span>
             <span class="channel-presence-label">Online</span>
+            <?php if (!empty($actor_has_channel_role)): ?>
+            <a href="<?= $base ?>/channels/<?= $channel_id ?>/edit" class="channel-btn channel-header-button" id="channel-edit">Edit Channel</a>
+            <?php endif; ?>
+            <a href="<?= $base ?>/channels/<?= $channel_id ?>/log" class="channel-btn channel-header-button" id="channel-view-log">View Log</a>
             <a href="<?= $base ?>/channels/<?= $channel_id ?>/?clear=now" class="channel-btn channel-btn-clear" id="channel-clear-now">Clear to now</a>
             <a href="<?= $base ?>/channels/<?= $channel_id ?>/" class="channel-btn channel-btn-refresh" id="channel-force-refresh">Refresh</a>
         </div>
@@ -46,9 +51,9 @@ $current_actor_id = isset($current_actor_id) ? (int) $current_actor_id : 0;
             }
             ?>
         </main>
-        <!-- Panel 2: Operators + visitors (legacy admin_users) -->
-        <aside class="channel-panel channel-panel-people" aria-label="Operators and visitors">
-            <h2 class="channel-panel-title">Operators &amp; visitors</h2>
+        <!-- Panel 2: Channel roles + visitors (legacy admin_users) -->
+        <aside class="channel-panel channel-panel-people" aria-label="Channel roles and visitors">
+            <h2 class="channel-panel-title">Channel roles &amp; visitors</h2>
             <?php
             $partial = __DIR__ . '/partials/_operators_visitors.php';
             if (file_exists($partial)) {

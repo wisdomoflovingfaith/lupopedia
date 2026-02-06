@@ -11,7 +11,6 @@
  */
 
 require_once __DIR__ . '/../../lupopedia-config.php';
-require_once LUPO_INCLUDES_DIR . '/class-pdo_db.php';
 
 header('Content-Type: application/json');
 
@@ -24,7 +23,7 @@ $start = (int) ($day . '000000');
 $end   = (int) ($day . '235959');
 
 try {
-    $db   = new PDO_DB(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_TYPE);
+    $db = DatabaseFactory::getConnection();
     $rows = $db->fetchAll(
         "SELECT artifact_id, type, utc_timestamp FROM lupo_artifacts 
          WHERE utc_timestamp BETWEEN :start AND :end AND is_deleted = 0 

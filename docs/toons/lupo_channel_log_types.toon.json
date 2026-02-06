@@ -1,0 +1,36 @@
+{
+  "table_name": "lupo_channel_log_types",
+  "fields": [
+    "`log_type_id` bigint NOT NULL auto_increment",
+    "`type_key` varchar(64) NOT NULL",
+    "`type_label` varchar(255) NOT NULL",
+    "`description` text",
+    "`is_system` tinyint NOT NULL DEFAULT 0",
+    "`created_ymdhis` char(14) NOT NULL",
+    "`updated_ymdhis` char(14) NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` char(14)"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "uniq_type_key",
+      "columns": [
+        "type_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "log_type_id",
+    "expected_name": "log_type_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

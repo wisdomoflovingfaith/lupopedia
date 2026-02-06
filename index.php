@@ -1,34 +1,16 @@
 <?php
-/* ⧉ WOLFIE v2.6 ⧉
-   nav: mech | myth | rel | docs
-   
-   ## NAV
-   pkg: lupopedia
-   mod: kernel
-   asp: controller
-   pur: Front controller and routing dispatcher for Lupopedia application.
-   
-   ## META
-   cre: 2026-02-01T00:00:00Z
-   mod: 2026-02-01T00:00:00Z
-   upd: cascade#1
-   tax: wolfie.header.taxonomy@2.3
-   
-   ## MYTH
-   epo: wolfie-winter-2026
-   sig: routing-focus
-   
-   ## REL
-   → 
-   ← 
-   ↔ 
-   
-   ## DOCS
-   */
-
 /**
- * Front to the Lupopedia application. This file is designed to be placed directly inside the Lupopedia directory (or whatever you rename it to) under your web server's public root.
- * It dynamically detects the folder name for the public path, so it works even if you rename the 'lupopedia' folder.
+ * FILE: index.php
+ * TYPE: php
+ *
+ * PURPOSE: Front controller and routing entry point. Loads config, resolves slug, invokes lupo_route_slug().
+ * Dynamically detects install folder name for LUPOPEDIA_PUBLIC_PATH (Installation Path Doctrine).
+ *
+ * DETAILS:
+ * - Defines LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH, LUPOPEDIA_CONFIG_PATH.
+ * - Config search order: above DOCUMENT_ROOT, above DOCUMENT_ROOT + public path, then inside install.
+ * - No schema changes, no DB access in this file.
+ *
  * @package Lupopedia
  */
 

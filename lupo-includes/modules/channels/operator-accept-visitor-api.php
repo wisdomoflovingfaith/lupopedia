@@ -1,9 +1,8 @@
 <?php
 /**
- * Operator accept visitor API — POST.
- * Moves visitor onto operator's channel: UPDATE dialog_threads SET channel_id, UPDATE dialog_messages SET channel_id, session metadata status=active.
- * Legacy: createchannel(visitor) + UPDATE livehelp_users SET onchannel.
- * All paths use LUPOPEDIA_PUBLIC_PATH.
+ * Accept visitor API — POST.
+ * Moves visitor onto channel: UPDATE dialog_threads/dialog_messages, session metadata status=active.
+ * Actor must have a role in the channel (lupo_channel_roles). All paths use LUPOPEDIA_PUBLIC_PATH.
  */
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     http_response_code(500);
@@ -57,9 +56,9 @@ if ($operator_channel_id <= 0 || $dialog_thread_id <= 0 || $visitor_session_id =
     exit;
 }
 
-// Verify operator has access to this channel
-$stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channels WHERE actor_id = :actor_id AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
-$stmt->execute([':actor_id' => $actor_id, ':channel_id' => $operator_channel_id]);
+// Verify actor has a role in this channel (lupo_channel_roles)
+$stmt = $db->prepare("SELECT 1 FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
+$stmt->execute([':channel_id' => $operator_channel_id, ':actor_id' => $actor_id]);
 if ($stmt->fetch() === false) {
     http_response_code(403);
     header('Content-Type: application/json');

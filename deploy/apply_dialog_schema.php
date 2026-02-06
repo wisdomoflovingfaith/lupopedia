@@ -19,9 +19,7 @@ if (isset($argv[1]) && $argv[1] === '--production') {
 echo "🚀 Dialog System Schema Deployment\n";
 echo "Environment: {$environment}\n\n";
 
-// Initialize database
-require_once LUPO_INCLUDES_DIR . '/class-pdo_db.php';
-$db = new PDO_DB(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_TYPE);
+$db = DatabaseFactory::getConnection();
 
 // Schema name based on environment
 $schemaName = $environment === 'production' 

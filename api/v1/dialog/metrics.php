@@ -12,8 +12,7 @@ require_once __DIR__ . '/../../../lupopedia-config.php';
 header('Content-Type: application/json');
 
 try {
-    require_once LUPO_INCLUDES_DIR . '/class-pdo_db.php';
-    $db = new PDO_DB(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_TYPE);
+    $db = DatabaseFactory::getConnection();
     
     // Get message statistics
     $stats = $db->fetchRow("

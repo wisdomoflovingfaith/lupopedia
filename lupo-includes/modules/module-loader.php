@@ -152,6 +152,30 @@ function lupo_route_slug($slug) {
         }
     }
 
+    // GET /my-profile — actor profile page (standalone UI, no content system)
+    if ($normalized_slug === 'my-profile' && ($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $actors_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'actors' . DIRECTORY_SEPARATOR . 'actors-controller.php';
+        if (file_exists($actors_controller_path)) {
+            require_once $actors_controller_path;
+            if (function_exists('actors_handle_my_profile')) {
+                return actors_handle_my_profile();
+            }
+        }
+    }
+
+    // POST /my-profile/save — save profile form
+    if ($slug === 'my-profile/save' && ($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $actors_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'actors' . DIRECTORY_SEPARATOR . 'actors-controller.php';
+        if (file_exists($actors_controller_path)) {
+            require_once $actors_controller_path;
+            if (function_exists('actors_handle_my_profile_save')) {
+                return actors_handle_my_profile_save();
+            }
+        }
+    }
+
     // My Channel entry point (slug may be my-channel or my-channel.php)
     if ($normalized_slug === 'my-channel') {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
@@ -235,7 +259,7 @@ function lupo_route_slug($slug) {
         }
     }
     
-    // OPERATOR SIGN-ON ROUTE: /operator/signon
+    // CHANNEL SIGN-ON ROUTE: /operator/signon (channel-based; actor must have role in channel)
     if ($slug === 'operator/signon') {
         // Load render_main_layout function
         $content_renderer = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/renderers/content-renderer.php';
@@ -243,67 +267,69 @@ function lupo_route_slug($slug) {
             require_once $content_renderer;
         }
 
-        // Handle POST request (operator selection)
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['operator_id'])) {
-            $operator_id = (int)$_POST['operator_id'];
+        // Handle POST request (channel selection)
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['channel_id'])) {
+            $channel_id = (int)$_POST['channel_id'];
 
             $db = $GLOBALS['mydatabase'] ?? null;
-            if ($db) {
-                $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-
-                // Get channel_id for the selected operator
-                $stmt = $db->prepare("SELECT channel_id FROM {$table_prefix}operators WHERE operator_id = :operator_id LIMIT 1");
-                $stmt->execute([':operator_id' => $operator_id]);
-                $operator = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                if ($operator) {
-                    // Update operator to active
-                    $update_stmt = $db->prepare("UPDATE {$table_prefix}operators SET is_active = 1 WHERE operator_id = :operator_id");
-                    $update_stmt->execute([':operator_id' => $operator_id]);
-
-                    // Redirect to channel
-                    $channel_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
-                    $channel_url .= '/channels/' . $operator['channel_id'];
-                    header('Location: ' . $channel_url);
-                    exit;
+            if ($db && $channel_id > 0) {
+                if (!function_exists('current_user')) {
+                    require_once LUPOPEDIA_ABSPATH . '/lupo-includes/functions/auth-helpers.php';
+                }
+                $current_user = current_user();
+                $actor_id = $current_user['actor_id'] ?? null;
+                if ($actor_id) {
+                    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+                    $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
+                    $stmt->execute([':channel_id' => $channel_id, ':actor_id' => $actor_id]);
+                    if ($stmt->fetch()) {
+                        $channel_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+                        $channel_url .= '/channels/' . $channel_id;
+                        header('Location: ' . $channel_url);
+                        exit;
+                    }
                 }
             }
         }
 
-        // Get current user
+        // Get current user and channels where they have a role
         if (!function_exists('current_user')) {
             require_once LUPOPEDIA_ABSPATH . '/lupo-includes/functions/auth-helpers.php';
         }
         $current_user = current_user();
 
-        $operators = [];
+        $channels = [];
         if ($current_user) {
             $actor_id = $current_user['actor_id'] ?? null;
-
             if ($actor_id) {
                 $db = $GLOBALS['mydatabase'] ?? null;
                 if ($db) {
                     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-                    $stmt = $db->prepare("SELECT operator_id, department_id, channel_id FROM {$table_prefix}operators WHERE actor_id = :actor_id");
+                    $stmt = $db->prepare(
+                        "SELECT r.channel_id, r.role_type, c.channel_name, c.department_id " .
+                        "FROM {$table_prefix}channel_roles r " .
+                        "INNER JOIN {$table_prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
+                        "WHERE r.actor_id = :actor_id AND r.is_deleted = 0"
+                    );
                     $stmt->execute([':actor_id' => $actor_id]);
-                    $operators = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $channels = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
             }
         }
 
-        // Load view
+        // Load view (channels list; POST channel_id)
         $operator_signon_view = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/operator/views/signon.php';
         if (file_exists($operator_signon_view)) {
             ob_start();
             include $operator_signon_view;
             $page_body = ob_get_clean();
         } else {
-            $page_body = '<p>Operator sign-on view not found</p>';
+            $page_body = '<p>Channel sign-on view not found</p>';
         }
 
         $context = [
             'page_body' => $page_body,
-            'page_title' => 'Operator Sign-On'
+            'page_title' => 'Channel Sign-On'
         ];
         return render_main_layout($context);
     }
@@ -348,7 +374,7 @@ function lupo_route_slug($slug) {
         }
     }
 
-    // API: Operator pending visitors (GET). Legacy: admin_users peoplestring — unassigned visitors.
+    // API: Pending visitors (GET). Channel-based; unassigned visitors for department.
     if (preg_match('#^api/operator/pending-visitors$#', $slug)) {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'operator-pending-visitors-api.php';
@@ -358,7 +384,7 @@ function lupo_route_slug($slug) {
         }
     }
 
-    // API: Operator accept visitor (POST). Moves visitor onto operator's channel.
+    // API: Accept visitor (POST). Moves visitor onto channel; actor must have channel role.
     if (preg_match('#^api/operator/accept-visitor$#', $slug)) {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'operator-accept-visitor-api.php';
@@ -394,7 +420,7 @@ function lupo_route_slug($slug) {
         $edge_id = (int)$matches[1];
 
         // Load EdgesController
-        $edges_controller_path = LUPOPEDIA_ABSPATH . '/lupopedia/app/Http/Controllers/EdgesController.php';
+        $edges_controller_path = (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH) . '/app/Http/Controllers/EdgesController.php';
         if (file_exists($edges_controller_path)) {
             require_once $edges_controller_path;
             $controller = new EdgesController();

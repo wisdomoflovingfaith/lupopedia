@@ -1,3 +1,6 @@
+FILE: docs/README.md
+TYPE: md
+
 # Documentation Index
 
 This directory hosts doctrine files, architecture notes, emotional-metadata specifications, and multi-agent rules. It keeps core philosophy and technical references organized outside the repository root.

@@ -1,0 +1,45 @@
+{
+  "table_name": "lupo_channel_escalation_rules",
+  "fields": [
+    "`rule_id` bigint NOT NULL auto_increment",
+    "`channel_id` bigint NOT NULL",
+    "`rule_name` varchar(255) NOT NULL",
+    "`rule_description` text",
+    "`rule_type` varchar(64) NOT NULL",
+    "`rule_config_json` json",
+    "`created_ymdhis` char(14) NOT NULL",
+    "`updated_ymdhis` char(14) NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` char(14)"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_channel_id",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_rule_type",
+      "columns": [
+        "rule_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "rule_id",
+    "expected_name": "rule_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

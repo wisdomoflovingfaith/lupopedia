@@ -382,5 +382,32 @@ class PDO_DB {
     public function getPdo() {
         return $this->pdo;
     }
+
+    /**
+     * Prepare a statement (for compatibility with code using prepare/execute/fetch).
+     * Prefer query(), fetchRow(), fetchAll() for new code.
+     * @param string $sql
+     * @return PDOStatement
+     */
+    public function prepare($sql) {
+        return $this->pdo->prepare($sql);
+    }
+
+    /**
+     * Execute a raw SQL statement (e.g. SET time_zone). Prefer parameterized query() where possible.
+     * @param string $sql
+     * @return int|false
+     */
+    public function exec($sql) {
+        return $this->pdo->exec($sql);
+    }
+
+    /**
+     * Get last insert ID (for compatibility with code using PDO::lastInsertId).
+     * @return string|false
+     */
+    public function lastInsertId($name = null) {
+        return $name !== null ? $this->pdo->lastInsertId($name) : $this->pdo->lastInsertId();
+    }
 }
 ?>

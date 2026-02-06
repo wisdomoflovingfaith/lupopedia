@@ -69,22 +69,23 @@ function lupo_render_login_status() {
         
         $logout_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/logout' : '/logout';
         $admin_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/admin' : '/admin';
-        $profile_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/profile' : '/profile';
-        $operator_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/lupopedia/crafty_syntax/' : '/lupopedia/crafty_syntax/';
+        $profile_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/my-profile' : '/my-profile';
+        $operator_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/crafty_syntax/' : '/crafty_syntax/';
 
-        // Check if user is an operator
+        // Check if user has a channel role (actor has at least one role in lupo_channel_roles)
         $is_operator = false;
-        try {
-            $db = lupo_get_db();
-            $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : str_replace('-', '_', LUPO_PREFIX);
-            $operator_check_sql = "SELECT operator_id FROM {$table_prefix}operators WHERE auth_user_id = :auth_user_id AND is_active = 1 LIMIT 1";
-            $operator_stmt = $db->prepare($operator_check_sql);
-            $operator_stmt->execute([':auth_user_id' => $auth_user_id]);
-            $is_operator = ($operator_stmt->rowCount() > 0);
-        } catch (Exception $e) {
-            // Silently fail - if operators table doesn't exist or query fails, user is not an operator
-            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                error_log("AUTH UI: Operator check failed: " . $e->getMessage());
+        $actor_id = (int)($user['actor_id'] ?? 0);
+        if ($actor_id) {
+            try {
+                $db = lupo_get_db();
+                $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : str_replace('-', '_', LUPO_PREFIX);
+                $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}channel_roles WHERE actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
+                $stmt->execute([':actor_id' => $actor_id]);
+                $is_operator = ($stmt->rowCount() > 0);
+            } catch (Exception $e) {
+                if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                    error_log("AUTH UI: Channel role check failed: " . $e->getMessage());
+                }
             }
         }
 
@@ -116,10 +117,10 @@ function lupo_render_login_status() {
             $html .= '<a href="' . htmlspecialchars($operator_url) . '" class="dropdown-item" style="color: #16a085; font-weight: 600;">';
             $html .= '<span class="dropdown-icon">🎧</span> Crafty Syntax Operator Admin</a>';
 
-            // Add Operator Sign-On menu item
-            $operator_signon_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/operator/signon' : '/operator/signon';
-            $html .= '<a href="' . htmlspecialchars($operator_signon_url) . '" class="dropdown-item" style="color: #16a085; font-weight: 600;">';
-            $html .= '<span class="dropdown-icon">✓</span> Operator Sign-On</a>';
+            // Add Channel Sign-On menu item
+            $channel_signon_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/operator/signon' : '/operator/signon';
+            $html .= '<a href="' . htmlspecialchars($channel_signon_url) . '" class="dropdown-item" style="color: #16a085; font-weight: 600;">';
+            $html .= '<span class="dropdown-icon">✓</span> Channel Sign-On</a>';
         }
 
         $html .= '<a href="#" class="dropdown-item" style="color: #999;" onclick="return false;">';

@@ -1,275 +1,305 @@
 /**
- * Channel operator cockpit — multi-thread, all-on-one-screen.
- * Panel 1 (left): All thread conversations stacked vertically, each with bg_color.
- * Panel 2 (right): Operators + visitors list.
- * Panel 3 (bottom): Unified message composer (send to selected thread).
- * No tabs; all threads visible at once. No frames.
+ * Channel cockpit UI — 3-panel layout and shared channel styles.
+ * Used by: show.php (channel cockpit), channel-log.php (governance log).
+ * Layout: header (rooms bar) | body (message stream + people aside) | tabs bar | composer footer.
  */
 
+/* ---- Wrapper ---- */
 .channel-operator-interface {
     display: flex;
     flex-direction: column;
-    min-height: 70vh;
-    margin: 0;
-    padding: 0;
-    background: #f0f0f0;
+    min-height: 60vh;
+    max-width: 100%;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    font-size: 14px;
 }
 
-.channel-interface-header {
+/* ---- Header (rooms bar) ---- */
+.channel-interface-header.channel-rooms-bar {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    gap: 0.75rem;
     padding: 0.75rem 1rem;
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    flex-shrink: 0;
+    background: #f0f0f0;
+    border-bottom: 1px solid #ccc;
 }
-
 .channel-interface-title {
     margin: 0;
     font-size: 1.25rem;
     font-weight: 600;
 }
-
+.channel-rooms-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
 .channel-interface-mylink {
-    color: #1976d2;
+    color: #16a085;
     text-decoration: none;
 }
-
 .channel-interface-mylink:hover {
     text-decoration: underline;
 }
+.channel-presence-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2ecc71;
+    vertical-align: middle;
+}
+.channel-presence-label {
+    font-size: 0.875rem;
+    color: #555;
+}
+.channel-btn {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: #333;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.channel-btn:hover {
+    background: #f5f5f5;
+    border-color: #999;
+}
+.channel-header-button {
+    color: #16a085;
+    border-color: #16a085;
+}
+.channel-header-button:hover {
+    background: #e8f6f3;
+}
+.channel-btn-clear,
+.channel-btn-refresh {
+    font-size: 0.8125rem;
+}
 
-/* Two-column body: left = thread stack, right = people */
+/* ---- Body: 2 panels (message stream + people) ---- */
 .channel-interface-body {
     display: flex;
-    flex: 1;
+    flex: 1 1 auto;
     min-height: 0;
     overflow: hidden;
 }
-
-/* Panel 1: Unified message stream (all threads interleaved by time; each block colored by thread) */
+.channel-panel {
+    overflow: auto;
+    padding: 0.75rem 1rem;
+}
 .channel-panel-message-stream {
-    flex: 1;
+    flex: 1 1 60%;
     min-width: 0;
-    overflow-y: auto;
-    padding: 0.75rem;
-    background: #e8e8e8;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ddd;
+    background: #fafafa;
+}
+.channel-panel-people {
+    flex: 0 0 280px;
+    min-width: 200px;
+    background: #fff;
+    border-left: 1px solid #eee;
+}
+.channel-panel-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
 }
 
-.channel-no-messages {
-    margin: 0;
-    padding: 1rem;
-    color: #666;
-    font-size: 0.9375rem;
-}
-
+/* ---- Message stream ---- */
 .channel-message-stream {
     list-style: none;
     margin: 0;
     padding: 0;
+    flex: 1;
+    min-height: 200px;
 }
-
-/* Each message = one block with its thread’s bg_color (Crafty Syntax style) */
+.channel-no-messages {
+    color: #888;
+    padding: 1rem;
+    font-style: italic;
+}
 .channel-message-block {
-    margin-bottom: 0.5rem;
     padding: 0.5rem 0.75rem;
+    margin-bottom: 0.25rem;
     border-radius: 4px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-left: 3px solid rgba(0,0,0,0.1);
 }
-
 .channel-message-block-meta {
-    display: block;
     font-size: 0.75rem;
-    color: #555;
+    color: #666;
+    margin-right: 0.5rem;
 }
-
 .channel-message-block-sender {
     font-weight: 600;
-    margin-right: 0.25rem;
+    color: #333;
 }
-
 .channel-message-block-text {
-    font-size: 0.875rem;
+    display: block;
+    margin-top: 0.25rem;
+    word-wrap: break-word;
 }
 
-/* Panel 2: Operators + visitors (right sidebar) */
-.channel-panel-people {
+/* ---- People list (pending, channel roles, visitors) ---- */
+.channel-people-list {
     display: flex;
     flex-direction: column;
-    flex: 0 0 220px;
-    min-width: 200px;
-    background: #fff;
-    border-left: 1px solid #ddd;
-    overflow: hidden;
+    gap: 1rem;
 }
-
-.channel-panel-title {
-    margin: 0;
-    padding: 0.5rem 0.75rem;
+.channel-people-section {
+    margin-bottom: 0.75rem;
+}
+.channel-people-section-title {
+    margin: 0 0 0.35rem 0;
     font-size: 0.875rem;
     font-weight: 600;
-    background: #eee;
-    border-bottom: 1px solid #ddd;
-    flex-shrink: 0;
+    color: #555;
 }
-
-.channel-people-list {
-    flex: 1;
-    overflow-y: auto;
-    padding: 0.5rem 0;
+.channel-pending-title {
+    color: #c0392b;
 }
-
-.channel-people-section {
-    margin-bottom: 1rem;
-}
-
-.channel-people-section-title {
-    margin: 0 0 0.25rem 0.75rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #666;
-    text-transform: uppercase;
-}
-
+.channel-pending-list,
 .channel-operators-list,
 .channel-visitors-list {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-
 .channel-person-item {
-    margin: 0;
-    padding: 0.35rem 0.75rem;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.channel-person-name {
-    display: block;
-    font-size: 0.875rem;
-}
-
-.channel-person-status,
-.channel-person-type {
-    display: block;
-    font-size: 0.75rem;
-    color: #666;
-}
-
-.channel-person-empty {
-    padding: 0.5rem 0.75rem;
-    color: #888;
-    font-size: 0.875rem;
-}
-
-.channel-people-empty {
-    margin: 0;
-    padding: 0.5rem 0.75rem;
-    color: #888;
-    font-size: 0.875rem;
-}
-
-/* Pending visitors (New chat request) — legacy highlight + accept */
-.channel-pending-section .channel-people-section-title {
-    color: #c62828;
-    font-weight: 700;
-}
-
-.channel-pending-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.channel-pending-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0.25rem 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.35rem;
     padding: 0.4rem 0.5rem;
-    background: #fff3e0;
-    border: 1px solid #ffcc80;
+    margin-bottom: 0.25rem;
     border-radius: 4px;
+    background: #f8f8f8;
+    font-size: 0.875rem;
 }
-
-.channel-pending-blink {
-    animation: channel-pending-blink 1.2s ease-in-out infinite;
+.channel-person-empty {
+    padding: 0.5rem;
+    color: #888;
+    font-style: italic;
+    font-size: 0.875rem;
 }
-
+.channel-person-name {
+    font-weight: 500;
+    color: #333;
+}
+.channel-person-status,
+.channel-person-type {
+    font-size: 0.75rem;
+    color: #666;
+}
+.channel-pending-item.channel-pending-blink {
+    animation: channel-pending-blink 1.5s ease-in-out infinite;
+}
 @keyframes channel-pending-blink {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.85; }
+    50% { opacity: 0.7; }
 }
-
 .channel-accept-visitor-btn {
-    padding: 0.25rem 0.6rem;
+    padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
     font-weight: 600;
     color: #fff;
-    background: #2e7d32;
-    border: 0;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.channel-accept-visitor-btn:hover {
-    background: #1b5e20;
-}
-
-/* Panel 3: Unified message composer bar (bottom) */
-.channel-composer-bar {
-    flex-shrink: 0;
-    padding: 0.5rem 1rem;
-    background: #fff;
-    border-top: 1px solid #ddd;
-}
-
-.channel-composer-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    align-items: flex-end;
-}
-
-.channel-composer-label {
-    font-size: 0.875rem;
-    font-weight: 500;
-}
-
-.channel-composer-select {
-    min-width: 160px;
-    padding: 0.35rem 0.5rem;
-    font-size: 0.875rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.channel-composer-input {
-    flex: 1;
-    min-width: 200px;
-    min-height: 2.5rem;
-    padding: 0.5rem;
-    font-size: 0.875rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    resize: vertical;
-}
-
-.channel-send-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    background: #1976d2;
-    color: #fff;
+    background: #16a085;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
-
-.channel-send-btn:hover {
-    background: #1565c0;
+.channel-accept-visitor-btn:hover {
+    background: #1abc9c;
 }
 
+/* ---- Tabs bar ---- */
+.channel-tabs-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.5rem 1rem;
+    background: #eee;
+    border-top: 1px solid #ddd;
+}
+.channel-tab {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+.channel-tab:hover {
+    background: rgba(0,0,0,0.05);
+}
+.channel-tab-active {
+    font-weight: 600;
+    border-color: #999;
+    background: #fff;
+}
+.channel-tab-empty {
+    color: #888;
+    font-style: italic;
+}
+
+/* ---- Composer footer ---- */
+.channel-composer-bar {
+    padding: 0.75rem 1rem;
+    background: #f5f5f5;
+    border-top: 1px solid #ddd;
+}
+.channel-composer-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+.channel-composer-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-right: 0.25rem;
+}
+.channel-composer-select {
+    min-width: 140px;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.875rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.channel-composer-input {
+    flex: 1 1 200px;
+    min-width: 150px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-family: inherit;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 2.5rem;
+}
+.channel-send-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
+    background: #16a085;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.channel-send-btn:hover {
+    background: #1abc9c;
+}
 .sr-only {
     position: absolute;
     width: 1px;
@@ -282,140 +312,63 @@
     border: 0;
 }
 
-/* Floating typing-preview panel (top-right, Crafty Syntax style) */
+/* ---- Typing preview panel (floating) ---- */
 .channel-typing-preview-panel {
-    position: fixed;
-    top: 110px;
-    right: 320px;
-    width: 280px;
-    max-height: 320px;
-    z-index: 9999;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.channel-typing-preview-panel .channel-typing-preview-title {
-    margin: 0;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    background: #f5f5f5;
-    border-bottom: 1px solid #ddd;
-    flex-shrink: 0;
-}
-
-.channel-typing-preview-list {
-    overflow-y: auto;
+    position: absolute;
+    top: 58px;
+    right: 308px;
+    width: 240px;
+    max-width: calc(100% - 1rem);
     padding: 0.5rem;
-    flex: 1;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 10;
 }
-
+.channel-typing-preview-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #555;
+}
+.channel-typing-preview-list {
+    font-size: 0.8125rem;
+}
 .channel-typing-preview-empty {
     margin: 0;
-    padding: 0.5rem 0;
-    font-size: 0.8125rem;
     color: #888;
+    font-style: italic;
 }
-
 .channel-typing-preview-block {
-    margin-bottom: 0.5rem;
-    padding: 0.4rem 0.6rem;
+    padding: 0.35rem 0.5rem;
+    margin-bottom: 0.25rem;
     border-radius: 4px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    font-size: 0.8125rem;
+    border-left: 3px solid rgba(0,0,0,0.15);
 }
-
-.channel-typing-preview-block:last-child {
-    margin-bottom: 0;
-}
-
 .channel-typing-preview-sender {
     font-weight: 600;
 }
-
 .channel-typing-preview-text {
-    word-break: break-word;
-}
-
-/* Rooms bar (legacy admin_rooms): presence + Clear/Refresh */
-.channel-rooms-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.channel-rooms-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.channel-presence-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #2e7d32;
-}
-
-.channel-presence-label {
-    font-size: 0.875rem;
     color: #555;
 }
 
-.channel-btn {
-    padding: 0.35rem 0.6rem;
-    font-size: 0.8125rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background: #fff;
-    color: #333;
-    text-decoration: none;
+/* ---- Channel log page (shared header styles; log-specific body) ---- */
+.channel-log-page {
+    max-width: 100%;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
-
-.channel-btn:hover {
-    background: #f5f5f5;
+.channel-log-body {
+    padding: 1rem;
 }
-
-.channel-btn-clear { }
-.channel-btn-refresh { }
-
-/* Tabs bar (legacy admin_chat_bot: one tab per thread; selecting tab changes composer target only) */
-.channel-tabs-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2px;
-    padding: 0.25rem 1rem;
-    background: #e8e8e8;
-    border-top: 1px solid #ddd;
-    flex-shrink: 0;
+.channel-log-form-section {
+    margin-bottom: 1.5rem;
 }
-
-.channel-tab {
-    padding: 0.35rem 0.75rem;
-    font-size: 0.8125rem;
-    border-radius: 4px 4px 0 0;
-    text-decoration: none;
-    color: #333;
-    border: 1px solid rgba(0,0,0,0.1);
-}
-
-.channel-tab:hover {
-    filter: brightness(1.05);
-}
-
-.channel-tab-active {
+.channel-log-section-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
     font-weight: 600;
-    border-bottom-color: #fff;
 }
-
-.channel-tab-empty {
-    color: #888;
-    cursor: default;
+.channel-log-form {
+    margin-bottom: 1rem;
 }

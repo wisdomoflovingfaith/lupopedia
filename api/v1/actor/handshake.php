@@ -12,7 +12,6 @@
  */
 
 require_once __DIR__ . '/../../../lupopedia-config.php';
-require_once LUPO_INCLUDES_DIR . '/class-pdo_db.php';
 
 header('Content-Type: application/json');
 
@@ -54,7 +53,7 @@ if (isset($in['expires_utc']) && is_numeric(preg_replace('/\D/', '', (string)$in
 $now = (int) gmdate('YmdHis');
 
 try {
-    $db = new PDO_DB(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_TYPE);
+    $db = DatabaseFactory::getConnection();
 
     $id = $db->insert('lupo_actor_handshakes', [
         'actor_id'             => $actor_id,

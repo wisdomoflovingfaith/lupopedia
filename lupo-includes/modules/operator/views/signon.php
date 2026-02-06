@@ -1,25 +1,25 @@
-<div class="operator-signon">
-    <h1>Operator Sign-On</h1>
+<div class="channel-signon">
+    <h1>Channel Sign-On</h1>
 
-    <?php if (empty($operators)): ?>
-        <p>No operator records found for your account.</p>
+    <?php if (empty($channels)): ?>
+        <p>No channels found where you have a role.</p>
     <?php else: ?>
         <form method="POST" action="">
             <div class="form-group">
-                <label for="operator_select">Select Operator:</label>
-                <select id="operator_select" name="operator_id" required>
-                    <option value="">-- Select Operator --</option>
-                    <?php foreach ($operators as $operator): ?>
-                        <option value="<?= htmlspecialchars($operator['operator_id']) ?>">
-                            Operator ID <?= htmlspecialchars($operator['operator_id']) ?> –
-                            Department <?= htmlspecialchars($operator['department_id'] ?? 'N/A') ?> –
-                            Channel ID <?= htmlspecialchars($operator['channel_id']) ?>
+                <label for="channel_select">Select Channel:</label>
+                <select id="channel_select" name="channel_id" required>
+                    <option value="">-- Select Channel --</option>
+                    <?php foreach ($channels as $ch): ?>
+                        <option value="<?= htmlspecialchars($ch['channel_id']) ?>">
+                            <?= htmlspecialchars($ch['channel_name'] ?? 'Channel ' . $ch['channel_id']) ?>
+                            – <?= htmlspecialchars($ch['role_type'] ?? '') ?>
+                            <?php if (!empty($ch['department_id'])): ?> (Dept <?= (int)$ch['department_id'] ?>)<?php endif; ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Sign On as Operator</button>
+            <button type="submit" class="btn btn-primary">Sign On to Channel</button>
         </form>
     <?php endif; ?>
 </div>

@@ -94,23 +94,19 @@ if (!empty($_GET['leaveamessage'])) {
     $leaveamessage = (strtoupper((string)$_GET['leaveamessage']) === 'NO') ? 'NO' : 'YES';
 }
 
-// Any operator online in this department?
+// Any channel in this department with at least one role? (lupo_channel_roles + lupo_channels)
 $noonehome = true;
 try {
     if ($department !== 0) {
         $stmt = $db->prepare(
-            "SELECT 1 FROM {$prefix}operators o " .
-            "WHERE o.department_id = :dept AND o.is_active = 1 AND (o.availability_status = 'online' OR EXISTS (" .
-            "  SELECT 1 FROM {$prefix}operator_status os WHERE os.operator_id = o.operator_id AND os.status = 'online'" .
-            ")) LIMIT 1"
+            "SELECT 1 FROM {$prefix}channel_roles r " .
+            "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
+            "WHERE c.department_id = :dept AND r.is_deleted = 0 LIMIT 1"
         );
         $stmt->execute([':dept' => $department]);
     } else {
         $stmt = $db->prepare(
-            "SELECT 1 FROM {$prefix}operators o " .
-            "WHERE o.is_active = 1 AND (o.availability_status = 'online' OR EXISTS (" .
-            "  SELECT 1 FROM {$prefix}operator_status os WHERE os.operator_id = o.operator_id AND os.status = 'online'" .
-            ")) LIMIT 1"
+            "SELECT 1 FROM {$prefix}channel_roles WHERE is_deleted = 0 LIMIT 1"
         );
         $stmt->execute([]);
     }
@@ -118,20 +114,7 @@ try {
         $noonehome = false;
     }
 } catch (Throwable $e) {
-    try {
-        if ($department !== 0) {
-            $stmt = $db->prepare("SELECT 1 FROM {$prefix}operators WHERE department_id = :dept AND is_active = 1 AND availability_status = 'online' LIMIT 1");
-            $stmt->execute([':dept' => $department]);
-        } else {
-            $stmt = $db->prepare("SELECT 1 FROM {$prefix}operators WHERE is_active = 1 AND availability_status = 'online' LIMIT 1");
-            $stmt->execute([]);
-        }
-        if ($stmt->fetch()) {
-            $noonehome = false;
-        }
-    } catch (Throwable $e2) {
-        // leave noonehome true
-    }
+    // leave noonehome true
 }
 
 $urlreplace = $force

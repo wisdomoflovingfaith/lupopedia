@@ -1,8 +1,8 @@
 <?php
 /**
- * Operator pending visitors API — GET.
+ * Pending visitors API — GET.
  * Returns visitors whose session metadata.crafty_syntax.status = "pending" for the given department.
- * Legacy: admin_users / peoplestring — list of unassigned visitors (status=request).
+ * Used by channel interface; department resolved from channel_id or actor_departments.
  * All paths use LUPOPEDIA_PUBLIC_PATH.
  */
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
@@ -47,7 +47,7 @@ if (!$db) {
 $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 $department_id = isset($_GET['department_id']) ? (int) $_GET['department_id'] : 0;
 
-// If no department_id, try to resolve from operator's channel or actor_departments
+// If no department_id, try to resolve from channel or actor_departments
 if ($department_id <= 0 && isset($_GET['channel_id'])) {
     $ch = (int) $_GET['channel_id'];
     if ($ch > 0) {

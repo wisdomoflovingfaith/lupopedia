@@ -78,16 +78,7 @@ try {
         throw new Exception('Invalid mood_rgb format. Must be 6 hex digits (RRGGBB)');
     }
 
-    // Initialize database connection
-    // Use PDO_DB wrapper (already loaded via bootstrap)
-    global $mydatabase;
-    if (!isset($mydatabase)) {
-        throw new Exception('Database connection not available');
-    }
-
-    // Create PDO_DB wrapper instance
-    require_once LUPO_INCLUDES_DIR . '/class-pdo_db.php';
-    $db = new PDO_DB(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_TYPE);
+    $db = DatabaseFactory::getConnection();
 
     // Initialize DialogManager
     require_once LUPO_INCLUDES_DIR . '/class-dialog-manager.php';

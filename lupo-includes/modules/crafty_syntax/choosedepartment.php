@@ -2,7 +2,7 @@
 /**
  * Department selection page (legacy choosedepartment.php equivalent).
  * Lists departments from lupo_departments; form posts to livehelp.php.
- * Uses lupo_operators for online/offline per department.
+ * Uses lupo_channel_roles + lupo_channels for staffed departments (any channel in dept has a role).
  * All URLs use LUPOPEDIA_PUBLIC_PATH.
  */
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
@@ -33,23 +33,19 @@ if ($session_id === '') {
 $stmt = $db->query("SELECT department_id, name FROM {$prefix}departments WHERE is_deleted = 0 ORDER BY name");
 $departments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// For each department, check if any operator is online (lupo_operators)
+// For each department, check if any channel has at least one role (lupo_channel_roles + lupo_channels)
 $online_by_dept = [];
 try {
     $stmt = $db->query(
-        "SELECT o.department_id FROM {$prefix}operators o " .
-        "WHERE o.is_active = 1 AND (o.availability_status = 'online' OR EXISTS (" .
-        "  SELECT 1 FROM {$prefix}operator_status os WHERE os.operator_id = o.operator_id AND os.status = 'online'" .
-        "))"
+        "SELECT c.department_id FROM {$prefix}channel_roles r " .
+        "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
+        "WHERE r.is_deleted = 0 AND c.department_id > 0"
     );
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $online_by_dept[(int)$row['department_id']] = true;
     }
 } catch (Throwable $e) {
-    $stmt = $db->query("SELECT department_id FROM {$prefix}operators WHERE is_active = 1 AND availability_status = 'online'");
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $online_by_dept[(int)$row['department_id']] = true;
-    }
+    // leave online_by_dept empty
 }
 
 $form_action = $base . 'livehelp.php';

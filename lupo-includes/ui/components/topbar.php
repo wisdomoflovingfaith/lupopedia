@@ -164,7 +164,7 @@ $avatarTimestamp = file_exists(str_replace(LUPOPEDIA_PUBLIC_PATH, LUPOPEDIA_PATH
                         
                         <div class="dropdown-divider"></div>
                         
-                        <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/profile.php" class="dropdown-item">
+                        <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/my-profile" class="dropdown-item">
                             <span class="dropdown-icon">👤</span>
                             My Profile
                         </a>

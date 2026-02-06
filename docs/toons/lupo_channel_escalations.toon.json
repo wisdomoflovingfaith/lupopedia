@@ -1,29 +1,30 @@
 {
-  "table_name": "lupo_operator_escalations",
+  "table_name": "lupo_channel_escalations",
   "fields": [
     "`escalation_id` bigint NOT NULL auto_increment",
-    "`operator_id` bigint NOT NULL",
-    "`thread_id` bigint NOT NULL",
-    "`escalation_reason` varchar(64) NOT NULL",
-    "`priority` varchar(16) NOT NULL DEFAULT 'medium'",
-    "`status` varchar(16) NOT NULL DEFAULT 'pending'",
-    "`assigned_to_operator_id` bigint",
+    "`channel_id` bigint NOT NULL",
+    "`thread_id` bigint",
+    "`actor_id` bigint",
+    "`escalated_to_actor_id` bigint",
+    "`escalation_reason` varchar(512)",
+    "`metadata_json` json",
     "`created_ymdhis` char(14) NOT NULL",
     "`updated_ymdhis` char(14) NOT NULL",
-    "`resolved_ymdhis` char(14)"
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` char(14)"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_operator",
+      "index_name": "idx_channel_id",
       "columns": [
-        "operator_id"
+        "channel_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_thread",
+      "index_name": "idx_thread_id",
       "columns": [
         "thread_id"
       ],
@@ -31,17 +32,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_status",
+      "index_name": "idx_actor_id",
       "columns": [
-        "status"
+        "actor_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_priority",
+      "index_name": "idx_escalated_to_actor_id",
       "columns": [
-        "priority"
+        "escalated_to_actor_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

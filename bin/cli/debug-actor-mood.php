@@ -30,15 +30,13 @@ if (php_sapi_name() !== 'cli') {
 
 // Bootstrap Lupopedia
 require_once __DIR__ . '/../../lupopedia-config.php';
-require_once LUPO_INCLUDES_DIR . '/class-pdo_db.php';
 require_once __DIR__ . '/../../app/Services/ActorMoodService.php';
 require_once __DIR__ . '/../../app/Services/PackMoodCoherenceService.php';
 
 use App\Services\ActorMoodService;
 use App\Services\PackMoodCoherenceService;
 
-// Initialize services
-$db = new PDO_DB(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_TYPE);
+$db = DatabaseFactory::getConnection();
 $moodService = new ActorMoodService($db);
 $coherenceService = new PackMoodCoherenceService($moodService);
 

@@ -50,67 +50,14 @@ if ( function_exists( 'error_reporting' ) ) {
  
 
 
- // Include the database class
+ // Include the database factory and PDO_DB wrapper (Doctrine: all DB access via DatabaseFactory + PDO_DB)
     require_once(__DIR__ . DIRECTORY_SEPARATOR . 'class-pdo_db.php');
+    require_once(__DIR__ . DIRECTORY_SEPARATOR . 'class-DatabaseFactory.php');
     
     try {
-        // PDO Database Connection
-        $dsn = '';
-        
-        // Set up DSN based on database typeutf8mb4
-        switch (DB_TYPE) {
-            case 'mysql':
-                $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=".DB_CHARSET;
-                if (!empty(DB_PORT)) {
-                    $dsn .= ";port=" . DB_PORT;
-                }
-                // PDO connection options for MySQL
-                $options = [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                    PDO::ATTR_EMULATE_PREPARES => false,
-                    PDO::ATTR_STRINGIFY_FETCHES => false
-                ];
-                // Only add MySQL-specific constants if driver is available
-                if (defined('PDO::MYSQL_ATTR_INIT_COMMAND')) {
-                    $options[PDO::MYSQL_ATTR_INIT_COMMAND] = "SET NAMES utf8mb4";
-                }
-                break;
-                
-            case 'pgsql':
-                $dsn = "pgsql:host=".DB_HOST."dbname=".DB_NAME;
-                if (!empty(DB_PORT)) {
-                    $dsn .= ";port=" . DB_PORT;
-                }
-                // PDO connection options for PostgreSQL
-                $options = [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                    PDO::ATTR_EMULATE_PREPARES => false,
-                    PDO::ATTR_STRINGIFY_FETCHES => false
-                ];
-                break;
-                
-            default:
-                throw new Exception("Unsupported database type: " . DB_TYPE . " Must be 'mysql' or 'pgsql'");
-        }
-        
-        // Create PDO instance
-        $mydatabase = new PDO($dsn, DB_USER, DB_PASSWORD, $options);
-        
-        // Set timezone to UTC
-        if (DB_TYPE === 'mysql') {
-            $mydatabase->exec("SET time_zone = '+00:00'");
-        } else {
-            $mydatabase->exec("SET timezone = 'UTC'");
-        }
-        
-        // Set the database connection in the global scope
+        $mydatabase = DatabaseFactory::getConnection();
         $GLOBALS['mydatabase'] = $mydatabase;
-        
-        // Verify the connection works with a simple query
-        $test = $mydatabase->query("SELECT 1");
-        
+        $mydatabase->query("SELECT 1");
     } catch (Exception $e) {
         // Log the detailed error
         error_log('Database connection error: ' . $e->getMessage());
@@ -120,7 +67,7 @@ if ( function_exists( 'error_reporting' ) ) {
         if (strpos($e->getMessage(), 'Access denied') !== false) {
             $errorMsg .= "\n\nPlease check your database username and password in config.php";
         } elseif (strpos($e->getMessage(), 'Unknown database') !== false) {
-            $errorMsg .= "\n\nThe database '{$database}' does not exist. Please create it first.";
+            $errorMsg .= "\n\nThe database '" . (defined('DB_NAME') ? DB_NAME : '') . "' does not exist. Please create it first.";
         } elseif (strpos($e->getMessage(), 'Connection refused') !== false) {
             $errorMsg .= "\n\nCould not connect to the database server. Please check if MySQL is running.";
         }

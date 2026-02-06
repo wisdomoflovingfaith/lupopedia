@@ -1,7 +1,7 @@
 <?php
 /**
- * Operators & Visitors panel. Legacy: admin_users.
- * Shows: pending visitors (New chat request) at top, then operators, then active visitors in channel.
+ * Channel roles & Visitors panel. Legacy: admin_users.
+ * Shows: pending visitors (New chat request) at top, then channel roles (captain/administrator/monitor), then active visitors in channel.
  */
 $operators = isset($operators) ? $operators : [];
 $visitors = isset($visitors) ? $visitors : [];
@@ -17,7 +17,7 @@ $department_id = isset($department_id) ? (int) $department_id : 0;
      data-pending-url="<?= htmlspecialchars($base . 'api/operator/pending-visitors') ?>"
      data-accept-url="<?= htmlspecialchars($base . 'api/operator/accept-visitor') ?>"
      data-sound-url="<?= htmlspecialchars($base . 'legacy/craftysyntax/sounds/new_chats.wav') ?>">
-    <!-- Pending visitors (unassigned; all operators in department see these) -->
+    <!-- Pending visitors (unassigned; all staff in department see these) -->
     <section class="channel-people-section channel-pending-section" id="channel-pending-section" aria-label="New chat requests" style="<?= empty($pending_visitors) ? 'display:none;' : '' ?>">
         <h3 class="channel-people-section-title channel-pending-title">New chat request</h3>
         <ul class="channel-pending-list" id="channel-pending-list">
@@ -29,16 +29,16 @@ $department_id = isset($department_id) ? (int) $department_id : 0;
             <?php endforeach; ?>
         </ul>
     </section>
-    <section class="channel-people-section" aria-label="Operators">
-        <h3 class="channel-people-section-title">Operators</h3>
+    <section class="channel-people-section" aria-label="Channel roles">
+        <h3 class="channel-people-section-title">Channel roles</h3>
         <ul class="channel-operators-list">
             <?php if (empty($operators)): ?>
-                <li class="channel-person-empty">No operators</li>
+                <li class="channel-person-empty">No channel roles</li>
             <?php else: ?>
                 <?php foreach ($operators as $op): ?>
                     <li class="channel-person-item channel-operator" data-actor-id="<?= (int)($op['actor_id'] ?? 0) ?>">
                         <span class="channel-person-name"><?= htmlspecialchars($op['actor_name'] ?? $op['actor_slug'] ?? 'Operator') ?></span>
-                        <span class="channel-person-status"><?= htmlspecialchars($op['availability_status'] ?? '') ?></span>
+                        <span class="channel-person-status"><?= htmlspecialchars($op['role_type'] ?? '') ?></span>
                     </li>
                 <?php endforeach; ?>
             <?php endif; ?>

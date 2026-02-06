@@ -1,107 +1,15 @@
-<!-- WOLFIE FILE PASSPORT
-     Header-Version: 2.2 -->
+FILE: README.md
+TYPE: md
 
-taxonomy_key: wolfie.header.taxonomy
-taxonomy_version: 2.2
+PURPOSE: Project overview, doctrine boot block, and entry point for contributors and AI agents. Defines identity model, database rules, and mandatory reading before making changes.
 
-file.purpose: Primary documentation and entry point for Lupopedia semantic OS.
-file.created_utc: 2026-02-01
-file.last_modified_utc: 2026-02-01
+DETAILS:
+- Status: Canonical project readme
+- Audience: Contributors, AI agents (Cursor, Windsurf, JetBrains, etc.), maintainers
+- Required reading: docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md, docs/doctrine/LUPOPEDIA_DOCTRINE_v1.1.md, docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md
+- Do not modify doctrine or schema without TOON source and migration workflow.
 
-file.package: lupopedia
-file.subpackage: misc
-file.module: shared
-file.aspect: doctrine
-
-file.utc_epoch: wolfie-winter-2026
-file.updated_by: agent:cascade
-
--->
-wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 2026.3.7.6
-file.channel: doctrine
-file.last_modified_utc: 20260128133107
-file.name: "README.md"
-header_atoms:
-  - GLOBAL_CURRENT_LUPOPEDIA_VERSION
-  - GLOBAL_CURRENT_AUTHORS
-dialog:
-  speaker: JETBRAINS
-  target: @everyone
-  mood_RGB: "00FF00"
-  message: "Added Wolfie Header update requirements and channel provenance rules to README."
-tags:
-  categories: ["documentation", "getting-started"]
-  collections: ["core-docs"]
-  channels: ["public", "dev"]
-in_this_file_we_have:
-  - Overview
-  - What Is Lupopedia? (Federated Semantic OS for Organizing Public Knowledge)
-  - Origins: WOLFIE — Web-Organized Linked Federated Intelligent Ecosystem (originally Wisdom Of Loving Faith Integrity Ethics)
-  - Why Lupopedia Has 111 Tables (And Why That's a Feature, Not a Flaw)
-  - Crafty Syntax Compatibility: 100% Feature Preservation
-  - Quick Start
-  - Wolfie Header Update Requirements
-  - Why Lupopedia Is Different (see docs/channels/overview/WHY_LUPOPEDIA_IS_DIFFERENT.md)
-  - INSTALLATION
-  - REQUIREMENTS
-  - DATABASE_PHILOSOPHY
-  - PERMISSION_SYSTEM
-  - CONFIGURATION
-  - DEVELOPMENT_NOTES
-sections:
-  - title: "Overview"
-    anchor: "#overview"
-  - title: "What Is Lupopedia?"
-    anchor: "#what-is-lupopedia"
-  - title: "Origins: WOLFIE — Web-Organized Linked Federated Intelligent Ecosystem"
-    anchor: "#origins-wolfie-web-organized-linked-federated-intelligent-ecosystem"
-  - title: "Why Lupopedia Has 111 Tables (And Why That's a Feature, Not a Flaw)"
-    anchor: "#why-lupopedia-has-111-tables-and-why-thats-a-feature-not-a-flaw"
-  - title: "Crafty Syntax Compatibility: 100% Feature Preservation"
-    anchor: "#crafty-syntax-compatibility-100-feature-preservation"
-  - title: "Quick Start"
-    anchor: "#quick-start"
-  - title: "Wolfie Header Update Requirements"
-    anchor: "#wolfie-header-update-requirements"
-  - title: "Crafty Syntax Migration Notes"
-    anchor: "#crafty-syntax-migration-notes"
-  - title: "Key Features"
-    anchor: "#key-features"
-  - title: "Documentation"
-    anchor: "#documentation"
-  - title: "Resources"
-    anchor: "#resources"
-  - title: "Important Notes"
-    anchor: "#important-notes"
-  - title: "CRITICAL DATABASE DOCTRINE — READ THIS FIRST"
-    anchor: "#critical-database-doctrine-read-this-first"
-  - title: "Core Modules Included in Every Installation"
-    anchor: "#core-modules-included-in-every-installation"
-  - title: "Core AI Agents (v3.0.2 Required Agents)"
-    anchor: "#core-ai-agents-v402-required-agents"
-  - title: "AI Agents & Decentralized Intelligence"
-    anchor: "#ai-agents-decentralized-intelligence"
-  - title: "Database Schema"
-    anchor: "#database-schema"
-  - title: "Configuration"
-    anchor: "#configuration"
-  - title: "Development"
-    anchor: "#development"
-  - title: "License"
-    anchor: "#license"
-  - title: "Support"
-    anchor: "#support"
-file:
-  title: "Lupopedia - Main README"
-  description: "Main entry point and documentation index for Lupopedia knowledge system"
-  version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
-  status: published
-  author: GLOBAL_CURRENT_AUTHORS
 ---
-
-<!-- test from cascade -->
-<!-- test from WOLFIE -->
 
 # 🐺 Lupopedia
 

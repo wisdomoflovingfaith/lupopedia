@@ -55,11 +55,15 @@
 
 // LEGACY ENDPOINT DEPRECATION NOTICE
 // This legacy admin.php endpoint has been replaced by the new Lupopedia subsystem.
-// The Crafty Syntax operator console is now available at:
-//
-//     /lupopedia/crafty_syntax/
-//
-// Please update your bookmarks.
+// Operator console URL must come from config (Installation Path Doctrine).
+$operator_console_path = '';
+if (file_exists(__DIR__ . '/lupopedia-config.php')) {
+    require_once __DIR__ . '/lupopedia-config.php';
+    $operator_console_path = defined('LUPOPEDIA_PUBLIC_PATH') ? (rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/crafty_syntax/') : '';
+}
+if ($operator_console_path === '') {
+    $operator_console_path = '[install-path]/crafty_syntax/'; // fallback if config not loaded
+}
 
 header('HTTP/1.1 410 Gone');
 ?>
@@ -78,7 +82,7 @@ header('HTTP/1.1 410 Gone');
     <h1>Legacy Endpoint Deprecated</h1>
     <p>This legacy <code>/admin.php</code> endpoint has been replaced by the new Lupopedia subsystem.</p>
     <p><strong>Crafty Syntax Operator Console is now at:</strong></p>
-    <p><code>/lupopedia/crafty_syntax/</code></p>
+    <p><code><?= htmlspecialchars($operator_console_path) ?></code></p>
     <p>Please update your bookmarks and navigate there directly.</p>
 </body>
 </html>

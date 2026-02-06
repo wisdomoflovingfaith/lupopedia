@@ -11,7 +11,6 @@
  */
 
 require_once __DIR__ . '/../../../lupopedia-config.php';
-require_once LUPO_INCLUDES_DIR . '/class-pdo_db.php';
 
 header('Content-Type: application/json');
 
@@ -23,7 +22,7 @@ if ($actor_id <= 0) {
 }
 
 try {
-    $db  = new PDO_DB(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_TYPE);
+    $db = DatabaseFactory::getConnection();
     $row = $db->fetchRow(
         "SELECT actor_id, actor_type, utc_timestamp, purpose, constraints_json, forbidden_actions_json 
          FROM lupo_actor_handshakes 

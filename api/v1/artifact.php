@@ -12,7 +12,6 @@
  */
 
 require_once __DIR__ . '/../../lupopedia-config.php';
-require_once LUPO_INCLUDES_DIR . '/class-pdo_db.php';
 
 header('Content-Type: application/json');
 
@@ -21,7 +20,7 @@ $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 $types = ['dialog', 'changelog', 'schema', 'lore', 'humor', 'protocol', 'fork_justification'];
 
 try {
-    $db = new PDO_DB(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_TYPE);
+    $db = DatabaseFactory::getConnection();
 } catch (Exception $e) {
     http_response_code(500);
     echo json_encode(['error' => 'Database unavailable', 'utc_timestamp' => gmdate('YmdHis')], JSON_PRETTY_PRINT);
