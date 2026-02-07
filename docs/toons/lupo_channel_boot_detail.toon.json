@@ -2,16 +2,16 @@
   "table_name": "lupo_channel_boot_detail",
   "fields": [
     "`detail_id` bigint NOT NULL auto_increment COMMENT 'Primary key for boot detail'",
-    "`boot_id` bigint NOT NULL COMMENT 'Reference to lupo_channel_boot_log.boot_id'",
-    "`channel_id` bigint NOT NULL COMMENT 'Reference to lupo_channels.channel_id'",
-    "`load_start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED COMMENT 'Channel load start'",
-    "`load_end_time` timestamp COMMENT 'Channel load completion'",
-    "`load_status` enum('started','loading','completed','failed','skipped') NOT NULL DEFAULT 'started'",
-    "`content_items_loaded` int NOT NULL DEFAULT 0 COMMENT 'Content items successfully loaded'",
-    "`total_content_items` int NOT NULL DEFAULT 0 COMMENT 'Total content items in channel'",
-    "`load_duration_ms` int COMMENT 'Load duration in milliseconds'",
-    "`error_message` text COMMENT 'Load error details'",
-    "`created_ymdhis` bigint NOT NULL DEFAULT 0 COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'"
+    "`boot_id` bigint NOT NULL",
+    "`channel_id` bigint NOT NULL",
+    "`load_start_time` bigint",
+    "`load_end_time` bigint",
+    "`load_status` varchar(64) NOT NULL DEFAULT 'started'",
+    "`content_items_loaded` int NOT NULL DEFAULT 0",
+    "`total_content_items` int NOT NULL DEFAULT 0",
+    "`load_duration_ms` int",
+    "`error_message` text",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0"
   ],
   "data": [],
   "indexes": [

@@ -8,10 +8,10 @@
     "`department_type` varchar(32) NOT NULL DEFAULT 'general'",
     "`default_actor_id` bigint NOT NULL DEFAULT 1",
     "`settings_json` json",
-    "`created_ymdhis` char(14) NOT NULL",
-    "`updated_ymdhis` char(14) NOT NULL",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
-    "`deleted_ymdhis` char(14)"
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

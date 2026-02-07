@@ -2,10 +2,10 @@
   "table_name": "lupo_content_tag_relationships",
   "fields": [
     "`relationship_id` bigint NOT NULL auto_increment COMMENT 'Primary key for content-tag relationship'",
-    "`content_id` bigint NOT NULL COMMENT 'Reference to content table'",
-    "`tag_id` bigint NOT NULL COMMENT 'Reference to tag table'",
-    "`relationship_type` enum('category','topic','label') NOT NULL COMMENT 'Type of relationship'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp'"
+    "`content_id` bigint NOT NULL",
+    "`tag_id` bigint NOT NULL",
+    "`relationship_type` varchar(64) NOT NULL",
+    "`created_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [

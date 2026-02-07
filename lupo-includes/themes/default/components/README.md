@@ -64,7 +64,7 @@ include LUPO_UI_PATH . '/components/topbar.php';
 - Keyboard shortcuts and accessibility support
 
 **Related Files:**
-- Layout: `/lupo-includes/ui/layouts/main_layout.php`
+- Layout: `/lupo-includes/themes/default/layouts/main_layout.php`
 - CSS: Included in component (inline styles)
 - JavaScript: Toggle functions defined in component
 
@@ -107,8 +107,8 @@ include LUPO_UI_PATH . '/components/footer.php';
 - Integrates with semantic panel component
 
 **Related Files:**
-- Layout: `/lupo-includes/ui/layouts/main_layout.php`
-- Semantic Panel: `/lupo-includes/ui/components/semantic_panel.php`
+- Layout: `/lupo-includes/themes/default/layouts/main_layout.php`
+- Semantic Panel: `/lupo-includes/themes/default/components/semantic_panel.php`
 - CSS: Included in component (inline styles)
 - JavaScript: Navigation functions defined in component
 
@@ -141,7 +141,7 @@ include LUPO_UI_PATH . '/components/content_outline.php';
 - Responsive (hidden on small screens)
 
 **Related Files:**
-- Layout: `/lupo-includes/ui/layouts/main_layout.php`
+- Layout: `/lupo-includes/themes/default/layouts/main_layout.php`
 - CSS: Included in component (inline styles)
 - JavaScript: Scroll tracking and navigation functions defined in component
 
@@ -183,8 +183,8 @@ include LUPO_UI_PATH . '/components/semantic_panel.php';
 - Integrates with footer semantic navigation bar
 
 **Related Files:**
-- Layout: `/lupo-includes/ui/layouts/main_layout.php`
-- Footer: `/lupo-includes/ui/components/footer.php`
+- Layout: `/lupo-includes/themes/default/layouts/main_layout.php`
+- Footer: `/lupo-includes/themes/default/components/footer.php`
 - CSS: Included in component (inline styles)
 - JavaScript: Panel toggle and content rendering functions defined in component
 
@@ -224,7 +224,7 @@ include LUPO_UI_PATH . '/components/semantic_map.php';
 - Responsive (hidden on small screens)
 
 **Related Files:**
-- Layout: `/lupo-includes/ui/layouts/main_layout.php`
+- Layout: `/lupo-includes/themes/default/layouts/main_layout.php`
 - ConnectionsService: `/lupo-includes/class-ConnectionsService.php`
 - CSS: Included in component (inline styles)
 - JavaScript: Panel toggle function defined in component
@@ -304,8 +304,8 @@ include LUPO_UI_PATH . '/components/collections_dropdown.php';
 **Related Files:**
 - API: `/api/list_user_collections.php` - Returns user collections
 - API: `/api/load_collection_tabs.php` - Returns tabs for a collection
-- Layout: `/lupo-includes/ui/layouts/main_layout.php` - Contains modal and collection management functions
-- Topbar: `/lupo-includes/ui/components/topbar.php` - Includes this component
+- Layout: `/lupo-includes/themes/default/layouts/main_layout.php` - Contains modal and collection management functions
+- Topbar: `/lupo-includes/themes/default/components/topbar.php` - Includes this component
 
 **Version:** GLOBAL_CURRENT_LUPOPEDIA_VERSION - Created for UI layout template integration
 

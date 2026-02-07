@@ -4,17 +4,17 @@
     "`help_topic_id` bigint NOT NULL auto_increment COMMENT 'Primary key for help topic'",
     "`slug` varchar(255) NOT NULL",
     "`title` varchar(255) NOT NULL",
-    "`content_html` longtext",
-    "`content_markdown` longtext",
+    "`content_html` text",
+    "`content_markdown` text",
     "`category` varchar(100)",
     "`parent_slug` varchar(255)",
     "`view_count` bigint DEFAULT 0",
     "`helpful_count` bigint DEFAULT 0",
     "`not_helpful_count` bigint DEFAULT 0",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC creation timestamp (YYYYMMDDHHMMSS)'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC last update timestamp (YYYYMMDDHHMMSS)'",
-    "`author_actor_id` bigint COMMENT 'Author actor ID'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'"
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`author_actor_id` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0"
   ],
   "data": [],
   "indexes": [

@@ -1,16 +1,16 @@
 {
   "table_name": "lupo_anubis_deletion_log",
   "fields": [
-    "`anubis_deletion_id` bigint unsigned NOT NULL auto_increment",
+    "`anubis_deletion_id` bigint NOT NULL auto_increment",
     "`table_name` varchar(255) NOT NULL",
-    "`record_id` bigint unsigned NOT NULL",
-    "`deleted_ymdhis` bigint unsigned NOT NULL",
-    "`deletion_type` enum('path_not_taken','merged','moved','updated','consolidated','orphan_adopted','manual_override','system_cleanup','superseded','deprecated','temporal_context_expired') NOT NULL",
+    "`record_id` bigint NOT NULL",
+    "`deleted_ymdhis` bigint NOT NULL",
+    "`deletion_type` varchar(64) NOT NULL",
     "`replacement_table` varchar(255)",
-    "`replacement_id` bigint unsigned",
+    "`replacement_id` bigint",
     "`anubis_operator` varchar(255) NOT NULL",
     "`context_json` json",
-    "`notes` longtext"
+    "`notes` text"
   ],
   "data": [],
   "indexes": [

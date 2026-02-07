@@ -2,11 +2,11 @@
   "table_name": "lupo_semantic_relationships",
   "fields": [
     "`relationship_id` bigint NOT NULL auto_increment COMMENT 'Primary key for semantic relationship'",
-    "`source_content_id` bigint NOT NULL COMMENT 'Source content ID'",
-    "`target_content_id` bigint COMMENT 'Target content ID'",
-    "`relationship_type` enum('related','series','hierarchy') NOT NULL COMMENT 'Type of semantic relationship'",
-    "`relationship_strength` decimal(3,2) NOT NULL DEFAULT 1.00 COMMENT 'Relationship strength (0.0-1.0)'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp'"
+    "`source_content_id` bigint NOT NULL",
+    "`target_content_id` bigint",
+    "`relationship_type` varchar(64) NOT NULL",
+    "`relationship_strength` decimal(3,2) NOT NULL DEFAULT 1.00",
+    "`created_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [

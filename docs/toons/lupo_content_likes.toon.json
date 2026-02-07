@@ -2,13 +2,13 @@
   "table_name": "lupo_content_likes",
   "fields": [
     "`content_like_id` bigint NOT NULL auto_increment",
-    "`content_id` bigint NOT NULL COMMENT 'ID of the content being liked'",
-    "`user_id` bigint COMMENT 'ID of the user who liked (if authenticated)'",
-    "`visitor_hash` char(64) COMMENT 'Hashed IP/session for anonymous likes'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
-    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    "`content_id` bigint NOT NULL",
+    "`user_id` bigint",
+    "`visitor_hash` char(64)",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

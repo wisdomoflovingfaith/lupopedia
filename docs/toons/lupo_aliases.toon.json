@@ -1,11 +1,11 @@
 {
   "table_name": "lupo_aliases",
   "fields": [
-    "`id` int unsigned NOT NULL auto_increment",
+    "`id` int NOT NULL auto_increment",
     "`slug` varchar(255) NOT NULL",
     "`alias` varchar(255) NOT NULL",
     "`alias_type` varchar(50) DEFAULT 'semantic'",
-    "`created_at` timestamp DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED"
+    "`created_at` bigint"
   ],
   "data": [],
   "indexes": [

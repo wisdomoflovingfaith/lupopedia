@@ -3,7 +3,7 @@
   "fields": [
     "`framework_name` varchar(32) NOT NULL",
     "`description` text",
-    "`is_default` tinyint(1) NOT NULL DEFAULT 0",
+    "`is_default` tinyint NOT NULL DEFAULT 0",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL"
   ],

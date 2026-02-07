@@ -2,17 +2,17 @@
   "table_name": "lupo_auth_providers",
   "fields": [
     "`auth_provider_id` bigint NOT NULL auto_increment",
-    "`provider_name` varchar(50) NOT NULL COMMENT 'Unique provider name (e.g., google, github)'",
-    "`client_id` varchar(255) NOT NULL COMMENT 'OAuth client ID'",
-    "`client_secret` text NOT NULL COMMENT 'Encrypted at rest in lupopedia-config.php'",
-    "`scopes` text COMMENT 'Space-separated list of OAuth scopes'",
-    "`authorization_endpoint` varchar(2000) NOT NULL COMMENT 'OAuth authorization URL'",
-    "`token_endpoint` varchar(2000) NOT NULL COMMENT 'OAuth token URL'",
-    "`userinfo_endpoint` varchar(2000) COMMENT 'Optional userinfo endpoint'",
-    "`jwks_uri` varchar(2000) COMMENT 'Optional JWKS URI for key rotation'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when provider was created'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when provider was last updated'",
-    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = inactive'"
+    "`provider_name` varchar(50) NOT NULL",
+    "`client_id` varchar(255) NOT NULL",
+    "`client_secret` text NOT NULL",
+    "`scopes` text",
+    "`authorization_endpoint` varchar(2000) NOT NULL",
+    "`token_endpoint` varchar(2000) NOT NULL",
+    "`userinfo_endpoint` varchar(2000)",
+    "`jwks_uri` varchar(2000)",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_active` tinyint NOT NULL DEFAULT 1"
   ],
   "data": [],
   "indexes": [

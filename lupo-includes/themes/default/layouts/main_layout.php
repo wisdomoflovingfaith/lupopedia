@@ -1,7 +1,7 @@
 <?php
 /**
  * wolfie.header.identity: main-layout
- * wolfie.header.placement: /lupo-includes/ui/layouts/main_layout.php
+ * wolfie.header.placement: /lupo-includes/themes/default/layouts/main_layout.php
  * wolfie.header.version: lupopedia_current_version
  * wolfie.header.dialog:
  *   speaker: CURSOR
@@ -24,9 +24,10 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
  * that wraps all content. Updated to match template structure.
  */
 
-// Define UI path if not already defined
+// Theme path: use theme when loading from theme, else core UI (fallback)
 if (!defined('LUPO_UI_PATH')) {
-    define('LUPO_UI_PATH', LUPOPEDIA_PATH . '/lupo-includes/ui');
+    $theme_layout = LUPOPEDIA_PATH . '/lupo-includes/themes/default/layouts/main_layout.php';
+    define('LUPO_UI_PATH', (file_exists($theme_layout) ? LUPOPEDIA_PATH . '/lupo-includes/themes/default' : LUPOPEDIA_PATH . '/lupo-includes/ui'));
 }
 
 // Extract content fields with defaults

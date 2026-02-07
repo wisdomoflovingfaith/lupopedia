@@ -1,7 +1,7 @@
 <?php
 /**
  * wolfie.header.identity: collections-dropdown
- * wolfie.header.placement: /lupo-includes/ui/components/collections_dropdown.php
+ * wolfie.header.placement: /lupo-includes/themes/default/components/collections_dropdown.php
  * wolfie.header.version: lupopedia_current_version
  * wolfie.header.dialog:
  *   speaker: CURSOR

@@ -2,13 +2,13 @@
   "table_name": "lupo_semantic_search_index",
   "fields": [
     "`search_index_id` bigint NOT NULL auto_increment COMMENT 'Primary key for search index'",
-    "`index_name` varchar(255) NOT NULL COMMENT 'Search index name'",
-    "`index_type` enum('content','legacy_mapping','views') NOT NULL COMMENT 'Type of search index'",
-    "`description` text COMMENT 'Search index description'",
-    "`index_data` json NOT NULL COMMENT 'Search index data'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp'",
-    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT 'Search index active flag'"
+    "`index_name` varchar(255) NOT NULL",
+    "`index_type` varchar(64) NOT NULL",
+    "`description` text",
+    "`index_data` json NOT NULL",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_active` tinyint NOT NULL DEFAULT 1"
   ],
   "data": [],
   "indexes": [

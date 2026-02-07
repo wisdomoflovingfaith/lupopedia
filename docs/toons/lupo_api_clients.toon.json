@@ -2,16 +2,16 @@
   "table_name": "lupo_api_clients",
   "fields": [
     "`api_client_id` bigint NOT NULL auto_increment COMMENT 'Primary key for API client record'",
-    "`actor_id` bigint NOT NULL DEFAULT 0 COMMENT 'Owner of this client (0 = system)'",
-    "`client_key` varchar(255) NOT NULL COMMENT 'Public client identifier'",
-    "`client_secret` varchar(255) NOT NULL COMMENT 'Hashed client secret (never store raw secret)'",
-    "`client_name` varchar(150) NOT NULL COMMENT 'Human-readable name of the client'",
-    "`client_description` text COMMENT 'Description of the integration or application'",
-    "`scopes` text COMMENT 'Comma-separated list of allowed scopes'",
-    "`is_active` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = disabled'",
+    "`actor_id` bigint NOT NULL DEFAULT 0",
+    "`client_key` varchar(255) NOT NULL",
+    "`client_secret` varchar(255) NOT NULL",
+    "`client_name` varchar(150) NOT NULL",
+    "`client_description` text",
+    "`scopes` text",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
-    "`expires_ymdhis` bigint COMMENT 'Expiration timestamp (NULL = never)'"
+    "`expires_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

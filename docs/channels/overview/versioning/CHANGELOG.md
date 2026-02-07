@@ -2,7 +2,7 @@
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "CHANGELOG.md"
 file.version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
-file.last_modified_system_version: 2026.3.7.6
+file.last_modified_system_version: 4.0.0
 file.channel: doctrine
 file.last_modified_utc: 20260128133454
 file.utc_day: 20260128
@@ -21,7 +21,7 @@ dialog:
   speaker: JETBRAINS
   target: @everyone
   mood_RGB: "00FF88"
-  message: "Logged 2026.3.7.6 updates covering emotional geometry, ethical markers, channel normalization, and header rules."
+  message: "Changelog for Lupopedia. Current version 4.0.0. See docs/versioning/README.md."
 tags:
   categories: ["documentation", "changelog"]
   collections: ["core-docs"]
@@ -37,6 +37,15 @@ file:
 ---
 
 # ALL NEW ENTRIES AFTER THIS LINE
+
+## [4.0.0] — 2026-02-06
+
+### Summary
+- Reserved-word column renames (lupo_actor_group_membership.role→role_key, lupo_artifacts.type→entity_type, lupo_pack_role_registry.role→role_key, lupo_unified_analytics_paths.year_month→year_month_key).
+- One-time migration dev_20260206_reserved_word_column_renames.sql; install_new_lupopedia.sql updated.
+- API artifact and timeline use entity_type; version atom and version.php set to 4.0.0.
+- .cursorrules: Zero Installations / No Backward Compatibility Rule; Version Lock Rule (4.0.0 until 4.1.0 auto-installer).
+- Migration notes: docs/channels/schema/migrations/4.0.0.md.
 
 ## [2026.3.7.8] — 2026-01-29 23:55 (UTC)
 

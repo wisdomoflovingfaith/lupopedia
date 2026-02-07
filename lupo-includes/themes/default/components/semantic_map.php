@@ -1,7 +1,7 @@
 <?php
 /**
  * wolfie.header.identity: semantic-map
- * wolfie.header.placement: /lupo-includes/ui/components/semantic_map.php
+ * wolfie.header.placement: /lupo-includes/themes/default/components/semantic_map.php
  * wolfie.header.version: 3.0.6
  * wolfie.header.dialog:
  *   speaker: CURSOR

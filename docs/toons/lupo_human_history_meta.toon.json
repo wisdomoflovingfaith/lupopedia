@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_human_history_meta",
   "fields": [
-    "`meta_id` bigint unsigned NOT NULL auto_increment",
+    "`meta_id` bigint NOT NULL auto_increment",
     "`event_key` varchar(255) NOT NULL",
     "`tensor_mapping` varchar(32) NOT NULL",
     "`philosophical_reference` varchar(255) NOT NULL",

@@ -1,9 +1,9 @@
 {
   "table_name": "lupo_unified_visits",
   "fields": [
-    "`id` bigint unsigned NOT NULL auto_increment",
-    "`content_id` bigint unsigned NOT NULL DEFAULT 0",
-    "`actor_id` bigint unsigned NOT NULL DEFAULT 0",
+    "`id` bigint NOT NULL auto_increment",
+    "`content_id` bigint NOT NULL DEFAULT 0",
+    "`actor_id` bigint NOT NULL DEFAULT 0",
     "`page_url` varchar(500) NOT NULL",
     "`page_domain` varchar(255) NOT NULL",
     "`page_path` varchar(500) NOT NULL",

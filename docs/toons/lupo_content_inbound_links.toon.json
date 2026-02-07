@@ -2,16 +2,16 @@
   "table_name": "lupo_content_inbound_links",
   "fields": [
     "`content_inbound_link_id` bigint NOT NULL auto_increment",
-    "`target_content_id` bigint NOT NULL COMMENT 'Content item being linked TO'",
-    "`source_type` varchar(50) NOT NULL COMMENT 'content, reference, external, tab, atom, question, etc.'",
-    "`source_id` bigint COMMENT 'ID of the source entity when applicable'",
-    "`source_url` varchar(2000) COMMENT 'For external links'",
-    "`link_type` varchar(255) COMMENT 'citation, embed, mention, related, etc.'",
-    "`properties` json COMMENT 'JSON-encoded additional properties'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
-    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    "`target_content_id` bigint NOT NULL",
+    "`source_type` varchar(50) NOT NULL",
+    "`source_id` bigint",
+    "`source_url` varchar(2000)",
+    "`link_type` varchar(255)",
+    "`properties` json",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

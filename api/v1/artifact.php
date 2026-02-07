@@ -6,9 +6,10 @@
  * GET  /api/v1/artifact?artifact_id= — Retrieve an artifact
  *
  * Doctrine: stateless, UTC-driven, BIGINT, no FK, artifact-first.
+ * Schema: lupo_artifacts uses entity_type (reserved-word rename from type, 4.0.0).
  *
  * @package Lupopedia\API
- * @version 3.1.4
+ * @version 4.0.0
  */
 
 require_once __DIR__ . '/../../lupopedia-config.php';
@@ -64,7 +65,7 @@ if ($method === 'POST') {
     $artifact_id = $db->insert('lupo_artifacts', [
         'actor_id'       => $actor_id,
         'utc_timestamp'  => $utc_num,
-        'type'           => $type,
+        'entity_type'    => $type,
         'content'        => $content,
         'created_ymdhis' => $now,
         'is_deleted'     => 0,
@@ -88,7 +89,7 @@ if ($method === 'GET') {
     }
 
     $row = $db->fetchRow(
-        "SELECT artifact_id, utc_timestamp, type, content FROM lupo_artifacts WHERE artifact_id = :id AND is_deleted = 0",
+        "SELECT artifact_id, utc_timestamp, entity_type, content FROM lupo_artifacts WHERE artifact_id = :id AND is_deleted = 0",
         ['id' => $id]
     );
 
@@ -102,7 +103,7 @@ if ($method === 'GET') {
     echo json_encode([
         'artifact_id'   => (int) $row['artifact_id'],
         'utc_timestamp' => (string) $row['utc_timestamp'],
-        'type'          => (string) $row['type'],
+        'entity_type'   => (string) $row['entity_type'],
         'content'       => (string) $row['content'],
     ], JSON_PRETTY_PRINT);
     exit;

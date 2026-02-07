@@ -2,16 +2,16 @@
   "table_name": "lupo_channel_boot_log",
   "fields": [
     "`boot_id` bigint NOT NULL auto_increment COMMENT 'Primary key for boot event'",
-    "`actor_id` bigint COMMENT 'Actor that initiated boot sequence'",
-    "`session_id` varchar(64) COMMENT 'Session identifier'",
-    "`boot_start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED COMMENT 'Boot sequence start'",
-    "`boot_end_time` timestamp COMMENT 'Boot sequence completion'",
-    "`boot_status` enum('started','in_progress','completed','failed','interrupted') NOT NULL DEFAULT 'started'",
-    "`channels_loaded` int NOT NULL DEFAULT 0 COMMENT 'Number of channels successfully loaded'",
-    "`total_channels` int NOT NULL DEFAULT 0 COMMENT 'Total channels in boot sequence'",
-    "`error_details` json COMMENT 'Boot error information'",
-    "`performance_metrics` json COMMENT 'Boot performance data'",
-    "`created_ymdhis` bigint NOT NULL DEFAULT 0 COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'"
+    "`actor_id` bigint",
+    "`session_id` varchar(64)",
+    "`boot_start_time` bigint",
+    "`boot_end_time` bigint",
+    "`boot_status` varchar(64) NOT NULL DEFAULT 'started'",
+    "`channels_loaded` int NOT NULL DEFAULT 0",
+    "`total_channels` int NOT NULL DEFAULT 0",
+    "`error_details` json",
+    "`performance_metrics` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0"
   ],
   "data": [],
   "indexes": [

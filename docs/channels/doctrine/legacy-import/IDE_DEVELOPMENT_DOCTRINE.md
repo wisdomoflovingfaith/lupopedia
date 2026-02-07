@@ -1,6 +1,6 @@
-﻿---
+---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 2026.3.7.6
+file.last_modified_system_version: 4.0.0
 file.channel: doctrine
 ---
 
@@ -20,7 +20,7 @@ No invented or inferred version numbers
 
 ## 2. Schema Freeze Doctrine
 
-Schema freeze applies to all versions >= `2026.4.2.1`
+Schema freeze applies to all versions >= 4.1.0 (when release cycle begins)
 
 No schema modifications allowed after the freeze point
 

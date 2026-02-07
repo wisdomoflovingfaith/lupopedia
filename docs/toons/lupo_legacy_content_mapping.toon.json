@@ -2,13 +2,13 @@
   "table_name": "lupo_legacy_content_mapping",
   "fields": [
     "`mapping_id` bigint NOT NULL auto_increment COMMENT 'Primary key for content mapping'",
-    "`legacy_url` varchar(255) NOT NULL COMMENT 'Original Crafty Syntax URL'",
-    "`semantic_url` varchar(255) NOT NULL COMMENT 'New semantic URL'",
-    "`content_type` enum('page','topic','collection') NOT NULL COMMENT 'Type of content'",
-    "`content_id` bigint COMMENT 'Reference to semantic content'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'Mapping creation timestamp'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'Mapping update timestamp'",
-    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT 'Mapping active flag'"
+    "`legacy_url` varchar(255) NOT NULL",
+    "`semantic_url` varchar(255) NOT NULL",
+    "`content_type` varchar(64) NOT NULL",
+    "`content_id` bigint",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_active` tinyint NOT NULL DEFAULT 1"
   ],
   "data": [],
   "indexes": [

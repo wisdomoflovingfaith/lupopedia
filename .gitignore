@@ -103,6 +103,12 @@ livehelp/templates_c/
 livehelp/cache/
 
 # ---------------------------------------------------------
+# Legacy reference directories (do not track)
+# ---------------------------------------------------------
+legacy/
+legacy/*
+
+# ---------------------------------------------------------
 # Prevent accidental deployment of dev tools
 # ---------------------------------------------------------
 tests/

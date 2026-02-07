@@ -8,7 +8,7 @@
     "`entity_id` bigint",
     "`description` text",
     "`metadata_json` json",
-    "`created_ymdhis` char(14) NOT NULL"
+    "`created_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [

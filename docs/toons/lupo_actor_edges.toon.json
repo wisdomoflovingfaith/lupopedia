@@ -2,16 +2,16 @@
   "table_name": "lupo_actor_edges",
   "fields": [
     "`actor_edge_id` bigint NOT NULL auto_increment",
-    "`domain_id` bigint NOT NULL COMMENT 'Domain scope for this relationship'",
-    "`source_actor_id` bigint NOT NULL COMMENT 'Source agent of the relationship'",
-    "`target_actor_id` bigint NOT NULL COMMENT 'Target agent of the relationship'",
-    "`edge_type` varchar(100) NOT NULL COMMENT 'Type of relationship (e.g., \"collaborates_with\", \"critiques\", \"balances\")'",
-    "`weight` float DEFAULT 1 COMMENT 'Strength or weight of the relationship'",
-    "`properties` text COMMENT 'JSON or TOON formatted metadata for the relationship'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
-    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
-    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    "`domain_id` bigint NOT NULL",
+    "`source_actor_id` bigint NOT NULL",
+    "`target_actor_id` bigint NOT NULL",
+    "`edge_type` varchar(100) NOT NULL",
+    "`weight` float DEFAULT 1",
+    "`properties` text",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

@@ -1,14 +1,14 @@
 {
   "table_name": "lupo_pack_role_registry",
   "fields": [
-    "`id` bigint unsigned NOT NULL auto_increment",
-    "`agent_id` bigint unsigned NOT NULL COMMENT 'Reference to lupo_agent_registry.agent_registry_id'",
-    "`role` varchar(255) NOT NULL COMMENT 'Discovered role name'",
-    "`discovery_method` text NOT NULL COMMENT 'How this role was discovered'",
-    "`behavior` text NOT NULL COMMENT 'Observed behavior that defines the role'",
-    "`reason` text NOT NULL COMMENT 'Why this agent has this role'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when role was discovered'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when role was last updated'"
+    "`id` bigint NOT NULL auto_increment",
+    "`agent_id` bigint NOT NULL",
+    "`role_key` varchar(255) NOT NULL",
+    "`discovery_method` text NOT NULL",
+    "`behavior` text NOT NULL",
+    "`reason` text NOT NULL",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [
@@ -31,7 +31,15 @@
     {
       "index_name": "idx_role",
       "columns": [
-        "role"
+        "role_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_pack_role_registry_idx_role_key",
+      "columns": [
+        "role_key"
       ],
       "is_unique": false,
       "index_type": "BTREE"

@@ -2,7 +2,7 @@
   "table_name": "lupo_analytics_campaign_vars",
   "fields": [
     "`campaign_var_id` bigint NOT NULL auto_increment",
-    "`period` enum('daily','monthly','yearly','total','custom') NOT NULL",
+    "`period` varchar(64) NOT NULL",
     "`date_ymd` bigint",
     "`yearmonth` int",
     "`year` int",

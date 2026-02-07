@@ -1,14 +1,14 @@
 {
   "table_name": "lupo_unified_paths_firsts",
   "fields": [
-    "`id` bigint unsigned NOT NULL auto_increment",
-    "`from_visit_id` bigint unsigned NOT NULL DEFAULT 0",
-    "`to_visit_id` bigint unsigned NOT NULL DEFAULT 0",
+    "`id` bigint NOT NULL auto_increment",
+    "`from_visit_id` bigint NOT NULL DEFAULT 0",
+    "`to_visit_id` bigint NOT NULL DEFAULT 0",
     "`date_ymd` int NOT NULL",
     "`visits` int NOT NULL DEFAULT 0",
     "`metadata_json` json",
-    "`created_at` timestamp DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED",
-    "`updated_at` timestamp DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+    "`created_at` bigint",
+    "`updated_at` bigint"
   ],
   "data": [],
   "indexes": [

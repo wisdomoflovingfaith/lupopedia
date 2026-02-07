@@ -2,14 +2,14 @@
   "table_name": "lupo_gov_event_actor_edges",
   "fields": [
     "`edge_id` bigint NOT NULL auto_increment COMMENT 'Primary key for edge'",
-    "`gov_event_id` bigint NOT NULL COMMENT 'Governance event'",
-    "`actor_id` bigint NOT NULL COMMENT 'Actor'",
-    "`edge_type` varchar(100) NOT NULL COMMENT 'Type of relationship'",
-    "`edge_properties` text COMMENT 'JSON or TOON formatted metadata'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
-    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
-    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    "`gov_event_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`edge_type` varchar(100) NOT NULL",
+    "`edge_properties` text",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

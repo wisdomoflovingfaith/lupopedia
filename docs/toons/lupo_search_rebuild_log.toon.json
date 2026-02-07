@@ -2,16 +2,16 @@
   "table_name": "lupo_search_rebuild_log",
   "fields": [
     "`search_rebuild_log_id` bigint NOT NULL auto_increment",
-    "`entity_type` varchar(50) NOT NULL COMMENT 'Type of entity (e.g., content, atom, collection)'",
-    "`entity_id` bigint NOT NULL COMMENT 'ID of the entity to be reindexed'",
-    "`action` enum('insert','update','delete') NOT NULL COMMENT 'Type of index operation needed'",
-    "`status` enum('pending','processing','completed','failed') NOT NULL DEFAULT 'pending' COMMENT 'Current status of the rebuild operation'",
-    "`attempts` tinyint NOT NULL DEFAULT 0 COMMENT 'Number of processing attempts'",
-    "`last_error` text COMMENT 'Error message from last failed attempt'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when record was created'",
-    "`processed_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when processing completed'",
-    "`next_attempt_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS for next retry attempt'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'"
+    "`entity_type` varchar(50) NOT NULL",
+    "`entity_id` bigint NOT NULL",
+    "`action` varchar(64) NOT NULL",
+    "`status` varchar(64) NOT NULL DEFAULT 'pending'",
+    "`attempts` tinyint NOT NULL DEFAULT 0",
+    "`last_error` text",
+    "`created_ymdhis` bigint NOT NULL",
+    "`processed_ymdhis` bigint",
+    "`next_attempt_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0"
   ],
   "data": [],
   "indexes": [

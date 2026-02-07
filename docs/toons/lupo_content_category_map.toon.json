@@ -2,9 +2,9 @@
   "table_name": "lupo_content_category_map",
   "fields": [
     "`content_category_map_id` bigint NOT NULL auto_increment COMMENT 'Primary key for content-category mapping'",
-    "`content_id` bigint NOT NULL COMMENT 'Content being categorized'",
-    "`category_id` bigint NOT NULL COMMENT 'Category assigned to this content'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when mapping was created'"
+    "`content_id` bigint NOT NULL",
+    "`category_id` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [

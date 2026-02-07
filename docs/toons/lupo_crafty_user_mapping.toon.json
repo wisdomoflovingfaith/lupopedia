@@ -6,8 +6,8 @@
     "`crafty_operator_id` int COMMENT 'Reference to livehelp_operators.operatorid'",
     "`mapping_type` varchar(50) NOT NULL DEFAULT 'manual' COMMENT 'Type: manual, auto, imported'",
     "`notes` text COMMENT 'Optional notes for mapping'",
-    "`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED COMMENT 'Creation timestamp'",
-    "`updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED on update CURRENT_TIMESTAMP COMMENT 'Last update timestamp'"
+    "`created_at` bigint NOT NULL DEFAULT 0",
+    "`updated_at` bigint NOT NULL DEFAULT 0"
   ],
   "data": [],
   "indexes": [

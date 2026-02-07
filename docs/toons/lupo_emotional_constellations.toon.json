@@ -5,8 +5,8 @@
     "`framework_name` varchar(255) NOT NULL",
     "`cultural_origin` varchar(255)",
     "`description` text",
-    "`stars` json NOT NULL COMMENT 'Array of star_ids'",
-    "`is_canonical` tinyint(1) NOT NULL DEFAULT 0",
+    "`stars` json NOT NULL",
+    "`is_canonical` tinyint NOT NULL DEFAULT 0",
     "`canonical_for_culture` varchar(255)",
     "`created_ymdhis` bigint",
     "`deprecated_ymdhis` bigint"

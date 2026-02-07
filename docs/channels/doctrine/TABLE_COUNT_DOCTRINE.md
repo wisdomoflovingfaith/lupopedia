@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 2026.3.7.6
+file.last_modified_system_version: 4.0.0
 file.channel: doctrine
 file.last_modified_utc: 20260120113800
 file.utc_day: 20260120

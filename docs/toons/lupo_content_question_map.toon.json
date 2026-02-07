@@ -2,14 +2,14 @@
   "table_name": "lupo_content_question_map",
   "fields": [
     "`content_question_map_id` bigint NOT NULL auto_increment",
-    "`content_id` bigint NOT NULL COMMENT 'Content item associated with the question'",
-    "`question_id` bigint NOT NULL COMMENT 'Question applied to this content'",
-    "`domain_id` bigint NOT NULL COMMENT 'Domain this mapping belongs to'",
-    "`purpose` varchar(255) COMMENT 'Optional: answer, related, metadata, prompt, etc.'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
-    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    "`content_id` bigint NOT NULL",
+    "`question_id` bigint NOT NULL",
+    "`domain_id` bigint NOT NULL",
+    "`purpose` varchar(255)",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

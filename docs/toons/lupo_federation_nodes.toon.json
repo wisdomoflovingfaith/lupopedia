@@ -18,7 +18,8 @@
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint NOT NULL DEFAULT 0",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`updated_ymdhis` bigint NOT NULL DEFAULT 0"
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`active_theme_slug` varchar(64) DEFAULT 'default'"
   ],
   "data": [],
   "indexes": [

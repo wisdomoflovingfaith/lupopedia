@@ -2,9 +2,9 @@
   "table_name": "lupo_entity_edges",
   "fields": [
     "`entity_edge_id` bigint NOT NULL auto_increment",
-    "`source_entity_type` enum('agent','actor','user','service') NOT NULL",
+    "`source_entity_type` varchar(64) NOT NULL",
     "`source_entity_id` bigint NOT NULL",
-    "`target_entity_type` enum('agent','actor','user','service','file','content','channel') NOT NULL",
+    "`target_entity_type` varchar(64) NOT NULL",
     "`target_entity_id` bigint NOT NULL",
     "`edge_type` varchar(50) NOT NULL",
     "`domain_id` bigint NOT NULL DEFAULT 1",

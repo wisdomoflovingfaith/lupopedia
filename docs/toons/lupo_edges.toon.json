@@ -16,10 +16,10 @@
     "`deleted_ymdhis` bigint NOT NULL DEFAULT 0",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`semantic_weight` decimal(5,2) DEFAULT 0.00 COMMENT 'Semantic relationship strength (0.00-1.00)'",
-    "`relationship_type` enum('hierarchical','semantic','dependency','reference','contains') DEFAULT 'semantic' COMMENT 'Type of relationship'",
-    "`bidirectional` tinyint NOT NULL DEFAULT 0 COMMENT 'Relationship works both ways'",
-    "`context_scope` varchar(100) COMMENT 'Scope where relationship applies'"
+    "`semantic_weight` decimal(5,2) DEFAULT 0.00",
+    "`relationship_type` varchar(64) DEFAULT 'semantic'",
+    "`bidirectional` tinyint NOT NULL DEFAULT 0",
+    "`context_scope` varchar(100)"
   ],
   "data": [],
   "indexes": [

@@ -2,11 +2,11 @@
   "table_name": "lupo_content_hashtag",
   "fields": [
     "`content_hashtag_id` bigint NOT NULL auto_increment COMMENT 'Reference to the content item'",
-    "`hashtag_id` bigint NOT NULL COMMENT 'Reference to the hashtag'",
-    "`context_id` bigint NOT NULL COMMENT 'Context for this hashtag association'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when the association was created'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
-    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    "`hashtag_id` bigint NOT NULL",
+    "`context_id` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

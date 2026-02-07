@@ -4,15 +4,15 @@
     "`channel_log_id` bigint NOT NULL auto_increment",
     "`channel_id` bigint NOT NULL",
     "`actor_id` bigint NOT NULL",
-    "`role_type` enum('captain','administrator','monitor') NOT NULL",
+    "`role_type` varchar(64) NOT NULL",
     "`log_type_id` bigint NOT NULL",
     "`log_text` text NOT NULL",
     "`metadata_json` json",
-    "`created_ymdhis` char(14) NOT NULL",
-    "`updated_ymdhis` char(14) NOT NULL",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`pinned` tinyint NOT NULL DEFAULT 0",
-    "`deleted_ymdhis` char(14)"
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

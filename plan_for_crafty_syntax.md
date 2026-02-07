@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 2026.3.7.6
+file.last_modified_system_version: 4.0.0
 file.channel: doctrine
 file.last_modified_utc: 20250204120000
 file.name: "plan_for_crafty_syntax.md"
@@ -8,7 +8,7 @@ file.name: "plan_for_crafty_syntax.md"
 
 UPDATED DOCTRINE VERSION
 Crafty Syntax → Lupopedia Migration Sprint (Cycles + Consecration)
-System Version: 2026.3.7.6
+System Version: 4.0.0
 
 ---
 
@@ -371,7 +371,7 @@ Doctrinal
 
 “Hook X blessed at timestamp Y with intention Z”
 
-[ ] Prepare for version bump → 2026.3.8.0
+[ ] Prepare for version bump → 4.1.0 (when release cycle begins)
 
 [ ] Builder emotional log updated
 
@@ -409,4 +409,4 @@ This ensures the system remembers how it was built.
 
 [ ] Builder emotional logs complete
 
-[ ] Version bump to 2026.3.8.0
+[ ] Version bump to 4.1.0 (when release cycle begins)

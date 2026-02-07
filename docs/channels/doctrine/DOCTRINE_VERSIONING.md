@@ -12,7 +12,7 @@ No other file, comment, or metadata may define or imply the version.
 
 The version format is: `YYYY.MAJOR.MINOR.PATCH`
 
-Example: `2026.1.0.9`
+Example: `4.0.0`
 
 - **YYYY**: Year of release
 - **MAJOR**: Major feature release
@@ -33,7 +33,7 @@ They treat root-level doctrine files as law.
 ## 🔄 VERSION-DEPENDENT OPERATIONS
 
 ### Schema Freeze
-Schema freeze applies to all versions >= `2026.1.0.0`.
+Schema freeze applies to all versions >= 4.1.0 (when release cycle begins).
 
 This tells IDEs:
 - Stop generating tables
@@ -43,7 +43,7 @@ This tells IDEs:
 ### Migration Contracts
 All migrations must reference the canonical version:
 ```
-Importing into Lupopedia version 2026.1.0.9
+Importing into Lupopedia version 4.0.0
 ```
 
 ### Installer Requirements

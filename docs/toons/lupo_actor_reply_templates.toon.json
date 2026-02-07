@@ -2,14 +2,14 @@
   "table_name": "lupo_actor_reply_templates",
   "fields": [
     "`actor_reply_template_id` bigint NOT NULL auto_increment COMMENT 'Primary key for the template'",
-    "`actor_id` bigint NOT NULL COMMENT 'ID of the actor (user/agent) this template belongs to'",
-    "`template_key` varchar(64) NOT NULL COMMENT 'Unique key to identify this template'",
-    "`template_text` text NOT NULL COMMENT 'The template content with placeholders'",
-    "`usage_context` varchar(64) COMMENT 'Context where this template is used'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'",
-    "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
+    "`actor_id` bigint NOT NULL",
+    "`template_key` varchar(64) NOT NULL",
+    "`template_text` text NOT NULL",
+    "`usage_context` varchar(64)",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

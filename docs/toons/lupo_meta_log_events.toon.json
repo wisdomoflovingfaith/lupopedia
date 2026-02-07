@@ -2,10 +2,10 @@
   "table_name": "lupo_meta_log_events",
   "fields": [
     "`event_id` bigint NOT NULL auto_increment",
-    "`depth` tinyint NOT NULL COMMENT '2=observation, 3=meta_observation'",
-    "`event_type` varchar(64) NOT NULL DEFAULT 'recursion' COMMENT 'recursion|ceiling_near|auto_collapse'",
+    "`depth` tinyint NOT NULL",
+    "`event_type` varchar(64) NOT NULL DEFAULT 'recursion'",
     "`actor_id` bigint",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS'",
+    "`created_ymdhis` bigint NOT NULL",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],

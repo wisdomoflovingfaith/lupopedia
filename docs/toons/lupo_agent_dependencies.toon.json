@@ -2,11 +2,11 @@
   "table_name": "lupo_agent_dependencies",
   "fields": [
     "`agent_dependency_id` bigint NOT NULL auto_increment",
-    "`agent_id` bigint NOT NULL COMMENT 'The agent that has dependencies'",
-    "`depends_on_agent_id` bigint NOT NULL COMMENT 'The agent it depends on'",
+    "`agent_id` bigint NOT NULL",
+    "`depends_on_agent_id` bigint NOT NULL",
     "`depends_on_agent_code` varchar(50) NOT NULL",
-    "`is_required` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = must be active, 0 = optional'",
-    "`notes` text COMMENT 'Why this dependency exists'",
+    "`is_required` tinyint NOT NULL DEFAULT 1",
+    "`notes` text",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint"
   ],

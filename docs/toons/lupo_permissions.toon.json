@@ -2,15 +2,15 @@
   "table_name": "lupo_permissions",
   "fields": [
     "`permission_id` bigint NOT NULL auto_increment",
-    "`target_type` varchar(64) NOT NULL COMMENT 'Type of object: collection, department, module, feature, etc.'",
-    "`target_id` bigint NOT NULL COMMENT 'ID of the target object'",
-    "`user_id` bigint COMMENT 'User ID for user-based permissions (NULL for group-based)'",
-    "`group_id` bigint COMMENT 'Group ID for group-based permissions (NULL for user-based)'",
-    "`permission` enum('read','write','owner') NOT NULL DEFAULT 'read' COMMENT 'Permission level'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when permission was created'",
-    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when permission was updated'",
-    "`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = active'",
-    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when permission was deleted'"
+    "`target_type` varchar(64) NOT NULL",
+    "`target_id` bigint NOT NULL",
+    "`user_id` bigint",
+    "`group_id` bigint",
+    "`permission` varchar(64) NOT NULL DEFAULT 'read'",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

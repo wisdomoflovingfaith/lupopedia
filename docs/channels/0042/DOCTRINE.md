@@ -1,6 +1,6 @@
 DOCTRINE — CHANNEL 42
 Crafty Syntax → Lupopedia Migration Checklist (Canonical Edition)
-System Version: 2026.3.7.6 → 2026.3.8.x
+System Version: 4.0.0 (development); first public release 4.1.0
 Channel: 42
 Purpose:
 Channel 42 tracks the doctrine, progress, and integrity of the Crafty Syntax 3.7.5 → Lupopedia migration.

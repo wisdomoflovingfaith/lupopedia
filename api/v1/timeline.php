@@ -5,9 +5,10 @@
  * GET /api/v1/timeline?utc_day=YYYYMMDD
  *
  * Returns all artifacts for a given UTC day. Timeline-driven.
+ * Schema: lupo_artifacts uses entity_type (reserved-word rename from type, 4.0.0).
  *
  * @package Lupopedia\API
- * @version 3.1.4
+ * @version 4.0.0
  */
 
 require_once __DIR__ . '/../../lupopedia-config.php';
@@ -25,7 +26,7 @@ $end   = (int) ($day . '235959');
 try {
     $db = DatabaseFactory::getConnection();
     $rows = $db->fetchAll(
-        "SELECT artifact_id, type, utc_timestamp FROM lupo_artifacts 
+        "SELECT artifact_id, entity_type, utc_timestamp FROM lupo_artifacts 
          WHERE utc_timestamp BETWEEN :start AND :end AND is_deleted = 0 
          ORDER BY utc_timestamp ASC",
         ['start' => $start, 'end' => $end]
@@ -39,7 +40,7 @@ try {
 $artifacts = array_map(function ($r) {
     return [
         'artifact_id'   => (int) $r['artifact_id'],
-        'type'          => (string) $r['type'],
+        'entity_type'   => (string) $r['entity_type'],
         'utc_timestamp' => (string) $r['utc_timestamp'],
     ];
 }, $rows);

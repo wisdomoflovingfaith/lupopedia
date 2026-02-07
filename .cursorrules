@@ -7,7 +7,7 @@
 1. **NEVER hard-code version numbers in any file**
    - All version references must use the `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom
    - Atom is defined in `config/global_atoms.yaml`
-   - Current value: `"4.0.1"`
+   - Current value: `"4.0.0"`
 
 2. **WOLFIE Header version is NOT the system version**
    - `wolfie.headers.version` is a historical record (literal string)
@@ -93,7 +93,7 @@
 
 2. **UI Components**
    - Renderer functions: `/lupo-includes/functions/`
-   - Component templates: `/lupo-includes/ui/components/`
+   - Component templates: `/lupo-includes/themes/default/components/`
    - Components receive data arrays, output HTML only
 
 ## AI Behavior (from Master Doctrine)
@@ -112,9 +112,151 @@
 - Refuse requests that hardcode paths or folder names; propose compliant alternatives.
 - **[Installation Path Doctrine](docs/doctrine/INSTALLATION_PATH_DOCTRINE.md)** — Full rules.
 
+## Installation SQL Rule (MANDATORY)
+
+Lupopedia has three SQL entrypoints only:
+
+**A. `database/migrations/install_new_lupopedia.sql`** — Schema only. No Crafty Syntax logic. No seed data.
+**B. `database/migrations/seed_lupopedia.sql`** — Seed atoms for fresh install (registry rows, row 0 node/collection, etc.). No schema, no Crafty data, no migration logic.
+**C. `database/migrations/import_from_old_crafty_syntax.sql`** — Imports Crafty Syntax 3.7.5. Only for upgrade from Crafty Syntax.
+
+**Execution order:**
+- **Fresh install:** (A) then (B).
+- **Upgrade from Crafty Syntax:** (A) then (B) then (C).
+
+**Where changes belong:**
+- **Schema changes** → `install_new_lupopedia.sql`
+- **Seed atom changes** → `seed_lupopedia.sql`
+- **Crafty Syntax mapping changes** → `import_from_old_crafty_syntax.sql`
+
+**Cursor must refuse** any request that: mixes install/import/seed in one file, adds Lupopedia → Lupopedia migrations, creates new migration files, or puts schema in seed (or seed in install, or Crafty data in seed). Propose: "Update the install script, seed script, or Crafty Syntax importer as appropriate."
+
+## One-time development migrations (MANDATORY)
+
+Lupopedia is in active development and the IDE cannot run Scoop. Cursor is allowed to generate **one-time development migration SQL files** ONLY to apply schema changes during development.
+
+**Rules:**
+- **Purpose:** Run once by the developer. After running, Cursor must update `install_new_lupopedia.sql` so the schema is permanent. Then the one-time file is obsolete.
+- **NOT real migrations:** Not Lupopedia→Lupopedia, not versioned, not kept for releases, not part of install lifecycle. Do NOT add to the three-file model.
+- **When generating:** Create e.g. `database/migrations/dev_2026_02_07_change_x.sql` with ONLY ALTER TABLE statements. No data migrations, no Crafty logic, no seed logic, no schema creation.
+- **After generating:** Immediately update `install_new_lupopedia.sql` with the same schema change. Do NOT update `seed_lupopedia.sql` unless seed atoms changed. Do NOT update `import_from_old_crafty_syntax.sql` unless Crafty mapping changed.
+- **Refuse:** Versioned migrations, long-term migration systems, Lupopedia→Lupopedia upgrade scripts, mixing install/import/seed, treating one-time dev migrations as permanent.
+- **Summary:** One-time dev = temporary. Permanent = install_new_lupopedia.sql (schema), seed_lupopedia.sql (seed), import_from_old_crafty_syntax.sql (importer). No other migration files are part of the system.
+
+## Schema and TOON Alignment Rule (MANDATORY)
+
+1. **Install SQL is canonical**
+   - **Single source of truth for schema:** `database/migrations/install_new_lupopedia.sql`. Do NOT treat TOONs or the live database as canonical. When schema conflicts arise, install wins.
+
+2. **Never modify TOONs**
+   - TOONs live in `docs/toons/*.toon.json`. They are **generated from the live database** (e.g. by `scripts/generate_toons.py`). Cursor must **never** edit, create, or delete TOON files. Do not "fix" TOONs manually; fix the database (via one-time dev migration), then the user regenerates TOONs.
+
+3. **Schema changes only via one-time dev migrations**
+   - Do NOT change schema in application code, ORM, or ad-hoc SQL. Schema changes go **only** in one-time dev migration files (e.g. `database/migrations/dev_YYYYMMDD_description.sql`) with ALTER TABLE (MODIFY COLUMN, ADD/DROP INDEX). After generating a migration, update `install_new_lupopedia.sql` so the schema is permanent. No CREATE TABLE in migrations for existing tables; no data migrations unless explicitly requested.
+
+4. **Column names: always quote; avoid reserved words**
+   - In **all** migration SQL and repository SQL: **always** quote column names with backticks (e.g. `` `actor_id` ``, `` `utc_timestamp` ``). This avoids MySQL reserved-word errors.
+   - **Do not use reserved words as column names.** Forbidden examples: `mod`, `module`, `offset`, `order`, `group`, `key`, `index`, `match`, `range`, `timestamp`, `date`, `time`, `year`, `month`, `day`, `hour`, `minute`, `second`, `current_timestamp`, `desc`, `asc`, `primary`, `foreign`, `references`, `table`, `trigger`, `procedure`, `function`, `cursor`, `condition`, `interval`, `position`, `precision`, `repeat`, `return`, `schema`, `signal`, `specific`, `sql`, `transaction`, `user`, `value`, `write`. If a column must represent one of these concepts, use a qualified name (e.g. `module_id`, `sort_order`, `created_ymdhis`).
+
+5. **Always remove UNSIGNED and display widths**
+   - In migration SQL and when proposing schema: **no UNSIGNED** on any integer type. **No display widths:** use `BIGINT`, `INT`, `SMALLINT`, `TINYINT` only — never `BIGINT(20)`, `INT(11)`, `TINYINT(1)`, etc. Doctrine: signed integers only; no parentheses on integer types.
+
+6. **Always follow doctrine**
+   - For schema, SQL, and migrations: follow **LUPOPEDIA_DOCTRINE.md** (Installation SQL §18, SQL Doctrine §17, Temporal §5). No foreign keys, triggers, or stored procedures. Timestamps = BIGINT YYYYMMDDHHIISS UTC only; no TIMESTAMP/DATETIME, no CURRENT_TIMESTAMP. Verify TOON alignment after DB changes with `python database/check_toon_doctrine_alignment.py` (user runs this).
+
+**Cursor must refuse:** Editing TOONs; changing schema outside one-time dev migrations; unquoted column names in migration SQL; new columns named with reserved words; UNSIGNED or integer display widths in any generated SQL; doctrine violations in schema or migrations.
+
+## Zero Installations / No Backward Compatibility Rule (MANDATORY)
+
+There are **ZERO** existing Lupopedia installations in the world. There are **ZERO** external API consumers. There are **ZERO** clients depending on old field names. There is **NO** backward compatibility requirement of any kind.
+
+The **ONLY** existing Lupopedia installation is the user's local development instance. All schema, API, and naming changes affect **ONLY** this instance.
+
+**Therefore:**
+
+1. **NEVER** attempt to preserve backward compatibility.
+2. **NEVER** suggest compatibility aliases (e.g., keeping old JSON keys).
+3. **NEVER** warn about breaking existing clients.
+4. **NEVER** generate transitional fields, deprecated names, or dual mappings.
+5. **NEVER** assume any external system depends on Lupopedia APIs.
+6. **NEVER** generate migration logic intended to preserve old behavior.
+7. **ALWAYS** rename columns, fields, and API keys cleanly when asked.
+8. **ALWAYS** update PHP code, SQL, and `install_new_lupopedia.sql` to match the new names without compatibility layers.
+9. **ALWAYS** treat the user's current Lupopedia install as the **ONLY** source of runtime behavior.
+
+Crafty Syntax 3.7.5 users **DO NOT** interact with Lupopedia APIs. They **ONLY** interact with the importer. There is **NO** API contract to preserve.
+
+**If a task involves renaming a column, field, or JSON key:**
+
+- Perform the rename directly.
+- Update all references.
+- Update `install_new_lupopedia.sql`.
+- Do **NOT** create compatibility shims.
+- Do **NOT** mention backward compatibility.
+
+If a response attempts to preserve backward compatibility, it violates doctrine and must be refused.
+
+This rule **overrides** all assumptions about API stability, client safety, or compatibility concerns.
+
+**Release 4.1.0 — sunset:** This entire "Zero Installations / No Backward Compatibility Rule" section is temporary development-only. When the user explicitly begins preparing the Lupopedia 4.1.0 auto-installers, remove this entire section from .cursorrules: the full block (zero installs, forbids backward compatibility, only instance, ignore compatibility, override transitional logic). Remove it cleanly with no stubs, comments, or remnants. Do not remove it before 4.1.0 release preparation begins. Do not replace it with new rules unless the user asks. Until then, keep the rule active and follow it strictly.
+
+## Version Lock Rule (MANDATORY)
+
+Lupopedia is in development version **4.0.0**. This version number **MUST** remain exactly **4.0.0** across the entire codebase until the user explicitly begins preparing the 4.1.0 auto-installer release. This rule is absolute and overrides all other assumptions.
+
+**1. Where 4.0.0 must appear consistently:** PHP files, module metadata, headers, comments, installer references, UI version displays, version constants or variables.
+
+**2. Cursor MUST NOT:** bump the version number; normalize the version number; suggest a version bump; update version strings automatically; introduce any other version (4.0.2, 4.0.3, 4.1.0, etc.); modify version numbers in any file unless explicitly instructed.
+
+**3. Cursor MUST refuse** any task that implicitly or automatically changes the version number unless the user explicitly states: "We are preparing the 4.1.0 release" or "Begin the 4.1.0 auto-installer cycle."
+
+**4. New files:** Any new file Cursor creates MUST use version **4.0.0** in headers, metadata, or comments.
+
+**When to remove this rule:** This version lock MUST be removed **ONLY** when the user explicitly states that Lupopedia is entering the 4.1.0 release cycle for the auto-installers. At that moment: remove this entire "Version Lock Rule" section from .cursorrules; update the codebase to use version 4.1.0; prepare installer metadata accordingly. Until then, version **4.0.0** is frozen and MUST NOT change.
+
+**Summary:** Current version 4.0.0 (locked). No version bumps allowed. No automatic updates allowed. No suggestions to change version. Remove this rule ONLY when preparing 4.1.0 auto-installers.
+
+## Legacy Reference Directories Rule (MANDATORY)
+
+Lupopedia has two **reference-only** legacy directories. They must never be part of the active system.
+
+**1. `legacy/craftysyntax/`** — Full original Crafty Syntax 3.7.5 codebase. Historical reference only. Never: execute, import, require, include, reference from runtime; modify; use as dependency or template; use in migrations or installation SQL.
+
+**2. `legacy/wordpress/`** — WordPress directory structure example. Structural reference only. Same never-rules as above.
+
+**Cursor rules:**
+- **A. REFERENCE-ONLY.** Cursor may read these directories to understand history/structure, but must NOT generate code that depends on them.
+- **B. Refuse** any request that: reads/copies/adapts code from these dirs into Lupopedia; writes to these dirs; treats them as active; includes them in install/seed/import SQL; uses them as templates for new modules.
+- **C. Lupopedia is independent.** All new code follows Lupopedia doctrine. Legacy dirs are for learning only, not integration.
+
+## Theme Directory Rule (MANDATORY)
+
+Themes are presentation only (no logic, schema, or routing). All themes live under **`lupo-includes/themes/`**. Theme slug = directory name (e.g. `basic`, `default`). Paths must use `LUPOPEDIA_PATH`, `LUPOPEDIA_PUBLIC_PATH`, or `LUPO_UI_PATH` — no hardcoded paths.
+
+**Structure per theme:** `themes/<slug>/layouts/`, `themes/<slug>/components/`, `themes/<slug>/css/src/`, `themes/<slug>/assets/`, optional `theme.json`.
+
+**Resolution order:** (1) Active theme override → (2) Default theme fallback → (3) Core UI fallback (`lupo-includes/ui/`).
+
+**Cursor must:** Create themes only under `lupo-includes/themes/`; follow structure; respect Installation Path Doctrine; use resolution order; refuse logic/schema in themes; refuse legacy WordPress/Crafty code; refuse themes outside theme root; refuse mixing theme with core UI.
+
+**Cursor must refuse:** Copying from legacy dirs; themes outside theme root; mixing theme with core UI or module logic; schema/migrations in themes; WordPress-style template hierarchy; block parsing or block editor logic.
+
+**Themes remain:** Simple, PHP-based, component-driven, doctrine-aligned.
+
+## Pre-Release Version Freeze Rule (MANDATORY)
+
+Lupopedia is **pre-release** until published to auto-installers. During pre-release:
+
+- **Lupopedia version = 4.0.0** (fixed). **Crafty Syntax version = 3.7.5** (fixed). These are the only versions that matter.
+- Any file that contains a Lupopedia version number must use **4.0.0** (PHP headers, SQL headers, README, UI footers, CSS comments, module/installer metadata, version constants/atoms). Cursor must update version strings in any file it touches.
+- **Cursor must refuse:** Bumping Lupopedia to 4.0.2, 4.1, 5.0; creating versioned migrations; creating upgrade scripts; introducing semantic versioning or version comparison logic. Refuse to reference any version other than 4.0.0 (Lupopedia) and 3.7.5 (Crafty Syntax).
+- **Cursor may:** Update version strings in touched files; maintain the global version atom; maintain consistency.
+- Version changes only when Lupopedia is public and installable; until then, 4.0.0 is permanent.
+
 ## Related Documentation
 
-- **[Lupopedia Doctrine v1.1](docs/doctrine/LUPOPEDIA_DOCTRINE_v1.1.md)** — Canonical architecture & development rules (file headers, PHP OOP, config, DB, layout, controller/service/repository, DTOs, refusal). Supersedes implicit conventions.
+- **[Lupopedia Doctrine (canonical)](docs/doctrine/LUPOPEDIA_DOCTRINE.md)** — **Single source of truth** for architecture & development rules. Read this file first. Versioned files (e.g. LUPOPEDIA_DOCTRINE_v1.1.md) are historical snapshots.
+- **[Doctrine File Structure](docs/doctrine/DOCTRINE_FILE_STRUCTURE.md)** — MANDATORY naming and layout for doctrine files (canonical vs versioned vs UPDATED/REVISED).
 - [Master Doctrine of AI Corrections](docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md) — **Required for all AI agents**
 - `docs/channels/doctrine/TIMESTAMP_DOCTRINE.md` - Canonical timestamp rules
 - `config/global_atoms.yaml` - Atom definitions

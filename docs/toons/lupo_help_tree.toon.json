@@ -7,7 +7,7 @@
     "`content_id` bigint",
     "`title` varchar(255) NOT NULL",
     "`description` text",
-    "`action_type` enum('none','ai_agent','department','url','content','message') NOT NULL DEFAULT 'none'",
+    "`action_type` varchar(64) NOT NULL DEFAULT 'none'",
     "`action_target` varchar(255)",
     "`sort_order` int NOT NULL DEFAULT 0",
     "`created_ymdhis` bigint NOT NULL",

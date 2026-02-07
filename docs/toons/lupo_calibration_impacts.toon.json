@@ -1,16 +1,16 @@
 {
   "table_name": "lupo_calibration_impacts",
   "fields": [
-    "`id` bigint unsigned NOT NULL auto_increment",
-    "`calibration_id` bigint unsigned NOT NULL COMMENT 'Reference to lupo_emotional_geometry_calibrations.id'",
-    "`impact_type` enum('agent_behavior','communication_tone','system_harmony','conflict_reduction') NOT NULL",
-    "`impact_measurement` decimal(5,4) NOT NULL COMMENT 'Quantified impact (0.0000-1.0000)'",
-    "`measurement_method` varchar(100) NOT NULL COMMENT 'How impact was measured'",
-    "`before_metrics_json` json COMMENT 'Metrics before calibration'",
-    "`after_metrics_json` json COMMENT 'Metrics after calibration'",
-    "`observation_period_hours` int unsigned DEFAULT 24 COMMENT 'Observation period length'",
-    "`measured_ymdhis` bigint NOT NULL COMMENT 'When impact was measured'",
-    "`impact_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Impact tracking version'"
+    "`id` bigint NOT NULL auto_increment",
+    "`calibration_id` bigint NOT NULL",
+    "`impact_type` varchar(64) NOT NULL",
+    "`impact_measurement` decimal(5,4) NOT NULL",
+    "`measurement_method` varchar(100) NOT NULL",
+    "`before_metrics_json` json",
+    "`after_metrics_json` json",
+    "`observation_period_hours` int DEFAULT 24",
+    "`measured_ymdhis` bigint NOT NULL",
+    "`impact_version` varchar(20) DEFAULT '4.0.75'"
   ],
   "data": [],
   "indexes": [

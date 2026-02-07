@@ -1,12 +1,12 @@
 {
   "table_name": "lupo_semantic_overlays",
   "fields": [
-    "`id` int unsigned NOT NULL auto_increment",
+    "`id` int NOT NULL auto_increment",
     "`slug` varchar(255) NOT NULL",
     "`overlay_key` varchar(255) NOT NULL",
     "`overlay_value` text NOT NULL",
     "`context` varchar(255)",
-    "`created_at` timestamp DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED"
+    "`created_at` bigint"
   ],
   "data": [],
   "indexes": [

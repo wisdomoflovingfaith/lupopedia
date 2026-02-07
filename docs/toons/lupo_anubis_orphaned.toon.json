@@ -4,7 +4,7 @@
     "`anubis_orphaned_id` bigint NOT NULL auto_increment",
     "`table_name` varchar(255) NOT NULL",
     "`orphan_id` bigint NOT NULL",
-    "`timestamp_utc` char(14) NOT NULL",
+    "`timestamp_utc` bigint NOT NULL",
     "`reason` varchar(255) NOT NULL"
   ],
   "data": [],

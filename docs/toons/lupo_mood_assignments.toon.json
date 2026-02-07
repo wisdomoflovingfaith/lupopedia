@@ -2,10 +2,10 @@
   "table_name": "lupo_mood_assignments",
   "fields": [
     "`mood_assignment_id` bigint NOT NULL auto_increment",
-    "`table_name` varchar(128) NOT NULL COMMENT 'Target table name (e.g., lupo_dialog_messages)'",
-    "`row_id` bigint NOT NULL COMMENT 'Primary key value in target table'",
-    "`mood_id` bigint NOT NULL COMMENT 'Reference to lupo_mood_registry.mood_id'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'"
+    "`table_name` varchar(128) NOT NULL",
+    "`row_id` bigint NOT NULL",
+    "`mood_id` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [

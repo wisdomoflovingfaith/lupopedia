@@ -114,7 +114,7 @@ Until `thaw_version` (4.2.0), `branch_budget` is 0. Doctrine: `VERSION_GATED_BRA
 {
   "utc_day": "20260119",
   "artifacts": [
-    { "artifact_id": 1, "type": "dialog", "utc_timestamp": "20260119120000" }
+    { "artifact_id": 1, "entity_type": "dialog", "utc_timestamp": "20260119120000" }
   ]
 }
 ```
@@ -141,7 +141,7 @@ Until `thaw_version` (4.2.0), `branch_budget` is 0. Doctrine: `VERSION_GATED_BRA
 
 ## Tables (migration 3.1.4)
 
-- **lupo_artifacts** — `artifact_id`, `actor_id`, `utc_timestamp`, `type`, `content`, `created_ymdhis`, `is_deleted`, `deleted_ymdhis`
+- **lupo_artifacts** — `artifact_id`, `actor_id`, `utc_timestamp`, `entity_type`, `content`, `created_ymdhis`, `is_deleted`, `deleted_ymdhis` (4.0.0: column renamed from `type` to avoid reserved word)
 - **lupo_actor_handshakes** — `handshake_id`, `actor_id`, `actor_type`, `utc_timestamp`, `purpose`, `constraints_json`, `forbidden_actions_json`, `context`, `expires_utc`, `created_ymdhis`, `is_deleted`, `deleted_ymdhis`
 
 No foreign keys. No triggers. BIGINT where appropriate.

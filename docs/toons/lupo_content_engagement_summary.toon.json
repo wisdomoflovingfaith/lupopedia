@@ -2,10 +2,10 @@
   "table_name": "lupo_content_engagement_summary",
   "fields": [
     "`content_engagement_summary_id` bigint NOT NULL auto_increment COMMENT 'Reference to the content item'",
-    "`likes_total` int NOT NULL DEFAULT 0 COMMENT 'Total number of likes received'",
-    "`shares_total` int NOT NULL DEFAULT 0 COMMENT 'Total number of shares'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when the summary was last updated'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when the summary was first created'"
+    "`likes_total` int NOT NULL DEFAULT 0",
+    "`shares_total` int NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [

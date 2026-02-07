@@ -2,17 +2,17 @@
   "table_name": "lupo_tldnr",
   "fields": [
     "`tldnr_id` bigint NOT NULL auto_increment COMMENT 'Primary key for TL;DR record'",
-    "`slug` varchar(255) NOT NULL COMMENT 'URL-friendly unique identifier'",
-    "`title` varchar(255) NOT NULL COMMENT 'TL;DR title (e.g., \"Lupopedia Overview\", \"Collection Doctrine\")'",
-    "`content_text` longtext NOT NULL COMMENT 'TL;DR content (plain text or markdown)'",
-    "`topic_type` varchar(100) COMMENT 'Type of topic (e.g., \"system\", \"doctrine\", \"module\", \"concept\")'",
-    "`topic_reference` varchar(255) COMMENT 'Reference to what this summarizes (e.g., \"Lupopedia\", \"Collection Doctrine\", \"LABS-001\")'",
-    "`system_version` varchar(20) COMMENT 'System version this TL;DR applies to (e.g., \"4.1.6\")'",
-    "`category` varchar(100) COMMENT 'Category for grouping (e.g., \"Core\", \"Doctrine\", \"Module\")'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC creation timestamp (YYYYMMDDHHIISS)'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC last update timestamp (YYYYMMDDHHIISS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'",
-    "`deleted_ymdhis` bigint COMMENT 'UTC deletion timestamp (YYYYMMDDHHIISS)'"
+    "`slug` varchar(255) NOT NULL",
+    "`title` varchar(255) NOT NULL",
+    "`content_text` text NOT NULL",
+    "`topic_type` varchar(100)",
+    "`topic_reference` varchar(255)",
+    "`system_version` varchar(20)",
+    "`category` varchar(100)",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

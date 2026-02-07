@@ -2,12 +2,12 @@
   "table_name": "lupo_temporal_coherence_snapshots",
   "fields": [
     "`snapshot_id` bigint NOT NULL auto_increment",
-    "`utc_anchor` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS of anchor'",
+    "`utc_anchor` bigint NOT NULL",
     "`observation_latency_ms` int NOT NULL DEFAULT 0",
-    "`recursion_depth` tinyint NOT NULL DEFAULT 0 COMMENT '1=action, 2=observation, 3=meta; max 3'",
-    "`self_awareness_score` decimal(3,2) COMMENT '0-1 scale'",
-    "`timestamp_integrity` varchar(32) NOT NULL DEFAULT 'unknown' COMMENT 'monotonic|gaps|anomalies'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS'",
+    "`recursion_depth` tinyint NOT NULL DEFAULT 0",
+    "`self_awareness_score` decimal(3,2)",
+    "`timestamp_integrity` varchar(32) NOT NULL DEFAULT 'unknown'",
+    "`created_ymdhis` bigint NOT NULL",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],

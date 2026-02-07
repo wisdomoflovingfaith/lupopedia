@@ -1,20 +1,20 @@
 {
   "table_name": "lupo_contexts",
   "fields": [
-    "`context_id` int unsigned NOT NULL auto_increment",
-    "`context_code` varchar(16) NOT NULL COMMENT 'Numeric/hierarchical code, e.g. 1000, 2100.10'",
-    "`context_name` varchar(255) NOT NULL COMMENT 'Short human-readable label'",
-    "`context_description` text COMMENT 'Long-form description / doctrine notes'",
-    "`parent_context_id` int unsigned COMMENT 'FK to lupo_contexts.context_id for hierarchy'",
-    "`is_system` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1 = system/meta/doctrine context'",
-    "`is_fiction` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1 = fiction / narrative / lore'",
-    "`is_installation_local` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1 = installation-specific context'",
-    "`sort_order` int NOT NULL DEFAULT 0 COMMENT 'Optional manual ordering within siblings'",
+    "`context_id` int NOT NULL auto_increment",
+    "`context_code` varchar(16) NOT NULL",
+    "`context_name` varchar(255) NOT NULL",
+    "`context_description` text",
+    "`parent_context_id` int",
+    "`is_system` tinyint NOT NULL DEFAULT 0",
+    "`is_fiction` tinyint NOT NULL DEFAULT 0",
+    "`is_installation_local` tinyint NOT NULL DEFAULT 0",
+    "`sort_order` int NOT NULL DEFAULT 0",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
-    "`weight_score` decimal(5,2) NOT NULL DEFAULT 0.00 COMMENT 'Dynamic ranking score based on age, revisions, likes, shares, references, and links'",
-    "`is_active` tinyint(1) NOT NULL DEFAULT 1",
-    "`metadata_json` json COMMENT 'Extra semantic flags, routing hints, emotional metadata, etc.'"
+    "`weight_score` decimal(5,2) NOT NULL DEFAULT 0.00",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`metadata_json` json"
   ],
   "data": [],
   "indexes": [

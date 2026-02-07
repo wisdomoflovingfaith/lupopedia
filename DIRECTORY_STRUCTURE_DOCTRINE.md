@@ -1,12 +1,12 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 2026.3.7.6
+file.last_modified_system_version: 4.0.0
 file.channel: doctrine
 ---
 
 # DIRECTORY_STRUCTURE_DOCTRINE.md
 Lupopedia Directory Structure Doctrine (Post-Realignment)
-System Version: 2026.3.7.6
+System Version: 4.0.0
 file.channel: doctrine
 
 Purpose

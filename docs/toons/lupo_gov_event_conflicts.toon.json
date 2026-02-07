@@ -2,14 +2,14 @@
   "table_name": "lupo_gov_event_conflicts",
   "fields": [
     "`id` bigint NOT NULL auto_increment COMMENT 'Primary key'",
-    "`gov_event_id` bigint NOT NULL COMMENT 'The event declaring a conflict'",
-    "`conflicts_with_event_id` bigint NOT NULL COMMENT 'The event it conflicts with'",
-    "`conflict_type` varchar(50) NOT NULL COMMENT 'schema, doctrine, branch, timestamp, identity'",
-    "`severity` varchar(20) NOT NULL COMMENT 'warning, error, fatal'",
-    "`notes` text COMMENT 'Optional explanation of the conflict'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC timestamp of creation'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag'",
-    "`deleted_ymdhis` bigint COMMENT 'UTC timestamp of deletion'"
+    "`gov_event_id` bigint NOT NULL",
+    "`conflicts_with_event_id` bigint NOT NULL",
+    "`conflict_type` varchar(50) NOT NULL",
+    "`severity` varchar(20) NOT NULL",
+    "`notes` text",
+    "`created_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

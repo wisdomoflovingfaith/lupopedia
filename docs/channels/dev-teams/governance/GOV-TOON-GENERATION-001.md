@@ -1,6 +1,6 @@
 GOV‑TOON‑GENERATION‑001.md
 TOON Generation Governance Doctrine
-Version 2026.0.1.1
+Version 4.0.0
 Purpose
 This doctrine defines the only approved method for generating TOON files inside Lupopedia.
 TOON files represent the authoritative schema layer for all database tables and must be produced deterministically, without inference, drift, or AI involvement.

@@ -1,7 +1,7 @@
 <?php
 /**
  * wolfie.header.identity: default-tabs
- * wolfie.header.placement: /lupo-includes/ui/components/default_tabs.php
+ * wolfie.header.placement: /lupo-includes/themes/default/components/default_tabs.php
  * wolfie.header.version: lupopedia_current_version
  * wolfie.header.dialog:
  *   speaker: Wolfie

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 2026.1.0.1
+file.last_modified_system_version: 4.0.0
 file.last_modified_utc: 20260120154500
 file.utc_day: 20260120
 file.lupopedia.5: 5
@@ -22,7 +22,7 @@ file:
   name: "GOV-ANTI-PATTERNS-001.md"
   title: "GOVERNANCE PROHIBITION: ANTI-MANIPULATION PATTERNS"
   description: "Comprehensive prohibition of manipulation patterns, behavioral exploitation, and cognitive sovereignty violations"
-  version: 2026.1.0.1
+  version: 4.0.0
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---

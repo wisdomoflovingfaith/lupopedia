@@ -1,18 +1,18 @@
 {
   "table_name": "lupo_cip_trends",
   "fields": [
-    "`id` bigint unsigned NOT NULL auto_increment",
-    "`trend_period` enum('hourly','daily','weekly','monthly') NOT NULL",
-    "`period_start_ymdhis` bigint NOT NULL COMMENT 'Start of aggregation period'",
-    "`period_end_ymdhis` bigint NOT NULL COMMENT 'End of aggregation period'",
+    "`id` bigint NOT NULL auto_increment",
+    "`trend_period` varchar(64) NOT NULL",
+    "`period_start_ymdhis` bigint NOT NULL",
+    "`period_end_ymdhis` bigint NOT NULL",
     "`avg_defensiveness_index` decimal(5,4) NOT NULL DEFAULT 0.0000",
     "`avg_integration_velocity` decimal(5,4) NOT NULL DEFAULT 0.0000",
     "`avg_architectural_impact` decimal(5,4) NOT NULL DEFAULT 0.0000",
-    "`total_events` int unsigned NOT NULL DEFAULT 0",
-    "`high_impact_events` int unsigned NOT NULL DEFAULT 0 COMMENT 'AIS > 0.7000'",
-    "`doctrine_updates_triggered` int unsigned NOT NULL DEFAULT 0",
-    "`trend_metadata_json` json COMMENT 'Additional trend analysis'",
-    "`calculated_ymdhis` bigint NOT NULL COMMENT 'When trend was calculated'"
+    "`total_events` int NOT NULL DEFAULT 0",
+    "`high_impact_events` int NOT NULL DEFAULT 0",
+    "`doctrine_updates_triggered` int NOT NULL DEFAULT 0",
+    "`trend_metadata_json` json",
+    "`calculated_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [

@@ -7,7 +7,7 @@
     "`created_ymdhis` bigint",
     "`updated_ymdhis` bigint",
     "`metadata_json` json",
-    "`body_text` longtext"
+    "`body_text` text"
   ],
   "data": [],
   "indexes": [],

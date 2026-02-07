@@ -2,13 +2,13 @@
   "table_name": "lupo_content_atom_map",
   "fields": [
     "`content_atom_map_id` bigint NOT NULL auto_increment",
-    "`content_id` bigint NOT NULL COMMENT 'Content item using the atom'",
-    "`atom_id` bigint NOT NULL COMMENT 'Semantic atom referenced by the content'",
-    "`purpose` varchar(255) COMMENT 'Why this atom is attached (topic, tag, variable, etc.)'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
-    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    "`content_id` bigint NOT NULL",
+    "`atom_id` bigint NOT NULL",
+    "`purpose` varchar(255)",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

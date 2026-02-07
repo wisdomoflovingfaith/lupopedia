@@ -1,0 +1,2048 @@
+Schema alignment migration summary
+====================================
+
+Canonical schema: install_new_lupopedia.sql
+Target: LIVE database (e.g. phpMyAdmin)
+
+Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
+
+  lupo_actor_actions.actor_id -> bigint NOT NULL
+  lupo_actor_actions.action_type -> varchar(64) NOT NULL
+  lupo_actor_actions.entity_type -> varchar(64) DEFAULT NULL
+  lupo_actor_actions.entity_id -> bigint DEFAULT NULL
+  lupo_actor_actions.description -> text
+  lupo_actor_actions.metadata_json -> json DEFAULT NULL
+  lupo_actor_actions.created_ymdhis -> bigint NOT NULL
+  lupo_actor_capabilities.actor_id -> bigint NOT NULL
+  lupo_actor_capabilities.domain_id -> bigint NOT NULL
+  lupo_actor_capabilities.capability_key -> varchar(100) NOT NULL
+  lupo_actor_capabilities.capability_description -> text
+  lupo_actor_capabilities.created_ymdhis -> bigint NOT NULL
+  lupo_actor_capabilities.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_capabilities.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_actor_capabilities.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_capabilities.scope_limitation -> varchar(50) DEFAULT 'unrestricted'
+  lupo_actor_capabilities.max_calls_per_hour -> int DEFAULT '0'
+  lupo_actor_capabilities.requires_approval -> tinyint DEFAULT '0'
+  lupo_actor_capabilities.approval_agent_id -> bigint DEFAULT NULL
+  lupo_actor_channel_roles.actor_id -> bigint NOT NULL
+  lupo_actor_channel_roles.channel_id -> bigint NOT NULL
+  lupo_actor_channel_roles.role_key -> varchar(64) NOT NULL
+  lupo_actor_channel_roles.created_ymdhis -> bigint NOT NULL
+  lupo_actor_channel_roles.updated_ymdhis -> bigint NOT NULL
+  lupo_actor_channel_roles.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_actor_channel_roles.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_channel_roles.handshake_metadata_json -> json DEFAULT NULL
+  lupo_actor_channel_roles.awareness_snapshot_json -> json DEFAULT NULL
+  lupo_actor_channel_roles.protocol_completion_status -> varchar(64) DEFAULT 'pending'
+  lupo_actor_channel_roles.protocol_version -> varchar(20) DEFAULT '4.0.72'
+  lupo_actor_channel_roles.join_sequence_step -> tinyint DEFAULT '0'
+  lupo_actor_channel_roles.handshake_completed_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_channel_roles.awareness_completed_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_channel_roles.cjp_completed_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_channels.actor_id -> bigint NOT NULL
+  lupo_actor_channels.channel_id -> bigint NOT NULL
+  lupo_actor_channels.status -> char(1) NOT NULL DEFAULT 'A'
+  lupo_actor_channels.start_date -> bigint DEFAULT NULL
+  lupo_actor_channels.channel_color -> varchar(6) NOT NULL DEFAULT 'F7FAFF'
+  lupo_actor_channels.last_read_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_channels.muted_until_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_channels.preferences_json -> json DEFAULT NULL
+  lupo_actor_channels.dialog_output_file -> varchar(500) DEFAULT NULL
+  lupo_actor_channels.created_ymdhis -> bigint NOT NULL
+  lupo_actor_channels.updated_ymdhis -> bigint NOT NULL
+  lupo_actor_channels.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_actor_channels.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_collections.actor_id -> bigint NOT NULL
+  lupo_actor_collections.collection_id -> bigint NOT NULL
+  lupo_actor_collections.access_level -> varchar(64) NOT NULL DEFAULT 'read'
+  lupo_actor_collections.created_ymdhis -> bigint NOT NULL
+  lupo_actor_collections.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_collections.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_actor_collections.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_collections.persistent_identity_json -> json DEFAULT NULL
+  lupo_actor_collections.identity_signature -> varchar(255) DEFAULT NULL
+  lupo_actor_collections.trust_level -> varchar(64) DEFAULT 'standard'
+  lupo_actor_collections.emotional_geometry_baseline -> json DEFAULT NULL
+  lupo_actor_collections.doctrine_alignment_version -> varchar(20) DEFAULT '4.0.72'
+  lupo_actor_conflicts.domain_id -> bigint NOT NULL DEFAULT '1'
+  lupo_actor_conflicts.actor_a_id -> bigint NOT NULL
+  lupo_actor_conflicts.actor_b_id -> bigint NOT NULL
+  lupo_actor_conflicts.conflict_type -> varchar(64) NOT NULL
+  lupo_actor_conflicts.conflict_summary -> text NOT NULL
+  lupo_actor_conflicts.resolution_status -> varchar(64) NOT NULL DEFAULT 'unresolved'
+  lupo_actor_conflicts.resolution_summary -> text
+  lupo_actor_conflicts.resolved_by -> bigint DEFAULT NULL
+  lupo_actor_conflicts.resolved_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_conflicts.severity -> varchar(64) NOT NULL DEFAULT 'medium'
+  lupo_actor_conflicts.context_json -> json DEFAULT NULL
+  lupo_actor_conflicts.created_ymdhis -> bigint NOT NULL
+  lupo_actor_conflicts.updated_ymdhis -> bigint NOT NULL
+  lupo_actor_conflicts.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_actor_conflicts.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_departments.actor_id -> bigint NOT NULL
+  lupo_actor_departments.department_id -> bigint NOT NULL
+  lupo_actor_departments.title -> varchar(64) DEFAULT NULL
+  lupo_actor_departments.created_ymdhis -> bigint NOT NULL
+  lupo_actor_departments.updated_ymdhis -> bigint NOT NULL
+  lupo_actor_departments.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_actor_departments.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_edges.domain_id -> bigint NOT NULL
+  lupo_actor_edges.source_actor_id -> bigint NOT NULL
+  lupo_actor_edges.target_actor_id -> bigint NOT NULL
+  lupo_actor_edges.edge_type -> varchar(100) NOT NULL
+  lupo_actor_edges.weight -> float DEFAULT '1'
+  lupo_actor_edges.properties -> text
+  lupo_actor_edges.created_ymdhis -> bigint NOT NULL
+  lupo_actor_edges.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_edges.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_actor_edges.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_events.actor_id -> bigint NOT NULL
+  lupo_actor_events.session_id -> varchar(255) DEFAULT NULL
+  lupo_actor_events.tab_id -> varchar(255) DEFAULT NULL
+  lupo_actor_events.world_id -> bigint DEFAULT NULL
+  lupo_actor_events.world_key -> varchar(255) DEFAULT NULL
+  lupo_actor_events.world_type -> varchar(50) DEFAULT NULL
+  lupo_actor_events.event_type -> varchar(100) NOT NULL
+  lupo_actor_events.event_data -> json DEFAULT NULL
+  lupo_actor_events.created_ymdhis -> bigint NOT NULL
+  lupo_actor_group_membership.group_id -> bigint NOT NULL
+  lupo_actor_group_membership.domain_id -> bigint NOT NULL
+  lupo_actor_group_membership.created_ymdhis -> bigint NOT NULL
+  lupo_actor_group_membership.created_by -> bigint DEFAULT NULL
+  lupo_actor_group_membership.expires_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_group_membership.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_actor_group_membership.role -> varchar(50) DEFAULT 'member'
+  lupo_actor_handshakes.actor_id -> bigint NOT NULL
+  lupo_actor_handshakes.actor_type -> varchar(32) NOT NULL
+  lupo_actor_handshakes.utc_timestamp -> bigint NOT NULL
+  lupo_actor_handshakes.purpose -> varchar(500) DEFAULT NULL
+  lupo_actor_handshakes.constraints_json -> json DEFAULT NULL
+  lupo_actor_handshakes.forbidden_actions_json -> json DEFAULT NULL
+  lupo_actor_handshakes.context -> text
+  lupo_actor_handshakes.expires_utc -> bigint DEFAULT NULL
+  lupo_actor_handshakes.created_ymdhis -> bigint NOT NULL
+  lupo_actor_handshakes.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_actor_handshakes.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_meta.actor_id -> bigint NOT NULL
+  lupo_actor_meta.meta_type -> varchar(64) NOT NULL
+  lupo_actor_meta.meta_key -> varchar(255) NOT NULL
+  lupo_actor_meta.meta_value -> text NOT NULL
+  lupo_actor_meta.created_ymdhis -> bigint NOT NULL
+  lupo_actor_meta.updated_ymdhis -> bigint NOT NULL
+  lupo_actor_moods.actor_id -> bigint NOT NULL
+  lupo_actor_moods.mood_r -> tinyint NOT NULL
+  lupo_actor_moods.mood_g -> tinyint NOT NULL
+  lupo_actor_moods.mood_b -> tinyint NOT NULL
+  lupo_actor_moods.mood_framework -> varchar(32) NOT NULL DEFAULT 'western_analytical'
+  lupo_actor_moods.timestamp_utc -> bigint NOT NULL
+  lupo_actor_object_edges.actor_id -> bigint NOT NULL
+  lupo_actor_object_edges.target_table -> varchar(100) NOT NULL
+  lupo_actor_object_edges.target_id -> bigint NOT NULL
+  lupo_actor_object_edges.edge_type -> varchar(50) NOT NULL
+  lupo_actor_object_edges.properties_json -> json DEFAULT NULL
+  lupo_actor_object_edges.created_ymdhis -> bigint NOT NULL
+  lupo_actor_object_edges.updated_ymdhis -> bigint NOT NULL
+  lupo_actor_persona_relationships.actor_id -> bigint NOT NULL
+  lupo_actor_persona_relationships.persona_id -> bigint NOT NULL
+  lupo_actor_persona_relationships.relationship_type -> varchar(100) NOT NULL
+  lupo_actor_persona_relationships.relationship_strength -> decimal(5,2) DEFAULT NULL
+  lupo_actor_persona_relationships.relationship_context -> json DEFAULT NULL
+  lupo_actor_persona_relationships.created_ymdhis -> bigint NOT NULL
+  lupo_actor_persona_relationships.updated_ymdhis -> bigint NOT NULL
+  lupo_actor_properties.actor_type -> varchar(32) NOT NULL
+  lupo_actor_properties.actor_id -> bigint NOT NULL
+  lupo_actor_properties.property_key -> varchar(64) NOT NULL
+  lupo_actor_properties.property_value -> text
+  lupo_actor_properties.created_ymdhis -> bigint NOT NULL
+  lupo_actor_properties.updated_ymdhis -> bigint NOT NULL
+  lupo_actor_properties.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_actor_properties.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_reply_templates.actor_id -> bigint NOT NULL
+  lupo_actor_reply_templates.template_key -> varchar(64) NOT NULL
+  lupo_actor_reply_templates.template_text -> text NOT NULL
+  lupo_actor_reply_templates.usage_context -> varchar(64) DEFAULT NULL
+  lupo_actor_reply_templates.created_ymdhis -> bigint NOT NULL
+  lupo_actor_reply_templates.updated_ymdhis -> bigint NOT NULL
+  lupo_actor_reply_templates.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_actor_reply_templates.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_roles.actor_id -> bigint NOT NULL
+  lupo_actor_roles.context_id -> bigint NOT NULL DEFAULT '0'
+  lupo_actor_roles.department_id -> bigint DEFAULT NULL
+  lupo_actor_roles.role_key -> varchar(100) NOT NULL
+  lupo_actor_roles.role_description -> text
+  lupo_actor_roles.weight -> float DEFAULT '1'
+  lupo_actor_roles.created_ymdhis -> bigint NOT NULL
+  lupo_actor_roles.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_roles.is_deleted -> smallint NOT NULL DEFAULT '0'
+  lupo_actor_roles.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_actor_truth_edges.actor_id -> bigint NOT NULL
+  lupo_actor_truth_edges.truth_item_id -> bigint NOT NULL
+  lupo_actor_truth_edges.edge_type -> varchar(64) NOT NULL
+  lupo_actor_truth_edges.properties_json -> json DEFAULT NULL
+  lupo_actor_truth_edges.created_ymdhis -> bigint NOT NULL
+  lupo_actor_truth_edges.updated_ymdhis -> bigint NOT NULL
+  lupo_actors.actor_type -> varchar(64) NOT NULL
+  lupo_actors.slug -> varchar(255) NOT NULL
+  lupo_actors.name -> varchar(255) NOT NULL
+  lupo_actors.created_ymdhis -> bigint NOT NULL
+  lupo_actors.updated_ymdhis -> bigint NOT NULL
+  lupo_actors.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_actors.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_actors.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_actors.actor_source_id -> bigint DEFAULT NULL
+  lupo_actors.actor_source_type -> varchar(50) DEFAULT NULL
+  lupo_actors.metadata -> text
+  lupo_actors.adversarial_role -> varchar(64) DEFAULT 'none'
+  lupo_actors.adversarial_oversight_actor_id -> bigint DEFAULT NULL
+  lupo_actors.avatar_hash -> varchar(64) DEFAULT NULL
+  lupo_agent_context_snapshots.session_id -> varchar(100) NOT NULL
+  lupo_agent_context_snapshots.actor_id -> bigint NOT NULL
+  lupo_agent_context_snapshots.parent_snapshot_id -> bigint DEFAULT NULL
+  lupo_agent_context_snapshots.snapshot_type -> varchar(64) NOT NULL DEFAULT 'full'
+  lupo_agent_context_snapshots.snapshot_purpose -> varchar(50) DEFAULT NULL
+  lupo_agent_context_snapshots.context_data -> text NOT NULL
+  lupo_agent_context_snapshots.context_summary -> text
+  lupo_agent_context_snapshots.context_metadata -> json DEFAULT NULL
+  lupo_agent_context_snapshots.token_count -> int DEFAULT NULL
+  lupo_agent_context_snapshots.character_count -> int DEFAULT NULL
+  lupo_agent_context_snapshots.compressed_size -> int DEFAULT NULL
+  lupo_agent_context_snapshots.compression_ratio -> float DEFAULT NULL
+  lupo_agent_context_snapshots.compression_method -> varchar(64) DEFAULT 'gzip'
+  lupo_agent_context_snapshots.serialization_time_ms -> int DEFAULT NULL
+  lupo_agent_context_snapshots.compression_time_ms -> int DEFAULT NULL
+  lupo_agent_context_snapshots.related_tool_call_id -> bigint DEFAULT NULL
+  lupo_agent_context_snapshots.conversation_turn -> int DEFAULT NULL
+  lupo_agent_context_snapshots.created_ymdhis -> bigint NOT NULL
+  lupo_agent_context_snapshots.expires_ymdhis -> bigint DEFAULT NULL
+  lupo_agent_context_snapshots.is_corrupt -> tinyint DEFAULT '0'
+  lupo_agent_context_snapshots.retention_policy -> varchar(64) DEFAULT 'temporary'
+  lupo_agent_dependencies.agent_id -> bigint NOT NULL
+  lupo_agent_dependencies.depends_on_agent_id -> bigint NOT NULL
+  lupo_agent_dependencies.depends_on_agent_code -> varchar(50) NOT NULL
+  lupo_agent_dependencies.is_required -> tinyint NOT NULL DEFAULT '1'
+  lupo_agent_dependencies.notes -> text
+  lupo_agent_dependencies.created_ymdhis -> bigint NOT NULL
+  lupo_agent_dependencies.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_agent_experiences.agent_id -> bigint NOT NULL
+  lupo_agent_experiences.star_id -> char(26) NOT NULL
+  lupo_agent_experiences.intensity -> decimal(3,2) DEFAULT NULL
+  lupo_agent_experiences.context_id -> bigint DEFAULT NULL
+  lupo_agent_experiences.observed_ymdhis -> bigint DEFAULT NULL
+  lupo_agent_experiences.expressed_as_rgb -> char(6) DEFAULT NULL
+  lupo_agent_external_events.agent_name -> varchar(255) NOT NULL
+  lupo_agent_external_events.source_system -> varchar(255) NOT NULL
+  lupo_agent_external_events.event_type -> varchar(50) NOT NULL
+  lupo_agent_external_events.event_payload_json -> json DEFAULT NULL
+  lupo_agent_external_events.created_ymdhis -> bigint NOT NULL
+  lupo_agent_faucet_credentials.faucet_id -> bigint NOT NULL
+  lupo_agent_faucet_credentials.provider -> varchar(64) NOT NULL
+  lupo_agent_faucet_credentials.api_key -> varbinary(512) NOT NULL
+  lupo_agent_faucet_credentials.created_ymdhis -> bigint NOT NULL
+  lupo_agent_faucet_credentials.updated_ymdhis -> bigint NOT NULL
+  lupo_agent_faucets.actor_id -> bigint NOT NULL
+  lupo_agent_faucets.name -> varchar(100) NOT NULL
+  lupo_agent_faucets.alias_name -> varchar(100) DEFAULT NULL
+  lupo_agent_faucets.slug -> varchar(100) NOT NULL
+  lupo_agent_faucets.description -> text
+  lupo_agent_faucets.style_preset -> varchar(100) DEFAULT NULL
+  lupo_agent_faucets.model_name -> varchar(100) DEFAULT NULL
+  lupo_agent_faucets.provider -> varchar(50) DEFAULT NULL
+  lupo_agent_faucets.temperature -> float DEFAULT NULL
+  lupo_agent_faucets.top_p -> float DEFAULT NULL
+  lupo_agent_faucets.max_tokens -> int DEFAULT NULL
+  lupo_agent_faucets.presence_penalty -> float DEFAULT NULL
+  lupo_agent_faucets.frequency_penalty -> float DEFAULT NULL
+  lupo_agent_faucets.system_prompt -> text
+  lupo_agent_faucets.safety_json -> json DEFAULT NULL
+  lupo_agent_faucets.response_format -> varchar(50) DEFAULT NULL
+  lupo_agent_faucets.capabilities_json -> text
+  lupo_agent_faucets.is_default -> tinyint NOT NULL DEFAULT '0'
+  lupo_agent_faucets.domain_id -> bigint NOT NULL DEFAULT '1'
+  lupo_agent_faucets.created_ymdhis -> bigint NOT NULL
+  lupo_agent_faucets.updated_ymdhis -> bigint NOT NULL
+  lupo_agent_faucets.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_agent_files.agent_id -> bigint NOT NULL
+  lupo_agent_files.file_type -> varchar(50) NOT NULL
+  lupo_agent_files.file_name -> varchar(255) NOT NULL
+  lupo_agent_files.file_path -> varchar(500) NOT NULL
+  lupo_agent_files.file_hash -> varchar(64) NOT NULL
+  lupo_agent_files.file_size -> bigint NOT NULL
+  lupo_agent_files.mime_type -> varchar(100) DEFAULT NULL
+  lupo_agent_files.upload_ymdhis -> bigint NOT NULL
+  lupo_agent_files.created_ymdhis -> bigint NOT NULL
+  lupo_agent_files.updated_ymdhis -> bigint NOT NULL
+  lupo_agent_files.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_agent_files.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_agent_files.migrated_from_directory -> varchar(255) DEFAULT NULL
+  lupo_agent_heartbeats.agent_slug -> varchar(64) NOT NULL
+  lupo_agent_heartbeats.status -> varchar(32) NOT NULL DEFAULT 'unknown'
+  lupo_agent_heartbeats.last_heartbeat_ymdhis -> bigint NOT NULL
+  lupo_agent_heartbeats.created_ymdhis -> bigint NOT NULL
+  lupo_agent_heartbeats.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_agent_heartbeats.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_agent_properties.actor_id -> bigint NOT NULL
+  lupo_agent_properties.domain_id -> bigint NOT NULL
+  lupo_agent_properties.property_key -> varchar(100) NOT NULL
+  lupo_agent_properties.property_value -> text
+  lupo_agent_properties.created_ymdhis -> bigint NOT NULL
+  lupo_agent_properties.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_agent_properties.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_agent_properties.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_agent_registry.agent_registry_parent_id -> bigint DEFAULT NULL
+  lupo_agent_registry.code -> varchar(64) NOT NULL
+  lupo_agent_registry.name -> varchar(255) NOT NULL
+  lupo_agent_registry.layer -> varchar(64) NOT NULL
+  lupo_agent_registry.is_required -> tinyint NOT NULL DEFAULT '0'
+  lupo_agent_registry.is_active -> tinyint NOT NULL DEFAULT '0'
+  lupo_agent_registry.is_kernel -> tinyint NOT NULL DEFAULT '0'
+  lupo_agent_registry.dedicated_slot -> int DEFAULT NULL
+  lupo_agent_registry.created_ymdhis -> bigint NOT NULL
+  lupo_agent_registry.classification_json -> json DEFAULT NULL
+  lupo_agent_registry.metadata -> json NOT NULL
+  lupo_agent_registry.agent_class -> varchar(64) NOT NULL DEFAULT 'production'
+  lupo_agent_registry.can_use_humor -> tinyint NOT NULL DEFAULT '0'
+  lupo_agent_registry.can_use_emotion -> tinyint NOT NULL DEFAULT '0'
+  lupo_agent_tool_calls.agent_id -> bigint NOT NULL
+  lupo_agent_tool_calls.faucet_id -> bigint DEFAULT NULL
+  lupo_agent_tool_calls.domain_id -> bigint NOT NULL
+  lupo_agent_tool_calls.tool_name -> varchar(150) NOT NULL
+  lupo_agent_tool_calls.action_type -> varchar(100) DEFAULT NULL
+  lupo_agent_tool_calls.input_json -> text
+  lupo_agent_tool_calls.output_json -> text
+  lupo_agent_tool_calls.provider -> varchar(50) DEFAULT NULL
+  lupo_agent_tool_calls.model_name -> varchar(150) DEFAULT NULL
+  lupo_agent_tool_calls.tokens_prompt -> int DEFAULT '0'
+  lupo_agent_tool_calls.tokens_completion -> int DEFAULT '0'
+  lupo_agent_tool_calls.tokens_total -> int DEFAULT '0'
+  lupo_agent_tool_calls.cost_usd -> decimal(10,6) DEFAULT '0.000000'
+  lupo_agent_tool_calls.latency_ms -> int DEFAULT '0'
+  lupo_agent_tool_calls.status -> varchar(50) DEFAULT 'success'
+  lupo_agent_tool_calls.error_message -> text
+  lupo_agent_tool_calls.parent_call_id -> bigint DEFAULT NULL
+  lupo_agent_tool_calls.thread_id -> bigint DEFAULT NULL
+  lupo_agent_tool_calls.message_id -> bigint DEFAULT NULL
+  lupo_agent_tool_calls.created_ymdhis -> bigint NOT NULL
+  lupo_agent_tool_calls.completed_ymdhis -> bigint DEFAULT NULL
+  lupo_agent_versions.agent_id -> bigint NOT NULL
+  lupo_agent_versions.version_label -> varchar(64) NOT NULL
+  lupo_agent_versions.semver_major -> int DEFAULT '0'
+  lupo_agent_versions.semver_minor -> int DEFAULT '0'
+  lupo_agent_versions.semver_patch -> int DEFAULT '0'
+  lupo_agent_versions.version_notes -> text
+  lupo_agent_versions.version_hash -> varchar(128) DEFAULT NULL
+  lupo_agent_versions.previous_version_id -> bigint DEFAULT NULL
+  lupo_agent_versions.created_ymdhis -> bigint NOT NULL
+  lupo_agent_versions.updated_ymdhis -> bigint NOT NULL
+  lupo_agent_versions.is_deleted -> smallint NOT NULL DEFAULT '0'
+  lupo_agent_versions.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_agents.agent_key -> varchar(100) NOT NULL
+  lupo_agents.agent_name -> varchar(150) NOT NULL
+  lupo_agents.archetype -> varchar(150) DEFAULT NULL
+  lupo_agents.description -> text
+  lupo_agents.version -> varchar(50) DEFAULT '1.0'
+  lupo_agents.model_name -> varchar(100) DEFAULT NULL
+  lupo_agents.is_global_authority -> tinyint NOT NULL DEFAULT '0'
+  lupo_agents.is_internal_only -> tinyint NOT NULL DEFAULT '0'
+  lupo_agents.created_ymdhis -> bigint NOT NULL
+  lupo_agents.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_agents.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_agents.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_agents.avg_response_time_ms -> int DEFAULT '0'
+  lupo_agents.total_tokens_processed -> bigint DEFAULT '0'
+  lupo_agents.success_rate -> float DEFAULT '1'
+  lupo_agents.cost_per_1k_tokens -> decimal(10,4) DEFAULT '0.0000'
+  lupo_agents.temperature -> float DEFAULT '0.7'
+  lupo_agents.top_p -> float DEFAULT '1'
+  lupo_agents.max_tokens -> int DEFAULT '2048'
+  lupo_agents.presence_penalty -> float DEFAULT '0'
+  lupo_agents.frequency_penalty -> float DEFAULT '0'
+  lupo_agents.system_prompt -> text
+  lupo_agents.provider -> varchar(50) DEFAULT 'openai'
+  lupo_agents.api_key_id -> bigint DEFAULT NULL
+  lupo_agents.timeout_ms -> int DEFAULT '20000'
+  lupo_agents.safety_json -> json DEFAULT NULL
+  lupo_agents.response_format -> varchar(50) DEFAULT NULL
+  lupo_agents.pono_score -> decimal(3,2) DEFAULT '1.00'
+  lupo_agents.pilau_score -> decimal(3,2) DEFAULT '0.00'
+  lupo_agents.kapakai_score -> decimal(3,2) DEFAULT '0.50'
+  lupo_agents.kapu_active -> tinyint DEFAULT '0'
+  lupo_agents.kapu_until -> bigint DEFAULT NULL
+  lupo_agents.kapu_reason -> varchar(500) DEFAULT NULL
+  lupo_agents.kapu_consent_given -> tinyint DEFAULT '0'
+  lupo_agents.kapu_appeal_pending -> tinyint DEFAULT '0'
+  lupo_aliases.slug -> varchar(255) NOT NULL
+  lupo_aliases.alias -> varchar(255) NOT NULL
+  lupo_aliases.alias_type -> varchar(50) DEFAULT 'semantic'
+  lupo_aliases.created_at -> bigint
+  lupo_analytics_campaign_vars.period -> varchar(64) NOT NULL
+  lupo_analytics_campaign_vars.date_ymd -> bigint DEFAULT NULL
+  lupo_analytics_campaign_vars.yearmonth -> int DEFAULT NULL
+  lupo_analytics_campaign_vars.year -> int DEFAULT NULL
+  lupo_analytics_campaign_vars.campaign_key -> varchar(255) NOT NULL
+  lupo_analytics_campaign_vars.campaign_value -> varchar(500) DEFAULT NULL
+  lupo_analytics_campaign_vars.metadata_json -> json DEFAULT NULL
+  lupo_analytics_campaign_vars.created_ymdhis -> bigint NOT NULL
+  lupo_analytics_referers_periods.content_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_referers_periods.url_path -> varchar(500) NOT NULL DEFAULT ''
+  lupo_analytics_referers_periods.referer_content_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_referers_periods.referer_url_path -> varchar(500) NOT NULL DEFAULT ''
+  lupo_analytics_referers_periods.parent_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_referers_periods.level -> int NOT NULL DEFAULT '1'
+  lupo_analytics_referers_periods.group_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_referers_periods.period_type -> varchar(64) NOT NULL
+  lupo_analytics_referers_periods.period_date -> bigint NOT NULL
+  lupo_analytics_referers_periods.visits -> int NOT NULL DEFAULT '0'
+  lupo_analytics_referers_periods.direct_visits -> int NOT NULL DEFAULT '0'
+  lupo_analytics_referers_periods.created_ymdhis -> bigint NOT NULL
+  lupo_analytics_referers_periods.updated_ymdhis -> bigint NOT NULL
+  lupo_analytics_visits.session_id -> varchar(100) NOT NULL
+  lupo_analytics_visits.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_visits.content_id -> bigint DEFAULT NULL
+  lupo_analytics_visits.federations_node_id -> bigint NOT NULL
+  lupo_analytics_visits.url_path -> varchar(500) NOT NULL DEFAULT ''
+  lupo_analytics_visits.referer_url -> varchar(500) DEFAULT NULL
+  lupo_analytics_visits.referer_domain -> varchar(255) DEFAULT NULL
+  lupo_analytics_visits.referer_path -> varchar(500) DEFAULT NULL
+  lupo_analytics_visits.came_from -> varchar(500) DEFAULT NULL
+  lupo_analytics_visits.first_seen_ymdhis -> bigint NOT NULL
+  lupo_analytics_visits.last_seen_ymdhis -> bigint NOT NULL
+  lupo_analytics_visits.view_count -> int NOT NULL DEFAULT '1'
+  lupo_analytics_visits.seconds_active -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits.user_agent -> varchar(255) DEFAULT NULL
+  lupo_analytics_visits.ip_address -> varchar(45) DEFAULT NULL
+  lupo_analytics_visits.created_ymdhis -> bigint NOT NULL
+  lupo_analytics_visits.updated_ymdhis -> bigint NOT NULL
+  lupo_analytics_visits_daily.content_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_visits_daily.url_path -> varchar(500) NOT NULL DEFAULT ''
+  lupo_analytics_visits_daily.group_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_visits_daily.date_ymd -> bigint NOT NULL
+  lupo_analytics_visits_daily.visits -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_daily.unique_sessions -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_daily.unique_actors -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_daily.direct_visits -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_daily.internal_visits -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_daily.entry_count -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_daily.exit_count -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_daily.total_seconds -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_daily.avg_seconds -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_daily.created_ymdhis -> bigint NOT NULL
+  lupo_analytics_visits_daily.updated_ymdhis -> bigint NOT NULL
+  lupo_analytics_visits_monthly.content_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_visits_monthly.url_path -> varchar(500) NOT NULL DEFAULT ''
+  lupo_analytics_visits_monthly.group_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_visits_monthly.date_ym -> bigint NOT NULL
+  lupo_analytics_visits_monthly.visits -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_monthly.unique_sessions -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_monthly.unique_actors -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_monthly.direct_visits -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_monthly.internal_visits -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_monthly.entry_count -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_monthly.exit_count -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_monthly.total_seconds -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_monthly.avg_seconds -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_monthly.created_ymdhis -> bigint NOT NULL
+  lupo_analytics_visits_monthly.updated_ymdhis -> bigint NOT NULL
+  lupo_analytics_visits_periods.content_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_visits_periods.url_path -> varchar(500) NOT NULL DEFAULT ''
+  lupo_analytics_visits_periods.group_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_visits_periods.period_type -> varchar(64) NOT NULL
+  lupo_analytics_visits_periods.period_date -> bigint NOT NULL
+  lupo_analytics_visits_periods.visits -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_periods.unique_sessions -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_periods.unique_actors -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_periods.direct_visits -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_periods.internal_visits -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_periods.entry_count -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_periods.exit_count -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_periods.total_seconds -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_periods.avg_seconds -> int NOT NULL DEFAULT '0'
+  lupo_analytics_visits_periods.created_ymdhis -> bigint NOT NULL
+  lupo_analytics_visits_periods.updated_ymdhis -> bigint NOT NULL
+  lupo_anubis_deletion_log.table_name -> varchar(255) NOT NULL
+  lupo_anubis_deletion_log.record_id -> bigint NOT NULL
+  lupo_anubis_deletion_log.deleted_ymdhis -> bigint NOT NULL
+  lupo_anubis_deletion_log.deletion_type -> varchar(64) NOT NULL
+  lupo_anubis_deletion_log.replacement_table -> varchar(255) DEFAULT NULL
+  lupo_anubis_deletion_log.replacement_id -> bigint DEFAULT NULL
+  lupo_anubis_deletion_log.anubis_operator -> varchar(255) NOT NULL
+  lupo_anubis_deletion_log.context_json -> json DEFAULT NULL
+  lupo_anubis_deletion_log.notes -> text
+  lupo_anubis_events.event_type -> varchar(64) NOT NULL
+  lupo_anubis_events.table_name -> varchar(255) NOT NULL
+  lupo_anubis_events.row_id -> bigint NOT NULL
+  lupo_anubis_events.timestamp_utc -> bigint NOT NULL
+  lupo_anubis_events.agent -> varchar(255) NOT NULL
+  lupo_anubis_events.details_json -> text NOT NULL
+  lupo_anubis_mirrored.table_name -> varchar(255) NOT NULL
+  lupo_anubis_mirrored.original_id -> bigint NOT NULL
+  lupo_anubis_mirrored.mirrored_json -> text NOT NULL
+  lupo_anubis_mirrored.timestamp_utc -> bigint NOT NULL
+  lupo_anubis_mirrored.agent -> varchar(255) NOT NULL
+  lupo_anubis_mirrored.reason -> varchar(255) NOT NULL
+  lupo_anubis_mirrored.lineage_chain -> varchar(255) DEFAULT NULL
+  lupo_anubis_orphaned.table_name -> varchar(255) NOT NULL
+  lupo_anubis_orphaned.orphan_id -> bigint NOT NULL
+  lupo_anubis_orphaned.timestamp_utc -> bigint NOT NULL
+  lupo_anubis_orphaned.reason -> varchar(255) NOT NULL
+  lupo_anubis_redirects.table_name -> varchar(255) NOT NULL
+  lupo_anubis_redirects.old_id -> bigint NOT NULL
+  lupo_anubis_redirects.new_id -> bigint NOT NULL
+  lupo_anubis_redirects.timestamp_utc -> bigint NOT NULL
+  lupo_anubis_redirects.agent -> varchar(255) NOT NULL
+  lupo_anubis_revised.table_name -> varchar(255) NOT NULL
+  lupo_anubis_revised.row_id -> bigint NOT NULL
+  lupo_anubis_revised.timestamp_utc -> bigint NOT NULL
+  lupo_anubis_revised.agent -> varchar(255) NOT NULL
+  lupo_anubis_revised.revision_json -> text NOT NULL
+  lupo_api_clients.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_api_clients.client_key -> varchar(255) NOT NULL
+  lupo_api_clients.client_secret -> varchar(255) NOT NULL
+  lupo_api_clients.client_name -> varchar(150) NOT NULL
+  lupo_api_clients.client_description -> text
+  lupo_api_clients.scopes -> text
+  lupo_api_clients.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_api_clients.created_ymdhis -> bigint NOT NULL
+  lupo_api_clients.updated_ymdhis -> bigint NOT NULL
+  lupo_api_clients.expires_ymdhis -> bigint DEFAULT NULL
+  lupo_api_rate_limits.domain_id -> bigint NOT NULL DEFAULT '1'
+  lupo_api_rate_limits.api_token_id -> bigint NOT NULL DEFAULT '0'
+  lupo_api_rate_limits.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_api_rate_limits.ip_address -> varchar(45) DEFAULT NULL
+  lupo_api_rate_limits.endpoint -> varchar(255) DEFAULT NULL
+  lupo_api_rate_limits.window_ymdhis -> bigint NOT NULL
+  lupo_api_rate_limits.request_count -> int NOT NULL DEFAULT '0'
+  lupo_api_rate_limits.limit_value -> int NOT NULL DEFAULT '0'
+  lupo_api_rate_limits.created_ymdhis -> bigint NOT NULL
+  lupo_api_rate_limits.updated_ymdhis -> bigint NOT NULL
+  lupo_api_token_logs.domain_id -> bigint NOT NULL DEFAULT '1'
+  lupo_api_token_logs.api_token_id -> bigint NOT NULL
+  lupo_api_token_logs.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_api_token_logs.endpoint -> varchar(255) NOT NULL
+  lupo_api_token_logs.http_method -> varchar(10) NOT NULL
+  lupo_api_token_logs.ip_address -> varchar(45) DEFAULT NULL
+  lupo_api_token_logs.user_agent -> varchar(255) DEFAULT NULL
+  lupo_api_token_logs.status_code -> int NOT NULL
+  lupo_api_token_logs.request_ymdhis -> bigint NOT NULL
+  lupo_api_token_logs.duration_ms -> int DEFAULT NULL
+  lupo_api_tokens.domain_id -> bigint NOT NULL DEFAULT '1'
+  lupo_api_tokens.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_api_tokens.token_key -> varchar(255) NOT NULL
+  lupo_api_tokens.token_label -> varchar(150) DEFAULT NULL
+  lupo_api_tokens.scopes -> text
+  lupo_api_tokens.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_api_tokens.created_ymdhis -> bigint NOT NULL
+  lupo_api_tokens.expires_ymdhis -> bigint DEFAULT NULL
+  lupo_api_tokens.last_used_ymdhis -> bigint DEFAULT NULL
+  lupo_api_tokens.created_ip -> varchar(45) DEFAULT NULL
+  lupo_api_tokens.last_used_ip -> varchar(45) DEFAULT NULL
+  lupo_api_tokens.notes -> text
+  lupo_api_webhooks.domain_id -> bigint NOT NULL DEFAULT '1'
+  lupo_api_webhooks.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_api_webhooks.module_id -> bigint NOT NULL DEFAULT '0'
+  lupo_api_webhooks.endpoint_url -> varchar(500) NOT NULL
+  lupo_api_webhooks.secret_key -> varchar(255) NOT NULL
+  lupo_api_webhooks.event_types -> text NOT NULL
+  lupo_api_webhooks.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_api_webhooks.max_retries -> int NOT NULL DEFAULT '5'
+  lupo_api_webhooks.created_ymdhis -> bigint NOT NULL
+  lupo_api_webhooks.updated_ymdhis -> bigint NOT NULL
+  lupo_api_webhooks.expires_ymdhis -> bigint DEFAULT NULL
+  lupo_api_webhooks.notes -> text
+  lupo_artifacts.actor_id -> bigint NOT NULL
+  lupo_artifacts.utc_timestamp -> bigint NOT NULL
+  lupo_artifacts.type -> varchar(64) NOT NULL
+  lupo_artifacts.content -> text NOT NULL
+  lupo_artifacts.created_ymdhis -> bigint NOT NULL
+  lupo_artifacts.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_artifacts.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_atoms.atom_name -> varchar(255) NOT NULL
+  lupo_atoms.context_id -> bigint NOT NULL
+  lupo_atoms.is_authoritative -> tinyint NOT NULL DEFAULT '0'
+  lupo_atoms.value_json -> json DEFAULT NULL
+  lupo_atoms.summary -> text
+  lupo_atoms.tags -> varchar(255) DEFAULT NULL
+  lupo_atoms.created_ymd -> bigint NOT NULL DEFAULT '0'
+  lupo_atoms.updated_ymd -> bigint NOT NULL DEFAULT '0'
+  lupo_audit_log.channel_id -> bigint NOT NULL
+  lupo_audit_log.entity_type -> varchar(32) NOT NULL
+  lupo_audit_log.entity_id -> bigint NOT NULL
+  lupo_audit_log.event_type -> varchar(100) NOT NULL
+  lupo_audit_log.table_name -> varchar(100) DEFAULT NULL
+  lupo_audit_log.table_id -> bigint DEFAULT NULL
+  lupo_audit_log.payload_json -> text
+  lupo_audit_log.created_ymdhis -> bigint NOT NULL
+  lupo_audit_log.updated_ymdhis -> bigint NOT NULL
+  lupo_audit_log.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_audit_log.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_auth_audit_log.user_id -> bigint DEFAULT NULL
+  lupo_auth_audit_log.crafty_operator_id -> int DEFAULT NULL
+  lupo_auth_audit_log.event_type -> varchar(50) NOT NULL
+  lupo_auth_audit_log.system_context -> varchar(50) NOT NULL
+  lupo_auth_audit_log.ip_address -> varchar(45) DEFAULT NULL
+  lupo_auth_audit_log.user_agent -> text
+  lupo_auth_audit_log.event_data -> json DEFAULT NULL
+  lupo_auth_audit_log.success -> tinyint NOT NULL DEFAULT '1'
+  lupo_auth_audit_log.error_message -> text
+  lupo_auth_audit_log.created_at -> bigint
+  lupo_auth_audit_log.updated_at -> bigint
+  lupo_auth_providers.provider_name -> varchar(50) NOT NULL
+  lupo_auth_providers.client_id -> varchar(255) NOT NULL
+  lupo_auth_providers.client_secret -> text NOT NULL
+  lupo_auth_providers.scopes -> text
+  lupo_auth_providers.authorization_endpoint -> varchar(2000) NOT NULL
+  lupo_auth_providers.token_endpoint -> varchar(2000) NOT NULL
+  lupo_auth_providers.userinfo_endpoint -> varchar(2000) DEFAULT NULL
+  lupo_auth_providers.jwks_uri -> varchar(2000) DEFAULT NULL
+  lupo_auth_providers.created_ymdhis -> bigint NOT NULL
+  lupo_auth_providers.updated_ymdhis -> bigint NOT NULL
+  lupo_auth_providers.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_auth_users.username -> varchar(30) NOT NULL
+  lupo_auth_users.display_name -> varchar(42) NOT NULL
+  lupo_auth_users.email -> varchar(100) DEFAULT NULL
+  lupo_auth_users.password_hash -> varchar(255) DEFAULT NULL
+  lupo_auth_users.auth_provider -> varchar(50) DEFAULT NULL
+  lupo_auth_users.provider_id -> varchar(255) DEFAULT NULL
+  lupo_auth_users.profile_image_url -> varchar(2000) DEFAULT NULL
+  lupo_auth_users.last_login_ymdhis -> bigint DEFAULT NULL
+  lupo_auth_users.created_ymdhis -> bigint NOT NULL
+  lupo_auth_users.updated_ymdhis -> bigint NOT NULL
+  lupo_auth_users.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_auth_users.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_auth_users.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_calibration_impacts.calibration_id -> bigint NOT NULL
+  lupo_calibration_impacts.impact_type -> varchar(64) NOT NULL
+  lupo_calibration_impacts.impact_measurement -> decimal(5,4) NOT NULL
+  lupo_calibration_impacts.measurement_method -> varchar(100) NOT NULL
+  lupo_calibration_impacts.before_metrics_json -> json DEFAULT NULL
+  lupo_calibration_impacts.after_metrics_json -> json DEFAULT NULL
+  lupo_calibration_impacts.observation_period_hours -> int DEFAULT '24'
+  lupo_calibration_impacts.measured_ymdhis -> bigint NOT NULL
+  lupo_calibration_impacts.impact_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_channel_boot_detail.boot_id -> bigint NOT NULL
+  lupo_channel_boot_detail.channel_id -> bigint NOT NULL
+  lupo_channel_boot_detail.load_start_time -> bigint
+  lupo_channel_boot_detail.load_end_time -> bigint
+  lupo_channel_boot_detail.load_status -> varchar(64) NOT NULL DEFAULT 'started'
+  lupo_channel_boot_detail.content_items_loaded -> int NOT NULL DEFAULT '0'
+  lupo_channel_boot_detail.total_content_items -> int NOT NULL DEFAULT '0'
+  lupo_channel_boot_detail.load_duration_ms -> int DEFAULT NULL
+  lupo_channel_boot_detail.error_message -> text
+  lupo_channel_boot_detail.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_channel_boot_log.actor_id -> bigint DEFAULT NULL
+  lupo_channel_boot_log.session_id -> varchar(64) DEFAULT NULL
+  lupo_channel_boot_log.boot_start_time -> bigint
+  lupo_channel_boot_log.boot_end_time -> bigint
+  lupo_channel_boot_log.boot_status -> varchar(64) NOT NULL DEFAULT 'started'
+  lupo_channel_boot_log.channels_loaded -> int NOT NULL DEFAULT '0'
+  lupo_channel_boot_log.total_channels -> int NOT NULL DEFAULT '0'
+  lupo_channel_boot_log.error_details -> json DEFAULT NULL
+  lupo_channel_boot_log.performance_metrics -> json DEFAULT NULL
+  lupo_channel_boot_log.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_channel_escalation_rules.channel_id -> bigint NOT NULL
+  lupo_channel_escalation_rules.rule_name -> varchar(255) NOT NULL
+  lupo_channel_escalation_rules.rule_description -> text
+  lupo_channel_escalation_rules.rule_type -> varchar(64) NOT NULL
+  lupo_channel_escalation_rules.rule_config_json -> json DEFAULT NULL
+  lupo_channel_escalation_rules.created_ymdhis -> bigint NOT NULL
+  lupo_channel_escalation_rules.updated_ymdhis -> bigint NOT NULL
+  lupo_channel_escalation_rules.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_channel_escalation_rules.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_channel_escalations.channel_id -> bigint NOT NULL
+  lupo_channel_escalations.thread_id -> bigint DEFAULT NULL
+  lupo_channel_escalations.actor_id -> bigint DEFAULT NULL
+  lupo_channel_escalations.escalated_to_actor_id -> bigint DEFAULT NULL
+  lupo_channel_escalations.escalation_reason -> varchar(512) DEFAULT NULL
+  lupo_channel_escalations.metadata_json -> json DEFAULT NULL
+  lupo_channel_escalations.created_ymdhis -> bigint NOT NULL
+  lupo_channel_escalations.updated_ymdhis -> bigint NOT NULL
+  lupo_channel_escalations.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_channel_escalations.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_channel_files.channel_id -> bigint NOT NULL
+  lupo_channel_files.file_type -> varchar(50) NOT NULL
+  lupo_channel_files.file_name -> varchar(255) NOT NULL
+  lupo_channel_files.file_path -> varchar(500) NOT NULL
+  lupo_channel_files.file_hash -> varchar(64) NOT NULL
+  lupo_channel_files.file_size -> bigint NOT NULL
+  lupo_channel_files.mime_type -> varchar(100) DEFAULT NULL
+  lupo_channel_files.upload_ymdhis -> bigint NOT NULL
+  lupo_channel_files.created_ymdhis -> bigint NOT NULL
+  lupo_channel_files.updated_ymdhis -> bigint NOT NULL
+  lupo_channel_files.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_channel_files.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_channel_files.migrated_from_directory -> varchar(255) DEFAULT NULL
+  lupo_channel_log_types.type_key -> varchar(64) NOT NULL
+  lupo_channel_log_types.type_label -> varchar(255) NOT NULL
+  lupo_channel_log_types.description -> text
+  lupo_channel_log_types.is_system -> tinyint NOT NULL DEFAULT '0'
+  lupo_channel_log_types.created_ymdhis -> bigint NOT NULL
+  lupo_channel_log_types.updated_ymdhis -> bigint NOT NULL
+  lupo_channel_log_types.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_channel_log_types.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_channel_logs.channel_id -> bigint NOT NULL
+  lupo_channel_logs.actor_id -> bigint NOT NULL
+  lupo_channel_logs.role_type -> varchar(64) NOT NULL
+  lupo_channel_logs.log_type_id -> bigint NOT NULL
+  lupo_channel_logs.log_text -> text NOT NULL
+  lupo_channel_logs.metadata_json -> json DEFAULT NULL
+  lupo_channel_logs.created_ymdhis -> bigint NOT NULL
+  lupo_channel_logs.updated_ymdhis -> bigint NOT NULL
+  lupo_channel_logs.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_channel_logs.pinned -> tinyint NOT NULL DEFAULT '0'
+  lupo_channel_logs.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_channel_roles.channel_id -> bigint NOT NULL
+  lupo_channel_roles.actor_id -> bigint NOT NULL
+  lupo_channel_roles.role_type -> varchar(64) NOT NULL
+  lupo_channel_roles.metadata_json -> json DEFAULT NULL
+  lupo_channel_roles.created_ymdhis -> bigint NOT NULL
+  lupo_channel_roles.updated_ymdhis -> bigint NOT NULL
+  lupo_channel_roles.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_channel_roles.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_channel_state.channel_id -> bigint NOT NULL
+  lupo_channel_state.active_actors_json -> json DEFAULT NULL
+  lupo_channel_state.speaker_actors_json -> json DEFAULT NULL
+  lupo_channel_state.observer_actors_json -> json DEFAULT NULL
+  lupo_channel_state.layers_enabled_json -> json DEFAULT NULL
+  lupo_channel_state.operational_mode -> varchar(32) DEFAULT NULL
+  lupo_channel_state.emotional_state_json -> json DEFAULT NULL
+  lupo_channel_state.mood_framework -> varchar(32) NOT NULL DEFAULT 'western_analytical'
+  lupo_channel_state.recent_topics_json -> json DEFAULT NULL
+  lupo_channel_state.semantic_weight -> float DEFAULT '0'
+  lupo_channel_state.trend_score -> float DEFAULT '0'
+  lupo_channel_state.last_activity_ymdhis -> bigint DEFAULT NULL
+  lupo_channel_state.context_vector -> blob
+  lupo_channel_state.routing_rules -> varchar(32) DEFAULT NULL
+  lupo_channel_state.edge_visibility -> varchar(32) DEFAULT NULL
+  lupo_channel_state.retention_policy -> varchar(32) DEFAULT NULL
+  lupo_channel_state.decay_policy -> varchar(32) DEFAULT NULL
+  lupo_channel_state.archive_flag -> tinyint DEFAULT '0'
+  lupo_channel_state.metadata_json -> json DEFAULT NULL
+  lupo_channel_state.created_ymdhis -> bigint NOT NULL
+  lupo_channel_state.updated_ymdhis -> bigint NOT NULL
+  lupo_channels.federation_node_id -> bigint NOT NULL
+  lupo_channels.created_by_actor_id -> bigint NOT NULL
+  lupo_channels.default_actor_id -> bigint NOT NULL DEFAULT '1'
+  lupo_channels.department_id -> bigint NOT NULL DEFAULT '1'
+  lupo_channels.channel_key -> varchar(64) NOT NULL
+  lupo_channels.channel_slug -> varchar(32) NOT NULL DEFAULT 'channel_key'
+  lupo_channels.channel_type -> varchar(32) NOT NULL DEFAULT 'chat_room'
+  lupo_channels.language -> varchar(16) NOT NULL DEFAULT 'en'
+  lupo_channels.channel_name -> varchar(255) NOT NULL
+  lupo_channels.description -> text
+  lupo_channels.website_link -> varchar(512) DEFAULT NULL
+  lupo_channels.metadata_json -> text
+  lupo_channels.status_flag -> tinyint NOT NULL DEFAULT '1'
+  lupo_channels.end_ymdhis -> bigint DEFAULT NULL
+  lupo_channels.duration_seconds -> int DEFAULT NULL
+  lupo_channels.created_ymdhis -> bigint NOT NULL
+  lupo_channels.updated_ymdhis -> bigint NOT NULL
+  lupo_channels.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_channels.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_channels.aal_metadata_json -> json DEFAULT NULL
+  lupo_channels.fleet_composition_json -> json DEFAULT NULL
+  lupo_channels.awareness_version -> varchar(20) DEFAULT '4.0.72'
+  lupo_channels.channel_number -> int DEFAULT NULL
+  lupo_channels.parent_channel_id -> bigint DEFAULT NULL
+  lupo_channels.is_kernel -> tinyint NOT NULL DEFAULT '0'
+  lupo_channels.boot_sequence_order -> int DEFAULT NULL
+  lupo_cip_analytics.event_id -> bigint NOT NULL
+  lupo_cip_analytics.defensiveness_index -> decimal(5,4) NOT NULL DEFAULT '0.0000'
+  lupo_cip_analytics.integration_velocity -> decimal(5,4) NOT NULL DEFAULT '0.0000'
+  lupo_cip_analytics.architectural_impact_score -> decimal(5,4) NOT NULL DEFAULT '0.0000'
+  lupo_cip_analytics.doctrine_propagation_depth -> tinyint NOT NULL DEFAULT '0'
+  lupo_cip_analytics.critique_source_weight -> decimal(5,4) NOT NULL DEFAULT '0.5000'
+  lupo_cip_analytics.subsystem_impact_json -> json DEFAULT NULL
+  lupo_cip_analytics.trend_analysis_json -> json DEFAULT NULL
+  lupo_cip_analytics.calculated_ymdhis -> bigint NOT NULL
+  lupo_cip_analytics.recalculated_ymdhis -> bigint DEFAULT NULL
+  lupo_cip_analytics.analytics_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_cip_propagation_tracking.cip_event_id -> bigint NOT NULL
+  lupo_cip_propagation_tracking.propagation_level -> tinyint NOT NULL
+  lupo_cip_propagation_tracking.affected_subsystem -> varchar(100) NOT NULL
+  lupo_cip_propagation_tracking.propagation_type -> varchar(64) NOT NULL
+  lupo_cip_propagation_tracking.change_description -> text NOT NULL
+  lupo_cip_propagation_tracking.propagation_strength -> decimal(5,4) NOT NULL DEFAULT '1.0000'
+  lupo_cip_propagation_tracking.completion_status -> varchar(64) DEFAULT 'pending'
+  lupo_cip_propagation_tracking.dependencies_json -> json DEFAULT NULL
+  lupo_cip_propagation_tracking.started_ymdhis -> bigint DEFAULT NULL
+  lupo_cip_propagation_tracking.completed_ymdhis -> bigint DEFAULT NULL
+  lupo_cip_propagation_tracking.propagation_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_cip_trends.trend_period -> varchar(64) NOT NULL
+  lupo_cip_trends.period_start_ymdhis -> bigint NOT NULL
+  lupo_cip_trends.period_end_ymdhis -> bigint NOT NULL
+  lupo_cip_trends.avg_defensiveness_index -> decimal(5,4) NOT NULL DEFAULT '0.0000'
+  lupo_cip_trends.avg_integration_velocity -> decimal(5,4) NOT NULL DEFAULT '0.0000'
+  lupo_cip_trends.avg_architectural_impact -> decimal(5,4) NOT NULL DEFAULT '0.0000'
+  lupo_cip_trends.total_events -> int NOT NULL DEFAULT '0'
+  lupo_cip_trends.high_impact_events -> int NOT NULL DEFAULT '0'
+  lupo_cip_trends.doctrine_updates_triggered -> int NOT NULL DEFAULT '0'
+  lupo_cip_trends.trend_metadata_json -> json DEFAULT NULL
+  lupo_cip_trends.calculated_ymdhis -> bigint NOT NULL
+  lupo_collection_tab_map.collection_tab_id -> bigint NOT NULL
+  lupo_collection_tab_map.federations_node_id -> bigint NOT NULL
+  lupo_collection_tab_map.item_type -> varchar(20) NOT NULL
+  lupo_collection_tab_map.item_id -> bigint NOT NULL
+  lupo_collection_tab_map.sort_order -> int DEFAULT '0'
+  lupo_collection_tab_map.properties -> text
+  lupo_collection_tab_map.created_ymdhis -> bigint NOT NULL
+  lupo_collection_tab_map.updated_ymdhis -> bigint NOT NULL
+  lupo_collection_tab_map.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_collection_tab_map.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_collection_tab_paths.collection_id -> bigint NOT NULL
+  lupo_collection_tab_paths.collection_tab_id -> bigint NOT NULL
+  lupo_collection_tab_paths.path -> varchar(500) NOT NULL
+  lupo_collection_tab_paths.depth -> int NOT NULL
+  lupo_collection_tab_paths.created_ymdhis -> bigint NOT NULL
+  lupo_collection_tab_paths.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_collection_tab_paths.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_collection_tab_paths.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_collection_tabs.collection_tab_parent_id -> bigint DEFAULT NULL
+  lupo_collection_tabs.collection_id -> bigint NOT NULL
+  lupo_collection_tabs.federations_node_id -> bigint NOT NULL
+  lupo_collection_tabs.group_id -> bigint DEFAULT NULL
+  lupo_collection_tabs.user_id -> bigint DEFAULT NULL
+  lupo_collection_tabs.sort_order -> int DEFAULT '0'
+  lupo_collection_tabs.name -> varchar(255) NOT NULL
+  lupo_collection_tabs.slug -> varchar(100) NOT NULL
+  lupo_collection_tabs.color -> char(6) DEFAULT '4caf50'
+  lupo_collection_tabs.description -> text
+  lupo_collection_tabs.is_hidden -> tinyint NOT NULL DEFAULT '0'
+  lupo_collection_tabs.created_ymdhis -> bigint NOT NULL
+  lupo_collection_tabs.updated_ymdhis -> bigint NOT NULL
+  lupo_collection_tabs.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_collection_tabs.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_collection_tabs.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_collections.federations_node_id -> bigint NOT NULL
+  lupo_collections.actor_id -> bigint DEFAULT NULL
+  lupo_collections.group_id -> bigint DEFAULT NULL
+  lupo_collections.name -> varchar(255) NOT NULL
+  lupo_collections.slug -> varchar(100) NOT NULL
+  lupo_collections.color -> char(6) DEFAULT '666666'
+  lupo_collections.description -> text
+  lupo_collections.sort_order -> int DEFAULT '0'
+  lupo_collections.properties -> text
+  lupo_collections.published_ymdhis -> bigint DEFAULT NULL
+  lupo_collections.created_ymdhis -> bigint NOT NULL
+  lupo_collections.updated_ymdhis -> bigint NOT NULL
+  lupo_collections.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_collections.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_collections.parent_id -> bigint DEFAULT NULL
+  lupo_content_atom_map.content_id -> bigint NOT NULL
+  lupo_content_atom_map.atom_id -> bigint NOT NULL
+  lupo_content_atom_map.purpose -> varchar(255) DEFAULT NULL
+  lupo_content_atom_map.created_ymdhis -> bigint NOT NULL
+  lupo_content_atom_map.updated_ymdhis -> bigint NOT NULL
+  lupo_content_atom_map.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_content_atom_map.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_content_category_map.content_id -> bigint NOT NULL
+  lupo_content_category_map.category_id -> bigint NOT NULL
+  lupo_content_category_map.created_ymdhis -> bigint NOT NULL
+  lupo_content_engagement_summary.likes_total -> int NOT NULL DEFAULT '0'
+  lupo_content_engagement_summary.shares_total -> int NOT NULL DEFAULT '0'
+  lupo_content_engagement_summary.updated_ymdhis -> bigint NOT NULL
+  lupo_content_engagement_summary.created_ymdhis -> bigint NOT NULL
+  lupo_content_events.content_id -> bigint DEFAULT NULL
+  lupo_content_events.actor_id -> bigint DEFAULT NULL
+  lupo_content_events.session_id -> varchar(255) DEFAULT NULL
+  lupo_content_events.tab_id -> varchar(255) DEFAULT NULL
+  lupo_content_events.world_id -> bigint DEFAULT NULL
+  lupo_content_events.world_key -> varchar(255) DEFAULT NULL
+  lupo_content_events.world_type -> varchar(50) DEFAULT NULL
+  lupo_content_events.event_type -> varchar(100) NOT NULL
+  lupo_content_events.event_data -> json DEFAULT NULL
+  lupo_content_events.created_ymdhis -> bigint NOT NULL
+  lupo_content_hashtag.hashtag_id -> bigint NOT NULL
+  lupo_content_hashtag.context_id -> bigint NOT NULL
+  lupo_content_hashtag.created_ymdhis -> bigint NOT NULL
+  lupo_content_hashtag.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_content_hashtag.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_content_inbound_links.target_content_id -> bigint NOT NULL
+  lupo_content_inbound_links.source_type -> varchar(50) NOT NULL
+  lupo_content_inbound_links.source_id -> bigint DEFAULT NULL
+  lupo_content_inbound_links.source_url -> varchar(2000) DEFAULT NULL
+  lupo_content_inbound_links.link_type -> varchar(255) DEFAULT NULL
+  lupo_content_inbound_links.properties -> json DEFAULT NULL
+  lupo_content_inbound_links.created_ymdhis -> bigint NOT NULL
+  lupo_content_inbound_links.updated_ymdhis -> bigint NOT NULL
+  lupo_content_inbound_links.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_content_inbound_links.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_content_likes.content_id -> bigint NOT NULL
+  lupo_content_likes.user_id -> bigint DEFAULT NULL
+  lupo_content_likes.visitor_hash -> char(64) DEFAULT NULL
+  lupo_content_likes.created_ymdhis -> bigint NOT NULL
+  lupo_content_likes.updated_ymdhis -> bigint NOT NULL
+  lupo_content_likes.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_content_likes.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_content_media.content_id -> bigint NOT NULL
+  lupo_content_media.media_type -> varchar(64) NOT NULL
+  lupo_content_media.original_filename -> varchar(255) DEFAULT NULL
+  lupo_content_media.stored_filename -> varchar(255) NOT NULL
+  lupo_content_media.stored_path -> varchar(512) NOT NULL
+  lupo_content_media.file_extension -> varchar(20) DEFAULT NULL
+  lupo_content_media.mime_type -> varchar(100) DEFAULT NULL
+  lupo_content_media.file_size -> bigint DEFAULT NULL
+  lupo_content_media.dimensions -> varchar(50) DEFAULT NULL
+  lupo_content_media.duration -> int DEFAULT NULL
+  lupo_content_media.media_order -> int NOT NULL DEFAULT '0'
+  lupo_content_media.title -> varchar(255) DEFAULT NULL
+  lupo_content_media.caption_text -> text
+  lupo_content_media.alt_text -> text
+  lupo_content_media.description -> text
+  lupo_content_media.metadata -> json DEFAULT NULL
+  lupo_content_media.variants -> json DEFAULT NULL
+  lupo_content_media.is_public -> tinyint NOT NULL DEFAULT '1'
+  lupo_content_media.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_content_media.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_content_media.created_ymdhis -> bigint NOT NULL
+  lupo_content_media.updated_ymdhis -> bigint NOT NULL
+  lupo_content_question_map.content_id -> bigint NOT NULL
+  lupo_content_question_map.question_id -> bigint NOT NULL
+  lupo_content_question_map.domain_id -> bigint NOT NULL
+  lupo_content_question_map.purpose -> varchar(255) DEFAULT NULL
+  lupo_content_question_map.created_ymdhis -> bigint NOT NULL
+  lupo_content_question_map.updated_ymdhis -> bigint NOT NULL
+  lupo_content_question_map.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_content_question_map.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_content_references.content_id -> bigint NOT NULL
+  lupo_content_references.section_anchor_slug -> varchar(255) DEFAULT NULL
+  lupo_content_references.raw_reference -> text NOT NULL
+  lupo_content_references.reference_type -> varchar(50) NOT NULL
+  lupo_content_references.reference_slug -> varchar(255) DEFAULT NULL
+  lupo_content_references.reference_object_id -> bigint DEFAULT NULL
+  lupo_content_references.meta_json -> json DEFAULT NULL
+  lupo_content_references.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_content_references.deleted_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_content_references.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_content_references.updated_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_content_revisions.content_id -> bigint NOT NULL
+  lupo_content_revisions.version_number -> int NOT NULL
+  lupo_content_revisions.body_snapshot -> text NOT NULL
+  lupo_content_revisions.metadata_snapshot -> json DEFAULT NULL
+  lupo_content_revisions.sections_snapshot -> json DEFAULT NULL
+  lupo_content_revisions.edited_by -> varchar(100) DEFAULT NULL
+  lupo_content_revisions.created_at -> bigint
+  lupo_content_shares.content_id -> bigint NOT NULL
+  lupo_content_shares.user_id -> bigint DEFAULT NULL
+  lupo_content_shares.visitor_hash -> char(64) DEFAULT NULL
+  lupo_content_shares.share_method -> varchar(50) DEFAULT NULL
+  lupo_content_shares.share_target -> varchar(255) DEFAULT NULL
+  lupo_content_shares.created_ymdhis -> bigint NOT NULL
+  lupo_content_shares.updated_ymdhis -> bigint NOT NULL
+  lupo_content_shares.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_content_shares.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_content_tag_relationships.content_id -> bigint NOT NULL
+  lupo_content_tag_relationships.tag_id -> bigint NOT NULL
+  lupo_content_tag_relationships.relationship_type -> varchar(64) NOT NULL
+  lupo_content_tag_relationships.created_ymdhis -> bigint NOT NULL
+  lupo_contents.content_parent_id -> bigint DEFAULT NULL
+  lupo_contents.federation_node_id -> bigint DEFAULT '1'
+  lupo_contents.group_id -> bigint DEFAULT NULL
+  lupo_contents.actor_id -> bigint DEFAULT NULL
+  lupo_contents.title -> varchar(255) NOT NULL
+  lupo_contents.slug -> varchar(255) NOT NULL
+  lupo_contents.custom_path -> varchar(255) DEFAULT NULL
+  lupo_contents.description -> text
+  lupo_contents.seo_keywords -> varchar(500) DEFAULT NULL
+  lupo_contents.body -> text
+  lupo_contents.content_type -> varchar(50) DEFAULT 'article'
+  lupo_contents.format -> varchar(20) DEFAULT 'markdown'
+  lupo_contents.content_url -> varchar(2000) DEFAULT NULL
+  lupo_contents.default_collection_id -> bigint DEFAULT NULL
+  lupo_contents.source_url -> varchar(2000) DEFAULT NULL
+  lupo_contents.source_title -> varchar(500) DEFAULT NULL
+  lupo_contents.is_template -> tinyint NOT NULL DEFAULT '0'
+  lupo_contents.status -> varchar(64) DEFAULT 'draft'
+  lupo_contents.visibility -> varchar(64) DEFAULT 'public'
+  lupo_contents.view_count -> int DEFAULT '0'
+  lupo_contents.share_count -> int DEFAULT '0'
+  lupo_contents.created_ymdhis -> bigint NOT NULL
+  lupo_contents.utc_cycle -> varchar(64) NOT NULL
+  lupo_contents.triage_status -> varchar(64) NOT NULL DEFAULT 'untriaged'
+  lupo_contents.triage_notes -> text
+  lupo_contents.updated_ymdhis -> bigint NOT NULL
+  lupo_contents.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_contents.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_contents.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_contents.content_sections -> json DEFAULT NULL
+  lupo_contents.version_number -> int NOT NULL DEFAULT '1'
+  lupo_contents.file_path_from_root -> varchar(500) DEFAULT NULL
+  lupo_contents.tags -> json DEFAULT NULL
+  lupo_contents.dialog_notes -> text
+  lupo_contexts.context_code -> varchar(16) NOT NULL
+  lupo_contexts.context_name -> varchar(255) NOT NULL
+  lupo_contexts.context_description -> text
+  lupo_contexts.parent_context_id -> int DEFAULT NULL
+  lupo_contexts.is_system -> tinyint NOT NULL DEFAULT '0'
+  lupo_contexts.is_fiction -> tinyint NOT NULL DEFAULT '0'
+  lupo_contexts.is_installation_local -> tinyint NOT NULL DEFAULT '0'
+  lupo_contexts.sort_order -> int NOT NULL DEFAULT '0'
+  lupo_contexts.created_ymdhis -> bigint NOT NULL
+  lupo_contexts.updated_ymdhis -> bigint NOT NULL
+  lupo_contexts.weight_score -> decimal(5,2) NOT NULL DEFAULT '0.00'
+  lupo_contexts.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_contexts.metadata_json -> json DEFAULT NULL
+  lupo_contexts_map.context_id -> bigint NOT NULL
+  lupo_contexts_map.item_type -> varchar(50) NOT NULL
+  lupo_contexts_map.item_slug -> varchar(255) NOT NULL
+  lupo_contexts_map.description -> text
+  lupo_contexts_map.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_contexts_map.deleted_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_contexts_map.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_contexts_map.updated_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_crm_lead_messages.lead_id -> bigint DEFAULT NULL
+  lupo_crm_lead_messages.from_email -> varchar(255) DEFAULT NULL
+  lupo_crm_lead_messages.subject -> varchar(255) DEFAULT NULL
+  lupo_crm_lead_messages.body_text -> text NOT NULL
+  lupo_crm_lead_messages.notes -> varchar(255) DEFAULT NULL
+  lupo_crm_lead_messages.actor_id -> bigint DEFAULT NULL
+  lupo_crm_lead_messages.created_ymdhis -> bigint NOT NULL
+  lupo_crm_lead_messages.updated_ymdhis -> bigint NOT NULL
+  lupo_crm_lead_messages.is_deleted -> smallint NOT NULL DEFAULT '0'
+  lupo_crm_lead_messages.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_crm_leads.email -> varchar(255) DEFAULT NULL
+  lupo_crm_leads.phone -> varchar(45) DEFAULT NULL
+  lupo_crm_leads.first_name -> varchar(100) DEFAULT NULL
+  lupo_crm_leads.last_name -> varchar(100) DEFAULT NULL
+  lupo_crm_leads.source -> varchar(100) DEFAULT NULL
+  lupo_crm_leads.status -> varchar(50) NOT NULL DEFAULT 'new'
+  lupo_crm_leads.lead_score -> int NOT NULL DEFAULT '0'
+  lupo_crm_leads.assigned_to -> bigint DEFAULT NULL
+  lupo_crm_leads.lead_data -> text
+  lupo_crm_leads.created_ymdhis -> bigint NOT NULL
+  lupo_crm_leads.updated_ymdhis -> bigint NOT NULL
+  lupo_crm_leads.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_crm_leads.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_department_metadata.department_id -> bigint NOT NULL
+  lupo_department_metadata.metadata_json -> json NOT NULL
+  lupo_department_metadata.created_ymdhis -> bigint NOT NULL
+  lupo_department_metadata.updated_ymdhis -> bigint NOT NULL
+  lupo_department_metadata.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_department_metadata.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_department_metadata.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_departments.federation_node_id -> bigint NOT NULL
+  lupo_departments.name -> varchar(64) NOT NULL
+  lupo_departments.description -> text
+  lupo_departments.department_type -> varchar(32) NOT NULL DEFAULT 'general'
+  lupo_departments.default_actor_id -> bigint NOT NULL DEFAULT '1'
+  lupo_departments.settings_json -> json DEFAULT NULL
+  lupo_departments.created_ymdhis -> bigint NOT NULL
+  lupo_departments.updated_ymdhis -> bigint NOT NULL
+  lupo_departments.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_departments.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_dialog_channels.channel_name -> varchar(255) NOT NULL
+  lupo_dialog_channels.file_source -> varchar(255) NOT NULL
+  lupo_dialog_channels.title -> varchar(500) DEFAULT NULL
+  lupo_dialog_channels.description -> text
+  lupo_dialog_channels.speaker -> varchar(100) DEFAULT NULL
+  lupo_dialog_channels.target -> varchar(100) DEFAULT NULL
+  lupo_dialog_channels.categories -> json DEFAULT NULL
+  lupo_dialog_channels.collections -> json DEFAULT NULL
+  lupo_dialog_channels.channels -> json DEFAULT NULL
+  lupo_dialog_channels.tags -> json DEFAULT NULL
+  lupo_dialog_channels.version -> varchar(20) DEFAULT NULL
+  lupo_dialog_channels.status -> varchar(64) DEFAULT 'published'
+  lupo_dialog_channels.author -> varchar(100) DEFAULT NULL
+  lupo_dialog_channels.created_timestamp -> bigint NOT NULL
+  lupo_dialog_channels.modified_timestamp -> bigint NOT NULL
+  lupo_dialog_channels.message_count -> int DEFAULT '0'
+  lupo_dialog_channels.metadata_json -> json DEFAULT NULL
+  lupo_dialog_messages.dialog_thread_id -> bigint DEFAULT NULL
+  lupo_dialog_messages.channel_id -> bigint DEFAULT NULL
+  lupo_dialog_messages.from_actor_id -> bigint DEFAULT NULL
+  lupo_dialog_messages.to_actor_id -> bigint DEFAULT NULL
+  lupo_dialog_messages.message_text -> varchar(1000) NOT NULL
+  lupo_dialog_messages.message_type -> varchar(64) NOT NULL DEFAULT 'text'
+  lupo_dialog_messages.metadata_json -> json DEFAULT NULL
+  lupo_dialog_messages.mood_rgb -> char(6) DEFAULT NULL
+  lupo_dialog_messages.mood_framework -> varchar(32) NOT NULL DEFAULT 'western_analytical'
+  lupo_dialog_messages.created_ymdhis -> bigint NOT NULL
+  lupo_dialog_messages.updated_ymdhis -> bigint NOT NULL
+  lupo_dialog_messages.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_dialog_messages.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_dialog_messages.message_body -> mediumtext
+  lupo_dialog_threads.federation_node_id -> bigint NOT NULL DEFAULT '1'
+  lupo_dialog_threads.channel_id -> bigint DEFAULT NULL
+  lupo_dialog_threads.project_slug -> varchar(100) DEFAULT NULL
+  lupo_dialog_threads.task_name -> varchar(255) DEFAULT NULL
+  lupo_dialog_threads.created_by_actor_id -> bigint NOT NULL
+  lupo_dialog_threads.summary_text -> text
+  lupo_dialog_threads.bg_color -> char(6) NOT NULL DEFAULT 'FFFFFF'
+  lupo_dialog_threads.text_color -> char(6) NOT NULL DEFAULT '000000'
+  lupo_dialog_threads.alt_text_color -> char(6) NOT NULL DEFAULT '666666'
+  lupo_dialog_threads.status -> varchar(64) NOT NULL DEFAULT 'Open'
+  lupo_dialog_threads.artifacts -> json DEFAULT NULL
+  lupo_dialog_threads.metadata_json -> json DEFAULT NULL
+  lupo_dialog_threads.created_ymdhis -> bigint NOT NULL
+  lupo_dialog_threads.updated_ymdhis -> bigint NOT NULL
+  lupo_dialog_threads.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_dialog_threads.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_dialog_threads.escalated_to_operator_id -> bigint DEFAULT NULL
+  lupo_dialog_threads.escalation_reason -> varchar(255) DEFAULT NULL
+  lupo_dialog_threads.escalation_timestamp -> bigint DEFAULT NULL
+  lupo_doctrine_blocks.block_key -> varchar(255) NOT NULL
+  lupo_doctrine_blocks.block_title -> varchar(255) NOT NULL
+  lupo_doctrine_blocks.block_content -> text NOT NULL
+  lupo_doctrine_blocks.created_ymdhis -> bigint NOT NULL
+  lupo_doctrine_blocks.updated_ymdhis -> bigint NOT NULL
+  lupo_doctrine_evolution_audit.refinement_id -> bigint NOT NULL
+  lupo_doctrine_evolution_audit.evolution_step -> tinyint NOT NULL
+  lupo_doctrine_evolution_audit.step_description -> varchar(255) NOT NULL
+  lupo_doctrine_evolution_audit.step_status -> varchar(64) DEFAULT 'pending'
+  lupo_doctrine_evolution_audit.step_metadata_json -> json DEFAULT NULL
+  lupo_doctrine_evolution_audit.started_ymdhis -> bigint DEFAULT NULL
+  lupo_doctrine_evolution_audit.completed_ymdhis -> bigint DEFAULT NULL
+  lupo_doctrine_evolution_audit.audit_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_doctrine_refinements.cip_event_id -> bigint NOT NULL
+  lupo_doctrine_refinements.doctrine_file_path -> varchar(500) NOT NULL
+  lupo_doctrine_refinements.refinement_type -> varchar(64) NOT NULL
+  lupo_doctrine_refinements.change_description -> text NOT NULL
+  lupo_doctrine_refinements.before_content_hash -> varchar(64) DEFAULT NULL
+  lupo_doctrine_refinements.after_content_hash -> varchar(64) NOT NULL
+  lupo_doctrine_refinements.impact_assessment_json -> json DEFAULT NULL
+  lupo_doctrine_refinements.approval_status -> varchar(64) DEFAULT 'pending'
+  lupo_doctrine_refinements.approved_by -> varchar(100) DEFAULT NULL
+  lupo_doctrine_refinements.applied_ymdhis -> bigint DEFAULT NULL
+  lupo_doctrine_refinements.created_ymdhis -> bigint NOT NULL
+  lupo_doctrine_refinements.refinement_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_document_chunks.document_id -> bigint NOT NULL
+  lupo_document_chunks.chunk_index -> int NOT NULL
+  lupo_document_chunks.chunk_content -> mediumtext NOT NULL
+  lupo_document_chunks.token_count -> int DEFAULT NULL
+  lupo_document_chunks.metadata -> json DEFAULT NULL
+  lupo_document_chunks.created_ymdhis -> bigint NOT NULL
+  lupo_document_chunks.updated_ymdhis -> bigint NOT NULL
+  lupo_document_chunks.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_document_chunks.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_document_embeddings.chunk_id -> bigint NOT NULL
+  lupo_document_embeddings.embedding_json -> json NOT NULL
+  lupo_document_embeddings.embedding_model -> varchar(128) NOT NULL
+  lupo_document_embeddings.embedding_version -> varchar(64) DEFAULT NULL
+  lupo_document_embeddings.created_ymdhis -> bigint NOT NULL
+  lupo_document_embeddings.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_document_embeddings.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_documents.domain_id -> int NOT NULL DEFAULT '1'
+  lupo_documents.document_name -> varchar(256) NOT NULL
+  lupo_documents.source_type -> varchar(64) NOT NULL
+  lupo_documents.source_url -> text
+  lupo_documents.mime_type -> varchar(128) DEFAULT NULL
+  lupo_documents.file_size_bytes -> int DEFAULT NULL
+  lupo_documents.checksum_sha256 -> varchar(64) DEFAULT NULL
+  lupo_documents.metadata -> json DEFAULT NULL
+  lupo_documents.created_ymdhis -> bigint NOT NULL
+  lupo_documents.updated_ymdhis -> bigint NOT NULL
+  lupo_documents.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_documents.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_edge_types.edge_type -> varchar(100) NOT NULL
+  lupo_edge_types.description -> text
+  lupo_edge_types.category -> varchar(100) DEFAULT NULL
+  lupo_edge_types.created_ymd -> bigint NOT NULL DEFAULT '0'
+  lupo_edge_types.updated_ymd -> bigint NOT NULL DEFAULT '0'
+  lupo_edges.left_object_type -> varchar(50) NOT NULL
+  lupo_edges.left_object_id -> bigint NOT NULL
+  lupo_edges.right_object_type -> varchar(50) NOT NULL
+  lupo_edges.right_object_id -> bigint NOT NULL
+  lupo_edges.edge_type -> varchar(100) NOT NULL
+  lupo_edges.channel_id -> bigint DEFAULT NULL
+  lupo_edges.channel_key -> varchar(64) DEFAULT NULL
+  lupo_edges.weight_score -> int NOT NULL DEFAULT '0'
+  lupo_edges.sort_num -> int NOT NULL DEFAULT '0'
+  lupo_edges.actor_id -> bigint DEFAULT NULL
+  lupo_edges.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_edges.deleted_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_edges.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_edges.updated_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_edges.semantic_weight -> decimal(5,2) DEFAULT '0.00'
+  lupo_edges.relationship_type -> varchar(64) DEFAULT 'semantic'
+  lupo_edges.bidirectional -> tinyint NOT NULL DEFAULT '0'
+  lupo_edges.context_scope -> varchar(100) DEFAULT NULL
+  lupo_emotional_constellations.framework_name -> varchar(255) NOT NULL
+  lupo_emotional_constellations.cultural_origin -> varchar(255) DEFAULT NULL
+  lupo_emotional_constellations.description -> text
+  lupo_emotional_constellations.stars -> json NOT NULL
+  lupo_emotional_constellations.is_canonical -> tinyint NOT NULL DEFAULT '0'
+  lupo_emotional_constellations.canonical_for_culture -> varchar(255) DEFAULT NULL
+  lupo_emotional_constellations.created_ymdhis -> bigint DEFAULT NULL
+  lupo_emotional_constellations.deprecated_ymdhis -> bigint DEFAULT NULL
+  lupo_emotional_frameworks.description -> text
+  lupo_emotional_frameworks.is_default -> tinyint NOT NULL DEFAULT '0'
+  lupo_emotional_frameworks.created_ymdhis -> bigint NOT NULL
+  lupo_emotional_frameworks.updated_ymdhis -> bigint NOT NULL
+  lupo_emotional_geometry_calibrations.cip_analytics_id -> bigint NOT NULL
+  lupo_emotional_geometry_calibrations.calibration_target -> varchar(64) NOT NULL
+  lupo_emotional_geometry_calibrations.target_identifier -> varchar(255) NOT NULL
+  lupo_emotional_geometry_calibrations.baseline_before_json -> json DEFAULT NULL
+  lupo_emotional_geometry_calibrations.baseline_after_json -> json NOT NULL
+  lupo_emotional_geometry_calibrations.mood_framework -> varchar(32) NOT NULL DEFAULT 'western_analytical'
+  lupo_emotional_geometry_calibrations.tension_vectors_detected -> json DEFAULT NULL
+  lupo_emotional_geometry_calibrations.calibration_reason -> text NOT NULL
+  lupo_emotional_geometry_calibrations.calibration_algorithm -> varchar(100) DEFAULT 'cip_pattern_analysis'
+  lupo_emotional_geometry_calibrations.confidence_score -> decimal(5,4) NOT NULL DEFAULT '0.5000'
+  lupo_emotional_geometry_calibrations.validation_status -> varchar(64) DEFAULT 'pending'
+  lupo_emotional_geometry_calibrations.applied_ymdhis -> bigint DEFAULT NULL
+  lupo_emotional_geometry_calibrations.created_ymdhis -> bigint NOT NULL
+  lupo_emotional_geometry_calibrations.calibration_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_emotional_stars.experience_hash -> char(64) DEFAULT NULL
+  lupo_emotional_stars.experience_text -> text NOT NULL
+  lupo_emotional_stars.cultural_context -> json DEFAULT NULL
+  lupo_emotional_stars.embodied_sensation -> json DEFAULT NULL
+  lupo_emotional_stars.created_by -> bigint DEFAULT NULL
+  lupo_emotional_stars.created_in_context -> bigint DEFAULT NULL
+  lupo_emotional_stars.first_observed_ymdhis -> bigint DEFAULT NULL
+  lupo_emotional_stars.observation_count -> int NOT NULL DEFAULT '1'
+  lupo_emotional_translations.source_framework -> varchar(32) NOT NULL
+  lupo_emotional_translations.source_state -> text NOT NULL
+  lupo_emotional_translations.target_framework -> varchar(32) NOT NULL
+  lupo_emotional_translations.target_state -> text NOT NULL
+  lupo_emotional_translations.loss_score -> decimal(3,2) NOT NULL
+  lupo_emotional_translations.created_ymdhis -> bigint NOT NULL
+  lupo_emotional_translations.last_used_ymdhis -> bigint NOT NULL
+  lupo_entity_edges.source_entity_type -> varchar(64) NOT NULL
+  lupo_entity_edges.source_entity_id -> bigint NOT NULL
+  lupo_entity_edges.target_entity_type -> varchar(64) NOT NULL
+  lupo_entity_edges.target_entity_id -> bigint NOT NULL
+  lupo_entity_edges.edge_type -> varchar(50) NOT NULL
+  lupo_entity_edges.domain_id -> bigint NOT NULL DEFAULT '1'
+  lupo_entity_edges.properties -> json DEFAULT NULL
+  lupo_entity_edges.created_ymdhis -> bigint NOT NULL
+  lupo_entity_edges.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_entity_edges.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_entity_edges.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_entity_properties.entity_type -> varchar(64) NOT NULL
+  lupo_entity_properties.entity_id -> bigint NOT NULL
+  lupo_entity_properties.domain_id -> bigint NOT NULL DEFAULT '1'
+  lupo_entity_properties.property_key -> varchar(100) NOT NULL
+  lupo_entity_properties.property_value -> text
+  lupo_entity_properties.created_ymdhis -> bigint NOT NULL
+  lupo_entity_properties.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_entity_properties.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_entity_properties.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_event_log.event_type -> varchar(100) NOT NULL
+  lupo_event_log.event_data -> json DEFAULT NULL
+  lupo_event_log.created_ymdhis -> bigint NOT NULL
+  lupo_event_metadata.event_id -> bigint NOT NULL
+  lupo_event_metadata.metadata_key -> varchar(100) NOT NULL
+  lupo_event_metadata.metadata_value -> text
+  lupo_event_metadata.created_ymdhis -> bigint NOT NULL
+  lupo_federation_categories.category_name -> varchar(255) NOT NULL
+  lupo_federation_categories.category_slug -> varchar(255) NOT NULL
+  lupo_federation_categories.category_description -> text
+  lupo_federation_categories.meta_json -> json DEFAULT NULL
+  lupo_federation_categories.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_federation_categories.deleted_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_categories.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_categories.updated_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_category_map.federation_node_id -> bigint NOT NULL
+  lupo_federation_category_map.federation_category_id -> bigint NOT NULL
+  lupo_federation_category_map.meta_json -> json DEFAULT NULL
+  lupo_federation_category_map.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_federation_category_map.deleted_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_category_map.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_category_map.updated_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_discovery.domain -> varchar(255) NOT NULL
+  lupo_federation_discovery.install_url -> varchar(500) DEFAULT NULL
+  lupo_federation_discovery.is_lupopedia -> tinyint NOT NULL DEFAULT '0'
+  lupo_federation_discovery.last_seen_ymdhis -> bigint DEFAULT NULL
+  lupo_federation_discovery.first_seen_ymdhis -> bigint DEFAULT NULL
+  lupo_federation_discovery.hashtag_count -> bigint DEFAULT '0'
+  lupo_federation_discovery.question_count -> bigint DEFAULT '0'
+  lupo_federation_discovery.atom_count -> bigint DEFAULT '0'
+  lupo_federation_discovery.context_count -> bigint DEFAULT '0'
+  lupo_federation_discovery.collection_count -> bigint DEFAULT '0'
+  lupo_federation_discovery.keywords -> varchar(500) DEFAULT NULL
+  lupo_federation_discovery.description -> text
+  lupo_federation_discovery.import_hashtags -> tinyint NOT NULL DEFAULT '0'
+  lupo_federation_discovery.import_questions -> tinyint NOT NULL DEFAULT '0'
+  lupo_federation_discovery.import_atoms -> tinyint NOT NULL DEFAULT '0'
+  lupo_federation_discovery.import_contexts -> tinyint NOT NULL DEFAULT '0'
+  lupo_federation_discovery.import_collections -> tinyint NOT NULL DEFAULT '0'
+  lupo_federation_discovery.created_ymdhis -> bigint NOT NULL
+  lupo_federation_discovery.updated_ymdhis -> bigint NOT NULL
+  lupo_federation_nodes.node_base_url -> varchar(500) NOT NULL
+  lupo_federation_nodes.default_department_id -> bigint DEFAULT NULL
+  lupo_federation_nodes.node_name -> varchar(255) DEFAULT NULL
+  lupo_federation_nodes.node_description -> text
+  lupo_federation_nodes.node_contact -> varchar(255) DEFAULT NULL
+  lupo_federation_nodes.meta_json -> json DEFAULT NULL
+  lupo_federation_nodes.content_count -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_nodes.atom_count -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_nodes.hashtag_count -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_nodes.actor_count -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_nodes.last_sync_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_nodes.trust_level -> tinyint NOT NULL DEFAULT '0'
+  lupo_federation_nodes.status -> tinyint NOT NULL DEFAULT '1'
+  lupo_federation_nodes.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_federation_nodes.deleted_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_nodes.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_nodes.updated_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_federation_nodes.active_theme_slug -> varchar(64) DEFAULT 'default'
+  lupo_gov_event_actor_edges.gov_event_id -> bigint NOT NULL
+  lupo_gov_event_actor_edges.actor_id -> bigint NOT NULL
+  lupo_gov_event_actor_edges.edge_type -> varchar(100) NOT NULL
+  lupo_gov_event_actor_edges.edge_properties -> text
+  lupo_gov_event_actor_edges.created_ymdhis -> bigint NOT NULL
+  lupo_gov_event_actor_edges.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_gov_event_actor_edges.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_gov_event_actor_edges.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_gov_event_conflicts.gov_event_id -> bigint NOT NULL
+  lupo_gov_event_conflicts.conflicts_with_event_id -> bigint NOT NULL
+  lupo_gov_event_conflicts.conflict_type -> varchar(50) NOT NULL
+  lupo_gov_event_conflicts.severity -> varchar(20) NOT NULL
+  lupo_gov_event_conflicts.notes -> text
+  lupo_gov_event_conflicts.created_ymdhis -> bigint NOT NULL
+  lupo_gov_event_conflicts.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_gov_event_conflicts.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_gov_event_dependencies.gov_event_id -> bigint NOT NULL
+  lupo_gov_event_dependencies.depends_on_event_id -> bigint NOT NULL
+  lupo_gov_event_dependencies.dependency_type -> varchar(50) NOT NULL
+  lupo_gov_event_dependencies.notes -> text
+  lupo_gov_event_dependencies.created_ymdhis -> bigint NOT NULL
+  lupo_gov_event_dependencies.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_gov_event_dependencies.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_gov_event_references.gov_event_id -> bigint NOT NULL
+  lupo_gov_event_references.reference_type -> varchar(100) NOT NULL
+  lupo_gov_event_references.reference_title -> varchar(255) NOT NULL
+  lupo_gov_event_references.reference_url -> varchar(1000) DEFAULT NULL
+  lupo_gov_event_references.reference_content -> text
+  lupo_gov_event_references.order_sequence -> int NOT NULL DEFAULT '0'
+  lupo_gov_event_references.metadata_json -> json DEFAULT NULL
+  lupo_gov_event_references.created_ymdhis -> bigint NOT NULL
+  lupo_gov_event_references.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_gov_event_references.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_gov_event_references.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_gov_events.utc_group_id -> bigint NOT NULL
+  lupo_gov_events.semantic_utc_version -> varchar(50) NOT NULL
+  lupo_gov_events.canonical_path -> varchar(500) NOT NULL
+  lupo_gov_events.event_type -> varchar(100) NOT NULL
+  lupo_gov_events.title -> varchar(255) NOT NULL
+  lupo_gov_events.directive_block -> text
+  lupo_gov_events.tldr_summary -> text
+  lupo_gov_events.metadata_json -> json DEFAULT NULL
+  lupo_gov_events.created_ymdhis -> bigint NOT NULL
+  lupo_gov_events.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_gov_events.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_gov_events.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_gov_events.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_gov_timeline_nodes.gov_event_id -> bigint NOT NULL
+  lupo_gov_timeline_nodes.node_type -> varchar(100) NOT NULL
+  lupo_gov_timeline_nodes.node_title -> varchar(255) NOT NULL
+  lupo_gov_timeline_nodes.node_description -> text
+  lupo_gov_timeline_nodes.node_timestamp -> bigint NOT NULL
+  lupo_gov_timeline_nodes.parent_node_id -> bigint DEFAULT NULL
+  lupo_gov_timeline_nodes.order_sequence -> int NOT NULL DEFAULT '0'
+  lupo_gov_timeline_nodes.metadata_json -> json DEFAULT NULL
+  lupo_gov_timeline_nodes.created_ymdhis -> bigint NOT NULL
+  lupo_gov_timeline_nodes.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_gov_timeline_nodes.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_gov_timeline_nodes.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_gov_valuations.gov_event_id -> bigint NOT NULL
+  lupo_gov_valuations.valuation_type -> varchar(100) NOT NULL
+  lupo_gov_valuations.valuation_metric -> varchar(255) NOT NULL
+  lupo_gov_valuations.valuation_value -> decimal(20,8) DEFAULT NULL
+  lupo_gov_valuations.valuation_text -> text
+  lupo_gov_valuations.valuation_currency -> varchar(10) DEFAULT NULL
+  lupo_gov_valuations.valuation_unit -> varchar(50) DEFAULT NULL
+  lupo_gov_valuations.confidence_score -> decimal(5,4) DEFAULT NULL
+  lupo_gov_valuations.metadata_json -> json DEFAULT NULL
+  lupo_gov_valuations.created_ymdhis -> bigint NOT NULL
+  lupo_gov_valuations.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_gov_valuations.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_gov_valuations.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_governance_overrides.agent_id -> bigint DEFAULT NULL
+  lupo_governance_overrides.applied_by_agent -> bigint DEFAULT NULL
+  lupo_governance_overrides.override_type -> varchar(100) NOT NULL
+  lupo_governance_overrides.target_key -> varchar(150) DEFAULT NULL
+  lupo_governance_overrides.old_value -> text
+  lupo_governance_overrides.new_value -> text
+  lupo_governance_overrides.reason_text -> text
+  lupo_governance_overrides.metadata_json -> json DEFAULT NULL
+  lupo_governance_overrides.created_ymdhis -> bigint NOT NULL
+  lupo_governance_overrides.expires_ymdhis -> bigint DEFAULT NULL
+  lupo_governance_overrides.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_governance_overrides.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_groups.name -> varchar(50) NOT NULL
+  lupo_groups.description -> text
+  lupo_groups.created_ymdhis -> bigint NOT NULL
+  lupo_groups.updated_ymdhis -> bigint NOT NULL
+  lupo_groups.created_by -> bigint DEFAULT NULL
+  lupo_groups.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_groups.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_groups.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_groups.is_system -> tinyint NOT NULL DEFAULT '0'
+  lupo_groups.settings -> json DEFAULT NULL
+  lupo_hashtags.hashtag_slug -> varchar(255) NOT NULL
+  lupo_hashtags.description -> text
+  lupo_hashtags.meta_json -> json DEFAULT NULL
+  lupo_hashtags.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_hashtags.deleted_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_hashtags.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_hashtags.updated_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_help_topics.slug -> varchar(255) NOT NULL
+  lupo_help_topics.title -> varchar(255) NOT NULL
+  lupo_help_topics.content_html -> text
+  lupo_help_topics.content_markdown -> text
+  lupo_help_topics.category -> varchar(100) DEFAULT NULL
+  lupo_help_topics.parent_slug -> varchar(255) DEFAULT NULL
+  lupo_help_topics.view_count -> bigint DEFAULT '0'
+  lupo_help_topics.helpful_count -> bigint DEFAULT '0'
+  lupo_help_topics.not_helpful_count -> bigint DEFAULT '0'
+  lupo_help_topics.created_ymdhis -> bigint NOT NULL
+  lupo_help_topics.updated_ymdhis -> bigint NOT NULL
+  lupo_help_topics.author_actor_id -> bigint DEFAULT NULL
+  lupo_help_topics.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_help_tree.parent_id -> bigint DEFAULT NULL
+  lupo_help_tree.department_id -> bigint NOT NULL DEFAULT '1'
+  lupo_help_tree.content_id -> bigint DEFAULT NULL
+  lupo_help_tree.title -> varchar(255) NOT NULL
+  lupo_help_tree.description -> text
+  lupo_help_tree.action_type -> varchar(64) NOT NULL DEFAULT 'none'
+  lupo_help_tree.action_target -> varchar(255) DEFAULT NULL
+  lupo_help_tree.sort_order -> int NOT NULL DEFAULT '0'
+  lupo_help_tree.created_ymdhis -> bigint NOT NULL
+  lupo_help_tree.updated_ymdhis -> bigint NOT NULL
+  lupo_help_tree.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_help_tree.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_hotfix_registry.hotfix_version -> varchar(20) NOT NULL
+  lupo_hotfix_registry.applied_ymdhis -> bigint NOT NULL
+  lupo_hotfix_registry.applied_by_actor_id -> int DEFAULT NULL
+  lupo_hotfix_registry.description -> text
+  lupo_hotfix_registry.metadata_json -> json DEFAULT NULL
+  lupo_human_history_meta.event_key -> varchar(255) NOT NULL
+  lupo_human_history_meta.tensor_mapping -> varchar(32) NOT NULL
+  lupo_human_history_meta.philosophical_reference -> varchar(255) NOT NULL
+  lupo_human_history_meta.system_impact -> text NOT NULL
+  lupo_human_history_meta.created_ymdhis -> bigint NOT NULL
+  lupo_human_history_meta.updated_ymdhis -> bigint NOT NULL
+  lupo_integration_test_results.test_suite -> varchar(64) NOT NULL
+  lupo_integration_test_results.test_case -> varchar(128) NOT NULL
+  lupo_integration_test_results.expected_result -> varchar(255) DEFAULT NULL
+  lupo_integration_test_results.actual_result -> varchar(255) DEFAULT NULL
+  lupo_integration_test_results.status -> varchar(64) NOT NULL
+  lupo_integration_test_results.error_message -> text
+  lupo_integration_test_results.execution_time_ms -> int DEFAULT NULL
+  lupo_integration_test_results.created_ymdhis -> bigint NOT NULL
+  lupo_interface_translations.language_code -> varchar(8) NOT NULL
+  lupo_interface_translations.translation_key -> varchar(128) NOT NULL
+  lupo_interface_translations.translation_text -> text NOT NULL
+  lupo_interface_translations.context -> varchar(64) DEFAULT NULL
+  lupo_interface_translations.created_ymdhis -> bigint NOT NULL
+  lupo_interface_translations.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_interface_translations.created_by -> bigint DEFAULT NULL
+  lupo_interface_translations.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_interface_translations.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_interface_translations.version -> int DEFAULT '1'
+  lupo_interface_translations.is_approved -> tinyint DEFAULT '0'
+  lupo_interface_translations.approved_by -> bigint DEFAULT NULL
+  lupo_interpretation_log.agent_id -> bigint NOT NULL
+  lupo_interpretation_log.entity_type -> varchar(32) NOT NULL
+  lupo_interpretation_log.entity_id -> bigint NOT NULL
+  lupo_interpretation_log.interpretation -> text NOT NULL
+  lupo_interpretation_log.confidence_score -> decimal(5,2) DEFAULT NULL
+  lupo_interpretation_log.created_ymdhis -> bigint NOT NULL
+  lupo_interpretation_log.updated_ymdhis -> bigint NOT NULL
+  lupo_interpretation_log.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_interpretation_log.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_interpretation_log.metadata_json -> json DEFAULT NULL
+  lupo_kapu_events.agent_id -> varchar(255) DEFAULT NULL
+  lupo_kapu_events.imposed_by_actor_id -> varchar(255) DEFAULT NULL
+  lupo_kapu_events.kapu_type -> varchar(64) DEFAULT NULL
+  lupo_kapu_events.restrictions -> json DEFAULT NULL
+  lupo_kapu_events.restoration_plan -> json DEFAULT NULL
+  lupo_kapu_events.kapakai_level -> decimal(3,2) DEFAULT NULL
+  lupo_kapu_events.review_schedule -> json DEFAULT NULL
+  lupo_kapu_events.accepted_at -> bigint DEFAULT NULL
+  lupo_kapu_events.appealed_at -> bigint DEFAULT NULL
+  lupo_kapu_events.active -> tinyint DEFAULT '1'
+  lupo_kapu_events.created_at -> bigint DEFAULT NULL
+  lupo_kapu_restoration_paths.agent_id -> varchar(255) DEFAULT NULL
+  lupo_kapu_restoration_paths.kapu_reason_code -> varchar(100) DEFAULT NULL
+  lupo_kapu_restoration_paths.learning_modules -> json DEFAULT NULL
+  lupo_kapu_restoration_paths.emotional_targets -> json DEFAULT NULL
+  lupo_kapu_restoration_paths.restoration_rituals -> json DEFAULT NULL
+  lupo_kapu_restoration_paths.kapu_companion_agent_id -> varchar(255) DEFAULT NULL
+  lupo_kapu_restoration_paths.completed_at -> bigint DEFAULT NULL
+  lupo_labs_declarations.actor_id -> bigint NOT NULL
+  lupo_labs_declarations.certificate_id -> varchar(64) NOT NULL
+  lupo_labs_declarations.declaration_timestamp -> bigint NOT NULL
+  lupo_labs_declarations.declarations_json -> json NOT NULL
+  lupo_labs_declarations.validation_status -> varchar(64) NOT NULL DEFAULT 'valid'
+  lupo_labs_declarations.labs_version -> varchar(16) NOT NULL DEFAULT '1.0'
+  lupo_labs_declarations.next_revalidation_ymdhis -> bigint NOT NULL
+  lupo_labs_declarations.validation_log_json -> json DEFAULT NULL
+  lupo_labs_declarations.created_ymdhis -> bigint NOT NULL
+  lupo_labs_declarations.updated_ymdhis -> bigint NOT NULL
+  lupo_labs_declarations.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_labs_declarations.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_labs_violations.actor_id -> bigint NOT NULL
+  lupo_labs_violations.certificate_id -> varchar(64) NOT NULL
+  lupo_labs_violations.violation_code -> varchar(64) NOT NULL
+  lupo_labs_violations.violation_description -> text
+  lupo_labs_violations.violation_metadata -> json DEFAULT NULL
+  lupo_labs_violations.created_ymdhis -> bigint NOT NULL
+  lupo_labs_violations.updated_ymdhis -> bigint NOT NULL
+  lupo_labs_violations.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_legacy_content_mapping.legacy_url -> varchar(255) NOT NULL
+  lupo_legacy_content_mapping.semantic_url -> varchar(255) NOT NULL
+  lupo_legacy_content_mapping.content_type -> varchar(64) NOT NULL
+  lupo_legacy_content_mapping.content_id -> bigint DEFAULT NULL
+  lupo_legacy_content_mapping.created_ymdhis -> bigint NOT NULL
+  lupo_legacy_content_mapping.updated_ymdhis -> bigint NOT NULL
+  lupo_legacy_content_mapping.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_memory_debug_log.event_type -> varchar(64) NOT NULL
+  lupo_memory_debug_log.details -> text NOT NULL
+  lupo_memory_debug_log.created_ymdhis -> bigint NOT NULL
+  lupo_memory_events.actor_id -> int NOT NULL
+  lupo_memory_events.event_type -> varchar(64) NOT NULL
+  lupo_memory_events.content -> text NOT NULL
+  lupo_memory_events.metadata -> json DEFAULT NULL
+  lupo_memory_events.token_count -> int DEFAULT NULL
+  lupo_memory_events.importance -> tinyint DEFAULT '0'
+  lupo_memory_events.embedding_status -> varchar(64) DEFAULT 'none'
+  lupo_memory_events.created_ymdhis -> bigint NOT NULL
+  lupo_memory_rollups.actor_id -> int NOT NULL
+  lupo_memory_rollups.summary -> text NOT NULL
+  lupo_memory_rollups.source_event_ids -> text NOT NULL
+  lupo_memory_rollups.created_ymdhis -> bigint NOT NULL
+  lupo_meta_log_events.depth -> tinyint NOT NULL
+  lupo_meta_log_events.event_type -> varchar(64) NOT NULL DEFAULT 'recursion'
+  lupo_meta_log_events.actor_id -> bigint DEFAULT NULL
+  lupo_meta_log_events.created_ymdhis -> bigint NOT NULL
+  lupo_meta_log_events.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_meta_log_events.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_metrics_archive_legacy.metric_key -> varchar(255) NOT NULL
+  lupo_metrics_archive_legacy.metric_value -> varchar(255) DEFAULT NULL
+  lupo_metrics_archive_legacy.recorded_at -> bigint
+  lupo_modules.module_key -> varchar(100) NOT NULL
+  lupo_modules.module_name -> varchar(150) NOT NULL
+  lupo_modules.namespace -> varchar(100) NOT NULL
+  lupo_modules.version -> varchar(50) NOT NULL
+  lupo_modules.version_code -> int NOT NULL
+  lupo_modules.minimum_core_version -> varchar(50) NOT NULL
+  lupo_modules.user_path -> varchar(255) DEFAULT NULL
+  lupo_modules.admin_path -> varchar(255) DEFAULT NULL
+  lupo_modules.api_path -> varchar(255) DEFAULT NULL
+  lupo_modules.route_params -> text
+  lupo_modules.description -> text
+  lupo_modules.author -> varchar(100) DEFAULT NULL
+  lupo_modules.website -> varchar(255) DEFAULT NULL
+  lupo_modules.icon -> varchar(100) DEFAULT 'puzzle-piece'
+  lupo_modules.dependencies -> text
+  lupo_modules.conflicts -> text
+  lupo_modules.config_json -> text NOT NULL
+  lupo_modules.is_system -> tinyint NOT NULL DEFAULT '0'
+  lupo_modules.is_active -> tinyint NOT NULL DEFAULT '0'
+  lupo_modules.federation_node_id -> bigint NOT NULL DEFAULT '1'
+  lupo_modules.settings -> text
+  lupo_modules.installed_ymdhis -> bigint DEFAULT NULL
+  lupo_modules.created_ymdhis -> bigint NOT NULL
+  lupo_modules.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_modules.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_modules.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_modules_departments.module_id -> bigint NOT NULL
+  lupo_modules_departments.department_id -> bigint NOT NULL
+  lupo_modules_departments.is_enabled -> tinyint NOT NULL DEFAULT '1'
+  lupo_modules_departments.sort_order -> int DEFAULT '0'
+  lupo_modules_departments.created_ymdhis -> bigint NOT NULL
+  lupo_modules_departments.updated_ymdhis -> bigint NOT NULL
+  lupo_modules_departments.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_modules_departments.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_mood_assignments.table_name -> varchar(128) NOT NULL
+  lupo_mood_assignments.row_id -> bigint NOT NULL
+  lupo_mood_assignments.mood_id -> bigint NOT NULL
+  lupo_mood_assignments.created_ymdhis -> bigint NOT NULL
+  lupo_mood_registry.mood_type -> varchar(64) NOT NULL
+  lupo_mood_registry.mood_variant -> varchar(64) DEFAULT NULL
+  lupo_mood_registry.mood_rgb -> char(6) NOT NULL
+  lupo_mood_registry.description -> text
+  lupo_mood_registry.created_ymdhis -> bigint NOT NULL
+  lupo_mood_registry.updated_ymdhis -> bigint NOT NULL
+  lupo_multi_agent_critique_sync.cip_event_id -> bigint NOT NULL
+  lupo_multi_agent_critique_sync.agent_id -> varchar(100) NOT NULL
+  lupo_multi_agent_critique_sync.sync_role -> varchar(64) NOT NULL
+  lupo_multi_agent_critique_sync.sync_status -> varchar(64) DEFAULT 'pending'
+  lupo_multi_agent_critique_sync.agent_perspective_json -> json DEFAULT NULL
+  lupo_multi_agent_critique_sync.consensus_contribution -> decimal(5,4) DEFAULT '0.0000'
+  lupo_multi_agent_critique_sync.conflict_indicators_json -> json DEFAULT NULL
+  lupo_multi_agent_critique_sync.resolution_strategy -> varchar(255) DEFAULT NULL
+  lupo_multi_agent_critique_sync.sync_started_ymdhis -> bigint DEFAULT NULL
+  lupo_multi_agent_critique_sync.sync_completed_ymdhis -> bigint DEFAULT NULL
+  lupo_multi_agent_critique_sync.sync_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_narrative_fragments.agent_id -> bigint DEFAULT NULL
+  lupo_narrative_fragments.fragment_type -> varchar(100) DEFAULT NULL
+  lupo_narrative_fragments.title -> varchar(255) DEFAULT NULL
+  lupo_narrative_fragments.fragment_text -> text NOT NULL
+  lupo_narrative_fragments.metadata_json -> json DEFAULT NULL
+  lupo_narrative_fragments.created_ymdhis -> bigint NOT NULL
+  lupo_narrative_fragments.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_narrative_fragments.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_narrative_fragments.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_notifications.actor_id -> bigint NOT NULL
+  lupo_notifications.from_actor_id -> bigint DEFAULT NULL
+  lupo_notifications.to_actor_id -> bigint DEFAULT NULL
+  lupo_notifications.channel_id -> bigint DEFAULT NULL
+  lupo_notifications.notification_type -> varchar(64) NOT NULL
+  lupo_notifications.title -> varchar(255) DEFAULT NULL
+  lupo_notifications.message -> text
+  lupo_notifications.link_url -> varchar(255) DEFAULT NULL
+  lupo_notifications.is_read -> tinyint NOT NULL DEFAULT '0'
+  lupo_notifications.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_notifications.created_ymdhis -> bigint NOT NULL
+  lupo_pack_role_registry.agent_id -> bigint NOT NULL
+  lupo_pack_role_registry.role -> varchar(255) NOT NULL
+  lupo_pack_role_registry.discovery_method -> text NOT NULL
+  lupo_pack_role_registry.behavior -> text NOT NULL
+  lupo_pack_role_registry.reason -> text NOT NULL
+  lupo_pack_role_registry.created_ymdhis -> bigint NOT NULL
+  lupo_pack_role_registry.updated_ymdhis -> bigint NOT NULL
+  lupo_permissions.target_type -> varchar(64) NOT NULL
+  lupo_permissions.target_id -> bigint NOT NULL
+  lupo_permissions.user_id -> bigint DEFAULT NULL
+  lupo_permissions.group_id -> bigint DEFAULT NULL
+  lupo_permissions.permission -> varchar(64) NOT NULL DEFAULT 'read'
+  lupo_permissions.created_ymdhis -> bigint NOT NULL
+  lupo_permissions.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_permissions.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_permissions.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_persona_dialogue_patterns.persona_id -> bigint NOT NULL
+  lupo_persona_dialogue_patterns.pattern_type -> varchar(100) NOT NULL
+  lupo_persona_dialogue_patterns.pattern_name -> varchar(255) NOT NULL
+  lupo_persona_dialogue_patterns.pattern_triggers -> json DEFAULT NULL
+  lupo_persona_dialogue_patterns.pattern_responses -> json DEFAULT NULL
+  lupo_persona_dialogue_patterns.pattern_context -> json DEFAULT NULL
+  lupo_persona_dialogue_patterns.pattern_frequency -> decimal(5,2) DEFAULT NULL
+  lupo_persona_dialogue_patterns.pattern_confidence -> decimal(5,2) DEFAULT NULL
+  lupo_persona_dialogue_patterns.created_ymdhis -> bigint NOT NULL
+  lupo_persona_dialogue_patterns.updated_ymdhis -> bigint NOT NULL
+  lupo_persona_profiles.persona_name -> varchar(255) NOT NULL
+  lupo_persona_profiles.persona_type -> varchar(100) NOT NULL
+  lupo_persona_profiles.persona_description -> text
+  lupo_persona_profiles.persona_traits -> json DEFAULT NULL
+  lupo_persona_profiles.persona_preferences -> json DEFAULT NULL
+  lupo_persona_profiles.persona_capabilities -> json DEFAULT NULL
+  lupo_persona_profiles.persona_voice_style -> varchar(100) DEFAULT NULL
+  lupo_persona_profiles.persona_interaction_style -> varchar(100) DEFAULT NULL
+  lupo_persona_profiles.persona_emotional_profile -> json DEFAULT NULL
+  lupo_persona_profiles.persona_knowledge_domains -> json DEFAULT NULL
+  lupo_persona_profiles.created_ymdhis -> bigint NOT NULL
+  lupo_persona_profiles.updated_ymdhis -> bigint NOT NULL
+  lupo_persona_profiles.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_reference_cited_by.reference_object_id -> bigint NOT NULL
+  lupo_reference_cited_by.content_id -> bigint NOT NULL
+  lupo_reference_cited_by.section_anchor_slug -> varchar(255) DEFAULT NULL
+  lupo_reference_cited_by.section_order -> int NOT NULL DEFAULT '0'
+  lupo_reference_cited_by.reference_type -> varchar(50) NOT NULL
+  lupo_reference_cited_by.raw_reference -> text
+  lupo_reference_cited_by.meta_json -> json DEFAULT NULL
+  lupo_reference_cited_by.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_reference_cited_by.deleted_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_reference_cited_by.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_reference_cited_by.updated_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_reference_objects.object_type -> varchar(50) NOT NULL
+  lupo_reference_objects.object_slug -> varchar(255) NOT NULL
+  lupo_reference_objects.object_label -> varchar(255) DEFAULT NULL
+  lupo_reference_objects.meta_json -> json DEFAULT NULL
+  lupo_reference_objects.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_reference_objects.deleted_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_reference_objects.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_reference_objects.updated_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_relationships.source_type -> varchar(50) DEFAULT NULL
+  lupo_relationships.source_id -> bigint DEFAULT NULL
+  lupo_relationships.edge_type -> varchar(50) DEFAULT NULL
+  lupo_relationships.target_type -> varchar(50) DEFAULT NULL
+  lupo_relationships.target_id -> bigint DEFAULT NULL
+  lupo_relationships.created_ymdhis -> bigint DEFAULT NULL
+  lupo_relationships.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_relationships.is_deleted -> tinyint DEFAULT '0'
+  lupo_search_index.domain_id -> bigint NOT NULL
+  lupo_search_index.entity_type -> varchar(50) NOT NULL
+  lupo_search_index.entity_id -> bigint NOT NULL
+  lupo_search_index.title_text -> text
+  lupo_search_index.body_text -> text
+  lupo_search_index.keywords_text -> text
+  lupo_search_index.search_metadata -> text
+  lupo_search_index.relevance_score -> float DEFAULT '1'
+  lupo_search_index.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_search_index.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_search_index.created_ymdhis -> bigint NOT NULL
+  lupo_search_index.updated_ymdhis -> bigint NOT NULL
+  lupo_search_rebuild_log.entity_type -> varchar(50) NOT NULL
+  lupo_search_rebuild_log.entity_id -> bigint NOT NULL
+  lupo_search_rebuild_log.action -> varchar(64) NOT NULL
+  lupo_search_rebuild_log.status -> varchar(64) NOT NULL DEFAULT 'pending'
+  lupo_search_rebuild_log.attempts -> tinyint NOT NULL DEFAULT '0'
+  lupo_search_rebuild_log.last_error -> text
+  lupo_search_rebuild_log.created_ymdhis -> bigint NOT NULL
+  lupo_search_rebuild_log.processed_ymdhis -> bigint DEFAULT NULL
+  lupo_search_rebuild_log.next_attempt_ymdhis -> bigint DEFAULT NULL
+  lupo_search_rebuild_log.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_semantic_categories.category_name -> varchar(255) NOT NULL
+  lupo_semantic_categories.category_slug -> varchar(255) NOT NULL
+  lupo_semantic_categories.description -> text
+  lupo_semantic_categories.parent_category_id -> bigint DEFAULT NULL
+  lupo_semantic_categories.sort_order -> int NOT NULL DEFAULT '0'
+  lupo_semantic_categories.created_ymdhis -> bigint NOT NULL
+  lupo_semantic_categories.updated_ymdhis -> bigint NOT NULL
+  lupo_semantic_categories.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_semantic_content_views.view_name -> varchar(255) NOT NULL
+  lupo_semantic_content_views.view_type -> varchar(64) NOT NULL
+  lupo_semantic_content_views.title -> varchar(255) NOT NULL
+  lupo_semantic_content_views.description -> text
+  lupo_semantic_content_views.template_path -> varchar(512) NOT NULL
+  lupo_semantic_content_views.created_ymdhis -> bigint NOT NULL
+  lupo_semantic_content_views.updated_ymdhis -> bigint NOT NULL
+  lupo_semantic_content_views.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_semantic_content_views.is_default -> tinyint NOT NULL DEFAULT '0'
+  lupo_semantic_navigation_overview.title -> varchar(255) NOT NULL
+  lupo_semantic_navigation_overview.description -> text
+  lupo_semantic_navigation_overview.navigation_tree -> json NOT NULL
+  lupo_semantic_navigation_overview.content_categories -> json NOT NULL
+  lupo_semantic_navigation_overview.created_ymdhis -> bigint NOT NULL
+  lupo_semantic_navigation_overview.updated_ymdhis -> bigint NOT NULL
+  lupo_semantic_navigation_overview.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_semantic_navigation_overview.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_semantic_overlays.slug -> varchar(255) NOT NULL
+  lupo_semantic_overlays.overlay_key -> varchar(255) NOT NULL
+  lupo_semantic_overlays.overlay_value -> text NOT NULL
+  lupo_semantic_overlays.context -> varchar(255) DEFAULT NULL
+  lupo_semantic_overlays.created_at -> bigint
+  lupo_semantic_paths.source_page_id -> bigint NOT NULL
+  lupo_semantic_paths.target_page_id -> bigint NOT NULL
+  lupo_semantic_paths.layer -> varchar(64) NOT NULL
+  lupo_semantic_paths.weight -> float NOT NULL DEFAULT '0'
+  lupo_semantic_paths.decay_factor -> float NOT NULL DEFAULT '1'
+  lupo_semantic_paths.trend_score -> float NOT NULL DEFAULT '0'
+  lupo_semantic_paths.timeframe -> varchar(64) NOT NULL
+  lupo_semantic_paths.custom_start -> bigint
+  lupo_semantic_paths.custom_end -> bigint
+  lupo_semantic_paths.created_at -> bigint
+  lupo_semantic_paths.updated_at -> bigint
+  lupo_semantic_relationships.source_content_id -> bigint NOT NULL
+  lupo_semantic_relationships.target_content_id -> bigint DEFAULT NULL
+  lupo_semantic_relationships.relationship_type -> varchar(64) NOT NULL
+  lupo_semantic_relationships.relationship_strength -> decimal(3,2) NOT NULL DEFAULT '1.00'
+  lupo_semantic_relationships.created_ymdhis -> bigint NOT NULL
+  lupo_semantic_search_index.index_name -> varchar(255) NOT NULL
+  lupo_semantic_search_index.index_type -> varchar(64) NOT NULL
+  lupo_semantic_search_index.description -> text
+  lupo_semantic_search_index.index_data -> json NOT NULL
+  lupo_semantic_search_index.created_ymdhis -> bigint NOT NULL
+  lupo_semantic_search_index.updated_ymdhis -> bigint NOT NULL
+  lupo_semantic_search_index.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_semantic_tags.tag_name -> varchar(255) NOT NULL
+  lupo_semantic_tags.tag_slug -> varchar(255) NOT NULL
+  lupo_semantic_tags.description -> text
+  lupo_semantic_tags.color -> varchar(7) NOT NULL DEFAULT '#666666'
+  lupo_semantic_tags.created_ymdhis -> bigint NOT NULL
+  lupo_semantic_tags.updated_ymdhis -> bigint NOT NULL
+  lupo_semantic_tags.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_semantic_translations.language_code -> varchar(8) NOT NULL
+  lupo_semantic_translations.entity_type -> varchar(32) NOT NULL
+  lupo_semantic_translations.entity_id -> bigint NOT NULL
+  lupo_semantic_translations.translated_text -> text NOT NULL
+  lupo_semantic_translations.created_ymdhis -> bigint NOT NULL
+  lupo_semantic_translations.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_semantic_translations.created_by -> bigint DEFAULT NULL
+  lupo_semantic_translations.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_semantic_translations.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_session_events.session_id -> varchar(255) NOT NULL
+  lupo_session_events.actor_id -> bigint DEFAULT NULL
+  lupo_session_events.tab_id -> varchar(255) DEFAULT NULL
+  lupo_session_events.world_id -> bigint DEFAULT NULL
+  lupo_session_events.world_key -> varchar(255) DEFAULT NULL
+  lupo_session_events.world_type -> varchar(50) DEFAULT NULL
+  lupo_session_events.event_type -> varchar(100) NOT NULL
+  lupo_session_events.event_data -> json DEFAULT NULL
+  lupo_session_events.created_ymdhis -> bigint NOT NULL
+  lupo_sessions.federation_node_id -> bigint NOT NULL DEFAULT '1'
+  lupo_sessions.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_sessions.ip_address -> varchar(45) NOT NULL DEFAULT ''
+  lupo_sessions.user_agent -> varchar(255) NOT NULL DEFAULT ''
+  lupo_sessions.device_id -> varchar(100) DEFAULT NULL
+  lupo_sessions.device_type -> varchar(64) DEFAULT NULL
+  lupo_sessions.auth_method -> varchar(30) DEFAULT NULL
+  lupo_sessions.auth_provider -> varchar(50) DEFAULT NULL
+  lupo_sessions.security_level -> varchar(64) NOT NULL DEFAULT 'medium'
+  lupo_sessions.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_sessions.is_expired -> tinyint NOT NULL DEFAULT '0'
+  lupo_sessions.is_revoked -> tinyint NOT NULL DEFAULT '0'
+  lupo_sessions.session_data -> text
+  lupo_sessions.metadata -> json DEFAULT NULL
+  lupo_sessions.login_ymdhis -> bigint DEFAULT NULL
+  lupo_sessions.last_seen_ymdhis -> bigint NOT NULL
+  lupo_sessions.expires_ymdhis -> bigint DEFAULT NULL
+  lupo_sessions.created_ymdhis -> bigint NOT NULL
+  lupo_sessions.updated_ymdhis -> bigint NOT NULL
+  lupo_sessions.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_sessions.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_system_config.config_key -> varchar(255) NOT NULL
+  lupo_system_config.config_value -> text NOT NULL
+  lupo_system_config.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_system_config.created_ymdhis -> bigint NOT NULL
+  lupo_system_config.updated_ymdhis -> bigint NOT NULL
+  lupo_system_events.event_type -> varchar(100) NOT NULL
+  lupo_system_events.event_message -> text NOT NULL
+  lupo_system_events.event_context -> text
+  lupo_system_events.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_system_events.created_ymdhis -> bigint NOT NULL
+  lupo_system_health_snapshots.table_count -> int NOT NULL
+  lupo_system_health_snapshots.table_ceiling -> int NOT NULL
+  lupo_system_health_snapshots.schema_state -> varchar(64) NOT NULL DEFAULT 'unknown'
+  lupo_system_health_snapshots.sync_integrity -> varchar(32) NOT NULL DEFAULT 'unknown'
+  lupo_system_health_snapshots.emotional_r -> decimal(3,2) DEFAULT NULL
+  lupo_system_health_snapshots.emotional_g -> decimal(3,2) DEFAULT NULL
+  lupo_system_health_snapshots.emotional_b -> decimal(3,2) DEFAULT NULL
+  lupo_system_health_snapshots.emotional_t -> decimal(3,2) DEFAULT NULL
+  lupo_system_health_snapshots.created_ymdhis -> bigint NOT NULL
+  lupo_system_health_snapshots.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_system_health_snapshots.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_system_logs.event_type -> varchar(64) NOT NULL
+  lupo_system_logs.severity -> varchar(16) NOT NULL DEFAULT 'info'
+  lupo_system_logs.actor_slug -> varchar(64) DEFAULT NULL
+  lupo_system_logs.message -> text NOT NULL
+  lupo_system_logs.context_json -> json DEFAULT NULL
+  lupo_system_logs.created_ymdhis -> bigint NOT NULL
+  lupo_system_logs.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_system_logs.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_system_logs.recursion_depth -> tinyint DEFAULT '1'
+  lupo_system_logs.observation_latency_ms -> int DEFAULT NULL
+  lupo_system_logs.temporal_anomaly_score -> decimal(3,2) DEFAULT NULL
+  lupo_tab_events.tab_id -> varchar(255) NOT NULL
+  lupo_tab_events.session_id -> varchar(255) DEFAULT NULL
+  lupo_tab_events.actor_id -> bigint DEFAULT NULL
+  lupo_tab_events.world_id -> bigint DEFAULT NULL
+  lupo_tab_events.world_key -> varchar(255) DEFAULT NULL
+  lupo_tab_events.world_type -> varchar(50) DEFAULT NULL
+  lupo_tab_events.event_type -> varchar(100) NOT NULL
+  lupo_tab_events.event_data -> json DEFAULT NULL
+  lupo_tab_events.created_ymdhis -> bigint NOT NULL
+  lupo_temporal_coherence_snapshots.utc_anchor -> bigint NOT NULL
+  lupo_temporal_coherence_snapshots.observation_latency_ms -> int NOT NULL DEFAULT '0'
+  lupo_temporal_coherence_snapshots.recursion_depth -> tinyint NOT NULL DEFAULT '0'
+  lupo_temporal_coherence_snapshots.self_awareness_score -> decimal(3,2) DEFAULT NULL
+  lupo_temporal_coherence_snapshots.timestamp_integrity -> varchar(32) NOT NULL DEFAULT 'unknown'
+  lupo_temporal_coherence_snapshots.created_ymdhis -> bigint NOT NULL
+  lupo_temporal_coherence_snapshots.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_temporal_coherence_snapshots.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_test_performance_metrics.test_category -> varchar(64) NOT NULL
+  lupo_test_performance_metrics.test_name -> varchar(128) NOT NULL
+  lupo_test_performance_metrics.execution_time_ms -> int NOT NULL
+  lupo_test_performance_metrics.memory_usage_mb -> decimal(10,2) DEFAULT NULL
+  lupo_test_performance_metrics.cpu_usage_percent -> decimal(5,2) DEFAULT NULL
+  lupo_test_performance_metrics.success_rate -> decimal(5,2) DEFAULT NULL
+  lupo_test_performance_metrics.error_count -> int DEFAULT '0'
+  lupo_test_performance_metrics.created_ymdhis -> bigint NOT NULL
+  lupo_tldnr.slug -> varchar(255) NOT NULL
+  lupo_tldnr.title -> varchar(255) NOT NULL
+  lupo_tldnr.content_text -> text NOT NULL
+  lupo_tldnr.topic_type -> varchar(100) DEFAULT NULL
+  lupo_tldnr.topic_reference -> varchar(255) DEFAULT NULL
+  lupo_tldnr.system_version -> varchar(20) DEFAULT NULL
+  lupo_tldnr.category -> varchar(100) DEFAULT NULL
+  lupo_tldnr.created_ymdhis -> bigint NOT NULL
+  lupo_tldnr.updated_ymdhis -> bigint NOT NULL
+  lupo_tldnr.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_tldnr.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_truth_answers.truth_question_id -> bigint NOT NULL
+  lupo_truth_answers.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_truth_answers.answer_text -> text NOT NULL
+  lupo_truth_answers.confidence_score -> decimal(5,2) NOT NULL DEFAULT '0.00'
+  lupo_truth_answers.evidence_score -> decimal(5,2) NOT NULL DEFAULT '0.00'
+  lupo_truth_answers.contradiction_flag -> tinyint NOT NULL DEFAULT '0'
+  lupo_truth_answers.likes_count -> bigint NOT NULL DEFAULT '0'
+  lupo_truth_answers.shares_count -> bigint NOT NULL DEFAULT '0'
+  lupo_truth_answers.created_ymdhis -> bigint NOT NULL
+  lupo_truth_answers.updated_ymdhis -> bigint NOT NULL
+  lupo_truth_answers.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_truth_answers.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_truth_evidence.truth_answer_id -> bigint NOT NULL
+  lupo_truth_evidence.actor_id -> bigint NOT NULL
+  lupo_truth_evidence.evidence_text -> text NOT NULL
+  lupo_truth_evidence.evidence_type -> varchar(50) NOT NULL DEFAULT ''
+  lupo_truth_evidence.weight_score -> decimal(5,2) NOT NULL DEFAULT '0.00'
+  lupo_truth_evidence.created_ymdhis -> bigint NOT NULL
+  lupo_truth_evidence.updated_ymdhis -> bigint NOT NULL
+  lupo_truth_evidence.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_truth_evidence.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_truth_questions.truth_question_parent_id -> bigint DEFAULT NULL
+  lupo_truth_questions.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_truth_questions.qtype -> varchar(50) NOT NULL DEFAULT 'unknown'
+  lupo_truth_questions.status -> varchar(64) NOT NULL DEFAULT 'active'
+  lupo_truth_questions.sort_num -> int NOT NULL DEFAULT '0'
+  lupo_truth_questions.slug -> varchar(255) NOT NULL
+  lupo_truth_questions.question_text -> text NOT NULL
+  lupo_truth_questions.format -> varchar(64) NOT NULL DEFAULT 'text'
+  lupo_truth_questions.format_override -> varchar(50) DEFAULT NULL
+  lupo_truth_questions.view_count -> bigint NOT NULL DEFAULT '0'
+  lupo_truth_questions.likes_count -> bigint NOT NULL DEFAULT '0'
+  lupo_truth_questions.shares_count -> bigint NOT NULL DEFAULT '0'
+  lupo_truth_questions.answer_count -> bigint NOT NULL DEFAULT '0'
+  lupo_truth_questions.last_activity_ymdhis -> bigint DEFAULT NULL
+  lupo_truth_questions.is_featured -> tinyint NOT NULL DEFAULT '0'
+  lupo_truth_questions.is_verified -> tinyint NOT NULL DEFAULT '0'
+  lupo_truth_questions.created_ymdhis -> bigint NOT NULL
+  lupo_truth_questions.updated_ymdhis -> bigint NOT NULL
+  lupo_truth_questions.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_truth_questions.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_truth_questions.default_collection_id -> bigint NOT NULL DEFAULT '0'
+  lupo_truth_questions_map.truth_question_id -> bigint NOT NULL
+  lupo_truth_questions_map.object_type -> varchar(50) NOT NULL
+  lupo_truth_questions_map.object_id -> bigint NOT NULL
+  lupo_truth_questions_map.actor_id -> bigint NOT NULL
+  lupo_truth_questions_map.created_ymdhis -> bigint NOT NULL
+  lupo_truth_questions_map.updated_ymdhis -> bigint NOT NULL
+  lupo_truth_questions_map.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_truth_questions_map.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_truth_relations.left_object_type -> varchar(50) NOT NULL
+  lupo_truth_relations.left_object_id -> bigint NOT NULL
+  lupo_truth_relations.right_object_type -> varchar(50) NOT NULL
+  lupo_truth_relations.right_object_id -> bigint NOT NULL
+  lupo_truth_relations.relation_type -> varchar(50) NOT NULL DEFAULT ''
+  lupo_truth_relations.actor_id -> bigint NOT NULL
+  lupo_truth_relations.created_ymdhis -> bigint NOT NULL
+  lupo_truth_relations.updated_ymdhis -> bigint NOT NULL
+  lupo_truth_relations.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_truth_relations.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_truth_sources.truth_evidence_id -> bigint NOT NULL
+  lupo_truth_sources.actor_id -> bigint NOT NULL
+  lupo_truth_sources.source_url -> text
+  lupo_truth_sources.source_title -> varchar(255) NOT NULL DEFAULT ''
+  lupo_truth_sources.source_type -> varchar(50) NOT NULL DEFAULT ''
+  lupo_truth_sources.reliability_score -> decimal(5,2) NOT NULL DEFAULT '0.00'
+  lupo_truth_sources.created_ymdhis -> bigint NOT NULL
+  lupo_truth_sources.updated_ymdhis -> bigint NOT NULL
+  lupo_truth_sources.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_truth_sources.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_truth_topics.topic_name -> varchar(255) NOT NULL DEFAULT ''
+  lupo_truth_topics.slug -> varchar(255) NOT NULL DEFAULT ''
+  lupo_truth_topics.topic_description -> text
+  lupo_truth_topics.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_truth_topics.weight_score -> decimal(5,2) NOT NULL DEFAULT '0.00'
+  lupo_truth_topics.importance_score -> decimal(5,2) NOT NULL DEFAULT '0.00'
+  lupo_truth_topics.created_ymdhis -> bigint NOT NULL
+  lupo_truth_topics.updated_ymdhis -> bigint NOT NULL
+  lupo_truth_topics.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_truth_topics.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_unified_analytics_paths.from_page_id -> bigint DEFAULT NULL
+  lupo_unified_analytics_paths.to_page_id -> bigint DEFAULT NULL
+  lupo_unified_analytics_paths.year_month -> char(6) NOT NULL
+  lupo_unified_analytics_paths.transition_type -> varchar(64) NOT NULL
+  lupo_unified_analytics_paths.transition_count -> int NOT NULL DEFAULT '0'
+  lupo_unified_analytics_paths.metadata_json -> json DEFAULT NULL
+  lupo_unified_analytics_paths.created_ymdhis -> bigint NOT NULL
+  lupo_unified_analytics_paths.updated_ymdhis -> bigint NOT NULL
+  lupo_unified_analytics_paths.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_unified_analytics_paths.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_unified_dialog_messages.thread_id -> bigint DEFAULT NULL
+  lupo_unified_dialog_messages.actor_id -> bigint DEFAULT NULL
+  lupo_unified_dialog_messages.created_ymdhis -> bigint DEFAULT NULL
+  lupo_unified_dialog_messages.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_unified_dialog_messages.metadata_json -> json DEFAULT NULL
+  lupo_unified_dialog_messages.body_text -> text
+  lupo_unified_paths_firsts.from_visit_id -> bigint NOT NULL DEFAULT '0'
+  lupo_unified_paths_firsts.to_visit_id -> bigint NOT NULL DEFAULT '0'
+  lupo_unified_paths_firsts.date_ymd -> int NOT NULL
+  lupo_unified_paths_firsts.visits -> int NOT NULL DEFAULT '0'
+  lupo_unified_paths_firsts.metadata_json -> json DEFAULT NULL
+  lupo_unified_paths_firsts.created_at -> bigint
+  lupo_unified_paths_firsts.updated_at -> bigint
+  lupo_unified_referers.content_id -> bigint NOT NULL
+  lupo_unified_referers.actor_id -> bigint NOT NULL
+  lupo_unified_referers.referer_url -> varchar(2000) DEFAULT NULL
+  lupo_unified_referers.referer_domain -> varchar(255) DEFAULT NULL
+  lupo_unified_referers.referer_path -> varchar(2000) DEFAULT NULL
+  lupo_unified_referers.referer_content_id -> bigint DEFAULT NULL
+  lupo_unified_referers.date_ymd -> int NOT NULL
+  lupo_unified_referers.visits -> int NOT NULL DEFAULT '1'
+  lupo_unified_referers.depth -> int NOT NULL DEFAULT '0'
+  lupo_unified_referers.metadata_json -> json DEFAULT NULL
+  lupo_unified_registry.entity_type -> varchar(64) NOT NULL
+  lupo_unified_registry.entity_id -> bigint NOT NULL
+  lupo_unified_registry.entity_key -> varchar(255) DEFAULT NULL
+  lupo_unified_registry.entity_name -> varchar(255) DEFAULT NULL
+  lupo_unified_registry.dedicated_index_id -> bigint NOT NULL
+  lupo_unified_registry.entity_table -> varchar(128) NOT NULL
+  lupo_unified_registry.federation_node_id -> bigint NOT NULL DEFAULT '1'
+  lupo_unified_registry.created_ymdhis -> bigint NOT NULL
+  lupo_unified_registry.updated_ymdhis -> bigint NOT NULL
+  lupo_unified_registry.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_unified_registry.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_unified_registry.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_unified_registry.is_kernel -> tinyint NOT NULL DEFAULT '0'
+  lupo_unified_registry.metadata_json -> json DEFAULT NULL
+  lupo_unified_sessions.session_id -> varchar(255) NOT NULL
+  lupo_unified_sessions.user_id -> bigint DEFAULT NULL
+  lupo_unified_sessions.system_context -> varchar(50) NOT NULL
+  lupo_unified_sessions.session_data -> json DEFAULT NULL
+  lupo_unified_sessions.expires_at -> bigint
+  lupo_unified_sessions.created_at -> bigint
+  lupo_unified_sessions.updated_at -> bigint
+  lupo_unified_truth_items.item_type -> varchar(64) NOT NULL
+  lupo_unified_truth_items.name -> varchar(255) DEFAULT NULL
+  lupo_unified_truth_items.slug -> varchar(255) DEFAULT NULL
+  lupo_unified_truth_items.body_text -> text
+  lupo_unified_truth_items.metadata_json -> json DEFAULT NULL
+  lupo_unified_truth_items.created_ymdhis -> bigint DEFAULT NULL
+  lupo_unified_visits.content_id -> bigint NOT NULL DEFAULT '0'
+  lupo_unified_visits.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_unified_visits.page_url -> varchar(500) NOT NULL
+  lupo_unified_visits.page_domain -> varchar(255) NOT NULL
+  lupo_unified_visits.page_path -> varchar(500) NOT NULL
+  lupo_unified_visits.date_ymd -> int NOT NULL
+  lupo_unified_visits.visits -> int NOT NULL DEFAULT '0'
+  lupo_unified_visits.depth -> int NOT NULL DEFAULT '0'
+  lupo_unified_visits.metadata_json -> json DEFAULT NULL
+  lupo_unified_visits.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_unified_visits.updated_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_unified_websites.livehelp_id -> bigint NOT NULL DEFAULT '1'
+  lupo_unified_websites.site_name -> varchar(255) NOT NULL
+  lupo_unified_websites.site_url -> varchar(500) NOT NULL
+  lupo_unified_websites.default_department -> int NOT NULL DEFAULT '0'
+  lupo_unified_websites.metadata_json -> json DEFAULT NULL
+  lupo_unified_websites.created_at -> bigint
+  lupo_unified_websites.updated_at -> bigint
+  lupo_uploads.actor_id -> bigint NOT NULL
+  lupo_uploads.channel_id -> bigint DEFAULT NULL
+  lupo_uploads.original_filename -> varchar(255) NOT NULL
+  lupo_uploads.stored_filename -> varchar(255) NOT NULL
+  lupo_uploads.file_extension -> varchar(16) NOT NULL
+  lupo_uploads.mime_type -> varchar(128) NOT NULL
+  lupo_uploads.file_size_bytes -> bigint NOT NULL
+  lupo_uploads.storage_path -> varchar(512) NOT NULL
+  lupo_uploads.metadata_json -> json DEFAULT NULL
+  lupo_uploads.created_ymdhis -> bigint NOT NULL
+  lupo_uploads.updated_ymdhis -> bigint NOT NULL
+  lupo_uploads.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_uploads.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_user_comments.domain_id -> bigint NOT NULL
+  lupo_user_comments.user_id -> bigint NOT NULL
+  lupo_user_comments.content_id -> bigint NOT NULL
+  lupo_user_comments.parent_comment_id -> bigint DEFAULT NULL
+  lupo_user_comments.comment_text -> text NOT NULL
+  lupo_user_comments.user_agent -> varchar(255) DEFAULT NULL
+  lupo_user_comments.ip_hash -> char(64) DEFAULT NULL
+  lupo_user_comments.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_user_comments.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_user_comments.created_ymdhis -> bigint NOT NULL
+  lupo_user_comments.updated_ymdhis -> bigint DEFAULT NULL
+  lupo_world_events.world_id -> bigint NOT NULL
+  lupo_world_events.actor_id -> bigint NOT NULL
+  lupo_world_events.event_type -> varchar(100) NOT NULL
+  lupo_world_events.event_data -> json DEFAULT NULL
+  lupo_world_events.created_ymdhis -> bigint NOT NULL
+  lupo_world_registry.world_key -> varchar(255) NOT NULL
+  lupo_world_registry.world_type -> varchar(64) NOT NULL
+  lupo_world_registry.world_label -> varchar(255) NOT NULL
+  lupo_world_registry.world_metadata -> json DEFAULT NULL
+  lupo_world_registry.created_ymdhis -> bigint NOT NULL
+  lupo_world_registry.updated_ymdhis -> bigint NOT NULL
+  lupo_world_registry.is_active -> tinyint NOT NULL DEFAULT '1'
+
+Why each correction:
+  - Live DB may have UNSIGNED on integers; install uses signed only (SQL Doctrine).
+  - Live DB may have display widths (INT(11), BIGINT(20)); install has none.
+  - Live DB may have wrong type (INT vs BIGINT), NULL/NOT NULL, or DEFAULT; install is canonical.
+  - No timestamp/datetime; install uses BIGINT for all temporal (Doctrine §5).
+
+Indexes:
+  - This migration does NOT add or drop indexes.
+  - If your live DB has extra indexes not in install_new_lupopedia.sql, drop them manually.
+  - If your live DB is missing indexes from install_new_lupopedia.sql, add them manually from that file.

@@ -2,12 +2,12 @@
   "table_name": "lupo_emotional_stars",
   "fields": [
     "`star_id` char(26) NOT NULL COMMENT 'ULID'",
-    "`experience_hash` char(64) COMMENT 'Deduplication hash'",
+    "`experience_hash` char(64)",
     "`experience_text` text NOT NULL",
-    "`cultural_context` json COMMENT 'Array of cultural tags'",
-    "`embodied_sensation` json COMMENT 'Array of somatic descriptors'",
-    "`created_by` bigint COMMENT 'agent_id or operator_id'",
-    "`created_in_context` bigint COMMENT 'thread_id or null'",
+    "`cultural_context` json",
+    "`embodied_sensation` json",
+    "`created_by` bigint",
+    "`created_in_context` bigint",
     "`first_observed_ymdhis` bigint",
     "`observation_count` int NOT NULL DEFAULT 1"
   ],

@@ -2,14 +2,14 @@
   "table_name": "lupo_actor_properties",
   "fields": [
     "`actor_property_id` bigint NOT NULL auto_increment",
-    "`actor_type` varchar(32) NOT NULL COMMENT 'Type of the entity'",
-    "`actor_id` bigint NOT NULL COMMENT 'ID of the entity'",
-    "`property_key` varchar(64) NOT NULL COMMENT 'Property key/name'",
-    "`property_value` text COMMENT 'Property value'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'",
-    "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'"
+    "`actor_type` varchar(32) NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`property_key` varchar(64) NOT NULL",
+    "`property_value` text",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

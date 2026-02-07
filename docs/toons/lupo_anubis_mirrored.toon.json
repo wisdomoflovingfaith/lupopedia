@@ -4,8 +4,8 @@
     "`anubis_mirrored_id` bigint NOT NULL auto_increment",
     "`table_name` varchar(255) NOT NULL",
     "`original_id` bigint NOT NULL",
-    "`mirrored_json` longtext NOT NULL",
-    "`timestamp_utc` char(14) NOT NULL",
+    "`mirrored_json` text NOT NULL",
+    "`timestamp_utc` bigint NOT NULL",
     "`agent` varchar(255) NOT NULL",
     "`reason` varchar(255) NOT NULL",
     "`lineage_chain` varchar(255)"

@@ -18,7 +18,7 @@ file.updated_by: agent:cascade
 
 -->-
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 2026.3.8.0
+file.last_modified_system_version: 4.0.0
 file.channel: versioning
 file.last_modified_utc: 20260130005340
 file.name: "CHANGELOG.md"
@@ -34,6 +34,46 @@ This root-level CHANGELOG.md is a high-level meta-log and does not
 represent the full version history of the Semantic OS. Contributors
 should refer to the channel-based changelog for authoritative version
 increments, doctrine updates, and schema-related notes.
+
+## [4.0.0] — 2026-02-06 — Reserved-Word Column Renames + Version Lock + Doctrine Rules
+
+### Summary
+Version 4.0.0 locks the development version at 4.0.0 until the 4.1.0 auto-installer release. This release applies reserved-word column renames identified by the TOON audit, adds mandatory .cursorrules for zero-installations / no backward compatibility and version lock, and documents all changes in CHANGELOG, migration notes, and changelog dialog.
+
+### Schema and migrations
+- **Reserved-word column renames (one-time migration):** `database/migrations/dev_20260206_reserved_word_column_renames.sql`
+  - `lupo_actor_group_membership.role` → `role_key` (varchar(50) DEFAULT 'member')
+  - `lupo_artifacts.type` → `entity_type` (varchar(64) NOT NULL); index `lupo_artifacts_idx_type` → `lupo_artifacts_idx_entity_type`
+  - `lupo_pack_role_registry.role` → `role_key` (varchar(255) NOT NULL); index `lupo_pack_role_registry_idx_role` → `lupo_pack_role_registry_idx_role_key`
+  - `lupo_unified_analytics_paths.year_month` → `year_month_key` (char(6) NOT NULL)
+- **Canonical schema:** `database/migrations/install_new_lupopedia.sql` updated with the same column names and indexes for new installs.
+- **TOONs:** Not modified; user regenerates TOONs from schema after applying migration.
+
+### PHP and API
+- **api/v1/artifact.php:** Insert key and SELECT use `entity_type`; response key `entity_type` (was `type`).
+- **api/v1/timeline.php:** SELECT and response use `entity_type` (was `type`).
+- No PHP references existed for `lupo_actor_group_membership.role`, `lupo_pack_role_registry.role`, or `lupo_unified_analytics_paths.year_month`.
+
+### Doctrine and rules (.cursorrules)
+- **Zero Installations / No Backward Compatibility Rule (MANDATORY):** States zero Lupopedia installations, zero external API consumers, no backward compatibility requirement; ALWAYS rename columns/fields/API keys cleanly; NEVER compatibility shims. Sunset: remove entire section when preparing 4.1.0 auto-installers.
+- **Version Lock Rule (MANDATORY):** Development version 4.0.0 locked until user explicitly begins 4.1.0 auto-installer cycle; Cursor MUST NOT bump or suggest version changes; remove rule only when preparing 4.1.0 release.
+- **Pre-Release Version Freeze:** Lupopedia version set to 4.0.0 (was 4.0.1) across version freeze section.
+- **Version Management Rules:** Atom value in .cursorrules set to 4.0.0.
+
+### Tooling and docs
+- **database/audit_toon_reserved_words.py:** Reserved-word audit script; writes `database/migrations/reserved_word_audit_report.txt` (UTF-8). Report lists table, column, MySQL/PostgreSQL violation, severity, suggested alternative.
+- **docs/doctrine/LUPOPEDIA_DOCTRINE.md:** All references to fixed version 4.0.1 updated to 4.0.0.
+- **docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md:** Unchanged; alignment context remains valid.
+
+### Version metadata
+- **config/global_atoms.yaml:** `version`, `versions.lupopedia`, `GLOBAL_CURRENT_LUPOPEDIA_VERSION` set to `"4.0.0"`.
+- **config/GLOBAL_IMPORTANT_ATOMS.yaml:** `GLOBAL_CURRENT_LUPOPEDIA_VERSION` set to `"4.0.0"`.
+- **lupo-includes/version.php:** Fallback and docblock set to 4.0.0.
+
+### Notes
+- No new tables; no new UI components; no refactors beyond column renames and rule blocks.
+- Legacy files (e.g. livehelp_js.php) not removed; no compatibility shims added (per Zero Installations rule).
+- Migration notes: `docs/channels/schema/migrations/4.0.0.md`.
 
 ## 2026-02-01 — Architecture Rebuild + Crafty Syntax Integration
 

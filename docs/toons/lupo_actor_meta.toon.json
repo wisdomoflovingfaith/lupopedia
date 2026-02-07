@@ -1,8 +1,8 @@
 {
   "table_name": "lupo_actor_meta",
   "fields": [
-    "`actor_meta_id` bigint unsigned NOT NULL auto_increment",
-    "`actor_id` bigint unsigned NOT NULL",
+    "`actor_meta_id` bigint NOT NULL auto_increment",
+    "`actor_id` bigint NOT NULL",
     "`meta_type` varchar(64) NOT NULL",
     "`meta_key` varchar(255) NOT NULL",
     "`meta_value` text NOT NULL",

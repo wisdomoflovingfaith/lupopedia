@@ -2,13 +2,13 @@
   "table_name": "lupo_content_revisions",
   "fields": [
     "`content_revision_id` bigint NOT NULL auto_increment",
-    "`content_id` bigint NOT NULL COMMENT 'FK to contents table (not enforced by DB)'",
-    "`version_number` int NOT NULL COMMENT 'Version number this snapshot represents'",
-    "`body_snapshot` text NOT NULL COMMENT 'Full body content at the time of revision'",
-    "`metadata_snapshot` json COMMENT 'Metadata JSON at the time of revision'",
-    "`sections_snapshot` json COMMENT 'Cached section anchors at the time of revision'",
-    "`edited_by` varchar(100) COMMENT 'Username or agent identifier that made the change'",
-    "`created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED"
+    "`content_id` bigint NOT NULL",
+    "`version_number` int NOT NULL",
+    "`body_snapshot` text NOT NULL",
+    "`metadata_snapshot` json",
+    "`sections_snapshot` json",
+    "`edited_by` varchar(100)",
+    "`created_at` bigint"
   ],
   "data": [],
   "indexes": [

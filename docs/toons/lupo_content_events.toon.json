@@ -2,16 +2,16 @@
   "table_name": "lupo_content_events",
   "fields": [
     "`content_event_id` bigint NOT NULL auto_increment COMMENT 'Primary key for content event'",
-    "`content_id` bigint COMMENT 'Content identifier'",
-    "`actor_id` bigint COMMENT 'Actor ID from lupo_actors'",
-    "`session_id` varchar(255) COMMENT 'Session identifier'",
-    "`tab_id` varchar(255) COMMENT 'Tab identifier'",
-    "`world_id` bigint COMMENT 'World context ID'",
-    "`world_key` varchar(255) COMMENT 'World context key'",
-    "`world_type` varchar(50) COMMENT 'World context type'",
-    "`event_type` varchar(100) NOT NULL COMMENT 'Type of content event'",
-    "`event_data` json COMMENT 'Event-specific data'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS'"
+    "`content_id` bigint",
+    "`actor_id` bigint",
+    "`session_id` varchar(255)",
+    "`tab_id` varchar(255)",
+    "`world_id` bigint",
+    "`world_key` varchar(255)",
+    "`world_type` varchar(50)",
+    "`event_type` varchar(100) NOT NULL",
+    "`event_data` json",
+    "`created_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [

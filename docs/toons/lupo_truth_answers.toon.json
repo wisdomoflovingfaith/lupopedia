@@ -4,7 +4,7 @@
     "`truth_answer_id` bigint NOT NULL auto_increment",
     "`truth_question_id` bigint NOT NULL",
     "`actor_id` bigint NOT NULL DEFAULT 0",
-    "`answer_text` longtext NOT NULL",
+    "`answer_text` text NOT NULL",
     "`confidence_score` decimal(5,2) NOT NULL DEFAULT 0.00",
     "`evidence_score` decimal(5,2) NOT NULL DEFAULT 0.00",
     "`contradiction_flag` tinyint NOT NULL DEFAULT 0",

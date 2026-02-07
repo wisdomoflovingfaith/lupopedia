@@ -2,12 +2,12 @@
   "table_name": "lupo_mood_registry",
   "fields": [
     "`mood_id` bigint NOT NULL auto_increment",
-    "`mood_type` varchar(64) NOT NULL COMMENT 'Canonical mood type (e.g., agape, eros)'",
-    "`mood_variant` varchar(64) COMMENT 'Optional subtype or variant label'",
-    "`mood_rgb` char(6) NOT NULL COMMENT 'Emotional polarity tensor (hex), fixed-width'",
+    "`mood_type` varchar(64) NOT NULL",
+    "`mood_variant` varchar(64)",
+    "`mood_rgb` char(6) NOT NULL",
     "`description` text",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when updated'"
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [

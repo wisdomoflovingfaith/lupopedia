@@ -2,14 +2,14 @@
   "table_name": "lupo_agent_properties",
   "fields": [
     "`agent_property_id` bigint NOT NULL auto_increment",
-    "`actor_id` bigint NOT NULL COMMENT 'Agent this property belongs to'",
-    "`domain_id` bigint NOT NULL COMMENT 'Domain scope for this property'",
-    "`property_key` varchar(100) NOT NULL COMMENT 'Property identifier (e.g., \"ui_preferences\", \"api_settings\")'",
-    "`property_value` text COMMENT 'JSON or TOON formatted property value'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when created'",
-    "`updated_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when last updated'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
-    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when deleted'"
+    "`actor_id` bigint NOT NULL",
+    "`domain_id` bigint NOT NULL",
+    "`property_key` varchar(100) NOT NULL",
+    "`property_value` text",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

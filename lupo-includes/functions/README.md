@@ -91,7 +91,7 @@ Loads data from the database and builds nested arrays for the saved collections 
 - `count_tab_items($db, $tabId)` - Counts items in a tab recursively
 
 **Related Files:**
-- Component: `/lupo-includes/ui/components/saved-collections-nav.php`
+- Component: `/lupo-includes/themes/default/components/saved-collections-nav.php`
 - Usage: Called from `header.php`
 
 **Access Control:**

@@ -1,18 +1,18 @@
 {
   "table_name": "lupo_multi_agent_critique_sync",
   "fields": [
-    "`id` bigint unsigned NOT NULL auto_increment",
-    "`cip_event_id` bigint unsigned NOT NULL COMMENT 'Root CIP event'",
-    "`agent_id` varchar(100) NOT NULL COMMENT 'Agent participating in sync'",
-    "`sync_role` enum('initiator','participant','observer','validator') NOT NULL",
-    "`sync_status` enum('pending','synchronized','out_of_sync','conflict','resolved') DEFAULT 'pending'",
-    "`agent_perspective_json` json COMMENT 'Agent-specific view of critique'",
-    "`consensus_contribution` decimal(5,4) DEFAULT 0.0000 COMMENT 'Contribution to consensus (0-1)'",
-    "`conflict_indicators_json` json COMMENT 'Detected conflicts with other agents'",
-    "`resolution_strategy` varchar(255) COMMENT 'Strategy for resolving conflicts'",
-    "`sync_started_ymdhis` bigint COMMENT 'When sync process started'",
-    "`sync_completed_ymdhis` bigint COMMENT 'When sync was completed'",
-    "`sync_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Sync protocol version'"
+    "`id` bigint NOT NULL auto_increment",
+    "`cip_event_id` bigint NOT NULL",
+    "`agent_id` varchar(100) NOT NULL",
+    "`sync_role` varchar(64) NOT NULL",
+    "`sync_status` varchar(64) DEFAULT 'pending'",
+    "`agent_perspective_json` json",
+    "`consensus_contribution` decimal(5,4) DEFAULT 0.0000",
+    "`conflict_indicators_json` json",
+    "`resolution_strategy` varchar(255)",
+    "`sync_started_ymdhis` bigint",
+    "`sync_completed_ymdhis` bigint",
+    "`sync_version` varchar(20) DEFAULT '4.0.75'"
   ],
   "data": [],
   "indexes": [

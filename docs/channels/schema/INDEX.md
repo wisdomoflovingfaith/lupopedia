@@ -27,7 +27,6 @@ Purpose: Database schema documentation and migration records.
 Files:
 - [AI_SCHEMA_GUIDE.md](AI_SCHEMA_GUIDE.md)
 - [DATABASE_SCHEMA.md](DATABASE_SCHEMA.md)
-- [migrations/2026.1.0.1.md](migrations/2026.1.0.1.md)
 - [migrations/20260120_migration_audit.md](migrations/20260120_migration_audit.md)
 - [migrations/3.0.102.md](migrations/3.0.102.md)
 - [migrations/3.0.104.md](migrations/3.0.104.md)

@@ -5,9 +5,9 @@
     "`event_type` varchar(64) NOT NULL",
     "`table_name` varchar(255) NOT NULL",
     "`row_id` bigint NOT NULL",
-    "`timestamp_utc` char(14) NOT NULL",
+    "`timestamp_utc` bigint NOT NULL",
     "`agent` varchar(255) NOT NULL",
-    "`details_json` longtext NOT NULL"
+    "`details_json` text NOT NULL"
   ],
   "data": [],
   "indexes": [],

@@ -16,9 +16,7 @@ if (!isset($page_body)) {
 if (!isset($head_extra)) {
     $head_extra = '';
 }
-if (!defined('LUPO_UI_PATH')) {
-    define('LUPO_UI_PATH', LUPOPEDIA_PATH . '/lupo-includes/ui');
-}
+require_once __DIR__ . '/../../../theme/theme-loader.php';
 $public_path = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
 ?>
 <!DOCTYPE html>
@@ -32,10 +30,7 @@ $public_path = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
 </head>
 <body>
 <?php
-// Same top navigation as channel cockpit (main_layout includes this when hide_semantic_nav)
-if (file_exists(LUPO_UI_PATH . '/components/topbar.php')) {
-    include LUPO_UI_PATH . '/components/topbar.php';
-}
+lupo_theme_include_component('topbar.php', []);
 ?>
 <!-- Same full-width wrapper as channel cockpit (main_layout when REQUEST_URI contains /channels/) -->
 <div style="width: 100%; height: calc(100vh - 60px); position: fixed; top: 60px; left: 0; overflow: hidden;">

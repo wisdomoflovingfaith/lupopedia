@@ -3,9 +3,9 @@
   "fields": [
     "`artifact_id` bigint NOT NULL auto_increment",
     "`actor_id` bigint NOT NULL",
-    "`utc_timestamp` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS'",
-    "`type` varchar(64) NOT NULL COMMENT 'dialog|changelog|schema|lore|humor|protocol|fork_justification'",
-    "`content` longtext NOT NULL",
+    "`utc_timestamp` bigint NOT NULL",
+    "`entity_type` varchar(64) NOT NULL",
+    "`content` text NOT NULL",
     "`created_ymdhis` bigint NOT NULL",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
@@ -31,7 +31,7 @@
     {
       "index_name": "idx_type",
       "columns": [
-        "type"
+        "entity_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -40,6 +40,14 @@
       "index_name": "idx_is_deleted",
       "columns": [
         "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_artifacts_idx_entity_type",
+      "columns": [
+        "entity_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"

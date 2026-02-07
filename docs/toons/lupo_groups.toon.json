@@ -2,16 +2,16 @@
   "table_name": "lupo_groups",
   "fields": [
     "`group_id` bigint NOT NULL auto_increment",
-    "`name` varchar(50) NOT NULL COMMENT 'Unique name of the group within the domain'",
-    "`description` text COMMENT 'Optional detailed description of the group'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when group was created'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when group was last updated'",
-    "`created_by` bigint COMMENT 'actor_id of the creator'",
-    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = inactive'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '1 = deleted, 0 = not deleted'",
-    "`deleted_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when soft-deleted'",
-    "`is_system` tinyint NOT NULL DEFAULT 0 COMMENT '1 = system group (cannot be deleted)'",
-    "`settings` json COMMENT 'JSON-encoded group-specific settings'"
+    "`name` varchar(50) NOT NULL",
+    "`description` text",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`created_by` bigint",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`is_system` tinyint NOT NULL DEFAULT 0",
+    "`settings` json"
   ],
   "data": [],
   "indexes": [

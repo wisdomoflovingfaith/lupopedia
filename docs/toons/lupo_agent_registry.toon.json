@@ -2,7 +2,7 @@
   "table_name": "lupo_agent_registry",
   "fields": [
     "`agent_registry_id` bigint NOT NULL auto_increment",
-    "`agent_registry_parent_id` bigint COMMENT 'if this is a alias'",
+    "`agent_registry_parent_id` bigint",
     "`code` varchar(64) NOT NULL",
     "`name` varchar(255) NOT NULL",
     "`layer` varchar(64) NOT NULL",
@@ -11,7 +11,7 @@
     "`is_kernel` tinyint NOT NULL DEFAULT 0",
     "`dedicated_slot` int",
     "`created_ymdhis` bigint NOT NULL",
-    "`classification_json` json COMMENT 'Agent classification and routing identity metadata (agent_class, subclass, routing_bias, capabilities)'",
+    "`classification_json` json",
     "`metadata` json NOT NULL",
     "`agent_class` varchar(64) NOT NULL DEFAULT 'production'",
     "`can_use_humor` tinyint NOT NULL DEFAULT 0",

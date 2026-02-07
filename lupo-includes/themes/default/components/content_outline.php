@@ -1,7 +1,7 @@
 <?php
 /**
  * wolfie.header.identity: content-outline
- * wolfie.header.placement: /lupo-includes/ui/components/content_outline.php
+ * wolfie.header.placement: /lupo-includes/themes/default/components/content_outline.php
  * wolfie.header.version: 3.0.6
  * wolfie.header.dialog:
  *   speaker: CURSOR

@@ -3,9 +3,9 @@
   "fields": [
     "`actor_object_edge_id` bigint NOT NULL auto_increment",
     "`actor_id` bigint NOT NULL",
-    "`target_table` varchar(100) NOT NULL COMMENT 'e.g., lupo_contents, lupo_unified_truth_items, lupo_hashtags, lupo_topics, lupo_channels, etc.'",
+    "`target_table` varchar(100) NOT NULL",
     "`target_id` bigint NOT NULL",
-    "`edge_type` varchar(50) NOT NULL COMMENT 'e.g., read, liked, disliked, created, commented_on, shared_from, etc.'",
+    "`edge_type` varchar(50) NOT NULL",
     "`properties_json` json",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL"

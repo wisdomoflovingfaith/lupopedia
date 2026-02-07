@@ -2,7 +2,7 @@
   "table_name": "lupo_channel_state",
   "fields": [
     "`channel_state_id` bigint NOT NULL auto_increment",
-    "`channel_id` bigint unsigned NOT NULL",
+    "`channel_id` bigint NOT NULL",
     "`active_actors_json` json",
     "`speaker_actors_json` json",
     "`observer_actors_json` json",
@@ -13,16 +13,16 @@
     "`recent_topics_json` json",
     "`semantic_weight` float DEFAULT 0",
     "`trend_score` float DEFAULT 0",
-    "`last_activity_ymdhis` bigint unsigned",
+    "`last_activity_ymdhis` bigint",
     "`context_vector` blob",
     "`routing_rules` varchar(32)",
     "`edge_visibility` varchar(32)",
     "`retention_policy` varchar(32)",
     "`decay_policy` varchar(32)",
-    "`archive_flag` tinyint(1) DEFAULT 0",
+    "`archive_flag` tinyint DEFAULT 0",
     "`metadata_json` json",
-    "`created_ymdhis` bigint unsigned NOT NULL",
-    "`updated_ymdhis` bigint unsigned NOT NULL"
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [

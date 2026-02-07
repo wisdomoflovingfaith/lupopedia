@@ -4,9 +4,9 @@
     "`anubis_revised_id` bigint NOT NULL auto_increment",
     "`table_name` varchar(255) NOT NULL",
     "`row_id` bigint NOT NULL",
-    "`timestamp_utc` char(14) NOT NULL",
+    "`timestamp_utc` bigint NOT NULL",
     "`agent` varchar(255) NOT NULL",
-    "`revision_json` longtext NOT NULL"
+    "`revision_json` text NOT NULL"
   ],
   "data": [],
   "indexes": [],

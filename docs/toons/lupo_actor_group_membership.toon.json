@@ -2,13 +2,13 @@
   "table_name": "lupo_actor_group_membership",
   "fields": [
     "`actor_group_membership_id` bigint NOT NULL auto_increment COMMENT 'Reference to actors.actor_id'",
-    "`group_id` bigint NOT NULL COMMENT 'Reference to groups.group_id'",
-    "`domain_id` bigint NOT NULL COMMENT 'Domain context for this membership'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'UTC YYYYMMDDHHMMSS when membership was created'",
-    "`created_by` bigint COMMENT 'actor_id who created this membership'",
-    "`expires_ymdhis` bigint COMMENT 'UTC YYYYMMDDHHMMSS when membership expires (NULL = never)'",
-    "`is_active` tinyint NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = inactive'",
-    "`role` varchar(50) DEFAULT 'member' COMMENT 'Role/position within the group'"
+    "`group_id` bigint NOT NULL",
+    "`domain_id` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL",
+    "`created_by` bigint",
+    "`expires_ymdhis` bigint",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`role_key` varchar(50) DEFAULT 'member'"
   ],
   "data": [],
   "indexes": [

@@ -1,18 +1,18 @@
 {
   "table_name": "lupo_cip_propagation_tracking",
   "fields": [
-    "`id` bigint unsigned NOT NULL auto_increment",
-    "`cip_event_id` bigint unsigned NOT NULL COMMENT 'Root CIP event'",
-    "`propagation_level` tinyint unsigned NOT NULL COMMENT 'Depth level (0-10)'",
-    "`affected_subsystem` varchar(100) NOT NULL COMMENT 'Subsystem affected at this level'",
-    "`propagation_type` enum('doctrine','emotional_geometry','agent_behavior','system_config') NOT NULL",
-    "`change_description` text NOT NULL COMMENT 'What changed at this level'",
-    "`propagation_strength` decimal(5,4) NOT NULL DEFAULT 1.0000 COMMENT 'Strength of propagation'",
-    "`completion_status` enum('pending','in_progress','completed','blocked','failed') DEFAULT 'pending'",
-    "`dependencies_json` json COMMENT 'Dependencies for this propagation step'",
-    "`started_ymdhis` bigint COMMENT 'When propagation started'",
-    "`completed_ymdhis` bigint COMMENT 'When propagation completed'",
-    "`propagation_version` varchar(20) DEFAULT '4.0.75' COMMENT 'Propagation tracking version'"
+    "`id` bigint NOT NULL auto_increment",
+    "`cip_event_id` bigint NOT NULL",
+    "`propagation_level` tinyint NOT NULL",
+    "`affected_subsystem` varchar(100) NOT NULL",
+    "`propagation_type` varchar(64) NOT NULL",
+    "`change_description` text NOT NULL",
+    "`propagation_strength` decimal(5,4) NOT NULL DEFAULT 1.0000",
+    "`completion_status` varchar(64) DEFAULT 'pending'",
+    "`dependencies_json` json",
+    "`started_ymdhis` bigint",
+    "`completed_ymdhis` bigint",
+    "`propagation_version` varchar(20) DEFAULT '4.0.75'"
   ],
   "data": [],
   "indexes": [

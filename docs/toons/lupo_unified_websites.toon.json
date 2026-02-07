@@ -1,14 +1,14 @@
 {
   "table_name": "lupo_unified_websites",
   "fields": [
-    "`id` bigint unsigned NOT NULL auto_increment",
-    "`livehelp_id` bigint unsigned NOT NULL DEFAULT 1",
+    "`id` bigint NOT NULL auto_increment",
+    "`livehelp_id` bigint NOT NULL DEFAULT 1",
     "`site_name` varchar(255) NOT NULL",
     "`site_url` varchar(500) NOT NULL",
     "`default_department` int NOT NULL DEFAULT 0",
     "`metadata_json` json",
-    "`created_at` timestamp DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED",
-    "`updated_at` timestamp DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+    "`created_at` bigint",
+    "`updated_at` bigint"
   ],
   "data": [],
   "indexes": [

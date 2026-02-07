@@ -263,7 +263,7 @@ For urgent matters:
 
 ### **8.1 Freedom Zone Compliance**
 
-During Freedom Zone (pre-2026.3.0.1):
+During development (version 4.0.0):
 - Protocol may evolve rapidly
 - Agents must tolerate communication framework changes
 - Documentation updates follow schema change rules

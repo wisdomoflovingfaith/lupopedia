@@ -34,6 +34,7 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. content-renderer.php cannot be called directly.");
 }
 
+require_once __DIR__ . '/../../../theme/theme-loader.php';
 require_once __DIR__ . '/render-html.php';
 require_once __DIR__ . '/render-markdown.php';
 require_once __DIR__ . '/render-json.php';
@@ -114,11 +115,6 @@ function render_content_page($content, $body_html) {
  * @return string
  */
 function render_main_layout($context_or_body, $content = null, $metadata = []) {
-    // Define UI path if not already defined
-    if (!defined('LUPO_UI_PATH')) {
-        define('LUPO_UI_PATH', LUPOPEDIA_PATH . '/lupo-includes/ui');
-    }
-    
     $context = [];
     if (is_array($context_or_body) && array_key_exists('page_body', $context_or_body)) {
         $context = $context_or_body;
@@ -183,12 +179,35 @@ function render_main_layout($context_or_body, $content = null, $metadata = []) {
     $collection_id = isset($context['collection_id']) && $context['collection_id'] !== null
         ? (int)$context['collection_id']
         : null;
-    
-    // Make ALL metadata available to main_layout.php
-    // These variables will be available in the included template
-    // Note: Variables extracted above are in local scope and will be available to included file
+
+    $context['page_body'] = $page_body;
+    $context['content'] = $content;
+    $context['page_title'] = $page_title;
+    $context['meta'] = $meta;
+    $context['related_edges'] = $related_edges;
+    $context['content_type'] = $content_type;
+    $context['semantic_context'] = $semanticContext;
+    $context['semanticContext'] = $semanticContext;
+    $context['content_references'] = $contentReferences;
+    $context['contentReferences'] = $contentReferences;
+    $context['content_links'] = $contentLinks;
+    $context['contentLinks'] = $contentLinks;
+    $context['tags'] = $contentTags;
+    $context['contentTags'] = $contentTags;
+    $context['collection'] = $contentCollection;
+    $context['contentCollection'] = $contentCollection;
+    $context['prev_content'] = $prevContent;
+    $context['prevContent'] = $prevContent;
+    $context['next_content'] = $nextContent;
+    $context['nextContent'] = $nextContent;
+    $context['content_sections'] = $contentSections;
+    $context['contentSections'] = $contentSections;
+    $context['tabs_data'] = $tabs_data;
+    $context['current_collection'] = $current_collection;
+    $context['collection_id'] = $collection_id;
+
     ob_start();
-    include LUPO_UI_PATH . '/layouts/main_layout.php';
+    lupo_theme_include_layout('main_layout.php', $context);
     return ob_get_clean();
 }
 

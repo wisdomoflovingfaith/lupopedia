@@ -2,16 +2,16 @@
   "table_name": "lupo_interpretation_log",
   "fields": [
     "`interpretation_log_id` bigint NOT NULL auto_increment COMMENT 'Primary key for the interpretation log'",
-    "`agent_id` bigint NOT NULL COMMENT 'ID of the agent that generated the interpretation'",
-    "`entity_type` varchar(32) NOT NULL COMMENT 'Type of the interpreted entity'",
-    "`entity_id` bigint NOT NULL COMMENT 'ID of the interpreted entity'",
-    "`interpretation` text NOT NULL COMMENT 'The interpretation content'",
-    "`confidence_score` decimal(5,2) COMMENT 'Confidence score of the interpretation (0.00-1.00)'",
-    "`created_ymdhis` bigint NOT NULL COMMENT 'Creation timestamp (YYYYMMDDHHMMSS)'",
-    "`updated_ymdhis` bigint NOT NULL COMMENT 'Last update timestamp (YYYYMMDDHHMMSS)'",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (1=deleted, 0=active)'",
-    "`deleted_ymdhis` bigint COMMENT 'Deletion timestamp (YYYYMMDDHHMMSS)'",
-    "`metadata_json` json COMMENT 'Additional metadata about the interpretation'"
+    "`agent_id` bigint NOT NULL",
+    "`entity_type` varchar(32) NOT NULL",
+    "`entity_id` bigint NOT NULL",
+    "`interpretation` text NOT NULL",
+    "`confidence_score` decimal(5,2)",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`metadata_json` json"
   ],
   "data": [],
   "indexes": [
