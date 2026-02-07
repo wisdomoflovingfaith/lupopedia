@@ -3,6 +3,8 @@
 READ-ONLY reserved-word audit of TOON files.
 Identifies column names that conflict with MySQL or PostgreSQL reserved keywords.
 Does NOT modify TOONs, schema, or code. Outputs a report only.
+
+Run from project root: python scripts/audit_toon_reserved_words.py
 """
 
 import json
@@ -127,7 +129,8 @@ def suggest_alternative(col):
 
 def main():
     base = Path(__file__).resolve().parent
-    toon_dir = base.parent / "docs" / "toons"
+    project_root = base.parent
+    toon_dir = project_root / "docs" / "toons"
     if not toon_dir.exists():
         print("TOON dir not found:", toon_dir)
         return 1
@@ -182,7 +185,8 @@ def main():
         print(report_content)
 
     # Write report to file (UTF-8)
-    report_path = base / "migrations" / "reserved_word_audit_report.txt"
+    report_path = project_root / "database" / "migrations" / "reserved_word_audit_report.txt"
+    report_path.parent.mkdir(parents=True, exist_ok=True)
     with open(report_path, "w", encoding="utf-8") as f:
         f.write(report_content)
     print()

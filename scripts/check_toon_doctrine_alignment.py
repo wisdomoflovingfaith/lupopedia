@@ -8,7 +8,9 @@ Doctrine rules checked:
 - No timestamp/datetime types; temporal = BIGINT YYYYMMDDHHIISS (Temporal Doctrine §5)
 - doctrine_metadata: no_foreign_keys, no_triggers (Database Logic §7)
 
-TOONs are generated from the live DB (generate_toons.py); this script only reports.
+TOONs are generated from the live DB (scripts/generate_toon_files.py); this script only reports.
+
+Run from project root: python scripts/check_toon_doctrine_alignment.py
 """
 
 import json
@@ -16,7 +18,7 @@ import re
 from pathlib import Path
 
 
-def check_field(field_str: str, table_name: str) -> list[str]:
+def check_field(field_str: str, table_name: str) -> list:
     """Return list of doctrine violation messages for this field string."""
     violations = []
     # UNSIGNED
@@ -37,7 +39,8 @@ def check_field(field_str: str, table_name: str) -> list[str]:
 
 def main():
     base = Path(__file__).resolve().parent
-    toon_dir = base.parent / "docs" / "toons"
+    project_root = base.parent
+    toon_dir = project_root / "docs" / "toons"
     if not toon_dir.exists():
         print("TOON dir not found:", toon_dir)
         return 1

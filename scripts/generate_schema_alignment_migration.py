@@ -4,13 +4,15 @@ Generate one-time dev migration to align LIVE DATABASE with install_new_lupopedi
 Canonical schema = install_new_lupopedia.sql. Output: ALTER TABLE ... MODIFY COLUMN only.
 No CREATE/DROP TABLE, no data migrations, no FKs, no triggers, no UNSIGNED, no display widths.
 Skips PRIMARY KEY columns to preserve AUTO_INCREMENT on live DB.
+
+Run from project root: python scripts/generate_schema_alignment_migration.py
 """
 
 import re
 from pathlib import Path
 
 
-def parse_install_sql(path: Path) -> tuple[dict, dict]:
+def parse_install_sql(path: Path) -> tuple:
     """Parse install_new_lupopedia.sql. Returns (tables, indexes).
     tables[table_name] = [(col_name, col_def), ...]
     indexes[table_name] = [(index_name, columns, is_unique), ...]
@@ -66,7 +68,9 @@ def parse_install_sql(path: Path) -> tuple[dict, dict]:
 
 def main():
     base = Path(__file__).resolve().parent
-    install_path = base / "migrations" / "install_new_lupopedia.sql"
+    project_root = base.parent
+    migrations_dir = project_root / "database" / "migrations"
+    install_path = migrations_dir / "install_new_lupopedia.sql"
     if not install_path.exists():
         print("Missing:", install_path)
         return 1
@@ -102,12 +106,12 @@ def main():
             )
             corrections.append((tname, cname, def_clean))
 
-    out_path = base / "migrations" / "dev_20260204_fix_schema_alignment.sql"
+    out_path = migrations_dir / "dev_20260204_fix_schema_alignment.sql"
     out_path.write_text("\n".join(out_lines), encoding="utf-8")
     print("Wrote", out_path, "(", len(corrections), "MODIFY COLUMN statements)")
 
     # Summary file for documentation
-    summary_path = base / "migrations" / "dev_20260204_fix_schema_alignment_summary.txt"
+    summary_path = migrations_dir / "dev_20260204_fix_schema_alignment_summary.txt"
     summary_lines = [
         "Schema alignment migration summary",
         "====================================",

@@ -3,6 +3,8 @@
 Generate DB-agnostic install_new_lupopedia.sql from lupopedia_mysql.sql.
 Doctrine 17: BIGINT/INT/SMALLINT/TINYINT only, no display widths, no UNSIGNED,
 no BOOLEAN, timestamps as BIGINT YYYYMMDDHHIISS, no FKs, no triggers.
+
+Run from project root: python scripts/generate_install_sql.py
 """
 import re
 import sys
@@ -42,7 +44,9 @@ def convert_col(line: str) -> str:
 
 def main():
     base = Path(__file__).resolve().parent
-    src = base / "install" / "lupopedia_mysql.sql"
+    project_root = base.parent
+    db_dir = project_root / "database"
+    src = db_dir / "install" / "lupopedia_mysql.sql"
     if not src.exists():
         print("Missing:", src, file=sys.stderr)
         sys.exit(1)
@@ -145,7 +149,7 @@ def main():
     out.append("-- INSERT lupo_atoms for GLOBAL_CURRENT_LUPOPEDIA_VERSION and kernel actors/channels as needed.")
     out.append("")
 
-    dest = base / "migrations" / "install_new_lupopedia.sql"
+    dest = db_dir / "migrations" / "install_new_lupopedia.sql"
     dest.write_text("\n".join(out), encoding="utf-8")
     print("Wrote", dest, "(", len(tables), "tables)")
 

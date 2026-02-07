@@ -1,65 +1,41 @@
 #!/usr/bin/env python3
 """
-TOON Generator (SHOW TABLES/COLUMNS)
+TOON Generator (schema + canonical data from live DB).
 
 Generates JSON TOON files for all tables using live MySQL schema introspection
-via SHOW TABLES / SHOW FULL COLUMNS / SHOW INDEX. Output files are written to:
+(SHOW TABLES / SHOW FULL COLUMNS / SHOW INDEX) and optionally canonical rows:
 
-  docs/toons/<table_name>.toon.json
+- PK=0 row: for any table with a primary key, include the row where pk = 0 if it exists.
+- lupo_unified_registry: include ALL rows in that table's "data" array.
+
+Output: docs/toons/<table_name>.toon.json
+
+DB config: read from lupopedia-config.php (project root). See scripts/db_config.py.
+If SKIP_DB=1, canonical data is skipped and "data" arrays are empty.
 """
 
 import json
 import os
 import sys
-from typing import Any, Dict, List, Optional
+from datetime import date, datetime
+from decimal import Decimal
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
 
-import mysql.connector
-from mysql.connector import Error
+try:
+    import pymysql
+    from pymysql.cursors import DictCursor
+except ImportError:
+    pymysql = None
+    DictCursor = None
 
+from db_config import get_connection_params
+
+UNIFIED_REGISTRY_TABLE = "lupo_unified_registry"
 
 STRING_TYPES = {
-    "char",
-    "varchar",
-    "text",
-    "tinytext",
-    "mediumtext",
-    "longtext",
-    "enum",
-    "set",
+    "char", "varchar", "text", "tinytext", "mediumtext", "longtext", "enum", "set",
 }
-
-
-def get_db_connection():
-    host = os.getenv("DB_HOST", "localhost")
-    user = os.getenv("DB_USER", "root")
-    password = os.getenv("DB_PASS", "ServBay.dev")
-    database = os.getenv("DB_NAME", "lupopedia")
-
-    if not database:
-        print("Error: DB_NAME is required.", file=sys.stderr)
-        sys.exit(1)
-
-    try:
-        return mysql.connector.connect(
-            host=host,
-            user=user,
-            password=password,
-            database=database,
-            charset="utf8mb4",
-            collation="utf8mb4_unicode_ci",
-        )
-    except Error as exc:
-        print(f"Database connection error: {exc}", file=sys.stderr)
-        print(f"Attempted connection: {user}@{host}/{database}", file=sys.stderr)
-        sys.exit(1)
-
-
-def fetch_tables(cursor) -> List[str]:
-    cursor.execute("SHOW TABLES")
-    rows = cursor.fetchall()
-    if rows and isinstance(rows[0], dict):
-        return [list(row.values())[0] for row in rows]
-    return [row[0] for row in rows]
 
 
 def _quote_default(value: Any, data_type: str) -> str:
@@ -78,10 +54,20 @@ def _quote_default(value: Any, data_type: str) -> str:
     return f" DEFAULT {value}"
 
 
-def fetch_columns(cursor, table_name: str) -> List[str]:
-    cursor.execute(f"SHOW FULL COLUMNS FROM `{table_name}`")
+def fetch_tables(cursor) -> List[str]:
+    cursor.execute("SHOW TABLES")
     rows = cursor.fetchall()
-    columns = []
+    if rows and isinstance(rows[0], dict):
+        return [list(row.values())[0] for row in rows]
+    return [row[0] for row in rows]
+
+
+def fetch_columns_and_names(cursor, table_name: str) -> Tuple[List[str], List[str]]:
+    """Return (field_definitions, column_names_in_order)."""
+    cursor.execute("SHOW FULL COLUMNS FROM `{}`".format(table_name.replace("`", "``")))
+    rows = cursor.fetchall()
+    fields = []
+    names = []
     for row in rows:
         if isinstance(row, dict):
             name = row["Field"]
@@ -94,7 +80,7 @@ def fetch_columns(cursor, table_name: str) -> List[str]:
             name, col_type, null_flag, default, extra, _, comment = row
             is_nullable = null_flag == "YES"
 
-        parts = [f"`{name}`", col_type]
+        parts = ["`{}`".format(name), col_type]
         if not is_nullable:
             parts.append("NOT NULL")
         default_clause = _quote_default(default, col_type.split("(")[0].lower())
@@ -104,13 +90,14 @@ def fetch_columns(cursor, table_name: str) -> List[str]:
             parts.append(extra)
         if comment:
             escaped_comment = str(comment).replace("\\", "\\\\").replace("'", "''")
-            parts.append(f"COMMENT '{escaped_comment}'")
-        columns.append(" ".join(parts))
-    return columns
+            parts.append("COMMENT '{}'".format(escaped_comment))
+        fields.append(" ".join(parts))
+        names.append(name)
+    return fields, names
 
 
 def fetch_primary_key(cursor, table_name: str) -> Optional[str]:
-    cursor.execute(f"SHOW INDEX FROM `{table_name}` WHERE Key_name = 'PRIMARY'")
+    cursor.execute("SHOW INDEX FROM `{}` WHERE Key_name = 'PRIMARY'".format(table_name.replace("`", "``")))
     rows = cursor.fetchall()
     if not rows:
         return None
@@ -120,7 +107,7 @@ def fetch_primary_key(cursor, table_name: str) -> Optional[str]:
 
 
 def fetch_indexes(cursor, table_name: str) -> List[Dict[str, Any]]:
-    cursor.execute(f"SHOW INDEX FROM `{table_name}`")
+    cursor.execute("SHOW INDEX FROM `{}`".format(table_name.replace("`", "``")))
     rows = cursor.fetchall()
     indexes: Dict[str, Dict[str, Any]] = {}
     for row in rows:
@@ -148,16 +135,14 @@ def fetch_indexes(cursor, table_name: str) -> List[Dict[str, Any]]:
         entry["columns"][seq] = column
 
     result = []
-    for name, meta in indexes.items():
+    for name, meta in sorted(indexes.items()):
         ordered_columns = [meta["columns"][i] for i in sorted(meta["columns"].keys())]
-        result.append(
-            {
-                "index_name": name,
-                "columns": ordered_columns,
-                "is_unique": bool(meta["is_unique"]),
-                "index_type": meta["index_type"],
-            }
-        )
+        result.append({
+            "index_name": name,
+            "columns": ordered_columns,
+            "is_unique": bool(meta["is_unique"]),
+            "index_type": meta["index_type"],
+        })
     return result
 
 
@@ -172,47 +157,126 @@ def build_primary_key(column_name: Optional[str]) -> Optional[Dict[str, Any]]:
     }
 
 
-def write_toon(output_dir: str, table_name: str, payload: Dict[str, Any]) -> None:
-    os.makedirs(output_dir, exist_ok=True)
-    path = os.path.join(output_dir, f"{table_name}.toon.json")
-    with open(path, "w", encoding="utf-8") as handle:
-        json.dump(payload, handle, indent=2, ensure_ascii=True)
+def json_serializable(val: Any) -> Any:
+    """Convert a DB value to a JSON-serializable value."""
+    if val is None:
+        return None
+    if isinstance(val, (bool, int, float, str)):
+        return val
+    if isinstance(val, (datetime, date)):
+        return val.isoformat()
+    if isinstance(val, Decimal):
+        return int(val) if val == val.to_integral_value() else float(val)
+    if isinstance(val, bytes):
+        return val.hex()
+    return str(val)
 
 
-def clear_toon_files(output_dir: str) -> None:
-    if not os.path.isdir(output_dir):
-        os.makedirs(output_dir, exist_ok=True)
+def row_to_data_dict(row: Dict[str, Any], column_names: List[str]) -> Dict[str, Any]:
+    """Build a dict with keys in column order, values JSON-serializable.
+    Row keys may differ in case; match case-insensitively.
+    """
+    if not row:
+        return {c: None for c in column_names}
+    row_lower = {str(k).lower(): v for k, v in row.items()}
+    return {c: json_serializable(row_lower.get(c.lower())) for c in column_names}
+
+
+def fetch_pk_zero_row(cursor, table_name: str, pk_column: str) -> Optional[Dict[str, Any]]:
+    cursor.execute("SELECT * FROM `{}` WHERE `{}` = 0".format(
+        table_name.replace("`", "``"), pk_column.replace("`", "``")))
+    return cursor.fetchone()
+
+
+def fetch_all_rows(cursor, table_name: str) -> List[Dict[str, Any]]:
+    cursor.execute("SELECT * FROM `{}`".format(table_name.replace("`", "``")))
+    return cursor.fetchall()
+
+
+def fetch_canonical_data(
+    cursor,
+    table_name: str,
+    column_names: List[str],
+    pk_column: Optional[str],
+    skip_db: bool,
+) -> List[Dict[str, Any]]:
+    """Return list of canonical row dicts for the TOON 'data' array.
+    - If SKIP_DB: return [].
+    - If lupo_unified_registry: return all rows.
+    - Else if table has PK: return [row where pk=0] if exists.
+    - Else: return [].
+    """
+    if skip_db:
+        return []
+
+    data = []
+    if table_name == UNIFIED_REGISTRY_TABLE:
+        rows = fetch_all_rows(cursor, table_name)
+        for row in rows:
+            data.append(row_to_data_dict(row, column_names))
+        return data
+
+    if pk_column:
+        row = fetch_pk_zero_row(cursor, table_name, pk_column)
+        if row is not None:
+            data.append(row_to_data_dict(row, column_names))
+    return data
+
+
+def write_toon(output_dir: Path, table_name: str, payload: Dict[str, Any]) -> None:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    path = output_dir / "{}.toon.json".format(table_name)
+    with path.open("w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+
+
+def clear_toon_files(output_dir: Path) -> None:
+    if not output_dir.is_dir():
+        output_dir.mkdir(parents=True, exist_ok=True)
         return
-    for name in os.listdir(output_dir):
-        if not name.endswith(".toon.json"):
-            continue
-        path = os.path.join(output_dir, name)
-        if os.path.isfile(path):
-            os.remove(path)
+    for path in output_dir.glob("*.toon.json"):
+        path.unlink()
 
 
 def main() -> int:
-    try:
-        conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True)
-    except Error:
+    base = Path(__file__).resolve().parent
+    output_dir = base.parent / "docs" / "toons"
+    skip_db = os.getenv("SKIP_DB", "").lower() in ("1", "true", "yes")
+
+    if pymysql is None or DictCursor is None:
+        print("pymysql is required. Install with: pip install pymysql", file=sys.stderr)
         return 1
 
-    output_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "docs", "toons")
+    try:
+        params = get_connection_params()
+        params["charset"] = "utf8mb4"
+        conn = pymysql.connect(cursorclass=DictCursor, **params)
+    except Exception as e:
+        print("Database connection failed:", e, file=sys.stderr)
+        print("Set SKIP_DB=1 only skips canonical data; schema still requires a connection.", file=sys.stderr)
+        return 1
 
     try:
+        cursor = conn.cursor()
         clear_toon_files(output_dir)
         tables = fetch_tables(cursor)
-        for table_name in tables:
-            fields = fetch_columns(cursor, table_name)
-            indexes = fetch_indexes(cursor, table_name)
-            primary_key_name = fetch_primary_key(cursor, table_name)
-            primary_key = build_primary_key(primary_key_name)
 
-            payload: Dict[str, Any] = {
+        if not tables:
+            print("No tables returned from database.", file=sys.stderr)
+            return 1
+
+        for table_name in sorted(tables):
+            fields, column_names = fetch_columns_and_names(cursor, table_name)
+            indexes = fetch_indexes(cursor, table_name)
+            pk_name = fetch_primary_key(cursor, table_name)
+            primary_key = build_primary_key(pk_name)
+
+            data = fetch_canonical_data(cursor, table_name, column_names, pk_name, skip_db)
+
+            payload = {
                 "table_name": table_name,
                 "fields": fields,
-                "data": [],
+                "data": data,
                 "indexes": indexes,
             }
             if primary_key:
@@ -225,11 +289,12 @@ def main() -> int:
             payload["relationships"] = []
 
             write_toon(output_dir, table_name, payload)
-    finally:
-        cursor.close()
-        conn.close()
 
-    return 0
+        print("Wrote {} TOONs to {}".format(len(tables), output_dir))
+        return 0
+    finally:
+        if conn:
+            conn.close()
 
 
 if __name__ == "__main__":

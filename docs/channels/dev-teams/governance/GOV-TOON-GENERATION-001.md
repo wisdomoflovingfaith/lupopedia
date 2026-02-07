@@ -9,7 +9,7 @@ Canonical Generator
 All TOON files must be generated exclusively by the following script:
 
 Code
-database/generate_toon_files.py
+scripts/generate_toon_files.py
 This script is the single source of truth for TOON generation.
 It extracts schema directly from the live database and produces one .toon file per table.
 
@@ -48,11 +48,11 @@ No other process is permitted to create or regenerate TOON files.
 Each table in the database must have exactly one corresponding TOON file located in:
 
 Code
-database/toon_data/
+docs/toons/
 File naming convention:
 
 Code
-<table_name>.toon
+<table_name>.toon.json
 This ensures:
 
 fast lookup
@@ -127,7 +127,7 @@ Their generation must remain stable, predictable, and fully automated.
 Enforcement
 Any agent or process attempting to generate or rewrite TOON files outside the approved script must be blocked immediately with:
 
-"Operation blocked by governance. TOON generation is restricted to generate_toon_files.py."
+"Operation blocked by governance. TOON generation is restricted to scripts/generate_toon_files.py."
 
 Status
 ACTIVE — NON‑NEGOTIABLE  

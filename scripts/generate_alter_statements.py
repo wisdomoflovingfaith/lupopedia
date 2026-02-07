@@ -82,7 +82,8 @@ def load_toon_file(filepath: str) -> Dict[str, Any]:
 
 def get_all_toon_files() -> List[str]:
     """Get all lupo_*.toon files."""
-    toon_dir = Path(__file__).parent.parent / 'toon_data'
+    project_root = Path(__file__).resolve().parent.parent
+    toon_dir = project_root / "database" / "toon_data"
     return sorted([str(toon_dir / f) for f in os.listdir(toon_dir) 
                    if f.startswith('lupo_') and f.endswith('.toon')])
 
@@ -262,7 +263,8 @@ def main():
     
     unsigned_alters, pk_renames, create_tables = generate_alter_statements()
     
-    output_file = Path(__file__).parent / 'fix_unsigned_and_pk_naming_4_2_0_from_toon.sql'
+    project_root = Path(__file__).resolve().parent.parent
+    output_file = project_root / "database" / "migrations_legacy" / "fix_unsigned_and_pk_naming_4_2_0_from_toon.sql"
     
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("""-- ============================================================================

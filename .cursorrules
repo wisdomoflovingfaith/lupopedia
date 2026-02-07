@@ -50,6 +50,21 @@
    - `wolfie.headers.version` is a literal string (not an atom)
    - `dialog` block is mandatory when agents create/modify files
 
+## Python Scripts Location (MANDATORY)
+
+1. **All Python must live in /scripts/**
+   - Every Python script, utility, generator, importer, and any non-PHP program MUST live under the project's **scripts/** directory.
+   - No Python files in `database/`, project root, or elsewhere (except `scripts/`).
+
+2. **Cursor must NEVER**
+   - Create Python files anywhere other than **scripts/**.
+   - Duplicate Python files (e.g. do not add a copy in `database/` if one exists in `scripts/`).
+   - Leave orphaned or outdated Python in `database/` or other folders.
+
+3. **When moving or adding Python**
+   - Put the file in **scripts/** and update imports (e.g. `db_config`) so they resolve when run from project root as `python scripts/<name>.py`.
+   - Update any references in docs, doctrine, or other scripts to use **scripts/** paths.
+
 ## Database Access (MANDATORY — Doctrine 17.2)
 
 - **All** database access must use **DatabaseFactory::getConnection()** or **lupo_get_db()**. Both return the **PDO_DB** wrapper.
@@ -149,7 +164,7 @@ Lupopedia is in active development and the IDE cannot run Scoop. Cursor is allow
    - **Single source of truth for schema:** `database/migrations/install_new_lupopedia.sql`. Do NOT treat TOONs or the live database as canonical. When schema conflicts arise, install wins.
 
 2. **Never modify TOONs**
-   - TOONs live in `docs/toons/*.toon.json`. They are **generated from the live database** (e.g. by `scripts/generate_toons.py`). Cursor must **never** edit, create, or delete TOON files. Do not "fix" TOONs manually; fix the database (via one-time dev migration), then the user regenerates TOONs.
+   - TOONs live in `docs/toons/*.toon.json`. They are **generated from the live database** (e.g. by `scripts/generate_toon_files.py`). Cursor must **never** edit, create, or delete TOON files. Do not "fix" TOONs manually; fix the database (via one-time dev migration), then the user regenerates TOONs.
 
 3. **Schema changes only via one-time dev migrations**
    - Do NOT change schema in application code, ORM, or ad-hoc SQL. Schema changes go **only** in one-time dev migration files (e.g. `database/migrations/dev_YYYYMMDD_description.sql`) with ALTER TABLE (MODIFY COLUMN, ADD/DROP INDEX). After generating a migration, update `install_new_lupopedia.sql` so the schema is permanent. No CREATE TABLE in migrations for existing tables; no data migrations unless explicitly requested.
@@ -162,7 +177,7 @@ Lupopedia is in active development and the IDE cannot run Scoop. Cursor is allow
    - In migration SQL and when proposing schema: **no UNSIGNED** on any integer type. **No display widths:** use `BIGINT`, `INT`, `SMALLINT`, `TINYINT` only — never `BIGINT(20)`, `INT(11)`, `TINYINT(1)`, etc. Doctrine: signed integers only; no parentheses on integer types.
 
 6. **Always follow doctrine**
-   - For schema, SQL, and migrations: follow **LUPOPEDIA_DOCTRINE.md** (Installation SQL §18, SQL Doctrine §17, Temporal §5). No foreign keys, triggers, or stored procedures. Timestamps = BIGINT YYYYMMDDHHIISS UTC only; no TIMESTAMP/DATETIME, no CURRENT_TIMESTAMP. Verify TOON alignment after DB changes with `python database/check_toon_doctrine_alignment.py` (user runs this).
+   - For schema, SQL, and migrations: follow **LUPOPEDIA_DOCTRINE.md** (Installation SQL §18, SQL Doctrine §17, Temporal §5). No foreign keys, triggers, or stored procedures. Timestamps = BIGINT YYYYMMDDHHIISS UTC only; no TIMESTAMP/DATETIME, no CURRENT_TIMESTAMP. Verify TOON alignment after DB changes with `python scripts/check_toon_doctrine_alignment.py` (user runs this).
 
 **Cursor must refuse:** Editing TOONs; changing schema outside one-time dev migrations; unquoted column names in migration SQL; new columns named with reserved words; UNSIGNED or integer display widths in any generated SQL; doctrine violations in schema or migrations.
 
