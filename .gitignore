@@ -84,6 +84,12 @@ database/toon_data/*.toon
 database/toon_data/*.txt
 
 # ---------------------------------------------------------
+# Generated TOON files (never track)
+# ---------------------------------------------------------
+docs/toons/
+docs/toons/*
+
+# ---------------------------------------------------------
 # Lupopedia-specific exclusions
 # ---------------------------------------------------------
 /config/local.php
