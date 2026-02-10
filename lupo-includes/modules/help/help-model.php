@@ -2,7 +2,7 @@
 /**
  * wolfie.header.identity: help-model
  * wolfie.header.placement: /lupo-includes/modules/help/help-model.php
- * wolfie.header.version: 4.4.1
+ * wolfie.header.version: 4.0.0
  * wolfie.header.dialog:
  *   speaker: CURSOR
  *   target: @everyone

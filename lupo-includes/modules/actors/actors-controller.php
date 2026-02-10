@@ -22,7 +22,13 @@ function actors_handle_my_profile() {
     $layout_path = $app_root . '/lupo-includes/modules/actors/views/layout-topnav.php';
 
     $actor_id = null;
-    if (function_exists('current_user')) {
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    if ($authService) {
+        $user = $authService->getCurrentUser();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    } elseif (function_exists('current_user')) {
         $user = current_user();
         if ($user && !empty($user['actor_id'])) {
             $actor_id = (int) $user['actor_id'];
@@ -123,7 +129,13 @@ function actors_handle_my_profile_save() {
     $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
 
     $actor_id = null;
-    if (function_exists('current_user')) {
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    if ($authService) {
+        $user = $authService->getCurrentUser();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    } elseif (function_exists('current_user')) {
         $user = current_user();
         if ($user && !empty($user['actor_id'])) {
             $actor_id = (int) $user['actor_id'];

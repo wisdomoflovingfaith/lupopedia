@@ -108,7 +108,7 @@ CREATE TABLE lupo_actor_channel_roles (
   handshake_metadata_json json DEFAULT NULL,
   awareness_snapshot_json json DEFAULT NULL,
   protocol_completion_status varchar(64) DEFAULT 'pending',
-  protocol_version varchar(20) DEFAULT '4.0.72',
+  protocol_version varchar(20) DEFAULT '4.0.0',
   join_sequence_step tinyint DEFAULT '0',
   handshake_completed_ymdhis bigint DEFAULT NULL,
   awareness_completed_ymdhis bigint DEFAULT NULL,
@@ -136,7 +136,7 @@ CREATE TABLE lupo_actor_collections (
   identity_signature varchar(255) DEFAULT NULL,
   trust_level varchar(64) DEFAULT 'standard',
   emotional_geometry_baseline json DEFAULT NULL,
-  doctrine_alignment_version varchar(20) DEFAULT '4.0.72',
+  doctrine_alignment_version varchar(20) DEFAULT '4.0.0',
   PRIMARY KEY (actor_collection_id)
 );
 
@@ -1161,7 +1161,7 @@ CREATE TABLE lupo_calibration_impacts (
   after_metrics_json json DEFAULT NULL,
   observation_period_hours int DEFAULT '24',
   measured_ymdhis bigint NOT NULL,
-  impact_version varchar(20) DEFAULT '4.0.75',
+  impact_version varchar(20) DEFAULT '4.0.0',
   PRIMARY KEY (calibration_impact_id)
 );
 
@@ -1192,7 +1192,7 @@ CREATE TABLE lupo_channels (
   deleted_ymdhis bigint DEFAULT NULL,
   aal_metadata_json json DEFAULT NULL,
   fleet_composition_json json DEFAULT NULL,
-  awareness_version varchar(20) DEFAULT '4.0.72',
+  awareness_version varchar(20) DEFAULT '4.0.0',
   channel_number int DEFAULT NULL,
   parent_channel_id bigint DEFAULT NULL,
   is_kernel tinyint NOT NULL DEFAULT '0',
@@ -1399,7 +1399,7 @@ CREATE TABLE lupo_cip_analytics (
   trend_analysis_json json DEFAULT NULL,
   calculated_ymdhis bigint NOT NULL,
   recalculated_ymdhis bigint DEFAULT NULL,
-  analytics_version varchar(20) DEFAULT '4.0.75',
+  analytics_version varchar(20) DEFAULT '4.0.0',
   PRIMARY KEY (cip_analytics_id)
 );
 
@@ -1421,7 +1421,7 @@ CREATE TABLE lupo_cip_propagation_tracking (
   dependencies_json json DEFAULT NULL,
   started_ymdhis bigint DEFAULT NULL,
   completed_ymdhis bigint DEFAULT NULL,
-  propagation_version varchar(20) DEFAULT '4.0.75',
+  propagation_version varchar(20) DEFAULT '4.0.0',
   PRIMARY KEY (cip_propagation_tracking_id)
 );
 
@@ -2217,7 +2217,7 @@ CREATE TABLE lupo_doctrine_evolution_audit (
   step_metadata_json json DEFAULT NULL,
   started_ymdhis bigint DEFAULT NULL,
   completed_ymdhis bigint DEFAULT NULL,
-  audit_version varchar(20) DEFAULT '4.0.75',
+  audit_version varchar(20) DEFAULT '4.0.0',
   PRIMARY KEY (doctrine_evolution_audit_id)
 );
 
@@ -2238,7 +2238,7 @@ CREATE TABLE lupo_doctrine_refinements (
   approved_by varchar(100) DEFAULT NULL,
   applied_ymdhis bigint DEFAULT NULL,
   created_ymdhis bigint NOT NULL,
-  refinement_version varchar(20) DEFAULT '4.0.75',
+  refinement_version varchar(20) DEFAULT '4.0.0',
   PRIMARY KEY (doctrine_refinement_id)
 );
 
@@ -2380,7 +2380,7 @@ CREATE TABLE lupo_emotional_geometry_calibrations (
   validation_status varchar(64) DEFAULT 'pending',
   applied_ymdhis bigint DEFAULT NULL,
   created_ymdhis bigint NOT NULL,
-  calibration_version varchar(20) DEFAULT '4.0.75',
+  calibration_version varchar(20) DEFAULT '4.0.0',
   PRIMARY KEY (emotional_geometry_calibration_id)
 );
 
@@ -3155,7 +3155,7 @@ CREATE TABLE lupo_multi_agent_critique_sync (
   resolution_strategy varchar(255) DEFAULT NULL,
   sync_started_ymdhis bigint DEFAULT NULL,
   sync_completed_ymdhis bigint DEFAULT NULL,
-  sync_version varchar(20) DEFAULT '4.0.75',
+  sync_version varchar(20) DEFAULT '4.0.0',
   PRIMARY KEY (multi_agent_critique_sync_id)
 );
 

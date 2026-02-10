@@ -37,7 +37,13 @@ if ($visitor_sid !== '') {
 }
 
 if (!$visitor_mode) {
-    if (function_exists('current_user')) {
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    if ($authService) {
+        $user = $authService->getCurrentUser();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    } elseif (function_exists('current_user')) {
         $user = current_user();
         if ($user && !empty($user['actor_id'])) {
             $actor_id = (int) $user['actor_id'];

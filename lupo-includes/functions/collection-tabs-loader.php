@@ -1,7 +1,7 @@
 <?php
 /**
 ---
-wolfie.headers.version: "3.0.18"
+wolfie.headers.version: "4.0.0"
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:
@@ -39,119 +39,25 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
 }
 
 /**
- * Load collection tabs for a given collection ID
- * 
- * Version 3.0.10: Loads tabs for Collection 0 (System Collection) and formats
- * them for the collection_tabs.php component.
- * 
+ * Load collection tabs for a given collection ID (thin wrapper — CollectionTabsService).
+ *
  * @param int $collection_id Collection ID (0 for System Collection)
  * @return array Formatted tabs data for collection_tabs.php component
  */
 function load_collection_tabs($collection_id) {
-    global $table_prefix;
-    
-    if (empty($GLOBALS['mydatabase'])) {
-        return [];
-    }
-    
-    $db = $GLOBALS['mydatabase'];
-    $tabs_data = [];
-    
-    try {
-        // Load root-level tabs (no parent) for this collection
-        $sql = "SELECT 
-                    collection_tab_id,
-                    name,
-                    slug,
-                    sort_order,
-                    collection_tab_parent_id
-                FROM {$table_prefix}collection_tabs
-                WHERE collection_id = :collection_id
-                  AND collection_tab_parent_id IS NULL
-                  AND is_active = 1
-                  AND is_deleted = 0
-                ORDER BY sort_order ASC, name ASC";
-        
-        $stmt = $db->prepare($sql);
-        $stmt->execute([':collection_id' => $collection_id]);
-        $tabs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        // Format tabs for collection_tabs.php component
-        // Component expects: array('Main Tab Name' => ['Sub Tab 1', 'Sub Tab 2', ..., '_slug' => 'tab-slug'])
-        // Version 3.0.11: Include slug in tab data for URL generation
-        foreach ($tabs as $tab) {
-            $tab_name = $tab['name'];
-            $tab_id = $tab['collection_tab_id'];
-            
-            // Load child tabs (sub-tabs) for this parent tab
-            $childTabsSql = "SELECT 
-                                collection_tab_id,
-                                name,
-                                slug,
-                                sort_order
-                            FROM {$table_prefix}collection_tabs
-                            WHERE collection_id = :collection_id
-                              AND collection_tab_parent_id = :parent_tab_id
-                              AND is_active = 1
-                              AND is_deleted = 0
-                            ORDER BY sort_order ASC, name ASC";
-            
-            $childStmt = $db->prepare($childTabsSql);
-            $childStmt->execute([
-                ':collection_id' => $collection_id,
-                ':parent_tab_id' => $tab_id
-            ]);
-            $childTabs = $childStmt->fetchAll(PDO::FETCH_ASSOC);
-            
-            // Build sub-tabs array
-            $subTabs = ['_slug' => $tab['slug']];
-            foreach ($childTabs as $childTab) {
-                $subTabs[] = $childTab['name'];
-            }
-            
-            $tabs_data[$tab_name] = $subTabs;
-        }
-        
-        return $tabs_data;
-        
-    } catch (PDOException $e) {
-        error_log('Collection tabs loader error: ' . $e->getMessage());
-        return [];
-    }
+    $s = $GLOBALS['lupo_collection_tabs_service'] ?? null;
+    return $s ? $s->loadCollectionTabs((int) $collection_id) : [];
 }
 
 /**
- * Get collection name by ID
- * 
+ * Get collection name by ID (thin wrapper — CollectionTabsService).
+ *
  * @param int $collection_id Collection ID
  * @return string|null Collection name or null if not found
  */
 function get_collection_name($collection_id) {
-    global $table_prefix;
-    
-    if (empty($GLOBALS['mydatabase'])) {
-        return null;
-    }
-    
-    $db = $GLOBALS['mydatabase'];
-    
-    try {
-        $sql = "SELECT name
-                FROM {$table_prefix}collections
-                WHERE collection_id = :collection_id
-                  AND is_deleted = 0
-                LIMIT 1";
-        
-        $stmt = $db->prepare($sql);
-        $stmt->execute([':collection_id' => $collection_id]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        return $result ? $result['name'] : null;
-        
-    } catch (PDOException $e) {
-        error_log('Get collection name error: ' . $e->getMessage());
-        return null;
-    }
+    $s = $GLOBALS['lupo_collection_tabs_service'] ?? null;
+    return $s ? $s->getCollectionName((int) $collection_id) : null;
 }
 
 ?>

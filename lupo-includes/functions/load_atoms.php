@@ -6,7 +6,7 @@
  * truth for ecosystem-wide metadata.
  *
  * @package Lupopedia
- * @version 4.2.3
+ * @version 4.0.0
  *
  * @note Phase 2 Versioning: version.php and callers load version from the atom
  *       instead of hard-coding. See docs/doctrine/VERSION_DOCTRINE.md.
@@ -15,129 +15,45 @@
  */
 
 /**
- * Load all atoms from global_atoms.yaml
- * 
- * Uses yaml_parse() if available (PHP YAML extension), otherwise falls back to regex parsing
- * 
- * @param string|null $atom_name Optional: Return specific atom value, or null for all atoms
- * @return mixed|array|null Returns atom value if $atom_name specified, array of all atoms if null, null if not found
+ * Load atoms (thin wrapper — App\Support\AtomLoader).
+ *
+ * @param string|null $atom_name Optional: return specific atom, or null for all
+ * @return mixed|array|null
  */
 function load_atoms($atom_name = null) {
-    static $atoms_cache = null;
-    
-    // Load atoms once and cache
-    if ($atoms_cache === null) {
-        $atoms_file = __DIR__ . '/../../config/global_atoms.yaml';
-        
-        if (!file_exists($atoms_file)) {
-            trigger_error("Atom file not found: {$atoms_file}", E_USER_WARNING);
-            return null;
-        }
-        
-        $yaml_content = file_get_contents($atoms_file);
-        $atoms_cache = [];
-        
-        // Try using yaml_parse if available (PHP YAML extension)
-        if (function_exists('yaml_parse')) {
-            $parsed = @yaml_parse($yaml_content);
-            if ($parsed !== false && is_array($parsed)) {
-                // Extract top-level version
-                if (isset($parsed['version'])) {
-                    $atoms_cache['version'] = $parsed['version'];
-                }
-                
-                // Extract versions section
-                if (isset($parsed['versions']) && is_array($parsed['versions'])) {
-                    $atoms_cache['versions'] = $parsed['versions'];
-                }
-                
-                // Extract all GLOBAL_* atoms (they're at root level)
-                foreach ($parsed as $key => $value) {
-                    if (strpos($key, 'GLOBAL_') === 0) {
-                        // Handle string values
-                        if (is_string($value)) {
-                            $atoms_cache[$key] = $value;
-                        } elseif (is_array($value)) {
-                            $atoms_cache[$key] = $value;
-                        }
-                    }
-                }
-            }
-        } else {
-            // Fallback: Simple regex-based parser for key-value pairs
-            // Extract version from top-level
-            if (preg_match('/^version:\s*["\']?([^"\'\n]+)["\']?/m', $yaml_content, $matches)) {
-                $atoms_cache['version'] = trim($matches[1], '"\'');
-            }
-            
-            // Extract versions section
-            if (preg_match('/versions:\s*\n((?:\s+[a-z_]+:\s*["\']?[^"\'\n]+["\']?\n?)+)/m', $yaml_content, $matches)) {
-                $atoms_cache['versions'] = [];
-                if (preg_match_all('/\s+([a-z_]+):\s*["\']?([^"\'\n]+)["\']?/m', $matches[1], $version_matches, PREG_SET_ORDER)) {
-                    foreach ($version_matches as $vm) {
-                        $atoms_cache['versions'][$vm[1]] = trim($vm[2], '"\'');
-                    }
-                }
-            }
-            
-            // Extract GLOBAL_* atoms (simple key-value pairs at root level)
-            // Match lines like: GLOBAL_CURRENT_LUPOPEDIA_VERSION: "3.0.35"
-            if (preg_match_all('/^(GLOBAL_[A-Z_]+):\s*["\']?([^"\'\n]+)["\']?/m', $yaml_content, $atom_matches, PREG_SET_ORDER)) {
-                foreach ($atom_matches as $am) {
-                    $atoms_cache[$am[1]] = trim($am[2], '"\'');
-                }
-            }
-        }
-    }
-    
-    // Return specific atom or all atoms
-    if ($atom_name !== null) {
-        return isset($atoms_cache[$atom_name]) ? $atoms_cache[$atom_name] : null;
-    }
-    
-    return $atoms_cache;
+    $loader = $GLOBALS['lupo_atom_loader'] ?? null;
+    return $loader ? $loader->loadAtoms($atom_name) : null;
 }
 
 /**
- * Get a specific atom value
- * 
- * @param string $atom_name The atom name (e.g., 'GLOBAL_CURRENT_LUPOPEDIA_VERSION')
- * @return string|null The atom value or null if not found
+ * Get a specific atom (thin wrapper — AtomLoader).
+ *
+ * @param string $atom_name e.g. 'GLOBAL_CURRENT_LUPOPEDIA_VERSION'
+ * @return mixed|null
  */
 function get_atom($atom_name) {
-    return load_atoms($atom_name);
+    $loader = $GLOBALS['lupo_atom_loader'] ?? null;
+    return $loader ? $loader->getAtom($atom_name) : load_atoms($atom_name);
 }
 
 /**
- * Get the current Lupopedia version from atom
- * 
- * @return string The current version (e.g., "3.0.35")
+ * Get current Lupopedia version (thin wrapper — AtomLoader).
+ *
+ * @return string
  */
 function get_lupopedia_version() {
-    $version = get_atom('GLOBAL_CURRENT_LUPOPEDIA_VERSION');
-    if ($version === null) {
-        // Fallback to version field if atom not found
-        $atoms = load_atoms();
-        $version = isset($atoms['version']) ? $atoms['version'] : '3.0.35'; // Last resort fallback
-    }
-    return $version;
+    $loader = $GLOBALS['lupo_atom_loader'] ?? null;
+    return $loader ? $loader->getLupopediaVersion() : (get_atom('GLOBAL_CURRENT_LUPOPEDIA_VERSION') ?? ((($a = load_atoms()) && is_array($a) && isset($a['version'])) ? $a['version'] : '4.0.0'));
 }
 
 /**
- * Calculate version number from version string
- * Format: MAJOR * 10000 + MINOR * 100 + PATCH
- * Example: 3.0.35 = 40035
- * 
- * @param string $version Version string (e.g., "3.0.35")
- * @return int Version number for numeric comparisons
+ * Calculate version number (thin wrapper — App\Support\VersionUtils).
+ *
+ * @param string $version e.g. "4.0.0"
+ * @return int
  */
 function calculate_version_num($version) {
-    $parts = explode('.', $version);
-    $major = isset($parts[0]) ? (int)$parts[0] : 0;
-    $minor = isset($parts[1]) ? (int)$parts[1] : 0;
-    $patch = isset($parts[2]) ? (int)$parts[2] : 0;
-    
-    return ($major * 10000) + ($minor * 100) + $patch;
+    return class_exists('App\Support\VersionUtils') ? \App\Support\VersionUtils::calculateVersionNum((string) $version) : (function($v) { $p = explode('.', $v); return ((int)($p[0]??0)*10000) + ((int)($p[1]??0)*100) + (int)($p[2]??0); })($version);
 }
 
 // ---------------------------------------------------------------------------
@@ -148,94 +64,44 @@ function calculate_version_num($version) {
 // built on. GLOBAL_IMPORTANT_ATOMS overrides overlapping keys (foundation wins).
 
 /**
- * Parse a YAML file into an array. Uses yaml_parse when available.
+ * Parse YAML file (thin wrapper — AtomLoader). @internal
  *
  * @param string $path Absolute path to YAML file
- * @return array<string, mixed>
- * @internal
+ * @return array
  */
 function _parse_atoms_yaml($path) {
-    if (!file_exists($path)) {
-        return [];
-    }
-    $raw = @file_get_contents($path);
-    if ($raw === false) {
-        return [];
-    }
-    if (function_exists('yaml_parse')) {
-        $p = @yaml_parse($raw);
-        return is_array($p) ? $p : [];
-    }
-    return _parse_atoms_yaml_regex($raw);
+    $loader = $GLOBALS['lupo_atom_loader'] ?? null;
+    return $loader ? $loader->parseAtomsYaml($path) : [];
 }
 
 /**
- * Fallback regex parse for base atoms (scalars only). Used when yaml_parse is unavailable.
+ * Regex parse for base atoms (thin wrapper — AtomLoader). @internal
  *
  * @param string $content Raw YAML content
- * @return array<string, mixed>
- * @internal
+ * @return array
  */
 function _parse_atoms_yaml_regex($content) {
-    $out = [];
-    if (preg_match('/^version:\s*["\']?([^"\'\s\n]+)["\']?/m', $content, $m)) {
-        $out['version'] = trim($m[1], '"\'');
-    }
-    if (preg_match('/^authors:\s*\n\s+primary:\s*["\']?([^"\'\n]+)["\']?/m', $content, $m)) {
-        $out['authors'] = ['primary' => trim($m[1], '"\'')];
-    }
-    if (preg_match('/^project:\s*\n\s+name:\s*["\']?([^"\'\n]+)["\']?/m', $content, $m)) {
-        $out['project'] = ['name' => trim($m[1], '"\'')];
-    }
-    $pat = '/^(GLOBAL_[A-Z0-9_]+|BRIDGE_[A-Z0-9_]+|MASTER_BRIDGE[A-Z0-9_]*|UTC_TIMEKEEPER__[A-Z0-9_]+|WOLFIE_[A-Z0-9_]+):\s*["\']?([^"\'\n]*)["\']?\s*$/m';
-    if (preg_match_all($pat, $content, $ms, PREG_SET_ORDER)) {
-        foreach ($ms as $m) {
-            $out[$m[1]] = trim($m[2], '"\'');
-        }
-    }
-    return $out;
+    $loader = $GLOBALS['lupo_atom_loader'] ?? null;
+    return $loader ? $loader->parseAtomsYamlRegex($content) : [];
 }
 
 /**
- * Read the cosmic microwave background: all base atoms from the foundational config.
+ * Read cosmic microwave background (thin wrapper — AtomLoader).
  *
- * Merges config/global_atoms.yaml and config/GLOBAL_IMPORTANT_ATOMS.yaml.
- * GLOBAL_IMPORTANT_ATOMS overrides overlapping keys (foundation wins).
- * Full nested structures (authors, project, GLOBAL_LUPOPEDIA_*, BRIDGE_*, etc.)
- * are available when the PHP YAML extension is present.
- *
- * @return array<string, mixed> Merged base atoms (nested). Empty on parse failure.
+ * @return array
  */
 function read_cosmic_microwave_background() {
-    static $cmb_cache = null;
-    if ($cmb_cache !== null) {
-        return $cmb_cache;
-    }
-    $base = __DIR__ . '/../../config';
-    $from_global   = _parse_atoms_yaml($base . '/global_atoms.yaml');
-    $from_important = _parse_atoms_yaml($base . '/GLOBAL_IMPORTANT_ATOMS.yaml');
-    $cmb_cache = array_replace_recursive($from_global, $from_important);
-    return $cmb_cache;
+    $loader = $GLOBALS['lupo_atom_loader'] ?? null;
+    return $loader ? $loader->readCosmicMicrowaveBackground() : [];
 }
 
 /**
- * Get a single base atom by key. Supports dot notation for nested keys.
+ * Get base atom by key, dot notation (thin wrapper — AtomLoader).
  *
- * Examples: get_base_atom('GLOBAL_CURRENT_LUPOPEDIA_VERSION'),
- *           get_base_atom('authors.primary'), get_base_atom('MASTER_BRIDGE_FILE')
- *
- * @param string $key Atom name or dotted path (e.g. 'authors.primary')
- * @return mixed The value or null if not found
+ * @param string $key e.g. 'GLOBAL_CURRENT_LUPOPEDIA_VERSION', 'authors.primary'
+ * @return mixed|null
  */
 function get_base_atom($key) {
-    $cmb = read_cosmic_microwave_background();
-    $parts = explode('.', $key);
-    $cur = $cmb;
-    foreach ($parts as $p) {
-        if (!is_array($cur) || !array_key_exists($p, $cur)) {
-            return null;
-        }
-        $cur = $cur[$p];
-    }
-    return $cur;
+    $loader = $GLOBALS['lupo_atom_loader'] ?? null;
+    return $loader ? $loader->getBaseAtom((string) $key) : null;
 }

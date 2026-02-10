@@ -276,8 +276,9 @@ function lupo_route_slug($slug) {
                 if (!function_exists('current_user')) {
                     require_once LUPOPEDIA_ABSPATH . '/lupo-includes/functions/auth-helpers.php';
                 }
-                $current_user = current_user();
-                $actor_id = $current_user['actor_id'] ?? null;
+                $authService = $GLOBALS['lupo_auth_service'] ?? null;
+                $current_user = $authService ? $authService->getCurrentUser() : current_user();
+                $actor_id = $current_user ? ($current_user['actor_id'] ?? null) : null;
                 if ($actor_id) {
                     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
                     $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
@@ -296,7 +297,8 @@ function lupo_route_slug($slug) {
         if (!function_exists('current_user')) {
             require_once LUPOPEDIA_ABSPATH . '/lupo-includes/functions/auth-helpers.php';
         }
-        $current_user = current_user();
+        $authService = $GLOBALS['lupo_auth_service'] ?? null;
+        $current_user = $authService ? $authService->getCurrentUser() : current_user();
 
         $channels = [];
         if ($current_user) {

@@ -38,56 +38,41 @@ if (!function_exists('current_user')) {
  * @return string HTML for login status indicator
  */
 function lupo_render_login_status() {
-    $user = current_user();
-    
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    $user = $authService ? $authService->getCurrentUser() : current_user();
+
     if ($user) {
         // User is logged in - show profile avatar with dropdown
         $display_name = htmlspecialchars($user['display_name'] ?? $user['username'] ?? 'User');
         $email = htmlspecialchars($user['email'] ?? '');
         $auth_user_id = (int)($user['auth_user_id'] ?? 0);
-        
+
         // Build avatar URL (use auth_user_id for avatar filename)
         $avatar_path = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
         $avatar_url = $avatar_path . '/uploads/avatars/' . $auth_user_id . '_avatar.jpg';
         $avatar_fallback = $avatar_path . '/images/logoface.png';
-        
+
         // Check if avatar file exists (for cache busting and fallback)
-        // Use filesystem path (LUPOPEDIA_PATH) to check file existence
         $avatar_file_path = '';
         if (defined('LUPOPEDIA_PATH')) {
             $avatar_file_path = LUPOPEDIA_PATH . '/uploads/avatars/' . $auth_user_id . '_avatar.jpg';
         } elseif (defined('ABSPATH')) {
             $avatar_file_path = ABSPATH . 'uploads/avatars/' . $auth_user_id . '_avatar.jpg';
         }
-        
+
         $avatar_timestamp = ($avatar_file_path && file_exists($avatar_file_path)) ? '?t=' . time() : '';
-        
-        // Use avatar if exists, otherwise fallback to logo
-        $final_avatar_url = ($avatar_file_path && file_exists($avatar_file_path)) 
-            ? $avatar_url . $avatar_timestamp 
+        $final_avatar_url = ($avatar_file_path && file_exists($avatar_file_path))
+            ? $avatar_url . $avatar_timestamp
             : $avatar_fallback;
-        
+
         $logout_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/logout' : '/logout';
         $admin_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/admin' : '/admin';
         $profile_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/my-profile' : '/my-profile';
         $operator_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/crafty_syntax/' : '/crafty_syntax/';
 
-        // Check if user has a channel role (actor has at least one role in lupo_channel_roles)
-        $is_operator = false;
+        // Use AuthService for channel-role check (is_operator)
         $actor_id = (int)($user['actor_id'] ?? 0);
-        if ($actor_id) {
-            try {
-                $db = lupo_get_db();
-                $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : str_replace('-', '_', LUPO_PREFIX);
-                $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}channel_roles WHERE actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
-                $stmt->execute([':actor_id' => $actor_id]);
-                $is_operator = ($stmt->rowCount() > 0);
-            } catch (Exception $e) {
-                if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                    error_log("AUTH UI: Channel role check failed: " . $e->getMessage());
-                }
-            }
-        }
+        $is_operator = $authService && $actor_id ? $authService->hasAnyChannelRole($actor_id) : false;
 
         $html = '<div class="user-dropdown">';
         $html .= '<button class="user-profile-btn" onclick="toggleUserDropdown()">';
@@ -150,64 +135,43 @@ function lupo_render_login_status() {
 }
 
 /**
- * Get current user data for template variables
- * 
- * Returns user data array that can be used in templates.
- * Returns null if user is not logged in.
- * 
+ * Get current user data for template variables (thin wrapper — AuthService).
+ *
  * @return array|null User data array or null if not logged in
  */
 function lupo_get_current_user_data() {
-    $user = current_user();
-    
-    if (!$user) {
-        return null;
-    }
-    
-    return [
-        'actor_id' => $user['actor_id'],
-        'auth_user_id' => $user['auth_user_id'],
-        'username' => $user['username'],
-        'display_name' => $user['display_name'],
-        'email' => $user['email'],
-        'is_admin' => $user['is_admin']
-    ];
+    $s = $GLOBALS['lupo_auth_service'] ?? null;
+    return $s ? $s->getCurrentUserData() : null;
 }
 
 /**
- * Check if user is logged in
- * 
- * Simple boolean check for login status.
- * 
+ * Check if user is logged in (thin wrapper — AuthService).
+ *
  * @return bool True if logged in, false otherwise
  */
 function lupo_is_logged_in() {
-    $user = current_user();
-    return ($user !== false);
+    $s = $GLOBALS['lupo_auth_service'] ?? null;
+    return $s ? $s->isLoggedIn() : (current_user() !== false);
 }
 
 /**
- * Get current username
- * 
- * Returns username if logged in, empty string otherwise.
- * 
+ * Get current username (thin wrapper — AuthService).
+ *
  * @return string Username or empty string
  */
 function lupo_get_username() {
-    $user = current_user();
-    return $user ? $user['username'] : '';
+    $s = $GLOBALS['lupo_auth_service'] ?? null;
+    return $s ? $s->getUsername() : (($u = current_user()) ? $u['username'] : '');
 }
 
 /**
- * Get current display name
- * 
- * Returns display name if logged in, empty string otherwise.
- * 
+ * Get current display name (thin wrapper — AuthService).
+ *
  * @return string Display name or empty string
  */
 function lupo_get_display_name() {
-    $user = current_user();
-    return $user ? ($user['display_name'] ?? $user['username']) : '';
+    $s = $GLOBALS['lupo_auth_service'] ?? null;
+    return $s ? $s->getDisplayName() : (($u = current_user()) ? ($u['display_name'] ?? $u['username']) : '');
 }
 
 ?>

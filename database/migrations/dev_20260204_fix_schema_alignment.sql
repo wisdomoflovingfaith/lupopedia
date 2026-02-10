@@ -34,7 +34,7 @@ ALTER TABLE lupo_actor_channel_roles MODIFY COLUMN `deleted_ymdhis` bigint DEFAU
 ALTER TABLE lupo_actor_channel_roles MODIFY COLUMN `handshake_metadata_json` json DEFAULT NULL;
 ALTER TABLE lupo_actor_channel_roles MODIFY COLUMN `awareness_snapshot_json` json DEFAULT NULL;
 ALTER TABLE lupo_actor_channel_roles MODIFY COLUMN `protocol_completion_status` varchar(64) DEFAULT 'pending';
-ALTER TABLE lupo_actor_channel_roles MODIFY COLUMN `protocol_version` varchar(20) DEFAULT '4.0.72';
+ALTER TABLE lupo_actor_channel_roles MODIFY COLUMN `protocol_version` varchar(20) DEFAULT '4.0.0';
 ALTER TABLE lupo_actor_channel_roles MODIFY COLUMN `join_sequence_step` tinyint DEFAULT '0';
 ALTER TABLE lupo_actor_channel_roles MODIFY COLUMN `handshake_completed_ymdhis` bigint DEFAULT NULL;
 ALTER TABLE lupo_actor_channel_roles MODIFY COLUMN `awareness_completed_ymdhis` bigint DEFAULT NULL;
@@ -63,7 +63,7 @@ ALTER TABLE lupo_actor_collections MODIFY COLUMN `persistent_identity_json` json
 ALTER TABLE lupo_actor_collections MODIFY COLUMN `identity_signature` varchar(255) DEFAULT NULL;
 ALTER TABLE lupo_actor_collections MODIFY COLUMN `trust_level` varchar(64) DEFAULT 'standard';
 ALTER TABLE lupo_actor_collections MODIFY COLUMN `emotional_geometry_baseline` json DEFAULT NULL;
-ALTER TABLE lupo_actor_collections MODIFY COLUMN `doctrine_alignment_version` varchar(20) DEFAULT '4.0.72';
+ALTER TABLE lupo_actor_collections MODIFY COLUMN `doctrine_alignment_version` varchar(20) DEFAULT '4.0.0';
 ALTER TABLE lupo_actor_conflicts MODIFY COLUMN `domain_id` bigint NOT NULL DEFAULT '1';
 ALTER TABLE lupo_actor_conflicts MODIFY COLUMN `actor_a_id` bigint NOT NULL;
 ALTER TABLE lupo_actor_conflicts MODIFY COLUMN `actor_b_id` bigint NOT NULL;
@@ -617,7 +617,7 @@ ALTER TABLE lupo_calibration_impacts MODIFY COLUMN `before_metrics_json` json DE
 ALTER TABLE lupo_calibration_impacts MODIFY COLUMN `after_metrics_json` json DEFAULT NULL;
 ALTER TABLE lupo_calibration_impacts MODIFY COLUMN `observation_period_hours` int DEFAULT '24';
 ALTER TABLE lupo_calibration_impacts MODIFY COLUMN `measured_ymdhis` bigint NOT NULL;
-ALTER TABLE lupo_calibration_impacts MODIFY COLUMN `impact_version` varchar(20) DEFAULT '4.0.75';
+ALTER TABLE lupo_calibration_impacts MODIFY COLUMN `impact_version` varchar(20) DEFAULT '4.0.0';
 ALTER TABLE lupo_channel_boot_detail MODIFY COLUMN `boot_id` bigint NOT NULL;
 ALTER TABLE lupo_channel_boot_detail MODIFY COLUMN `channel_id` bigint NOT NULL;
 ALTER TABLE lupo_channel_boot_detail MODIFY COLUMN `load_start_time` bigint;
@@ -739,7 +739,7 @@ ALTER TABLE lupo_channels MODIFY COLUMN `is_deleted` tinyint NOT NULL DEFAULT '0
 ALTER TABLE lupo_channels MODIFY COLUMN `deleted_ymdhis` bigint DEFAULT NULL;
 ALTER TABLE lupo_channels MODIFY COLUMN `aal_metadata_json` json DEFAULT NULL;
 ALTER TABLE lupo_channels MODIFY COLUMN `fleet_composition_json` json DEFAULT NULL;
-ALTER TABLE lupo_channels MODIFY COLUMN `awareness_version` varchar(20) DEFAULT '4.0.72';
+ALTER TABLE lupo_channels MODIFY COLUMN `awareness_version` varchar(20) DEFAULT '4.0.0';
 ALTER TABLE lupo_channels MODIFY COLUMN `channel_number` int DEFAULT NULL;
 ALTER TABLE lupo_channels MODIFY COLUMN `parent_channel_id` bigint DEFAULT NULL;
 ALTER TABLE lupo_channels MODIFY COLUMN `is_kernel` tinyint NOT NULL DEFAULT '0';
@@ -754,7 +754,7 @@ ALTER TABLE lupo_cip_analytics MODIFY COLUMN `subsystem_impact_json` json DEFAUL
 ALTER TABLE lupo_cip_analytics MODIFY COLUMN `trend_analysis_json` json DEFAULT NULL;
 ALTER TABLE lupo_cip_analytics MODIFY COLUMN `calculated_ymdhis` bigint NOT NULL;
 ALTER TABLE lupo_cip_analytics MODIFY COLUMN `recalculated_ymdhis` bigint DEFAULT NULL;
-ALTER TABLE lupo_cip_analytics MODIFY COLUMN `analytics_version` varchar(20) DEFAULT '4.0.75';
+ALTER TABLE lupo_cip_analytics MODIFY COLUMN `analytics_version` varchar(20) DEFAULT '4.0.0';
 ALTER TABLE lupo_cip_propagation_tracking MODIFY COLUMN `cip_event_id` bigint NOT NULL;
 ALTER TABLE lupo_cip_propagation_tracking MODIFY COLUMN `propagation_level` tinyint NOT NULL;
 ALTER TABLE lupo_cip_propagation_tracking MODIFY COLUMN `affected_subsystem` varchar(100) NOT NULL;
@@ -765,7 +765,7 @@ ALTER TABLE lupo_cip_propagation_tracking MODIFY COLUMN `completion_status` varc
 ALTER TABLE lupo_cip_propagation_tracking MODIFY COLUMN `dependencies_json` json DEFAULT NULL;
 ALTER TABLE lupo_cip_propagation_tracking MODIFY COLUMN `started_ymdhis` bigint DEFAULT NULL;
 ALTER TABLE lupo_cip_propagation_tracking MODIFY COLUMN `completed_ymdhis` bigint DEFAULT NULL;
-ALTER TABLE lupo_cip_propagation_tracking MODIFY COLUMN `propagation_version` varchar(20) DEFAULT '4.0.75';
+ALTER TABLE lupo_cip_propagation_tracking MODIFY COLUMN `propagation_version` varchar(20) DEFAULT '4.0.0';
 ALTER TABLE lupo_cip_trends MODIFY COLUMN `trend_period` varchar(64) NOT NULL;
 ALTER TABLE lupo_cip_trends MODIFY COLUMN `period_start_ymdhis` bigint NOT NULL;
 ALTER TABLE lupo_cip_trends MODIFY COLUMN `period_end_ymdhis` bigint NOT NULL;
@@ -1091,7 +1091,7 @@ ALTER TABLE lupo_doctrine_evolution_audit MODIFY COLUMN `step_status` varchar(64
 ALTER TABLE lupo_doctrine_evolution_audit MODIFY COLUMN `step_metadata_json` json DEFAULT NULL;
 ALTER TABLE lupo_doctrine_evolution_audit MODIFY COLUMN `started_ymdhis` bigint DEFAULT NULL;
 ALTER TABLE lupo_doctrine_evolution_audit MODIFY COLUMN `completed_ymdhis` bigint DEFAULT NULL;
-ALTER TABLE lupo_doctrine_evolution_audit MODIFY COLUMN `audit_version` varchar(20) DEFAULT '4.0.75';
+ALTER TABLE lupo_doctrine_evolution_audit MODIFY COLUMN `audit_version` varchar(20) DEFAULT '4.0.0';
 ALTER TABLE lupo_doctrine_refinements MODIFY COLUMN `cip_event_id` bigint NOT NULL;
 ALTER TABLE lupo_doctrine_refinements MODIFY COLUMN `doctrine_file_path` varchar(500) NOT NULL;
 ALTER TABLE lupo_doctrine_refinements MODIFY COLUMN `refinement_type` varchar(64) NOT NULL;
@@ -1103,7 +1103,7 @@ ALTER TABLE lupo_doctrine_refinements MODIFY COLUMN `approval_status` varchar(64
 ALTER TABLE lupo_doctrine_refinements MODIFY COLUMN `approved_by` varchar(100) DEFAULT NULL;
 ALTER TABLE lupo_doctrine_refinements MODIFY COLUMN `applied_ymdhis` bigint DEFAULT NULL;
 ALTER TABLE lupo_doctrine_refinements MODIFY COLUMN `created_ymdhis` bigint NOT NULL;
-ALTER TABLE lupo_doctrine_refinements MODIFY COLUMN `refinement_version` varchar(20) DEFAULT '4.0.75';
+ALTER TABLE lupo_doctrine_refinements MODIFY COLUMN `refinement_version` varchar(20) DEFAULT '4.0.0';
 ALTER TABLE lupo_document_chunks MODIFY COLUMN `document_id` bigint NOT NULL;
 ALTER TABLE lupo_document_chunks MODIFY COLUMN `chunk_index` int NOT NULL;
 ALTER TABLE lupo_document_chunks MODIFY COLUMN `chunk_content` mediumtext NOT NULL;
@@ -1180,7 +1180,7 @@ ALTER TABLE lupo_emotional_geometry_calibrations MODIFY COLUMN `confidence_score
 ALTER TABLE lupo_emotional_geometry_calibrations MODIFY COLUMN `validation_status` varchar(64) DEFAULT 'pending';
 ALTER TABLE lupo_emotional_geometry_calibrations MODIFY COLUMN `applied_ymdhis` bigint DEFAULT NULL;
 ALTER TABLE lupo_emotional_geometry_calibrations MODIFY COLUMN `created_ymdhis` bigint NOT NULL;
-ALTER TABLE lupo_emotional_geometry_calibrations MODIFY COLUMN `calibration_version` varchar(20) DEFAULT '4.0.75';
+ALTER TABLE lupo_emotional_geometry_calibrations MODIFY COLUMN `calibration_version` varchar(20) DEFAULT '4.0.0';
 ALTER TABLE lupo_emotional_stars MODIFY COLUMN `experience_hash` char(64) DEFAULT NULL;
 ALTER TABLE lupo_emotional_stars MODIFY COLUMN `experience_text` text NOT NULL;
 ALTER TABLE lupo_emotional_stars MODIFY COLUMN `cultural_context` json DEFAULT NULL;
@@ -1565,7 +1565,7 @@ ALTER TABLE lupo_multi_agent_critique_sync MODIFY COLUMN `conflict_indicators_js
 ALTER TABLE lupo_multi_agent_critique_sync MODIFY COLUMN `resolution_strategy` varchar(255) DEFAULT NULL;
 ALTER TABLE lupo_multi_agent_critique_sync MODIFY COLUMN `sync_started_ymdhis` bigint DEFAULT NULL;
 ALTER TABLE lupo_multi_agent_critique_sync MODIFY COLUMN `sync_completed_ymdhis` bigint DEFAULT NULL;
-ALTER TABLE lupo_multi_agent_critique_sync MODIFY COLUMN `sync_version` varchar(20) DEFAULT '4.0.75';
+ALTER TABLE lupo_multi_agent_critique_sync MODIFY COLUMN `sync_version` varchar(20) DEFAULT '4.0.0';
 ALTER TABLE lupo_narrative_fragments MODIFY COLUMN `agent_id` bigint DEFAULT NULL;
 ALTER TABLE lupo_narrative_fragments MODIFY COLUMN `fragment_type` varchar(100) DEFAULT NULL;
 ALTER TABLE lupo_narrative_fragments MODIFY COLUMN `title` varchar(255) DEFAULT NULL;

@@ -114,6 +114,12 @@ if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'UnifiedSessionHandler.php')) 
 if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'Session.php')) {
     require_once $app_auth . DIRECTORY_SEPARATOR . 'Session.php';
 }
+if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'AuthRoleResolver.php')) {
+    require_once $app_auth . DIRECTORY_SEPARATOR . 'AuthRoleResolver.php';
+}
+if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'AuthService.php')) {
+    require_once $app_auth . DIRECTORY_SEPARATOR . 'AuthService.php';
+}
 
 $auth_helpers = __DIR__ . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'auth-helpers.php';
 if (file_exists($auth_helpers)) {
@@ -132,6 +138,12 @@ if (class_exists('App\Auth\Session') && isset($GLOBALS['mydatabase'])) {
     $lupo_session = new \App\Auth\Session($GLOBALS['mydatabase'], $unified_handler);
     $unified_handler->setSession($lupo_session);
     $GLOBALS['lupo_session'] = $lupo_session;
+
+    // Auth domain: AuthRoleResolver + AuthService (replaces procedural auth helpers)
+    if (class_exists('App\Auth\AuthRoleResolver') && class_exists('App\Auth\AuthService')) {
+        $lupo_auth_role_resolver = new \App\Auth\AuthRoleResolver($GLOBALS['mydatabase']);
+        $GLOBALS['lupo_auth_service'] = new \App\Auth\AuthService($lupo_session, $GLOBALS['mydatabase'], $lupo_auth_role_resolver);
+    }
 }
 
 // Start session and run idle check then validate
@@ -150,6 +162,55 @@ if ($lupo_session !== null) {
             error_log("SESSION: Session invalid or expired");
         }
     }
+}
+
+// Actor domain: ActorService (replaces procedural actor/identity helpers)
+$app_services = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'Services';
+$app_support = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'Support';
+if (isset($GLOBALS['mydatabase'])) {
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'ActorService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'ActorService.php';
+        if (class_exists('App\Services\ActorService')) {
+            $GLOBALS['lupo_actor_service'] = new \App\Services\ActorService($GLOBALS['mydatabase']);
+        }
+    }
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'CollectionZeroService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'CollectionZeroService.php';
+        if (class_exists('App\Services\CollectionZeroService')) {
+            $GLOBALS['lupo_collection_zero_service'] = new \App\Services\CollectionZeroService($GLOBALS['mydatabase']);
+        }
+    }
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'CollectionTabsService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'CollectionTabsService.php';
+        if (class_exists('App\Services\CollectionTabsService')) {
+            $GLOBALS['lupo_collection_tabs_service'] = new \App\Services\CollectionTabsService($GLOBALS['mydatabase']);
+        }
+    }
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'SavedCollectionsService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'SavedCollectionsService.php';
+        if (class_exists('App\Services\SavedCollectionsService')) {
+            $GLOBALS['lupo_saved_collections_service'] = new \App\Services\SavedCollectionsService($GLOBALS['mydatabase']);
+        }
+    }
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'UploadService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'UploadService.php';
+        if (class_exists('App\Services\UploadService')) {
+            $GLOBALS['lupo_upload_service'] = new \App\Services\UploadService();
+        }
+    }
+}
+if (file_exists($app_support . DIRECTORY_SEPARATOR . 'AtomLoader.php')) {
+    require_once $app_support . DIRECTORY_SEPARATOR . 'AtomLoader.php';
+    require_once $app_support . DIRECTORY_SEPARATOR . 'VersionUtils.php';
+    if (class_exists('App\Support\AtomLoader')) {
+        $GLOBALS['lupo_atom_loader'] = new \App\Support\AtomLoader();
+    }
+}
+if (file_exists($app_support . DIRECTORY_SEPARATOR . 'RedirectUtils.php')) {
+    require_once $app_support . DIRECTORY_SEPARATOR . 'RedirectUtils.php';
+}
+if (file_exists($app_support . DIRECTORY_SEPARATOR . 'LimitsLogger.php')) {
+    require_once $app_support . DIRECTORY_SEPARATOR . 'LimitsLogger.php';
 }
 
 require_once ABSPATH . LUPO_INCLUDES_DIR . '/lupopedia-loader.php';

@@ -271,6 +271,7 @@ Lupopedia is **pre-release** until published to auto-installers. During pre-rele
 - **Lupopedia version = 4.0.0** (fixed). **Crafty Syntax version = 3.7.5** (fixed). These are the only versions that matter.
 - Any file that contains a Lupopedia version number must use **4.0.0** (PHP headers, SQL headers, README, UI footers, CSS comments, module/installer metadata, version constants/atoms). Cursor must update version strings in any file it touches.
 - **Cursor must refuse:** Bumping Lupopedia to 4.0.2, 4.1, 5.0; creating versioned migrations; creating upgrade scripts; introducing semantic versioning or version comparison logic. Refuse to reference any version other than 4.0.0 (Lupopedia) and 3.7.5 (Crafty Syntax).
+- **Version doctrine (authoritative):** 4.0.0 is the only release target. Do NOT reference 4.0.1–4.0.8 in code, SQL, UI, or metadata. The only upgrade path is Crafty Syntax 3.7.5 → Lupopedia 4.0.0. 4.1.0 is the only future version; do not reference 4.1.1, 4.2.0, or higher. See docs/doctrine/VERSION_DOCTRINE.md.
 - **Cursor may:** Update version strings in touched files; maintain the global version atom; maintain consistency.
 - Version changes only when Lupopedia is public and installable; until then, 4.0.0 is permanent.
 

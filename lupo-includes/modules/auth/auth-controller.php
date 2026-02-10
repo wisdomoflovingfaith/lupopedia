@@ -88,7 +88,8 @@ function login_handle_view() {
         session_start();
     }
     // Check if already logged in
-    $user = current_user();
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    $user = $authService ? $authService->getCurrentUser() : current_user();
     if ($user) {
         // Already logged in, redirect
         $redirect = $_GET['redirect'] ?? (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/admin' : '/admin');
@@ -272,16 +273,15 @@ function login_handle_post() {
             }
         }
         
-        // Get or create actor_id
-        $actor_id = lupo_get_actor_id_from_auth_user_id($user['auth_user_id']);
-        
+        // Get or create actor_id (ActorService when available)
+        $actorService = $GLOBALS['lupo_actor_service'] ?? null;
+        $actor_id = $actorService ? $actorService->getActorIdFromAuthUserId((int) $user['auth_user_id']) : lupo_get_actor_id_from_auth_user_id($user['auth_user_id']);
+
         if (!$actor_id) {
             // Create actor record (slug derived from email, not username)
-            $actor_id = lupo_create_actor_for_auth_user(
-                $user['auth_user_id'],
-                $user['email'],  // Use email for slug generation (canonical login identifier)
-                $user['display_name']
-            );
+            $actor_id = $actorService
+                ? $actorService->createActorForAuthUser((int) $user['auth_user_id'], $user['email'], $user['display_name'] ?? '')
+                : lupo_create_actor_for_auth_user($user['auth_user_id'], $user['email'], $user['display_name'] ?? '');
             
             if (!$actor_id) {
                 if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
@@ -433,18 +433,19 @@ function change_password_handle_view() {
     }
     
     // Check if user is logged in
-    $user = current_user();
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    $user = $authService ? $authService->getCurrentUser() : current_user();
     if (!$user) {
         // Not logged in - redirect to login
         $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
         header('Location: ' . $login_url);
         exit;
     }
-    
+
     // Get any error message from session
     $error_message = $_SESSION['password_change_error'] ?? null;
     unset($_SESSION['password_change_error']);
-    
+
     // Render password change form
     return change_password_form($error_message);
 }
@@ -472,14 +473,15 @@ function change_password_handle_post() {
     }
     
     // Check if user is logged in
-    $user = current_user();
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    $user = $authService ? $authService->getCurrentUser() : current_user();
     if (!$user) {
         // Not logged in - redirect to login
         $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
         header('Location: ' . $login_url);
         exit;
     }
-    
+
     // Validate input
     $new_password = isset($_POST['new_password']) ? $_POST['new_password'] : '';
     $confirm_password = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
@@ -593,12 +595,16 @@ function admin_handle_view($slug) {
         exit;
     }
     
-    // Require admin access (this will redirect if not logged in or not admin)
-    require_admin();
-    
+    // Require admin access (AuthService when available)
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    if ($authService) {
+        $authService->requireAdmin();
+    } else {
+        require_admin();
+    }
     // Get current user (we know they're admin at this point)
-    $user = current_user();
-    
+    $user = $authService ? $authService->getCurrentUser() : current_user();
+
     // Render admin dashboard
     return admin_dashboard($user);
 }

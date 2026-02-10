@@ -425,11 +425,15 @@ class LupoUploadHandler {
 }
 
 /**
- * Helper function to get upload handler instance
+ * Get upload handler instance (thin wrapper — App\Services\UploadService or LupoUploadHandler).
  *
- * @return LupoUploadHandler
+ * @return \LupoUploadHandler
  */
 function lupo_get_upload_handler() {
+    $s = $GLOBALS['lupo_upload_service'] ?? null;
+    if ($s instanceof \App\Services\UploadService) {
+        return $s->getHandler();
+    }
     static $instance = null;
     if ($instance === null) {
         $instance = new LupoUploadHandler();
@@ -438,7 +442,7 @@ function lupo_get_upload_handler() {
 }
 
 /**
- * Quick upload helper function
+ * Quick upload helper (thin wrapper — UploadService or LupoUploadHandler).
  *
  * @param array $file $_FILES element
  * @param string $entityType Entity type
@@ -447,6 +451,9 @@ function lupo_get_upload_handler() {
  * @return array Upload result
  */
 function lupo_upload_file($file, $entityType, $entityId, $fileType = 'document') {
-    $handler = lupo_get_upload_handler();
-    return $handler->upload($file, $entityType, $entityId, $fileType);
+    $s = $GLOBALS['lupo_upload_service'] ?? null;
+    if ($s instanceof \App\Services\UploadService) {
+        return $s->upload($file, $entityType, $entityId, $fileType);
+    }
+    return lupo_get_upload_handler()->upload($file, $entityType, $entityId, $fileType);
 }

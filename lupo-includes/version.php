@@ -115,7 +115,7 @@ if (!defined('LUPOPEDIA_VERSION_DATE')) {
  * 
  * Loads from atom if available, otherwise returns constant
  * 
- * @return string The version string (e.g., "3.0.35")
+ * @return string The version string (e.g., "4.0.0")
  */
 function lupopedia_get_version() {
     // Try to load from atom first (most up-to-date)

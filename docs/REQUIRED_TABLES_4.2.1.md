@@ -5,7 +5,7 @@ nav: mechanical | mythic | docs
 pkg: lupopedia
 mod: release
 asp: requirements
-purpose: Canonical list of required tables for Lupopedia 4.2.1 release
+purpose: Canonical list of required tables for Lupopedia 4.0.0 release
 
 modified: 2026-02-02
 epoch: wolfie-winter-2026
@@ -22,9 +22,9 @@ signature: cascade
 
 ---
 
-# Required Tables for Lupopedia 4.2.1 Release
+# Required Tables for Lupopedia 4.0.0 Release
 
-**Version:** 4.2.1  
+**Version:** 4.0.0  
 **Target Release Date:** 2026-02-22  
 **Table Ceiling:** 222 (hard limit)  
 **Current Status:** Requirements definition phase  

@@ -22,9 +22,15 @@ function channels_handle_show($channel_id) {
     $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
-    // Resolve session actor_id (same as my-channel.php)
+    // Resolve session actor_id (AuthService when available)
     $actor_id = null;
-    if (function_exists('current_user')) {
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    if ($authService) {
+        $user = $authService->getCurrentUser();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    } elseif (function_exists('current_user')) {
         $user = current_user();
         if ($user && !empty($user['actor_id'])) {
             $actor_id = (int) $user['actor_id'];
@@ -330,7 +336,13 @@ function channels_handle_log_show($channel_id) {
     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
     $actor_id = null;
-    if (function_exists('current_user')) {
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    if ($authService) {
+        $user = $authService->getCurrentUser();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    } elseif (function_exists('current_user')) {
         $user = current_user();
         if ($user && !empty($user['actor_id'])) {
             $actor_id = (int) $user['actor_id'];
@@ -480,7 +492,13 @@ function channels_handle_log_create($channel_id) {
     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
     $actor_id = null;
-    if (function_exists('current_user')) {
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    if ($authService) {
+        $user = $authService->getCurrentUser();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    } elseif (function_exists('current_user')) {
         $user = current_user();
         if ($user && !empty($user['actor_id'])) {
             $actor_id = (int) $user['actor_id'];
@@ -559,7 +577,13 @@ function channels_handle_my_channels() {
     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
     $actor_id = null;
-    if (function_exists('current_user')) {
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    if ($authService) {
+        $user = $authService->getCurrentUser();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    } elseif (function_exists('current_user')) {
         $user = current_user();
         if ($user && !empty($user['actor_id'])) {
             $actor_id = (int) $user['actor_id'];
@@ -658,7 +682,13 @@ function channels_handle_edit_channel($channel_id) {
     $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
 
     $actor_id = null;
-    if (function_exists('current_user')) {
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    if ($authService) {
+        $user = $authService->getCurrentUser();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    } elseif (function_exists('current_user')) {
         $user = current_user();
         if ($user && !empty($user['actor_id'])) {
             $actor_id = (int) $user['actor_id'];
@@ -771,7 +801,13 @@ function channels_handle_edit_channel_save($channel_id) {
     $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
 
     $actor_id = null;
-    if (function_exists('current_user')) {
+    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    if ($authService) {
+        $user = $authService->getCurrentUser();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    } elseif (function_exists('current_user')) {
         $user = current_user();
         if ($user && !empty($user['actor_id'])) {
             $actor_id = (int) $user['actor_id'];

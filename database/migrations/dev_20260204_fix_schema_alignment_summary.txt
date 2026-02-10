@@ -35,7 +35,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_actor_channel_roles.handshake_metadata_json -> json DEFAULT NULL
   lupo_actor_channel_roles.awareness_snapshot_json -> json DEFAULT NULL
   lupo_actor_channel_roles.protocol_completion_status -> varchar(64) DEFAULT 'pending'
-  lupo_actor_channel_roles.protocol_version -> varchar(20) DEFAULT '4.0.72'
+  lupo_actor_channel_roles.protocol_version -> varchar(20) DEFAULT '4.0.0'
   lupo_actor_channel_roles.join_sequence_step -> tinyint DEFAULT '0'
   lupo_actor_channel_roles.handshake_completed_ymdhis -> bigint DEFAULT NULL
   lupo_actor_channel_roles.awareness_completed_ymdhis -> bigint DEFAULT NULL
@@ -64,7 +64,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_actor_collections.identity_signature -> varchar(255) DEFAULT NULL
   lupo_actor_collections.trust_level -> varchar(64) DEFAULT 'standard'
   lupo_actor_collections.emotional_geometry_baseline -> json DEFAULT NULL
-  lupo_actor_collections.doctrine_alignment_version -> varchar(20) DEFAULT '4.0.72'
+  lupo_actor_collections.doctrine_alignment_version -> varchar(20) DEFAULT '4.0.0'
   lupo_actor_conflicts.domain_id -> bigint NOT NULL DEFAULT '1'
   lupo_actor_conflicts.actor_a_id -> bigint NOT NULL
   lupo_actor_conflicts.actor_b_id -> bigint NOT NULL
@@ -618,7 +618,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_calibration_impacts.after_metrics_json -> json DEFAULT NULL
   lupo_calibration_impacts.observation_period_hours -> int DEFAULT '24'
   lupo_calibration_impacts.measured_ymdhis -> bigint NOT NULL
-  lupo_calibration_impacts.impact_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_calibration_impacts.impact_version -> varchar(20) DEFAULT '4.0.0'
   lupo_channel_boot_detail.boot_id -> bigint NOT NULL
   lupo_channel_boot_detail.channel_id -> bigint NOT NULL
   lupo_channel_boot_detail.load_start_time -> bigint
@@ -740,7 +740,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_channels.deleted_ymdhis -> bigint DEFAULT NULL
   lupo_channels.aal_metadata_json -> json DEFAULT NULL
   lupo_channels.fleet_composition_json -> json DEFAULT NULL
-  lupo_channels.awareness_version -> varchar(20) DEFAULT '4.0.72'
+  lupo_channels.awareness_version -> varchar(20) DEFAULT '4.0.0'
   lupo_channels.channel_number -> int DEFAULT NULL
   lupo_channels.parent_channel_id -> bigint DEFAULT NULL
   lupo_channels.is_kernel -> tinyint NOT NULL DEFAULT '0'
@@ -755,7 +755,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_cip_analytics.trend_analysis_json -> json DEFAULT NULL
   lupo_cip_analytics.calculated_ymdhis -> bigint NOT NULL
   lupo_cip_analytics.recalculated_ymdhis -> bigint DEFAULT NULL
-  lupo_cip_analytics.analytics_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_cip_analytics.analytics_version -> varchar(20) DEFAULT '4.0.0'
   lupo_cip_propagation_tracking.cip_event_id -> bigint NOT NULL
   lupo_cip_propagation_tracking.propagation_level -> tinyint NOT NULL
   lupo_cip_propagation_tracking.affected_subsystem -> varchar(100) NOT NULL
@@ -766,7 +766,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_cip_propagation_tracking.dependencies_json -> json DEFAULT NULL
   lupo_cip_propagation_tracking.started_ymdhis -> bigint DEFAULT NULL
   lupo_cip_propagation_tracking.completed_ymdhis -> bigint DEFAULT NULL
-  lupo_cip_propagation_tracking.propagation_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_cip_propagation_tracking.propagation_version -> varchar(20) DEFAULT '4.0.0'
   lupo_cip_trends.trend_period -> varchar(64) NOT NULL
   lupo_cip_trends.period_start_ymdhis -> bigint NOT NULL
   lupo_cip_trends.period_end_ymdhis -> bigint NOT NULL
@@ -1091,7 +1091,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_doctrine_evolution_audit.step_metadata_json -> json DEFAULT NULL
   lupo_doctrine_evolution_audit.started_ymdhis -> bigint DEFAULT NULL
   lupo_doctrine_evolution_audit.completed_ymdhis -> bigint DEFAULT NULL
-  lupo_doctrine_evolution_audit.audit_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_doctrine_evolution_audit.audit_version -> varchar(20) DEFAULT '4.0.0'
   lupo_doctrine_refinements.cip_event_id -> bigint NOT NULL
   lupo_doctrine_refinements.doctrine_file_path -> varchar(500) NOT NULL
   lupo_doctrine_refinements.refinement_type -> varchar(64) NOT NULL
@@ -1103,7 +1103,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_doctrine_refinements.approved_by -> varchar(100) DEFAULT NULL
   lupo_doctrine_refinements.applied_ymdhis -> bigint DEFAULT NULL
   lupo_doctrine_refinements.created_ymdhis -> bigint NOT NULL
-  lupo_doctrine_refinements.refinement_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_doctrine_refinements.refinement_version -> varchar(20) DEFAULT '4.0.0'
   lupo_document_chunks.document_id -> bigint NOT NULL
   lupo_document_chunks.chunk_index -> int NOT NULL
   lupo_document_chunks.chunk_content -> mediumtext NOT NULL
@@ -1180,7 +1180,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_emotional_geometry_calibrations.validation_status -> varchar(64) DEFAULT 'pending'
   lupo_emotional_geometry_calibrations.applied_ymdhis -> bigint DEFAULT NULL
   lupo_emotional_geometry_calibrations.created_ymdhis -> bigint NOT NULL
-  lupo_emotional_geometry_calibrations.calibration_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_emotional_geometry_calibrations.calibration_version -> varchar(20) DEFAULT '4.0.0'
   lupo_emotional_stars.experience_hash -> char(64) DEFAULT NULL
   lupo_emotional_stars.experience_text -> text NOT NULL
   lupo_emotional_stars.cultural_context -> json DEFAULT NULL
@@ -1565,7 +1565,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_multi_agent_critique_sync.resolution_strategy -> varchar(255) DEFAULT NULL
   lupo_multi_agent_critique_sync.sync_started_ymdhis -> bigint DEFAULT NULL
   lupo_multi_agent_critique_sync.sync_completed_ymdhis -> bigint DEFAULT NULL
-  lupo_multi_agent_critique_sync.sync_version -> varchar(20) DEFAULT '4.0.75'
+  lupo_multi_agent_critique_sync.sync_version -> varchar(20) DEFAULT '4.0.0'
   lupo_narrative_fragments.agent_id -> bigint DEFAULT NULL
   lupo_narrative_fragments.fragment_type -> varchar(100) DEFAULT NULL
   lupo_narrative_fragments.title -> varchar(255) DEFAULT NULL
