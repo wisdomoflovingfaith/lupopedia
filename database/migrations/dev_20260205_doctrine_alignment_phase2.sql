@@ -29,7 +29,6 @@ ALTER TABLE lupo_pack_role_registry MODIFY COLUMN `id` bigint NOT NULL AUTO_INCR
 ALTER TABLE lupo_semantic_overlays MODIFY COLUMN `id` int NOT NULL AUTO_INCREMENT;
 ALTER TABLE lupo_semantic_paths MODIFY COLUMN `id` bigint NOT NULL AUTO_INCREMENT;
 ALTER TABLE lupo_truth_questions MODIFY COLUMN `truth_question_id` bigint NOT NULL AUTO_INCREMENT;
-ALTER TABLE lupo_unified_paths_firsts MODIFY COLUMN `id` bigint NOT NULL AUTO_INCREMENT;
 ALTER TABLE lupo_unified_visits MODIFY COLUMN `id` bigint NOT NULL AUTO_INCREMENT;
 ALTER TABLE lupo_unified_websites MODIFY COLUMN `id` bigint NOT NULL AUTO_INCREMENT;
 

@@ -1110,7 +1110,8 @@ WHERE NOT EXISTS (
 
 -- ======================================================================
 -- Phase 1: Create lupo_actors for each imported operator (actor_type from TOON: 'user')
--- Then lupo_operators, then fix lupo_actor_departments.actor_id
+-- Operator/role data now uses lupo_channel_roles (channel-scoped roles); lupo_operators
+-- and related operator tables are deprecated. Then fix lupo_actor_departments.actor_id.
 -- See: docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md Phase 1
 -- ======================================================================
 

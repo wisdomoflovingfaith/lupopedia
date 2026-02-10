@@ -1,6 +1,10 @@
 -- Lupopedia Demo Operators Migration
 -- Date: 2026-01-30
--- Description: Adds demo operators operatortest@lupopedia.com and helen@lupopedia.com
+-- Description: Adds demo users operatortest@lupopedia.com and helen@lupopedia.com as actors.
+-- Operator/role data now uses lupo_channel_roles (channel-scoped roles). To grant these
+-- actors operator or captain rights, insert into lupo_channel_roles (channel_id, actor_id, role_type)
+-- e.g. for default channel_id = 1 with role_type IN ('captain', 'administrator', 'monitor').
+-- The old lupo_operators and lupo_operator_status tables are deprecated; do not use them.
 
 -- 1. Insert into lupo_auth_users
 INSERT INTO `lupo_auth_users` (`username`, `display_name`, `email`, `password_hash`, `created_ymdhis`, `updated_ymdhis`, `is_active`) 
@@ -21,22 +25,6 @@ INSERT INTO `lupo_actors` (`actor_type`, `slug`, `name`, `created_ymdhis`, `upda
 SELECT 'user', 'helen', 'Helen', 20260130000000, 20260130000000, 1, auth_user_id, 'lupo_auth_users'
 FROM `lupo_auth_users` WHERE `email` = 'helen@lupopedia.com';
 
--- 3. Insert into lupo_operators
-INSERT INTO `lupo_operators` (`auth_user_id`, `actor_id`, `department_id`, `is_active`, `availability_status`, `created_ymdhis`, `updated_ymdhis`, `pono_score`, `pilau_score`, `kapakai_score`)
-SELECT u.auth_user_id, a.actor_id, 1, 1, 'online', 20260130000000, 20260130000000, 1.00, 0.00, 0.50
-FROM `lupo_auth_users` u
-JOIN `lupo_actors` a ON a.actor_source_id = u.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
-WHERE u.email = 'operatortest@lupopedia.com';
-
-INSERT INTO `lupo_operators` (`auth_user_id`, `actor_id`, `department_id`, `is_active`, `availability_status`, `created_ymdhis`, `updated_ymdhis`, `pono_score`, `pilau_score`, `kapakai_score`)
-SELECT u.auth_user_id, a.actor_id, 1, 1, 'online', 20260130000000, 20260130000000, 1.00, 0.00, 0.50
-FROM `lupo_auth_users` u
-JOIN `lupo_actors` a ON a.actor_source_id = u.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
-WHERE u.email = 'helen@lupopedia.com';
-
--- 4. Insert into lupo_operator_status
-INSERT INTO `lupo_operator_status` (`operator_id`, `status`, `last_seen_ymdhis`, `active_chat_count`, `max_chat_capacity`, `created_ymdhis`, `updated_ymdhis`)
-SELECT operator_id, 'online', 20260130000000, 0, 5, 20260130000000, 20260130000000
-FROM `lupo_operators` o
-JOIN `lupo_auth_users` u ON o.auth_user_id = u.auth_user_id
-WHERE u.email IN ('operatortest@lupopedia.com', 'helen@lupopedia.com');
+-- 3. Roles: Use lupo_channel_roles to grant channel roles (e.g. channel_id = 1, role_type = 'captain' or 'administrator').
+--    Example (run after channel_role_id sequence is known): INSERT INTO lupo_channel_roles (channel_role_id, channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted) SELECT ... FROM lupo_actors a JOIN lupo_auth_users u ON ... WHERE u.email IN ('operatortest@lupopedia.com', 'helen@lupopedia.com');
+--    The old lupo_operators and lupo_operator_status tables are deprecated and have been removed from the schema.

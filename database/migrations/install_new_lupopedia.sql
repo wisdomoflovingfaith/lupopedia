@@ -3899,34 +3899,6 @@ CREATE TABLE lupo_unified_analytics_paths (
 );
 ALTER TABLE lupo_unified_analytics_paths CHANGE unified_analytics_path_id unified_analytics_path_id bigint NOT NULL AUTO_INCREMENT;
 
-CREATE TABLE lupo_unified_dialog_messages (
-  dialog_message_id bigint NOT NULL,
-  thread_id bigint DEFAULT NULL,
-  actor_id bigint DEFAULT NULL,
-  created_ymdhis bigint DEFAULT NULL,
-  updated_ymdhis bigint DEFAULT NULL,
-  metadata_json json DEFAULT NULL,
-  body_text text,
-  PRIMARY KEY (dialog_message_id)
-);
-
-
-CREATE TABLE lupo_unified_paths_firsts (
-  unified_paths_first_id bigint NOT NULL,
-  from_visit_id bigint NOT NULL DEFAULT '0',
-  to_visit_id bigint NOT NULL DEFAULT '0',
-  date_ymd int NOT NULL,
-  visits int NOT NULL DEFAULT '0',
-  metadata_json json DEFAULT NULL,
-  created_at bigint,
-  updated_at bigint,
-  PRIMARY KEY (unified_paths_first_id)
-);
-
-CREATE INDEX lupo_unified_paths_firsts_from_visit_id ON lupo_unified_paths_firsts (from_visit_id);
-CREATE INDEX lupo_unified_paths_firsts_to_visit_id ON lupo_unified_paths_firsts (to_visit_id);
-CREATE INDEX lupo_unified_paths_firsts_date_ymd ON lupo_unified_paths_firsts (date_ymd);
-
 CREATE TABLE lupo_unified_referers (
   referer_id bigint NOT NULL,
   content_id bigint NOT NULL,

@@ -1931,19 +1931,6 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_unified_analytics_paths.updated_ymdhis -> bigint NOT NULL
   lupo_unified_analytics_paths.is_deleted -> tinyint NOT NULL DEFAULT '0'
   lupo_unified_analytics_paths.deleted_ymdhis -> bigint DEFAULT NULL
-  lupo_unified_dialog_messages.thread_id -> bigint DEFAULT NULL
-  lupo_unified_dialog_messages.actor_id -> bigint DEFAULT NULL
-  lupo_unified_dialog_messages.created_ymdhis -> bigint DEFAULT NULL
-  lupo_unified_dialog_messages.updated_ymdhis -> bigint DEFAULT NULL
-  lupo_unified_dialog_messages.metadata_json -> json DEFAULT NULL
-  lupo_unified_dialog_messages.body_text -> text
-  lupo_unified_paths_firsts.from_visit_id -> bigint NOT NULL DEFAULT '0'
-  lupo_unified_paths_firsts.to_visit_id -> bigint NOT NULL DEFAULT '0'
-  lupo_unified_paths_firsts.date_ymd -> int NOT NULL
-  lupo_unified_paths_firsts.visits -> int NOT NULL DEFAULT '0'
-  lupo_unified_paths_firsts.metadata_json -> json DEFAULT NULL
-  lupo_unified_paths_firsts.created_at -> bigint
-  lupo_unified_paths_firsts.updated_at -> bigint
   lupo_unified_referers.content_id -> bigint NOT NULL
   lupo_unified_referers.actor_id -> bigint NOT NULL
   lupo_unified_referers.referer_url -> varchar(2000) DEFAULT NULL
