@@ -434,8 +434,9 @@ class Session
         if (!($this->db instanceof \PDO_DB)) {
             return null;
         }
+        $t = $this->db->quoteIdentifier($this->table);
         $row = $this->db->fetchRow(
-            "SELECT session_id, actor_id, last_seen_ymdhis, name_key, is_named FROM {$this->table} WHERE session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            "SELECT session_id, actor_id, last_seen_ymdhis, name_key, is_named FROM $t WHERE session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
             ['sid' => $sessionId]
         );
         if ($row) {
@@ -443,6 +444,180 @@ class Session
             $this->is_named = isset($row['is_named']) ? (int) $row['is_named'] : 0;
         }
         return $row;
+    }
+
+    /**
+     * Session lifetime in minutes for unified/cookie flow. LUPO_SESSION_LIFETIME_MINUTES or 120.
+     */
+    private function getSessionLifetimeMinutes(): int
+    {
+        return defined('LUPO_SESSION_LIFETIME_MINUTES') ? (int) LUPO_SESSION_LIFETIME_MINUTES : 120;
+    }
+
+    /** Add minutes to a YmdHis timestamp (UTC). */
+    private function addMinutesYmdHis(int $ymdhis, int $minutes): int
+    {
+        $s = str_pad((string) $ymdhis, 14, '0', STR_PAD_LEFT);
+        $dt = \DateTime::createFromFormat('YmdHis', $s, new \DateTimeZone('UTC'));
+        if (!$dt) {
+            return $ymdhis;
+        }
+        $dt->modify('+' . (int) $minutes . ' minutes');
+        return (int) $dt->format('YmdHis');
+    }
+
+    /**
+     * Whether lupo_sessions has system_context column (migration add_system_context_to_lupo_sessions).
+     */
+    public function hasSystemContextColumn(): bool
+    {
+        static $has = null;
+        if ($has !== null) {
+            return $has;
+        }
+        if (!($this->db instanceof \PDO_DB)) {
+            return false;
+        }
+        $t = $this->table;
+        $row = $this->db->fetchRow(
+            "SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = :t AND COLUMN_NAME = 'system_context'",
+            ['t' => $t]
+        );
+        $has = (bool) $row;
+        return $has;
+    }
+
+    /**
+     * Create or update a session row for the unified/cookie flow (actor_id, system_context, session_data, expires).
+     * Used by UnifiedSessionHandler; does not set cookie. Table: {prefix}sessions only.
+     *
+     * @param string      $sessionId     PHP session_id()
+     * @param int|null    $userId        actor_id (0 for anonymous)
+     * @param string      $systemContext CONTEXT_LUPOPEDIA | CONTEXT_CRAFTY_SYNTAX | CONTEXT_UNIFIED
+     * @param array|string $sessionData  JSON-encoded or array
+     * @return string|null session_id on success
+     */
+    public function createOrUpdateForUnified(string $sessionId, $userId, string $systemContext, $sessionData = []): ?string
+    {
+        if ($sessionId === '' || !($this->db instanceof \PDO_DB)) {
+            return null;
+        }
+        $now = $this->utcTimestamp();
+        $expiresYmdHis = $this->addMinutesYmdHis($now, $this->getSessionLifetimeMinutes());
+        $t = $this->db->quoteIdentifier($this->table);
+
+        $existing = $this->db->fetchRow(
+            'SELECT session_id FROM ' . $t . ' WHERE session_id = :sid',
+            ['sid' => $sessionId]
+        );
+
+        $row = [
+            'federation_node_id' => defined('LUPO_DEFAULT_NODE_ID') ? (int) LUPO_DEFAULT_NODE_ID : 1,
+            'actor_id' => $userId !== null ? (int) $userId : 0,
+            'ip_address' => '',
+            'user_agent' => '',
+            'session_data' => is_string($sessionData) ? $sessionData : json_encode($sessionData),
+            'last_seen_ymdhis' => $now,
+            'expires_ymdhis' => $expiresYmdHis,
+            'updated_ymdhis' => $now,
+            'name_key' => null,
+            'is_named' => 0,
+        ];
+        if ($this->hasSystemContextColumn()) {
+            $row['system_context'] = $systemContext;
+        }
+
+        if ($existing) {
+            $this->db->update($this->table, $row, 'session_id = :sid', ['sid' => $sessionId]);
+        } else {
+            $row['session_id'] = $sessionId;
+            $row['created_ymdhis'] = $now;
+            $this->db->insert($this->table, $row);
+        }
+        return $sessionId;
+    }
+
+    /**
+     * Get session in unified shape: user_id (actor_id), system_context, session_data, expires_ymdhis, session_id, name_key, is_named.
+     * Returns null if not found or expired. Table: {prefix}sessions only.
+     */
+    public function getSessionForUnified(string $sessionId): ?array
+    {
+        if (!($this->db instanceof \PDO_DB)) {
+            return null;
+        }
+        $now = $this->utcTimestamp();
+        $t = $this->db->quoteIdentifier($this->table);
+        $session = $this->db->fetchRow(
+            'SELECT * FROM ' . $t . ' WHERE session_id = :sid AND (expires_ymdhis IS NULL OR expires_ymdhis > :now)',
+            ['sid' => $sessionId, 'now' => $now]
+        );
+        if (!$session) {
+            return null;
+        }
+        $systemContext = UnifiedSessionHandler::CONTEXT_LUPOPEDIA;
+        if (isset($session['system_context']) && $session['system_context'] !== null && $session['system_context'] !== '') {
+            $systemContext = $session['system_context'];
+        }
+        return [
+            'user_id' => !empty($session['actor_id']) ? (int) $session['actor_id'] : null,
+            'system_context' => $systemContext,
+            'session_data' => !empty($session['session_data']) ? json_decode($session['session_data'], true) : [],
+            'expires_ymdhis' => isset($session['expires_ymdhis']) ? (int) $session['expires_ymdhis'] : null,
+            'session_id' => $session['session_id'],
+            'name_key' => isset($session['name_key']) ? (string) $session['name_key'] : null,
+            'is_named' => isset($session['is_named']) ? (int) $session['is_named'] : 0,
+        ];
+    }
+
+    /**
+     * Delete session row by session_id (used by unified logout). Table: {prefix}sessions.
+     */
+    public function deleteSessionRow(string $sessionId): void
+    {
+        if (!($this->db instanceof \PDO_DB)) {
+            return;
+        }
+        $this->db->delete($this->table, 'session_id = :sid', ['sid' => $sessionId]);
+    }
+
+    /**
+     * Remove expired session rows (expires_ymdhis <= now). Table: {prefix}sessions.
+     */
+    public function cleanupExpiredSessions(): void
+    {
+        if (!($this->db instanceof \PDO_DB)) {
+            return;
+        }
+        $now = $this->utcTimestamp();
+        $this->db->delete($this->table, 'expires_ymdhis IS NOT NULL AND expires_ymdhis <= :now', ['now' => $now]);
+    }
+
+    /**
+     * Active (non-expired) session rows for an actor. Table: {prefix}sessions.
+     *
+     * @param int $userId actor_id
+     * @return array[] rows
+     */
+    public function getActiveSessionsForUser($userId): array
+    {
+        if (!($this->db instanceof \PDO_DB)) {
+            return [];
+        }
+        $now = $this->utcTimestamp();
+        $t = $this->db->quoteIdentifier($this->table);
+        return $this->db->fetchAll(
+            'SELECT * FROM ' . $t . ' WHERE actor_id = :uid AND (expires_ymdhis IS NULL OR expires_ymdhis > :now) ORDER BY updated_ymdhis DESC',
+            ['uid' => $userId, 'now' => $now]
+        );
+    }
+
+    /**
+     * Whether a session exists and is not expired (unified shape check).
+     */
+    public function validateSessionIntegrity(string $sessionId): bool
+    {
+        return $this->getSessionForUnified($sessionId) !== null;
     }
 
     public function getSessionHandler(): UnifiedSessionHandler

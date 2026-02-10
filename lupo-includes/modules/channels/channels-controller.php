@@ -394,7 +394,7 @@ function channels_handle_log_show($channel_id) {
         ]);
     }
 
-    $actor_role = null;
+    // Actor's role in this channel (lupo_channel_roles row); used for log entry permission
     $actor_role = null;
     $log_entries = [];
     $log_types = [];

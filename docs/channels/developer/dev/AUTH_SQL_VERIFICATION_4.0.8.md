@@ -113,18 +113,9 @@ file:
 
 ---
 
-### ✅ lupo_actor_roles Table
+### ❌ lupo_actor_roles — DROPPED (do not use)
 
-**TOON File:** `database/toon_data/lupo_actor_roles.toon`
-
-**Columns Used in Code:**
-- `actor_role_id` ✓ (PK, BIGINT)
-- `actor_id` ✓ (BIGINT)
-- `role_key` ✓ (VARCHAR(100))
-- `is_deleted` ✓ (SMALLINT, DEFAULT 0)
-
-**Queries Verified:**
-1. ✅ Admin role check - `auth-helpers.php` line 294-298
+Table is **DROPPED**. Roles are channel-scoped only. Use **lupo_channel_roles** (actor_id, channel_id, role_type). Admin check: channel_id = 1, role_type IN ('captain', 'administrator'). See MIGRATION_MAPPING_REFERENCE.md.
 
 ---
 
@@ -221,7 +212,7 @@ file:
 - ✅ Get auth_user_id from actor_id - SELECT from lupo_actors
 
 ### Permission Queries
-- ✅ Admin role check - SELECT from lupo_actor_roles
+- ✅ Admin role check - SELECT from lupo_channel_roles (channel_id = 1, role_type IN ('captain', 'administrator'))
 - ✅ Admin module lookup - SELECT from lupo_modules (CORRECTED)
 - ✅ Admin permission check - SELECT from lupo_permissions
 

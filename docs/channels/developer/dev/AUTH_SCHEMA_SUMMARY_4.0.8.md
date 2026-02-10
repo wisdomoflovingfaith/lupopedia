@@ -141,46 +141,19 @@ file:
 
 ---
 
-## 3. Roles and Permissions: `lupo_actor_roles`
+## 3. Roles and Permissions (channel-scoped only)
 
-**Purpose:** Defines roles assigned to actors (users/agents) within specific contexts.
+**DROPPED:** The table `lupo_actor_roles` is **DROPPED**. Do not create or reference it. Roles belong to channels only; use `lupo_channel_roles`.
 
-**Primary Key:** `actor_role_id` (BIGINT, NOT NULL)
+**Use instead:** `lupo_channel_roles` (actor_id + channel_id → role_type). For system-wide admin, use default channel_id = 1 and role_type IN ('captain', 'administrator').
 
-**Key Fields:**
-- **Actor Link:** `actor_id` (BIGINT, NOT NULL) - References `lupo_actors.actor_id`
-  - Indexed: `actor_id_2`
-
-- **Role Definition:**
-  - `role_key` (VARCHAR(100), NOT NULL) - Role identifier (e.g., "admin", "editor", "viewer")
-  - `role_description` (TEXT, NULLABLE)
-  - `weight` (FLOAT, DEFAULT 1) - Role priority/weight
-
-- **Context Scoping:**
-  - `context_id` (BIGINT, DEFAULT 0) - Context/domain scope for this role
-  - `department_id` (BIGINT, NULLABLE) - Department scope (if applicable)
-  - Indexed: `context_id`, `department_id`
-
-- **Status Fields:**
-  - `is_deleted` (SMALLINT, DEFAULT 0)
-  - `deleted_ymdhis` (BIGINT, NULLABLE)
-
-- **Timestamps:**
-  - `created_ymdhis` (BIGINT, NOT NULL)
-  - `updated_ymdhis` (BIGINT, NULLABLE)
-
-**Unique Constraint:**
-- `actor_id` (UNIQUE) on (`actor_id`, `context_id`, `role_key`) - One role per actor per context
-
-**Usage for Admin Check:**
-- To check if a user has admin role:
+**Admin check (current):**
   ```sql
-  SELECT COUNT(*) FROM lupo_actor_roles ar
-  JOIN lupo_actors a ON ar.actor_id = a.actor_id
-  WHERE a.actor_source_type = 'user'
-    AND a.actor_source_id = {auth_user_id}
-    AND ar.role_key = 'admin'
-    AND ar.is_deleted = 0
+  SELECT COUNT(*) FROM lupo_channel_roles cr
+  WHERE cr.actor_id = {actor_id}
+    AND cr.channel_id = 1
+    AND cr.role_type IN ('captain', 'administrator')
+    AND (cr.is_deleted = 0 OR cr.is_deleted IS NULL)
   ```
 
 ---
@@ -415,7 +388,7 @@ file:
    - Set `expires_ymdhis` = current timestamp + session lifetime
 
 4. **Admin Check:**
-   - Option 1: Check `lupo_actor_roles` for `role_key = 'admin'`
+   - Option 1: Check `lupo_channel_roles` for channel_id = 1 and role_type IN ('captain', 'administrator')
    - Option 2: Check `lupo_permissions` for `permission = 'owner'` on admin module
    - Option 3: Check `lupo_actor_group_membership` for membership in admin group
 
@@ -434,12 +407,12 @@ file:
 - **Action:** Create helper function `get_actor_id_from_auth_user_id($auth_user_id)`
 
 ### 3. Admin Role Detection
-- **Finding:** Multiple ways to check admin status:
-  - `lupo_actor_roles.role_key = 'admin'`
+- **Finding:** Roles are channel-scoped. Admin check uses:
+  - `lupo_channel_roles` (channel_id = 1, role_type IN ('captain', 'administrator'))
   - `lupo_permissions.permission = 'owner'` on admin module
   - `lupo_actor_group_membership` in admin group
 - **Recommendation:** Define a single authoritative method for admin check
-- **Action:** Create `is_admin($actor_id)` helper function
+- **Action:** Create `is_admin($actor_id)` helper function (uses channel_roles)
 
 ### 4. Session Management
 - **Finding:** `lupo_sessions` uses VARCHAR(100) for `session_id` (PHP session ID)

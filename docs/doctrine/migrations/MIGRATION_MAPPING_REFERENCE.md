@@ -59,6 +59,8 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 | Legacy | New | Notes |
 |--------|-----|--------|
 | livehelp_sessions | **DROPPED** | Replaced by lupo_sessions (deterministic, actor-aware). No import. |
+| **{prefix}unified_sessions** | **MERGED & DROPPED** | Logic merged into {prefix}sessions; table removed from install. Single session table is {prefix}sessions. See one_time_unified_sessions_to_sessions.sql. |
+| **{prefix}actor_roles** | **DROPPED** | Roles are channel-scoped only. Use {prefix}channel_roles (actor_id + channel_id → role_type). Default channel_id = 1 for system-wide admin. See drop_lupo_actor_roles.sql. |
 | livehelp_identity_daily | **DROPPED** | No import. |
 | livehelp_identity_monthly | lupo_actors (anonymous) | actor_type='anonymous', slug='anon-&lt;id&gt;', metadata_json (legacy_cookieid, legacy_visit_count, legacy_month). |
 | livehelp_operator_channels (presence/colors) | lupo_actor_presence, metadata_json | Operator presence and UI colors; see livehelp_operator_channels_migration.md. |

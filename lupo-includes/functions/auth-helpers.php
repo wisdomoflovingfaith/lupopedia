@@ -306,13 +306,12 @@ function current_user() {
 }
 
 /**
- * Check if an actor has admin role
- * 
- * Checks multiple sources for admin status:
- * 1. lupo_actor_roles (role_key = 'admin') - highest priority
+ * Check if an actor has admin role (channel-scoped; default channel_id = 1).
+ *
+ * Roles belong to channels. No global actor roles. Checks:
+ * 1. lupo_channel_roles (channel_id = 1, role_type IN ('captain', 'administrator')) - highest priority
  * 2. lupo_permissions (permission = 'owner' on admin module)
- * 3. lupo_actor_group_membership (membership in admin group)
- * 
+ *
  * @param int $actor_id Actor ID to check
  * @return bool True if admin, false otherwise
  */
@@ -328,25 +327,25 @@ function lupo_is_admin($actor_id) {
     $db = $GLOBALS['mydatabase'];
     
     try {
-        // Use table prefix constant if defined, otherwise fallback to LUPO_PREFIX with underscore replacement
         if (defined('LUPO_TABLE_PREFIX')) {
             $table_prefix = LUPO_TABLE_PREFIX;
         } else {
             $table_prefix = str_replace('-', '_', LUPO_PREFIX);
         }
         
-        // Check 1: Actor roles (highest priority)
+        // Check 1: Channel roles on default channel (channel_id = 1). Actor roles table is DROPPED.
         $sql = "SELECT COUNT(*) as count
-        FROM {$table_prefix}actor_roles ar
-        WHERE ar.actor_id = :actor_id
-          AND ar.role_key = 'admin'
-          AND ar.is_deleted = 0";
+        FROM {$table_prefix}channel_roles cr
+        WHERE cr.actor_id = :actor_id
+          AND cr.channel_id = 1
+          AND cr.role_type IN ('captain', 'administrator')
+          AND (cr.is_deleted = 0 OR cr.is_deleted IS NULL)";
         
         $stmt = $db->prepare($sql);
         $stmt->execute([':actor_id' => $actor_id]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        if ($result['count'] > 0) {
+        if ($result && (int) $result['count'] > 0) {
             return true;
         }
         
@@ -390,11 +389,8 @@ function lupo_is_admin($actor_id) {
             }
         }
         
-        // Check 3: Group membership (lowest priority)
-        // NOTE: Schema issue - actor_group_membership_id is auto_increment PK, not actor_id FK
-        // The comment says it references actors.actor_id, but schema shows it's the primary key
-        // This check is disabled until schema is clarified or migration is created
-        // For now, admin status is determined by actor_roles and permissions only
+        // Check 3: Group membership (lowest priority) - disabled until schema clarified.
+        // Admin status is determined by channel_roles (default channel 1) and permissions only.
         
         return false;
         

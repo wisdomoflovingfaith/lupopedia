@@ -36,7 +36,7 @@ file:
 - [ ] Database connection verified
 - [ ] Test user account created (username: `testuser`, password: `testpass123`)
 - [ ] Test admin account created (username: `admin`, password: `adminpass123`)
-- [ ] Admin role assigned to admin account in `lupo_actor_roles`
+- [ ] Admin role assigned to admin account in `lupo_channel_roles` (channel_id = 1, role_type = 'captain' or 'administrator')
 - [ ] Browser developer tools open (Network tab, Console tab)
 - [ ] Error logs accessible
 
@@ -282,7 +282,7 @@ file:
 
 ### 8.4 Admin Status Check Methods
 - [ ] Log in as admin user
-- [ ] Verify admin status via `lupo_actor_roles` (role_key = 'admin')
+- [ ] Verify admin status via `lupo_channel_roles` (channel_id = 1, role_type IN ('captain', 'administrator'))
 - [ ] **Expected:** `lupo_is_admin($actor_id)` returns true
 - [ ] **Expected:** `current_user()['is_admin']` returns true
 

@@ -74,7 +74,8 @@ class AuthManager
     }
 
     /**
-     * Get permissions for the current user. Uses lupo_auth_users and actor/role tables when available.
+     * Get permissions for the current user. Uses lupo_auth_users and lupo_channel_roles (channel-scoped roles only).
+     * Default channel for system-wide permissions is channel_id = 1.
      */
     public function getUserPermissions(): array
     {
@@ -93,21 +94,21 @@ class AuthManager
             ['id' => $user->id]
         );
         if ($actor) {
-            $roleT = $this->db->quoteIdentifier(LUPO_TABLE_PREFIX . 'actor_channel_roles');
+            $roleT = $this->db->quoteIdentifier(LUPO_TABLE_PREFIX . 'channel_roles');
             $roles = $this->db->fetchAll(
-                "SELECT role_key FROM $roleT WHERE actor_id = :aid",
-                ['aid' => $actor['actor_id']]
+                "SELECT role_type FROM $roleT WHERE actor_id = :aid AND channel_id = :cid AND (is_deleted = 0 OR is_deleted IS NULL)",
+                ['aid' => $actor['actor_id'], 'cid' => 1]
             );
             foreach ($roles as $r) {
-                $key = $r['role_key'] ?? '';
-                if ($key === 'admin') {
+                $roleType = $r['role_type'] ?? '';
+                if (in_array($roleType, ['captain', 'administrator'], true)) {
                     $permissions[] = 'admin_access';
                     $permissions[] = 'user_management';
                     $permissions[] = 'system_configuration';
-                } elseif ($key === 'editor') {
+                } elseif ($roleType === 'editor') {
                     $permissions[] = 'content_editing';
                     $permissions[] = 'collection_management';
-                } elseif ($key === 'operator' || $key === 'support') {
+                } elseif (in_array($roleType, ['monitor', 'operator', 'support'], true)) {
                     $permissions[] = 'chat_support';
                     $permissions[] = 'visitor_tracking';
                 }

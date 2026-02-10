@@ -3,6 +3,8 @@
 **Date:** 2026-02-10  
 **Scope:** Full codebase + schema. No database or schema changes; analysis only.
 
+**Final status (post-cleanup):** The table `{prefix}unified_sessions` is **obsolete and removed**. It has been dropped from `database/migrations/install_new_lupopedia.sql`. The single session table is `{prefix}sessions`; all unified-session logic lives in the Session class and `{prefix}sessions`. The one-time migration `one_time_unified_sessions_to_sessions.sql` has been run; no runtime code references the unified_sessions table.
+
 ---
 
 ## 1. Search results: all references
@@ -42,9 +44,8 @@
   - **UnifiedSessionHandler** → uses `table() = LUPO_TABLE_PREFIX . 'sessions'` (i.e. **sessions**, not unified_sessions).
   - **Cookie name** → `LUPO_TABLE_PREFIX . 'unified_session'` (singular) — a cookie label, not a table.
   - **AuthManager** → return array key `'source' => 'unified_session'` (label only).
-- The **table** `lupo_unified_sessions` appears only in:
-  - `database/migrations/install_new_lupopedia.sql` (CREATE TABLE)
-  - `database/migrations/one_time_unified_sessions_to_sessions.sql` (migrate into lupo_sessions, then DROP)
+- The **table** `lupo_unified_sessions` is **removed from install**. It appears only in:
+  - `database/migrations/one_time_unified_sessions_to_sessions.sql` (one-time: migrate into lupo_sessions, then DROP)
   - `database/migrations/dev_20260204_fix_schema_alignment.sql` (ALTER)
   - `database/migrations/2026_01_26_schema_from_toon.sql`
   - `database/install/lupopedia_mysql.sql`

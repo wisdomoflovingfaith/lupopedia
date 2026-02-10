@@ -374,26 +374,6 @@ CREATE INDEX lupo_actor_reply_templates_idx_updated ON lupo_actor_reply_template
 CREATE INDEX lupo_actor_reply_templates_idx_deleted ON lupo_actor_reply_templates (is_deleted);
 CREATE INDEX lupo_actor_reply_templates_idx_usage_context ON lupo_actor_reply_templates (usage_context);
 
-CREATE TABLE lupo_actor_roles (
-  actor_role_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  context_id bigint NOT NULL DEFAULT '0',
-  department_id bigint DEFAULT NULL,
-  role_key varchar(100) NOT NULL,
-  role_description text,
-  weight float DEFAULT '1',
-  created_ymdhis bigint NOT NULL,
-  updated_ymdhis bigint DEFAULT NULL,
-  is_deleted smallint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (actor_role_id)
-);
-
-CREATE UNIQUE INDEX lupo_actor_roles_actor_id ON lupo_actor_roles (actor_id, context_id, role_key);
-CREATE INDEX lupo_actor_roles_actor_id_2 ON lupo_actor_roles (actor_id);
-CREATE INDEX lupo_actor_roles_context_id ON lupo_actor_roles (context_id);
-CREATE INDEX lupo_actor_roles_department_id ON lupo_actor_roles (department_id);
-
 CREATE TABLE lupo_actor_truth_edges (
   actor_truth_edge_id bigint NOT NULL,
   actor_id bigint NOT NULL,
@@ -3993,24 +3973,6 @@ CREATE UNIQUE INDEX lupo_unified_registry_uniq_entity_type_dedicated_index ON lu
 CREATE INDEX lupo_unified_registry_idx_entity_key ON lupo_unified_registry (entity_key);
 CREATE INDEX lupo_unified_registry_idx_source_table ON lupo_unified_registry (entity_table);
 CREATE INDEX lupo_unified_registry_idx_entity_type ON lupo_unified_registry (entity_type);
-
-CREATE TABLE lupo_unified_sessions (
-  unified_session_id bigint NOT NULL,
-  session_id varchar(255) NOT NULL,
-  user_id bigint DEFAULT NULL,
-  system_context varchar(50) NOT NULL,
-  session_data json DEFAULT NULL,
-  expires_at bigint,
-  created_at bigint,
-  updated_at bigint,
-  PRIMARY KEY (unified_session_id)
-);
-
-CREATE UNIQUE INDEX lupo_unified_sessions_unique_session_id ON lupo_unified_sessions (session_id);
-CREATE INDEX lupo_unified_sessions_idx_user_id ON lupo_unified_sessions (user_id);
-CREATE INDEX lupo_unified_sessions_idx_system_context ON lupo_unified_sessions (system_context);
-CREATE INDEX lupo_unified_sessions_idx_expires_at ON lupo_unified_sessions (expires_at);
-CREATE INDEX lupo_unified_sessions_idx_created_at ON lupo_unified_sessions (created_at);
 
 CREATE TABLE lupo_unified_truth_items (
   truth_item_id bigint NOT NULL,

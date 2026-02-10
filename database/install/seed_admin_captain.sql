@@ -128,40 +128,39 @@ WHERE `slug` = @admin_slug
 LIMIT 1;
 
 -- ============================================================
--- ADMIN ROLE
+-- CHANNEL ROLE (default channel_id = 1; roles are channel-scoped)
 -- ============================================================
+-- Actor roles are deprecated. Roles belong to channels (lupo_channel_roles).
 
--- 7. Determine next actor_role_id
-SET @new_role_id = (SELECT COALESCE(MAX(actor_role_id), 0) + 1 FROM `lupo_actor_roles`);
+-- 7. Default channel for system-wide admin is channel_id = 1 (ensure it exists in lupo_channels).
+-- 8. Determine next channel_role_id
+SET @new_channel_role_id = (SELECT COALESCE(MAX(channel_role_id), 0) + 1 FROM `lupo_channel_roles`);
 
--- 8. Cleanup any existing admin role for this actor
-DELETE FROM `lupo_actor_roles`
+-- 9. Remove any existing captain/administrator role for this actor on channel 1
+DELETE FROM `lupo_channel_roles`
 WHERE `actor_id` = @captain_actor_id
-  AND `role_key` = 'admin'
-  AND `is_deleted` = 0;
+  AND `channel_id` = 1
+  AND `role_type` IN ('captain', 'administrator')
+  AND (is_deleted = 0 OR is_deleted IS NULL);
 
--- 9. Insert admin role
-INSERT INTO `lupo_actor_roles` (
-    `actor_role_id`,
+-- 10. Insert channel role: captain on channel 1 (system default)
+INSERT INTO `lupo_channel_roles` (
+    `channel_role_id`,
+    `channel_id`,
     `actor_id`,
-    `context_id`,
-    `department_id`,
-    `role_key`,
-    `role_description`,
-    `weight`,
+    `role_type`,
+    `metadata_json`,
     `created_ymdhis`,
     `updated_ymdhis`,
     `is_deleted`,
     `deleted_ymdhis`
 )
 VALUES (
-    @new_role_id,
+    @new_channel_role_id,
+    1,
     @captain_actor_id,
-    0,
+    'captain',
     NULL,
-    'admin',
-    'System Administrator - Full access to all admin functions',
-    1.0,
     @now,
     @now,
     0,

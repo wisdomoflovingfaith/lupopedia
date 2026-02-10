@@ -125,10 +125,12 @@ if (file_exists($session_manager_class)) {
     require_once $session_manager_class;
 }
 
-// Create Session instance (constructor injection: $db, UnifiedSessionHandler)
+// Create Session instance; handler delegates all DB to Session (thin wrapper: cookie + system_context only)
 $lupo_session = null;
 if (class_exists('App\Auth\Session') && isset($GLOBALS['mydatabase'])) {
-    $lupo_session = new \App\Auth\Session($GLOBALS['mydatabase'], new \App\Auth\UnifiedSessionHandler($GLOBALS['mydatabase']));
+    $unified_handler = new \App\Auth\UnifiedSessionHandler($GLOBALS['mydatabase']);
+    $lupo_session = new \App\Auth\Session($GLOBALS['mydatabase'], $unified_handler);
+    $unified_handler->setSession($lupo_session);
     $GLOBALS['lupo_session'] = $lupo_session;
 }
 

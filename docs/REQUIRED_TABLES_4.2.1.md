@@ -35,6 +35,10 @@ signature: cascade
 **Total Tables:** 261  
 **Ceiling Status:** 39 over ceiling - requires consolidation
 
+**Session table:** The single session table is `{prefix}sessions`. The table `{prefix}unified_sessions` is obsolete and has been removed from the install; its logic was merged into `{prefix}sessions`.
+
+**Roles:** Roles are channel-scoped only. The only role table is `{prefix}channel_roles` (actor_id + channel_id → role_type). The table `{prefix}actor_roles` is **DROPPED**; do not create or reference it. Use `{prefix}channel_roles` with default channel_id = 1 for system-wide permissions.
+
 ---
 
 ## Required Crafty Syntax Compatibility Tables
@@ -80,7 +84,6 @@ signature: cascade
 - lupo_actor_object_edges
 - lupo_actor_persona_relationships
 - lupo_actor_properties
-- lupo_actor_roles
 - lupo_actor_truth_edges
 - lupo_actors
 - lupo_agent_context_snapshots
@@ -224,7 +227,6 @@ signature: cascade
 - lupo_unified_dialog_messages
 - lupo_unified_paths_firsts
 - lupo_unified_registry
-- lupo_unified_sessions
 - lupo_unified_truth_items
 - lupo_unified_websites
 - lupo_user_comments

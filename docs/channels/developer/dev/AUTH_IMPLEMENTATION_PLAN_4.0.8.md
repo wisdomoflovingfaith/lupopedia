@@ -220,14 +220,14 @@ function lupo_verify_password($password, $hash) {
 - Exit script if not admin
 
 #### `lupo_is_admin($actor_id)`
-- Check if actor has admin role
-- Check `lupo_actor_roles` for `role_key = 'admin'`
+- Check if actor has admin role (channel-scoped; no global actor_roles)
+- Check `lupo_channel_roles` for channel_id = 1 and role_type IN ('captain', 'administrator')
 - Check `lupo_permissions` for `permission = 'owner'` on admin module
 - Check `lupo_actor_group_membership` for membership in admin group
 - Return true if any check passes, false otherwise
 
 **Admin Detection Priority:**
-1. `lupo_actor_roles.role_key = 'admin'` (highest priority)
+1. `lupo_channel_roles` (channel_id = 1, role_type IN ('captain', 'administrator')) (highest priority)
 2. `lupo_permissions.permission = 'owner'` on admin module
 3. `lupo_actor_group_membership` in admin group (lowest priority)
 
@@ -467,16 +467,15 @@ WHERE actor_source_type = 'user'
 LIMIT 1
 ```
 
-### 9.3 Admin Check Query (Role-based)
+### 9.3 Admin Check Query (Channel roles; default channel_id = 1)
 
 ```sql
 SELECT COUNT(*) as admin_count
-FROM lupo_actor_roles ar
-JOIN lupo_actors a ON ar.actor_id = a.actor_id
-WHERE a.actor_source_type = 'user'
-  AND a.actor_source_id = :auth_user_id
-  AND ar.role_key = 'admin'
-  AND ar.is_deleted = 0
+FROM lupo_channel_roles cr
+WHERE cr.actor_id = :actor_id
+  AND cr.channel_id = 1
+  AND cr.role_type IN ('captain', 'administrator')
+  AND (cr.is_deleted = 0 OR cr.is_deleted IS NULL)
 ```
 
 ### 9.4 Session Creation Query
@@ -686,8 +685,8 @@ define('LUPO_BCRYPT_COST', 10);
      - `name` = display_name
    - Get `actor_id`
 
-3. **Check Roles:**
-   - Query `lupo_actor_roles` for `actor_id` and `role_key = 'admin'`
+3. **Check Roles (channel-scoped only):**
+   - Query `lupo_channel_roles` for `actor_id`, channel_id = 1, role_type IN ('captain', 'administrator')
    - Query `lupo_permissions` for `user_id` and `permission = 'owner'`
    - Query `lupo_actor_group_membership` for admin groups
 

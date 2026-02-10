@@ -69,18 +69,11 @@ class AuthGuard
     }
 
     /**
-     * Update session last_seen_ymdhis in lupo_sessions. $sessionId from session_id().
+     * Update session last_seen_ymdhis in lupo_sessions via Session. $sessionId from session_id().
      */
     public function updateUserActivity(string $sessionId, $unifiedUser, string $systemContext): void
     {
-        $now = (int) gmdate('YmdHis');
-        $table = LUPO_TABLE_PREFIX . 'sessions';
-        $this->db->update(
-            $table,
-            ['last_seen_ymdhis' => $now, 'updated_ymdhis' => $now],
-            'session_id = :sid',
-            ['sid' => $sessionId]
-        );
+        $this->sessionHandler->updateSessionActivity($sessionId);
     }
 
     public function getSessionHandler(): UnifiedSessionHandler
