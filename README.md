@@ -15,6 +15,8 @@ DETAILS:
 
 **Lupopedia is a semantic operating system (not a CMS or framework). It records meaning; it doesn't impose it.**
 
+Lupopedia includes **all the live help features of Crafty Syntax** — real-time chat, operator sessions, visitor tracking, departments, proactive invites, transcripts, and the rest — and builds **on top of that** a **semantic OS** for relations between files, content, and people. Actors have **roles by channel**; channels, collections, and content are connected through a unified identity and relationship layer. So you get the full Crafty Syntax experience plus a structured layer of meaning, navigation, and governance.
+
 ## The Five Pillars
 
 1. **Actor Pillar** - Identity is primary (email = login)

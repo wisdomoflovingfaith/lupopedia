@@ -20,7 +20,7 @@ file.updated_by: agent:cascade
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 4.0.0
 file.channel: versioning
-file.last_modified_utc: 20260204000000
+file.last_modified_utc: 20260210000000
 file.name: "CHANGELOG.md"
 ---
 
@@ -34,6 +34,36 @@ This root-level CHANGELOG.md is a high-level meta-log and does not
 represent the full version history of the Semantic OS. Contributors
 should refer to the channel-based changelog for authoritative version
 increments, doctrine updates, and schema-related notes.
+
+## 2026-02-10 — Remaining Helper Refactors + Version Doctrine
+
+### Summary
+Completed domain-by-domain helper refactors (Collection Zero, Collection Tabs, Saved Collections, Redirect, Limits, Atoms/Version, Upload) per `docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md`. Introduced authoritative Version Doctrine: 4.0.0 is the only release target; 4.0.1–4.0.8 must not be referenced in code, SQL, or UI; only upgrade path is Crafty Syntax 3.7.5 → Lupopedia 4.0.0; 4.1.0 is the only future version.
+
+### Helper refactors (services and wrappers)
+- **CollectionZeroService** (`app/Services/CollectionZeroService.php`): ensureCollectionZero, populateCollectionZeroTabs, getCollectionZeroUrl, initializeCollectionZero. Thin wrappers in `collection-zero-helpers.php`.
+- **CollectionTabsService** (`app/Services/CollectionTabsService.php`): loadCollectionTabs, getCollectionName. Wrappers in `collection-tabs-loader.php`.
+- **SavedCollectionsService** (`app/Services/SavedCollectionsService.php`): renderSavedCollections, loadTabChildren, countTabItems. Schema aligned to TOONs (collection_id, name, lupo_contents). Wrappers in `render-saved-collections.php`.
+- **RedirectUtils** (`app/Support/RedirectUtils.php`): safeRedirect. Wrapper in `redirect-helpers.php`.
+- **LimitsLogger** (`app/Support/LimitsLogger.php`): logViolation. Limits helpers in `limits_logger.php` wrap LimitsEnforcementService and LimitsLogger.
+- **AtomLoader** (`app/Support/AtomLoader.php`), **VersionUtils** (`app/Support/VersionUtils.php`): loadAtoms, getAtom, getLupopediaVersion, readCosmicMicrowaveBackground, getBaseAtom, parseAtomsYaml, parseAtomsYamlRegex; calculateVersionNum. Wrappers in `load_atoms.php`.
+- **UploadService** (`app/Services/UploadService.php`): getHandler, upload. Wrappers in `upload-handler.php`.
+- **Bootstrap** (`lupo-includes/bootstrap.php`): Registers collection-zero, collection-tabs, saved-collections, upload, atom-loader services in GLOBALS; loads RedirectUtils, LimitsLogger, AtomLoader, VersionUtils.
+
+### Version doctrine
+- **docs/doctrine/VERSION_DOCTRINE.md:** New canonical doctrine. 4.0.0 only release target; 4.0.1–4.0.8 not releases; upgrade path 3.7.5 → 4.0.0; 4.1.0 only future version; code/SQL/UI rules; single source of truth (atoms, fallbacks).
+- **.cursorrules:** Version doctrine bullet added; reference to VERSION_DOCTRINE.md.
+- **Code fallbacks:** All version fallbacks and examples set to 4.0.0 (replaced 3.0.35, 4.2.3, 4.2.0, 4.4.1, 3.0.106, 3.0.9, 3.0.18 in load_atoms.php, AtomLoader.php, VersionUtils.php, version.php, identity-helpers.php, limits_logger.php, redirect-helpers.php, collection-tabs-loader.php, help-model.php).
+- **Install/seed SQL:** All DEFAULT '4.0.72' and '4.0.75' set to '4.0.0' in `install_new_lupopedia.sql`, `seed_lupopedia.sql`, `dev_20260204_fix_schema_alignment.sql` (and summary).
+- **Docs:** HELPER_TO_CLASS_MAPPING_ANALYSIS.md, REMAINING_HELPERS_REFACTOR_REPORT.md (fallback 4.0.0); REQUIRED_TABLES_4.2.1.md (release version 4.0.0).
+
+### Reports
+- **docs/REMAINING_HELPERS_REFACTOR_REPORT.md:** Files changed, helpers migrated per domain, references, confirmations (PDO_DB, LUPO_TABLE_PREFIX, schema).
+- **docs/VERSION_DOCTRINE_APPLICATION_REPORT.md:** Files updated, version refs removed/corrected, confirmations (only 4.0.0/4.1.0; no 4.0.1–4.0.8; upgrade path 3.7.5 → 4.0.0).
+
+### Notes
+- Auth, Actor, Session, UnifiedSessionHandler, and Crafty Syntax domains were not modified.
+- Internal/historical docs (e.g. channel changelogs, migration filenames) unchanged; doctrine allows 4.0.x in internal docs as dev notes.
 
 ## 2026-02-04 — Python Scripts Consolidation + Doctrine (scripts/ Only)
 
