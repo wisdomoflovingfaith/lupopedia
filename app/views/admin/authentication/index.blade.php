@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12">
             <h1>Authentication Management</h1>
-            <p class="text-muted">Manage unified authentication between Lupopedia and Crafty Syntax</p>
+            <p class="text-muted">Manage authentication and user role mappings</p>
         </div>
     </div>
 
@@ -40,8 +40,8 @@
         <div class="col-md-3">
             <div class="card bg-warning text-white">
                 <div class="card-body">
-                    <h5 class="card-title">Crafty Operators</h5>
-                    <h3>{{ $stats['total_crafty_operators'] }}</h3>
+                    <h5 class="card-title">Mapped Users</h5>
+                    <h3>{{ $stats['mapped_users'] ?? 0 }}</h3>
                 </div>
             </div>
         </div>
@@ -82,13 +82,12 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    @if($mappings->count() > 0)
+                    @if(count($mappings ?? []) > 0)
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Lupopedia User</th>
-                                        <th>Crafty Operator</th>
                                         <th>Mapping Type</th>
                                         <th>Created</th>
                                         <th>Actions</th>
@@ -98,21 +97,27 @@
                                     @foreach($mappings as $mapping)
                                         <tr>
                                             <td>
-                                                <strong>{{ $mapping->lupo_name ?? 'N/A' }}</strong><br>
-                                                <small class="text-muted">{{ $mapping->lupo_email }}</small>
+                                                <strong>{{ $mapping->lupo_name ?? $mapping['lupo_name'] ?? 'N/A' }}</strong><br>
+                                                <small class="text-muted">{{ $mapping->lupo_email ?? $mapping['lupo_email'] ?? '' }}</small>
                                             </td>
                                             <td>
-                                                <strong>{{ $mapping->crafty_name ?? 'N/A' }}</strong><br>
-                                                <small class="text-muted">{{ $mapping->crafty_email }}</small>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-{{ $mapping->mapping_type == 'manual' ? 'primary' : ($mapping->mapping_type == 'auto' ? 'success' : 'info') }}">
-                                                    {{ ucfirst($mapping->mapping_type) }}
+                                                @php $mType = $mapping->mapping_type ?? $mapping['mapping_type'] ?? 'manual'; @endphp
+                                                <span class="badge badge-{{ $mType == 'manual' ? 'primary' : ($mType == 'auto' ? 'success' : 'info') }}">
+                                                    {{ ucfirst($mType) }}
                                                 </span>
                                             </td>
-                                            <td>{{ \Carbon\Carbon::parse($mapping->created_at)->format('M j, Y g:i A') }}</td>
+                                            <td>@php
+$ca = $mapping->created_at ?? $mapping['created_at'] ?? null;
+if ($ca !== null) {
+    $s = str_pad((string)(int)$ca, 14, '0', STR_PAD_LEFT);
+    if (strlen($s) >= 14) {
+        echo date('M j, Y g:i A', strtotime(substr($s,0,4).'-'.substr($s,4,2).'-'.substr($s,6,2).' '.substr($s,8,2).':'.substr($s,10,2).':'.substr($s,12,2)));
+    } else { echo '—'; }
+} else { echo '—'; }
+@endphp</td>
                                             <td>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteMapping({{ $mapping->id }})">
+                                                @php $mid = $mapping->crafty_user_mapping_id ?? $mapping['crafty_user_mapping_id'] ?? $mapping->id ?? $mapping['id'] ?? 0; @endphp
+                                                <button class="btn btn-sm btn-danger" onclick="deleteMapping({{ $mid }})">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </td>
@@ -137,80 +142,40 @@
 
         <!-- Unmapped Users Tab -->
         <div class="tab-pane fade" id="unmapped" role="tabpanel">
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">Unmapped Lupopedia Users</h5>
-                        </div>
-                        <div class="card-body">
-                            @if($unmappedUsers->count() > 0)
-                                <div class="table-responsive">
-                                    <table class="table table-sm">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($unmappedUsers as $user)
-                                                <tr>
-                                                    <td>{{ $user->name ?? 'N/A' }}</td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-outline-primary" onclick="mapUser({{ $user->id }}, 'lupo')">
-                                                            Map User
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            @else
-                                <p class="text-muted">All Lupopedia users are mapped.</p>
-                            @endif
-                        </div>
-                    </div>
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5 class="mb-0">Unmapped Lupopedia Users</h5>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">Unmapped Crafty Operators</h5>
+                <div class="card-body">
+                    @if(count($unmappedUsers ?? []) > 0)
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($unmappedUsers as $user)
+                                        <tr>
+                                            <td>{{ is_array($user) ? ($user['name'] ?? 'N/A') : ($user->name ?? 'N/A') }}</td>
+                                            <td>{{ is_array($user) ? ($user['email'] ?? '') : ($user->email ?? '') }}</td>
+                                            <td>
+                                                @php $uid = is_array($user) ? ($user['id'] ?? 0) : ($user->id ?? 0); @endphp
+                                                <button class="btn btn-sm btn-outline-primary" onclick="mapUser({{ $uid }}, 'lupo')">
+                                                    Map User
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="card-body">
-                            @if($unmappedOperators->count() > 0)
-                                <div class="table-responsive">
-                                    <table class="table table-sm">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($unmappedOperators as $operator)
-                                                <tr>
-                                                    <td>{{ $operator->crafty_name ?? 'N/A' }}</td>
-                                                    <td>{{ $operator->crafty_email }}</td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-outline-success" onclick="mapUser({{ $operator->operatorid }}, 'crafty')">
-                                                            Map Operator
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            @else
-                                <p class="text-muted">All Crafty Syntax operators are mapped.</p>
-                            @endif
-                        </div>
-                    </div>
+                    @else
+                        <p class="text-muted">All Lupopedia users have a mapping or there are no users.</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -222,7 +187,7 @@
                     <h5 class="mb-0">Active Sessions</h5>
                 </div>
                 <div class="card-body">
-                    @if($activeSessions->count() > 0)
+                    @if(count($activeSessions ?? []) > 0)
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>

@@ -37,15 +37,13 @@ require_once("admin_common.php");
 require_once("department_function.php");
 validate_session($identity);
 // get the info of this user.. 
-// Updated to use Lupopedia table mapping: livehelp_users → lupo_users
-$sqlquery = "SELECT user_id,onchannel,show_arrival,user_alert,isadmin FROM lupo_users WHERE sessionid='".$identity['SESSIONID']."'";	
-$res = $mydatabase->query($sqlquery);
-$row = $res->fetchRow(DB_FETCHMODE_ORDERED);
-$myid = $row[0];
-$channel = $row[1];
-$show_arrival = $row[2]; 
-$user_alert = $row[3];
-$isadminsetting = $row[4];
+$people = crafty_get_session_people($identity['SESSIONID']);
+$row = $people ? [$people['user_id'], $people['onchannel'], $people['show_arrival'], $people['user_alert'], $people['isadmin']] : [0, 0, 0, 0, 0];
+$myid = (int) $row[0];
+$channel = (int) $row[1];
+$show_arrival = (int) $row[2];
+$user_alert = (int) $row[3];
+$isadminsetting = isset($row[4]) ? $row[4] : 0;
 if(!(isset($UNTRUSTED['createnew']))) { $UNTRUSTED['createnew'] = ""; }
 if(!(isset($UNTRUSTED['createit']))) { $UNTRUSTED['createit'] = ""; }
 if(!(isset($UNTRUSTED['removeit']))) { $UNTRUSTED['removeit'] = ""; }

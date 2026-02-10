@@ -1,22 +1,17 @@
 <?php
+
 /**
- * Terminal AI Routes
- * 
- * Defines HTTP routes for Terminal AI subsystem.
- * 
- * @package Routes
- * @version 3.0.101
- * @author Captain Wolfie
+ * DEPRECATED: Laravel route file. This project does not use Laravel.
+ *
+ * Use the plain PHP route map instead:
+ *   $routes = require __DIR__ . '/terminal_routes.php';
+ *
+ * Wire POST /terminal/execute to TerminalAIController::execute(array $input).
+ * Wire GET /terminal/utc to TerminalAIService::utc() and return ['utc' => ...].
+ *
+ * Do not use Illuminate\Support\Facades\Route.
  */
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TerminalAIController;
+trigger_error('routes/terminal.php is deprecated; use terminal_routes.php and your own router', E_USER_DEPRECATED);
 
-Route::post('/terminal/execute', [TerminalAIController::class, 'execute']);
-
-Route::get('/terminal/utc', function () {
-    $service = new \App\TerminalAI\Services\TerminalAIService();
-    return response()->json([
-        "utc" => $service->utc()
-    ]);
-});
+return require __DIR__ . '/terminal_routes.php';

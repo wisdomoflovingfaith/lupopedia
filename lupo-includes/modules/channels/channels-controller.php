@@ -30,8 +30,8 @@ function channels_handle_show($channel_id) {
             $actor_id = (int) $user['actor_id'];
         }
     }
-    if (!$actor_id && function_exists('lupo_validate_session')) {
-        $actor_id = lupo_validate_session();
+    if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+        $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
         $login_url = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login?redirect=' . urlencode((defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/channels/' . $channel_id . '/');
@@ -186,7 +186,7 @@ function channels_handle_show($channel_id) {
     $pending_visitors = [];
     $meta_col = 'metadata_json';
     try {
-        $stmt = $db->prepare("SELECT session_id, last_seen_ymdhis, created_ymdhis, {$meta_col} FROM {$table_prefix}sessions WHERE actor_id = 0 AND is_deleted = 0 AND {$meta_col} IS NOT NULL AND {$meta_col} != ''");
+        $stmt = $db->prepare("SELECT session_id, last_seen_ymdhis, created_ymdhis, name_key, is_named, {$meta_col} FROM {$table_prefix}sessions WHERE actor_id = 0 AND is_deleted = 0 AND {$meta_col} IS NOT NULL AND {$meta_col} != ''");
         $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $meta = json_decode($row[$meta_col] ?? '{}', true);
@@ -209,6 +209,8 @@ function channels_handle_show($channel_id) {
                 'dialog_thread_id'   => $tid,
                 'department_id'      => (int)($cs['department_id'] ?? 0),
                 'created_ymdhis'     => $row['created_ymdhis'] ?? $row['last_seen_ymdhis'] ?? '',
+                'name_key'           => isset($row['name_key']) ? (string) $row['name_key'] : null,
+                'is_named'           => isset($row['is_named']) ? (int) $row['is_named'] : 0,
             ];
         }
     } catch (Throwable $e) {
@@ -223,7 +225,7 @@ function channels_handle_show($channel_id) {
         $visitors[] = $row;
     }
     try {
-        $stmt = $db->prepare("SELECT session_id, last_seen_ymdhis, {$meta_col} FROM {$table_prefix}sessions WHERE actor_id = 0 AND is_deleted = 0 AND {$meta_col} IS NOT NULL AND {$meta_col} != ''");
+        $stmt = $db->prepare("SELECT session_id, last_seen_ymdhis, name_key, is_named, {$meta_col} FROM {$table_prefix}sessions WHERE actor_id = 0 AND is_deleted = 0 AND {$meta_col} IS NOT NULL AND {$meta_col} != ''");
         $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $meta = json_decode($row[$meta_col] ?? '{}', true);
@@ -238,16 +240,19 @@ function channels_handle_show($channel_id) {
                 continue;
             }
             $tid = isset($cs['dialog_thread_id']) ? (int) $cs['dialog_thread_id'] : 0;
+            $visitor_name = (!empty($row['is_named']) && isset($row['name_key']) && $row['name_key'] !== '') ? (string) $row['name_key'] : ('Visitor ' . substr($row['session_id'], 0, 8));
             $visitors[] = [
                 'actor_channel_id' => 0,
                 'actor_id'         => 0,
                 'channel_id'       => $channel_id,
                 'status'           => 'A',
-                'actor_name'       => 'Visitor ' . substr($row['session_id'], 0, 8),
+                'actor_name'       => $visitor_name,
                 'actor_slug'       => 'visitor-' . substr($row['session_id'], 0, 8),
                 'actor_type'       => 'anonymous',
                 'visitor_session_id' => $row['session_id'],
                 'dialog_thread_id'   => $tid,
+                'name_key'         => isset($row['name_key']) ? (string) $row['name_key'] : null,
+                'is_named'         => isset($row['is_named']) ? (int) $row['is_named'] : 0,
             ];
         }
     } catch (Throwable $e) {
@@ -331,8 +336,8 @@ function channels_handle_log_show($channel_id) {
             $actor_id = (int) $user['actor_id'];
         }
     }
-    if (!$actor_id && function_exists('lupo_validate_session')) {
-        $actor_id = lupo_validate_session();
+    if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+        $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
         $login_url = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login?redirect=' . urlencode((defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/channels/' . $channel_id . '/log');
@@ -390,30 +395,33 @@ function channels_handle_log_show($channel_id) {
     }
 
     $actor_role = null;
-    $stmt = $db->prepare("SELECT channel_role_id, role_type FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
-    $stmt->execute([':channel_id' => $channel_id, ':actor_id' => $actor_id]);
-    $actor_role = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    $actor_role = null;
     $log_entries = [];
-    $stmt = $db->prepare("SELECT l.channel_log_id, l.channel_id, l.actor_id, l.role_type, l.log_type_id, l.log_text, l.metadata_json, l.pinned, l.created_ymdhis, l.updated_ymdhis FROM {$table_prefix}channel_logs l WHERE l.channel_id = :channel_id AND l.is_deleted = 0 ORDER BY l.pinned DESC, l.created_ymdhis DESC");
-    $stmt->execute([':channel_id' => $channel_id]);
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $log_entries[] = $row;
-    }
-
     $log_types = [];
-    $stmt = $db->query("SELECT log_type_id, type_key, type_label, description FROM {$table_prefix}channel_log_types WHERE is_deleted = 0 ORDER BY type_label");
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $log_types[] = $row;
-    }
-
-    $actor_ids = array_unique(array_filter(array_column($log_entries, 'actor_id')));
     $actor_names = [];
-    if (!empty($actor_ids)) {
-        $placeholders = implode(',', array_fill(0, count($actor_ids), '?'));
-        $stmt = $db->prepare("SELECT actor_id, name FROM {$table_prefix}actors WHERE actor_id IN ($placeholders) AND is_deleted = 0");
-        $stmt->execute(array_values($actor_ids));
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    if ($db instanceof \PDO_DB) {
+        $actor_role = $db->fetchRow(
+            "SELECT channel_role_id, role_type FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1",
+            ['channel_id' => $channel_id, 'actor_id' => $actor_id]
+        );
+        $log_entries = $db->fetchAll(
+            "SELECT l.channel_log_id, l.channel_id, l.actor_id, l.role_type, l.log_type_id, l.log_text, l.metadata_json, l.pinned, l.created_ymdhis, l.updated_ymdhis FROM {$table_prefix}channel_logs l WHERE l.channel_id = :channel_id AND l.is_deleted = 0 ORDER BY l.pinned DESC, l.created_ymdhis DESC",
+            ['channel_id' => $channel_id]
+        );
+        $log_types = $db->fetchAll("SELECT log_type_id, type_key, type_label, description FROM {$table_prefix}channel_log_types WHERE is_deleted = 0 ORDER BY type_label");
+    }
+    $actor_ids = array_unique(array_filter(array_column($log_entries, 'actor_id')));
+    if (!empty($actor_ids) && $db instanceof \PDO_DB) {
+        $params = [];
+        $ph = [];
+        foreach (array_values($actor_ids) as $i => $id) {
+            $k = 'aid' . $i;
+            $params[$k] = $id;
+            $ph[] = ':' . $k;
+        }
+        $placeholders = implode(',', $ph);
+        $rows = $db->fetchAll("SELECT actor_id, name FROM {$table_prefix}actors WHERE actor_id IN ($placeholders) AND is_deleted = 0", $params);
+        foreach ($rows as $row) {
             $actor_names[(int) $row['actor_id']] = $row['name'];
         }
     }
@@ -478,8 +486,8 @@ function channels_handle_log_create($channel_id) {
             $actor_id = (int) $user['actor_id'];
         }
     }
-    if (!$actor_id && function_exists('lupo_validate_session')) {
-        $actor_id = lupo_validate_session();
+    if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+        $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
         $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
@@ -557,8 +565,8 @@ function channels_handle_my_channels() {
             $actor_id = (int) $user['actor_id'];
         }
     }
-    if (!$actor_id && function_exists('lupo_validate_session')) {
-        $actor_id = lupo_validate_session();
+    if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+        $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
         $login_url = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login?redirect=' . urlencode((defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/channels/my-channels');
@@ -656,8 +664,8 @@ function channels_handle_edit_channel($channel_id) {
             $actor_id = (int) $user['actor_id'];
         }
     }
-    if (!$actor_id && function_exists('lupo_validate_session')) {
-        $actor_id = lupo_validate_session();
+    if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+        $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
         header('Location: ' . $base . '/login?redirect=' . urlencode($base . '/channels/' . $channel_id . '/edit'));
@@ -769,8 +777,8 @@ function channels_handle_edit_channel_save($channel_id) {
             $actor_id = (int) $user['actor_id'];
         }
     }
-    if (!$actor_id && function_exists('lupo_validate_session')) {
-        $actor_id = lupo_validate_session();
+    if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+        $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
         header('Location: ' . $base . '/login?redirect=' . urlencode($base . '/channels/' . $channel_id . '/edit'));

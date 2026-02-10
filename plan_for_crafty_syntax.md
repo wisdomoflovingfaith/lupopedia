@@ -12,6 +12,46 @@ System Version: 4.0.0
 
 ---
 
+## Project context (current state)
+
+This project assumes we are starting from **one of two entry points**:
+
+1. **New install** — A fresh Lupopedia 4.x installation with no prior Crafty Syntax data.
+2. **Upgrade from Crafty Syntax 3.7.5** — An existing Crafty Syntax Live Help site being migrated into Lupopedia.
+
+The **SQL files we are concerned with updating** are those that define or alter the database for these two paths:
+
+- **New install:**  
+  - `database/migrations/install_new_lupopedia.sql` — canonical schema (CREATE TABLE, etc.).  
+  - `database/migrations/seed_lupopedia.sql` — canonical seed data (unified registry, PK=0 rows, active agents as actors, TOON-defined rows, `ALTER TABLE lupo_actors AUTO_INCREMENT = 10000`). Run after `install_new_lupopedia.sql`.
+- **Upgrade from 3.7.5:**  
+  - Migration(s) that import or transform legacy Crafty Syntax data into Lupopedia tables (e.g. `craftysyntax_to_lupopedia_mysql.sql` or equivalent in `database/migrations/` or `database/migrations_legacy/`). These are **one-time migrations** that change the database; the **install SQL** (`install_new_lupopedia.sql`) is also updated as we make schema changes so that future new installs get the same structure.
+
+**TOON files** (`docs/toons/*.toon.json`):
+
+- Are **generated from the resulting database** (after install or after migrations), not written by hand.
+- Are produced by the canonical script: `python scripts/generate_toon_files.py` (see `docs/channels/dev-teams/governance/GOV-TOON-GENERATION-001.md`).
+- Serve as the **reference for column names and tables** for all application code, migrations, and seed generation. Code and SQL must align with TOON; TOON is the schema oracle.
+
+**Migrations and install SQL:**
+
+- **One-time migrations** are used to change the database (new columns, new tables, data transforms). After running a migration, the live database is updated; then TOONs are regenerated from that database.
+- **Install SQL** (`install_new_lupopedia.sql`) is updated to reflect the same schema so that a brand‑new install produces the same structure. Seed data is regenerated via `python scripts/generate_seed_from_toons.py` and written to `database/migrations/seed_lupopedia.sql`.
+
+**Themes and design:**
+
+- **Theme support:** `lupo_federation_nodes` includes `active_theme_slug` (e.g. `default`) so each federation node can have a presentation theme. Added via one-time migration `dev_20260204_theme_support.sql` and then folded into the canonical install schema.
+- **UI theatrical doctrine:** Crafty Syntax / Lupopedia UI is treated as **theater** (sets, props, layers, scenes) rather than generic layout. See `docs/channels/doctrine/legacy-import/CRAFTY_SYNTAX_UI_THEATRICAL_DOCTRINE.md` for the design philosophy (book UI, scroll templates, emotional UX, human-centered design). Module and operator settings (e.g. theme, colors) can live in metadata (e.g. `lupo_modules.config_json`) rather than fixed columns.
+
+**Other relevant points:**
+
+- **Subdirectory-only installation:** Lupopedia is always installed in a subdirectory (e.g. `/lupopedia/`). Paths and URLs use `LUPOPEDIA_PUBLIC_PATH` from `lupopedia-config.php`; never hardcode `/lupopedia/` or the folder name.
+- **No foreign keys, no triggers:** Schema remains soft-reference and doctrine-aligned.
+- **Timestamps:** BIGINT in `YYYYMMDDHHIISS` format.
+- **Canonical project brief:** `docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md`.
+
+---
+
 # Crafty Syntax → Lupopedia Migration Plan (Updated Progress & Next Phases)
 
 ## Phase 1 — Core Foundations (COMPLETED)
@@ -85,95 +125,127 @@ System Version: 4.0.0
 
 ---
 
-## Phase 2 — Operator Cockpit Enhancements (NEXT)
+## Phase 2 — Operator Cockpit & Unified Stream (NEXT)
 
 ### A. Operator-Side Message Stream Improvements
-- Style operator message list.
-- Add timestamps, alignment, colors.
-- Add unread indicators.
-- Add scroll-to-bottom behavior.
+- **Unified Stream UI**: Implement the "interleaved by timestamp" view for all active channels.
+- **Message Styling**: Add timestamps, alignment (visitor left/operator right), and colors based on thread context.
+- **Unread Indicators**: Visual cues for new messages in non-active tabs.
+- **Scroll Behavior**: "Stick to bottom" logic with "new message" floating action button if scrolled up.
 
-### B. Operator Typing Preview
-- Show visitor typing (optional; legacy didn't show this).
-- Use existing typing API.
+### B. Typing Preview System
+- **Operator Preview**: Operator sees what visitor is typing in real-time (Visitor → Operator).
+- **Bubble UI**: Floating "UserIsTypingDiv" equivalent or inline preview in the specific thread tab.
+- **Data Flow**: Hook up `VisitorPresenceAgent` to broadcast typing events to the operator channel.
 
-### C. Operator Sound Alerts
-- Sound on:
-  - new message
-  - visitor reply
-  - visitor reconnect
-- Respect "user interacted" rule for autoplay.
+### C. Sound & Alert System
+- **Audio Triggers**:
+  - New message (Visitor)
+  - New message (Operator - confirmation)
+  - Pending visitor arrival
+  - Visitor reconnect/active
+- **Controls**: Mute/Unmute toggle in Cockpit.
+- **Interaction Policy**: Handle browser autoplay restrictions (interaction required).
 
-### D. Operator Presence & Status
-- Show operator availability in cockpit.
-- Integrate `lupo_operator_status` more deeply.
-- Add "max chat capacity" indicators.
-
----
-
-## Phase 3 — Visitor UI Completion
-
-### A. Visitor Message Styling
-- Bubble layout
-- Timestamps
-- Operator name/label
-- Auto-scroll
-- Smooth fade-in for new messages
-
-### B. Visitor-Side Alerts
-- Sound on operator reply
-- Optional "operator joined the chat" banner
-- Optional "operator is typing" animation
-
-### C. Visitor Transcript View
-- Printable transcript
-- Export to text/HTML
-- Legacy compatibility
+### D. Multi-Chat Tabs
+- **Tab Bar**: Dynamic tabs for each active thread (2–6 simultaneous chats).
+- **State Management**: Active tab vs. Background tabs.
+- **Notification Badges**: Count unread messages per tab.
 
 ---
 
-## Phase 4 — Invite Systems
+## Phase 3 — Visitor Widget & Chat Experience
 
-### A. Auto-Invite
-- Rebuild legacy auto-invite logic using:
-  - session metadata
-  - operator availability
-  - department settings
+### A. Visitor Widget UI
+- **Launcher**: Modernized floating bubble (replacing legacy icon).
+- **Chat Window**:
+  - Clean, single-page layout (no framesets).
+  - Responsive design for mobile/desktop.
+  - "Department Offline" state handling.
 
-### B. Layer Invites
-- Rebuild floating invite layer
-- Use modern CSS instead of absolute frames
-- Respect legacy timing + behavior
-
----
-
-## Phase 5 — Department & Routing Enhancements
-
-### A. Department Load Balancing
-- Operator capacity
-- Active chat count
-- Availability status
-- Round-robin or "least busy" routing
-
-### B. Multi-Department Operators
-- Operators assigned to multiple departments
-- Unified pending list
-- Unified acceptance flow
+### B. Visitor Message Features
+- **Message Bubbles**: Distinct styling for Operator vs. Visitor vs. System messages.
+- **Typing Indicators**: "Operator is typing..." animation.
+- **Sound Alerts**: Optional sound on operator reply.
+- **Rich Text/Links**: Auto-linkify URLs, handle `[PUSH]` and `[transfer]` legacy tags.
 
 ---
 
-## Phase 6 — Cleanup & Doctrine Consolidation
+## Phase 4 — Presence, Routing & Agents (HEADLESS)
 
-### A. Remove Legacy Artifacts
-- Remove unused legacy files
-- Remove unused JS/CSS
-- Remove dead routes
+### A. Agent Implementation
+- **VisitorPresenceAgent**: Tracks idle time, navigation, and typing status.
+- **OperatorPresenceAgent**: Manages availability (online/offline/away), max chat capacity, and active connection monitoring.
+- **ChatRoutingAgent**:
+  - Implements the "Lobby (Channel 1) → Private Channel" promotion logic.
+  - auto-assigns operators based on routing rules.
+  - Handles "Department" routing constraints.
 
-### B. Documentation
-- Update doctrine files
-- Update TOONs if needed
-- Update module README
-- Add developer onboarding notes
+### B. Routing Logic
+- **Load Balancing**: "Least busy" or "Round Robin" assignment strategies.
+- **Department Hours**: Respect open/close hours if defined.
+- **Overflow Handling**: Queueing logic when all operators are busy.
+
+---
+
+## Phase 5 — Engagement & Invite Systems
+
+### A. Auto-Invite System
+- **SystemEventAgent**: Monitors visitor behavior against invite rules.
+- **Rule Engine**: Check:
+  - Time on site
+  - Page views
+  - Specific URL matches
+  - Referrer patterns
+- **Trigger**: Generates invite event when rules matched.
+
+### B. Layer Invites (Anti-Popup)
+- **UI Component**: Non-intrusive "Can we help you?" overlay.
+- **Response Handling**:
+  - Accept → Opens Chat (promotes to active session).
+  - Decline → Suppresses future invites for session.
+  - Ignore → Fade out.
+
+---
+
+## Phase 6 — Administration & Governance
+
+### A. Admin Panel UI (`/crafty/admin`)
+- **Departments**: Create/Edit/Delete departments, set hours, assign operators.
+- **Operators**: Manage accounts, assign departments, set permissions.
+- **Settings**: Global configuration (Legacy `config` table equivalent), theme selection.
+- **Canned Responses**: Manage global and personal "Quick Notes" (Reply Templates).
+
+### B. Governance & Monitoring
+- **Live Board**: Real-time view of all departments and operator statuses.
+- **Stewardship**: Tools for "Pono/Pilau" calibration (admin self-reflection UI).
+
+---
+
+## Phase 7 — Transcripts, Data & History
+
+### A. Transcript System
+- **TranscriptAgent**: Ensures all message streams are finalized and archived into `lupo_dialog_threads`.
+- **Viewer UI**: `/crafty/transcript/{id}` for historical review.
+- **Search**: Searchable archive of past chats.
+- **Export**: PDF/HTML export and "Email Transcript" functionality.
+
+### B. Legacy Data Integration
+- **Import Verification**: Ensure imported transcripts from 3.7.5 render correctly in the new viewer.
+- **Quirk Mapping**: Handle legacy bbCode/formatting in old transcripts.
+
+---
+
+## Phase 8 — Cleanup & Doctrine Consolidation
+
+### A. Legacy Artifact Removal
+- **Decommission**: Remove `legacy/craftysyntax/` reference files (once fully reimplemented).
+- **Route Cleanup**: Remove any temporary bridges or scaffolding.
+- **Code Audit**: Verify no raw SQL remains (all via standard models/agents).
+
+### B. Documentation & Blessing
+- **Final Docs**: Update `AGENTS.md`, Module README, and User Guides.
+- **Consecration**: Final "Day 7" blessing of the integrated system.
 
 ---
 

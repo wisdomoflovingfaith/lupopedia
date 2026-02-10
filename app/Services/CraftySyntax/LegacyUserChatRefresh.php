@@ -35,27 +35,26 @@
 
 require_once("visitor_common.php");
   
-// get the info of this user.. 
-// Updated to use Lupopedia table mapping: livehelp_users → lupo_users
-$query = "SELECT * FROM lupo_users WHERE sessionid='".$identity['SESSIONID']."'";	
-$people = $mydatabase->query($query);
-$people = $people->fetchRow(DB_FETCHMODE_ASSOC);
-$myid = $people['user_id'];
- 
-  // get a channel for this user:
-   $onchannel = createchannel($myid);
- 
-if(empty($UNTRUSTED['clear'])){ $clear = ""; } else { $clear = $UNTRUSTED['clear']; } 
-if(empty($UNTRUSTED['starttimeof'])){ $starttimeof = ""; } else { $starttimeof = $UNTRUSTED['starttimeof']; } 
-if(empty($UNTRUSTED['offset'])){ $offset = 2; } else { $offset = intval($UNTRUSTED['offset']); } 
-if(empty($UNTRUSTED['department'])){ $department = 0; } else { $department = intval($UNTRUSTED['department']); } 
-if(empty($UNTRUSTED['printit'])){ $printit = ""; } else { $printit = $UNTRUSTED['printit']; } 
-if(empty($UNTRUSTED['tab'])){ $tab = 0; } else { $tab = intval($UNTRUSTED['tab']); } 
-$message_test = date("YmdHis") -1;
+$people = crafty_get_session_people($identity['SESSIONID']);
+$myid = $people ? (int) $people['user_id'] : 0;
+$onchannel = createchannel($myid);
 
-// get department information...
-// Updated to use Lupopedia table mapping: livehelp_departments → lupo_departments
-$query = "SELECT * FROM lupo_departments ";
-if($department!=0)
+if (empty($UNTRUSTED['clear'])) { $clear = ""; } else { $clear = $UNTRUSTED['clear']; }
+if (empty($UNTRUSTED['starttimeof'])) { $starttimeof = ""; } else { $starttimeof = $UNTRUSTED['starttimeof']; }
+if (empty($UNTRUSTED['offset'])) { $offset = 2; } else { $offset = intval($UNTRUSTED['offset']); }
+if (empty($UNTRUSTED['department'])) { $department = 0; } else { $department = intval($UNTRUSTED['department']); }
+if (empty($UNTRUSTED['printit'])) { $printit = ""; } else { $printit = $UNTRUSTED['printit']; }
+if (empty($UNTRUSTED['tab'])) { $tab = 0; } else { $tab = intval($UNTRUSTED['tab']); }
+$message_test = date("YmdHis") - 1;
+
+$department_row = null;
+if ($department != 0 && isset($mydatabase) && $mydatabase instanceof PDO_DB) {
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    $departments_table = $table_prefix . 'departments';
+    $department_row = $mydatabase->fetchRow(
+        "SELECT * FROM {$departments_table} WHERE department_id = :did AND (is_deleted = 0 OR is_deleted IS NULL)",
+        ['did' => $department]
+    );
+}
 
 ?>

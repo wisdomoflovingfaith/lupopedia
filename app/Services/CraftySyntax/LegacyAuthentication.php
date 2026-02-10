@@ -28,13 +28,11 @@ if(!(isset($UNTRUSTED['err']))){ $err = 0; } else { $err = intval($UNTRUSTED['er
 // proccess login:
 if(!(isset($UNTRUSTED['proccess']))){ $UNTRUSTED['proccess'] = "no"; }
 if($UNTRUSTED['proccess'] == "yes"){
-      if(validate_user($UNTRUSTED['myusername'],$UNTRUSTED['mypassword'],$identity)){
-      	// TEMP :----
-      	// In version 3.1.0 of CSLH I am going to separate out sessions database
-      	// table from users. This session swapping is just a temporary thing till
-      	// i finish the user database mapping feature in version 3.1.0 
-      	$query = "DELETE FROM livehelp_users WHERE password='' AND sessionid='".$identity['SESSIONID']."'";	
-      	$mydatabase->query($query);
-      	$twentyminutes  = date("YmdHis", mktime(date("H"), date("i")+20,date("s"), date("m")  , date("d"), date("Y")));
-        $query = "UPDATE livehelp_users 
+      if (validate_user($UNTRUSTED['myusername'], $UNTRUSTED['mypassword'], $identity)) {
+        if (isset($mydatabase) && $mydatabase instanceof PDO_DB) {
+          $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+          $sessions_table = $table_prefix . 'sessions';
+          $twentyminutes = (int) date('YmdHis', mktime(date('H'), date('i') + 20, date('s'), date('m'), date('d'), date('Y')));
+          $mydatabase->update($sessions_table, ['last_seen_ymdhis' => $twentyminutes, 'updated_ymdhis' => $twentyminutes], 'session_id = :sid', ['sid' => $identity['SESSIONID']]);
+        }
 ?>

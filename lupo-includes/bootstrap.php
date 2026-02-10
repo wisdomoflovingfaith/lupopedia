@@ -57,7 +57,7 @@ if ( function_exists( 'error_reporting' ) ) {
     try {
         $mydatabase = DatabaseFactory::getConnection();
         $GLOBALS['mydatabase'] = $mydatabase;
-        $mydatabase->query("SELECT 1");
+        $mydatabase->fetchRow('SELECT 1');
     } catch (Exception $e) {
         // Log the detailed error
         error_log('Database connection error: ' . $e->getMessage());
@@ -103,14 +103,16 @@ if (function_exists('date_default_timezone_set')) {
 
 /**
  * ---------------------------------------------------------
- * Load Session and Auth Helpers (Early Initialization)
+ * Session (OOP) and Auth Helpers (Early Initialization)
  * ---------------------------------------------------------
- * Load authentication helpers before module loader to ensure
- * sessions are initialized and current_user() is available globally.
+ * Session class replaces procedural session helpers. One instance per request.
  */
-$session_helpers = __DIR__ . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'session-helpers.php';
-if (file_exists($session_helpers)) {
-    require_once $session_helpers;
+$app_auth = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'auth';
+if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'UnifiedSessionHandler.php')) {
+    require_once $app_auth . DIRECTORY_SEPARATOR . 'UnifiedSessionHandler.php';
+}
+if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'Session.php')) {
+    require_once $app_auth . DIRECTORY_SEPARATOR . 'Session.php';
 }
 
 $auth_helpers = __DIR__ . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'auth-helpers.php';
@@ -118,29 +120,32 @@ if (file_exists($auth_helpers)) {
     require_once $auth_helpers;
 }
 
-// Start session early in request lifecycle
-if (function_exists('lupo_start_session')) {
-    lupo_start_session();
-    
-    // Debug logging for session start
+$session_manager_class = __DIR__ . DIRECTORY_SEPARATOR . 'class-SessionManager.php';
+if (file_exists($session_manager_class)) {
+    require_once $session_manager_class;
+}
+
+// Create Session instance (constructor injection: $db, UnifiedSessionHandler)
+$lupo_session = null;
+if (class_exists('App\Auth\Session') && isset($GLOBALS['mydatabase'])) {
+    $lupo_session = new \App\Auth\Session($GLOBALS['mydatabase'], new \App\Auth\UnifiedSessionHandler($GLOBALS['mydatabase']));
+    $GLOBALS['lupo_session'] = $lupo_session;
+}
+
+// Start session and run idle check then validate
+if ($lupo_session !== null) {
+    $lupo_session->start();
     if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-        $session_id = session_id();
-        error_log("SESSION: Session started - ID: " . substr($session_id, 0, 8) . "...");
+        error_log("SESSION: Session started - ID: " . substr($lupo_session->getSessionId(), 0, 8) . "...");
     }
-    
-    // Validate and refresh session activity if user is logged in
-    if (function_exists('lupo_validate_session')) {
-        $actor_id = lupo_validate_session();
+    $sessionManager = new SessionManager($lupo_session);
+    $sessionManager->tick();
+    $actor_id = $lupo_session->validateSession();
+    if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
         if ($actor_id) {
-            // Session is valid, activity timestamp updated by validate_session()
-            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                error_log("SESSION: Session validated - Actor ID: " . $actor_id);
-            }
+            error_log("SESSION: Session validated - Actor ID: " . $actor_id);
         } else {
-            // Session invalid or expired
-            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-                error_log("SESSION: Session invalid or expired");
-            }
+            error_log("SESSION: Session invalid or expired");
         }
     }
 }

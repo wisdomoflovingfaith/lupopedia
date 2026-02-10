@@ -42,10 +42,7 @@ if(empty($UNTRUSTED['whattodochat'])){  $UNTRUSTED['whattodochat'] = ""; }
 if(empty($UNTRUSTED['whattodo'])){ $UNTRUSTED['whattodo'] = $UNTRUSTED['whattodochat']; }
  
 // get the info of this user.. 
-// Updated to use Lupopedia table mapping: livehelp_users → lupo_users
-$query = "SELECT * FROM lupo_users WHERE sessionid='".$identity['SESSIONID']."'";	
-$people = $mydatabase->query($query);
-$people = $people->fetchRow(DB_FETCHMODE_ASSOC);
+$people = crafty_get_session_people($identity['SESSIONID']);
 $myid = $people['user_id'];
 $channel = $people['onchannel'];
 $show_arrival = $people['show_arrival']; 

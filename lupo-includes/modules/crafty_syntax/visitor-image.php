@@ -71,8 +71,8 @@ if ($session_id !== '' && $what === 'getstate') {
     $title = isset($_GET['title']) ? substr((string)$_GET['title'], 0, 100) : '';
     try {
         $stmt = $db->prepare(
-            "INSERT INTO {$prefix}sessions (session_id, federation_node_id, actor_id, ip_address, user_agent, last_seen_ymdhis, created_ymdhis, updated_ymdhis)" .
-            " VALUES (:sid, 1, 0, :ip, :ua, :now, :now, :now)" .
+            "INSERT INTO {$prefix}sessions (session_id, federation_node_id, actor_id, ip_address, user_agent, name_key, is_named, last_seen_ymdhis, created_ymdhis, updated_ymdhis)" .
+            " VALUES (:sid, 1, 0, :ip, :ua, NULL, 0, :now, :now, :now)" .
             " ON DUPLICATE KEY UPDATE last_seen_ymdhis = :now2, updated_ymdhis = :now3"
         );
         $stmt->execute([
@@ -120,9 +120,9 @@ $hide = isset($_GET['hide']) && (string)$_GET['hide'] === 'Y';
 
 try {
     $dept_id = $department;
-    if ($dept_id === 0) {
-        $row = $db->query("SELECT department_id FROM {$prefix}departments WHERE is_deleted = 0 LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-        $dept_id = $row ? (int)$row['department_id'] : 0;
+    if ($dept_id === 0 && $db instanceof \PDO_DB) {
+        $row = $db->fetchRow("SELECT department_id FROM {$prefix}departments WHERE is_deleted = 0 LIMIT 1");
+        $dept_id = $row ? (int) $row['department_id'] : 0;
     }
     if ($dept_id !== 0) {
         $stmt = $db->prepare("SELECT metadata_json FROM {$prefix}department_metadata WHERE department_id = :id AND is_deleted = 0 LIMIT 1");

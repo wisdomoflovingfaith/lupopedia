@@ -37,7 +37,7 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
  * - $currentPage (string) - Current page identifier for active link highlighting (optional)
  */
 
-// Get current authenticated user (uses session validation via lupo_validate_session)
+// Get current authenticated user (uses Session via current_user() / $GLOBALS['lupo_session']->validateSession())
 $current_auth_user = current_user();
 $isUserLoggedIn = ($current_auth_user !== false);
 

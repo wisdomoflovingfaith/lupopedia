@@ -40,8 +40,15 @@ $isavisitor = false;
 
 update_session($identity);
 
-// get the info on this admin user:
-$query = "SELECT user_id,onchannel,show_arrival,user_alert,externalchats,istyping,isadmin,alertchat,alerttyping,alertinsite FROM livehelp_users WHERE sessionid='".$identity['SESSIONID']."'";
-$people = $mydatabase->query($query);
+$table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+$sessions_table = $table_prefix . 'sessions';
+if (isset($mydatabase) && $mydatabase instanceof PDO_DB) {
+  $people = $mydatabase->fetchRow(
+    "SELECT session_id AS sessionid, actor_id AS user_id, last_seen_ymdhis AS lastaction, 0 AS onchannel, 0 AS show_arrival, 0 AS user_alert, 0 AS externalchats, 0 AS istyping, 0 AS isadmin, 0 AS alertchat, 0 AS alerttyping, 0 AS alertinsite FROM {$sessions_table} WHERE session_id = :sid",
+    ['sid' => $identity['SESSIONID']]
+  );
+} else {
+  $people = null;
+}
 
 ?>

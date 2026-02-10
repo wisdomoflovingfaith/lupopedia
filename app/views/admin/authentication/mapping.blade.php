@@ -19,7 +19,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Map Lupopedia User to Crafty Syntax Operator</h5>
+                    <h5 class="mb-0">Create User Mapping</h5>
                 </div>
                 <div class="card-body">
                     <form id="mappingForm">
@@ -30,29 +30,14 @@
                                     <label for="lupo_user_id">Lupopedia User</label>
                                     <select class="form-control" id="lupo_user_id" name="lupo_user_id" required>
                                         <option value="">Select Lupopedia User</option>
-                                        @foreach($lupoUsers as $user)
-                                            <option value="{{ $user->id }}" {{ old('lupo_user_id') == $user->id ? 'selected' : '' }}>
-                                                {{ $user->name ?? 'Unknown' }} ({{ $user->email }})
+                                        @foreach($lupoUsers ?? [] as $user)
+                                            @php $uid = is_array($user) ? ($user['id'] ?? '') : ($user->id ?? ''); $un = is_array($user) ? ($user['name'] ?? 'Unknown') : ($user->name ?? 'Unknown'); $ue = is_array($user) ? ($user['email'] ?? '') : ($user->email ?? ''); @endphp
+                                            <option value="{{ $uid }}" {{ old('lupo_user_id') == $uid ? 'selected' : '' }}>
+                                                {{ $un }} ({{ $ue }})
                                             </option>
                                         @endforeach
                                     </select>
                                     @error('lupo_user_id')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="crafty_operator_id">Crafty Syntax Operator</label>
-                                    <select class="form-control" id="crafty_operator_id" name="crafty_operator_id" required>
-                                        <option value="">Select Crafty Operator</option>
-                                        @foreach($craftyOperators as $operator)
-                                            <option value="{{ $operator->operatorid }}" {{ old('crafty_operator_id') == $operator->operatorid ? 'selected' : '' }}>
-                                                {{ $operator->crafty_name ?? 'Unknown' }} ({{ $operator->crafty_email }})
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('crafty_operator_id')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -109,32 +94,32 @@
                     <h6 class="mb-0">Existing Mappings</h6>
                 </div>
                 <div class="card-body">
-                    @if($existingMappings->count() > 0)
+                    @if(count($existingMappings ?? []) > 0)
                         <div class="table-responsive">
                             <table class="table table-sm">
                                 <thead>
                                     <tr>
-                                        <th>Lupo User</th>
-                                        <th>Crafty Op</th>
+                                        <th>Lupopedia User</th>
+                                        <th>Type</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($existingMappings->take(10) as $mapping)
+                                    @foreach(array_slice($existingMappings ?? [], 0, 10) as $mapping)
                                         <tr>
                                             <td>
-                                                <small>{{ $mapping->lupo_email }}</small>
+                                                <small>{{ is_array($mapping) ? ($mapping['lupo_email'] ?? '') : ($mapping->lupo_email ?? '') }}</small>
                                             </td>
                                             <td>
-                                                <small>{{ $mapping->crafty_email }}</small>
+                                                <small>{{ is_array($mapping) ? ($mapping['mapping_type'] ?? '') : ($mapping->mapping_type ?? '') }}</small>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
-                        @if($existingMappings->count() > 10)
+                        @if(count($existingMappings ?? []) > 10)
                             <div class="text-center">
-                                <small class="text-muted">And {{ $existingMappings->count() - 10 }} more...</small>
+                                <small class="text-muted">And {{ count($existingMappings ?? []) - 10 }} more...</small>
                             </div>
                         @endif
                     @else
@@ -152,8 +137,7 @@
                         <li><strong>Manual:</strong> Created by administrator manually</li>
                         <li><strong>Automatic:</strong> Created by system based on email match</li>
                         <li><strong>Imported:</strong> Created from bulk import process</li>
-                        <li>Each user can only be mapped to one operator</li>
-                        <li>Each operator can only be mapped to one user</li>
+                        <li>Each user can have one mapping record</li>
                         <li>Notes are optional but recommended for tracking</li>
                     </ul>
                 </div>
@@ -246,17 +230,11 @@ document.getElementById('mappingForm').addEventListener('submit', function(e) {
         });
 });
 
-// Auto-select users/operators from URL parameters
+// Auto-select user from URL parameter
 const urlParams = new URLSearchParams(window.location.search);
 const lupoId = urlParams.get('lupo_id');
-const craftyId = urlParams.get('crafty_id');
-
-if (lupoId) {
+if (lupoId && document.getElementById('lupo_user_id')) {
     document.getElementById('lupo_user_id').value = lupoId;
-}
-
-if (craftyId) {
-    document.getElementById('crafty_operator_id').value = craftyId;
 }
 </script>
 @endpush

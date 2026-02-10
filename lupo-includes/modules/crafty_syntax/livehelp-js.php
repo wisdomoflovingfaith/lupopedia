@@ -59,10 +59,9 @@ if (!empty($_GET['username'])) {
 $parentdot = (!empty($_GET['frameparent'])) ? 'parent.' : '';
 $force = !empty($_GET['force']);
 
-// Default department from first department if department=0
-if ($department === 0) {
-    $row = $db->query("SELECT department_id FROM {$prefix}departments WHERE is_deleted = 0 LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-    $department = $row ? (int)$row['department_id'] : 0;
+if ($department === 0 && $db instanceof \PDO_DB) {
+    $row = $db->fetchRow("SELECT department_id FROM {$prefix}departments WHERE is_deleted = 0 LIMIT 1");
+    $department = $row ? (int) $row['department_id'] : 0;
 }
 $dept_id = $department;
 

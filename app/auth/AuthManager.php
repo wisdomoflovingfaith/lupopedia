@@ -2,246 +2,123 @@
 
 namespace App\Auth;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
-use App\Auth\UnifiedSessionHandler;
+/**
+ * Auth manager — plain PHP, PDO, doctrine timestamps (BIGINT YmdHis UTC).
+ * No Laravel. Requires: LUPO_TABLE_PREFIX, PDO_DB. Tables: lupo_auth_users, lupo_crafty_user_mapping (legacy), lupo_auth_audit_log (see install).
+ * All authentication uses lupo_auth_users and role-based authorization; no legacy Crafty operator/user tables.
+ */
+
+if (!defined('LUPO_TABLE_PREFIX')) {
+    define('LUPO_TABLE_PREFIX', 'lupo_');
+}
 
 class AuthManager
 {
+    /** @var \PDO_DB */
+    private $db;
+
+    /** @var UnifiedSessionHandler */
     protected $sessionHandler;
 
-    public function __construct(UnifiedSessionHandler $sessionHandler)
+    public function __construct($db, UnifiedSessionHandler $sessionHandler = null)
     {
-        $this->sessionHandler = $sessionHandler;
+        $this->db = $db;
+        $this->sessionHandler = $sessionHandler ?? new UnifiedSessionHandler($db);
     }
 
-    /**
-     * Check if user is authenticated in unified context
-     */
-    public function checkUnifiedAuth()
+    public function checkUnifiedAuth(): bool
     {
-        // First check Laravel's native auth
-        if (Auth::check()) {
-            return true;
-        }
-
-        // Check unified session
         $unifiedSession = $this->sessionHandler->getUnifiedSessionFromCookie();
-        
-        if ($unifiedSession) {
-            // Validate session integrity
-            if ($this->sessionHandler->validateSessionIntegrity($unifiedSession['session_id'])) {
-                return true;
-            }
+        if (!$unifiedSession || empty($unifiedSession['session_id'])) {
+            return false;
         }
-
-        return false;
+        return $this->sessionHandler->validateSessionIntegrity($unifiedSession['session_id']);
     }
 
-    /**
-     * Get current authenticated user with context awareness
-     */
     public function getUnifiedUser()
     {
-        // Try Laravel auth first
-        if (Auth::check()) {
+        $unifiedSession = $this->sessionHandler->getUnifiedSessionFromCookie();
+        if (!$unifiedSession) {
+            return null;
+        }
+        $user = $this->getUserById($unifiedSession['user_id'] ?? null);
+        if ($user) {
             return [
-                'user' => Auth::user(),
-                'context' => 'lupopedia',
-                'source' => 'laravel_auth'
+                'user' => $user,
+                'context' => $unifiedSession['system_context'] ?? UnifiedSessionHandler::CONTEXT_LUPOPEDIA,
+                'source' => 'unified_session',
             ];
         }
-
-        // Try unified session
-        $unifiedSession = $this->sessionHandler->getUnifiedSessionFromCookie();
-        
-        if ($unifiedSession) {
-            $user = $this->getUserById($unifiedSession['user_id']);
-            
-            if ($user) {
-                return [
-                    'user' => $user,
-                    'context' => $unifiedSession['system_context'],
-                    'source' => 'unified_session'
-                ];
-            }
-        }
-
         return null;
     }
 
-    /**
-     * Get user by ID with system context awareness
-     */
     private function getUserById($userId)
     {
         if (!$userId) {
             return null;
         }
-
-        // Try Lupopedia users table first
-        $user = DB::table('users')->where('id', $userId)->first();
-        
-        if ($user) {
-            return (object) [
-                'id' => $user->id,
-                'email' => $user->email,
-                'name' => $user->name ?? $user->username,
-                'type' => 'lupopedia',
-                'crafty_operator_id' => $user->crafty_operator_id
-            ];
-        }
-
-        return null;
-    }
-
-    /**
-     * Get Crafty Syntax operator by ID
-     */
-    public function getCraftyOperator($operatorId)
-    {
-        if (!$operatorId) {
+        $t = $this->db->quoteIdentifier(LUPO_TABLE_PREFIX . 'auth_users');
+        $row = $this->db->fetchRow(
+            "SELECT auth_user_id, email, display_name, username FROM $t WHERE auth_user_id = :id AND (is_deleted = 0 OR is_deleted IS NULL)",
+            ['id' => $userId]
+        );
+        if (!$row) {
             return null;
         }
-
-        $operator = DB::table('livehelp_operators')
-            ->where('operatorid', $operatorId)
-            ->first();
-
-        if ($operator) {
-            return (object) [
-                'id' => $operator->operatorid,
-                'email' => $operator->email,
-                'name' => $operator->operatorname,
-                'type' => 'crafty_syntax'
-            ];
-        }
-
-        return null;
+        return (object) [
+            'id' => $row['auth_user_id'],
+            'email' => $row['email'],
+            'name' => $row['display_name'] ?? $row['username'] ?? '',
+            'type' => 'lupopedia',
+        ];
     }
 
     /**
-     * Check if current user is a Crafty Syntax operator
+     * Get permissions for the current user. Uses lupo_auth_users and actor/role tables when available.
      */
-    public function isCraftyOperator()
+    public function getUserPermissions(): array
     {
         $unifiedUser = $this->getUnifiedUser();
-        
-        if (!$unifiedUser) {
-            return false;
-        }
-
-        // Check if user has crafty_operator_id
-        if (isset($unifiedUser['user']->crafty_operator_id)) {
-            return true;
-        }
-
-        // Check if context is crafty_syntax
-        if ($unifiedUser['context'] === 'crafty_syntax') {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Get user permissions with context awareness
-     */
-    public function getUserPermissions()
-    {
-        $unifiedUser = $this->getUnifiedUser();
-        
         if (!$unifiedUser) {
             return [];
         }
-
-        $permissions = [];
-
-        // Get Lupopedia permissions
-        if ($unifiedUser['user']->type === 'lupopedia') {
-            $permissions = $this->getLupopediaPermissions($unifiedUser['user']->id);
-        }
-
-        // Get Crafty Syntax permissions if applicable
-        if ($this->isCraftyOperator()) {
-            $craftyPermissions = $this->getCraftyPermissions($unifiedUser['user']);
-            $permissions = array_merge($permissions, $craftyPermissions);
-        }
-
-        return array_unique($permissions);
-    }
-
-    /**
-     * Get Lupopedia user permissions
-     */
-    private function getLupopediaPermissions($userId)
-    {
-        // This would typically query a permissions table
-        // For now, return basic permissions based on user role
-        $user = DB::table('users')->where('id', $userId)->first();
-        
-        if (!$user) {
-            return [];
-        }
-
         $permissions = ['basic_access'];
-
-        if (isset($user->role)) {
-            switch ($user->role) {
-                case 'admin':
+        $user = $unifiedUser['user'];
+        if (!isset($user->id)) {
+            return $permissions;
+        }
+        $t = $this->db->quoteIdentifier(LUPO_TABLE_PREFIX . 'actors');
+        $actor = $this->db->fetchRow(
+            "SELECT actor_id FROM $t WHERE actor_source_type = 'auth_user' AND actor_source_id = :id AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            ['id' => $user->id]
+        );
+        if ($actor) {
+            $roleT = $this->db->quoteIdentifier(LUPO_TABLE_PREFIX . 'actor_channel_roles');
+            $roles = $this->db->fetchAll(
+                "SELECT role_key FROM $roleT WHERE actor_id = :aid",
+                ['aid' => $actor['actor_id']]
+            );
+            foreach ($roles as $r) {
+                $key = $r['role_key'] ?? '';
+                if ($key === 'admin') {
                     $permissions[] = 'admin_access';
                     $permissions[] = 'user_management';
                     $permissions[] = 'system_configuration';
-                    break;
-                case 'editor':
+                } elseif ($key === 'editor') {
                     $permissions[] = 'content_editing';
                     $permissions[] = 'collection_management';
-                    break;
-                case 'operator':
+                } elseif ($key === 'operator' || $key === 'support') {
                     $permissions[] = 'chat_support';
                     $permissions[] = 'visitor_tracking';
-                    break;
-            }
-        }
-
-        return $permissions;
-    }
-
-    /**
-     * Get Crafty Syntax operator permissions
-     */
-    private function getCraftyPermissions($user)
-    {
-        $permissions = ['crafty_basic_access'];
-
-        if (isset($user->crafty_operator_id)) {
-            $operator = $this->getCraftyOperator($user->crafty_operator_id);
-            
-            if ($operator) {
-                $permissions[] = 'chat_support';
-                $permissions[] = 'visitor_tracking';
-                $permissions[] = 'operator_dashboard';
-                
-                // Add admin permissions if applicable
-                if (isset($operator->isadmin) && $operator->isadmin) {
-                    $permissions[] = 'crafty_admin';
-                    $permissions[] = 'operator_management';
                 }
             }
         }
-
-        return $permissions;
+        return array_unique($permissions);
     }
 
-    /**
-     * Validate user access to resource
-     */
-    public function validateAccess($resource, $action = 'read')
+    public function validateAccess(string $resource, string $action = 'read'): bool
     {
         $permissions = $this->getUserPermissions();
-        
-        // Define permission requirements for different resources
         $permissionMap = [
             'admin' => ['admin_access'],
             'users' => ['user_management'],
@@ -249,72 +126,77 @@ class AuthManager
             'chat' => ['chat_support'],
             'analytics' => ['analytics_access'],
         ];
-
         if (isset($permissionMap[$resource])) {
-            $requiredPermissions = $permissionMap[$resource];
-            
-            // Check if user has any of the required permissions
-            foreach ($requiredPermissions as $requiredPermission) {
-                if (in_array($requiredPermission, $permissions)) {
+            foreach ($permissionMap[$resource] as $required) {
+                if (in_array($required, $permissions)) {
                     return true;
                 }
             }
         }
-
         return false;
     }
 
     /**
-     * Get user mapping between Lupopedia and Crafty Syntax
+     * Get legacy user mapping by lupo user id only (operator-based mapping deprecated).
      */
     public function getUserMapping($userId, $operatorId = null)
     {
-        $query = DB::table('lupo_crafty_user_mapping');
-
-        if ($userId) {
-            $query->where('lupo_user_id', $userId);
+        if ($userId === null || $userId === '') {
+            return null;
         }
-
-        if ($operatorId) {
-            $query->where('crafty_operator_id', $operatorId);
-        }
-
-        return $query->first();
+        $t = LUPO_TABLE_PREFIX . 'crafty_user_mapping';
+        $row = $this->db->fetchRow(
+            'SELECT * FROM ' . $this->db->quoteIdentifier($t) . ' WHERE lupo_user_id = :uid LIMIT 1',
+            ['uid' => $userId]
+        );
+        return $row ? (object) $row : null;
     }
 
     /**
-     * Create user mapping
+     * Legacy: create mapping record. Operator IDs deprecated; crafty_operator_id may be null.
      */
-    public function createUserMapping($userId, $operatorId, $mappingType = 'manual', $notes = null)
+    public function createUserMapping($userId, $operatorId = null, $mappingType = 'manual', $notes = null)
     {
-        return DB::table('lupo_crafty_user_mapping')->insert([
+        $now = (int) gmdate('YmdHis');
+        $t = LUPO_TABLE_PREFIX . 'crafty_user_mapping';
+        return $this->db->insert($t, [
             'lupo_user_id' => $userId,
             'crafty_operator_id' => $operatorId,
             'mapping_type' => $mappingType,
             'notes' => $notes,
-            'created_at' => now(),
-            'updated_at' => now()
+            'created_at' => $now,
+            'updated_at' => $now,
         ]);
     }
 
     /**
-     * Log authentication event
+     * Log authentication event. Timestamps: BIGINT YmdHis UTC (created_at, updated_at in lupo_auth_audit_log).
+     * $requestInfo: array with 'ip', 'user_agent' (or null to use $_SERVER).
      */
-    public function logAuthEvent($eventType, $userId = null, $operatorId = null, $systemContext = null, $success = true, $errorMessage = null)
+    /**
+     * Log authentication event. operatorId deprecated (legacy column, pass null).
+     */
+    public function logAuthEvent($eventType, $userId = null, $operatorId = null, $systemContext = null, $success = true, $errorMessage = null, array $requestInfo = null): void
     {
-        $request = request();
-        
-        DB::table('auth_audit_log')->insert([
+        if ($requestInfo === null) {
+            $requestInfo = [
+                'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
+                'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
+            ];
+        }
+        $now = (int) gmdate('YmdHis');
+        $t = LUPO_TABLE_PREFIX . 'auth_audit_log';
+        $this->db->insert($t, [
             'user_id' => $userId,
-            'crafty_operator_id' => $operatorId,
+            'crafty_operator_id' => null,
             'event_type' => $eventType,
-            'system_context' => $systemContext,
-            'ip_address' => $request->ip(),
-            'user_agent' => $request->userAgent(),
-            'success' => $success,
+            'system_context' => $systemContext ?? '',
+            'ip_address' => $requestInfo['ip'] ?? '',
+            'user_agent' => $requestInfo['user_agent'] ?? '',
+            'success' => $success ? 1 : 0,
             'error_message' => $errorMessage,
-            'created_at' => now(),
-            'updated_at' => now()
+            'created_at' => $now,
+            'updated_at' => $now,
         ]);
     }
 }

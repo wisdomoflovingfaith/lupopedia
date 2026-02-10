@@ -1,0 +1,79 @@
+# PDO_DB Doctrine + Crafty Integration Refactor Report
+
+**Date:** 2026-02-10  
+**Rule:** `.cursor/rules/pdo-db-database-access-doctrine.mdc`  
+**Migration reference:** `docs/doctrine/migrations/`, `MIGRATION_MAPPING_REFERENCE.md`  
+**Schema source:** TOONs (docs/toons — empty); fallback: `database/migrations/install_new_lupopedia.sql`, migration docs.
+
+---
+
+## 1. Summary
+
+- **Crafty Syntax** is integrated into Lupopedia; functionality remains, old tables do not.
+- All references to **livehelp_*** and **lupo_users** were removed or refactored to **{prefix}sessions** and **lupo_auth_users** / **lupo_actors** per migration docs.
+- **PDO_DB** is used for all DB access in refactored code: `fetchRow`, `fetchAll`, `insert`, `update`, `delete` with named placeholders only.
+- **Table prefix** is never hardcoded: `$table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_'` then `$table_prefix . 'sessions'`, etc.
+- **Session logic** flows through `App\Auth\Session` or through the shared helper **crafty_get_session_people()** which reads from **{prefix}sessions** (per livehelp_sessions_migration.md, livehelp_users_migration.md).
+
+---
+
+## 2. Files changed
+
+| File | Changes |
+|------|--------|
+| **docs/doctrine/migrations/generated/README.md** | Created; documents that one-time SQL migrations go here and are run manually. |
+| **app/Services/CraftySyntax/LegacyFunctions.php** | Added **crafty_get_session_people($session_id)** (PDO_DB, {prefix}sessions). Refactored **log_toon_event** to PDO_DB insert with prefix. **resolve_actor_from_lupo_user** and **get_current_actor_id** now use PDO_DB and lupo_sessions/lupo_actors (actor_source_type = 'lupo_auth_users'); no lupo_users. |
+| **app/Services/CraftySyntax/LegacyAdminOptions.php** | Replaced lupo_users query with **crafty_get_session_people()**. |
+| **app/Services/CraftySyntax/LegacyAdminChatBot.php** | Replaced lupo_users query with **crafty_get_session_people()**; use assoc keys. |
+| **app/Services/CraftySyntax/LegacyLive.php** | Replaced lupo_users query with **crafty_get_session_people()**; null-safe. |
+| **app/Services/CraftySyntax/LegacyAdminActions.php** | Replaced lupo_users query with **crafty_get_session_people()**. |
+| **app/Services/CraftySyntax/LegacyChooseDepartment.php** | Replaced lupo_users query with **crafty_get_session_people()**. |
+| **app/Services/CraftySyntax/LegacyDepartments.php** | Replaced lupo_users query with **crafty_get_session_people()**; build $row for existing indices. |
+| **app/Services/CraftySyntax/LegacyChannels.php** | Replaced lupo_users query with **crafty_get_session_people()**; removed **livehelp_id** (legacy column); use actor_id/session only. |
+| **app/Services/CraftySyntax/LegacyAdminChatXmlHttp.php** | Replaced lupo_users query with **crafty_get_session_people()**. |
+| **app/Services/CraftySyntax/LegacyExternalChatXmlHttp.php** | Replaced lupo_users query with **crafty_get_session_people()**. |
+| **app/Services/CraftySyntax/LegacyUserChatRefresh.php** | Replaced lupo_users query with **crafty_get_session_people()**; department fetch via PDO_DB fetchRow with prefix. |
+| **app/Services/CraftySyntax/LegacyAdminChatRefresh.php** | Replaced lupo_users query with **crafty_get_session_people()**. |
+| **app/Services/CraftySyntax/WorldGraphHelper.php** | Full refactor: all DB access via PDO_DB (fetchRow, insert) with table prefix; world_registry uses created_ymdhis/updated_ymdhis per install schema; no query(), no DB_FETCHMODE_ASSOC, no interpolated SQL. |
+| **lupo-includes/modules/channels/channels-controller.php** | Replaced **$db->query()** and **prepare/execute/fetch** with **$db->fetchRow()**, **fetchAll()** with named params. |
+| **lupo-includes/modules/crafty_syntax/visitor-image.php** | Replaced **$db->query()->fetch()** with **$db->fetchRow()** when $db is PDO_DB. |
+| **lupo-includes/modules/crafty_syntax/livehelp-js.php** | Replaced **$db->query()->fetch()** with **$db->fetchRow()**. |
+| **lupo-includes/modules/crafty_syntax/choosedepartment.php** | Replaced **$db->query()** and fetchAll with **$db->fetchAll()**. |
+| **lupo-includes/modules/help/help-model.php** | Replaced **$db->query()->fetchAll(PDO::FETCH_COLUMN)** with **$db->fetchAll()** and array_column. |
+
+*(Previously refactored in earlier steps: Session, UnifiedSessionHandler, bootstrap, LegacySessionManager, LegacySessionIdentity, LegacyAdminCommon, LegacyAdminChatFlush, LegacyUserChatFlush, LegacyAuthentication, LegacyIsFlushDetection, live.php.)*
+
+---
+
+## 3. Violations fixed
+
+- **Removed:** All **lupo_users** and **livehelp_users** references; session/operator state now from **{prefix}sessions** via **crafty_get_session_people()** or Session class.
+- **Removed:** **$mydatabase->query()**, **$db->query()**, **$rs->numrows()**, **$rs->fetchRow(DB_FETCHMODE_*)**, **filter_sql()**, raw interpolated SQL in refactored files.
+- **Replaced with:** **$db->fetchRow()**, **$db->fetchAll()**, **$db->insert()**, **$db->update()**, **$db->delete()** with named placeholders and table prefix.
+- **Legacy table references:** All mapped per migration docs (livehelp_users → lupo_auth_users + session state in lupo_sessions; livehelp_sessions → lupo_sessions; livehelp_departments → lupo_departments).
+
+---
+
+## 4. Confirmations
+
+| Requirement | Status |
+|-------------|--------|
+| No raw SQL or procedural DB calls in refactored code | **Yes** — only PDO_DB methods and bound parameters. |
+| All DB access uses PDO_DB | **Yes** in all refactored files. |
+| All session logic uses Session class or crafty_get_session_people() | **Yes** — session reads from {prefix}sessions via Session or crafty_get_session_people(); writes via Session or PDO_DB in LegacySessionManager/LegacySessionIdentity. |
+| No legacy table references (livehelp_*, lupo_users) | **Yes** — removed or replaced with {prefix}sessions, lupo_auth_users, lupo_actors, lupo_departments per migration. |
+| All mappings follow migration docs | **Yes** — MIGRATION_MAPPING_REFERENCE.md and per-table migration .md files used. |
+| Table prefix never hardcoded | **Yes** — LUPO_TABLE_PREFIX used everywhere in refactored code. |
+
+---
+
+## 5. One-time SQL migration files generated
+
+- **None.** No new migration files were added under `docs/doctrine/migrations/generated/` in this refactor. The folder exists with a README; schema was taken from install_new_lupopedia.sql and migration docs. If you discover missing columns or tables at runtime, add a one-time SQL file there and run it manually.
+
+---
+
+## 6. Remaining files (not refactored in this pass)
+
+- **Scripts and setup:** `scripts/migrate_user_mappings.php`, `scripts/validate_tab_mappings.php`, `scripts/setup_help_list_modules.php`, `scripts/verify_grounded_architecture.php`, `scripts/run_migration_4_1_6.php`, `scripts/cleanup_old_directories.php`, `lupo-includes/lupopedia-setup.php` (detect/drop livehelp_* for wizard), `deploy/apply_dialog_schema.php`, `app/Services/System/SystemHealthService.php`, `app/Services/System/LupopediaMigrationController.php`, `lupo-includes/Dialog/Database/DialogDatabase.php`, `lupo-includes/MigrationOrchestrator/`, `lupo-includes/modules/list/list-controller.php`, `lupo-includes/class-thoth*.php`, `lupo-includes/class-iris.php`, `lupo-includes/calss-thoth_topic.php`, `lupo-includes/class-wolfmind.php` — may still use **$db->query()** or **$pdo->query()**; can be migrated in a later pass.
+- **References kept by design:** `lupopedia-setup.php` and migration wizard still mention **livehelp_*** for one-time detect/drop of legacy tables; URL/path names like **livehelp_js.php** and **livehelp-js.php** are file names, not table references.

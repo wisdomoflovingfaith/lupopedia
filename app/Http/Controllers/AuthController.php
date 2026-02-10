@@ -2,261 +2,150 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use App\Auth\UnifiedSessionHandler;
-use Carbon\Carbon;
 
-class AuthController extends Controller
+/**
+ * Auth controller — plain PHP, PDO. No Laravel.
+ * Constructor: ($db, UnifiedSessionHandler $sessionHandler = null).
+ * All timestamps BIGINT YmdHis UTC.
+ */
+
+if (!defined('LUPO_TABLE_PREFIX')) {
+    define('LUPO_TABLE_PREFIX', 'lupo_');
+}
+
+class AuthController
 {
+    /** @var \PDO_DB */
+    private $db;
+
+    /** @var UnifiedSessionHandler */
     protected $sessionHandler;
 
-    public function __construct(UnifiedSessionHandler $sessionHandler)
+    public function __construct($db, UnifiedSessionHandler $sessionHandler = null)
     {
-        $this->sessionHandler = $sessionHandler;
+        $this->db = $db;
+        $this->sessionHandler = $sessionHandler ?? new UnifiedSessionHandler($db);
     }
 
     /**
-     * Unified login method for both Lupopedia and Crafty Syntax
+     * Unified login. $input: email, password. $requestInfo: ip, user_agent (optional).
+     * Returns ['success' => bool, 'message' => string?, 'user_id' => ?, 'user_type' => ?, 'user_data' => ?, 'redirect' => ?].
      */
-    public function unifiedLogin(Request $request)
+    public function unifiedLogin(array $input, array $requestInfo = null): array
     {
-        // Detect system context
-        $systemContext = $this->sessionHandler->detectSystemContext($request);
-        
-        // Validate login credentials
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->handleLoginFailure($validator->errors(), $systemContext);
+        $email = $input['email'] ?? '';
+        $password = $input['password'] ?? '';
+        if (!$email || !$password) {
+            return ['success' => false, 'message' => 'Email and password required'];
         }
 
-        // Attempt authentication based on context
-        $authResult = $this->attemptUnifiedAuthentication($request, $systemContext);
+        $path = isset($_SERVER['REQUEST_URI']) ? (string) parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) : '';
+        $systemContext = $this->sessionHandler->detectSystemContext($path);
 
-        if (!$authResult['success']) {
-            return $this->handleLoginFailure($authResult['message'], $systemContext);
+        $result = $this->attemptLupopediaAuth($email, $password);
+        if (!$result['success']) {
+            return array_merge($result, ['redirect' => '/login']);
         }
 
-        // Create unified session
+        $now = (int) gmdate('YmdHis');
         $sessionData = [
-            'login_time' => now(),
-            'ip_address' => $request->ip(),
-            'user_agent' => $request->userAgent(),
-            'original_context' => $systemContext
+            'login_ymdhis' => $now,
+            'ip_address' => $requestInfo['ip'] ?? $_SERVER['REMOTE_ADDR'] ?? '',
+            'user_agent' => $requestInfo['user_agent'] ?? $_SERVER['HTTP_USER_AGENT'] ?? '',
+            'original_context' => $systemContext,
         ];
-
         $sessionId = $this->sessionHandler->createUnifiedSession(
-            $authResult['user_id'],
+            $result['user_id'],
             $systemContext,
             $sessionData
         );
+        $this->updateLastLogin($result['user_id']);
 
-        // Update last login timestamp
-        $this->updateLastLogin($authResult['user_id']);
-
-        // Redirect based on original context
-        return $this->redirectToSystemInterface($systemContext, $authResult);
+        return [
+            'success' => true,
+            'user_id' => $result['user_id'],
+            'user_type' => $result['user_type'] ?? 'lupopedia',
+            'user_data' => $result['user_data'] ?? null,
+            'redirect' => '/dashboard',
+        ];
     }
 
-    /**
-     * Attempt unified authentication across both systems
-     */
-    private function attemptUnifiedAuthentication($request, $systemContext)
+    private function attemptLupopediaAuth(string $email, string $password): array
     {
-        $email = $request->input('email');
-        $password = $request->input('password');
-
-        // First try Lupopedia authentication
-        $lupoResult = $this->attemptLupopediaAuth($email, $password);
-        
-        if ($lupoResult['success']) {
-            return $lupoResult;
-        }
-
-        // Then try Crafty Syntax authentication
-        $craftyResult = $this->attemptCraftySyntaxAuth($email, $password);
-        
-        if ($craftyResult['success']) {
-            return $craftyResult;
-        }
-
-        return ['success' => false, 'message' => 'Invalid credentials'];
-    }
-
-    /**
-     * Attempt Lupopedia authentication
-     */
-    private function attemptLupopediaAuth($email, $password)
-    {
-        $user = DB::table('users')
-            ->where('email', $email)
-            ->first();
-
-        if (!$user) {
+        $t = $this->db->quoteIdentifier(LUPO_TABLE_PREFIX . 'auth_users');
+        $row = $this->db->fetchRow(
+            "SELECT auth_user_id, email, display_name, password_hash FROM $t WHERE email = :email AND is_active = 1 AND (is_deleted = 0 OR is_deleted IS NULL)",
+            ['email' => $email]
+        );
+        if (!$row) {
             return ['success' => false, 'message' => 'User not found'];
         }
-
-        // Verify password using existing Lupopedia method
-        if (password_verify($password, $user->password)) {
+        if (password_verify($password, $row['password_hash'] ?? '')) {
             return [
                 'success' => true,
-                'user_id' => $user->id,
+                'user_id' => $row['auth_user_id'],
                 'user_type' => 'lupopedia',
-                'user_data' => $user
+                'user_data' => (object) $row,
             ];
         }
-
         return ['success' => false, 'message' => 'Invalid password'];
     }
 
     /**
-     * Attempt Crafty Syntax authentication
+     * Unified logout. $sessionId from session_id(). Returns ['redirect' => url].
      */
-    private function attemptCraftySyntaxAuth($email, $password)
+    public function unifiedLogout(string $sessionId = null): array
     {
-        // Check if this is a Crafty Syntax operator
-        $operator = DB::table('livehelp_operators')
-            ->where('email', $email)
-            ->first();
-
-        if (!$operator) {
-            return ['success' => false, 'message' => 'Operator not found'];
+        if ($sessionId === null && function_exists('session_id')) {
+            $sessionId = session_id();
         }
-
-        // Verify password using Crafty Syntax method
-        if ($this->verifyCraftyPassword($password, $operator->password)) {
-            // Check if there's a user mapping
-            $mapping = DB::table('lupo_crafty_user_mapping')
-                ->where('crafty_operator_id', $operator->operatorid)
-                ->first();
-
-            $userId = $mapping ? $mapping->lupo_user_id : null;
-
-            return [
-                'success' => true,
-                'user_id' => $userId,
-                'operator_id' => $operator->operatorid,
-                'user_type' => 'crafty_syntax',
-                'user_data' => $operator
-            ];
+        if ($sessionId) {
+            $this->sessionHandler->destroyUnifiedSession($sessionId);
         }
-
-        return ['success' => false, 'message' => 'Invalid password'];
+        $path = isset($_SERVER['REQUEST_URI']) ? (string) parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) : '';
+        $systemContext = $this->sessionHandler->detectSystemContext($path);
+        return ['redirect' => '/login'];
     }
 
     /**
-     * Verify Crafty Syntax password format
+     * Update last login for lupo_auth_users (last_login_ymdhis).
      */
-    private function verifyCraftyPassword($inputPassword, $storedPassword)
+    private function updateLastLogin($userId): void
     {
-        // Crafty Syntax uses MD5 hashing
-        return md5($inputPassword) === $storedPassword;
-    }
-
-    /**
-     * Handle login failure with appropriate response
-     */
-    private function handleLoginFailure($errors, $systemContext)
-    {
-        if ($systemContext === UnifiedSessionHandler::CONTEXT_CRAFTY_SYNTAX) {
-            // Return Crafty Syntax compatible error response
-            return response()->json([
-                'success' => false,
-                'message' => is_array($errors) ? implode(', ', $errors) : $errors
-            ], 401);
+        if ($userId === null || $userId === '') {
+            return;
         }
-
-        // Return Lupopedia compatible error response
-        return back()->withErrors($errors)->withInput();
+        $now = (int) gmdate('YmdHis');
+        $t = LUPO_TABLE_PREFIX . 'auth_users';
+        $this->db->update($t, ['last_login_ymdhis' => $now], 'auth_user_id = :id', ['id' => $userId]);
     }
 
     /**
-     * Redirect to appropriate system interface
+     * Get session info for JSON. Returns array with user_id, system_context, expires_ymdhis.
      */
-    private function redirectToSystemInterface($systemContext, $authResult)
+    public function getSessionInfo(string $sessionId = null): array
     {
-        switch ($systemContext) {
-            case UnifiedSessionHandler::CONTEXT_CRAFTY_SYNTAX:
-                // Redirect to Crafty Syntax operator interface
-                return redirect('/livehelp/index.php')->with('success', 'Login successful');
-            
-            case UnifiedSessionHandler::CONTEXT_LUPOPEDIA:
-            default:
-                // Redirect to Lupopedia dashboard
-                return redirect('/dashboard')->with('success', 'Login successful');
+        if ($sessionId === null && function_exists('session_id')) {
+            $sessionId = session_id();
         }
-    }
-
-    /**
-     * Unified logout method
-     */
-    public function unifiedLogout(Request $request)
-    {
-        $sessionId = session()->getId();
-        
-        // Destroy unified session
-        $this->sessionHandler->destroyUnifiedSession($sessionId);
-        
-        // Clear Laravel session
-        Auth::logout();
-        session()->invalidate();
-        session()->regenerateToken();
-
-        // Detect context for appropriate redirect
-        $systemContext = $this->sessionHandler->detectSystemContext($request);
-
-        if ($systemContext === UnifiedSessionHandler::CONTEXT_CRAFTY_SYNTAX) {
-            return redirect('/livehelp/login.php')->with('success', 'Logged out successfully');
+        $unified = $sessionId ? $this->sessionHandler->getUnifiedSession($sessionId) : null;
+        if (!$unified) {
+            return ['error' => 'No active session'];
         }
-
-        return redirect('/login')->with('success', 'Logged out successfully');
+        return [
+            'user_id' => $unified['user_id'],
+            'system_context' => $unified['system_context'],
+            'expires_ymdhis' => $unified['expires_ymdhis'] ?? null,
+        ];
     }
 
-    /**
-     * Update last login timestamp
-     */
-    private function updateLastLogin($userId)
+    public function validateSession(string $sessionId = null): array
     {
-        if ($userId) {
-            DB::table('users')
-                ->where('id', $userId)
-                ->update(['last_login_at' => now()]);
+        if ($sessionId === null && function_exists('session_id')) {
+            $sessionId = session_id();
         }
-    }
-
-    /**
-     * Get user session information
-     */
-    public function getSessionInfo(Request $request)
-    {
-        $sessionId = session()->getId();
-        $unifiedSession = $this->sessionHandler->getUnifiedSession($sessionId);
-
-        if (!$unifiedSession) {
-            return response()->json(['error' => 'No active session'], 401);
-        }
-
-        return response()->json([
-            'user_id' => $unifiedSession['user_id'],
-            'system_context' => $unifiedSession['system_context'],
-            'expires_at' => $unifiedSession['expires_at']
-        ]);
-    }
-
-    /**
-     * Validate session integrity
-     */
-    public function validateSession(Request $request)
-    {
-        $sessionId = session()->getId();
-        $isValid = $this->sessionHandler->validateSessionIntegrity($sessionId);
-
-        return response()->json(['valid' => $isValid]);
+        $valid = $sessionId ? $this->sessionHandler->validateSessionIntegrity($sessionId) : false;
+        return ['valid' => $valid];
     }
 }

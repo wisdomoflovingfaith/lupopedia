@@ -26,8 +26,8 @@ if (function_exists('current_user')) {
         $actor_id = (int) $user['actor_id'];
     }
 }
-if (!$actor_id && function_exists('lupo_validate_session')) {
-    $actor_id = lupo_validate_session();
+if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+    $actor_id = $s->validateSession();
 }
 if (!$actor_id) {
     http_response_code(401);

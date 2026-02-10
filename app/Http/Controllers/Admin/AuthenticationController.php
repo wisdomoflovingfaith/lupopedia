@@ -2,522 +2,285 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use App\Auth\AuthManager;
 use App\Auth\UnifiedSessionHandler;
 
-class AuthenticationController extends Controller
+/**
+ * Admin authentication controller — plain PHP, PDO. No Laravel.
+ * Constructor: ($db, AuthManager $authManager = null, UnifiedSessionHandler $sessionHandler = null).
+ * Tables: lupo_crafty_user_mapping (PK crafty_user_mapping_id), lupo_sessions, lupo_auth_audit_log. All timestamps BIGINT YmdHis UTC.
+ */
+
+if (!defined('LUPO_TABLE_PREFIX')) {
+    define('LUPO_TABLE_PREFIX', 'lupo_');
+}
+
+if (!class_exists('timestamp_ymdhis')) {
+    $path = dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'class-timestamp_ymdhis.php';
+    if (is_file($path)) {
+        require_once $path;
+    }
+}
+
+class AuthenticationController
 {
+    /** @var \PDO_DB */
+    private $db;
+
+    /** @var AuthManager */
     protected $authManager;
+
+    /** @var UnifiedSessionHandler */
     protected $sessionHandler;
 
-    public function __construct(AuthManager $authManager, UnifiedSessionHandler $sessionHandler)
+    public function __construct($db, AuthManager $authManager = null, UnifiedSessionHandler $sessionHandler = null)
     {
-        $this->authManager = $authManager;
-        $this->sessionHandler = $sessionHandler;
-        $this->middleware(['auth', 'admin']);
+        $this->db = $db;
+        $this->sessionHandler = $sessionHandler ?? new UnifiedSessionHandler($db);
+        $this->authManager = $authManager ?? new AuthManager($db, $this->sessionHandler);
+    }
+
+    protected function tablePrefix(): string
+    {
+        return LUPO_TABLE_PREFIX;
+    }
+
+    private function nowYmdHis(): int
+    {
+        return (int) gmdate('YmdHis');
     }
 
     /**
-     * Display authentication mapping dashboard
+     * Get dashboard data (for view or JSON). No Laravel view/response.
      */
-    public function index()
+    public function getIndexData(): array
     {
-        $mappings = $this->getUserMappings();
-        $unmappedUsers = $this->getUnmappedUsers();
-        $unmappedOperators = $this->getUnmappedOperators();
-        $stats = $this->getAuthenticationStats();
-
-        return view('admin.authentication.index', compact('mappings', 'unmappedUsers', 'unmappedOperators', 'stats'));
+        return [
+            'mappings' => $this->getUserMappings(),
+            'unmappedUsers' => $this->getUnmappedUsers(),
+            'stats' => $this->getAuthenticationStats(),
+        ];
     }
 
     /**
-     * Display user mapping interface
+     * Get mapping form data. Role-based; no operator list.
      */
-    public function mapping()
+    public function getMappingData(): array
     {
-        $lupoUsers = $this->getLupopediaUsers();
-        $craftyOperators = $this->getCraftyOperators();
-        $existingMappings = $this->getUserMappings();
-
-        return view('admin.authentication.mapping', compact('lupoUsers', 'craftyOperators', 'existingMappings'));
+        return [
+            'lupoUsers' => $this->getLupopediaUsers(),
+            'existingMappings' => $this->getUserMappings(),
+        ];
     }
 
     /**
-     * Create or update user mapping
+     * Create user mapping. Input: lupo_user_id (auth_user_id), mapping_type, notes. crafty_operator_id deprecated.
      */
-    public function storeMapping(Request $request)
+    public function storeMapping(array $input, $currentUserId = null): array
     {
-        $validator = Validator::make($request->all(), [
-            'lupo_user_id' => 'required|exists:users,id',
-            'crafty_operator_id' => 'required|exists:livehelp_operators,operatorid',
-            'mapping_type' => 'required|in:manual,auto,imported',
-            'notes' => 'nullable|string|max:500'
-        ]);
+        $lupoUserId = $input['lupo_user_id'] ?? null;
+        $mappingType = $input['mapping_type'] ?? 'manual';
+        $notes = $input['notes'] ?? null;
 
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors()
-            ], 422);
+        if (!$lupoUserId) {
+            return ['success' => false, 'message' => 'lupo_user_id required'];
         }
 
         try {
-            $this->authManager->createUserMapping(
-                $request->lupo_user_id,
-                $request->crafty_operator_id,
-                $request->mapping_type,
-                $request->notes
-            );
-
-            // Update users table with crafty_operator_id
-            DB::table('users')
-                ->where('id', $request->lupo_user_id)
-                ->update(['crafty_operator_id' => $request->crafty_operator_id]);
-
-            // Log the mapping creation
-            $this->authManager->logAuthEvent(
-                'user_mapping_created',
-                $request->lupo_user_id,
-                $request->crafty_operator_id,
-                'admin',
-                true,
-                null,
-                [
-                    'mapping_type' => $request->mapping_type,
-                    'notes' => $request->notes,
-                    'created_by' => auth()->id()
-                ]
-            );
-
-            return response()->json([
-                'success' => true,
-                'message' => 'User mapping created successfully'
-            ]);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Error creating user mapping: ' . $e->getMessage()
-            ], 500);
+            $this->authManager->createUserMapping($lupoUserId, null, $mappingType, $notes);
+            $this->authManager->logAuthEvent('user_mapping_created', $lupoUserId, null, 'admin', true, null, null);
+            return ['success' => true, 'message' => 'User mapping created successfully'];
+        } catch (\Throwable $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }
     }
 
     /**
-     * Delete user mapping
+     * Delete mapping by crafty_user_mapping_id.
      */
-    public function deleteMapping($id)
+    public function deleteMapping($craftyUserMappingId): array
     {
-        try {
-            $mapping = DB::table('lupo_crafty_user_mapping')->where('id', $id)->first();
-            
-            if (!$mapping) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Mapping not found'
-                ], 404);
-            }
-
-            // Remove crafty_operator_id from users table
-            DB::table('users')
-                ->where('id', $mapping->lupo_user_id)
-                ->update(['crafty_operator_id' => null]);
-
-            // Delete the mapping
-            DB::table('lupo_crafty_user_mapping')->where('id', $id)->delete();
-
-            // Log the deletion
-            $this->authManager->logAuthEvent(
-                'user_mapping_deleted',
-                $mapping->lupo_user_id,
-                $mapping->crafty_operator_id,
-                'admin',
-                true,
-                null,
-                [
-                    'deleted_by' => auth()->id()
-                ]
-            );
-
-            return response()->json([
-                'success' => true,
-                'message' => 'User mapping deleted successfully'
-            ]);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Error deleting user mapping: ' . $e->getMessage()
-            ], 500);
+        $t = $this->tablePrefix() . 'crafty_user_mapping';
+        $mapping = $this->db->fetchRow(
+            'SELECT * FROM ' . $this->db->quoteIdentifier($t) . ' WHERE crafty_user_mapping_id = :id',
+            ['id' => $craftyUserMappingId]
+        );
+        if (!$mapping) {
+            return ['success' => false, 'message' => 'Mapping not found'];
         }
+        $this->db->delete($t, 'crafty_user_mapping_id = :id', ['id' => $craftyUserMappingId]);
+        $this->authManager->logAuthEvent('user_mapping_deleted', $mapping['lupo_user_id'], null, 'admin', true, null, null);
+        return ['success' => true, 'message' => 'Mapping deleted'];
     }
 
     /**
-     * Display session management dashboard
+     * Get user mappings. Joins lupo_auth_users only (no legacy operator tables).
      */
-    public function sessions()
+    public function getUserMappings(): array
     {
-        $activeSessions = $this->getActiveSessions();
-        $sessionStats = $this->getSessionStats();
-        $recentActivity = $this->getRecentAuthenticationActivity();
+        $p = $this->tablePrefix();
+        $map = $p . 'crafty_user_mapping';
+        $auth = $p . 'auth_users';
+        $sql = 'SELECT m.*, u.email AS lupo_email, u.display_name AS lupo_name '
+            . 'FROM ' . $this->db->quoteIdentifier($map) . ' m '
+            . 'LEFT JOIN ' . $this->db->quoteIdentifier($auth) . ' u ON u.auth_user_id = m.lupo_user_id '
+            . 'ORDER BY m.created_at DESC';
+        return $this->db->fetchAll($sql, []);
+    }
 
-        return view('admin.authentication.sessions', compact('activeSessions', 'sessionStats', 'recentActivity'));
+    public function getUnmappedUsers(): array
+    {
+        $p = $this->tablePrefix();
+        $map = $p . 'crafty_user_mapping';
+        $auth = $p . 'auth_users';
+        $sql = 'SELECT u.auth_user_id AS id, u.email, u.display_name AS name FROM ' . $this->db->quoteIdentifier($auth) . ' u '
+            . 'LEFT JOIN ' . $this->db->quoteIdentifier($map) . ' m ON m.lupo_user_id = u.auth_user_id '
+            . 'WHERE u.is_active = 1 AND (u.is_deleted = 0 OR u.is_deleted IS NULL) AND m.lupo_user_id IS NULL';
+        return $this->db->fetchAll($sql, []);
     }
 
     /**
-     * Terminate user session
+     * Stats. Uses lupo_sessions (not unified_sessions) and lupo_auth_audit_log. Timestamps YmdHis.
      */
-    public function terminateSession($sessionId)
+    public function getAuthenticationStats(): array
     {
-        try {
-            $session = $this->sessionHandler->getUnifiedSession($sessionId);
-            
-            if (!$session) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Session not found'
-                ], 404);
-            }
+        $p = $this->tablePrefix();
+        $now = $this->nowYmdHis();
+        $sessionsTable = $p . 'sessions';
+        $mapTable = $p . 'crafty_user_mapping';
+        $authTable = $p . 'auth_users';
+        $totalMappings = (int) $this->db->fetchOne('SELECT COUNT(*) FROM ' . $this->db->quoteIdentifier($mapTable), []);
+        $activeSessions = (int) $this->db->fetchOne(
+            'SELECT COUNT(*) FROM ' . $this->db->quoteIdentifier($sessionsTable) . ' WHERE expires_ymdhis IS NULL OR expires_ymdhis > :now',
+            ['now' => $now]
+        );
+        $totalLupoUsers = (int) $this->db->fetchOne('SELECT COUNT(*) FROM ' . $this->db->quoteIdentifier($authTable) . ' WHERE is_active = 1 AND (is_deleted = 0 OR is_deleted IS NULL)', []);
+        $mappedUsers = (int) $this->db->fetchOne('SELECT COUNT(DISTINCT lupo_user_id) FROM ' . $this->db->quoteIdentifier($mapTable) . ' WHERE lupo_user_id IS NOT NULL', []);
+        return [
+            'total_mappings' => $totalMappings,
+            'active_sessions' => $activeSessions,
+            'total_lupo_users' => $totalLupoUsers,
+            'mapped_users' => $mappedUsers,
+        ];
+    }
 
-            // Destroy the session
-            $this->sessionHandler->destroyUnifiedSession($sessionId);
+    /**
+     * Active sessions from lupo_sessions (join lupo_auth_users on actor_id = auth_user_id).
+     */
+    public function getActiveSessions(): array
+    {
+        $now = $this->nowYmdHis();
+        $p = $this->tablePrefix();
+        $s = $p . 'sessions';
+        $auth = $p . 'auth_users';
+        $sql = 'SELECT s.*, u.email AS user_email, u.display_name AS user_name '
+            . 'FROM ' . $this->db->quoteIdentifier($s) . ' s '
+            . 'LEFT JOIN ' . $this->db->quoteIdentifier($auth) . ' u ON u.auth_user_id = s.actor_id '
+            . 'WHERE (s.expires_ymdhis IS NULL OR s.expires_ymdhis > :now) ORDER BY s.updated_ymdhis DESC';
+        return $this->db->fetchAll($sql, ['now' => $now]);
+    }
 
-            // Log the termination
-            $this->authManager->logAuthEvent(
-                'session_terminated',
-                $session['user_id'],
-                null,
-                'admin',
-                true,
-                null,
-                [
-                    'terminated_by' => auth()->id(),
-                    'original_context' => $session['system_context']
-                ]
-            );
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Session terminated successfully'
-            ]);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Error terminating session: ' . $e->getMessage()
-            ], 500);
+    /**
+     * Session stats. created_at in lupo_auth_audit_log is BIGINT YmdHis.
+     */
+    public function getSessionStats(): array
+    {
+        $now = $this->nowYmdHis();
+        if (class_exists('timestamp_ymdhis')) {
+            $dayAgo = timestamp_ymdhis::subtractSeconds($now, 86400);
+            $weekAgo = timestamp_ymdhis::subtractSeconds($now, 604800);
+            $monthAgo = timestamp_ymdhis::subtractSeconds($now, 2592000);
+        } else {
+            $dayAgo = $now - 1000000;
+            $weekAgo = $now - 7000000;
+            $monthAgo = $now - 30000000;
         }
-    }
-
-    /**
-     * Display synchronization tools
-     */
-    public function synchronization()
-    {
-        $syncStatus = $this->getSynchronizationStatus();
-        $lastSync = $this->getLastSyncTime();
-        $syncStats = $this->getSyncStatistics();
-
-        return view('admin.authentication.synchronization', compact('syncStatus', 'lastSync', 'syncStats'));
-    }
-
-    /**
-     * Trigger user synchronization
-     */
-    public function synchronizeUsers(Request $request)
-    {
-        $syncType = $request->input('sync_type', 'bidirectional');
-        
-        try {
-            $results = $this->performUserSynchronization($syncType);
-
-            // Log synchronization
-            $this->authManager->logAuthEvent(
-                'user_synchronization',
-                null,
-                null,
-                'admin',
-                true,
-                null,
-                [
-                    'sync_type' => $syncType,
-                    'results' => $results,
-                    'triggered_by' => auth()->id()
-                ]
-            );
-
-            return response()->json([
-                'success' => true,
-                'message' => 'User synchronization completed successfully',
-                'results' => $results
-            ]);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Error during synchronization: ' . $e->getMessage()
-            ], 500);
+        $p = $this->tablePrefix();
+        $sessionsTable = $p . 'sessions';
+        $logTable = $p . 'auth_audit_log';
+        $totalActive = (int) $this->db->fetchOne(
+            'SELECT COUNT(*) FROM ' . $this->db->quoteIdentifier($sessionsTable) . ' WHERE expires_ymdhis IS NULL OR expires_ymdhis > :now',
+            ['now' => $now]
+        );
+        $last24h = (int) $this->db->fetchOne(
+            'SELECT COUNT(*) FROM ' . $this->db->quoteIdentifier($logTable) . ' WHERE created_at > :cut',
+            ['cut' => $dayAgo]
+        );
+        $last7d = (int) $this->db->fetchOne(
+            'SELECT COUNT(*) FROM ' . $this->db->quoteIdentifier($logTable) . ' WHERE created_at > :cut',
+            ['cut' => $weekAgo]
+        );
+        $last30d = (int) $this->db->fetchOne(
+            'SELECT COUNT(*) FROM ' . $this->db->quoteIdentifier($logTable) . ' WHERE created_at > :cut',
+            ['cut' => $monthAgo]
+        );
+        $byContext = [];
+        $rows = $this->db->fetchAll(
+            'SELECT system_context, COUNT(*) AS cnt FROM ' . $this->db->quoteIdentifier($sessionsTable)
+            . ' WHERE expires_ymdhis IS NULL OR expires_ymdhis > :now GROUP BY system_context',
+            ['now' => $now]
+        );
+        foreach ($rows as $r) {
+            $byContext[$r['system_context'] ?? 'lupopedia'] = (int) $r['cnt'];
         }
-    }
-
-    /**
-     * Get user mappings with details
-     */
-    private function getUserMappings()
-    {
-        return DB::table('lupo_crafty_user_mapping')
-            ->leftJoin('users', 'lupo_crafty_user_mapping.lupo_user_id', '=', 'users.id')
-            ->leftJoin('livehelp_operators', 'lupo_crafty_user_mapping.crafty_operator_id', '=', 'livehelp_operators.operatorid')
-            ->select(
-                'lupo_crafty_user_mapping.*',
-                'users.email as lupo_email',
-                'users.name as lupo_name',
-                'livehelp_operators.email as crafty_email',
-                'livehelp_operators.operatorname as crafty_name'
-            )
-            ->orderBy('lupo_crafty_user_mapping.created_at', 'desc')
-            ->get();
-    }
-
-    /**
-     * Get unmapped Lupopedia users
-     */
-    private function getUnmappedUsers()
-    {
-        return DB::table('users')
-            ->leftJoin('lupo_crafty_user_mapping', 'users.id', '=', 'lupo_crafty_user_mapping.lupo_user_id')
-            ->whereNull('lupo_crafty_user_mapping.lupo_user_id')
-            ->select('users.id', 'users.email', 'users.name')
-            ->get();
-    }
-
-    /**
-     * Get unmapped Crafty Syntax operators
-     */
-    private function getUnmappedOperators()
-    {
-        return DB::table('livehelp_operators')
-            ->leftJoin('lupo_crafty_user_mapping', 'livehelp_operators.operatorid', '=', 'lupo_crafty_user_mapping.crafty_operator_id')
-            ->whereNull('lupo_crafty_user_mapping.crafty_operator_id')
-            ->select('livehelp_operators.operatorid', 'livehelp_operators.email', 'livehelp_operators.operatorname')
-            ->get();
-    }
-
-    /**
-     * Get authentication statistics
-     */
-    private function getAuthenticationStats()
-    {
         return [
-            'total_mappings' => DB::table('lupo_crafty_user_mapping')->count(),
-            'active_sessions' => DB::table('unified_sessions')->where('expires_at', '>', now())->count(),
-            'total_lupo_users' => DB::table('users')->count(),
-            'total_crafty_operators' => DB::table('livehelp_operators')->count(),
-            'mapped_users' => DB::table('users')->whereNotNull('crafty_operator_id')->count(),
-            'mapped_operators' => DB::table('lupo_crafty_user_mapping')->distinct('crafty_operator_id')->count()
+            'total_active' => $totalActive,
+            'last_24h' => $last24h,
+            'last_7d' => $last7d,
+            'last_30d' => $last30d,
+            'by_context' => $byContext,
         ];
     }
 
     /**
-     * Get active sessions with user details
+     * Recent auth activity. lupo_auth_audit_log has created_at (YmdHis).
      */
-    private function getActiveSessions()
+    public function getRecentAuthenticationActivity(int $limit = 50): array
     {
-        return DB::table('unified_sessions')
-            ->leftJoin('users', 'unified_sessions.user_id', '=', 'users.id')
-            ->where('unified_sessions.expires_at', '>', now())
-            ->select(
-                'unified_sessions.*',
-                'users.email as user_email',
-                'users.name as user_name'
-            )
-            ->orderBy('unified_sessions.updated_at', 'desc')
-            ->get();
+        $p = $this->tablePrefix();
+        $log = $p . 'auth_audit_log';
+        $auth = $p . 'auth_users';
+        $sql = 'SELECT l.*, u.email AS user_email '
+            . 'FROM ' . $this->db->quoteIdentifier($log) . ' l '
+            . 'LEFT JOIN ' . $this->db->quoteIdentifier($auth) . ' u ON u.auth_user_id = l.user_id '
+            . 'ORDER BY l.created_at DESC LIMIT ' . (int) $limit;
+        return $this->db->fetchAll($sql, []);
     }
 
-    /**
-     * Get session statistics
-     */
-    private function getSessionStats()
+    public function getLastSyncTime()
     {
-        $now = now();
-        $dayAgo = $now->copy()->subDay();
-        $weekAgo = $now->copy()->subWeek();
-        $monthAgo = $now->copy()->subMonth();
-
-        return [
-            'total_active' => DB::table('unified_sessions')->where('expires_at', '>', $now)->count(),
-            'last_24h' => DB::table('auth_audit_log')->where('created_at', '>', $dayAgo)->count(),
-            'last_7d' => DB::table('auth_audit_log')->where('created_at', '>', $weekAgo)->count(),
-            'last_30d' => DB::table('auth_audit_log')->where('created_at', '>', $monthAgo)->count(),
-            'by_context' => DB::table('unified_sessions')
-                ->where('expires_at', '>', $now)
-                ->selectRaw('system_context, COUNT(*) as count')
-                ->groupBy('system_context')
-                ->pluck('count', 'system_context')
-                ->toArray()
-        ];
+        $log = $this->tablePrefix() . 'auth_audit_log';
+        $row = $this->db->fetchRow(
+            'SELECT created_at FROM ' . $this->db->quoteIdentifier($log) . ' WHERE event_type = :ev ORDER BY created_at DESC LIMIT 1',
+            ['ev' => 'user_synchronization']
+        );
+        return $row ? (int) $row['created_at'] : null;
     }
 
-    /**
-     * Get recent authentication activity
-     */
-    private function getRecentAuthenticationActivity()
+    public function getSyncStatistics(): array
     {
-        return DB::table('auth_audit_log')
-            ->leftJoin('users', 'auth_audit_log.user_id', '=', 'users.id')
-            ->leftJoin('livehelp_operators', 'auth_audit_log.crafty_operator_id', '=', 'livehelp_operators.operatorid')
-            ->select(
-                'auth_audit_log.*',
-                'users.email as user_email',
-                'livehelp_operators.email as operator_email'
-            )
-            ->orderBy('auth_audit_log.created_at', 'desc')
-            ->limit(50)
-            ->get();
+        $log = $this->tablePrefix() . 'auth_audit_log';
+        $total = (int) $this->db->fetchOne(
+            'SELECT COUNT(*) FROM ' . $this->db->quoteIdentifier($log) . ' WHERE event_type = :ev',
+            ['ev' => 'user_synchronization']
+        );
+        $success = (int) $this->db->fetchOne(
+            'SELECT COUNT(*) FROM ' . $this->db->quoteIdentifier($log) . ' WHERE event_type = :ev AND success = 1',
+            ['ev' => 'user_synchronization']
+        );
+        $failed = (int) $this->db->fetchOne(
+            'SELECT COUNT(*) FROM ' . $this->db->quoteIdentifier($log) . ' WHERE event_type = :ev AND success = 0',
+            ['ev' => 'user_synchronization']
+        );
+        return ['total_syncs' => $total, 'successful_syncs' => $success, 'failed_syncs' => $failed];
     }
 
-    /**
-     * Perform user synchronization
-     */
-    private function performUserSynchronization($syncType)
+    public function getLupopediaUsers(): array
     {
-        $results = [
-            'users_synced' => 0,
-            'operators_synced' => 0,
-            'mappings_created' => 0,
-            'errors' => []
-        ];
-
-        try {
-            switch ($syncType) {
-                case 'lupo_to_crafty':
-                    $results = $this->syncLupopediaToCrafty();
-                    break;
-                case 'crafty_to_lupo':
-                    $results = $this->syncCraftyToLupopedia();
-                    break;
-                case 'bidirectional':
-                default:
-                    $results = $this->syncBidirectional();
-                    break;
-            }
-        } catch (\Exception $e) {
-            $results['errors'][] = $e->getMessage();
-        }
-
-        return $results;
-    }
-
-    /**
-     * Sync from Lupopedia to Crafty Syntax
-     */
-    private function syncLupopediaToCrafty()
-    {
-        // Implementation for syncing Lupopedia users to Crafty Syntax
-        return [
-            'users_synced' => 0,
-            'operators_synced' => 0,
-            'mappings_created' => 0,
-            'errors' => ['Sync method not yet implemented']
-        ];
-    }
-
-    /**
-     * Sync from Crafty Syntax to Lupopedia
-     */
-    private function syncCraftyToLupopedia()
-    {
-        // Implementation for syncing Crafty operators to Lupopedia
-        return [
-            'users_synced' => 0,
-            'operators_synced' => 0,
-            'mappings_created' => 0,
-            'errors' => ['Sync method not yet implemented']
-        ];
-    }
-
-    /**
-     * Bidirectional synchronization
-     */
-    private function syncBidirectional()
-    {
-        // Implementation for bidirectional sync
-        return [
-            'users_synced' => 0,
-            'operators_synced' => 0,
-            'mappings_created' => 0,
-            'errors' => ['Sync method not yet implemented']
-        ];
-    }
-
-    /**
-     * Get synchronization status
-     */
-    private function getSynchronizationStatus()
-    {
-        return [
-            'last_sync' => $this->getLastSyncTime(),
-            'auto_sync_enabled' => false, // This would come from config
-            'sync_frequency' => 'manual', // This would come from config
-            'pending_syncs' => 0
-        ];
-    }
-
-    /**
-     * Get last synchronization time
-     */
-    private function getLastSyncTime()
-    {
-        $lastSync = DB::table('auth_audit_log')
-            ->where('event_type', 'user_synchronization')
-            ->orderBy('created_at', 'desc')
-            ->first();
-
-        return $lastSync ? $lastSync->created_at : null;
-    }
-
-    /**
-     * Get sync statistics
-     */
-    private function getSyncStatistics()
-    {
-        return [
-            'total_syncs' => DB::table('auth_audit_log')
-                ->where('event_type', 'user_synchronization')
-                ->count(),
-            'successful_syncs' => DB::table('auth_audit_log')
-                ->where('event_type', 'user_synchronization')
-                ->where('success', true)
-                ->count(),
-            'failed_syncs' => DB::table('auth_audit_log')
-                ->where('event_type', 'user_synchronization')
-                ->where('success', false)
-                ->count()
-        ];
-    }
-
-    /**
-     * Get Lupopedia users for mapping
-     */
-    private function getLupopediaUsers()
-    {
-        return DB::table('users')
-            ->select('id', 'email', 'name')
-            ->orderBy('email')
-            ->get();
-    }
-
-    /**
-     * Get Crafty Syntax operators for mapping
-     */
-    private function getCraftyOperators()
-    {
-        return DB::table('livehelp_operators')
-            ->select('operatorid', 'email', 'operatorname')
-            ->orderBy('email')
-            ->get();
+        $auth = $this->db->quoteIdentifier($this->tablePrefix() . 'auth_users');
+        return $this->db->fetchAll(
+            "SELECT auth_user_id AS id, email, display_name AS name FROM $auth WHERE is_active = 1 AND (is_deleted = 0 OR is_deleted IS NULL) ORDER BY email",
+            []
+        );
     }
 }

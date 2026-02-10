@@ -1153,45 +1153,7 @@ AND NOT EXISTS (
     WHERE a2.actor_source_id = au.auth_user_id
     AND a2.actor_source_type = 'lupo_auth_users'
 );
-
-INSERT INTO lupo_operators (
-    anchor_agent_id,
-    channel_id,
-    metadata_json,
-    auth_user_id,
-    actor_id,
-    department_id,
-    is_active,
-    availability_status,
-    created_ymdhis,
-    updated_ymdhis,
-    pono_score,
-    pilau_score,
-    kapakai_score
-)
-SELECT
-    NULL,
-    1,
-    NULL,
-    au.auth_user_id,
-    a.actor_id,
-    od.department,
-    1,
-    'offline',
-    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S'),
-    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S'),
-    1.00,
-    0.00,
-    0.50
-FROM livehelp_operator_departments od
-INNER JOIN livehelp_users u ON u.user_id = od.user_id
-INNER JOIN lupo_auth_users au ON au.username = u.username
-INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
-WHERE u.isoperator = 'Y'
-AND NOT EXISTS (
-    SELECT 1 FROM lupo_operators o2
-    WHERE o2.auth_user_id = au.auth_user_id AND o2.department_id = od.department
-);
+ 
 
 UPDATE lupo_actor_departments ad
 INNER JOIN livehelp_operator_departments od ON ad.actor_department_id = od.recno

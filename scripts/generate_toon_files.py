@@ -6,10 +6,12 @@ Generates JSON TOON files for all tables using live MySQL schema introspection
 (SHOW TABLES / SHOW FULL COLUMNS / SHOW INDEX) and optionally canonical rows:
 
 - PK=0 row: for any table with a primary key, include the row where pk = 0 if it exists.
-- lupo_unified_registry: include ALL rows in that table's "data" array.
+- lupo_unified_registry: all rows from DB + active agents as actors (doctrine; no inactive agents).
+
+Actor/agent doctrine: active agents (lupo_agent_registry WHERE is_active=1) are included in
+lupo_unified_registry TOON data as entity_type='actor', entity_table='lupo_agent_registry'.
 
 Output: docs/toons/<table_name>.toon.json
-
 DB config: read from lupopedia-config.php (project root). See scripts/db_config.py.
 If SKIP_DB=1, canonical data is skipped and "data" arrays are empty.
 """
@@ -30,8 +32,11 @@ except ImportError:
     DictCursor = None
 
 from db_config import get_connection_params
-
-UNIFIED_REGISTRY_TABLE = "lupo_unified_registry"
+from actor_agent_doctrine import (
+    AGENT_REGISTRY_TABLE,
+    UNIFIED_REGISTRY_TABLE,
+    build_unified_registry_row_from_agent as doctrine_build_unified_row,
+)
 
 STRING_TYPES = {
     "char", "varchar", "text", "tinytext", "mediumtext", "longtext", "enum", "set",
@@ -193,6 +198,17 @@ def fetch_all_rows(cursor, table_name: str) -> List[Dict[str, Any]]:
     return cursor.fetchall()
 
 
+def fetch_active_agents(cursor) -> List[Dict[str, Any]]:
+    """Fetch lupo_agent_registry WHERE is_active = 1 (doctrine: active agents become actors)."""
+    try:
+        cursor.execute(
+            "SELECT * FROM `{}` WHERE `is_active` = 1 ORDER BY `agent_registry_id`".format(AGENT_REGISTRY_TABLE)
+        )
+        return cursor.fetchall()
+    except Exception:
+        return []
+
+
 def fetch_canonical_data(
     cursor,
     table_name: str,
@@ -202,7 +218,7 @@ def fetch_canonical_data(
 ) -> List[Dict[str, Any]]:
     """Return list of canonical row dicts for the TOON 'data' array.
     - If SKIP_DB: return [].
-    - If lupo_unified_registry: return all rows.
+    - If lupo_unified_registry: return all rows + active agents as actors (doctrine; no inactive agents).
     - Else if table has PK: return [row where pk=0] if exists.
     - Else: return [].
     """
@@ -212,8 +228,23 @@ def fetch_canonical_data(
     data = []
     if table_name == UNIFIED_REGISTRY_TABLE:
         rows = fetch_all_rows(cursor, table_name)
+        existing_keys = set()
         for row in rows:
             data.append(row_to_data_dict(row, column_names))
+            rl = {str(k).lower(): v for k, v in (row or {}).items()}
+            existing_keys.add((rl.get("entity_type"), rl.get("entity_id")))
+        # Doctrine: active agents become actors in unified registry (no inactive agents).
+        active_agents = fetch_active_agents(cursor)
+        for agent_row in active_agents:
+            rl = {str(k).lower(): v for k, v in (agent_row or {}).items()}
+            aid = rl.get("agent_registry_id")
+            if aid is None or ("actor", aid) in existing_keys:
+                continue
+            by_col = doctrine_build_unified_row(agent_row)
+            if by_col is not None:
+                row_dict = {c: json_serializable(by_col.get(c)) for c in column_names}
+                data.append(row_dict)
+                existing_keys.add(("actor", aid))
         return data
 
     if pk_column:

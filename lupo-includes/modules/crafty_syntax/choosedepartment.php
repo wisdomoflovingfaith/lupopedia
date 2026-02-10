@@ -29,23 +29,18 @@ if ($session_id === '') {
     $session_id = 'v' . bin2hex(random_bytes(12));
 }
 
-// List departments (lupo_departments)
-$stmt = $db->query("SELECT department_id, name FROM {$prefix}departments WHERE is_deleted = 0 ORDER BY name");
-$departments = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// For each department, check if any channel has at least one role (lupo_channel_roles + lupo_channels)
+$departments = [];
 $online_by_dept = [];
-try {
-    $stmt = $db->query(
+if ($db instanceof \PDO_DB) {
+    $departments = $db->fetchAll("SELECT department_id, name FROM {$prefix}departments WHERE is_deleted = 0 ORDER BY name");
+    $rows = $db->fetchAll(
         "SELECT c.department_id FROM {$prefix}channel_roles r " .
         "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
         "WHERE r.is_deleted = 0 AND c.department_id > 0"
     );
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $online_by_dept[(int)$row['department_id']] = true;
+    foreach ($rows as $row) {
+        $online_by_dept[(int) $row['department_id']] = true;
     }
-} catch (Throwable $e) {
-    // leave online_by_dept empty
 }
 
 $form_action = $base . 'livehelp.php';

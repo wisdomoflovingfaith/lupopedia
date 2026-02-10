@@ -2,180 +2,245 @@
 
 namespace App\Auth;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Cookie;
-use Carbon\Carbon;
+/**
+ * Unified session handler — plain PHP, PDO, doctrine timestamps (BIGINT YmdHis UTC).
+ * No Laravel. Requires: LUPO_TABLE_PREFIX, PDO_DB.
+ *
+ * Table: {prefix}sessions (same as App\Auth\Session). Method table() returns LUPO_TABLE_PREFIX . 'sessions'.
+ * This handler is a thin wrapper: it performs its own INSERT/SELECT/UPDATE/DELETE on that table and manages
+ * the "unified" cookie name (LUPO_TABLE_PREFIX . 'unified_session') and system_context. It does NOT use
+ * the legacy unified_sessions table. Optional future refactor: delegate all DB work to Session and only
+ * handle cookie + system_context. See docs/SESSIONS_VS_UNIFIED_SESSIONS_INVESTIGATION.md §5.1a C.
+ *
+ * Columns used: session_id, federation_node_id, actor_id, ip_address, user_agent, session_data, system_context,
+ * name_key, is_named, last_seen_ymdhis, expires_ymdhis, created_ymdhis, updated_ymdhis.
+ */
+
+if (!defined('LUPO_TABLE_PREFIX')) {
+    define('LUPO_TABLE_PREFIX', 'lupo_');
+}
 
 class UnifiedSessionHandler
 {
-    /**
-     * Session context constants
-     */
     const CONTEXT_LUPOPEDIA = 'lupopedia';
     const CONTEXT_CRAFTY_SYNTAX = 'crafty_syntax';
     const CONTEXT_UNIFIED = 'unified';
 
-    /**
-     * Create or update unified session
-     */
-    public function createUnifiedSession($userId, $systemContext, $sessionData = [])
+    /** @var \PDO_DB */
+    private $db;
+
+    /** Session lifetime in minutes. Define LUPO_SESSION_LIFETIME_MINUTES or default 120. */
+    private $sessionLifetimeMinutes;
+
+    public function __construct($db)
     {
-        $sessionId = Session::getId();
-        $expiresAt = Carbon::now()->addMinutes(config('session.lifetime'));
+        $this->db = $db;
+        $this->sessionLifetimeMinutes = defined('LUPO_SESSION_LIFETIME_MINUTES') ? (int) LUPO_SESSION_LIFETIME_MINUTES : 120;
+    }
 
-        // Store in unified sessions table
-        DB::table('unified_sessions')->updateOrInsert(
-            ['session_id' => $sessionId],
-            [
-                'user_id' => $userId,
-                'system_context' => $systemContext,
-                'session_data' => json_encode($sessionData),
-                'expires_at' => $expiresAt,
-                'updated_at' => now()
-            ]
-        );
+    private function table(): string
+    {
+        return LUPO_TABLE_PREFIX . 'sessions';
+    }
 
-        // Set unified cookie
-        $this->setUnifiedCookie($sessionId, $systemContext);
+    /** Current time as YmdHis bigint (UTC). Doctrine: BIGINT(14) YYYYMMDDHHIISS. */
+    private function nowYmdHis(): int
+    {
+        return (int) gmdate('YmdHis');
+    }
 
-        return $sessionId;
+    /** Add minutes to a YmdHis timestamp (UTC). */
+    private function addMinutesYmdHis(int $ymdhis, int $minutes): int
+    {
+        $s = str_pad((string) $ymdhis, 14, '0', STR_PAD_LEFT);
+        $dt = \DateTime::createFromFormat('YmdHis', $s, new \DateTimeZone('UTC'));
+        if (!$dt) {
+            return $ymdhis;
+        }
+        $dt->modify('+' . (int) $minutes . ' minutes');
+        return (int) $dt->format('YmdHis');
     }
 
     /**
-     * Get unified session data
+     * Create or update session in lupo_sessions.
+     * $sessionId: from PHP session_id() (caller must session_start() if needed).
+     */
+    public function createUnifiedSession($userId, $systemContext, $sessionData = [], $sessionId = null)
+    {
+        if ($sessionId === null && function_exists('session_id')) {
+            $sessionId = session_id();
+        }
+        if ($sessionId === null || $sessionId === '') {
+            return null;
+        }
+
+        $now = $this->nowYmdHis();
+        $expiresYmdHis = $this->addMinutesYmdHis($now, $this->sessionLifetimeMinutes);
+        $table = $this->table();
+
+        $existing = $this->db->fetchRow(
+            'SELECT session_id FROM ' . $this->db->quoteIdentifier($table) . ' WHERE session_id = :sid',
+            ['sid' => $sessionId]
+        );
+
+        $row = [
+            'federation_node_id' => 1,
+            'actor_id' => $userId !== null ? (int) $userId : 0,
+            'ip_address' => '',
+            'user_agent' => '',
+            'session_data' => is_string($sessionData) ? $sessionData : json_encode($sessionData),
+            'last_seen_ymdhis' => $now,
+            'expires_ymdhis' => $expiresYmdHis,
+            'updated_ymdhis' => $now,
+            'name_key' => null,
+            'is_named' => 0,
+        ];
+        if ($this->hasSystemContextColumn()) {
+            $row['system_context'] = $systemContext;
+        }
+
+        if ($existing) {
+            $this->db->update($table, $row, 'session_id = :sid', ['sid' => $sessionId]);
+        } else {
+            $row['session_id'] = $sessionId;
+            $row['created_ymdhis'] = $now;
+            $this->db->insert($table, $row);
+        }
+
+        $this->setUnifiedCookie($sessionId, $systemContext);
+        return $sessionId;
+    }
+
+    private function hasSystemContextColumn(): bool
+    {
+        static $has = null;
+        if ($has !== null) {
+            return $has;
+        }
+        $t = $this->table();
+        $row = $this->db->fetchRow(
+            "SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = :t AND COLUMN_NAME = 'system_context'",
+            ['t' => $t]
+        );
+        $has = (bool) $row;
+        return $has;
+    }
+
+    /**
+     * Get session data. Returns: user_id (actor_id), system_context, session_data, expires_ymdhis (int or null).
      */
     public function getUnifiedSession($sessionId)
     {
-        $session = DB::table('unified_sessions')
-            ->where('session_id', $sessionId)
-            ->where('expires_at', '>', now())
-            ->first();
+        $now = $this->nowYmdHis();
+        $table = $this->table();
+        $sql = 'SELECT * FROM ' . $this->db->quoteIdentifier($table)
+            . ' WHERE session_id = :sid AND (expires_ymdhis IS NULL OR expires_ymdhis > :now)';
+        $session = $this->db->fetchRow($sql, ['sid' => $sessionId, 'now' => $now]);
 
         if ($session) {
+            $systemContext = self::CONTEXT_LUPOPEDIA;
+            if (isset($session['system_context']) && $session['system_context'] !== null && $session['system_context'] !== '') {
+                $systemContext = $session['system_context'];
+            }
             return [
-                'user_id' => $session->user_id,
-                'system_context' => $session->system_context,
-                'session_data' => json_decode($session->session_data, true),
-                'expires_at' => $session->expires_at
+                'user_id' => !empty($session['actor_id']) ? (int) $session['actor_id'] : null,
+                'system_context' => $systemContext,
+                'session_data' => !empty($session['session_data']) ? json_decode($session['session_data'], true) : [],
+                'expires_ymdhis' => isset($session['expires_ymdhis']) ? (int) $session['expires_ymdhis'] : null,
+                'session_id' => $session['session_id'],
+                'name_key' => isset($session['name_key']) ? (string) $session['name_key'] : null,
+                'is_named' => isset($session['is_named']) ? (int) $session['is_named'] : 0,
             ];
         }
 
         return null;
     }
 
-    /**
-     * Migrate existing session to unified format
-     */
-    public function migrateExistingSession($userId, $legacyContext)
+    public function migrateExistingSession($userId, $legacyContext, $sessionId = null)
     {
-        $sessionId = Session::getId();
-        $existingSession = $this->getUnifiedSession($sessionId);
-
-        if (!$existingSession) {
-            return $this->createUnifiedSession($userId, $legacyContext);
+        if ($sessionId === null && function_exists('session_id')) {
+            $sessionId = session_id();
         }
-
+        $existing = $sessionId ? $this->getUnifiedSession($sessionId) : null;
+        if (!$existing) {
+            return $this->createUnifiedSession($userId, $legacyContext, [], $sessionId);
+        }
         return $sessionId;
     }
 
-    /**
-     * Set unified authentication cookie
-     */
-    private function setUnifiedCookie($sessionId, $systemContext)
+    private function cookieName(): string
     {
-        $cookieName = 'lupo_unified_session';
-        $cookieValue = json_encode([
-            'session_id' => $sessionId,
-            'context' => $systemContext,
-            'timestamp' => time()
-        ]);
-
-        Cookie::queue($cookieName, $cookieValue, config('session.lifetime'), '/', null, true, true);
+        return LUPO_TABLE_PREFIX . 'unified_session';
     }
 
-    /**
-     * Get unified session from cookie
-     */
+    private function setUnifiedCookie($sessionId, $systemContext)
+    {
+        $name = $this->cookieName();
+        $value = json_encode([
+            'session_id' => $sessionId,
+            'context' => $systemContext,
+            'ymdhis' => $this->nowYmdHis(),
+        ]);
+        $lifetime = $this->sessionLifetimeMinutes * 60;
+        setcookie($name, $value, time() + $lifetime, '/', '', true, true);
+    }
+
     public function getUnifiedSessionFromCookie()
     {
-        $cookieValue = Cookie::get('lupo_unified_session');
-        
+        $name = $this->cookieName();
+        $cookieValue = isset($_COOKIE[$name]) ? $_COOKIE[$name] : null;
         if ($cookieValue) {
-            $cookieData = json_decode($cookieValue, true);
-            if (isset($cookieData['session_id'])) {
-                return $this->getUnifiedSession($cookieData['session_id']);
+            $data = json_decode($cookieValue, true);
+            if (!empty($data['session_id'])) {
+                return $this->getUnifiedSession($data['session_id']);
             }
         }
-
         return null;
     }
 
-    /**
-     * Destroy unified session
-     */
     public function destroyUnifiedSession($sessionId)
     {
-        DB::table('unified_sessions')
-            ->where('session_id', $sessionId)
-            ->delete();
-
-        // Clear unified cookie
-        Cookie::forget('lupo_unified_session');
+        $table = $this->table();
+        $this->db->delete($table, 'session_id = :sid', ['sid' => $sessionId]);
+        setcookie($this->cookieName(), '', time() - 3600, '/', '', true, true);
     }
 
-    /**
-     * Detect system context from request
-     */
-    public function detectSystemContext($request)
+    public function detectSystemContext($pathOrRequest = null)
     {
-        $path = $request->path();
-        
-        // Check for Crafty Syntax paths
-        if (strpos($path, 'livehelp') !== false || 
-            strpos($path, 'crafty_syntax') !== false ||
-            $request->is('legacy/*')) {
+        $path = '';
+        if (is_string($pathOrRequest)) {
+            $path = $pathOrRequest;
+        } elseif (is_object($pathOrRequest) && method_exists($pathOrRequest, 'path')) {
+            $path = $pathOrRequest->path();
+        } elseif (isset($_SERVER['REQUEST_URI'])) {
+            $path = (string) parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        }
+        if (strpos($path, 'livehelp') !== false || strpos($path, 'crafty_syntax') !== false || strpos($path, 'legacy/') === 0) {
             return self::CONTEXT_CRAFTY_SYNTAX;
         }
-
-        // Default to Lupopedia
         return self::CONTEXT_LUPOPEDIA;
     }
 
-    /**
-     * Clean up expired sessions
-     */
     public function cleanupExpiredSessions()
     {
-        DB::table('unified_sessions')
-            ->where('expires_at', '<=', now())
-            ->delete();
+        $now = $this->nowYmdHis();
+        $table = $this->table();
+        $this->db->delete($table, 'expires_ymdhis IS NOT NULL AND expires_ymdhis <= :now', ['now' => $now]);
     }
 
-    /**
-     * Get active sessions for user
-     */
     public function getActiveSessionsForUser($userId)
     {
-        return DB::table('unified_sessions')
-            ->where('user_id', $userId)
-            ->where('expires_at', '>', now())
-            ->orderBy('updated_at', 'desc')
-            ->get();
+        $now = $this->nowYmdHis();
+        $table = $this->table();
+        return $this->db->fetchAll(
+            'SELECT * FROM ' . $this->db->quoteIdentifier($table)
+            . ' WHERE actor_id = :uid AND (expires_ymdhis IS NULL OR expires_ymdhis > :now) ORDER BY updated_ymdhis DESC',
+            ['uid' => $userId, 'now' => $now]
+        );
     }
 
-    /**
-     * Validate session integrity
-     */
     public function validateSessionIntegrity($sessionId)
     {
-        $session = $this->getUnifiedSession($sessionId);
-        
-        if (!$session) {
-            return false;
-        }
-
-        // Additional validation logic can be added here
-        return true;
+        return $this->getUnifiedSession($sessionId) !== null;
     }
 }

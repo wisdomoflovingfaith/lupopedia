@@ -27,8 +27,8 @@ if (function_exists('current_user')) {
         $actor_id = (int) $user['actor_id'];
     }
 }
-if (!$actor_id && function_exists('lupo_validate_session')) {
-    $actor_id = lupo_validate_session();
+if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+    $actor_id = $s->validateSession();
 }
 if (!$actor_id) {
     http_response_code(401);
@@ -73,7 +73,7 @@ if ($department_id > 0) {
     $meta_col = 'metadata_json';
     try {
         $stmt = $db->prepare(
-            "SELECT s.session_id, s.last_seen_ymdhis, s.created_ymdhis, s.{$meta_col} FROM {$table_prefix}sessions s " .
+            "SELECT s.session_id, s.last_seen_ymdhis, s.created_ymdhis, s.name_key, s.is_named, s.{$meta_col} FROM {$table_prefix}sessions s " .
             "WHERE s.actor_id = 0 AND s.is_deleted = 0 AND s.{$meta_col} IS NOT NULL AND s.{$meta_col} != '' LIMIT 100"
         );
         $stmt->execute();
@@ -100,6 +100,8 @@ if ($department_id > 0) {
                 'department_id'      => $department_id,
                 'created_ymdhis'     => $row['created_ymdhis'] ?? $row['last_seen_ymdhis'] ?? '',
                 'last_seen_ymdhis'   => $row['last_seen_ymdhis'] ?? '',
+                'name_key'           => isset($row['name_key']) ? (string) $row['name_key'] : null,
+                'is_named'           => isset($row['is_named']) ? (int) $row['is_named'] : 0,
             ];
         }
     } catch (Throwable $e) {

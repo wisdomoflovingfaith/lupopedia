@@ -36,13 +36,9 @@
 require_once("admin_common.php");
 validate_session($identity);
    
-// get the info of this user.. 
-// Updated to use Lupopedia table mapping: livehelp_users → lupo_users
-$query = "SELECT * FROM lupo_users WHERE sessionid='".$identity['SESSIONID']."'";	
-$people = $mydatabase->query($query);
-$people = $people->fetchRow(DB_FETCHMODE_ORDERED);
-$myid = $people[0];
-$channel = $people[1];
+$people = crafty_get_session_people($identity['SESSIONID']);
+$myid = $people ? (int) $people['user_id'] : 0;
+$channel = $people ? (int) $people['onchannel'] : 0;
 $operator_id = $myid;
   
 $jsrn = get_jsrn($identity);

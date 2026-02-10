@@ -1,25 +1,24 @@
 <?php
-/**
- * Terminal AI Controller
- * 
- * HTTP controller for Terminal AI command execution endpoints.
- * 
- * @package App\Http\Controllers
- * @version 3.0.101
- * @author Captain Wolfie
- */
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\TerminalAI\Services\TerminalAIService;
 
-class TerminalAIController extends Controller
+/**
+ * Terminal AI Controller — plain PHP. No Laravel.
+ * Input: array with 'command' key. Returns: array with 'output' key. Caller sends JSON.
+ */
+class TerminalAIController
 {
-    public function execute(Request $request)
+    /**
+     * Execute terminal command. $input = ['command' => string]. Returns ['output' => string].
+     */
+    public function execute(array $input): array
     {
         $service = new TerminalAIService();
-        return response()->json([
-            "output" => $service->execute($request->input("command", ""))
-        ]);
+        $command = $input['command'] ?? '';
+        return [
+            'output' => $service->execute($command),
+        ];
     }
 }

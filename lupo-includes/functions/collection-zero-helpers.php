@@ -47,7 +47,7 @@ function lupo_ensure_collection_zero() {
             // Collection 0 exists - verify it's not deleted
             if ($collection['is_deleted'] == 1) {
                 // Undelete it
-                $now = lupo_utc_timestamp();
+                $now = (class_exists('timestamp_ymdhis') ? timestamp_ymdhis::now() : (int) gmdate('YmdHis'));
                 $update_sql = "UPDATE {$table_prefix}collections
                                SET is_deleted = 0,
                                    deleted_ymdhis = NULL,
@@ -65,7 +65,7 @@ function lupo_ensure_collection_zero() {
         }
 
         // Collection 0 doesn't exist - create it
-        $now = lupo_utc_timestamp();
+        $now = (class_exists('timestamp_ymdhis') ? timestamp_ymdhis::now() : (int) gmdate('YmdHis'));
         $system_actor_id = 1; // System actor
         $default_node_id = defined('LUPO_DEFAULT_NODE_ID') ? LUPO_DEFAULT_NODE_ID : 1;
 
@@ -156,7 +156,7 @@ function lupo_populate_collection_zero_tabs() {
         ['name' => 'AI Agent Boot', 'slug' => 'ai-agent-boot', 'sort_order' => 130, 'content_path' => '/docs/doctrine/AI_AGENT_BOOT_NOTES.md'],
     ];
 
-    $now = lupo_utc_timestamp();
+    $now = (class_exists('timestamp_ymdhis') ? timestamp_ymdhis::now() : (int) gmdate('YmdHis'));
     $system_actor_id = 1;
 
     try {

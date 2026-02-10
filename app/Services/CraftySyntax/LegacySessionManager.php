@@ -8,8 +8,8 @@
 
 // NOTICE: This is a LEGACY PRESERVATION file from Crafty Syntax Live Help
 // Migrated to Lupopedia structure under HERITAGE-SAFE MODE
-// DO NOT MODIFY - PRESERVE ALL ORIGINAL BEHAVIOR
-// Reference: CRAFTY_SYNTAX_SESSION_IDENTITY_DOCTRINE_v2.md
+// Doctrine: All DB access via PDO_DB (fetchRow, insert, update, delete) with bound parameters.
+// Table: {prefix}sessions per livehelp_sessions_migration.md (livehelp_sessions DROPPED -> lupo_sessions).
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Custom Session Handler - LEGACY PRESERVATION
@@ -25,8 +25,8 @@ class SessionManager {
       $this->life_time = get_cfg_var("session.gc_maxlifetime");
 
       // Register this object as the session handler
-      session_set_save_handler( 
-        array( &$this, "open" ), 
+      session_set_save_handler(
+        array( &$this, "open" ),
         array( &$this, "close" ),
         array( &$this, "read" ),
         array( &$this, "write"),
@@ -38,82 +38,98 @@ class SessionManager {
 
    function open( $save_path, $session_name ) {
       global $sess_save_path;
-      
       $sess_save_path = $save_path;
-      // Don't need to do anything. Just return TRUE.
       return true;
    }
 
    function close() {
-   	  global $mydatabase;
-   	   
-   	  if(isset($mydatabase)){ $mydatabase->close_connect(); }
-   	   
+      global $mydatabase;
+      if (isset($mydatabase) && method_exists($mydatabase, 'close_connect')) {
+          $mydatabase->close_connect();
+      }
       return true;
    }
 
    function read( $id ) {
       global $mydatabase;
-      
-      // Set empty result
       $data = '';
-
-      // Fetch session data from the selected database
-      $time = time();
-
-      //$newid = mysql_real_escape_string($id,$mydatabase->CONN);
-      $newid = filter_sql($id);
-      $sql = "SELECT `session_data` FROM `livehelp_sessions` WHERE `session_id` = '$newid' AND `expires` > $time";
-      $data = "";
-      if(isset($mydatabase)){ 
-        $rs = $mydatabase->query($sql);
-        if($rs->numrows($rs) > 0) {
-          $row = $rs->fetchRow(DB_FETCHMODE_ASSOC);
-          $data = $row['session_data'];
-        }
+      if (!isset($mydatabase) || !($mydatabase instanceof PDO_DB)) {
+          return $data;
+      }
+      $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+      $sessions_table = $table_prefix . 'sessions';
+      $now_ymdhis = (int) gmdate('YmdHis');
+      $row = $mydatabase->fetchRow(
+          "SELECT session_data FROM {$sessions_table} WHERE session_id = :sid AND (expires_ymdhis IS NULL OR expires_ymdhis > :now)",
+          ['sid' => $id, 'now' => $now_ymdhis]
+      );
+      if ($row && isset($row['session_data'])) {
+          $data = (string) $row['session_data'];
       }
       return $data;
    }
 
    function write( $id, $data ) {
       global $mydatabase;
-      
-      // Build query                
+      if (!isset($mydatabase) || !($mydatabase instanceof PDO_DB)) {
+          return true;
+      }
+      $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+      $sessions_table = $table_prefix . 'sessions';
       $time = time() + $this->life_time;
-
- //     $newid = mysql_real_escape_string($id,$mydatabase->CONN);
-        $newid = filter_sql($id);
-  //    $newdata = mysql_real_escape_string($data,$mydatabase->CONN);
-        $newdata = filter_sql($data);
-        
-      $sql = "REPLACE `livehelp_sessions` (`session_id`,`session_data`,`expires`) VALUES('$newid','$newdata',$time)";
-      if(isset($mydatabase)){ $mydatabase->query($sql); }
+      $now_ymdhis = (int) gmdate('YmdHis');
+      $expires_ymdhis = (int) gmdate('YmdHis', $time);
+      $existing = $mydatabase->fetchRow(
+          "SELECT session_id FROM {$sessions_table} WHERE session_id = :sid",
+          ['sid' => $id]
+      );
+      if ($existing) {
+          $mydatabase->update(
+              $sessions_table,
+              [
+                  'session_data' => $data,
+                  'last_seen_ymdhis' => $now_ymdhis,
+                  'expires_ymdhis' => $expires_ymdhis,
+                  'updated_ymdhis' => $now_ymdhis,
+              ],
+              'session_id = :sid',
+              ['sid' => $id]
+          );
+      } else {
+          $mydatabase->insert($sessions_table, [
+              'session_id' => $id,
+              'federation_node_id' => 1,
+              'actor_id' => 0,
+              'ip_address' => '',
+              'user_agent' => '',
+              'session_data' => $data,
+              'last_seen_ymdhis' => $now_ymdhis,
+              'expires_ymdhis' => $expires_ymdhis,
+              'created_ymdhis' => $now_ymdhis,
+              'updated_ymdhis' => $now_ymdhis,
+          ]);
+      }
       return true;
    }
 
    function destroy( $id ) {
       global $mydatabase;
-      
-      // Build query
-//      $newid = mysql_real_escape_string($id,$mydatabase->CONN);
-      $newid = filter_sql($id);
-      
-      $sql = "DELETE FROM `livehelp_sessions` WHERE `session_id` ='$newid'";
-      if(isset($mydatabase)){ $mydatabase->query($sql); }
-
+      if (isset($mydatabase) && $mydatabase instanceof PDO_DB) {
+          $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+          $sessions_table = $table_prefix . 'sessions';
+          $mydatabase->delete($sessions_table, 'session_id = :sid', ['sid' => $id]);
+      }
       return true;
    }
 
    function gc() {
       global $mydatabase;
-      
-      // Garbage Collection
-
-      // Build DELETE query.  Delete all records who have passed the expiration time
-      $sql = 'DELETE FROM `livehelp_sessions` WHERE `expires` < UNIX_TIMESTAMP()';
-      if(isset($mydatabase)){ $mydatabase->query($sql); }
-
-      // Always return TRUE
+      if (isset($mydatabase) && $mydatabase instanceof PDO_DB) {
+          $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+          $sessions_table = $table_prefix . 'sessions';
+          $now_ymdhis = (int) gmdate('YmdHis');
+          $mydatabase->delete($sessions_table, 'expires_ymdhis IS NOT NULL AND expires_ymdhis < :now', ['now' => $now_ymdhis]);
+      }
       return true;
    }
 

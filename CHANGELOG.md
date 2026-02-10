@@ -20,7 +20,7 @@ file.updated_by: agent:cascade
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 4.0.0
 file.channel: versioning
-file.last_modified_utc: 20260130005340
+file.last_modified_utc: 20260204000000
 file.name: "CHANGELOG.md"
 ---
 
@@ -34,6 +34,31 @@ This root-level CHANGELOG.md is a high-level meta-log and does not
 represent the full version history of the Semantic OS. Contributors
 should refer to the channel-based changelog for authoritative version
 increments, doctrine updates, and schema-related notes.
+
+## 2026-02-04 — Python Scripts Consolidation + Doctrine (scripts/ Only)
+
+### Summary
+All Python scripts, utilities, and generators consolidated into **scripts/**. Duplicates and legacy Python removed from **database/** and **dialogs/**. Doctrine updated: Python must live only in scripts/; TOON generator and seed generator references updated to scripts/; GOV-TOON-GENERATION-001 updated.
+
+### Scripts and tooling
+- **Canonical generators in scripts/:** `generate_toon_files.py`, `generate_seed_from_toons.py`, `db_config.py` — read DB from **lupopedia-config.php** (no DB_* env); support PK=0 rows, unified registry (`lupo_unified_registry`), and TOON canonical data.
+- **Moved from database/ to scripts/:** `audit_toon_reserved_words.py`, `check_toon_doctrine_alignment.py`, `generate_schema_alignment_migration.py`, `generate_install_sql.py`, `cleanup_livehelp_toons.py`, `analyze_missing_tables.py`, `validate_migration.py`, `generate_clean_migration.py`, `fix_migration_semicolons.py`, `test_migration_syntax.py`, `regenerate_toons_docs.py`, and `generate_alter_statements.py` (from database/migrations_legacy). Paths updated to use project root (e.g. `database/migrations/`, `docs/toons/`).
+- **Moved from dialogs/ to scripts/:** `dialogs/db.py` → `scripts/dialogs_db.py` (fake DB client for IDE agents; resolves dialogs/ from project root).
+- **database/:** No Python files remain; all removed or moved to scripts/.
+
+### Doctrine and rules
+- **.cursorrules:** New section **Python Scripts Location (MANDATORY):** all Python scripts, utilities, generators, and importers MUST live in **scripts/**; Cursor must NEVER create Python elsewhere or duplicate Python; update imports when moving.
+- **.cursorrules:** TOON generator reference updated to `scripts/generate_toon_files.py`; doctrine check to `python scripts/check_toon_doctrine_alignment.py`.
+- **GOV-TOON-GENERATION-001:** Canonical generator set to **scripts/generate_toon_files.py**; TOON location **docs/toons/** with naming **&lt;table_name&gt;.toon.json**; enforcement message updated.
+
+### Run commands (from project root)
+- **Regenerate TOONs:** `python scripts/generate_toon_files.py`
+- **Regenerate seed:** `python scripts/generate_seed_from_toons.py`  
+Both use **lupopedia-config.php** for DB credentials.
+
+### Notes
+- TOONs, schema, migrations, PHP, and lupopedia-config.php were not modified.
+- Seed output remains **database/migrations/seed_lupopedia.sql**.
 
 ## [4.0.0] — 2026-02-06 — Reserved-Word Column Renames + Version Lock + Doctrine Rules
 

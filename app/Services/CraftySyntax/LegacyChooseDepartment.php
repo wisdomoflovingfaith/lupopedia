@@ -48,12 +48,8 @@ if(!(isset($UNTRUSTED['department']))){ $UNTRUSTED['department'] = ""; }
 if(!(isset($UNTRUSTED['website']))){ $UNTRUSTED['website'] = ""; }
 
   
-// get the info of this user.. 
-// Updated to use Lupopedia table mapping: livehelp_users → lupo_users
-$sqlquery = "SELECT * FROM lupo_users WHERE sessionid='".$identity['SESSIONID']."'";	
-$people = $mydatabase->query($sqlquery);
-$people = $people->fetchRow(DB_FETCHMODE_ASSOC);
-$myid = $people['user_id'];
+$people = crafty_get_session_people($identity['SESSIONID']);
+$myid = $people ? (int) $people['user_id'] : 0;
 
 // get defaultdepartment:
 

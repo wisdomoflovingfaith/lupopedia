@@ -28,8 +28,8 @@ function actors_handle_my_profile() {
             $actor_id = (int) $user['actor_id'];
         }
     }
-    if (!$actor_id && function_exists('lupo_validate_session')) {
-        $actor_id = lupo_validate_session();
+    if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+        $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
         $login_url = $base . '/login?redirect=' . urlencode($base . '/my-profile');
@@ -129,8 +129,8 @@ function actors_handle_my_profile_save() {
             $actor_id = (int) $user['actor_id'];
         }
     }
-    if (!$actor_id && function_exists('lupo_validate_session')) {
-        $actor_id = lupo_validate_session();
+    if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+        $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
         header('Location: ' . $base . '/login?redirect=' . urlencode($base . '/my-profile'));

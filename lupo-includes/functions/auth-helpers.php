@@ -24,10 +24,7 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
  * @subpackage Functions
  */
 
-// Ensure session helpers are loaded
-if (!function_exists('lupo_validate_session')) {
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . 'session-helpers.php');
-}
+// Session is provided by bootstrap as $GLOBALS['lupo_session'] (App\Auth\Session). No procedural session helpers.
 
 // Ensure redirect helpers are loaded
 if (!function_exists('lupo_safe_redirect')) {
@@ -106,7 +103,7 @@ function lupo_create_actor_for_auth_user($auth_user_id, $email, $display_name) {
     }
     
     $db = $GLOBALS['mydatabase'];
-    $now = lupo_utc_timestamp();
+    $now = class_exists('timestamp_ymdhis') ? timestamp_ymdhis::now() : (int) gmdate('YmdHis');
     
     // Generate slug from email (include domain to ensure uniqueness)
     // Example: "lupopedia@gmail.com" -> "lupopedia-at-gmail-com"
@@ -233,13 +230,11 @@ function lupo_actor_slug_exists($slug) {
  * @return array|false User data array or false if not logged in
  */
 function current_user() {
-    // Validate session
-    $actor_id = lupo_validate_session();
-    
+    $session = $GLOBALS['lupo_session'] ?? null;
+    $actor_id = $session ? $session->validateSession() : false;
     if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
         error_log("AUTH DEBUG: current_user() - Validated actor_id: " . ($actor_id ?: 'FALSE'));
     }
-
     if (!$actor_id) {
         return false;
     }
@@ -469,23 +464,24 @@ function require_login() {
     $user = current_user();
     
     if (!$user) {
-        // Store redirect URL
         $redirect_url = $_SERVER['REQUEST_URI'] ?? '/';
-        
-        // Start session if not started
-        lupo_start_session();
-        
-        // Store redirect in session
+        $session = $GLOBALS['lupo_session'] ?? null;
+        if ($session) {
+            $session->start();
+        } elseif (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $_SESSION['login_redirect'] = $redirect_url;
-
-        // Redirect to login
         $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
         $login_url .= '?redirect=' . urlencode($redirect_url);
         lupo_safe_redirect($login_url, 2, 'Please log in to continue.');
     }
-    
-    // Check if password change is required (MD5 password detected)
-    lupo_start_session();
+    $session = $GLOBALS['lupo_session'] ?? null;
+    if ($session) {
+        $session->start();
+    } elseif (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     if (isset($_SESSION['password_change_required']) && $_SESSION['password_change_required']) {
         $change_password_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/change-password' : '/change-password';
         lupo_safe_redirect($change_password_url, 2, 'Password change required. Redirecting...');

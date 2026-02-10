@@ -39,6 +39,50 @@
 // Reference: ACTOR_IDENTITY_DOCTRINE.md
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Crafty Syntax → Lupopedia: session/operator row (per livehelp_sessions_migration.md, livehelp_users_migration.md)
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+/**
+ * Get operator/visitor "people" row from {prefix}sessions by session_id (PDO_DB, no legacy tables).
+ * Replaces reads from dropped livehelp_users; session state is in lupo_sessions (actor_id, session_data).
+ *
+ * @param string $session_id Session ID (e.g. $identity['SESSIONID'])
+ * @return array|null Assoc with user_id (actor_id), onchannel, isadmin, show_arrival, user_alert, greeting, photo, etc.
+ */
+function crafty_get_session_people($session_id) {
+    global $mydatabase;
+    if (!$session_id || !isset($mydatabase) || !($mydatabase instanceof PDO_DB)) {
+        return null;
+    }
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    $sessions_table = $table_prefix . 'sessions';
+    $row = $mydatabase->fetchRow(
+        "SELECT actor_id, session_data FROM {$sessions_table} WHERE session_id = :sid",
+        ['sid' => $session_id]
+    );
+    if (!$row) {
+        return null;
+    }
+    $session_data = !empty($row['session_data']) ? json_decode($row['session_data'], true) : [];
+    if (!is_array($session_data)) {
+        $session_data = [];
+    }
+    return [
+        'user_id' => (int) $row['actor_id'],
+        'onchannel' => isset($session_data['onchannel']) ? (int) $session_data['onchannel'] : 0,
+        'isadmin' => isset($session_data['isadmin']) ? (int) $session_data['isadmin'] : 0,
+        'show_arrival' => isset($session_data['show_arrival']) ? (int) $session_data['show_arrival'] : 0,
+        'user_alert' => isset($session_data['user_alert']) ? (int) $session_data['user_alert'] : 0,
+        'greeting' => $session_data['greeting'] ?? '',
+        'photo' => $session_data['photo'] ?? '',
+        'showtype' => $session_data['showtype'] ?? 0,
+        'externalchats' => isset($session_data['externalchats']) ? (int) $session_data['externalchats'] : 0,
+        'chattype' => $session_data['chattype'] ?? '',
+        'username' => $session_data['username'] ?? '',
+    ];
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // TOON Analytics Integration
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -57,51 +101,87 @@
  */
 function log_toon_event($event_type, $event_data, $actor_id = null, $session_id = null, $tab_id = null, $world_id = null, $world_key = null, $world_type = null) {
     global $mydatabase;
-    
-    if (!$mydatabase) return false;
-    
-    $timestamp = date('YmdHis');
-    
+    if (!$mydatabase || !($mydatabase instanceof PDO_DB)) {
+        return false;
+    }
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    $timestamp = (int) date('YmdHis');
+    $event_data_json = json_encode($event_data);
     try {
-        // Log to central event log
-        $query = "INSERT INTO lupo_event_log (event_type, event_data, created_ymdhis) VALUES (?, ?, ?)";
-        $mydatabase->query($query, [$event_type, json_encode($event_data), $timestamp]);
-        
-        // Log to world events table if world context is available
+        $mydatabase->insert($table_prefix . 'event_log', [
+            'event_type' => $event_type,
+            'event_data' => $event_data_json,
+            'created_ymdhis' => $timestamp,
+        ]);
         if ($world_id) {
-            $query = "INSERT INTO lupo_world_events (world_id, world_key, world_type, actor_id, session_id, tab_id, event_type, event_data, created_ymdhis) 
-                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $mydatabase->query($query, [$world_id, $world_key, $world_type, $actor_id, $session_id, $tab_id, $event_type, json_encode($event_data), $timestamp]);
+            $mydatabase->insert($table_prefix . 'world_events', [
+                'world_id' => $world_id,
+                'world_key' => $world_key,
+                'world_type' => $world_type,
+                'actor_id' => $actor_id,
+                'session_id' => $session_id,
+                'tab_id' => $tab_id,
+                'event_type' => $event_type,
+                'event_data' => $event_data_json,
+                'created_ymdhis' => $timestamp,
+            ]);
         }
-        
-        // Log to specific event tables based on context
         if ($actor_id && in_array($event_type, ['user_login', 'user_logout', 'operator_login', 'operator_logout', 'operator_presence_change', 'operator_console_session_start', 'admin_chat_bot_access', 'admin_options_access', 'admin_users_redirect'])) {
-            $query = "INSERT INTO lupo_actor_events (actor_id, session_id, tab_id, world_id, world_key, world_type, event_type, event_data, created_ymdhis) 
-                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $mydatabase->query($query, [$actor_id, $session_id, $tab_id, $world_id, $world_key, $world_type, $event_type, json_encode($event_data), $timestamp]);
+            $mydatabase->insert($table_prefix . 'actor_events', [
+                'actor_id' => $actor_id,
+                'session_id' => $session_id,
+                'tab_id' => $tab_id,
+                'world_id' => $world_id,
+                'world_key' => $world_key,
+                'world_type' => $world_type,
+                'event_type' => $event_type,
+                'event_data' => $event_data_json,
+                'created_ymdhis' => $timestamp,
+            ]);
         }
-        
         if ($session_id && in_array($event_type, ['session_created', 'session_updated', 'session_destroyed', 'language_changed', 'session_creation'])) {
-            $query = "INSERT INTO lupo_session_events (session_id, actor_id, tab_id, world_id, world_key, world_type, event_type, event_data, created_ymdhis) 
-                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $mydatabase->query($query, [$session_id, $actor_id, $tab_id, $world_id, $world_key, $world_type, $event_type, json_encode($event_data), $timestamp]);
+            $mydatabase->insert($table_prefix . 'session_events', [
+                'session_id' => $session_id,
+                'actor_id' => $actor_id,
+                'tab_id' => $tab_id,
+                'world_id' => $world_id,
+                'world_key' => $world_key,
+                'world_type' => $world_type,
+                'event_type' => $event_type,
+                'event_data' => $event_data_json,
+                'created_ymdhis' => $timestamp,
+            ]);
         }
-        
         if ($tab_id && in_array($event_type, ['tab_created', 'tab_updated', 'tab_closed', 'tab_focus', 'tab_blur'])) {
-            $query = "INSERT INTO lupo_tab_events (tab_id, session_id, actor_id, world_id, world_key, world_type, event_type, event_data, created_ymdhis) 
-                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $mydatabase->query($query, [$tab_id, $session_id, $actor_id, $world_id, $world_key, $world_type, $event_type, json_encode($event_data), $timestamp]);
+            $mydatabase->insert($table_prefix . 'tab_events', [
+                'tab_id' => $tab_id,
+                'session_id' => $session_id,
+                'actor_id' => $actor_id,
+                'world_id' => $world_id,
+                'world_key' => $world_key,
+                'world_type' => $world_type,
+                'event_type' => $event_type,
+                'event_data' => $event_data_json,
+                'created_ymdhis' => $timestamp,
+            ]);
         }
-        
         if (in_array($event_type, ['message_sent', 'message_received', 'chat_flush', 'chat_refresh', 'content_interaction'])) {
             $content_id = $event_data['content_id'] ?? null;
             if ($content_id) {
-                $query = "INSERT INTO lupo_content_events (content_id, actor_id, session_id, tab_id, world_id, world_key, world_type, event_type, event_data, created_ymdhis) 
-                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                $mydatabase->query($query, [$content_id, $actor_id, $session_id, $tab_id, $world_id, $world_key, $world_type, $event_type, json_encode($event_data), $timestamp]);
+                $mydatabase->insert($table_prefix . 'content_events', [
+                    'content_id' => $content_id,
+                    'actor_id' => $actor_id,
+                    'session_id' => $session_id,
+                    'tab_id' => $tab_id,
+                    'world_id' => $world_id,
+                    'world_key' => $world_key,
+                    'world_type' => $world_type,
+                    'event_type' => $event_type,
+                    'event_data' => $event_data_json,
+                    'created_ymdhis' => $timestamp,
+                ]);
             }
         }
-        
         return true;
     } catch (Exception $e) {
         error_log("TOON Event Error: " . $e->getMessage());
@@ -110,62 +190,62 @@ function log_toon_event($event_type, $event_data, $actor_id = null, $session_id 
 }
 
 /**
- * Resolve actor ID from lupo_users table
- * 
- * @param int $user_id User ID from lupo_users
- * @return int|null Actor ID from lupo_actors
+ * Resolve actor ID from session actor_id or lupo_actors (per livehelp_users_migration.md → lupo_auth_users).
+ *
+ * @param int $user_id Actor ID from session (lupo_sessions.actor_id) or auth_user_id
+ * @return int|null Actor ID
  */
 function resolve_actor_from_lupo_user($user_id) {
     global $mydatabase;
-    
-    if (!$mydatabase) return null;
-    
+    if (!$mydatabase || !($mydatabase instanceof PDO_DB)) {
+        return null;
+    }
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    $actors_table = $table_prefix . 'actors';
+    $row = $mydatabase->fetchRow(
+        "SELECT actor_id FROM {$actors_table} WHERE actor_source_id = :uid AND actor_source_type = :tbl",
+        ['uid' => $user_id, 'tbl' => 'lupo_auth_users']
+    );
+    if ($row && isset($row['actor_id'])) {
+        return (int) $row['actor_id'];
+    }
     try {
-        // Check if actor already exists for this user
-        $query = "SELECT actor_id FROM lupo_actors WHERE actor_source_id = ? AND actor_source_table = 'lupo_users'";
-        $result = $mydatabase->query($query, [$user_id]);
-        
-        if ($result && $result->numrows() > 0) {
-            return $result->fetchRow(DB_FETCHMODE_ASSOC)['actor_id'];
-        }
-        
-        // Create new actor for legacy user
-        $timestamp = date('YmdHis');
-        $query = "INSERT INTO lupo_actors (actor_type, created_ymdhis, updated_ymdhis, actor_source_id, actor_source_table) VALUES (?, ?, ?, ?, ?, ?)";
-        $mydatabase->query($query, ['legacy_user', $timestamp, $timestamp, $user_id, 'lupo_users']);
-        
-        return $mydatabase->insertId();
+        $timestamp = (int) date('YmdHis');
+        $slug = 'actor_' . $user_id . '_' . $timestamp;
+        $mydatabase->insert($actors_table, [
+            'actor_type' => 'legacy_user',
+            'slug' => $slug,
+            'name' => '',
+            'created_ymdhis' => $timestamp,
+            'updated_ymdhis' => $timestamp,
+            'actor_source_id' => $user_id,
+            'actor_source_type' => 'lupo_auth_users',
+        ]);
+        $id = $mydatabase->lastInsertId();
+        return $id ? (int) $id : null;
     } catch (Exception $e) {
         error_log("Actor Resolution Error: " . $e->getMessage());
-        return null;
+        return (int) $user_id;
     }
 }
 
 /**
- * Get current actor ID from session
- * 
+ * Get current actor ID from {prefix}sessions (per livehelp_sessions_migration.md).
+ *
  * @return int|null Actor ID
  */
 function get_current_actor_id() {
     global $identity, $mydatabase;
-    
-    if (!$identity || !$mydatabase) return null;
-    
-    try {
-        // Get user_id from lupo_users
-        $query = "SELECT user_id FROM lupo_users WHERE sessionid = ?";
-        $result = $mydatabase->query($query, [$identity['SESSIONID']]);
-        
-        if ($result && $result->numrows() > 0) {
-            $user_id = $result->fetchRow(DB_FETCHMODE_ASSOC)['user_id'];
-            return resolve_actor_from_lupo_user($user_id);
-        }
-        
-        return null;
-    } catch (Exception $e) {
-        error_log("Actor ID Error: " . $e->getMessage());
+    if (!$identity || !isset($mydatabase) || !($mydatabase instanceof PDO_DB)) {
         return null;
     }
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    $sessions_table = $table_prefix . 'sessions';
+    $row = $mydatabase->fetchRow(
+        "SELECT actor_id FROM {$sessions_table} WHERE session_id = :sid",
+        ['sid' => $identity['SESSIONID']]
+    );
+    return ($row && isset($row['actor_id'])) ? (int) $row['actor_id'] : null;
 }
 
 /**

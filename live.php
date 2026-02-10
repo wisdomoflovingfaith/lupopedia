@@ -70,14 +70,27 @@ if(!(empty($UNTRUSTED['speak']))){
 	exit;
 } 
 
-// get the info of this user.. 
-// Updated to use Lupopedia table mapping: livehelp_users → lupo_users
-$query = "SELECT * FROM lupo_users WHERE sessionid='".$identity['SESSIONID']."'";	
-$people = $mydatabase->query($query);
-$people = $people->fetchRow(DB_FETCHMODE_ASSOC);
-$myid = $people['user_id'];
-$channel = $people['onchannel'];
-$isadminsetting = $people['isadmin'];
+// Session/operator row from lupo_sessions (per livehelp_sessions_migration.md, livehelp_users_migration.md)
+$table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+$sessions_table = $table_prefix . 'sessions';
+$people = null;
+if (isset($mydatabase) && $mydatabase instanceof PDO_DB) {
+  $row = $mydatabase->fetchRow(
+    "SELECT session_id, actor_id, session_data FROM {$sessions_table} WHERE session_id = :sid",
+    ['sid' => $identity['SESSIONID']]
+  );
+  if ($row) {
+    $session_data = !empty($row['session_data']) ? json_decode($row['session_data'], true) : [];
+    $people = [
+      'user_id' => (int) $row['actor_id'],
+      'onchannel' => isset($session_data['onchannel']) ? (int) $session_data['onchannel'] : 0,
+      'isadmin' => isset($session_data['isadmin']) ? (int) $session_data['isadmin'] : 0,
+    ];
+  }
+}
+$myid = $people ? (int) $people['user_id'] : 0;
+$channel = $people ? (int) $people['onchannel'] : 0;
+$isadminsetting = $people ? (int) $people['isadmin'] : 0;
 
 $lastaction = date("Ymdhis");
 $startdate =  date("Ymd");

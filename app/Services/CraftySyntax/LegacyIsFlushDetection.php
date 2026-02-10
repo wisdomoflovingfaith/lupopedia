@@ -27,20 +27,28 @@ if(empty($UNTRUSTED['scriptname'])){
 
 if(empty($UNTRUSTED['department'])){ $department=0; } else { $department = intval($UNTRUSTED['department']); }
 
-// Get department information. First found if no specific department assigned
-$qQry = "SELECT recno,messageemail,colorscheme,leavetxt,creditline,onlineimage,leaveamessage,offlineimage,speaklanguage FROM livehelp_departments "
-      . (($department==0)? 'LIMIT 1': "WHERE recno=$department");
-$qRes = $mydatabase->query($qQry);
-$qRow = $qRes->fetchRow(DB_FETCHMODE_ORDERED); 
-$department   = $qRow[0];         
-$messageemail = $qRow[1];          
-$colorscheme  = $qRow[2];           
-$leavetxt     = $qRow[3];           
-$creditline   = $qRow[4];            
-$onlineimage  = $qRow[5];
-$leaveamessage = $qRow[6];
-$offlineimage = $qRow[7];
-$speaklanguage = $qRow[8];
+// lupo_departments per livehelp_departments_migration.md
+$table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+$departments_table = $table_prefix . 'departments';
+if (isset($mydatabase) && $mydatabase instanceof PDO_DB) {
+  if ($department == 0) {
+    $qRow = $mydatabase->fetchRow("SELECT department_id, name FROM {$departments_table} WHERE is_deleted = 0 LIMIT 1");
+  } else {
+    $qRow = $mydatabase->fetchRow("SELECT department_id, name FROM {$departments_table} WHERE department_id = :did AND is_deleted = 0", ['did' => $department]);
+  }
+} else {
+  $qRow = null;
+}
+$department    = $qRow ? (int) $qRow['department_id'] : 0;
+$messageemail  = $qRow ? ($qRow['name'] ?? '') : '';
+$colorscheme   = '';
+$leavetxt      = '';
+$creditline    = 'N';
+$onlineimage   = '';
+$leaveamessage = '0';
+$offlineimage  = '';
+$speaklanguage = $CSLH_Config['speaklanguage'] ?? '';
+if ($qRow && isset($qRow[1])) { /* name in $qRow[1] */ }
 
 // Change Language if department Language is not the same as default language:
 if(($CSLH_Config['speaklanguage'] != $speaklanguage) && !(empty($speaklanguage)) ){

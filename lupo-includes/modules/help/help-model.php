@@ -140,9 +140,11 @@ function help_get_categories() {
             ORDER BY category ASC";
     
     try {
-        $stmt = $db->query($sql);
-        $results = $stmt->fetchAll(PDO::FETCH_COLUMN);
-        return $results ?: [];
+        if ($db instanceof \PDO_DB) {
+            $rows = $db->fetchAll($sql);
+            return $rows ? array_column($rows, 'category') : [];
+        }
+        return [];
     } catch (PDOException $e) {
         error_log('Help model error: ' . $e->getMessage());
         return [];

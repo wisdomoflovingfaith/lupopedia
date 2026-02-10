@@ -14,9 +14,8 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. auth-controller.php cannot be called directly.");
 }
 
-// Load required helpers
+// Load required (Session is provided by bootstrap as $GLOBALS['lupo_session'])
 require_once(LUPOPEDIA_ABSPATH . 'lupo-includes/security/password-hash.php');
-require_once(LUPOPEDIA_ABSPATH . 'lupo-includes/functions/session-helpers.php');
 require_once(LUPOPEDIA_ABSPATH . 'lupo-includes/functions/auth-helpers.php');
 require_once(LUPOPEDIA_ABSPATH . 'lupo-includes/functions/redirect-helpers.php');
 require_once(__DIR__ . '/auth-renderer.php');
@@ -82,9 +81,12 @@ function auth_handle_slug($slug) {
  * @return string Rendered login form HTML
  */
 function login_handle_view() {
-    // Start session if not already started
-    lupo_start_session();
-    
+    $session = $GLOBALS['lupo_session'] ?? null;
+    if ($session) {
+        $session->start();
+    } elseif (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     // Check if already logged in
     $user = current_user();
     if ($user) {
@@ -123,9 +125,12 @@ function login_handle_view() {
  * @return string|void Rendered HTML on error, or redirects on success
  */
 function login_handle_post() {
-    // Start session if not already started
-    lupo_start_session();
-    
+    $session = $GLOBALS['lupo_session'] ?? null;
+    if ($session) {
+        $session->start();
+    } elseif (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     // Validate input - email-only login
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
@@ -293,16 +298,14 @@ function login_handle_post() {
             $_SESSION['password_change_actor_id'] = $actor_id;
         }
         
-        // Ensure session is started before creating database session
-        lupo_start_session();
-        
+        // Session already started at top of login_handle_post
         // Debug: Log before session creation
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
             error_log("AUTH DEBUG: About to create session - Email: " . htmlspecialchars($email) . ", Actor ID: " . $actor_id . ", PHP Session ID: " . (session_id() ?: 'NULL'));
         }
         
-        // Create session
-        $session_id = lupo_create_session($actor_id, 'password', 'local');
+        // Create session (OOP)
+        $session_id = $session ? $session->createSession($actor_id, 'password', 'local') : false;
         
         // Debug: Log after session creation attempt
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
@@ -337,7 +340,7 @@ function login_handle_post() {
         }
         
         // Update last login timestamp
-        $now = lupo_utc_timestamp();
+        $now = $session ? $session->utcTimestamp() : (class_exists('timestamp_ymdhis') ? timestamp_ymdhis::now() : (int) gmdate('YmdHis'));
         $update_sql = "UPDATE {$table_prefix}auth_users
         SET last_login_ymdhis = :last_login_ymdhis,
             updated_ymdhis = :updated_ymdhis
@@ -395,10 +398,10 @@ function login_handle_post() {
  * @return void Redirects to homepage
  */
 function logout_handle() {
-    // Destroy session
-    lupo_destroy_session();
-    
-    // Clear session data
+    $session = $GLOBALS['lupo_session'] ?? null;
+    if ($session) {
+        $session->destroy();
+    }
     $_SESSION = [];
     
     // Redirect to homepage (with public path)
@@ -415,9 +418,12 @@ function logout_handle() {
  * @return string Rendered password change form HTML
  */
 function change_password_handle_view() {
-    // Start session
-    lupo_start_session();
-    
+    $session = $GLOBALS['lupo_session'] ?? null;
+    if ($session) {
+        $session->start();
+    } elseif (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     // Check if password change is required
     if (!isset($_SESSION['password_change_required']) || !$_SESSION['password_change_required']) {
         // Not required - redirect to login
@@ -451,9 +457,12 @@ function change_password_handle_view() {
  * @return string|void Rendered HTML on error, or redirects on success
  */
 function change_password_handle_post() {
-    // Start session
-    lupo_start_session();
-    
+    $session = $GLOBALS['lupo_session'] ?? null;
+    if ($session) {
+        $session->start();
+    } elseif (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     // Check if password change is required
     if (!isset($_SESSION['password_change_required']) || !$_SESSION['password_change_required']) {
         // Not required - redirect to login
@@ -519,7 +528,8 @@ function change_password_handle_post() {
         
         // Update password hash in database
         $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : str_replace('-', '_', LUPO_PREFIX);
-        $now = lupo_utc_timestamp();
+        $s = $GLOBALS['lupo_session'] ?? null;
+        $now = $s ? $s->utcTimestamp() : (class_exists('timestamp_ymdhis') ? timestamp_ymdhis::now() : (int) gmdate('YmdHis'));
         $update_sql = "UPDATE {$table_prefix}auth_users
         SET password_hash = :password_hash,
             updated_ymdhis = :updated_ymdhis
@@ -571,8 +581,12 @@ function change_password_handle_post() {
  * @return string Rendered admin dashboard HTML
  */
 function admin_handle_view($slug) {
-    // Check if password change is required first
-    lupo_start_session();
+    $session = $GLOBALS['lupo_session'] ?? null;
+    if ($session) {
+        $session->start();
+    } elseif (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     if (isset($_SESSION['password_change_required']) && $_SESSION['password_change_required']) {
         $change_password_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/change-password' : '/change-password';
         header('Location: ' . $change_password_url);

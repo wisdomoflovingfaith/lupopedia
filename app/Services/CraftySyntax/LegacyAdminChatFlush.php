@@ -26,14 +26,22 @@ if($serversession){
   }
 }
    
-// get info of this user.. 
-$query = "SELECT * FROM livehelp_users WHERE sessionid='".$identity['SESSIONID']."'";	
-$people = $mydatabase->query($query);
-if($people->numrows() != 0){
- $people = $people->fetchRow(DB_FETCHMODE_ASSOC);
- $UNTRUSTED['myid'] = $people['user_id'];
- $operator_id = $UNTRUSTED['myid'];
- $channel = $people['onchannel']; 
+$table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+$sessions_table = $table_prefix . 'sessions';
+if (isset($mydatabase) && $mydatabase instanceof PDO_DB) {
+  $people = $mydatabase->fetchRow(
+    "SELECT session_id AS sessionid, actor_id AS user_id, last_seen_ymdhis AS lastaction FROM {$sessions_table} WHERE session_id = :sid",
+    ['sid' => $identity['SESSIONID']]
+  );
+} else {
+  $people = null;
+}
+if ($people) {
+  $UNTRUSTED['myid'] = $people['user_id'];
+  $operator_id = $UNTRUSTED['myid'];
+  $channel = 0;
+} else {
+  $people = null;
 }  
    
 $jsrn = get_jsrn($identity);
@@ -55,8 +63,7 @@ if(!(isset($UNTRUSTED['see']))){
 if(!(isset($UNTRUSTED['starttimeof']))){ $UNTRUSTED['starttimeof'] = 0; }
 
 if(!(empty($UNTRUSTED['setchattype'])){
- $query = "UPDATE livehelp_users SET chattype='flush' WHERE sessionid='".$identity['SESSIONID']."'";	
- $mydatabase->query($query);
+ // Session state in lupo_sessions.session_data; no chattype column - no-op or extend session_data if needed
 }
 
 $timeof = date("YmdHis");
@@ -66,14 +73,19 @@ $oldtime = date("YmdHis",$prev);
 
 if($UNTRUSTED['offset'] != ""){ $timeof = $oldtime; }
 
-if( ($UNTRUSTED['clear'] == "now") || ($UNTRUSTED['cleartonow'] == 1) ){
-  // get timestamp of last message sent on this channel.
-  $query = "SELECT * FROM livehelp_messages ORDER BY timeof DESC";	
-  $messages = $mydatabase->query($query);
-  $message = $messages->fetchRow(DB_FETCHMODE_ASSOC);
-  $timeof = $message['timeof'] - 2;  
-  $offset = $message['timeof'] - 2; 
-  $starttimeof = $message['timeof'] -2; 
+if (($UNTRUSTED['clear'] == 'now') || ($UNTRUSTED['cleartonow'] == 1)) {
+  $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+  $messages_table = $table_prefix . 'dialog_messages';
+  if (isset($mydatabase) && $mydatabase instanceof PDO_DB) {
+    $message = $mydatabase->fetchRow(
+      "SELECT created_ymdhis AS timeof FROM {$messages_table} WHERE is_deleted = 0 ORDER BY created_ymdhis DESC LIMIT 1"
+    );
+    if ($message && isset($message['timeof'])) {
+      $timeof = $message['timeof'] - 2;
+      $offset = $message['timeof'] - 2;
+      $starttimeof = $message['timeof'] - 2;
+    }
+  }
 } 
 if(isset($starttimeof)){
   $timeof = $starttimeof;

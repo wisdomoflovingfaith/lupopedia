@@ -24,11 +24,17 @@ if($serversession){
   }
 }
 
-// get the info of this user.. 
-$query = "SELECT * FROM livehelp_users WHERE sessionid='".$identity['SESSIONID']."'";	
-$people = $mydatabase->query($query);
-$people = $people->fetchRow(DB_FETCHMODE_ASSOC);
-$myid = $people['user_id'];
+$table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+$sessions_table = $table_prefix . 'sessions';
+if (isset($mydatabase) && $mydatabase instanceof PDO_DB) {
+  $people = $mydatabase->fetchRow(
+    "SELECT session_id AS sessionid, actor_id AS user_id, last_seen_ymdhis AS lastaction FROM {$sessions_table} WHERE session_id = :sid",
+    ['sid' => $identity['SESSIONID']]
+  );
+} else {
+  $people = null;
+}
+$myid = $people ? (int) $people['user_id'] : 0;
 
 // get a channel for this user:
 $onchannel = createchannel($myid);

@@ -46,9 +46,9 @@ if (!$visitor_mode) {
             $actor_id = (int) $user['actor_id'];
         }
     }
-    if (!$actor_id && function_exists('lupo_validate_session')) {
-        $actor_id = lupo_validate_session();
-    }
+if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+    $actor_id = $s->validateSession();
+}
 }
 if ($actor_id === null) {
     http_response_code(401);
@@ -138,7 +138,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     }
 }
 
-// Thread colors (dialog_threads.bg_color — legacy channelcolor from livehelp_operator_channels)
+// Thread colors (dialog_threads.bg_color — legacy channel color from operator channels)
 $thread_colors = [];
 if (!empty($thread_ids)) {
     $placeholders = implode(',', array_fill(0, count($thread_ids), '?'));

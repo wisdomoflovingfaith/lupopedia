@@ -179,7 +179,13 @@ Lupopedia is in active development and the IDE cannot run Scoop. Cursor is allow
 6. **Always follow doctrine**
    - For schema, SQL, and migrations: follow **LUPOPEDIA_DOCTRINE.md** (Installation SQL §18, SQL Doctrine §17, Temporal §5). No foreign keys, triggers, or stored procedures. Timestamps = BIGINT YYYYMMDDHHIISS UTC only; no TIMESTAMP/DATETIME, no CURRENT_TIMESTAMP. Verify TOON alignment after DB changes with `python scripts/check_toon_doctrine_alignment.py` (user runs this).
 
-**Cursor must refuse:** Editing TOONs; changing schema outside one-time dev migrations; unquoted column names in migration SQL; new columns named with reserved words; UNSIGNED or integer display widths in any generated SQL; doctrine violations in schema or migrations.
+7. **Actor/agent doctrine (MANDATORY for seed and TOON tooling)**
+   - **Actor ID space:** actor_id 0–9999 reserved for AI agents; human actors start at 10000. Seed must include `ALTER TABLE lupo_actors AUTO_INCREMENT = 10000;`
+   - **Active agents become actors:** For each `lupo_agent_registry` row with `is_active = 1`, emit a `lupo_unified_registry` row (entity_type='actor', entity_table='lupo_agent_registry', entity_id=dedicated_index_id=agent_registry_id, metadata_json with actor_source_type/id). Inactive agents must NOT be added.
+   - **Unified registry ID:** Agent-derived rows use `unified_registry_id = 9000000 + agent_registry_id` (fixed offset).
+   - All scripts that touch seed, TOON, or unified registry **must** use **scripts/actor_agent_doctrine.py** and **docs/channels/doctrine/ACTOR_AGENT_DOCTRINE.md**. No fabrication; no runtime/user/Crafty data.
+
+**Cursor must refuse:** Editing TOONs; changing schema outside one-time dev migrations; unquoted column names in migration SQL; new columns named with reserved words; UNSIGNED or integer display widths in any generated SQL; doctrine violations in schema or migrations; seed or TOON logic that contradicts ACTOR_AGENT_DOCTRINE.
 
 ## Zero Installations / No Backward Compatibility Rule (MANDATORY)
 

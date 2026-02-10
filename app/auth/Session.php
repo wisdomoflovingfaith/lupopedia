@@ -1,0 +1,457 @@
+<?php
+
+namespace App\Auth;
+
+/**
+ * Session — OOP session management. Replaces procedural session helpers.
+ *
+ * Constructor injection: ($db, $sessionHandler). Uses PDO/PDO_DB and UnifiedSessionHandler.
+ * Doctrine: BIGINT UTC YmdHis for all timestamps; no DB-side logic.
+ * Table: lupo_sessions (TOON). Columns after security_level: name_key (VARCHAR(100) NULL), is_named (TINYINT default 0).
+ */
+
+if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
+    die('Config not loaded. Session cannot be used directly.');
+}
+
+if (!defined('LUPO_TABLE_PREFIX')) {
+    define('LUPO_TABLE_PREFIX', 'lupo_');
+}
+
+if (!defined('LUPO_SESSION_LIFETIME')) {
+    define('LUPO_SESSION_LIFETIME', 86400);
+}
+
+if (!defined('LUPO_DEFAULT_NODE_ID')) {
+    define('LUPO_DEFAULT_NODE_ID', 1);
+}
+
+class Session
+{
+    /** @var \PDO|\PDO_DB */
+    private $db;
+
+    /** @var UnifiedSessionHandler */
+    private $sessionHandler;
+
+    /** @var string */
+    private $table;
+
+    /** @var string|null name_key from lupo_sessions (visitor/customer name). Populated when session is loaded. */
+    private $name_key;
+
+    /** @var int is_named from lupo_sessions (0 or 1). Populated when session is loaded. */
+    private $is_named = 0;
+
+    public function __construct($db, UnifiedSessionHandler $sessionHandler)
+    {
+        $this->db = $db;
+        $this->sessionHandler = $sessionHandler;
+        $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $this->table = $table_prefix . 'sessions';
+    }
+
+    /**
+     * Current UTC timestamp as BIGINT YmdHis.
+     */
+    public function utcTimestamp(): int
+    {
+        if (class_exists('timestamp_ymdhis')) {
+            return timestamp_ymdhis::now();
+        }
+        return (int) gmdate('YmdHis');
+    }
+
+    /**
+     * Start PHP session if not already started.
+     */
+    public function start(): bool
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            return session_start();
+        }
+        return true;
+    }
+
+    /**
+     * Current PHP session ID (starts session if needed).
+     *
+     * @return string|false
+     */
+    public function getSessionId()
+    {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_name('PHPSESSID');
+        }
+        $this->start();
+        return session_id();
+    }
+
+    /**
+     * Client IP (handles X-Forwarded-For, X-Real-IP).
+     */
+    public function getClientIp(): string
+    {
+        $keys = ['HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'HTTP_CLIENT_IP', 'REMOTE_ADDR'];
+        foreach ($keys as $key) {
+            if (!empty($_SERVER[$key])) {
+                $ip = $_SERVER[$key];
+                if (strpos($ip, ',') !== false) {
+                    $ip = trim(explode(',', $ip)[0]);
+                }
+                if (filter_var($ip, FILTER_VALIDATE_IP)) {
+                    return $ip;
+                }
+            }
+        }
+        return '0.0.0.0';
+    }
+
+    public function getUserAgent(): string
+    {
+        return $_SERVER['HTTP_USER_AGENT'] ?? '';
+    }
+
+    /**
+     * Device type from user agent: desktop, mobile, tablet, bot, other.
+     */
+    public function detectDeviceType(?string $userAgent = null): string
+    {
+        $ua = $userAgent ?? $this->getUserAgent();
+        if ($ua === '') {
+            return 'other';
+        }
+        $bot = ['bot', 'crawler', 'spider', 'scraper', 'curl', 'wget'];
+        foreach ($bot as $p) {
+            if (stripos($ua, $p) !== false) {
+                return 'bot';
+            }
+        }
+        $mobile = ['mobile', 'android', 'iphone', 'ipod', 'blackberry', 'windows phone'];
+        foreach ($mobile as $p) {
+            if (stripos($ua, $p) !== false) {
+                return 'mobile';
+            }
+        }
+        $tablet = ['ipad', 'tablet', 'playbook'];
+        foreach ($tablet as $p) {
+            if (stripos($ua, $p) !== false) {
+                return 'tablet';
+            }
+        }
+        return 'desktop';
+    }
+
+    /**
+     * Create or upgrade session in lupo_sessions for the current PHP session.
+     *
+     * @param int $actorId 0 for anonymous
+     * @return string|false Session ID on success
+     */
+    public function createSession(int $actorId, string $authMethod = 'password', string $authProvider = 'local')
+    {
+        $this->start();
+        $sessionId = session_id();
+        if ($sessionId === '' || $sessionId === false) {
+            return false;
+        }
+        if (strlen($sessionId) > 255) {
+            $sessionId = substr($sessionId, 0, 255);
+        }
+        $now = $this->utcTimestamp();
+        if (class_exists('timestamp_ymdhis')) {
+            $expires = \timestamp_ymdhis::addSeconds($now, LUPO_SESSION_LIFETIME);
+        } else {
+            $s = str_pad((string) $now, 14, '0', STR_PAD_LEFT);
+            $epoch = gmmktime(
+                (int) substr($s, 8, 2),
+                (int) substr($s, 10, 2),
+                (int) substr($s, 12, 2),
+                (int) substr($s, 4, 2),
+                (int) substr($s, 6, 2),
+                (int) substr($s, 0, 4)
+            );
+            $expires = (int) gmdate('YmdHis', $epoch + LUPO_SESSION_LIFETIME);
+        }
+        $ip = $this->getClientIp();
+        $userAgent = $this->getUserAgent();
+        $deviceType = $this->detectDeviceType($userAgent);
+        $securityLevel = ($authMethod === 'api_key') ? 'high' : (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'high' : 'medium');
+
+        if (!($this->db instanceof \PDO_DB)) {
+            return false;
+        }
+        $existing = $this->db->fetchRow(
+            "SELECT session_id, actor_id, name_key, is_named FROM {$this->table} WHERE session_id = :sid LIMIT 1",
+            ['sid' => $sessionId]
+        );
+        $nameKey = null;
+        $isNamed = 0;
+        if ($existing) {
+            $nameKey = isset($existing['name_key']) ? (string) $existing['name_key'] : null;
+            $isNamed = isset($existing['is_named']) ? (int) $existing['is_named'] : 0;
+        }
+
+        try {
+            $data = [
+                'actor_id' => $actorId,
+                'ip_address' => $ip,
+                'user_agent' => $userAgent,
+                'device_type' => $deviceType,
+                'auth_method' => $authMethod,
+                'auth_provider' => $authProvider,
+                'security_level' => $securityLevel,
+                'name_key' => $nameKey,
+                'is_named' => $isNamed,
+                'is_active' => 1,
+                'is_expired' => 0,
+                'is_revoked' => 0,
+                'login_ymdhis' => $now,
+                'last_seen_ymdhis' => $now,
+                'expires_ymdhis' => $expires,
+                'updated_ymdhis' => $now,
+            ];
+            if ($existing) {
+                $this->db->update($this->table, $data, 'session_id = :sid', ['sid' => $sessionId]);
+            } else {
+                $data['session_id'] = $sessionId;
+                $data['federation_node_id'] = LUPO_DEFAULT_NODE_ID;
+                $data['created_ymdhis'] = $now;
+                $data['is_deleted'] = 0;
+                $this->db->insert($this->table, $data);
+            }
+            $this->name_key = $nameKey;
+            $this->is_named = $isNamed;
+            return $sessionId;
+        } catch (\Throwable $e) {
+            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                error_log('Session::createSession: ' . $e->getMessage());
+            }
+            return false;
+        }
+    }
+
+    /**
+     * Validate session: exists, active, not expired, not revoked. Updates last_seen if valid.
+     *
+     * @param string|null $sessionId Defaults to current PHP session
+     * @return int|false Actor ID if valid
+     */
+    public function validateSession(?string $sessionId = null)
+    {
+        if ($sessionId === null) {
+            $sessionId = $this->getSessionId();
+        }
+        if ($sessionId === '' || $sessionId === false) {
+            return false;
+        }
+        $now = $this->utcTimestamp();
+        if (!($this->db instanceof \PDO_DB)) {
+            return false;
+        }
+        $session = $this->db->fetchRow(
+            "SELECT actor_id, is_active, is_expired, is_revoked, expires_ymdhis, name_key, is_named FROM {$this->table} WHERE session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            ['sid' => $sessionId]
+        );
+        if (!$session) {
+            return false;
+        }
+        $this->name_key = isset($session['name_key']) ? (string) $session['name_key'] : null;
+        $this->is_named = isset($session['is_named']) ? (int) $session['is_named'] : 0;
+        if ((int) $session['is_active'] !== 1 || (int) $session['is_expired'] === 1 || (int) $session['is_revoked'] === 1) {
+            return false;
+        }
+        $expires = (int) $session['expires_ymdhis'];
+        if ($expires > 0 && $expires < $now) {
+            $this->markExpired($sessionId);
+            return false;
+        }
+        $this->updateActivity($sessionId);
+        return (int) $session['actor_id'];
+    }
+
+    /**
+     * Get last_seen_ymdhis for a session (for idle checks).
+     *
+     * @param string|null $sessionId
+     * @return int|null
+     */
+    public function getLastSeenYmdhis(?string $sessionId = null): ?int
+    {
+        if ($sessionId === null) {
+            $sessionId = $this->getSessionId();
+        }
+        if ($sessionId === '' || $sessionId === false) {
+            return null;
+        }
+        if (!($this->db instanceof \PDO_DB)) {
+            return null;
+        }
+        $row = $this->db->fetchRow(
+            "SELECT last_seen_ymdhis, name_key, is_named FROM {$this->table} WHERE session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            ['sid' => $sessionId]
+        );
+        if ($row) {
+            $this->name_key = isset($row['name_key']) ? (string) $row['name_key'] : null;
+            $this->is_named = isset($row['is_named']) ? (int) $row['is_named'] : 0;
+        }
+        return $row && isset($row['last_seen_ymdhis']) ? (int) $row['last_seen_ymdhis'] : null;
+    }
+
+    /**
+     * Name a session (e.g. visitor/customer name in Crafty Syntax). Sets is_named = 1 and name_key = $nameKey.
+     *
+     * @param string $nameKey Display name (stored in name_key; max 100 chars per TOON)
+     * @return bool
+     */
+    public function setNameKey(string $nameKey): bool
+    {
+        $sessionId = $this->getSessionId();
+        if ($sessionId === '' || $sessionId === false) {
+            return false;
+        }
+        $nameKey = substr($nameKey, 0, 100);
+        $now = $this->utcTimestamp();
+        if (!($this->db instanceof \PDO_DB)) {
+            return false;
+        }
+        try {
+            $this->db->update(
+                $this->table,
+                ['name_key' => $nameKey, 'is_named' => 1, 'updated_ymdhis' => $now],
+                'session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL)',
+                ['sid' => $sessionId]
+            );
+            $this->name_key = $nameKey;
+            $this->is_named = 1;
+            return true;
+        } catch (\Throwable $e) {
+            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                error_log('Session::setNameKey: ' . $e->getMessage());
+            }
+            return false;
+        }
+    }
+
+    /** @return string|null */
+    public function getNameKey(): ?string
+    {
+        return $this->name_key;
+    }
+
+    /** @return int 0 or 1 */
+    public function getIsNamed(): int
+    {
+        return $this->is_named;
+    }
+
+    /**
+     * Update last_seen_ymdhis and updated_ymdhis for session.
+     *
+     * @param string|null $sessionId
+     */
+    public function updateActivity(?string $sessionId = null): bool
+    {
+        if ($sessionId === null) {
+            $sessionId = $this->getSessionId();
+        }
+        if ($sessionId === '' || $sessionId === false) {
+            return false;
+        }
+        $now = $this->utcTimestamp();
+        if (!($this->db instanceof \PDO_DB)) {
+            return false;
+        }
+        $this->db->update(
+            $this->table,
+            ['last_seen_ymdhis' => $now, 'updated_ymdhis' => $now],
+            'session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL)',
+            ['sid' => $sessionId]
+        );
+        return true;
+    }
+
+    /**
+     * Mark session as expired (is_active = 0, is_expired = 1).
+     *
+     * @param string $sessionId
+     */
+    public function markExpired(string $sessionId): bool
+    {
+        $now = $this->utcTimestamp();
+        if (!($this->db instanceof \PDO_DB)) {
+            return false;
+        }
+        $this->db->update(
+            $this->table,
+            ['is_expired' => 1, 'is_active' => 0, 'updated_ymdhis' => $now],
+            'session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL)',
+            ['sid' => $sessionId]
+        );
+        return true;
+    }
+
+    /**
+     * Mark session inactive/revoked and destroy PHP session.
+     *
+     * @param string|null $sessionId
+     */
+    public function destroy(?string $sessionId = null): bool
+    {
+        if ($sessionId === null) {
+            $sessionId = $this->getSessionId();
+        }
+        if ($sessionId === '' || $sessionId === false) {
+            return false;
+        }
+        $now = $this->utcTimestamp();
+        if ($this->db instanceof \PDO_DB) {
+            $this->db->update(
+                $this->table,
+                ['is_active' => 0, 'is_revoked' => 1, 'updated_ymdhis' => $now],
+                'session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL)',
+                ['sid' => $sessionId]
+            );
+        }
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            $_SESSION = [];
+            if (isset($_COOKIE[session_name()])) {
+                setcookie(session_name(), '', time() - 3600, '/');
+            }
+            session_destroy();
+        }
+        return true;
+    }
+
+    /**
+     * Get session row by session ID (for legacy/Crafty callers). Uses PDO_DB fetchRow.
+     *
+     * @param string $sessionId
+     * @return array|null Row with keys e.g. session_id, actor_id, last_seen_ymdhis, name_key, is_named
+     */
+    public function getSessionRow(string $sessionId): ?array
+    {
+        if (!($this->db instanceof \PDO_DB)) {
+            return null;
+        }
+        $row = $this->db->fetchRow(
+            "SELECT session_id, actor_id, last_seen_ymdhis, name_key, is_named FROM {$this->table} WHERE session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            ['sid' => $sessionId]
+        );
+        if ($row) {
+            $this->name_key = isset($row['name_key']) ? (string) $row['name_key'] : null;
+            $this->is_named = isset($row['is_named']) ? (int) $row['is_named'] : 0;
+        }
+        return $row;
+    }
+
+    public function getSessionHandler(): UnifiedSessionHandler
+    {
+        return $this->sessionHandler;
+    }
+
+    public function getDb()
+    {
+        return $this->db;
+    }
+}

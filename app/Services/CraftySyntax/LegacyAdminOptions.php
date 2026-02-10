@@ -36,17 +36,14 @@
 require_once("admin_common.php");
 validate_session($identity);
 
-// get the info of this user.. 
-// Updated to use Lupopedia table mapping: livehelp_users → lupo_users
-$query = "SELECT * FROM lupo_users WHERE sessionid='".$identity['SESSIONID']."'";	
-$people = $mydatabase->query($query);
-$people = $people->fetchRow(DB_FETCHMODE_ASSOC);
-$myid = $people['user_id'];
-$channel = $people['onchannel'];
-$show_arrival = $people['show_arrival']; 
-$user_alert = $people['user_alert'];
-$greeting = $people['greeting'];
-$photo = $people['photo'];
+// Operator/visitor row from {prefix}sessions (per migration: livehelp_users → lupo_auth_users; session state in lupo_sessions)
+$people = crafty_get_session_people($identity['SESSIONID']);
+$myid = $people ? (int) $people['user_id'] : 0;
+$channel = $people ? (int) $people['onchannel'] : 0;
+$show_arrival = $people ? (int) $people['show_arrival'] : 0;
+$user_alert = $people ? (int) $people['user_alert'] : 0;
+$greeting = $people ? (string) $people['greeting'] : '';
+$photo = $people ? (string) $people['photo'] : '';
 
 // TOON Analytics: Log admin options access with world context
 require_once("WorldGraphHelper.php");
