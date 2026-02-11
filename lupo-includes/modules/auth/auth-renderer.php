@@ -382,9 +382,9 @@ function change_password_form($error_message = null) {
 }
 
 function admin_dashboard($user) {
-    $username = htmlspecialchars($user['username'] ?? 'User');
-    $display_name = htmlspecialchars($user['display_name'] ?? $username);
-    $email = htmlspecialchars($user['email'] ?? '');
+    $username = htmlspecialchars(isset($user['username']) ? $user['username'] : 'User');
+    $display_name = htmlspecialchars(isset($user['display_name']) ? $user['display_name'] : $username);
+    $email = htmlspecialchars(isset($user['email']) ? $user['email'] : '');
     
     $html = '<!DOCTYPE html>
 <html lang="en">

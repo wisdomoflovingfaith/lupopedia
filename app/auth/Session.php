@@ -13,6 +13,10 @@ namespace App\Auth;
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die('Config not loaded. Session cannot be used directly.');
 }
+$session_compat_path = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'session-compat-5.3.php' : dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'session-compat-5.3.php';
+if (is_file($session_compat_path)) {
+    require_once $session_compat_path;
+}
 
 if (!defined('LUPO_TABLE_PREFIX')) {
     define('LUPO_TABLE_PREFIX', 'lupo_');

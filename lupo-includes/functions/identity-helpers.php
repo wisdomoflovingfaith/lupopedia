@@ -20,8 +20,8 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
  * @param PDO $db Database connection (unused when ActorService is available; kept for backward compatibility).
  * @return int|null Allocated actor_id or null if exhausted.
  */
-function allocateAnonymousActorId(PDO $db): ?int {
-    $s = $GLOBALS['lupo_actor_service'] ?? null;
+function allocateAnonymousActorId($db) {
+    $s = isset($GLOBALS['lupo_actor_service']) ? $GLOBALS['lupo_actor_service'] : null;
     return $s ? $s->allocateAnonymousActorId() : null;
 }
 
@@ -32,8 +32,8 @@ function allocateAnonymousActorId(PDO $db): ?int {
  * @param int $actorId Actor ID to assign a jsrn to.
  * @return int Assigned jsrn.
  */
-function getOrAllocateJsrnForActor(PDO $db, int $actorId): int {
-    $s = $GLOBALS['lupo_actor_service'] ?? null;
+function getOrAllocateJsrnForActor($db, $actorId) {
+    $s = isset($GLOBALS['lupo_actor_service']) ? $GLOBALS['lupo_actor_service'] : null;
     return $s ? $s->getOrAllocateJsrnForActor($actorId) : 0;
 }
 
@@ -46,8 +46,8 @@ function getOrAllocateJsrnForActor(PDO $db, int $actorId): int {
  * @return void
  * @throws \Exception On DB error when delegated to ActorService.
  */
-function mergeAnonymousActorIntoRealActor(PDO $db, int $tempActorId, int $realActorId): void {
-    $s = $GLOBALS['lupo_actor_service'] ?? null;
+function mergeAnonymousActorIntoRealActor($db, $tempActorId, $realActorId) {
+    $s = isset($GLOBALS['lupo_actor_service']) ? $GLOBALS['lupo_actor_service'] : null;
     if ($s) {
         $s->mergeAnonymousActorIntoRealActor($tempActorId, $realActorId);
     }

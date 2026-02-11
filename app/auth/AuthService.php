@@ -55,21 +55,21 @@ class AuthService
                AND (a.is_deleted = 0 OR a.is_deleted IS NULL)
                AND (au.is_deleted = 0 OR au.is_deleted IS NULL)
              LIMIT 1",
-            ['actor_id' => $actorId]
+            array('actor_id' => $actorId)
         );
-        if (!$user || (int) ($user['user_is_active'] ?? 0) !== 1) {
+        if (!$user || (int) (isset($user['user_is_active']) ? $user['user_is_active'] : 0) !== 1) {
             return false;
         }
 
         $user['is_admin'] = $this->roleResolver->isAdmin((int) $user['actor_id']);
-        return [
+        return array(
             'actor_id' => (int) $user['actor_id'],
             'auth_user_id' => (int) $user['auth_user_id'],
             'username' => $user['username'],
             'display_name' => $user['display_name'],
             'email' => $user['email'],
             'is_admin' => $user['is_admin'],
-        ];
+        );
     }
 
     /**
@@ -77,7 +77,7 @@ class AuthService
      *
      * @return array|null
      */
-    public function getCurrentUserData(): ?array
+    public function getCurrentUserData()
     {
         $user = $this->getCurrentUser();
         return $user !== false ? $user : null;
@@ -88,7 +88,7 @@ class AuthService
      *
      * @return bool
      */
-    public function isLoggedIn(): bool
+    public function isLoggedIn()
     {
         return $this->getCurrentUser() !== false;
     }
@@ -98,10 +98,10 @@ class AuthService
      *
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         $user = $this->getCurrentUser();
-        return $user ? (string) ($user['username'] ?? '') : '';
+        return $user ? (string) (isset($user['username']) ? $user['username'] : '') : '';
     }
 
     /**
@@ -109,10 +109,10 @@ class AuthService
      *
      * @return string
      */
-    public function getDisplayName(): string
+    public function getDisplayName()
     {
         $user = $this->getCurrentUser();
-        return $user ? (string) ($user['display_name'] ?? $user['username'] ?? '') : '';
+        return $user ? (string) (isset($user['display_name']) ? $user['display_name'] : (isset($user['username']) ? $user['username'] : '')) : '';
     }
 
     /**
@@ -121,7 +121,7 @@ class AuthService
      * @param int $actorId
      * @return bool
      */
-    public function isAdmin(int $actorId): bool
+    public function isAdmin($actorId)
     {
         return $this->roleResolver->isAdmin($actorId);
     }
@@ -132,7 +132,7 @@ class AuthService
      * @param int $actorId
      * @return bool
      */
-    public function hasAnyChannelRole(int $actorId): bool
+    public function hasAnyChannelRole($actorId)
     {
         return $this->roleResolver->hasAnyChannelRole($actorId);
     }
@@ -141,11 +141,11 @@ class AuthService
      * Require user to be logged in; redirect to login with redirect param if not.
      * Exits on redirect. Also redirects if password_change_required in session.
      */
-    public function requireLogin(): void
+    public function requireLogin()
     {
         $user = $this->getCurrentUser();
         if ($user === false) {
-            $redirectUrl = $_SERVER['REQUEST_URI'] ?? '/';
+            $redirectUrl = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
             $this->session->start();
             $_SESSION['login_redirect'] = $redirectUrl;
             $loginUrl = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login?redirect=' . urlencode($redirectUrl);
@@ -171,7 +171,7 @@ class AuthService
     /**
      * Require admin; calls requireLogin() then returns 403 if not admin.
      */
-    public function requireAdmin(): void
+    public function requireAdmin()
     {
         $this->requireLogin();
         $user = $this->getCurrentUser();

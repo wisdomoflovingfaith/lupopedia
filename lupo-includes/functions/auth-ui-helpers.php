@@ -38,14 +38,14 @@ if (!function_exists('current_user')) {
  * @return string HTML for login status indicator
  */
 function lupo_render_login_status() {
-    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     $user = $authService ? $authService->getCurrentUser() : current_user();
 
     if ($user) {
         // User is logged in - show profile avatar with dropdown
-        $display_name = htmlspecialchars($user['display_name'] ?? $user['username'] ?? 'User');
-        $email = htmlspecialchars($user['email'] ?? '');
-        $auth_user_id = (int)($user['auth_user_id'] ?? 0);
+        $display_name = htmlspecialchars(isset($user['display_name']) ? $user['display_name'] : (isset($user['username']) ? $user['username'] : 'User'));
+        $email = htmlspecialchars(isset($user['email']) ? $user['email'] : '');
+        $auth_user_id = (int)(isset($user['auth_user_id']) ? $user['auth_user_id'] : 0);
 
         // Build avatar URL (use auth_user_id for avatar filename)
         $avatar_path = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
@@ -71,7 +71,7 @@ function lupo_render_login_status() {
         $operator_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/crafty_syntax/' : '/crafty_syntax/';
 
         // Use AuthService for channel-role check (is_operator)
-        $actor_id = (int)($user['actor_id'] ?? 0);
+        $actor_id = (int)(isset($user['actor_id']) ? $user['actor_id'] : 0);
         $is_operator = $authService && $actor_id ? $authService->hasAnyChannelRole($actor_id) : false;
 
         $html = '<div class="user-dropdown">';
@@ -121,7 +121,7 @@ function lupo_render_login_status() {
         return $html;
     } else {
         // User is not logged in - show login link
-        $current_url = $_SERVER['REQUEST_URI'] ?? '/';
+        $current_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
         $login_url = defined('LUPOPEDIA_PUBLIC_PATH')
             ? LUPOPEDIA_PUBLIC_PATH . '/login?redirect=' . urlencode($current_url)
             : '/login?redirect=' . urlencode($current_url);
@@ -140,7 +140,7 @@ function lupo_render_login_status() {
  * @return array|null User data array or null if not logged in
  */
 function lupo_get_current_user_data() {
-    $s = $GLOBALS['lupo_auth_service'] ?? null;
+    $s = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     return $s ? $s->getCurrentUserData() : null;
 }
 
@@ -150,7 +150,7 @@ function lupo_get_current_user_data() {
  * @return bool True if logged in, false otherwise
  */
 function lupo_is_logged_in() {
-    $s = $GLOBALS['lupo_auth_service'] ?? null;
+    $s = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     return $s ? $s->isLoggedIn() : (current_user() !== false);
 }
 
@@ -160,7 +160,7 @@ function lupo_is_logged_in() {
  * @return string Username or empty string
  */
 function lupo_get_username() {
-    $s = $GLOBALS['lupo_auth_service'] ?? null;
+    $s = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     return $s ? $s->getUsername() : (($u = current_user()) ? $u['username'] : '');
 }
 
@@ -170,8 +170,9 @@ function lupo_get_username() {
  * @return string Display name or empty string
  */
 function lupo_get_display_name() {
-    $s = $GLOBALS['lupo_auth_service'] ?? null;
-    return $s ? $s->getDisplayName() : (($u = current_user()) ? ($u['display_name'] ?? $u['username']) : '');
+    $s = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+    $u = current_user();
+    return $s ? $s->getDisplayName() : ($u ? (isset($u['display_name']) ? $u['display_name'] : (isset($u['username']) ? $u['username'] : '')) : '');
 }
 
 ?>

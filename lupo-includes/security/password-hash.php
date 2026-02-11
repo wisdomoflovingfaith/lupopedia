@@ -30,8 +30,32 @@ if (!defined('LUPO_BCRYPT_COST')) {
 }
 
 /**
+ * PHP 5.3/5.4 fallback: bcrypt via crypt() when password_hash is not available.
+ *
+ * @param string $password Plaintext password
+ * @return string|false Bcrypt hash on success, false on failure
+ */
+function lupo_bcrypt_crypt_fallback($password) {
+    $cost = defined('LUPO_BCRYPT_COST') ? (int) LUPO_BCRYPT_COST : 10;
+    if ($cost < 4 || $cost > 31) {
+        $cost = 10;
+    }
+    $alphabet = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    $salt = '';
+    $len = strlen($alphabet);
+    for ($i = 0; $i < 22; $i++) {
+        $salt .= $alphabet[mt_rand(0, $len - 1)];
+    }
+    $setting = '$2y$' . sprintf('%02d', $cost) . '$' . $salt;
+    $hash = crypt($password, $setting);
+    return (is_string($hash) && strlen($hash) > 13) ? $hash : false;
+}
+
+/**
  * Hash a password using bcrypt
  * 
+ * Uses password_hash on PHP 5.5+, crypt() fallback on PHP 5.3/5.4.
+ *
  * @param string $password Plaintext password
  * @return string|false Bcrypt hash on success, false on failure
  */
@@ -39,12 +63,13 @@ function lupo_hash_password($password) {
     if (empty($password)) {
         return false;
     }
-    
-    $options = [
-        'cost' => LUPO_BCRYPT_COST
-    ];
-    
-    return password_hash($password, PASSWORD_BCRYPT, $options);
+    if (function_exists('password_hash')) {
+        $options = array(
+            'cost' => defined('LUPO_BCRYPT_COST') ? LUPO_BCRYPT_COST : 10
+        );
+        return password_hash($password, PASSWORD_BCRYPT, $options);
+    }
+    return lupo_bcrypt_crypt_fallback($password);
 }
 
 /**
@@ -100,7 +125,10 @@ function lupo_verify_password($password, $hash) {
     
     // Try bcrypt first (new format)
     if (lupo_is_bcrypt_hash($hash)) {
-        return password_verify($password, $hash);
+        if (function_exists('password_verify')) {
+            return password_verify($password, $hash);
+        }
+        return (crypt($password, $hash) === $hash);
     }
     
     // Fallback to MD5 (legacy)

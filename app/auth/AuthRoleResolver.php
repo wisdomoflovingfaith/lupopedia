@@ -33,7 +33,7 @@ class AuthRoleResolver
      * @param int $actorId Actor ID to check
      * @return bool
      */
-    public function isAdmin(int $actorId): bool
+    public function isAdmin($actorId)
     {
         if ($actorId <= 0) {
             return false;
@@ -45,7 +45,7 @@ class AuthRoleResolver
         $row = $this->db->fetchRow(
             "SELECT 1 FROM {$cr} WHERE actor_id = :actor_id AND channel_id = :channel_id 
              AND role_type IN ('captain', 'administrator') AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            ['actor_id' => $actorId, 'channel_id' => $this->defaultChannelId]
+            array('actor_id' => $actorId, 'channel_id' => $this->defaultChannelId)
         );
         if ($row) {
             return true;
@@ -59,7 +59,7 @@ class AuthRoleResolver
         $mod = $this->db->quoteIdentifier($prefix . 'modules');
         $adminModule = $this->db->fetchRow(
             "SELECT module_id FROM {$mod} WHERE module_key = 'admin' AND is_active = 1 AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            []
+            array()
         );
         if (!$adminModule) {
             return false;
@@ -69,7 +69,7 @@ class AuthRoleResolver
         $count = $this->db->fetchRow(
             "SELECT 1 FROM {$perm} WHERE target_type = 'module' AND target_id = :module_id 
              AND user_id = :user_id AND permission = 'owner' AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            ['module_id' => $adminModule['module_id'], 'user_id' => $authUserId]
+            array('module_id' => $adminModule['module_id'], 'user_id' => $authUserId)
         );
         return $count !== null;
     }
@@ -80,7 +80,7 @@ class AuthRoleResolver
      * @param int $actorId Actor ID
      * @return bool
      */
-    public function hasAnyChannelRole(int $actorId): bool
+    public function hasAnyChannelRole($actorId)
     {
         if ($actorId <= 0) {
             return false;
@@ -89,7 +89,7 @@ class AuthRoleResolver
         $cr = $this->db->quoteIdentifier($prefix . 'channel_roles');
         $row = $this->db->fetchRow(
             "SELECT 1 FROM {$cr} WHERE actor_id = :actor_id AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            ['actor_id' => $actorId]
+            array('actor_id' => $actorId)
         );
         return $row !== null;
     }
@@ -100,14 +100,14 @@ class AuthRoleResolver
      * @param int $actorId
      * @return int|null
      */
-    private function getAuthUserIdFromActorId(int $actorId): ?int
+    private function getAuthUserIdFromActorId($actorId)
     {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $t = $this->db->quoteIdentifier($prefix . 'actors');
         $row = $this->db->fetchRow(
             "SELECT actor_source_id as auth_user_id FROM {$t} WHERE actor_id = :actor_id 
              AND actor_source_type = 'user' AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            ['actor_id' => $actorId]
+            array('actor_id' => $actorId)
         );
         return $row ? (int) $row['auth_user_id'] : null;
     }

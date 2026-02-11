@@ -32,7 +32,7 @@ class AuthGuard
     /**
      * Detect system context from path. $pathOrRequest: string path or object with path().
      */
-    public function detectSystemContext($pathOrRequest = null): string
+    public function detectSystemContext($pathOrRequest = null)
     {
         return $this->sessionHandler->detectSystemContext($pathOrRequest);
     }
@@ -40,7 +40,7 @@ class AuthGuard
     /**
      * Check if request is authenticated.
      */
-    public function isAllowed(): bool
+    public function isAllowed()
     {
         return $this->authManager->checkUnifiedAuth();
     }
@@ -56,13 +56,13 @@ class AuthGuard
     /**
      * Log authentication activity. $requestInfo: array with ip, user_agent (or null for $_SERVER).
      */
-    public function logAuthenticationActivity($unifiedUser, string $systemContext, array $requestInfo = null): void
+    public function logAuthenticationActivity($unifiedUser, $systemContext, $requestInfo = null)
     {
         if ($requestInfo === null) {
-            $requestInfo = [
-                'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
-                'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
-            ];
+            $requestInfo = array(
+                'ip' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '',
+                'user_agent' => isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '',
+            );
         }
         $userId = isset($unifiedUser['user']->id) ? $unifiedUser['user']->id : null;
         $this->authManager->logAuthEvent('middleware_access', $userId, null, $systemContext, true, null, $requestInfo);
@@ -71,17 +71,17 @@ class AuthGuard
     /**
      * Update session last_seen_ymdhis in lupo_sessions via Session. $sessionId from session_id().
      */
-    public function updateUserActivity(string $sessionId, $unifiedUser, string $systemContext): void
+    public function updateUserActivity($sessionId, $unifiedUser, $systemContext)
     {
         $this->sessionHandler->updateSessionActivity($sessionId);
     }
 
-    public function getSessionHandler(): UnifiedSessionHandler
+    public function getSessionHandler()
     {
         return $this->sessionHandler;
     }
 
-    public function getAuthManager(): AuthManager
+    public function getAuthManager()
     {
         return $this->authManager;
     }

@@ -13,6 +13,10 @@
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. auth-controller.php cannot be called directly.");
 }
+$session_compat_path = (defined('LUPOPEDIA_ABSPATH') ? rtrim(LUPOPEDIA_ABSPATH, DIRECTORY_SEPARATOR) : dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'session-compat-5.3.php';
+if (is_file($session_compat_path)) {
+    require_once $session_compat_path;
+}
 
 // Load required (Session is provided by bootstrap as $GLOBALS['lupo_session'])
 require_once(LUPOPEDIA_ABSPATH . 'lupo-includes/security/password-hash.php');
@@ -81,18 +85,18 @@ function auth_handle_slug($slug) {
  * @return string Rendered login form HTML
  */
 function login_handle_view() {
-    $session = $GLOBALS['lupo_session'] ?? null;
+    $session = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null;
     if ($session) {
         $session->start();
     } elseif (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
     // Check if already logged in
-    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     $user = $authService ? $authService->getCurrentUser() : current_user();
     if ($user) {
         // Already logged in, redirect
-        $redirect = $_GET['redirect'] ?? (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/admin' : '/admin');
+        $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/admin' : '/admin');
         // Ensure redirect includes public path if it's a relative path
         if (strpos($redirect, '/') === 0 && strpos($redirect, LUPOPEDIA_PUBLIC_PATH) !== 0 && defined('LUPOPEDIA_PUBLIC_PATH')) {
             $redirect = LUPOPEDIA_PUBLIC_PATH . $redirect;
@@ -102,10 +106,10 @@ function login_handle_view() {
     
     // Get redirect URL from query string or session
     $default_redirect = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/' : '/';
-    $redirect_url = $_GET['redirect'] ?? ($_SESSION['login_redirect'] ?? $default_redirect);
+    $redirect_url = isset($_GET['redirect']) ? $_GET['redirect'] : (isset($_SESSION['login_redirect']) ? $_SESSION['login_redirect'] : $default_redirect);
     
     // Get any error message from session
-    $error_message = $_SESSION['login_error'] ?? null;
+    $error_message = isset($_SESSION['login_error']) ? $_SESSION['login_error'] : null;
     unset($_SESSION['login_error']);
     
     // Render login form
@@ -126,7 +130,7 @@ function login_handle_view() {
  * @return string|void Rendered HTML on error, or redirects on success
  */
 function login_handle_post() {
-    $session = $GLOBALS['lupo_session'] ?? null;
+    $session = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null;
     if ($session) {
         $session->start();
     } elseif (session_status() === PHP_SESSION_NONE) {
@@ -206,7 +210,7 @@ function login_handle_post() {
         LIMIT 1";
         
         $stmt = $db->prepare($sql);
-        $stmt->execute([':email' => $email]);
+        $stmt->execute(array(':email' => $email));
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         
         // Debug: Log user lookup result
@@ -274,14 +278,14 @@ function login_handle_post() {
         }
         
         // Get or create actor_id (ActorService when available)
-        $actorService = $GLOBALS['lupo_actor_service'] ?? null;
+        $actorService = isset($GLOBALS['lupo_actor_service']) ? $GLOBALS['lupo_actor_service'] : null;
         $actor_id = $actorService ? $actorService->getActorIdFromAuthUserId((int) $user['auth_user_id']) : lupo_get_actor_id_from_auth_user_id($user['auth_user_id']);
 
         if (!$actor_id) {
             // Create actor record (slug derived from email, not username)
             $actor_id = $actorService
-                ? $actorService->createActorForAuthUser((int) $user['auth_user_id'], $user['email'], $user['display_name'] ?? '')
-                : lupo_create_actor_for_auth_user($user['auth_user_id'], $user['email'], $user['display_name'] ?? '');
+                ? $actorService->createActorForAuthUser((int) $user['auth_user_id'], $user['email'], isset($user['display_name']) ? $user['display_name'] : '')
+                : lupo_create_actor_for_auth_user($user['auth_user_id'], $user['email'], isset($user['display_name']) ? $user['display_name'] : '');
             
             if (!$actor_id) {
                 if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
@@ -347,11 +351,11 @@ function login_handle_post() {
         WHERE auth_user_id = :auth_user_id";
         
         $update_stmt = $db->prepare($update_sql);
-        $update_stmt->execute([
+        $update_stmt->execute(array(
             ':last_login_ymdhis' => $now,
             ':updated_ymdhis' => $now,
             ':auth_user_id' => $user['auth_user_id']
-        ]);
+        ));
         
         // Clear any error messages
         unset($_SESSION['login_error']);
@@ -398,11 +402,11 @@ function login_handle_post() {
  * @return void Redirects to homepage
  */
 function logout_handle() {
-    $session = $GLOBALS['lupo_session'] ?? null;
+    $session = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null;
     if ($session) {
         $session->destroy();
     }
-    $_SESSION = [];
+    $_SESSION = array();
     
     // Redirect to homepage (with public path)
     $home_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/' : '/';
@@ -418,7 +422,7 @@ function logout_handle() {
  * @return string Rendered password change form HTML
  */
 function change_password_handle_view() {
-    $session = $GLOBALS['lupo_session'] ?? null;
+    $session = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null;
     if ($session) {
         $session->start();
     } elseif (session_status() === PHP_SESSION_NONE) {
@@ -433,7 +437,7 @@ function change_password_handle_view() {
     }
     
     // Check if user is logged in
-    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     $user = $authService ? $authService->getCurrentUser() : current_user();
     if (!$user) {
         // Not logged in - redirect to login
@@ -443,7 +447,7 @@ function change_password_handle_view() {
     }
 
     // Get any error message from session
-    $error_message = $_SESSION['password_change_error'] ?? null;
+    $error_message = isset($_SESSION['password_change_error']) ? $_SESSION['password_change_error'] : null;
     unset($_SESSION['password_change_error']);
 
     // Render password change form
@@ -458,7 +462,7 @@ function change_password_handle_view() {
  * @return string|void Rendered HTML on error, or redirects on success
  */
 function change_password_handle_post() {
-    $session = $GLOBALS['lupo_session'] ?? null;
+    $session = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null;
     if ($session) {
         $session->start();
     } elseif (session_status() === PHP_SESSION_NONE) {
@@ -473,7 +477,7 @@ function change_password_handle_post() {
     }
     
     // Check if user is logged in
-    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     $user = $authService ? $authService->getCurrentUser() : current_user();
     if (!$user) {
         // Not logged in - redirect to login
@@ -530,7 +534,7 @@ function change_password_handle_post() {
         
         // Update password hash in database
         $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : str_replace('-', '_', LUPO_PREFIX);
-        $s = $GLOBALS['lupo_session'] ?? null;
+        $s = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null;
         $now = $s ? $s->utcTimestamp() : (class_exists('timestamp_ymdhis') ? timestamp_ymdhis::now() : (int) gmdate('YmdHis'));
         $update_sql = "UPDATE {$table_prefix}auth_users
         SET password_hash = :password_hash,
@@ -538,11 +542,11 @@ function change_password_handle_post() {
         WHERE auth_user_id = :auth_user_id";
         
         $update_stmt = $db->prepare($update_sql);
-        $update_stmt->execute([
+        $update_stmt->execute(array(
             ':password_hash' => $new_hash,
             ':updated_ymdhis' => $now,
             ':auth_user_id' => $user['auth_user_id']
-        ]);
+        ));
         
         // Clear password change requirement flag
         unset($_SESSION['password_change_required']);
@@ -557,7 +561,7 @@ function change_password_handle_post() {
 
         // Redirect to original page or home
         $default_redirect = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/' : '/';
-        $redirect_url = $_SESSION['login_redirect'] ?? $default_redirect;
+        $redirect_url = isset($_SESSION['login_redirect']) ? $_SESSION['login_redirect'] : $default_redirect;
         unset($_SESSION['login_redirect']);
 
         lupo_safe_redirect($redirect_url, 2, 'Password changed successfully! Redirecting...');
@@ -583,7 +587,7 @@ function change_password_handle_post() {
  * @return string Rendered admin dashboard HTML
  */
 function admin_handle_view($slug) {
-    $session = $GLOBALS['lupo_session'] ?? null;
+    $session = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null;
     if ($session) {
         $session->start();
     } elseif (session_status() === PHP_SESSION_NONE) {
@@ -596,7 +600,7 @@ function admin_handle_view($slug) {
     }
     
     // Require admin access (AuthService when available)
-    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     if ($authService) {
         $authService->requireAdmin();
     } else {

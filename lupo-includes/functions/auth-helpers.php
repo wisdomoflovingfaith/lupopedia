@@ -13,6 +13,10 @@
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. auth-helpers.php cannot be called directly.");
 }
+$session_compat_path = (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'session-compat-5.3.php';
+if (is_file($session_compat_path)) {
+    require_once $session_compat_path;
+}
 
 /**
  * Authentication Helper Functions
@@ -38,7 +42,7 @@ if (!function_exists('lupo_safe_redirect')) {
  * @return int|false Actor ID on success, false if not found
  */
 function lupo_get_actor_id_from_auth_user_id($auth_user_id) {
-    $s = $GLOBALS['lupo_actor_service'] ?? null;
+    $s = isset($GLOBALS['lupo_actor_service']) ? $GLOBALS['lupo_actor_service'] : null;
     return $s ? $s->getActorIdFromAuthUserId((int) $auth_user_id) : false;
 }
 
@@ -51,8 +55,9 @@ function lupo_get_actor_id_from_auth_user_id($auth_user_id) {
  * @return int|false Actor ID on success, false on failure
  */
 function lupo_create_actor_for_auth_user($auth_user_id, $email, $display_name) {
-    $s = $GLOBALS['lupo_actor_service'] ?? null;
-    return $s ? $s->createActorForAuthUser((int) $auth_user_id, (string) $email, (string) ($display_name ?? '')) : false;
+    $s = isset($GLOBALS['lupo_actor_service']) ? $GLOBALS['lupo_actor_service'] : null;
+    $disp = isset($display_name) ? (string) $display_name : '';
+    return $s ? $s->createActorForAuthUser((int) $auth_user_id, (string) $email, $disp) : false;
 }
 
 /**
@@ -62,7 +67,7 @@ function lupo_create_actor_for_auth_user($auth_user_id, $email, $display_name) {
  * @return bool True if slug exists, false otherwise
  */
 function lupo_actor_slug_exists($slug) {
-    $s = $GLOBALS['lupo_actor_service'] ?? null;
+    $s = isset($GLOBALS['lupo_actor_service']) ? $GLOBALS['lupo_actor_service'] : null;
     return $s ? $s->actorSlugExists((string) $slug) : false;
 }
 
@@ -72,7 +77,7 @@ function lupo_actor_slug_exists($slug) {
  * @return array|false User data array or false if not logged in
  */
 function current_user() {
-    $s = $GLOBALS['lupo_auth_service'] ?? null;
+    $s = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     return $s ? $s->getCurrentUser() : false;
 }
 
@@ -83,7 +88,7 @@ function current_user() {
  * @return bool True if admin, false otherwise
  */
 function lupo_is_admin($actor_id) {
-    $s = $GLOBALS['lupo_auth_service'] ?? null;
+    $s = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     return $s ? $s->isAdmin((int) $actor_id) : false;
 }
 
@@ -94,7 +99,7 @@ function lupo_is_admin($actor_id) {
  * @return int|false Auth user ID on success, false otherwise
  */
 function lupo_get_auth_user_id_from_actor_id($actor_id) {
-    $s = $GLOBALS['lupo_actor_service'] ?? null;
+    $s = isset($GLOBALS['lupo_actor_service']) ? $GLOBALS['lupo_actor_service'] : null;
     return $s ? $s->getAuthUserIdFromActorId((int) $actor_id) : false;
 }
 
@@ -104,14 +109,14 @@ function lupo_get_auth_user_id_from_actor_id($actor_id) {
  * @return void Exits script if not logged in
  */
 function require_login() {
-    $s = $GLOBALS['lupo_auth_service'] ?? null;
+    $s = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     if ($s) {
         $s->requireLogin();
         return;
     }
     $user = current_user();
     if (!$user) {
-        $redirect_url = $_SERVER['REQUEST_URI'] ?? '/';
+        $redirect_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -127,7 +132,7 @@ function require_login() {
  * @return void Exits script if not admin
  */
 function require_admin() {
-    $s = $GLOBALS['lupo_auth_service'] ?? null;
+    $s = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     if ($s) {
         $s->requireAdmin();
         return;
