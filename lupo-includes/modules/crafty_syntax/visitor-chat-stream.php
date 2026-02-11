@@ -9,18 +9,38 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die('Config not loaded.');
 }
 
+if (!function_exists('lupo_random_bytes')) {
+    function lupo_random_bytes($length) {
+        if (function_exists('random_bytes')) {
+            return random_bytes($length);
+        }
+        if (function_exists('openssl_random_pseudo_bytes')) {
+            $bytes = openssl_random_pseudo_bytes($length);
+            return $bytes !== false ? $bytes : lupo_random_bytes_fallback($length);
+        }
+        return lupo_random_bytes_fallback($length);
+    }
+    function lupo_random_bytes_fallback($length) {
+        $bytes = '';
+        for ($i = 0; $i < $length; $i++) {
+            $bytes .= chr(mt_rand(0, 255));
+        }
+        return $bytes;
+    }
+}
+
 $department = isset($_GET['department']) ? (int) $_GET['department'] : 0;
 $session_id = isset($_GET['cslhVISITOR']) ? (string) $_GET['cslhVISITOR'] : '';
 if ($session_id === '' && !empty($_COOKIE['cslhVISITOR'])) {
     $session_id = (string) $_COOKIE['cslhVISITOR'];
 }
 if ($session_id === '') {
-    $session_id = 'v' . bin2hex(random_bytes(12));
+    $session_id = 'v' . bin2hex(lupo_random_bytes(12));
 }
 
 $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
 
-$db = $GLOBALS['mydatabase'] ?? null;
+$db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
 $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 $channel_id = 0;
 $dialog_thread_id = 0;
@@ -35,15 +55,15 @@ if ($db && $department > 0) {
             " VALUES (:sid, 1, 0, :ip, :ua, :now, :now, :now)" .
             " ON DUPLICATE KEY UPDATE last_seen_ymdhis = :now2, updated_ymdhis = :now3"
         );
-        $stmt->execute([
+        $stmt->execute(array(
             ':sid' => $session_id,
-            ':ip' => $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0',
-            ':ua' => substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, 255),
+            ':ip' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0',
+            ':ua' => substr(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '', 0, 255),
             ':now' => $now,
             ':now2' => $now,
             ':now3' => $now,
-        ]);
-    } catch (Throwable $e) {
+        ));
+    } catch (Exception $e) {
         // continue
     }
 
@@ -53,7 +73,7 @@ if ($db && $department > 0) {
         $dialog_thread_id = $existing['dialog_thread_id'];
         // Verify thread exists and get its channel_id (NULL = pending)
         $stmt = $db->prepare("SELECT channel_id FROM {$prefix}dialog_threads WHERE dialog_thread_id = :tid AND is_deleted = 0 LIMIT 1");
-        $stmt->execute([':tid' => $dialog_thread_id]);
+        $stmt->execute(array(':tid' => $dialog_thread_id));
         $trow = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($trow) {
             $thread_channel = isset($trow['channel_id']) ? (int) $trow['channel_id'] : null;
@@ -73,9 +93,9 @@ if ($db && $department > 0) {
             $cols = "federation_node_id, created_by_actor_id, status, created_ymdhis, updated_ymdhis, is_deleted";
             $vals = ":fn, 0, 'Open', :now, :now, 0";
             $stmt = $db->prepare("INSERT INTO {$prefix}dialog_threads ($cols) VALUES ($vals)");
-            $stmt->execute([':fn' => $federation_node_id, ':now' => $now]);
+            $stmt->execute(array(':fn' => $federation_node_id, ':now' => $now));
             $dialog_thread_id = (int) $db->lastInsertId();
-        } catch (Throwable $e) {
+        } catch (Exception $e) {
             $dialog_thread_id = 0;
         }
         if ($dialog_thread_id > 0) {
@@ -96,7 +116,7 @@ if ($db) {
                 $preview_setting = (int) $cfg['previewsetting'];
             }
         }
-    } catch (Throwable $e) {
+    } catch (Exception $e) {
         // keep default
     }
 }

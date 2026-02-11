@@ -224,7 +224,7 @@
             }
             
             // Check if we're coming from a legacy path
-            $currentPath = $_SERVER['REQUEST_URI'] ?? '';
+            $currentPath = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
             if (strpos($currentPath, 'legacy') !== false || strpos($currentPath, 'crafty') !== false) {
                 $systemContext = 'crafty_syntax';
                 $contextText = 'Crafty Syntax Live Help';

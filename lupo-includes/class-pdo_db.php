@@ -100,12 +100,12 @@ class PDO_DB {
     private $pdo = null;
     private $lastError = '';
     private $lastQuery = '';
-    private $options = [
+    private $options = array(
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES => false,
         PDO::ATTR_STRINGIFY_FETCHES => false
-    ];
+    );
 
     /**
      * Constructor
@@ -167,7 +167,7 @@ class PDO_DB {
      * @return PDOStatement
      * @throws PDOException
      */
-    public function query($sql, $params = []) {
+    public function query($sql, $params = array()) {
         $this->lastQuery = $sql;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($this->prepareParams($params));
@@ -180,7 +180,7 @@ class PDO_DB {
      * @param array $params
      * @return array
      */
-    public function fetchAll($sql, $params = []) {
+    public function fetchAll($sql, $params = array()) {
         $stmt = $this->query($sql, $params);
         return $stmt->fetchAll();
     }
@@ -191,7 +191,7 @@ class PDO_DB {
      * @param array $params
      * @return array|null
      */
-    public function fetchRow($sql, $params = []) {
+    public function fetchRow($sql, $params = array()) {
         $stmt = $this->query($sql, $params);
         $result = $stmt->fetch();
         return $result ?: null;
@@ -203,7 +203,7 @@ class PDO_DB {
      * @param array $params
      * @return mixed
      */
-    public function fetchOne($sql, $params = []) {
+    public function fetchOne($sql, $params = array()) {
         $stmt = $this->query($sql, $params);
         return $stmt->fetchColumn(0);
     }
@@ -214,7 +214,7 @@ class PDO_DB {
      * @param array $data
      * @return string|false Last insert ID or false on failure
      */
-    public function insert($table, array $data) {
+    public function insert($table, $data) {
         $columns = array_keys($data);
         $placeholders = array_map(function($col) { 
             return ':' . $col; 
@@ -244,8 +244,8 @@ class PDO_DB {
      * @param array $whereParams
      * @return int Number of affected rows
      */
-    public function update($table, array $data, $where, array $whereParams = []) {
-        $set = [];
+    public function update($table, $data, $where, $whereParams = array()) {
+        $set = array();
         foreach (array_keys($data) as $column) {
             $set[] = $this->quoteIdentifier($column) . " = :$column";
         }
@@ -275,7 +275,7 @@ class PDO_DB {
      * @param array $params
      * @return int Number of affected rows
      */
-    public function delete($table, $where, array $params = []) {
+    public function delete($table, $where, $params = array()) {
         $sql = sprintf(
             "DELETE FROM %s WHERE %s",
             $this->quoteIdentifier($table),
@@ -342,7 +342,7 @@ class PDO_DB {
      * @param array $identifiers
      * @return array
      */
-    public function quoteIdentifiers(array $identifiers) {
+    public function quoteIdentifiers($identifiers) {
         return array_map([$this, 'quoteIdentifier'], $identifiers);
     }
 
@@ -351,7 +351,11 @@ class PDO_DB {
      * @return string
      */
     public function getLastError() {
-        return $this->lastError ?: $this->pdo->errorInfo()[2];
+        if ($this->lastError !== '') {
+            return $this->lastError;
+        }
+        $info = $this->pdo->errorInfo();
+        return isset($info[2]) ? $info[2] : '';
     }
 
     /**
@@ -367,8 +371,8 @@ class PDO_DB {
      * @param array $params
      * @return array
      */
-    private function prepareParams(array $params) {
-        $prepared = [];
+    private function prepareParams($params) {
+        $prepared = array();
         foreach ($params as $key => $value) {
             $prepared[is_int($key) ? $key + 1 : $key] = $value;
         }

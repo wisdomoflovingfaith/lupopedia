@@ -9,8 +9,28 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die('Config not loaded.');
 }
 
+if (!function_exists('lupo_random_bytes')) {
+    function lupo_random_bytes($length) {
+        if (function_exists('random_bytes')) {
+            return random_bytes($length);
+        }
+        if (function_exists('openssl_random_pseudo_bytes')) {
+            $bytes = openssl_random_pseudo_bytes($length);
+            return $bytes !== false ? $bytes : lupo_random_bytes_fallback($length);
+        }
+        return lupo_random_bytes_fallback($length);
+    }
+    function lupo_random_bytes_fallback($length) {
+        $bytes = '';
+        for ($i = 0; $i < $length; $i++) {
+            $bytes .= chr(mt_rand(0, 255));
+        }
+        return $bytes;
+    }
+}
+
 $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-$db = $GLOBALS['mydatabase'] ?? null;
+$db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
 if (!$db) {
     header('Content-Type: image/gif');
     header('HTTP/1.0 500 Internal Server Error');
@@ -32,8 +52,8 @@ if ($what === 'userstat') {
             $stmt = $db->prepare(
                 "UPDATE {$prefix}sessions SET last_seen_ymdhis = :now, updated_ymdhis = :now WHERE session_id = :sid"
             );
-            $stmt->execute([':now' => $now, ':sid' => $session_id]);
-        } catch (Throwable $e) {
+            $stmt->execute(array(':now' => $now, ':sid' => $session_id));
+        } catch (Exception $e) {
             // ignore
         }
     }
@@ -60,7 +80,7 @@ if ($session_id === '' && !empty($_COOKIE['cslhVISITOR'])) {
     $session_id = (string)$_COOKIE['cslhVISITOR'];
 }
 if ($session_id === '') {
-    $session_id = 'v' . bin2hex(random_bytes(12));
+    $session_id = 'v' . bin2hex(lupo_random_bytes(12));
 }
 
 // Optional: touch lupo_sessions for this visitor (lightweight tracking)
@@ -75,15 +95,15 @@ if ($session_id !== '' && $what === 'getstate') {
             " VALUES (:sid, 1, 0, :ip, :ua, NULL, 0, :now, :now, :now)" .
             " ON DUPLICATE KEY UPDATE last_seen_ymdhis = :now2, updated_ymdhis = :now3"
         );
-        $stmt->execute([
+        $stmt->execute(array(
             ':sid' => $session_id,
-            ':ip' => $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0',
-            ':ua' => substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, 255),
+            ':ip' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0',
+            ':ua' => substr(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '', 0, 255),
             ':now' => $now,
             ':now2' => $now,
             ':now3' => $now,
-        ]);
-    } catch (Throwable $e) {
+        ));
+    } catch (Exception $e) {
         // Non-fatal: continue without session write
     }
 }
@@ -97,17 +117,17 @@ try {
             "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
             "WHERE c.department_id = :dept AND r.is_deleted = 0 LIMIT 1"
         );
-        $stmt->execute([':dept' => $department]);
+        $stmt->execute(array(':dept' => $department));
     } else {
         $stmt = $db->prepare(
             "SELECT 1 FROM {$prefix}channel_roles WHERE is_deleted = 0 LIMIT 1"
         );
-        $stmt->execute([]);
+        $stmt->execute(array());
     }
     if ($stmt->fetch()) {
         $noonehome = false;
     }
-} catch (Throwable $e) {
+} catch (Exception $e) {
     // leave noonehome true
 }
 
@@ -126,7 +146,7 @@ try {
     }
     if ($dept_id !== 0) {
         $stmt = $db->prepare("SELECT metadata_json FROM {$prefix}department_metadata WHERE department_id = :id AND is_deleted = 0 LIMIT 1");
-        $stmt->execute([':id' => $dept_id]);
+        $stmt->execute(array(':id' => $dept_id));
         $meta = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($meta && !empty($meta['metadata_json'])) {
             $json = is_string($meta['metadata_json']) ? json_decode($meta['metadata_json'], true) : $meta['metadata_json'];
@@ -146,7 +166,7 @@ try {
             }
         }
     }
-} catch (Throwable $e) {
+} catch (Exception $e) {
     // use defaults
 }
 

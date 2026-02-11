@@ -1,0 +1,142 @@
+# PHP Compatibility Matrix (5.3 → 8.1+)
+
+**Status:** Canonical  
+**Applies to:** Lupopedia 4.0.0 — all generated PHP code  
+**Overrides:** Any previous assumptions about PHP version requirements.
+
+---
+
+## 1. Compatibility range (permanent rule)
+
+Lupopedia 4.0.0 must run on **PHP 5.3 → PHP 8.1+**. This is the full compatibility matrix.
+
+All generated code must:
+
+- Run **without syntax errors** on PHP 5.3
+- **Avoid** deprecated/removed functions that break on PHP 7/8
+- **Avoid** modern PHP features that do not exist in PHP 5.3
+- **Gracefully handle** behavior changes across versions (e.g. JSON, count, errors)
+
+---
+
+## 2. Forbidden PHP features (never use)
+
+These features do not exist in PHP 5.3 or are incompatible across the matrix and must **never** appear in generated code:
+
+- `declare(strict_types=1);` (strict types)
+- Return type declarations (e.g. `: int`, `: string`, `: void`)
+- Scalar type hints in parameters (e.g. `function foo(int $x)`)
+- Nullable types (`?string`, `string|null`)
+- Union types (`string|int`)
+- Attributes (`#[...]`)
+- Arrow functions (`fn() =>`)
+- Anonymous classes (`new class { ... }`)
+- Match expressions (PHP 8)
+- Named arguments (PHP 8)
+- Spread operator in arrays (`...$arr`) (PHP 5.6+; avoid in shared paths if targeting 5.3)
+- PHP 8.1+ language-level enums
+- Typed properties (PHP 7.4+)
+- Generators (`yield`; avoid in shared code paths targeting 5.3 compatibility unless needed)
+- Traits (avoid unless explicitly instructed; prefer plain classes for 5.3 clarity)
+
+**Note:** **MySQL ENUM columns** are allowed. Only PHP language enums are forbidden.
+
+---
+
+## 3. Deprecated / removed functions (never use)
+
+Avoid all functions removed or deprecated in PHP 7/8. Use modern equivalents that still work on PHP 5.3:
+
+| Forbidden | Use instead / note |
+|-----------|--------------------|
+| `mysql_*` | PDO only |
+| `ereg`, `eregi`, `split`, `spliti` | `preg_*` |
+| `preg_replace('/.../e')` | `preg_replace_callback()` |
+| `each()` | `foreach` or iteration without each |
+| `create_function()` | `function` or closure (PHP 5.3+) |
+| `set_magic_quotes_runtime()` | Removed; do not use |
+| `get_magic_quotes_gpc()` | Removed; do not use |
+| `money_format()` | Removed in 8.0; use number_format or equivalent |
+| `iconv_set_encoding()` | Do not use |
+| `__autoload()` | Use `spl_autoload_register()` only |
+
+Do not rely on `mbstring.func_overload`.
+
+---
+
+## 4. Required fallbacks (always implement)
+
+To support PHP 5.3 → 8.1+, use these fallback-safe patterns:
+
+### Slug generation (no mbstring dependency)
+
+- Use ASCII-safe replacements
+- Use `strtolower()`
+- Optionally use `mb_strtolower()` if available
+- Never require mbstring
+
+### JSON wrapper
+
+- PHP 5.3 can silently return `false` on invalid UTF-8
+- PHP 7 may emit warnings
+- PHP 8 may throw exceptions
+
+Use compatibility wrappers: **`safe_json_encode()`** and **`safe_json_decode()`** (or equivalent): check result / catch, return safe default on failure.
+
+### preg_replace_callback
+
+- Never use the `/e` modifier in `preg_replace()`
+- Use `preg_replace_callback()` for replacement-with-logic
+
+### count() guard
+
+Always check before `count($x)`:
+
+```php
+if (is_array($x) || $x instanceof Countable)
+```
+
+Then call `count($x)`. Do not call `count()` on null or non-countable values.
+
+### Autoload
+
+- Use **`spl_autoload_register()`** only
+- No `__autoload()` or other autoload mechanism
+
+### Error-safe string handling
+
+- Avoid deprecated/removed string behavior
+- Do not use `iconv_set_encoding()` or rely on `mbstring.func_overload`
+- Validate or sanitize strings where behavior differs across PHP versions
+
+---
+
+## 5. Behavior changes across versions
+
+| Area | PHP 5.3 | PHP 7 / 8 | Handling |
+|------|---------|-----------|----------|
+| `json_encode()` / `json_decode()` | Returns `false` on invalid UTF-8 | Warnings or exceptions | Use safe wrapper; check return; catch if available |
+| `count(null)` | Allowed (returns 0) | PHP 7.2+ warning; PHP 8 TypeError | Guard: `is_array($x) \|\| $x instanceof Countable` |
+| Removed functions | Some still exist | Removed | Do not use; use listed alternatives |
+| Error reporting | Many notices | Stricter | Validate types and operands; avoid loose typing in critical paths |
+
+---
+
+## 6. Absolute prohibitions: no frameworks, no middleware, no Composer, no DB logic
+
+Lupopedia is **pure procedural PHP + PDO, nothing else.**
+
+- **No frameworks** — No Laravel, Symfony, CodeIgniter, CakePHP, Zend, Slim, Lumen, Yii, Phalcon, or any PHP framework. No middleware pattern. No PSR-7/PSR-15 request/response abstractions. No dependency injection containers. No routing libraries. No autoloaders beyond `spl_autoload_register()`.
+- **No Composer** — No Composer packages, no `vendor/` directory, no modern PHP ecosystem tooling.
+- **No database logic** — No stored procedures, stored functions, triggers, views, computed/generated columns, foreign keys, cascades, ORM-generated schema, or database-side validation or logic. The database is for **storage only**; all logic lives in PHP.
+- **No ORM, no query builders** — No Eloquent, Doctrine ORM/DBAL, Propel, RedBean, Medoo, Capsule, or any query builder or abstraction beyond PDO. **PDO only, with manually written SQL.**
+
+See **MINIMAL_HOSTING_REQUIREMENTS.md** and **.cursorrules** for the full prohibition lists and enforcement.
+
+---
+
+## 7. References
+
+- **PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md** — Full PHP and slug doctrine
+- **MINIMAL_HOSTING_REQUIREMENTS.md** — Extensions and hosting constraints
+- **.cursorrules** — PHP 5.3 and PHP 8.1+ compatibility requirement and enforcement

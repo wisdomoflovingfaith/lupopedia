@@ -61,7 +61,7 @@ class SessionManager {
       $now_ymdhis = (int) gmdate('YmdHis');
       $row = $mydatabase->fetchRow(
           "SELECT session_data FROM {$sessions_table} WHERE session_id = :sid AND (expires_ymdhis IS NULL OR expires_ymdhis > :now)",
-          ['sid' => $id, 'now' => $now_ymdhis]
+          array('sid' => $id, 'now' => $now_ymdhis)
       );
       if ($row && isset($row['session_data'])) {
           $data = (string) $row['session_data'];
@@ -81,22 +81,22 @@ class SessionManager {
       $expires_ymdhis = (int) gmdate('YmdHis', $time);
       $existing = $mydatabase->fetchRow(
           "SELECT session_id FROM {$sessions_table} WHERE session_id = :sid",
-          ['sid' => $id]
+          array('sid' => $id)
       );
       if ($existing) {
           $mydatabase->update(
               $sessions_table,
-              [
+              array(
                   'session_data' => $data,
                   'last_seen_ymdhis' => $now_ymdhis,
                   'expires_ymdhis' => $expires_ymdhis,
                   'updated_ymdhis' => $now_ymdhis,
-              ],
+              ),
               'session_id = :sid',
-              ['sid' => $id]
+              array('sid' => $id)
           );
       } else {
-          $mydatabase->insert($sessions_table, [
+          $mydatabase->insert($sessions_table, array(
               'session_id' => $id,
               'federation_node_id' => 1,
               'actor_id' => 0,
@@ -107,7 +107,7 @@ class SessionManager {
               'expires_ymdhis' => $expires_ymdhis,
               'created_ymdhis' => $now_ymdhis,
               'updated_ymdhis' => $now_ymdhis,
-          ]);
+          ));
       }
       return true;
    }
@@ -117,7 +117,7 @@ class SessionManager {
       if (isset($mydatabase) && $mydatabase instanceof PDO_DB) {
           $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
           $sessions_table = $table_prefix . 'sessions';
-          $mydatabase->delete($sessions_table, 'session_id = :sid', ['sid' => $id]);
+          $mydatabase->delete($sessions_table, 'session_id = :sid', array('sid' => $id));
       }
       return true;
    }
@@ -128,7 +128,7 @@ class SessionManager {
           $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
           $sessions_table = $table_prefix . 'sessions';
           $now_ymdhis = (int) gmdate('YmdHis');
-          $mydatabase->delete($sessions_table, 'expires_ymdhis IS NOT NULL AND expires_ymdhis < :now', ['now' => $now_ymdhis]);
+          $mydatabase->delete($sessions_table, 'expires_ymdhis IS NOT NULL AND expires_ymdhis < :now', array('now' => $now_ymdhis));
       }
       return true;
    }

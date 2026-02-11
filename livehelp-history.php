@@ -25,7 +25,7 @@ w3_epoch: wolfie-winter-2026
 w3_signature:
 
 ◈ w3_DOCS (OPTIONAL — ENHANCED DOCUMENTATION)
-@requires: PHP 8.1+
+@requires: PHP 5.3+ (doctrine: 5.3→8.1+)
 @package Lupopedia
 @version 3.0.66
 @note: Enhanced for Big Rock 2: Dialog Channel Migration
@@ -55,13 +55,13 @@ $metadataExtractor = new MetadataExtractor();
 
 // Get metadata statistics
 $metadata = $metadataExtractor->extractAllMetadata();
-$metadataStats = [
+$metadataStats = array(
     'total_files' => count($metadata),
     'active_development' => 0,
     'hiatus' => 0,
     'resurgence' => 0,
     'sensitive_files' => 0
-];
+);
 
 foreach ($metadata as $data) {
     $metadataStats[$data['era']]++;

@@ -2,6 +2,10 @@
 
 This directory contains the authoritative, clean migration sequence for upgrading any Crafty Syntax 3.7.5 installation into the modern Lupopedia Semantic OS.
 
+## Development workflow baseline: `old_crafty_syntax_3_7_5.sql`
+
+The file **`old_crafty_syntax_3_7_5.sql`** is the canonical starting point for upgrade testing. It contains the exact 34 legacy Crafty Syntax tables. Do not modify it unless explicitly instructed. It is the baseline for importer logic, identity normalization, operator detection, and legacy table dropping. See **docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md**.
+
 All migrations in this folder are:
 - idempotent
 - prefix-aware (using @table_prefix from lupopedia-config.php)

@@ -7,7 +7,6 @@
  * @package Lupopedia
  * @see docs/toons/*.toon.json
  */
-declare(strict_types=1);
 
 if (!defined('LUPOPEDIA_PATH')) {
     define('LUPOPEDIA_PATH', __DIR__);
@@ -16,11 +15,32 @@ if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
     define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
 }
 
+if (!function_exists('lupo_random_bytes')) {
+    function lupo_random_bytes($length) {
+        if (function_exists('random_bytes')) {
+            return random_bytes($length);
+        }
+        if (function_exists('openssl_random_pseudo_bytes')) {
+            $bytes = openssl_random_pseudo_bytes($length);
+            return $bytes !== false ? $bytes : lupo_random_bytes_fallback($length);
+        }
+        return lupo_random_bytes_fallback($length);
+    }
+    function lupo_random_bytes_fallback($length) {
+        $bytes = '';
+        for ($i = 0; $i < $length; $i++) {
+            $bytes .= chr(mt_rand(0, 255));
+        }
+        return $bytes;
+    }
+}
+
 if (!defined('LUPOPEDIA_CONFIG_PATH')) {
-    if (file_exists(dirname($_SERVER['DOCUMENT_ROOT'] ?? '') . '/lupopedia-config.php')) {
-        define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php');
-    } elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT'] ?? '') . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php')) {
-        define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php');
+    $docRoot = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : '';
+    if (file_exists(dirname($docRoot) . '/lupopedia-config.php')) {
+        define('LUPOPEDIA_CONFIG_PATH', dirname($docRoot) . '/lupopedia-config.php');
+    } elseif (file_exists(dirname($docRoot) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php')) {
+        define('LUPOPEDIA_CONFIG_PATH', dirname($docRoot) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php');
     } elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
         define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/lupopedia-config.php');
     }
@@ -39,14 +59,14 @@ require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_
 
 try {
     $mydatabase = DatabaseFactory::getConnection();
-} catch (Throwable $e) {
+} catch (Exception $e) {
     header('HTTP/1.0 503 Service Unavailable');
     exit;
 }
 
 $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
-$UNTRUSTED = [
+$UNTRUSTED = array(
     'what' => isset($_GET['what']) ? (string) $_GET['what'] : '',
     'cmd'  => isset($_GET['cmd']) ? (string) $_GET['cmd'] : '',
     'department' => isset($_GET['department']) ? (string) $_GET['department'] : '',
@@ -57,7 +77,7 @@ $UNTRUSTED = [
     'pageid' => isset($_GET['pageid']) ? (string) $_GET['pageid'] : '',
     'title' => isset($_GET['title']) ? (string) $_GET['title'] : '',
     'referer' => isset($_GET['referer']) ? (string) $_GET['referer'] : '',
-];
+);
 if (!empty($UNTRUSTED['cmd'])) {
     $UNTRUSTED['what'] = $UNTRUSTED['cmd'];
 }
@@ -70,9 +90,9 @@ if ($session_id === '' && !empty($_COOKIE['cslhVISITOR'])) {
     $session_id = (string) $_COOKIE['cslhVISITOR'];
 }
 if ($session_id === '') {
-    $session_id = 'v' . bin2hex(random_bytes(12));
+    $session_id = 'v' . bin2hex(lupo_random_bytes(12));
 }
-$identity = ['SESSIONID' => $session_id];
+$identity = array('SESSIONID' => $session_id);
 
 $department = !empty($UNTRUSTED['department']) ? (int) $UNTRUSTED['department'] : 0;
 if ($department === 0) {
@@ -82,7 +102,7 @@ if ($department === 0) {
 
 $leaveamessage = 'YES';
 if ($department > 0) {
-    $deptRow = $mydatabase->fetchRow("SELECT settings_json FROM {$prefix}departments WHERE department_id = :id AND is_deleted = 0", ['id' => $department]);
+    $deptRow = $mydatabase->fetchRow("SELECT settings_json FROM {$prefix}departments WHERE department_id = :id AND is_deleted = 0", array('id' => $department));
     if ($deptRow !== null && !empty($deptRow['settings_json'])) {
         $json = is_string($deptRow['settings_json']) ? json_decode($deptRow['settings_json'], true) : $deptRow['settings_json'];
         if (is_array($json) && isset($json['leaveamessage'])) {
@@ -97,7 +117,7 @@ if (!empty($_GET['leaveamessage'])) {
 /**
  * Send image from project images folder. No absolute paths; path relative to LUPOPEDIA_PATH.
  */
-function send_image(string $filepath, string $mime = 'image/gif'): void {
+function send_image($filepath, $mime = 'image/gif') {
     $base = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : __DIR__;
     $safe = basename($filepath);
     if ($safe === '' || strpos($safe, '..') !== false) {
@@ -116,7 +136,7 @@ function send_image(string $filepath, string $mime = 'image/gif'): void {
 /**
  * Anyone online in this department (or any) = session with recent last_seen + actor_channel_role (captain/monitor/operator).
  */
-function is_anyone_online(\PDO_DB $db, string $prefix, int $department_id): bool {
+function is_anyone_online($db, $prefix, $department_id) {
     $cutoff = (string) gmdate('YmdHis', time() - 20 * 60);
     if ($department_id !== 0) {
         $row = $db->fetchRow(
@@ -125,7 +145,7 @@ function is_anyone_online(\PDO_DB $db, string $prefix, int $department_id): bool
             "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
             "WHERE s.is_active = 1 AND s.is_expired = 0 AND s.last_seen_ymdhis >= :cutoff " .
             "AND r.role_key IN ('captain','monitor','operator') AND c.department_id = :dept LIMIT 1",
-            ['cutoff' => $cutoff, 'dept' => $department_id]
+            array('cutoff' => $cutoff, 'dept' => $department_id)
         );
     } else {
         $row = $db->fetchRow(
@@ -134,7 +154,7 @@ function is_anyone_online(\PDO_DB $db, string $prefix, int $department_id): bool
             "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
             "WHERE s.is_active = 1 AND s.is_expired = 0 AND s.last_seen_ymdhis >= :cutoff " .
             "AND r.role_key IN ('captain','monitor','operator') LIMIT 1",
-            ['cutoff' => $cutoff]
+            array('cutoff' => $cutoff)
         );
     }
     return $row !== null;
@@ -145,7 +165,7 @@ if ($UNTRUSTED['what'] === 'getlayerinvite') {
     $filepath = 'images/requestDHTML.gif';
     $visitorRow = $mydatabase->fetchRow(
         "SELECT session_data FROM {$prefix}sessions WHERE session_id = :sid AND is_deleted = 0 LIMIT 1",
-        ['sid' => $identity['SESSIONID']]
+        array('sid' => $identity['SESSIONID'])
     );
     if ($visitorRow !== null && !empty($visitorRow['session_data'])) {
         $datapairs = explode('&', (string) $visitorRow['session_data']);
@@ -173,23 +193,23 @@ if ($UNTRUSTED['what'] === 'getlayerinvite') {
 if ($UNTRUSTED['what'] === 'changestat') {
     $towhat = preg_replace('/[^a-zA-Z0-9_-]/', '', (string) $UNTRUSTED['towhat']);
     if ($towhat !== '') {
-        $sess = $mydatabase->fetchRow("SELECT session_data FROM {$prefix}sessions WHERE session_id = :sid AND is_deleted = 0 LIMIT 1", ['sid' => $identity['SESSIONID']]);
+        $sess = $mydatabase->fetchRow("SELECT session_data FROM {$prefix}sessions WHERE session_id = :sid AND is_deleted = 0 LIMIT 1", array('sid' => $identity['SESSIONID']));
         $data = $sess !== null && $sess['session_data'] !== null && $sess['session_data'] !== '' ? $sess['session_data'] : '';
-        $pairs = [];
+        $pairs = array();
         foreach (explode('&', $data) as $p) {
             $kv = explode('=', $p, 2);
             if (isset($kv[0]) && $kv[0] !== 'status') {
-                $pairs[$kv[0]] = $kv[1] ?? '';
+                $pairs[$kv[0]] = isset($kv[1]) ? $kv[1] : '';
             }
         }
         $pairs['status'] = $towhat;
-        $newData = [];
+        $newData = array();
         foreach ($pairs as $k => $v) {
             $newData[] = $k . '=' . $v;
         }
         $mydatabase->query(
             "UPDATE {$prefix}sessions SET session_data = :data, last_seen_ymdhis = :now, updated_ymdhis = :now WHERE session_id = :sid",
-            ['data' => implode('&', $newData), 'now' => gmdate('YmdHis'), 'sid' => $identity['SESSIONID']]
+            array('data' => implode('&', $newData), 'now' => gmdate('YmdHis'), 'sid' => $identity['SESSIONID'])
         );
     }
     send_image('images/browse.gif');
@@ -207,13 +227,13 @@ if ($UNTRUSTED['what'] === 'userstat') {
     $rightnow = gmdate('YmdHis');
     $visitorRow = $mydatabase->fetchRow(
         "SELECT actor_id, session_data FROM {$prefix}sessions WHERE session_id = :sid AND is_deleted = 0 LIMIT 1",
-        ['sid' => $identity['SESSIONID']]
+        array('sid' => $identity['SESSIONID'])
     );
     $status = '';
     if ($visitorRow !== null) {
         $mydatabase->query(
             "UPDATE {$prefix}sessions SET last_seen_ymdhis = :now, updated_ymdhis = :now WHERE session_id = :sid",
-            ['now' => $rightnow, 'sid' => $identity['SESSIONID']]
+            array('now' => $rightnow, 'sid' => $identity['SESSIONID'])
         );
         if (!empty($visitorRow['session_data'])) {
             foreach (explode('&', (string) $visitorRow['session_data']) as $p) {
@@ -242,7 +262,7 @@ if ($UNTRUSTED['what'] === 'getcredit') {
     $xyz = isset($_GET['xy']) ? substr((string) $_GET['xy'], 0, 1) : 'L';
     if ($xyz === 'N') {
         if ($department > 0) {
-            $d = $mydatabase->fetchRow("SELECT settings_json FROM {$prefix}departments WHERE department_id = :id AND is_deleted = 0", ['id' => $department]);
+            $d = $mydatabase->fetchRow("SELECT settings_json FROM {$prefix}departments WHERE department_id = :id AND is_deleted = 0", array('id' => $department));
             if ($d !== null && !empty($d['settings_json'])) {
                 $j = is_string($d['settings_json']) ? json_decode($d['settings_json'], true) : $d['settings_json'];
                 if (is_array($j) && isset($j['creditline'])) {

@@ -8,7 +8,6 @@
  * @package Lupopedia
  * @see docs/toons/*.toon.json for canonical schema
  */
-declare(strict_types=1);
 
 // Installation path: project root is document root for the app (subfolder-install doctrine)
 if (!defined('LUPOPEDIA_PATH')) {
@@ -18,12 +17,34 @@ if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
     define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
 }
 
+// PHP 5.3-safe random bytes (reuse installer pattern when not loaded)
+if (!function_exists('lupo_random_bytes')) {
+    function lupo_random_bytes($length) {
+        if (function_exists('random_bytes')) {
+            return random_bytes($length);
+        }
+        if (function_exists('openssl_random_pseudo_bytes')) {
+            $bytes = openssl_random_pseudo_bytes($length);
+            return $bytes !== false ? $bytes : lupo_random_bytes_fallback($length);
+        }
+        return lupo_random_bytes_fallback($length);
+    }
+    function lupo_random_bytes_fallback($length) {
+        $bytes = '';
+        for ($i = 0; $i < $length; $i++) {
+            $bytes .= chr(mt_rand(0, 255));
+        }
+        return $bytes;
+    }
+}
+
 // Config path (same search order as index.php)
 if (!defined('LUPOPEDIA_CONFIG_PATH')) {
-    if (file_exists(dirname($_SERVER['DOCUMENT_ROOT'] ?? '') . '/lupopedia-config.php')) {
-        define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php');
-    } elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT'] ?? '') . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php')) {
-        define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php');
+    $docRoot = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : '';
+    if (file_exists(dirname($docRoot) . '/lupopedia-config.php')) {
+        define('LUPOPEDIA_CONFIG_PATH', dirname($docRoot) . '/lupopedia-config.php');
+    } elseif (file_exists(dirname($docRoot) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php')) {
+        define('LUPOPEDIA_CONFIG_PATH', dirname($docRoot) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php');
     } elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
         define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/lupopedia-config.php');
     }
@@ -43,7 +64,7 @@ require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_
 
 try {
     $mydatabase = DatabaseFactory::getConnection();
-} catch (Throwable $e) {
+} catch (Exception $e) {
     header('Content-Type: application/javascript; charset=utf-8');
     echo "console.error('Live Help: database unavailable');";
     exit;
@@ -53,7 +74,7 @@ $LUPO_TABLE_PREFIX = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 $prefix = $LUPO_TABLE_PREFIX;
 
 // UNTRUSTED = sanitized GET (same param names as legacy)
-$UNTRUSTED = [
+$UNTRUSTED = array(
     'website'    => isset($_GET['website']) ? (string) $_GET['website'] : '',
     'department' => isset($_GET['department']) ? (string) $_GET['department'] : '',
     'winwidth'   => isset($_GET['winwidth']) ? (string) $_GET['winwidth'] : '',
@@ -70,7 +91,7 @@ $UNTRUSTED = [
     'dynamic'    => isset($_GET['dynamic']) ? (string) $_GET['dynamic'] : '',
     'eo'         => isset($_GET['eo']) ? (string) $_GET['eo'] : '',
     'cmd'        => isset($_GET['cmd']) ? (string) $_GET['cmd'] : '',
-];
+);
 if (!empty($UNTRUSTED['cmd'])) {
     $UNTRUSTED['what'] = $UNTRUSTED['cmd'];
 }
@@ -81,16 +102,16 @@ if ($session_id === '' && !empty($_COOKIE['cslhVISITOR'])) {
     $session_id = (string) $_COOKIE['cslhVISITOR'];
 }
 if ($session_id === '') {
-    $session_id = 'v' . bin2hex(random_bytes(12));
+    $session_id = 'v' . bin2hex(lupo_random_bytes(12));
 }
-$identity = [
+$identity = array(
     'SESSIONID'  => $session_id,
     'COOKIE_SET' => !empty($_COOKIE['cslhVISITOR']) ? 'Y' : 'N',
-];
+);
 
 // WEBPATH from LUPOPEDIA_PUBLIC_PATH only (subfolder-install doctrine; no hardcoded paths)
 $WEBPATH = defined('LUPOPEDIA_PUBLIC_PATH') ? (rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/') : '/';
-$CSLH_Config = ['floatxy' => '200|160'];
+$CSLH_Config = array('floatxy' => '200|160');
 
 $parentdot = !empty($UNTRUSTED['frameparent']) ? 'parent.' : '';
 
@@ -123,7 +144,7 @@ $data_d = null;
 if ($dept_id > 0) {
     $data_d = $mydatabase->fetchRow(
         "SELECT department_id, name, settings_json FROM {$prefix}departments WHERE department_id = :id AND is_deleted = 0",
-        ['id' => $dept_id]
+        array('id' => $dept_id)
     );
     if ($data_d !== null) {
         $department = (int) $data_d['department_id'];
@@ -247,7 +268,7 @@ if ($defaultLayerRow !== null) {
 }
 $visitorRow = $mydatabase->fetchRow(
     "SELECT actor_id, session_data FROM {$prefix}sessions WHERE session_id = :sid AND is_deleted = 0 LIMIT 1",
-    ['sid' => $identity['SESSIONID']]
+    array('sid' => $identity['SESSIONID'])
 );
 if ($visitorRow !== null && !empty($visitorRow['session_data'])) {
     $datapairs = explode('&', (string) $visitorRow['session_data']);
@@ -472,7 +493,7 @@ $layers = $mydatabase->fetchAll("SELECT crafty_syntax_layer_invite_id, image_nam
 foreach ($layers as $invite) {
     $layerid_val = (int) $invite['crafty_syntax_layer_invite_id'];
     $imagename = $invite['image_name'];
-    $imagemap = (string) ($invite['image_map'] ?? '');
+    $imagemap = (string) (isset($invite['image_map']) ? $invite['image_map'] : '');
     echo "if (total == " . $layerid_val . ")\n";
     $imagemapof = str_replace('openLiveHelp()', 'openLiveHelp(' . (int) $UNTRUSTED['department'] . ')', $imagemap);
     $imagemapof = str_replace("'", '"', $imagemapof);
@@ -501,7 +522,7 @@ function moveDHTML_<?php echo (int) $UNTRUSTED['department']; ?>(){
    if(navigator.appName.indexOf("Netscape") != -1){ myWidth = window.pageXOffset; myHeight = window.pageYOffset } else { myWidth = document.body.scrollLeft; myHeight = document.body.scrollTop; }
    slidingDiv = document.getElementById('layerinvite_<?php echo (int) $UNTRUSTED['department']; ?>');
    gox = parseInt(slidingDiv.style.left); goy = parseInt(slidingDiv.style.top);
-   <?php $floatxy = explode('|', $CSLH_Config['floatxy']); $floatx = $floatxy[0] ?? '200'; $floaty = $floatxy[1] ?? '160'; if ($floatx === '') $floatx = '200'; if ($floaty === '') $floaty = '160'; ?>
+   <?php $floatxy = explode('|', $CSLH_Config['floatxy']); $floatx = isset($floatxy[0]) ? $floatxy[0] : '200'; $floaty = isset($floatxy[1]) ? $floatxy[1] : '160'; if ($floatx === '') $floatx = '200'; if ($floaty === '') $floaty = '160'; ?>
    if(gox < myWidth+<?php echo (int) $floatx; ?>){ gox++; } if(gox > myWidth+<?php echo (int) $floatx; ?>){ gox--; }         
    if(goy < myHeight+<?php echo (int) $floaty; ?>){ goy++; } if(goy > myHeight+<?php echo (int) $floaty; ?>){ goy--; }  
    if(gox < myWidth+<?php echo (int) $floatx; ?>){ gox++; } if(gox > myWidth+<?php echo (int) $floatx; ?>){ gox--; }   
@@ -533,13 +554,13 @@ $cutoff_ymdhis = (string) gmdate('YmdHis', time() - 20 * 60);
 if ((int) $UNTRUSTED['department'] !== 0) {
     $onlineRow = $mydatabase->fetchRow(
         "SELECT 1 FROM {$prefix}sessions s INNER JOIN {$prefix}actor_channel_roles r ON r.actor_id = s.actor_id AND r.is_deleted = 0 INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 WHERE s.is_active = 1 AND s.is_expired = 0 AND s.last_seen_ymdhis >= :cutoff AND r.role_key IN ('captain','monitor','operator') AND c.department_id = :dept LIMIT 1",
-        ['cutoff' => $cutoff_ymdhis, 'dept' => (int) $UNTRUSTED['department']]
+        array('cutoff' => $cutoff_ymdhis, 'dept' => (int) $UNTRUSTED['department'])
     );
     if ($onlineRow !== null) { $noonehome = false; }
 } else {
     $onlineRow = $mydatabase->fetchRow(
         "SELECT 1 FROM {$prefix}sessions s INNER JOIN {$prefix}actor_channel_roles r ON r.actor_id = s.actor_id AND r.is_deleted = 0 INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 WHERE s.is_active = 1 AND s.is_expired = 0 AND s.last_seen_ymdhis >= :cutoff AND r.role_key IN ('captain','monitor','operator') LIMIT 1",
-        ['cutoff' => $cutoff_ymdhis]
+        array('cutoff' => $cutoff_ymdhis)
     );
     if ($onlineRow !== null) { $noonehome = false; }
 }

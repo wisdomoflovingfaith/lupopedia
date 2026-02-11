@@ -39,7 +39,7 @@ class UnifiedSessionHandler
     /**
      * Set Session instance so all DB operations are delegated. Called by bootstrap after creating Session.
      */
-    public function setSession(Session $session): void
+    public function setSession($session)
     {
         $this->session = $session;
     }
@@ -47,7 +47,7 @@ class UnifiedSessionHandler
     /**
      * Session to use for DB. Prefer injected session; fallback to global (e.g. AuthController without setSession).
      */
-    private function getSession(): ?Session
+    private function getSession()
     {
         if ($this->session !== null) {
             return $this->session;
@@ -55,19 +55,19 @@ class UnifiedSessionHandler
         return isset($GLOBALS['lupo_session']) && $GLOBALS['lupo_session'] instanceof Session ? $GLOBALS['lupo_session'] : null;
     }
 
-    private function cookieName(): string
+    private function cookieName()
     {
         return LUPO_TABLE_PREFIX . 'unified_session';
     }
 
-    private function setUnifiedCookie($sessionId, $systemContext): void
+    private function setUnifiedCookie($sessionId, $systemContext)
     {
         $name = $this->cookieName();
-        $value = json_encode([
+        $value = json_encode(array(
             'session_id' => $sessionId,
             'context' => $systemContext,
             'ymdhis' => (int) gmdate('YmdHis'),
-        ]);
+        ));
         $lifetime = $this->sessionLifetimeMinutes * 60;
         setcookie($name, $value, time() + $lifetime, '/', '', true, true);
     }
@@ -75,7 +75,7 @@ class UnifiedSessionHandler
     /**
      * Create or update session in lupo_sessions via Session, then set cookie.
      */
-    public function createUnifiedSession($userId, $systemContext, $sessionData = [], $sessionId = null)
+    public function createUnifiedSession($userId, $systemContext, $sessionData = array(), $sessionId = null)
     {
         if ($sessionId === null && function_exists('session_id')) {
             $sessionId = session_id();
@@ -108,7 +108,7 @@ class UnifiedSessionHandler
         }
         $existing = $sessionId ? $this->getUnifiedSession($sessionId) : null;
         if (!$existing) {
-            return $this->createUnifiedSession($userId, $legacyContext, [], $sessionId);
+            return $this->createUnifiedSession($userId, $legacyContext, array(), $sessionId);
         }
         return $sessionId;
     }
@@ -129,7 +129,7 @@ class UnifiedSessionHandler
     /**
      * Delete session row via Session and clear cookie.
      */
-    public function destroyUnifiedSession($sessionId): void
+    public function destroyUnifiedSession($sessionId)
     {
         $session = $this->getSession();
         if ($session) {
@@ -157,7 +157,7 @@ class UnifiedSessionHandler
         return self::CONTEXT_LUPOPEDIA;
     }
 
-    public function cleanupExpiredSessions(): void
+    public function cleanupExpiredSessions()
     {
         $session = $this->getSession();
         if ($session) {
@@ -165,13 +165,13 @@ class UnifiedSessionHandler
         }
     }
 
-    public function getActiveSessionsForUser($userId): array
+    public function getActiveSessionsForUser($userId)
     {
         $session = $this->getSession();
-        return $session ? $session->getActiveSessionsForUser($userId) : [];
+        return $session ? $session->getActiveSessionsForUser($userId) : array();
     }
 
-    public function validateSessionIntegrity($sessionId): bool
+    public function validateSessionIntegrity($sessionId)
     {
         $session = $this->getSession();
         return $session ? $session->validateSessionIntegrity($sessionId) : false;
@@ -180,7 +180,7 @@ class UnifiedSessionHandler
     /**
      * Delegate session activity update (last_seen_ymdhis, updated_ymdhis) to Session.
      */
-    public function updateSessionActivity(string $sessionId): bool
+    public function updateSessionActivity($sessionId)
     {
         $session = $this->getSession();
         return $session ? $session->updateActivity($sessionId) : false;

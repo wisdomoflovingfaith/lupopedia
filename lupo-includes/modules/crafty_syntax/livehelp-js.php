@@ -8,8 +8,28 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die('Config not loaded.');
 }
 
+if (!function_exists('lupo_random_bytes')) {
+    function lupo_random_bytes($length) {
+        if (function_exists('random_bytes')) {
+            return random_bytes($length);
+        }
+        if (function_exists('openssl_random_pseudo_bytes')) {
+            $bytes = openssl_random_pseudo_bytes($length);
+            return $bytes !== false ? $bytes : lupo_random_bytes_fallback($length);
+        }
+        return lupo_random_bytes_fallback($length);
+    }
+    function lupo_random_bytes_fallback($length) {
+        $bytes = '';
+        for ($i = 0; $i < $length; $i++) {
+            $bytes .= chr(mt_rand(0, 255));
+        }
+        return $bytes;
+    }
+}
+
 $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-$db = $GLOBALS['mydatabase'] ?? null;
+$db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
 if (!$db) {
     header('Content-Type: application/javascript; charset=utf-8');
     echo "console.error('Live Help: database unavailable');";
@@ -22,7 +42,7 @@ if ($session_id === '' && !empty($_COOKIE['cslhVISITOR'])) {
     $session_id = (string)$_COOKIE['cslhVISITOR'];
 }
 if ($session_id === '') {
-    $session_id = 'v' . bin2hex(random_bytes(12));
+    $session_id = 'v' . bin2hex(lupo_random_bytes(12));
 }
 
 $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
@@ -69,7 +89,7 @@ $dept_id = $department;
 try {
     if ($dept_id !== 0) {
         $stmt = $db->prepare("SELECT metadata_json FROM {$prefix}department_metadata WHERE department_id = :id AND is_deleted = 0 LIMIT 1");
-        $stmt->execute([':id' => $dept_id]);
+        $stmt->execute(array(':id' => $dept_id));
         $meta = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($meta && !empty($meta['metadata_json'])) {
             $json = is_string($meta['metadata_json']) ? json_decode($meta['metadata_json'], true) : $meta['metadata_json'];
@@ -83,7 +103,7 @@ try {
             }
         }
     }
-} catch (Throwable $e) {
+} catch (Exception $e) {
     // use defaults
 }
 if (!empty($_GET['creditline'])) {
@@ -102,17 +122,17 @@ try {
             "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
             "WHERE c.department_id = :dept AND r.is_deleted = 0 LIMIT 1"
         );
-        $stmt->execute([':dept' => $department]);
+        $stmt->execute(array(':dept' => $department));
     } else {
         $stmt = $db->prepare(
             "SELECT 1 FROM {$prefix}channel_roles WHERE is_deleted = 0 LIMIT 1"
         );
-        $stmt->execute([]);
+        $stmt->execute(array());
     }
     if ($stmt->fetch()) {
         $noonehome = false;
     }
-} catch (Throwable $e) {
+} catch (Exception $e) {
     // leave noonehome true
 }
 

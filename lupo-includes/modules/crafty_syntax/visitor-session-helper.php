@@ -40,16 +40,16 @@ function crafty_syntax_validate_visitor_session($session_id) {
         $stmt = $db->prepare(
             "SELECT session_id, actor_id FROM {$prefix}sessions WHERE session_id = :sid AND is_deleted = 0 AND actor_id = 0 LIMIT 1"
         );
-        $stmt->execute([':sid' => $session_id]);
+        $stmt->execute(array(':sid' => $session_id));
         if ($stmt->fetch() === false) {
             return false;
         }
         $stmt = $db->prepare(
             "UPDATE {$prefix}sessions SET last_seen_ymdhis = :now, updated_ymdhis = :now WHERE session_id = :sid"
         );
-        $stmt->execute([':now' => $now, ':sid' => $session_id]);
+        $stmt->execute(array(':now' => $now, ':sid' => $session_id));
         return true;
-    } catch (Throwable $e) {
+    } catch (Exception $e) {
         return false;
     }
 }
@@ -70,7 +70,7 @@ function crafty_syntax_visitor_thread_from_session($session_id) {
     $meta_col = 'metadata';
     try {
         $stmt = $db->prepare("SELECT {$meta_col} FROM {$prefix}sessions WHERE session_id = :sid AND is_deleted = 0 LIMIT 1");
-        $stmt->execute([':sid' => $session_id]);
+        $stmt->execute(array(':sid' => $session_id));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if (!$row || empty($row[$meta_col])) {
             return null;
@@ -86,12 +86,12 @@ function crafty_syntax_visitor_thread_from_session($session_id) {
         }
         $status = isset($cs['status']) ? (string) $cs['status'] : 'pending';
         $channel_id = isset($cs['channel_id']) ? (int) $cs['channel_id'] : 0;
-        return [
+        return array(
             'channel_id'       => $channel_id,
             'dialog_thread_id' => $dialog_thread_id,
             'status'           => $status,
-        ];
-    } catch (Throwable $e) {
+        );
+    } catch (Exception $e) {
         return null;
     }
 }
@@ -114,26 +114,26 @@ function crafty_syntax_visitor_save_pending_thread_to_session($session_id, $depa
     $meta_col = 'metadata';
     try {
         $stmt = $db->prepare("SELECT {$meta_col} FROM {$prefix}sessions WHERE session_id = :sid AND is_deleted = 0 LIMIT 1");
-        $stmt->execute([':sid' => $session_id]);
+        $stmt->execute(array(':sid' => $session_id));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        $data = [];
+        $data = array();
         if ($row && !empty($row[$meta_col])) {
             $dec = json_decode($row[$meta_col], true);
             if (is_array($dec)) {
                 $data = $dec;
             }
         }
-        $data['crafty_syntax'] = [
+        $data['crafty_syntax'] = array(
             'department_id'     => (int) $department_id,
             'channel_id'        => 0,
             'dialog_thread_id'  => (int) $dialog_thread_id,
             'status'            => 'pending',
-        ];
+        );
         $json = json_encode($data);
         $stmt = $db->prepare("UPDATE {$prefix}sessions SET {$meta_col} = :meta, last_seen_ymdhis = :now, updated_ymdhis = :now WHERE session_id = :sid");
-        $stmt->execute([':meta' => $json, ':now' => $now, ':sid' => $session_id]);
+        $stmt->execute(array(':meta' => $json, ':now' => $now, ':sid' => $session_id));
         return true;
-    } catch (Throwable $e) {
+    } catch (Exception $e) {
         return false;
     }
 }
@@ -157,26 +157,26 @@ function crafty_syntax_visitor_save_thread_to_session($session_id, $department_i
     $meta_col = 'metadata';
     try {
         $stmt = $db->prepare("SELECT {$meta_col} FROM {$prefix}sessions WHERE session_id = :sid AND is_deleted = 0 LIMIT 1");
-        $stmt->execute([':sid' => $session_id]);
+        $stmt->execute(array(':sid' => $session_id));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        $data = [];
+        $data = array();
         if ($row && !empty($row[$meta_col])) {
             $dec = json_decode($row[$meta_col], true);
             if (is_array($dec)) {
                 $data = $dec;
             }
         }
-        $data['crafty_syntax'] = [
+        $data['crafty_syntax'] = array(
             'department_id'     => (int) $department_id,
             'channel_id'        => (int) $channel_id,
             'dialog_thread_id'  => (int) $dialog_thread_id,
             'status'            => 'active',
-        ];
+        );
         $json = json_encode($data);
         $stmt = $db->prepare("UPDATE {$prefix}sessions SET {$meta_col} = :meta, last_seen_ymdhis = :now, updated_ymdhis = :now WHERE session_id = :sid");
-        $stmt->execute([':meta' => $json, ':now' => $now, ':sid' => $session_id]);
+        $stmt->execute(array(':meta' => $json, ':now' => $now, ':sid' => $session_id));
         return true;
-    } catch (Throwable $e) {
+    } catch (Exception $e) {
         return false;
     }
 }
@@ -197,7 +197,7 @@ function crafty_syntax_visitor_set_accepted($session_id, $operator_channel_id) {
     $meta_col = 'metadata';
     try {
         $stmt = $db->prepare("SELECT {$meta_col} FROM {$prefix}sessions WHERE session_id = :sid AND is_deleted = 0 LIMIT 1");
-        $stmt->execute([':sid' => $session_id]);
+        $stmt->execute(array(':sid' => $session_id));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if (!$row || empty($row[$meta_col])) {
             return false;
@@ -211,9 +211,9 @@ function crafty_syntax_visitor_set_accepted($session_id, $operator_channel_id) {
         $now = date('YmdHis');
         $json = json_encode($data);
         $stmt = $db->prepare("UPDATE {$prefix}sessions SET {$meta_col} = :meta, last_seen_ymdhis = :now, updated_ymdhis = :now WHERE session_id = :sid");
-        $stmt->execute([':meta' => $json, ':now' => $now, ':sid' => $session_id]);
+        $stmt->execute(array(':meta' => $json, ':now' => $now, ':sid' => $session_id));
         return true;
-    } catch (Throwable $e) {
+    } catch (Exception $e) {
         return false;
     }
 }

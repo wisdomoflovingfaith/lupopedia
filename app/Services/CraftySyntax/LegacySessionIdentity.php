@@ -137,25 +137,25 @@ function identity($PHPSESSID="",$sessionname="PHPSESSID",$allow_ip_host_sessions
    $ymdhis = (int) gmdate('YmdHis');
    if (isset($mydatabase) && $mydatabase instanceof PDO_DB) {
      if (($new_session == 'Y') && ($ghost_session == false)) {
-       $session_data = json_encode(['identitystring' => $identitystring, 'referer' => $client_referer, 'username' => $username, 'onchannel' => 0, 'visits' => 1]);
-       $mydatabase->insert($sessions_table, [
-         'session_id' => $mysession_id,
-         'federation_node_id' => 1,
-         'actor_id' => 0,
-         'ip_address' => $client_ip,
-         'user_agent' => $client_agent,
-         'session_data' => $session_data,
-         'last_seen_ymdhis' => $ymdhis,
-         'expires_ymdhis' => $ymdhis,
-         'created_ymdhis' => $ymdhis,
-         'updated_ymdhis' => $ymdhis,
-       ]);
+      $session_data = json_encode(array('identitystring' => $identitystring, 'referer' => $client_referer, 'username' => $username, 'onchannel' => 0, 'visits' => 1));
+      $mydatabase->insert($sessions_table, array(
+        'session_id' => $mysession_id,
+        'federation_node_id' => 1,
+        'actor_id' => 0,
+        'ip_address' => $client_ip,
+        'user_agent' => $client_agent,
+        'session_data' => $session_data,
+        'last_seen_ymdhis' => $ymdhis,
+        'expires_ymdhis' => $ymdhis,
+        'created_ymdhis' => $ymdhis,
+        'updated_ymdhis' => $ymdhis,
+      ));
      } else {
        $session = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null;
        if ($session && method_exists($session, 'updateActivity')) {
          $session->updateActivity($mysession_id);
        } else {
-         $mydatabase->update($sessions_table, ['last_seen_ymdhis' => $ymdhis, 'updated_ymdhis' => $ymdhis], 'session_id = :sid', ['sid' => $mysession_id]);
+         $mydatabase->update($sessions_table, array('last_seen_ymdhis' => $ymdhis, 'updated_ymdhis' => $ymdhis), 'session_id = :sid', array('sid' => $mysession_id));
        }
      }
    }

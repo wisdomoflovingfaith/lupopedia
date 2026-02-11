@@ -81,8 +81,8 @@ function craftysyntax_handle_operator_console($slug) {
         }
     }
 
-    $original_page = $_GET['page'] ?? null;
-    $original_action = $_GET['action'] ?? null;
+    $original_page = isset($_GET['page']) ? $_GET['page'] : null;
+    $original_action = isset($_GET['action']) ? $_GET['action'] : null;
     $_GET['page'] = $page;
     $_GET['action'] = $action;
 
@@ -161,22 +161,22 @@ function craftysyntax_handle_ai_actors($slug) {
  */
 function craftysyntax_render_not_found($slug) {
     http_response_code(404);
-    $content = [
+    $content = array(
         'title' => 'Crafty Syntax Route Not Found',
         'description' => 'The requested Crafty Syntax route was not found',
         'body' => '<h1>Crafty Syntax Route Not Found</h1><p>No Crafty Syntax data for slug: ' . htmlspecialchars($slug) . '</p>',
         'content_sections' => null
-    ];
+    );
     $page_body = render_content_page($content, $content['body']);
-    $context = [
+    $context = array(
         'page_body' => $page_body,
-        'page_title' => $content['title'] ?? '',
+        'page_title' => isset($content['title']) ? $content['title'] : '',
         'content' => $content,
-        'content_type' => $content['content_type'] ?? null,
-        'meta' => [
-            'description' => $content['description'] ?? ''
-        ]
-    ];
+        'content_type' => isset($content['content_type']) ? $content['content_type'] : null,
+        'meta' => array(
+            'description' => isset($content['description']) ? $content['description'] : ''
+        )
+    );
     return render_main_layout($context);
 }
 

@@ -43,7 +43,7 @@ class Session
     /** @var int is_named from lupo_sessions (0 or 1). Populated when session is loaded. */
     private $is_named = 0;
 
-    public function __construct($db, UnifiedSessionHandler $sessionHandler)
+    public function __construct($db, $sessionHandler)
     {
         $this->db = $db;
         $this->sessionHandler = $sessionHandler;
@@ -54,7 +54,7 @@ class Session
     /**
      * Current UTC timestamp as BIGINT YmdHis.
      */
-    public function utcTimestamp(): int
+    public function utcTimestamp()
     {
         if (class_exists('timestamp_ymdhis')) {
             return timestamp_ymdhis::now();
@@ -65,7 +65,7 @@ class Session
     /**
      * Start PHP session if not already started.
      */
-    public function start(): bool
+    public function start()
     {
         if (session_status() === PHP_SESSION_NONE) {
             return session_start();
@@ -90,14 +90,15 @@ class Session
     /**
      * Client IP (handles X-Forwarded-For, X-Real-IP).
      */
-    public function getClientIp(): string
+    public function getClientIp()
     {
-        $keys = ['HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'HTTP_CLIENT_IP', 'REMOTE_ADDR'];
+        $keys = array('HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'HTTP_CLIENT_IP', 'REMOTE_ADDR');
         foreach ($keys as $key) {
             if (!empty($_SERVER[$key])) {
                 $ip = $_SERVER[$key];
                 if (strpos($ip, ',') !== false) {
-                    $ip = trim(explode(',', $ip)[0]);
+                    $parts = explode(',', $ip);
+                    $ip = trim($parts[0]);
                 }
                 if (filter_var($ip, FILTER_VALIDATE_IP)) {
                     return $ip;
@@ -107,33 +108,33 @@ class Session
         return '0.0.0.0';
     }
 
-    public function getUserAgent(): string
+    public function getUserAgent()
     {
-        return $_SERVER['HTTP_USER_AGENT'] ?? '';
+        return isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
     }
 
     /**
      * Device type from user agent: desktop, mobile, tablet, bot, other.
      */
-    public function detectDeviceType(?string $userAgent = null): string
+    public function detectDeviceType($userAgent = null)
     {
-        $ua = $userAgent ?? $this->getUserAgent();
+        $ua = $userAgent !== null ? $userAgent : $this->getUserAgent();
         if ($ua === '') {
             return 'other';
         }
-        $bot = ['bot', 'crawler', 'spider', 'scraper', 'curl', 'wget'];
+        $bot = array('bot', 'crawler', 'spider', 'scraper', 'curl', 'wget');
         foreach ($bot as $p) {
             if (stripos($ua, $p) !== false) {
                 return 'bot';
             }
         }
-        $mobile = ['mobile', 'android', 'iphone', 'ipod', 'blackberry', 'windows phone'];
+        $mobile = array('mobile', 'android', 'iphone', 'ipod', 'blackberry', 'windows phone');
         foreach ($mobile as $p) {
             if (stripos($ua, $p) !== false) {
                 return 'mobile';
             }
         }
-        $tablet = ['ipad', 'tablet', 'playbook'];
+        $tablet = array('ipad', 'tablet', 'playbook');
         foreach ($tablet as $p) {
             if (stripos($ua, $p) !== false) {
                 return 'tablet';
@@ -148,7 +149,7 @@ class Session
      * @param int $actorId 0 for anonymous
      * @return string|false Session ID on success
      */
-    public function createSession(int $actorId, string $authMethod = 'password', string $authProvider = 'local')
+    public function createSession($actorId, $authMethod = 'password', $authProvider = 'local')
     {
         $this->start();
         $sessionId = session_id();
@@ -183,7 +184,7 @@ class Session
         }
         $existing = $this->db->fetchRow(
             "SELECT session_id, actor_id, name_key, is_named FROM {$this->table} WHERE session_id = :sid LIMIT 1",
-            ['sid' => $sessionId]
+            array('sid' => $sessionId)
         );
         $nameKey = null;
         $isNamed = 0;
@@ -193,7 +194,7 @@ class Session
         }
 
         try {
-            $data = [
+            $data = array(
                 'actor_id' => $actorId,
                 'ip_address' => $ip,
                 'user_agent' => $userAgent,
@@ -210,9 +211,9 @@ class Session
                 'last_seen_ymdhis' => $now,
                 'expires_ymdhis' => $expires,
                 'updated_ymdhis' => $now,
-            ];
+            );
             if ($existing) {
-                $this->db->update($this->table, $data, 'session_id = :sid', ['sid' => $sessionId]);
+                $this->db->update($this->table, $data, 'session_id = :sid', array('sid' => $sessionId));
             } else {
                 $data['session_id'] = $sessionId;
                 $data['federation_node_id'] = LUPO_DEFAULT_NODE_ID;
@@ -223,7 +224,7 @@ class Session
             $this->name_key = $nameKey;
             $this->is_named = $isNamed;
             return $sessionId;
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
                 error_log('Session::createSession: ' . $e->getMessage());
             }
@@ -237,7 +238,7 @@ class Session
      * @param string|null $sessionId Defaults to current PHP session
      * @return int|false Actor ID if valid
      */
-    public function validateSession(?string $sessionId = null)
+    public function validateSession($sessionId = null)
     {
         if ($sessionId === null) {
             $sessionId = $this->getSessionId();
@@ -251,7 +252,7 @@ class Session
         }
         $session = $this->db->fetchRow(
             "SELECT actor_id, is_active, is_expired, is_revoked, expires_ymdhis, name_key, is_named FROM {$this->table} WHERE session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            ['sid' => $sessionId]
+            array('sid' => $sessionId)
         );
         if (!$session) {
             return false;
@@ -276,7 +277,7 @@ class Session
      * @param string|null $sessionId
      * @return int|null
      */
-    public function getLastSeenYmdhis(?string $sessionId = null): ?int
+    public function getLastSeenYmdhis($sessionId = null)
     {
         if ($sessionId === null) {
             $sessionId = $this->getSessionId();
@@ -289,7 +290,7 @@ class Session
         }
         $row = $this->db->fetchRow(
             "SELECT last_seen_ymdhis, name_key, is_named FROM {$this->table} WHERE session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            ['sid' => $sessionId]
+            array('sid' => $sessionId)
         );
         if ($row) {
             $this->name_key = isset($row['name_key']) ? (string) $row['name_key'] : null;
@@ -304,7 +305,7 @@ class Session
      * @param string $nameKey Display name (stored in name_key; max 100 chars per TOON)
      * @return bool
      */
-    public function setNameKey(string $nameKey): bool
+    public function setNameKey($nameKey)
     {
         $sessionId = $this->getSessionId();
         if ($sessionId === '' || $sessionId === false) {
@@ -318,14 +319,14 @@ class Session
         try {
             $this->db->update(
                 $this->table,
-                ['name_key' => $nameKey, 'is_named' => 1, 'updated_ymdhis' => $now],
+                array('name_key' => $nameKey, 'is_named' => 1, 'updated_ymdhis' => $now),
                 'session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL)',
-                ['sid' => $sessionId]
+                array('sid' => $sessionId)
             );
             $this->name_key = $nameKey;
             $this->is_named = 1;
             return true;
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
                 error_log('Session::setNameKey: ' . $e->getMessage());
             }
@@ -334,13 +335,13 @@ class Session
     }
 
     /** @return string|null */
-    public function getNameKey(): ?string
+    public function getNameKey()
     {
         return $this->name_key;
     }
 
     /** @return int 0 or 1 */
-    public function getIsNamed(): int
+    public function getIsNamed()
     {
         return $this->is_named;
     }
@@ -350,7 +351,7 @@ class Session
      *
      * @param string|null $sessionId
      */
-    public function updateActivity(?string $sessionId = null): bool
+    public function updateActivity($sessionId = null)
     {
         if ($sessionId === null) {
             $sessionId = $this->getSessionId();
@@ -364,9 +365,9 @@ class Session
         }
         $this->db->update(
             $this->table,
-            ['last_seen_ymdhis' => $now, 'updated_ymdhis' => $now],
+            array('last_seen_ymdhis' => $now, 'updated_ymdhis' => $now),
             'session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL)',
-            ['sid' => $sessionId]
+            array('sid' => $sessionId)
         );
         return true;
     }
@@ -376,7 +377,7 @@ class Session
      *
      * @param string $sessionId
      */
-    public function markExpired(string $sessionId): bool
+    public function markExpired($sessionId)
     {
         $now = $this->utcTimestamp();
         if (!($this->db instanceof \PDO_DB)) {
@@ -384,9 +385,9 @@ class Session
         }
         $this->db->update(
             $this->table,
-            ['is_expired' => 1, 'is_active' => 0, 'updated_ymdhis' => $now],
+            array('is_expired' => 1, 'is_active' => 0, 'updated_ymdhis' => $now),
             'session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL)',
-            ['sid' => $sessionId]
+            array('sid' => $sessionId)
         );
         return true;
     }
@@ -396,7 +397,7 @@ class Session
      *
      * @param string|null $sessionId
      */
-    public function destroy(?string $sessionId = null): bool
+    public function destroy($sessionId = null)
     {
         if ($sessionId === null) {
             $sessionId = $this->getSessionId();
@@ -408,13 +409,13 @@ class Session
         if ($this->db instanceof \PDO_DB) {
             $this->db->update(
                 $this->table,
-                ['is_active' => 0, 'is_revoked' => 1, 'updated_ymdhis' => $now],
+                array('is_active' => 0, 'is_revoked' => 1, 'updated_ymdhis' => $now),
                 'session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL)',
-                ['sid' => $sessionId]
+                array('sid' => $sessionId)
             );
         }
         if (session_status() === PHP_SESSION_ACTIVE) {
-            $_SESSION = [];
+            $_SESSION = array();
             if (isset($_COOKIE[session_name()])) {
                 setcookie(session_name(), '', time() - 3600, '/');
             }
@@ -429,7 +430,7 @@ class Session
      * @param string $sessionId
      * @return array|null Row with keys e.g. session_id, actor_id, last_seen_ymdhis, name_key, is_named
      */
-    public function getSessionRow(string $sessionId): ?array
+    public function getSessionRow($sessionId)
     {
         if (!($this->db instanceof \PDO_DB)) {
             return null;
@@ -437,7 +438,7 @@ class Session
         $t = $this->db->quoteIdentifier($this->table);
         $row = $this->db->fetchRow(
             "SELECT session_id, actor_id, last_seen_ymdhis, name_key, is_named FROM $t WHERE session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            ['sid' => $sessionId]
+            array('sid' => $sessionId)
         );
         if ($row) {
             $this->name_key = isset($row['name_key']) ? (string) $row['name_key'] : null;
@@ -449,13 +450,13 @@ class Session
     /**
      * Session lifetime in minutes for unified/cookie flow. LUPO_SESSION_LIFETIME_MINUTES or 120.
      */
-    private function getSessionLifetimeMinutes(): int
+    private function getSessionLifetimeMinutes()
     {
         return defined('LUPO_SESSION_LIFETIME_MINUTES') ? (int) LUPO_SESSION_LIFETIME_MINUTES : 120;
     }
 
     /** Add minutes to a YmdHis timestamp (UTC). */
-    private function addMinutesYmdHis(int $ymdhis, int $minutes): int
+    private function addMinutesYmdHis($ymdhis, $minutes)
     {
         $s = str_pad((string) $ymdhis, 14, '0', STR_PAD_LEFT);
         $dt = \DateTime::createFromFormat('YmdHis', $s, new \DateTimeZone('UTC'));
@@ -469,7 +470,7 @@ class Session
     /**
      * Whether lupo_sessions has system_context column (migration add_system_context_to_lupo_sessions).
      */
-    public function hasSystemContextColumn(): bool
+    public function hasSystemContextColumn()
     {
         static $has = null;
         if ($has !== null) {
@@ -481,7 +482,7 @@ class Session
         $t = $this->table;
         $row = $this->db->fetchRow(
             "SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = :t AND COLUMN_NAME = 'system_context'",
-            ['t' => $t]
+            array('t' => $t)
         );
         $has = (bool) $row;
         return $has;
@@ -497,7 +498,7 @@ class Session
      * @param array|string $sessionData  JSON-encoded or array
      * @return string|null session_id on success
      */
-    public function createOrUpdateForUnified(string $sessionId, $userId, string $systemContext, $sessionData = []): ?string
+    public function createOrUpdateForUnified($sessionId, $userId, $systemContext, $sessionData = array())
     {
         if ($sessionId === '' || !($this->db instanceof \PDO_DB)) {
             return null;
@@ -508,10 +509,10 @@ class Session
 
         $existing = $this->db->fetchRow(
             'SELECT session_id FROM ' . $t . ' WHERE session_id = :sid',
-            ['sid' => $sessionId]
+            array('sid' => $sessionId)
         );
 
-        $row = [
+        $row = array(
             'federation_node_id' => defined('LUPO_DEFAULT_NODE_ID') ? (int) LUPO_DEFAULT_NODE_ID : 1,
             'actor_id' => $userId !== null ? (int) $userId : 0,
             'ip_address' => '',
@@ -522,13 +523,13 @@ class Session
             'updated_ymdhis' => $now,
             'name_key' => null,
             'is_named' => 0,
-        ];
+        );
         if ($this->hasSystemContextColumn()) {
             $row['system_context'] = $systemContext;
         }
 
         if ($existing) {
-            $this->db->update($this->table, $row, 'session_id = :sid', ['sid' => $sessionId]);
+            $this->db->update($this->table, $row, 'session_id = :sid', array('sid' => $sessionId));
         } else {
             $row['session_id'] = $sessionId;
             $row['created_ymdhis'] = $now;
@@ -541,7 +542,7 @@ class Session
      * Get session in unified shape: user_id (actor_id), system_context, session_data, expires_ymdhis, session_id, name_key, is_named.
      * Returns null if not found or expired. Table: {prefix}sessions only.
      */
-    public function getSessionForUnified(string $sessionId): ?array
+    public function getSessionForUnified($sessionId)
     {
         if (!($this->db instanceof \PDO_DB)) {
             return null;
@@ -550,7 +551,7 @@ class Session
         $t = $this->db->quoteIdentifier($this->table);
         $session = $this->db->fetchRow(
             'SELECT * FROM ' . $t . ' WHERE session_id = :sid AND (expires_ymdhis IS NULL OR expires_ymdhis > :now)',
-            ['sid' => $sessionId, 'now' => $now]
+            array('sid' => $sessionId, 'now' => $now)
         );
         if (!$session) {
             return null;
@@ -559,38 +560,38 @@ class Session
         if (isset($session['system_context']) && $session['system_context'] !== null && $session['system_context'] !== '') {
             $systemContext = $session['system_context'];
         }
-        return [
+        return array(
             'user_id' => !empty($session['actor_id']) ? (int) $session['actor_id'] : null,
             'system_context' => $systemContext,
-            'session_data' => !empty($session['session_data']) ? json_decode($session['session_data'], true) : [],
+            'session_data' => !empty($session['session_data']) ? json_decode($session['session_data'], true) : array(),
             'expires_ymdhis' => isset($session['expires_ymdhis']) ? (int) $session['expires_ymdhis'] : null,
             'session_id' => $session['session_id'],
             'name_key' => isset($session['name_key']) ? (string) $session['name_key'] : null,
             'is_named' => isset($session['is_named']) ? (int) $session['is_named'] : 0,
-        ];
+        );
     }
 
     /**
      * Delete session row by session_id (used by unified logout). Table: {prefix}sessions.
      */
-    public function deleteSessionRow(string $sessionId): void
+    public function deleteSessionRow($sessionId)
     {
         if (!($this->db instanceof \PDO_DB)) {
             return;
         }
-        $this->db->delete($this->table, 'session_id = :sid', ['sid' => $sessionId]);
+        $this->db->delete($this->table, 'session_id = :sid', array('sid' => $sessionId));
     }
 
     /**
      * Remove expired session rows (expires_ymdhis <= now). Table: {prefix}sessions.
      */
-    public function cleanupExpiredSessions(): void
+    public function cleanupExpiredSessions()
     {
         if (!($this->db instanceof \PDO_DB)) {
             return;
         }
         $now = $this->utcTimestamp();
-        $this->db->delete($this->table, 'expires_ymdhis IS NOT NULL AND expires_ymdhis <= :now', ['now' => $now]);
+        $this->db->delete($this->table, 'expires_ymdhis IS NOT NULL AND expires_ymdhis <= :now', array('now' => $now));
     }
 
     /**
@@ -599,28 +600,28 @@ class Session
      * @param int $userId actor_id
      * @return array[] rows
      */
-    public function getActiveSessionsForUser($userId): array
+    public function getActiveSessionsForUser($userId)
     {
         if (!($this->db instanceof \PDO_DB)) {
-            return [];
+            return array();
         }
         $now = $this->utcTimestamp();
         $t = $this->db->quoteIdentifier($this->table);
         return $this->db->fetchAll(
             'SELECT * FROM ' . $t . ' WHERE actor_id = :uid AND (expires_ymdhis IS NULL OR expires_ymdhis > :now) ORDER BY updated_ymdhis DESC',
-            ['uid' => $userId, 'now' => $now]
+            array('uid' => $userId, 'now' => $now)
         );
     }
 
     /**
      * Whether a session exists and is not expired (unified shape check).
      */
-    public function validateSessionIntegrity(string $sessionId): bool
+    public function validateSessionIntegrity($sessionId)
     {
         return $this->getSessionForUnified($sessionId) !== null;
     }
 
-    public function getSessionHandler(): UnifiedSessionHandler
+    public function getSessionHandler()
     {
         return $this->sessionHandler;
     }

@@ -9,8 +9,28 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die('Config not loaded.');
 }
 
+if (!function_exists('lupo_random_bytes')) {
+    function lupo_random_bytes($length) {
+        if (function_exists('random_bytes')) {
+            return random_bytes($length);
+        }
+        if (function_exists('openssl_random_pseudo_bytes')) {
+            $bytes = openssl_random_pseudo_bytes($length);
+            return $bytes !== false ? $bytes : lupo_random_bytes_fallback($length);
+        }
+        return lupo_random_bytes_fallback($length);
+    }
+    function lupo_random_bytes_fallback($length) {
+        $bytes = '';
+        for ($i = 0; $i < $length; $i++) {
+            $bytes .= chr(mt_rand(0, 255));
+        }
+        return $bytes;
+    }
+}
+
 $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-$db = $GLOBALS['mydatabase'] ?? null;
+$db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
 if (!$db) {
     header('Content-Type: text/html; charset=utf-8');
     echo '<!DOCTYPE html><html><head><title>Choose Department</title></head><body><p>Service unavailable.</p></body></html>';
@@ -26,11 +46,11 @@ if ($session_id === '' && !empty($_COOKIE['cslhVISITOR'])) {
     $session_id = (string)$_COOKIE['cslhVISITOR'];
 }
 if ($session_id === '') {
-    $session_id = 'v' . bin2hex(random_bytes(12));
+    $session_id = 'v' . bin2hex(lupo_random_bytes(12));
 }
 
-$departments = [];
-$online_by_dept = [];
+$departments = array();
+$online_by_dept = array();
 if ($db instanceof \PDO_DB) {
     $departments = $db->fetchAll("SELECT department_id, name FROM {$prefix}departments WHERE is_deleted = 0 ORDER BY name");
     $rows = $db->fetchAll(

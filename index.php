@@ -64,11 +64,13 @@ elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH .
 elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
     define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/lupopedia-config.php');
 }
-// No config found - run installer
+// No config found - redirect to install/upgrade wizard (project root)
 else {
-    // Config file not found - run setup/upgrade
-    require_once LUPOPEDIA_PATH . '/lupo-includes/lupopedia-setup.php';
-    // Setup script will handle detection and creation
+    $installUrl = rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? ''), '/') . '/install.php';
+    if ($installUrl === '/install.php') {
+        $installUrl = '/install.php';
+    }
+    header('Location: ' . $installUrl);
     exit;
 }
 

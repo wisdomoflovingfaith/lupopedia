@@ -51,7 +51,46 @@ class SystemHealthController
 
             $healthService = new SystemHealthService($db);
 
+            // Environment checks (Lupopedia doctrine: PHP 5.3+, pdo_mysql + json required; optional mbstring/curl/openssl/fileinfo; no GD)
+            $envPath = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : (defined('ABSPATH') ? rtrim(ABSPATH, DIRECTORY_SEPARATOR) : __DIR__ . '/../..');
+            $configWritable = is_writable($envPath);
+            $environment = [
+                'php_version' => [
+                    'status' => version_compare(phpversion(), '5.3.0', '>=') ? 'ok' : 'error',
+                    'message' => 'PHP ' . phpversion() . ' (5.3+ required)',
+                ],
+                'pdo_mysql' => [
+                    'status' => extension_loaded('pdo_mysql') ? 'ok' : 'error',
+                    'message' => extension_loaded('pdo_mysql') ? 'Loaded' : 'Required extension missing',
+                ],
+                'json' => [
+                    'status' => extension_loaded('json') ? 'ok' : 'error',
+                    'message' => extension_loaded('json') ? 'Loaded' : 'Required extension missing',
+                ],
+                'config_writable' => [
+                    'status' => $configWritable ? 'ok' : 'error',
+                    'message' => $configWritable ? 'Project root writable' : 'Project root not writable',
+                ],
+                'mbstring' => [
+                    'status' => extension_loaded('mbstring') ? 'ok' : 'warning',
+                    'message' => extension_loaded('mbstring') ? 'Loaded' : 'Optional; fallbacks used',
+                ],
+                'curl' => [
+                    'status' => extension_loaded('curl') ? 'ok' : 'warning',
+                    'message' => extension_loaded('curl') ? 'Loaded' : 'Optional; not loaded',
+                ],
+                'openssl' => [
+                    'status' => extension_loaded('openssl') ? 'ok' : 'warning',
+                    'message' => extension_loaded('openssl') ? 'Loaded' : 'Optional; not loaded',
+                ],
+                'fileinfo' => [
+                    'status' => extension_loaded('fileinfo') ? 'ok' : 'warning',
+                    'message' => extension_loaded('fileinfo') ? 'Loaded' : 'Optional; not loaded',
+                ],
+            ];
+
             $health = [
+                'environment' => $environment,
                 'database_schema' => $healthService->checkDatabaseSchema(),
                 'agent_registry' => $healthService->checkAgentRegistry(),
                 'quantum_subsystem' => $healthService->checkQuantumSubsystem(),
