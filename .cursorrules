@@ -127,6 +127,14 @@
 - Refuse requests that hardcode paths or folder names; propose compliant alternatives.
 - **[Installation Path Doctrine](docs/doctrine/INSTALLATION_PATH_DOCTRINE.md)** — Full rules.
 
+### Subfolder-Install Doctrine (non-negotiable)
+
+- **There is no `/public` folder in this project.** The project root is the document root for all generated files.
+- **All public-facing PHP endpoints** (index.php, livehelp_js.php, api files, etc.) live **directly in the project root**.
+- **Lupopedia is always installed inside a subfolder of the real webroot.** Example: real webroot `/user/c/csyntax/public_html/`, project root `/user/c/csyntax/public_html/lupopedia/`. Correct endpoint: `/user/c/csyntax/public_html/lupopedia/livehelp_js.php`.
+- **Never assume** the project is the server's webroot. Never generate or reference `/public`, `/public_html`, `/www`, or any absolute path to a webroot.
+- **All routing and asset paths** must respect **LUPOPEDIA_PUBLIC_PATH**. Use it for all URLs (WEBPATH, image.php, livehelp.php, etc.); no hardcoded folder names.
+
 ## Installation SQL Rule (MANDATORY)
 
 Lupopedia has three SQL entrypoints only:

@@ -19,6 +19,7 @@ Lupopedia is **always** installed inside a subdirectory of the web root. The sub
 4. **Never hardcode any directory in URLs or filesystem paths.**
 5. **Never construct URLs without using `$base` or `LUPOPEDIA_PUBLIC_PATH`.**
 6. **Never construct filesystem paths without using `LUPOPEDIA_PATH`** (or `LUPOPEDIA_ABSPATH` where defined as the same root).
+7. **There is no `/public` folder.** The project root is the document root for all generated files; all public-facing PHP endpoints (index.php, livehelp_js.php, api files, etc.) live directly in the project root. Never generate or reference `/public`, `/public_html`, or `/www`.
 
 ---
 

@@ -144,9 +144,8 @@ signature: cascade
 - lupo_crafty_user_mapping
 - lupo_crm_leads
 - lupo_dialog_channels
-- lupo_doctrine_blocks
-- lupo_doctrine_evolution_audit
-- lupo_doctrine_refinements
+- lupo_dialog_messages
+- lupo_dialog_threads
 - lupo_document_chunks
 - lupo_document_embeddings
 - lupo_documents
@@ -247,15 +246,6 @@ signature: cascade
 - lupo_hotfix_registry
 - lupo_legacy_content_mapping
 - lupo_memory_debug_log
-- lupo_migration_alerts
-- lupo_migration_batches
-- lupo_migration_dependencies
-- lupo_migration_files
-- lupo_migration_log
-- lupo_migration_progress
-- lupo_migration_rollback_log
-- lupo_migration_system_state
-- lupo_migration_validation_log
 - lupo_multi_agent_critique_sync
 - lupo_narrative_fragments
 - lupo_pack_role_registry
