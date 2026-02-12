@@ -1,23 +1,28 @@
 #!/usr/bin/env python3
 """
-Generate DIRECTORY_TREE.md at project root from scripts/ directory.
+Generate DIRECTORY_TREE.md at project root from the entire project tree.
 Uses only Python standard library. Overwrites output each run.
+Excludes: .git/, vendor/, node_modules/, .idea/, .vscode/, .DS_Store
 """
 import os
 
+# Names to exclude from the tree (dirs not descended, files/dirs not listed)
+EXCLUDE = frozenset({".git", "vendor", "node_modules", ".idea", ".vscode", ".DS_Store"})
+
 
 def build_tree(dirpath: str, prefix: str = "") -> list[str]:
-    """Build tree lines for a directory. Sorts dirs then files, each by name."""
+    """Build tree lines for a directory. Sorts dirs then files, each by name. Skips EXCLUDE."""
     try:
         entries = os.listdir(dirpath)
     except OSError:
         return []
+    filtered = [e for e in entries if e not in EXCLUDE]
     dirs = sorted(
-        [e for e in entries if os.path.isdir(os.path.join(dirpath, e))],
+        [e for e in filtered if os.path.isdir(os.path.join(dirpath, e))],
         key=str.lower,
     )
     files = sorted(
-        [e for e in entries if os.path.isfile(os.path.join(dirpath, e))],
+        [e for e in filtered if os.path.isfile(os.path.join(dirpath, e))],
         key=str.lower,
     )
     all_entries = [(e, True) for e in dirs] + [(e, False) for e in files]
@@ -36,7 +41,8 @@ def build_tree(dirpath: str, prefix: str = "") -> list[str]:
 def main() -> None:
     script_dir = os.path.abspath(os.path.dirname(__file__))
     project_root = os.path.abspath(os.path.join(script_dir, ".."))
-    lines = ["scripts/"] + build_tree(script_dir, "")
+    root_name = os.path.basename(project_root)
+    lines = [root_name + "/"] + build_tree(project_root, "")
     out_path = os.path.join(project_root, "DIRECTORY_TREE.md")
     with open(out_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
