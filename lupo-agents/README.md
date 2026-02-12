@@ -759,7 +759,7 @@ The slot-based structure ensures that:
 **For the complete agent registry and slot mappings, see:**
 - **TOON File:** `database/toon_data/lupo_agent_registry.toon`
 - **Database Table:** `lupo_agent_registry`
-- **Global Atoms:** `config/global_atoms.yaml` → `GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS`
+- **Global Atoms:** `config/global_atoms.yaml` → `GLOBAL_LUPOPEDIA_V3_0_2_CORE_AGENTS`
 
 **For agent system documentation, see:**
 - **[AGENT_RUNTIME.md](../docs/agents/AGENT_RUNTIME.md)** — How agents work

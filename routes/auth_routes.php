@@ -18,7 +18,7 @@ return [
         '/admin/authentication/sessions' => [\App\Http\Controllers\Admin\AuthenticationController::class, 'getActiveSessions'],
         '/admin/authentication/synchronization' => null, // use getSessionStats, getSyncStatistics, etc.
         '/auth/status' => null, // use AuthGuard + getUnifiedUser, return JSON
-        '/auth/permissions' => null,
+        '/auth/permissions' => null, // when implemented: return permissions combining user_id, department_id, and channel_roles (no group tables)
         '/session/cleanup' => null,
         '/session/active' => null,
         '/livehelp/login.php' => null,

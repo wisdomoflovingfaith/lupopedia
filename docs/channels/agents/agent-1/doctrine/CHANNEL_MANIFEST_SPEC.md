@@ -79,7 +79,7 @@ channels/
 
 - `channels/dev_documentation/manifest.json`
 - `channels/routing_development/manifest.json`
-- `channels/lupopedia_4_0_16_channels_documentation_database_refinement/manifest.json`
+- `channels/lupopedia_3_0_16_channels_documentation_database_refinement/manifest.json`
 
 ---
 

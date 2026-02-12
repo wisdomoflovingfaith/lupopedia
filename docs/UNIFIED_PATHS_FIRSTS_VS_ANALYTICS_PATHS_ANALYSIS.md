@@ -27,13 +27,13 @@ Documentation and import scripts state that **livehelp_paths_firsts** and **live
 | database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1924–1933 | Column summary for lupo_unified_analytics_paths | Doc | Active |
 | database/migrations/import_from_old_crafty_syntax.sql | 1362, 1377–1402, 1404+ | Comment: livehelp_paths_firsts → lupo_unified_analytics_paths. TRUNCATE lupo_unified_analytics_paths; INSERT … FROM livehelp_paths_firsts; INSERT … FROM livehelp_paths_monthly | TRUNCATE / INSERT | Active (import) |
 | database/migrations/craftysyntax_to_lupopedia_mysql.sql | 1310, 1325–1352 | Same: TRUNCATE + INSERT into lupo_unified_analytics_paths from livehelp_paths_firsts and livehelp_paths_monthly | TRUNCATE / INSERT | Active (import) |
-| database/migrations/dev_20260206_reserved_word_column_renames.sql | 22–23 | ALTER TABLE lupo_unified_analytics_paths (year_month → year_month_key) | Migration | Active |
-| docs/REQUIRED_TABLES_4.2.1.md | 64 | List entry | Doc | Active |
+| database/migrations/dev_20260206_reserved_word_column_renames.sql | — | Does not rename year_month (year_month is not a reserved word; column remains year_month) | Migration | Active |
+| docs/REQUIRED_TABLES_4.1.0.md | 64 | List entry | Doc | Active |
 | docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md | 89 | livehelp_paths_firsts, livehelp_paths_monthly → lupo_unified_analytics_paths | Doc | Reference |
 | docs/doctrine/migrations/livehelp_paths_firsts_migration.md | 3, 32, 86, 127, 130, 145, 230 | Replacement: lupo_unified_analytics_paths; TRUNCATE/INSERT examples | Doc | Reference |
 | docs/doctrine/CRAFTY_SYNTAX_*.md, docs/channels/…/CRAFTY_SYNTAX_*.md | various | livehelp_paths_firsts/monthly → lupo_unified_analytics_paths | Doc | Reference |
 | docs/doctrine/MigrationAtlas.md | 24–25 | livehelp_paths_firsts/monthly → lupo_unified_analytics_paths | Doc | Reference |
-| CHANGELOG.md, docs/channels/schema/migrations/4.0.0.md, dialogs/… | various | year_month → year_month_key in lupo_unified_analytics_paths | Doc | Reference |
+| CHANGELOG.md, docs/channels/schema/migrations/3.0.0.md, dialogs/… | various | year_month remains year_month (not a reserved word) | Doc | Reference |
 | database/migrations_legacy/*.sql | various | CREATE TABLE lupo_unified_analytics_paths; INSERT | Legacy schema | Legacy |
 | complete_schema.txt, DIRECTORY_TREE.md, .output.txt, database/toon_output.txt | — | Table/list references | Doc / output | Reference |
 
@@ -47,7 +47,7 @@ Documentation and import scripts state that **livehelp_paths_firsts** and **live
 | database/migrations/dev_20260204_fix_schema_alignment.sql | 1934–1940 | ALTER TABLE lupo_unified_paths_firsts MODIFY COLUMN (from_visit_id, to_visit_id, date_ymd, visits, metadata_json, created_at, updated_at) | Migration | Schema only |
 | database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1934–1940 | Column summary | Doc | Reference |
 | database/migrations/dev_20260205_doctrine_alignment_phase2.sql | 32 | ALTER TABLE lupo_unified_paths_firsts MODIFY COLUMN `id` bigint NOT NULL AUTO_INCREMENT | Migration | Schema only (note: install uses unified_paths_first_id as PK; may be legacy variant) |
-| docs/REQUIRED_TABLES_4.2.1.md | 227 | List entry | Doc | Reference |
+| docs/REQUIRED_TABLES_4.1.0.md | 227 | List entry | Doc | Reference |
 | .output.txt | 333 | lupo_unified_paths_firsts.too (file listing) | Output | Reference |
 
 **PHP runtime:** No PHP file references `lupo_unified_paths_firsts` or `unified_paths_firsts` (grep `*.php`: no matches).
@@ -99,7 +99,7 @@ Before dropping:
 | database/migrations/dev_20260204_fix_schema_alignment.sql | Remove all 7 ALTER TABLE lupo_unified_paths_firsts statements. |
 | database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Remove the 7 lupo_unified_paths_firsts column summary lines. |
 | database/migrations/dev_20260205_doctrine_alignment_phase2.sql | Remove the 1 ALTER TABLE lupo_unified_paths_firsts statement (MODIFY COLUMN `id`). |
-| docs/REQUIRED_TABLES_4.2.1.md | Remove the list entry for lupo_unified_paths_firsts. |
+| docs/REQUIRED_TABLES_4.1.0.md | Remove the list entry for lupo_unified_paths_firsts. |
 | complete_schema.txt | Regenerate or edit to remove lupo_unified_paths_firsts. |
 | docs/toons/ (if present) | Remove or regenerate lupo_unified_paths_firsts TOON after schema change. |
 | .output.txt / DIRECTORY_TREE.md | Update if they list this table or its TOON. |

@@ -10,7 +10,7 @@
  * - Size limits
  *
  * @package Lupopedia
- * @version 4.0.0
+ * @version 3.0.0
  */
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {

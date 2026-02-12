@@ -40,7 +40,7 @@ SELECT
 FROM lupo_contents c
 WHERE c.slug IN (
     'architecture-canonical-ontology-architecture-governance-v1-0',
-    'architecture-lupopedia-v4-0-70-agent-awareness-layer',
+    'architecture-lupopedia-v3-0-70-agent-awareness-layer',
     'dev-teams-governance-gov-programmers-001',
     'dev-teams-governance-gov-toon-generation-001',
     'dev-teams-governance-gov-wolfie-headers-001',

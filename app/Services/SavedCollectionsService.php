@@ -4,6 +4,7 @@ namespace App\Services;
 
 /**
  * Saved collections — render tree for nav, load tab children, count tab items.
+ * Permissions: user_id OR department_id (actor's departments) via lupo_permissions; no group tables.
  * Uses PDO_DB and LUPO_TABLE_PREFIX. TOON: collection_id, collection_tab_id, collection_tab_map_id, lupo_contents.content_id.
  */
 
@@ -27,26 +28,23 @@ class SavedCollectionsService
 
     /**
      * Render saved collections tree for nav. Uses collection_id, name, slug (slug as type).
-     * Permissions: lupo_permissions target_type='collection', target_id=collection_id.
+     * Permissions: lupo_permissions (target_type='collection') by user_id OR department_id (actor's departments).
      *
      * @param int $userId Auth user ID (0 = public, all collections)
      * @return array
      */
     public function renderSavedCollections(int $userId): array
     {
-        $collectionsData = [];
+        $collectionsData = array();
         $collT = $this->db->quoteIdentifier($this->prefix . 'collections');
         $permT = $this->db->quoteIdentifier($this->prefix . 'permissions');
         if ($userId === 0) {
             $collections = $this->db->fetchAll(
                 "SELECT collection_id, name, slug FROM {$collT} c WHERE (c.is_deleted = 0 OR c.is_deleted IS NULL) ORDER BY c.slug, c.name",
-                []
+                array()
             );
         } else {
-            $collections = $this->db->fetchAll(
-                "SELECT DISTINCT c.collection_id, c.name, c.slug FROM {$collT} c INNER JOIN {$permT} cp ON c.collection_id = cp.target_id AND cp.target_type = :target_type AND (cp.is_deleted = 0 OR cp.is_deleted IS NULL) WHERE cp.user_id = :user_id ORDER BY c.slug, c.name",
-                ['user_id' => $userId, 'target_type' => 'collection']
-            );
+            $collections = $this->getCollectionsForUser($userId, $collT, $permT);
         }
         foreach ($collections as $collection) {
             $collectionId = (int) $collection['collection_id'];
@@ -143,6 +141,85 @@ class SavedCollectionsService
             $children[] = $child;
         }
         return $children;
+    }
+
+    /**
+     * Get collections the user can access via lupo_permissions: user_id OR department_id (actor's departments).
+     *
+     * @param int $userId Auth user ID
+     * @param string $collT Quoted collections table name
+     * @param string $permT Quoted permissions table name
+     * @return array Rows with collection_id, name, slug
+     */
+    private function getCollectionsForUser($userId, $collT, $permT)
+    {
+        $actorId = $this->getActorIdFromAuthUserId($userId);
+        $departmentIds = array();
+        if ($actorId > 0) {
+            $departmentIds = $this->getDepartmentIdsForActor($actorId);
+        }
+        $params = array('user_id' => $userId, 'target_type' => 'collection');
+        if (empty($departmentIds)) {
+            return $this->db->fetchAll(
+                "SELECT DISTINCT c.collection_id, c.name, c.slug FROM {$collT} c INNER JOIN {$permT} cp ON c.collection_id = cp.target_id AND cp.target_type = :target_type AND (cp.is_deleted = 0 OR cp.is_deleted IS NULL) WHERE cp.user_id = :user_id ORDER BY c.slug, c.name",
+                $params
+            );
+        }
+        $placeholders = array();
+        foreach (array_values($departmentIds) as $i => $did) {
+            $key = 'dept_' . $i;
+            $placeholders[] = ':' . $key;
+            $params[$key] = $did;
+        }
+        $inList = implode(', ', $placeholders);
+        return $this->db->fetchAll(
+            "SELECT DISTINCT c.collection_id, c.name, c.slug FROM {$collT} c INNER JOIN {$permT} cp ON c.collection_id = cp.target_id AND cp.target_type = :target_type AND (cp.is_deleted = 0 OR cp.is_deleted IS NULL) AND (cp.user_id = :user_id OR (cp.department_id IN ({$inList}) AND cp.department_id IS NOT NULL)) ORDER BY c.slug, c.name",
+            $params
+        );
+    }
+
+    /**
+     * Resolve auth user ID to actor_id (lupo_actors where actor_source_type = 'user').
+     *
+     * @param int $userId Auth user ID
+     * @return int 0 if not found
+     */
+    private function getActorIdFromAuthUserId($userId)
+    {
+        if ($userId <= 0) {
+            return 0;
+        }
+        $t = $this->db->quoteIdentifier($this->prefix . 'actors');
+        $row = $this->db->fetchRow(
+            "SELECT actor_id FROM {$t} WHERE actor_source_type = 'user' AND actor_source_id = :auth_user_id AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            array('auth_user_id' => $userId)
+        );
+        return $row ? (int) $row['actor_id'] : 0;
+    }
+
+    /**
+     * Get department_id list for actor from lupo_actor_departments.
+     *
+     * @param int $actorId Actor ID
+     * @return array List of department_id (integers)
+     */
+    private function getDepartmentIdsForActor($actorId)
+    {
+        if ($actorId <= 0) {
+            return array();
+        }
+        $t = $this->db->quoteIdentifier($this->prefix . 'actor_departments');
+        $rows = $this->db->fetchAll(
+            "SELECT department_id FROM {$t} WHERE actor_id = :actor_id AND (is_deleted = 0 OR is_deleted IS NULL)",
+            array('actor_id' => $actorId)
+        );
+        $out = array();
+        foreach ($rows as $r) {
+            if (isset($r['department_id']) && $r['department_id'] !== null && $r['department_id'] !== '') {
+                $out[] = (int) $r['department_id'];
+            }
+        }
+        return $out;
     }
 
     /**

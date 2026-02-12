@@ -75,7 +75,7 @@ DB_SNAPSHOT_PROTOCOL.md: Snapshot lifecycle and governance rules.
 
 PRE_RELEASE_SCHEMA_RULES.md: Freedom Zone schema rules and TOON use.
 
-docs/versioning/README.md: Lupopedia uses semantic versioning starting at 4.0.0.
+docs/versioning/README.md: Lupopedia uses semantic versioning starting at 3.0.0.
 
 SEMANTIC_LAYER_MODEL.md: Four-layer semantic architecture doctrine.
 

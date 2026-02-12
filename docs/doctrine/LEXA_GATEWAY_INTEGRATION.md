@@ -1,6 +1,6 @@
 # LEXA Gateway Integration
 
-**Version:** 4.0.0
+**Version:** 3.0.0
 **Role:** Boundary-Keeper / Doctrine Guardian / Integrity Enforcer
 **Layer:** LLM_GATEWAY (Sentinel-class)
 

@@ -50,5 +50,5 @@ Violations require documentation, remediation, and governance review before proc
 ## References
 
 - ../doctrine/DOCTRINAL_COMPLEMENTARITY_SYSTEM.md
-- ../doctrine/VERSIONING_DOCTRINE.md
+- ../../doctrine/VERSIONING_DOCTRINE.md
 - ../doctrine/DOCTRINE_VERSIONING.md

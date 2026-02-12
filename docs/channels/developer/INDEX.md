@@ -54,7 +54,6 @@ Files:
 - [RELEASE_READINESS_CHECKLIST_3.0.7.md](RELEASE_READINESS_CHECKLIST_3.0.7.md)
 - [specifications/LMS_v2.0.md](specifications/LMS_v2.0.md)
 - [templates/LABS_HANDSHAKE_TEMPLATE.md](templates/LABS_HANDSHAKE_TEMPLATE.md)
-- [templates/QUANTUM_WOLFIE_HEADER_TEMPLATE.md](templates/QUANTUM_WOLFIE_HEADER_TEMPLATE.md)
 - [templates/WOLFIE_HEADER_TEMPLATE.md](templates/WOLFIE_HEADER_TEMPLATE.md)
 - [testing/crafty_import_validation_4.2.1.md](testing/crafty_import_validation_4.2.1.md)
 - [testing/import_trial_scorecard_livehelp.md](testing/import_trial_scorecard_livehelp.md)

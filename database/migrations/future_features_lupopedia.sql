@@ -1,0 +1,5 @@
+-- Future features / planned tables for Lupopedia.
+-- Do not run this file during install or upgrade.
+-- Tables here are moved from required lists until they are implemented.
+-- Canonical install: install_new_lupopedia.sql only.
+-- See docs/REQUIRED_TABLES_4.1.0.md for table ceiling and consolidation.

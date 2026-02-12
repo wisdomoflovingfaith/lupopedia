@@ -547,7 +547,7 @@ Cascade **MUST NOT** perform:
 
 ## **Related Documentation**
 
-- **[VERSIONING_DOCTRINE.md](VERSIONING_DOCTRINE.md)** â€” Three-stage pipeline: Cursor (development) â†’ Cascade (stabilization) â†’ JetBrains (release)
+- **[VERSIONING_DOCTRINE.md](../../doctrine/VERSIONING_DOCTRINE.md)** â€” Three-stage pipeline: Cursor (development) â†’ Cascade (stabilization) â†’ JetBrains (release)
 - **[CURSOR_REFACTOR_DOCTRINE.md](CURSOR_REFACTOR_DOCTRINE.md)** â€” Detailed rules for Cursor's autonomous refactoring operations
 - **[LEGACY_REFACTOR_PLAN.md](../developer/modules/LEGACY_REFACTOR_PLAN.md)** â€” Comprehensive plan for legacy Crafty Syntax refactoring
 

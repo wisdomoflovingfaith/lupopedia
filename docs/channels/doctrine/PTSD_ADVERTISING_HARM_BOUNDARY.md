@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.0
+file.last_modified_system_version: 3.0.0
 file.last_modified_utc: 20260120153000
 file.utc_day: 20260120
 file.lupopedia.5: 5
@@ -22,7 +22,7 @@ file:
   name: "PTSD_ADVERTISING_HARM_BOUNDARY.md"
   title: "PTSD & Emotional Harm From Advertising Manipulation"
   description: "Permanent trauma boundary establishing prohibition of advertising work due to PTSD-like responses"
-  version: 4.0.0
+  version: 3.0.0
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---

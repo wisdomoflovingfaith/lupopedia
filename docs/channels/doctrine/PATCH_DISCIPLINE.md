@@ -770,7 +770,7 @@ VALIDATION: All changes consistent and properly formatted ✓
 - **[Dialog Doctrine](DIALOG_DOCTRINE.md)** - MANDATORY rules for dialog system architecture and thread management
 - **[Agent Runtime](AGENT_RUNTIME.md)** - Agent lifecycle, lane separation, and runtime behavior requirements
 - **[Directory Structure](DIRECTORY_STRUCTURE.md)** - File organization and structural requirements for patch operations
-- **[Versioning Doctrine](VERSIONING_DOCTRINE.md)** - Version management and release procedures for coordinated patches
+- **[Versioning Doctrine](../../doctrine/VERSIONING_DOCTRINE.md)** - Version management and release procedures for coordinated patches
 - **[Metadata Governance](METADATA_GOVERNANCE.md)** - Comprehensive metadata management framework
 - **[Architecture Sync](ARCHITECTURE_SYNC.md)** - Cross-system synchronization and coordination requirements
 - **[Agent Prompt Doctrine](AGENT_PROMPT_DOCTRINE.md)** - Agent communication standards for patch coordination

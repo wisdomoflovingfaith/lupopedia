@@ -1,0 +1,27 @@
+---
+description: John Wheeler and Reverse-20 Workflow are banned. Do not reintroduce them.
+alwaysApply: true
+---
+
+# Wheeler & Reverse-20 Ban (PERMANENT)
+
+Cursor MUST NOT reintroduce or reference John Wheeler or the Reverse-20 Workflow. These concepts are not part of Lupopedia's doctrine or semantic OS.
+
+## Banned concepts
+
+- **John Wheeler** — Do not reference in doctrine, docs, metadata, or comments (participatory universe, delayed-choice, it from bit, self-excited circuit, observer-created reality, etc.).
+- **Reverse-20 Workflow** — Do not use in any form: Reverse-20, Reverse_20, Reverse20, R20, reverse twenty, reverse-20 workflow/method/ideation/cycle.
+- **Wheeler Mode / WHEELER_MODE** — Do not add as doctrine, file name, or metadata (no wheeler_mode block, no WHEELER_MODE atom).
+- **Wheeler loop, Wheeler cycle, participatory recursion** — Do not add as workflow or conceptual framework.
+- **Observer loop, self-observing system, recursive observer, observer-creates-system** — Do not add as doctrine or metadata derived from Wheeler/Reverse-20.
+
+## Rules
+
+- Never add a file, section, or metadata field that references John Wheeler, Wheeler Mode, or Reverse-20 workflow.
+- Never create or reference WHEELER_MODE_DOCTRINE or a wheeler_mode metadata block.
+- Never use WHEELER_MODE in header_atoms or frontmatter.
+- If you find remaining references in historical docs (e.g. old changelogs), do not propagate them into new content; treat them as historical only.
+
+Optional "discovery context" or "emergent architecture" metadata is allowed only when it does not name Wheeler or Reverse-20.
+
+This rule is permanent. These concepts are invalid and non-existent for new work.

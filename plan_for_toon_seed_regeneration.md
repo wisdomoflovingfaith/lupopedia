@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.0
+file.last_modified_system_version: 3.0.0
 file.channel: doctrine
 file.last_modified_utc: 20260204120000
 file.name: "plan_for_toon_seed_regeneration.md"
@@ -8,7 +8,7 @@ file.name: "plan_for_toon_seed_regeneration.md"
 
 TOON & SEED REGENERATION PLAN
 Canonical Python tooling in /scripts/ — DO NOT create or modify Python files for this workflow.
-System Version: 4.0.0
+System Version: 3.0.0
 
 ---
 

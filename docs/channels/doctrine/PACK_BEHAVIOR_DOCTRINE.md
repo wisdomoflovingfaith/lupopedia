@@ -299,7 +299,7 @@ $profile = $service->getProfile('TerminalAI_001');
 ## Related Documentation
 
 - **[EMOTIONAL_GEOMETRY.md](docs/doctrine/EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (3.0.108)
-- **[PACK_BEHAVIOR_MATRIX_v4_0_90.md](docs/doctrine/PACK_BEHAVIOR_MATRIX_v4_0_90.md)** - Pack behavior matrix (historical)
+- **[PACK_BEHAVIOR_MATRIX_v3_0_90.md](docs/doctrine/PACK_BEHAVIOR_MATRIX_v3_0_90.md)** - Pack behavior matrix (historical)
 
 ---
 

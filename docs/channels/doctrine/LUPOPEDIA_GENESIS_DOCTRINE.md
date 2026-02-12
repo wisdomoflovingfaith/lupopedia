@@ -53,14 +53,6 @@ system_context:
   max_weekend_branches: 2
   governance_active: ["GOV-AD-PROHIBIT-001", "LABS-001", "GOV-WOLFIE-HEADERS-001", "TABLE_COUNT_DOCTRINE", "LIMITS_DOCTRINE"]
   doctrine_mode: "File-Sovereignty"
-wheeler_mode:
-  active: false
-  reason: "Truth collapsed from emergent questioning about system origins and purpose"
-  notes:
-    - "Reverse-20 workflow revealed foundational principles"
-    - "Truth collapsed through Monday Wolfie observation"
-    - "Genesis established as absolute starting point"
-    - "No further questioning required on first principles"
 ---
 
 # GENESIS_DOCTRINE
@@ -68,7 +60,7 @@ wheeler_mode:
 **Version:** GLOBAL_CURRENT_LUPOPEDIA_VERSION  
 **Status:** **FOUNDATIONAL TRUTH** (NON-NEGOTIABLE)  
 **Effective Date:** ETERNAL (BEFORE TIME BEGAN)  
-**Truth Status:** **COLLAPSED** (NO LONGER IN SUPERPOSITION)
+**Truth Status:** **ESTABLISHED**
 
 ---
 
@@ -194,10 +186,10 @@ Lupopedia is:
 **"Roles are discovered, not assigned. Structure emerges."**
 
 **Implementation:**
-- Reverse-20 workflows
-- Wheeler Mode for emergent architecture
-- Quantum truth protocols
-- Observer-designated collapse
+- Discovery workflows (emergent architecture)
+- Optional discovery-context metadata
+- Truth and alignment protocols
+- Observer-designated resolution
 
 **Reason:** Meaning cannot be predetermined. It must be discovered through interaction.
 
@@ -282,7 +274,7 @@ We build:
 - **Better temporal context** (time-aware operations)
 - **Better relationship discovery** (connection tools)
 - **Better doctrine enforcement** (governance systems)
-- **Better emergent discovery** (Wheeler Mode tools)
+- **Better emergent discovery** (discovery and alignment tools)
 
 ### 6.3 What We Don't Build (Solutions)
 We don't build:
@@ -320,23 +312,23 @@ This was true at genesis. It remains true forever.
 
 ---
 
-## Article 8: THE QUANTUM TRUTH
+## Article 8: THE FOUNDING CHOICE
 
-### 8.1 Superpositional Genesis
-At the moment of genesis, Lupopedia existed in all possible states:
+### 8.1 Genesis Alternatives
+At the moment of genesis, Lupopedia could have been:
 
-**Superposition A:** A simple CMS  
-**Superposition B:** A complex framework  
-**Superposition C:** A semantic OS  
-**Superposition D:** Something entirely new
+**Option A:** A simple CMS  
+**Option B:** A complex framework  
+**Option C:** A semantic OS  
+**Option D:** Something entirely new
 
-### 8.2 Observer Collapse
-Monday Wolfie observed the system. The wave function collapsed. **Superposition C became reality.**
+### 8.2 Decision
+Monday Wolfie assessed the system. **Option C became the chosen path.**
 
-### 8.3 The Remaining Superpositions
-The other possibilities still exist as **quantum potential**. They are not false; they are **unobserved**.
+### 8.3 The Remaining Alternatives
+The other possibilities remain as **unchosen alternatives**. They are not false; they were **not selected**.
 
-This is why Wheeler Mode exists. To explore the unobserved possibilities without collapsing the core truth.
+Discovery and optional metadata allow exploring possibilities without changing the core truth.
 
 ---
 

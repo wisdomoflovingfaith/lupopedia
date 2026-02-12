@@ -1,6 +1,6 @@
 <?php
 /**
- * Lupopedia 4.0.0 — Install / Upgrade Wizard
+ * Lupopedia 3.0.0 — Install / Upgrade Wizard
  *
  * Two valid states only: New install | Upgrade from Crafty Syntax 3.7.5.
  * No Lupopedia → Lupopedia upgrade. Project root is webroot; no /public folder.
@@ -117,7 +117,7 @@ if (!extension_loaded('fileinfo')) {
 if (!empty($preflight_blocking)) {
     header('Content-Type: text/html; charset=utf-8');
     echo '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lupopedia — Pre-flight check failed</title></head><body>';
-    echo '<h1>Lupopedia 4.0.0 — Pre-flight check failed</h1><p>Installation cannot continue:</p><ul>';
+    echo '<h1>Lupopedia 3.0.0 — Pre-flight check failed</h1><p>Installation cannot continue:</p><ul>';
     foreach ($preflight_blocking as $msg) {
         echo '<li>' . htmlspecialchars($msg) . '</li>';
     }
@@ -539,7 +539,7 @@ if ($baseUrl === '') {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lupopedia 4.0.0 — Install / Upgrade</title>
+    <title>Lupopedia 3.0.0 — Install / Upgrade</title>
     <style>
         body { font-family: system-ui, -apple-system, sans-serif; max-width: 680px; margin: 2rem auto; padding: 0 1.25rem; color: #1a1a1a; }
         h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
@@ -589,13 +589,13 @@ if ($baseUrl === '') {
     </style>
 </head>
 <body>
-    <h1>Lupopedia 4.0.0 — Install / Upgrade Wizard</h1>
+    <h1>Lupopedia 3.0.0 — Install / Upgrade Wizard</h1>
     <p class="wizard-progress">Step <?php echo InstallWizardSteps::getCurrentStepIndex($step); ?> of <?php echo InstallWizardSteps::getTotalSteps(); ?></p>
 
     <?php if ($step === 'welcome'): ?>
         <div class="wizard-card">
             <h2>Welcome</h2>
-            <p>This wizard will install Lupopedia 4.0.0 or upgrade from Crafty Syntax 3.7.5. Two valid states only: <strong>New install</strong> or <strong>Upgrade</strong>. No Lupopedia→Lupopedia upgrade. Project root is the webroot; no /public folder.</p>
+            <p>This wizard will install Lupopedia 3.0.0 or upgrade from Crafty Syntax 3.7.5. Two valid states only: <strong>New install</strong> or <strong>Upgrade</strong>. No Lupopedia→Lupopedia upgrade. Project root is the webroot; no /public folder.</p>
             <p><strong>Requirements:</strong> PHP 5.3+, PDO MySQL, JSON extension, writable project root, and a MySQL/MariaDB database. For upgrade: existing Crafty Syntax 3.7.5 data.</p>
             <div class="log-section">
                 <h4>System diagnostics</h4>

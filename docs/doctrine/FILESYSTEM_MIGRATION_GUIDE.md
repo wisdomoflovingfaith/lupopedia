@@ -1,6 +1,6 @@
 # Filesystem to Database Migration Guide
 
-**Version:** 4.0.0
+**Version:** 3.0.0
 **Date:** 2026-01-31
 **Status:** Ready for execution
 

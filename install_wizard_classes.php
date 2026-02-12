@@ -1,6 +1,6 @@
 <?php
 /**
- * Lupopedia 4.0.0 — Install Wizard Classes
+ * Lupopedia 3.0.0 — Install Wizard Classes
  *
  * Helper logic converted from install.php into classes per CLASS_CONVERSION_DOCTRINE.md.
  * PHP 5.3–compatible: no type hints, no return types, no short arrays, no ??.
@@ -463,6 +463,10 @@ class InstallWizardNormalize {
     }
 }
 
+/**
+ * Channel creation for install/upgrade. Uses department_id only.
+ * Group tables (lupo_groups, lupo_actor_group_membership) are removed; organizational scope is department only.
+ */
 class InstallWizardChannels {
 
     public static function createReservedSystemChannels($pdo, &$log) {

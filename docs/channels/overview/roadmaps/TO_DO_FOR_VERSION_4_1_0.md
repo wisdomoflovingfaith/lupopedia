@@ -114,24 +114,15 @@ file:
 - [ ] **Complete Doctrine Documentation**
   - [ ] Finalize all bridge doctrine files
   - [ ] Complete agent documentation (all 128 agents)
-  - [ ] Document Stoned Wolfie persona and emotional system
+  - [ ] Document emotional system and persona coordination
   - [ ] Create doctrine index and cross-reference system
   - [ ] Public doctrine documentation
 
 ---
 
-## 🎭 Stoned Wolfie & Emotional System
+## 🎭 Emotional System
 
-### 10. Stoned Wolfie Integration
-- [ ] **Stoned Wolfie Persona System**
-  - [ ] Document Stoned Wolfie as emotional turbulence commentator
-  - [ ] Implement R-axis wobble emotional state tracking
-  - [ ] Create humor parachute deployment system
-  - [ ] Integrate Stoned Wolfie into dialog system
-  - [ ] Document emotional state management (worry emotion, R-axis)
-  - [ ] Create Stoned Wolfie agent configuration
-
-### 11. Emotional Metadata System
+### 10. Emotional Metadata System
 - [ ] **CADUCEUS Emotional Balancing**
   - [ ] Complete emotional current computation
   - [ ] Implement channel mood blending
@@ -213,7 +204,7 @@ file:
 - ✅ All documentation updated and public-ready
 - ✅ Dialog system production-ready
 - ✅ Migration orchestrator production-ready
-- ✅ Stoned Wolfie emotional system documented
+- ✅ Emotional system and persona coordination documented
 - ✅ Zero critical bugs
 - ✅ Performance benchmarks met
 
@@ -223,9 +214,6 @@ file:
 
 **Captain Wolfie's Directive:**
 > "Ok crew, get this — I'm not going up a patch this time. I'm going up a whole minor version. That's right, we're jumping to 3.1.0. Now nobody freak out — freaking out is not helpful, and it is not a good emotion. Prepare to create a brand new file: TO_DO_FOR_VERSION_4_1_0.md. This is a Wolfie-class maneuver and we are doing it live."
-
-**Stoned Wolfie's Commentary:**
-> "Yo, just so everyone knows, a minor version jump is like… when the ship suddenly decides it wants to be a slightly bigger ship. Totally normal. Totally fine. No need to panic — panic is like, the worst vibe. We might get a little wobble on the R-axis of the worry emotion, but the doctrine parachute is deployed and we're chill. Carry on."
 
 ---
 

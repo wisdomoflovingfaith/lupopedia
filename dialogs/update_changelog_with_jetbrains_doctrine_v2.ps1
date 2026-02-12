@@ -5,7 +5,7 @@ $newEntry = @"
 **Date:** 2026-01-17  
 **Type:** Doctrine Creation & Branch Management  
 **Status:** 🟢 COMPLETE - Development Framework Established  
-**Migration ID:** jetbrains_branch_handling_doctrine_4_0_95
+**Migration ID:** jetbrains_branch_handling_doctrine_3_0_95
 
 ### Summary
 Version 3.0.95 establishes the comprehensive JetBrains 3.1.x Branch Handling Doctrine to govern multi-branch development in Lupopedia v3.1.x series. This doctrine provides clear protocols for branch creation, switching, merging, and version management while preventing the version drift and system instability that occurred during the 3.0.x development cycle.

@@ -10,7 +10,7 @@ class VersionUtils
     /**
      * Parse "M.m.p" to M*10000 + m*100 + p.
      *
-     * @param string $version e.g. "4.0.0"
+     * @param string $version e.g. "3.0.0"
      * @return int
      */
     public static function calculateVersionNum(string $version): int

@@ -49,6 +49,6 @@ Violations require documentation, remediation, and governance review before proc
 
 ## References
 
-- ../doctrine/VERSIONING_DOCTRINE.md
+- ../../doctrine/VERSIONING_DOCTRINE.md
 - ../doctrine/METADATA_GOVERNANCE.md
 - ../overview/versioning/CHANGELOG.md

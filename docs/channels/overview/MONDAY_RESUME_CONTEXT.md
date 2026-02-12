@@ -134,7 +134,7 @@ file:
 ## Files to Review
 
 1. `TO_DO_FOR_VERSION_4_1_0.md` - Ascent Manifest
-2. `dialogs/session_2026_01_16_version_4_0_46.md` - Friday session log
+2. `dialogs/session_2026_01_16_version_3_0_46.md` - Friday session log
 3. `CHANGELOG.md` - Version 3.0.50 entry
 4. `docs/MONDAY_START_OF_DAY.md` - 8-step checklist
 

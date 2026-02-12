@@ -473,7 +473,7 @@ database:
 - **[Dialog Doctrine](../DIALOG_DOCTRINE.md)** - Dialog metadata requirements
 - **[Documentation Doctrine](../DOCUMENTATION_DOCTRINE.md)** - Documentation metadata standards
 - **[Single Task Patch Doctrine](../SINGLE_TASK_PATCH_DOCTRINE.md)** - Change tracking requirements
-- **[Versioning Doctrine](../VERSIONING_DOCTRINE.md)** - Version metadata management
+- **[Versioning Doctrine](../../../doctrine/VERSIONING_DOCTRINE.md)** - Version metadata management
 - **[Directory Structure](DIRECTORY_STRUCTURE.md)** - File organization and structural requirements
 - **[Patch Discipline](PATCH_DISCIPLINE.md)** - Development workflow governance
 - **[Architecture Sync](../../architecture/ARCHITECTURE_SYNC.md)** - System architecture and metadata integration

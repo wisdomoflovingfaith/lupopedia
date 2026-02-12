@@ -26,7 +26,7 @@ Purpose: System architecture, protocols, and interoperability contracts.
 
 Top-Level Contents:
 - ARCHITECTURE.md
-- ARCHITECTURE_MAP_v4_0_70.md
+- ARCHITECTURE_MAP_v3_0_70.md
 - ARCHITECTURE_SYNC.md
 - CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md
 - CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md
@@ -36,11 +36,11 @@ Top-Level Contents:
 - DATABASE_PHILOSOPHY.md
 - GROUNDED_AGENT_SYSTEM.md
 - kip/
-- lupopedia_v4_0_70_agent_awareness_layer.md
+- lupopedia_v3_0_70_agent_awareness_layer.md
 - multi-ide-workflow.md
 - protocols/
 - SEMANTIC_NAVIGATION.md
-- system_truth_table_4_0_81.md
+- system_truth_table_3_0_81.md
 - VERSION_3_INGESTION_RULES.md
 - WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md
 - WHY_MULTIPLE_IDES_AND_AGENTS.md

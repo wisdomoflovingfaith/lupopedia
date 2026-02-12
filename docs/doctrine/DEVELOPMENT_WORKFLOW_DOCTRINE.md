@@ -1,7 +1,7 @@
 # Development Workflow Doctrine
 
 **Status:** Canonical  
-**Applies to:** Lupopedia 4.0.0 development and testing  
+**Applies to:** Lupopedia 3.0.0 development and testing  
 **Overrides:** Any previous assumptions about how development and schema changes are applied.
 
 ---
@@ -42,6 +42,8 @@ Treat this file as:
 ## 3. Absolute prohibitions (enforced)
 
 Lupopedia uses **no frameworks, no middleware, no Composer, no DB logic, no ORM**. Pure procedural PHP + PDO only. No stored procedures, triggers, views, foreign keys, cascades, query builders, or vendor packages. All logic lives in PHP; the database is for storage only. These rules apply to all code generated for the wizard, importer, and application.
+
+**Organizational scope:** The sole organizational and permission-bearing unit is the **department**. Tables `lupo_groups` and `lupo_actor_group_membership` are **removed**; do not create or reference them. Use `lupo_departments` and `lupo_actor_departments`. Schema alignment and TOON regeneration after the unification migration reflect department_id on permissions, collections, collection_tabs, contents, and analytics tables.
 
 ---
 

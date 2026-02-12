@@ -1,7 +1,7 @@
 <?php
 /**
 ---
-wolfie.headers.version: "4.0.0"
+wolfie.headers.version: "3.0.0"
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
 dialog:

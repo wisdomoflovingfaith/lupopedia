@@ -6,7 +6,7 @@
  * Used in dry-run enforcement mode (3.0.103).
  * 
  * @package Lupopedia
- * @version 4.0.0
+ * @version 3.0.0
  * @author CASCADE
  */
 

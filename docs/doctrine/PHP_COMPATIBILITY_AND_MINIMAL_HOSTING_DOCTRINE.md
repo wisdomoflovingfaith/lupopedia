@@ -1,14 +1,14 @@
 # PHP Compatibility and Minimal Hosting Doctrine
 
 **Status:** Canonical  
-**Applies to:** Lupopedia 4.0.0 — all wizard, importer, and endpoint code  
+**Applies to:** Lupopedia 3.0.0 — all wizard, importer, and endpoint code  
 **Overrides:** Any previous assumptions about PHP 7/8 requirements, GD, mbstring, or modern hosting.
 
 ---
 
 ## 1. PHP Compatibility Doctrine (Non-Negotiable)
 
-Lupopedia 4.0.0 must run on **PHP 5.3 → PHP 8.1+**. This is the full compatibility matrix. All code must run without syntax errors on PHP 5.3 and also run on PHP 8.1+; avoid deprecated/removed functions and modern-only features; handle behavior changes across versions.
+Lupopedia 3.0.0 must run on **PHP 5.3 → PHP 8.1+**. This is the full compatibility matrix. All code must run without syntax errors on PHP 5.3 and also run on PHP 8.1+; avoid deprecated/removed functions and modern-only features; handle behavior changes across versions.
 
 ### Required constraints (forbidden in generated code)
 

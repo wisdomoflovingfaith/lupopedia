@@ -218,7 +218,7 @@ And because of that, I'm on track for the March 2nd deadline. This time, we're b
 
 **Development Process:**
 - **[Single Task Patch Doctrine](../../doctrine/SINGLE_TASK_PATCH_DOCTRINE.md)** - MANDATORY enforcement of one-task-per-patch commitment
-- **[Versioning Doctrine](../../doctrine/VERSIONING_DOCTRINE.md)** - Three-stage pipeline ensuring stability
+- **[Versioning Doctrine](../../../doctrine/VERSIONING_DOCTRINE.md)** - Three-stage pipeline ensuring stability
 - **[Cursor Cascade Role Separation](../../doctrine/CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md)** - Detailed AI role definitions
 - **[What Not To Do And Why](WHAT_NOT_TO_DO_AND_WHY.md)** - Lessons learned from architectural resets
 

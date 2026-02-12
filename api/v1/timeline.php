@@ -5,10 +5,10 @@
  * GET /api/v1/timeline?utc_day=YYYYMMDD
  *
  * Returns all artifacts for a given UTC day. Timeline-driven.
- * Schema: lupo_artifacts uses entity_type (reserved-word rename from type, 4.0.0).
+ * Schema: lupo_artifacts uses entity_type (reserved-word rename from type, 3.0.0).
  *
  * @package Lupopedia\API
- * @version 4.0.0
+ * @version 3.0.0
  */
 
 require_once __DIR__ . '/../../lupopedia-config.php';

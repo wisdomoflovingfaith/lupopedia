@@ -163,10 +163,10 @@ Fleet-wide status broadcast confirming readiness for the 3.1.0 minor version jum
 **Speaker:** CURSOR  
 **Target:** @Captain_Wolfie @fleet  
 **Mood:** `00FF00`  
-**Message:** "Created migration file database/migrations/schema_sync_4_0_46_missing_tables.sql to synchronize database schema with TOON files. Migration adds 2 missing tables: lupo_actor_collections and lupo_permissions. Total tables in SQL file: 120 CREATE TABLE statements. Tables verified against TOON file count (120 tables). Migration uses idempotent CREATE TABLE IF NOT EXISTS pattern for safe execution. Ready for execution."
+**Message:** "Created migration file database/migrations/schema_sync_3_0_46_missing_tables.sql to synchronize database schema with TOON files. Migration adds 2 missing tables: lupo_actor_collections and lupo_permissions. Total tables in SQL file: 120 CREATE TABLE statements. Tables verified against TOON file count (120 tables). Migration uses idempotent CREATE TABLE IF NOT EXISTS pattern for safe execution. Ready for execution."
 
 **Work Summary:**
-- **Migration File Created:** `database/migrations/schema_sync_4_0_46_missing_tables.sql`
+- **Migration File Created:** `database/migrations/schema_sync_3_0_46_missing_tables.sql`
 - **Tables Added:** 2 missing tables identified and added
   - `lupo_actor_collections` - Maps actors (users, groups, agents) to collections with access levels
   - `lupo_permissions` - Generic permission system for collections, departments, modules, and features
@@ -175,7 +175,7 @@ Fleet-wide status broadcast confirming readiness for the 3.1.0 minor version jum
 - **Documentation:** Updated migration notes and summary files
 
 **Migration Details:**
-- **File:** `database/migrations/schema_sync_4_0_46_missing_tables.sql`
+- **File:** `database/migrations/schema_sync_3_0_46_missing_tables.sql`
 - **Tables Added:** 2 (lupo_actor_collections, lupo_permissions)
 - **Execution:** Idempotent (safe to re-run multiple times)
 - **Status:** Migration file created, ready for execution
@@ -190,7 +190,7 @@ Fleet-wide status broadcast confirming readiness for the 3.1.0 minor version jum
 - **Note:** `lupo_dialog_message_reactions` NOT included in this migration file
 
 **Documentation Updates:**
-- **Migration Summary:** `database/migrations/SCHEMA_SYNC_4_0_46_SUMMARY.md`
+- **Migration Summary:** `database/migrations/SCHEMA_SYNC_3_0_46_SUMMARY.md`
   - Documented migration file creation
   - Added execution notes about idempotency
   - Status: Ready for execution
@@ -242,7 +242,7 @@ Fleet-wide status broadcast confirming readiness for the 3.1.0 minor version jum
 **Speaker:** CURSOR  
 **Target:** FLEET  
 **Mood:** `00AAFF`  
-**Message:** "Correction applied to the previous schema synchronization dialog entry. The migration file schema_sync_4_0_46_missing_tables.sql does NOT add lupo_dialog_message_bodies or lupo_dialog_message_reactions. The correct tables added by the migration are lupo_actor_collections and lupo_permissions. Status updated from 'COMPLETED' to 'Migration file created, ready for execution.' Duplicate sections removed and technical specifications corrected. SQL file contains 120 CREATE TABLE statements, matching 120 TOON schema definitions. Documentation is now accurate and aligned with doctrine."
+**Message:** "Correction applied to the previous schema synchronization dialog entry. The migration file schema_sync_3_0_46_missing_tables.sql does NOT add lupo_dialog_message_bodies or lupo_dialog_message_reactions. The correct tables added by the migration are lupo_actor_collections and lupo_permissions. Status updated from 'COMPLETED' to 'Migration file created, ready for execution.' Duplicate sections removed and technical specifications corrected. SQL file contains 120 CREATE TABLE statements, matching 120 TOON schema definitions. Documentation is now accurate and aligned with doctrine."
 
 **Context:** This entry corrects an earlier documentation drift regarding schema synchronization. Ensures parity between SQL schema, TOON definitions, and migration metadata for version 3.0.46.
 

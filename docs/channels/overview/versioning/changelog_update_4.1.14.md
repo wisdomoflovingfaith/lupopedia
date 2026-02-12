@@ -35,14 +35,6 @@ system_context:
   table_count: 176
   table_ceiling: 180
   migration_audit_complete: true
-wheeler_mode:
-  active: false
-  reason: "Version update requires full truth expansion"
-  notes:
-    - "Comprehensive audit of migration script documented"
-    - "Doctrine violations identified and logged for remediation"
-    - "System onboarding enhanced with new dialog"
-    - "HELP migration TL;DR created for orientation"
 ---
 
 # VERSION 3.1.14 UPDATE EXECUTION

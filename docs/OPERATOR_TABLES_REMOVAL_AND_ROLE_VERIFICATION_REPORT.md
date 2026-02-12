@@ -22,7 +22,7 @@
 
 | File | Change |
 |------|--------|
-| docs/REQUIRED_TABLES_4.2.1.md | Removed the 8 list entries for the deprecated operator tables above. |
+| docs/REQUIRED_TABLES_4.1.0.md | Removed the 8 list entries for the deprecated operator tables above. |
 
 **Install SQL:** `database/migrations/install_new_lupopedia.sql` was searched for these table names. **No CREATE TABLE blocks** for any of the eight tables exist there (only unrelated column names such as `crafty_operator_id`, `anubis_operator` appear). **No changes made.**
 
@@ -34,14 +34,14 @@
 
 | File | Lines removed |
 |------|----------------|
-| docs/REQUIRED_TABLES_4.2.1.md | 8 (one list entry per deprecated table) |
+| docs/REQUIRED_TABLES_4.1.0.md | 8 (one list entry per deprecated table) |
 | **Total** | **8** |
 
 ---
 
 ## Confirmations
 
-- **Deprecated operator tables removed from REQUIRED_TABLES:** All eight entries were removed from `docs/REQUIRED_TABLES_4.2.1.md`. They were not present in install SQL or dev alignment migrations, so nothing was removed there.
+- **Deprecated operator tables removed from REQUIRED_TABLES:** All eight entries were removed from `docs/REQUIRED_TABLES_4.1.0.md`. They were not present in install SQL or dev alignment migrations, so nothing was removed there.
 - **No PHP or runtime code touched:** No `.php` files were modified. No services, helpers, or modules were changed.
 
 ---

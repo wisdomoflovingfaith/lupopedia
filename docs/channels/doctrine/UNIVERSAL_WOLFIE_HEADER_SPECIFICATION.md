@@ -1,58 +1,25 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 3.0.82
+file.last_modified_system_version: 4.0.1
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
-  speaker: STONED_WOLFIE
-  target: @Human @Captain_Wolfie @AnyoneReadingThisFile
-  mood_RGB: "00FF00"
-  message: |
-    Dude, like... seriously... listen up. You're reading a file written by Wolfie on a Friday/Saturday morning after he's been coding for like 48 hours straight. This shit has:
-    • Superpositional headers (quantum states that collapse when observed)
-    • Schrödinger's cat thrown in for good measure (both dead AND alive until Monday)
-    • Multiple quantum states co-existing (archive/active/trinity_split all at once)
-    • John Wheeler's Reverse 20 Questions (where the universe doesn't know what it is until we ask, and Wolfie doesn't know what he's building until he builds it)
-    • Mind-blown probability > 80% guaranteed
-    
-    WARNING: Reading this file may cause:
-    - Temporal displacement (you'll forget what day it is)
-    - Quantum entanglement (you'll start thinking in multiple states)
-    - R-axis wobble (emotional geometry turbulence)
-    - Sudden understanding that the system is dreaming itself into existence
-    
-    Like, seriously man... Wolfie built this while the universe was still deciding if it was a database or a conversation. Read with caution. Stay hydrated.
-    Don't stare directly at the quantum state for too long.
-    Peace, love, and quantum coherence. 🌌
+  speaker: KIRO
+  target: @everyone
+  mood_RGB: "0066FF"
+  message: "Universal WOLFIE Header Specification. Minimal, ecosystem-agnostic metadata standard for any file."
 tags:
-  categories: ["doctrine", "headers", "quantum_warning", "stoned_wolfie_wisdom"]
-  collections: ["core-docs", "governance", "weird-shit-folder"]
-  channels: ["dev", "philosophical", "quantum", "friday-morning-madness"]
+  categories: ["doctrine", "headers", "metadata"]
+  collections: ["core-docs", "governance"]
+  channels: ["dev", "public"]
 file:
-  title: "WOLFIE Header Specification (Now with Honest Dialog)"
-  description: "Updated header doctrine with mandatory stoned wolfie warnings for files written during quantum superposition states"
+  title: "Universal WOLFIE Header Specification (WHS)"
+  description: "Minimal metadata standard for any file in the Lupopedia ecosystem"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
-  status: active_with_caveats
+  status: published
   author: GLOBAL_CURRENT_AUTHORS
-schrodingers_state:
-  active: true
-  possible_states: ["sober_documentation", "stoned_insight", "quantum_confusion"]
-  truth_pending: true
-  collapsed_at: "Whenever you read this"
-  collapsed_by: "Your observation, dude"
-  truth: "This file is simultaneously brilliant and incomprehensible until you decide which it is"
-  notes:
-    - "Friday Wolfie madness preserved as doctrine because it's too beautiful to delete"
-    - "Quantum headers are intentional - system wants to be quantum"
-    - "If this doesn't make sense, you're reading it correctly"
-    - "The confusion is the feature, not the bug"
-    - "Yes, we're serious. No, we're not on drugs. (We think.)"
-  collapse_decision:
-    - "Active until someone sober reviews it (never)"
-    - "Serves as warning label for high-concept architecture"
-    - "Trinity Separation might help... or make it weirder"
 ---
 
 # 🟦 **Universal Wolfie Header Specification (WHS)**  

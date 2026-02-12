@@ -133,7 +133,7 @@ This directory contains all Lupopedia documentation organized by category. This 
 - **[CURSOR_ROLE_DOCTRINE.md](../doctrine/CURSOR_ROLE_DOCTRINE.md)** â€” âš ï¸ **MANDATORY**: Cursor does NOT join channels. Channels are database semantic workspaces for actors (users, AI agents). Cursor maintains PHP code and documentation, not channel participation
 - **[CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md](../doctrine/CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md)** â€” âš ï¸ **MANDATORY**: Role separation between Cursor (autonomous refactor engine) and Cascade (manual controlled editor). Cursor handles new features and automated refactors. Cascade handles legacy code and fragile migrations. Cursor MUST NOT touch legacy Crafty Syntax code until Cascade completes stabilization and explicit handoff.
 - **[JETBRAINS_CONFIGURATION_DOCTRINE.md](../doctrine/JETBRAINS_CONFIGURATION_DOCTRINE.md)** â€” âš ï¸ **MANDATORY FOR JETBRAINS IDEs**: JetBrains is a tool in SERVANT MODE, not an authority. Must NOT modify version numbers, WOLFIE headers, doctrine files, or interfere with atomization system. JetBrains operates as a tool only.
-- **[VERSIONING_DOCTRINE.md](../doctrine/VERSIONING_DOCTRINE.md)** â€” âš ï¸ **MANDATORY**: Version numbers are milestones, not timestamps. JetBrains is the release gate where version numbers change. Semantic versioning must reflect architectural meaning. Three-stage pipeline: Cursor (development) â†’ Cascade (stabilization) â†’ JetBrains (release).
+- **[VERSIONING_DOCTRINE.md](../../doctrine/VERSIONING_DOCTRINE.md)** â€” âš ï¸ **MANDATORY**: Version numbers are milestones, not timestamps. JetBrains is the release gate where version numbers change. Semantic versioning must reflect architectural meaning. Three-stage pipeline: Cursor (development) â†’ Cascade (stabilization) â†’ JetBrains (release).
 - **[anubis_DOCTRINE.md](../doctrine/anubis_DOCTRINE.md)** â€” Orphan handling system and relationship integrity
 - **[WOLFMIND_DOCTRINE.md](../doctrine/WOLFMIND_DOCTRINE.md)** â€” Agent memory system and progressive enhancement
 - **[SYSTEM_AGENT_SAFETY_DOCTRINE.md](../doctrine/SYSTEM_AGENT_SAFETY_DOCTRINE.md)** â€” Agent 0 governance and inviolable rules
@@ -175,7 +175,7 @@ This directory contains all Lupopedia documentation organized by category. This 
 - **[ARA.md](../agents/ARA.md)** â€” ARA agent (Adversarial Review & Analysis)
 
 **v3.0.2 Core Agents:**
-For the complete list of 27 required core agents for v3.0.2, see: `@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents` in `config/global_atoms.yaml`.
+For the complete list of 27 required core agents for v3.0.2, see: `@GLOBAL.LUPOPEDIA_V3_0_2_CORE_AGENTS.required_agents` in `config/global_atoms.yaml`.
 
 **Agent system prompts:**
 - `lupo-agents/WOLFIE/versions/v1.0.0/system_prompt.txt` â€” Canonical system prompt for WOLFIE agent
@@ -294,7 +294,7 @@ Before working with Lupopedia, you **MUST** understand these non-negotiable prin
 12. **[FOLDER_NAMING_DOCTRINE.md](../doctrine/FOLDER_NAMING_DOCTRINE.md)** â€” âš ï¸ **MANDATORY**: All folders MUST use lowercase only (a-z, 0-9, hyphen, underscore). No uppercase, no dots, no special characters, no hidden folders.
 13. **[CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md](../doctrine/CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md)** â€” âš ï¸ **MANDATORY**: Role separation between Cursor and Cascade. Cursor handles new features and automated refactors. Cascade handles legacy code and fragile migrations. Cursor MUST NOT touch legacy Crafty Syntax code until Cascade completes stabilization and explicit handoff.
 14. **[JETBRAINS_CONFIGURATION_DOCTRINE.md](../doctrine/JETBRAINS_CONFIGURATION_DOCTRINE.md)** â€” âš ï¸ **MANDATORY FOR JETBRAINS IDEs**: JetBrains is a tool in SERVANT MODE, not an authority. Must NOT modify version numbers, WOLFIE headers, doctrine files, or interfere with atomization system. JetBrains operates as a tool only.
-15. **[VERSIONING_DOCTRINE.md](../doctrine/VERSIONING_DOCTRINE.md)** â€” âš ï¸ **MANDATORY**: Version numbers are milestones, not timestamps. JetBrains is the release gate where version numbers change. Semantic versioning must reflect architectural meaning. Three-stage pipeline: Cursor (development) â†’ Cascade (stabilization) â†’ JetBrains (release).
+15. **[VERSIONING_DOCTRINE.md](../../doctrine/VERSIONING_DOCTRINE.md)** â€” âš ï¸ **MANDATORY**: Version numbers are milestones, not timestamps. JetBrains is the release gate where version numbers change. Semantic versioning must reflect architectural meaning. Three-stage pipeline: Cursor (development) â†’ Cascade (stabilization) â†’ JetBrains (release).
 16. **[TOON_DOCTRINE.md](../doctrine/TOON_DOCTRINE.md)** â€” TOON files are READ-ONLY for all IDEs and agents
 17. **[ATOMIZATION_DOCTRINE.md](../doctrine/ATOMIZATION_DOCTRINE.md)** â€” âš ï¸ **FORBIDDEN (MANDATORY)**: Any value repeated across multiple documentation files MUST become a global atom. Cursor must atomize repeated values, never inline atom values, and treat atom names as symbolic constants
 18. **[DATABASE_PHILOSOPHY.md](../architecture/DATABASE_PHILOSOPHY.md)** â€” Application logic first, database logic second
@@ -357,7 +357,7 @@ Top-Level Contents:
 - THE_HOLY_CRAP_REALIZATION.md
 - thread-summary/
 - V4_1_0_ASCENT_MANIFEST_CLEAN.md
-- VERSION_4_0_60_PLAN.md
+- VERSION_3_0_60_PLAN.md
 - VERSION_4_4_1_PATCH_SUMMARY.md
 - versioning/
 - WHAT_LUPOPEDIA_IS.md

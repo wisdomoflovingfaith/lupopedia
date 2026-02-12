@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.0
+file.last_modified_system_version: 3.0.0
 file.channel: doctrine
 ---
 
@@ -24,7 +24,7 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 
 ### **Documentation Files**
 - ✅ `docs/migrations/4.3.1.md` - Created comprehensive migration documentation
-- ✅ `docs/ARCHITECTURE/ARCHITECTURE_MAP_v4_0_70.md` - Updated version and date
+- ✅ `docs/ARCHITECTURE/ARCHITECTURE_MAP_v3_0_70.md` - Updated version and date
 - ✅ `docs/doctrine/TABLE_COUNT_DOCTRINE.md` - Updated table count and system context
 - ✅ `.cursorrules` - Updated version reference in cursor rules
 

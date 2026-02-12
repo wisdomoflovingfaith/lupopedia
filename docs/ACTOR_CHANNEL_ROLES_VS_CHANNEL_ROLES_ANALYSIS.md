@@ -65,9 +65,9 @@ They are **not** the same concept: different PK names, different role column (`r
 | database/migrations/dev_20260204_fix_schema_alignment.sql | 27–41 | ALTER TABLE lupo_actor_channel_roles MODIFY … | Migration | Active |
 | database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 28–42 | Summary of lupo_actor_channel_roles columns | Doc | Active |
 | migrations/structural_alignment_mysql_migration.sql | 131 | ('lupo_actor_channel_roles', 1) | Migration list | Active |
-| docs/REQUIRED_TABLES_4.2.1.md | 74 | List entry lupo_actor_channel_roles | Doc | Reference |
+| docs/REQUIRED_TABLES_4.1.0.md | 74 | List entry lupo_actor_channel_roles | Doc | Reference |
 | docs/LIVEHELP_REMOVAL_REPORT.md | 20, 32 | Text: lupo_actor_channel_roles for role-based permissions | Doc | Reference |
-| docs/channels/… (multiple) | various | Doctrine, migrations 4.0.70–4.0.73, CHANNEL_JOIN_PROTOCOL, AGENT_AWARENESS_DOCTRINE, dialogs, changelog dialogs | Doc / dialog | Reference / design |
+| docs/channels/… (multiple) | various | Doctrine, migrations 3.0.70–3.0.73, CHANNEL_JOIN_PROTOCOL, AGENT_AWARENESS_DOCTRINE, dialogs, changelog dialogs | Doc / dialog | Reference / design |
 | docs/toons/lupo_actor_channel_roles.toon.json | — | TOON file | Schema | Canonical |
 | DIRECTORY_TREE.md | 561–562, 1412, etc. | File listing | Doc | Reference |
 
@@ -125,7 +125,7 @@ If the decision is to **drop lupo_actor_channel_roles** and retire protocol/awar
 | database/migrations/dev_20260204_fix_schema_alignment.sql | Remove ALTER TABLE lupo_actor_channel_roles statements. |
 | database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Remove lupo_actor_channel_roles lines. |
 | migrations/structural_alignment_mysql_migration.sql | Remove reference to lupo_actor_channel_roles. |
-| docs/REQUIRED_TABLES_4.2.1.md | Remove lupo_actor_channel_roles from list. |
+| docs/REQUIRED_TABLES_4.1.0.md | Remove lupo_actor_channel_roles from list. |
 | docs/LIVEHELP_REMOVAL_REPORT.md | Update text that mentions lupo_actor_channel_roles. |
 | docs/toons/lupo_actor_channel_roles.toon.json | Delete or archive (TOONs are generated; regenerate after schema change). |
 | All docs/channels/… and dialogs/… that reference lupo_actor_channel_roles | Update or remove references (doctrine, migrations, dialogs). |

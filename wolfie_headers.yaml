@@ -434,7 +434,7 @@ version_history:
       - "Extracts ## headings and generates anchor links"
       - "Enables agents to understand file structure before reading"
       - "Mirrors content_sections field in lupo_contents table"
-  v4_0_0:
+  v3_0_0:
     date: 20260105
     changes:
       - "Aligned header version with Lupopedia 3.0.0 ecosystem"

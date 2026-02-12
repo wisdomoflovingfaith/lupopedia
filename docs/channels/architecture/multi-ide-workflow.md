@@ -181,7 +181,7 @@ JetBrains = the moment the code stops being "in progress" and becomes "official.
 - Cursor updates CHANGELOG.md (in development/stabilization phase)
 - Version numbers still represent milestones, not timestamps
 - Git tagging/GitHub commits not available until 3.1.0 (no `.git` folder until 3.1.0)
-- See [VERSIONING_DOCTRINE.md](../doctrine/VERSIONING_DOCTRINE.md) for details
+- See [VERSIONING_DOCTRINE.md](../../doctrine/VERSIONING_DOCTRINE.md) for details
 
 ---
 
@@ -645,7 +645,7 @@ This doc becomes:
 **Core Doctrines (Referenced in Workflow):**
 - **[Dialog Doctrine](../doctrine/DIALOG_DOCTRINE.md)** - MANDATORY rules for dialog authorship, speaker mapping, and multi-agent coordination
 - **[Cursor Cascade Role Separation Doctrine](../doctrine/CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md)** - Complete role separation between development, stabilization, and release stages
-- **[Versioning Doctrine](../doctrine/VERSIONING_DOCTRINE.md)** - Three-stage pipeline and semantic versioning rules
+- **[Versioning Doctrine](../../doctrine/VERSIONING_DOCTRINE.md)** - Three-stage pipeline and semantic versioning rules
 - **[TOON Doctrine](../doctrine/TOON_DOCTRINE.md)** - Why TOON files are read-only and how IDEs consume them
 - **[PDO Conversion Doctrine](../doctrine/PDO_CONVERSION_DOCTRINE.md)** - Legacy code migration rules used in Cascade
 

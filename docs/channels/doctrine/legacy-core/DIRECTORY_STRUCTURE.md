@@ -462,7 +462,7 @@ images/
 - **[Patch Discipline](PATCH_DISCIPLINE.md)** - Development workflow governance
 - **[Architecture Sync](../../architecture/ARCHITECTURE_SYNC.md)** - System architecture and component integration
 - **[Single Task Patch Doctrine](../SINGLE_TASK_PATCH_DOCTRINE.md)** - One-task-per-patch workflow requirements
-- **[Versioning Doctrine](../VERSIONING_DOCTRINE.md)** - Version management and release procedures
+- **[Versioning Doctrine](../../../doctrine/VERSIONING_DOCTRINE.md)** - Version management and release procedures
 
 ---
 

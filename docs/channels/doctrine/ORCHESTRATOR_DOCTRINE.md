@@ -187,8 +187,8 @@ Classification enables:
 
 Migration files are organized in `/database/migrations/`:
 
-- `orchestrator_schema_4_0_25.sql` - Orchestration schema creation
-- `ephemeral_schema_4_0_25.sql` - Ephemeral schema creation
+- `orchestrator_schema_3_0_25.sql` - Orchestration schema creation
+- `ephemeral_schema_3_0_25.sql` - Ephemeral schema creation
 - `{migration_name}_{version}.sql` - Version-specific migrations
 - `{migration_name}_{version}_rollback.sql` - Rollback migrations
 

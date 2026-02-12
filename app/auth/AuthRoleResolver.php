@@ -3,9 +3,10 @@
 namespace App\Auth;
 
 /**
- * Auth role resolution — channel-scoped only (lupo_channel_roles).
+ * Auth role resolution — channel roles (lupo_channel_roles) and permissions (lupo_permissions).
+ * Permission is satisfied if: user_id match OR department_id match (actor's departments) OR channel role.
  * Default channel for system-wide behavior is channel_id = 1.
- * No actor_roles. Uses PDO_DB and LUPO_TABLE_PREFIX. No DB-side logic.
+ * Uses PDO_DB and LUPO_TABLE_PREFIX. No DB-side logic. No group tables.
  */
 
 if (!defined('LUPO_TABLE_PREFIX')) {
@@ -28,7 +29,8 @@ class AuthRoleResolver
     /**
      * Whether the actor has admin role (default channel).
      * 1) lupo_channel_roles (channel_id = 1, role_type IN ('captain', 'administrator'))
-     * 2) Fallback: lupo_permissions (owner on admin module for auth_user)
+     * 2) Fallback: lupo_permissions (owner on admin module for auth_user via user_id)
+     * 3) Fallback: lupo_permissions (owner on admin module for any of actor's departments via department_id)
      *
      * @param int $actorId Actor ID to check
      * @return bool
@@ -71,7 +73,30 @@ class AuthRoleResolver
              AND user_id = :user_id AND permission = 'owner' AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
             array('module_id' => $adminModule['module_id'], 'user_id' => $authUserId)
         );
-        return $count !== null;
+        if ($count !== null) {
+            return true;
+        }
+
+        $departmentIds = $this->getDepartmentIdsForActor($actorId);
+        if (!empty($departmentIds)) {
+            $placeholders = array();
+            $params = array('module_id' => $adminModule['module_id']);
+            foreach (array_values($departmentIds) as $i => $did) {
+                $key = 'dept_' . $i;
+                $placeholders[] = ':' . $key;
+                $params[$key] = $did;
+            }
+            $inList = implode(', ', $placeholders);
+            $row = $this->db->fetchRow(
+                "SELECT 1 FROM {$perm} WHERE target_type = 'module' AND target_id = :module_id 
+                 AND department_id IN ({$inList}) AND permission = 'owner' AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+                $params
+            );
+            if ($row !== null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -92,6 +117,32 @@ class AuthRoleResolver
             array('actor_id' => $actorId)
         );
         return $row !== null;
+    }
+
+    /**
+     * Get department_id list for actor from lupo_actor_departments.
+     *
+     * @param int $actorId Actor ID
+     * @return array List of department_id (integers)
+     */
+    private function getDepartmentIdsForActor($actorId)
+    {
+        if ($actorId <= 0) {
+            return array();
+        }
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $t = $this->db->quoteIdentifier($prefix . 'actor_departments');
+        $rows = $this->db->fetchAll(
+            "SELECT department_id FROM {$t} WHERE actor_id = :actor_id AND (is_deleted = 0 OR is_deleted IS NULL)",
+            array('actor_id' => $actorId)
+        );
+        $out = array();
+        foreach ($rows as $r) {
+            if (isset($r['department_id']) && $r['department_id'] !== null && $r['department_id'] !== '') {
+                $out[] = (int) $r['department_id'];
+            }
+        }
+        return $out;
     }
 
     /**

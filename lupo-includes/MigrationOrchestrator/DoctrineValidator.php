@@ -100,7 +100,7 @@ class DoctrineValidator
         // Check filename follows pattern: {name}_{version}.sql
         if (!preg_match('/^[a-z0-9_-]+_\d+\.\d+\.\d+\.sql$/i', $filename)) {
             $errors[] = sprintf(
-                'Migration filename "%s" does not follow convention: {name}_{version}.sql (e.g., doctrine_mapping_4_0_33.sql)',
+                'Migration filename "%s" does not follow convention: {name}_{version}.sql (e.g., doctrine_mapping_3_0_33.sql)',
                 $filename
             );
         }

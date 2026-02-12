@@ -119,7 +119,7 @@ LimitsEnforcementService is loaded via require_once when needed; DB from `$GLOBA
 ## 4. Helpers removed or wrapped
 
 - **Removed:** Full procedural implementations for all listed helpers.
-- **Wrapped:** Each helper is a thin wrapper that calls the appropriate service/static method when available, with a minimal fallback where needed (e.g. redirect when RedirectUtils not loaded, version '4.0.0' when AtomLoader not loaded).
+- **Wrapped:** Each helper is a thin wrapper that calls the appropriate service/static method when available, with a minimal fallback where needed (e.g. redirect when RedirectUtils not loaded, version '3.0.0' when AtomLoader not loaded).
 
 ---
 

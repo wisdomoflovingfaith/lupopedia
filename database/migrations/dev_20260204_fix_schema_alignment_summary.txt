@@ -35,7 +35,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_actor_channel_roles.handshake_metadata_json -> json DEFAULT NULL
   lupo_actor_channel_roles.awareness_snapshot_json -> json DEFAULT NULL
   lupo_actor_channel_roles.protocol_completion_status -> varchar(64) DEFAULT 'pending'
-  lupo_actor_channel_roles.protocol_version -> varchar(20) DEFAULT '4.0.0'
+  lupo_actor_channel_roles.protocol_version -> varchar(20) DEFAULT '3.0.0'
   lupo_actor_channel_roles.join_sequence_step -> tinyint DEFAULT '0'
   lupo_actor_channel_roles.handshake_completed_ymdhis -> bigint DEFAULT NULL
   lupo_actor_channel_roles.awareness_completed_ymdhis -> bigint DEFAULT NULL
@@ -64,7 +64,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_actor_collections.identity_signature -> varchar(255) DEFAULT NULL
   lupo_actor_collections.trust_level -> varchar(64) DEFAULT 'standard'
   lupo_actor_collections.emotional_geometry_baseline -> json DEFAULT NULL
-  lupo_actor_collections.doctrine_alignment_version -> varchar(20) DEFAULT '4.0.0'
+  lupo_actor_collections.doctrine_alignment_version -> varchar(20) DEFAULT '3.0.0'
   lupo_actor_conflicts.domain_id -> bigint NOT NULL DEFAULT '1'
   lupo_actor_conflicts.actor_a_id -> bigint NOT NULL
   lupo_actor_conflicts.actor_b_id -> bigint NOT NULL
@@ -106,13 +106,6 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_actor_events.event_type -> varchar(100) NOT NULL
   lupo_actor_events.event_data -> json DEFAULT NULL
   lupo_actor_events.created_ymdhis -> bigint NOT NULL
-  lupo_actor_group_membership.group_id -> bigint NOT NULL
-  lupo_actor_group_membership.domain_id -> bigint NOT NULL
-  lupo_actor_group_membership.created_ymdhis -> bigint NOT NULL
-  lupo_actor_group_membership.created_by -> bigint DEFAULT NULL
-  lupo_actor_group_membership.expires_ymdhis -> bigint DEFAULT NULL
-  lupo_actor_group_membership.is_active -> tinyint NOT NULL DEFAULT '1'
-  lupo_actor_group_membership.role -> varchar(50) DEFAULT 'member'
   lupo_actor_handshakes.actor_id -> bigint NOT NULL
   lupo_actor_handshakes.actor_type -> varchar(32) NOT NULL
   lupo_actor_handshakes.utc_timestamp -> bigint NOT NULL
@@ -389,7 +382,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_analytics_referers_periods.referer_url_path -> varchar(500) NOT NULL DEFAULT ''
   lupo_analytics_referers_periods.parent_id -> bigint NOT NULL DEFAULT '0'
   lupo_analytics_referers_periods.level -> int NOT NULL DEFAULT '1'
-  lupo_analytics_referers_periods.group_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_referers_periods.department_id -> bigint NOT NULL DEFAULT '1'
   lupo_analytics_referers_periods.period_type -> varchar(64) NOT NULL
   lupo_analytics_referers_periods.period_date -> bigint NOT NULL
   lupo_analytics_referers_periods.visits -> int NOT NULL DEFAULT '0'
@@ -415,7 +408,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_analytics_visits.updated_ymdhis -> bigint NOT NULL
   lupo_analytics_visits_daily.content_id -> bigint NOT NULL DEFAULT '0'
   lupo_analytics_visits_daily.url_path -> varchar(500) NOT NULL DEFAULT ''
-  lupo_analytics_visits_daily.group_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_visits_daily.department_id -> bigint NOT NULL DEFAULT '1'
   lupo_analytics_visits_daily.date_ymd -> bigint NOT NULL
   lupo_analytics_visits_daily.visits -> int NOT NULL DEFAULT '0'
   lupo_analytics_visits_daily.unique_sessions -> int NOT NULL DEFAULT '0'
@@ -430,7 +423,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_analytics_visits_daily.updated_ymdhis -> bigint NOT NULL
   lupo_analytics_visits_monthly.content_id -> bigint NOT NULL DEFAULT '0'
   lupo_analytics_visits_monthly.url_path -> varchar(500) NOT NULL DEFAULT ''
-  lupo_analytics_visits_monthly.group_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_visits_monthly.department_id -> bigint NOT NULL DEFAULT '1'
   lupo_analytics_visits_monthly.date_ym -> bigint NOT NULL
   lupo_analytics_visits_monthly.visits -> int NOT NULL DEFAULT '0'
   lupo_analytics_visits_monthly.unique_sessions -> int NOT NULL DEFAULT '0'
@@ -445,7 +438,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_analytics_visits_monthly.updated_ymdhis -> bigint NOT NULL
   lupo_analytics_visits_periods.content_id -> bigint NOT NULL DEFAULT '0'
   lupo_analytics_visits_periods.url_path -> varchar(500) NOT NULL DEFAULT ''
-  lupo_analytics_visits_periods.group_id -> bigint NOT NULL DEFAULT '0'
+  lupo_analytics_visits_periods.department_id -> bigint NOT NULL DEFAULT '1'
   lupo_analytics_visits_periods.period_type -> varchar(64) NOT NULL
   lupo_analytics_visits_periods.period_date -> bigint NOT NULL
   lupo_analytics_visits_periods.visits -> int NOT NULL DEFAULT '0'
@@ -618,7 +611,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_calibration_impacts.after_metrics_json -> json DEFAULT NULL
   lupo_calibration_impacts.observation_period_hours -> int DEFAULT '24'
   lupo_calibration_impacts.measured_ymdhis -> bigint NOT NULL
-  lupo_calibration_impacts.impact_version -> varchar(20) DEFAULT '4.0.0'
+  lupo_calibration_impacts.impact_version -> varchar(20) DEFAULT '3.0.0'
   lupo_channel_boot_detail.boot_id -> bigint NOT NULL
   lupo_channel_boot_detail.channel_id -> bigint NOT NULL
   lupo_channel_boot_detail.load_start_time -> bigint
@@ -740,7 +733,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_channels.deleted_ymdhis -> bigint DEFAULT NULL
   lupo_channels.aal_metadata_json -> json DEFAULT NULL
   lupo_channels.fleet_composition_json -> json DEFAULT NULL
-  lupo_channels.awareness_version -> varchar(20) DEFAULT '4.0.0'
+  lupo_channels.awareness_version -> varchar(20) DEFAULT '3.0.0'
   lupo_channels.channel_number -> int DEFAULT NULL
   lupo_channels.parent_channel_id -> bigint DEFAULT NULL
   lupo_channels.is_kernel -> tinyint NOT NULL DEFAULT '0'
@@ -755,7 +748,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_cip_analytics.trend_analysis_json -> json DEFAULT NULL
   lupo_cip_analytics.calculated_ymdhis -> bigint NOT NULL
   lupo_cip_analytics.recalculated_ymdhis -> bigint DEFAULT NULL
-  lupo_cip_analytics.analytics_version -> varchar(20) DEFAULT '4.0.0'
+  lupo_cip_analytics.analytics_version -> varchar(20) DEFAULT '3.0.0'
   lupo_cip_propagation_tracking.cip_event_id -> bigint NOT NULL
   lupo_cip_propagation_tracking.propagation_level -> tinyint NOT NULL
   lupo_cip_propagation_tracking.affected_subsystem -> varchar(100) NOT NULL
@@ -766,7 +759,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_cip_propagation_tracking.dependencies_json -> json DEFAULT NULL
   lupo_cip_propagation_tracking.started_ymdhis -> bigint DEFAULT NULL
   lupo_cip_propagation_tracking.completed_ymdhis -> bigint DEFAULT NULL
-  lupo_cip_propagation_tracking.propagation_version -> varchar(20) DEFAULT '4.0.0'
+  lupo_cip_propagation_tracking.propagation_version -> varchar(20) DEFAULT '3.0.0'
   lupo_cip_trends.trend_period -> varchar(64) NOT NULL
   lupo_cip_trends.period_start_ymdhis -> bigint NOT NULL
   lupo_cip_trends.period_end_ymdhis -> bigint NOT NULL
@@ -799,7 +792,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_collection_tabs.collection_tab_parent_id -> bigint DEFAULT NULL
   lupo_collection_tabs.collection_id -> bigint NOT NULL
   lupo_collection_tabs.federations_node_id -> bigint NOT NULL
-  lupo_collection_tabs.group_id -> bigint DEFAULT NULL
+  lupo_collection_tabs.department_id -> bigint DEFAULT NULL
   lupo_collection_tabs.user_id -> bigint DEFAULT NULL
   lupo_collection_tabs.sort_order -> int DEFAULT '0'
   lupo_collection_tabs.name -> varchar(255) NOT NULL
@@ -814,7 +807,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_collection_tabs.deleted_ymdhis -> bigint DEFAULT NULL
   lupo_collections.federations_node_id -> bigint NOT NULL
   lupo_collections.actor_id -> bigint DEFAULT NULL
-  lupo_collections.group_id -> bigint DEFAULT NULL
+  lupo_collections.department_id -> bigint DEFAULT NULL
   lupo_collections.name -> varchar(255) NOT NULL
   lupo_collections.slug -> varchar(100) NOT NULL
   lupo_collections.color -> char(6) DEFAULT '666666'
@@ -936,7 +929,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_content_tag_relationships.created_ymdhis -> bigint NOT NULL
   lupo_contents.content_parent_id -> bigint DEFAULT NULL
   lupo_contents.federation_node_id -> bigint DEFAULT '1'
-  lupo_contents.group_id -> bigint DEFAULT NULL
+  lupo_contents.department_id -> bigint DEFAULT NULL
   lupo_contents.actor_id -> bigint DEFAULT NULL
   lupo_contents.title -> varchar(255) NOT NULL
   lupo_contents.slug -> varchar(255) NOT NULL
@@ -1091,7 +1084,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_doctrine_evolution_audit.step_metadata_json -> json DEFAULT NULL
   lupo_doctrine_evolution_audit.started_ymdhis -> bigint DEFAULT NULL
   lupo_doctrine_evolution_audit.completed_ymdhis -> bigint DEFAULT NULL
-  lupo_doctrine_evolution_audit.audit_version -> varchar(20) DEFAULT '4.0.0'
+  lupo_doctrine_evolution_audit.audit_version -> varchar(20) DEFAULT '3.0.0'
   lupo_doctrine_refinements.cip_event_id -> bigint NOT NULL
   lupo_doctrine_refinements.doctrine_file_path -> varchar(500) NOT NULL
   lupo_doctrine_refinements.refinement_type -> varchar(64) NOT NULL
@@ -1103,7 +1096,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_doctrine_refinements.approved_by -> varchar(100) DEFAULT NULL
   lupo_doctrine_refinements.applied_ymdhis -> bigint DEFAULT NULL
   lupo_doctrine_refinements.created_ymdhis -> bigint NOT NULL
-  lupo_doctrine_refinements.refinement_version -> varchar(20) DEFAULT '4.0.0'
+  lupo_doctrine_refinements.refinement_version -> varchar(20) DEFAULT '3.0.0'
   lupo_document_chunks.document_id -> bigint NOT NULL
   lupo_document_chunks.chunk_index -> int NOT NULL
   lupo_document_chunks.chunk_content -> mediumtext NOT NULL
@@ -1180,7 +1173,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_emotional_geometry_calibrations.validation_status -> varchar(64) DEFAULT 'pending'
   lupo_emotional_geometry_calibrations.applied_ymdhis -> bigint DEFAULT NULL
   lupo_emotional_geometry_calibrations.created_ymdhis -> bigint NOT NULL
-  lupo_emotional_geometry_calibrations.calibration_version -> varchar(20) DEFAULT '4.0.0'
+  lupo_emotional_geometry_calibrations.calibration_version -> varchar(20) DEFAULT '3.0.0'
   lupo_emotional_stars.experience_hash -> char(64) DEFAULT NULL
   lupo_emotional_stars.experience_text -> text NOT NULL
   lupo_emotional_stars.cultural_context -> json DEFAULT NULL
@@ -1359,16 +1352,6 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_governance_overrides.expires_ymdhis -> bigint DEFAULT NULL
   lupo_governance_overrides.is_deleted -> tinyint NOT NULL DEFAULT '0'
   lupo_governance_overrides.deleted_ymdhis -> bigint DEFAULT NULL
-  lupo_groups.name -> varchar(50) NOT NULL
-  lupo_groups.description -> text
-  lupo_groups.created_ymdhis -> bigint NOT NULL
-  lupo_groups.updated_ymdhis -> bigint NOT NULL
-  lupo_groups.created_by -> bigint DEFAULT NULL
-  lupo_groups.is_active -> tinyint NOT NULL DEFAULT '1'
-  lupo_groups.is_deleted -> tinyint NOT NULL DEFAULT '0'
-  lupo_groups.deleted_ymdhis -> bigint DEFAULT NULL
-  lupo_groups.is_system -> tinyint NOT NULL DEFAULT '0'
-  lupo_groups.settings -> json DEFAULT NULL
   lupo_hashtags.hashtag_slug -> varchar(255) NOT NULL
   lupo_hashtags.description -> text
   lupo_hashtags.meta_json -> json DEFAULT NULL
@@ -1565,7 +1548,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_multi_agent_critique_sync.resolution_strategy -> varchar(255) DEFAULT NULL
   lupo_multi_agent_critique_sync.sync_started_ymdhis -> bigint DEFAULT NULL
   lupo_multi_agent_critique_sync.sync_completed_ymdhis -> bigint DEFAULT NULL
-  lupo_multi_agent_critique_sync.sync_version -> varchar(20) DEFAULT '4.0.0'
+  lupo_multi_agent_critique_sync.sync_version -> varchar(20) DEFAULT '3.0.0'
   lupo_narrative_fragments.agent_id -> bigint DEFAULT NULL
   lupo_narrative_fragments.fragment_type -> varchar(100) DEFAULT NULL
   lupo_narrative_fragments.title -> varchar(255) DEFAULT NULL
@@ -1596,7 +1579,7 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_permissions.target_type -> varchar(64) NOT NULL
   lupo_permissions.target_id -> bigint NOT NULL
   lupo_permissions.user_id -> bigint DEFAULT NULL
-  lupo_permissions.group_id -> bigint DEFAULT NULL
+  lupo_permissions.department_id -> bigint DEFAULT NULL
   lupo_permissions.permission -> varchar(64) NOT NULL DEFAULT 'read'
   lupo_permissions.created_ymdhis -> bigint NOT NULL
   lupo_permissions.updated_ymdhis -> bigint DEFAULT NULL

@@ -1,7 +1,7 @@
 # GOV‑PROGRAMMERS‑001
 # Programmer Competency Doctrine for Lupopedia
 Channel 3 — PROGRAMMERS OF LUPOPEDIA
-Version 4.0.0
+Version 3.0.0
 
 ## Purpose
 This doctrine defines the minimum required knowledge, skill, and engineering discipline for any human contributor working on Lupopedia. The system is a semantic OS, not a framework‑driven application, and therefore requires contributors who understand foundational computer science.

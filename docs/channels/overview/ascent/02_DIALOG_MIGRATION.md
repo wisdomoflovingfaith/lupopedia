@@ -64,7 +64,7 @@ Migrate the dialog system from file-based storage (`.md` files) to database-back
 
 ### Existing Files
 - `dialogs/changelog_dialog.md`
-- `dialogs/session_2026_01_16_version_4_0_46.md`
+- `dialogs/session_2026_01_16_version_3_0_46.md`
 - `dialogs/routing_changelog.md`
 - `dialogs/humor_context_WOLFIE_LUPOPEDIA.md`
 - Additional dialog files in `dialogs/` directory

@@ -49,7 +49,7 @@
   - `database/migrations/dev_20260204_fix_schema_alignment.sql` (ALTER)
   - `database/migrations/2026_01_26_schema_from_toon.sql`
   - `database/install/lupopedia_mysql.sql`
-  - `docs/REQUIRED_TABLES_4.2.1.md` (listed)
+  - `docs/REQUIRED_TABLES_4.1.0.md` (listed)
   - `DIRECTORY_TREE.md` (mentions toon)
 
 ### 1.2 Helpers / classes that touch session tables
@@ -175,7 +175,7 @@ None of these use the **unified_sessions** table in code.
 | **Prefix doctrine** | **DONE.** All six Legacy* files now use `LUPO_TABLE_PREFIX . 'sessions'` (or equivalent). |
 | **Session class** | Already uses prefix. Ensure all new columns (e.g. system_context if used) are read/written where needed. |
 | **UnifiedSessionHandler** | Document whether it delegates to Session or is a thin wrapper (see 5.1a C). Optionally refactor to delegate; or leave as thin wrapper using same table. |
-| **Docs** | Update REQUIRED_TABLES_4.2.1.md and any other docs that list `lupo_unified_sessions` to state it is deprecated/removed after migration (plan D). |
+| **Docs** | Update REQUIRED_TABLES_4.1.0.md and any other docs that list `lupo_unified_sessions` to state it is deprecated/removed after migration (plan D). |
 
 ### 5.3 Helper functions to remove
 

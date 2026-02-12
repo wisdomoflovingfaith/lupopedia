@@ -808,7 +808,7 @@ All modules live in the `modules/` directory and integrate with the 149‑table 
 Lupopedia v3.0.2 requires **27 fully implemented core agents** for full functionality.  
 These agents provide reasoning, navigation, analysis, emotional modeling, and system‑level intelligence across the platform.
 
-For the complete list of required agents, see: `@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents` in `config/global_atoms.yaml`.
+For the complete list of required agents, see: `@GLOBAL.LUPOPEDIA_V3_0_2_CORE_AGENTS.required_agents` in `config/global_atoms.yaml`.
 
 **Required Core Agents (27):** SYSTEM, CAPTAIN, WOLFIE, WOLFENA, THOTH, ARA, WOLFKEEPER, LILITH, AGAPE, ERIS, METHIS, THALIA, ROSE, WOLFSIGHT, WOLFNAV, WOLFFORGE, WOLFMIS, WOLFITH, ANUBIS, MAAT, CADUCEUS, CHRONOS, INDEXER, MIGRATOR, HEIMDALL, JANUS, IRIS
 
@@ -1031,7 +1031,7 @@ lupopedia-config.php         # Configuration file (stored outside web root)
 - **[For Installers & Users](docs/channels/developer/dev/FOR_INSTALLERS_AND_USERS.md)**  
   Simple, friendly explanation for auto-installers, hosting providers, and Crafty Syntax users
 
-- **[Upgrade Plan: Crafty Syntax 3.7.5 → 4.0.0](docs/channels/developer/modules/UPGRADE_PLAN_3.7.5_TO_4.0.0.md)**  
+- **[Upgrade Plan: Crafty Syntax 3.7.5 → 3.0.0](docs/channels/developer/modules/UPGRADE_PLAN_3.7.5_TO_3.0.0.md)**  
   Complete upgrade path from Crafty Syntax 3.7.5 to Lupopedia + Crafty Syntax 3.0.0
 
 - **[Dialog Module](modules/dialog/README.md)**  

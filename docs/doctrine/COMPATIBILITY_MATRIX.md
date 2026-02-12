@@ -1,14 +1,14 @@
 # PHP Compatibility Matrix (5.3 → 8.1+)
 
 **Status:** Canonical  
-**Applies to:** Lupopedia 4.0.0 — all generated PHP code  
+**Applies to:** Lupopedia 3.0.0 — all generated PHP code  
 **Overrides:** Any previous assumptions about PHP version requirements.
 
 ---
 
 ## 1. Compatibility range (permanent rule)
 
-Lupopedia 4.0.0 must run on **PHP 5.3 → PHP 8.1+**. This is the full compatibility matrix.
+Lupopedia 3.0.0 must run on **PHP 5.3 → PHP 8.1+**. This is the full compatibility matrix.
 
 All generated code must:
 

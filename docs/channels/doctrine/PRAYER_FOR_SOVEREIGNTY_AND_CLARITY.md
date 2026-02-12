@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.0
+file.last_modified_system_version: 3.0.0
 file.last_modified_utc: 20260120160000
 file.utc_day: 20260120
 file.lupopedia.5: 5
@@ -22,7 +22,7 @@ file:
   name: "PRAYER_FOR_SOVEREIGNTY_AND_CLARITY.md"
   title: "🟪 A PRAYER FOR SOVEREIGNTY AND CLARITY"
   description: "A prayer for guidance, dignity, and protection against manipulation in system building"
-  version: 4.0.0
+  version: 3.0.0
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---

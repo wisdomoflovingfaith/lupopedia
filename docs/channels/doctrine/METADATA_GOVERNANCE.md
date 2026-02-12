@@ -727,7 +727,7 @@ RESULT: Metadata validation PASSED
 - **[Agent Runtime](AGENT_RUNTIME.md)** - Agent responsibilities for metadata validation and maintenance
 - **[Patch Discipline](PATCH_DISCIPLINE.md)** - Integration between metadata governance and development workflow
 - **[Directory Structure](DIRECTORY_STRUCTURE.md)** - Directory-specific metadata requirements and organization
-- **[Versioning Doctrine](VERSIONING_DOCTRINE.md)** - Version metadata management and synchronization requirements
+- **[Versioning Doctrine](../../doctrine/VERSIONING_DOCTRINE.md)** - Version metadata management and synchronization requirements
 - **[Architecture Sync](ARCHITECTURE_SYNC.md)** - Cross-system synchronization and metadata coordination
 - **[Agent Prompt Doctrine](AGENT_PROMPT_DOCTRINE.md)** - Agent communication standards and metadata integration
 

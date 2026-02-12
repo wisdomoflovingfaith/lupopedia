@@ -90,7 +90,7 @@ class AtomLoader
             return (string) $v;
         }
         $atoms = $this->loadAtoms();
-        return isset($atoms['version']) ? (string) $atoms['version'] : '4.0.0';
+        return isset($atoms['version']) ? (string) $atoms['version'] : '3.0.0';
     }
 
     /**

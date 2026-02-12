@@ -201,8 +201,10 @@ Both reference systems provide authoritative schema information without requirin
 ### **1. Core Identity & Access**
 - `actors` - Central identity registry for all system entities
 - `actor_events` - Comprehensive audit trail of all actions
-- `actor_group_membership` - Role-based access control
+- `actor_departments` - Maps actors to departments (organizational scope); used with `lupo_permissions.department_id` for permission resolution
 - `actor_preferences` - User and agent settings
+
+**Note:** Group tables (`actor_group_membership`, `groups`, `group_modules`) have been removed. Organizational scope and permission-bearing entity is **department only** (departments, actor_departments, permissions.department_id).
 
 ### **2. AI Agent Framework**
 - `agents` - Core agent definitions and configurations
@@ -310,16 +312,17 @@ Tracks all actorâ€‘initiated actions across the system, forming a behaviora
 
 ---
 
-### **`actor_group_membership`**
-Maps actors to groups, defining access, roles, and collaborative structures across domains.
+### **`actor_departments`**
+Maps actors to departments for organizational scope and permission resolution. Used with `lupo_permissions.department_id`: a permission is satisfied if user_id OR department_id (actor's departments) OR channel_roles grant.
 
 **Key Fields:**
-- `membership_id` (PK, BIGINT)
+- `actor_department_id` (PK, BIGINT)
 - `actor_id` (BIGINT, references actors)
-- `group_id` (BIGINT, references groups)
-- `role` (VARCHAR(50))
+- `department_id` (BIGINT, references departments)
 - `created_ymdhis`, `updated_ymdhis` (BIGINT UTC)
-- `is_active` (TINYINT)
+- `is_deleted`, `deleted_ymdhis`
+
+**Note:** Tables `actor_group_membership` and `groups` have been removed. Use departments and actor_departments only.
 
 ---
 
@@ -974,7 +977,7 @@ details (TEXT)
 Notes: Tracks module migrations.
 
 departments
-Represents organizational departments.
+Represents organizational departments. **Sole organizational and permission-bearing unit**; group tables (groups, actor_group_membership, group_modules) have been removed.
 
 Key Fields:
 
@@ -986,34 +989,7 @@ parent_id (BIGINT, self-reference)
 manager_id (BIGINT, references actors)
 is_active (TINYINT)
 created_ymdhis, updated_ymdhis (BIGINT UTC)
-Notes: Manages departments.
-
-groups
-Defines user or agent groups.
-
-Key Fields:
-
-group_id (PK, BIGINT)
-domain_id (BIGINT, references domains)
-name (VARCHAR(255))
-description (TEXT)
-group_type (VARCHAR(100))
-is_active (TINYINT)
-created_ymdhis, updated_ymdhis (BIGINT UTC)
-created_by (BIGINT, references actors)
-Notes: Manages groups.
-
-group_modules
-Links modules to groups.
-
-Key Fields:
-
-map_id (PK, BIGINT)
-group_id (BIGINT, references groups)
-module_id (BIGINT, references modules)
-permissions (JSON)
-created_ymdhis, updated_ymdhis (BIGINT UTC)
-Notes: Manages group modules.
+Notes: Manages departments. Permissions (lupo_permissions) use department_id; collections, collection_tabs, contents, and analytics tables use department_id for scoping.
 
 7. Legacy Migration Tables (Temporary â€” Migration-Only)
 

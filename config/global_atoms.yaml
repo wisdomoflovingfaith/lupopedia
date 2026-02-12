@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.0
+file.last_modified_system_version: 3.0.0
 file.channel: schema
 # Global Atoms Configuration
 # Single source of truth for ecosystem-wide metadata used in WOLFIE Headers
@@ -14,7 +14,7 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.0.0"
+version: "3.0.0"
 last_updated: 20260206000000
 
 # Author Information
@@ -37,7 +37,7 @@ project:
 
 # Version Information
 versions:
-  lupopedia: "4.0.0"
+  lupopedia: "3.0.0"
   crafty_syntax: "3.0.120"
   wolfie_headers: "3.0.120"
   schema: "3.0.115"
@@ -53,7 +53,7 @@ agents:
   system_agent: "Agent 0 — System Agent"
   captain_wolfie: "Agent 1 — Captain Wolfie"
   total_count: 27
-  v4_0_2_core_count: 27
+  v3_0_2_core_count: 27
   total_defined_in_registry: 128
   ide_modules:
     - "Cursor"
@@ -75,7 +75,7 @@ timestamp:
 # Global Atoms (Single Source of Truth for WOLFIE Headers)
 
 # Current Lupopedia Version (Use this in all WOLFIE headers instead of hardcoding)
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.0"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "3.0.0"
 
 # Current Authors (Use in WOLFIE headers)
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie (lupopedia-at-gmail-com)"
@@ -242,14 +242,14 @@ GLOBAL_CHANNEL_DEV: "dev"
 GLOBAL_CHANNEL_PUBLIC: "public"
 
 # Version References
-GLOBAL_VERSION_4_0_2: "3.0.2"
+GLOBAL_VERSION_3_0_2: "3.0.2"
 GLOBAL_VERSION_4_0_1: "3.0.1"
 
 # Agent Counts
 GLOBAL_LEGACY_AGENT_COUNT: "101 agents"
 
-# Global Atom: LUPOPEDIA_V4_0_2_CORE_AGENTS
-GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS:
+# Global Atom: LUPOPEDIA_V3_0_2_CORE_AGENTS
+GLOBAL_LUPOPEDIA_V3_0_2_CORE_AGENTS:
   description: "Agents required for full functionality in Lupopedia v3.0.2. All other agents may remain stubs."
   version: "3.0.2"
   required_agents:

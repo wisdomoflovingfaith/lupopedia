@@ -430,7 +430,7 @@ This document defines comprehensive patch discipline principles for Lupopedia We
 ## 15. Related Documentation
 
 - **[Single Task Patch Doctrine](../SINGLE_TASK_PATCH_DOCTRINE.md)** - Specific rules for one-task-per-patch workflow
-- **[Versioning Doctrine](../VERSIONING_DOCTRINE.md)** - Version management and release gate procedures
+- **[Versioning Doctrine](../../../doctrine/VERSIONING_DOCTRINE.md)** - Version management and release gate procedures
 - **[Dialog Doctrine](../DIALOG_DOCTRINE.md)** - Dialog file management and change tracking
 - **[Architecture Sync](../../architecture/ARCHITECTURE_SYNC.md)** - System architecture and component integration
 - **[Metadata Governance](METADATA_GOVERNANCE.md)** - Metadata management and consistency requirements

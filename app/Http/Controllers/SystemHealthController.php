@@ -93,7 +93,6 @@ class SystemHealthController
                 'environment' => $environment,
                 'database_schema' => $healthService->checkDatabaseSchema(),
                 'agent_registry' => $healthService->checkAgentRegistry(),
-                'quantum_subsystem' => $healthService->checkQuantumSubsystem(),
                 'kip_subsystem' => $healthService->checkKIPSubsystem(),
                 'limits_subsystem' => $healthService->checkLimitsSubsystem(),
                 'pack_readiness' => $healthService->checkPackReadiness(),

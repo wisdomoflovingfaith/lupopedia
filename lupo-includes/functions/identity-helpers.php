@@ -2,7 +2,7 @@
 /**
  * wolfie.header.identity: identity-helpers
  * wolfie.header.placement: /lupo-includes/functions/identity-helpers.php
- * wolfie.header.version: 4.0.0
+ * wolfie.header.version: 3.0.0
  * wolfie.header.dialog:
  *   speaker: JETBRAINS
  *   target: @everyone

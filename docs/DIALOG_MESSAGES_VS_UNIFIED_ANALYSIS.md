@@ -36,7 +36,7 @@
 | database/migrations/dev_20260204_fix_schema_alignment.sql | 1049–1062 | ALTER TABLE lupo_dialog_messages MODIFY ... | Migration | Active |
 | database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1049–1062 | Column summary for lupo_dialog_messages | Doc | Active |
 | database/migrations/import_from_old_crafty_syntax.sql | 1462–1496 | TRUNCATE lupo_dialog_messages; INSERT INTO lupo_dialog_messages (...) SELECT ... FROM livehelp_transcripts | TRUNCATE / INSERT | Active (import) |
-| docs/REQUIRED_TABLES_4.2.1.md | 59 | List entry | Doc | Reference |
+| docs/REQUIRED_TABLES_4.1.0.md | 59 | List entry | Doc | Reference |
 | docs/LIVEHELP_REMOVAL_REPORT.md | 14, 51, 74 | livehelp_messages → lupo_dialog_messages; LegacyAdminChatFlush uses lupo_dialog_messages | Doc | Reference |
 | docs/ACTOR_REFACTOR_REPORT.md | 64 | lupo_dialog_messages.from_actor_id in merge list | Doc | Reference |
 | docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md | 23, 27, 109 | livehelp_transcripts → lupo_dialog_threads, lupo_dialog_messages; Channel interface uses lupo_dialog_messages | Doc | Reference |
@@ -51,7 +51,7 @@
 | database/migrations/install_new_lupopedia.sql | 3902–3911 | CREATE TABLE lupo_unified_dialog_messages (dialog_message_id, thread_id, actor_id, ...) | Schema | Definition only |
 | database/migrations/dev_20260204_fix_schema_alignment.sql | 1934–1939 | ALTER TABLE lupo_unified_dialog_messages MODIFY ... | Migration | Schema only |
 | database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1934–1939 | Column summary | Doc | Reference |
-| docs/REQUIRED_TABLES_4.2.1.md | 227 | List entry | Doc | Reference |
+| docs/REQUIRED_TABLES_4.1.0.md | 227 | List entry | Doc | Reference |
 | database/migrations_legacy/*.sql | various | CREATE TABLE lupo_unified_dialog_messages; INSERT in one legacy script | Schema / legacy INSERT | Legacy |
 | database/migrations/README.md | 79 | "unified_dialog_messages -> lupo_unified_dialog_messages_old" (rename example for deprecated tables) | Doc | Reference |
 | complete_schema.txt | 836 | TABLE: lupo_unified_dialog_messages | Doc | Reference |
@@ -108,7 +108,7 @@ Before dropping:
 | database/migrations/install_new_lupopedia.sql | Remove CREATE TABLE lupo_unified_dialog_messages and its block (lines ~3902–3911). |
 | database/migrations/dev_20260204_fix_schema_alignment.sql | Remove ALTER TABLE lupo_unified_dialog_messages statements (lines ~1934–1939). |
 | database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Remove lupo_unified_dialog_messages column lines. |
-| docs/REQUIRED_TABLES_4.2.1.md | Remove list entry for lupo_unified_dialog_messages. |
+| docs/REQUIRED_TABLES_4.1.0.md | Remove list entry for lupo_unified_dialog_messages. |
 | database/migrations/README.md | Update or remove the "unified_dialog_messages -> lupo_unified_dialog_messages_old" example if it implies the table is still part of the active schema. |
 | database/migrations_legacy/*.sql | Optional: leave as historical record or add a comment that the table has been dropped from active schema. |
 | complete_schema.txt | Regenerate or edit to remove lupo_unified_dialog_messages. |

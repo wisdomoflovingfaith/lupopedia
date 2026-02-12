@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.0
+file.last_modified_system_version: 3.0.0
 file.last_modified_utc: 20260120180000
 file.lupopedia.5: 5
 GOV-AD-PROHIBIT-001: true

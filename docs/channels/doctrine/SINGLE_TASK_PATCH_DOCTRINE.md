@@ -287,7 +287,7 @@ When violations are detected:
 
 - **[Investor Communications](../appendix/appendix/INVESTOR_COMMUNICATIONS.md)** â€” Original commitment and rationale
 - **[AI Role Separation Doctrine](CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md)** â€” Detailed AI role definitions
-- **[Versioning Doctrine](VERSIONING_DOCTRINE.md)** â€” Version control and release management
+- **[Versioning Doctrine](../../doctrine/VERSIONING_DOCTRINE.md)** â€” Version control and release management
 - **[Architecture Sync](../architecture/ARCHITECTURE_SYNC.md)** â€” Stable architecture that prevents drift
 - **[Development Workflow](../architecture/multi-ide-workflow.md)** â€” Complete development process
 

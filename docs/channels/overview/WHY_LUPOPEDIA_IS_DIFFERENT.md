@@ -139,7 +139,7 @@ This is not plugin architecture.
 
 Lupopedia ships with:
 
-- **27 v3.0.2 core agents** (see `@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents` for complete list)
+- **27 v3.0.2 core agents** (see `@GLOBAL.LUPOPEDIA_V3_0_2_CORE_AGENTS.required_agents` for complete list)
 - agent faucets
 - persona definitions
 - emotional modeling

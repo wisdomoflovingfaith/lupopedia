@@ -177,9 +177,9 @@ lupopedia/
 ├── atoms/
 │   └── primordial_atoms.yaml
 ├── audits/
-│   ├── patch_implementation_audit_4.0.100.md
+│   ├── patch_implementation_audit_3.0.100.md
 │   ├── patch_implementation_audit_last_80.md
-│   └── php_implementation_audit_4.0.101.md
+│   └── php_implementation_audit_3.0.101.md
 ├── backups/
 │   └── filesystem_migration_20260131_133426/
 │       ├── agents/
@@ -745,13 +745,13 @@ lupopedia/
 │   │   ├── documentation_mapping.json
 │   │   ├── documentation_mapping_fixed.json
 │   │   ├── generate_content_seed.php
-│   │   ├── generate_hierarchical_seed_4.0.12.php
+│   │   ├── generate_hierarchical_seed_3.0.12.php
 │   │   ├── lupopedia_seed_mysql.sql
 │   │   ├── map_documentation_files_v2.php
 │   │   ├── seed_admin_captain.sql
 │   │   ├── seed_collection_0_content.sql
-│   │   ├── seed_collection_0_hierarchical_tab_map_4.0.12.sql
-│   │   ├── seed_collection_0_hierarchical_tabs_4.0.12.sql
+│   │   ├── seed_collection_0_hierarchical_tab_map_3.0.12.sql
+│   │   ├── seed_collection_0_hierarchical_tabs_3.0.12.sql
 │   │   ├── seed_collection_0_system_tabs.sql
 │   │   ├── seed_collection_0_tab_map.sql
 │   │   ├── seeds_kernel.sql.tpl
@@ -868,9 +868,9 @@ lupopedia/
 │   │   ├── 20260121_010000_wire_channels_to_content.sql
 │   │   ├── 20260122_channel_system_migration.sql
 │   │   ├── 20260122_world_graph_missing_tables_migration.sql
-│   │   ├── 4.0.113_add_seven_love_agents.sql
-│   │   ├── 4.0.115_add_pack_identity_agent.sql
-│   │   ├── 4.0.120_add_seven_opposite_polarity_emotional_agents.sql
+│   │   ├── 3.0.113_add_seven_love_agents.sql
+│   │   ├── 3.0.115_add_pack_identity_agent.sql
+│   │   ├── 3.0.120_add_seven_opposite_polarity_emotional_agents.sql
 │   │   ├── 4.1.12_add_four_tables_to_ceiling_180.sql
 │   │   ├── 4.1.1_add_missing_emotional_agents.sql
 │   │   ├── 4.1.1_backup_table_template.sql
@@ -906,15 +906,15 @@ lupopedia/
 │   │   ├── 4_2_2_create_gov_event_schema.sql
 │   │   ├── 4_2_2_create_lupo_migration_log.sql
 │   │   ├── 4_2_2_seed_gov_event_lupopedia_identity.sql
-│   │   ├── agent_awareness_layer_4_0_70.sql
-│   │   ├── cip_analytics_schema_4_0_75.sql
+│   │   ├── agent_awareness_layer_3_0_70.sql
+│   │   ├── cip_analytics_schema_3_0_75.sql
 │   │   ├── craftysyntax_to_lupopedia_mysql.sql
-│   │   ├── deploy_to_test_db_4_0_71.sql
-│   │   ├── doctrine_agent_tab_mapping_4_0_26.sql
-│   │   ├── doctrine_semantic_tab_mapping_4_0_24.sql
-│   │   ├── doctrine_sql_tab_mapping_4_0_25.sql
-│   │   ├── doctrine_versioning_tab_mapping_4_0_26.sql
-│   │   ├── ephemeral_schema_4_0_25.sql
+│   │   ├── deploy_to_test_db_3_0_71.sql
+│   │   ├── doctrine_agent_tab_mapping_3_0_26.sql
+│   │   ├── doctrine_semantic_tab_mapping_3_0_24.sql
+│   │   ├── doctrine_sql_tab_mapping_3_0_25.sql
+│   │   ├── doctrine_versioning_tab_mapping_3_0_26.sql
+│   │   ├── ephemeral_schema_3_0_25.sql
 │   │   ├── fix_agent_registry_id_and_fk_names.sql
 │   │   ├── fix_lupo_permissions_unsigned.sql
 │   │   ├── fix_unsigned_and_pk_naming_4_2_0.sql
@@ -922,9 +922,9 @@ lupopedia/
 │   │   ├── fix_unsigned_and_pk_naming_4_2_0_from_toon.sql
 │   │   ├── lupo_agent_registry_range_expansion.sql
 │   │   ├── lupo_agent_registry_range_expansion_missing_reserved.sql
-│   │   ├── multi_agent_protocol_schema_4_0_70.sql
+│   │   ├── multi_agent_protocol_schema_3_0_70.sql
 │   │   ├── old_craftysyntax.sql
-│   │   ├── orchestrator_schema_4_0_25.sql
+│   │   ├── orchestrator_schema_3_0_25.sql
 │   │   ├── phase_a_move_ephemeral_tables.sql
 │   │   ├── phase_a_move_orchestration_tables.sql
 │   │   ├── phase_a_orchestration_schema.sql
@@ -933,8 +933,8 @@ lupopedia/
 │   │   ├── replace_collection_permissions_with_polymorphic_permissions.sql
 │   │   ├── restore_collection3_dropdown_content.sql
 │   │   ├── schema_sync_3_0_46_missing_tables.sql
-│   │   ├── toon_files_tab_mapping_4_0_23.sql
-│   │   ├── toon_sql_domain_refresh_4_0_31.sql
+│   │   ├── toon_files_tab_mapping_3_0_23.sql
+│   │   ├── toon_sql_domain_refresh_3_0_31.sql
 │   │   └── update_lupo_tables_for_crafty_syntax.sql
 │   ├── refactors/
 │   │   ├── livehelp_autoinvite.json
@@ -949,8 +949,8 @@ lupopedia/
 │   │   └── dialog_system_schema.sql
 │   ├── toon_data/
 │   ├── hotfix_registry_4.1.0.json
-│   ├── test_setup_integration_testing_v4_0_71.sql
-│   ├── test_setup_integration_testing_v4_0_71_fixed.sql
+│   ├── test_setup_integration_testing_v3_0_71.sql
+│   ├── test_setup_integration_testing_v3_0_71_fixed.sql
 │   └── toon_output.txt
 ├── deploy/
 │   ├── apply_dialog_schema.php
@@ -974,12 +974,12 @@ lupopedia/
 │   │   ├── STATUS_2026-01-17.md
 │   │   └── WORLD_GRAPH_LAYER_COMPLETION_2026-01-22.md
 │   ├── versions/
-│   │   ├── 4.0.70_Agent_Awareness.md
-│   │   ├── 4.0.71_Integration_Testing.md
-│   │   ├── 4.0.72_Multi_Agent_Protocols.md
-│   │   ├── 4.0.73_CIP_Implementation.md
-│   │   ├── 4.0.74_CIP_Activation.md
-│   │   ├── 4.0.75_CIP_Refinement.md
+│   │   ├── 3.0.70_Agent_Awareness.md
+│   │   ├── 3.0.71_Integration_Testing.md
+│   │   ├── 3.0.72_Multi_Agent_Protocols.md
+│   │   ├── 3.0.73_CIP_Implementation.md
+│   │   ├── 3.0.74_CIP_Activation.md
+│   │   ├── 3.0.75_CIP_Refinement.md
 │   │   ├── CHANGELOG_MIGRATION.md
 │   │   └── VERSION_INDEX.md
 │   ├── wisdom/
@@ -987,7 +987,7 @@ lupopedia/
 │   │   ├── CRITIQUE_INTEGRATION_2026-01.md
 │   │   ├── DOCTRINE_EVOLUTION.md
 │   │   └── PATTERNS_2026-01.md
-│   ├── 4.0.17-ui_change_integration_dialog.md
+│   ├── 3.0.17-ui_change_integration_dialog.md
 │   ├── 4.2.0_release_announcement.md
 │   ├── 4.3.0_delay_announcement.md
 │   ├── CaptainsLog.md
@@ -1003,9 +1003,9 @@ lupopedia/
 │   ├── changelog_dialog_UTC_2026-01-20.md
 │   ├── changelog_readme.md
 │   ├── changelog_todo.md
-│   ├── cip_execution_status_4_0_75.md
+│   ├── cip_execution_status_3_0_75.md
 │   ├── cursor.md
-│   ├── CURSOR_WINDSURF_HANDOFF_v4_0_70.md
+│   ├── CURSOR_WINDSURF_HANDOFF_v3_0_70.md
 │   ├── db.js
 │   ├── db.php
 │   ├── everyone.md
@@ -1017,11 +1017,11 @@ lupopedia/
 │   ├── HELP_changelog_dialog-side.md
 │   ├── HELP_changelog_dialog.md
 │   ├── humor_context_WOLFIE_LUPOPEDIA.md
-│   ├── IDE_COORDINATION_PROTOCOL_v4_0_70.md
+│   ├── IDE_COORDINATION_PROTOCOL_v3_0_70.md
 │   ├── insert_jetbrains_doctrine_script.ps1
-│   ├── integration_testing_coordination_4_0_71.md
+│   ├── integration_testing_coordination_3_0_71.md
 │   ├── jetbrains.md
-│   ├── migration_orchestrator_4_0_25_dialog.md
+│   ├── migration_orchestrator_3_0_25_dialog.md
 │   ├── migration_orchestrator_dialog.md
 │   ├── monday_wolfie_changelog.md
 │   ├── multi_agent_protocol_implementation_dialog.md
@@ -1075,6 +1075,7 @@ lupopedia/
 │   │   ├── QUANTUM_STATE_PURGE_SUMMARY.md
 │   │   ├── STONED_WOLFIE_PURGE_SUMMARY.md
 │   │   ├── UI_PHP_COMPATIBILITY_AUDIT.md
+│   │   ├── VERSION_NORMALIZATION_4_0_X_TO_3_0_X_SUMMARY.md
 │   │   ├── VERSIONING_DOCTRINE_ALIGNMENT_SUMMARY.md
 │   │   ├── VERSIONING_DOCTRINE_CONSOLIDATION_SUMMARY.md
 │   │   └── WHEELER_REVERSE20_PURGE_SUMMARY.md
@@ -1171,7 +1172,7 @@ lupopedia/
 │   │   │   │   ├── THREAD_MOOD_RFC.md
 │   │   │   │   └── WOLFIE_HEADER_RFC.md
 │   │   │   ├── ARCHITECTURE.md
-│   │   │   ├── ARCHITECTURE_MAP_v4_0_70.md
+│   │   │   ├── ARCHITECTURE_MAP_v3_0_70.md
 │   │   │   ├── ARCHITECTURE_SYNC.md
 │   │   │   ├── CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md
 │   │   │   ├── CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md
@@ -1181,11 +1182,11 @@ lupopedia/
 │   │   │   ├── DATABASE_PHILOSOPHY.md
 │   │   │   ├── GROUNDED_AGENT_SYSTEM.md
 │   │   │   ├── INDEX.md
-│   │   │   ├── lupopedia_v4_0_70_agent_awareness_layer.md
+│   │   │   ├── lupopedia_v3_0_70_agent_awareness_layer.md
 │   │   │   ├── multi-ide-workflow.md
 │   │   │   ├── README.md
 │   │   │   ├── SEMANTIC_NAVIGATION.md
-│   │   │   ├── system_truth_table_4_0_81.md
+│   │   │   ├── system_truth_table_3_0_81.md
 │   │   │   ├── VERSION_3_INGESTION_RULES.md
 │   │   │   ├── WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md
 │   │   │   ├── WHY_MULTIPLE_IDES_AND_AGENTS.md
@@ -1213,12 +1214,12 @@ lupopedia/
 │   │   │   │   └── README.md
 │   │   │   ├── dev/
 │   │   │   │   ├── architecture_layers.md
-│   │   │   │   ├── AUTH_IMPLEMENTATION_PLAN_4.0.8.md
-│   │   │   │   ├── AUTH_INTEGRATION_CHECKS_4.0.8.md
-│   │   │   │   ├── AUTH_READINESS_REPORT_4.0.8.md
-│   │   │   │   ├── AUTH_SCHEMA_SUMMARY_4.0.8.md
-│   │   │   │   ├── AUTH_SQL_VERIFICATION_4.0.8.md
-│   │   │   │   ├── AUTH_TESTING_CHECKLIST_4.0.8.md
+│   │   │   │   ├── AUTH_IMPLEMENTATION_PLAN_3.0.8.md
+│   │   │   │   ├── AUTH_INTEGRATION_CHECKS_3.0.8.md
+│   │   │   │   ├── AUTH_READINESS_REPORT_3.0.8.md
+│   │   │   │   ├── AUTH_SCHEMA_SUMMARY_3.0.8.md
+│   │   │   │   ├── AUTH_SQL_VERIFICATION_3.0.8.md
+│   │   │   │   ├── AUTH_TESTING_CHECKLIST_3.0.8.md
 │   │   │   │   ├── CONTRIBUTOR_TRAINING.md
 │   │   │   │   ├── DOCUMENTATION_STYLE_GUIDE.md
 │   │   │   │   ├── FOR_INSTALLERS_AND_USERS.md
@@ -1237,7 +1238,7 @@ lupopedia/
 │   │   │   │   ├── INDEX.md
 │   │   │   │   ├── LEGACY_REFACTOR_PLAN.md
 │   │   │   │   ├── README.md
-│   │   │   │   └── UPGRADE_PLAN_3.7.5_TO_4.0.0.md
+│   │   │   │   └── UPGRADE_PLAN_3.7.5_TO_3.0.0.md
 │   │   │   ├── specifications/
 │   │   │   │   ├── INDEX.md
 │   │   │   │   ├── LMS_v2.0.md
@@ -1266,7 +1267,7 @@ lupopedia/
 │   │   │   ├── README.md
 │   │   │   ├── README_IMPROVEMENT_RECOMMENDATIONS.md
 │   │   │   ├── README_MIGRATION.md
-│   │   │   ├── RELEASE_READINESS_CHECKLIST_4.0.7.md
+│   │   │   ├── RELEASE_READINESS_CHECKLIST_3.0.7.md
 │   │   │   ├── TLDR_HELP_MIGRATION_2026.md
 │   │   │   ├── WINDOWS_DEVELOPMENT_ENVIRONMENT.md
 │   │   │   └── YOUR_CODING_STYLE_EXPLAINED.md
@@ -1464,8 +1465,8 @@ lupopedia/
 │   │   │   ├── INDEX.md
 │   │   │   ├── INGESTION_DOCTRINE.md
 │   │   │   ├── INSTALLATION_LIFECYCLE_DOCTRINE.md
-│   │   │   ├── INTEGRATION_TESTING_BLUEPRINT_v4_0_71.md
-│   │   │   ├── INTEGRATION_TESTING_DOCTRINE_v4_0_71.md
+│   │   │   ├── INTEGRATION_TESTING_BLUEPRINT_v3_0_71.md
+│   │   │   ├── INTEGRATION_TESTING_DOCTRINE_v3_0_71.md
 │   │   │   ├── JETBRAINS_4_1_X_BRANCH_HANDLING_DOCTRINE.md
 │   │   │   ├── JETBRAINS_CONFIGURATION_DOCTRINE.md
 │   │   │   ├── KERNEL_AGENTS.md
@@ -1497,7 +1498,7 @@ lupopedia/
 │   │   │   ├── OPERATOR_UI_DOCTRINE.md
 │   │   │   ├── ORCHESTRATOR_DOCTRINE.md
 │   │   │   ├── PACK_BEHAVIOR_DOCTRINE.md
-│   │   │   ├── PACK_BEHAVIOR_MATRIX_v4_0_90.md
+│   │   │   ├── PACK_BEHAVIOR_MATRIX_v3_0_90.md
 │   │   │   ├── PACK_IDENTITY_DRAFT.md
 │   │   │   ├── PACK_MEMORY_DOCTRINE.md
 │   │   │   ├── PACK_ROLE_REGISTRY.md
@@ -1535,7 +1536,7 @@ lupopedia/
 │   │   │   ├── TERMINAL_AI_DOCTRINE.md
 │   │   │   ├── TIMESTAMP_DOCTRINE.md
 │   │   │   ├── TOON_DOCTRINE.md
-│   │   │   ├── TRIGGER_PROCEDURE_INVENTORY_4_0_75.md
+│   │   │   ├── TRIGGER_PROCEDURE_INVENTORY_3_0_75.md
 │   │   │   ├── UI_LIBRARY_DOCTRINE.md
 │   │   │   ├── UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md
 │   │   │   ├── URL_ROUTING_DOCTRINE.md
@@ -1544,7 +1545,7 @@ lupopedia/
 │   │   │   ├── VERSION_CONTROL_POLICY.md
 │   │   │   ├── VERSION_DOCTRINE.md
 │   │   │   ├── VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md
-│   │   │   ├── VERSION_PLANS_4.0.82_4.0.88.md
+│   │   │   ├── VERSION_PLANS_3.0.82_3.0.88.md
 │   │   │   ├── VS_CODE_GUARDRAIL.md
 │   │   │   ├── WHS_LHP_INDEX.md
 │   │   │   ├── WHY_NO_FRAMEWORKS.md
@@ -1638,7 +1639,7 @@ lupopedia/
 │   │   │   ├── INDEX.md
 │   │   │   ├── README.md
 │   │   │   ├── TIMELINE_1996_2026.md
-│   │   │   └── UNIFIED_TIMELINE_2_0_19_TO_4_0_32.md
+│   │   │   └── UNIFIED_TIMELINE_2_0_19_TO_3_0_32.md
 │   │   ├── kernel/
 │   │   │   ├── components/
 │   │   │   │   ├── ContinuityValidator.md
@@ -1703,15 +1704,15 @@ lupopedia/
 │   │   │   │   ├── changelog_dialog.md
 │   │   │   │   ├── INDEX.md
 │   │   │   │   ├── MASTER_WEDDING_THREAD_CONSOLIDATION_EMAIL.md
-│   │   │   │   ├── QUARANTINE_INVENTORY_4_0_75.md
+│   │   │   │   ├── QUARANTINE_INVENTORY_3_0_75.md
 │   │   │   │   ├── README.md
-│   │   │   │   ├── STABILIZATION_ORDER_COMPLETION_4_0_75.md
+│   │   │   │   ├── STABILIZATION_ORDER_COMPLETION_3_0_75.md
 │   │   │   │   ├── TRUTH_ANCHOR_20260119_001.md
 │   │   │   │   └── tuesday_agi_support_meeting.md
 │   │   │   ├── migrations/
 │   │   │   │   └── CRAFTY_SYNTAX_3_5_5_TO_LUPOPEDIA.md.txt
 │   │   │   ├── postmortems/
-│   │   │   │   ├── 4.0.81.md
+│   │   │   │   ├── 3.0.81.md
 │   │   │   │   ├── INDEX.md
 │   │   │   │   └── README.md
 │   │   │   ├── releases/
@@ -1732,20 +1733,20 @@ lupopedia/
 │   │   │   │   ├── INDEX.md
 │   │   │   │   ├── README.md
 │   │   │   │   ├── TO_DO_FOR_VERSION_4_1_0.md
-│   │   │   │   └── VERSION_4_0_73_CIP_ROADMAP.md
+│   │   │   │   └── VERSION_3_0_73_CIP_ROADMAP.md
 │   │   │   ├── thread-summary/
 │   │   │   │   ├── INDEX.md
 │   │   │   │   ├── README.md
 │   │   │   │   ├── thread_summary_dialog.md
-│   │   │   │   └── VERSION_4.0.66_THREAD_SUMMARY.md
+│   │   │   │   └── VERSION_3.0.66_THREAD_SUMMARY.md
 │   │   │   ├── versioning/
 │   │   │   │   ├── 4.1.14_changes.md
 │   │   │   │   ├── 4.1.15_changes.md
 │   │   │   │   ├── 4.2.0_changes.md
 │   │   │   │   ├── 4.2.1_hotfix_window.md
 │   │   │   │   ├── CHANGELOG.md
-│   │   │   │   ├── CHANGELOG_4_0_71.md
-│   │   │   │   ├── CHANGELOG_4_0_72.md
+│   │   │   │   ├── CHANGELOG_3_0_71.md
+│   │   │   │   ├── CHANGELOG_3_0_72.md
 │   │   │   │   ├── changelog_update_4.1.14.md
 │   │   │   │   ├── HELP_CHANGELOG.md
 │   │   │   │   ├── INDEX.md
@@ -1766,7 +1767,7 @@ lupopedia/
 │   │   │   ├── MONDAY_RESUME_CONTEXT.md
 │   │   │   ├── MONDAY_START_OF_DAY.md
 │   │   │   ├── MONDAY_WOLFIE_4.1.0_ACTIVATION_SCRIPT.md
-│   │   │   ├── MONDAY_WOLFIE_BRIEFING_4.0.114_TO_4.1.0.md
+│   │   │   ├── MONDAY_WOLFIE_BRIEFING_3.0.114_TO_4.1.0.md
 │   │   │   ├── MONDAY_WOLFIE_ORIENTATION_PACKET.md
 │   │   │   ├── NOTE_TO_MONDAY_WOLFIE.md
 │   │   │   ├── PHILOSOPHY.md
@@ -1775,7 +1776,7 @@ lupopedia/
 │   │   │   ├── STRATEGIC_ROADMAP.md
 │   │   │   ├── THE_HOLY_CRAP_REALIZATION.md
 │   │   │   ├── V4_1_0_ASCENT_MANIFEST_CLEAN.md
-│   │   │   ├── VERSION_4_0_60_PLAN.md
+│   │   │   ├── VERSION_3_0_60_PLAN.md
 │   │   │   ├── VERSION_4_4_1_PATCH_SUMMARY.md
 │   │   │   ├── VISION.md
 │   │   │   ├── WHAT_LUPOPEDIA_IS.md
@@ -1822,37 +1823,37 @@ lupopedia/
 │   │   │   │   │   ├── TABLE_STRUCTURE_ANALYSIS_LUPO_USERS_VS_LUPO_ACTORS.md
 │   │   │   │   │   └── TOON_DATA_ANALYSIS_REPORT.md
 │   │   │   │   ├── 20260120_migration_audit.md
+│   │   │   │   ├── 3.0.0.md
+│   │   │   │   ├── 3.0.102.md
+│   │   │   │   ├── 3.0.104.md
+│   │   │   │   ├── 3.0.106.md
+│   │   │   │   ├── 3.0.112.md
+│   │   │   │   ├── 3.0.114.md
+│   │   │   │   ├── 3.0.115.md
+│   │   │   │   ├── 3.0.120.md
+│   │   │   │   ├── 3.0.13.md
+│   │   │   │   ├── 3.0.14.md
+│   │   │   │   ├── 3.0.15.md
+│   │   │   │   ├── 3.0.17.md
+│   │   │   │   ├── 3.0.18.md
+│   │   │   │   ├── 3.0.19.md
+│   │   │   │   ├── 3.0.26.md
+│   │   │   │   ├── 3.0.42.md
 │   │   │   │   ├── 3.0.46.md
-│   │   │   │   ├── 4.0.0.md
-│   │   │   │   ├── 4.0.102.md
-│   │   │   │   ├── 4.0.104.md
-│   │   │   │   ├── 4.0.106.md
-│   │   │   │   ├── 4.0.112.md
-│   │   │   │   ├── 4.0.114.md
-│   │   │   │   ├── 4.0.115.md
-│   │   │   │   ├── 4.0.120.md
-│   │   │   │   ├── 4.0.13.md
-│   │   │   │   ├── 4.0.14.md
-│   │   │   │   ├── 4.0.15.md
-│   │   │   │   ├── 4.0.17.md
-│   │   │   │   ├── 4.0.18.md
-│   │   │   │   ├── 4.0.19.md
-│   │   │   │   ├── 4.0.26.md
-│   │   │   │   ├── 4.0.42.md
-│   │   │   │   ├── 4.0.50.md
-│   │   │   │   ├── 4.0.64.md
-│   │   │   │   ├── 4.0.65.md
-│   │   │   │   ├── 4.0.66.md
-│   │   │   │   ├── 4.0.7.md
-│   │   │   │   ├── 4.0.70.md
-│   │   │   │   ├── 4.0.71.md
-│   │   │   │   ├── 4.0.72.md
-│   │   │   │   ├── 4.0.73.md
-│   │   │   │   ├── 4.0.75.md
-│   │   │   │   ├── 4.0.76.md
-│   │   │   │   ├── 4.0.77.md
-│   │   │   │   ├── 4.0.78.md
-│   │   │   │   ├── 4.0.81.md
+│   │   │   │   ├── 3.0.50.md
+│   │   │   │   ├── 3.0.64.md
+│   │   │   │   ├── 3.0.65.md
+│   │   │   │   ├── 3.0.66.md
+│   │   │   │   ├── 3.0.7.md
+│   │   │   │   ├── 3.0.70.md
+│   │   │   │   ├── 3.0.71.md
+│   │   │   │   ├── 3.0.72.md
+│   │   │   │   ├── 3.0.73.md
+│   │   │   │   ├── 3.0.75.md
+│   │   │   │   ├── 3.0.76.md
+│   │   │   │   ├── 3.0.77.md
+│   │   │   │   ├── 3.0.78.md
+│   │   │   │   ├── 3.0.81.md
 │   │   │   │   ├── 4.1.1.md
 │   │   │   │   ├── 4.1.12.md
 │   │   │   │   ├── 4.1.13.md
@@ -1885,7 +1886,7 @@ lupopedia/
 │   │   │   ├── INDEX.md
 │   │   │   └── README.md
 │   │   └── ui-ux/
-│   │       ├── 4.0.17-UI_DROP_MENU_DATA_REQUIREMENTS.md
+│   │       ├── 3.0.17-UI_DROP_MENU_DATA_REQUIREMENTS.md
 │   │       ├── INDEX.md
 │   │       ├── README.md
 │   │       ├── WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md
@@ -8808,23 +8809,23 @@ lupopedia/
 │   ├── 2026_01_28_08_seed_gov_constitutional_thread.sql
 │   ├── 2026_01_28_09_seed_gov_constitutional_message.sql
 │   ├── 4.2.5_insert_pack_survival_guide_tldnr.sql
-│   ├── agents_table_migration_4_0_26.sql
+│   ├── agents_table_migration_3_0_26.sql
 │   ├── ai_agents_content_migration_2026_1_0_5.sql
 │   ├── channel_roles_escalations_toon_alignment.sql
 │   ├── doctrine_cursor_tab_mapping.sql
-│   ├── doctrine_versioning_tab_mapping_4_0_26.sql
-│   ├── ephemeral_schema_4_0_25.sql
-│   ├── ephemeral_schema_4_0_25_cleanup.sql
-│   ├── execution_sequence_4_0_30.sql
-│   ├── migration_orchestrator_schema_4_0_25.sql
-│   ├── migration_orchestrator_schema_4_0_25_cleanup.sql
+│   ├── doctrine_versioning_tab_mapping_3_0_26.sql
+│   ├── ephemeral_schema_3_0_25.sql
+│   ├── ephemeral_schema_3_0_25_cleanup.sql
+│   ├── execution_sequence_3_0_30.sql
+│   ├── migration_orchestrator_schema_3_0_25.sql
+│   ├── migration_orchestrator_schema_3_0_25_cleanup.sql
 │   ├── README.md
 │   ├── structural_alignment_mysql_migration.sql
 │   ├── toon_aligned_dialog_channels.sql
 │   ├── toon_files_rollback.sql
 │   ├── toon_files_tab_mapping.sql
 │   ├── toon_files_validation.sql
-│   └── verification_queries_4_0_30.sql
+│   └── verification_queries_3_0_30.sql
 ├── prompts/
 │   ├── 4.1.16_cursor_complete.txt
 │   ├── 4.1.16_cursor_instruction.txt
@@ -8885,6 +8886,7 @@ lupopedia/
 │   ├── migrate_filesystem_to_db.py
 │   ├── migrate_user_mappings.php
 │   ├── migrate_wolfie_headers_to_db.php
+│   ├── normalize_version_4_0_x_to_3_0_x.py
 │   ├── pre-commit-hook.bat
 │   ├── pre-commit-hook.sh
 │   ├── PYTHON_VS_PHP.md

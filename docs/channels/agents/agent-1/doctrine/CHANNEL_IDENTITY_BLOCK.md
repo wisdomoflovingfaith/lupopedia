@@ -61,7 +61,7 @@ All Channel Identity Blocks MUST include the following required fields:
 **Examples:**
 - `dev/documentation`
 - `routing_development`
-- `lupopedia_4_0_16_channels_documentation_database_refinement`
+- `lupopedia_3_0_16_channels_documentation_database_refinement`
 
 **Database Mapping:** `lupo_channels.channel_key`
 

@@ -26,7 +26,7 @@ Purpose: System architecture, protocols, and interoperability contracts.
 
 Files:
 - [ARCHITECTURE.md](ARCHITECTURE.md)
-- [ARCHITECTURE_MAP_v4_0_70.md](ARCHITECTURE_MAP_v4_0_70.md)
+- [ARCHITECTURE_MAP_v3_0_70.md](ARCHITECTURE_MAP_v3_0_70.md)
 - [ARCHITECTURE_SYNC.md](ARCHITECTURE_SYNC.md)
 - [CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md](CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md)
 - [CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md](CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md)
@@ -37,7 +37,7 @@ Files:
 - [GROUNDED_AGENT_SYSTEM.md](GROUNDED_AGENT_SYSTEM.md)
 - [kip/KIP_CIP_INTEROPERABILITY_GUIDELINES.md](kip/KIP_CIP_INTEROPERABILITY_GUIDELINES.md)
 - [kip/KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md](kip/KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md)
-- [lupopedia_v4_0_70_agent_awareness_layer.md](lupopedia_v4_0_70_agent_awareness_layer.md)
+- [lupopedia_v3_0_70_agent_awareness_layer.md](lupopedia_v3_0_70_agent_awareness_layer.md)
 - [multi-ide-workflow.md](multi-ide-workflow.md)
 - [protocols/CADUCEUS_ROUTING_RFC.md](protocols/CADUCEUS_ROUTING_RFC.md)
 - [protocols/COPILOT_QUICK_REFERENCE.md](protocols/COPILOT_QUICK_REFERENCE.md)
@@ -48,7 +48,7 @@ Files:
 - [protocols/THREAD_MOOD_RFC.md](protocols/THREAD_MOOD_RFC.md)
 - [protocols/WOLFIE_HEADER_RFC.md](protocols/WOLFIE_HEADER_RFC.md)
 - [SEMANTIC_NAVIGATION.md](SEMANTIC_NAVIGATION.md)
-- [system_truth_table_4_0_81.md](system_truth_table_4_0_81.md)
+- [system_truth_table_3_0_81.md](system_truth_table_3_0_81.md)
 - [VERSION_3_INGESTION_RULES.md](VERSION_3_INGESTION_RULES.md)
 - [WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md](WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md)
 - [WHY_MULTIPLE_IDES_AND_AGENTS.md](WHY_MULTIPLE_IDES_AND_AGENTS.md)

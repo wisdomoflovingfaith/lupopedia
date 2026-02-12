@@ -16,17 +16,7 @@ INSERT INTO lupo_domains (domain_id, domain_name, status, created_at)
 VALUES (1, 'primary', 'active', 20260101000000);
 
 /* ------------------------------------------------------------
-   2. GROUPS (core permission groups)
-   ------------------------------------------------------------ */
-INSERT INTO lupo_groups (group_id, domain_id, group_name, created_at)
-VALUES
-  (1, 1, 'Administrators', 20260101000010),
-  (2, 1, 'Editors',        20260101000020),
-  (3, 1, 'Viewers',        20260101000030),
-  (4, 1, 'Guests',         20260101000040);
-
-/* ------------------------------------------------------------
-   3. ACTORS (system + admin)
+   2. ACTORS (system + admin)
    ------------------------------------------------------------ */
 INSERT INTO lupo_actors (actor_id, domain_id, actor_type, display_name, created_at)
 VALUES

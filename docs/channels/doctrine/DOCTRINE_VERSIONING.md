@@ -12,7 +12,7 @@ No other file, comment, or metadata may define or imply the version.
 
 The version format is: `YYYY.MAJOR.MINOR.PATCH`
 
-Example: `4.0.0`
+Example: `3.0.0`
 
 - **YYYY**: Year of release
 - **MAJOR**: Major feature release
@@ -43,7 +43,7 @@ This tells IDEs:
 ### Migration Contracts
 All migrations must reference the canonical version:
 ```
-Importing into Lupopedia version 4.0.0
+Importing into Lupopedia version 3.0.0
 ```
 
 ### Installer Requirements

@@ -1,7 +1,7 @@
 # Minimal Hosting Requirements
 
 **Status:** Canonical  
-**Applies to:** Lupopedia 4.0.0 — installer pre-flight, diagnostics, and runtime assumptions  
+**Applies to:** Lupopedia 3.0.0 — installer pre-flight, diagnostics, and runtime assumptions  
 **Overrides:** Any previous assumptions about required extensions or hosting.
 
 **Minimal hosting doctrine (permanent):** Lupopedia must run on **old shared hosting**. Required: PHP 5.3+, pdo_mysql, json, ability to write config. Optional (warn only): mbstring, curl, openssl, fileinfo. Not required: gd, imagick, composer, frameworks.

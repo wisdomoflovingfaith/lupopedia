@@ -19,7 +19,7 @@ file:
   status: published
   author: GLOBAL_CURRENT_AUTHORS
   artifact: "Release Timeline"
-  thread: "Lupopedia_4_0_99_Release"
+  thread: "Lupopedia_3_0_99_Release"
   mode: "Release Mode"
   location: "Release Management Layer"
   severity: "Critical"

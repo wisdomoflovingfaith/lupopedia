@@ -126,7 +126,7 @@ foreach ($tabMapping as $dir => $tabId) {
             'content_id' => $contentIdValue,
             'federation_node_id' => $nodeId,
             'user_id' => 'NULL',
-            'group_id' => 'NULL',
+            'department_id' => 'NULL',
             'title' => $title,
             'slug' => $uniqueSlug,
             'content_type' => 'markdown',
@@ -190,7 +190,7 @@ $contentSql .= "-- - Uses BIGINT UTC timestamp format (YYYYMMDDHHMMSS)\n";
 $contentSql .= "-- - Content type: 'markdown'\n";
 $contentSql .= "-- - Format: 'markdown'\n";
 $contentSql .= "-- - federations_node_id = 1\n";
-$contentSql .= "-- - user_id = NULL, group_id = NULL\n";
+$contentSql .= "-- - user_id = NULL, department_id = NULL\n";
 $contentSql .= "--\n";
 $contentSql .= "-- ============================================================\n\n";
 
@@ -207,7 +207,7 @@ foreach ($contentInserts as $insert) {
     $contentSql .= "    `content_id`,\n";
     $contentSql .= "    `content_parent_id`,\n";
     $contentSql .= "    `federation_node_id`,\n";
-    $contentSql .= "    `group_id`,\n";
+    $contentSql .= "    `department_id`,\n";
     $contentSql .= "    `user_id`,\n";
     $contentSql .= "    `title`,\n";
     $contentSql .= "    `slug`,\n";
@@ -236,7 +236,7 @@ foreach ($contentInserts as $insert) {
     $contentSql .= "    {$insert['content_id']},\n";
     $contentSql .= "    NULL,\n";
     $contentSql .= "    @node_id,\n";
-    $contentSql .= "    {$insert['group_id']},\n";
+    $contentSql .= "    {$insert['department_id']},\n";
     $contentSql .= "    {$insert['user_id']},\n";
     $contentSql .= "    '{$insert['title']}',\n";
     $contentSql .= "    '{$insert['slug']}',\n";

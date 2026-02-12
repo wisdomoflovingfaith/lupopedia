@@ -326,7 +326,7 @@ file:
 - `docs/agents/WOLFIE_HEADER_SPECIFICATION.md` — File metadata format
 
 **History:**
-- `docs/history/UNIFIED_TIMELINE_2_0_19_TO_4_0_32.md` — Complete historical timeline
+- `docs/history/UNIFIED_TIMELINE_2_0_19_TO_3_0_32.md` — Complete historical timeline
 - `CHANGELOG.md` — Version-by-version changes
 
 ---

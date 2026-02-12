@@ -811,7 +811,7 @@ RESULT: Complete version-metadata synchronization across system
 - **[Agent Runtime](AGENT_RUNTIME.md)** - Agent coordination and lane management during synchronization
 - **[Patch Discipline](PATCH_DISCIPLINE.md)** - Development workflow coordination and synchronization requirements
 - **[Directory Structure](DIRECTORY_STRUCTURE.md)** - Directory organization synchronization and validation
-- **[Versioning Doctrine](VERSIONING_DOCTRINE.md)** - Version synchronization and coordination across system components
+- **[Versioning Doctrine](../../doctrine/VERSIONING_DOCTRINE.md)** - Version synchronization and coordination across system components
 - **[Metadata Governance](METADATA_GOVERNANCE.md)** - Metadata synchronization and consistency management
 - **[Agent Prompt Doctrine](AGENT_PROMPT_DOCTRINE.md)** - Agent communication standards and synchronization coordination
 

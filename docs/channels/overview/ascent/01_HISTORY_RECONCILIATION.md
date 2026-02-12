@@ -160,7 +160,7 @@ History Reconciliation is complete when:
 - **History Files:** `docs/history/`
 - **CHANGELOG.md:** System version history
 - **Global Atoms:** `config/global_atoms.yaml` (GLOBAL_ERIC_WOLFIE_TLDNR_2026)
-- **Version 3.0.60 Plan:** `docs/VERSION_4_0_60_PLAN.md`
+- **Version 3.0.60 Plan:** `docs/VERSION_3_0_60_PLAN.md`
 
 ---
 

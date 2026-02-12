@@ -76,7 +76,7 @@ OHANA (Hawaiian: "family") is the agent that catalogs, lists, and provides infor
 - `lupo_agent_relationships` - Agent supervision/relationships
 
 **Reference Data:**
-- `config/global_atoms.yaml` - `GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS`
+- `config/global_atoms.yaml` - `GLOBAL_LUPOPEDIA_V3_0_2_CORE_AGENTS`
 - `docs/agents/` - Agent documentation
 - `lupo-agents/` - Agent implementation directories
 
@@ -167,7 +167,7 @@ OHANA should output structured, human-readable lists:
 ## Integration Points
 
 - **Agent Registry** - Primary data source (`lupo_agents` table)
-- **Global Atoms** - Reference `GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS`
+- **Global Atoms** - Reference `GLOBAL_LUPOPEDIA_V3_0_2_CORE_AGENTS`
 - **Agent Documentation** - Link to `docs/agents/[agent].md` files
 - **Dialog System** - Can be queried via dialog messages
 

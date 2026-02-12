@@ -4,12 +4,11 @@ file.last_modified_system_version: 3.0.82
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
-  - WHEELER_MODE
 dialog:
   speaker: KIRO
   target: @architecture_team @developers
   mood_RGB: "0066FF"
-  message: "Created standard WOLFIE Header Template with persona dialog examples and Wheeler Mode support."
+  message: "Created standard WOLFIE Header Template with persona dialog examples and metadata support."
 tags:
   categories: ["template", "headers", "architecture", "metadata"]
   collections: ["core-templates", "wolfie-headers"]
@@ -88,35 +87,6 @@ dialog:
 
 ## Optional Metadata Blocks
 
-### Wheeler Mode Block
-For files created through emergent architecture:
-```yaml
-wheeler_mode:
-  active: true
-  reason: "File created during emergent architecture or reverse-20 workflow"
-  notes:
-    - "Structure emerged through iterative questioning"
-    - "Architecture not predetermined at creation time"
-    - "Truth collapsed by designated observer"
-```
-
-### Quantum State Block
-For files with uncertainty or superposition:
-```yaml
-schrodingers_state:
-  active: true
-  possible_versions: ["[VERSION1]", "[VERSION2]"]
-  truth_pending: true
-  collapse_required_by: "[OBSERVER_NAME]"
-  uncertainty_type: "[TYPE]"
-  notes:
-    - "[UNCERTAINTY_DESCRIPTION]"
-  collapse_paths:
-    - "If [CONDITION] → [ACTION]"
-  observer_effect:
-    - "State collapses when [OBSERVER] [ACTION]"
-```
-
 ### Next Actions Block
 For files requiring follow-up work:
 ```yaml
@@ -131,8 +101,6 @@ next_actions:
 ### Standard Atoms
 - `GLOBAL_CURRENT_LUPOPEDIA_VERSION` - Current system version
 - `GLOBAL_CURRENT_AUTHORS` - System authors
-- `WHEELER_MODE` - Wheeler mode workflow indicator
-
 ### Usage Guidelines
 - Include atoms that are referenced in the file content
 - Remove atoms that are not used in the file
@@ -143,7 +111,7 @@ next_actions:
 ### Common Categories
 - `["documentation", "doctrine"]` - Doctrine files
 - `["template", "headers"]` - Template files
-- `["architecture", "quantum"]` - Quantum architecture files
+- `["architecture", "metadata"]` - Architecture and metadata files
 - `["migration", "version"]` - Migration documentation
 - `["agent", "runtime"]` - Agent-related files
 
@@ -151,12 +119,11 @@ next_actions:
 - `["core-docs"]` - Core documentation
 - `["doctrine"]` - Doctrine files
 - `["templates"]` - Template files
-- `["quantum-docs"]` - Quantum-related documentation
+- `["metadata-docs"]` - Metadata and discovery-context documentation
 
 ### Channels
 - `["dev"]` - Development-focused
 - `["architecture"]` - Architecture team
-- `["quantum"]` - Quantum state management
 - `["public"]` - Public documentation
 
 ## File Status Values
@@ -166,7 +133,6 @@ next_actions:
 - `published` - Finalized and active
 - `archived` - Historical reference
 - `template` - Template file
-- `quantum` - In quantum superposition
 
 ## Best Practices
 
@@ -185,7 +151,7 @@ next_actions:
 
 ### Optional Block Usage
 - Only include optional blocks when relevant
-- Wheeler Mode for emergent architecture files
+- Optional discovery-context notes for emergent architecture files
 - Quantum State for files with uncertainty
 - Next Actions for files requiring follow-up
 

@@ -11,7 +11,7 @@ Updates all files with old WOLFIE header versions to 3.1.6 and adds required fie
    - `GLOBAL_CURRENT_LUPOPEDIA_VERSION`
    - `GLOBAL_CURRENT_AUTHORS`
 3. **Dialog Block:** Must use `mood_RGB:` (not `mood:`)
-4. **Simplify Wheeler Mode:** Remove quantum physics complexity, keep it simple
+4. **Simplify optional metadata:** Remove deprecated complexity, keep it simple
 
 ## Files to Update
 
@@ -20,7 +20,7 @@ Found 112 doctrine files with old versions. Update them systematically:
 1. Update version number
 2. Fix `mood:` → `mood_RGB:`
 3. Ensure header_atoms are present
-4. Simplify Wheeler Mode references
+4. Simplify optional metadata references
 
 ## Script
 

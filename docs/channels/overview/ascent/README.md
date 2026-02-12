@@ -84,7 +84,7 @@ Version 3.1.0 is ready when:
 
 ## Related Documentation
 
-- **Version 3.0.60 Plan:** `docs/VERSION_4_0_60_PLAN.md`
+- **Version 3.0.60 Plan:** `docs/VERSION_3_0_60_PLAN.md`
 - **Ascent Manifest:** `docs/V4_1_0_ASCENT_MANIFEST_CLEAN.md`
 - **Monday Start:** `docs/MONDAY_START_OF_DAY.md`
 - **History Documentation:** `docs/history/`

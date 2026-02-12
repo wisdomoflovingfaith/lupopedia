@@ -18,7 +18,7 @@ file.updated_by: agent:cascade
 
 -->-
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.0
+file.last_modified_system_version: 3.0.0
 file.channel: versioning
 file.last_modified_utc: 20260210000000
 file.name: "CHANGELOG.md"
@@ -38,7 +38,7 @@ increments, doctrine updates, and schema-related notes.
 ## 2026-02-10 — Remaining Helper Refactors + Version Doctrine
 
 ### Summary
-Completed domain-by-domain helper refactors (Collection Zero, Collection Tabs, Saved Collections, Redirect, Limits, Atoms/Version, Upload) per `docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md`. Introduced authoritative Version Doctrine: 4.0.0 is the only release target; 4.0.1–4.0.8 must not be referenced in code, SQL, or UI; only upgrade path is Crafty Syntax 3.7.5 → Lupopedia 4.0.0; 4.1.0 is the only future version.
+Completed domain-by-domain helper refactors (Collection Zero, Collection Tabs, Saved Collections, Redirect, Limits, Atoms/Version, Upload) per `docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md`. Introduced authoritative Version Doctrine: 3.0.0 is the only release target; 4.0.1–3.0.8 must not be referenced in code, SQL, or UI; only upgrade path is Crafty Syntax 3.7.5 → Lupopedia 3.0.0; 4.1.0 is the only future version.
 
 ### Helper refactors (services and wrappers)
 - **CollectionZeroService** (`app/Services/CollectionZeroService.php`): ensureCollectionZero, populateCollectionZeroTabs, getCollectionZeroUrl, initializeCollectionZero. Thin wrappers in `collection-zero-helpers.php`.
@@ -51,15 +51,15 @@ Completed domain-by-domain helper refactors (Collection Zero, Collection Tabs, S
 - **Bootstrap** (`lupo-includes/bootstrap.php`): Registers collection-zero, collection-tabs, saved-collections, upload, atom-loader services in GLOBALS; loads RedirectUtils, LimitsLogger, AtomLoader, VersionUtils.
 
 ### Version doctrine
-- **docs/doctrine/VERSION_DOCTRINE.md:** New canonical doctrine. 4.0.0 only release target; 4.0.1–4.0.8 not releases; upgrade path 3.7.5 → 4.0.0; 4.1.0 only future version; code/SQL/UI rules; single source of truth (atoms, fallbacks).
+- **docs/doctrine/VERSION_DOCTRINE.md:** New canonical doctrine. 3.0.0 only release target; 4.0.1–3.0.8 not releases; upgrade path 3.7.5 → 3.0.0; 4.1.0 only future version; code/SQL/UI rules; single source of truth (atoms, fallbacks).
 - **.cursorrules:** Version doctrine bullet added; reference to VERSION_DOCTRINE.md.
-- **Code fallbacks:** All version fallbacks and examples set to 4.0.0 (replaced 3.0.35, 4.2.3, 4.2.0, 4.4.1, 3.0.106, 3.0.9, 3.0.18 in load_atoms.php, AtomLoader.php, VersionUtils.php, version.php, identity-helpers.php, limits_logger.php, redirect-helpers.php, collection-tabs-loader.php, help-model.php).
-- **Install/seed SQL:** All DEFAULT '4.0.72' and '4.0.75' set to '4.0.0' in `install_new_lupopedia.sql`, `seed_lupopedia.sql`, `dev_20260204_fix_schema_alignment.sql` (and summary).
-- **Docs:** HELPER_TO_CLASS_MAPPING_ANALYSIS.md, REMAINING_HELPERS_REFACTOR_REPORT.md (fallback 4.0.0); REQUIRED_TABLES_4.2.1.md (release version 4.0.0).
+- **Code fallbacks:** All version fallbacks and examples set to 3.0.0 (replaced 3.0.35, 4.2.3, 4.2.0, 4.4.1, 3.0.106, 3.0.9, 3.0.18 in load_atoms.php, AtomLoader.php, VersionUtils.php, version.php, identity-helpers.php, limits_logger.php, redirect-helpers.php, collection-tabs-loader.php, help-model.php).
+- **Install/seed SQL:** All DEFAULT '3.0.72' and '3.0.75' set to '3.0.0' in `install_new_lupopedia.sql`, `seed_lupopedia.sql`, `dev_20260204_fix_schema_alignment.sql` (and summary).
+- **Docs:** HELPER_TO_CLASS_MAPPING_ANALYSIS.md, REMAINING_HELPERS_REFACTOR_REPORT.md (fallback 3.0.0); REQUIRED_TABLES_4.1.0.md (release version 3.0.0).
 
 ### Reports
 - **docs/REMAINING_HELPERS_REFACTOR_REPORT.md:** Files changed, helpers migrated per domain, references, confirmations (PDO_DB, LUPO_TABLE_PREFIX, schema).
-- **docs/VERSION_DOCTRINE_APPLICATION_REPORT.md:** Files updated, version refs removed/corrected, confirmations (only 4.0.0/4.1.0; no 4.0.1–4.0.8; upgrade path 3.7.5 → 4.0.0).
+- **docs/VERSION_DOCTRINE_APPLICATION_REPORT.md:** Files updated, version refs removed/corrected, confirmations (only 3.0.0/4.1.0; no 4.0.1–3.0.8; upgrade path 3.7.5 → 3.0.0).
 
 ### Notes
 - Auth, Actor, Session, UnifiedSessionHandler, and Crafty Syntax domains were not modified.
@@ -90,45 +90,45 @@ Both use **lupopedia-config.php** for DB credentials.
 - TOONs, schema, migrations, PHP, and lupopedia-config.php were not modified.
 - Seed output remains **database/migrations/seed_lupopedia.sql**.
 
-## [4.0.0] — 2026-02-06 — Reserved-Word Column Renames + Version Lock + Doctrine Rules
+## [3.0.0] — 2026-02-06 — Reserved-Word Column Renames + Version Lock + Doctrine Rules
 
 ### Summary
-Version 4.0.0 locks the development version at 4.0.0 until the 4.1.0 auto-installer release. This release applies reserved-word column renames identified by the TOON audit, adds mandatory .cursorrules for zero-installations / no backward compatibility and version lock, and documents all changes in CHANGELOG, migration notes, and changelog dialog.
+Version 3.0.0 locks the development version at 3.0.0 until the 4.1.0 auto-installer release. This release applies reserved-word column renames identified by the TOON audit, adds mandatory .cursorrules for zero-installations / no backward compatibility and version lock, and documents all changes in CHANGELOG, migration notes, and changelog dialog.
 
 ### Schema and migrations
 - **Reserved-word column renames (one-time migration):** `database/migrations/dev_20260206_reserved_word_column_renames.sql`
   - `lupo_actor_group_membership.role` → `role_key` (varchar(50) DEFAULT 'member')
   - `lupo_artifacts.type` → `entity_type` (varchar(64) NOT NULL); index `lupo_artifacts_idx_type` → `lupo_artifacts_idx_entity_type`
   - `lupo_pack_role_registry.role` → `role_key` (varchar(255) NOT NULL); index `lupo_pack_role_registry_idx_role` → `lupo_pack_role_registry_idx_role_key`
-  - `lupo_unified_analytics_paths.year_month` → `year_month_key` (char(6) NOT NULL)
+  - `lupo_unified_analytics_paths.year_month` remains `year_month` (not a reserved word; do not rename)
 - **Canonical schema:** `database/migrations/install_new_lupopedia.sql` updated with the same column names and indexes for new installs.
 - **TOONs:** Not modified; user regenerates TOONs from schema after applying migration.
 
 ### PHP and API
 - **api/v1/artifact.php:** Insert key and SELECT use `entity_type`; response key `entity_type` (was `type`).
 - **api/v1/timeline.php:** SELECT and response use `entity_type` (was `type`).
-- No PHP references existed for `lupo_actor_group_membership.role`, `lupo_pack_role_registry.role`, or `lupo_unified_analytics_paths.year_month`.
+- No PHP references existed for `lupo_actor_group_membership.role` or `lupo_pack_role_registry.role`. Column `lupo_unified_analytics_paths.year_month` was never renamed (it is not a reserved word).
 
 ### Doctrine and rules (.cursorrules)
 - **Zero Installations / No Backward Compatibility Rule (MANDATORY):** States zero Lupopedia installations, zero external API consumers, no backward compatibility requirement; ALWAYS rename columns/fields/API keys cleanly; NEVER compatibility shims. Sunset: remove entire section when preparing 4.1.0 auto-installers.
-- **Version Lock Rule (MANDATORY):** Development version 4.0.0 locked until user explicitly begins 4.1.0 auto-installer cycle; Cursor MUST NOT bump or suggest version changes; remove rule only when preparing 4.1.0 release.
-- **Pre-Release Version Freeze:** Lupopedia version set to 4.0.0 (was 4.0.1) across version freeze section.
-- **Version Management Rules:** Atom value in .cursorrules set to 4.0.0.
+- **Version Lock Rule (MANDATORY):** Development version 3.0.0 locked until user explicitly begins 4.1.0 auto-installer cycle; Cursor MUST NOT bump or suggest version changes; remove rule only when preparing 4.1.0 release.
+- **Pre-Release Version Freeze:** Lupopedia version set to 3.0.0 (was 4.0.1) across version freeze section.
+- **Version Management Rules:** Atom value in .cursorrules set to 3.0.0.
 
 ### Tooling and docs
 - **database/audit_toon_reserved_words.py:** Reserved-word audit script; writes `database/migrations/reserved_word_audit_report.txt` (UTF-8). Report lists table, column, MySQL/PostgreSQL violation, severity, suggested alternative.
-- **docs/doctrine/LUPOPEDIA_DOCTRINE.md:** All references to fixed version 4.0.1 updated to 4.0.0.
+- **docs/doctrine/LUPOPEDIA_DOCTRINE.md:** All references to fixed version 4.0.1 updated to 3.0.0.
 - **docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md:** Unchanged; alignment context remains valid.
 
 ### Version metadata
-- **config/global_atoms.yaml:** `version`, `versions.lupopedia`, `GLOBAL_CURRENT_LUPOPEDIA_VERSION` set to `"4.0.0"`.
-- **config/GLOBAL_IMPORTANT_ATOMS.yaml:** `GLOBAL_CURRENT_LUPOPEDIA_VERSION` set to `"4.0.0"`.
-- **lupo-includes/version.php:** Fallback and docblock set to 4.0.0.
+- **config/global_atoms.yaml:** `version`, `versions.lupopedia`, `GLOBAL_CURRENT_LUPOPEDIA_VERSION` set to `"3.0.0"`.
+- **config/GLOBAL_IMPORTANT_ATOMS.yaml:** `GLOBAL_CURRENT_LUPOPEDIA_VERSION` set to `"3.0.0"`.
+- **lupo-includes/version.php:** Fallback and docblock set to 3.0.0.
 
 ### Notes
 - No new tables; no new UI components; no refactors beyond column renames and rule blocks.
 - Legacy files (e.g. livehelp_js.php) not removed; no compatibility shims added (per Zero Installations rule).
-- Migration notes: `docs/channels/schema/migrations/4.0.0.md`.
+- Migration notes: `docs/channels/schema/migrations/3.0.0.md`.
 
 ## 2026-02-01 — Architecture Rebuild + Crafty Syntax Integration
 

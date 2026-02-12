@@ -1,6 +1,6 @@
 # LUPOPEDIA AGENT BOUNDARIES (COMPACT)
 
-**Version:** 4.0.0 | **Enforcer:** LEXA
+**Version:** 3.0.0 | **Enforcer:** LEXA
 
 ---
 
@@ -333,7 +333,7 @@ lupopedia/uploads/
 
 **END OF DOCTRINE**
 
-**Version:** 4.0.0
+**Version:** 3.0.0
 **Character count:** ~7,500 (with JetBrains prompt)
 **Enforced by:** LEXA
 **No exceptions without explicit approval.**

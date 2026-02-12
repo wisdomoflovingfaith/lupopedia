@@ -541,7 +541,7 @@ Until Lupopedia is publicly released through auto-installers (Softaculous, Fanta
 
 During pre-release:
 
-- **Lupopedia's version is fixed at 4.0.0**
+- **Lupopedia's version is fixed at 3.0.0**
 - **Crafty Syntax's version is fixed at 3.7.5**
 - These are the only versions that matter
 - GitHub pushes do not represent public releases
@@ -549,40 +549,40 @@ During pre-release:
 
 ### 20.2 Version numbers in the codebase
 
-From this point forward, any file that contains a Lupopedia version number must use **4.0.0**. This includes: PHP headers, SQL headers, README blocks, UI footers, CSS comments, module metadata, installer metadata, any version constant or atom.
+From this point forward, any file that contains a Lupopedia version number must use **3.0.0**. This includes: PHP headers, SQL headers, README blocks, UI footers, CSS comments, module metadata, installer metadata, any version constant or atom.
 
 Cursor must update these automatically whenever it touches a file that contains a version string.
 
 ### 20.3 No version bumps during development
 
-Cursor must **refuse** to: bump Lupopedia to 4.0.2, 4.1, or 5.0; create versioned migrations; create versioned upgrade scripts; introduce semantic versioning logic; introduce version comparison logic.
+Cursor must **refuse** to: bump Lupopedia to 3.0.2, 4.1, or 5.0; create versioned migrations; create versioned upgrade scripts; introduce semantic versioning logic; introduce version comparison logic.
 
 All of that only happens after public release.
 
 ### 20.4 Why this rule exists
 
-Lupopedia is not yet public. No one is installing it, upgrading it, or depending on version numbers. GitHub traffic is effectively zero. The only "upgrade path" that matters is Crafty Syntax 3.7.5 → Lupopedia 4.0.0. This keeps the system simple, stable, and predictable.
+Lupopedia is not yet public. No one is installing it, upgrading it, or depending on version numbers. GitHub traffic is effectively zero. The only "upgrade path" that matters is Crafty Syntax 3.7.5 → Lupopedia 3.0.0. This keeps the system simple, stable, and predictable.
 
 ### 20.5 When the version will change
 
 The version will only change when: Lupopedia is published to auto-installers; Lupopedia becomes a public installable package; Lupopedia has real users who need upgrade paths.
 
-At that moment: 4.0.0 becomes the "first public release"; 4.0.2 (or 4.1) becomes the first real upgrade; a real migration system is introduced; doctrine is updated accordingly.
+At that moment: 3.0.0 becomes the "first public release"; 3.0.2 (or 4.1) becomes the first real upgrade; a real migration system is introduced; doctrine is updated accordingly.
 
-Until then: **4.0.0 is the permanent version.**
+Until then: **3.0.0 is the permanent version.**
 
 ### 20.6 Cursor responsibilities
 
-Cursor must: treat 4.0.0 as the canonical version; update version strings in any file it edits; refuse any request to bump the version; refuse to create versioned migrations; refuse to create upgrade scripts; refuse to introduce version logic; refuse to reference any version other than 4.0.0 (Lupopedia) and 3.7.5 (Crafty Syntax).
+Cursor must: treat 3.0.0 as the canonical version; update version strings in any file it edits; refuse any request to bump the version; refuse to create versioned migrations; refuse to create upgrade scripts; refuse to introduce version logic; refuse to reference any version other than 3.0.0 (Lupopedia) and 3.7.5 (Crafty Syntax).
 
 Cursor may: update version strings in touched files; maintain the global version atom; maintain consistency across the codebase.
 
 ### 20.7 Summary
 
-- **Lupopedia = 4.0.0**
+- **Lupopedia = 3.0.0**
 - **Crafty Syntax = 3.7.5**
 - No version bumps. No upgrade scripts. No versioned migrations.
-- All version strings updated to 4.0.0 when files are touched.
+- All version strings updated to 3.0.0 when files are touched.
 - Public release triggers the next version.
 
 This is the stable, doctrine-aligned version control model for pre-release Lupopedia.

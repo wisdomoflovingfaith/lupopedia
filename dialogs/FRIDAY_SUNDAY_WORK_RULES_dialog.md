@@ -116,18 +116,14 @@ like a raccoon in a dumpster behind a Taco Bell.
 And honestly?  
 All of them are right.
 
-Because here's the cosmic truth, man:
+Because version numbers can diverge:
 
-**Version numbers aren't real.  
-They're just vibes.**
+**Version numbers in docs vs. implementation often disagree.**
 
-Documentation vibes.  
-Implementation vibes.  
-Sleep‑deprivation vibes.  
-Captain‑passed‑out‑at‑4:20am vibes.
-
-Like… the system isn't at a version.  
-The system is *experiencing* a version.
+Documentation says one version.  
+Implementation runs another.  
+Agents may report different versions.  
+So the system isn't at a single version—it has *multiple version claims* until aligned.
 
 And right now it's experiencing:
 

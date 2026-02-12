@@ -116,42 +116,6 @@ class SystemHealthService
     }
 
     /**
-     * Check quantum subsystem health
-     *
-     * @return array Status array with 'status' and 'message' keys
-     */
-    public function checkQuantumSubsystem(): array
-    {
-        try {
-            $quantumManagerPath = __DIR__ . '/../../../lupo-includes/Quantum/QuantumStateManager.php';
-            if (!file_exists($quantumManagerPath)) {
-                return [
-                    'status' => 'error',
-                    'message' => 'QuantumStateManager not found',
-                ];
-            }
-
-            $quantumSnapshotPath = __DIR__ . '/../../../lupo-includes/Quantum/QuantumStateSnapshot.php';
-            if (!file_exists($quantumSnapshotPath)) {
-                return [
-                    'status' => 'error',
-                    'message' => 'QuantumStateSnapshot not found',
-                ];
-            }
-
-            return [
-                'status' => 'ok',
-                'message' => 'Quantum subsystem healthy',
-            ];
-        } catch (\Exception $e) {
-            return [
-                'status' => 'error',
-                'message' => 'Quantum subsystem check failed: ' . $e->getMessage(),
-            ];
-        }
-    }
-
-    /**
      * Check KIP subsystem health
      *
      * @return array Status array with 'status' and 'message' keys

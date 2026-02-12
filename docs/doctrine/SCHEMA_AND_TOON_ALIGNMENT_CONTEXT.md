@@ -10,6 +10,7 @@ When working on Lupopedia schema, migrations, or TOONs, use this context:
 
 - **Canonical schema** is `database/migrations/install_new_lupopedia.sql` (not TOONs). TOONs are generated **from** the live database and must not be edited manually.
 - **Two one-time migrations** were run to align the live DB with doctrine: (1) `dev_20260204_fix_schema_alignment.sql` — MODIFY COLUMN for all non-PK columns to match install, with backtick-quoted column names and `lupo_contents.body` as longtext to avoid truncation; (2) `dev_20260205_doctrine_alignment_phase2.sql` — drop UNSIGNED on PKs (keep AUTO_INCREMENT), fix tinyint(1)→tinyint, and timestamp→bigint in lupo_crafty_user_mapping.
+- **Unification (groups → departments):** `migration_unify_groups_into_departments.sql` added department_id to permissions, collections, collection_tabs, contents, and analytics tables; dropped group_id and removed lupo_groups and lupo_actor_group_membership. Schema and TOONs are department-only; no group tables exist.
 - **Doctrine:** no UNSIGNED, no display widths (e.g. no int(11), tinyint(1)), no timestamp/datetime (use BIGINT YYYYMMDDHHIISS), no FKs/triggers. Check TOONs with `python database/check_toon_doctrine_alignment.py`.
 
 ---
@@ -61,10 +62,11 @@ When working on Lupopedia schema, migrations, or TOONs, use this context:
 ## Takeaways for AI agents
 
 1. **install_new_lupopedia.sql** is the single source of truth for schema; do not change it unless explicitly asked. TOONs are generated from the DB and must not be edited manually.
-2. **One-time dev migrations** (doctrine §18.9) are for aligning existing DBs; they use only ALTER TABLE (MODIFY COLUMN, ADD/DROP INDEX). No CREATE/DROP TABLE, no data migrations, no FKs, no triggers, no UNSIGNED, no display widths, no timestamp/datetime.
-3. **Reserved words:** In migration SQL, quote column names with backticks (e.g. `` `utc_timestamp` ``) to avoid MySQL syntax errors.
-4. **Large text columns:** If changing to a smaller type would truncate data (e.g. body → text when rows exceed 64KB), use longtext in the migration and document why; install can stay as text for new installs.
-5. **Checking alignment:** Run `python database/check_toon_doctrine_alignment.py` after any schema or TOON changes to verify TOONs still match doctrine.
+2. **Organizational scope** is department only. Tables lupo_groups and lupo_actor_group_membership do not exist. Permissions and scoping use department_id (lupo_permissions, lupo_collections, lupo_collection_tabs, lupo_contents, lupo_analytics_*). After running the unification migration, regenerate TOONs so they reflect the current schema.
+3. **One-time dev migrations** (doctrine §18.9) are for aligning existing DBs; they use only ALTER TABLE (MODIFY COLUMN, ADD/DROP INDEX). The unification migration added department_id and dropped group tables; it is run once on existing DBs. No CREATE/DROP TABLE in alignment migrations except as in that unification script.
+4. **Reserved words:** In migration SQL, quote column names with backticks (e.g. `` `utc_timestamp` ``) to avoid MySQL syntax errors.
+5. **Large text columns:** If changing to a smaller type would truncate data (e.g. body → text when rows exceed 64KB), use longtext in the migration and document why; install can stay as text for new installs.
+6. **Checking alignment:** Run `python database/check_toon_doctrine_alignment.py` after any schema or TOON changes to verify TOONs still match doctrine.
 
 ---
 
@@ -75,6 +77,7 @@ When working on Lupopedia schema, migrations, or TOONs, use this context:
 | Canonical schema | `database/migrations/install_new_lupopedia.sql` |
 | First alignment migration | `database/migrations/dev_20260204_fix_schema_alignment.sql` |
 | Second (doctrine) migration | `database/migrations/dev_20260205_doctrine_alignment_phase2.sql` |
+| Unification (groups → departments) | `database/migrations/migration_unify_groups_into_departments.sql` |
 | Migration generator | `database/generate_schema_alignment_migration.py` |
 | TOON doctrine check | `database/check_toon_doctrine_alignment.py` |
 | TOONs | `docs/toons/*.toon.json` |

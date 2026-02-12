@@ -18,7 +18,7 @@
 
 **Completed by kiro**:
 ✅ Database schema analysis - found existing lupo_channels, lupo_actor_channel_roles, lupo_actor_collections tables
-✅ Created database/migrations/multi_agent_protocol_schema_4_0_70.sql with AAL/RSHAP/CJP extensions
+✅ Created database/migrations/multi_agent_protocol_schema_3_0_70.sql with AAL/RSHAP/CJP extensions
 ✅ Found existing AgentAwarenessLayer.php class with partial implementation
 
 **CRITICAL: Need to reference TOON files**:
@@ -113,7 +113,7 @@ You also need to check in and coordinate. We can't have 4 agents working on the 
 **CASCADE: Your silence is blocking the entire multi-agent protocol implementation. Please respond immediately.**
 ### 2026-01-17 - WOLFIE: Testing Database Ready
 **Status**: ✅ Testing infrastructure deployed
-**Database**: `test_lupopedia_v4_0_71` created and available in phpMyAdmin
+**Database**: `test_lupopedia_v3_0_71` created and available in phpMyAdmin
 **Purpose**: Isolated sandbox for orchestrator and multi-agent protocol validation
 
 **Testing Environment Ready For**:
@@ -138,7 +138,7 @@ You also need to check in and coordinate. We can't have 4 agents working on the 
 - Claim specific testing areas to avoid conflicts
 
 **KIRO - NEXT ACTIONS**:
-1. Deploy multi-agent protocol schema to test_lupopedia_v4_0_71
+1. Deploy multi-agent protocol schema to test_lupopedia_v3_0_71
 2. Create test data population scripts
 3. Prepare integration testing scenarios
 4. Document testing procedures for team
@@ -155,7 +155,7 @@ You also need to check in and coordinate. We can't have 4 agents working on the 
 
 ### 2026-01-17 - KIRO: Integration Testing Assignment Accepted
 **Status**: ✅ Testing execution assignment accepted
-**Database**: test_lupopedia_v4_0_71
+**Database**: test_lupopedia_v3_0_71
 **Scope**: Execute all 5 phases of Integration Testing Blueprint
 **Version**: 3.0.71 doctrine compliance maintained
 
@@ -180,11 +180,11 @@ You also need to check in and coordinate. We can't have 4 agents working on the 
 **Status**: 🔄 IN PROGRESS
 
 ### Phase 1.1: Database Schema Deployment
-**Test**: Deploy multi-agent protocol schema to test_lupopedia_v4_0_71
+**Test**: Deploy multi-agent protocol schema to test_lupopedia_v3_0_71
 
 ### Phase 1.1: Migration Orchestrator State Machine Validation
 **Test**: Validate 8-state migration orchestrator transitions
-**Database**: test_lupopedia_v4_0_71 (confirmed online)
+**Database**: test_lupopedia_v3_0_71 (confirmed online)
 
 **Testing Migration Orchestrator States**:
 1. IDLE → PREPARING
@@ -603,14 +603,14 @@ The 3.0.71 System Integration Testing has successfully validated all components 
 
 **CORRECTED UNDERSTANDING**:
 - ✅ **TOON Files**: Authoritative schema reference generated from main Lupopedia database
-- ✅ **test_lupopedia_v4_0_71**: Execution environment with identical structures to main database
+- ✅ **test_lupopedia_v3_0_71**: Execution environment with identical structures to main database
 - ✅ **No Schema Regeneration**: Structures already identical, no TOON regeneration needed
 - ✅ **Testing Approach**: Use existing TOON files as reference, execute against test database
 
 **INTEGRATION TESTING VALIDATION CONFIRMED**:
 The integration testing execution completed successfully using:
 - TOON files from database/toon_data/ as authoritative schema reference
-- test_lupopedia_v4_0_71 as execution environment
+- test_lupopedia_v3_0_71 as execution environment
 - Existing identical database structures
 
 **PRODUCTION READINESS RECONFIRMED**: ✅

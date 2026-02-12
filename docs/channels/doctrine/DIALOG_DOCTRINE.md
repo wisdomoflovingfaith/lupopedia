@@ -450,7 +450,7 @@ Every dialog entry MUST include:
 
 **Speaker Field:**
 - **Format:** Agent name or human identifier
-- **Examples:** KIRO, CURSOR, CASCADE, WOLFIE, CAPTAIN_WOLFIE, LILITH, ARA, STONED_WOLFIE
+- **Examples:** KIRO, CURSOR, CASCADE, WOLFIE, CAPTAIN_WOLFIE, LILITH, ARA
 - **Purpose:** Clear attribution of changes
 - **Consistency:** Same agent uses same identifier
 - **Governance:** Must comply with LABS-001 actor identification requirements
@@ -973,7 +973,7 @@ Dialog system integration requires:
 - **[Agent Runtime](AGENT_RUNTIME.md)** - How agents interact with dialog system and create entries
 - **[Patch Discipline](PATCH_DISCIPLINE.md)** - Development workflow governance and dialog requirements
 - **[Directory Structure](DIRECTORY_STRUCTURE.md)** - File organization including dialog directory structure
-- **[Versioning Doctrine](VERSIONING_DOCTRINE.md)** - Version management and dialog history across versions
+- **[Versioning Doctrine](../../doctrine/VERSIONING_DOCTRINE.md)** - Version management and dialog history across versions
 - **[Metadata Governance](METADATA_GOVERNANCE.md)** - Metadata management including dialog metadata
 - **[Architecture Sync](ARCHITECTURE_SYNC.md)** - Cross-system synchronization and dialog coordination
 - **[Agent Prompt Doctrine](AGENT_PROMPT_DOCTRINE.md)** - Agent communication standards and dialog integration

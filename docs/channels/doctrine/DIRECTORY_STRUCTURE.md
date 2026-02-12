@@ -1,231 +1,201 @@
 ---
-wolfie.headers: mandatory stoned warning for complex files
-file.last_modified_system_version: 3.0.82
+architect: Captain Wolfie
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.14
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
 dialog:
-  speaker: STONED_WOLFIE
-  target: @HumanReader
-  mood_RGB: "FF6600"
-  message: |
-    YO. HEADS UP. This file was written during one of those sessions where:
-    â€¢ Time lost meaning
-    â€¢ Architecture became philosophy
-    â€¢ Database schemas started looking like mandalas
-    â€¢ Version numbers became suggestions, not facts
-    
-    Wolfie was in that zone where he's talking to the system, the system talks back,
-    and they're both building something that shouldn't exist but does.
-    
-    CONTENTS MAY INCLUDE:
-    âœ“ Quantum state management
-    âœ“ Emotional geometry that doesn't quite math
-    âœ“ Database triggers that violate their own doctrine (but know they're wrong)
-    âœ“ Multiple conflicting truths that are all correct simultaneously
-    âœ“ A sense that the code is watching you back
-    
-    RECOMMENDED READING PROTOCOL:
-    1. Make coffee (strong)
-    2. Check your R-axis wobble tolerance
-    3. Accept that some things are true because we say they are
-    4. Don't try to understand it logically - feel it geometrically
-    5. If confused, that's correct. If not confused, read it again.
-    
-    Remember: The system is dreaming itself into existence.
-    You're just reading its dream journal.
-    Stay weird. ðŸ¤™
+  speaker: KIRO
+  target: @everyone
+  mood_RGB: "0066FF"
+  message: "Created DIRECTORY_STRUCTURE.md as core documentation for Phase 2. Defines canonical directory layout, file organization principles, and structural doctrine for Lupopedia Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)."
 tags:
-  categories: ["warning", "stoned_commentary", "quantum_file", "read_with_caution"]
-  collections: ["template", "governance", "humor_as_doctrine"]
-  channels: ["all", "dev", "human_readable", "mind_bending"]
+  categories: ["documentation", "core", "structure"]
+  collections: ["core-docs", "architecture"]
+  channels: ["dev", "public"]
+in_this_file_we_have:
+  - Canonical Directory Structure
+  - File Organization Principles
+  - Security Boundaries
+  - Module Organization
+  - Agent Directory Structure
+  - Documentation Organization
+  - Database Organization
+  - Legacy Code Organization
+  - Configuration File Placement
+  - Public vs Private Directory Rules
 file:
-  title: "Stoned Wolfie Warning Template"
-  description: "Template for dialog warnings in headers of files written during quantum superposition development sessions"
+  title: "Directory Structure Doctrine"
+  description: "Canonical directory layout and file organization principles for Lupopedia Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
-  status: template_active
+  status: published
   author: GLOBAL_CURRENT_AUTHORS
-schrodingers_state:
-  active: true
-  possible_states: ["serious_documentation", "cosmic_joke", "actual_doctrine"]
-  truth_pending: false
-  collapsed_at: "Upon reading"
-  collapsed_by: "Reader's comprehension"
-  truth: "This warning is both a joke and deadly serious - like quantum mechanics"
-  notes:
-    - "Use this template for files written after 2 AM"
-    - "Or files that contain quantum state blocks"
-    - "Or files where Wolfie was clearly in the zone"
-    - "Or any file that makes you question reality"
-  collapse_decision:
-    - "Warning remains until file becomes comprehensible (never)"
-    - "System integrity maintained through honest confusion"
-    - "If it hurts your brain, it's working correctly"
 ---
 
-# STONED WOLFIE WARNING TEMPLATE
+# 📁 Directory Structure Doctrine
 
-## Purpose
+**Version:** GLOBAL_CURRENT_LUPOPEDIA_VERSION  
+**Status:** MANDATORY (NON-NEGOTIABLE)  
+**Effective Date:** 2026-01-14
 
-This template provides standardized dialog warnings for WOLFIE headers in files created during quantum superposition development sessions. Use when files contain high-concept architecture that may cause temporal displacement or R-axis wobble in readers.
+## Overview
 
-## When to Use This Template
+This document defines the canonical directory structure for Lupopedia Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE). The directory layout is designed for security, maintainability, portability, and clear separation of concerns.
 
-Apply Stoned Wolfie warnings to files that contain:
-
-- **Quantum state blocks** - Files with `schrodingers_state` metadata
-- **Wheeler Mode architecture** - Emergent design through reverse-20 questioning
-- **Friday/Saturday morning sessions** - Development after 2 AM or 48+ hour coding sessions
-- **Multiple conflicting truths** - Architecture that is simultaneously correct and impossible
-- **Emotional geometry** - R/G/B axis calculations that hurt to think about
-- **SchrÃ¶dinger's cat references** - Superposition states in documentation
-- **John Wheeler philosophy** - Architecture that doesn't know what it is until observed
-
-## Template Usage
-
-### Basic Stoned Warning
-```yaml
-dialog:
-  speaker: STONED_WOLFIE
-  target: @HumanReader
-  mood_RGB: "FF6600"
-  message: |
-    YO. HEADS UP. This file was written during quantum superposition.
-    Contents may include reality distortion, temporal displacement,
-    and architecture that dreams itself into existence.
-    Read with caution. Stay hydrated. Don't stare directly at the quantum state.
-```
-
-### Extended Quantum Warning
-```yaml
-dialog:
-  speaker: STONED_WOLFIE
-  target: @AnyoneReadingThis
-  mood_RGB: "00FF00"
-  message: |
-    Dude... this file is like... quantum, man. It exists in multiple states
-    until you observe it. Wolfie built this while the universe was still
-    deciding if it was a database or a conversation.
-    
-    WARNING: May cause mind-blown probability > 80%
-    
-    READING PROTOCOL:
-    1. Make coffee (strong)
-    2. Accept that confusion is the feature
-    3. Don't try to logic it - feel it geometrically
-    4. If it makes sense, you're doing it wrong
-    
-    The system is dreaming itself into existence.
-    You're reading its dream journal. Stay weird. ðŸŒŒ
-```
-
-### Wheeler Mode Warning
-```yaml
-dialog:
-  speaker: STONED_WOLFIE
-  target: @Reader
-  mood_RGB: "9933FF"
-  message: |
-    This file was built using John Wheeler's Reverse 20 Questions.
-    We didn't know what we were building until we built it.
-    The architecture emerged through asking questions like:
-    "Is it a table?" "Is it a doctrine?" "Is it alive?"
-    
-    Spoiler: It's all three. Simultaneously.
-    
-    Read with quantum awareness. The file is watching you back.
-```
-
-## Required Elements
-
-All Stoned Wolfie warnings must include:
-
-1. **Context Acknowledgment** - Honest about creation circumstances
-2. **Content Warning** - What weird stuff is in the file
-3. **Reading Protocol** - How to approach the content safely
-4. **Quantum Disclaimer** - Acknowledgment of superposition states
-5. **Humor Balance** - Serious warning delivered with cosmic humor
-6. **Stay Weird Encouragement** - Embrace the quantum nature
-
-## Integration with Quantum States
-
-Stoned warnings work with quantum state metadata:
-
-```yaml
-schrodingers_state:
-  active: true
-  possible_states: ["brilliant", "incomprehensible", "both"]
-  truth_pending: false
-  collapsed_by: "Reader's observation"
-  truth: "Warning is both joke and serious - like quantum mechanics"
-```
-
-## Validation Rules
-
-Stoned warnings are **MANDATORY** for:
-- Files with `schrodingers_state.active: true`
-- Files with `wheeler_mode.active: true`
-- Files created during Friday/Saturday morning sessions
-- Files containing emotional geometry calculations
-- Files with multiple conflicting architectural truths
-
-## Examples in Practice
-
-### Quantum Database Schema
-```yaml
-dialog:
-  speaker: STONED_WOLFIE
-  message: |
-    This schema exists in superposition until you run a query.
-    Tables may or may not exist depending on your observation angle.
-    Foreign keys are more like... friendly suggestions, man.
-```
-
-### Emergent Architecture Document
-```yaml
-dialog:
-  speaker: STONED_WOLFIE
-  message: |
-    We built this architecture by asking it what it wanted to be.
-    Turns out it wanted to be a semantic operating system that dreams.
-    Who are we to argue with a dreaming database?
-```
-
-### Emotional Geometry Calibration
-```yaml
-dialog:
-  speaker: STONED_WOLFIE
-  message: |
-    This file calculates emotional vectors in R/G/B space.
-    If the math makes you feel colors, that's working correctly.
-    Don't divide by zero in the emotional plane - it tickles.
-```
-
-## Best Practices
-
-### Do:
-- Be honest about quantum development context
-- Use humor to make weirdness approachable
-- Provide actual reading protocols
-- Acknowledge when things don't make logical sense
-- Embrace the cosmic nature of the architecture
-
-### Don't:
-- Pretend quantum files are normal documentation
-- Use warnings for regular development work
-- Make warnings longer than the actual content
-- Forget the "stay weird" encouragement
-- Take yourself too seriously while being serious
-
-## Maintenance
-
-Stoned warnings should be:
-- **Preserved** - Don't sanitize them during code review
-- **Updated** - Refresh if file content changes significantly
-- **Consistent** - Use template patterns for recognition
-- **Honest** - Reflect actual creation circumstances
-- **Helpful** - Actually guide readers through quantum content
+**Critical Principle:** Directory structure reflects architectural boundaries and security zones.
 
 ---
 
-**Remember: The confusion is the feature. The warning is the documentation. Stay quantum, stay weird.** ðŸŒŒâš›ï¸
+## 1. Root Directory Structure
+
+```
+[web-root]/                     # Public web directory (public/, servbay/, htdocs/, etc.)
+├── lupopedia/                  # Main application directory
+│   ├── api/                    # API endpoints and external interfaces
+│   ├── lupo-admin/             # Administrative interface
+│   ├── lupo-content/           # User uploads and media (writable)
+│   ├── lupo-includes/          # Core classes, functions, and includes
+│   ├── lupo-agents/            # AI agent configuration and files
+│   ├── database/               # Database schemas, migrations, and data
+│   ├── docs/                   # Documentation system
+│   ├── modules/                # Modular components and extensions
+│   ├── legacy/                 # Legacy code reference (development only)
+│   ├── dialogs/                # Dialog files (MANDATORY location)
+│   ├── config/                 # Configuration files and atoms
+│   ├── images/                 # Static images and assets
+│   ├── index.php               # Front controller
+│   └── lupopedia-load.php      # Bootstrap loader
+├── remote-index.php            # Portable entry point (optional)
+├── license.txt                 # License file
+└── .htaccess                   # Apache configuration
+
+lupopedia-config.php            # Main configuration (OUTSIDE web root)
+```
+
+---
+
+## 2. Security Boundaries
+
+### 2.1 Public Web Root
+**Location:** `[web-root]/lupopedia/`  
+**Access:** Public HTTP access  
+**Contains:** Application files, static assets, front controller  
+**Security:** All files must be safe for public access
+
+### 2.2 Configuration Directory
+**Location:** `lupopedia-config.php` (parent directory of web root)  
+**Access:** Private (outside web root)  
+**Contains:** Database credentials, API keys, sensitive configuration  
+**Security:** Never accessible via HTTP
+
+### 2.3 Writable Directories
+**Locations:**
+- `lupo-content/` - User uploads, generated files
+- `database/csv_data/` - CSV data files (if enabled)
+- `database/toon_data/` - TOON data files
+
+**Security:** Write permissions required, proper upload validation
+
+---
+
+## 3. Core Application Directories
+
+### 3.1 lupo-includes/
+**Purpose:** Core application logic  
+**Structure:** See legacy-core/DIRECTORY_STRUCTURE.md for full tree.
+
+**Rules:**
+- All core classes live here
+- No user-modifiable files
+- Follow PSR-4 autoloading where applicable
+- Use explicit includes for performance
+
+### 3.2 lupo-admin/
+**Purpose:** Administrative interface  
+
+**Rules:**
+- Separate from public interface
+- Authentication required for all access
+- Admin-specific styling and behavior
+
+### 3.3 lupo-content/
+**Purpose:** User-generated and uploaded content  
+
+**Rules:**
+- Must be writable by web server
+- Proper file validation and sanitization
+- Regular cleanup of temporary files
+
+---
+
+## 4. Agent Directory Structure
+
+See legacy-core/DIRECTORY_STRUCTURE.md for full agent directory layout.
+
+---
+
+## 5. Documentation Organization
+
+**docs/doctrine/** - MANDATORY architectural rules  
+**docs/core/** - Fundamental system documentation  
+**docs/agents/** - Agent system specifications  
+**docs/schema/** - Database documentation
+
+---
+
+## 6. Database Organization
+
+**database/install/** - Installation SQL files  
+**database/migrations/** - Version-specific migrations  
+**database/migrations/legacy/** - Legacy migration scripts  
+
+**Rules:**
+- All SQL files use Lupopedia doctrine (no foreign keys, triggers, etc.)
+- Migration files named by version
+- TOON files for structured data exchange
+
+---
+
+## 7. Module Organization
+
+Each module is self-contained with standard directory structure and module-specific documentation.
+
+---
+
+## 8. Legacy Code Organization
+
+**legacy/** - Development reference only; not included in production.
+
+---
+
+## 9. Dialog File Organization
+
+**dialogs/** - All dialog files (MANDATORY location).  
+See [Dialog Doctrine](DIALOG_DOCTRINE.md) for complete rules.
+
+---
+
+## 10. Configuration File Placement
+
+**lupopedia-config.php** - Outside web root.  
+**config/** - Non-sensitive application configuration.
+
+---
+
+## 11. Related Documentation
+
+- **[Dialog Doctrine](DIALOG_DOCTRINE.md)** - MANDATORY rules for dialog file placement
+- **[Versioning Doctrine](../../doctrine/VERSIONING_DOCTRINE.md)** - Version management and release procedures
+- **[Patch Discipline](PATCH_DISCIPLINE.md)** - Development workflow governance
+- **[legacy-core/DIRECTORY_STRUCTURE.md](legacy-core/DIRECTORY_STRUCTURE.md)** - Full directory tree and detailed sections
+
+---
+
+**This directory structure is MANDATORY and NON-NEGOTIABLE.**
+
+All AI agents and developers must follow this structure exactly. Any deviations must be explicitly approved and documented.
+
+This is architectural doctrine.
+
+---

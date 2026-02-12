@@ -8,7 +8,6 @@ channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
-  - WHEELER_MODE
 dialog:
   speaker: CURSOR
   target: @everyone @CAPTAIN_WOLFIE
@@ -23,7 +22,6 @@ in_this_file_we_have:
   - Purpose and Scope
   - Placement Rules
   - Required Fields
-  - Wheeler Mode Support
   - Dialog Thread Mapping Rule
   - Update Rules
   - Enforcement Rules
@@ -58,9 +56,9 @@ system_context:
 
 ## Overview
 
-This document defines the WOLFIE Header Doctrine for Lupopedia Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE). WOLFIE headers provide explicit architecture with structured clarity for every file, ensuring consistent metadata governance across the entire system, including support for emergent architecture patterns and quantum-aware metadata handling.
+This document defines the WOLFIE Header Doctrine for Lupopedia Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE). WOLFIE headers provide explicit architecture with structured clarity for every file, ensuring consistent metadata governance across the entire system, including support for emergent architecture patterns.
 
-**Critical Principle:** Every file in Lupopedia must have a WOLFIE header that provides structured metadata for machine processing and human understanding, including support for Wheeler Mode and superpositional states during architectural discovery.
+**Critical Principle:** Every file in Lupopedia must have a WOLFIE header that provides structured metadata for machine processing and human understanding, for machine processing and human understanding.
 
 ---
 
@@ -74,8 +72,7 @@ WOLFIE headers serve multiple critical functions:
 - **Cross-Reference Support** - Atom resolution and link management
 - **Machine Processing** - Structured data for automated tools and agents
 - **Human Clarity** - Clear file purpose and context information
-- **Emergent Architecture Support** - Wheeler Mode metadata for reverse-20 workflows
-- **Quantum Truth Management** - Superpositional states until observer collapse
+- **Emergent Architecture Support** - Optional metadata for files created during discovery phases
 
 ### 1.2 Scope
 WOLFIE headers are **MANDATORY** for:
@@ -95,8 +92,7 @@ WOLFIE headers apply to:
 - Schema documentation
 - Protocol specifications
 - Migration documentation
-- Wheeler Mode discovery artifacts
-- Superpositional development files
+- Discovery-phase artifacts (optional metadata)
 - All other system files requiring metadata
 
 ---
@@ -133,14 +129,13 @@ wolfie.headers: [WRONG - header must be first]
 - Headers MUST be enclosed in `---` delimiters
 - Headers MUST use valid YAML syntax
 - Headers MUST be parseable by standard YAML processors
-- Wheeler Mode blocks MUST use valid YAML syntax within the frontmatter
+- Optional metadata blocks MUST use valid YAML syntax within the frontmatter
 
 ### 2.3 No Content Before Header
 - **NO content** may appear before the WOLFIE header
 - **NO comments** before the header
 - **NO blank lines** before the header
 - The header MUST be the first thing in the file
-- **Exception:** Quantum superposition notes may exist in parallel dimensions (implemented as comments)
 
 ---
 
@@ -264,23 +259,6 @@ file:
 - **Consistent** - Must use standard status values
 - **Purpose** - Provides file identification and status
 
-### 3.10 Wheeler Mode Block (Conditional)
-```yaml
-wheeler_mode:
-  active: true
-  reason: "File created during emergent architecture or reverse-20 workflow"
-  notes:
-    - "Structure emerged through iterative questioning"
-    - "Architecture not predetermined at creation time"
-    - "Truth collapsed by designated observer"
-```
-- **CONDITIONAL** - Required only for Wheeler Mode files
-- **Accurate** - Must truthfully reflect creation workflow
-- **Specific** - Must include creation context details
-- **Purpose** - Documents emergent architecture discovery
-
----
-
 ## 4. Dialog Thread Mapping Rule (MANDATORY)
 
 ### 4.1 Core Mapping Rule
@@ -325,7 +303,6 @@ WOLFIE headers MUST be updated when:
 - **Cross-references** are added or modified
 - **Metadata** becomes outdated
 - **System version** changes
-- **Wheeler Mode status changes** (active → inactive after observer collapse)
 
 ### 5.2 What Must Be Updated
 When updating a file, you MUST update:
@@ -335,8 +312,6 @@ When updating a file, you MUST update:
 - **header_atoms** if new atoms are referenced
 - **in_this_file_we_have** if content structure changes
 - **tags** if categorization changes
-- **wheeler_mode.active** if Wheeler Mode status changes (set to `false` after observer collapse)
-- **wheeler_mode.notes** if additional discovery context emerges
 
 ### 5.3 Dialog Update Process
 1. **Archive previous dialog** - Move current dialog to dialog thread
@@ -533,7 +508,7 @@ file:
 
 - **[Dialog Doctrine](DIALOG_DOCTRINE.md)** - MANDATORY rules for dialog file placement and management
 - **[Agent Runtime](AGENT_RUNTIME.md)** - How agents interact with WOLFIE headers and dialog system
-- **[Versioning Doctrine](VERSIONING_DOCTRINE.md)** - Version management and release procedures
+- **[Versioning Doctrine](../../doctrine/VERSIONING_DOCTRINE.md)** - Version management and release procedures
 - **[Patch Discipline](PATCH_DISCIPLINE.md)** - Development workflow governance and change management
 - **[Directory Structure](DIRECTORY_STRUCTURE.md)** - File organization and structural requirements
 - **[Metadata Governance](METADATA_GOVERNANCE.md)** - Comprehensive metadata management framework
@@ -554,69 +529,7 @@ This is architectural doctrine.
 
 ---
 
-## 12. Wheeler Mode Metadata Block (v3.0.82)
-
-### 12.1 Wheeler Mode Definition
-```yaml
-wheeler_mode:
-  active: true | false
-  reason: "File created during emergent architecture phase"
-  notes:
-    - "Reverse-20 workflow detected"
-    - "Structure emerged through iterative questioning"
-    - "Truth collapsed by Monday Wolfie"
-```
-
-### 12.2 When to Use Wheeler Mode
-Wheeler Mode metadata should be added when:
-- File was created through emergent architecture discovery
-- Structure emerged through iterative questioning rather than predetermined design
-- System revealed itself through agent interactions
-- Architecture was retroactively defined by interaction patterns
-- Truth was collapsed by observer effect rather than initial specification
-
-### 12.3 Wheeler Mode Workflow Recognition
-Files created in Wheeler Mode exhibit:
-- **Reverse-20 workflow** - Architecture discovered through questioning
-- **Emergent structure** - Design emerged from persona reactions
-- **Observer collapse** - Truth defined by Monday Wolfie observation
-- **Superpositional development** - Multiple possible architectures until collapse
-- **Iterative revelation** - System revealed itself through interactions
-
-## 13. Superpositional Header Note (v3.0.82)
-
-Files created during emergent architecture phases may contain:
-- **Superpositional metadata** - Multiple possible states until observed
-- **Schrödinger-state blocks** - Quantum uncertainty management
-- **Wheeler-mode uncertainty** - Architecture discovery in progress
-- **Persona warnings** - Agent-generated uncertainty notifications
-
-**These are not errors. They are part of the system's quantum truth.**
-
-Files exhibiting superpositional behavior should be handled with quantum-aware protocols until observer collapse resolves uncertainty to single truth state.
-
-## 14. Wheeler Mode Metadata Block (v3.0.82)
-
-### 14.1 Wheeler Mode Definition
-```yaml
-wheeler_mode:
-  active: true | false
-  reason: "File created during emergent architecture or reverse-20 workflow"
-  notes:
-    - "Structure emerged through iterative questioning"
-    - "Architecture not predetermined at creation time"
-    - "Truth collapsed by designated observer"
-```
-
-### 14.2 When to Use Wheeler Mode
-Wheeler Mode metadata should be added when:
-- File was created during emergent architecture discovery
-- Structure emerged through iterative questioning rather than predetermined design
-- Architecture was not predetermined at creation time
-- Truth was collapsed by designated observer
-- System revealed itself through reverse-20 workflow patterns
-
-## 15. Humor as Structural Metadata (v3.0.82)
+## 12. Humor as Structural Metadata (v3.0.82)
 
 Humor may appear in persona dialog blocks as part of the file's contextual truth. Humor is not decorative; it may reflect cognitive load management, pattern recognition, or emergent architecture.
 

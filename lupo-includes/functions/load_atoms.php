@@ -6,7 +6,7 @@
  * truth for ecosystem-wide metadata.
  *
  * @package Lupopedia
- * @version 4.0.0
+ * @version 3.0.0
  *
  * @note Phase 2 Versioning: version.php and callers load version from the atom
  *       instead of hard-coding. See docs/doctrine/VERSION_DOCTRINE.md.
@@ -43,13 +43,13 @@ function get_atom($atom_name) {
  */
 function get_lupopedia_version() {
     $loader = $GLOBALS['lupo_atom_loader'] ?? null;
-    return $loader ? $loader->getLupopediaVersion() : (get_atom('GLOBAL_CURRENT_LUPOPEDIA_VERSION') ?? ((($a = load_atoms()) && is_array($a) && isset($a['version'])) ? $a['version'] : '4.0.0'));
+    return $loader ? $loader->getLupopediaVersion() : (get_atom('GLOBAL_CURRENT_LUPOPEDIA_VERSION') ?? ((($a = load_atoms()) && is_array($a) && isset($a['version'])) ? $a['version'] : '3.0.0'));
 }
 
 /**
  * Calculate version number (thin wrapper — App\Support\VersionUtils).
  *
- * @param string $version e.g. "4.0.0"
+ * @param string $version e.g. "3.0.0"
  * @return int
  */
 function calculate_version_num($version) {

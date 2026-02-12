@@ -194,7 +194,7 @@ Every reference must be:
 ### **Correct**
 ```
 @GLOBAL.LUPOPEDIA_COMPANY_STRUCTURE.teams.alpha.shift_utc
-@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents
+@GLOBAL.LUPOPEDIA_V3_0_2_CORE_AGENTS.required_agents
 ```
 
 ### **Incorrect**

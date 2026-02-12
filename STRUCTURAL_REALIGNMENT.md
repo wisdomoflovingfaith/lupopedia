@@ -1,12 +1,12 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.0
+file.last_modified_system_version: 3.0.0
 file.channel: doctrine
 ---
 
 # STRUCTURAL_REALIGNMENT.md
 Lupopedia System Architecture Realignment -- Commit 40eecfc
-System Version: 4.0.0
+System Version: 3.0.0
 file.channel: doctrine
 
 Purpose

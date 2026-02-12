@@ -59,7 +59,7 @@ If any condition fails, the fork is **illegal**.
 
 **Artifact type:** `fork_justification`
 
-Stored in `lupo_artifacts` with `entity_type = 'fork_justification'` (column renamed from `type` in 4.0.0). The `content` field MUST be JSON with:
+Stored in `lupo_artifacts` with `entity_type = 'fork_justification'` (column renamed from `type` in 3.0.0). The `content` field MUST be JSON with:
 
 | Field           | Type   | Required | Description |
 |----------------|--------|----------|-------------|
@@ -121,7 +121,7 @@ This stops runaway self-expansion.
 
 - **Atoms:** `config/global_atoms.yaml` — `GLOBAL_BRANCH_BUDGET`, `GLOBAL_BRANCH_THAW_VERSION`
 - **API:** `GET /api/v1/governance/branch-budget` — machine-readable branch budget and thaw version
-- **Artifact type:** `fork_justification` in `lupo_artifacts` (column `entity_type`, 4.0.0); `POST /api/v1/artifact` with `type: "fork_justification"` and `content` as JSON per Rule 2 (stored in entity_type)
+- **Artifact type:** `fork_justification` in `lupo_artifacts` (column `entity_type`, 3.0.0); `POST /api/v1/artifact` with `type: "fork_justification"` and `content` as JSON per Rule 2 (stored in entity_type)
 - **Docs:** `docs/api/MINIMAL_REST_API.md` — fork_justification content schema
 
 ---

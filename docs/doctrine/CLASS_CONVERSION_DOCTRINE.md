@@ -1,7 +1,7 @@
 # Class Conversion Doctrine
 
 **Status:** Canonical  
-**Applies to:** Lupopedia 4.0.0 — converting legacy helper functions into classes, and all new logic  
+**Applies to:** Lupopedia 3.0.0 — converting legacy helper functions into classes, and all new logic  
 **Overrides:** Any previous assumptions about keeping helpers procedural or "modernizing" behavior.
 
 ---

@@ -67,13 +67,13 @@ WHERE table_schema = 'lupopedia';
 ### Step 3: Execute Pending Migrations
 **Run any pending migration files:**
 - [ ] Check `database/migrations/` for unexecuted files
-- [ ] Execute `schema_sync_4_0_46_missing_tables.sql` if not run
+- [ ] Execute `schema_sync_3_0_46_missing_tables.sql` if not run
 - [ ] Verify migration completion
 - [ ] Update migration log
 
 **Migration File:**
 ```
-database/migrations/schema_sync_4_0_46_missing_tables.sql
+database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql
 ```
 
 **Tables Added:**

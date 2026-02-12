@@ -45,7 +45,7 @@ Resolution is **deterministic and idempotent**.
 ### **In Documentation Prose**
 ```
 @GLOBAL.LUPOPEDIA_COMPANY_STRUCTURE.company.name
-@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents
+@GLOBAL.LUPOPEDIA_V3_0_2_CORE_AGENTS.required_agents
 @MODULE.CRAFTYSYNTAX.version
 @DIRR.DOCS.author
 @FILE.CUSTOM_STATUS

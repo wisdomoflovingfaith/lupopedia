@@ -300,13 +300,13 @@ Based on `/config/global_atoms.yaml`:
 - `GLOBAL_PROJECT_NAME` → Project name
 - `GLOBAL_DEFAULT_STATUS` → Default file status
 - `GLOBAL_LUPOPEDIA_COMPANY_STRUCTURE` → Company structure, teams, work rhythm
-- `GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS` → v3.0.2 required core agent list
+- `GLOBAL_LUPOPEDIA_V3_0_2_CORE_AGENTS` → v3.0.2 required core agent list
 
 **Reference Syntax in Documentation:**
 When referencing global atoms in documentation prose, use the resolver syntax:
 - `@GLOBAL.LUPOPEDIA_COMPANY_STRUCTURE.company.name`
 - `@GLOBAL.LUPOPEDIA_COMPANY_STRUCTURE.teams.alpha.shift_utc`
-- `@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents`
+- `@GLOBAL.LUPOPEDIA_V3_0_2_CORE_AGENTS.required_agents`
 
 **In WOLFIE Headers:**
 Use literal atom names (not resolver syntax):

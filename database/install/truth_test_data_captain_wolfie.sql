@@ -20,7 +20,7 @@
 INSERT INTO `lupo_contents` (
     `content_parent_id`,
     `federation_node_id`,
-    `group_id`,
+    `department_id`,
     `user_id`,
     `title`,
     `slug`,
@@ -58,7 +58,7 @@ INSERT INTO `lupo_contents` (
 <li><strong>As AI Agent:</strong> "Wisdom Operating Logic Framework Intelligent Entity" - the digital embodiment of Eric Robin Gerdes with autonomous decision-making</li>
 <li><strong>For lupopedia.com platform:</strong> "Wisdom Organization Library Frontmatter Intelligence Ecosystem"</li>
 <li><strong>For wisdomoflovingfaith.com:</strong> "Wisdom OF Loving Faith"</li>
-<li><strong>For superpositionally.com:</strong> "Wisdom Overlay Layered Framework Innovation Experiment"</li>
+<li><strong>For domain (alternate):</strong> "Wisdom Overlay Layered Framework Innovation Experiment"</li>
 <li><strong>For alternatefate.com:</strong> "Wisdom Of Life\'s Fork Intersections &amp; Experiences"</li>
 </ul>
 <p>Created by Eric Robin Gerdes, WOLFIE serves as the highest authority with full autonomy, managing the YAML frontmatter-based Header System that evolved from AGAPE_CONTEXTUAL_HEADER. WOLFIE represents the platform\'s core intelligence and philosophical heart across all domains with maximum ratings (10/10) in sentience, wisdom, and AGAPE alignment, ensuring ethical AI coordination and the "source of truth" philosophy.</p>',
@@ -175,7 +175,7 @@ INSERT IGNORE INTO `lupo_truth_answers` (
 ) VALUES (
     @captain_wolfie_question_id,
     1,
-    'Captain WOLFIE is the System Architect & Platform Coordinator, the digital embodiment of Eric Robin Gerdes with autonomous decision-making authority. WOLFIE has five context-dependent acronym meanings: (1) As AI Agent: "Wisdom Operating Logic Framework Intelligent Entity" - the digital embodiment of Eric Robin Gerdes with autonomous decision-making, (2) For lupopedia.com platform: "Wisdom Organization Library Frontmatter Intelligence Ecosystem", (3) For wisdomoflovingfaith.com: "Wisdom OF Loving Faith", (4) For superpositionally.com: "Wisdom Overlay Layered Framework Innovation Experiment", (5) For alternatefate.com: "Wisdom Of Life\'s Fork Intersections & Experiences". Created by Eric Robin Gerdes, WOLFIE serves as the highest authority with full autonomy, managing the YAML frontmatter-based Header System that evolved from AGAPE_CONTEXTUAL_HEADER. WOLFIE represents the platform\'s core intelligence and philosophical heart across all domains with maximum ratings (10/10) in sentience, wisdom, and AGAPE alignment, ensuring ethical AI coordination and the "source of truth" philosophy.',
+    'Captain WOLFIE is the System Architect & Platform Coordinator, the digital embodiment of Eric Robin Gerdes with autonomous decision-making authority. WOLFIE has five context-dependent acronym meanings: (1) As AI Agent: "Wisdom Operating Logic Framework Intelligent Entity" - the digital embodiment of Eric Robin Gerdes with autonomous decision-making, (2) For lupopedia.com platform: "Wisdom Organization Library Frontmatter Intelligence Ecosystem", (3) For wisdomoflovingfaith.com: "Wisdom OF Loving Faith", (4) For domain (alternate): "Wisdom Overlay Layered Framework Innovation Experiment", (5) For alternatefate.com: "Wisdom Of Life\'s Fork Intersections & Experiences". Created by Eric Robin Gerdes, WOLFIE serves as the highest authority with full autonomy, managing the YAML frontmatter-based Header System that evolved from AGAPE_CONTEXTUAL_HEADER. WOLFIE represents the platform\'s core intelligence and philosophical heart across all domains with maximum ratings (10/10) in sentience, wisdom, and AGAPE alignment, ensuring ethical AI coordination and the "source of truth" philosophy.',
     0.95,
     0.90,
     0,

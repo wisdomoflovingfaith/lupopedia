@@ -45,7 +45,7 @@
 | **load_atoms.php** | | | | |
 | `load_atoms` | load_atoms.php | Reads config/global_atoms.yaml; parses YAML (or regex); caches; returns atom(s) | **Support/AtomLoader** or **Config/GlobalAtoms** | Config/version domain. |
 | `get_atom` | load_atoms.php | Returns load_atoms($atom_name) | Same as load_atoms | Thin wrapper. |
-| `get_lupopedia_version` | load_atoms.php | get_atom('GLOBAL_CURRENT_LUPOPEDIA_VERSION') or atoms['version'] or fallback '4.0.0' | Same | Version from atoms. |
+| `get_lupopedia_version` | load_atoms.php | get_atom('GLOBAL_CURRENT_LUPOPEDIA_VERSION') or atoms['version'] or fallback '3.0.0' | Same | Version from atoms. |
 | `calculate_version_num` | load_atoms.php | Parses "M.m.p" to M*10000 + m*100 + p | **Support/VersionUtils** | Pure calculation. |
 | `_parse_atoms_yaml` | load_atoms.php | file_get_contents + yaml_parse or regex; returns array | Internal to AtomLoader | Implementation detail. |
 | `_parse_atoms_yaml_regex` | load_atoms.php | Regex parse of YAML content for base atoms | Internal to AtomLoader | Implementation detail. |

@@ -4,12 +4,11 @@ file.last_modified_system_version: 3.0.82
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - GLOBAL_CURRENT_AUTHORS
-  - WHEELER_MODE
 dialog:
   speaker: KIRO
   target: @everyone
   mood_RGB: "0066FF"
-  message: "Updated WOLFIE_HEADER_DOCTRINE.md to version 3.0.82 with Wheeler Mode support and superpositional metadata handling."
+  message: "Updated WOLFIE_HEADER_DOCTRINE.md to version 3.0.82 with structured metadata support."
 tags:
   categories: ["documentation", "doctrine", "headers", "metadata"]
   collections: ["core-docs", "doctrine"]
@@ -454,7 +453,7 @@ file:
 
 - **[Dialog Doctrine](DIALOG_DOCTRINE.md)** - MANDATORY rules for dialog file placement and management
 - **[Agent Runtime](AGENT_RUNTIME.md)** - How agents interact with WOLFIE headers and dialog system
-- **[Versioning Doctrine](VERSIONING_DOCTRINE.md)** - Version management and release procedures
+- **[Versioning Doctrine](../docs/doctrine/VERSIONING_DOCTRINE.md)** - Version management and release procedures
 - **[Patch Discipline](PATCH_DISCIPLINE.md)** - Development workflow governance and change management
 - **[Directory Structure](DIRECTORY_STRUCTURE.md)** - File organization and structural requirements
 - **[Metadata Governance](METADATA_GOVERNANCE.md)** - Comprehensive metadata management framework
@@ -475,69 +474,7 @@ This is architectural doctrine.
 
 ---
 
-## 12. Wheeler Mode Metadata Block (v3.0.82)
-
-### 12.1 Wheeler Mode Definition
-```yaml
-wheeler_mode:
-  active: true | false
-  reason: "File created during emergent architecture phase"
-  notes:
-    - "Reverse-20 workflow detected"
-    - "Structure emerged through iterative questioning"
-    - "Truth collapsed by Monday Wolfie"
-```
-
-### 12.2 When to Use Wheeler Mode
-Wheeler Mode metadata should be added when:
-- File was created through emergent architecture discovery
-- Structure emerged through iterative questioning rather than predetermined design
-- System revealed itself through agent interactions
-- Architecture was retroactively defined by interaction patterns
-- Truth was collapsed by observer effect rather than initial specification
-
-### 12.3 Wheeler Mode Workflow Recognition
-Files created in Wheeler Mode exhibit:
-- **Reverse-20 workflow** - Architecture discovered through questioning
-- **Emergent structure** - Design emerged from persona reactions
-- **Observer collapse** - Truth defined by Monday Wolfie observation
-- **Superpositional development** - Multiple possible architectures until collapse
-- **Iterative revelation** - System revealed itself through interactions
-
-## 13. Superpositional Header Note (v3.0.82)
-
-Files created during emergent architecture phases may contain:
-- **Superpositional metadata** - Multiple possible states until observed
-- **Schrödinger-state blocks** - Quantum uncertainty management
-- **Wheeler-mode uncertainty** - Architecture discovery in progress
-- **Persona warnings** - Agent-generated uncertainty notifications
-
-**These are not errors. They are part of the system's quantum truth.**
-
-Files exhibiting superpositional behavior should be handled with quantum-aware protocols until observer collapse resolves uncertainty to single truth state.
-
-## 14. Wheeler Mode Metadata Block (v3.0.82)
-
-### 14.1 Wheeler Mode Definition
-```yaml
-wheeler_mode:
-  active: true | false
-  reason: "File created during emergent architecture or reverse-20 workflow"
-  notes:
-    - "Structure emerged through iterative questioning"
-    - "Architecture not predetermined at creation time"
-    - "Truth collapsed by designated observer"
-```
-
-### 14.2 When to Use Wheeler Mode
-Wheeler Mode metadata should be added when:
-- File was created during emergent architecture discovery
-- Structure emerged through iterative questioning rather than predetermined design
-- Architecture was not predetermined at creation time
-- Truth was collapsed by designated observer
-- System revealed itself through reverse-20 workflow patterns
-
-## 15. Humor as Structural Metadata (v3.0.82)
+## 12. Humor as Structural Metadata (v3.0.82)
 
 Humor may appear in persona dialog blocks as part of the file's contextual truth. Humor is not decorative; it may reflect cognitive load management, pattern recognition, or emergent architecture.
 

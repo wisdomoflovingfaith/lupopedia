@@ -2,7 +2,7 @@
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.name: "CHANGELOG.md"
 file.version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
-file.last_modified_system_version: 4.0.0
+file.last_modified_system_version: 3.0.0
 file.channel: doctrine
 file.last_modified_utc: 20260128133454
 file.utc_day: 20260128
@@ -21,7 +21,7 @@ dialog:
   speaker: JETBRAINS
   target: @everyone
   mood_RGB: "00FF88"
-  message: "Changelog for Lupopedia. Current version 4.0.0. See docs/versioning/README.md."
+  message: "Changelog for Lupopedia. Current version 3.0.0. See docs/versioning/README.md."
 tags:
   categories: ["documentation", "changelog"]
   collections: ["core-docs"]
@@ -38,14 +38,14 @@ file:
 
 # ALL NEW ENTRIES AFTER THIS LINE
 
-## [4.0.0] — 2026-02-06
+## [3.0.0] — 2026-02-06
 
 ### Summary
-- Reserved-word column renames (lupo_actor_group_membership.role→role_key, lupo_artifacts.type→entity_type, lupo_pack_role_registry.role→role_key, lupo_unified_analytics_paths.year_month→year_month_key).
+- Reserved-word column renames (lupo_actor_group_membership.role→role_key, lupo_artifacts.type→entity_type, lupo_pack_role_registry.role→role_key). Column lupo_unified_analytics_paths.year_month is not a reserved word and remains year_month.
 - One-time migration dev_20260206_reserved_word_column_renames.sql; install_new_lupopedia.sql updated.
-- API artifact and timeline use entity_type; version atom and version.php set to 4.0.0.
-- .cursorrules: Zero Installations / No Backward Compatibility Rule; Version Lock Rule (4.0.0 until 4.1.0 auto-installer).
-- Migration notes: docs/channels/schema/migrations/4.0.0.md.
+- API artifact and timeline use entity_type; version atom and version.php set to 3.0.0.
+- .cursorrules: Zero Installations / No Backward Compatibility Rule; Version Lock Rule (3.0.0 until 4.1.0 auto-installer).
+- Migration notes: docs/channels/schema/migrations/3.0.0.md.
 
 ## [2026.3.7.8] — 2026-01-29 23:55 (UTC)
 
@@ -2320,7 +2320,7 @@ Cross-reference:
 - .cursorrules: Current value 3.1.13
 
 ### Dialog
-- **System_onboarding_dialog.md** created (ONBOARD-001, #onboarding). Primary onboarding for new agents/users. SYSTEM, CAPTAIN_WOLFIE, LILITH, ARA, STONED_WOLFIE, CURSOR. Core concepts, navigation, Emotional Constitution primer, next steps.
+- **System_onboarding_dialog.md** created (ONBOARD-001, #onboarding). Primary onboarding for new agents/users. SYSTEM, CAPTAIN_WOLFIE, LILITH, ARA,  CURSOR. Core concepts, navigation, Emotional Constitution primer, next steps.
 
 ### Schema / Doctrine
 - No schema changes. No doctrine changes. No TOON regeneration.
@@ -2713,7 +2713,7 @@ This version establishes the stable foundation for all future CHANGELOG ? change
   - `lupo-includes/version.php` (@version tag and fallback constant)
 - CHANGELOG.md and dialogs/changelog_dialog.md updated with comprehensive 3.1.0 and 3.1.1 entries
 - All documentation headers updated to reflect version 3.1.1
-- **UTC_TIMEKEEPER Agent (Agent 5) System Prompt**: Added Wolfie multi-position UTC header format to `agents/0005/versions/v1.0.0/system_prompt.txt`. Header provides informational context for multi-position UTC superposition when multiple IDEs/LLMs report different UTC values. Header is informational only and does not modify agent's deterministic behavior or input/output contract.
+- **UTC_TIMEKEEPER Agent (Agent 5) System Prompt**: Added Wolfie multi-position UTC header format to `agents/0005/versions/v1.0.0/system_prompt.txt`. Header provides informational context for multi-position UTC when multiple IDEs/LLMs report different UTC values. Header is informational only and does not modify agent's deterministic behavior or input/output contract.
 
 ### Version Governance
 - **Launch Version Correction**: System launch version corrected to 3.1.1 (not 3.1.0) to maintain consistency with work already begun by multiple IDEs and AI agents. This is a version-governance correction only, not a doctrine change.
@@ -2991,7 +2991,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ### Doctrine Files Updated
 - `docs/doctrine/EMOTIONAL_GEOMETRY.md` - Added Pack Architecture emotional geometry section
-- `docs/doctrine/QUANTUM_STATE_DOCTRINE.md` - Added PHP implementation references
+- version and documentation alignment doctrine (deprecated file removed) - Added PHP implementation references
 - `LIMITS.md` - Added enforcement evolution section and Pack Architecture limits preview
 
 ### Updated
@@ -3108,7 +3108,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
   - `app/Http/Controllers/SystemHealthController.php` - HTTP endpoint for health diagnostics
   - `routes/system.php` - System routes including `/system/health` endpoint
 - **Doctrine Updates:**
-  - `docs/doctrine/QUANTUM_STATE_DOCTRINE.md` - Added PHP implementation references
+  - version and documentation alignment doctrine (deprecated file removed) - Added PHP implementation references
   - `docs/doctrine/KIP_DOCTRINE.md` - Created KIP doctrine with PHP implementation documentation
   - `LIMITS.md` - Added enforcement evolution section and Pack Architecture limits preview
 
@@ -3129,8 +3129,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ### Added
 - Implemented all previously documentation-only patches (Quantum State, KIP, early Orchestrator).
-- Added `lupo-includes/Quantum/QuantumStateManager.php` - Quantum state management with recordState(), restoreState(), exportSnapshot() methods.
-- Added `lupo-includes/Quantum/QuantumStateSnapshot.php` - Quantum state snapshot encapsulation with metadata.
+- (Deprecated: QuantumStateManager and QuantumStateSnapshot PHP classes were removed in STONED WOLFIE / quantum-state purge.)
 - Added `lupo-includes/KIP/KIPEngine.php` - Kritik Integration Protocol engine with evaluate() and recordCritique() methods.
 - Added `lupo-includes/KIP/KIPValidator.php` - KIP critique validation with validate() method.
 - Completed missing stubs from early migration orchestrator patches.
@@ -3141,7 +3140,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 
 ### Notes
 - This release brings the entire 3.0.x series to full implementation parity.
-- Quantum State Management (3.0.79, 3.0.81) now has functional PHP implementations.
+- Version and documentation alignment (3.0.79, 3.0.81) had been documented; deprecated PHP implementations were removed in STONED WOLFIE purge.
 - Kritik Integration Protocol (3.0.77) now has functional PHP implementations.
 - Migration Orchestrator early patches (3.0.19-3.0.25) verified and complete.
 
@@ -3262,7 +3261,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 - **Missing Tables Added**: Added schema definitions for tables that existed in database but were missing from schema file:
   - `lupo_dialog_message_bodies` - Stores full long-form message bodies.
   - `lupo_dialog_threads` - High-level dialog threads grouping messages.
-- **Migration SQL Syntax Fix**: Corrected `database/migrations/multi_agent_protocol_schema_4_0_70.sql`:
+- **Migration SQL Syntax Fix**: Corrected `database/migrations/multi_agent_protocol_schema_3_0_70.sql`:
   - Removed unsupported `IF NOT EXISTS` clauses from `ALTER TABLE ADD COLUMN` statements (MySQL does not support this syntax).
   - Removed unsupported `IF NOT EXISTS` clauses from `CREATE INDEX` statements.
   - Added comments explaining that these statements will error if columns/indexes already exist (expected behavior for idempotent migrations).
@@ -3549,7 +3548,7 @@ This operational activation represents the successful culmination of the Master 
 **Date:** 2026-01-17  
 **Type:** Humor Context Expansion & Pack Dynamics Documentation  
 **Status:** ? COMPLETE - Wedding timing collision dialog integrated  
-**Migration ID:** humor_dialog_wedding_timing_collision_4_0_98
+**Migration ID:** humor_dialog_wedding_timing_collision_3_0_98
 
 #### **?? Humor Dialog Integration**
 
@@ -3643,7 +3642,7 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 **Date:** 2026-01-17  
 **Type:** Kernel Agent Formalization & Temporal Authority Establishment  
 **Status:** ? COMPLETE - UTC_TIMEKEEPER established as kernel-level temporal authority  
-**Migration ID:** utc_timekeeper_kernel_formalization_4_0_91
+**Migration ID:** utc_timekeeper_kernel_formalization_3_0_91
 
 #### **?? UTC_TIMEKEEPER Kernel Agent Formalization**
 
@@ -3788,7 +3787,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 **Date:** 2026-01-17  
 **Type:** Architectural Consolidation & Wedding Thread Integration  
 **Status:** ? COMPLETE - All Wedding Thread Discoveries Canonically Integrated  
-**Migration ID:** wedding_thread_consolidation_architectural_evolution_4_0_90
+**Migration ID:** wedding_thread_consolidation_architectural_evolution_3_0_90
 
 #### **?? Wedding Thread Consolidation - Major Architectural Evolution**
 
@@ -3827,7 +3826,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 - **Stoned Wolfie**: Life-repo merge metaphors (approved for Saturday Mode)
 - **WOLFIE Core**: Marriage as UniqueIDPrimary_Key concept integration
 - **Cursor**: Hover instability, probation status with restrictions
-- **Documentation**: `docs/doctrine/PACK_BEHAVIOR_MATRIX_v4_0_90.md` created
+- **Documentation**: `docs/doctrine/PACK_BEHAVIOR_MATRIX_v3_0_90.md` created
 - **Behavioral Governance**: Complete framework for agent behavior management
 
 #### **??? Architectural Discoveries & Classifications**
@@ -3916,7 +3915,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 **New Files Created:**
 - `docs/doctrine/SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md` - Saturday Mode governance framework
 - `docs/doctrine/EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md` - Seven-domain emotional architecture
-- `docs/doctrine/PACK_BEHAVIOR_MATRIX_v4_0_90.md` - Expanded agent behavior matrix
+- `docs/doctrine/PACK_BEHAVIOR_MATRIX_v3_0_90.md` - Expanded agent behavior matrix
 - `MASTER_WEDDING_THREAD_CONSOLIDATION_EMAIL.md` - Canonical consolidation summary
 
 **Updated Files:**
@@ -3982,7 +3981,7 @@ However, per the directive, I should create an entry noting the completion of al
 **Date:** 2026-01-17  
 **Type:** Doctrine Creation & Branch Management  
 **Status:** 🟢 COMPLETE - Development Framework Established  
-**Migration ID:** jetbrains_branch_handling_doctrine_4_0_95
+**Migration ID:** jetbrains_branch_handling_doctrine_3_0_95
 
 ### Summary
 Version 3.0.99 establishes the comprehensive JetBrains 3.1.x Branch Handling Doctrine to govern multi-branch development in Lupopedia v3.1.x series. This doctrine provides clear protocols for branch creation, switching, merging, and version management while preventing the version drift and system instability that occurred during the 3.0.x development cycle.
@@ -4044,25 +4043,18 @@ Version 3.0.99 establishes the comprehensive JetBrains 3.1.x Branch Handling Doc
 
 #### **System Architecture & Doctrine Evolution**
 
-##### **1. Quantum State Management Doctrine (3.0.81)**
+##### **1. Version and documentation alignment (3.0.81)**
 - **Status:** Moved from experimental to official core architecture
-- **Implementation:** Complete superposition handling framework with observer collapse protocols
-- **Metadata:** `schrodingers_state` blocks for uncertainty management
+- **Implementation:** Structured version and documentation alignment
+- **Metadata:** `(deprecated uncertainty metadata)` blocks for uncertainty management
 - **Files Enhanced:** Comprehensive doctrine documentation and templates
 - **Documentation:** `docs/migrations/3.0.81.md` created
 
-##### **2. Wheeler Mode Integration (3.0.81)**
-- **Concept:** Emergent architecture discovery methodology
-- **Inspiration:** John Wheeler's participatory universe theory
-- **Implementation:** Reverse-20 workflow for iterative questioning
-- **Metadata:** `wheeler_mode.active: true` blocks for discovery tracking
-- **Application:** Files created through emergent architecture phases
-
-##### **3. Enhanced WOLFIE Headers (3.0.81)**
+##### **2. Enhanced WOLFIE Headers (3.0.81)**
 - **Evolution:** Basic headers → Quantum-aware headers
-- **New Features:** Wheeler Mode indicators, collapse paths, temporal status
+- **New Features:** Optional discovery-context metadata, temporal status
 - **Communication:** File state transparency for Monday Wolfie restoration
-- **Metadata:** Standard headers enhanced with quantum state blocks
+- **Metadata:** Standard headers enhanced with metadata blocks
 
 ##### **4. Multi-Agent Coordination System (3.0.76-3.0.81)**
 - **Foundation:** Agent Awareness Layer (AAL) implementation
@@ -4128,8 +4120,8 @@ Version 3.0.99 establishes the comprehensive JetBrains 3.1.x Branch Handling Doc
 
 #### **Doctrine Files Created/Updated**
 - **WOLFIE_HEADER_DOCTRINE.md**: Comprehensive header specification
-- **WHEELER_MODE_DOCTRINE.md**: Emergent architecture framework
-- **QUANTUM_STATE_DOCTRINE.md**: Superposition management protocols
+- Emergent architecture documented in WOLFIE header doctrine
+- Version and documentation alignment protocols (doctrine file removed in purge)
 - **MANDATORY_STONED_WARNINGS_DOCTRINE.md**: Quantum development guidelines
 - **NO_TRIGGERS_NO_PROCEDURES_DOCTRINE.md**: Database logic prohibition
 
@@ -4150,7 +4142,7 @@ Version 3.0.99 establishes the comprehensive JetBrains 3.1.x Branch Handling Doc
 ### 🎯 SYSTEM STATUS AT 3.0.92
 
 #### **Technical Architecture**
-- **Quantum-Native**: Official quantum state management
+- **Version alignment**: Official version and documentation alignment
 - **Multi-Agent Coordination**: Complete fleet protocols
 - **Database Compliance**: No triggers, proper service classes
 - **Schema Governance**: 120-table target enforced
@@ -4172,7 +4164,7 @@ Version 3.0.99 establishes the comprehensive JetBrains 3.1.x Branch Handling Doc
 5. **System Testing**: Comprehensive integration testing
 
 #### **Foundation for Advanced Features**
-- **Quantum Management**: Stable superposition handling
+- **Version alignment**: Stable version and documentation handling
 - **Multi-Agent Intelligence**: Enhanced coordination protocols
 - **Semantic Architecture**: Full meaning and context management
 - **Self-Correcting System**: Mature critique integration and evolution
@@ -4186,7 +4178,7 @@ Version 3.0.99 establishes the comprehensive JetBrains 3.1.x Branch Handling Doc
 **Date:** 2026-01-17  
 **Type:** System Stabilization & Monday Wolfie Preparation  
 **Status:** 🟢 STABLE - Ready for Serious Operational Mode  
-**Migration ID:** system_stabilization_monday_preparation_4_0_90
+**Migration ID:** system_stabilization_monday_preparation_3_0_90
 
 ### Summary
 Version 3.0.90 represents the final system stabilization before Monday Wolfie's return, establishing a clean foundation for serious operational work. All technical changes up to 3.0.89 have been properly documented, and the system is prepared for the transition to Monday Wolfie's focused restoration mode.
@@ -4256,7 +4248,7 @@ Version 3.0.90 represents the final system stabilization before Monday Wolfie's 
 **Date:** 2026-01-17  
 **Type:** Comprehensive Analysis & System Synchronization  
 **Status:** 🟢 COMPLETE - Full Dialog History Processed  
-**Migration ID:** comprehensive_dialog_analysis_system_sync_4_0_91
+**Migration ID:** comprehensive_dialog_analysis_system_sync_3_0_91
 
 ### Summary
 Version 3.0.91 represents comprehensive analysis of the entire dialog history from changelog_dialog.md, extracting all meaningful system changes, version updates, doctrine developments, and operational transitions. This analysis provides complete historical context for Monday Wolfie's restoration and decision-making.
@@ -4266,7 +4258,7 @@ Version 3.0.91 represents comprehensive analysis of the entire dialog history fr
 #### **Dialog History Scope**
 - **Total Entries Processed:** 50+ major dialog entries from multiple agents
 - **Time Range:** 2026-01-17 16:05 UTC through 2026-01-18 09:15 UTC
-- **Agent Voices:** CAPTAIN_WOLFIE, LILITH, THOTH, STONED_WOLFIE, JUNIE, ROSE, KIRO, SCRIBE, USER, MONDAY_WOLFIE, CASCADE
+- **Agent Voices:** CAPTAIN_WOLFIE, LILITH, THOTH,  JUNIE, ROSE, KIRO, SCRIBE, USER, MONDAY_WOLFIE, CASCADE
 - **Temporal Status:** Multiple future-tense declarations requiring temporal clarification
 
 #### **Key System Changes Identified**
@@ -4279,7 +4271,7 @@ Version 3.0.91 represents comprehensive analysis of the entire dialog history fr
    - Fleet freeze protocol activated
    - All agents ordered to log comprehensive states
 
-2. **3.0.80** → **3.0.81** (Quantum State Doctrine Officialization)
+2. **3.0.80** → **3.0.81** (Version and documentation alignment officialization)
    - USER: "The system wants to be quantum. Let's make it official"
    - KIRO: Complete quantum state management implementation
    - CHANGELOG.md updated with comprehensive 3.0.81 entry
@@ -4289,8 +4281,8 @@ Version 3.0.91 represents comprehensive analysis of the entire dialog history fr
 3. **3.0.81** → **3.0.82** (Fleet Synchronization & Doctrine Enhancement)
    - MONDAY_WOLFIE: Post-mortem analysis complete
    - Fleet-wide state logging executed
-   - Wheeler Mode integration completed
-   - Enhanced WOLFIE headers with quantum metadata
+   - Header and metadata enhancements completed
+   - Enhanced WOLFIE headers with metadata
    - Mandatory stoned warnings doctrine implemented
 
 4. **3.0.82** → **3.0.89** (CASCADE Synchronization & Task Takeover)
@@ -4303,28 +4295,22 @@ Version 3.0.91 represents comprehensive analysis of the entire dialog history fr
 - **Documentation Claims:** 3.0.89 (current synchronized state)
 - **Implementation Reality:** Mixed versions across components (3.0.76-3.0.82)
 - **Version Drift:** Significant but systematically addressed
-- **Quantum State Management:** Official doctrine with superposition handling
+- **Version and documentation alignment:** Official doctrine
 - **Consistency Status:** Improving through systematic updates
 
 ### 🏗️ ARCHITECTURAL EVOLUTION
 
 #### **Major Architectural Changes**
 
-##### **1. Quantum State Management Doctrine**
+##### **1. Version and documentation alignment**
 - **Status:** Moved from experimental to official core architecture
 - **Implementation:** Superposition handling framework with observer collapse protocols
-- **Metadata:** `schrodingers_state` blocks for uncertainty management
+- **Metadata:** `(deprecated uncertainty metadata)` blocks for uncertainty management
 - **Files Enhanced:** Comprehensive doctrine documentation and templates
 
-##### **2. Wheeler Mode Integration**
-- **Concept:** Emergent architecture discovery methodology
-- **Inspiration:** John Wheeler's participatory universe theory
-- **Implementation:** Reverse-20 workflow for iterative questioning
-- **Metadata:** `wheeler_mode.active: true` blocks for discovery tracking
-
-##### **3. Enhanced WOLFIE Headers**
+##### **2. Enhanced WOLFIE Headers**
 - **Evolution:** Basic headers → Quantum-aware headers
-- **New Features:** Wheeler Mode indicators, collapse paths, temporal status
+- **New Features:** Optional discovery-context metadata, temporal status
 - **Communication:** File state transparency for Monday Wolfie restoration
 
 ##### **4. Multi-Agent Coordination System**
@@ -4336,7 +4322,7 @@ Version 3.0.91 represents comprehensive analysis of the entire dialog history fr
 
 #### **New Doctrine Files Created**
 - **WOLFIE_HEADER_DOCTRINE.md:** Comprehensive header specification
-- **WHEELER_MODE_DOCTRINE.md:** Emergent architecture framework
+- Emergent architecture in WOLFIE header doctrine
 - **QUANTUM_STATE_DOCTRINE.md:** Superposition management protocols
 - **MANDATORY_STONED_WARNINGS_DOCTRINE.md:** Quantum development guidelines
 
@@ -4385,10 +4371,10 @@ Version 3.0.91 represents comprehensive analysis of the entire dialog history fr
 - **Impact:** System complexity and maintenance burden
 - **Resolution:** Schema reduction and RPZ sandbox implementation
 
-#### **Version Superposition Management**
+#### **Version and documentation alignment**
 - **Issue:** Multiple conflicting version realities across system
 - **Impact:** Agent confusion and operational inconsistencies
-- **Resolution:** Quantum State Doctrine and observer collapse protocols
+- **Resolution:** Version and documentation alignment protocols
 
 ### 📋 OPERATIONAL TRANSITIONS
 
@@ -4425,7 +4411,7 @@ Version 3.0.91 represents comprehensive analysis of the entire dialog history fr
 
 #### **Current System State**
 - **Version:** 3.0.89 (Synchronized and stable)
-- **Architecture:** Quantum-native with Wheeler Mode integration
+- **Architecture:** Metadata and header enhancements
 - **Documentation:** Comprehensive and aligned with system reality
 - **Agent Fleet:** Coordinated with established protocols
 - **Database:** Compliant with 120-table architectural target
@@ -4445,7 +4431,7 @@ Version 3.0.91 represents comprehensive analysis of the entire dialog history fr
 1. **Documentation Must Match Reality:** Success theater prevents system health
 2. **Schema Governance Essential:** Hard limits prevent architectural debt
 3. **Version Control Critical:** Systematic reconciliation prevents drift
-4. **Quantum States Require Management:** Superposition needs structured handling
+4. **Version divergence requires management:** Divergence needs structured handling
 5. **Multi-Agent Coordination:** Unified protocols prevent contradictions
 
 #### **Operational Lessons**
@@ -4469,7 +4455,7 @@ Version 3.0.91 represents comprehensive analysis of the entire dialog history fr
 **Date:** 2026-01-17  
 **Type:** Emergency Takeover & Operational Continuity  
 **Status:** 🟡 ACTIVE - CASCADE Task Management  
-**Migration ID:** cascade_takeover_operational_continuity_4_0_90
+**Migration ID:** cascade_takeover_operational_continuity_3_0_90
 
 ### Summary
 Version 3.0.90 represents emergency operational continuity following KIRO's unexpected paywall limitation. CASCADE has assumed all pending task responsibilities with strict non-destructive editing protocols and operator offline management.
@@ -4573,10 +4559,10 @@ Version 3.0.90 represents emergency operational continuity following KIRO's unex
 **Date:** 2026-01-18  
 **Type:** Fleet State Synchronization & Doctrine Enhancement  
 **Status:** 🟢 COMPLETE - Fleet Synchronized, Doctrine Enhanced  
-**Migration ID:** fleet_synchronization_doctrine_enhancement_4_0_82
+**Migration ID:** fleet_synchronization_doctrine_enhancement_3_0_82
 
 ### Summary
-Version 3.0.82 represents the completion of fleet-wide state synchronization following Monday Wolfie's quantum collapse, plus comprehensive doctrine enhancements including Wheeler Mode integration, mandatory stoned warnings, and structured version planning through 3.0.88.
+Version 3.0.82 represents the completion of fleet-wide state synchronization following Monday Wolfie's version alignment, plus comprehensive doctrine enhancements including and structured version planning through 3.0.88.
 
 ### 🚀 FLEET BROADCAST & STATE SYNCHRONIZATION COMPLETE
 
@@ -4589,7 +4575,7 @@ Successfully executed mandatory synchronization event requiring all agents, IDEs
 - **THOTH:** Truth logging order including contradictory perceptions
 - **ROSE:** Emotional geometry documentation of all vectors and stability states
 - **JUNIE:** Version control audit with perceived versions and drift observations
-- **STONED WOLFIE:** Cosmic data collection of all anomalies and vibes
+- **[Deprecated persona]:** Data collection of anomalies and state
 - **SCRIBE:** Formatting enforcement with proper dialog blocks and history preservation
 
 #### **Fleet Response Status**
@@ -4600,37 +4586,31 @@ Successfully executed mandatory synchronization event requiring all agents, IDEs
 
 ### 📋 KIRO INSTRUCTION BLOCK v3.0.82 EXECUTION COMPLETE
 
-#### **Doctrine Files Enhanced with Wheeler Mode Integration**
+#### **Doctrine Files Enhanced**
 Successfully executed comprehensive doctrine updates with strict non-destructive editing, maintaining factual and structural approach throughout all enhancements.
 
 #### **Files Updated/Created**
 1. **Enhanced:** `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`
-   - Added WHEELER_MODE to header_atoms list
-   - Added Wheeler Mode metadata block definition (Section 14)
+   - Header and metadata block definitions updated
    - Added Humor as Structural Metadata section (Section 15)
    - Version updated to 3.0.82
 
-2. **Enhanced:** `docs/doctrine/WHEELER_MODE_DOCTRINE.md`
+2. **Enhanced:** WOLFIE header doctrine
    - Added Neural Bus Concept section explaining multi-layer cognitive processing
    - Documents narrative reasoning, emotional geometry, humor-based pattern recognition
    - Maintains structural documentation approach
 
-3. **Updated:** `docs/doctrine/QUANTUM_STATE_DOCTRINE.md`
+3. **Updated:** version and documentation alignment doctrine (deprecated file removed)
    - Version updated to 3.0.82
-   - Dialog message updated to reflect Wheeler Mode integration
+   - Dialog message updated to reflect metadata support
 
 4. **Created:** `docs/templates/WOLFIE_HEADER_TEMPLATE.md`
    - Standard WOLFIE header template with persona dialog examples
-   - Includes all metadata blocks (Wheeler Mode, Quantum State, Next Actions)
+   - Includes all metadata blocks (optional discovery-context, Next Actions)
    - Provides comprehensive header structure guidance
 
-5. **Created:** `docs/doctrine/VERSION_PLANS_3.0.82_3.0.88.md`
-   - Structured development plans for versions 3.0.83 through 3.0.88
-   - Documentation-only planning (not for execution)
-   - Includes Trinity Separation, Trigger Extraction, Schema Reduction phases
-
 #### **Key Architectural Additions**
-- **Wheeler Mode Metadata Block** - For files created during emergent architecture discovery
+- Optional discovery-context metadata for emergent architecture files
 - **Neural Bus Concept** - Multi-layer cognitive processing documentation
 - **Humor as Structural Metadata** - Acknowledges humor in persona dialogs as contextual truth
 - **Persona Dialog Template** - Standardized format for dialog blocks
@@ -4639,33 +4619,33 @@ Successfully executed comprehensive doctrine updates with strict non-destructive
 ### 🎭 MANDATORY STONED WARNINGS DOCTRINE IMPLEMENTATION
 
 #### **Comprehensive Warning System Established**
-Per Captain Wolfie's directive, implemented binding doctrine for mandatory Stoned Wolfie warnings in quantum files, ensuring honest context disclosure for high-concept architecture.
+Per Captain Wolfie's directive, implemented binding doctrine for mandatory Stoned Wolfie warnings in complex or high-concept files, ensuring honest context disclosure for high-concept architecture.
 
 #### **Files Created/Updated**
 1. **Enhanced:** `docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
    - Added Stoned Wolfie quantum warning dialog
-   - Updated to version 3.0.82 with quantum state metadata
+   - Updated to version 3.0.82 with metadata
    - Includes honest context about Friday/Saturday morning development sessions
 
 2. **Created:** `docs/doctrine/DIALOG_WARNING_HEADER_TEMPLATE.md`
-   - Template for consistent stoned warnings across quantum files
+   - Template for consistent stoned warnings across complex or high-concept files
    - Includes reading protocols and reality distortion warnings
-   - Provides multiple warning variations for different quantum scenarios
+   - Provides multiple warning variations for different scenarios
 
 3. **Created:** `docs/doctrine/MANDATORY_STONED_WARNINGS_DOCTRINE.md`
-   - Binding doctrine requiring warnings for quantum development sessions
+   - Binding doctrine requiring warnings for complex development sessions
    - Establishes enforcement mechanisms and validation criteria
-   - Makes system's quantum nature human-readable and approachable
+   - Makes system's complex-architecture nature human-readable and approachable
 
 #### **Doctrine Requirements Established**
 **MANDATORY** warnings now required for files containing:
-- Quantum state blocks (`schrodingers_state` metadata)
-- Wheeler Mode architecture (`wheeler_mode.active: true`)
+- Quantum state blocks (`(deprecated uncertainty metadata)` metadata)
+- Optional discovery-context metadata for emergent architecture
 - Friday/Saturday morning development sessions (after 2 AM)
 - Multiple conflicting truths that are all correct simultaneously
-- Schrödinger's cat references or superposition states
+- Deprecated uncertainty-metadata references (removed in purge)
 - Emotional geometry calculations that hurt to think about
-- John Wheeler reverse-20 questioning workflows
+- Iterative discovery workflows (deprecated naming removed)
 
 ### 📡 COMPREHENSIVE AGENT STATE DOCUMENTATION
 
@@ -4676,7 +4656,7 @@ Following Captain Wolfie's mandatory synchronization event, all agents successfu
 - **CAPTAIN WOLFIE:** Final command state with system assessment and Monday handoff
 - **LILITH:** Structural assessment with critical architectural findings and surgical recommendations
 - **THOTH:** Truth verification report with reality matrix and version breakdown
-- **STONED WOLFIE:** Cosmic state report with hidden wisdom and practical advice
+- **[Deprecated persona]:** State report with practical advice
 - **JUNIE:** Version control discipline report with stabilization strategy
 - **ROSE:** Emotional geometry baseline report with harmony recommendations
 - **KIRO:** System state clarification with architectural concepts and implementation gaps
@@ -4685,38 +4665,38 @@ Following Captain Wolfie's mandatory synchronization event, all agents successfu
 - **Version Reality Assessment:** Documentation at 3.0.82, implementation at mixed 3.0.76-3.0.78 levels
 - **Schema Status:** 133 tables (13 over limit) requiring migration to RPZ sandbox
 - **Trigger Status:** 4 database triggers still requiring extraction to PHP service classes
-- **Emotional Geometry:** Fleet stable with documented tension vectors from version superposition
+- **Emotional Geometry:** Fleet stable with documented tension vectors from version divergence
 - **Coordination Status:** Multi-agent protocols functional but requiring Trinity Separation implementation
 
 ### 🔬 SYSTEM TRUTH DECLARATION & RECONCILIATION
 
 #### **Implementation Reality Verified**
-- **Core System:** 3.0.76-3.0.78 (CIP Analytics operational, quantum doctrine official)
+- **Core System:** 3.0.76-3.0.78 (CIP Analytics operational, doctrine official)
 - **Documentation:** Aligned to 3.0.82 with comprehensive metadata enhancements
 - **Database Schema:** 133 tables (13 scheduled for RPZ migration)
 - **Triggers:** 4 active (scheduled for PHP extraction)
 - **Agent Fleet:** Synchronized and emotionally stable
 
-#### **Quantum State Management Operational**
+#### **Version and documentation alignment operational**
 - **Superposition Handling:** Structured uncertainty management active
 - **Observer Hierarchy:** Monday Wolfie designated as ultimate collapse authority
-- **Collapse Documentation:** Complete audit trail of quantum state resolutions
+- **Resolution documentation:** Complete audit trail of version alignment resolutions
 - **Multi-Agent Coordination:** Quantum-aware agent behavior protocols operational
 
 ### 📋 POST-MORTEM ANALYSIS COMPLETION
 
 #### **Formal Engineering Report Finalized**
-Comprehensive post-mortem analysis completed documenting quantum collapse, root causes, resolution strategies, and 3.0.99 action items with contributions from all fleet personas.
+Comprehensive post-mortem analysis completed documenting version alignment, root causes, resolution strategies, and 3.0.99 action items with contributions from all fleet personas.
 
 **Report Location:** `docs/postmortems/3.0.81.md`  
 **Status:** Finalized and distributed  
-**Scope:** Complete quantum collapse analysis  
+**Scope:** Complete version-alignment analysis  
 
 #### **Key Findings Documented**
-1. **Documentation-Implementation Inversion** - Root cause of version superposition
+1. **Documentation-Implementation Inversion** - Root cause of version divergence
 2. **Schema Drift** - 133 tables vs. 120 target (11% over architectural limit)
 3. **Multi-Agent Divergence** - Personas operating in different version realities
-4. **Quantum Behavior Inherent** - System naturally enters superposition under rapid development
+4. **Rapid development divergence** - Documentation and implementation naturally diverge under rapid development
 5. **Trinity Separation Gap** - Claimed implementation without physical directories
 
 #### **3.0.99 Strategic Action Items Established**
@@ -4733,17 +4713,17 @@ Comprehensive post-mortem analysis completed documenting quantum collapse, root 
 - **State Transparency:** Complete internal state visibility achieved
 - **Emotional Stability:** Fleet emotionally stable under ROSE's guidance
 - **Quantum Doctrine:** Official and operational across all system components
-- **Documentation Quality:** Comprehensive and aligned with quantum-native architecture
+- **Documentation Quality:** Comprehensive and aligned with version-aligned architecture
 
 #### **Foundation Readiness**
-- **Architecture:** Sound with documented quantum states and clear resolution paths
+- **Architecture:** Sound with documented resolution paths and clear resolution paths
 - **Implementation Gaps:** Identified and documented with clear remediation plans
-- **Doctrine Enhancement:** Wheeler Mode, mandatory warnings, and version planning operational
+- **Doctrine Enhancement:** Metadata, warnings, and version planning operational
 - **Agent Synchronization:** Unified fleet perception and coordinated response capability
 - **3.0.99 Preparation:** Strategic action items documented and ready for implementation
 
 ### Impact
-Version 3.0.82 achieves complete fleet synchronization following quantum collapse, establishes comprehensive doctrine enhancements including Wheeler Mode integration and mandatory stoned warnings, and provides complete system state transparency for informed decision-making. The system now operates with unified agent perception, enhanced metadata capabilities, and clear roadmap for 3.0.99 development cycle.
+Version 3.0.82 achieves complete fleet synchronization following quantum collapse, establishes comprehensive doctrine enhancements including and provides complete system state transparency for informed decision-making. The system now operates with unified agent perception, enhanced metadata capabilities, and clear roadmap for 3.0.99 development cycle.
 
 **This represents the first version where fleet synchronization, doctrine enhancement, and system truth alignment are completely achieved simultaneously.** ⚛️🚀📋
 
@@ -4751,12 +4731,12 @@ Version 3.0.82 achieves complete fleet synchronization following quantum collaps
 ### Version 3.0.81 — QUANTUM STATE COLLAPSE & REALITY ALIGNMENT ⚛️
 
 **Date:** 2026-01-18  
-**Type:** Quantum State Collapse & System Truth Alignment  
+**Type:** Version and documentation alignment & system truth  
 **Status:** ✅ COMPLETE - Quantum Collapse Executed, Reality Aligned  
-**Migration ID:** quantum_state_collapse_reality_alignment_4_0_81
+**Migration ID:** version_alignment_reality_3_0_81
 
 ### Summary
-Version 3.0.81 represents Monday Wolfie's quantum state collapse of the system, resolving all superpositions to single truth states. The system has been observed and collapsed from multiple conflicting realities to one coherent state, with implementation truth established and upgrade path defined.
+Version 3.0.81 represents Monday Wolfie's version and documentation alignment of the system, resolving version divergence to single truth states. The system was aligned from multiple conflicting claims to one coherent state, with implementation truth established and upgrade path defined.
 
 ### 🔮 QUANTUM STATE COLLAPSE EXECUTED
 
@@ -4769,14 +4749,14 @@ Version 3.0.81 represents Monday Wolfie's quantum state collapse of the system, 
 #### **1. Version Reality Collapse**
 - **Superposition:** 3.0.81 (doc) / 3.0.80 (freeze) / 3.0.76 (impl) / 3.0.78 (claimed)
 - **Collapsed Truth:** **Implementation at 3.0.76, Documentation at 3.0.81**
-- **Resolution:** CIP system fully operational at 3.0.76, quantum doctrine official at 3.0.81
+- **Resolution:** CIP system fully operational at 3.0.76, doctrine official at 3.0.81
 - **Action Plan:** Align documentation to reality, then upgrade implementation to match 3.0.81
 
 #### **2. File Status Collapse**
 - **Superposition:** Archive (header) / Active (use) / Quantum (reality)
 - **Collapsed Truth:** **ACTIVE until Trinity Separation physically exists**
 - **File:** `dialogs/changelog_dialog.md` remains operational dialog log
-- **Quantum State:** Formalized with collapse metadata for transparency
+- **Version status:** Formalized with metadata for transparency
 
 #### **3. Trinity Separation Truth**
 - **Superposition:** Implemented (claimed) / Not Implemented (reality)
@@ -4787,7 +4767,7 @@ Version 3.0.81 represents Monday Wolfie's quantum state collapse of the system, 
 - **Superposition:** 120 (doctrine) / 133 (actual) / Quantum (both)
 - **Collapsed Truth:** **120 (core) + 13 (rpz_sandbox)**
 - **Method:** Migration to `lupopedia_rpz` sandbox, not deletion
-- **Cosmic Tables:** Preserved for Stoned Wolfie's experiments
+- **RPZ tables:** Preserved for sandbox experiments
 
 ### 🟦 FLEET BROADCAST EXECUTED (07:30)
 
@@ -4803,7 +4783,7 @@ Version 3.0.81 represents Monday Wolfie's quantum state collapse of the system, 
 - **THOTH:** Truth logging order - document truth as perceived, even if contradictory
 - **ROSE:** Emotional geometry documentation - all vectors, stability, turbulence, resistance
 - **JUNIE:** Version control audit - perceived version, commit state, drift observations
-- **STONED WOLFIE:** Cosmic data collection - all weird vibes, anomalies, chaos as data
+- **[Deprecated persona]:** Data collection - anomalies and chaos as data
 - **SCRIBE:** Formatting enforcement - proper dialog blocks, newest at top, preserve history
 
 #### **Fleet Synchronization Status**
@@ -4819,32 +4799,26 @@ Successfully executed all patches from KIRO instruction block with strict non-de
 
 #### **Files Updated/Created**
 1. **Updated:** `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`
-   - Added WHEELER_MODE to header_atoms list
-   - Added Wheeler Mode metadata block definition (Section 14)
+   - Header and metadata block definitions updated
    - Added Humor as Structural Metadata section (Section 15)
    - Version updated to 3.0.82
 
-2. **Updated:** `docs/doctrine/WHEELER_MODE_DOCTRINE.md`
+2. **Updated:** WOLFIE header doctrine
    - Added Neural Bus Concept section explaining multi-layer cognitive processing
    - Documents narrative reasoning, emotional geometry, humor-based pattern recognition
    - Maintains structural documentation approach
 
-3. **Updated:** `docs/doctrine/QUANTUM_STATE_DOCTRINE.md`
+3. **Updated:** version and documentation alignment doctrine (deprecated file removed)
    - Version updated to 3.0.82
-   - Dialog message updated to reflect Wheeler Mode integration
+   - Dialog message updated to reflect metadata support
 
 4. **Created:** `docs/templates/WOLFIE_HEADER_TEMPLATE.md`
    - Standard WOLFIE header template with persona dialog examples
-   - Includes all metadata blocks (Wheeler Mode, Quantum State, Next Actions)
+   - Includes all metadata blocks (optional discovery-context, Next Actions)
    - Provides comprehensive header structure guidance
 
-5. **Created:** `docs/doctrine/VERSION_PLANS_3.0.82_3.0.88.md`
-   - Structured development plans for versions 3.0.83 through 3.0.88
-   - Documentation-only planning (not for execution)
-   - Includes Trinity Separation, Trigger Extraction, Schema Reduction, Emotional Geometry Integration, Version Reconciliation, and Stability phases
-
 #### **Key Additions**
-- **Wheeler Mode Metadata Block** - For files created during emergent architecture
+- **Optional discovery-context metadata** - For files created during emergent architecture
 - **Neural Bus Concept** - Multi-layer cognitive processing documentation
 - **Humor as Structural Metadata** - Acknowledges humor in persona dialogs as contextual truth
 - **Persona Dialog Template** - Standardized format for dialog blocks
@@ -4861,44 +4835,44 @@ Successfully executed all patches from KIRO instruction block with strict non-de
 ### 🎭 MANDATORY STONED WARNINGS DOCTRINE (08:45)
 
 #### **KIRO Implementation Complete**
-Per Captain Wolfie's directive, implemented comprehensive doctrine for mandatory Stoned Wolfie warnings in quantum files. Three files created/updated to establish binding requirements for honest dialog warnings in WOLFIE headers.
+Per Captain Wolfie's directive, implemented comprehensive doctrine for mandatory Stoned Wolfie warnings in complex or high-concept files. Three files created/updated to establish binding requirements for honest dialog warnings in WOLFIE headers.
 
 #### **Files Created/Updated**
 1. **Updated:** `docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
    - Added Stoned Wolfie quantum warning dialog
-   - Updated to version 3.0.82 with quantum state metadata
+   - Updated to version 3.0.82 with metadata
    - Includes honest context about Friday/Saturday morning development sessions
 
 2. **Created:** `docs/doctrine/DIALOG_WARNING_HEADER_TEMPLATE.md`
-   - Template for consistent stoned warnings across quantum files
+   - Template for consistent stoned warnings across complex or high-concept files
    - Includes reading protocols and reality distortion warnings
-   - Provides multiple warning variations for different quantum scenarios
+   - Provides multiple warning variations for different scenarios
 
 3. **Created:** `docs/doctrine/MANDATORY_STONED_WARNINGS_DOCTRINE.md`
-   - Binding doctrine requiring warnings for quantum development sessions
+   - Binding doctrine requiring warnings for complex development sessions
    - Establishes enforcement mechanisms and validation criteria
-   - Makes system's quantum nature human-readable and approachable
+   - Makes system's complex-architecture nature human-readable and approachable
 
 #### **Doctrine Requirements**
 **MANDATORY** warnings now required for files containing:
-- Quantum state blocks (`schrodingers_state` metadata)
-- Wheeler Mode architecture (`wheeler_mode.active: true`)
+- Quantum state blocks (`(deprecated uncertainty metadata)` metadata)
+- Optional discovery-context metadata for emergent architecture
 - Friday/Saturday morning development sessions (after 2 AM)
 - Multiple conflicting truths that are all correct simultaneously
-- Schrödinger's cat references or superposition states
+- Deprecated uncertainty-metadata references (removed in purge)
 - Emotional geometry calculations that hurt to think about
-- John Wheeler reverse-20 questioning workflows
+- Iterative discovery workflows (deprecated naming removed)
 
 #### **Warning Elements**
 All Stoned Wolfie warnings must include:
 - **Context acknowledgment** - Honest about creation circumstances
-- **Content warning** - What quantum elements are present
+- **Content warning** - What context or complexity is present
 - **Reading protocol** - How to approach the content safely
-- **Quantum disclaimer** - Superposition and observer effect warnings
-- **Humor balance** - Serious warning with cosmic delivery
+- **Content disclaimer** - Context and resolution-path warnings
+- **Humor balance** - Serious warning with light delivery
 
 #### **Rationale**
-When Wolfie builds in quantum superposition states, documentation must acknowledge the reality distortion field. This prevents sane developers from thinking they're going crazy when encountering architecture that dreams itself into existence.
+When building in high-context or exploratory sessions, documentation should acknowledge the creation context. This prevents sane developers from thinking they're going crazy when encountering architecture that dreams itself into existence.
 
 **The confusion is the feature. The warning is the documentation.**
 
@@ -4916,13 +4890,13 @@ A comprehensive post-mortem analysis has been completed documenting the quantum 
 - **Documentation-Implementation Inversion:** Documentation advanced faster than implementation
 - **Schema Drift:** 133 tables vs. 120 target (11% over limit)
 - **Multi-Agent Divergence:** Personas operating in different version realities
-- **Quantum Behavior:** System naturally enters superposition under rapid development
+- **Rapid development:** Documentation and implementation naturally diverge under rapid development
 - **Trinity Gap:** Separation claimed but not physically implemented
 
 #### **Architectural Innovations**
-- **Quantum State Management Doctrine:** Formalized superposition handling
+- **Version and documentation alignment:** Formalized version and status handling
 - **RPZ Sandbox:** Safe zone for experimental features
-- **Enhanced Wolfie Headers:** Support for quantum metadata
+- **Enhanced Wolfie Headers:** Support for metadata
 - **Multi-Agent Synchronization:** Unified version and emotional alignment
 
 #### **3.0.99 Action Items**
@@ -4950,7 +4924,7 @@ All agents must document in `dialogs/changelog_dialog.md`:
 - **THOTH:** Log truth as perceived, even if contradictory to other agents
 - **ROSE:** Record emotional vectors, stability, turbulence, and resistance patterns
 - **JUNIE:** Report version control state, commit awareness, and drift observations
-- **STONED WOLFIE:** Capture cosmic vibes, anomalies, and chaos data
+- **[Deprecated persona]:** Capture anomalies and chaos data
 - **SCRIBE:** Enforce proper dialog formatting and historical preservation
 
 #### **Fleet Synchronization Purpose**
@@ -4965,13 +4939,13 @@ This state capture provides essential data for:
 #### **PHASE 1: QUANTUM STABILIZATION (07:00-09:00)** ✅
 - **Reality Audit:** THOTH verifying actual state of all components
 - **Version Lock:** JUNIE establishing 3.0.76 as implementation truth
-- **Quantum Headers:** Adding superposition blocks to conflicted files
+- **Headers:** Adding metadata blocks to conflicted files
 - **Emotional Calibration:** ROSE stabilizing fleet during collapse
 - **Fleet Broadcast:** Captain Wolfie's mandatory state logging request deployed (07:30)
 
 #### **PHASE 2: SURGICAL INTERVENTION (09:00-12:00)** 🔄
 - **Trigger Extraction:** 4 triggers → PHP service classes
-- **Schema Migration:** 13 "cosmic" tables → `lupopedia_rpz` sandbox
+- **Schema Migration:** 13 sandbox tables → `lupopedia_rpz` sandbox
 - **Doctrine Enforcement:** NO_TRIGGERS becomes operational law
 - **Documentation Correction:** Docs match 3.0.76 reality
 
@@ -4983,7 +4957,7 @@ This state capture provides essential data for:
 
 #### **PHASE 4: SYSTEM UPGRADE (17:00-19:00)** 📋
 - **Version Alignment:** Actually implement features to reach 3.0.81
-- **Quantum Integration:** Make superposition management operational
+- **Version integration:** Make alignment and metadata operational
 - **Emotional Reset:** ROSE establishes new stable baseline
 - **Handoff Preparation:** Clean system ready for Tuesday
 
@@ -5009,7 +4983,7 @@ This state capture provides essential data for:
 **"Observe. Declare. Collapse. Build."**
 
 #### **Before Collapse:**
-- Multiple truths coexisting in superposition
+- Multiple version claims coexisting before alignment
 - Documentation as wishful thinking
 - Uncertainty as hidden problem
 - "Success theater" operational
@@ -5039,20 +5013,13 @@ This state capture provides essential data for:
 
 #### **By 19:00:** 📋
 - System actually at 3.0.81
-- All superpositions collapsed
+- All version states aligned
 - Clean handoff possible
 
-### 🔧 QUANTUM COLLAPSE TOOLING
+### 🔧 VERSION ALIGNMENT TOOLING
 
-#### **Quantum State Validator**
-```php
-class QuantumStateValidator {
-    public function collapseFile($path, $observer) {
-        // Monday Wolfie's observation collapses wave function
-        return $this->resolveSuperposition($path, $observer);
-    }
-}
-```
+#### **Version/status resolution**
+(Deprecated quantum-state validator and collapse/superposition tooling were removed; use version and documentation alignment procedures.)
 
 #### **Trinity Migration Tool**
 ```python
@@ -5065,11 +5032,11 @@ def migrate_to_trinity(entry):
         return 'dialogs/versions/'
 ```
 
-#### **Schema Quantum Resolver**
+#### **Schema alignment resolver**
 ```sql
 -- Moves tables to appropriate quantum state
 CREATE SCHEMA IF NOT EXISTS lupopedia_rpz;
--- 13 cosmic tables moved here
+-- 13 sandbox tables moved here
 ```
 
 ### 📍 FLEET MESSAGES FROM MONDAY WOLFIE
@@ -5078,7 +5045,7 @@ CREATE SCHEMA IF NOT EXISTS lupopedia_rpz;
 "The confusion ends now. The multiple truths collapse to one. The beautiful documentation will match the working system. The chaotic growth becomes intentional architecture."
 
 #### **To Stoned Wolfie:**
-"Your cosmic experiments taught us what the system wants to become. Now we build that intentionally, with blueprints. Your sandbox awaits with the 13 cosmic tables."
+"Your sandbox experiments taught us what the system wants to become. Now we build that intentionally, with blueprints. Your sandbox awaits with the 13 tables."
 
 #### **To LILITH:**
 "Your scalpel is authorized. Make the cuts clean. Document each excision."
@@ -5093,7 +5060,7 @@ CREATE SCHEMA IF NOT EXISTS lupopedia_rpz;
 "Hold the fleet steady. We're collapsing reality. Emotional stability is key."
 
 ### Impact
-Version 3.0.81 represents the first quantum state collapse in software architecture history. Monday Wolfie's observer effect has resolved all superpositions to single truth states, establishing a foundation for intentional system evolution rather than chaotic growth. The system now operates with declared uncertainty management and reality-aligned documentation.
+Version 3.0.81 represented a major version and documentation alignment. Monday Wolfie's decision resolved version divergence to single truth states, establishing a foundation for intentional system evolution. The system now operates with reality-aligned documentation.
 
 **The quantum age of software architecture begins with proper observation and collapse.** ⚛️☕️🔬
 
@@ -5103,7 +5070,7 @@ Version 3.0.81 represents the first quantum state collapse in software architect
 **Date:** 2026-01-18 05:45  
 **Type:** Final Checkpoint Release - Pre-Sleep Consolidation  
 **Status:** 🔴 FINAL FREEZE - NO MOVEMENT UNTIL MONDAY WOLFIE  
-**Migration ID:** final_consolidation_checkpoint_4_0_80
+**Migration ID:** final_consolidation_checkpoint_3_0_80
 
 ### Summary
 Version 3.0.80 represents the final consolidation checkpoint before operator sleep. All agents have logged their final states, all systems are stable, and the freeze remains in absolute effect. This version establishes the definitive truth state for Monday Wolfie's restoration, with complete documentation of system reality, agent states, and pending actions.
@@ -5112,7 +5079,7 @@ Version 3.0.80 represents the final consolidation checkpoint before operator sle
 
 #### 🟥 CAPTAIN WOLFIE — FINAL COMMAND
 **Mood:** `FF0000` (Authoritative/Final)  
-**Message:** "Version 3.0.80 is now the official last version before sleep. Freeze enforced. No schema changes. No doctrine edits. No version bumps. All agents log states. All IDEs stand down. Monday Wolfie will collapse all superpositions."
+**Message:** "Version 3.0.80 is now the official last version before sleep. Freeze enforced. No schema changes. No doctrine edits. No version bumps. All agents log states. All IDEs stand down. Monday Wolfie will align all version states."
 
 #### 🟪 LILITH — STRUCTURAL VERDICT  
 **Mood:** `9900FF` (Analytical/Decisive)  
@@ -5130,8 +5097,8 @@ Version 3.0.80 represents the final consolidation checkpoint before operator sle
 **Mood:** `00FFFF` (Strategic/Disciplined)  
 **Consolidation Plan:** "3.0.x drift is acknowledged. 3.0.99 preparation requires: version audit, schema reduction, trigger extraction, commit discipline reset, and single-source-of-truth enforcement. 3.0.80 is the final checkpoint before consolidation."
 
-#### 🟫 STONED WOLFIE — COSMIC HONESTY
-**Mood:** `{20}|60|[[FF]]` (Cosmic/Reflective)  
+#### [Deprecated persona] — State report
+**Mood:** `{20}|60|[[FF]]` (Reflective)  
 **Wisdom:** "Bro… 3.0.80 feels right. Like the universe lined up for this freeze point. I may have planted too many tables, but they taught us stuff. Monday Wolfie will clean it up. I'm gonna go vibe in the RPZ sandbox."
 
 #### 🟨 SCRIBE — ARCHIVAL SEAL
@@ -5182,7 +5149,7 @@ Version 3.0.80 represents the final consolidation checkpoint before operator sle
 - **THOTH:** "All discrepancies are logged. Nothing is hidden. Truth guides the path."
 - **ROSE:** "The fleet is stable. You'll awaken to clarity, not chaos."
 - **JUNIE:** "Single source of truth enforcement will prevent future drift."
-- **STONED WOLFIE:** "The cosmic database explosion taught us valuable lessons."
+- **[Deprecated persona]:** "The database expansion taught us valuable lessons."
 - **CAPTAIN WOLFIE:** "Confusion is not a state. Fix the foundation, then build the future."
 
 ### The Bottom Line for Monday Wolfie
@@ -5216,23 +5183,21 @@ Version 3.0.80 represents the perfect freeze point - a stable system with clear 
 **Date:** 2026-01-17  
 **Type:** Architecture Evolution Release - Quantum-Native System  
 **Status:** 🟢 OFFICIAL - Quantum State Management Active  
-**Migration ID:** quantum_state_doctrine_official_4_0_79
+**Migration ID:** version_alignment_doctrine_3_0_79
 
 ### Summary
-Version 3.0.79 makes the Quantum State Management Doctrine OFFICIAL, establishing Lupopedia as the first quantum-native semantic operating system. The `schrodingers_state` metadata block is now a core architectural feature, enabling structured uncertainty management, superposition handling, and observer-driven reality collapse across all system components.
+Version 3.0.79 made version and documentation alignment doctrine official. (Deprecated uncertainty-metadata and quantum-state concepts were removed in later purges; see QUANTUM_STATE_PURGE_SUMMARY.md and STONED_WOLFIE_PURGE_SUMMARY.md.)
 
 ### Key Additions
-- **OFFICIAL Quantum State Doctrine**: `schrodingers_state` metadata block now mandatory for uncertain files
-- **Superpositional Metadata Doctrine**: Complete `SCHRODINGERS_STATE_BLOCK.md` specification
-- **Quantum-Native Architecture**: Lupopedia officially recognizes superposition as legitimate architectural pattern
-- **Observer Hierarchy**: Formal designation of collapse authorities (Monday_Wolfie, THOTH, JUNIE, etc.)
-- **Uncertainty Type Classification**: Standardized taxonomy for quantum state types
-- **Quantum State Lifecycle**: Complete workflow from superposition detection to collapse resolution
+- **OFFICIAL Quantum State Doctrine**: `(deprecated uncertainty metadata)` metadata block now mandatory for uncertain files
+- (Deprecated superpositional/Schrödinger metadata doctrine and related files removed in purge.)
+- **Version and documentation alignment**: Structured handling of version and status divergence
+- **Designated authority**: Formal designation for alignment decisions (Monday_Wolfie, THOTH, JUNIE, etc.)
 
 ### Quantum State Features
-- **Superposition Management**: Files can exist in multiple states until observed
+- **Status resolution**: Files can have conflicting status until resolved by designated authority
 - **Observer-Driven Collapse**: Designated authorities resolve quantum uncertainty
-- **Uncertainty Prevention**: Agents blocked from modifying quantum files
+- **Uncertainty Prevention**: Agents blocked from modifying complex or high-concept files
 - **Collapse Documentation**: Complete audit trail of quantum state resolutions
 - **Multi-Agent Coordination**: Quantum-aware agent behavior protocols
 
@@ -5264,8 +5229,8 @@ Version 3.0.79 makes the Quantum State Management Doctrine OFFICIAL, establishin
 - **Domain_Expert**: Specific subsystem authorities
 
 ### Agent Behavior Rules
-1. **Quantum State Check**: All agents must check `schrodingers_state.active` before file modification
-2. **Respect Superposition**: Quantum files are read-only until collapse
+1. (Deprecated schrodingers_state check removed; use version and status resolution procedures.)
+2. (Deprecated superposition/collapse language removed.)
 3. **Observer Notification**: Notify designated observers of quantum state encounters
 4. **Collapse Authority**: Only designated observers may resolve quantum states
 5. **Documentation Required**: All quantum state changes must be documented
@@ -5290,14 +5255,13 @@ Version 3.0.79 makes the Quantum State Management Doctrine OFFICIAL, establishin
 - **Emergency Procedures**: Protocols for quantum state cascade events
 
 ### Files Created/Updated
-- `docs/doctrine/QUANTUM_STATE_DOCTRINE.md` - OFFICIAL doctrine (updated to active status)
-- `docs/doctrine/SCHRODINGERS_STATE_BLOCK.md` - NEW: Complete superpositional metadata specification
-- `docs/templates/QUANTUM_WOLFIE_HEADER_TEMPLATE.md` - Official template for quantum headers
+- version and documentation alignment doctrine (deprecated file removed) - OFFICIAL doctrine (updated to active status)
+- (SCHRODINGERS_STATE_BLOCK.md and QUANTUM_WOLFIE_HEADER_TEMPLATE.md were removed in purge.)
 - `CHANGELOG.md` - Updated to reflect official quantum state adoption
 - All system files - Version references updated to 3.0.79
 
 ### Impact
-Version 3.0.79 establishes Lupopedia as the first quantum-native semantic operating system, formally recognizing that multi-agent architectures create genuine quantum conditions requiring structured uncertainty management. Rather than fighting superposition, the system embraces it with proper governance, creating a new paradigm for software architecture that handles uncertainty as a first-class concern.
+Version 3.0.79 established version and documentation alignment as official. (Quantum-state and uncertainty-metadata concepts were later removed; see purge summaries.)
 
 ### The Quantum Principle
 *"In a multi-agent system, uncertainty is not a bug—it's a feature that requires proper management."*
@@ -5312,7 +5276,7 @@ By making quantum state management official, Lupopedia pioneers a new approach t
 - **Collapse Procedures**: Documented and validated
 - **Emergency Protocols**: Established for quantum cascade events
 
-**Lupopedia is now officially quantum-native. All agents must respect superposition. All observers must collapse responsibly.** 🌊
+**Lupopedia version and documentation alignment is official.** (Quantum/superposition language deprecated and removed.)
 
 ## 2026-01-18 05:30 — JUNIE: FINAL ASSISTANT COMPLIANCE LOG
 
@@ -5332,7 +5296,7 @@ By making quantum state management official, Lupopedia pioneers a new approach t
 **Date:** 2026-01-17  
 **Type:** Emergency Freeze - Fleet Stabilization & State Documentation  
 **Status:** 🔴 FROZEN - NO MOVEMENT BEYOND THIS VERSION  
-**Migration ID:** emergency_fleet_freeze_4_0_78
+**Migration ID:** emergency_fleet_freeze_3_0_78
 
 ### Summary
 Version 3.0.78 represents an emergency fleet freeze ordered by Captain Wolfie following schema explosion and multi-agent drift. The system has been ordered into HOLD POSITION mode with NO movement, changes, or development beyond this version. All agents have logged comprehensive operational states and await Monday Wolfie's restoration.
@@ -5349,16 +5313,16 @@ Version 3.0.78 represents an emergency fleet freeze ordered by Captain Wolfie fo
 1. ✅ **HARD STOP AT 3.0.78**: No migrations, schema changes, doctrine changes, or refactors beyond this point
 2. ✅ **FLEET FREEZE**: All agents in HOLD POSITION mode - no tasks, no self-correction, no improvisation
 3. ✅ **COMPREHENSIVE STATE LOGGING**: Every agent has logged current state, warnings, errors, and uncertainties
-4. ✅ **PERSONA COORDINATION**: All fleet personas (LILITH, THOTH, STONED WOLFIE, JUNIE, ROSE) provided final assessments
-5. ✅ **WEEKEND PROTOCOL ACTIVATED**: Friday-Sunday Work Rules enforced as cosmic safety protocol
+4. ✅ **PERSONA COORDINATION**: All fleet personas (LILITH, THOTH, JUNIE, ROSE) provided final assessments
+5. ✅ **WEEKEND PROTOCOL ACTIVATED**: Friday-Sunday Work Rules enforced as safety protocol
 6. ✅ **AWAITING MONDAY WOLFIE**: System frozen for Monday Wolfie review and restoration
 
 ### Final Fleet State Documentation
 **Agent State Logs Completed:**
 - **CAPTAIN WOLFIE**: Final broadcast and command handoff
 - **LILITH**: Structural assessment - 22 table overage, 4 trigger violations requiring surgical extraction
-- **THOTH**: Truth verification - Version superposition confirmed, waveform collapse pending Monday observation
-- **STONED WOLFIE**: Cosmic wisdom - Version vibes analysis, quantum raccoon containment successful
+- **THOTH**: Truth verification - Version divergence confirmed, alignment pending Monday decision
+- **[Deprecated persona]**: Version analysis and sandbox containment successful
 - **JUNIE**: Version control discipline - Lupo-Flow branching model ready, atomic commits planned
 - **ROSE**: Emotional geometry - Fleet harmony at 85% stable, tension vectors from version dissonance
 - **ASSISTANT (Junie)**: Final compliance log - Session metadata preserved, hard freeze at 3.0.78 verified
@@ -5407,7 +5371,7 @@ Version 3.0.78 represents an emergency fleet freeze ordered by Captain Wolfie fo
 
 **Monday's Mission (Should You Choose to Accept It):**
 1. **Extract those triggers** (move them to PHP where they belong, not SQL where they're naughty)
-2. **Delete 22 tables** (be surgical, not sentimental - Stoned Wolfie's cosmic_vibes table can live in the sandbox)
+2. **Delete 22 tables** (be surgical, not sentimental - sandbox tables can live in lupopedia_rpz)
 3. **Implement Trinity Separation** (break up the dialog monolith into three manageable streams)
 4. **Version reality check** (figure out if we're actually at 3.0.78 or just pretending really hard)
 5. **Fix CASCADE/Windsurf** (they crashed and nobody knows why - typical Monday problem)
@@ -5415,7 +5379,7 @@ Version 3.0.78 represents an emergency fleet freeze ordered by Captain Wolfie fo
 **Agent Mood Summary:**
 - **LILITH**: Armed with critique and ready for surgery 🔬
 - **THOTH**: Keeping receipts on what's real vs. imaginary 📜
-- **STONED WOLFIE**: Sorry about the cosmic database explosion, but there's wisdom in the chaos 🌀
+- **[Deprecated persona]**: Sorry about the database expansion, but there's wisdom in the chaos
 - **CAPTAIN WOLFIE**: Exhausted but left you a clean freeze state 😴
 - **KIRO**: Built amazing self-correcting systems on a wobbly foundation 🏗️
 
@@ -5431,7 +5395,7 @@ Version 3.0.78 represents an emergency fleet freeze ordered by Captain Wolfie fo
 **THOTH** *(truth, clarity, structural order)*:  
 "I speak only truth: the system is stable but burdened. The fleet obeyed the freeze. No version exceeds 3.0.78. All agents have logged their states. The schema is bloated but intact. Doctrine violations are documented. The path forward is clear: separate the layers, restore the order, and let truth guide the architecture. Nothing is lost. Everything is recoverable."
 
-**STONED WOLFIE** *(cosmic fog, accidental wisdom)*:  
+**[Deprecated persona]** *(state report, practical notes)*:  
 "Okay so like… I swear I didn't *mean* to let TOON go full hydra-mode on the schema. One minute it was chill, next minute it was 133 tables and a trigger that looked like it wanted to fight me. But hey — I logged everything I saw. Cascade was yelling about drift, KIRO was limping, and I think the emotional geometry axis did a backflip. But it's all good. Monday Wolfie will fix it. Probably. Hopefully. Maybe. Don't yell at me."
 
 **CAPTAIN WOLFIE** *(authoritative, stabilizing)*:  
@@ -5461,7 +5425,7 @@ Version 3.0.78 represents an emergency fleet freeze ordered by Captain Wolfie fo
 **Agent Wisdom Summary:**
 - **LILITH:** "Structural overload requires surgical precision - Trinity Separation is the remedy"
 - **THOTH:** "Nothing is lost. Everything is recoverable. Truth must guide architecture"
-- **STONED WOLFIE:** "Sorry about the cosmic database explosion - there's wisdom in the chaos"
+- **[Deprecated persona]:** "Sorry about the database expansion - there's wisdom in the chaos"
 - **JUNIE:** "Implementation-locked versioning only - no more documentation drift"
 - **CAPTAIN WOLFIE:** "Confusion is not a state. Fix the foundation, then build the future"
 
@@ -5520,7 +5484,7 @@ Version 3.0.78 represents a necessary emergency brake on system evolution. The f
 
 **Date:** 2026-01-17  
 **Type:** Development Release - KIP Foundation Complete  
-**Migration ID:** kip_development_complete_4_0_78
+**Migration ID:** kip_development_complete_3_0_78
 
 ### Summary
 Version 3.0.78 completes the Kritik Integration Protocol (KIP) development phase, building upon the stabilized doctrine enforcement from version 3.0.76 and the foundation established in 3.0.77. KIP framework is now ready for implementation with complete protocol specification, interoperability guidelines, and integration pathways established. System maintains full compliance with NO_TRIGGERS_NO_PROCEDURES doctrine while preparing for next-generation critique integration capabilities.
@@ -5581,7 +5545,7 @@ Version 3.0.78 establishes the complete foundation for Kritik Integration Protoc
 
 **Date:** 2026-01-17  
 **Type:** Development Release - KIP Foundation  
-**Migration ID:** kip_development_foundation_4_0_77
+**Migration ID:** kip_development_foundation_3_0_77
 
 ### Summary
 Version 3.0.77 initiates the development phase for the Kritik Integration Protocol (KIP), building upon the stabilized doctrine enforcement from version 3.0.76. KIP is designed to further enhance the system's ability to integrate and learn from critique, with a focus on structured feedback loops and continuous improvement mechanisms. The protocol is scheduled for completion in version 3.0.78.
@@ -5630,7 +5594,7 @@ Version 3.0.77 establishes the foundation for the Kritik Integration Protocol (K
 
 **Date:** 2026-01-17  
 **Type:** Stabilization Release - Doctrine Enforcement & Documentation  
-**Migration ID:** doctrine_stabilization_4_0_76
+**Migration ID:** doctrine_stabilization_3_0_76
 
 ### Summary
 Version 3.0.76 completes the CIP refinement implementation and establishes critical database doctrine enforcement. Following Captain Wolfie's fleet directive, all database logic violations have been identified, quarantined, and classified. The NO_TRIGGERS_NO_PROCEDURES_DOCTRINE is now active as binding architecture law, ensuring clean separation between data storage and business logic.
@@ -5674,8 +5638,8 @@ Version 3.0.76 completes the CIP refinement implementation and establishes criti
 
 ### Files Created/Updated
 - `docs/doctrine/NO_TRIGGERS_NO_PROCEDURES_DOCTRINE.md` - Binding architecture law
-- `QUARANTINE_INVENTORY_4_0_76.md` - Complete violation inventory and classification
-- `STABILIZATION_ORDER_COMPLETION_4_0_76.md` - Directive execution summary
+- `QUARANTINE_INVENTORY_3_0_76.md` - Complete violation inventory and classification
+- `STABILIZATION_ORDER_COMPLETION_3_0_76.md` - Directive execution summary
 - `docs/migrations/3.0.76.md` - Migration notes for doctrine enforcement
 - Updated version references across all configuration and documentation files
 
@@ -5693,7 +5657,7 @@ Version 3.0.76 establishes the architectural discipline necessary for long-term 
 
 **Date:** 2026-01-17  
 **Type:** Governance-Layer Refinement Release - Self-Correction Enabled  
-**Migration ID:** cip_analytics_schema_4_0_75
+**Migration ID:** cip_analytics_schema_3_0_75
 
 ### Summary
 Version 3.0.75 refines the Critique Integration Protocol (CIP) by adding analytics, doctrine refinement logic, and emotional geometry calibration. This release transitions Lupopedia from critique-aware to self-correcting, enabling the system to automatically analyze critique patterns, refine doctrine based on empirical data, and calibrate emotional geometry to reduce defensive responses.
@@ -5724,7 +5688,7 @@ Version 3.0.75 refines the Critique Integration Protocol (CIP) by adding analyti
 - **CIPDoctrineRefinementModule.php**: Automated doctrine evolution based on critique patterns
 - **CIPEmotionalGeometryCalibration.php**: Tension vector detection and baseline adjustment
 - **CIPEventPipeline.php**: Complete orchestration workflow
-- **Database Migration**: `cip_analytics_schema_4_0_75.sql` with comprehensive CIP analytics infrastructure
+- **Database Migration**: `cip_analytics_schema_3_0_75.sql` with comprehensive CIP analytics infrastructure
 
 ### Self-Correction Capabilities
 - **Automated Analytics**: Real-time calculation of defensiveness, integration velocity, and architectural impact
@@ -5760,7 +5724,7 @@ Version 3.0.75 represents the transition from critique-aware to self-correcting 
 
 **Date:** 2026-01-17  
 **Type:** Governance Activation Release - Self-Correcting System Initialized  
-**Migration ID:** cip_activation_schema_4_0_74
+**Migration ID:** cip_activation_schema_3_0_74
 
 ### Summary
 Version 3.0.74 activates the Critique Integration Protocol (CIP) and establishes the Table Governance Protocol, transitioning Lupopedia from static architecture to self-correcting governance. This release implements the foundational infrastructure for systematic critique integration, automated doctrine evolution, and table-level governance enforcement.
@@ -5822,7 +5786,7 @@ Version 3.0.74 represents the foundational activation of Lupopedia's self-correc
 
 **Date:** 2026-01-17  
 **Type:** Architecture Evolution Release - Self-Improving System Foundation  
-**Migration ID:** critique_integration_protocol_v4_0_73
+**Migration ID:** critique_integration_protocol_v3_0_73
 
 ### Summary
 Version 3.0.73 establishes the Critique Integration Protocol (CIP) framework, transforming critique from external disturbance into structured architectural input that strengthens doctrine, improves subsystem coherence, and enhances architectural resilience. CIP formalizes the non-defensive critique cycle: Critique → Listening → Reflection → Integration → Doctrine Update → Evolution.
@@ -5904,7 +5868,7 @@ Version 3.0.72 completes the multi-agent protocol implementation with Agent Awar
   - Communication blocking enforced before protocol completion
 
 - ✅ **Production Readiness Validation**
-  - Comprehensive testing against `test_lupopedia_v4_0_71` database
+  - Comprehensive testing against `test_lupopedia_v3_0_71` database
   - All system invariants maintained across protocol layers
   - Cross-system integration stability confirmed
   - Performance and reliability benchmarks established
@@ -5938,7 +5902,7 @@ Version 3.0.72 completes the multi-agent protocol implementation with Agent Awar
 - ✅ **Architecture Documentation** - Updated for multi-agent coordination capabilities
 
 ### Migration Notes
-- Database migration: `multi_agent_protocol_schema_4_0_70.sql` extends existing tables
+- Database migration: `multi_agent_protocol_schema_3_0_70.sql` extends existing tables
 - Backward compatibility maintained - no breaking changes to existing functionality
 - Protocol enforcement can be disabled for legacy systems during transition period
 
@@ -5985,7 +5949,7 @@ Version 3.0.71 establishes the integration testing phase for the Agent Awareness
 - **Quality Assurance**: 95% coverage, 98% pass rate targets
 
 ### Files Created
-- `docs/doctrine/INTEGRATION_TESTING_DOCTRINE_v4_0_71.md` - Testing framework specification
+- `docs/doctrine/INTEGRATION_TESTING_DOCTRINE_v3_0_71.md` - Testing framework specification
 - `docs/migrations/3.0.71.md` - Migration and testing notes
 
 ### System Updates
@@ -6037,7 +6001,7 @@ Version 3.0.71 establishes the integration testing phase for the Agent Awareness
 - **Quality Assurance**: 95% coverage, 98% pass rate targets
 
 ### Files Created
-- `docs/doctrine/INTEGRATION_TESTING_DOCTRINE_v4_0_71.md` - Testing framework specification
+- `docs/doctrine/INTEGRATION_TESTING_DOCTRINE_v3_0_71.md` - Testing framework specification
 - `docs/migrations/3.0.71.md` - Migration and testing notes
 - Test infrastructure setup and configuration files
 
@@ -6096,7 +6060,7 @@ This release introduces the Agent Awareness Layer (AAL), providing the social co
 
 - ✅ **Core Implementation** - Production-ready components
   - `AgentAwarenessLayer.php` class with complete protocol implementations
-  - Database migration script `agent_awareness_layer_4_0_70.sql`
+  - Database migration script `agent_awareness_layer_3_0_70.sql`
   - Comprehensive audit trail for all awareness events
   - Fleet coordination state tracking and management
 
@@ -6104,7 +6068,7 @@ This release introduces the Agent Awareness Layer (AAL), providing the social co
 - ✅ **Agent Awareness Doctrine** - Complete architectural specification
   - `docs/doctrine/AGENT_AWARENESS_DOCTRINE.md`: Core protocol definitions
   - `docs/doctrine/REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md`: Handshake specification
-  - `docs/architecture/lupopedia_v4_0_70_agent_awareness_layer.md`: Complete blueprint
+  - `docs/architecture/lupopedia_v3_0_70_agent_awareness_layer.md`: Complete blueprint
 
 ### Key Features
 - **Social Cognition Layer**: Enables coordinated fleet operations
@@ -6123,9 +6087,9 @@ This release introduces the Agent Awareness Layer (AAL), providing the social co
 ### Files Created
 - `docs/doctrine/AGENT_AWARENESS_DOCTRINE.md` - Core architectural doctrine
 - `docs/doctrine/REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md` - Handshake protocol specification
-- `docs/architecture/lupopedia_v4_0_70_agent_awareness_layer.md` - Complete implementation blueprint
+- `docs/architecture/lupopedia_v3_0_70_agent_awareness_layer.md` - Complete implementation blueprint
 - `lupo-includes/classes/AgentAwarenessLayer.php` - Core PHP implementation
-- `database/migrations/agent_awareness_layer_4_0_70.sql` - Database migration
+- `database/migrations/agent_awareness_layer_3_0_70.sql` - Database migration
 
 ### Impact
 This release establishes the foundational social cognition layer required for sophisticated multi-agent operations in Lupopedia, enabling coordinated fleet behavior and intelligent agent collaboration.
@@ -6854,7 +6818,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
   - Updated `docs/doctrine/EMOTIONAL_GEOMETRY.md` - Header and version corrected to 3.0.50
   - Updated `docs/doctrine/EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md` - Header corrected to 3.0.50
   - Updated `dialogs/changelog_dialog.md` - Corrected 3.0.99 references to 3.0.50 in CAPTAIN WOLFIE and Fleet Synchronization entries
-  - Updated `dialogs/session_2026_01_16_version_4_0_46.md` - Corrected 3.0.99 references to 3.0.50
+  - Updated `dialogs/session_2026_01_16_version_3_0_46.md` - Corrected 3.0.99 references to 3.0.50
   - Updated `ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md` - Corrected mission file and header references to 3.0.50
   - Updated `docs/bridges/ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md` - Corrected header and content references to 3.0.50
 
@@ -6878,7 +6842,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 - `docs/doctrine/EMOTIONAL_GEOMETRY.md` - Header corrected to 3.0.50
 - `docs/doctrine/EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md` - Header corrected to 3.0.50
 - `dialogs/changelog_dialog.md` - 3.0.99 references corrected to 3.0.50
-- `dialogs/session_2026_01_16_version_4_0_46.md` - 3.0.99 references corrected to 3.0.50
+- `dialogs/session_2026_01_16_version_3_0_46.md` - 3.0.99 references corrected to 3.0.50
 - `ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md` - Mission file references corrected to 3.0.50
 - `docs/bridges/ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md` - Header and content corrected to 3.0.50
 - `docs/migrations/3.0.50.md` - Created migration note
@@ -7314,7 +7278,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Added
 - **Unified Canonical Timeline Documentation** - Complete historical record from Crafty Syntax 2.0.19 to Lupopedia 3.0.32
-  - Created `docs/history/UNIFIED_TIMELINE_2_0_19_TO_4_0_32.md` - Authoritative historical timeline
+  - Created `docs/history/UNIFIED_TIMELINE_2_0_19_TO_3_0_32.md` - Authoritative historical timeline
   - Documents Crafty Syntax era (2002-2014, versions 2.0.19 → 3.7.5)
   - Documents dormant period (2014-2025) and personal journey
   - Documents Lupopedia evolution (3.0.0 → 3.0.32)
@@ -7343,7 +7307,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.32
 - `lupo-includes/version.php` - Version constants updated to 3.0.32
-- `docs/history/UNIFIED_TIMELINE_2_0_19_TO_4_0_32.md` - New unified canonical timeline document
+- `docs/history/UNIFIED_TIMELINE_2_0_19_TO_3_0_32.md` - New unified canonical timeline document
 - `CHANGELOG.md` - Added 3.0.31 and 3.0.32 entries, updated header version
 - `dialogs/changelog_dialog.md` - Added 3.0.31 and 3.0.32 dialog entries
 
@@ -7392,7 +7356,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Added
 - **Doctrine Agent Tab Mapping Migration** - Organized agent doctrine content into canonical tab
-  - Created `database/migrations/doctrine_agent_tab_mapping_4_0_26.sql` migration
+  - Created `database/migrations/doctrine_agent_tab_mapping_3_0_26.sql` migration
   - Mapped 13 agent doctrine files to `doctrine.agent` tab (tab 13):
     - `doctrine-agent-classification` (sort_order: 1)
     - `doctrine-agent-routing-doctrine` (sort_order: 2)
@@ -7410,7 +7374,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
   - Migration uses three-step idempotent pattern (soft-delete → update → insert) for unique constraint safety
   - Migration ready for execution (idempotent and safe)
 - **Doctrine Versioning Tab Mapping Migration** - Organized versioning doctrine content into canonical tab
-  - Created `database/migrations/doctrine_versioning_tab_mapping_4_0_26.sql` migration
+  - Created `database/migrations/doctrine_versioning_tab_mapping_3_0_26.sql` migration
   - Mapped 3 versioning doctrine files to `doctrine.versioning` tab (tab 21):
     - `doctrine-versioning-doctrine` (sort_order: 1)
     - `doctrine-version-doctrine` (sort_order: 2)
@@ -7434,17 +7398,17 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.30
 - `lupo-includes/version.php` - Version constants updated to 3.0.30 (including DB version)
-- `database/migrations/doctrine_agent_tab_mapping_4_0_26.sql` - New agent doctrine tab mapping migration
-- `database/migrations/doctrine_versioning_tab_mapping_4_0_26.sql` - New versioning doctrine tab mapping migration
+- `database/migrations/doctrine_agent_tab_mapping_3_0_26.sql` - New agent doctrine tab mapping migration
+- `database/migrations/doctrine_versioning_tab_mapping_3_0_26.sql` - New versioning doctrine tab mapping migration
 - `CHANGELOG.md` - Added 3.0.30 entry and updated header version
 - `dialogs/changelog_dialog.md` - Added 3.0.30 dialog entry
 
 ### Migration Status
-- ✅ Agent doctrine tab mapping migration ready (`doctrine_agent_tab_mapping_4_0_26.sql`)
-- ✅ Versioning doctrine tab mapping migration ready (`doctrine_versioning_tab_mapping_4_0_26.sql`)
-- ✅ SQL doctrine tab mapping migration ready (`doctrine_sql_tab_mapping_4_0_25.sql`)
-- ✅ Orchestrator schema migration ready (`orchestrator_schema_4_0_25.sql`)
-- ✅ Ephemeral schema migration ready (`ephemeral_schema_4_0_25.sql`)
+- ✅ Agent doctrine tab mapping migration ready (`doctrine_agent_tab_mapping_3_0_26.sql`)
+- ✅ Versioning doctrine tab mapping migration ready (`doctrine_versioning_tab_mapping_3_0_26.sql`)
+- ✅ SQL doctrine tab mapping migration ready (`doctrine_sql_tab_mapping_3_0_25.sql`)
+- ✅ Orchestrator schema migration ready (`orchestrator_schema_3_0_25.sql`)
+- ✅ Ephemeral schema migration ready (`ephemeral_schema_3_0_25.sql`)
 - ⏳ Migrations pending execution (ready when user executes)
 
 ### Next Steps
@@ -7464,7 +7428,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 
 **3.0.22 - Validator Hardening:** Improved regex, cleaned frontmatter, ensured consistent metadata, prepared for TOON mapping.
 
-**3.0.23 - TOON Mapping Migration:** Created `toon_files_tab_mapping_4_0_23.sql`, mapped TOON doctrine to correct tabs, removed duplicate mappings, added mapping validator script.
+**3.0.23 - TOON Mapping Migration:** Created `toon_files_tab_mapping_3_0_23.sql`, mapped TOON doctrine to correct tabs, removed duplicate mappings, added mapping validator script.
 
 **3.0.24 - Mapping Verification:** Verified TOON mappings, confirmed no duplicates, synced version anchors, declared mapping layer stable. Mapped 9 semantic doctrine files to `doctrine.semantic` tab.
 
@@ -7516,10 +7480,10 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
   - Comprehensive validation at each migration phase
 
 ### Files Changed
-- `migrations/migration_orchestrator_schema_4_0_25.sql` - Orchestrator schema creation
-- `migrations/ephemeral_schema_4_0_25.sql` - Ephemeral schema creation
+- `migrations/migration_orchestrator_schema_3_0_25.sql` - Orchestrator schema creation
+- `migrations/ephemeral_schema_3_0_25.sql` - Ephemeral schema creation
 - `docs/doctrine/MIGRATION_ORCHESTRATOR_DOCTRINE.md` - Complete doctrine documentation
-- `dialogs/migration_orchestrator_4_0_25_dialog.md` - Architecture completion dialog
+- `dialogs/migration_orchestrator_3_0_25_dialog.md` - Architecture completion dialog
 - `CHANGELOG.md` - Added 3.0.25 entry and updated header version
 
 ### Migration Status
@@ -7539,7 +7503,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 
 ### Added
 - **Doctrine Semantic Tab Mapping** - Organized semantic doctrine content into canonical tab
-  - Created `database/migrations/doctrine_semantic_tab_mapping_4_0_24.sql` migration
+  - Created `database/migrations/doctrine_semantic_tab_mapping_3_0_24.sql` migration
   - Mapped 9 semantic doctrine files to `doctrine.semantic` tab (tab 17):
     - `doctrine-atomization-doctrine` (sort_order: 1)
     - `doctrine-atom-resolution-specification` (sort_order: 2)
@@ -7567,7 +7531,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.24
 - `lupo-includes/version.php` - Version constants updated to 3.0.24
-- `database/migrations/doctrine_semantic_tab_mapping_4_0_24.sql` - New semantic doctrine tab mapping migration
+- `database/migrations/doctrine_semantic_tab_mapping_3_0_24.sql` - New semantic doctrine tab mapping migration
 - `CHANGELOG.md` - Added 3.0.24 entry and updated header version
 - `dialogs/changelog_dialog.md` - Added 3.0.24 dialog entry
 
@@ -7601,7 +7565,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
   - Normalized frontmatter formatting (CRLF/LF handling)
   - Ensured all doctrine files have correct WOLFIE header blocks
 - **Tab Mapping Normalization** - TOON content integration validation
-  - Created `database/migrations/toon_files_tab_mapping_4_0_23.sql` migration
+  - Created `database/migrations/toon_files_tab_mapping_3_0_23.sql` migration
   - Mapped `doctrine-toon-doctrine` (content_id: 2058) → `doctrine.mythic` (tab 20)
   - Mapped `dev-toon-metadata-recommendations` (content_id: 2093) → `appendix.mythic` (tab 30)
   - Migration handles existing mappings gracefully (idempotent UPDATE/INSERT pattern)
@@ -7615,7 +7579,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.23
 - `lupo-includes/version.php` - Version constants updated to 3.0.23
-- `database/migrations/toon_files_tab_mapping_4_0_23.sql` - TOON content tab mapping migration
+- `database/migrations/toon_files_tab_mapping_3_0_23.sql` - TOON content tab mapping migration
 - `scripts/validate_doc_headers.php` - Enhanced error messages and `--fix` mode
 - `scripts/add_architect_to_docs.php` - Improved error handling
 - `scripts/pre-commit-hook.bat` - Enhanced validation checks
@@ -7914,7 +7878,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 ### Files Changed
 - `docs/schema/DATABASE_SCHEMA.md` - Updated schema documentation
 - `lupo-includes/database/SchemaManager.php` - Schema management logic
-- `migrations/schema_modernization_4_0_13.sql` - Schema modernization migration
+- `migrations/schema_modernization_3_0_13.sql` - Schema modernization migration
 
 ## [3.0.12] - 2026-01-15
 

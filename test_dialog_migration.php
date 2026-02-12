@@ -16,7 +16,7 @@ try {
     // Test with a sample dialog file
     $testFiles = [
         'dialogs/changelog_dialog.md',
-        'dialogs/session_2026_01_16_version_4_0_46.md',
+        'dialogs/session_2026_01_16_version_3_0_46.md',
         'dialogs/humor_context_WOLFIE_LUPOPEDIA.md'
     ];
     
@@ -61,7 +61,7 @@ try {
     echo "\n2. Testing Channel Name Generation...\n";
     $testFileNames = [
         'changelog_dialog.md',
-        'session_2026_01_16_version_4_0_46.md',
+        'session_2026_01_16_version_3_0_46.md',
         'humor_context_WOLFIE_LUPOPEDIA.md',
         'changelog_dialog_that_pertains_to_whatever_the_fuck_we_are_doing.md'
     ];

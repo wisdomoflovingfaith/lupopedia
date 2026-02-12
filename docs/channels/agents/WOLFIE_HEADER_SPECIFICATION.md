@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.0
+file.last_modified_system_version: 3.0.0
 file.last_modified_utc: 20260120180000
 file.lupopedia.5: 5
 GOV-AD-PROHIBIT-001: true
@@ -523,7 +523,7 @@ GLOBAL_LUPOPEDIA_COMPANY_STRUCTURE:
     name: "Lupopedia LLC"
     formation_date: "2025-11-06"
     # ... (see config/global_atoms.yaml for complete structure)
-GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS:
+GLOBAL_LUPOPEDIA_V3_0_2_CORE_AGENTS:
   required_agents:
     - SYSTEM
     - CAPTAIN
@@ -534,7 +534,7 @@ GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS:
 **Reference Syntax in Documentation:**
 When referencing global atoms in documentation prose, use the resolver syntax:
 - `@GLOBAL.LUPOPEDIA_COMPANY_STRUCTURE.company.name`
-- `@GLOBAL.LUPOPEDIA_V4_0_2_CORE_AGENTS.required_agents`
+- `@GLOBAL.LUPOPEDIA_V3_0_2_CORE_AGENTS.required_agents`
 
 **In WOLFIE Headers:**
 Use literal atom names (not resolver syntax):

@@ -78,7 +78,7 @@ All global atoms are defined in `/config/global_atoms.yaml`. Current available a
 
 ### **Complex Atoms** (referenced with dot notation in documentation)
 - `GLOBAL_LUPOPEDIA_COMPANY_STRUCTURE` â€” Company structure and team information
-- `GLOBAL_LUPOPEDIA_V4_0_2_CORE_AGENTS` â€” Required agents list for v3.0.2
+- `GLOBAL_LUPOPEDIA_V3_0_2_CORE_AGENTS` â€” Required agents list for v3.0.2
 
 ---
 

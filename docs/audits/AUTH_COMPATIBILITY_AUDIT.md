@@ -87,7 +87,7 @@ All of the following report *No syntax errors detected*:
 ## 6. Notes
 
 - **AuthController / LoginController / PasswordResetController** — Not present under app/auth; auth routing is in lupo-includes/modules/auth/auth-controller.php (login, logout, change-password, admin). No app/Http controllers were modified in this pass.
-- **password_hash / password_verify** — As of the 2026-02-11 sweep, wrapped in fallbacks (lupo_bcrypt_crypt_fallback for hashing; crypt() for verify on 5.3/5.4). They require PHP 5.5+; doctrine fallbacks were only applied where “already created” helpers exist (e.g. session_status).
+- **password_hash / password_verify** — As of the 2026-02-12 sweep, wrapped in fallbacks (lupo_bcrypt_crypt_fallback for hashing; crypt() for verify on 5.3/5.4). They require PHP 5.5+; doctrine fallbacks were only applied where “already created” helpers exist (e.g. session_status).
 - **Crafty Syntax auth glue** — visitor-session-helper.php and related Crafty UI PHP were fixed in the UI PHP compatibility pass; this audit focused on app/auth, auth-helpers, auth-controller, and password-hash.
 
 ---
@@ -128,7 +128,7 @@ All of the following report *No syntax errors detected*:
 
 ---
 
-## 8. Final Integration Sweep (2026-02-11)
+## 8. Final Integration Sweep (2026-02-12)
 
 **Scope:** Full authentication subsystem — app/auth/*, lupo-includes/functions (auth-helpers, auth-ui-helpers, identity-helpers), lupo-includes/modules/auth (auth-controller, auth-renderer), lupo-includes/security/password-hash.php, lupo-includes/functions/session-compat-5.3.php.
 
@@ -153,7 +153,7 @@ All of the following report *No syntax errors detected*:
 - Paths: All login, logout, redirect, admin, change-password URLs use LUPOPEDIA_PUBLIC_PATH (auth-controller, auth-renderer, auth-helpers, auth-ui-helpers, AuthService).
 - Identity resolution and Crafty Syntax compatibility unchanged.
 
-**PHP -l verification (2026-02-11):** All of the following report *No syntax errors detected*:
+**PHP -l verification (2026-02-12):** All of the following report *No syntax errors detected*:
 - app/auth/Session.php, UnifiedSessionHandler.php, AuthService.php, AuthGuard.php, AuthManager.php, AuthRoleResolver.php
 - lupo-includes/functions/session-compat-5.3.php, auth-helpers.php, identity-helpers.php, auth-ui-helpers.php
 - lupo-includes/modules/auth/auth-controller.php, auth-renderer.php

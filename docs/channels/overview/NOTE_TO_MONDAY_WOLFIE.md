@@ -22,8 +22,8 @@ PHASE 1 ACTIVATION OBJECTIVES
      • UTC_TIMEKEEPER_DOCTRINE.md
      • SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md
      • EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md
-     • PACK_BEHAVIOR_MATRIX_v4_0_90.md
-     • LUPOPEDIA_4_0_99_RELEASE_TIMELINE.md
+     • PACK_BEHAVIOR_MATRIX_v3_0_90.md
+     • LUPOPEDIA_3_0_99_RELEASE_TIMELINE.md
 
 3. Governance Alignment Check
    - Confirm Pack Architecture references are consistent.

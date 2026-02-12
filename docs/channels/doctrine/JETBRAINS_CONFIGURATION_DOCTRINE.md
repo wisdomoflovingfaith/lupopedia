@@ -205,7 +205,7 @@ This configuration file is binding for:
 
 - [ATOMIZATION_DOCTRINE.md](ATOMIZATION_DOCTRINE.md) - Atomization rules that JetBrains must not interfere with
 - [WOLFIE_HEADER_DOCTRINE.md](WOLFIE_HEADER_DOCTRINE.md) (`docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) - WOLFIE Header specification that JetBrains must not modify
-- [VERSIONING_DOCTRINE.md](VERSIONING_DOCTRINE.md) - Version control rules that JetBrains must not override
+- [VERSIONING_DOCTRINE.md](../../doctrine/VERSIONING_DOCTRINE.md) - Version control rules that JetBrains must not override
 - [CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md](CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md) - Role separation between Cursor and Cascade
 - [DOCUMENTATION_DOCTRINE.md](DOCUMENTATION_DOCTRINE.md) - Documentation as software/data that JetBrains must not treat as code
 
