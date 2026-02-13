@@ -1380,7 +1380,7 @@ TRUNCATE lupo_unified_analytics_paths;
 INSERT INTO `lupo_unified_analytics_paths` (
     `from_page_id`,
     `to_page_id`,
-    `year_month`,
+    `year_month_yyyymm`,
     `transition_type`,
     `transition_count`,
     `metadata_json`,
@@ -1392,7 +1392,7 @@ INSERT INTO `lupo_unified_analytics_paths` (
 SELECT
     `visit_recno` AS `from_page_id`,
     `exit_recno` AS `to_page_id`,
-    LEFT(`dateof`, 6) AS `year_month`,
+    LEFT(`dateof`, 6) AS `year_month_yyyymm`,
     'first' AS `transition_type`,
     `visits` AS `transition_count`,
     NULL AS `metadata_json`,
@@ -1402,10 +1402,10 @@ SELECT
     NULL AS `deleted_ymdhis`
 FROM `livehelp_paths_firsts`;
  
- INSERT INTO `lupo_unified_analytics_paths` (
+INSERT INTO `lupo_unified_analytics_paths` (
     `from_page_id`,
     `to_page_id`,
-    `year_month`,
+    `year_month_yyyymm`,
     `transition_type`,
     `transition_count`,
     `metadata_json`,
@@ -1417,7 +1417,7 @@ FROM `livehelp_paths_firsts`;
 SELECT
     `visit_recno` AS `from_page_id`,
     `exit_recno` AS `to_page_id`,
-    `dateof` AS `year_month`,
+    `dateof` AS `year_month_yyyymm`,
     'all' AS `transition_type`,
     `visits` AS `transition_count`,
     NULL AS `metadata_json`,

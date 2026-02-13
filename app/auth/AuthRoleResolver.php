@@ -96,7 +96,51 @@ class AuthRoleResolver
                 return true;
             }
         }
+
+        // Bootstrap: if there are no admins in the system, treat this actor as admin so the first
+        // logged-in user can access admin.php and grant roles to others.
+        if ($this->systemHasNoAdmins()) {
+            return true;
+        }
+
         return false;
+    }
+
+    /**
+     * Whether the system has zero users with admin role (channel_roles or permissions).
+     * Used for bootstrap-first-admin fallback.
+     *
+     * @return bool
+     */
+    private function systemHasNoAdmins()
+    {
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $cr = $this->db->quoteIdentifier($prefix . 'channel_roles');
+        $row = $this->db->fetchRow(
+            "SELECT 1 FROM {$cr} WHERE channel_id = :channel_id AND role_type IN ('captain', 'administrator') 
+             AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            array('channel_id' => $this->defaultChannelId)
+        );
+        if ($row !== null) {
+            return false;
+        }
+        $mod = $this->db->quoteIdentifier($prefix . 'modules');
+        $adminModule = $this->db->fetchRow(
+            "SELECT module_id FROM {$mod} WHERE module_key = 'admin' AND is_active = 1 AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            array()
+        );
+        if ($adminModule) {
+            $perm = $this->db->quoteIdentifier($prefix . 'permissions');
+            $row = $this->db->fetchRow(
+                "SELECT 1 FROM {$perm} WHERE target_type = 'module' AND target_id = :module_id 
+                 AND permission = 'owner' AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+                array('module_id' => $adminModule['module_id'])
+            );
+            if ($row !== null) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

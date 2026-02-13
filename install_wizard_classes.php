@@ -288,6 +288,7 @@ define(\'LUPOPEDIA_CONFIG_LOADED\', true);
 . (isset($options['support_email']) && $options['support_email'] !== '' ? "define('LUPOPEDIA_SUPPORT_EMAIL', '" . addslashes($options['support_email']) . "');\n" : '')
 . (isset($options['default_visitor_channel']) && $options['default_visitor_channel'] !== '' ? "define('LUPOPEDIA_DEFAULT_VISITOR_CHANNEL', '" . addslashes($options['default_visitor_channel']) . "');\n" : '')
 . (!empty($options['enable_ai_channels']) ? "define('LUPOPEDIA_ENABLE_AI_CHANNELS', true);\n" : '') . '
+require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
 ';
 
         if (!is_writable($configDir)) {
@@ -344,13 +345,14 @@ class InstallWizardNormalize {
             $email = trim((string) (isset($u['email']) ? $u['email'] : ''));
             if ($isOp) {
                 $slug = self::usernameToSlug($username);
+                $proposedEmail = (self::isValidEmail($email)) ? $email : $slug;
                 $out[] = array(
                     'user_id' => (int) $u['user_id'],
                     'username' => $username,
                     'email' => $email,
                     'displayname' => trim((string) (isset($u['displayname']) ? $u['displayname'] : '')),
                     'isoperator' => $isOp,
-                    'proposed_email' => $slug,
+                    'proposed_email' => $proposedEmail,
                     'proposed_username' => $slug,
                 );
             } else {
@@ -411,8 +413,8 @@ class InstallWizardNormalize {
                 $rowErrors[] = 'Email cannot be empty.';
             } else {
                 if ($row['isoperator']) {
-                    if (!self::isValidLupopediaSlug($email)) {
-                        $rowErrors[] = 'Operators must use slug-format (e.g. name-at-lupopedia-com).';
+                    if (!self::isValidLupopediaSlug($email) && !self::isValidEmail($email)) {
+                        $rowErrors[] = 'Operators must use a valid email or slug-format (e.g. name-at-lupopedia-com).';
                     }
                 } else {
                     if (!self::isAcceptableResolvedEmail($email)) {
@@ -457,7 +459,7 @@ class InstallWizardNormalize {
         foreach ($identities as $row) {
             $id = $row['user_id'];
             $email = isset($resolvedEmails[$id]) ? $resolvedEmails[$id] : $row['proposed_email'];
-            $username = $row['isoperator'] ? $email : $row['username'];
+            $username = $row['isoperator'] ? $row['proposed_username'] : $row['username'];
             $update->execute(array($email, $username, $id));
         }
     }

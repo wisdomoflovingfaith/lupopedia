@@ -419,9 +419,11 @@ class FilesystemMigrator {
 
     private function createChannelRecord($channelKey, $channelName, $metadata) {
         $now = $this->ymdhis();
+        $channel_id = (int) $this->db->query("SELECT COALESCE(MAX(channel_id), 0) + 1 FROM lupo_channels")->fetchColumn();
 
         $stmt = $this->db->prepare("
             INSERT INTO lupo_channels (
+                channel_id,
                 federation_node_id,
                 created_by_actor_id,
                 default_actor_id,
@@ -434,6 +436,7 @@ class FilesystemMigrator {
                 updated_ymdhis,
                 is_deleted
             ) VALUES (
+                :channel_id,
                 1,
                 1,
                 1,
@@ -448,16 +451,17 @@ class FilesystemMigrator {
             )
         ");
 
-        $stmt->execute([
+        $stmt->execute(array(
+            ':channel_id' => $channel_id,
             ':channel_key' => $channelKey,
             ':channel_slug' => $channelKey,
             ':channel_name' => 'Channel ' . $channelName,
             ':description' => 'Migrated from filesystem directory: ' . $channelName,
             ':created_ymdhis' => $now,
             ':updated_ymdhis' => $now
-        ]);
+        ));
 
-        return $this->db->lastInsertId();
+        return $channel_id;
     }
 
     private function migrateChannelFiles($dirPath, $channelId, $dirName) {

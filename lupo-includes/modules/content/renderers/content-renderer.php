@@ -81,7 +81,7 @@ function content_render_body($body, $type, $format) {
  * @return array Array of section IDs
  */
 function content_extract_sections($html) {
-    $sections = [];
+    $sections = array();
     if (preg_match_all('/<h([1-6])[^>]*id="([^"]+)"[^>]*>/', $html, $matches)) {
         foreach ($matches[2] as $id) {
             $sections[] = $id;
@@ -114,30 +114,30 @@ function render_content_page($content, $body_html) {
  * @param array $metadata
  * @return string
  */
-function render_main_layout($context_or_body, $content = null, $metadata = []) {
-    $context = [];
+function render_main_layout($context_or_body, $content = null, $metadata = array()) {
+    $context = array();
     if (is_array($context_or_body) && array_key_exists('page_body', $context_or_body)) {
         $context = $context_or_body;
     } else {
-        $context = [
+        $context = array(
             'page_body' => $context_or_body,
             'content' => $content
-        ];
+        );
         if (is_array($metadata)) {
             if (isset($metadata['related_edges'])) {
                 $context['related_edges'] = $metadata['related_edges'];
             }
-            $context['semantic_context'] = $metadata['semanticContext'] ?? [];
-            $context['content_references'] = $metadata['contentReferences'] ?? [];
-            $context['content_links'] = $metadata['contentLinks'] ?? [];
-            $context['tags'] = $metadata['contentTags'] ?? [];
-            $context['collection'] = $metadata['contentCollection'] ?? null;
-            $context['prev_content'] = $metadata['prevContent'] ?? null;
-            $context['next_content'] = $metadata['nextContent'] ?? null;
-            $context['content_sections'] = $metadata['contentSections'] ?? [];
-            $context['tabs_data'] = $metadata['tabs_data'] ?? [];
-            $context['current_collection'] = $metadata['current_collection'] ?? null;
-            $context['collection_id'] = $metadata['collection_id'] ?? null;
+            $context['semantic_context'] = isset($metadata['semanticContext']) ? $metadata['semanticContext'] : array();
+            $context['content_references'] = isset($metadata['contentReferences']) ? $metadata['contentReferences'] : array();
+            $context['content_links'] = isset($metadata['contentLinks']) ? $metadata['contentLinks'] : array();
+            $context['tags'] = isset($metadata['contentTags']) ? $metadata['contentTags'] : array();
+            $context['collection'] = isset($metadata['contentCollection']) ? $metadata['contentCollection'] : null;
+            $context['prev_content'] = isset($metadata['prevContent']) ? $metadata['prevContent'] : null;
+            $context['next_content'] = isset($metadata['nextContent']) ? $metadata['nextContent'] : null;
+            $context['content_sections'] = isset($metadata['contentSections']) ? $metadata['contentSections'] : array();
+            $context['tabs_data'] = isset($metadata['tabs_data']) ? $metadata['tabs_data'] : array();
+            $context['current_collection'] = isset($metadata['current_collection']) ? $metadata['current_collection'] : null;
+            $context['collection_id'] = isset($metadata['collection_id']) ? $metadata['collection_id'] : null;
         }
     }
 
@@ -145,12 +145,11 @@ function render_main_layout($context_or_body, $content = null, $metadata = []) {
     $content = isset($context['content']) ? $context['content'] : null;
     $page_title = isset($context['page_title']) ? $context['page_title'] : '';
     if ($page_title === '' && is_array($content)) {
-        $page_title = $content['title'] ?? ($content['content_name'] ?? '');
+        $page_title = isset($content['title']) ? $content['title'] : (isset($content['content_name']) ? $content['content_name'] : '');
     }
-    $meta = isset($context['meta']) ? $context['meta'] : [];
-    $related_edges = $context['related_edges'] ?? [];
-    $content_type = $context['content_type']
-        ?? ($meta['content_type'] ?? (is_array($content) ? ($content['content_type'] ?? null) : null));
+    $meta = isset($context['meta']) ? $context['meta'] : array();
+    $related_edges = isset($context['related_edges']) ? $context['related_edges'] : array();
+    $content_type = isset($context['content_type']) ? $context['content_type'] : (isset($meta['content_type']) ? $meta['content_type'] : (is_array($content) ? (isset($content['content_type']) ? $content['content_type'] : null) : null));
 
     $is_html = function($value) {
         if (!is_string($value) || $value === '') {
@@ -166,16 +165,16 @@ function render_main_layout($context_or_body, $content = null, $metadata = []) {
         }
     }
 
-    $semanticContext = $context['semantic_context'] ?? ($context['semanticContext'] ?? []);
-    $contentReferences = $context['content_references'] ?? ($context['contentReferences'] ?? []);
-    $contentLinks = $context['content_links'] ?? ($context['contentLinks'] ?? []);
-    $contentTags = $context['tags'] ?? ($context['contentTags'] ?? []);
-    $contentCollection = $context['collection'] ?? ($context['contentCollection'] ?? null);
-    $prevContent = $context['prev_content'] ?? ($context['prevContent'] ?? null);
-    $nextContent = $context['next_content'] ?? ($context['nextContent'] ?? null);
-    $contentSections = $context['content_sections'] ?? ($context['contentSections'] ?? []);
-    $tabs_data = $context['tabs_data'] ?? [];
-    $current_collection = $context['current_collection'] ?? null;
+    $semanticContext = isset($context['semantic_context']) ? $context['semantic_context'] : (isset($context['semanticContext']) ? $context['semanticContext'] : array());
+    $contentReferences = isset($context['content_references']) ? $context['content_references'] : (isset($context['contentReferences']) ? $context['contentReferences'] : array());
+    $contentLinks = isset($context['content_links']) ? $context['content_links'] : (isset($context['contentLinks']) ? $context['contentLinks'] : array());
+    $contentTags = isset($context['tags']) ? $context['tags'] : (isset($context['contentTags']) ? $context['contentTags'] : array());
+    $contentCollection = isset($context['collection']) ? $context['collection'] : (isset($context['contentCollection']) ? $context['contentCollection'] : null);
+    $prevContent = isset($context['prev_content']) ? $context['prev_content'] : (isset($context['prevContent']) ? $context['prevContent'] : null);
+    $nextContent = isset($context['next_content']) ? $context['next_content'] : (isset($context['nextContent']) ? $context['nextContent'] : null);
+    $contentSections = isset($context['content_sections']) ? $context['content_sections'] : (isset($context['contentSections']) ? $context['contentSections'] : array());
+    $tabs_data = isset($context['tabs_data']) ? $context['tabs_data'] : array();
+    $current_collection = isset($context['current_collection']) ? $context['current_collection'] : null;
     $collection_id = isset($context['collection_id']) && $context['collection_id'] !== null
         ? (int)$context['collection_id']
         : null;
@@ -206,8 +205,9 @@ function render_main_layout($context_or_body, $content = null, $metadata = []) {
     $context['current_collection'] = $current_collection;
     $context['collection_id'] = $collection_id;
 
+    $layout_file = (defined('LUPO_LAYOUT') && LUPO_LAYOUT !== '') ? LUPO_LAYOUT : 'main_layout.php';
     ob_start();
-    lupo_theme_include_layout('main_layout.php', $context);
+    lupo_theme_include_layout($layout_file, $context);
     return ob_get_clean();
 }
 

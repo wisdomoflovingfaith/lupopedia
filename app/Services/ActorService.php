@@ -93,7 +93,12 @@ class ActorService
         $emailLocal = strpos($emailNormalized, '@') !== false ? substr($emailNormalized, 0, strpos($emailNormalized, '@')) : $emailNormalized;
         $name = $displayName !== '' ? $displayName : $emailLocal;
         try {
-            $id = $this->db->insert($this->prefix . 'actors', [
+            $actor_id = function_exists('lupo_findpuka') ? lupo_findpuka($this->db, $this->prefix . 'actors', 'actor_id', 1, null) : null;
+            if ($actor_id === null) {
+                return false;
+            }
+            $ok = $this->db->insert($this->prefix . 'actors', array(
+                'actor_id' => $actor_id,
                 'actor_type' => 'user',
                 'slug' => $slug,
                 'name' => $name,
@@ -103,8 +108,8 @@ class ActorService
                 'is_deleted' => 0,
                 'actor_source_id' => $authUserId,
                 'actor_source_type' => 'user',
-            ]);
-            return $id !== false && $id !== '' ? (int) $id : false;
+            ));
+            return $ok !== false ? $actor_id : false;
         } catch (\Exception $e) {
             if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
                 error_log('ActorService: createActorForAuthUser failed: ' . $e->getMessage());

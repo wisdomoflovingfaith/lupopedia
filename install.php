@@ -13,7 +13,7 @@
  * C. Upgrade: Identity Normalization (required) → validate all emails unique → update livehelp_users
  *    → then install → seed → import → drop → config. Normalization runs before any Lupopedia SQL:
  *    Crafty uses username/password; Lupopedia uses email/password with unique email. Operators get
- *    username→slug-email; non-operators keep valid email or get slug from username. Empty/invalid
+ *    email stays as email; username becomes slug for operators; non-operators keep valid email or get slug from username. Empty/invalid
  *    emails and duplicates are validated; the wizard blocks until all conflicts are resolved and
  *    livehelp_users is updated only after admin confirms. The importer runs only after normalization.
  * D. Reserved system channels (0, 1, 42, 5100): created immediately after detect upgrade (install+seed+reserved),
@@ -225,9 +225,10 @@ if ($step === 'credentials') {
             $errors[] = 'Database connection failed. Check host, database name, user, and password.';
             error_log('Lupopedia install credentials: ' . $e->getMessage());
         }
-    } elseif ($db_vars !== null && $_SERVER['REQUEST_METHOD'] !== 'POST') {
+    } elseif ($db_vars !== null && $_SERVER['REQUEST_METHOD'] !== 'POST' && isset($_SESSION['lupo_install_type'])) {
+        // Only redirect when we have already connected and stored install type (prevents loop when config.php exists but form not yet submitted).
         $base = (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.');
-        $install_type = isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : null;
+        $install_type = $_SESSION['lupo_install_type'];
         if ($install_type === 'upgrade') {
             header('Location: ' . $base . '/install.php?step=bootstrap');
         } else {
@@ -595,7 +596,7 @@ if ($baseUrl === '') {
     <?php if ($step === 'welcome'): ?>
         <div class="wizard-card">
             <h2>Welcome</h2>
-            <p>This wizard will install Lupopedia 3.0.0 or upgrade from Crafty Syntax 3.7.5. Two valid states only: <strong>New install</strong> or <strong>Upgrade</strong>. No Lupopedia→Lupopedia upgrade. Project root is the webroot; no /public folder.</p>
+            <p>This wizard will install Lupopedia 4.0.x or upgrade from Crafty Syntax 3.7.5. Two valid states only: <strong>New install</strong> or <strong>Upgrade</strong>. No Lupopedia→Lupopedia upgrade. Project root is the webroot; no /public folder.</p>
             <p><strong>Requirements:</strong> PHP 5.3+, PDO MySQL, JSON extension, writable project root, and a MySQL/MariaDB database. For upgrade: existing Crafty Syntax 3.7.5 data.</p>
             <div class="log-section">
                 <h4>System diagnostics</h4>
@@ -667,7 +668,7 @@ if ($baseUrl === '') {
     <?php elseif ($step === 'normalize'): ?>
         <div class="step warning">
             <h2>Identity normalization</h2>
-            <p><strong>Reserved system channels (0, 1, 42, 5100) have been created.</strong> Next: resolve identities. Crafty Syntax uses username/password; Lupopedia uses email/password and requires a unique email per account. Operators are converted to slug-emails (e.g. <code>helen</code> → <code>helen-at-lupopedia-com</code>). Non-operators keep a valid email or get a slug from username. All emails must be unique and valid before you can continue.</p>
+            <p><strong>Reserved system channels (0, 1, 42, 5100) have been created.</strong> Next: resolve identities. Crafty Syntax uses username/password; Lupopedia uses email/password and requires a unique email per account. <strong>Email</strong> is kept as the real email (e.g. <code>helen@lupopedia.com</code>). <strong>Username</strong> for operators becomes slug format (e.g. <code>helen</code> → <code>helen-at-lupopedia-com</code>). You can correct any proposed email below. All emails must be unique and valid before you can continue.</p>
             <?php if (!empty($normalize_warnings)): ?>
                 <div class="normalize-warnings">
                     <strong>Warnings</strong>

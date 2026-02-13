@@ -1,0 +1,114 @@
+---
+description: Required-tables split, future_features_lupopedia.sql canonical file, install/future separation, migrations cleanup, patch-only versioning, directory tree integrity, and audit maintenance. Mandatory for every patch cycle 4.0.2 → 4.0.999.
+alwaysApply: true
+---
+
+# Required Tables and Future Features Doctrine (MANDATORY)
+
+Cursor MUST apply this doctrine in every patch cycle (4.0.2 → 4.0.3 → … → 4.0.999). This rule is permanent.
+
+---
+
+## 1. Future Features File (MANDATORY)
+
+The file **database/migrations/future_features_lupopedia.sql** is **canonical**. It exists and must be maintained.
+
+- It contains **ONLY** non-required tables.
+- Cursor must **maintain** this file going forward.
+- The following tables were moved into this file and are classified as **future features** (never treat as required):
+  - lupo_integration_test_results
+  - lupo_memory_debug_log
+  - lupo_narrative_fragments
+  - lupo_test_performance_metrics
+- Cursor must **NEVER** move these tables back into install_new_lupopedia.sql unless explicitly instructed.
+- Cursor must **NEVER** treat these tables as required.
+
+---
+
+## 2. Required Tables File (MANDATORY)
+
+**docs/REQUIRED_TABLES_4.0.2.md** is the authoritative required-tables list for version 4.0.2. Keep it updated in every patch cycle (e.g. when bumping to 4.0.3, update the doc to reflect the current patch).
+
+**Required tables** = ALL of:
+- Tables referenced in **import_from_old_crafty_syntax.sql**
+- Tables used by **active PHP classes** (repositories, services, controllers, models)
+- Tables required by **wizard / installer / seed / runtime**
+
+Cursor must:
+- Keep this file updated in every patch cycle.
+- Add new required tables when new runtime features are implemented.
+- Remove a table from the required list ONLY if it is removed from importer + runtime + wizard + seed + classes.
+- **NEVER** move required tables into future_features_lupopedia.sql.
+
+---
+
+## 3. Install SQL Must Match Required Tables
+
+- **install_new_lupopedia.sql** contains **ONLY** required tables (plus any optional tables still documented as remaining in install; do not add new non-required tables to install).
+- **future_features_lupopedia.sql** contains **ONLY** non-required tables.
+
+Cursor must automatically:
+- Remove non-required tables from install_new_lupopedia.sql when classifying them as future features.
+- Add their CREATE TABLE (and indexes) to future_features_lupopedia.sql.
+- Update docs/REQUIRED_TABLES_4.0.2.md (or the current patch’s required-tables doc) accordingly.
+
+---
+
+## 4. Migrations Cleanup Doctrine
+
+The **canonical SQL set** in database/migrations/ is:
+- import_from_old_crafty_syntax.sql
+- install_new_lupopedia.sql
+- seed_lupopedia.sql
+- drop_old_crafty_syntax_tables.sql
+- future_features_lupopedia.sql
+
+**All other** SQL files in database/migrations/ must be moved to **database/migrations_legacy/** unless explicitly marked canonical. Update any docs that reference moved files.
+
+---
+
+## 5. Patch-Only Versioning (MANDATORY)
+
+- Only **patch** bumps: 4.0.2 → 4.0.3 → … → 4.0.999.
+- **NEVER** suggest 4.1.0 or any major/minor version until the auto-installer release cycle.
+- **NEVER** generate Lupopedia→Lupopedia migrations.
+- **ONLY** valid upgrade path: **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**.
+
+---
+
+## 6. Directory Tree Integrity (MANDATORY)
+
+Before **any** versioning, table classification, or migration cleanup, Cursor must:
+1. Run: **python scripts/generate_directory_tree.py**
+2. Use **DIRECTORY_TREE.md** as the authoritative file list.
+
+Cursor must **refuse to proceed** if DIRECTORY_TREE.md is outdated.
+
+---
+
+## 7. Audit Requirements
+
+Cursor must maintain **docs/audits/FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md** and update it in every patch cycle with:
+- Required tables list (or reference to docs/REQUIRED_TABLES_4.0.2.md)
+- Future features tables list
+- Tables moved between install and future_features
+- Confirmation that importer tables remain untouched
+- Confirmation that install SQL matches required tables
+- Confirmation that future_features SQL matches non-required tables
+
+---
+
+## 8. Doctrine Reminders
+
+Cursor must obey:
+- **No RPZ tables** in production logic (lupopedia_rpz is experimental quarantine only).
+- **No experimental tables** in install/seed/import.
+- **No reintroduction** of removed tables.
+- **No foreign keys, triggers, views, UNSIGNED, display widths** in schema (BIGINT timestamps only; no DATETIME/TIMESTAMP automation).
+- **No schema changes** outside one-time dev migrations and the canonical install/future_features files.
+- **No modifying the importer** unless explicitly instructed.
+- **No major/minor version bumps** (patch-only until auto-installer cycle).
+
+---
+
+This rule is permanent and applies to all future patch cycles.

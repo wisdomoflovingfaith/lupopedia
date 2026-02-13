@@ -1,88 +1,89 @@
 <?php
-/* ⧉ WOLFIE v2.6 ⧉
-   nav: mech | myth | rel | docs
-   
-   ## NAV
-   pkg: lupopedia
-   mod: ui
-   asp: controller
-   pur: Administrative interface for Crafty Syntax Live Help system.
-   
-   ## META
-   cre: 2026-02-01T00:00:00Z
-   mod: 2026-02-01T00:00:00Z
-   upd: cascade#1
-   tax: wolfie.header.taxonomy@2.3
-   
-   ## MYTH
-   epo: wolfie-winter-2026
-   sig: admin-focus
-   
-   ## REL
-   → 
-   ← 
-   ↔ 
-   
-   ## DOCS
-   */
-//===========================================================================
-//* --    ~~                CRAFTY SYNTAX Live Help                ~~    -- *
-//===========================================================================
-//           URL:   https://lupopedia.com/    EMAIL: livehelp@lupopedia.com
-//         Copyright (C) 2003-2023 Eric Gerdes   (https://lupopedia.com )
-// ----------------------------------------------------------------------------
-// Please check https://lupopedia.com/ or REGISTER your program for updates
-// --------------------------------------------------------------------------
-// NOTICE: Do NOT remove the copyright and/or license information any files.
-//         doing so will automatically terminate your rights to use program.
-//         If you change the program you MUST clause your changes and note
-//         that the original program is CRAFTY SYNTAX Live help or you will
-//         also be terminating your rights to use program and any segment
-//         of it.
-// --------------------------------------------------------------------------
-// LICENSE:
-//     This program is free software; you can redistribute it and/or
-//     modify it under the terms of the GNU General Public License
-//     as published by the Free Software Foundation;
-//     This program is distributed in the hope that it will be useful,
-//     but WITHOUT ANY WARRANTY; without even the implied warranty of
-//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//     GNU General Public License for more details.
-//
-//     You should have received a copy of the GNU General Public License
-//     along with this program in a file named LICENSE.txt .
-//===========================================================================
+/**
+ * Admin interface — Lupopedia. Requires login and admin role.
+ * Renders basic template with left navigation of admin options and main content area.
+ * Linked from user dropdown (Database Admin) in topbar.
+ */
 
-// LEGACY ENDPOINT DEPRECATION NOTICE
-// This legacy admin.php endpoint has been replaced by the new Lupopedia subsystem.
-// Operator console URL must come from config (Installation Path Doctrine).
-$operator_console_path = '';
-if (file_exists(__DIR__ . '/lupopedia-config.php')) {
-    require_once __DIR__ . '/lupopedia-config.php';
-    $operator_console_path = defined('LUPOPEDIA_PUBLIC_PATH') ? (rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/crafty_syntax/') : '';
-}
-if ($operator_console_path === '') {
-    $operator_console_path = '[install-path]/crafty_syntax/'; // fallback if config not loaded
+define('LUPOPEDIA_PATH', __DIR__);
+define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
+
+// Config path search (same order as index.php)
+if (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php')) {
+    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php');
+} elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php')) {
+    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php');
+} elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
+    define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/lupopedia-config.php');
+} else {
+    header('Location: ' . (rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/') ?: '') . '/install.php');
+    exit;
 }
 
-header('HTTP/1.1 410 Gone');
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Legacy Endpoint Deprecated</title>
-    <style>
-        body { font-family: sans-serif; max-width: 600px; margin: 100px auto; padding: 20px; }
-        h1 { color: #c00; }
-        code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; }
-    </style>
-</head>
-<body>
-    <h1>Legacy Endpoint Deprecated</h1>
-    <p>This legacy <code>/admin.php</code> endpoint has been replaced by the new Lupopedia subsystem.</p>
-    <p><strong>Crafty Syntax Operator Console is now at:</strong></p>
-    <p><code><?= htmlspecialchars($operator_console_path) ?></code></p>
-    <p>Please update your bookmarks and navigate there directly.</p>
-</body>
-</html>
+require_once LUPOPEDIA_CONFIG_PATH;
+
+// Require login only; if not admin, show graceful error inside layout (nav still visible)
+$authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+if ($authService) {
+    $authService->requireLogin();
+} else {
+    if (!function_exists('require_login')) {
+        require_once LUPOPEDIA_PATH . '/lupo-includes/functions/auth-helpers.php';
+    }
+    require_login();
+}
+
+$user = $authService ? $authService->getCurrentUser() : (function_exists('current_user') ? current_user() : array());
+$isUserLoggedIn = ($user !== false && !empty($user));
+$isAdmin = $isUserLoggedIn && !empty($user['is_admin']);
+
+$admin_page_title = 'Dashboard';
+$admin_active_key = 'Dashboard';
+$admin_menu_items = array(
+    'Dashboard' => 'admin.php',
+    'Database' => 'admin.php?section=database',
+    'Users' => 'admin.php?section=users',
+    'Channels' => 'admin.php?section=channels',
+    'Settings' => 'admin.php?section=settings',
+);
+
+if (!$isAdmin) {
+    $admin_main_content = '<div class="admin-error-box">'
+        . '<h2>Access denied</h2>'
+        . '<p>Your account does not have permission to access the admin area. If you believe this is an error, ask an administrator to grant you a channel role (e.g. captain or administrator on channel 1) or owner permission on the admin module.</p>'
+        . '<p><a href="' . (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/index.php">Return to home</a></p>'
+        . '</div>';
+} else {
+    $admin_main_content = '<p>Admin options will show here.</p>';
+}
+
+if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
+    $section = trim($_GET['section']);
+    if ($section === 'database') {
+        $admin_page_title = 'Database';
+        $admin_active_key = 'Database';
+        $admin_main_content = '<p>Database admin options will show here.</p>';
+    } elseif ($section === 'users') {
+        $admin_page_title = 'Users';
+        $admin_active_key = 'Users';
+        $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+        if (!$db) {
+            $admin_main_content = '<p class="admin-empty">Database not available.</p>';
+        } else {
+            require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminUsersHandler.php';
+            $admin_main_content = AdminUsersHandler::render($db, $prefix, $base);
+        }
+    } elseif ($section === 'channels') {
+        $admin_page_title = 'Channels';
+        $admin_active_key = 'Channels';
+        $admin_main_content = '<p>Channel admin options will show here.</p>';
+    } elseif ($section === 'settings') {
+        $admin_page_title = 'Settings';
+        $admin_active_key = 'Settings';
+        $admin_main_content = '<p>Settings options will show here.</p>';
+    }
+}
+
+require LUPOPEDIA_PATH . '/lupo-includes/themes/default/layouts/admin_layout.php';

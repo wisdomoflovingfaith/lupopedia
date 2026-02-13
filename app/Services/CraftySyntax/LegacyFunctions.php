@@ -212,7 +212,12 @@ function resolve_actor_from_lupo_user($user_id) {
     try {
         $timestamp = (int) date('YmdHis');
         $slug = 'actor_' . $user_id . '_' . $timestamp;
-        $mydatabase->insert($actors_table, [
+        $actor_id = function_exists('lupo_findpuka') ? lupo_findpuka($mydatabase, $actors_table, 'actor_id', 1, null) : null;
+        if ($actor_id === null) {
+            return null;
+        }
+        $mydatabase->insert($actors_table, array(
+            'actor_id' => $actor_id,
             'actor_type' => 'legacy_user',
             'slug' => $slug,
             'name' => '',
@@ -220,9 +225,8 @@ function resolve_actor_from_lupo_user($user_id) {
             'updated_ymdhis' => $timestamp,
             'actor_source_id' => $user_id,
             'actor_source_type' => 'lupo_auth_users',
-        ]);
-        $id = $mydatabase->lastInsertId();
-        return $id ? (int) $id : null;
+        ));
+        return $actor_id;
     } catch (Exception $e) {
         error_log("Actor Resolution Error: " . $e->getMessage());
         return (int) $user_id;

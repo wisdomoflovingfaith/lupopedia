@@ -99,10 +99,26 @@ class GroundedAgentModel
         return $this->insert('lupo_actor_actions', $data);
     }
     
-    // Private helper methods
+    // Private helper methods (RESERVED ID DOCTRINE: explicit actor_id, no lastInsertId)
     private function createActorRecord($data)
     {
-        return $this->insert('lupo_actors', $data);
+        $res = $this->db->query("SELECT COALESCE(MAX(actor_id), 0) + 1 AS next_id FROM lupo_actors");
+        $row = $res ? $res->fetch_assoc() : null;
+        $actor_id = $row && isset($row['next_id']) ? (int) $row['next_id'] : 1;
+        $actor_type = isset($data['type']) ? $data['type'] : 'agent';
+        $now = isset($data['created_ymdhis']) ? $data['created_ymdhis'] : gmdate('YmdHis');
+        $insert_data = array(
+            'actor_id' => $actor_id,
+            'actor_type' => $actor_type,
+            'slug' => 'agent-' . $actor_id,
+            'name' => isset($data['name']) ? $data['name'] : 'Agent',
+            'created_ymdhis' => $now,
+            'updated_ymdhis' => isset($data['updated_ymdhis']) ? $data['updated_ymdhis'] : $now,
+            'is_active' => 1,
+            'is_deleted' => 0,
+        );
+        $this->insert('lupo_actors', $insert_data);
+        return $actor_id;
     }
     
     private function createOwnership($agent_id, $owner_actor_id)

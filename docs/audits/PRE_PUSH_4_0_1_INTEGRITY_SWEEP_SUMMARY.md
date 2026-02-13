@@ -77,10 +77,10 @@ None. All 4.0.x → 3.0.x renames were done in the earlier version normalization
 
 ---
 
-## 5. Commit and push
+## 5. Commit and push — executed
 
 - **Staged:** `git add -A`
-- **Commit message:** `Finalize version 4.0.1: purge remaining 4.0.2+ artifacts, quarantine experimental tables to lupopedia_rpz, normalize repo`
-- **Push:** `git push origin main`
+- **Commit:** `483e3a1` with message: `Finalize version 4.0.1: purge remaining 4.0.2+ artifacts, quarantine experimental tables to lupopedia_rpz, normalize repo`
+- **Push:** `git push origin main` — **success.** `d80c5f8..483e3a1  main -> main` to `https://github.com/wisdomoflovingfaith/lupopedia.git`
 
-(Execution confirmation is recorded in the next section after the commands are run.)
+**Confirmation:** Commit and push were executed successfully. The repository is finalized for version 4.0.1 on `main`.

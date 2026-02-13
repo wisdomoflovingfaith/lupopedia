@@ -153,7 +153,7 @@ function lupo_route_slug($slug) {
     }
 
     // GET /my-profile — actor profile page (standalone UI, no content system)
-    if ($normalized_slug === 'my-profile' && ($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+    if ($normalized_slug === 'my-profile' && (isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '') !== 'POST') {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $actors_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'actors' . DIRECTORY_SEPARATOR . 'actors-controller.php';
         if (file_exists($actors_controller_path)) {
@@ -165,7 +165,7 @@ function lupo_route_slug($slug) {
     }
 
     // POST /my-profile/save — save profile form
-    if ($slug === 'my-profile/save' && ($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
+    if ($slug === 'my-profile/save' && (isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '') === 'POST') {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $actors_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'actors' . DIRECTORY_SEPARATOR . 'actors-controller.php';
         if (file_exists($actors_controller_path)) {
@@ -271,18 +271,18 @@ function lupo_route_slug($slug) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['channel_id'])) {
             $channel_id = (int)$_POST['channel_id'];
 
-            $db = $GLOBALS['mydatabase'] ?? null;
+            $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
             if ($db && $channel_id > 0) {
                 if (!function_exists('current_user')) {
                     require_once LUPOPEDIA_ABSPATH . '/lupo-includes/functions/auth-helpers.php';
                 }
-                $authService = $GLOBALS['lupo_auth_service'] ?? null;
+                $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
                 $current_user = $authService ? $authService->getCurrentUser() : current_user();
-                $actor_id = $current_user ? ($current_user['actor_id'] ?? null) : null;
+                $actor_id = $current_user ? (isset($current_user['actor_id']) ? $current_user['actor_id'] : null) : null;
                 if ($actor_id) {
                     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
                     $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
-                    $stmt->execute([':channel_id' => $channel_id, ':actor_id' => $actor_id]);
+                    $stmt->execute(array(':channel_id' => $channel_id, ':actor_id' => $actor_id));
                     if ($stmt->fetch()) {
                         $channel_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
                         $channel_url .= '/channels/' . $channel_id;
@@ -297,14 +297,14 @@ function lupo_route_slug($slug) {
         if (!function_exists('current_user')) {
             require_once LUPOPEDIA_ABSPATH . '/lupo-includes/functions/auth-helpers.php';
         }
-        $authService = $GLOBALS['lupo_auth_service'] ?? null;
+        $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
         $current_user = $authService ? $authService->getCurrentUser() : current_user();
 
-        $channels = [];
+        $channels = array();
         if ($current_user) {
-            $actor_id = $current_user['actor_id'] ?? null;
+            $actor_id = isset($current_user['actor_id']) ? $current_user['actor_id'] : null;
             if ($actor_id) {
-                $db = $GLOBALS['mydatabase'] ?? null;
+                $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
                 if ($db) {
                     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
                     $stmt = $db->prepare(
@@ -313,7 +313,7 @@ function lupo_route_slug($slug) {
                         "INNER JOIN {$table_prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
                         "WHERE r.actor_id = :actor_id AND r.is_deleted = 0"
                     );
-                    $stmt->execute([':actor_id' => $actor_id]);
+                    $stmt->execute(array(':actor_id' => $actor_id));
                     $channels = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
             }
@@ -329,10 +329,10 @@ function lupo_route_slug($slug) {
             $page_body = '<p>Channel sign-on view not found</p>';
         }
 
-        $context = [
+        $context = array(
             'page_body' => $page_body,
             'page_title' => 'Channel Sign-On'
-        ];
+        );
         return render_main_layout($context);
     }
 
@@ -411,10 +411,10 @@ function lupo_route_slug($slug) {
         if (file_exists($content_renderer)) {
             require_once $content_renderer;
         }
-        return render_main_layout([
+        return render_main_layout(array(
             'page_body' => '<p>Channel interface unavailable.</p>',
             'page_title' => 'Channel ' . $channel_id,
-        ]);
+        ));
     }
 
     // EDGES ROUTE: /edges/{edge_id}
@@ -436,10 +436,10 @@ function lupo_route_slug($slug) {
             }
 
             $page_body = '<p>edges interface goes here</p>';
-            $context = [
+            $context = array(
                 'page_body' => $page_body,
                 'page_title' => 'Edge ' . $edge_id
-            ];
+            );
             return render_main_layout($context);
         }
     }
@@ -468,10 +468,10 @@ function lupo_route_slug($slug) {
             }
 
             // Wrap in main layout
-            $context = [
+            $context = array(
                 'page_body' => $page_body,
                 'page_title' => 'Q/A'
-            ];
+            );
             return render_main_layout($context);
         }
         // Q/A question page: /qa/<slug>
@@ -479,27 +479,27 @@ function lupo_route_slug($slug) {
             $qa_question_view = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/qa/views/question.php';
 
             // Look up truth question by slug
-            $db = $GLOBALS['mydatabase'] ?? null;
+            $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
             if (!$db) {
                 $page_body = '<h1>Error</h1><p>Database not available</p>';
-                $context = [
+                $context = array(
                     'page_body' => $page_body,
                     'page_title' => 'Error'
-                ];
+                );
                 return render_main_layout($context);
             }
 
             $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
             $stmt = $db->prepare("SELECT * FROM {$table_prefix}truth_questions WHERE slug = :slug LIMIT 1");
-            $stmt->execute([':slug' => $qa_slug]);
+            $stmt->execute(array(':slug' => $qa_slug));
             $question = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!$question) {
                 $page_body = '<h1>404 Not Found</h1><p>Question not found: ' . htmlspecialchars($qa_slug) . '</p>';
-                $context = [
+                $context = array(
                     'page_body' => $page_body,
                     'page_title' => 'Not Found'
-                ];
+                );
                 return render_main_layout($context);
             }
 
@@ -507,7 +507,7 @@ function lupo_route_slug($slug) {
             if (isset($_SESSION['collection_id'])) {
                 $collection_id = $_SESSION['collection_id'];
             } else {
-                $collection_id = $question['default_collection_id'] ?? null;
+                $collection_id = isset($question['default_collection_id']) ? $question['default_collection_id'] : null;
             }
 
             // Set variables for view
@@ -524,11 +524,11 @@ function lupo_route_slug($slug) {
             }
 
             // Wrap in main layout
-            $context = [
+            $context = array(
                 'page_body' => $page_body,
-                'page_title' => $question['question_text'] ?? 'Q/A',
+                'page_title' => isset($question['question_text']) ? $question['question_text'] : 'Q/A',
                 'collection_id' => $collection_id
-            ];
+            );
             return render_main_layout($context);
         }
     }
@@ -611,14 +611,14 @@ function lupo_route_slug($slug) {
     }
     
     // Question prefixes for TRUTH routing
-    $question_prefixes = [
+    $question_prefixes = array(
         'what/',
         'who/',
         'where/',
         'when/',
         'why/',
         'how/'
-    ];
+    );
     
     // Redirect old question prefix routes to /qa/
     foreach ($question_prefixes as $prefix) {

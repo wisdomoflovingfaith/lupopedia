@@ -20,7 +20,8 @@ RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Explicit entry points
+# Explicit entry points (do not rewrite to index.php)
+RewriteRule ^admin\.php$ - [L]
 RewriteRule ^my-channel\.php$ - [L]
 
 # Block PHP files in lupo-includes (security)

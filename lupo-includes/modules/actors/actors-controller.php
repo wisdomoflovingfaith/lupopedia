@@ -1,8 +1,8 @@
 <?php
 /**
  * Actors controller — My Profile and related actor UI.
- * Standalone interface (like channel cockpit). Does NOT use content system, render_main_layout, or slug lookup.
- * Routes: GET /my-profile, POST /my-profile/save. Rendered via layout-topnav.php (top nav only).
+ * Uses basic template (top graphic + drop menu + content). Does NOT use content system or render_main_layout.
+ * Routes: GET /my-profile, POST /my-profile/save. Rendered via basic_layout.php (UI interface with navigation).
  */
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die('Config not loaded.');
@@ -11,18 +11,18 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
 /**
  * Handle GET /my-profile — show current actor's profile form.
  * Loads actor from lupo_actors, properties from lupo_actor_properties, computes avatar path.
- * Renders dedicated view my-profile.php via layout-topnav.php; no content/slug rendering.
+ * Renders via basic_layout.php (top graphic, drop menu, content) so My Profile has full UI navigation.
  *
- * @return string HTML (standalone layout with top nav only)
+ * @return string HTML (basic template with navigation)
  */
 function actors_handle_my_profile() {
     $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
     $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
-    $layout_path = $app_root . '/lupo-includes/modules/actors/views/layout-topnav.php';
+    $basic_layout_path = $app_root . '/lupo-includes/themes/default/layouts/basic_layout.php';
 
     $actor_id = null;
-    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     if ($authService) {
         $user = $authService->getCurrentUser();
         if ($user && !empty($user['actor_id'])) {
@@ -34,7 +34,7 @@ function actors_handle_my_profile() {
             $actor_id = (int) $user['actor_id'];
         }
     }
-    if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+    if (!$actor_id && ($s = (isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null))) {
         $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
@@ -47,38 +47,38 @@ function actors_handle_my_profile() {
         exit;
     }
 
-    $db = $GLOBALS['mydatabase'] ?? null;
+    $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
     if (!$db) {
-        $page_title = 'My Profile';
+        $content = array('title' => 'My Profile', 'hide_heading' => true);
         $page_body = '<p>Database unavailable.</p>';
-        $head_extra = '';
+        $isUserLoggedIn = true;
         ob_start();
-        include $layout_path;
+        include $basic_layout_path;
         return ob_get_clean();
     }
 
     $actor = null;
     $stmt = $db->prepare("SELECT actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, avatar_hash, metadata FROM {$table_prefix}actors WHERE actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
-    $stmt->execute([':actor_id' => $actor_id]);
+    $stmt->execute(array(':actor_id' => $actor_id));
     $actor = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$actor) {
-        $page_title = 'My Profile';
+        $content = array('title' => 'My Profile', 'hide_heading' => true);
         $page_body = '<p>Actor not found.</p>';
-        $head_extra = '';
+        $isUserLoggedIn = true;
         ob_start();
-        include $layout_path;
+        include $basic_layout_path;
         return ob_get_clean();
     }
 
-    $actor_properties = [];
+    $actor_properties = array();
     $stmt = $db->prepare("SELECT property_key, property_value FROM {$table_prefix}actor_properties WHERE actor_id = :actor_id AND (actor_type = :actor_type OR actor_type = 'user') AND is_deleted = 0");
-    $stmt->execute([':actor_id' => $actor_id, ':actor_type' => $actor['actor_type'] ?? 'user']);
+    $stmt->execute(array(':actor_id' => $actor_id, ':actor_type' => isset($actor['actor_type']) ? $actor['actor_type'] : 'user'));
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $actor_properties[$row['property_key']] = $row['property_value'];
     }
 
     $avatar_public_path = '';
-    $avatar_storage = $actor_properties['avatar_storage_path'] ?? '';
+    $avatar_storage = isset($actor_properties['avatar_storage_path']) ? $actor_properties['avatar_storage_path'] : '';
     if ($avatar_storage !== '') {
         $avatar_public_path = $base . '/uploads/' . ltrim($avatar_storage, '/');
     } elseif (!empty($actor['avatar_hash'])) {
@@ -88,38 +88,38 @@ function actors_handle_my_profile() {
 
     $view_path = $app_root . '/lupo-includes/modules/actors/views/my-profile.php';
     if (!file_exists($view_path)) {
-        $page_title = 'My Profile';
+        $content = array('title' => 'My Profile', 'hide_heading' => true);
         $page_body = '<p>Profile view not found.</p>';
-        $head_extra = '';
+        $isUserLoggedIn = true;
         ob_start();
-        include $layout_path;
+        include $basic_layout_path;
         return ob_get_clean();
     }
 
     ob_start();
-    extract([
+    extract(array(
         'actor'             => $actor,
         'actor_id'          => $actor_id,
         'actor_properties'  => $actor_properties,
         'avatar_public_path'=> $avatar_public_path,
         'base'              => $base,
-    ], EXTR_SKIP);
+    ), EXTR_SKIP);
     include $view_path;
     $page_body = ob_get_clean();
-    $page_title = 'My Profile';
-    if (!isset($head_extra)) {
-        $head_extra = '';
-    }
+    $content = array('title' => 'My Profile', 'hide_heading' => true);
+    $isUserLoggedIn = true;
 
     ob_start();
-    include $layout_path;
+    include $basic_layout_path;
     return ob_get_clean();
 }
 
 /**
  * Handle POST /my-profile/save — save actor name, properties, and optional avatar upload.
- * Inserts lupo_uploads for avatar; updates lupo_actors.name and lupo_actor_properties; redirects to /my-profile.
- * Does not use content system.
+ * Uses TOON: lupo_actors (name, updated_ymdhis, actor_id, avatar_hash), lupo_actor_properties
+ * (actor_property_id, actor_type, actor_id, property_key, property_value, created_ymdhis, updated_ymdhis, is_deleted),
+ * lupo_uploads (upload_id, actor_id, ...). actor_property_id has no auto_increment in install — we allocate next id.
+ * PHP 5.3+ compatible; PDO_DB only (query, fetchRow, fetchOne, update, insert).
  *
  * @return void Redirects to /my-profile
  */
@@ -129,7 +129,7 @@ function actors_handle_my_profile_save() {
     $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
 
     $actor_id = null;
-    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     if ($authService) {
         $user = $authService->getCurrentUser();
         if ($user && !empty($user['actor_id'])) {
@@ -141,7 +141,7 @@ function actors_handle_my_profile_save() {
             $actor_id = (int) $user['actor_id'];
         }
     }
-    if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+    if (!$actor_id && ($s = (isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null))) {
         $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
@@ -149,44 +149,59 @@ function actors_handle_my_profile_save() {
         exit;
     }
 
-    $db = $GLOBALS['mydatabase'] ?? null;
+    $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
     if (!$db) {
         header('Location: ' . $base . '/my-profile');
         exit;
     }
 
+    $actors_table = $table_prefix . 'actors';
+    $props_table = $table_prefix . 'actor_properties';
+    $uploads_table = $table_prefix . 'uploads';
     $now = gmdate('YmdHis');
+
     $actor_name = isset($_POST['actor_name']) ? trim((string) $_POST['actor_name']) : '';
     if ($actor_name !== '') {
-        $stmt = $db->prepare("UPDATE {$table_prefix}actors SET name = :name, updated_ymdhis = :now WHERE actor_id = :actor_id");
-        $stmt->execute([':name' => $actor_name, ':now' => $now, ':actor_id' => $actor_id]);
+        $db->update($actors_table, array('name' => $actor_name, 'updated_ymdhis' => $now), 'actor_id = :actor_id', array('actor_id' => $actor_id));
     }
 
     $actor_type = 'user';
-    $stmt = $db->prepare("SELECT actor_type FROM {$table_prefix}actors WHERE actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
-    $stmt->execute([':actor_id' => $actor_id]);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($row) {
-        $actor_type = $row['actor_type'] ?? 'user';
+    $row = $db->fetchRow("SELECT actor_type FROM " . $db->quoteIdentifier($actors_table) . " WHERE actor_id = :actor_id AND is_deleted = 0 LIMIT 1", array('actor_id' => $actor_id));
+    if ($row && isset($row['actor_type'])) {
+        $actor_type = $row['actor_type'];
     }
 
     foreach ($_POST as $key => $value) {
-        if (strpos($key, 'prop_') === 0) {
-            $property_key = substr($key, 5);
-            if ($property_key === '') continue;
-            $property_key = preg_replace('/[^a-zA-Z0-9_-]/', '', $property_key);
-            if ($property_key === '') continue;
-            $property_value = is_string($value) ? trim($value) : (string) $value;
-            $stmt = $db->prepare("SELECT actor_property_id FROM {$table_prefix}actor_properties WHERE actor_id = :actor_id AND property_key = :pk AND is_deleted = 0 LIMIT 1");
-            $stmt->execute([':actor_id' => $actor_id, ':pk' => $property_key]);
-            $existing = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($existing) {
-                $stmt = $db->prepare("UPDATE {$table_prefix}actor_properties SET property_value = :v, updated_ymdhis = :now WHERE actor_property_id = :id");
-                $stmt->execute([':v' => $property_value, ':now' => $now, ':id' => $existing['actor_property_id']]);
-            } else {
-                $stmt = $db->prepare("INSERT INTO {$table_prefix}actor_properties (actor_type, actor_id, property_key, property_value, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:at, :aid, :pk, :v, :now, :now, 0)");
-                $stmt->execute([':at' => $actor_type, ':aid' => $actor_id, ':pk' => $property_key, ':v' => $property_value, ':now' => $now]);
-            }
+        if (strpos($key, 'prop_') !== 0) {
+            continue;
+        }
+        $property_key = substr($key, 5);
+        if ($property_key === '') {
+            continue;
+        }
+        $property_key = preg_replace('/[^a-zA-Z0-9_-]/', '', $property_key);
+        if ($property_key === '') {
+            continue;
+        }
+        $property_value = is_string($value) ? trim($value) : (string) $value;
+        $existing = $db->fetchRow(
+            "SELECT actor_property_id FROM " . $db->quoteIdentifier($props_table) . " WHERE actor_id = :actor_id AND property_key = :pk AND is_deleted = 0 LIMIT 1",
+            array('actor_id' => $actor_id, 'pk' => $property_key)
+        );
+        if ($existing && isset($existing['actor_property_id'])) {
+            $db->update($props_table, array('property_value' => $property_value, 'updated_ymdhis' => $now), 'actor_property_id = :id', array('id' => $existing['actor_property_id']));
+        } else {
+            $next_id = (int) $db->fetchOne("SELECT COALESCE(MAX(actor_property_id), 0) + 1 FROM " . $db->quoteIdentifier($props_table), array());
+            $db->insert($props_table, array(
+                'actor_property_id' => $next_id,
+                'actor_type' => $actor_type,
+                'actor_id' => $actor_id,
+                'property_key' => $property_key,
+                'property_value' => $property_value,
+                'created_ymdhis' => $now,
+                'updated_ymdhis' => $now,
+                'is_deleted' => 0,
+            ));
         }
     }
 
@@ -197,41 +212,54 @@ function actors_handle_my_profile_save() {
             mkdir($upload_dir, 0755, true);
         }
         $ext = strtolower(pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION));
-        if (!in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'], true)) {
+        if (!in_array($ext, array('jpg', 'jpeg', 'png', 'gif', 'webp'), true)) {
             $ext = 'jpg';
         }
         $stored_filename = 'avatar_' . $actor_id . '_' . $now . '.' . $ext;
         $full_path = $upload_dir . DIRECTORY_SEPARATOR . $stored_filename;
         if (move_uploaded_file($_FILES['avatar']['tmp_name'], $full_path)) {
             $storage_path = 'actors/' . $ym . '/' . $stored_filename;
-            $mime = $_FILES['avatar']['type'] ?: 'image/jpeg';
+            $mime = (isset($_FILES['avatar']['type']) && $_FILES['avatar']['type'] !== '') ? $_FILES['avatar']['type'] : 'image/jpeg';
             $size = (int) $_FILES['avatar']['size'];
             $original = basename($_FILES['avatar']['name']);
 
-            $stmt = $db->prepare("INSERT INTO {$table_prefix}uploads (actor_id, channel_id, original_filename, stored_filename, file_extension, mime_type, file_size_bytes, storage_path, metadata_json, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:aid, NULL, :orig, :stored, :ext, :mime, :sz, :path, NULL, :now, :now, 0)");
-            $stmt->execute([
-                ':aid' => $actor_id,
-                ':orig' => $original,
-                ':stored' => $stored_filename,
-                ':ext' => $ext,
-                ':mime' => $mime,
-                ':sz' => $size,
-                ':path' => $storage_path,
-                ':now' => $now,
-            ]);
+            $upload_next_id = (int) $db->fetchOne("SELECT COALESCE(MAX(upload_id), 0) + 1 FROM " . $db->quoteIdentifier($uploads_table), array());
+            $db->insert($uploads_table, array(
+                'upload_id' => $upload_next_id,
+                'actor_id' => $actor_id,
+                'channel_id' => null,
+                'original_filename' => $original,
+                'stored_filename' => $stored_filename,
+                'file_extension' => $ext,
+                'mime_type' => $mime,
+                'file_size_bytes' => $size,
+                'storage_path' => $storage_path,
+                'metadata_json' => null,
+                'created_ymdhis' => $now,
+                'updated_ymdhis' => $now,
+                'is_deleted' => 0,
+            ));
 
-            $stmt = $db->prepare("UPDATE {$table_prefix}actors SET avatar_hash = :hash, updated_ymdhis = :now WHERE actor_id = :actor_id");
-            $stmt->execute([':hash' => $stored_filename, ':now' => $now, ':actor_id' => $actor_id]);
+            $db->update($actors_table, array('avatar_hash' => $stored_filename, 'updated_ymdhis' => $now), 'actor_id = :actor_id', array('actor_id' => $actor_id));
 
-            $stmt = $db->prepare("SELECT actor_property_id FROM {$table_prefix}actor_properties WHERE actor_id = :actor_id AND property_key = 'avatar_storage_path' AND is_deleted = 0 LIMIT 1");
-            $stmt->execute([':actor_id' => $actor_id]);
-            $ex = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($ex) {
-                $stmt = $db->prepare("UPDATE {$table_prefix}actor_properties SET property_value = :v, updated_ymdhis = :now WHERE actor_property_id = :id");
-                $stmt->execute([':v' => $storage_path, ':now' => $now, ':id' => $ex['actor_property_id']]);
+            $ex = $db->fetchRow(
+                "SELECT actor_property_id FROM " . $db->quoteIdentifier($props_table) . " WHERE actor_id = :actor_id AND property_key = 'avatar_storage_path' AND is_deleted = 0 LIMIT 1",
+                array('actor_id' => $actor_id)
+            );
+            if ($ex && isset($ex['actor_property_id'])) {
+                $db->update($props_table, array('property_value' => $storage_path, 'updated_ymdhis' => $now), 'actor_property_id = :id', array('id' => $ex['actor_property_id']));
             } else {
-                $stmt = $db->prepare("INSERT INTO {$table_prefix}actor_properties (actor_type, actor_id, property_key, property_value, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:at, :aid, 'avatar_storage_path', :v, :now, :now, 0)");
-                $stmt->execute([':at' => $actor_type, ':aid' => $actor_id, ':v' => $storage_path, ':now' => $now]);
+                $next_id = (int) $db->fetchOne("SELECT COALESCE(MAX(actor_property_id), 0) + 1 FROM " . $db->quoteIdentifier($props_table), array());
+                $db->insert($props_table, array(
+                    'actor_property_id' => $next_id,
+                    'actor_type' => $actor_type,
+                    'actor_id' => $actor_id,
+                    'property_key' => 'avatar_storage_path',
+                    'property_value' => $storage_path,
+                    'created_ymdhis' => $now,
+                    'updated_ymdhis' => $now,
+                    'is_deleted' => 0,
+                ));
             }
         }
     }

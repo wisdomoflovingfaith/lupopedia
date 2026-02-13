@@ -86,14 +86,9 @@ if (!headers_sent()) {
     
     // Set secure session cookie parameters
     $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
-    session_set_cookie_params([
-        'lifetime' => 0,
-        'path' => '/',
-        'domain' => $_SERVER['HTTP_HOST'] ?? '',
-        'secure' => $secure,
-        'httponly' => true,
-        'samesite' => 'Lax'
-    ]);
+    $domain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
+    // PHP 5.3: session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly); no samesite
+    session_set_cookie_params(0, '/', $domain, $secure, true);
 }
 
 // Timezone
@@ -124,6 +119,11 @@ if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'AuthService.php')) {
 $auth_helpers = __DIR__ . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'auth-helpers.php';
 if (file_exists($auth_helpers)) {
     require_once $auth_helpers;
+}
+
+$reserved_id_helpers = __DIR__ . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'reserved-id-helpers.php';
+if (file_exists($reserved_id_helpers)) {
+    require_once $reserved_id_helpers;
 }
 
 $session_manager_class = __DIR__ . DIRECTORY_SEPARATOR . 'class-SessionManager.php';

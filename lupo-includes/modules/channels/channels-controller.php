@@ -872,10 +872,13 @@ function channels_handle_edit_channel_save($channel_id) {
         $existing = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($existing) {
             $stmt = $db->prepare("UPDATE {$table_prefix}channel_roles SET is_deleted = 0, deleted_ymdhis = NULL, updated_ymdhis = :now WHERE channel_role_id = :id");
-            $stmt->execute([':now' => $now_char, ':id' => $existing['channel_role_id']]);
+            $stmt->execute(array(':now' => $now_char, ':id' => $existing['channel_role_id']));
         } else {
-            $stmt = $db->prepare("INSERT INTO {$table_prefix}channel_roles (channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:cid, :aid, 'captain', :now, :now, 0)");
-            $stmt->execute([':cid' => $channel_id, ':aid' => $captain_actor_id, ':now' => $now_char]);
+            $cr_id = function_exists('lupo_findpuka') ? lupo_findpuka($db, $table_prefix . 'channel_roles', 'channel_role_id', 1, null) : (int) $db->fetchOne("SELECT COALESCE(MAX(channel_role_id), 0) + 1 FROM " . $db->quoteIdentifier($table_prefix . 'channel_roles'), array());
+            if ($cr_id !== null) {
+                $stmt = $db->prepare("INSERT INTO {$table_prefix}channel_roles (channel_role_id, channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:id, :cid, :aid, 'captain', :now, :now, 0)");
+                $stmt->execute(array(':id' => $cr_id, ':cid' => $channel_id, ':aid' => $captain_actor_id, ':now' => $now_char));
+            }
         }
     }
 
@@ -896,8 +899,11 @@ function channels_handle_edit_channel_save($channel_id) {
                 $stmt->execute([':now' => $now_char, ':id' => $existing['channel_role_id']]);
             }
         } else {
-            $stmt = $db->prepare("INSERT INTO {$table_prefix}channel_roles (channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:cid, :aid, 'administrator', :now, :now, 0)");
-            $stmt->execute([':cid' => $channel_id, ':aid' => $aid, ':now' => $now_char]);
+            $cr_id = function_exists('lupo_findpuka') ? lupo_findpuka($db, $table_prefix . 'channel_roles', 'channel_role_id', 1, null) : (int) $db->fetchOne("SELECT COALESCE(MAX(channel_role_id), 0) + 1 FROM " . $db->quoteIdentifier($table_prefix . 'channel_roles'), array());
+            if ($cr_id !== null) {
+                $stmt = $db->prepare("INSERT INTO {$table_prefix}channel_roles (channel_role_id, channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:id, :cid, :aid, 'administrator', :now, :now, 0)");
+                $stmt->execute(array(':id' => $cr_id, ':cid' => $channel_id, ':aid' => $aid, ':now' => $now_char));
+            }
         }
     }
 
@@ -915,8 +921,11 @@ function channels_handle_edit_channel_save($channel_id) {
             $stmt = $db->prepare("UPDATE {$table_prefix}channel_roles SET is_deleted = 0, deleted_ymdhis = NULL, updated_ymdhis = :now WHERE channel_role_id = :id");
             $stmt->execute([':now' => $now_char, ':id' => $existing['channel_role_id']]);
         } else {
-            $stmt = $db->prepare("INSERT INTO {$table_prefix}channel_roles (channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:cid, :aid, 'monitor', :now, :now, 0)");
-            $stmt->execute([':cid' => $channel_id, ':aid' => $aid, ':now' => $now_char]);
+            $cr_id = function_exists('lupo_findpuka') ? lupo_findpuka($db, $table_prefix . 'channel_roles', 'channel_role_id', 1, null) : (int) $db->fetchOne("SELECT COALESCE(MAX(channel_role_id), 0) + 1 FROM " . $db->quoteIdentifier($table_prefix . 'channel_roles'), array());
+            if ($cr_id !== null) {
+                $stmt = $db->prepare("INSERT INTO {$table_prefix}channel_roles (channel_role_id, channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:id, :cid, :aid, 'monitor', :now, :now, 0)");
+                $stmt->execute(array(':id' => $cr_id, ':cid' => $channel_id, ':aid' => $aid, ':now' => $now_char));
+            }
         }
     }
 

@@ -38,7 +38,7 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
  */
 
 // Get current authenticated user (AuthService when available)
-$authService = $GLOBALS['lupo_auth_service'] ?? null;
+$authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
 $current_auth_user = $authService ? $authService->getCurrentUser() : current_user();
 $isUserLoggedIn = ($current_auth_user !== false);
 
@@ -60,10 +60,10 @@ if (!isset($userAvatar)) {
     }
 }
 if (!isset($userName)) {
-    $userName = $isUserLoggedIn ? ($current_auth_user['display_name'] ?? $current_auth_user['username'] ?? 'User') : '';
+    $userName = $isUserLoggedIn ? (isset($current_auth_user['display_name']) && $current_auth_user['display_name'] !== '' ? $current_auth_user['display_name'] : (isset($current_auth_user['username']) ? $current_auth_user['username'] : 'User')) : '';
 }
 if (!isset($userEmail)) {
-    $userEmail = $isUserLoggedIn ? ($current_auth_user['email'] ?? '') : '';
+    $userEmail = $isUserLoggedIn ? (isset($current_auth_user['email']) ? $current_auth_user['email'] : '') : '';
 }
 if (!isset($messageCount)) {
     $messageCount = 0;
@@ -73,13 +73,13 @@ if (!isset($currentPage)) {
 }
 
 // Determine active navigation link
-$navLinks = [
-    'home' => ['url' => '/', 'label' => 'Home'],
-    'qa' => ['url' => LUPOPEDIA_PUBLIC_PATH . '/qa/', 'label' => 'Q/A'],
-    'content' => ['url' => '/search.php', 'label' => 'Content'],
-    'users' => ['url' => '/users.php', 'label' => 'Users'],
-    'agents' => ['url' => '/agents.php', 'label' => 'Agents'],
-];
+$navLinks = array(
+    'home' => array('url' => '/', 'label' => 'Home'),
+    'qa' => array('url' => LUPOPEDIA_PUBLIC_PATH . '/qa/', 'label' => 'Q/A'),
+    'content' => array('url' => '/search.php', 'label' => 'Content'),
+    'users' => array('url' => '/users.php', 'label' => 'Users'),
+    'agents' => array('url' => '/agents.php', 'label' => 'Agents'),
+);
 
 // Add cache busting timestamp to avatar if it exists
 $avatarTimestamp = file_exists(str_replace(LUPOPEDIA_PUBLIC_PATH, LUPOPEDIA_PATH, $userAvatar)) 
@@ -205,7 +205,7 @@ $avatarTimestamp = file_exists(str_replace(LUPOPEDIA_PUBLIC_PATH, LUPOPEDIA_PATH
             <!-- Not logged in - show login link -->
             <div class="nav-user">
                 <?php
-                $current_url = $_SERVER['REQUEST_URI'] ?? '/';
+                $current_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
                 $login_url = LUPOPEDIA_PUBLIC_PATH . '/login?redirect=' . urlencode($current_url);
                 ?>
                 <a href="<?= htmlspecialchars($login_url) ?>" class="nav-link">

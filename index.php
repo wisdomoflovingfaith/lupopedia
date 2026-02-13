@@ -66,7 +66,7 @@ elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
 }
 // No config found - redirect to install/upgrade wizard (project root)
 else {
-    $installUrl = rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? ''), '/') . '/install.php';
+    $installUrl = rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/') . '/install.php';
     if ($installUrl === '/install.php') {
         $installUrl = '/install.php';
     }
@@ -114,9 +114,9 @@ $slug = trim($slug, '/');
 if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
     echo "<!-- DEBUG INFO -->\n";
     echo "<!-- Slug extracted: " . htmlspecialchars($slug) . " -->\n";
-    echo "<!-- REQUEST_URI: " . htmlspecialchars($_SERVER['REQUEST_URI'] ?? 'not set') . " -->\n";
-    echo "<!-- PATH_INFO: " . htmlspecialchars($_SERVER['PATH_INFO'] ?? 'not set') . " -->\n";
-    echo "<!-- GET slug: " . htmlspecialchars($_GET['slug'] ?? 'not set') . " -->\n";
+    echo "<!-- REQUEST_URI: " . htmlspecialchars(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : 'not set') . " -->\n";
+    echo "<!-- PATH_INFO: " . htmlspecialchars(isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : 'not set') . " -->\n";
+    echo "<!-- GET slug: " . htmlspecialchars(isset($_GET['slug']) ? $_GET['slug'] : 'not set') . " -->\n";
     echo "<!-- lupo_route_slug exists: " . (function_exists('lupo_route_slug') ? 'yes' : 'no') . " -->\n";
     echo "<!-- LUPOPEDIA_PUBLIC_PATH: " . htmlspecialchars(LUPOPEDIA_PUBLIC_PATH) . " -->\n";
 }
@@ -148,8 +148,8 @@ if (!empty($slug) && function_exists('lupo_route_slug')) {
     if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
         echo "<h1>Debug: No Slug Extracted</h1>";
         echo "<p>Slug is empty. Check .htaccess rewrite rules.</p>";
-        echo "<pre>REQUEST_URI: " . htmlspecialchars($_SERVER['REQUEST_URI'] ?? 'not set') . "</pre>";
-        echo "<pre>PATH_INFO: " . htmlspecialchars($_SERVER['PATH_INFO'] ?? 'not set') . "</pre>";
+        echo "<pre>REQUEST_URI: " . htmlspecialchars(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : 'not set') . "</pre>";
+        echo "<pre>PATH_INFO: " . htmlspecialchars(isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : 'not set') . "</pre>";
         echo "<pre>GET params: " . print_r($_GET, true) . "</pre>";
     }
 } elseif (!function_exists('lupo_route_slug')) {

@@ -37,20 +37,26 @@ foreach ($actors as $actor) {
     }
 }
 
-// Create CURSOR actor if it doesn't exist
+// Create CURSOR actor if it doesn't exist (RESERVED ID DOCTRINE: explicit actor_id, no lastInsertId)
 if (!$cursor_actor) {
     echo "Creating CURSOR actor...\n";
-    $stmt = $db->prepare("
-        INSERT INTO lupo_actors (actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, actor_source_type)
-        VALUES ('ai_agent', 'cursor-ide-agent', 'Cursor IDE Agent', ?, ?, 1, 0, 'agent')
-    ");
-    $stmt->execute([$current_utc, $current_utc]);
-    $cursor_actor_id = $db->lastInsertId();
-    
-    $stmt = $db->prepare("SELECT actor_id, slug, name, actor_type FROM lupo_actors WHERE actor_id = ?");
-    $stmt->execute([$cursor_actor_id]);
-    $cursor_actor = $stmt->fetch(PDO::FETCH_ASSOC);
-    echo "Created CURSOR actor with ID: {$cursor_actor['actor_id']}\n\n";
+    $cursor_actor_id = function_exists('lupo_findpuka') ? lupo_findpuka($db, 'lupo_actors', 'actor_id', 1, null) : (int) $db->fetchOne("SELECT COALESCE(MAX(actor_id), 0) + 1 FROM " . $db->quoteIdentifier('lupo_actors'), array());
+    if ($cursor_actor_id === null) {
+        $cursor_actor_id = (int) $db->fetchOne("SELECT COALESCE(MAX(actor_id), 0) + 1 FROM " . $db->quoteIdentifier('lupo_actors'), array());
+    }
+    $db->insert('lupo_actors', array(
+        'actor_id' => $cursor_actor_id,
+        'actor_type' => 'ai_agent',
+        'slug' => 'cursor-ide-agent',
+        'name' => 'Cursor IDE Agent',
+        'created_ymdhis' => $current_utc,
+        'updated_ymdhis' => $current_utc,
+        'is_active' => 1,
+        'is_deleted' => 0,
+        'actor_source_type' => 'agent',
+    ));
+    $cursor_actor = $db->fetchRow("SELECT actor_id, slug, name, actor_type FROM " . $db->quoteIdentifier('lupo_actors') . " WHERE actor_id = :aid LIMIT 1", array('aid' => $cursor_actor_id));
+    echo "Created CURSOR actor with ID: " . $cursor_actor['actor_id'] . "\n\n";
 }
 
 // WOLFIE LABS Declaration

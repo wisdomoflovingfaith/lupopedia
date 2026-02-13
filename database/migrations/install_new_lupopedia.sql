@@ -27,7 +27,7 @@ CREATE UNIQUE INDEX lupo_actors_unique_slug ON lupo_actors (slug);
 CREATE INDEX lupo_actors_idx_actor_type ON lupo_actors (actor_type);
 CREATE INDEX lupo_actors_idx_is_active ON lupo_actors (is_active);
 CREATE INDEX lupo_actors_idx_created_ymdhis ON lupo_actors (created_ymdhis);
-ALTER TABLE lupo_actors CHANGE actor_id actor_id bigint NOT NULL AUTO_INCREMENT;
+-- RESERVED ID DOCTRINE: actor_id is NOT AUTO_INCREMENT; application must supply explicit ID.
 
 CREATE TABLE lupo_actor_actions (
   actor_action_id bigint NOT NULL,
@@ -1132,7 +1132,7 @@ CREATE INDEX lupo_auth_users_idx_is_active ON lupo_auth_users (is_active);
 CREATE INDEX lupo_auth_users_idx_is_deleted ON lupo_auth_users (is_deleted);
 CREATE INDEX lupo_auth_users_idx_created_ymdhis ON lupo_auth_users (created_ymdhis);
 CREATE INDEX lupo_auth_users_idx_updated_ymdhis ON lupo_auth_users (updated_ymdhis);
-ALTER TABLE lupo_auth_users CHANGE auth_user_id auth_user_id bigint NOT NULL AUTO_INCREMENT;
+-- RESERVED ID DOCTRINE: auth_user_id is NOT AUTO_INCREMENT; application must supply explicit ID.
 
 CREATE TABLE lupo_calibration_impacts (
   calibration_impact_id bigint NOT NULL,
@@ -2814,20 +2814,6 @@ CREATE TABLE lupo_human_history_meta (
 );
 
 
-CREATE TABLE lupo_integration_test_results (
-  test_result_id bigint NOT NULL,
-  test_suite varchar(64) NOT NULL,
-  test_case varchar(128) NOT NULL,
-  expected_result varchar(255) DEFAULT NULL,
-  actual_result varchar(255) DEFAULT NULL,
-  status varchar(64) NOT NULL,
-  error_message text,
-  execution_time_ms int DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
-  PRIMARY KEY (test_result_id)
-);
-
-
 CREATE TABLE lupo_interface_translations (
   interface_translation_id bigint NOT NULL,
   language_code varchar(8) NOT NULL,
@@ -2965,16 +2951,6 @@ CREATE INDEX lupo_legacy_content_mapping_idx_content_id ON lupo_legacy_content_m
 CREATE INDEX lupo_legacy_content_mapping_idx_is_active ON lupo_legacy_content_mapping (is_active);
 CREATE INDEX lupo_legacy_content_mapping_idx_created ON lupo_legacy_content_mapping (created_ymdhis);
 CREATE INDEX lupo_legacy_content_mapping_idx_created_ymdhis ON lupo_legacy_content_mapping (created_ymdhis, is_active);
-
-CREATE TABLE lupo_memory_debug_log (
-  memory_debug_log_id bigint NOT NULL,
-  event_type varchar(64) NOT NULL,
-  details text NOT NULL,
-  created_ymdhis bigint NOT NULL,
-  PRIMARY KEY (memory_debug_log_id)
-);
-
-CREATE INDEX lupo_memory_debug_log_idx_type_created ON lupo_memory_debug_log (event_type, created_ymdhis);
 
 CREATE TABLE lupo_memory_events (
   memory_event_id bigint NOT NULL,
@@ -3126,24 +3102,6 @@ CREATE INDEX lupo_multi_agent_critique_sync_idx_event_agent ON lupo_multi_agent_
 CREATE INDEX lupo_multi_agent_critique_sync_idx_sync_status ON lupo_multi_agent_critique_sync (sync_status);
 CREATE INDEX lupo_multi_agent_critique_sync_idx_sync_role ON lupo_multi_agent_critique_sync (sync_role);
 CREATE INDEX lupo_multi_agent_critique_sync_idx_consensus_contribution ON lupo_multi_agent_critique_sync (consensus_contribution);
-
-CREATE TABLE lupo_narrative_fragments (
-  narrative_fragment_id bigint NOT NULL,
-  agent_id bigint DEFAULT NULL,
-  fragment_type varchar(100) DEFAULT NULL,
-  title varchar(255) DEFAULT NULL,
-  fragment_text text NOT NULL,
-  metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
-  updated_ymdhis bigint DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (narrative_fragment_id)
-);
-
-CREATE INDEX lupo_narrative_fragments_idx_agent ON lupo_narrative_fragments (agent_id);
-CREATE INDEX lupo_narrative_fragments_idx_type ON lupo_narrative_fragments (fragment_type);
-CREATE INDEX lupo_narrative_fragments_idx_created ON lupo_narrative_fragments (created_ymdhis);
 
 CREATE TABLE lupo_notifications (
   notification_id bigint NOT NULL,
@@ -3505,9 +3463,10 @@ CREATE INDEX lupo_semantic_translations_idx_updated ON lupo_semantic_translation
 CREATE INDEX lupo_semantic_translations_idx_deleted ON lupo_semantic_translations (is_deleted);
 
 CREATE TABLE lupo_sessions (
-  session_id varchar(100) NOT NULL,
-  federation_node_id bigint NOT NULL DEFAULT '1',
-  actor_id bigint NOT NULL DEFAULT '0',
+  session_id varchar(255) NOT NULL,
+  federation_node_id bigint NOT NULL DEFAULT 1,
+  actor_id bigint NOT NULL DEFAULT 0,
+  channel_id bigint NOT NULL DEFAULT 1,
   ip_address varchar(45) NOT NULL DEFAULT '',
   user_agent varchar(255) NOT NULL DEFAULT '',
   device_id varchar(100) DEFAULT NULL,
@@ -3515,17 +3474,21 @@ CREATE TABLE lupo_sessions (
   auth_method varchar(30) DEFAULT NULL,
   auth_provider varchar(50) DEFAULT NULL,
   security_level varchar(64) NOT NULL DEFAULT 'medium',
-  is_active tinyint NOT NULL DEFAULT '1',
-  is_expired tinyint NOT NULL DEFAULT '0',
-  is_revoked tinyint NOT NULL DEFAULT '0',
+  name_key varchar(100) DEFAULT NULL,
+  is_named tinyint NOT NULL DEFAULT 0,
+  is_authenticated tinyint NOT NULL DEFAULT 0,
+  is_active tinyint NOT NULL DEFAULT 1,
+  is_expired tinyint NOT NULL DEFAULT 0,
+  is_revoked tinyint NOT NULL DEFAULT 0,
   session_data text,
+  system_context varchar(50) DEFAULT NULL,
   metadata json DEFAULT NULL,
   login_ymdhis bigint DEFAULT NULL,
   last_seen_ymdhis bigint NOT NULL,
   expires_ymdhis bigint DEFAULT NULL,
   created_ymdhis bigint NOT NULL,
   updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
+  is_deleted tinyint NOT NULL DEFAULT 0,
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (session_id)
 );
@@ -3667,20 +3630,6 @@ CREATE TABLE lupo_temporal_coherence_snapshots (
 CREATE INDEX lupo_temporal_coherence_snapshots_idx_created_ymdhis ON lupo_temporal_coherence_snapshots (created_ymdhis);
 CREATE INDEX lupo_temporal_coherence_snapshots_idx_utc_anchor ON lupo_temporal_coherence_snapshots (utc_anchor);
 CREATE INDEX lupo_temporal_coherence_snapshots_idx_is_deleted ON lupo_temporal_coherence_snapshots (is_deleted);
-
-CREATE TABLE lupo_test_performance_metrics (
-  test_id bigint NOT NULL,
-  test_category varchar(64) NOT NULL,
-  test_name varchar(128) NOT NULL,
-  execution_time_ms int NOT NULL,
-  memory_usage_mb decimal(10,2) DEFAULT NULL,
-  cpu_usage_percent decimal(5,2) DEFAULT NULL,
-  success_rate decimal(5,2) DEFAULT NULL,
-  error_count int DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
-  PRIMARY KEY (test_id)
-);
-
 
 CREATE TABLE lupo_tldnr (
   tldnr_id bigint NOT NULL,
@@ -3850,7 +3799,7 @@ CREATE TABLE lupo_unified_analytics_paths (
   unified_analytics_path_id bigint NOT NULL,
   from_page_id bigint DEFAULT NULL,
   to_page_id bigint DEFAULT NULL,
-  year_month char(6) NOT NULL,
+  year_month_yyyymm char(6) NOT NULL,
   transition_type varchar(64) NOT NULL,
   transition_count int NOT NULL DEFAULT '0',
   metadata_json json DEFAULT NULL,
