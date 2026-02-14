@@ -21,7 +21,7 @@
 
 ## 1. Canonical current version
 
-The **current version** of Lupopedia is **4.0.1**.
+The **current version** of Lupopedia is **4.0.6**.
 
 This is the only correct “current version” number for the codebase. No other “current version” may be introduced unless explicitly instructed.
 
@@ -49,10 +49,10 @@ Only **Cursor** is allowed to increment the version number.
 Patch increments follow this pattern:
 
 ```
-4.0.1 → 3.0.2
-3.0.2 → 3.0.3
+4.0.5 → 4.0.6
+4.0.6 → 4.0.7
 …
-3.0.998 → 3.0.999
+4.0.998 → 4.0.999
 ```
 
 The **minor** and **major** version must never be incremented unless Eric explicitly instructs.
@@ -124,7 +124,9 @@ Only these SQL files remain in the **canonical** migrations folder (`database/mi
 - drop_old_crafty_syntax_tables.sql
 - future_features_lupopedia.sql
 
-All other migrations belong in **database/migrations/legacy/**.
+One-time migration patches (migration_operator_to_actor_channel_roles.sql, migration_drop_lupo_channel_roles.sql) exist for existing databases; the wizard does not run them. New installs use install_new_lupopedia.sql only.
+
+All other migrations belong in **database/migrations_legacy/**.
 
 Cursor must **not** move migration files again unless explicitly instructed.
 
@@ -144,9 +146,9 @@ Cursor must **not** move migration files again unless explicitly instructed.
 |------|-----------|
 | **Single file** | Only `docs/doctrine/VERSIONING_DOCTRINE.md` exists; no duplicates or suffixed copies. |
 | **Cleanup** | The one-time versioning cleanup is complete. |
-| **Canonical version** | The canonical current version is **4.0.1**. |
+| **Canonical version** | The canonical current version is **4.0.6**. |
 | **4.1.0** | 4.1.0 is allowed **only** for future-release planning (required tables, roadmaps, hotfix registry, etc.); it must not be used as the current version. |
-| **Patch increments** | Only Cursor increments patch versions (4.0.1 → 3.0.2 → …); minor/major are changed only when Eric explicitly instructs. |
+| **Patch increments** | Only Cursor increments patch versions (4.0.6 → 4.0.7 → …); minor/major are changed only when Eric explicitly instructs. |
 | **Historical versions** | Historical version numbers (3.0.x, 3.0.0, 4.0.1, 4.1.0 as future marker) are frozen and must not be “fixed” or normalized. |
 | **No further renames/rewrites** | No further version rewrites, file renames, or schema-sync renames shall occur without explicit instruction. |
 | **No 4.2.x / 4.3.x** | 4.2.x and 4.3.x must not appear unless Eric explicitly instructs that the public release is happening. |

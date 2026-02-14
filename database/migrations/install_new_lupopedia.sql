@@ -1325,23 +1325,6 @@ CREATE TABLE lupo_channel_log_types (
 
 CREATE UNIQUE INDEX lupo_channel_log_types_uniq_type_key ON lupo_channel_log_types (type_key);
 
-CREATE TABLE lupo_channel_roles (
-  channel_role_id bigint NOT NULL,
-  channel_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  role_type varchar(64) NOT NULL,
-  metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (channel_role_id)
-);
-
-CREATE INDEX lupo_channel_roles_idx_channel_id ON lupo_channel_roles (channel_id);
-CREATE INDEX lupo_channel_roles_idx_actor_id ON lupo_channel_roles (actor_id);
-CREATE INDEX lupo_channel_roles_idx_role_type ON lupo_channel_roles (role_type);
-
 CREATE TABLE lupo_channel_state (
   channel_state_id bigint NOT NULL,
   channel_id bigint NOT NULL,
@@ -2069,6 +2052,22 @@ CREATE TABLE lupo_departments (
 CREATE INDEX lupo_departments_idx_name ON lupo_departments (name);
 CREATE INDEX lupo_departments_idx_type ON lupo_departments (department_type);
 CREATE INDEX lupo_departments_idx_federation_node ON lupo_departments (federation_node_id);
+
+CREATE TABLE lupo_department_roles (
+  department_role_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  department_id bigint NOT NULL,
+  role_key varchar(64) NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (department_role_id)
+);
+
+CREATE INDEX lupo_department_roles_idx_actor_id ON lupo_department_roles (actor_id);
+CREATE INDEX lupo_department_roles_idx_department_id ON lupo_department_roles (department_id);
+CREATE INDEX lupo_department_roles_idx_role_key ON lupo_department_roles (role_key);
 
 CREATE TABLE lupo_department_metadata (
   department_metadata_id bigint NOT NULL,

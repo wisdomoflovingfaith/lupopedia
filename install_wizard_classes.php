@@ -1,6 +1,6 @@
 <?php
 /**
- * Lupopedia 4.0.4 — Install Wizard Classes
+ * Lupopedia 4.0.6 — Install Wizard Classes
  *
  * Helper logic converted from install.php into classes per CLASS_CONVERSION_DOCTRINE.md.
  * PHP 5.3–compatible: no type hints, no return types, no short arrays, no ??.
@@ -303,16 +303,21 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
         @chmod($configPath, 0644);
         $log[] = InstallWizardLogger::logEntry('ok', 'Wrote lupopedia-config.php');
 
-        // After install/upgrade, Lupopedia must use only lupopedia-config.php. Remove or backup Crafty config.php.
+        // INSTALL REDIRECT DOCTRINE (4.0.6+): After wizard generates lupopedia-config.php, delete old config.php.
+        // Safety: only delete if lupopedia-config.php exists, is readable, and has correct content.
         $craftyConfig = $configDir . DIRECTORY_SEPARATOR . 'config.php';
         if (is_file($craftyConfig)) {
-            $backupPath = $configDir . DIRECTORY_SEPARATOR . 'config_backup.php';
-            if (@rename($craftyConfig, $backupPath)) {
-                $log[] = InstallWizardLogger::logEntry('ok', 'Renamed Crafty config.php to config_backup.php; lupopedia-config.php is now the only active config.');
-            } elseif (@unlink($craftyConfig)) {
-                $log[] = InstallWizardLogger::logEntry('ok', 'Removed Crafty config.php; lupopedia-config.php is now the only active config.');
+            $safeToDelete = (is_file($configPath) && is_readable($configPath));
+            if ($safeToDelete) {
+                $verify = @file_get_contents($configPath, false, null, 0, 200);
+                $safeToDelete = ($verify !== false && strpos($verify, 'LUPOPEDIA_CONFIG_LOADED') !== false);
+            }
+            if ($safeToDelete && @unlink($craftyConfig)) {
+                $log[] = InstallWizardLogger::logEntry('ok', 'Deleted Crafty config.php; lupopedia-config.php is now the only active config.');
+            } elseif (!$safeToDelete) {
+                $log[] = InstallWizardLogger::logEntry('skip', 'Skipped deleting config.php: lupopedia-config.php missing or unreadable.');
             } else {
-                $log[] = InstallWizardLogger::logEntry('error', 'Could not rename or remove config.php; please remove or rename it manually so only lupopedia-config.php is used.');
+                $log[] = InstallWizardLogger::logEntry('error', 'Could not delete config.php; please remove it manually so only lupopedia-config.php is used.');
             }
         }
 
@@ -475,6 +480,64 @@ class InstallWizardNormalize {
 }
 
 /**
+ * System department (department_id = 0). Must exist before any other departments.
+ * Reserved, not user-selectable. Department 0 cannot be edited or deleted by the wizard.
+ */
+class InstallWizardDepartments {
+
+    /** Reserved department_id for system/global roles. Must not be edited or deleted. */
+    const SYSTEM_DEPARTMENT_ID = 0;
+
+    public static function ensureSystemDepartment($pdo, &$log) {
+        $check = $pdo->prepare("SELECT 1 FROM lupo_departments WHERE department_id = 0 LIMIT 1");
+        $check->execute(array());
+        if ($check->fetchColumn()) {
+            $log[] = InstallWizardLogger::logEntry('skip', 'System department (0) already exists.');
+        } else {
+            $now = (int) gmdate('YmdHis');
+            $ins = $pdo->prepare("
+                INSERT INTO lupo_departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+                VALUES (0, 1, 'System', 'System Department (Reserved)', 'system', 0, NULL, ?, ?, 0, NULL)
+            ");
+            try {
+                $ins->execute(array($now, $now));
+                $log[] = InstallWizardLogger::logEntry('ok', 'Created system department (department_id = 0).');
+            } catch (PDOException $e) {
+                $log[] = InstallWizardLogger::logEntry('error', 'Failed to create system department (see server log).');
+                error_log('Lupopedia ensureSystemDepartment: ' . $e->getMessage());
+            }
+        }
+        self::ensureDefaultDepartment($pdo, $log);
+    }
+
+    /** Ensure department 1 (General) exists for channels. Required after import which may omit it. */
+    public static function ensureDefaultDepartment($pdo, &$log) {
+        $check = $pdo->prepare("SELECT 1 FROM lupo_departments WHERE department_id = 1 LIMIT 1");
+        $check->execute(array());
+        if ($check->fetchColumn()) {
+            return;
+        }
+        $now = (int) gmdate('YmdHis');
+        $ins = $pdo->prepare("
+            INSERT INTO lupo_departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+            VALUES (1, 1, 'General', 'Default department for channels', 'general', 0, NULL, ?, ?, 0, NULL)
+        ");
+        try {
+            $ins->execute(array($now, $now));
+            $log[] = InstallWizardLogger::logEntry('ok', 'Created default department (department_id = 1).');
+        } catch (PDOException $e) {
+            $log[] = InstallWizardLogger::logEntry('error', 'Failed to create default department (see server log).');
+            error_log('Lupopedia ensureDefaultDepartment: ' . $e->getMessage());
+        }
+    }
+
+    /** Whether department_id is the reserved system department (not user-selectable, cannot edit/delete). */
+    public static function isSystemDepartment($departmentId) {
+        return (int) $departmentId === self::SYSTEM_DEPARTMENT_ID;
+    }
+}
+
+/**
  * Channel creation for install/upgrade. Uses department_id only.
  * Group tables (lupo_groups, lupo_actor_group_membership) are removed; organizational scope is department only.
  */
@@ -499,12 +562,6 @@ class InstallWizardChannels {
                 channel_key, channel_slug, channel_type, language, channel_name, description, website_link,
                 status_flag, created_ymdhis, updated_ymdhis, is_deleted, is_kernel
             ) VALUES (?, ?, 0, 0, ?, ?, ?, ?, 'en', ?, ?, NULL, 1, ?, ?, 0, ?)
-        ");
-        $nextRoleId = (int) $pdo->query("SELECT COALESCE(MAX(channel_role_id), 0) + 1 FROM lupo_channel_roles")->fetchColumn();
-        $insRole = $pdo->prepare("
-            INSERT INTO lupo_channel_roles (
-                channel_role_id, channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted
-            ) VALUES (?, ?, 0, 'captain', ?, ?, 0)
         ");
         $nextAcrId = (int) $pdo->query("SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM lupo_actor_channel_roles")->fetchColumn();
         $insAcr = $pdo->prepare("
@@ -534,10 +591,8 @@ class InstallWizardChannels {
                 ));
                 $log[] = InstallWizardLogger::logEntry('ok', 'Created reserved channel ' . $channelId . ' (' . $def['key'] . ').');
                 if ($def['captain']) {
-                    $insRole->execute(array($nextRoleId, $channelId, $now, $now));
                     $insAcr->execute(array($nextAcrId, $channelId, $now, $now));
                     $log[] = InstallWizardLogger::logEntry('ok', 'Assigned system actor (0) as captain for channel ' . $channelId . '.');
-                    $nextRoleId++;
                     $nextAcrId++;
                 }
             } catch (PDOException $e) {
@@ -639,6 +694,7 @@ class InstallWizardChannels {
         }
 
         // Global admin channel (channel_id = 1): assign captain to each Crafty admin (livehelp_users.isadmin = 'Y').
+        // Also assign admins to department 0 (system department): actor_departments + department_roles (role_key='administrator').
         try {
             $adminStmt = $pdo->query("
                 SELECT u.user_id, u.username FROM livehelp_users u
@@ -646,8 +702,11 @@ class InstallWizardChannels {
             ");
             if ($adminStmt) {
                 $admins = $adminStmt->fetchAll(PDO::FETCH_ASSOC);
+                $nextAdId = (int) $pdo->query("SELECT COALESCE(MAX(actor_department_id), 0) + 1 FROM lupo_actor_departments")->fetchColumn();
+                $nextDrId = (int) $pdo->query("SELECT COALESCE(MAX(department_role_id), 0) + 1 FROM lupo_department_roles")->fetchColumn();
+                $insAd = $pdo->prepare("INSERT INTO lupo_actor_departments (actor_department_id, actor_id, department_id, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (?, ?, 0, 'System Administrator', ?, ?, 0, NULL)");
+                $insDr = $pdo->prepare("INSERT INTO lupo_department_roles (department_role_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (?, ?, 0, 'administrator', ?, ?, 0, NULL)");
                 foreach ($admins as $admin) {
-                    $uid = (int) $admin['user_id'];
                     $uname = trim((string) $admin['username']);
                     $au = $pdo->prepare("SELECT auth_user_id FROM lupo_auth_users WHERE username = ? LIMIT 1");
                     $au->execute(array($uname));
@@ -660,6 +719,19 @@ class InstallWizardChannels {
                             $insAcr->execute(array($nextAcrId, $actorId, 1, $now, $now));
                             $log[] = InstallWizardLogger::logEntry('ok', 'Assigned captain on Administration (channel 1) for ' . $uname . '.');
                             $nextAcrId++;
+                        }
+                        $checkAd = $pdo->prepare("SELECT 1 FROM lupo_actor_departments WHERE actor_id = ? AND department_id = 0 AND is_deleted = 0 LIMIT 1");
+                        $checkAd->execute(array($actorId));
+                        if (!$checkAd->fetchColumn()) {
+                            $insAd->execute(array($nextAdId, $actorId, $now, $now));
+                            $nextAdId++;
+                        }
+                        $checkDr = $pdo->prepare("SELECT 1 FROM lupo_department_roles WHERE actor_id = ? AND department_id = 0 AND role_key = 'administrator' AND is_deleted = 0 LIMIT 1");
+                        $checkDr->execute(array($actorId));
+                        if (!$checkDr->fetchColumn()) {
+                            $insDr->execute(array($nextDrId, $actorId, $now, $now));
+                            $log[] = InstallWizardLogger::logEntry('ok', 'Assigned administrator on System department (0) for ' . $uname . '.');
+                            $nextDrId++;
                         }
                     }
                 }

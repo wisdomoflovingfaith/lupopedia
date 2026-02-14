@@ -5,7 +5,7 @@
  *
  * findpuka(): returns the next available primary-key ID in a table within an allowed range.
  * Does NOT use AUTO_INCREMENT or lastInsertId(). For use with lupo_actors, lupo_channels,
- * lupo_channel_roles, lupo_auth_users, and other registry-backed tables.
+ * lupo_actor_channel_roles, lupo_auth_users, and other registry-backed tables.
  */
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {

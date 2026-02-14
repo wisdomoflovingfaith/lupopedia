@@ -2,7 +2,7 @@
 /**
  * Department selection page (legacy choosedepartment.php equivalent).
  * Lists departments from lupo_departments; form posts to livehelp.php.
- * Uses lupo_channel_roles + lupo_channels for staffed departments (any channel in dept has a role).
+ * Uses lupo_actor_channel_roles + lupo_channels for staffed departments (any channel in dept has a role).
  * All URLs use LUPOPEDIA_PUBLIC_PATH.
  */
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
@@ -52,9 +52,9 @@ if ($session_id === '') {
 $departments = array();
 $online_by_dept = array();
 if ($db instanceof \PDO_DB) {
-    $departments = $db->fetchAll("SELECT department_id, name FROM {$prefix}departments WHERE is_deleted = 0 ORDER BY name");
+    $departments = $db->fetchAll("SELECT department_id, name FROM {$prefix}departments WHERE is_deleted = 0 AND department_id > 0 ORDER BY name");
     $rows = $db->fetchAll(
-        "SELECT c.department_id FROM {$prefix}channel_roles r " .
+        "SELECT c.department_id FROM {$prefix}actor_channel_roles r " .
         "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
         "WHERE r.is_deleted = 0 AND c.department_id > 0"
     );

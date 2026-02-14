@@ -121,10 +121,10 @@ $CSLH_Config = array('floatxy' => '200|160');
 
 $parentdot = !empty($UNTRUSTED['frameparent']) ? 'parent.' : '';
 
-// Default department: first lupo_departments row
+// Default department: first user-selectable lupo_departments row (exclude department 0 = system)
 $defaultdepartment = 0;
 $row2 = $mydatabase->fetchRow(
-    "SELECT department_id FROM {$prefix}departments WHERE is_deleted = 0 ORDER BY department_id ASC LIMIT 1"
+    "SELECT department_id FROM {$prefix}departments WHERE is_deleted = 0 AND department_id > 0 ORDER BY department_id ASC LIMIT 1"
 );
 if ($row2 !== null) {
     $defaultdepartment = (int) $row2['department_id'];

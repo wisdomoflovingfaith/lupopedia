@@ -1,8 +1,9 @@
-# Required Tables for Lupopedia 4.0.2 (Patch-Only)
+# Required Tables for Lupopedia 4.0.6 (Patch-Only)
 
-**Version:** 4.0.2 (patch-only; no 4.1.x in this document)  
+**Version:** 4.0.6 (patch-only; no 4.1.x in this document)  
 **Canonical install:** `database/migrations/install_new_lupopedia.sql`  
-**Future-features definitions:** `database/migrations/future_features_lupopedia.sql`
+**Future-features definitions:** `database/migrations/future_features_lupopedia.sql`  
+**Upgrade path:** Crafty Syntax 3.7.5 → Lupopedia 4.0.x (ONLY supported path)
 
 ---
 
@@ -17,8 +18,8 @@
 ## Session, Roles, and Scope
 
 - **Session table:** `{prefix}sessions`. The table `{prefix}unified_sessions` is obsolete and has been removed from the install.
-- **Roles:** Channel-scoped only. The only role table is `{prefix}channel_roles`. The table `{prefix}actor_roles` is **DROPPED**; use `{prefix}channel_roles` with default channel_id = 1 for system-wide permissions.
-- **Organizational scope:** The sole organizational unit is the **department**. Use `{prefix}departments` and `{prefix}actor_departments`. Permissions (`{prefix}permissions`) use `department_id`; do not use `{prefix}groups` or `{prefix}actor_group_membership` (removed).
+- **Roles (3-layer model):** (1) Channel roles (`{prefix}actor_channel_roles`: captain, administrator, monitor); (2) Department roles (`{prefix}department_roles`: administrator for channel's department); (3) System roles (department_id = 0: administrator = global admin). Resolution order: channel → department → system. If any match → permission granted. **NO lupo_channel_roles** (removed in 4.0.6).
+- **Organizational scope:** The sole organizational unit is the **department**. Use `{prefix}departments` and `{prefix}actor_departments`. Department 0 is reserved (system department); not user-selectable. Permissions (`{prefix}permissions`) use `department_id`; do not use `{prefix}groups` or `{prefix}actor_group_membership` (removed).
 
 ---
 
@@ -54,7 +55,7 @@ These tables are targets of `import_from_old_crafty_syntax.sql`. They **must** r
 
 ## Required Lupopedia Core Tables
 
-*(All tables in this section are in `install_new_lupopedia.sql`. Count excludes the four tables moved to future_features.)*
+*(All tables in this section are in `install_new_lupopedia.sql`. Count excludes the four tables moved to future_features. lupo_channel_roles removed in 4.0.6.)*
 
 - lupo_actor_actions
 - lupo_actor_capabilities
@@ -129,6 +130,7 @@ These tables are targets of `import_from_old_crafty_syntax.sql`. They **must** r
 - lupo_crafty_syntax_chat_mod_departments
 - lupo_crafty_user_mapping
 - lupo_crm_leads
+- lupo_department_roles
 - lupo_dialog_channels
 - lupo_dialog_messages
 - lupo_dialog_threads

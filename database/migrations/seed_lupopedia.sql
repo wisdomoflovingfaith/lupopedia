@@ -13,6 +13,18 @@ SET @now = 20260211000000;
 SET @node_id = 1;
 
 -- -----------------------------------------------------------------------------
+-- System department (department_id = 0) — reserved, not user-selectable
+-- -----------------------------------------------------------------------------
+INSERT INTO lupo_departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (0, 1, 'System', 'System Department (Reserved)', 'system', 0, NULL, @now, @now, 0, NULL);
+
+-- -----------------------------------------------------------------------------
+-- Default department (department_id = 1) — for channels when no Crafty departments exist
+-- -----------------------------------------------------------------------------
+INSERT INTO lupo_departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (1, 1, 'General', 'Default department for channels', 'general', 0, NULL, @now, @now, 0, NULL);
+
+-- -----------------------------------------------------------------------------
 -- Unified registry (lupo_unified_registry)
 -- -----------------------------------------------------------------------------
 INSERT INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_id`, `entity_key`, `entity_name`, `dedicated_index_id`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) VALUES (1, 'channel', 0, 'system/kernel', 'System Kernel Channel', 0, 'lupo_channels', 1, 20260106084500, 20260122160000, 0, NULL, 1, 1, '{"language": "en", "description": "Reserved channel for bootstrapping, migrations, and OS-level events.", "status_flag": 1, "channel_type": "chat_room", "channel_number": 0}');

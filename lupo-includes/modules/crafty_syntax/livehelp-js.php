@@ -80,7 +80,7 @@ $parentdot = (!empty($_GET['frameparent'])) ? 'parent.' : '';
 $force = !empty($_GET['force']);
 
 if ($department === 0) {
-    $row = $db->fetchRow("SELECT department_id FROM {$prefix}departments WHERE is_deleted = 0 ORDER BY department_id ASC LIMIT 1", array());
+    $row = $db->fetchRow("SELECT department_id FROM {$prefix}departments WHERE is_deleted = 0 AND department_id > 0 ORDER BY department_id ASC LIMIT 1", array());
     $department = ($row !== null && isset($row['department_id'])) ? (int) $row['department_id'] : 0;
 }
 $dept_id = $department;
@@ -110,15 +110,15 @@ if (!empty($_GET['leaveamessage'])) {
     $leaveamessage = (strtoupper((string)$_GET['leaveamessage']) === 'NO') ? 'NO' : 'YES';
 }
 
-// Any channel in this department with at least one role? (lupo_channel_roles + lupo_channels) — PDO_DB wrapper only
+// Any channel in this department with at least one role? (lupo_actor_channel_roles + lupo_channels) — PDO_DB wrapper only
 $noonehome = true;
 if ($department !== 0) {
     $onlineRow = $db->fetchRow(
-        "SELECT 1 FROM {$prefix}channel_roles r INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 WHERE c.department_id = :dept AND r.is_deleted = 0 LIMIT 1",
+        "SELECT 1 FROM {$prefix}actor_channel_roles r INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 WHERE c.department_id = :dept AND r.is_deleted = 0 LIMIT 1",
         array('dept' => $department)
     );
 } else {
-    $onlineRow = $db->fetchRow("SELECT 1 FROM {$prefix}channel_roles WHERE is_deleted = 0 LIMIT 1", array());
+    $onlineRow = $db->fetchRow("SELECT 1 FROM {$prefix}actor_channel_roles WHERE is_deleted = 0 LIMIT 1", array());
 }
 if ($onlineRow !== null) {
     $noonehome = false;

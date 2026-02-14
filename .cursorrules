@@ -85,7 +85,7 @@ Cursor must follow this workflow for **every** patch iteration. When enough chan
 
 **Full doctrine:** See **.cursor/rules/required-tables-future-features-doctrine.mdc** for the complete required-tables split, future_features_lupopedia.sql canonical file, install/future separation, migrations cleanup, and audit maintenance. That rule is always applied and mandatory for every patch cycle (4.0.2 → 4.0.999).
 
-**Required tables** = ALL tables referenced in `import_from_old_crafty_syntax.sql` + ALL tables used by active PHP classes + ALL tables required by the wizard, installer, seed logic, or runtime. Authoritative list: **docs/REQUIRED_TABLES_4.0.2.md**.
+**Required tables** = ALL tables referenced in `import_from_old_crafty_syntax.sql` + ALL tables used by active PHP classes + ALL tables required by the wizard, installer, seed logic, or runtime. Authoritative list: **docs/REQUIRED_TABLES_4.0.6.md**.
 
 **Forbidden:**
 

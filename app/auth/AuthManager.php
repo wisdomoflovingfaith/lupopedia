@@ -75,7 +75,7 @@ class AuthManager
     }
 
     /**
-     * Get permissions for the current user. Uses lupo_auth_users and lupo_channel_roles (channel-scoped roles only).
+     * Get permissions for the current user. Uses lupo_auth_users and lupo_actor_channel_roles (channel-scoped roles only).
      * Default channel for system-wide permissions is channel_id = 1.
      */
     public function getUserPermissions()
@@ -95,21 +95,21 @@ class AuthManager
             array('id' => $user->id)
         );
         if ($actor) {
-            $roleT = $this->db->quoteIdentifier(LUPO_TABLE_PREFIX . 'channel_roles');
+            $roleT = $this->db->quoteIdentifier(LUPO_TABLE_PREFIX . 'actor_channel_roles');
             $roles = $this->db->fetchAll(
-                "SELECT role_type FROM $roleT WHERE actor_id = :aid AND channel_id = :cid AND (is_deleted = 0 OR is_deleted IS NULL)",
+                "SELECT role_key FROM $roleT WHERE actor_id = :aid AND channel_id = :cid AND (is_deleted = 0 OR is_deleted IS NULL)",
                 array('aid' => $actor['actor_id'], 'cid' => 1)
             );
             foreach ($roles as $r) {
-                $roleType = isset($r['role_type']) ? $r['role_type'] : '';
-                if (in_array($roleType, array('captain', 'administrator'), true)) {
+                $roleKey = isset($r['role_key']) ? $r['role_key'] : '';
+                if (in_array($roleKey, array('captain', 'administrator'), true)) {
                     $permissions[] = 'admin_access';
                     $permissions[] = 'user_management';
                     $permissions[] = 'system_configuration';
-                } elseif ($roleType === 'editor') {
+                } elseif ($roleKey === 'editor') {
                     $permissions[] = 'content_editing';
                     $permissions[] = 'collection_management';
-                } elseif (in_array($roleType, array('monitor', 'operator', 'support'), true)) {
+                } elseif (in_array($roleKey, array('monitor', 'administrator'), true)) {
                     $permissions[] = 'chat_support';
                     $permissions[] = 'visitor_tracking';
                 }

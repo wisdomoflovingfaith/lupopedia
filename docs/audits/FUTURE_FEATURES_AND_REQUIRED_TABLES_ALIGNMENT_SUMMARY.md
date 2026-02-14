@@ -13,7 +13,7 @@ Required tables are the union of:
 - **Importer tables:** Every table referenced in `database/migrations/import_from_old_crafty_syntax.sql` (INSERT/UPDATE/TRUNCATE/DELETE targets).
 - **Runtime / wizard / seed / class-implemented:** All tables used by active PHP (app/, lupo-includes/), wizard, installer, seed_lupopedia.sql, and runtime features.
 
-The canonical list is documented in **docs/REQUIRED_TABLES_4.0.2.md** under:
+The canonical list is documented in **docs/REQUIRED_TABLES_4.0.6.md** under:
 
 - **Required Crafty Syntax Compatibility Tables (Importer)** — 21 tables (importer targets).
 - **Required Lupopedia Core Tables** — 200 tables (after moving 4 to future_features).
@@ -51,7 +51,7 @@ Their full `CREATE TABLE` and index definitions were removed from `install_new_l
 ## 4. Confirmations
 
 - **All importer tables are in the required list.**  
-  Every table referenced in `import_from_old_crafty_syntax.sql` is listed in docs/REQUIRED_TABLES_4.0.2.md as Required Crafty Syntax Compatibility or Required Lupopedia Core. None were removed or moved.
+  Every table referenced in `import_from_old_crafty_syntax.sql` is listed in docs/REQUIRED_TABLES_4.0.6.md as Required Crafty Syntax Compatibility or Required Lupopedia Core. None were removed or moved.
 
 - **No importer table was removed or moved.**  
   No table that appears in `import_from_old_crafty_syntax.sql` was moved to `future_features_lupopedia.sql` or dropped from the install.
@@ -63,7 +63,7 @@ Their full `CREATE TABLE` and index definitions were removed from `install_new_l
   It contains exactly the four tables listed in §2. No DROP, ALTER, or data manipulation; only CREATE TABLE and indexes. Schema doctrine applied (no FKs, no triggers, BIGINT timestamps, no UNSIGNED, no integer display widths).
 
 - **Required-tables documentation matches the actual SQL.**  
-  docs/REQUIRED_TABLES_4.0.2.md reflects the split between required (install) and future features (future_features_lupopedia.sql) and includes the doctrine note: required = importer + runtime + wizard + seed + class-implemented; future = non-required; no table in `import_from_old_crafty_syntax.sql` may be removed or moved to future_features.
+  docs/REQUIRED_TABLES_4.0.6.md reflects the split between required (install) and future features (future_features_lupopedia.sql) and includes the doctrine note: required = importer + runtime + wizard + seed + class-implemented; future = non-required; no table in `import_from_old_crafty_syntax.sql` may be removed or moved to future_features.
 
 ---
 

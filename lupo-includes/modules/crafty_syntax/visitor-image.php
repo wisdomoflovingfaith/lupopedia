@@ -2,7 +2,7 @@
 /**
  * Visitor image endpoint (legacy image.php equivalent).
  * Serves getstate (online/offline icon) and getcredit (credit line image)
- * using Lupopedia schema: lupo_channel_roles + lupo_channels for staffed departments, lupo_department_metadata.
+ * using Lupopedia schema: lupo_actor_channel_roles + lupo_channels for staffed departments, lupo_department_metadata.
  * All paths use LUPOPEDIA_PUBLIC_PATH for URLs.
  */
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
@@ -108,19 +108,19 @@ if ($session_id !== '' && $what === 'getstate') {
     }
 }
 
-// Any channel in this department with at least one role? (lupo_channel_roles + lupo_channels)
+// Any channel in this department with at least one role? (lupo_actor_channel_roles + lupo_channels)
 $noonehome = true;
 try {
     if ($department !== 0) {
         $stmt = $db->prepare(
-            "SELECT 1 FROM {$prefix}channel_roles r " .
+            "SELECT 1 FROM {$prefix}actor_channel_roles r " .
             "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
             "WHERE c.department_id = :dept AND r.is_deleted = 0 LIMIT 1"
         );
         $stmt->execute(array(':dept' => $department));
     } else {
         $stmt = $db->prepare(
-            "SELECT 1 FROM {$prefix}channel_roles WHERE is_deleted = 0 LIMIT 1"
+            "SELECT 1 FROM {$prefix}actor_channel_roles WHERE is_deleted = 0 LIMIT 1"
         );
         $stmt->execute(array());
     }
@@ -141,7 +141,7 @@ $hide = isset($_GET['hide']) && (string)$_GET['hide'] === 'Y';
 try {
     $dept_id = $department;
     if ($dept_id === 0 && $db instanceof \PDO_DB) {
-        $row = $db->fetchRow("SELECT department_id FROM {$prefix}departments WHERE is_deleted = 0 LIMIT 1");
+        $row = $db->fetchRow("SELECT department_id FROM {$prefix}departments WHERE is_deleted = 0 AND department_id > 0 ORDER BY department_id ASC LIMIT 1");
         $dept_id = $row ? (int) $row['department_id'] : 0;
     }
     if ($dept_id !== 0) {

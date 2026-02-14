@@ -38,45 +38,37 @@ define( 'LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__) );
  
 /**
  * The full path to the config file, preferably in a private directory outside the public root.
- * 
- * Config file search order (MANDATORY - DO NOT SIMPLIFY):
- * 1. One directory ABOVE the server's DOCUMENT_ROOT (most secure, preferred)
- * 2. One directory above DOCUMENT_ROOT + the Lupopedia public path
+ *
+ * INSTALL REDIRECT DOCTRINE (4.0.6+): If lupopedia-config.php does NOT exist, ALWAYS redirect
+ * to install.php. config.php MUST NOT block or override this redirect. A white page must never occur.
+ *
+ * Config search order for lupopedia-config.php:
+ * 1. One directory ABOVE DOCUMENT_ROOT (most secure, preferred)
+ * 2. One directory above DOCUMENT_ROOT + Lupopedia public path
  * 3. Inside the Lupopedia directory itself (fallback)
- * 
- * This multi-path search ensures:
- * - Maximum security (config outside web root)
- * - Flexibility (works in different hosting environments)
- * - Backward compatibility (Crafty Syntax subdirectory pattern)
- * 
+ *
  * @var string
  */
 
-// Config load order: lupopedia-config.php first; only then config.php (legacy Crafty). After install, only lupopedia-config is used.
+$lupopediaConfigPath = null;
 // Path 1: One directory ABOVE DOCUMENT_ROOT (most secure, preferred)
 if (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php')) {
-    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php');
+    $lupopediaConfigPath = dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php';
 }
 // Path 2: One directory above DOCUMENT_ROOT + Lupopedia public path
 elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php')) {
-    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php');
+    $lupopediaConfigPath = dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php';
 }
 // Path 3: Inside the Lupopedia directory itself (fallback)
 elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
-    define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/lupopedia-config.php');
+    $lupopediaConfigPath = LUPOPEDIA_PATH . '/lupopedia-config.php';
 }
-// Legacy: Crafty config.php only if lupopedia-config.php does not exist
-elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/config.php')) {
-    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . '/config.php');
-}
-elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/config.php')) {
-    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/config.php');
-}
-elseif (@file_exists(LUPOPEDIA_PATH . '/config.php')) {
-    define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/config.php');
-}
-// No config found - redirect to install/upgrade wizard (project root)
-else {
+
+if ($lupopediaConfigPath !== null) {
+    define('LUPOPEDIA_CONFIG_PATH', $lupopediaConfigPath);
+} else {
+    // lupopedia-config.php does NOT exist: ALWAYS redirect to install.php (INSTALL REDIRECT DOCTRINE).
+    // config.php must NOT block this. Redirect before any output.
     $installUrl = rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/') . '/install.php';
     if ($installUrl === '/install.php') {
         $installUrl = '/install.php';

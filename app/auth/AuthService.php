@@ -138,6 +138,18 @@ class AuthService
     }
 
     /**
+     * Whether the actor has admin-level permission for a channel (3-layer: channel → department → system).
+     *
+     * @param int $actorId
+     * @param int $channelId
+     * @return bool
+     */
+    public function hasAdminForChannel($actorId, $channelId)
+    {
+        return $this->roleResolver->hasAdminForChannel((int) $actorId, (int) $channelId);
+    }
+
+    /**
      * Require user to be logged in; redirect to login with redirect param if not.
      * Exits on redirect. Also redirects if password_change_required in session.
      */

@@ -4,11 +4,144 @@ Canonical version history.
 
 ## Versioning doctrine (4.0.x)
 
-- **Purpose of 4.0.x:** The 4.0.x series (4.0.0 → 4.0.4 and all future 4.0.x patches) is a development and stabilization series. It exists solely to refine the single supported upgrade path: **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. Each patch is an iteration on the installer, wizard, importer, doctrine enforcement, and compatibility rules for that path.
+- **Purpose of 4.0.x:** The 4.0.x series (4.0.0 → 4.0.6 and all future 4.0.x patches) is a development and stabilization series. It exists solely to refine the single supported upgrade path: **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. Each patch is an iteration on the installer, wizard, importer, doctrine enforcement, and compatibility rules for that path.
 - **No Lupopedia → Lupopedia upgrades before 4.1.0.** In the 4.0.x line there are no supported upgrades from an existing Lupopedia installation. The only valid inputs are a new install or an upgrade from Crafty Syntax 3.7.5.
 - **4.1.0** will be the first version to support Lupopedia → Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
 
 ---
+
+## Lupopedia 4.0.6 — Stabilization Patch (System Department, 3-Layer Permissions, Installer Fixes)
+
+Lupopedia 4.0.6 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
+There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
+
+This patch includes:
+
+### 1. Install Redirect Doctrine (Constitutional)
+
+- **index.php:** If `lupopedia-config.php` does NOT exist, ALWAYS redirect to `install.php`. config.php MUST NOT block this redirect. Redirect occurs before any output. A white page must never occur.
+- This rule is mandatory for all future versions.
+
+### 2. Config Deletion After Install
+
+- **install_wizard_classes.php:** After successfully writing `lupopedia-config.php`, the wizard now **deletes** (not renames) the old `config.php`.
+- Safety check: Only delete if `lupopedia-config.php` exists, is readable, and contains `LUPOPEDIA_CONFIG_LOADED`. If not safe, skip deletion and log.
+
+### 3. lupo_channel_roles Removal (Identity Doctrine)
+
+- **install_new_lupopedia.sql:** Removed `lupo_channel_roles` table. Identity doctrine: NO lupo_channel_roles.
+- **install_wizard_classes.php:** Removed dual-write to `lupo_channel_roles`; reserved channels now use only `lupo_actor_channel_roles`.
+- **AuthRoleResolver.php:** Switched from `lupo_channel_roles` / `role_type` to `lupo_actor_channel_roles` / `role_key`.
+- **AuthManager.php:** Switched from `lupo_channel_roles` / `role_type` to `lupo_actor_channel_roles` / `role_key`.
+- **livehelp-js.php, visitor-image.php, choosedepartment.php, operator-accept-visitor-api.php:** All "anyone online" and role checks now use `lupo_actor_channel_roles`.
+- **database/migrations/migration_drop_lupo_channel_roles.sql:** New migration to drop `lupo_channel_roles` for existing databases. Run after `migration_operator_to_actor_channel_roles.sql` if upgrading from pre-4.0.5.
+
+### 4. System Department (department_id = 0)
+
+- **Department 0** seeded as the **System Department** in `seed_lupopedia.sql` and `import_from_old_crafty_syntax.sql`.
+- **Department 1** seeded as **General** (default department for channels) in seed and import.
+- **install_wizard_classes.php:** `InstallWizardDepartments::ensureSystemDepartment()` creates department 0 if missing; `ensureDefaultDepartment()` creates department 1 if missing.
+- **install.php:** `ensureSystemDepartment()` runs before reserved channels (new install) and after import (upgrade).
+- **import_from_old_crafty_syntax.sql:** Ensures department 0 and 1 exist after department import; assigns Crafty admins (`isadmin='Y'`) to department 0:
+  - `lupo_actor_departments` (actor membership in department 0)
+  - `lupo_department_roles` (`role_key='administrator'` for department 0)
+- Department 0 is **protected**: cannot be edited, cannot be deleted, hidden from UI (choosedepartment.php, livehelp-js.php, livehelp_js.php, visitor-image.php use `department_id > 0`).
+- **Helper functions:** `lupo_is_system_department($department_id)`, `InstallWizardDepartments::isSystemDepartment($departmentId)`.
+- **Constant:** `LUPO_SYSTEM_DEPARTMENT_ID` = 0.
+
+**Files involved:** `seed_lupopedia.sql`, `import_from_old_crafty_syntax.sql`, `install_new_lupopedia.sql`, `install_wizard_classes.php`, `install.php`, `REQUIRED_TABLES_4.0.6.md`.
+
+### 5. 3-Layer Permission Resolution Model
+
+- **AuthRoleResolver** updated with new permission hierarchy (resolution order: channel → department → system):
+
+1. **Channel roles** (captain, administrator, monitor) → `lupo_actor_channel_roles`
+2. **Department roles** (administrator in channel's department) → `lupo_department_roles`
+3. **System roles** (department 0: administrator) → global admin for ALL departments
+
+- **AuthRoleResolver.php:** `hasAdminForChannel($actorId, $channelId)` for channel-scoped admin checks; `getDepartmentIdForChannel($channelId)` private helper; `hasAdminViaPermissions()` fallback; `isAdmin()` delegates to channel 1 admin check via `hasAdminForChannel`.
+- **AuthService.php:** `hasAdminForChannel($actorId, $channelId)`.
+- **auth-helpers.php:** `lupo_has_admin_for_channel($actor_id, $channel_id)`.
+- **lupo_department_roles** table: required for department-scoped roles; indexed on actor_id, department_id, role_key.
+
+**Files involved:** `app/auth/AuthRoleResolver.php`, `app/auth/AuthService.php`, `lupo-includes/functions/auth-helpers.php`.
+
+### 6. Channel → Department Link
+
+- All channels have exactly one `department_id` (lupo_channels schema).
+- Permission checks use the channel's `department_id` for layer 2 (department roles).
+- `getDepartmentIdForChannel()` used consistently in AuthRoleResolver for department-role lookups.
+
+**Files involved:** `AuthRoleResolver.php`, `channels-controller.php`, `install_wizard_classes.php`.
+
+### 7. Installer / Importer / Wizard Updates
+
+**Installer:**
+- `ensureSystemDepartment()` creates department 0.
+- `ensureDefaultDepartment()` creates department 1.
+- Department 0 protected via `isSystemDepartment()`.
+- After import, installer ensures departments 0 and 1 exist.
+
+**Importer:**
+- Ensures department 0 and 1 exist (INSERT ON DUPLICATE / INSERT IGNORE).
+- Assigns Crafty admins to department 0 (actor_departments + department_roles).
+- Preserves `actor_id = auth_user_id` mapping.
+
+**Wizard:**
+- Department 0 hidden from UI (excluded from department lists).
+- Department 0 cannot be edited or deleted.
+
+**Files involved:** `install_wizard_classes.php`, `install.php`, `import_from_old_crafty_syntax.sql`.
+
+### 8. PHP 5.3 Compatibility Sweep (Continuation from 4.0.5)
+
+- Additional `[]` → `array()` conversions across updated files.
+- Enforcement of `array()` only; no short array syntax.
+- Removal of PHP 5.4+ syntax where introduced.
+- **operator-accept-visitor-api.php:** Replaced `??` with `isset() ? : `; replaced `[]` with `array()` in json_encode and execute(); replaced `Throwable` with `Exception`; `date()` → `gmdate()` for UTC.
+- **Rule:** `.cursor/rules/php-5-3-compatibility.mdc` — short array syntax never generated in new or edited code.
+- **Audit report:** `docs/audits/PHP_5_3_ARRAY_SYNTAX_SWEEP_REPORT.md` documents the sweep and patterns.
+
+### 9. Role System Consistency
+
+- All permission checks use `lupo_actor_channel_roles` and `role_key` (captain, administrator, monitor).
+- No code references `role_type`, `lupo_channel_roles`, or operator privileges.
+- **reserved-id-helpers.php:** Comment updated (lupo_channel_roles → lupo_actor_channel_roles).
+
+### 10. Migrations for Existing Installs
+
+- **database/migrations/migration_drop_lupo_channel_roles.sql:** Drops `lupo_channel_roles` for existing databases. Run after `migration_operator_to_actor_channel_roles.sql` if upgrading from pre-4.0.5.
+- **database/migrations/migration_system_department_and_admin_roles.sql:** Idempotent migration that:
+  - Creates `lupo_department_roles` if missing (with indexes).
+  - Inserts department 0 if missing.
+  - Inserts department 1 if missing.
+  - Assigns existing admins (from `lupo_actor_channel_roles` channel 1 or `lupo_permissions` admin module) to department 0 in `lupo_actor_departments` and `lupo_department_roles`.
+
+### 11. Versioning and Documentation
+
+- **docs/doctrine/VERSIONING_DOCTRINE.md:** Updated to current version 4.0.6. Patch pattern 4.0.6 → 4.0.7.
+- **docs/REQUIRED_TABLES_4.0.6.md:** Created; replaces REQUIRED_TABLES_4.0.2.md. Removed lupo_channel_roles. Roles = lupo_actor_channel_roles + lupo_department_roles. Describes department 0 (system), department 1 (default), and 3-layer permission model.
+- **TOONs:** Regenerated after schema changes via `scripts/generate_toon_files.py`.
+- Updated references in .cursorrules, required-tables-future-features-doctrine.mdc, FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md, future_features_lupopedia.sql.
+
+### 12. Additional Changes
+
+- **install_wizard_classes.php:** Crafty admins assigned captain on channel 1 and administrator on department 0 during `createOperatorChannels`.
+- **livehelp-js.php, livehelp_js.php, visitor-image.php, choosedepartment.php:** Default department selection excludes department 0 (`AND department_id > 0`).
+- **systemHasNoAdmins():** Now checks `lupo_department_roles` for department 0 before channel roles and permissions.
+
+**Files modified (representative):** `index.php`, `app/auth/AuthRoleResolver.php`, `app/auth/AuthService.php`, `lupo-includes/functions/auth-helpers.php`, `install_wizard_classes.php`, `install.php`, `database/migrations/seed_lupopedia.sql`, `database/migrations/import_from_old_crafty_syntax.sql`, `database/migrations/install_new_lupopedia.sql`, `database/migrations/migration_system_department_and_admin_roles.sql`, `database/migrations/migration_drop_lupo_channel_roles.sql`, `docs/doctrine/VERSIONING_DOCTRINE.md`, `docs/REQUIRED_TABLES_4.0.6.md`, `lupo-includes/modules/crafty_syntax/choosedepartment.php`, `lupo-includes/modules/crafty_syntax/livehelp-js.php`, `lupo-includes/modules/crafty_syntax/visitor-image.php`, `livehelp_js.php`, `lupo-includes/modules/channels/operator-accept-visitor-api.php`, `lupo-includes/functions/reserved-id-helpers.php`.
+
+**Versioning Note:**  
+Lupopedia 4.0.x is a development/stabilization series.  
+The ONLY supported upgrade path is:
+
+    Crafty Syntax 3.7.5 → Lupopedia 4.0.x
+
+There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**.
+
+---
+
 
 ## Lupopedia 4.0.5 — Stabilization Patch (Role-Based Identity, PHP 5.3 Compatibility)
 

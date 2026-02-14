@@ -93,6 +93,28 @@ function lupo_is_admin($actor_id) {
 }
 
 /**
+ * Check if an actor has admin-level permission for a channel (3-layer: channel → department → system).
+ *
+ * @param int $actor_id   Actor ID to check
+ * @param int $channel_id Channel ID
+ * @return bool
+ */
+function lupo_has_admin_for_channel($actor_id, $channel_id) {
+    $s = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+    return $s ? $s->hasAdminForChannel((int) $actor_id, (int) $channel_id) : false;
+}
+
+/**
+ * Whether department_id is the reserved system department (0). Not user-selectable; cannot edit/delete.
+ *
+ * @param int $department_id
+ * @return bool
+ */
+function lupo_is_system_department($department_id) {
+    return (int) $department_id === 0;
+}
+
+/**
  * Get auth_user_id from actor_id (thin wrapper — logic in ActorService).
  *
  * @param int $actor_id Actor ID

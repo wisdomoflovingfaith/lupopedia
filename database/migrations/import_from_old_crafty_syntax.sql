@@ -230,6 +230,15 @@ SELECT
     NULL AS deleted_ymdhis
 FROM livehelp_departments;
 
+-- System department (department_id = 0): reserved, must exist. Overwrite if livehelp_departments had recno=0.
+INSERT INTO lupo_departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (0, 1, 'System', 'System Department (Reserved)', 'system', 0, NULL, CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED), CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED), 0, NULL)
+ON DUPLICATE KEY UPDATE name = 'System', description = 'System Department (Reserved)', department_type = 'system', default_actor_id = 0, updated_ymdhis = CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED);
+
+-- Default department (department_id = 1): for channels when livehelp_departments is empty or has no recno=1.
+INSERT IGNORE INTO lupo_departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (1, 1, 'General', 'Default department for channels', 'general', 0, NULL, CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED), CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED), 0, NULL);
+
 TRUNCATE lupo_department_metadata;
 
 INSERT INTO lupo_department_metadata (
@@ -1169,6 +1178,39 @@ INNER JOIN livehelp_users u ON u.user_id = od.user_id
 INNER JOIN lupo_auth_users au ON au.username = u.username
 INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
 SET ad.actor_id = a.actor_id;
+
+-- Global admins: assign each Crafty admin (isadmin='Y') to department 0.
+-- lupo_actor_departments: actor membership in system department
+-- lupo_department_roles: role_key='administrator' (admin for ALL departments)
+INSERT INTO lupo_actor_departments (actor_department_id, actor_id, department_id, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+SELECT base + rn, actor_id, 0, 'System Administrator', ts, ts, 0, NULL
+FROM (
+    SELECT a.actor_id, @arn := @arn + 1 AS rn
+    FROM livehelp_users u
+    INNER JOIN lupo_auth_users au ON au.username = u.username
+    INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
+    CROSS JOIN (SELECT @arn := 0) v
+    WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y' AND (u.is_deleted = 0 OR u.is_deleted IS NULL)
+      AND NOT EXISTS (SELECT 1 FROM lupo_actor_departments ad2 WHERE ad2.actor_id = a.actor_id AND ad2.department_id = 0 AND (ad2.is_deleted = 0 OR ad2.is_deleted IS NULL))
+    ORDER BY a.actor_id
+) t
+CROSS JOIN (SELECT COALESCE(MAX(actor_department_id), 0) AS base FROM lupo_actor_departments) m
+CROSS JOIN (SELECT CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS ts) ts;
+
+INSERT INTO lupo_department_roles (department_role_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+SELECT base + rn, actor_id, 0, 'administrator', ts, ts, 0, NULL
+FROM (
+    SELECT a.actor_id, @drn := @drn + 1 AS rn
+    FROM livehelp_users u
+    INNER JOIN lupo_auth_users au ON au.username = u.username
+    INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
+    CROSS JOIN (SELECT @drn := 0) v
+    WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y' AND (u.is_deleted = 0 OR u.is_deleted IS NULL)
+      AND NOT EXISTS (SELECT 1 FROM lupo_department_roles dr2 WHERE dr2.actor_id = a.actor_id AND dr2.department_id = 0 AND dr2.role_key = 'administrator' AND (dr2.is_deleted = 0 OR dr2.is_deleted IS NULL))
+    ORDER BY a.actor_id
+) t
+CROSS JOIN (SELECT COALESCE(MAX(department_role_id), 0) AS base FROM lupo_department_roles) m
+CROSS JOIN (SELECT CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS ts) ts;
 
 -- ======================================================================
 -- livehelp_referers_daily               → lupo_unified_referers
