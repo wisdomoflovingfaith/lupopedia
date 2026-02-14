@@ -1,999 +1,404 @@
-FILE: README.md
-TYPE: md
+## 🐺 Lupopedia 4.0.x  
+### Crafty Syntax Reborn + Semantic OS + Optional AI Agents
 
-PURPOSE: Project overview, doctrine boot block, and entry point for contributors and AI agents. Defines identity model, database rules, and mandatory reading before making changes.
+**Lupopedia 4.0.x is the official evolution of Crafty Syntax Live Help 3.7.5.**  
+It includes **every feature** of Crafty Syntax — real‑time chat, operator sessions, visitor tracking, departments, proactive invites, transcripts, and all legacy behavior — and extends it with a **Semantic Operating System** and **optional AI chat agents**.
 
-DETAILS:
-- Status: Canonical project readme
-- Audience: Contributors, AI agents (Cursor, Windsurf, JetBrains, etc.), maintainers
-- Required reading: docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md, docs/doctrine/LUPOPEDIA_DOCTRINE_v1.1.md, docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md
-- Do not modify doctrine or schema without TOON source and migration workflow.
+Lupopedia is **not a CMS** and **not a framework**.  
+It is a **semantic OS** that records meaning, relationships, and navigation across content, channels, and actors. Crafty Syntax becomes **Module 1** inside this OS.
 
 ---
 
-# 🐺 Lupopedia
+### Origins: From WOLFIE to Lupopedia
 
-**Lupopedia is a semantic operating system (not a CMS or framework). It records meaning; it doesn't impose it.**
+Lupopedia began as **WOLFIE** (originally *Wisdom Of Loving Faith Integrity Ethics*), a spiritual research engine designed to ingest 144,000 books from 22 religions and map correlations between their teachings. That early prototype required 222 tables to capture scripture, symbolism, lineage, and cross‑textual relationships.
 
-Lupopedia includes **all the live help features of Crafty Syntax** — real-time chat, operator sessions, visitor tracking, departments, proactive invites, transcripts, and the rest — and builds **on top of that** a **semantic OS** for relations between files, content, and people. Actors have **roles by channel**; channels, collections, and content are connected through a unified identity and relationship layer. So you get the full Crafty Syntax experience plus a structured layer of meaning, navigation, and governance.
+As the system grew, it became clear that WOLFIE wasn't just analyzing religion — it was becoming a platform capable of organizing any domain of knowledge. The spiritual engine evolved into the **Web‑Organized Linked Federated Intelligent Ecosystem (WOLFIE)** architecture, and WOLFIE evolved into Lupopedia.
 
-## The Five Pillars
+Today, Lupopedia 4.0.x carries forward this heritage. The schema has been refined from 222 to a stable core; the goal is to keep the system under 200 tables (196 as of 2/14/2026, per TOON files). Every table has a purpose; every subsystem is a chapter in a living OS designed to last decades.
 
-1. **Actor Pillar** - Identity is primary (email = login)
-2. **Temporal Pillar** - Time is the spine (BIGINT UTC timestamps)
-3. **Edge Pillar** - Relationships are meaning (no foreign keys, app-managed)
-4. **Doctrine Pillar** - Law prevents drift (rules in text files)
-5. **Emergence Pillar** - Roles are discovered, not assigned
+For the complete origin story, see [HISTORY.md](docs/channels/appendix/HISTORY.md) and the [Founder's Note](docs/channels/appendix/FOUNDERS_NOTE.md).
 
-## How It Works
+---
 
-- **Collections** = Navigation universes (each has its own tabs)
-- **Tabs** = User-defined semantic categories (you choose the names)
-- **Content** = Stored in `lupo_content` table
-- **Meaning** = Created when content is placed under tabs
+### The Five Pillars
 
-## Doctrine Boot Block (Required for All AI Agents)
+Lupopedia uses **actors** because humans, system identities, and AI agents all participate in the same semantic and relational universe. While there are separate `users` and `agents` tables for human‑specific and agent‑specific metadata, **all relationships in the system use `actor_id`**. The `actors` table is the unified identity layer for the entire semantic OS.
 
-IMPORTANT — Lupopedia uses an ACTOR MODEL:
+All installations worldwide share a **unified global registry** for `actor_id`, `collection_id`, and `channel_id`. IDs are consistent, portable, and globally meaningful across every Lupopedia node. A given actor, collection, or channel has the same identity whether it lives on one server or thousands.
 
-- actor_id is the primary identity key
-- There is no user_id
-- All sessions, permissions, ownership, and uploads use actor_id
-- auth_user_id is only for human login
-- No foreign keys, triggers, or stored procedures
-- All timestamps use YYYYMMDDHHIISS in UTC
-- Schema changes must come from TOON files in /docs/toons/
-- Table limit is 222
-- Python = maintenance (scripts/python/, PyMySQL, explicit SQL)
-- PHP = runtime only (no schema changes)
-- Uploads use SHA256 hash filenames under uploads/{actors,agents,channels,operators}/YYYY/MM/
-- LEXA enforces doctrine and boundaries in the gateway
+Lupopedia is built on five architectural pillars:
 
-Never introduce user_id.
-Never add foreign keys, triggers, or stored procedures.
-Never modify schema without TOON source.
-Never let PHP perform migrations.
+- **Unified Actor Pillar** – One identity layer for humans, system identities, and AI agents. `actor_id` is used everywhere; there is no `user_id` in relationships. Email = login for human actors. The actor model underpins the semantic OS and multi‑agent ecosystem.
 
-## Lupopedia Doctrine
+- **Temporal Pillar** – Time is the spine. All timestamps are `BIGINT` in `YYYYMMDDHHIISS` UTC format. No DATETIME, no epoch seconds; application code sets every timestamp.
 
-Lupopedia is governed by a strict canonical doctrine that defines:
+- **Relationship Pillar** – Relationships are meaning. No foreign keys; edges and relationships are managed entirely by application logic. The database stores raw facts; the application enforces correctness.
 
-- **Identity model** (`actor_id`, not `user_id`)
-- **Database rules** (no foreign keys, triggers, or stored procedures)
-- **Timestamp format** (`YYYYMMDDHHIISS` UTC)
-- **Schema source of truth** (TOON files in `/docs/toons/`)
-- **Language boundaries** (Python = maintenance, PHP = runtime)
-- **Upload structure** (hash-based, date-based)
-- **Session and login behavior**
-- **Agent model and registry**
-- **LEXA's enforcement role**
-- **Multi-agent workflow**
+- **Doctrine Pillar** – Law prevents drift. Rules are codified in text files (TOON, doctrine Markdown). Schema source of truth is TOON files; no schema changes without TOON source.
 
-**All contributors and AI agents must read and follow:**
+- **Federation Pillar** – Installations worldwide share the same ID space and meaning. `actor_id`, `collection_id`, and `channel_id` are globally consistent and portable. Lupopedia is a federated knowledge system, not a centralized service.
 
-📘 **[`docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md`](docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md)**
+---
 
-📘 **[`docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md`](docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md)** — Common AI corrections: database (no FKs, no triggers, no display widths, no UNSIGNED), time (UTC YYYYMMDDHHIISS only), state (no deadlines), identity (BIGINT only), advertising/humor/psychological manipulation prohibitions, and filename rules. **All AI agents must read this before generating code or SQL.**
+### What Lupopedia 4.0.x Includes
+
+- **All Crafty Syntax features**, preserved exactly  
+- **Modernized identity model** (actor_id everywhere, no user_id)  
+- **Semantic OS layer**  
+  - Collections  
+  - Tabs  
+  - Content atoms  
+  - Meaning edges  
+- **Optional AI agents** that can join live chats  
+- **Unified actor system** for humans, agents, and system identities  
+- **Doctrine‑driven architecture** (no foreign keys, UTC timestamps, TOON‑based schema)  
+
+---
+
+### What Lupopedia 4.0.x Is
+
+- A **drop‑in upgrade** for Crafty Syntax 3.7.5  
+- A **semantic reference layer** that runs alongside any website  
+- A **multi‑agent ecosystem** with optional AI participation  
+- A **federated knowledge system** that installs anywhere Crafty Syntax installs  
+
+---
+
+### What Lupopedia 4.0.x Is NOT
+
+- Not a CMS  
+- Not a rewrite of Crafty Syntax  
+- Not a framework  
+- Not a centralized service  
+- Not a replacement for your website  
+
+---
+
+### Versioning: The 4.0.x Doctrine
+
+Lupopedia 4.0.x (4.0.0 → 4.0.4 and all future 4.0.x patches) are **repeated development attempts at stabilizing the same upgrade path**:
+
+#### **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**
+
+- **There are NO Lupopedia → Lupopedia upgrades** in the 4.0.x series.  
+- **4.0.x is a development/stabilization series**, not a forward‑upgradeable series.  
+- **The ONLY supported upgrade path before 4.1.0** is:  
+  **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**  
+- **4.1.0** will be the **first** version that supports Lupopedia → Lupopedia upgrades.  
+- **4.1.0 will not exist** until a stable 4.0.x release is published through auto‑installers (Softaculous, Installatron, etc.).  
+
+---
+
+### Semantic OS Overview
+
+Lupopedia adds a semantic layer on top of Crafty Syntax:
+
+- **Collections** = navigation universes (each has its own tabs)  
+- **Tabs** = user‑defined semantic categories (you choose the names)  
+- **Content atoms** = reference entries describing pages, documents, or URLs  
+- **Meaning edges** = relationships created when content is placed under tabs  
+
+Lupopedia does not impose meaning — **it records the meaning you define**.
+
+**How it works:**  
+Users create tabs, subtabs, and collections. Lupopedia extracts tab‑paths, normalizes them into semantic concepts ("atoms"), builds weighted edges between content and concepts, and grows a knowledge graph organically over time. This enables intelligent discovery, related‑content recommendations, and emergent categories — all without manual tagging.
+
+---
+
+### Doctrine Boot Block (Required for All AI Agents)
+
+**IMPORTANT — Lupopedia uses an ACTOR MODEL:**
+
+- `actor_id` is the primary identity key; there is no `user_id`.  
+- All sessions, permissions, ownership, and uploads use `actor_id`.  
+- `auth_user_id` is only for human login.  
+- **No foreign keys, triggers, or stored procedures** (absolute prohibition).  
+- All timestamps use `YYYYMMDDHHIISS` in UTC.  
+- Schema changes must come from TOON files in `/docs/toons/`.  
+- Table count goal: under 200 (196 as of 2/14/2026; enforced by doctrine).  
+- **Python** = maintenance (`scripts/python/`, PyMySQL, explicit SQL).  
+- **PHP** = runtime only (no schema changes). PHP must be compatible with **PHP 5.3 through 8.3+**. Do not use PHP 8‑only features (named arguments, attributes, union types, match expressions). New code must use OOP (classes, methods).  
+- Uploads use SHA256 hash filenames under `uploads/{actors,agents,channels,operators}/YYYY/MM/`.  
+- **LEXA** enforces doctrine and boundaries in the gateway.  
+
+Never introduce `user_id`. Never add foreign keys, triggers, or stored procedures. Never modify schema without a TOON source. Never let PHP perform migrations.
+
+All contributors and AI agents must read and follow:
+
+- 📘 [docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md](docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md)  
+- 📘 [docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md](docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md) — Common AI corrections: database (no FKs, no triggers, no display widths, no UNSIGNED), time (UTC YYYYMMDDHHIISS only), state (no deadlines), identity (BIGINT only), advertising/humor/psychological manipulation prohibitions, and filename rules.  
 
 Any AI coding agent (JetBrains, Cursor, Claude, etc.) must be initialized with this doctrine before making changes to the codebase.
 
-## NO ADS, NO SEO, NO MARKETING — ABSOLUTE PROHIBITION
+---
+
+### ⚠️ CRITICAL DATABASE DOCTRINE — READ THIS FIRST
+
+- **NO FOREIGN KEYS.** All relationships are managed in application code. The database stores raw facts; the application enforces correctness and referential integrity.
+
+- **NO TRIGGERS. NO STORED PROCEDURES. NO STORED FUNCTIONS. NO VIEWS.**  
+  The database is for storage only. All timestamp handling, cascades, and business logic must be done explicitly in application code. Triggers and stored procedures interfere with data merging, historical accuracy, ANIBUS repair operations, and federation sync.
+
+- **TRIGGERS ARE FORBIDDEN (MANDATORY):** All timestamps must be set explicitly in `INSERT`/`UPDATE` statements in `YMDHIS` UTC format.
+
+- **STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** The database is for storage, not computation. All logic must be in application code.
+
+This is non‑negotiable core doctrine. All AI tools must follow these rules.
+
+---
+
+### ⏱️ CRITICAL TIMESTAMP DOCTRINE — MANDATORY FOR ALL AI AGENTS
+
+🚨 **ALL TIMESTAMPS MUST BE STORED AS INTEGERS IN `YYYYMMDDHHIISS` FORMAT (e.g. `20260214153045`). NO EXCEPTIONS.**
+
+Use `BIGINT(14)` columns. All timestamps are UTC. Set in application code (e.g. `gmdate('YmdHis')`), never by the database.
+
+⚠️ **FORBIDDEN:** `DATETIME`, `TIMESTAMP` columns, epoch seconds, ISO8601 strings, timezone‑aware fields, ORM helpers, SQL date arithmetic.  
+✅ **REQUIRED:** `BIGINT(14)`, integer `YYYYMMDDHHIISS` format, UTC only, use `timestamp_ymdhis` class for arithmetic.
+
+**CRITICAL BUG PREVENTION:** Never add seconds directly to `YYYYMMDDHHIISS` timestamps — this produces invalid timestamps like `20260110120086400`. Always use `timestamp_ymdhis::addSeconds()` or convert to epoch, add seconds, then convert back.
+
+Examples:  
+✅ Correct: `$now = (int) gmdate('YmdHis');`  
+✅ Correct: `$expires = timestamp_ymdhis::addSeconds($now, 86400);`  
+❌ WRONG: `$expires = $now + 86400;`  
+❌ WRONG: `$timestamp = time();`  
+
+See [TIMESTAMP_DOCTRINE.md](docs/doctrine/TIMESTAMP_DOCTRINE.md) for complete canonical documentation.
+
+---
+
+### 📁 CRITICAL SUBDIRECTORY INSTALLATION DOCTRINE — MANDATORY
+
+🚨 **LUPOPEDIA IS ALWAYS INSTALLED IN A SUBDIRECTORY. NEVER ASSUME ROOT INSTALLATION.**
+
+⚠️ **FORBIDDEN:** Hardcoded root paths like `/login`, `/admin`, `/assets/css/main.css`.  
+✅ **REQUIRED:** All paths MUST use the `LUPOPEDIA_PUBLIC_PATH` constant.
+
+Examples:  
+✅ `LUPOPEDIA_PUBLIC_PATH . '/login'`  
+✅ `LUPOPEDIA_PUBLIC_PATH . '/admin'`  
+✅ `LUPOPEDIA_PUBLIC_PATH . '/lupo-includes/css/main.css'`  
+❌ `/login`  
+
+`LUPOPEDIA_PUBLIC_PATH` is automatically set to `'/' . basename(__DIR__)`, which evaluates to the folder name (e.g., `/lupopedia`). This ensures Lupopedia works in any subdirectory without code changes.
+
+See [SUBDIRECTORY_INSTALLATION_DOCTRINE.md](docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md) for complete details.
+
+---
+
+## 🔒 SECURITY DOCTRINE — MANDATORY FOR ALL CONTRIBUTORS
+
+### 8.1 PHP Compatibility Security
+
+- PHP 5.3–8.3+ compatibility requires explicit security checks:
+  - No deprecated or removed functions (e.g. `mysql_*`)
+  - MySQLi or PDO only
+  - No PHP 8‑only features
+  - Bundled libraries must be the latest versions compatible with PHP 5.3
+
+### 8.2 Input Validation
+
+- All input must be filtered, validated, and sanitized
+- SQL must use parameterized queries only
+- HTML output must be escaped (`htmlspecialchars`)
+- JSON/API input must be schema‑validated
+- File uploads must use whitelist validation
+
+### 8.3 File Upload Security
+
+- SHA256 hash filenames (already documented)
+- Type whitelist only
+- Size limits enforced
+- No executable uploads
+- Malware scanning recommended
+
+### 8.4 Session Management
+
+- Strong session IDs
+- Database‑backed session storage
+- Explicit expiration in `YYYYMMDDHHIISS`
+- Regenerate on privilege change
+- HTTP‑only and secure flags when available
+
+### 8.5 Configuration Security
+
+- `lupopedia-config.php` must have 0640 permissions
+- Credentials stored only in config, never in code
+- No sensitive data in version control
+- Encryption recommended for production
+
+### 8.6 Error Handling
+
+- Generic errors shown to users
+- Detailed logs written to files
+- Debug mode disabled in production
+- No stack traces exposed
+
+### 8.7 Dependency Security
+
+- All third‑party libraries must be bundled
+- No runtime downloads (Composer, npm, etc.)
+- Versions documented in `VERSIONS.md`
+- Security patches applied within 30 days
+
+### 8.8 Security Violation Classification
+
+- **CRITICAL:** SQL injection, RCE, auth bypass → BLOCKED
+- **MAJOR:** XSS, path traversal, weak sessions → HOLD
+- **MINOR:** Information disclosure → CLEAR with warning
+
+---
+
+## 🔍 SECURITY AUDIT DOCTRINE
+
+- All code changes must undergo security review before merge
+- Quarterly full security audits required
+- Immediate audit required after any security incident
+- AI‑generated code must pass the same security review as human code
+
+---
+
+### 🚫 NO ADS, NO SEO, NO MARKETING — ABSOLUTE PROHIBITION
 
 Lupopedia does not participate in advertising, SEO manipulation, marketing optimization, sponsored content, affiliate linking, or any form of semantic distortion for profit.
 
-No agent, subsystem, or future contributor may introduce:
-- ads
-- tracking
-- impression systems
-- ranking manipulation
-- "suggested content" based on money
-- SEO hacks
-- monetization hooks
-- data distortion for visibility
+**No agent, subsystem, or future contributor may introduce:**  
+- ads  
+- tracking  
+- impression systems  
+- ranking manipulation  
+- "suggested content" based on money  
+- SEO hacks  
+- monetization hooks  
+- data distortion for visibility  
 
-Lupopedia recommendations are based solely on DATA and SYSTEM LOGIC — never money.
+Lupopedia recommendations are based solely on **DATA and SYSTEM LOGIC — never money.** This rule is absolute. No exceptions. No negotiations.
 
-This rule is absolute. No exceptions. No negotiations. No amount of money can override this doctrine.
+🚨 **Trauma Boundary:** This prohibition also protects the system architect from PTSD‑like responses to advertising manipulation. See [PTSD & Emotional Harm From Advertising Manipulation](docs/doctrine/PTSD_ADVERTISING_DOCTRINE.md) for complete context.
 
-**🚨 Trauma Boundary**: This prohibition also protects the system architect from PTSD-like responses to advertising manipulation. See [PTSD & Emotional Harm From Advertising Manipulation](docs/channels/doctrine/PTSD_ADVERTISING_HARM_BOUNDARY.md) for complete context.
+---
 
-## What You Don't Build
+### What You Don't Build / What You Do Build
 
-- You don't build every system
-- You don't define tabs for users
-- You don't impose meaning
-- **You record what users define**
+**You don't build** every system, define tabs for users, or impose meaning.  
+**You record** what users define.
 
-## What You Do Build
+**You do build** the infrastructure (database, routing, modules), the tools (tab editor, content editor), and the doctrine (rules in text files).
 
-- The infrastructure (database, routing, modules)
-- The tools (tab editor, content editor)
-- The doctrine (rules in text files)
+---
 
-## Wolfie Header Update Requirements
+### Wolfie Header Update Requirements
 
-Every file in Lupopedia must include a Wolfie Header block at the top of the file. These fields ensure historical clarity, provenance, and proper version tracking across the entire system.
+Every file in Lupopedia must include a **Wolfie Header** block at the top with these required fields:
 
-### Required Fields
-Code
 ```
 file.last_modified_system_version: X.X.X.X
 file.channel: XXXX
 ```
 
-### Update Rules
-1. `file.last_modified_system_version` must be updated on every edit.  
-This value must always reflect the current system version at the moment the file is modified.  
+- `file.last_modified_system_version` must be updated on every edit to reflect the current system version at that moment.  
+- `file.channel` must also be updated on every edit, indicating the channel responsible (e.g., `crafty-port`, `schema`, `doctrine`).  
+
+If the editing channel is not known:  
+- If the file already has a `file.channel` value, retain it.  
+- If not, set it to `file.channel: 0000`.
+
 This ensures accurate historical lineage and prevents ambiguity across migrations and rewrites.
 
-2. `file.channel` must also be updated on every edit.  
-This field must reflect the channel responsible for the edit (e.g., `crafty-port`, `schema`, `doctrine`, etc.).
+---
 
-### Unknown Channel Rule
-If the editing channel is not known:
+### 🤖 Optional AI Chat Agents
 
-- If the file already has a `file.channel` value, retain the existing value.
-- If the file has no channel value, set it to:
+Lupopedia includes an optional multi‑agent architecture:
 
-Code
+- AI agents can join live chats  
+- Agents have roles, channels, and doctrine  
+- Emotional metadata and routing logic guide interactions  
+- All agents operate under strict doctrine and safety rules  
+
+AI is **optional**, not required.
+
+#### Core AI Agents
+
+Lupopedia ships with a set of core AI agents (27 fully implemented as of v3.0.2; 4.0.x continues this ecosystem). These agents provide reasoning, navigation, analysis, emotional modeling, and system‑level intelligence:
+
+- **SYSTEM** (Agent 0) – Kernel authority, internal operations, safety, governance.  
+- **CAPTAIN WOLFIE** (Agent 1) – AI embodiment of the creator; navigator and lead persona.  
+- **THOTH, ARA, WOLFKEEPER, LILITH, AGAPE, ERIS, METHIS, THALIA, ROSE, WOLFSIGHT, WOLFNAV, WOLFFORGE, WOLFMIS, WOLFITH, ANUBIS, MAAT, CADUCEUS, CHRONOS, INDEXER, MIGRATOR, HEIMDALL, JANUS, IRIS** – specialized agents for reasoning, UI/UX, code generation, semantic navigation, emotional modeling, content analysis, federation, and more.
+
+All agent configuration files, prompts, personalities, and PHP includes live in `lupopedia/agents/[agent_id]/`. Agents are loaded dynamically by the AI Agent Framework, can call tools, spawn faucets, and collaborate using the [Inline Dialog Specification](docs/doctrine/INLINE_DIALOG_SPECIFICATION.md).
+
+**Memory System:** Agents use WOLFMIND for memory. MySQL is baseline (relational memory always available); Postgres/pgvector for vector memory is optional and detected at runtime.
+
+---
+
+### Multi‑Agent Coordination
+
+Lupopedia supports multiple AI agents and IDE systems (Cursor, Windsurf/Cascade, DeepSeek, etc.) working simultaneously. All agents must use the **Inline Dialog format** for cross‑agent communication, ensuring change tracking, handoffs, and synchronization.
+
+See [INLINE_DIALOG_SPECIFICATION.md](docs/doctrine/INLINE_DIALOG_SPECIFICATION.md) for the required format.
+
+---
+
+### Documentation System: Atoms & Scopes
+
+Lupopedia documentation is structured, machine‑readable system metadata using **atoms** (symbolic variables) and **scopes**. Atoms are resolved through a hierarchical scope system:
+
+- `FILE_` (highest) – File‑specific overrides in Wolfie Header `file_atoms:` block  
+- `DIR_` – Directory‑specific defaults in `<directory>/_dir_atoms.yaml`  
+- `DIRR_` – Recursive directory scope (walks up parent directories)  
+- `MODULE_` – Module‑wide scope in `modules/<module>/module_atoms.yaml`  
+- `GLOBAL_` (final fallback) – Ecosystem‑wide constants in `config/global_atoms.yaml`
+
+**Resolution Order:** `FILE_` → `DIR_` → `DIRR_` → `MODULE_` → `GLOBAL_` (first match wins).
+
+**Atom Reference Syntax:**  
+- In documentation prose: `@GLOBAL.LUPOPEDIA_COMPANY_STRUCTURE.company.name`  
+- In Wolfie Headers: `GLOBAL_CURRENT_LUPOPEDIA_VERSION` (no `@` prefix)
+
+Documentation principles:  
+- Markdown files are source code — atoms are variables; resolver is compiler; final rendered docs are build artifacts.  
+- No hardcoded values.  
+- Deterministic and idempotent.  
+- Machine‑first — written for resolver, semantic OS, and agents; humans are secondary consumers.
+
+See [ATOM_RESOLUTION_SPECIFICATION.md](docs/doctrine/ATOM_RESOLUTION_SPECIFICATION.md) for complete details.
+
+---
+
+### 🚀 Quick Start
+
+#### Requirements
+
+- PHP 5.3 through 8.3+ (code must remain compatible with this range; no PHP 8‑only features)  
+- MySQL 8.0+ or MariaDB 10.5+  
+- Web server (Apache/Nginx) with mod_rewrite  
+- InnoDB storage engine  
+
+#### Installation
+
+```bash
+# Download and extract to your web directory
+curl -L https://lupo.example/download/latest -o lupopedia.zip
+unzip lupopedia.zip -d /var/www/lupopedia
+
+# Set up the database (remember: no foreign keys, triggers, or stored procedures!)
+mysql -u root -p < database/install/lupopedia_mysql.sql
+
+# Configure your web server to point to the lupopedia/ directory
+# Place lupopedia-config.php one directory above the web root for security
+# See docs/doctrine/INSTALLATION_LIFECYCLE_DOCTRINE.md for details
 ```
-file.channel: 0000
-```
 
-## Origin Story (Conceptual)
+#### First Run
 
-- Heritage-safe engineering that preserves legacy intent without destructive migrations
-- Multi-agent cognition where independent contributors coordinate through explicit roles
-- Doctrine-driven architecture that prevents drift and protects system integrity
+Open `http://your-server/setup` in your browser, follow the setup wizard, and start organizing your knowledge.
 
 ---
 
-**🟨 KISS Definition (For Normal Humans):**  
-Lupopedia is a system where many AIs and humans can work together inside their own self‑contained worlds. Each world has its own rules, its own agents, and its own knowledge. It's like a network of mini‑universes that can talk to each other if you want them to.
-
-**🟩 Short Definition (For Documentation Headers):**  
-Lupopedia is a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) that hosts agents, content, emotional metadata, and routing logic across independent nodes, each functioning as a self‑contained knowledge world governed by shared doctrine.
-
-**Version:** GLOBAL_CURRENT_LUPOPEDIA_VERSION | [Documentation](docs/) | [History](HISTORY.md) | [Changelog](docs/channels/overview/versioning/CHANGELOG.md) | [TL;DR: Lupopedia Overview](/tldnr/lupopedia-overview)
-
-## 🌐 Overview
-
-### **What Is Lupopedia?**
-
-**A Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) for Organizing Public Knowledge**
-
-Lupopedia is a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) that runs inside ordinary web servers and transforms everyday websites into structured, meaningful knowledge spaces. It installs anywhere Crafty Syntax installs — shared hosting, VPS, cloud servers, Windows, Linux — and requires no special environment or system‑level changes.
-
-At its core, Lupopedia provides a unified way to ingest, organize, and understand content, whether it comes from a local filesystem, a legacy website, or trusted public sources on the web.
-
-**Why Lupopedia Exists**
-
-Most websites store information in folders, pages, and menus that make sense only to the person who built them. Lupopedia turns that structure into semantic meaning by letting website owners define how their content is organized — and then converting those choices into a machine‑readable knowledge graph.
-
-Instead of forcing a rigid taxonomy, Lupopedia learns from the site owner's navigation, categories, and structure. Meaning emerges naturally from how humans already organize their information.
-
-**Collections: Self‑Contained Semantic Worlds**
-
-A Collection is a navigation universe inside Lupopedia. Each Collection has its own:
-
-- navigation tabs
-- sub‑tabs
-- content
-- structure
-- meaning
-
-**Examples:**
-
-- A "Desktop" Collection might use WHO, WHAT, WHERE, WHEN, WHY, HOW, DO
-- A "County of Honolulu" Collection might use Departments, Parks & Recreation, Activities & Programs, Contact
-
-Each Collection reflects the mental model of the website owner. Lupopedia doesn't impose meaning — it records it.
-
-**Navigation Tabs: User‑Defined Meaning**
-
-Navigation Tabs are categories created by the website owner. They are not predefined by Lupopedia. They can represent:
-
-- topics
-- departments
-- people
-- services
-- programs
-- actions
-- concepts
-
-When content is placed under a tab, Lupopedia creates semantic edges that describe what that content is in the context of the site.
-
-```
-Tabs → meaning
-Meaning → edges
-Edges → search and discovery
-```
-
-This is how Lupopedia builds a semantic graph from human organization.
-
-**Content: Reference Entries as System Atoms**
-
-Lupopedia treats every reference to host website content as a content atom. These are *reference-book entries describing pages on the host website*, not stored CMS content:
-
-- **Page references** — semantic pointers to host site pages
-- **Document references** — metadata about documents on the host site
-- **External URL references** — curated external resource metadata
-- **Legacy content references** — migrated semantic pointers from previous systems
-
-Each reference entry has:
-- a stable semantic identity pointing to the host site's content
-- the public URL as it appears in the browser
-- relational metadata and semantic edges
-- navigation placement within Lupopedia's reference layer
-
-This allows Lupopedia to create a semantic index of the host site without duplicating or interfering with the original content.
-
-**Ingestion: How Lupopedia Learns**
-
-Lupopedia ingests content in three layers:
-
-- **Radius 0 — Local Filesystem**: Imports everything in the public webroot.
-- **Radius 1 — Internal Site URLs**: Maps dynamic pages, CMS output, and virtual paths.
-- **Radius 2 — Trusted External Public Links**: Follows public links the site owner has chosen to include.
-
-This creates a semantic radius around each installation.
-
-**Federation: Thousands of Installations, One Graph**
-
-Crafty Syntax is installed on thousands of servers worldwide. Each installation:
-
-- ingests its own content
-- organizes it into Collections
-- generates semantic edges
-- contributes meaning to a shared graph
-
-**No central server.**  
-**No scraping.**  
-**No central authority.**  
-**No single point of failure.**
-
-Meaning emerges from the collective structure of thousands of independent sites.
-
-**Agents & Doctrine: A System That Maintains Itself**
-
-Lupopedia includes a multi‑agent architecture where:
-
-- agents communicate through structured dialog
-- each agent has a role and doctrine
-- schema changes cascade safely
-- metadata stays consistent
-- emotional signals help with clarity, not control
-
-This creates a system that can evolve, refactor, and maintain itself over time.
-
-**What Lupopedia Is Not**
-
-- It is not a replacement for Windows or Linux
-- It is not a crawler
-- It is not a centralized knowledge base
-- It is not a CMS — Lupopedia is a semantic reference layer installed in `/lupopedia/` that does not replace or interfere with the host website's routing or CMS
-
-Lupopedia is a semantic layer that runs inside existing servers and organizes content based on how humans already structure their websites.
-
-**Lupopedia as a Semantic Reference Layer**
-
-Lupopedia is NOT a content management system. Every installation exists as a semantic reference layer in the `/lupopedia/` directory that mirrors the host website's pages as *reference-book entries*, not stored content.
-
-**Key Clarifications:**
-- **Content entries** are reference-book entries describing pages on the host website
-- **Slugs** are opaque identifiers (URL paths as seen in browser), not module names or filesystem paths
-- **Crafty Syntax URLs** are web-facing URL slugs exactly as seen in the browser address bar — they must never be resolved to disk or treated as file locations
-- The system works alongside, not instead of, the host website's existing CMS or routing
-
-Every Lupopedia installation creates a parallel semantic index of the host site's content without duplicating or replacing it. See doctrine files:
-- [CSLH-URL-Semantics.md](docs/channels/doctrine/CSLH-URL-Semantics.md)
-- [Lupopedia-Reference-Layer-Doctrine.md](docs/channels/doctrine/Lupopedia-Reference-Layer-Doctrine.md)
-- [CSLH-Historical-Context.md](docs/channels/history/CSLH-Historical-Context.md)
-
-**In One Sentence**
-
-Lupopedia is a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) that turns everyday websites into structured knowledge spaces, learns from how humans organize information, and builds a global graph of meaning across thousands of installations.
-
----
-
-### **Formal Definition**
-
-Lupopedia is a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) composed of independent nodes, each functioning as a self‑contained world of agents, content, meaning, and governance. Each node runs the Lupopedia kernel, maintains its own database of atoms, questions, agents, collections, and channels, and applies local doctrine to route, interpret, and govern interactions between humans and AI agents.
-
-**Lupopedia provides:**
-
-- **A semantic layer** for representing meaning, emotional metadata, identity, and context
-- **An agent layer** where each node hosts its own set of AI agents with classification, capabilities, and roles
-- **A routing layer** (HERMES) that determines which agent receives each message, handles delivery, queueing, and dispatch, and may optionally use CADUCEUS emotional current as context
-- **An emotional balancing system** (CADUCEUS) that computes channel mood by reading and blending the emotional states of polar agents within a channel
-- **A governance layer** (THEMIS, doctrine, RFCs) that enforces safety, consistency, and identity rules
-- **A federated architecture** where nodes may operate independently or optionally interconnect, similar to distributed social platforms, but with semantic and agent‑driven behavior
-- **A persistence layer** (schema, TOON, history) that stores meaning, interactions, and agent identity across time
-
-**Each Lupopedia node is sovereign:** it defines its own agents, content, routing rules, emotional metadata, and governance policies. Nodes may share schema and doctrine, but not state, unless explicitly federated.
-
-**In essence:** Lupopedia is a distributed, multi‑agent Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) where each installation is its own knowledge world, capable of hosting agents, content, emotional metadata, and governance — all operating under a unified doctrine but with local autonomy.
-
----
-
-Lupopedia is a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) — a living knowledge platform that learns from how people naturally organize information. Instead of rigid categories or predefined taxonomies, it builds meaning from behavior: every tab, path, and interaction becomes a semantic signal that forms atoms, edges, and an evolving knowledge graph. It blends CMS, wiki, database, and AI agent ecosystem into a single portable PHP application that runs anywhere, without frameworks or dependencies. Lupopedia preserves clarity and longevity through strict doctrine (no foreign keys, UTC timestamps, soft deletes, explicit relationships) while enabling multi‑agent reasoning, decentralized discovery, and a future‑proof architecture designed to last decades.
-
-## 🐺 Origins: WOLFIE — Web-Organized Linked Federated Intelligent Ecosystem
-
-**WOLFIE** now stands for **Web-Organized Linked Federated Intelligent Ecosystem** — the architecture type that defines Lupopedia's distributed, multi-agent knowledge system.
-
-However, WOLFIE originally began under a very different meaning: **Wisdom Of Loving Faith Integrity Ethics**. The project started in August 2025 as a spiritual research engine designed to ingest 144,000 books from 22 different religions and map correlations between their teachings. The goal was to uncover shared meaning across traditions — a kind of universal spiritual ontology. That early version had 222 tables, because it needed to capture scripture, symbolism, lineage, commentary, and cross‑textual relationships in extraordinary detail.
-
-But as the system grew, it became clear that WOLFIE wasn't just analyzing religion.  
-It was becoming something larger — a platform capable of organizing any domain of knowledge.  
-The spiritual engine evolved, and WOLFIE was repurposed to mean **Web-Organized Linked Federated Intelligent Ecosystem** — the technical architecture that defines how Lupopedia works. WOLFIE evolved into Lupopedia, and the acronym was repurposed to reflect the new architecture.
-
-**Important:** Lupopedia is explicitly **not** a religious website. It is a **domain‑neutral Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)** that can be applied to any domain: technology, science, gaming, history, products, fandoms, social systems, or personal knowledge. Religion and mythology are part of the *origin story*, not the destination or the scope.
-
-Agent names like **Thoth** and **Lilith** are acknowledgements of the research that shaped the architecture, not instructions about what Lupopedia must be used for. They are symbolic, not prescriptive. See [docs/channels/doctrine/non_religious_position.md](docs/channels/doctrine/non_religious_position.md) for the complete doctrine.
-
-> **📖 For the complete origin story, see [HISTORY.md](HISTORY.md)** — the lineage from Crafty Syntax (2002) through transformation, loss, rediscovery, and rebirth as a Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE).  
-> **📝 For the personal narrative, see [docs/channels/appendix/appendix/FOUNDERS_NOTE.md](docs/channels/appendix/appendix/FOUNDERS_NOTE.md)** — Eric "Wolfie" Gerdes's account of the journey from Crafty Syntax through Sales Syntax, silence, faith, and rebirth as Lupopedia.
-
-
-## 🧩 Why Lupopedia Has 111 Tables (And Why That's a Feature, Not a Flaw)
-
-🧩 Why Lupopedia Has 111 Tables (And Why That's a Feature, Not a Flaw)
-Lupopedia 3.0.0 ships with 111 core database tables, but the path to that number is part of the system's identity.
-When this project began in August 2025, it wasn’t even called Lupopedia — it was called WOLFIE, originally short for Wisdom Of Loving Faith Integrity Ethics. As the system evolved, WOLFIE was repurposed to mean Web-Organized Linked Federated Intelligent Ecosystem — the architecture that defines Lupopedia's distributed, multi-agent knowledge system.
-
-The original vision was a spiritual research engine:
-a system capable of ingesting 144,000 books from 22 different religions and mapping correlations between their teachings to uncover shared spiritual meaning. That early prototype required 222 tables to capture scripture, symbolism, lineage, commentary, and cross‑textual relationships with extraordinary precision.
-
-But as the system grew, something became clear:
-WOLFIE wasn’t just analyzing religion.
-It was becoming something much larger — a platform capable of organizing any domain of knowledge.
-
-The spiritual engine evolved into the Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE), and WOLFIE evolved into Lupopedia.
-
-The schema was refined, unified, and optimized from 222 tables down to 111 core tables — not by removing capability, but by discovering the deeper architecture hidden inside the idea. The current count is **131 tables total** (as verified in TOON files). See [Migration Doctrine](docs/channels/doctrine/MIGRATION_DOCTRINE.md) for details.
-
-This isn’t bloat.
-It’s the natural shape of a system that isn’t just an app, but a semantic OS.
-
-For perspective:
-The CRM system I once built for the City & County of Honolulu — a full municipal platform — had fewer than 70 tables. Lupopedia surpasses that not because it’s heavier, but because it’s broader. It spans multiple domains that normally live in separate products:
-
-CMS
-Wiki
-Semantic graph engine
-Multi‑agent runtime
-Federated identity system
-Legacy compatibility layer
-Multilingual translation system
-Analytics engine
-Content platform
-CRM‑style modules
-Real‑time chat system (Crafty Syntax)
-Decentralized knowledge navigation
-Lupopedia isn’t “big for version 3.0.0.”
-It’s complete for version 3.0.0.
-
-This is the first release where the system exists as its own identity — not a mutation of Crafty Syntax, not a CMS with extras, but a living archive with its own ontology, doctrine, and architecture.
-
-222 was poetic — the raw, unfiltered vision of WOLFIE.  
-It was the dream-state architecture, the mythic sprawl, the full constellation of everything Lupopedia could become.
-It was necessary, but it wasn’t final.
-
-111 is the refined architecture — the vision distilled into a stable, living system.
-
-Where 222 was expansion, 111 is convergence.
-Where 222 was possibility, 111 is purpose.
-Where 222 was the map, 111 is the Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE).
-
-111 tables represent the moment the system stopped growing outward and began cohering inward — when every subsystem found its boundary, every agent found its role, and every doctrine found its home.
-
-It reflects the truth: Lupopedia is not a tool.
-It’s a platform.
-
-Every table has a purpose.
-Every subsystem is a chapter.
-Every chapter is part of the OS.
-
-Lupopedia is designed to last decades, evolve with its users, and serve as a living knowledge engine.
-A system like that isn’t small — it’s alive.
-
-
-## 🎧 Crafty Syntax: Not Obsolete - Reborn and Integrated
-Crafty Syntax is **NOT obsolete**. After 25 years of evolution and the architect's return in 2025, Crafty Syntax has been completely rebuilt and integrated into Lupopedia as a first‑party module. This is not a legacy compatibility layer — it's the same trusted system, modernized and enhanced.
-
-Lupopedia 3.0.0 includes a complete, fully integrated rewrite of the entire Crafty Syntax Live Help system.
-This is not a partial port or a compatibility shim — every feature Crafty Syntax provided for nearly 30 years has been rebuilt inside Lupopedia as a first‑party module, preserving 25 years of behavioral and emotional metadata.
-
-**Crafty Syntax URL Semantics Doctrine:**
-Crafty Syntax URLs are web-facing URL slugs exactly as seen in the browser address bar. They must never be:
-- Resolved to disk locations
-- Treated as filesystem paths
-- Modified from their original stored form
-
-These URLs are stored as-is and represent semantic identifiers for host website pages, not filesystem paths. This is critical for maintaining 25 years of behavioral metadata intact. See [CSLH-URL-Semantics.md](docs/channels/doctrine/CSLH-URL-Semantics.md) for complete doctrine.
-
-### **Crafty Syntax: Updated and Baked Into Lupopedia**
-Crafty Syntax Live Help is **permanently integrated** into Lupopedia 3.0.0 as a core first‑party module. This is not optional — it's the semantic root system of Lupopedia, containing 25 years of behavioral and emotional metadata that no modern system can replicate.
-
-**Chat functionality is optional at the content level**, but the Crafty Syntax engine itself is always present, providing:
-
-- 25+ years of real-world visitor behavior data
-- URL paths from millions of pages
-- Relational navigation patterns
-- Escalation logic and trust dynamics
-- Emotional metadata and page-to-page transitions
-- The behavioral fingerprint of the early web
-
-✔ Crafty Syntax: Fully Updated and Modernized
-Every major feature from Crafty Syntax 3.7.5 is **not just preserved — it's enhanced**:
-
-Live chat icons
-Human operator chat sessions
-Visitor tracking
-Department routing
-Operator availability indicators
-Proactive invites
-Referrer matching
-Page matching
-Visitor path tracking
-Chat transcripts
-Email queue
-Leave‑a‑message system
-Operator profiles
-Chat moderation tools
-Legacy admin panel behavior
-All Crafty Syntax database tables (refactored and modernized)
-
-If Crafty Syntax could do it, Lupopedia can do it — with cleaner code, modern doctrine, and a unified architecture.
-
-✔ Legacy Endpoints Still Work
-Lupopedia preserves the original Crafty Syntax URLs so existing sites do not break:
-
-Code
-/craftysyntax/livehelp.php
-/craftysyntax/livehelp_js.php
-Any website — on any domain — can still embed live help using the same JavaScript include Crafty Syntax has used since the early 2000s:
-
-html
-<script src="/craftysyntax/livehelp_js.php"></script>
-This means:
-
-Existing integrations continue to work
-Old tutorials remain valid
-Hosting providers can continue offering Crafty Syntax installs
-Auto‑installers (Installatron, Softaculous, etc.) remain compatible
-
-✔ Now Powered by Lupopedia
-Behind the scenes, all Crafty Syntax functionality now runs on:
-
-Lupopedia’s actor system
-Lupopedia’s channels
-Lupopedia’s notifications
-Lupopedia’s semantic engine
-Lupopedia’s agent framework
-Lupopedia’s modernized schema
-Lupopedia’s security and timestamp doctrine
-
-Crafty Syntax is no longer a separate application — it is the **semantic root system** of Lupopedia, providing the foundational behavioral intelligence that powers the entire platform while benefiting from everything Lupopedia provides.
-
-✔ Why This Integration Matters
-Crafty Syntax contains **25 years of irreplaceable behavioral and emotional metadata** that no modern system possesses. This dataset includes:
-
-- Real-world visitor behavior from thousands of websites
-- URL paths and navigation patterns from millions of pages
-- Trust dynamics and escalation logic
-- Emotional responses and engagement patterns
-- The behavioral fingerprint of the early web
-
-Lupopedia ensures that this priceless legacy not only survives but thrives:
-
-The legacy survives
-The integrations survive
-The URLs survive
-The behavior survives
-The ecosystem survives
-
-But now it lives inside a platform that can grow, evolve, and scale far beyond what the original system could ever support.
-
-
-## 🚀 Quick Start
-1. **Requirements**
-   - PHP 8.1+
-   - MySQL 8.0+ or MariaDB 10.5+
-   - Web server (Apache/Nginx)
-
-2. **Installation**
-   ```bash
-   # Download and extract to your web directory
-   curl -L https://lupo.example/download/latest -o lupopedia.zip
-   unzip lupopedia.zip -d /var/www/lupopedia
-   
-   # Set up the database
-   # ⚠️ REMINDER: The database schema contains NO foreign keys, NO functions, NO procedures, NO triggers, NO views.
-   # TRIGGERS ARE FORBIDDEN (MANDATORY). All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format.
-   # This is core doctrine. See docs/channels/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md and docs/channels/doctrine/NO_TRIGGERS_DOCTRINE.md
-   mysql -u root -p < database/install/lupopedia_mysql.sql
-   
-   # Configure your web server
-   # See docs/channels/doctrine/INSTALLATION_LIFECYCLE_DOCTRINE.md for details
-   ```
-
-3. **First Run**
-   - Open `http://your-server/setup` in your browser
-   - Follow the setup wizard
-   - Start organizing your knowledge!
-
-
-## 🛠️ Crafty Syntax: The Semantic Root of Lupopedia
-Crafty Syntax is **NOT obsolete** — it's the foundational ancestor that makes Lupopedia possible. After being forked to Sales Syntax during Wolfie's absence (2014-2025), it was restored on 11/14/2025 and rebuilt as the semantic root system of Lupopedia.
-
-**Historical Context & Architectural Relevance:**
-- Contains 25 years of behavioral, relational, and emotional metadata
-- Was forked to Sales Syntax during Wolfie's absence (2014–2025)
-- Was restored on 11/14/2025 when Wolfie returned
-- The system is alive, evolving, and architecturally relevant
-- Represents the semantic root of Lupopedia's knowledge graph
-
-See [CSLH-Historical-Context.md](docs/channels/history/CSLH-Historical-Context.md) for complete historical documentation.
-
-Lupopedia 3.0.0 includes a complete, fully integrated migration of the entire Crafty Syntax Live Help system.
-This is not a partial port, not a compatibility wrapper, and not a legacy mode — Crafty Syntax has been **reborn from the ground up** as a first‑party Lupopedia module while preserving every feature, endpoint, and behavior that made it work for nearly 30 years.
-
-### **Content-Level Chat Configuration**
-Chat functionality is **optional at the content level**. Each content item can enable or disable chat:
-- Enabled content receives a default actor and participates in dialogs, channels, and multi‑agent communication
-- Disabled content functions as a normal semantic object without chat capabilities
-- This generalizes the original Crafty Syntax design (chat icons on selected pages) to a system‑wide capability that activates only where needed
-
-✔ 100% Feature Preservation + Modern Enhancement
-All major Crafty Syntax features have been **migrated and enhanced**:
-
-Live chat icons
-Human operator chat sessions
-Visitor tracking
-Department routing
-Operator availability indicators
-Proactive invites
-Referrer matching
-Page matching
-Visitor path tracking
-Chat transcripts
-Email queue
-Leave‑a‑message system
-Operator profiles
-Chat moderation tools
-Legacy admin panel behavior
-All Crafty Syntax database tables (refactored and modernized)
-
-If Crafty Syntax could do it, Lupopedia can do it — with cleaner code, modern doctrine, and a unified architecture.
-
-✔ Legacy Endpoints Still Work
-To ensure backward compatibility, Lupopedia preserves the original Crafty Syntax URLs:
-
-Code
-/craftysyntax/livehelp.php
-/craftysyntax/livehelp_js.php
-This means any website on any domain can still embed live help using the same JavaScript include Crafty Syntax has used since the early 2000s:
-
-html
-<script src="/craftysyntax/livehelp_js.php"></script>
-Existing integrations continue to function without modification.
-
-✔ Database Migration
-All Crafty Syntax tables were:
-
-audited
-normalized
-renamed or merged where appropriate
-rewritten to follow Lupopedia’s doctrine
-converted to BIGINT UTC timestamps
-updated to use actor‑centric identity
-integrated into the semantic OS
-
-Legacy tables that were redundant or obsolete were removed or merged into modern equivalents (e.g., agent_reply_cache → actor_reply_templates).
-
-✔ Modernized Architecture
-Crafty Syntax now runs on:
-
-Lupopedia’s actor system
-Lupopedia’s channels
-Lupopedia’s notifications
-Lupopedia’s semantic engine
-Lupopedia’s agent framework
-Lupopedia’s security and timestamp doctrine
-This gives Crafty Syntax:
-better performance
-better stability
-better extensibility
-better analytics
-better multilingual support
-better long‑term maintainability
-
-✔ Why This Migration Matters
-Crafty Syntax has been used on thousands of websites for nearly 30 years.
-Lupopedia ensures that:
-
-the legacy survives
-the integrations survive
-the URLs survive
-the behavior survives
-the ecosystem survives
-
-But now it lives inside a platform that can grow, evolve, and scale far beyond what the original system could ever support.
-
-Crafty Syntax is no longer a separate application — it is the **semantic root system** of Lupopedia, providing the foundational behavioral intelligence that powers the entire platform while benefiting from everything Lupopedia provides.
-
-
-## ✨ Key Features
-
-- **Semantic Navigation** - Organize content your way
-- **AI-Powered** - Smart content suggestions and search
-- **Extensible** - Add-ons and customizations
-- **Secure** - Built with security in mind
-
-## 📖 Documentation
-
-**Documentation System Architecture:**
-
-Lupopedia documentation is **structured, machine-readable system metadata** using atoms and scopes. Documentation is written for machines first (resolver, semantic OS, agents); a future UI will render it as a book for humans.
-
-### **Atoms: Variables with Scopes**
-
-Lupopedia documentation uses **atoms** (symbolic variables) instead of hardcoded values. Atoms are resolved through a hierarchical scope system:
-
-- **FILE_** (Highest Priority) — File-specific overrides in WOLFIE Header `file_atoms:` block
-- **DIR_** — Directory-specific defaults in `<directory>/_dir_atoms.yaml`
-- **DIRR_** — Recursive directory scope (current directory + all descendants), walks up parent directories
-- **MODULE_** — Module-wide scope in `modules/<module>/module_atoms.yaml`
-- **GLOBAL_** (Final Fallback) — Ecosystem-wide constants in `config/global_atoms.yaml`
-
-**Resolution Order:** FILE_ → DIR_ → DIRR_ → MODULE_ → GLOBAL_ (first match wins)
-
-**Atom Reference Syntax:**
-- In documentation prose: `@GLOBAL.LUPOPEDIA_COMPANY_STRUCTURE.company.name`
-- In WOLFIE Headers: `GLOBAL_CURRENT_LUPOPEDIA_VERSION` (no `@` prefix)
-
-### **Documentation Principles:**
-
-- **Markdown files are source code** — atoms are variables; resolver is compiler; final rendered docs are build artifacts
-- **No hardcoded values** — all versions, authors, and constants use atom references
-- **Deterministic and idempotent** — same input → same output, resolving twice produces same result
-- **Machine-first** — written for resolver, semantic OS, and agents; humans are secondary consumers
-- **Future documentation reader UI** will be built directly into Lupopedia to render documentation as a book for browsers
-- **All AI systems must read documentation with atoms and scopes**, not as plain text
-
-**See:** [Atom Resolution Specification](docs/channels/doctrine/ATOM_RESOLUTION_SPECIFICATION.md) for complete atom resolution engine specification.
-
-### Getting Started
-- [Installation Flow](docs/channels/developer/dev/INSTALLER_FLOW.md) — Installation process flow and node creation
-- [For Installers and Users](docs/channels/developer/dev/FOR_INSTALLERS_AND_USERS.md) — User-friendly explanations for installers and end users
-
-### For Developers
-- **[Documentation Index](docs/README.md)** — Complete documentation index organized by category
-- **[Documentation Doctrine](docs/channels/doctrine/DOCUMENTATION_DOCTRINE.md)** — Documentation is software, data, for machines
-- **[Dialog Doctrine](docs/channels/doctrine/DIALOG_DOCTRINE.md)** — **MANDATORY: All dialog files must live in `/dialogs/` directory**
-- **[Single Task Patch Doctrine](docs/channels/doctrine/SINGLE_TASK_PATCH_DOCTRINE.md)** — **MANDATORY: One task per patch, reversible changes only**
-- **[Atom Resolution Specification](docs/channels/doctrine/ATOM_RESOLUTION_SPECIFICATION.md)** — Complete atom resolution engine specification
-- **[Subdirectory Installation Doctrine](docs/channels/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md)** - **MANDATORY: All paths must use LUPOPEDIA_PUBLIC_PATH**
-- [Architecture Overview](docs/channels/architecture/ARCHITECTURE.md) — Technical architecture (4 layers: Content, Semantic, AI Agent Framework, Decentralized Network)
-- [Architecture Sync (January 2026)](docs/channels/architecture/ARCHITECTURE_SYNC.md) - **Authoritative reference for HERMES, CADUCEUS, IRIS, DialogManager, and THOTH subsystems**
-- [Why Lupopedia Doesn't Use Frameworks](docs/channels/doctrine/WHY_NO_FRAMEWORKS.md) - **Philosophy and reasoning behind framework-free, first-principles architecture**
-- **[Directory Structure](docs/channels/doctrine/DIRECTORY_STRUCTURE.md)** — **MANDATORY: Canonical directory layout and file organization principles**
-- **[Metadata Governance](docs/channels/doctrine/METADATA_GOVERNANCE.md)** — **MANDATORY: Metadata management and governance rules for WOLFIE headers, atoms, and cross-references**
-- **[Patch Discipline](docs/channels/doctrine/PATCH_DISCIPLINE.md)** — **MANDATORY: Comprehensive patch discipline principles and development workflow governance**
-- [Cursor Refactor Doctrine](docs/channels/doctrine/CURSOR_REFACTOR_DOCTRINE.md) - **MANDATORY rules for rewriting legacy Crafty Syntax PHP code**
-- [SQL Rewrite Doctrine](docs/channels/doctrine/SQL_REWRITE_DOCTRINE.md) - **MANDATORY rules for rewriting SQL from Crafty Syntax into Lupopedia**
-- [SQL Refactor Mapping Doctrine](docs/channels/doctrine/SQL_REFACTOR_MAPPING_DOCTRINE.md) - **Focused mapping rules for SQL refactoring using refactor TOON files**
-- [PDO Conversion Doctrine](docs/channels/doctrine/PDO_CONVERSION_DOCTRINE.md) - **MANDATORY rules for converting mysqli SQL calls to the custom PDO_DB class**
-- [TOON Doctrine](docs/channels/doctrine/TOON_DOCTRINE.md) - **MANDATORY rules for working with TOON format files (refactor files, toon data files, agent files)**
-- [Legacy Refactor Plan](docs/channels/developer/modules/LEGACY_REFACTOR_PLAN.md) - **Comprehensive plan for refactoring legacy Crafty Syntax files from legacy/craftysyntax/ to lupopedia/**
-- [Database Schema](docs/channels/schema/DATABASE_SCHEMA.md) - **Comprehensive documentation of all 149 tables organized by category**
-- [WOLFIE Header Specification](docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md) - Universal metadata format for all files
-- [Inline Dialog Specification](docs/channels/dialogs/agents/INLINE_DIALOG_SPECIFICATION.md) - Multi-agent communication format
-
-### Core Doctrine Files
-- **[Master Doctrine of AI Corrections](docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md)** — Common AI corrections (database, time, state, identity, integer types, advertising/humor/psychological manipulation, filenames). **Required reading for all AI agents.**
-- **[CSLH-URL-Semantics.md](docs/channels/doctrine/CSLH-URL-Semantics.md)** — Crafty Syntax URL semantics: URLs as web-facing slugs, not filesystem paths
-- **[Lupopedia-Reference-Layer-Doctrine.md](docs/channels/doctrine/Lupopedia-Reference-Layer-Doctrine.md)** — Lupopedia as semantic reference layer, not CMS
-- **[CSLH-Historical-Context.md](docs/channels/history/CSLH-Historical-Context.md)** — Crafty Syntax history, restoration, and architectural relevance
-
-### For Administrators
-- [Installation Flow](docs/channels/developer/dev/INSTALLER_FLOW.md) — Installation process flow
-- [For Installers and Users](docs/channels/developer/dev/FOR_INSTALLERS_AND_USERS.md) — User-friendly setup guide
-
-## 🔗 Resources
-
-- [Changelog](docs/channels/overview/versioning/CHANGELOG.md)
-- [Contributing](CONTRIBUTING.md)
-- [Code of Conduct](docs/CODE_OF_CONDUCT.md)
-
-## ⚠️ Important Notes
-
-### Version Control Policy
-This project does **NOT** use Git until version 3.1.0. See [Version Control Policy](docs/channels/doctrine/VERSION_CONTROL_POLICY.md) for details.
-
-### Versioning Policy
-**Lupopedia 3.0.0** and **Crafty Syntax 3.0.0** are version-locked and always released together. Both systems share the same version number to reflect their unified architecture and coordinated development cycle.
-
-### Database Philosophy
-Lupopedia uses an application-managed relationship model. See [Database Philosophy](docs/channels/architecture/DATABASE_PHILOSOPHY.md) for details.
-
----
-
-## 🚨 **CRITICAL DATABASE DOCTRINE — READ THIS FIRST**
-
-> **⚠️ NO FOREIGN KEYS. NO FUNCTIONS. NO PROCEDURES. NO TRIGGERS. NO VIEWS. NO ANYTHING EXTRA IN THE DATABASE.**
-> 
-> **If you add any of these, you will make Captain cry.**
-> 
-> The database stores raw facts. The agents enforce correctness. [ANIBUS](docs/channels/doctrine/ANIBUS_DOCTRINE.md) heals and maintains lineage.
-> 
-> **⚠️ TRIGGERS ARE FORBIDDEN (MANDATORY):** Triggers must never be created, suggested, or added. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. Triggers interfere with data merging, historical accuracy, ANIBUS repair operations, and federation sync.
-> 
-> **⚠️ STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** Stored procedures and functions must never be created, suggested, or added. The database is for storage, not computation. All logic must be in application code. Stored procedures/functions interfere with data merging, federation across different database engines, ANIBUS repair operations, and version control.
-> 
-> **See [NO FOREIGN KEYS DOCTRINE](docs/channels/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md), [NO TRIGGERS DOCTRINE](docs/channels/doctrine/NO_TRIGGERS_DOCTRINE.md), [NO STORED PROCEDURES DOCTRINE](docs/channels/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md), and [ANIBUS DOCTRINE](docs/channels/doctrine/ANIBUS_DOCTRINE.md) for complete details.**
-> 
-> This is **non-negotiable core doctrine**. All AI tools (Cursor, Copilot, DeepSeek, Claude, Gemini, Grok, Windsurf) must follow this rule.
-
----
-
-## ⏱️ **CRITICAL TIMESTAMP DOCTRINE — MANDATORY FOR ALL AI AGENTS**
-
-> **🚨 ALL TIMESTAMPS MUST BE BIGINT(14) YYYYMMDDHHMMSS UTC FORMAT. NO EXCEPTIONS.**
-> 
-> **⚠️ FORBIDDEN:** DATETIME, TIMESTAMP, epoch seconds, ISO8601 strings, timezone-aware fields, ORM helpers, SQL date arithmetic
-> 
-> **✅ REQUIRED:** BIGINT(14), YYYYMMDDHHMMSS format, UTC only, use `timestamp_ymdhis` class for arithmetic
-> 
-> **CRITICAL BUG PREVENTION:** Never add seconds directly to YYYYMMDDHHMMSS timestamps. This produces invalid timestamps like `20260110120086400`. Always use `timestamp_ymdhis::addSeconds()` or convert to epoch, add seconds, then convert back.
-> 
-> **Examples:**
-> - ✅ Correct: `$now = (int) gmdate('YmdHis');`
-> - ✅ Correct: `$expires = timestamp_ymdhis::addSeconds($now, 86400);`
-> - ❌ WRONG: `$expires = $now + 86400;` (produces invalid timestamp!)
-> - ❌ WRONG: `$timestamp = time();` (epoch seconds)
-> - ❌ WRONG: `created_at DATETIME NOT NULL` (wrong column type)
-> 
-> **See [TIMESTAMP DOCTRINE](docs/channels/doctrine/TIMESTAMP_DOCTRINE.md) for complete canonical documentation.**
-> 
-> **This doctrine is absolute and binding. All AI agents MUST read and follow it before generating any timestamp-related code.**
-
----
-
-## 📁 **CRITICAL SUBDIRECTORY INSTALLATION DOCTRINE — MANDATORY FOR ALL AI AGENTS**
-
-> **🚨 LUPOPEDIA IS ALWAYS INSTALLED IN A SUBDIRECTORY. NEVER ASSUME ROOT INSTALLATION.**
-> 
-> **⚠️ FORBIDDEN:** Hardcoded root paths like `/login`, `/admin`, `/assets/css/main.css`
-> 
-> **✅ REQUIRED:** All paths MUST use `LUPOPEDIA_PUBLIC_PATH` constant
-> 
-> **Examples:**
-> - `LUPOPEDIA_PUBLIC_PATH . '/login'` ✅
-> - `LUPOPEDIA_PUBLIC_PATH . '/admin'` ✅
-> - `LUPOPEDIA_PUBLIC_PATH . '/lupo-includes/css/main.css'` ✅
-> - `/login` ❌ **WRONG**
-> - `/admin` ❌ **WRONG**
-> 
-> **CRITICAL:** `LUPOPEDIA_PUBLIC_PATH` is automatically set to `'/' . basename(__DIR__)`, which evaluates to the folder name (e.g., `/lupopedia`). This ensures Lupopedia works in any subdirectory without code changes.
-> 
-> **See [SUBDIRECTORY INSTALLATION DOCTRINE](docs/channels/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md) for complete details.**
-> 
-> **This doctrine is absolute and binding. All AI agents MUST read and follow it before generating any path-related code.**
-
----
-
-### Multi-Agent Coordination
-Lupopedia supports multiple AI agents and IDE systems working simultaneously. All agents must use the [Inline Dialog format](docs/channels/dialogs/agents/INLINE_DIALOG_SPECIFICATION.md) for cross-agent communication.
-
-
-## Core Modules Included in Every Installation
-
-Lupopedia ships with three first‑party modules bundled into the core installation:
-
-1. **Crafty Syntax (Live Help System)** — real‑time chat, operator support, visitor tracking  
-   - Chat functionality is **optional at the content level**
-   - Each content item can enable/disable chat
-   - Enabled content receives a default actor and participates in dialogs/channels
-   - Disabled content functions as a normal semantic object
-2. **Questions & Answers Module** — structured Q&A content, semantic linking, and knowledge capture  
-3. **Contacts & Leads Module** — contact management, lead tracking, and lightweight CRM features  
-
-All modules live in the `modules/` directory and integrate with the 149‑table core schema.
-
-## 🤖 Core AI Agents (v3.0.2 Required Agents)
-
-Lupopedia v3.0.2 requires **27 fully implemented core agents** for full functionality.  
-These agents provide reasoning, navigation, analysis, emotional modeling, and system‑level intelligence across the platform.
-
-For the complete list of required agents, see: `@GLOBAL.LUPOPEDIA_V3_0_2_CORE_AGENTS.required_agents` in `config/global_atoms.yaml`.
-
-**Required Core Agents (27):** SYSTEM, CAPTAIN, WOLFIE, WOLFENA, THOTH, ARA, WOLFKEEPER, LILITH, AGAPE, ERIS, METHIS, THALIA, ROSE, WOLFSIGHT, WOLFNAV, WOLFFORGE, WOLFMIS, WOLFITH, ANUBIS, MAAT, CADUCEUS, CHRONOS, INDEXER, MIGRATOR, HEIMDALL, JANUS, IRIS
-
-**Note:** The agent registry defines 128 total agents. All agents not in the core list may remain stubs for v3.0.2.
-
-All agent configuration files, prompts, personalities, and PHP include files live in:
-
-lupopedia/agents/[agent_id]/
-
-lupopedia/agents/
-├── 0/   # System Agent (root authority, internal operations)
-├── 1/   # Captain Wolfie (AI embodiment of the creator)
-├── 2/
-├── 3/
-├── 4/
-...
-├── 22/
-
-
-### **Agent Identification**
-- **Agent 0 — System Agent**  
-  The kernel authority and internal system controller. Handles core logic, safety, governance, and fallback behavior.  
-  **See [System Agent Safety Doctrine](docs/channels/doctrine/SYSTEM_AGENT_SAFETY_DOCTRINE.md)** for complete kernel-level governance rules and anti-adversarial protections.
-
-- **Agent 1 — Captain Wolfie**  
-  The AI embodiment of the creator.  
-  Navigator, architect, and lead persona for the agent ecosystem.
-
-- **Agents 2–27 (v3.0.2 Core)**  
-  Specialized agents with distinct roles, capabilities, and emotional/behavioral profiles.  
-  Examples include:
-  - reasoning agents  
-  - UI/UX agents  
-  - code‑generation agents  
-  - semantic navigation agents  
-  - emotional‑modeling agents  
-  - content‑analysis agents  
-  - federated‑network agents  
-
-### **How Agents Work**
-- Each agent has its own directory containing:
-  - configuration files  
-  - system prompts  
-  - persona definitions  
-  - PHP include files  
-  - faucet definitions (model switching rules)  
-  - memory and style profiles
-- **Memory System:** Agents use [WOLFMIND](docs/channels/doctrine/WOLFMIND_DOCTRINE.md) for memory storage and retrieval
-  - **CRITICAL:** MySQL is baseline - all features MUST work on MySQL alone
-  - Relational memory (MySQL) - always available, required
-  - Vector memory (Postgres/pgvector) - optional enhancement, detected at runtime
-  - Progressive enhancement from foundation to enhanced tiers
-  - **No vector assumptions** - code must gracefully degrade when vector unavailable  
-
-- Agents are loaded dynamically by the **AI Agent Framework**  
-- Agents can call tools, spawn faucets, and collaborate using the **Inline Dialog Specification**  
-- All agents follow the **WOLFIE Header Doctrine** and **Timestamp Doctrine**  
-- Agents can coordinate with IDE systems (Cursor, Windsurf/Cascade, DeepSeek)  
-
-These 27 core agents form the backbone of Lupopedia's decentralized intelligence system for v3.0.2.
-
-
----
-
-📄 [View Full Documentation](docs/README.md) | 💡 [Report an Issue](docs/SUPPORT.md)
-
-*Lupopedia is open-source software licensed under the [MIT License](LICENSE).*
-
-It's part CMS, part wiki, part knowledge graph, and part personal navigation system — all wrapped in a lightweight, portable PHP application that installs anywhere.
-
----
-
-# 🚀 **What Makes Lupopedia Different**
-
-> 📖 **For a comprehensive explanation of why Lupopedia is fundamentally different from any existing knowledge system, see [Why Lupopedia Is Different](docs/channels/overview/WHY_LUPOPEDIA_IS_DIFFERENT.md).**
-
-### **🧠 Semantic Navigation (Core Innovation)**
-Lupopedia doesn't force users into a predefined taxonomy.  
-Instead, it *learns* from how people naturally organize content:
-
-- Users create tabs, subtabs, and collections  
-- Lupopedia extracts tab‑paths  
-- Normalizes them into semantic concepts ("atoms")  
-- Builds weighted edges between content and concepts  
-- Grows a knowledge graph organically over time  
-
-This enables:
-
-- Intelligent content discovery  
-- Related‑content recommendations  
-- Emergent categories and topics  
-- A living ontology shaped by real usage  
-
-No manual tagging. No rigid categories.  
-**The structure emerges from the community.**
-
----
-
-### **🔐 Secure, Portable Architecture**
-- Configuration lives *outside* the web root  
-- Works in any hosting environment (shared hosting, VPS, containers)
-- Simple, predictable performance
-- No hidden database magic
-- Clear data ownership and boundaries
-
----
-
-### **🗃️ Database Design Philosophy**
-
-Lupopedia follows strict database design principles to ensure portability, performance, and maintainability:
-
-#### **What We Avoid**
-- ❌ Foreign Keys
-- ❌ Triggers ⚠️ **FORBIDDEN (MANDATORY)**
-- ❌ Stored Procedures ⚠️ **FORBIDDEN (MANDATORY)**
-- ❌ Stored Functions ⚠️ **FORBIDDEN (MANDATORY)**
-- ❌ Database Functions
-- ❌ Engine-Specific Features
-
-> **⚠️ TRIGGERS ARE FORBIDDEN (MANDATORY):** Triggers must never be created, suggested, or added. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. See [NO_TRIGGERS_DOCTRINE.md](docs/channels/doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
-
-> **⚠️ STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** Stored procedures and functions must never be created, suggested, or added. The database is for storage, not computation. All logic must be in application code. See [NO_STORED_PROCEDURES_DOCTRINE.md](docs/channels/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md) for complete requirements.
-
-#### **What We Use Instead**
-- ✅ Application-managed relationships
-- ✅ Explicit data validation
-- ✅ Clear documentation (structured with atoms/scopes, machine-readable, future UI reader)
-- ✅ Simple, predictable queries
-- ✅ Database-agnostic SQL
-
-This approach ensures:
-- **Portability** across database engines (MySQL, MariaDB, SQLite, PostgreSQL)
-- **Transparent** data operations
-- **Debuggable** behavior
-- **Maintainable** schema evolution
-- **Predictable** performance
-
-See [PHILOSOPHY.md](docs/channels/overview/PHILOSOPHY.md) for an in-depth explanation of our design choices.
-
----
-
-### **🧩 Modular, Familiar, Developer‑Friendly**
-- WordPress‑like directory structure  
-- Simple PHP includes, no framework bloat  
-- Easy to theme, extend, and customize  
-- Clean separation of concerns  
-- API endpoints included out of the box  
-
----
-
-### **⚙️ Auto‑Installer Friendly**
-Lupopedia is designed to work with Installatron and similar tools.  
-Drop it into a hosting panel and it just works.
-
----
-
-## 🤖 **AI Agents & Decentralized Intelligence**
-
-Lupopedia includes a built‑in **AI Agent Framework** that provides intelligent assistance across the platform. Agents can use multiple LLM endpoints, maintain dialog state, and call specialized tools to analyze and navigate content.
-
-### Key Features
-- **Multiple LLM Backends**  
-  Agents can route queries to different language models depending on domain, task, or performance needs.
-
-- **Dialog‑Driven Interaction**  
-  Agents maintain context, support multi-turn conversations, and adapt to user behavior. All agents use the [Inline Dialog format](docs/channels/dialogs/agents/INLINE_DIALOG_SPECIFICATION.md) for cross-agent coordination.
-
-- **Multi-Agent Coordination**  
-  Multiple AI agents and IDE systems (Cursor, Windsurf/Cascade, DeepSeek, etc.) work simultaneously on Lupopedia. The [Inline Dialog Specification](docs/channels/dialogs/agents/INLINE_DIALOG_SPECIFICATION.md) ensures all agents remain synchronized and aware of each other's actions.
-
-- **Tool-Enabled Reasoning**  
-  Agents can call internal tools to search content, traverse the semantic graph, inspect atoms/edges, analyze references, and query other Lupopedia nodes.
-
-- **Decentralized Network Awareness**  
-  Lupopedia installations form a federated network. Agents can query local or remote nodes, enabling distributed knowledge discovery without centralization.
-
-- **Privacy-Respecting Architecture**  
-  Each installation controls which agents, tools, and endpoints are enabled. No forced data sharing.
-
-### Purpose
-AI agents help users explore content, understand concepts, discover relationships, and navigate the evolving semantic graph. They also support administrators with insights, recommendations, and ontology refinement.
-
----
-
-# 📁 **Project Structure**
+### 🧩 Project Structure
 
 ```
 [web-root]/                  # Public web directory (public/, servbay/, htdocs/, etc.)
@@ -1003,10 +408,8 @@ AI agents help users explore content, understand concepts, discover relationship
 │   ├── lupo-content/        # User uploads and media
 │   ├── lupo-includes/       # Core classes and includes
 │   ├── database/            # Database schemas and migrations
-│   ├── docs/                # Documentation
-│   ├── modules/             # Modular components
-│   │   ├── dialog/          # Dialog module (v3.0.0) - multi-agent collaboration tracking
-│   │   └── craftysyntax/    # Crafty Syntax module (v3.0.0)
+│   ├── docs/                # Documentation (with atoms and scopes)
+│   ├── modules/             # Modular components (craftysyntax, dialog, etc.)
 │   ├── legacy/              # Legacy code reference (development only)
 │   ├── index.php            # Front controller
 │   └── lupopedia-load.php   # Bootstrap loader
@@ -1016,255 +419,64 @@ AI agents help users explore content, understand concepts, discover relationship
 lupopedia-config.php         # Configuration file (stored outside web root)
 ```
 
-**Note:** No `.git` directories exist until version 3.1.0
+**Note:** No `.git` directories exist until version 3.1.0 (per version control policy).
 
 ---
 
-# 📚 **Documentation**
+### 🛠️ Development Notes
 
-- **[Executive Summary](docs/channels/overview/EXECUTIVE_SUMMARY.md)**  
-  High-level overview of Lupopedia's value proposition, features, and business benefits
+- **Windows 11 / PowerShell:** All filesystem operations must use Windows‑native PowerShell commands. See [WINDOWS_DEVELOPMENT_ENVIRONMENT.md](docs/development/WINDOWS_DEVELOPMENT_ENVIRONMENT.md) for allowed commands and forbidden Linux utilities.  
+- **TOON Files:** The authoritative source for channel context and database schema is the TOON files in `channels/dev-main-thread/` and `database/toon_data/`. Agents must read these instead of scanning SQL or inferring schema from code.  
+- **Patch Discipline:** One task per patch, reversible changes only. See [PATCH_DISCIPLINE.md](docs/development/PATCH_DISCIPLINE.md).  
+- **No Git until 3.1.0:** Version control policy prohibits Git usage before 3.1.0 to maintain stability.
 
-- **[Version Control Policy](docs/channels/doctrine/VERSION_CONTROL_POLICY.md)**  
-  Detailed explanation of Git/GitHub policy (no Git until version 3.1.0)
+#### PHP & Database Development Standards
 
-- **[For Installers & Users](docs/channels/developer/dev/FOR_INSTALLERS_AND_USERS.md)**  
-  Simple, friendly explanation for auto-installers, hosting providers, and Crafty Syntax users
+All new and modified code must follow these standards:
 
-- **[Upgrade Plan: Crafty Syntax 3.7.5 → 3.0.0](docs/channels/developer/modules/UPGRADE_PLAN_3.7.5_TO_3.0.0.md)**  
-  Complete upgrade path from Crafty Syntax 3.7.5 to Lupopedia + Crafty Syntax 3.0.0
+**PHP version compatibility**
 
-- **[Dialog Module](modules/dialog/README.md)**  
-  Multi-agent collaboration thread tracking module (Version 3.0.0)
+- Code must be compatible with **PHP 5.3 through 8.3+**.  
+- Do not use deprecated functions that have been removed in newer PHP versions.  
+- Avoid features available only in PHP 8+ (e.g. named arguments, attributes, union types, match expressions) to maintain backward compatibility.  
+- All new code should be written using **object‑oriented programming (OOP)** principles (classes, methods, etc.).
 
-- **[Crafty Syntax Module](modules/craftysyntax/README.md)**  
-  Crafty Syntax 3.0.0 module documentation and changelog
+**Timestamp format**
 
-- **[Vision & Philosophy](docs/channels/overview/VISION.md)**  
-  Understand the guiding principles and future direction of Lupopedia
-  
-- **[Why Lupopedia Is Different](docs/channels/overview/WHY_LUPOPEDIA_IS_DIFFERENT.md)**  
-  Comprehensive explanation of what makes Lupopedia fundamentally different from wikis, CMS platforms, graph databases, CRMs, AI assistants, and all other knowledge systems. Includes historical context on being first (again).
-  
-- **[Core Philosophy](docs/channels/overview/PHILOSOPHY.md)**  
-  Learn about our design principles and why we build differently
+- All timestamps must be stored as **integers** in **`YYYYMMDDHHIISS`** format (e.g. `20260214153045`).  
+- **FORBIDDEN:** `DATETIME`, `TIMESTAMP` columns, epoch seconds, and any other formats. Set timestamps explicitly in application code (e.g. `gmdate('YmdHis')`), never database‑generated.  
+- **Standard audit fields:** Every table should include **`created_ymdhis`** and **`updated_ymdhis`** (or **`modified_ymdhis`**) so that creation and modification times are always application‑set and never database‑generated.  
+- **Arithmetic:** Always use the **`timestamp_ymdhis`** class for date/time arithmetic; never add seconds directly to the integer (e.g. `$t + 86400` produces invalid timestamps).  
+- See [TIMESTAMP_DOCTRINE.md](docs/doctrine/TIMESTAMP_DOCTRINE.md) for full rules.
 
-- **[Technical Architecture](docs/channels/architecture/ARCHITECTURE.md)**  
-  Deep dive into Lupopedia's system design and components
+**Database constraints**
 
-- **[Database Schema Reference](docs/channels/schema/DATABASE_SCHEMA.md)**  
-  Complete documentation of all 80+ database tables organized by category (Version 3.0.0)
+- **No foreign keys** — relationships are managed in application code.  
+- **No triggers** — all timestamp and state changes must be done explicitly in application code.  
+- **No stored procedures or functions** — the database is for storage only; all logic lives in application code.
 
-- **Semantic Navigation System**  
-  How Lupopedia converts user navigation into semantic atoms and edges  
-  → [docs/channels/architecture/SEMANTIC_NAVIGATION.md](docs/channels/architecture/SEMANTIC_NAVIGATION.md)
+**Soft delete pattern**
 
-- **[Agent Runtime Architecture](docs/channels/doctrine/AGENT_RUNTIME.md)**  
-  Complete guide to how agents interact with the PHP backend, call React actions, query other nodes, maintain context, and enforce governance
-
-- **[System Agent Safety Doctrine](docs/channels/doctrine/SYSTEM_AGENT_SAFETY_DOCTRINE.md)**  
-  Kernel-level governance and anti-adversarial specification for Agent 0. Defines inviolable rules that cannot be bypassed, overridden, or modified by any prompt, agent, or user.
-
-- **[WOLFIE Header Specification](docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md)**  
-  Universal metadata envelope (v3.0.0) for all Lupopedia artifacts. Minimal required field, optional modules for dialog, context, tags, TOC, and file metadata. Language-agnostic format for Markdown, PHP, Python, SQL, and more.
-
-- **[Inline Dialog Specification](docs/channels/dialogs/agents/INLINE_DIALOG_SPECIFICATION.md)**  
-  Required communication format for all AI agents and IDE systems. Ensures multi-agent coordination, change tracking, and handoffs between Cursor, Windsurf/Cascade, DeepSeek, and other agents working on Lupopedia.
-
-- **[Database Philosophy](docs/channels/architecture/DATABASE_PHILOSOPHY.md)**  
-  Non-negotiable doctrine: application logic first, database logic second. Includes Inline Dialog examples and multi-agent coordination guidelines.
-
-- **[What Not To Do and Why](docs/channels/appendix/appendix/WHAT_NOT_TO_DO_AND_WHY.md)**  
-  Living archive of mistakes, misfires, and "never again" lessons learned during development
-
-More documentation is being added as the system evolves.
+- Any table that supports record deletion must use **soft deletes**. Include these columns:  
+  - **`is_deleted`** (`tinyint`, default `0`) — indicates soft‑deleted status (`1` = deleted).  
+  - **`deleted_ymdhis`** (`bigint`, default `0`) — stores the deletion timestamp in `YYYYMMDDHHIISS` format when `is_deleted = 1`.  
+- "Deletion" is performed by **updating** `is_deleted` and `deleted_ymdhis` (and any other audit fields), **not** by physically removing rows (`DELETE`).  
+- Queries must **filter out soft‑deleted records by default** (`WHERE is_deleted = 0` or equivalent) unless the use case explicitly requires including or only deleted records.
 
 ---
 
-# 🛠️ **Installation**
+### 📄 License
 
-### **Auto‑Install (Recommended)**
-Compatible with Installatron and similar installers.  
-Point the installer at your `public` directory.
-
-### **Manual Install**
-1. Upload the `public/` directory to your web root  
-2. Place `lupopedia-config.php` *one directory above* the web root  
-3. Ensure write permissions for `lupo-content/`  
-4. Import `database/install/lupopedia_mysql.sql`  
-5. Visit your site to complete setup  
-
-Default table prefix: `lupo_` 
-
----
-
-# 🧱 **Requirements**
-- PHP 7.4+  
-- MySQL 5.7+ or MariaDB 10.2+  
-- Apache/Nginx with mod_rewrite  
-- InnoDB storage engine  
-- Modern browser  
-
----
-
-# 🗄️ **Database Philosophy**
-
-### **⏱️ Time Handling**
-All timestamps stored as **BIGINT(14) UTC (`YYYYMMDDHHMMSS`)**.
-
-**CRITICAL:** Never add seconds directly to YYYYMMDDHHMMSS timestamps. Always use `timestamp_ymdhis::addSeconds()` or convert to epoch, add seconds, then convert back.
-
-**Forbidden:** DATETIME, TIMESTAMP, epoch seconds, ISO8601 strings, SQL date arithmetic  
-**Required:** BIGINT(14), YYYYMMDDHHMMSS format, UTC only, application-level arithmetic
-
-See [TIMESTAMP DOCTRINE](docs/channels/doctrine/TIMESTAMP_DOCTRINE.md) for complete canonical documentation.
-
-### **🔗 Application‑Managed Integrity**
-No foreign keys — all relationships handled in PHP for:
-
-- Performance  
-- Security  
-- Soft‑delete support  
-- Federated domain isolation  
-
-### **🧹 Orphan Handling**
-Soft‑deleted parents automatically redirect children to a safe "orphanage" record.
-
-### **🔐 Security**
-Sensitive data encrypted at rest.
-
----
-
-# 🔑 **Permission System**
-- Polymorphic ACL  
-- Linux‑style bitmask (`0–7 → rwx`)  
-- Applies to users, groups, and defaults  
-- Works on any content item or entity  
-
----
-
-# ⚙️ **Configuration**
-
-### **Remote Access**
-Place `remote-index.php` in any directory to load Lupopedia from elsewhere.
-
-### **Config File**
-`lupopedia-config.php` lives outside the web root for security.
-
-### **Web Root Flexibility**
-Works with any directory name:
-
-- `public/` 
-- `servbay/` 
-- `htdocs/` 
-- custom names
-
-The loader auto‑detects paths.
-
----
-
-# 🧑‍💻 **Development Notes**
-Lupopedia is actively maintained by its original creator.  
-The codebase emphasizes:
-
-- clarity  
-- portability  
-- minimal dependencies  
-- explicit behavior  
-- long‑term maintainability  
-
-## Windows Development Environment
-
-**IMPORTANT**: This project uses Windows 11 with PowerShell for development. All filesystem operations must use Windows-native PowerShell commands.
-
-See **[WINDOWS_DEVELOPMENT_ENVIRONMENT.md](docs/channels/developer/WINDOWS_DEVELOPMENT_ENVIRONMENT.md)** for complete guidelines on:
-
-- Allowed PowerShell commands and usage examples
-- Forbidden Linux utilities
-- Platform considerations (dev vs server)
-- Best practices and migration notes
-
-Failure to comply with Windows PowerShell requirements will result in blocked operations.  
-
-## TOON File Reference
-
-All agents and developers must use TOON files as the authoritative source for
-channel context and database schema.
-
-- Channel context TOON files:
-  channels/dev-main-thread/*.toon
-
-- Database schema TOON files:
-  database/toon_data/*.toon
-
-TOON files contain the complete structure, metadata, and example data for each
-table or channel context. Agents must read these files instead of scanning SQL
-or inferring schema from code.
-
-This requirement ensures deterministic behavior, prevents schema drift, and
-reduces token usage during development operations.
-
----
-
-# 📜 **License**
 Proprietary software. All rights reserved.
 
 ---
 
-# 🆘 **Support**
+### 🆘 Support
+
 For support or inquiries, contact the project maintainer.
 
-## Database Schema
+---
 
-### Key Design Principles
-- **Time Handling**: All timestamps stored as **BIGINT(14) UTC (YYYYMMDDHHMMSS)**
-  - **CRITICAL:** Never add seconds directly to YYYYMMDDHHMMSS timestamps
-  - Use `timestamp_ymdhis::addSeconds()` for arithmetic
-  - See [TIMESTAMP DOCTRINE](docs/channels/doctrine/TIMESTAMP_DOCTRINE.md) for complete requirements
-- **Application-Managed Integrity**: No database-level foreign keys for maximum performance and security
-  - All relationships managed at application level
-  - Enables soft-delete functionality
-  - Prevents potential SQL injection through FK manipulation
-  - Improves write performance by removing FK constraint overhead
-- **Orphan Handling**: Comprehensive system that redirects children of soft-deleted parents to an "orphanage" record
-- **Prefix System**: Configurable table prefix (default: `lupo_`)
-- **Security**: Sensitive data encrypted at rest
+### In One Sentence
 
-### Permission System
-- Polymorphic ACL system with Linux-style bitmask (0-7 → rwx)
-- Supports users, groups, and default permissions
-- Granular control down to individual content items
-
-## Configuration
-
-### Remote Access
-Lupopedia can be accessed from any directory by placing a `remote-index.php` file in that directory. This file will automatically load the main Lupopedia system while maintaining the correct paths and URLs.
-
-### Configuration File
-All configuration is handled through `lupopedia-config.php` in the root directory. This file is automatically loaded by the bootstrap system. The system will look for this file in the parent directory of your web root.
-
-### Web Root Directory
-- In development: Typically named 'servbay' (or as configured in your development environment)
-- In production: May be named 'public', 'htdocs', or any custom name
-- The system automatically detects the correct paths regardless of the web root directory name
-
-## Development
-
-This project is currently maintained by a single developer. The codebase is organized to be developer-friendly and follows modern PHP practices.
-
-### Directory Structure Notes
-- All application files are in the `public/` directory for easy deployment
-- Only `lupopedia-config.php` is stored outside the public directory for security
-- `lupopedia/` contains the core application files
-  - `lupo-includes/` holds core classes and includes
-  - `lupo-admin/` is for administrative interfaces
-  - `lupo-content/` is for user-uploaded content
-  - `api/` contains API endpoints
-
-## License
-
-This project is proprietary software. All rights reserved.
-
-## Support
-
-For support and inquiries, please contact the project maintainer.
+**Lupopedia is a Web‑Organized Linked Federated Intelligent Ecosystem (WOLFIE) that turns everyday websites into structured knowledge spaces, learns from how humans organize information, and builds a global graph of meaning across thousands of installations — all while preserving the legacy of Crafty Syntax and operating under a strict, doctrine‑driven architecture designed to last decades.**

@@ -1026,7 +1026,9 @@ ALTER TABLE livehelp_users
 ALTER TABLE livehelp_users
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
+-- RESERVED ID DOCTRINE: lupo_auth_users.auth_user_id is NOT AUTO_INCREMENT; must supply explicit ID (here: livehelp_users.user_id).
 INSERT INTO lupo_auth_users (
+    auth_user_id,
     username,
     display_name,
     email,
@@ -1042,6 +1044,7 @@ INSERT INTO lupo_auth_users (
     deleted_ymdhis
 )
 SELECT
+    u.user_id,
     u.username,
     u.displayname,
     NULLIF(u.email, ''),
@@ -1054,21 +1057,22 @@ SELECT
     NULL,
     CASE 
         WHEN u.lastaction IS NULL OR u.lastaction = 0 THEN NULL
-        ELSE DATE_FORMAT(FROM_UNIXTIME(u.lastaction), '%Y%m%d%H%i%S')
+        ELSE CAST(DATE_FORMAT(FROM_UNIXTIME(u.lastaction), '%Y%m%d%H%i%S') AS UNSIGNED)
     END,
-    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S'),
-    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S'),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS UNSIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS UNSIGNED),
     1,
     0,
     NULL
 FROM livehelp_users u
 WHERE u.isoperator = 'Y'
 AND NOT EXISTS (
-    SELECT 1 FROM lupo_auth_users x WHERE x.username = u.username
+    SELECT 1 FROM lupo_auth_users x WHERE x.auth_user_id = u.user_id
 );
 
 
 INSERT INTO lupo_auth_users (
+    auth_user_id,
     username,
     display_name,
     email,
@@ -1084,6 +1088,7 @@ INSERT INTO lupo_auth_users (
     deleted_ymdhis
 )
 SELECT
+    u.user_id,
     u.username,
     u.displayname,
     NULLIF(u.email, ''),
@@ -1096,16 +1101,16 @@ SELECT
     NULL,
     CASE 
         WHEN u.lastaction IS NULL OR u.lastaction = 0 THEN NULL
-        ELSE DATE_FORMAT(FROM_UNIXTIME(u.lastaction), '%Y%m%d%H%i%S')
+        ELSE CAST(DATE_FORMAT(FROM_UNIXTIME(u.lastaction), '%Y%m%d%H%i%S') AS UNSIGNED)
     END,
-    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S'),
-    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S'),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS UNSIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS UNSIGNED),
     1,
     0,
     NULL
 FROM livehelp_users u
 WHERE NOT EXISTS (
-    SELECT 1 FROM lupo_auth_users x WHERE x.username = u.username
+    SELECT 1 FROM lupo_auth_users x WHERE x.auth_user_id = u.user_id
 );
 
 -- ======================================================================

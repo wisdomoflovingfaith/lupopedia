@@ -42,7 +42,7 @@ if (file_exists(LUPOPEDIA_PATH . '/lupo-includes/functions/collection-tabs-loade
 // Get collection_id from request
 $collection_id = isset($_GET['collection_id']) ? (int)$_GET['collection_id'] : null;
 
-if ($collection_id === null || $collection_id <= 0) {
+if ($collection_id === null || $collection_id < 0) {
     http_response_code(400);
     header('Content-Type: application/json');
     echo json_encode(['success' => false, 'error' => 'Invalid collection_id']);

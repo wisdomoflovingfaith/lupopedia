@@ -43,6 +43,12 @@ if (!defined('LUPOPEDIA_CONFIG_PATH')) {
         define('LUPOPEDIA_CONFIG_PATH', dirname($docRoot) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php');
     } elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
         define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/lupopedia-config.php');
+    } elseif (file_exists(dirname($docRoot) . '/config.php')) {
+        define('LUPOPEDIA_CONFIG_PATH', dirname($docRoot) . '/config.php');
+    } elseif (file_exists(dirname($docRoot) . LUPOPEDIA_PUBLIC_PATH . '/config.php')) {
+        define('LUPOPEDIA_CONFIG_PATH', dirname($docRoot) . LUPOPEDIA_PUBLIC_PATH . '/config.php');
+    } elseif (@file_exists(LUPOPEDIA_PATH . '/config.php')) {
+        define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/config.php');
     }
 }
 if (!defined('LUPOPEDIA_CONFIG_PATH') || !is_file(LUPOPEDIA_CONFIG_PATH)) {

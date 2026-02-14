@@ -379,8 +379,13 @@ function login_handle_post() {
         // Clear login redirect now that we're using it
         unset($_SESSION['login_redirect']);
 
-        // Redirect to original page (or /admin if no redirect was specified)
-        // The $redirect variable contains either $_POST['redirect'] or the default '/admin'
+        // If no redirect target (e.g. installer first-login), send to QA landing instead of site root
+        $site_root = $default_redirect;
+        $qa_landing = (defined('LUPOPEDIA_PUBLIC_PATH') && LUPOPEDIA_PUBLIC_PATH !== '') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/qa/lupopedia' : '/qa/lupopedia';
+        if ($redirect === $site_root || rtrim($redirect, '/') === rtrim($site_root, '/')) {
+            $redirect = $qa_landing;
+        }
+
         lupo_safe_redirect($redirect, 2, 'Login successful! Redirecting...');
         
     } catch (Exception $e) {
@@ -559,10 +564,14 @@ function change_password_handle_post() {
             error_log("AUTH: Password changed from MD5 to bcrypt for user: " . htmlspecialchars($user['username']));
         }
 
-        // Redirect to original page or home
+        // Redirect to original page, or QA landing when no redirect (installer first-login after MD5 upgrade)
         $default_redirect = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/' : '/';
         $redirect_url = isset($_SESSION['login_redirect']) ? $_SESSION['login_redirect'] : $default_redirect;
         unset($_SESSION['login_redirect']);
+        $qa_landing = (defined('LUPOPEDIA_PUBLIC_PATH') && LUPOPEDIA_PUBLIC_PATH !== '') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/qa/lupopedia' : '/qa/lupopedia';
+        if ($redirect_url === $default_redirect || rtrim($redirect_url, '/') === rtrim($default_redirect, '/')) {
+            $redirect_url = $qa_landing;
+        }
 
         lupo_safe_redirect($redirect_url, 2, 'Password changed successfully! Redirecting...');
         

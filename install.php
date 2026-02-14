@@ -1,6 +1,6 @@
 <?php
 /**
- * Lupopedia 3.0.0 — Install / Upgrade Wizard
+ * Lupopedia 4.0.4 — Install / Upgrade Wizard
  *
  * Two valid states only: New install | Upgrade from Crafty Syntax 3.7.5.
  * No Lupopedia → Lupopedia upgrade. Project root is webroot; no /public folder.
@@ -117,7 +117,7 @@ if (!extension_loaded('fileinfo')) {
 if (!empty($preflight_blocking)) {
     header('Content-Type: text/html; charset=utf-8');
     echo '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lupopedia — Pre-flight check failed</title></head><body>';
-    echo '<h1>Lupopedia 3.0.0 — Pre-flight check failed</h1><p>Installation cannot continue:</p><ul>';
+    echo '<h1>Lupopedia 4.0.4 — Pre-flight check failed</h1><p>Installation cannot continue:</p><ul>';
     foreach ($preflight_blocking as $msg) {
         echo '<li>' . htmlspecialchars($msg) . '</li>';
     }
@@ -383,6 +383,21 @@ if ($step === 'run') {
             if (!empty($_SESSION['lupo_import_run'])) {
                 $log[] = InstallWizardLogger::logEntry('skip', 'Import already completed (idempotent skip).');
             } else {
+                // RESERVED ID DOCTRINE: actor_id 0-9999 = system/AI only; human actors start at 10000.
+                // Ensure next lupo_actors.actor_id is at least 10000 so imported Crafty users get IDs >= 10000.
+                $actors_table = 'lupo_actors';
+                $actors_quoted = '`' . str_replace('`', '``', $actors_table) . '`';
+                try {
+                    $stmt = $pdo->query("SELECT COALESCE(MAX(actor_id), 0) AS mx FROM " . $actors_quoted . " LIMIT 1");
+                    $row = $stmt ? $stmt->fetch(PDO::FETCH_ASSOC) : null;
+                    $max = $row && isset($row['mx']) ? (int) $row['mx'] : 0;
+                    $nextId = $max >= 10000 ? $max + 1 : 10000;
+                    $pdo->exec("ALTER TABLE " . $actors_quoted . " AUTO_INCREMENT = " . (int) $nextId);
+                    $log[] = InstallWizardLogger::logEntry('ok', 'Set lupo_actors AUTO_INCREMENT to ' . $nextId . ' (human actors from 10000).');
+                } catch (PDOException $e) {
+                    $log[] = InstallWizardLogger::logEntry('error', 'Could not set actor_id minimum (see server log).');
+                    error_log('Lupopedia wizard AUTO_INCREMENT: ' . $e->getMessage());
+                }
                 InstallWizardSqlRunner::runSqlFile($pdo, $importSql, $log);
                 $log[] = InstallWizardLogger::logEntry('ok', 'Import complete.');
                 $_SESSION['lupo_import_run'] = true;
@@ -523,6 +538,7 @@ if ($step === 'complete') {
     if (empty($complete_log) && is_file(LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupopedia-config.php')) {
         $complete_log = array(array('ok', 'Installation completed.'));
     }
+    $complete_config_log = isset($_SESSION['lupo_config_log']) ? $_SESSION['lupo_config_log'] : array();
     $loginUrl = rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/');
     $loginUrl = ($loginUrl === '' ? '' : $loginUrl . '/') . 'login';
 }
@@ -540,7 +556,7 @@ if ($baseUrl === '') {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lupopedia 3.0.0 — Install / Upgrade</title>
+    <title>Lupopedia 4.0.4 — Install / Upgrade</title>
     <style>
         body { font-family: system-ui, -apple-system, sans-serif; max-width: 680px; margin: 2rem auto; padding: 0 1.25rem; color: #1a1a1a; }
         h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
@@ -587,10 +603,15 @@ if ($baseUrl === '') {
         .normalize-row-err { font-size: 0.8rem; color: #dc3545; margin-top: 0.25rem; }
         [title] { cursor: help; }
         .slug-tip { font-size: 0.8rem; color: #666; margin-top: 0.25rem; }
+        .lupo-step-wrap { position: relative; }
+        .lupo-processing-overlay { display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.9); border-radius: 4px; align-items: center; justify-content: center; z-index: 10; }
+        .lupo-processing-overlay.visible { display: flex; }
+        .lupo-processing-overlay span { font-size: 1.1rem; color: #0d6efd; font-weight: 500; }
+        button:disabled { opacity: 0.6; cursor: not-allowed; }
     </style>
 </head>
 <body>
-    <h1>Lupopedia 3.0.0 — Install / Upgrade Wizard</h1>
+    <h1>Lupopedia 4.0.4 — Install / Upgrade Wizard</h1>
     <p class="wizard-progress">Step <?php echo InstallWizardSteps::getCurrentStepIndex($step); ?> of <?php echo InstallWizardSteps::getTotalSteps(); ?></p>
 
     <?php if ($step === 'welcome'): ?>
@@ -619,7 +640,8 @@ if ($baseUrl === '') {
         </div>
 
     <?php elseif ($step === 'credentials'): ?>
-        <div class="step">
+        <div class="step lupo-step-wrap" id="lupo-credentials-step">
+            <div class="lupo-processing-overlay" id="lupo-processing-overlay" aria-live="polite"><span>Processing…</span></div>
             <h2>Database credentials</h2>
             <p>Enter connection details (or ensure Crafty Syntax <code>config.php</code> is in a standard location to auto-detect).</p>
             <?php foreach ($errors as $e): ?>
@@ -628,7 +650,7 @@ if ($baseUrl === '') {
             <?php if (!empty($errors)): ?>
                 <p><form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php'); ?>" style="display:inline;"><input type="hidden" name="action" value="start_over"><button type="submit" class="btn btn-secondary">Start over</button></form></p>
             <?php endif; ?>
-            <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>">
+            <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>" id="lupo-credentials-form">
                 <input type="hidden" name="lupo_csrf" value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
                 <input type="hidden" name="step" value="credentials">
                 <label>Host <input type="text" name="db_host" value="<?php echo htmlspecialchars(isset($_POST['db_host']) ? $_POST['db_host'] : 'localhost'); ?>" required></label>
@@ -636,10 +658,24 @@ if ($baseUrl === '') {
                 <label>Database <input type="text" name="db_name" value="<?php echo htmlspecialchars(isset($_POST['db_name']) ? $_POST['db_name'] : ''); ?>" required></label>
                 <label>User <input type="text" name="db_user" value="<?php echo htmlspecialchars(isset($_POST['db_user']) ? $_POST['db_user'] : ''); ?>" required></label>
                 <label>Password <input type="password" name="db_password" value=""></label>
-                <p style="margin-top:1rem;"><button type="submit">Connect and detect install type</button></p>
+                <p style="margin-top:1rem;"><button type="submit" id="lupo-connect-btn">Connect and detect install type</button></p>
             </form>
             <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=welcome'); ?>" class="btn btn-secondary">Back</a></p>
         </div>
+        <script>
+        (function() {
+            var form = document.getElementById('lupo-credentials-form');
+            var btn = document.getElementById('lupo-connect-btn');
+            var overlay = document.getElementById('lupo-processing-overlay');
+            if (form && btn && overlay) {
+                form.onsubmit = function() {
+                    btn.disabled = true;
+                    overlay.className = 'lupo-processing-overlay visible';
+                    return true;
+                };
+            }
+        })();
+        </script>
 
     <?php elseif ($step === 'bootstrap'): ?>
         <div class="wizard-card step success">
@@ -668,7 +704,7 @@ if ($baseUrl === '') {
     <?php elseif ($step === 'normalize'): ?>
         <div class="step warning">
             <h2>Identity normalization</h2>
-            <p><strong>Reserved system channels (0, 1, 42, 5100) have been created.</strong> Next: resolve identities. Crafty Syntax uses username/password; Lupopedia uses email/password and requires a unique email per account. <strong>Email</strong> is kept as the real email (e.g. <code>helen@lupopedia.com</code>). <strong>Username</strong> for operators becomes slug format (e.g. <code>helen</code> → <code>helen-at-lupopedia-com</code>). You can correct any proposed email below. All emails must be unique and valid before you can continue.</p>
+            <p><strong>Reserved system channels (0, 1, 42, 5100) have been created.</strong> Next: resolve identities for <strong>operators only</strong> (isoperator = Y). Visitor sessions are not changed. Crafty Syntax uses username/password; Lupopedia uses email/password and requires a unique email per operator. <strong>Email</strong> is kept as the real email (e.g. <code>helen@lupopedia.com</code>). <strong>Username</strong> for operators becomes slug format (e.g. <code>helen</code> → <code>helen-at-lupopedia-com</code>). You can correct any proposed email below. All emails must be unique and valid before you can continue.</p>
             <?php if (!empty($normalize_warnings)): ?>
                 <div class="normalize-warnings">
                     <strong>Warnings</strong>
@@ -687,7 +723,7 @@ if ($baseUrl === '') {
                     <input type="hidden" name="lupo_csrf" value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
                     <input type="hidden" name="step" value="normalize">
                     <input type="hidden" name="action" value="apply_normalization">
-                    <p><strong>Users, proposed slug, and resolved email</strong></p>
+                    <p><strong>Operators only — proposed slug and resolved email</strong></p>
                     <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
                         <thead>
                             <tr style="border-bottom:1px solid #ccc;">
@@ -757,12 +793,14 @@ if ($baseUrl === '') {
                 <p><strong>Upgrade from Crafty Syntax 3.7.5</strong></p>
                 <p>Reserved system channels (0, 1, 42, 5100) and schema were created before normalization. Identity normalization applied. The wizard will now:</p>
                 <ol>
+                    <li>Set <code>lupo_actors</code> so the next actor_id is at least 10000 (reserved ID doctrine)</li>
                     <li>Run <code>import_from_old_crafty_syntax.sql</code></li>
                     <li>Create operator channels and assign captain roles (<code>lupo_channels</code>, <code>lupo_channel_roles</code>)</li>
                     <li>Run <code>drop_old_crafty_syntax_tables.sql</code></li>
                     <li>Write <code>lupopedia-config.php</code></li>
                     <li>Redirect to login</li>
                 </ol>
+                <p style="font-size:0.9rem; color:#666;"><strong>Doctrine:</strong> Crafty Syntax users are migrated into the Lupopedia actor system. Actor IDs 0–9999 are reserved for system and AI agents. Human actors begin at ID 10000.</p>
                 <p style="font-size:0.9rem; color:#666;">Already done: Create reserved system channels (0, 1, 42, 5100) before normalization → Identity normalization.</p>
             <?php else: ?>
                 <p><strong>New install</strong></p>
@@ -896,6 +934,7 @@ if ($baseUrl === '') {
                 <h4>Summary</h4>
                 <ul style="list-style:none; padding:0;">
                     <li><strong>Install type:</strong> <?php echo htmlspecialchars($complete_install_type); ?></li>
+                    <li class="diag-ok"><strong>Config:</strong> <code>lupopedia-config.php</code> is active; Crafty <code>config.php</code> has been backed up or removed.</li>
                     <?php if ($complete_install_type === 'upgrade'): ?>
                     <li><strong>Users normalized:</strong> <?php echo (int) $complete_normalize_count; ?></li>
                     <li><strong>Operator channels created:</strong> <?php echo (int) $complete_operator_channels; ?></li>
@@ -908,6 +947,12 @@ if ($baseUrl === '') {
                 <div class="log-section">
                     <h4>Run log</h4>
                     <pre class="log"><?php foreach ($complete_log as $e) { $c=$e[0]; $t=htmlspecialchars($e[1]); $ts=isset($e[2]) ? htmlspecialchars($e[2]) . ' ' : ''; echo "<span class=\"{$c}\">[{$c}] {$ts}{$t}</span>\n"; } ?></pre>
+                </div>
+            <?php endif; ?>
+            <?php if (!empty($complete_config_log)): ?>
+                <div class="log-section">
+                    <h4>Config log</h4>
+                    <pre class="log"><?php foreach ($complete_config_log as $e) { $c=$e[0]; $t=htmlspecialchars($e[1]); $ts=isset($e[2]) ? htmlspecialchars($e[2]) . ' ' : ''; echo "<span class=\"{$c}\">[{$c}] {$ts}{$t}</span>\n"; } ?></pre>
                 </div>
             <?php endif; ?>
             <p>

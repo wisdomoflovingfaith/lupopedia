@@ -6,6 +6,11 @@
 -- =============================================================================
 -- SEED LUPOPEDIA — CANONICAL BIRTH-STATE
 -- =============================================================================
+-- Timestamp doctrine: BIGINT(14) UTC YYYYMMDDHHiiss. No datetime, no CURRENT_TIMESTAMP, no epoch.
+-- All seeded rows in lupo_contents, lupo_collection_tab_map, lupo_collection_tabs,
+-- lupo_truth_questions, lupo_truth_answers use @now for created_ymdhis and updated_ymdhis.
+SET @now = 20260211000000;
+SET @node_id = 1;
 
 -- -----------------------------------------------------------------------------
 -- Unified registry (lupo_unified_registry)
@@ -348,7 +353,7 @@ INSERT INTO lupo_emotional_frameworks (`framework_name`, `description`, `is_defa
 
 INSERT INTO lupo_federation_nodes (`federation_node_id`, `node_base_url`, `default_department_id`, `node_name`, `node_description`, `node_contact`, `meta_json`, `content_count`, `atom_count`, `hashtag_count`, `actor_count`, `last_sync_ymdhis`, `trust_level`, `status`, `is_deleted`, `deleted_ymdhis`, `created_ymdhis`, `updated_ymdhis`, `active_theme_slug`) VALUES (0, 'https://lupopedia.com', NULL, 'Lupopedia Root Node', 'Primary Lupopedia installation (self)', 'admin@lupopedia.com', '{"self": true, "version": "1.0"}', 0, 0, 0, 0, 0, 2, 1, 0, 0, 20250101000000, 20250101000000, 'default');
 
-INSERT INTO lupo_sessions (`session_id`, `federation_node_id`, `actor_id`, `ip_address`, `user_agent`, `device_id`, `device_type`, `auth_method`, `auth_provider`, `security_level`, `is_active`, `is_expired`, `is_revoked`, `session_data`, `metadata`, `login_ymdhis`, `last_seen_ymdhis`, `expires_ymdhis`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES ('h92kjgggec1h7cfo13g7jp4m1p', 1, 2, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', NULL, 'desktop', 'password', 'local', 'high', 0, 0, 1, NULL, NULL, 20260113023320, 20260113023414, 20260114023320, 20260113023320, 20260113023414, 0, NULL);
+INSERT INTO lupo_sessions (`session_id`, `federation_node_id`, `actor_id`, `ip_address`, `user_agent`, `device_id`, `device_type`, `auth_method`, `auth_provider`, `security_level`, `is_active`, `is_expired`, `is_revoked`, `session_data`, `metadata`, `login_ymdhis`, `last_seen_ymdhis`, `expires_ymdhis`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES ('h92kjgggec1h7cfo13g7jp4m1p', 1, 2, '::1', 'Lupopedia Seed Session', NULL, 'desktop', 'password', 'local', 'high', 0, 0, 1, NULL, NULL, 20260113023320, 20260113023414, 20260114023320, 20260113023320, 20260113023414, 0, NULL);
 
 -- -----------------------------------------------------------------------------
 -- TOON-defined canonical rows (from "data" array)
@@ -606,6 +611,131 @@ INSERT INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity
 -- Actor/agent doctrine: ALTER lupo_actors AUTO_INCREMENT = 10000
 -- -----------------------------------------------------------------------------
 ALTER TABLE lupo_actors AUTO_INCREMENT = 10000;
+
+-- -----------------------------------------------------------------------------
+-- Collection 0 (Lupopedia System Collection) and default top-level tabs
+-- Idempotent: Collection 0 ON DUPLICATE KEY UPDATE; tabs ON DUPLICATE KEY UPDATE.
+-- -----------------------------------------------------------------------------
+-- Collection 0: insert if missing, else update (idempotent)
+INSERT INTO lupo_collections (
+    collection_id, federations_node_id, actor_id, department_id, name, slug, color, description,
+    sort_order, properties, published_ymdhis, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, parent_id
+) VALUES (
+    0, @node_id, NULL, NULL, 'Lupopedia System Collection', 'lupopedia-system', '666666', NULL,
+    0, NULL, NULL, @now, @now, 0, NULL, NULL
+) ON DUPLICATE KEY UPDATE
+    name = VALUES(name),
+    slug = VALUES(slug),
+    description = VALUES(description),
+    updated_ymdhis = @now,
+    is_deleted = 0,
+    deleted_ymdhis = NULL;
+
+-- Nine default top-level tabs for collection_id = 0 (no content, no sub-tabs)
+INSERT INTO lupo_collection_tabs (
+    collection_tab_id, collection_tab_parent_id, collection_id, federations_node_id, department_id, user_id,
+    sort_order, name, slug, color, description, is_hidden, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis
+) VALUES
+(1, NULL, 0, @node_id, NULL, NULL, 1, 'Overview', 'overview', '4caf50', NULL, 0, @now, @now, 1, 0, NULL),
+(2, NULL, 0, @node_id, NULL, NULL, 2, 'Doctrine', 'doctrine', '4caf50', NULL, 0, @now, @now, 1, 0, NULL),
+(3, NULL, 0, @node_id, NULL, NULL, 3, 'Architecture', 'architecture', '4caf50', NULL, 0, @now, @now, 1, 0, NULL),
+(4, NULL, 0, @node_id, NULL, NULL, 4, 'Schema', 'schema', '4caf50', NULL, 0, @now, @now, 1, 0, NULL),
+(5, NULL, 0, @node_id, NULL, NULL, 5, 'Agents', 'agents', '4caf50', NULL, 0, @now, @now, 1, 0, NULL),
+(6, NULL, 0, @node_id, NULL, NULL, 6, 'UI-UX', 'ui-ux', '4caf50', NULL, 0, @now, @now, 1, 0, NULL),
+(7, NULL, 0, @node_id, NULL, NULL, 7, 'Developer Guide', 'developer-guide', '4caf50', NULL, 0, @now, @now, 1, 0, NULL),
+(8, NULL, 0, @node_id, NULL, NULL, 8, 'History', 'history', '4caf50', NULL, 0, @now, @now, 1, 0, NULL),
+(9, NULL, 0, @node_id, NULL, NULL, 9, 'Appendix', 'appendix', '4caf50', NULL, 0, @now, @now, 1, 0, NULL)
+ON DUPLICATE KEY UPDATE
+    name = VALUES(name),
+    slug = VALUES(slug),
+    sort_order = VALUES(sort_order),
+    updated_ymdhis = @now,
+    is_active = 1,
+    is_deleted = 0,
+    deleted_ymdhis = NULL;
+
+-- -----------------------------------------------------------------------------
+-- Collection 0: minimal starter content per tab (lupo_contents) and tab map
+-- Idempotent: ON DUPLICATE KEY UPDATE on (federation_node_id, slug) and (collection_tab_id, item_type, item_id).
+-- -----------------------------------------------------------------------------
+INSERT INTO lupo_contents (
+    content_id, content_parent_id, federation_node_id, department_id, actor_id, title, slug, custom_path, description, seo_keywords, body,
+    content_type, format, content_url, default_collection_id, source_url, source_title, is_template, status, visibility, view_count, share_count,
+    created_ymdhis, utc_cycle, triage_status, triage_notes, updated_ymdhis, is_deleted, is_active, deleted_ymdhis, content_sections, version_number, file_path_from_root, tags, dialog_notes
+) VALUES
+(1001, NULL, @node_id, NULL, NULL, 'Overview', 'overview', NULL, NULL, NULL, 'This is starter content for the Overview section. You can edit this in the admin panel.', 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, NULL, NULL, NULL),
+(1002, NULL, @node_id, NULL, NULL, 'Doctrine', 'doctrine', NULL, NULL, NULL, 'This is starter content for the Doctrine section. You can edit this in the admin panel.', 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, NULL, NULL, NULL),
+(1003, NULL, @node_id, NULL, NULL, 'Architecture', 'architecture', NULL, NULL, NULL, 'This is starter content for the Architecture section. You can edit this in the admin panel.', 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, NULL, NULL, NULL),
+(1004, NULL, @node_id, NULL, NULL, 'Schema', 'schema', NULL, NULL, NULL, 'This is starter content for the Schema section. You can edit this in the admin panel.', 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, NULL, NULL, NULL),
+(1005, NULL, @node_id, NULL, NULL, 'Agents', 'agents', NULL, NULL, NULL, 'This is starter content for the Agents section. You can edit this in the admin panel.', 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, NULL, NULL, NULL),
+(1006, NULL, @node_id, NULL, NULL, 'UI-UX', 'ui-ux', NULL, NULL, NULL, 'This is starter content for the UI-UX section. You can edit this in the admin panel.', 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, NULL, NULL, NULL),
+(1007, NULL, @node_id, NULL, NULL, 'Developer Guide', 'developer-guide', NULL, NULL, NULL, 'This is starter content for the Developer Guide section. You can edit this in the admin panel.', 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, NULL, NULL, NULL),
+(1008, NULL, @node_id, NULL, NULL, 'History', 'history', NULL, NULL, NULL, 'This is starter content for the History section. You can edit this in the admin panel.', 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, NULL, NULL, NULL),
+(1009, NULL, @node_id, NULL, NULL, 'Appendix', 'appendix', NULL, NULL, NULL, 'This is starter content for the Appendix section. You can edit this in the admin panel.', 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, NULL, NULL, NULL)
+ON DUPLICATE KEY UPDATE
+    title = VALUES(title),
+    body = VALUES(body),
+    default_collection_id = VALUES(default_collection_id),
+    status = VALUES(status),
+    updated_ymdhis = @now,
+    is_deleted = 0,
+    is_active = 1;
+
+-- Map each content to its Collection 0 tab (tab_id 1–9 → content_id 1001–1009)
+INSERT INTO lupo_collection_tab_map (
+    collection_tab_map_id, collection_tab_id, federations_node_id, item_type, item_id, sort_order, properties, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis
+) VALUES
+(1001, 1, @node_id, 'content', 1001, 1, NULL, @now, @now, 0, NULL),
+(1002, 2, @node_id, 'content', 1002, 1, NULL, @now, @now, 0, NULL),
+(1003, 3, @node_id, 'content', 1003, 1, NULL, @now, @now, 0, NULL),
+(1004, 4, @node_id, 'content', 1004, 1, NULL, @now, @now, 0, NULL),
+(1005, 5, @node_id, 'content', 1005, 1, NULL, @now, @now, 0, NULL),
+(1006, 6, @node_id, 'content', 1006, 1, NULL, @now, @now, 0, NULL),
+(1007, 7, @node_id, 'content', 1007, 1, NULL, @now, @now, 0, NULL),
+(1008, 8, @node_id, 'content', 1008, 1, NULL, @now, @now, 0, NULL),
+(1009, 9, @node_id, 'content', 1009, 1, NULL, @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE
+    sort_order = VALUES(sort_order),
+    updated_ymdhis = @now,
+    is_deleted = 0,
+    deleted_ymdhis = NULL;
+
+-- -----------------------------------------------------------------------------
+-- QA / Lupopedia board: starter questions and answers for /qa/lupopedia
+-- (truth_question_id is NOT auto_increment; truth_answer_id is auto_increment)
+-- -----------------------------------------------------------------------------
+-- Board landing question (slug = lupopedia) for /qa/lupopedia
+INSERT INTO lupo_truth_questions (
+    truth_question_id, truth_question_parent_id, actor_id, qtype, status, sort_num, slug, question_text,
+    format, format_override, view_count, likes_count, shares_count, answer_count, last_activity_ymdhis,
+    is_featured, is_verified, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, default_collection_id
+) VALUES (
+    5000, NULL, 0, 'unknown', 'active', 0, 'lupopedia', 'Lupopedia Q&A',
+    'text', NULL, 0, 0, 0, 0, NULL, 0, 0, @now, @now, 0, NULL, 0
+);
+
+-- Child questions under the Lupopedia board (parent_id = 5000)
+INSERT INTO lupo_truth_questions (
+    truth_question_id, truth_question_parent_id, actor_id, qtype, status, sort_num, slug, question_text,
+    format, format_override, view_count, likes_count, shares_count, answer_count, last_activity_ymdhis,
+    is_featured, is_verified, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, default_collection_id
+) VALUES
+(5001, 5000, 0, 'what', 'active', 1, 'what-is-lupopedia', 'What is Lupopedia?', 'text', NULL, 0, 0, 0, 1, @now, 0, 0, @now, @now, 0, NULL, 0),
+(5002, 5000, 0, 'how', 'active', 2, 'how-do-i-log-in-after-installation', 'How do I log in after installation?', 'text', NULL, 0, 0, 0, 1, @now, 0, 0, @now, @now, 0, NULL, 0),
+(5003, 5000, 0, 'what', 'active', 3, 'difference-between-crafty-syntax-and-lupopedia', 'What is the difference between Crafty Syntax and Lupopedia?', 'text', NULL, 0, 0, 0, 1, @now, 0, 0, @now, @now, 0, NULL, 0),
+(5004, 5000, 0, 'where', 'active', 4, 'where-to-find-system-documentation', 'Where can I find system documentation?', 'text', NULL, 0, 0, 0, 1, @now, 0, 0, @now, @now, 0, NULL, 0),
+(5005, 5000, 0, 'how', 'active', 5, 'how-do-i-create-new-content', 'How do I create new content?', 'text', NULL, 0, 0, 0, 1, @now, 0, 0, @now, @now, 0, NULL, 0);
+
+-- Placeholder answers (one per child question; truth_answer_id is auto_increment)
+INSERT INTO lupo_truth_answers (
+    truth_question_id, actor_id, answer_text, confidence_score, evidence_score, contradiction_flag,
+    likes_count, shares_count, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis
+) VALUES
+(5001, 0, 'This is a placeholder answer. You can edit this in the admin panel.', 0.00, 0.00, 0, 0, 0, @now, @now, 0, NULL),
+(5002, 0, 'This is a placeholder answer. You can edit this in the admin panel.', 0.00, 0.00, 0, 0, 0, @now, @now, 0, NULL),
+(5003, 0, 'This is a placeholder answer. You can edit this in the admin panel.', 0.00, 0.00, 0, 0, 0, @now, @now, 0, NULL),
+(5004, 0, 'This is a placeholder answer. You can edit this in the admin panel.', 0.00, 0.00, 0, 0, 0, @now, @now, 0, NULL),
+(5005, 0, 'This is a placeholder answer. You can edit this in the admin panel.', 0.00, 0.00, 0, 0, 0, @now, @now, 0, NULL);
 
 -- =============================================================================
 -- END SEED

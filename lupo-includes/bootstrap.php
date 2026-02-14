@@ -65,7 +65,7 @@ if ( function_exists( 'error_reporting' ) ) {
         // Show a user-friendly error message with more details
         $errorMsg = 'Database connection error: ' . $e->getMessage();
         if (strpos($e->getMessage(), 'Access denied') !== false) {
-            $errorMsg .= "\n\nPlease check your database username and password in config.php";
+            $errorMsg .= "\n\nPlease check your database username and password in lupopedia-config.php";
         } elseif (strpos($e->getMessage(), 'Unknown database') !== false) {
             $errorMsg .= "\n\nThe database '" . (defined('DB_NAME') ? DB_NAME : '') . "' does not exist. Please create it first.";
         } elseif (strpos($e->getMessage(), 'Connection refused') !== false) {
@@ -84,11 +84,13 @@ if (!headers_sent()) {
     header('X-Frame-Options: SAMEORIGIN');
     header('X-XSS-Protection: 1; mode=block');
     
-    // Set secure session cookie parameters
-    $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
-    $domain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
-    // PHP 5.3: session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly); no samesite
-    session_set_cookie_params(0, '/', $domain, $secure, true);
+    // Set secure session cookie parameters only before session is started (PHP 5.3: 5-arg form; no samesite)
+    $session_not_started = function_exists('session_status') ? (session_status() === PHP_SESSION_NONE) : (session_id() === '');
+    if ($session_not_started) {
+        $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
+        $domain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
+        session_set_cookie_params(0, '/', $domain, $secure, true);
+    }
 }
 
 // Timezone
@@ -149,18 +151,34 @@ if (class_exists('App\Auth\Session') && isset($GLOBALS['mydatabase'])) {
 // Start session and run idle check then validate
 if ($lupo_session !== null) {
     $lupo_session->start();
+    // Default collection_id to 0 so saved-collections-container has an active collection on first load
+    if (!isset($_SESSION['collection_id']) || $_SESSION['collection_id'] === '') {
+        $_SESSION['collection_id'] = 0;
+    }
     if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
         error_log("SESSION: Session started - ID: " . substr($lupo_session->getSessionId(), 0, 8) . "...");
     }
-    $sessionManager = new SessionManager($lupo_session);
-    $sessionManager->tick();
-    $actor_id = $lupo_session->validateSession();
-    if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
-        if ($actor_id) {
-            error_log("SESSION: Session validated - Actor ID: " . $actor_id);
-        } else {
-            error_log("SESSION: Session invalid or expired");
+    try {
+        $sessionManager = new SessionManager($lupo_session);
+        $sessionManager->tick();
+        $actor_id = $lupo_session->validateSession();
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            if ($actor_id) {
+                error_log("SESSION: Session validated - Actor ID: " . $actor_id);
+            } else {
+                error_log("SESSION: Session invalid or expired");
+            }
         }
+    } catch (\PDOException $e) {
+        $msg = $e->getMessage();
+        if (strpos($msg, "doesn't exist") !== false) {
+            if (!headers_sent() && php_sapi_name() !== 'cli') {
+                $install_path = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/install.php' : '/install.php';
+                header('Location: ' . $install_path);
+                exit;
+            }
+        }
+        throw $e;
     }
 }
 

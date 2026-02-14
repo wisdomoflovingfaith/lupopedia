@@ -52,6 +52,7 @@ define( 'LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__) );
  * @var string
  */
 
+// Config load order: lupopedia-config.php first; only then config.php (legacy Crafty). After install, only lupopedia-config is used.
 // Path 1: One directory ABOVE DOCUMENT_ROOT (most secure, preferred)
 if (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php')) {
     define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php');
@@ -63,6 +64,16 @@ elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH .
 // Path 3: Inside the Lupopedia directory itself (fallback)
 elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
     define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/lupopedia-config.php');
+}
+// Legacy: Crafty config.php only if lupopedia-config.php does not exist
+elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/config.php')) {
+    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . '/config.php');
+}
+elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/config.php')) {
+    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/config.php');
+}
+elseif (@file_exists(LUPOPEDIA_PATH . '/config.php')) {
+    define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/config.php');
 }
 // No config found - redirect to install/upgrade wizard (project root)
 else {

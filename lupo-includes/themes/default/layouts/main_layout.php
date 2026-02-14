@@ -60,15 +60,21 @@ if (!isset($collectionsData)) {
     }
 }
 
-// Ensure required variables exist for collection tabs
+// Default session collection_id to 0 so saved-collections-container always has an active collection
+if (function_exists('session_status') && session_status() === PHP_SESSION_ACTIVE && !isset($_SESSION['collection_id'])) {
+    $_SESSION['collection_id'] = 0;
+}
+// Ensure required variables exist for collection tabs; use session when context has no collection_id
 if (!isset($current_collection) || $current_collection === null) {
     $current_collection = 'System Collection';
 }
 if (!isset($tabs_data) || !is_array($tabs_data)) {
     $tabs_data = [];
 }
-if (!isset($collection_id)) {
-    $collection_id = null;
+if (!isset($collection_id) || $collection_id === null) {
+    $collection_id = (function_exists('session_status') && session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['collection_id']))
+        ? (int) $_SESSION['collection_id']
+        : 0;
 }
 
 // Initialize content sections for contents dropdown
@@ -715,8 +721,9 @@ if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/channels
 ?>
 
 <?php if (!$hide_semantic_nav): ?>
+<input type="hidden" id="active-collection-id" name="active_collection_id" value="<?= $collection_id !== null ? (int) $collection_id : 0 ?>">
 <!-- Saved Collections Navigation -->
-<nav class="saved-collections-nav">
+<nav class="saved-collections-nav" data-collection-id="<?= $collection_id !== null ? (int) $collection_id : 0 ?>">
     <!-- Spacer div -->
     <div style="width: 50px; height: 40px;"></div>
 
@@ -724,8 +731,8 @@ if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/channels
         <!-- Tabs loaded by AJAX starts here -->
         <div id="collection-tabs-container">
             <?php
-            // Render tabs if tabs_data is available
-            if ($collection_id !== null && $collection_id > 0 && !empty($tabs_data) && is_array($tabs_data)) {
+            // Render tabs if tabs_data is available (collection_id 0 = System Collection)
+            if ($collection_id !== null && !empty($tabs_data) && is_array($tabs_data)) {
     foreach ($tabs_data as $main_tab => $sub_tabs) {
         $tab_slug = null;
         if (is_array($sub_tabs) && isset($sub_tabs['_slug'])) {
@@ -831,7 +838,7 @@ if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/channels
 
 <!-- JavaScript for Collection Management -->
 <script>
-let currentLoadedCollectionId = <?php echo $collection_id !== null ? $collection_id : 'null'; ?>;
+let currentLoadedCollectionId = <?php echo $collection_id !== null ? (int) $collection_id : '0'; ?>;
 let currentLoadedCollectionName = <?php echo $current_collection !== null ? json_encode($current_collection) : 'null'; ?>;
 
 function editCurrentCollection() {
@@ -1231,29 +1238,23 @@ document.addEventListener('keydown', function(e) {
 </div>
 <?php endif; ?>
 
-<!-- Auto-load collection tabs when page loads if collection_id is set -->
+<!-- Auto-load collection tabs on page load: read active collection_id (default 0), call loadCollectionTabs so tabs populate -->
 <script>
-(function() {
-    var collectionId = <?php echo ($collection_id !== null && $collection_id > 0) ? $collection_id : 'null'; ?>;
+document.addEventListener('DOMContentLoaded', function() {
+    var container = document.getElementById('collection-tabs-container');
+    if (!container) return;
+    var input = document.getElementById('active-collection-id');
+    var rawId = input ? input.value : null;
+    if (rawId === null || rawId === '') rawId = '0';
+    var collectionId = parseInt(rawId, 10);
+    if (isNaN(collectionId) || collectionId < 0) collectionId = 0;
     var tabsData = <?php echo !empty($tabs_data) ? json_encode($tabs_data) : 'null'; ?>;
-    
-    // If collection_id is set but tabs_data is empty, load via AJAX
-    if (collectionId !== null && collectionId > 0 && (!tabsData || Object.keys(tabsData).length === 0)) {
-        fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/api/load_collection_tabs.php?collection_id=' + collectionId)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success && data.tabs_data && Object.keys(data.tabs_data).length > 0) {
-                    // Update tabs container
-                    if (typeof window.loadCollectionTabs === 'function') {
-                        window.loadCollectionTabs(collectionId, data.collection_name || 'Collection ' + collectionId);
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Error loading collection tabs:', error);
-            });
+    var tabsEmpty = !tabsData || (typeof tabsData === 'object' && Object.keys(tabsData).length === 0);
+
+    if (tabsEmpty && typeof window.loadCollectionTabs === 'function') {
+        window.loadCollectionTabs(collectionId, <?php echo json_encode($current_collection ?: 'System Collection'); ?>);
     }
-})();
+});
 </script>
 
 <?php 

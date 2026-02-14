@@ -9,7 +9,7 @@ CREATE TABLE lupo_actors (
   actor_type varchar(64) NOT NULL,
   slug varchar(255) NOT NULL,
   name varchar(255) NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   is_deleted tinyint NOT NULL DEFAULT '0',
@@ -37,7 +37,7 @@ CREATE TABLE lupo_actor_actions (
   entity_id bigint DEFAULT NULL,
   description text,
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (actor_action_id)
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE lupo_actor_capabilities (
   domain_id bigint NOT NULL,
   capability_key varchar(100) NOT NULL,
   capability_description text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE lupo_actor_channels (
   muted_until_ymdhis bigint DEFAULT NULL,
   preferences_json json DEFAULT NULL,
   dialog_output_file varchar(500) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE lupo_actor_channel_roles (
   actor_id bigint NOT NULL,
   channel_id bigint NOT NULL,
   role_key varchar(64) NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE lupo_actor_collections (
   actor_id bigint NOT NULL,
   collection_id bigint NOT NULL,
   access_level varchar(64) NOT NULL DEFAULT 'read',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE lupo_actor_conflicts (
   resolved_ymdhis bigint DEFAULT NULL,
   severity varchar(64) NOT NULL DEFAULT 'medium',
   context_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -185,7 +185,7 @@ CREATE TABLE lupo_actor_departments (
   actor_id bigint NOT NULL,
   department_id bigint NOT NULL,
   title varchar(64) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -203,7 +203,7 @@ CREATE TABLE lupo_actor_edges (
   edge_type varchar(100) NOT NULL,
   weight float DEFAULT '1',
   properties text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -232,7 +232,7 @@ CREATE TABLE lupo_actor_events (
   world_type varchar(50) DEFAULT NULL,
   event_type varchar(100) NOT NULL,
   event_data json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (actor_event_id)
 );
 
@@ -254,7 +254,7 @@ CREATE TABLE lupo_actor_handshakes (
   forbidden_actions_json json DEFAULT NULL,
   context text,
   expires_utc bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (actor_handshake_id)
@@ -270,7 +270,7 @@ CREATE TABLE lupo_actor_meta (
   meta_type varchar(64) NOT NULL,
   meta_key varchar(255) NOT NULL,
   meta_value text NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (actor_meta_id)
 );
@@ -295,7 +295,7 @@ CREATE TABLE lupo_actor_object_edges (
   target_id bigint NOT NULL,
   edge_type varchar(50) NOT NULL,
   properties_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (actor_object_edge_id)
 );
@@ -311,7 +311,7 @@ CREATE TABLE lupo_actor_persona_relationships (
   relationship_type varchar(100) NOT NULL,
   relationship_strength decimal(5,2) DEFAULT NULL,
   relationship_context json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (relationship_id)
 );
@@ -326,7 +326,7 @@ CREATE TABLE lupo_actor_properties (
   actor_id bigint NOT NULL,
   property_key varchar(64) NOT NULL,
   property_value text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -342,7 +342,7 @@ CREATE TABLE lupo_actor_reply_templates (
   template_key varchar(64) NOT NULL,
   template_text text NOT NULL,
   usage_context varchar(64) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -363,7 +363,7 @@ CREATE TABLE lupo_actor_truth_edges (
   truth_item_id bigint NOT NULL,
   edge_type varchar(64) NOT NULL,
   properties_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (actor_truth_edge_id)
 );
@@ -382,7 +382,7 @@ CREATE TABLE lupo_agents (
   model_name varchar(100) DEFAULT NULL,
   is_global_authority tinyint NOT NULL DEFAULT '0',
   is_internal_only tinyint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -437,7 +437,7 @@ CREATE TABLE lupo_agent_context_snapshots (
   compression_time_ms int DEFAULT NULL,
   related_tool_call_id bigint DEFAULT NULL,
   conversation_turn int DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   expires_ymdhis bigint DEFAULT NULL,
   is_corrupt tinyint DEFAULT '0',
   retention_policy varchar(64) DEFAULT 'temporary',
@@ -459,7 +459,7 @@ CREATE TABLE lupo_agent_dependencies (
   depends_on_agent_code varchar(50) NOT NULL,
   is_required tinyint NOT NULL DEFAULT '1',
   notes text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (agent_dependency_id)
 );
@@ -488,7 +488,7 @@ CREATE TABLE lupo_agent_external_events (
   source_system varchar(255) NOT NULL,
   event_type varchar(50) NOT NULL,
   event_payload_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (external_event_id)
 );
 
@@ -514,7 +514,7 @@ CREATE TABLE lupo_agent_faucets (
   capabilities_json text,
   is_default tinyint NOT NULL DEFAULT '0',
   domain_id bigint NOT NULL DEFAULT '1',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (agent_faucet_id)
@@ -530,7 +530,7 @@ CREATE TABLE lupo_agent_faucet_credentials (
   faucet_id bigint NOT NULL,
   provider varchar(64) NOT NULL,
   api_key varbinary(512) NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (agent_faucet_credential_id)
 );
@@ -547,7 +547,7 @@ CREATE TABLE lupo_agent_files (
   file_size bigint NOT NULL,
   mime_type varchar(100) DEFAULT NULL,
   upload_ymdhis bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -566,7 +566,7 @@ CREATE TABLE lupo_agent_heartbeats (
   agent_slug varchar(64) NOT NULL,
   status varchar(32) NOT NULL DEFAULT 'unknown',
   last_heartbeat_ymdhis bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (heartbeat_id)
@@ -583,7 +583,7 @@ CREATE TABLE lupo_agent_properties (
   domain_id bigint NOT NULL,
   property_key varchar(100) NOT NULL,
   property_value text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -608,7 +608,7 @@ CREATE TABLE lupo_agent_registry (
   is_active tinyint NOT NULL DEFAULT '0',
   is_kernel tinyint NOT NULL DEFAULT '0',
   dedicated_slot int DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   classification_json json DEFAULT NULL,
   metadata json NOT NULL,
   agent_class varchar(64) NOT NULL DEFAULT 'production',
@@ -640,7 +640,7 @@ CREATE TABLE lupo_agent_tool_calls (
   parent_call_id bigint DEFAULT NULL,
   thread_id bigint DEFAULT NULL,
   message_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   completed_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (agent_tool_call_id)
 );
@@ -664,7 +664,7 @@ CREATE TABLE lupo_agent_versions (
   version_notes text,
   version_hash varchar(128) DEFAULT NULL,
   previous_version_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted smallint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -696,7 +696,7 @@ CREATE TABLE lupo_analytics_campaign_vars (
   campaign_key varchar(255) NOT NULL,
   campaign_value varchar(500) DEFAULT NULL,
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (campaign_var_id)
 );
 
@@ -714,7 +714,7 @@ CREATE TABLE lupo_analytics_referers_periods (
   period_date bigint NOT NULL,
   visits int NOT NULL DEFAULT '0',
   direct_visits int NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (analytics_referers_period_id)
 );
@@ -743,7 +743,7 @@ CREATE TABLE lupo_analytics_visits (
   seconds_active int NOT NULL DEFAULT '0',
   user_agent varchar(255) DEFAULT NULL,
   ip_address varchar(45) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (analytics_visit_id)
 );
@@ -764,7 +764,7 @@ CREATE TABLE lupo_analytics_visits_daily (
   exit_count int NOT NULL DEFAULT '0',
   total_seconds int NOT NULL DEFAULT '0',
   avg_seconds int NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (analytics_visits_daily_id)
 );
@@ -791,7 +791,7 @@ CREATE TABLE lupo_analytics_visits_monthly (
   exit_count int NOT NULL DEFAULT '0',
   total_seconds int NOT NULL DEFAULT '0',
   avg_seconds int NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (analytics_visits_monthly_id)
 );
@@ -818,7 +818,7 @@ CREATE TABLE lupo_analytics_visits_periods (
   exit_count int NOT NULL DEFAULT '0',
   total_seconds int NOT NULL DEFAULT '0',
   avg_seconds int NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (analytics_visits_period_id)
 );
@@ -911,7 +911,7 @@ CREATE TABLE lupo_api_clients (
   client_description text,
   scopes text,
   is_active tinyint NOT NULL DEFAULT '1',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   expires_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (api_client_id)
@@ -932,7 +932,7 @@ CREATE TABLE lupo_api_rate_limits (
   window_ymdhis bigint NOT NULL,
   request_count int NOT NULL DEFAULT '0',
   limit_value int NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (api_rate_limit_id)
 );
@@ -951,7 +951,7 @@ CREATE TABLE lupo_api_tokens (
   token_label varchar(150) DEFAULT NULL,
   scopes text,
   is_active tinyint NOT NULL DEFAULT '1',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   expires_ymdhis bigint DEFAULT NULL,
   last_used_ymdhis bigint DEFAULT NULL,
   created_ip varchar(45) DEFAULT NULL,
@@ -998,7 +998,7 @@ CREATE TABLE lupo_api_webhooks (
   event_types text NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   max_retries int NOT NULL DEFAULT '5',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   expires_ymdhis bigint DEFAULT NULL,
   notes text,
@@ -1017,7 +1017,7 @@ CREATE TABLE lupo_artifacts (
   `utc_timestamp` bigint NOT NULL,
   entity_type varchar(64) NOT NULL,
   content text NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (artifact_id)
@@ -1055,7 +1055,7 @@ CREATE TABLE lupo_audit_log (
   table_name varchar(100) DEFAULT NULL,
   table_id bigint DEFAULT NULL,
   payload_json text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1099,7 +1099,7 @@ CREATE TABLE lupo_auth_providers (
   token_endpoint varchar(2000) NOT NULL,
   userinfo_endpoint varchar(2000) DEFAULT NULL,
   jwks_uri varchar(2000) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (auth_provider_id)
@@ -1117,7 +1117,7 @@ CREATE TABLE lupo_auth_users (
   provider_id varchar(255) DEFAULT NULL,
   profile_image_url varchar(2000) DEFAULT NULL,
   last_login_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   is_deleted tinyint NOT NULL DEFAULT '0',
@@ -1169,7 +1169,7 @@ CREATE TABLE lupo_channels (
   status_flag tinyint NOT NULL DEFAULT '1',
   end_ymdhis bigint DEFAULT NULL,
   duration_seconds int DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1235,7 +1235,7 @@ CREATE TABLE lupo_channel_escalations (
   escalated_to_actor_id bigint DEFAULT NULL,
   escalation_reason varchar(512) DEFAULT NULL,
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1254,7 +1254,7 @@ CREATE TABLE lupo_channel_escalation_rules (
   rule_description text,
   rule_type varchar(64) NOT NULL,
   rule_config_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1274,7 +1274,7 @@ CREATE TABLE lupo_channel_files (
   file_size bigint NOT NULL,
   mime_type varchar(100) DEFAULT NULL,
   upload_ymdhis bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1296,7 +1296,7 @@ CREATE TABLE lupo_channel_logs (
   log_type_id bigint NOT NULL,
   log_text text NOT NULL,
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   pinned tinyint NOT NULL DEFAULT '0',
@@ -1316,7 +1316,7 @@ CREATE TABLE lupo_channel_log_types (
   type_label varchar(255) NOT NULL,
   description text,
   is_system tinyint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1331,7 +1331,7 @@ CREATE TABLE lupo_channel_roles (
   actor_id bigint NOT NULL,
   role_type varchar(64) NOT NULL,
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1363,7 +1363,7 @@ CREATE TABLE lupo_channel_state (
   decay_policy varchar(32) DEFAULT NULL,
   archive_flag tinyint DEFAULT '0',
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (channel_state_id)
 );
@@ -1445,7 +1445,7 @@ CREATE TABLE lupo_collections (
   sort_order int DEFAULT '0',
   properties text,
   published_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1477,7 +1477,7 @@ CREATE TABLE lupo_collection_tabs (
   color char(6) DEFAULT '4caf50',
   description text,
   is_hidden tinyint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   is_deleted tinyint NOT NULL DEFAULT '0',
@@ -1500,7 +1500,7 @@ CREATE TABLE lupo_collection_tab_map (
   item_id bigint NOT NULL,
   sort_order int DEFAULT '0',
   properties text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1522,7 +1522,7 @@ CREATE TABLE lupo_collection_tab_paths (
   collection_tab_id bigint NOT NULL,
   path varchar(500) NOT NULL,
   depth int NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1557,7 +1557,7 @@ CREATE TABLE lupo_contents (
   visibility varchar(64) DEFAULT 'public',
   view_count int DEFAULT '0',
   share_count int DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   utc_cycle varchar(64) NOT NULL,
   triage_status varchar(64) NOT NULL DEFAULT 'untriaged',
   triage_notes text,
@@ -1592,7 +1592,7 @@ CREATE TABLE lupo_content_atom_map (
   content_id bigint NOT NULL,
   atom_id bigint NOT NULL,
   purpose varchar(255) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1611,7 +1611,7 @@ CREATE TABLE lupo_content_category_map (
   content_category_map_id bigint NOT NULL,
   content_id bigint NOT NULL,
   category_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (content_category_map_id)
 );
 
@@ -1624,7 +1624,7 @@ CREATE TABLE lupo_content_engagement_summary (
   likes_total int NOT NULL DEFAULT '0',
   shares_total int NOT NULL DEFAULT '0',
   updated_ymdhis bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (content_engagement_summary_id)
 );
 
@@ -1644,7 +1644,7 @@ CREATE TABLE lupo_content_events (
   world_type varchar(50) DEFAULT NULL,
   event_type varchar(100) NOT NULL,
   event_data json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (content_event_id)
 );
 
@@ -1661,7 +1661,7 @@ CREATE TABLE lupo_content_hashtag (
   content_hashtag_id bigint NOT NULL,
   hashtag_id bigint NOT NULL,
   context_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (content_hashtag_id)
@@ -1681,7 +1681,7 @@ CREATE TABLE lupo_content_inbound_links (
   source_url varchar(2000) DEFAULT NULL,
   link_type varchar(255) DEFAULT NULL,
   properties json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1700,7 +1700,7 @@ CREATE TABLE lupo_content_likes (
   content_id bigint NOT NULL,
   user_id bigint DEFAULT NULL,
   visitor_hash char(64) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1737,7 +1737,7 @@ CREATE TABLE lupo_content_media (
   is_public tinyint NOT NULL DEFAULT '1',
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (content_media_id)
 );
@@ -1757,7 +1757,7 @@ CREATE TABLE lupo_content_question_map (
   question_id bigint NOT NULL,
   domain_id bigint NOT NULL,
   purpose varchar(255) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1817,7 +1817,7 @@ CREATE TABLE lupo_content_shares (
   visitor_hash char(64) DEFAULT NULL,
   share_method varchar(50) DEFAULT NULL,
   share_target varchar(255) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1836,7 +1836,7 @@ CREATE TABLE lupo_content_tag_relationships (
   content_id bigint NOT NULL,
   tag_id bigint NOT NULL,
   relationship_type varchar(64) NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (relationship_id)
 );
 
@@ -1878,7 +1878,7 @@ CREATE TABLE lupo_crafty_syntax_leave_message (
   user_agent varchar(255) DEFAULT NULL,
   status enum('new','in_progress','resolved','spam') NOT NULL DEFAULT 'new',
   assigned_to bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT 0,
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1903,7 +1903,7 @@ CREATE TABLE lupo_crafty_syntax_layer_invites (
   is_active tinyint NOT NULL DEFAULT 1,
   display_count int NOT NULL DEFAULT 0,
   click_count int NOT NULL DEFAULT 0,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT 0,
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1927,7 +1927,7 @@ CREATE TABLE lupo_crafty_syntax_chat_questions (
   flags varchar(255) DEFAULT NULL,
   module_name varchar(100) DEFAULT NULL,
   is_required tinyint NOT NULL DEFAULT 0,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT 0,
   deleted_ymdhis bigint DEFAULT NULL,
@@ -1984,7 +1984,7 @@ CREATE TABLE lupo_contexts (
   is_fiction tinyint NOT NULL DEFAULT '0',
   is_installation_local tinyint NOT NULL DEFAULT '0',
   sort_order int NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   weight_score decimal(5,2) NOT NULL DEFAULT '0.00',
   is_active tinyint NOT NULL DEFAULT '1',
@@ -2025,7 +2025,7 @@ CREATE TABLE lupo_crm_leads (
   lead_score int NOT NULL DEFAULT '0',
   assigned_to bigint DEFAULT NULL,
   lead_data text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2041,7 +2041,7 @@ CREATE TABLE lupo_crm_lead_messages (
   body_text text NOT NULL,
   notes varchar(255) DEFAULT NULL,
   actor_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted smallint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2059,7 +2059,7 @@ CREATE TABLE lupo_departments (
   department_type varchar(32) NOT NULL DEFAULT 'general',
   default_actor_id bigint NOT NULL DEFAULT '1',
   settings_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2074,7 +2074,7 @@ CREATE TABLE lupo_department_metadata (
   department_metadata_id bigint NOT NULL,
   department_id bigint NOT NULL,
   metadata_json json NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   is_deleted tinyint NOT NULL DEFAULT '0',
@@ -2127,7 +2127,7 @@ CREATE TABLE lupo_dialog_messages (
   metadata_json json DEFAULT NULL,
   mood_rgb char(6) DEFAULT NULL,
   mood_framework varchar(32) NOT NULL DEFAULT 'western_analytical',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2157,7 +2157,7 @@ CREATE TABLE lupo_dialog_threads (
   status varchar(64) NOT NULL DEFAULT 'Open',
   artifacts json DEFAULT NULL,
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2182,7 +2182,7 @@ CREATE TABLE lupo_doctrine_blocks (
   block_key varchar(255) NOT NULL,
   block_title varchar(255) NOT NULL,
   block_content text NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (doctrine_block_id)
 );
@@ -2221,7 +2221,7 @@ CREATE TABLE lupo_doctrine_refinements (
   approval_status varchar(64) DEFAULT 'pending',
   approved_by varchar(100) DEFAULT NULL,
   applied_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   refinement_version varchar(20) DEFAULT '3.0.0',
   PRIMARY KEY (doctrine_refinement_id)
 );
@@ -2241,7 +2241,7 @@ CREATE TABLE lupo_documents (
   file_size_bytes int DEFAULT NULL,
   checksum_sha256 varchar(64) DEFAULT NULL,
   metadata json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2256,7 +2256,7 @@ CREATE TABLE lupo_document_chunks (
   chunk_content mediumtext NOT NULL,
   token_count int DEFAULT NULL,
   metadata json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2272,7 +2272,7 @@ CREATE TABLE lupo_document_embeddings (
   embedding_json json NOT NULL,
   embedding_model varchar(128) NOT NULL,
   embedding_version varchar(64) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (document_embedding_id)
@@ -2343,7 +2343,7 @@ CREATE TABLE lupo_emotional_frameworks (
   framework_name varchar(32) NOT NULL,
   description text,
   is_default tinyint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (framework_name)
 );
@@ -2363,7 +2363,7 @@ CREATE TABLE lupo_emotional_geometry_calibrations (
   confidence_score decimal(5,4) NOT NULL DEFAULT '0.5000',
   validation_status varchar(64) DEFAULT 'pending',
   applied_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   calibration_version varchar(20) DEFAULT '3.0.0',
   PRIMARY KEY (emotional_geometry_calibration_id)
 );
@@ -2394,7 +2394,7 @@ CREATE TABLE lupo_emotional_translations (
   target_framework varchar(32) NOT NULL,
   target_state text NOT NULL,
   loss_score decimal(3,2) NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   last_used_ymdhis bigint NOT NULL,
   PRIMARY KEY (translation_id)
 );
@@ -2409,7 +2409,7 @@ CREATE TABLE lupo_entity_edges (
   edge_type varchar(50) NOT NULL,
   domain_id bigint NOT NULL DEFAULT '1',
   properties json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2430,7 +2430,7 @@ CREATE TABLE lupo_entity_properties (
   domain_id bigint NOT NULL DEFAULT '1',
   property_key varchar(100) NOT NULL,
   property_value text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2449,7 +2449,7 @@ CREATE TABLE lupo_event_log (
   event_id bigint NOT NULL,
   event_type varchar(100) NOT NULL,
   event_data json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (event_id)
 );
 
@@ -2461,7 +2461,7 @@ CREATE TABLE lupo_event_metadata (
   event_id bigint NOT NULL,
   metadata_key varchar(100) NOT NULL,
   metadata_value text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (metadata_id)
 );
 
@@ -2520,7 +2520,7 @@ CREATE TABLE lupo_federation_discovery (
   import_atoms tinyint NOT NULL DEFAULT '0',
   import_contexts tinyint NOT NULL DEFAULT '0',
   import_collections tinyint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (federation_discovery_id)
 );
@@ -2565,7 +2565,7 @@ CREATE TABLE lupo_governance_overrides (
   new_value text,
   reason_text text,
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   expires_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2588,7 +2588,7 @@ CREATE TABLE lupo_gov_events (
   directive_block text,
   tldr_summary text,
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   is_deleted tinyint NOT NULL DEFAULT '0',
@@ -2610,7 +2610,7 @@ CREATE TABLE lupo_gov_event_actor_edges (
   actor_id bigint NOT NULL,
   edge_type varchar(100) NOT NULL,
   edge_properties text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2631,7 +2631,7 @@ CREATE TABLE lupo_gov_event_conflicts (
   conflict_type varchar(50) NOT NULL,
   severity varchar(20) NOT NULL,
   notes text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (gov_event_conflict_id)
@@ -2646,7 +2646,7 @@ CREATE TABLE lupo_gov_event_dependencies (
   depends_on_event_id bigint NOT NULL,
   dependency_type varchar(50) NOT NULL,
   notes text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (gov_event_dependency_id)
@@ -2664,7 +2664,7 @@ CREATE TABLE lupo_gov_event_references (
   reference_content text,
   order_sequence int NOT NULL DEFAULT '0',
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2687,7 +2687,7 @@ CREATE TABLE lupo_gov_timeline_nodes (
   parent_node_id bigint DEFAULT NULL,
   order_sequence int NOT NULL DEFAULT '0',
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2713,7 +2713,7 @@ CREATE TABLE lupo_gov_valuations (
   valuation_unit varchar(50) DEFAULT NULL,
   confidence_score decimal(5,4) DEFAULT NULL,
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2752,7 +2752,7 @@ CREATE TABLE lupo_help_topics (
   view_count bigint DEFAULT '0',
   helpful_count bigint DEFAULT '0',
   not_helpful_count bigint DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   author_actor_id bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
@@ -2776,7 +2776,7 @@ CREATE TABLE lupo_help_tree (
   action_type varchar(64) NOT NULL DEFAULT 'none',
   action_target varchar(255) DEFAULT NULL,
   sort_order int NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2808,7 +2808,7 @@ CREATE TABLE lupo_human_history_meta (
   tensor_mapping varchar(32) NOT NULL,
   philosophical_reference varchar(255) NOT NULL,
   system_impact text NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (meta_id)
 );
@@ -2820,7 +2820,7 @@ CREATE TABLE lupo_interface_translations (
   translation_key varchar(128) NOT NULL,
   translation_text text NOT NULL,
   context varchar(64) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   created_by bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
@@ -2844,7 +2844,7 @@ CREATE TABLE lupo_interpretation_log (
   entity_id bigint NOT NULL,
   interpretation text NOT NULL,
   confidence_score decimal(5,2) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2899,7 +2899,7 @@ CREATE TABLE lupo_labs_declarations (
   labs_version varchar(16) NOT NULL DEFAULT '1.0',
   next_revalidation_ymdhis bigint NOT NULL,
   validation_log_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -2920,7 +2920,7 @@ CREATE TABLE lupo_labs_violations (
   violation_code varchar(64) NOT NULL,
   violation_description text,
   violation_metadata json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (labs_violation_id)
@@ -2938,7 +2938,7 @@ CREATE TABLE lupo_legacy_content_mapping (
   semantic_url varchar(255) NOT NULL,
   content_type varchar(64) NOT NULL,
   content_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (mapping_id)
@@ -2961,7 +2961,7 @@ CREATE TABLE lupo_memory_events (
   token_count int DEFAULT NULL,
   importance tinyint DEFAULT '0',
   embedding_status varchar(64) DEFAULT 'none',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (memory_event_id)
 );
 
@@ -2973,7 +2973,7 @@ CREATE TABLE lupo_memory_rollups (
   actor_id int NOT NULL,
   summary text NOT NULL,
   source_event_ids text NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (memory_rollup_id)
 );
 
@@ -2984,7 +2984,7 @@ CREATE TABLE lupo_meta_log_events (
   depth tinyint NOT NULL,
   event_type varchar(64) NOT NULL DEFAULT 'recursion',
   actor_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (event_id)
@@ -3028,7 +3028,7 @@ CREATE TABLE lupo_modules (
   federation_node_id bigint NOT NULL DEFAULT '1',
   settings text,
   installed_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3047,7 +3047,7 @@ CREATE TABLE lupo_modules_departments (
   department_id bigint NOT NULL,
   is_enabled tinyint NOT NULL DEFAULT '1',
   sort_order int DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3061,7 +3061,7 @@ CREATE TABLE lupo_mood_assignments (
   table_name varchar(128) NOT NULL,
   row_id bigint NOT NULL,
   mood_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (mood_assignment_id)
 );
 
@@ -3074,7 +3074,7 @@ CREATE TABLE lupo_mood_registry (
   mood_variant varchar(64) DEFAULT NULL,
   mood_rgb char(6) NOT NULL,
   description text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (mood_id)
 );
@@ -3115,7 +3115,7 @@ CREATE TABLE lupo_notifications (
   link_url varchar(255) DEFAULT NULL,
   is_read tinyint NOT NULL DEFAULT '0',
   is_deleted tinyint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (notification_id)
 );
 
@@ -3127,7 +3127,7 @@ CREATE TABLE lupo_pack_role_registry (
   discovery_method text NOT NULL,
   behavior text NOT NULL,
   reason text NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (pack_role_registry_id)
 );
@@ -3143,7 +3143,7 @@ CREATE TABLE lupo_permissions (
   user_id bigint DEFAULT NULL,
   department_id bigint DEFAULT NULL,
   permission varchar(64) NOT NULL DEFAULT 'read',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3169,7 +3169,7 @@ CREATE TABLE lupo_persona_dialogue_patterns (
   pattern_context json DEFAULT NULL,
   pattern_frequency decimal(5,2) DEFAULT NULL,
   pattern_confidence decimal(5,2) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (pattern_id)
 );
@@ -3190,7 +3190,7 @@ CREATE TABLE lupo_persona_profiles (
   persona_interaction_style varchar(100) DEFAULT NULL,
   persona_emotional_profile json DEFAULT NULL,
   persona_knowledge_domains json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (persona_id)
@@ -3267,7 +3267,7 @@ CREATE TABLE lupo_search_index (
   relevance_score float DEFAULT '1',
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (search_index_id)
 );
@@ -3287,7 +3287,7 @@ CREATE TABLE lupo_search_rebuild_log (
   status varchar(64) NOT NULL DEFAULT 'pending',
   attempts tinyint NOT NULL DEFAULT '0',
   last_error text,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   processed_ymdhis bigint DEFAULT NULL,
   next_attempt_ymdhis bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
@@ -3306,7 +3306,7 @@ CREATE TABLE lupo_semantic_categories (
   description text,
   parent_category_id bigint DEFAULT NULL,
   sort_order int NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (category_id)
@@ -3326,7 +3326,7 @@ CREATE TABLE lupo_semantic_content_views (
   title varchar(255) NOT NULL,
   description text,
   template_path varchar(512) NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   is_default tinyint NOT NULL DEFAULT '0',
@@ -3345,7 +3345,7 @@ CREATE TABLE lupo_semantic_navigation_overview (
   description text,
   navigation_tree json NOT NULL,
   content_categories json NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3396,7 +3396,7 @@ CREATE TABLE lupo_semantic_relationships (
   target_content_id bigint DEFAULT NULL,
   relationship_type varchar(64) NOT NULL,
   relationship_strength decimal(3,2) NOT NULL DEFAULT '1.00',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (relationship_id)
 );
 
@@ -3412,7 +3412,7 @@ CREATE TABLE lupo_semantic_search_index (
   index_type varchar(64) NOT NULL,
   description text,
   index_data json NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (search_index_id)
@@ -3430,7 +3430,7 @@ CREATE TABLE lupo_semantic_tags (
   tag_slug varchar(255) NOT NULL,
   description text,
   color varchar(7) NOT NULL DEFAULT '#666666',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (tag_id)
@@ -3447,7 +3447,7 @@ CREATE TABLE lupo_semantic_translations (
   entity_type varchar(32) NOT NULL,
   entity_id bigint NOT NULL,
   translated_text text NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   created_by bigint DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
@@ -3486,7 +3486,7 @@ CREATE TABLE lupo_sessions (
   login_ymdhis bigint DEFAULT NULL,
   last_seen_ymdhis bigint NOT NULL,
   expires_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT 0,
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3513,7 +3513,7 @@ CREATE TABLE lupo_session_events (
   world_type varchar(50) DEFAULT NULL,
   event_type varchar(100) NOT NULL,
   event_data json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (session_event_id)
 );
 
@@ -3530,7 +3530,7 @@ CREATE TABLE lupo_system_config (
   config_key varchar(255) NOT NULL,
   config_value text NOT NULL,
   actor_id bigint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   PRIMARY KEY (system_config_id)
 );
@@ -3543,7 +3543,7 @@ CREATE TABLE lupo_system_events (
   event_message text NOT NULL,
   event_context text,
   actor_id bigint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (system_event_id)
 );
 
@@ -3560,7 +3560,7 @@ CREATE TABLE lupo_system_health_snapshots (
   emotional_g decimal(3,2) DEFAULT NULL,
   emotional_b decimal(3,2) DEFAULT NULL,
   emotional_t decimal(3,2) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (health_id)
@@ -3577,7 +3577,7 @@ CREATE TABLE lupo_system_logs (
   actor_slug varchar(64) DEFAULT NULL,
   message text NOT NULL,
   context_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   recursion_depth tinyint DEFAULT '1',
@@ -3602,7 +3602,7 @@ CREATE TABLE lupo_tab_events (
   world_type varchar(50) DEFAULT NULL,
   event_type varchar(100) NOT NULL,
   event_data json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (tab_event_id)
 );
 
@@ -3621,7 +3621,7 @@ CREATE TABLE lupo_temporal_coherence_snapshots (
   recursion_depth tinyint NOT NULL DEFAULT '0',
   self_awareness_score decimal(3,2) DEFAULT NULL,
   timestamp_integrity varchar(32) NOT NULL DEFAULT 'unknown',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (snapshot_id)
@@ -3640,7 +3640,7 @@ CREATE TABLE lupo_tldnr (
   topic_reference varchar(255) DEFAULT NULL,
   system_version varchar(20) DEFAULT NULL,
   category varchar(100) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3665,7 +3665,7 @@ CREATE TABLE lupo_truth_answers (
   contradiction_flag tinyint NOT NULL DEFAULT '0',
   likes_count bigint NOT NULL DEFAULT '0',
   shares_count bigint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3682,7 +3682,7 @@ CREATE TABLE lupo_truth_evidence (
   evidence_text text NOT NULL,
   evidence_type varchar(50) NOT NULL DEFAULT '',
   weight_score decimal(5,2) NOT NULL DEFAULT '0.00',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3710,7 +3710,7 @@ CREATE TABLE lupo_truth_questions (
   last_activity_ymdhis bigint DEFAULT NULL,
   is_featured tinyint NOT NULL DEFAULT '0',
   is_verified tinyint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3727,7 +3727,7 @@ CREATE TABLE lupo_truth_questions_map (
   object_type varchar(50) NOT NULL,
   object_id bigint NOT NULL,
   actor_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3747,7 +3747,7 @@ CREATE TABLE lupo_truth_relations (
   right_object_id bigint NOT NULL,
   relation_type varchar(50) NOT NULL DEFAULT '',
   actor_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3766,7 +3766,7 @@ CREATE TABLE lupo_truth_sources (
   source_title varchar(255) NOT NULL DEFAULT '',
   source_type varchar(50) NOT NULL DEFAULT '',
   reliability_score decimal(5,2) NOT NULL DEFAULT '0.00',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3784,7 +3784,7 @@ CREATE TABLE lupo_truth_topics (
   actor_id bigint NOT NULL DEFAULT '0',
   weight_score decimal(5,2) NOT NULL DEFAULT '0.00',
   importance_score decimal(5,2) NOT NULL DEFAULT '0.00',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3803,7 +3803,7 @@ CREATE TABLE lupo_unified_analytics_paths (
   transition_type varchar(64) NOT NULL,
   transition_count int NOT NULL DEFAULT '0',
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3842,7 +3842,7 @@ CREATE TABLE lupo_unified_registry (
   dedicated_index_id bigint NOT NULL,
   entity_table varchar(128) NOT NULL,
   federation_node_id bigint NOT NULL DEFAULT '1',
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3902,7 +3902,7 @@ CREATE TABLE lupo_uploads (
   file_size_bytes bigint NOT NULL,
   storage_path varchar(512) NOT NULL,
   metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
@@ -3925,7 +3925,7 @@ CREATE TABLE lupo_user_comments (
   ip_hash char(64) DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (user_comment_id)
 );
@@ -3945,7 +3945,7 @@ CREATE TABLE lupo_world_events (
   actor_id bigint NOT NULL,
   event_type varchar(100) NOT NULL,
   event_data json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (world_event_id)
 );
 
@@ -3960,7 +3960,7 @@ CREATE TABLE lupo_world_registry (
   world_type varchar(64) NOT NULL,
   world_label varchar(255) NOT NULL,
   world_metadata json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (world_id)

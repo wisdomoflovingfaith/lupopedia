@@ -36,23 +36,27 @@ define( 'LUPOPEDIA_PATH', $_SERVER['DOCUMENT_ROOT'] . LUPOPEDIA_PUBLIC_PATH );
  * @var string
  */
 
-// Path 1: One directory ABOVE DOCUMENT_ROOT (most secure, preferred)
+// Config: lupopedia-config.php first; config.php only if lupopedia-config does not exist (legacy)
 if (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php')) {
     define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php');
 }
-// Path 2: One directory above DOCUMENT_ROOT + Lupopedia public path
 elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php')) {
     define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php');
 }
-// Path 3: Inside the Lupopedia directory itself (fallback)
 elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
     define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/lupopedia-config.php');
 }
-// No config found - run installer
+elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/config.php')) {
+    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . '/config.php');
+}
+elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/config.php')) {
+    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/config.php');
+}
+elseif (@file_exists(LUPOPEDIA_PATH . '/config.php')) {
+    define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/config.php');
+}
 else {
-    // Config file not found - run setup/upgrade
     require_once LUPOPEDIA_PATH . '/lupo-includes/lupopedia-setup.php';
-    // Setup script will handle detection and creation
     exit;
 }
 

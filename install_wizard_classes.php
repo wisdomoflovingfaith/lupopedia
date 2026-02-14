@@ -1,6 +1,6 @@
 <?php
 /**
- * Lupopedia 3.0.0 — Install Wizard Classes
+ * Lupopedia 4.0.4 — Install Wizard Classes
  *
  * Helper logic converted from install.php into classes per CLASS_CONVERSION_DOCTRINE.md.
  * PHP 5.3–compatible: no type hints, no return types, no short arrays, no ??.
@@ -202,7 +202,8 @@ class InstallWizardSqlRunner {
                 if (stripos($msg, 'already exists') !== false || stripos($msg, 'Duplicate') !== false) {
                     $log[] = InstallWizardLogger::logEntry('skip', 'Statement skipped (already exists): ' . $basename);
                 } else {
-                    $log[] = InstallWizardLogger::logEntry('error', InstallWizardLogger::safeErrorMessage('statement') . ' [' . $basename . ']');
+                    $safe = substr(preg_replace('/[\r\n]/', ' ', $msg), 0, 200);
+                    $log[] = InstallWizardLogger::logEntry('error', 'SQL failed [' . $basename . ']: ' . $safe);
                     error_log('Lupopedia install SQL error [' . $basename . ']: ' . $msg);
                     $ok = false;
                 }
@@ -301,6 +302,20 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
         }
         @chmod($configPath, 0644);
         $log[] = InstallWizardLogger::logEntry('ok', 'Wrote lupopedia-config.php');
+
+        // After install/upgrade, Lupopedia must use only lupopedia-config.php. Remove or backup Crafty config.php.
+        $craftyConfig = $configDir . DIRECTORY_SEPARATOR . 'config.php';
+        if (is_file($craftyConfig)) {
+            $backupPath = $configDir . DIRECTORY_SEPARATOR . 'config_backup.php';
+            if (@rename($craftyConfig, $backupPath)) {
+                $log[] = InstallWizardLogger::logEntry('ok', 'Renamed Crafty config.php to config_backup.php; lupopedia-config.php is now the only active config.');
+            } elseif (@unlink($craftyConfig)) {
+                $log[] = InstallWizardLogger::logEntry('ok', 'Removed Crafty config.php; lupopedia-config.php is now the only active config.');
+            } else {
+                $log[] = InstallWizardLogger::logEntry('error', 'Could not rename or remove config.php; please remove or rename it manually so only lupopedia-config.php is used.');
+            }
+        }
+
         return $configPath;
     }
 }
@@ -337,36 +352,30 @@ class InstallWizardNormalize {
         return $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : array();
     }
 
+    /**
+     * Proposes identity (email/username) changes for operators only.
+     * Visitor sessions (isoperator != 'Y') are not normalized; their usernames are left unchanged.
+     */
     public static function computeProposedIdentities($users) {
         $out = array();
         foreach ($users as $u) {
             $isOp = (strtoupper((string) (isset($u['isoperator']) ? $u['isoperator'] : '')) === 'Y');
+            if (!$isOp) {
+                continue;
+            }
             $username = trim((string) (isset($u['username']) ? $u['username'] : ''));
             $email = trim((string) (isset($u['email']) ? $u['email'] : ''));
-            if ($isOp) {
-                $slug = self::usernameToSlug($username);
-                $proposedEmail = (self::isValidEmail($email)) ? $email : $slug;
-                $out[] = array(
-                    'user_id' => (int) $u['user_id'],
-                    'username' => $username,
-                    'email' => $email,
-                    'displayname' => trim((string) (isset($u['displayname']) ? $u['displayname'] : '')),
-                    'isoperator' => $isOp,
-                    'proposed_email' => $proposedEmail,
-                    'proposed_username' => $slug,
-                );
-            } else {
-                $proposedEmail = (self::isValidEmail($email)) ? $email : self::usernameToSlug($username);
-                $out[] = array(
-                    'user_id' => (int) $u['user_id'],
-                    'username' => $username,
-                    'email' => $email,
-                    'displayname' => trim((string) (isset($u['displayname']) ? $u['displayname'] : '')),
-                    'isoperator' => $isOp,
-                    'proposed_email' => $proposedEmail,
-                    'proposed_username' => $username,
-                );
-            }
+            $slug = self::usernameToSlug($username);
+            $proposedEmail = (self::isValidEmail($email)) ? $email : $slug;
+            $out[] = array(
+                'user_id' => (int) $u['user_id'],
+                'username' => $username,
+                'email' => $email,
+                'displayname' => trim((string) (isset($u['displayname']) ? $u['displayname'] : '')),
+                'isoperator' => true,
+                'proposed_email' => $proposedEmail,
+                'proposed_username' => $slug,
+            );
         }
         return $out;
     }
