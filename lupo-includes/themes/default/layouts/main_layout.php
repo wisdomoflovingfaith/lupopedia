@@ -55,7 +55,7 @@ if (!isset($collectionsData)) {
             require_once $renderer_path;
             $collectionsData = render_saved_collections($currentUserId);
         } else {
-            $collectionsData = [];
+            $collectionsData = array();
         }
     }
 }
@@ -69,7 +69,7 @@ if (!isset($current_collection) || $current_collection === null) {
     $current_collection = 'System Collection';
 }
 if (!isset($tabs_data) || !is_array($tabs_data)) {
-    $tabs_data = [];
+    $tabs_data = array();
 }
 if (!isset($collection_id) || $collection_id === null) {
     $collection_id = (function_exists('session_status') && session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['collection_id']))
@@ -79,7 +79,7 @@ if (!isset($collection_id) || $collection_id === null) {
 
 // Initialize content sections for contents dropdown
 if (!isset($contentSections)) {
-    $contentSections = isset($content['content_sections']) ? $content['content_sections'] : [];
+    $contentSections = isset($content['content_sections']) ? $content['content_sections'] : array();
 }
 
 ?>
@@ -713,7 +713,7 @@ if (file_exists(LUPO_UI_PATH . '/components/topbar.php')) {
     include LUPO_UI_PATH . '/components/topbar.php';
 }
 
-// Determine if semantic nav bar should be hidden (channel operator interface)
+// Determine if semantic nav bar should be hidden (channel staff interface)
 $hide_semantic_nav = false;
 if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/channels/') !== false) {
     $hide_semantic_nav = true;

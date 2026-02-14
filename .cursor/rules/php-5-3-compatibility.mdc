@@ -20,7 +20,7 @@ All code must run on **PHP 5.3 through PHP 8.1+**. Shared hosting and minimal ho
 
 ## Required patterns
 
-- **Arrays:** Always `array(...)`, never `[...]`.
+- **Arrays:** Always `array(...)`, never `[...]`. Cursor must NEVER generate short array syntax `[]` in any new or edited code.
 - **Default / missing keys:** `isset($arr['key']) ? $arr['key'] : $default`, never `$arr['key'] ?? $default`.
 - **Session cookie params (PHP 5.3):** `session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly);` — no `samesite` (PHP 7.3+).
 

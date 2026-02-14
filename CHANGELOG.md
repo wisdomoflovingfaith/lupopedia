@@ -10,6 +10,77 @@ Canonical version history.
 
 ---
 
+## Lupopedia 4.0.5 — Stabilization Patch (Role-Based Identity, PHP 5.3 Compatibility)
+
+Lupopedia 4.0.5 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
+There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
+
+This patch includes:
+
+### 1. PHP 5.3 Compatibility (Array Syntax Sweep)
+
+- Replaced short array syntax `[]` with `array()` in all updated files to enforce PHP 5.3 compatibility.
+- **Files updated:** `lupo-includes/themes/default/layouts/main_layout.php`, `lupo-includes/modules/channels/channels-controller.php`, `debug_collection_zero.php`, `api/load_collection_tabs.php`, `app/Services/CraftySyntax/LegacyFunctions.php`, `app/Services/ActorService.php`.
+- In `channels-controller.php`: all empty-array assignments, all `execute()`, `render_main_layout()`, and `extract()` array arguments, and inline array literals (e.g. `$pending_visitors[] = [...]`) converted to `array()` with correct closing parentheses.
+- Default parameters (e.g. `array $params = []`) and ternary fallbacks (`: []`) converted to `array()`.
+- **Rule:** `.cursor/rules/php-5-3-compatibility.mdc` already required `array()`; wording strengthened so short array syntax is never generated in new or edited code.
+- **Confirmation:** `array()` is not deprecated in PHP 8.3 and remains fully supported.
+- **Audit report:** `docs/audits/PHP_5_3_ARRAY_SYNTAX_SWEEP_REPORT.md` documents the sweep, lists updated files, and provides patterns for converting any remaining files. Array push (`$var[] = value`) was not changed.
+
+### 2. Operator → Role-Based Identity Migration
+
+- Removed all operator-based terminology and logic from the identity and permission model.
+- **No `lupo_operators` table;** identity is `lupo_auth_users` + `lupo_actors`; permissions are `lupo_actor_channel_roles` with `role_key` (`captain`, `administrator`, `monitor`).
+- **Files updated:** `livehelp_js.php`, `image.php` (role checks: `role_key IN ('captain','monitor','administrator')`); `install_wizard_classes.php` (personal channel creation and captain assignment use `lupo_actor_channel_roles`; reserved channel 1 = Administration; captain for Crafty admins on channel 1); `install.php` (wording: operator channels → personal channels and captain roles); `lupo-includes/modules/channels/channels-controller.php` (all permission and role logic switched from `lupo_channel_roles` to `lupo_actor_channel_roles`; `channel_role_id`/`role_type` → `actor_channel_role_id`/`role_key`); `lupo-includes/classes/AdminUsersHandler.php` (channel 1 admin role via `lupo_actor_channel_roles` and `role_key`); `lupo-includes/themes/default/layouts/main_layout.php` (comment: channel staff interface); `README.md` (operator sessions → staff sessions; uploads path no longer references operators).
+- **Audit report:** `docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md` lists all files changed, installer logic, migration file, and confirmations.
+
+### 3. Installer Enhancements
+
+- **Personal channels for Crafty operators:** For each `livehelp_users` row with `isoperator='Y'`, the wizard creates a row in `lupo_channels` with `channel_name = name + "'s Channel"` and inserts into `lupo_actor_channel_roles` with `role_key = 'captain'`. No `lupo_channel_roles`; all assignments use `lupo_actor_channel_roles`.
+- **Global admin channel (channel_id = 1):** Reserved channel 1 is defined as **Administration** (key `administration`, name `Administration`). For each `livehelp_users` row with `isadmin='Y'`, the wizard inserts into `lupo_actor_channel_roles` with `actor_id = auth_user_id`, `channel_id = 1`, `role_key = 'captain'` (idempotent).
+- **Reserved channels:** System actor (actor_id = 0) is assigned captain in `lupo_actor_channel_roles` for channels 1, 42, 5100. `createReservedSystemChannels` inserts those captain entries so role-based checks see them.
+- **Wizard wording:** All references to "operator channels" updated to "personal channels and captain roles"; step descriptions and session keys retained for compatibility.
+
+### 4. Importer Validation
+
+- **`import_from_old_crafty_syntax.sql`** confirmed and left correct: first INSERT into `lupo_auth_users` from `livehelp_users` WHERE `isoperator='Y'`; second INSERT for all remaining users (idempotent). Single INSERT into `lupo_actors` for Crafty operators only (`isoperator='Y'`) with **`actor_id = auth_user_id`**, `actor_source_id = auth_user_id`, `actor_source_type = 'lupo_auth_users'`; timestamps via `CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED)`; idempotent. No INSERT into `lupo_operators`; no role assignment during import (wizard assigns roles later). Department mapping UPDATE retained (`lupo_actor_departments.actor_id`).
+- No UNSIGNED in importer; no operator table usage; actor_id = auth_user_id enforced for imported humans.
+
+### 5. Permission System Rewrite
+
+- All permission checks now use **`lupo_actor_channel_roles`** and **`role_key`** (captain, administrator, monitor).
+- **channels-controller.php:** Every use of `lupo_channel_roles` (channel_role_id, role_type) replaced with `lupo_actor_channel_roles` (actor_channel_role_id, role_key). All SELECTs, UPDATEs, and INSERTs for channel roles use the new table and column names; view data still exposed as `role_type` for compatibility.
+- **AdminUsersHandler.php:** Channel 1 (admin channel) role read/write uses `lupo_actor_channel_roles` and `role_key`.
+- **livehelp_js.php, image.php:** "Anyone online" checks use `role_key IN ('captain','monitor','administrator')` (replaced former `operator` with `administrator`).
+- No code path checks `isoperator` or `isadmin` for runtime permissions; all permission checks go through `lupo_actor_channel_roles`.
+
+### 6. Migration File for Existing Databases
+
+- **`database/migrations/migration_operator_to_actor_channel_roles.sql`** added for existing installations that previously used `lupo_channel_roles` for permission checks. It: (1) sets `lupo_channels` row for `channel_id = 1` to key/slug/name **Administration** and updates `updated_ymdhis` (BIGINT UTC); (2) copies rows from `lupo_channel_roles` into `lupo_actor_channel_roles` (idempotent, with generated `actor_channel_role_id`; `role_type` → `role_key`). Run once after deploying 4.0.5 if the live DB still has roles only in `lupo_channel_roles`. New installs get roles from the wizard in `lupo_actor_channel_roles` only.
+
+### 7. Documentation and Doctrine
+
+- **README.md:** Operator sessions → staff (captain/administrator/monitor) sessions; uploads path no longer includes `operators`.
+- **Migration doctrine:** `docs/doctrine/MIGRATION_DOCTRINE.md` and `.cursor/rules/migration-doctrine.mdc` added (single source for migration doctrine; no DB inference; no CLI SQL; compatibility notes). README sections for database access and SQL compatibility updated.
+- **Audit reports:** `docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md`, `docs/audits/PHP_5_3_ARRAY_SYNTAX_SWEEP_REPORT.md` document the operator→role sweep and the PHP 5.3 array syntax sweep, including files touched, installer logic, migration file, and patterns for remaining work.
+
+### 8. Other Fixes in This Patch
+
+- **livehelp_js.php (root):** `date()` → `gmdate()` for UTC.
+- **lupo-includes/modules/crafty_syntax/livehelp-js.php:** Replaced direct PDO with PDO_DB wrapper; all `date('YmdHis')` → `gmdate('YmdHis')`; removed `??` for PHP 5.3; default-department logic corrected.
+- **channels-controller.php:** One `??` in pending-visitors block replaced with `isset() ? : ` for PHP 5.3 compatibility where edited.
+
+**Versioning Note:**  
+Lupopedia 4.0.x is a development/stabilization series.  
+The ONLY supported upgrade path is:
+
+    Crafty Syntax 3.7.5 → Lupopedia 4.0.x
+
+There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**.
+
+---
+
+
 ## Lupopedia 4.0.4 — Stabilization Patch (Crafty Syntax 3.7.5 → Lupopedia 4.0.x)
 
 Lupopedia 4.0.4 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
@@ -91,7 +162,6 @@ The ONLY supported upgrade path is:
 
 There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**, which will not be created until after a stable 4.0.x release is published through auto-installers.
 
----
 
 ## Lupopedia 4.0.3
 

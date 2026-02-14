@@ -487,7 +487,7 @@ class InstallWizardChannels {
 
         $reserved = array(
             0   => array('key' => 'system',       'slug' => 'system',     'type' => 'system', 'name' => 'System Kernel Channel',       'desc' => 'System channel (kernel/system operations).', 'is_kernel' => 1, 'captain' => false),
-            1   => array('key' => 'lobby',        'slug' => 'lobby',      'type' => 'public', 'name' => 'Orphan/Lobby Channel',         'desc' => 'Default public channel.',                    'is_kernel' => 0, 'captain' => true),
+            1   => array('key' => 'administration', 'slug' => 'administration', 'type' => 'public', 'name' => 'Administration', 'desc' => 'Global admin channel (channel_id = 1).', 'is_kernel' => 0, 'captain' => true),
             42  => array('key' => 'crafty-dev',   'slug' => 'crafty-dev', 'type' => 'public', 'name' => 'Crafty Syntax Development',   'desc' => 'Crafty Syntax development channel.',         'is_kernel' => 0, 'captain' => true),
             5100=> array('key' => 'ai-dev',       'slug' => 'ai-dev',     'type' => 'public', 'name' => 'AI Agent Development',       'desc' => 'AI agent development channel.',              'is_kernel' => 0, 'captain' => true),
         );
@@ -505,6 +505,11 @@ class InstallWizardChannels {
             INSERT INTO lupo_channel_roles (
                 channel_role_id, channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted
             ) VALUES (?, ?, 0, 'captain', ?, ?, 0)
+        ");
+        $nextAcrId = (int) $pdo->query("SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM lupo_actor_channel_roles")->fetchColumn();
+        $insAcr = $pdo->prepare("
+            INSERT INTO lupo_actor_channel_roles (actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted)
+            VALUES (?, 0, ?, 'captain', ?, ?, 0)
         ");
 
         foreach ($reserved as $channelId => $def) {
@@ -530,8 +535,10 @@ class InstallWizardChannels {
                 $log[] = InstallWizardLogger::logEntry('ok', 'Created reserved channel ' . $channelId . ' (' . $def['key'] . ').');
                 if ($def['captain']) {
                     $insRole->execute(array($nextRoleId, $channelId, $now, $now));
+                    $insAcr->execute(array($nextAcrId, $channelId, $now, $now));
                     $log[] = InstallWizardLogger::logEntry('ok', 'Assigned system actor (0) as captain for channel ' . $channelId . '.');
                     $nextRoleId++;
+                    $nextAcrId++;
                 }
             } catch (PDOException $e) {
                 $log[] = InstallWizardLogger::logEntry('error', 'Reserved channel creation failed (see server log).');
@@ -540,6 +547,11 @@ class InstallWizardChannels {
         }
     }
 
+    /**
+     * Create personal channels for each imported Crafty operator (actor_source_type = 'lupo_auth_users')
+     * and assign captain in lupo_actor_channel_roles. Then assign captain on channel_id = 1 (Administration)
+     * for each livehelp_users row where isadmin = 'Y'. No lupo_operators; permissions = lupo_actor_channel_roles.
+     */
     public static function createOperatorChannels($pdo, &$log) {
         $map = array();
         $federationNodeId = 1;
@@ -555,17 +567,16 @@ class InstallWizardChannels {
             ORDER BY a.actor_id
         ");
         if (!$stmt) {
-            $log[] = InstallWizardLogger::logEntry('error', 'Could not select operators from lupo_actors.');
+            $log[] = InstallWizardLogger::logEntry('error', 'Could not select actors (imported operators) from lupo_actors.');
             return $map;
         }
-        $operators = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (empty($operators)) {
-            $log[] = InstallWizardLogger::logEntry('ok', 'No operators to create channels for.');
-            return $map;
+        $actors = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (empty($actors)) {
+            $log[] = InstallWizardLogger::logEntry('ok', 'No actors to create personal channels for.');
         }
 
         $nextChannelId = (int) $pdo->query("SELECT COALESCE(MAX(channel_id), 0) + 1 FROM lupo_channels")->fetchColumn();
-        $nextRoleId = (int) $pdo->query("SELECT COALESCE(MAX(channel_role_id), 0) + 1 FROM lupo_channel_roles")->fetchColumn();
+        $nextAcrId = (int) $pdo->query("SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM lupo_actor_channel_roles")->fetchColumn();
         $usedKeys = array();
         foreach ($pdo->query("SELECT channel_key FROM lupo_channels WHERE federation_node_id = " . (int) $federationNodeId)->fetchAll(PDO::FETCH_COLUMN) as $k) {
             $usedKeys[strtolower($k)] = true;
@@ -578,18 +589,18 @@ class InstallWizardChannels {
                 status_flag, created_ymdhis, updated_ymdhis, is_deleted, is_kernel
             ) VALUES (?, ?, ?, ?, ?, ?, ?, 'chat_room', 'en', ?, ?, NULL, 1, ?, ?, 0, 0)
         ");
-        $insRole = $pdo->prepare("
-            INSERT INTO lupo_channel_roles (
-                channel_role_id, channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted
+        $insAcr = $pdo->prepare("
+            INSERT INTO lupo_actor_channel_roles (
+                actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted
             ) VALUES (?, ?, ?, 'captain', ?, ?, 0)
         ");
 
-        foreach ($operators as $op) {
-            $actorId = (int) $op['actor_id'];
-            $slug = trim((string) (isset($op['slug']) ? $op['slug'] : ''));
-            $name = trim((string) (isset($op['name']) ? $op['name'] : $slug));
+        foreach ($actors as $row) {
+            $actorId = (int) $row['actor_id'];
+            $slug = trim((string) (isset($row['slug']) ? $row['slug'] : ''));
+            $name = trim((string) (isset($row['name']) ? $row['name'] : $slug));
             if ($slug === '') {
-                $slug = 'operator-' . $actorId;
+                $slug = 'actor-' . $actorId;
             }
             $channelKey = $slug;
             $suffix = 1;
@@ -599,8 +610,8 @@ class InstallWizardChannels {
             }
             $usedKeys[strtolower($channelKey)] = true;
 
-            $channelName = $channelKey;
-            $description = 'Operator channel for ' . $name;
+            $channelName = $name . "'s Channel";
+            $description = 'Personal channel for ' . $name;
 
             try {
                 $insChannel->execute(array(
@@ -616,15 +627,46 @@ class InstallWizardChannels {
                     $now,
                     $now,
                 ));
-                $insRole->execute(array($nextRoleId, $nextChannelId, $actorId, $now, $now));
+                $insAcr->execute(array($nextAcrId, $actorId, $nextChannelId, $now, $now));
                 $map[$actorId] = $nextChannelId;
-                $log[] = InstallWizardLogger::logEntry('ok', 'Created channel ' . $channelKey . ' (id ' . $nextChannelId . ') and assigned captain.');
+                $log[] = InstallWizardLogger::logEntry('ok', 'Created personal channel ' . $channelKey . ' (id ' . $nextChannelId . ') and assigned captain.');
             } catch (PDOException $e) {
-                $log[] = InstallWizardLogger::logEntry('error', 'Operator channel creation failed (see server log).');
-                error_log('Lupopedia operator channel ' . $slug . ': ' . $e->getMessage());
+                $log[] = InstallWizardLogger::logEntry('error', 'Personal channel creation failed (see server log).');
+                error_log('Lupopedia createOperatorChannels ' . $slug . ': ' . $e->getMessage());
             }
             $nextChannelId++;
-            $nextRoleId++;
+            $nextAcrId++;
+        }
+
+        // Global admin channel (channel_id = 1): assign captain to each Crafty admin (livehelp_users.isadmin = 'Y').
+        try {
+            $adminStmt = $pdo->query("
+                SELECT u.user_id, u.username FROM livehelp_users u
+                WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y'
+            ");
+            if ($adminStmt) {
+                $admins = $adminStmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($admins as $admin) {
+                    $uid = (int) $admin['user_id'];
+                    $uname = trim((string) $admin['username']);
+                    $au = $pdo->prepare("SELECT auth_user_id FROM lupo_auth_users WHERE username = ? LIMIT 1");
+                    $au->execute(array($uname));
+                    $authRow = $au->fetch(PDO::FETCH_ASSOC);
+                    if ($authRow) {
+                        $actorId = (int) $authRow['auth_user_id'];
+                        $check = $pdo->prepare("SELECT 1 FROM lupo_actor_channel_roles WHERE actor_id = ? AND channel_id = 1 AND role_key = 'captain' AND is_deleted = 0 LIMIT 1");
+                        $check->execute(array($actorId));
+                        if (!$check->fetchColumn()) {
+                            $insAcr->execute(array($nextAcrId, $actorId, 1, $now, $now));
+                            $log[] = InstallWizardLogger::logEntry('ok', 'Assigned captain on Administration (channel 1) for ' . $uname . '.');
+                            $nextAcrId++;
+                        }
+                    }
+                }
+            }
+        } catch (PDOException $e) {
+            $log[] = InstallWizardLogger::logEntry('error', 'Admin channel captain assignment failed (see server log).');
+            error_log('Lupopedia createOperatorChannels admin channel: ' . $e->getMessage());
         }
 
         return $map;
@@ -646,6 +688,9 @@ class InstallWizardChannels {
         }
     }
 
+    /**
+     * Ensure every actor (imported Crafty operator) has a personal channel with captain in lupo_actor_channel_roles.
+     */
     public static function ensureOperatorChannels($pdo, &$log) {
         try {
             $stmt = $pdo->query("
@@ -653,9 +698,9 @@ class InstallWizardChannels {
                 FROM lupo_actors a
                 WHERE a.actor_source_type = 'lupo_auth_users' AND a.is_deleted = 0
                 AND NOT EXISTS (
-                    SELECT 1 FROM lupo_channel_roles r
+                    SELECT 1 FROM lupo_actor_channel_roles r
                     INNER JOIN lupo_channels c ON c.channel_id = r.channel_id AND c.created_by_actor_id = r.actor_id
-                    WHERE r.actor_id = a.actor_id AND r.role_type = 'captain'
+                    WHERE r.actor_id = a.actor_id AND r.role_key = 'captain' AND r.is_deleted = 0
                 )
                 ORDER BY a.actor_id
             ");
@@ -671,7 +716,7 @@ class InstallWizardChannels {
             $defaultActorId = 1;
             $now = (int) gmdate('YmdHis');
             $nextChannelId = (int) $pdo->query('SELECT COALESCE(MAX(channel_id), 0) + 1 FROM lupo_channels')->fetchColumn();
-            $nextRoleId = (int) $pdo->query('SELECT COALESCE(MAX(channel_role_id), 0) + 1 FROM lupo_channel_roles')->fetchColumn();
+            $nextAcrId = (int) $pdo->query('SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM lupo_actor_channel_roles')->fetchColumn();
             $usedKeys = array();
             foreach ($pdo->query('SELECT channel_key FROM lupo_channels WHERE federation_node_id = 1')->fetchAll(PDO::FETCH_COLUMN) as $k) {
                 $usedKeys[strtolower($k)] = true;
@@ -680,16 +725,16 @@ class InstallWizardChannels {
                 INSERT INTO lupo_channels (channel_id, federation_node_id, created_by_actor_id, default_actor_id, department_id, channel_key, channel_slug, channel_type, language, channel_name, description, website_link, status_flag, created_ymdhis, updated_ymdhis, is_deleted, is_kernel)
                 VALUES (?, ?, ?, ?, ?, ?, ?, 'chat_room', 'en', ?, ?, NULL, 1, ?, ?, 0, 0)
             ");
-            $insRole = $pdo->prepare("
-                INSERT INTO lupo_channel_roles (channel_role_id, channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted)
+            $insAcr = $pdo->prepare("
+                INSERT INTO lupo_actor_channel_roles (actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted)
                 VALUES (?, ?, ?, 'captain', ?, ?, 0)
             ");
-            foreach ($missing as $op) {
-                $actorId = (int) $op['actor_id'];
-                $slug = trim((string) (isset($op['slug']) ? $op['slug'] : ''));
-                $name = trim((string) (isset($op['name']) ? $op['name'] : $slug));
+            foreach ($missing as $row) {
+                $actorId = (int) $row['actor_id'];
+                $slug = trim((string) (isset($row['slug']) ? $row['slug'] : ''));
+                $name = trim((string) (isset($row['name']) ? $row['name'] : $slug));
                 if ($slug === '') {
-                    $slug = 'operator-' . $actorId;
+                    $slug = 'actor-' . $actorId;
                 }
                 $channelKey = $slug;
                 $suffix = 1;
@@ -697,22 +742,22 @@ class InstallWizardChannels {
                     $channelKey = $slug . '-' . (++$suffix);
                 }
                 $usedKeys[strtolower($channelKey)] = true;
-                $channelName = $channelKey;
-                $description = 'Operator channel for ' . $name;
+                $channelName = $name . "'s Channel";
+                $description = 'Personal channel for ' . $name;
                 try {
                     $insChannel->execute(array($nextChannelId, $federationNodeId, $actorId, $defaultActorId, $departmentId, $channelKey, $channelKey, $channelName, $description, $now, $now));
-                    $insRole->execute(array($nextRoleId, $nextChannelId, $actorId, $now, $now));
-                    $log[] = InstallWizardLogger::logEntry('ok', 'Created missing operator channel ' . $channelKey . ' (id ' . $nextChannelId . ').');
+                    $insAcr->execute(array($nextAcrId, $actorId, $nextChannelId, $now, $now));
+                    $log[] = InstallWizardLogger::logEntry('ok', 'Created missing personal channel ' . $channelKey . ' (id ' . $nextChannelId . ').');
                 } catch (PDOException $e) {
-                    $log[] = InstallWizardLogger::logEntry('error', 'Failed to create missing operator channel (see server log).');
-                    error_log('Lupopedia ensure_operator_channels ' . $slug . ': ' . $e->getMessage());
+                    $log[] = InstallWizardLogger::logEntry('error', 'Failed to create missing personal channel (see server log).');
+                    error_log('Lupopedia ensureOperatorChannels ' . $slug . ': ' . $e->getMessage());
                 }
                 $nextChannelId++;
-                $nextRoleId++;
+                $nextAcrId++;
             }
         } catch (PDOException $e) {
-            $log[] = InstallWizardLogger::logEntry('error', 'Could not ensure operator channels.');
-            error_log('Lupopedia ensure_operator_channels: ' . $e->getMessage());
+            $log[] = InstallWizardLogger::logEntry('error', 'Could not ensure personal channels.');
+            error_log('Lupopedia ensureOperatorChannels: ' . $e->getMessage());
         }
     }
 }

@@ -8,7 +8,7 @@
  */
 
 // Prevent output before we send headers
-$errors = [];
+$errors = array();
 
 // 1) Load database credentials: lupopedia-config.php first (post-install), then config.php (legacy)
 $config_path = __DIR__ . '/lupopedia-config.php';
@@ -64,7 +64,7 @@ try {
 /**
  * Run a query and render section: header, row count, HTML table, red warning if 0 rows.
  */
-function run_section(PDO $pdo, $title, $sql, array $params = []) {
+function run_section(PDO $pdo, $title, $sql, array $params = array()) {
     echo '<h2>' . htmlspecialchars($title) . '</h2>';
     try {
         $stmt = $pdo->prepare($sql);

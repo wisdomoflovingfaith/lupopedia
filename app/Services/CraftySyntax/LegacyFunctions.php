@@ -63,9 +63,9 @@ function crafty_get_session_people($session_id) {
     if (!$row) {
         return null;
     }
-    $session_data = !empty($row['session_data']) ? json_decode($row['session_data'], true) : [];
+    $session_data = !empty($row['session_data']) ? json_decode($row['session_data'], true) : array();
     if (!is_array($session_data)) {
-        $session_data = [];
+        $session_data = array();
     }
     return [
         'user_id' => (int) $row['actor_id'],

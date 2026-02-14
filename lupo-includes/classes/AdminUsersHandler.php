@@ -21,7 +21,7 @@ class AdminUsersHandler {
     public static function render($db, $prefix, $base) {
         $au = $db->quoteIdentifier($prefix . 'auth_users');
         $ac = $db->quoteIdentifier($prefix . 'actors');
-        $cr = $db->quoteIdentifier($prefix . 'channel_roles');
+        $cr = $db->quoteIdentifier($prefix . 'actor_channel_roles');
         $now = gmdate('YmdHis');
 
         // POST: save profile
@@ -52,13 +52,13 @@ class AdminUsersHandler {
                     array(':now' => $now, ':actor_id' => $actor_id)
                 );
                 if ($new_role !== '') {
-                    $next_id = function_exists('lupo_findpuka') ? lupo_findpuka($db, $prefix . 'channel_roles', 'channel_role_id', 1, null) : (int) $db->fetchOne("SELECT COALESCE(MAX(channel_role_id), 0) + 1 FROM {$cr}", array());
+                    $next_id = function_exists('lupo_findpuka') ? lupo_findpuka($db, $prefix . 'actor_channel_roles', 'actor_channel_role_id', 1, null) : (int) $db->fetchOne("SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM {$cr}", array());
                     if ($next_id === null) {
-                        $next_id = (int) $db->fetchOne("SELECT COALESCE(MAX(channel_role_id), 0) + 1 FROM {$cr}", array());
+                        $next_id = (int) $db->fetchOne("SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM {$cr}", array());
                     }
                     $db->query(
-                        "INSERT INTO {$cr} (channel_role_id, channel_id, actor_id, role_type, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:id, 1, :actor_id, :role_type, :now, :now2, 0)",
-                        array(':id' => $next_id, ':actor_id' => $actor_id, ':role_type' => $new_role, ':now' => $now, ':now2' => $now)
+                        "INSERT INTO {$cr} (actor_channel_role_id, channel_id, actor_id, role_key, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:id, 1, :actor_id, :role_key, :now, :now2, 0)",
+                        array(':id' => $next_id, ':actor_id' => $actor_id, ':role_key' => $new_role, ':now' => $now, ':now2' => $now)
                     );
                 }
             }
@@ -96,8 +96,8 @@ class AdminUsersHandler {
                 array(':aid' => $actor_id)
             );
             if ($user_row) {
-                $role_row = $db->fetchRow("SELECT role_type FROM {$cr} WHERE actor_id = :aid AND channel_id = 1 AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1", array(':aid' => $actor_id));
-                $channel1_role = $role_row ? (string) $role_row['role_type'] : '';
+                $role_row = $db->fetchRow("SELECT role_key FROM {$cr} WHERE actor_id = :aid AND channel_id = 1 AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1", array(':aid' => $actor_id));
+                $channel1_role = $role_row ? (string) $role_row['role_key'] : '';
                 $edit_profile_user = null;
                 $edit_permissions_user = $user_row;
                 $users_list = array();
@@ -122,11 +122,11 @@ class AdminUsersHandler {
             }
             $in_sql = implode(', ', $in_placeholders);
             $role_rows = $db->fetchAll(
-                "SELECT actor_id, role_type FROM {$cr} WHERE channel_id = 1 AND actor_id IN ({$in_sql}) AND (is_deleted = 0 OR is_deleted IS NULL)",
+                "SELECT actor_id, role_key FROM {$cr} WHERE channel_id = 1 AND actor_id IN ({$in_sql}) AND (is_deleted = 0 OR is_deleted IS NULL)",
                 $in_params
             );
             foreach ($role_rows as $r) {
-                $roles_by_actor[(int) $r['actor_id']] = $r['role_type'];
+                $roles_by_actor[(int) $r['actor_id']] = $r['role_key'];
             }
         }
         foreach ($users as $k => $u) {

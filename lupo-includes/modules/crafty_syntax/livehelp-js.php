@@ -79,32 +79,29 @@ if (!empty($_GET['username'])) {
 $parentdot = (!empty($_GET['frameparent'])) ? 'parent.' : '';
 $force = !empty($_GET['force']);
 
-if ($department === 0 && $db instanceof \PDO_DB) {
-    $row = $db->fetchRow("SELECT department_id FROM {$prefix}departments WHERE is_deleted = 0 LIMIT 1");
-    $department = $row ? (int) $row['department_id'] : 0;
+if ($department === 0) {
+    $row = $db->fetchRow("SELECT department_id FROM {$prefix}departments WHERE is_deleted = 0 ORDER BY department_id ASC LIMIT 1", array());
+    $department = ($row !== null && isset($row['department_id'])) ? (int) $row['department_id'] : 0;
 }
 $dept_id = $department;
 
-// Department metadata (creditline, leaveamessage)
-try {
-    if ($dept_id !== 0) {
-        $stmt = $db->prepare("SELECT metadata_json FROM {$prefix}department_metadata WHERE department_id = :id AND is_deleted = 0 LIMIT 1");
-        $stmt->execute(array(':id' => $dept_id));
-        $meta = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($meta && !empty($meta['metadata_json'])) {
-            $json = is_string($meta['metadata_json']) ? json_decode($meta['metadata_json'], true) : $meta['metadata_json'];
-            if (is_array($json)) {
-                if (isset($json['creditline'])) {
-                    $creditline = substr((string)$json['creditline'], 0, 1);
-                }
-                if (isset($json['leaveamessage'])) {
-                    $leaveamessage = (strtoupper((string)$json['leaveamessage']) === 'NO') ? 'NO' : 'YES';
-                }
+// Department metadata (creditline, leaveamessage) — use PDO_DB wrapper only
+if ($dept_id !== 0) {
+    $meta = $db->fetchRow(
+        "SELECT metadata_json FROM {$prefix}department_metadata WHERE department_id = :id AND is_deleted = 0 LIMIT 1",
+        array('id' => $dept_id)
+    );
+    if ($meta !== null && !empty($meta['metadata_json'])) {
+        $json = is_string($meta['metadata_json']) ? json_decode($meta['metadata_json'], true) : $meta['metadata_json'];
+        if (is_array($json)) {
+            if (isset($json['creditline'])) {
+                $creditline = substr((string)$json['creditline'], 0, 1);
+            }
+            if (isset($json['leaveamessage'])) {
+                $leaveamessage = (strtoupper((string)$json['leaveamessage']) === 'NO') ? 'NO' : 'YES';
             }
         }
     }
-} catch (Exception $e) {
-    // use defaults
 }
 if (!empty($_GET['creditline'])) {
     $creditline = substr((string)$_GET['creditline'], 0, 1);
@@ -113,27 +110,18 @@ if (!empty($_GET['leaveamessage'])) {
     $leaveamessage = (strtoupper((string)$_GET['leaveamessage']) === 'NO') ? 'NO' : 'YES';
 }
 
-// Any channel in this department with at least one role? (lupo_channel_roles + lupo_channels)
+// Any channel in this department with at least one role? (lupo_channel_roles + lupo_channels) — PDO_DB wrapper only
 $noonehome = true;
-try {
-    if ($department !== 0) {
-        $stmt = $db->prepare(
-            "SELECT 1 FROM {$prefix}channel_roles r " .
-            "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
-            "WHERE c.department_id = :dept AND r.is_deleted = 0 LIMIT 1"
-        );
-        $stmt->execute(array(':dept' => $department));
-    } else {
-        $stmt = $db->prepare(
-            "SELECT 1 FROM {$prefix}channel_roles WHERE is_deleted = 0 LIMIT 1"
-        );
-        $stmt->execute(array());
-    }
-    if ($stmt->fetch()) {
-        $noonehome = false;
-    }
-} catch (Exception $e) {
-    // leave noonehome true
+if ($department !== 0) {
+    $onlineRow = $db->fetchRow(
+        "SELECT 1 FROM {$prefix}channel_roles r INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 WHERE c.department_id = :dept AND r.is_deleted = 0 LIMIT 1",
+        array('dept' => $department)
+    );
+} else {
+    $onlineRow = $db->fetchRow("SELECT 1 FROM {$prefix}channel_roles WHERE is_deleted = 0 LIMIT 1", array());
+}
+if ($onlineRow !== null) {
+    $noonehome = false;
 }
 
 $urlreplace = $force
@@ -192,8 +180,8 @@ function csrepeat_<?= $department ?>() {
 function wherecslhisdue_<?= $department ?>() {
     var container = document.getElementById('craftysyntax_<?= $department ?>') || document.getElementById('craftysyntax');
     if (!container) return;
-    var urltohelpimage = '<?= addslashes($base) ?>image.php?what=getstate&department=<?= (int)$department ?>&nowis=<?= date('YmdHis') ?>&cslhVISITOR=<?= addslashes($session_id) ?>&leaveamessage=<?= addslashes($leaveamessage) ?><?= addslashes($querystringadd) ?>';
-    var urltocslhimage = '<?= addslashes($base) ?>image.php?what=getcredit&department=<?= (int)$department ?>&nowis=<?= date('YmdHis') ?>&cslhVISITOR=<?= addslashes($session_id) ?>&xy=<?= addslashes($creditline) ?>&leaveamessage=<?= addslashes($leaveamessage) ?><?= addslashes($querystringadd) ?>';
+    var urltohelpimage = '<?= addslashes($base) ?>image.php?what=getstate&department=<?= (int)$department ?>&nowis=<?= gmdate('YmdHis') ?>&cslhVISITOR=<?= addslashes($session_id) ?>&leaveamessage=<?= addslashes($leaveamessage) ?><?= addslashes($querystringadd) ?>';
+    var urltocslhimage = '<?= addslashes($base) ?>image.php?what=getcredit&department=<?= (int)$department ?>&nowis=<?= gmdate('YmdHis') ?>&cslhVISITOR=<?= addslashes($session_id) ?>&xy=<?= addslashes($creditline) ?>&leaveamessage=<?= addslashes($leaveamessage) ?><?= addslashes($querystringadd) ?>';
     var html = '<a name="chatRef" href="<?= addslashes($urlreplace) ?>" <?= $target ?> onclick="csTimeout_<?= $department ?>=0;"><img name="csIcon" src="' + urltohelpimage + '" alt="Live Help" border="0"></a>';
     <?php if ($creditline !== 'N') : ?>
     html += '<br clear="both"><a href="https://lupopedia.com/?utm_source=poweredby&utm_campaign=poweredby" target="_blank" rel="noopener"><img src="' + urltocslhimage + '" border="0" style="margin-top:4px;" alt="Powered by LUPOPEDIA"></a>';
@@ -203,8 +191,8 @@ function wherecslhisdue_<?= $department ?>() {
 }
 
 (function() {
-    var urltohelpimage_<?= $department ?> = '<?= addslashes($base) ?>image.php?what=getstate&department=<?= (int)$department ?>&nowis=<?= date('YmdHis') ?>&cslhVISITOR=<?= addslashes($session_id) ?>&leaveamessage=<?= addslashes($leaveamessage) ?><?= addslashes($querystringadd) ?>';
-    var urltocslhimage_<?= $department ?> = '<?= addslashes($base) ?>image.php?what=getcredit&department=<?= (int)$department ?>&nowis=<?= date('YmdHis') ?>&cslhVISITOR=<?= addslashes($session_id) ?>&xy=<?= addslashes($creditline) ?>&leaveamessage=<?= addslashes($leaveamessage) ?><?= addslashes($querystringadd) ?>';
+    var urltohelpimage_<?= $department ?> = '<?= addslashes($base) ?>image.php?what=getstate&department=<?= (int)$department ?>&nowis=<?= gmdate('YmdHis') ?>&cslhVISITOR=<?= addslashes($session_id) ?>&leaveamessage=<?= addslashes($leaveamessage) ?><?= addslashes($querystringadd) ?>';
+    var urltocslhimage_<?= $department ?> = '<?= addslashes($base) ?>image.php?what=getcredit&department=<?= (int)$department ?>&nowis=<?= gmdate('YmdHis') ?>&cslhVISITOR=<?= addslashes($session_id) ?>&xy=<?= addslashes($creditline) ?>&leaveamessage=<?= addslashes($leaveamessage) ?><?= addslashes($querystringadd) ?>';
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {

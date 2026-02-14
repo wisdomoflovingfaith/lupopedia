@@ -50,7 +50,7 @@ if ($collection_id === null || $collection_id < 0) {
 }
 
 // Load tabs data
-$tabs_data = [];
+$tabs_data = array();
 $current_collection = null;
 
 if (function_exists('load_collection_tabs') && function_exists('get_collection_name')) {

@@ -1027,6 +1027,7 @@ ALTER TABLE livehelp_users
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- RESERVED ID DOCTRINE: lupo_auth_users.auth_user_id is NOT AUTO_INCREMENT; must supply explicit ID (here: livehelp_users.user_id).
+-- Intentional: first INSERT = Crafty operators (isoperator = 'Y'); second INSERT = all remaining users. Result: ALL Crafty users become lupo_auth_users.
 INSERT INTO lupo_auth_users (
     auth_user_id,
     username,
@@ -1057,10 +1058,10 @@ SELECT
     NULL,
     CASE 
         WHEN u.lastaction IS NULL OR u.lastaction = 0 THEN NULL
-        ELSE CAST(DATE_FORMAT(FROM_UNIXTIME(u.lastaction), '%Y%m%d%H%i%S') AS UNSIGNED)
+        ELSE CAST(DATE_FORMAT(FROM_UNIXTIME(u.lastaction), '%Y%m%d%H%i%S') AS SIGNED)
     END,
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS UNSIGNED),
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS UNSIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
     1,
     0,
     NULL
@@ -1101,10 +1102,10 @@ SELECT
     NULL,
     CASE 
         WHEN u.lastaction IS NULL OR u.lastaction = 0 THEN NULL
-        ELSE CAST(DATE_FORMAT(FROM_UNIXTIME(u.lastaction), '%Y%m%d%H%i%S') AS UNSIGNED)
+        ELSE CAST(DATE_FORMAT(FROM_UNIXTIME(u.lastaction), '%Y%m%d%H%i%S') AS SIGNED)
     END,
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS UNSIGNED),
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS UNSIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
     1,
     0,
     NULL
@@ -1114,13 +1115,13 @@ WHERE NOT EXISTS (
 );
 
 -- ======================================================================
--- Phase 1: Create lupo_actors for each imported operator (actor_type from TOON: 'user')
--- Operator/role data now uses lupo_channel_roles (channel-scoped roles); lupo_operators
--- and related operator tables are deprecated. Then fix lupo_actor_departments.actor_id.
--- See: docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md Phase 1
+-- Phase 1: Create lupo_actors for each imported Crafty operator (actor_type: 'user').
+-- Lupopedia has no lupo_operators table; permissions use lupo_actor_channel_roles.
+-- The wizard assigns roles after import. actor_id = auth_user_id for imported humans.
 -- ======================================================================
 
 INSERT INTO lupo_actors (
+    actor_id,
     actor_type,
     slug,
     name,
@@ -1137,11 +1138,12 @@ INSERT INTO lupo_actors (
     avatar_hash
 )
 SELECT
+    au.auth_user_id,
     'user',
     au.username,
     au.display_name,
-    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S'),
-    DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S'),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
     1,
     0,
     NULL,
@@ -1156,11 +1158,11 @@ INNER JOIN livehelp_users u ON u.username = au.username
 WHERE u.isoperator = 'Y'
 AND NOT EXISTS (
     SELECT 1 FROM lupo_actors a2
-    WHERE a2.actor_source_id = au.auth_user_id
+    WHERE a2.actor_id = au.auth_user_id
     AND a2.actor_source_type = 'lupo_auth_users'
 );
- 
 
+-- Department mapping: rewire lupo_actor_departments.actor_id to match lupo_actors.actor_id (actor_id = auth_user_id).
 UPDATE lupo_actor_departments ad
 INNER JOIN livehelp_operator_departments od ON ad.actor_department_id = od.recno
 INNER JOIN livehelp_users u ON u.user_id = od.user_id

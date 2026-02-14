@@ -17,10 +17,10 @@
  *    emails and duplicates are validated; the wizard blocks until all conflicts are resolved and
  *    livehelp_users is updated only after admin confirms. The importer runs only after normalization.
  * D. Reserved system channels (0, 1, 42, 5100): created immediately after detect upgrade (install+seed+reserved),
- *    before identity normalization, before importer SQL, before operator channels. Constitutional rule.
- * E. Upgrade run step: import → operator channels → drop → config (install/seed/reserved already done at credentials).
+ *    before identity normalization, before importer SQL, before personal channel/role creation. Constitutional rule.
+ * E. Upgrade run step: import → personal channels and captain roles → drop → config (install/seed/reserved already done at credentials).
  * F. New install run step: install → seed → reserved channels → config.
- * G. Upgrade SQL order: create_reserved_system_channels (at credentials) → normalize → import → operator channels → drop.
+ * G. Upgrade SQL order: create_reserved_system_channels (at credentials) → normalize → import → personal channels/roles → drop.
  * H. Write lupopedia-config.php. Redirect to login.
  *
  * @package Lupopedia
@@ -363,12 +363,12 @@ if ($step === 'run') {
 
         $migrationsDir = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'migrations';
         $importSql = $migrationsDir . DIRECTORY_SEPARATOR . 'import_from_old_crafty_syntax.sql';
-        // Upgrade: install/seed/reserved were already run after detect upgrade (before normalize). Only import → operator channels → drop → config.
+        // Upgrade: install/seed/reserved were already run after detect upgrade (before normalize). Only import → personal channels/roles → drop → config.
         // New install: run install → seed → reserved channels → config.
 
         if ($install_type === 'upgrade' && !empty($_SESSION['lupo_bootstrap_log'])) {
             $log = array_merge($log, $_SESSION['lupo_bootstrap_log']);
-            $log[] = InstallWizardLogger::logEntry('ok', '--- Run step: import → operator channels → drop ---');
+            $log[] = InstallWizardLogger::logEntry('ok', '--- Run step: import → personal channels and captain roles → drop ---');
             InstallWizardChannels::ensureReservedChannels($pdo, $log);
         }
 
@@ -403,7 +403,7 @@ if ($step === 'run') {
                 $_SESSION['lupo_import_run'] = true;
             }
 
-            // Doctrine: every operator gets a personal channel and is assigned as captain.
+            // Doctrine: every imported Crafty operator (actor) gets a personal channel and captain in lupo_actor_channel_roles; Crafty admins get captain on channel 1 (Administration).
             // Must run after import so lupo_actors exist; before drop. Mapping stored for importer/wizard.
             $operatorChannelMap = InstallWizardChannels::createOperatorChannels($pdo, $log);
             $_SESSION['lupo_operator_channel_map'] = $operatorChannelMap;
@@ -704,7 +704,7 @@ if ($baseUrl === '') {
     <?php elseif ($step === 'normalize'): ?>
         <div class="step warning">
             <h2>Identity normalization</h2>
-            <p><strong>Reserved system channels (0, 1, 42, 5100) have been created.</strong> Next: resolve identities for <strong>operators only</strong> (isoperator = Y). Visitor sessions are not changed. Crafty Syntax uses username/password; Lupopedia uses email/password and requires a unique email per operator. <strong>Email</strong> is kept as the real email (e.g. <code>helen@lupopedia.com</code>). <strong>Username</strong> for operators becomes slug format (e.g. <code>helen</code> → <code>helen-at-lupopedia-com</code>). You can correct any proposed email below. All emails must be unique and valid before you can continue.</p>
+            <p><strong>Reserved system channels (0, 1, 42, 5100) have been created.</strong> Channel 1 is the global Administration channel. Next: resolve identities for <strong>Crafty operators only</strong> (isoperator = Y). Visitor sessions are not changed. Crafty Syntax uses username/password; Lupopedia uses email/password and requires a unique email per operator. <strong>Email</strong> is kept as the real email (e.g. <code>helen@lupopedia.com</code>). <strong>Username</strong> for operators becomes slug format (e.g. <code>helen</code> → <code>helen-at-lupopedia-com</code>). You can correct any proposed email below. All emails must be unique and valid before you can continue.</p>
             <?php if (!empty($normalize_warnings)): ?>
                 <div class="normalize-warnings">
                     <strong>Warnings</strong>
@@ -795,7 +795,7 @@ if ($baseUrl === '') {
                 <ol>
                     <li>Set <code>lupo_actors</code> so the next actor_id is at least 10000 (reserved ID doctrine)</li>
                     <li>Run <code>import_from_old_crafty_syntax.sql</code></li>
-                    <li>Create operator channels and assign captain roles (<code>lupo_channels</code>, <code>lupo_channel_roles</code>)</li>
+                    <li>Create personal channels and assign captain roles (<code>lupo_channels</code>, <code>lupo_actor_channel_roles</code>)</li>
                     <li>Run <code>drop_old_crafty_syntax_tables.sql</code></li>
                     <li>Write <code>lupopedia-config.php</code></li>
                     <li>Redirect to login</li>
@@ -882,7 +882,7 @@ if ($baseUrl === '') {
                 </div>
                 <?php endif; if (!empty($runPart)): ?>
                 <div class="log-section">
-                    <h4>Import, operator channels, drop legacy</h4>
+                    <h4>Import, personal channels and roles, drop legacy</h4>
                     <pre class="log"><?php foreach ($runPart as $e) { echo $logLine($e) . "\n"; } ?></pre>
                 </div>
                 <?php endif; if (empty($bootstrapPart) && empty($runPart)): ?>
@@ -937,7 +937,7 @@ if ($baseUrl === '') {
                     <li class="diag-ok"><strong>Config:</strong> <code>lupopedia-config.php</code> is active; Crafty <code>config.php</code> has been backed up or removed.</li>
                     <?php if ($complete_install_type === 'upgrade'): ?>
                     <li><strong>Users normalized:</strong> <?php echo (int) $complete_normalize_count; ?></li>
-                    <li><strong>Operator channels created:</strong> <?php echo (int) $complete_operator_channels; ?></li>
+                    <li><strong>Personal channels created:</strong> <?php echo (int) $complete_operator_channels; ?></li>
                     <li><strong>Legacy tables dropped:</strong> <?php echo (int) $complete_legacy_dropped; ?></li>
                     <?php endif; ?>
                     <li><strong>Completed:</strong> <?php echo htmlspecialchars(date('c')); ?></li>

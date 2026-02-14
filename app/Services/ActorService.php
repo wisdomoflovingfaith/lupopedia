@@ -147,9 +147,9 @@ class ActorService
         $t = $this->db->quoteIdentifier($this->prefix . 'actors');
         $rows = $this->db->fetchAll(
             "SELECT actor_id FROM {$t} WHERE actor_id BETWEEN 1000 AND 9999 ORDER BY actor_id",
-            []
+            array()
         );
-        $ids = [];
+        $ids = array();
         foreach ($rows as $row) {
             $ids[] = (int) $row['actor_id'];
         }
@@ -184,7 +184,7 @@ class ActorService
         }
         $all = $this->db->fetchAll(
             "SELECT DISTINCT CAST(JSON_UNQUOTE(JSON_EXTRACT(metadata, '$.jsrn')) AS UNSIGNED) AS jsrn FROM {$t} WHERE JSON_EXTRACT(metadata, '$.jsrn') IS NOT NULL ORDER BY jsrn",
-            []
+            array()
         );
         $expected = 1;
         foreach ($all as $r) {
@@ -236,16 +236,16 @@ class ActorService
             }
             $actorsT = $this->db->quoteIdentifier($p . 'actors');
             $tempRow = $this->db->fetchRow("SELECT metadata FROM {$actorsT} WHERE actor_id = :actor_id LIMIT 1", ['actor_id' => $tempActorId]);
-            $tempMeta = [];
+            $tempMeta = array();
             if ($tempRow && !empty($tempRow['metadata'])) {
                 $decoded = json_decode($tempRow['metadata'], true);
-                $tempMeta = is_array($decoded) ? $decoded : [];
+                $tempMeta = is_array($decoded) ? $decoded : array();
             }
             $realRow = $this->db->fetchRow("SELECT metadata FROM {$actorsT} WHERE actor_id = :actor_id LIMIT 1", ['actor_id' => $realActorId]);
-            $realMeta = [];
+            $realMeta = array();
             if ($realRow && !empty($realRow['metadata'])) {
                 $decoded = json_decode($realRow['metadata'], true);
-                $realMeta = is_array($decoded) ? $decoded : [];
+                $realMeta = is_array($decoded) ? $decoded : array();
             }
             $mergedMeta = array_merge($tempMeta, $realMeta);
             $this->db->query(

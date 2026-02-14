@@ -140,7 +140,7 @@ function send_image($filepath, $mime = 'image/gif') {
 }
 
 /**
- * Anyone online in this department (or any) = session with recent last_seen + actor_channel_role (captain/monitor/operator).
+ * Anyone online in this department (or any) = session with recent last_seen + actor_channel_role (captain/monitor/administrator).
  */
 function is_anyone_online($db, $prefix, $department_id) {
     $cutoff = (string) gmdate('YmdHis', time() - 20 * 60);
@@ -150,7 +150,7 @@ function is_anyone_online($db, $prefix, $department_id) {
             "INNER JOIN {$prefix}actor_channel_roles r ON r.actor_id = s.actor_id AND r.is_deleted = 0 " .
             "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
             "WHERE s.is_active = 1 AND s.is_expired = 0 AND s.last_seen_ymdhis >= :cutoff " .
-            "AND r.role_key IN ('captain','monitor','operator') AND c.department_id = :dept LIMIT 1",
+            "AND r.role_key IN ('captain','monitor','administrator') AND c.department_id = :dept LIMIT 1",
             array('cutoff' => $cutoff, 'dept' => $department_id)
         );
     } else {
@@ -159,7 +159,7 @@ function is_anyone_online($db, $prefix, $department_id) {
             "INNER JOIN {$prefix}actor_channel_roles r ON r.actor_id = s.actor_id AND r.is_deleted = 0 " .
             "INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
             "WHERE s.is_active = 1 AND s.is_expired = 0 AND s.last_seen_ymdhis >= :cutoff " .
-            "AND r.role_key IN ('captain','monitor','operator') LIMIT 1",
+            "AND r.role_key IN ('captain','monitor','administrator') LIMIT 1",
             array('cutoff' => $cutoff)
         );
     }

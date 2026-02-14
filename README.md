@@ -2,7 +2,7 @@
 ### Crafty Syntax Reborn + Semantic OS + Optional AI Agents
 
 **Lupopedia 4.0.x is the official evolution of Crafty Syntax Live Help 3.7.5.**  
-It includes **every feature** of Crafty Syntax — real‑time chat, operator sessions, visitor tracking, departments, proactive invites, transcripts, and all legacy behavior — and extends it with a **Semantic Operating System** and **optional AI chat agents**.
+It includes **every feature** of Crafty Syntax — real‑time chat, staff (captain/administrator/monitor) sessions, visitor tracking, departments, proactive invites, transcripts, and all legacy behavior — and extends it with a **Semantic Operating System** and **optional AI chat agents**.
 
 Lupopedia is **not a CMS** and **not a framework**.  
 It is a **semantic OS** that records meaning, relationships, and navigation across content, channels, and actors. Crafty Syntax becomes **Module 1** inside this OS.
@@ -119,7 +119,7 @@ Users create tabs, subtabs, and collections. Lupopedia extracts tab‑paths, nor
 - Table count goal: under 200 (196 as of 2/14/2026; enforced by doctrine).  
 - **Python** = maintenance (`scripts/python/`, PyMySQL, explicit SQL).  
 - **PHP** = runtime only (no schema changes). PHP must be compatible with **PHP 5.3 through 8.3+**. Do not use PHP 8‑only features (named arguments, attributes, union types, match expressions). New code must use OOP (classes, methods).  
-- Uploads use SHA256 hash filenames under `uploads/{actors,agents,channels,operators}/YYYY/MM/`.  
+- Uploads use SHA256 hash filenames under `uploads/{actors,agents,channels}/YYYY/MM/`.  
 - **LEXA** enforces doctrine and boundaries in the gateway.  
 
 Never introduce `user_id`. Never add foreign keys, triggers, or stored procedures. Never modify schema without a TOON source. Never let PHP perform migrations.
@@ -145,6 +145,38 @@ Any AI coding agent (JetBrains, Cursor, Claude, etc.) must be initialized with t
 - **STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** The database is for storage, not computation. All logic must be in application code.
 
 This is non‑negotiable core doctrine. All AI tools must follow these rules.
+
+---
+
+### Database access & SQL compatibility
+
+- **All database access** must use the project’s **DatabaseFactory** and **PDO_DB** wrapper classes. No direct PDO, no `mysqli`, no raw `$pdo->query()` or `$pdo->exec()`. Use `DatabaseFactory::getConnection()` (or equivalent) to obtain the PDO_DB instance, then use its methods (`fetch`, `fetchAll`, `execute`, `insert`, `update`, `delete`) with prepared statements and bound parameters.
+
+- **All SQL** (in PHP, in migration files, and in install/seed SQL) must be **compatible with MySQL, PostgreSQL, and MariaDB**. Use only standard SQL and constructs supported by all three. No vendor-specific functions, types, or syntax (e.g. no MySQL-only or Postgres-only features). This keeps the codebase portable and deployable across common hosting environments.
+
+See [PDO_DB Database Access Doctrine](.cursor/rules/pdo-db-database-access-doctrine.mdc) and [LUPOPEDIA_DOCTRINE.md](docs/doctrine/LUPOPEDIA_DOCTRINE.md) for full rules.
+
+---
+
+### Database & Migration Doctrine
+
+Lupopedia uses TOON files in `/docs/toons/` as the **only source of truth** for database structure.  
+All schema changes must follow this process:
+
+1. Update the TOON file for the table.
+2. Update `install_new_lupopedia.sql` to match the TOON.
+3. Create a one-time migration SQL file to apply the change to the live database.
+
+**The system must never:**
+
+- infer schema from the live database  
+- run `scoop mysql` or any command-line SQL tool  
+- modify schema directly from PHP  
+- use AUTO_INCREMENT for registry-backed tables  
+
+All schema changes must be explicit, doctrine-aligned, and fully reproducible.
+
+See [docs/doctrine/MIGRATION_DOCTRINE.md](docs/doctrine/MIGRATION_DOCTRINE.md) for the full migration doctrine.
 
 ---
 
@@ -373,9 +405,9 @@ See [ATOM_RESOLUTION_SPECIFICATION.md](docs/doctrine/ATOM_RESOLUTION_SPECIFICATI
 #### Requirements
 
 - PHP 5.3 through 8.3+ (code must remain compatible with this range; no PHP 8‑only features)  
-- MySQL 8.0+ or MariaDB 10.5+  
+- MySQL 8.0+, MariaDB 10.5+, or PostgreSQL (all SQL must be compatible with all three; see Database access & SQL compatibility above)  
 - Web server (Apache/Nginx) with mod_rewrite  
-- InnoDB storage engine  
+- InnoDB storage engine (when using MySQL/MariaDB)  
 
 #### Installation
 

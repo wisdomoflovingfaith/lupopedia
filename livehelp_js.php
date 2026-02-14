@@ -2,7 +2,7 @@
 /**
  * Live Help JavaScript generator — Lupopedia schema + PDO.
  * Replicates legacy/craftysyntax/livehelp_js.php behavior using new tables only.
- * No livehelp_* or lupo_operator_* tables; uses lupo_actor_channel_roles, lupo_departments, etc.
+ * No livehelp_* tables in runtime; uses lupo_actor_channel_roles, lupo_departments, etc.
  * All URLs use LUPOPEDIA_PUBLIC_PATH (subfolder-install doctrine). No /public folder.
  *
  * @package Lupopedia
@@ -559,13 +559,13 @@ $noonehome = true;
 $cutoff_ymdhis = (string) gmdate('YmdHis', time() - 20 * 60);
 if ((int) $UNTRUSTED['department'] !== 0) {
     $onlineRow = $mydatabase->fetchRow(
-        "SELECT 1 FROM {$prefix}sessions s INNER JOIN {$prefix}actor_channel_roles r ON r.actor_id = s.actor_id AND r.is_deleted = 0 INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 WHERE s.is_active = 1 AND s.is_expired = 0 AND s.last_seen_ymdhis >= :cutoff AND r.role_key IN ('captain','monitor','operator') AND c.department_id = :dept LIMIT 1",
+        "SELECT 1 FROM {$prefix}sessions s INNER JOIN {$prefix}actor_channel_roles r ON r.actor_id = s.actor_id AND r.is_deleted = 0 INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 WHERE s.is_active = 1 AND s.is_expired = 0 AND s.last_seen_ymdhis >= :cutoff AND r.role_key IN ('captain','monitor','administrator') AND c.department_id = :dept LIMIT 1",
         array('cutoff' => $cutoff_ymdhis, 'dept' => (int) $UNTRUSTED['department'])
     );
     if ($onlineRow !== null) { $noonehome = false; }
 } else {
     $onlineRow = $mydatabase->fetchRow(
-        "SELECT 1 FROM {$prefix}sessions s INNER JOIN {$prefix}actor_channel_roles r ON r.actor_id = s.actor_id AND r.is_deleted = 0 INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 WHERE s.is_active = 1 AND s.is_expired = 0 AND s.last_seen_ymdhis >= :cutoff AND r.role_key IN ('captain','monitor','operator') LIMIT 1",
+        "SELECT 1 FROM {$prefix}sessions s INNER JOIN {$prefix}actor_channel_roles r ON r.actor_id = s.actor_id AND r.is_deleted = 0 INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 WHERE s.is_active = 1 AND s.is_expired = 0 AND s.last_seen_ymdhis >= :cutoff AND r.role_key IN ('captain','monitor','administrator') LIMIT 1",
         array('cutoff' => $cutoff_ymdhis)
     );
     if ($onlineRow !== null) { $noonehome = false; }
@@ -581,12 +581,12 @@ if (empty($UNTRUSTED['force'])) { $urlreplace = 'javascript:openLiveHelp(' . (in
 
 <?php if (empty($UNTRUSTED['what'])) { $UNTRUSTED['what'] = 'nada'; } if (empty($leaveamessage)) { $leaveamessage = 'YES'; } ?>
 
-	var urltohelpimage_<?php echo $department; ?> = WEBPATH + 'image.php?what=getstate&department=<?php echo (int) $UNTRUSTED['department']; ?>&nowis=<?php echo date('YmdHis'); ?>&cslhVISITOR=<?php echo addslashes($identity['SESSIONID']); ?>' + 
+	var urltohelpimage_<?php echo $department; ?> = WEBPATH + 'image.php?what=getstate&department=<?php echo (int) $UNTRUSTED['department']; ?>&nowis=<?php echo gmdate('YmdHis'); ?>&cslhVISITOR=<?php echo addslashes($identity['SESSIONID']); ?>' + 
 					'&page=' + escape(locationvar) + '&referer=' + escape(var_referrer) + '&title=' + escape(var_title) + 
 <?php if ($UNTRUSTED['what'] === 'hidden') { print "					'&hide=Y' + \n"; } ?>
 					'&leaveamessage=' + '<?php echo addslashes($leaveamessage); ?>' + '<?php echo addslashes($querystringadd); ?>';
 
-  var urltocslhimage_<?php echo $department; ?> = WEBPATH + 'image.php?what=getcredit&department=<?php echo (int) $UNTRUSTED['department']; ?>&nowis=<?php echo date('YmdHis'); ?>&cslhVISITOR=<?php echo addslashes($identity['SESSIONID']); ?>' + 
+  var urltocslhimage_<?php echo $department; ?> = WEBPATH + 'image.php?what=getcredit&department=<?php echo (int) $UNTRUSTED['department']; ?>&nowis=<?php echo gmdate('YmdHis'); ?>&cslhVISITOR=<?php echo addslashes($identity['SESSIONID']); ?>' + 
 					'&xy=' + '<?php echo addslashes(substr($creditline, 0, 1)); ?>' + '&page=' + escape(locationvar) + '&referer=' + escape(var_referrer) + '&title=' + escape(var_title) + 
 <?php if ($UNTRUSTED['what'] === 'hidden') { print "					'&hide=Y' + \n"; } ?>
 					'&leaveamessage=' + '<?php echo addslashes($leaveamessage); ?>' + '<?php echo addslashes($querystringadd); ?>';
