@@ -4,7 +4,7 @@ Canonical version history.
 
 ## Versioning doctrine (4.0.x)
 
-- **Purpose of 4.0.x:** The 4.0.x series (4.0.0 → 4.0.6 and all future 4.0.x patches) is a development and stabilization series. It exists solely to refine the single supported upgrade path: **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. Each patch is an iteration on the installer, wizard, importer, doctrine enforcement, and compatibility rules for that path.
+- **Purpose of 4.0.x:** The 4.0.x series (4.0.0 → 4.0.x and all future 4.0.x patches) is a development and stabilization series. It exists solely to refine the single supported upgrade path: **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. Each patch is an iteration on the installer, wizard, importer, doctrine enforcement, and compatibility rules for that path.
 - **No Lupopedia → Lupopedia upgrades before 4.1.0.** In the 4.0.x line there are no supported upgrades from an existing Lupopedia installation. The only valid inputs are a new install or an upgrade from Crafty Syntax 3.7.5.
 - **4.1.0** will be the first version to support Lupopedia → Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
 
@@ -43,7 +43,40 @@ This patch removes all use of the deprecated table **lupo_agent_registry**. All 
 
 - **database/migrations/migration_unified_registry_agents_columns_and_insert.sql** is unchanged. It remains the one-time migration that copies agent data from **lupo_agent_registry** into **lupo_unified_registry** for existing DBs that still have the old table. New installs never create lupo_agent_registry.
 
-**Files modified (4.0.8):** `database/migrations/install_new_lupopedia.sql`, `lupo-includes/class-iris.php`, `lupo-includes/classes/LABSValidator.php`, `app/Services/System/SystemHealthService.php`, `app/Http/Controllers/SystemHealthController.php`.
+### 6. Unified Registry Identity Doctrine and ID Conflict Validation
+
+- **docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md:** New doctrine document. Defines: purpose of the unified registry (global IDs for channels, agents, actors); identity doctrine (no auto-generated IDs, no renumbering, explicit IDs only); update doctrine (before inserting new registry rows, check if primary key already exists — if so, fatal error "Unified registry ID conflict: ID {id} already exists."); prohibitions (no schema inference, no edits to install/seed/migration unless instructed, no lupo_agent_registry, PHP 5.3 only).
+- **install_wizard_classes.php:** New class `InstallWizardUnifiedRegistryValidator` with `extractUnifiedRegistryIdsFromSql()` and `checkUnifiedRegistryIdConflict()`. Before `InstallWizardSqlRunner::runSqlFile()` executes any SQL file that contains INSERT into unified_registry, it extracts IDs, checks the DB for conflicts, and throws `RuntimeException` with the doctrine message if any ID already exists.
+- **install.php:** Run step and upgrade bootstrap wrapped in `try/catch (RuntimeException)` so the unified registry conflict message is shown to the user instead of an uncaught exception.
+
+### 7. Version Bump 4.0.7 → 4.0.8
+
+- **config/global_atoms.yaml:** `file.last_modified_system_version`, `version`, `versions.lupopedia`, `GLOBAL_CURRENT_LUPOPEDIA_VERSION` set to 4.0.8.
+- **docs/doctrine/VERSIONING_DOCTRINE.md:** Current version and patch pattern updated to 4.0.8.
+- **.cursor/rules/required-tables-future-features-doctrine.mdc**, **.cursorrules:** Example patch references updated to 4.0.8. CHANGELOG and seed SQL were not modified for the bump (changelog already had 4.0.8; seed left as per doctrine).
+
+### 8. Dynamic Table Prefix Audit
+
+- **Doctrine:** All runtime PHP must use `LUPO_TABLE_PREFIX` (or fallback `'lupo_'`) for table names. No literal `lupo_tablename` in PHP. Schema files (install, seed, import, migration, TOONs) remain allowed to use literal `lupo_` as canonical baseline.
+- **install.php:** `lupo_auth_users` and `lupo_actors` in SQL replaced with dynamic prefix.
+- **install_wizard_classes.php:** All SQL in InstallWizardUnifiedRegistryValidator, InstallWizardDepartments, and InstallWizardChannels now uses `(defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_') . 'tablename'` for departments, channels, actor_channel_roles, actors, auth_users, actor_departments, department_roles, unified_registry.
+- **app/Services/System/SystemHealthService.php:** Core tables check and unified registry table check use dynamic prefix.
+- **lupo-includes/classes/LABSValidator.php:** Queries for actors and labs_declarations use dynamic prefix.
+- **lupo-includes/models/GroundedAgentModel.php:** All table references (agents, agent_owners, actors, actor_actions) use dynamic prefix.
+- **lupo-includes/theme/theme-loader.php:** Federation nodes table uses dynamic prefix.
+- **app/Services/System/LupopediaMigrationController.php:** Migration log table uses dynamic prefix.
+- **scripts/run_labs_handshake.php**, **scripts/migrate_user_mappings.php:** Actors, auth_users, crafty_user_mapping use dynamic prefix.
+- **docs/audits/DYNAMIC_TABLE_PREFIX_AUDIT.md:** New audit document listing allowed vs fixed vs remaining PHP files; remaining files (api, TriggerReplacements, AgentAwarenessLayer, CIP, DialogChannelMigration, content/truth modules, other scripts) documented for follow-up.
+
+### 9. Configurable Table Prefix in Install Wizard
+
+- **Purpose:** The install wizard previously hardcoded the table prefix `lupo_` in the generated config and in the SQL it runs. Installations can now use any valid prefix (e.g. `myprefix_`) so that table names match the runtime `LUPO_TABLE_PREFIX` doctrine.
+- **install.php — credentials step:** New "Table prefix" form field (default `lupo_`). Validated on submit: only `[a-z0-9_]+`. Stored in `$_SESSION['lupo_table_prefix']`. Before running bootstrap (upgrade) or run step (new install), `LUPO_TABLE_PREFIX` is defined from session so all wizard PHP (departments, channels, actors check) uses the chosen prefix. `runSqlFile()` is called with the session table prefix for install, seed, and import.
+- **install_wizard_classes.php — runSqlFile():** New optional 4th parameter `$table_prefix = null`. When set and not `''` and not `'lupo_'`, the SQL file content is passed through `str_replace('lupo_', $table_prefix, $sql)` before execution, so install_new_lupopedia.sql, seed_lupopedia.sql, and import_from_old_crafty_syntax.sql create/import tables with the chosen prefix. Drop and other SQL are unchanged (no substitution).
+- **install_wizard_classes.php — writeConfig():** Generated lupopedia-config.php now uses `$options['table_prefix']` (validated `[a-z0-9_]+`) when present; otherwise `'lupo_'`. So the written config’s `LUPO_TABLE_PREFIX` matches the prefix used for the created tables.
+- **install.php — config step:** `table_prefix` from session is added to `$options` when calling `writeConfig()`, so the final config file reflects the prefix chosen at credentials.
+
+**Files modified (4.0.8):** `database/migrations/install_new_lupopedia.sql`, `lupo-includes/class-iris.php`, `lupo-includes/classes/LABSValidator.php`, `app/Services/System/SystemHealthService.php`, `app/Http/Controllers/SystemHealthController.php`, `docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md` (new), `install_wizard_classes.php`, `install.php`, `config/global_atoms.yaml`, `docs/doctrine/VERSIONING_DOCTRINE.md`, `.cursor/rules/required-tables-future-features-doctrine.mdc`, `.cursorrules`, `lupo-includes/models/GroundedAgentModel.php`, `lupo-includes/theme/theme-loader.php`, `app/Services/System/LupopediaMigrationController.php`, `scripts/run_labs_handshake.php`, `scripts/migrate_user_mappings.php`, `docs/audits/DYNAMIC_TABLE_PREFIX_AUDIT.md` (new).
 
 **Versioning Note:**  
 Lupopedia 4.0.x is a development/stabilization series.  

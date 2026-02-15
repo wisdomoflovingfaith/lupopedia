@@ -233,7 +233,16 @@ class InstallWizardUnifiedRegistryValidator {
 
 class InstallWizardSqlRunner {
 
-    public static function runSqlFile($pdo, $path, &$log) {
+    /**
+     * Run a SQL file. Optional $table_prefix: when set and not 'lupo_', replaces literal "lupo_" with prefix in SQL (so install/seed/import create tables with chosen prefix).
+     *
+     * @param PDO $pdo
+     * @param string $path Full path to .sql file
+     * @param array $log Log array (by reference)
+     * @param string|null $table_prefix Table prefix (e.g. 'lupo_' or 'myprefix_'). If null or 'lupo_', no substitution.
+     * @return bool
+     */
+    public static function runSqlFile($pdo, $path, &$log, $table_prefix = null) {
         $basename = basename($path);
         if (!is_file($path) || !is_readable($path)) {
             $log[] = InstallWizardLogger::logEntry('error', 'File not found or not readable: ' . $basename);
@@ -247,6 +256,9 @@ class InstallWizardSqlRunner {
         $sql = preg_replace('/^\xEF\xBB\xBF/', '', $sql);
         $sql = preg_replace('/--[^\n]*/m', '', $sql);
         $sql = preg_replace('/\/\*.*?\*\//s', '', $sql);
+        if ($table_prefix !== null && $table_prefix !== '' && $table_prefix !== 'lupo_') {
+            $sql = str_replace('lupo_', $table_prefix, $sql);
+        }
         $statements = array_filter(
             array_map('trim', explode(';', $sql)),
             function ($s) {
@@ -347,7 +359,7 @@ define(\'LUPO_CONTENT_DIR\', LUPO_PREFIX . \'content\');
 define(\'LUPO_UPLOADS_DIR\', LUPO_CONTENT_DIR . \'/uploads\');
 define(\'LUPO_PLUGINS_DIR\', LUPO_CONTENT_DIR . \'/plugins\');
 define(\'LUPO_THEMES_DIR\', LUPO_CONTENT_DIR . \'/themes\');
-$table_prefix = \'lupo_\';
+$table_prefix = \'' . (isset($options['table_prefix']) && preg_match('/^[a-z0-9_]+$/', $options['table_prefix']) ? addslashes($options['table_prefix']) : 'lupo_') . '\';
 if (!preg_match(\'/^[a-z0-9_]+$/\', $table_prefix)) { die("Invalid table prefix"); }
 define(\'LUPO_TABLE_PREFIX\', $table_prefix);
 if (!defined(\'LUPOPEDIA_ABSPATH\')) { define(\'LUPOPEDIA_ABSPATH\', ABSPATH); }

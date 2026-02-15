@@ -200,9 +200,23 @@ if ($step === 'welcome') {
 if ($step === 'credentials') {
     $db_vars = InstallWizardCredentials::getDbCredentials();
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $db_vars !== null && empty($errors)) {
+        $raw_prefix = isset($_POST['table_prefix']) ? trim((string) $_POST['table_prefix']) : 'lupo_';
+        if ($raw_prefix === '') {
+            $raw_prefix = 'lupo_';
+        }
+        if (!preg_match('/^[a-z0-9_]+$/', $raw_prefix)) {
+            $errors[] = 'Table prefix may only contain lowercase letters, digits, and underscores.';
+        }
+    }
+    if ($step === 'credentials' && $_SERVER['REQUEST_METHOD'] === 'POST' && $db_vars !== null && empty($errors)) {
         try {
             $pdo = InstallWizardDb::connectPdo($db_vars);
             $_SESSION['lupo_install_db_vars'] = $db_vars;
+            $table_prefix = isset($_POST['table_prefix']) ? trim((string) $_POST['table_prefix']) : 'lupo_';
+            if ($table_prefix === '' || !preg_match('/^[a-z0-9_]+$/', $table_prefix)) {
+                $table_prefix = 'lupo_';
+            }
+            $_SESSION['lupo_table_prefix'] = $table_prefix;
             $livehelp_tables = InstallWizardDb::detectLivehelpTables($pdo);
             $_SESSION['lupo_install_type'] = count($livehelp_tables) > 0 ? 'upgrade' : 'new';
             $_SESSION['lupo_install_livehelp_tables'] = $livehelp_tables;
@@ -210,11 +224,15 @@ if ($step === 'credentials') {
             if ($_SESSION['lupo_install_type'] === 'upgrade') {
                 // Constitutional: reserved system channels (0, 1, 42, 5100) must exist before normalization.
                 // Run install + seed + reserved channels immediately after detect upgrade, then go to normalize.
+                if (!defined('LUPO_TABLE_PREFIX') && isset($_SESSION['lupo_table_prefix'])) {
+                    define('LUPO_TABLE_PREFIX', $_SESSION['lupo_table_prefix']);
+                }
                 $migrationsDir = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'migrations';
                 $bootstrapLog = array();
+                $table_prefix = isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_';
                 try {
-                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_lupopedia.sql', $bootstrapLog);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_lupopedia.sql', $bootstrapLog, $table_prefix);
                     InstallWizardChannels::createReservedSystemChannels($pdo, $bootstrapLog);
                     $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
                     header('Location: ' . $base . '/install.php?step=bootstrap');
@@ -367,6 +385,10 @@ if ($step === 'run') {
             exit;
         }
 
+        if (!defined('LUPO_TABLE_PREFIX') && isset($_SESSION['lupo_table_prefix'])) {
+            define('LUPO_TABLE_PREFIX', $_SESSION['lupo_table_prefix']);
+        }
+        $table_prefix = isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_';
         $migrationsDir = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'migrations';
         $importSql = $migrationsDir . DIRECTORY_SEPARATOR . 'import_from_old_crafty_syntax.sql';
         // Upgrade: install/seed/reserved were already run after detect upgrade (before normalize). Only import → personal channels/roles → drop → config.
@@ -381,8 +403,8 @@ if ($step === 'run') {
         }
 
         if ($install_type === 'new') {
-            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log);
-            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_lupopedia.sql', $log);
+            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
+            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_lupopedia.sql', $log, $table_prefix);
             InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
             InstallWizardChannels::createReservedSystemChannels($pdo, $log);
         }
@@ -407,7 +429,7 @@ if ($step === 'run') {
                     $log[] = InstallWizardLogger::logEntry('error', 'Could not set actor_id minimum (see server log).');
                     error_log('Lupopedia wizard AUTO_INCREMENT: ' . $e->getMessage());
                 }
-                InstallWizardSqlRunner::runSqlFile($pdo, $importSql, $log);
+                InstallWizardSqlRunner::runSqlFile($pdo, $importSql, $log, $table_prefix);
                 $log[] = InstallWizardLogger::logEntry('ok', 'Import complete.');
                 $_SESSION['lupo_import_run'] = true;
             }
@@ -520,6 +542,7 @@ if ($step === 'config') {
                     'admin_email' => $config_values['admin_email'],
                     'timezone'  => $config_values['timezone'],
                     'default_language' => $config_values['default_language'],
+                    'table_prefix' => isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_',
                 );
                 if ($config_values['support_email'] !== '') {
                     $options['support_email'] = $config_values['support_email'];
@@ -678,6 +701,7 @@ if ($baseUrl === '') {
                 <label>Database <input type="text" name="db_name" value="<?php echo htmlspecialchars(isset($_POST['db_name']) ? $_POST['db_name'] : ''); ?>" required></label>
                 <label>User <input type="text" name="db_user" value="<?php echo htmlspecialchars(isset($_POST['db_user']) ? $_POST['db_user'] : ''); ?>" required></label>
                 <label>Password <input type="password" name="db_password" value=""></label>
+                <label>Table prefix <input type="text" name="table_prefix" value="<?php echo htmlspecialchars(isset($_POST['table_prefix']) ? $_POST['table_prefix'] : 'lupo_'); ?>" placeholder="lupo_" title="Lowercase letters, digits, underscores only. Default: lupo_"></label>
                 <p style="margin-top:1rem;"><button type="submit" id="lupo-connect-btn">Connect and detect install type</button></p>
             </form>
             <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=welcome'); ?>" class="btn btn-secondary">Back</a></p>
