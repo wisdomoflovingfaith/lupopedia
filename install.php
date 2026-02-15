@@ -394,7 +394,7 @@ if ($step === 'run') {
             } else {
                 // RESERVED ID DOCTRINE: actor_id 0-9999 = system/AI only; human actors start at 10000.
                 // Ensure next lupo_actors.actor_id is at least 10000 so imported Crafty users get IDs >= 10000.
-                $actors_table = 'lupo_actors';
+                $actors_table = (defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_') . 'actors';
                 $actors_quoted = '`' . str_replace('`', '``', $actors_table) . '`';
                 try {
                     $stmt = $pdo->query("SELECT COALESCE(MAX(actor_id), 0) AS mx FROM " . $actors_quoted . " LIMIT 1");
@@ -500,7 +500,8 @@ if ($step === 'config') {
             if ($db_vars !== null) {
                 try {
                     $pdoConfig = InstallWizardDb::connectPdo($db_vars);
-                    $stmt = $pdoConfig->prepare('SELECT 1 FROM lupo_auth_users WHERE email = ? LIMIT 1');
+                    $tbl = (defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_') . 'auth_users';
+                    $stmt = $pdoConfig->prepare('SELECT 1 FROM ' . $tbl . ' WHERE email = ? LIMIT 1');
                     if ($stmt && $stmt->execute(array($config_values['admin_email'])) && $stmt->fetch()) {
                         $config_errors[] = 'Admin email is already used by a migrated user. Choose a different email.';
                     }

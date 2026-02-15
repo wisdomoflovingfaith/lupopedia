@@ -28,7 +28,9 @@ function lupo_get_active_theme_slug() {
     }
     $node_id = defined('LUPO_DEFAULT_NODE_ID') ? (int) LUPO_DEFAULT_NODE_ID : 0;
     try {
-        $stmt = $db->prepare('SELECT active_theme_slug FROM lupo_federation_nodes WHERE federation_node_id = :nid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1');
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $tbl = $prefix . 'federation_nodes';
+        $stmt = $db->prepare('SELECT active_theme_slug FROM ' . $tbl . ' WHERE federation_node_id = :nid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1');
         $stmt->execute([':nid' => $node_id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row && isset($row['active_theme_slug']) && trim((string) $row['active_theme_slug']) !== '') {

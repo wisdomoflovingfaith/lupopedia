@@ -39,7 +39,8 @@ class GroundedAgentModel
             'updated_ymdhis' => date('YmdHis')
         ]);
         
-        $agent_id = $this->insert('lupo_agents', $agent_data);
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $agent_id = $this->insert($prefix . 'agents', $agent_data);
         
         // Step 3: Create ownership record
         if (isset($data['owner_actor_id'])) {
@@ -54,7 +55,9 @@ class GroundedAgentModel
      */
     public function getByCode($code)
     {
-        $sql = "SELECT * FROM lupo_agents WHERE code = ?";
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $tbl = $prefix . 'agents';
+        $sql = "SELECT * FROM " . $tbl . " WHERE code = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param('s', $code);
         $stmt->execute();
@@ -75,7 +78,9 @@ class GroundedAgentModel
         }
         
         // Check permissions table
-        $sql = "SELECT * FROM lupo_agent_owners WHERE agent_id = ? AND owner_actor_id = ? AND is_active = 1";
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $tbl = $prefix . 'agent_owners';
+        $sql = "SELECT * FROM " . $tbl . " WHERE agent_id = ? AND owner_actor_id = ? AND is_active = 1";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param('ii', $agent_id, $actor_id);
         $stmt->execute();
@@ -96,13 +101,16 @@ class GroundedAgentModel
             'created_ymdhis' => date('YmdHis')
         ];
         
-        return $this->insert('lupo_actor_actions', $data);
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        return $this->insert($prefix . 'actor_actions', $data);
     }
     
     // Private helper methods (RESERVED ID DOCTRINE: explicit actor_id, no lastInsertId)
     private function createActorRecord($data)
     {
-        $res = $this->db->query("SELECT COALESCE(MAX(actor_id), 0) + 1 AS next_id FROM lupo_actors");
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $actors_t = $prefix . 'actors';
+        $res = $this->db->query("SELECT COALESCE(MAX(actor_id), 0) + 1 AS next_id FROM " . $actors_t);
         $row = $res ? $res->fetch_assoc() : null;
         $actor_id = $row && isset($row['next_id']) ? (int) $row['next_id'] : 1;
         $actor_type = isset($data['type']) ? $data['type'] : 'agent';
@@ -117,7 +125,7 @@ class GroundedAgentModel
             'is_active' => 1,
             'is_deleted' => 0,
         );
-        $this->insert('lupo_actors', $insert_data);
+        $this->insert($prefix . 'actors', $insert_data);
         return $actor_id;
     }
     
@@ -131,7 +139,8 @@ class GroundedAgentModel
             'is_active' => 1
         ];
         
-        return $this->insert('lupo_agent_owners', $data);
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        return $this->insert($prefix . 'agent_owners', $data);
     }
     
     private function insert($table, $data)
@@ -150,7 +159,9 @@ class GroundedAgentModel
     
     private function getById($agent_id)
     {
-        $sql = "SELECT * FROM lupo_agents WHERE agent_id = ?";
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $tbl = $prefix . 'agents';
+        $sql = "SELECT * FROM " . $tbl . " WHERE agent_id = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param('i', $agent_id);
         $stmt->execute();

@@ -22,7 +22,9 @@ echo "UTC Time: {$current_utc}\n";
 echo "RS-UTC-2026: Temporal alignment confirmed\n\n";
 
 // Find actor IDs
-$stmt = $db->prepare("SELECT actor_id, slug, name, actor_type FROM lupo_actors WHERE slug IN ('captain-wolfie', 'cursor-ide-agent') AND is_deleted = 0");
+$prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+$actors_t = $prefix . 'actors';
+$stmt = $db->prepare("SELECT actor_id, slug, name, actor_type FROM " . $actors_t . " WHERE slug IN ('captain-wolfie', 'cursor-ide-agent') AND is_deleted = 0");
 $stmt->execute();
 $actors = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -40,11 +42,11 @@ foreach ($actors as $actor) {
 // Create CURSOR actor if it doesn't exist (RESERVED ID DOCTRINE: explicit actor_id, no lastInsertId)
 if (!$cursor_actor) {
     echo "Creating CURSOR actor...\n";
-    $cursor_actor_id = function_exists('lupo_findpuka') ? lupo_findpuka($db, 'lupo_actors', 'actor_id', 1, null) : (int) $db->fetchOne("SELECT COALESCE(MAX(actor_id), 0) + 1 FROM " . $db->quoteIdentifier('lupo_actors'), array());
+    $cursor_actor_id = function_exists('lupo_findpuka') ? lupo_findpuka($db, $actors_t, 'actor_id', 1, null) : (int) $db->fetchOne("SELECT COALESCE(MAX(actor_id), 0) + 1 FROM " . $db->quoteIdentifier($actors_t), array());
     if ($cursor_actor_id === null) {
-        $cursor_actor_id = (int) $db->fetchOne("SELECT COALESCE(MAX(actor_id), 0) + 1 FROM " . $db->quoteIdentifier('lupo_actors'), array());
+        $cursor_actor_id = (int) $db->fetchOne("SELECT COALESCE(MAX(actor_id), 0) + 1 FROM " . $db->quoteIdentifier($actors_t), array());
     }
-    $db->insert('lupo_actors', array(
+    $db->insert($actors_t, array(
         'actor_id' => $cursor_actor_id,
         'actor_type' => 'ai_agent',
         'slug' => 'cursor-ide-agent',
@@ -55,7 +57,7 @@ if (!$cursor_actor) {
         'is_deleted' => 0,
         'actor_source_type' => 'agent',
     ));
-    $cursor_actor = $db->fetchRow("SELECT actor_id, slug, name, actor_type FROM " . $db->quoteIdentifier('lupo_actors') . " WHERE actor_id = :aid LIMIT 1", array('aid' => $cursor_actor_id));
+    $cursor_actor = $db->fetchRow("SELECT actor_id, slug, name, actor_type FROM " . $db->quoteIdentifier($actors_t) . " WHERE actor_id = :aid LIMIT 1", array('aid' => $cursor_actor_id));
     echo "Created CURSOR actor with ID: " . $cursor_actor['actor_id'] . "\n\n";
 }
 

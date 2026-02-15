@@ -254,8 +254,10 @@ class LupopediaMigrationController
 
     protected function logMigration(PDO $pdo, int $ymdhis, string $sqlSnippet, string $status, ?string $reason): void
     {
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $tbl = $prefix . 'migration_log';
         $stmt = $pdo->prepare(
-            "INSERT INTO lupo_migration_log (executed_ymdhis, sql_snippet, status, reason) VALUES (?, ?, ?, ?)"
+            "INSERT INTO " . $tbl . " (executed_ymdhis, sql_snippet, status, reason) VALUES (?, ?, ?, ?)"
         );
         try {
             $stmt->execute([$ymdhis, $sqlSnippet, $status, $reason]);

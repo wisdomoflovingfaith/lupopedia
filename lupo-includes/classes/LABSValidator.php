@@ -250,13 +250,15 @@ class LABS_Validator {
         // Verify actor exists in registry (if database available)
         if ($this->db) {
             try {
+                $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+                $actors_t = $prefix . 'actors';
                 $stmt = $this->db->prepare("
                     SELECT actor_id, actor_type 
-                    FROM lupo_actors 
+                    FROM " . $actors_t . " 
                     WHERE actor_id = :actor_id 
                     AND is_deleted = 0
                 ");
-                $stmt->execute([':actor_id' => $this->actor_id]);
+                $stmt->execute(array('actor_id' => $this->actor_id));
                 $actor = $stmt->fetch(PDO::FETCH_ASSOC);
                 
                 if (!$actor) {
@@ -494,8 +496,10 @@ class LABS_Validator {
      * @param string $next_revalidation Next revalidation timestamp
      */
     private function store_declaration($certificate_id, $validation_timestamp, $next_revalidation) {
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $tbl = $prefix . 'labs_declarations';
         $sql = "
-            INSERT INTO lupo_labs_declarations 
+            INSERT INTO " . $tbl . " 
             (actor_id, certificate_id, declaration_timestamp, declarations_json, 
              validation_status, labs_version, next_revalidation_ymdhis, 
              created_ymdhis, updated_ymdhis, is_deleted)
@@ -504,17 +508,16 @@ class LABS_Validator {
              'valid', '1.0', :next_revalidation_ymdhis,
              :created_ymdhis, :updated_ymdhis, 0)
         ";
-        
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([
-            ':actor_id' => $this->actor_id,
-            ':certificate_id' => $certificate_id,
-            ':declaration_timestamp' => $this->declarations['timestamp'],
-            ':declarations_json' => json_encode($this->declarations),
-            ':next_revalidation_ymdhis' => $next_revalidation,
-            ':created_ymdhis' => $validation_timestamp,
-            ':updated_ymdhis' => $validation_timestamp
-        ]);
+        $stmt->execute(array(
+            'actor_id' => $this->actor_id,
+            'certificate_id' => $certificate_id,
+            'declaration_timestamp' => $this->declarations['timestamp'],
+            'declarations_json' => json_encode($this->declarations),
+            'next_revalidation_ymdhis' => $next_revalidation,
+            'created_ymdhis' => $validation_timestamp,
+            'updated_ymdhis' => $validation_timestamp
+        ));
     }
     
     /**
@@ -618,10 +621,12 @@ class LABS_Validator {
         }
         
         try {
+            $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+            $tbl = $prefix . 'labs_declarations';
             $sql = "
                 SELECT certificate_id, declaration_timestamp, next_revalidation_ymdhis,
                        validation_status, labs_version
-                FROM lupo_labs_declarations
+                FROM " . $tbl . "
                 WHERE actor_id = :actor_id
                 AND validation_status = 'valid'
                 AND is_deleted = 0
@@ -629,12 +634,11 @@ class LABS_Validator {
                 ORDER BY created_ymdhis DESC
                 LIMIT 1
             ";
-            
             $stmt = $this->db->prepare($sql);
-            $stmt->execute([
-                ':actor_id' => $this->actor_id,
-                ':current_time' => $this->get_canonical_time()
-            ]);
+            $stmt->execute(array(
+                'actor_id' => $this->actor_id,
+                'current_time' => $this->get_canonical_time()
+            ));
             
             $certificate = $stmt->fetch(PDO::FETCH_ASSOC);
             return $certificate ? $certificate : false;

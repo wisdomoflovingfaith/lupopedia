@@ -204,10 +204,13 @@ class InstallWizardUnifiedRegistryValidator {
      *
      * @param PDO $pdo
      * @param array $ids List of unified_registry_id values about to be inserted
-     * @param string $tableName Table name (default lupo_unified_registry)
+     * @param string|null $tableName Full table name (default: LUPO_TABLE_PREFIX . 'unified_registry')
      * @return int|null First conflicting ID, or null if no conflict
      */
-    public static function checkUnifiedRegistryIdConflict($pdo, $ids, $tableName = 'lupo_unified_registry') {
+    public static function checkUnifiedRegistryIdConflict($pdo, $ids, $tableName = null) {
+        if ($tableName === null || $tableName === '') {
+            $tableName = (defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_') . 'unified_registry';
+        }
         if (empty($ids)) {
             return null;
         }
@@ -253,7 +256,7 @@ class InstallWizardSqlRunner {
         if (stripos($sql, 'unified_registry') !== false && stripos($sql, 'INSERT') !== false) {
             $ids = InstallWizardUnifiedRegistryValidator::extractUnifiedRegistryIdsFromSql($sql);
             if (!empty($ids)) {
-                $conflictId = InstallWizardUnifiedRegistryValidator::checkUnifiedRegistryIdConflict($pdo, $ids, 'lupo_unified_registry');
+                $conflictId = InstallWizardUnifiedRegistryValidator::checkUnifiedRegistryIdConflict($pdo, $ids, null);
                 if ($conflictId !== null) {
                     throw new RuntimeException('Unified registry ID conflict: ID ' . (int) $conflictId . ' already exists.');
                 }
@@ -559,14 +562,16 @@ class InstallWizardDepartments {
     const SYSTEM_DEPARTMENT_ID = 0;
 
     public static function ensureSystemDepartment($pdo, &$log) {
-        $check = $pdo->prepare("SELECT 1 FROM lupo_departments WHERE department_id = 0 LIMIT 1");
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $dept = $prefix . 'departments';
+        $check = $pdo->prepare("SELECT 1 FROM " . $dept . " WHERE department_id = 0 LIMIT 1");
         $check->execute(array());
         if ($check->fetchColumn()) {
             $log[] = InstallWizardLogger::logEntry('skip', 'System department (0) already exists.');
         } else {
             $now = (int) gmdate('YmdHis');
             $ins = $pdo->prepare("
-                INSERT INTO lupo_departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+                INSERT INTO " . $dept . " (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
                 VALUES (0, 1, 'System', 'System Department (Reserved)', 'system', 0, NULL, ?, ?, 0, NULL)
             ");
             try {
@@ -582,14 +587,16 @@ class InstallWizardDepartments {
 
     /** Ensure department 1 (General) exists for channels. Required after import which may omit it. */
     public static function ensureDefaultDepartment($pdo, &$log) {
-        $check = $pdo->prepare("SELECT 1 FROM lupo_departments WHERE department_id = 1 LIMIT 1");
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $dept = $prefix . 'departments';
+        $check = $pdo->prepare("SELECT 1 FROM " . $dept . " WHERE department_id = 1 LIMIT 1");
         $check->execute(array());
         if ($check->fetchColumn()) {
             return;
         }
         $now = (int) gmdate('YmdHis');
         $ins = $pdo->prepare("
-            INSERT INTO lupo_departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+            INSERT INTO " . $dept . " (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
             VALUES (1, 1, 'General', 'Default department for channels', 'general', 0, NULL, ?, ?, 0, NULL)
         ");
         try {
@@ -614,6 +621,9 @@ class InstallWizardDepartments {
 class InstallWizardChannels {
 
     public static function createReservedSystemChannels($pdo, &$log) {
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $ch = $prefix . 'channels';
+        $acr = $prefix . 'actor_channel_roles';
         $federationNodeId = 1;
         $departmentId = 1;
         $now = (int) gmdate('YmdHis');
@@ -625,17 +635,17 @@ class InstallWizardChannels {
             5100=> array('key' => 'ai-dev',       'slug' => 'ai-dev',     'type' => 'public', 'name' => 'AI Agent Development',       'desc' => 'AI agent development channel.',              'is_kernel' => 0, 'captain' => true),
         );
 
-        $check = $pdo->prepare("SELECT 1 FROM lupo_channels WHERE channel_id = ?");
+        $check = $pdo->prepare("SELECT 1 FROM " . $ch . " WHERE channel_id = ?");
         $insChannel = $pdo->prepare("
-            INSERT INTO lupo_channels (
+            INSERT INTO " . $ch . " (
                 channel_id, federation_node_id, created_by_actor_id, default_actor_id, department_id,
                 channel_key, channel_slug, channel_type, language, channel_name, description, website_link,
                 status_flag, created_ymdhis, updated_ymdhis, is_deleted, is_kernel
             ) VALUES (?, ?, 0, 0, ?, ?, ?, ?, 'en', ?, ?, NULL, 1, ?, ?, 0, ?)
         ");
-        $nextAcrId = (int) $pdo->query("SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM lupo_actor_channel_roles")->fetchColumn();
+        $nextAcrId = (int) $pdo->query("SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM " . $acr)->fetchColumn();
         $insAcr = $pdo->prepare("
-            INSERT INTO lupo_actor_channel_roles (actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted)
+            INSERT INTO " . $acr . " (actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted)
             VALUES (?, 0, ?, 'captain', ?, ?, 0)
         ");
 
@@ -678,6 +688,13 @@ class InstallWizardChannels {
      * for each livehelp_users row where isadmin = 'Y'. No lupo_operators; permissions = lupo_actor_channel_roles.
      */
     public static function createOperatorChannels($pdo, &$log) {
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $actors_t = $prefix . 'actors';
+        $ch = $prefix . 'channels';
+        $acr = $prefix . 'actor_channel_roles';
+        $auth_t = $prefix . 'auth_users';
+        $ad_t = $prefix . 'actor_departments';
+        $dr_t = $prefix . 'department_roles';
         $map = array();
         $federationNodeId = 1;
         $departmentId = 1;
@@ -686,13 +703,13 @@ class InstallWizardChannels {
 
         $stmt = $pdo->query("
             SELECT a.actor_id, a.slug, a.name
-            FROM lupo_actors a
-            WHERE a.actor_source_type = 'lupo_auth_users'
+            FROM " . $actors_t . " a
+            WHERE a.actor_source_type = '" . str_replace("'", "''", $auth_t) . "'
             AND a.is_deleted = 0
             ORDER BY a.actor_id
         ");
         if (!$stmt) {
-            $log[] = InstallWizardLogger::logEntry('error', 'Could not select actors (imported operators) from lupo_actors.');
+            $log[] = InstallWizardLogger::logEntry('error', 'Could not select actors (imported operators) from actors table.');
             return $map;
         }
         $actors = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -700,22 +717,22 @@ class InstallWizardChannels {
             $log[] = InstallWizardLogger::logEntry('ok', 'No actors to create personal channels for.');
         }
 
-        $nextChannelId = (int) $pdo->query("SELECT COALESCE(MAX(channel_id), 0) + 1 FROM lupo_channels")->fetchColumn();
-        $nextAcrId = (int) $pdo->query("SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM lupo_actor_channel_roles")->fetchColumn();
+        $nextChannelId = (int) $pdo->query("SELECT COALESCE(MAX(channel_id), 0) + 1 FROM " . $ch)->fetchColumn();
+        $nextAcrId = (int) $pdo->query("SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM " . $acr)->fetchColumn();
         $usedKeys = array();
-        foreach ($pdo->query("SELECT channel_key FROM lupo_channels WHERE federation_node_id = " . (int) $federationNodeId)->fetchAll(PDO::FETCH_COLUMN) as $k) {
+        foreach ($pdo->query("SELECT channel_key FROM " . $ch . " WHERE federation_node_id = " . (int) $federationNodeId)->fetchAll(PDO::FETCH_COLUMN) as $k) {
             $usedKeys[strtolower($k)] = true;
         }
 
         $insChannel = $pdo->prepare("
-            INSERT INTO lupo_channels (
+            INSERT INTO " . $ch . " (
                 channel_id, federation_node_id, created_by_actor_id, default_actor_id, department_id,
                 channel_key, channel_slug, channel_type, language, channel_name, description, website_link,
                 status_flag, created_ymdhis, updated_ymdhis, is_deleted, is_kernel
             ) VALUES (?, ?, ?, ?, ?, ?, ?, 'chat_room', 'en', ?, ?, NULL, 1, ?, ?, 0, 0)
         ");
         $insAcr = $pdo->prepare("
-            INSERT INTO lupo_actor_channel_roles (
+            INSERT INTO " . $acr . " (
                 actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted
             ) VALUES (?, ?, ?, 'captain', ?, ?, 0)
         ");
@@ -772,31 +789,31 @@ class InstallWizardChannels {
             ");
             if ($adminStmt) {
                 $admins = $adminStmt->fetchAll(PDO::FETCH_ASSOC);
-                $nextAdId = (int) $pdo->query("SELECT COALESCE(MAX(actor_department_id), 0) + 1 FROM lupo_actor_departments")->fetchColumn();
-                $nextDrId = (int) $pdo->query("SELECT COALESCE(MAX(department_role_id), 0) + 1 FROM lupo_department_roles")->fetchColumn();
-                $insAd = $pdo->prepare("INSERT INTO lupo_actor_departments (actor_department_id, actor_id, department_id, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (?, ?, 0, 'System Administrator', ?, ?, 0, NULL)");
-                $insDr = $pdo->prepare("INSERT INTO lupo_department_roles (department_role_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (?, ?, 0, 'administrator', ?, ?, 0, NULL)");
+                $nextAdId = (int) $pdo->query("SELECT COALESCE(MAX(actor_department_id), 0) + 1 FROM " . $ad_t)->fetchColumn();
+                $nextDrId = (int) $pdo->query("SELECT COALESCE(MAX(department_role_id), 0) + 1 FROM " . $dr_t)->fetchColumn();
+                $insAd = $pdo->prepare("INSERT INTO " . $ad_t . " (actor_department_id, actor_id, department_id, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (?, ?, 0, 'System Administrator', ?, ?, 0, NULL)");
+                $insDr = $pdo->prepare("INSERT INTO " . $dr_t . " (department_role_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (?, ?, 0, 'administrator', ?, ?, 0, NULL)");
                 foreach ($admins as $admin) {
                     $uname = trim((string) $admin['username']);
-                    $au = $pdo->prepare("SELECT auth_user_id FROM lupo_auth_users WHERE username = ? LIMIT 1");
+                    $au = $pdo->prepare("SELECT auth_user_id FROM " . $auth_t . " WHERE username = ? LIMIT 1");
                     $au->execute(array($uname));
                     $authRow = $au->fetch(PDO::FETCH_ASSOC);
                     if ($authRow) {
                         $actorId = (int) $authRow['auth_user_id'];
-                        $check = $pdo->prepare("SELECT 1 FROM lupo_actor_channel_roles WHERE actor_id = ? AND channel_id = 1 AND role_key = 'captain' AND is_deleted = 0 LIMIT 1");
+                        $check = $pdo->prepare("SELECT 1 FROM " . $acr . " WHERE actor_id = ? AND channel_id = 1 AND role_key = 'captain' AND is_deleted = 0 LIMIT 1");
                         $check->execute(array($actorId));
                         if (!$check->fetchColumn()) {
                             $insAcr->execute(array($nextAcrId, $actorId, 1, $now, $now));
                             $log[] = InstallWizardLogger::logEntry('ok', 'Assigned captain on Administration (channel 1) for ' . $uname . '.');
                             $nextAcrId++;
                         }
-                        $checkAd = $pdo->prepare("SELECT 1 FROM lupo_actor_departments WHERE actor_id = ? AND department_id = 0 AND is_deleted = 0 LIMIT 1");
+                        $checkAd = $pdo->prepare("SELECT 1 FROM " . $ad_t . " WHERE actor_id = ? AND department_id = 0 AND is_deleted = 0 LIMIT 1");
                         $checkAd->execute(array($actorId));
                         if (!$checkAd->fetchColumn()) {
                             $insAd->execute(array($nextAdId, $actorId, $now, $now));
                             $nextAdId++;
                         }
-                        $checkDr = $pdo->prepare("SELECT 1 FROM lupo_department_roles WHERE actor_id = ? AND department_id = 0 AND role_key = 'administrator' AND is_deleted = 0 LIMIT 1");
+                        $checkDr = $pdo->prepare("SELECT 1 FROM " . $dr_t . " WHERE actor_id = ? AND department_id = 0 AND role_key = 'administrator' AND is_deleted = 0 LIMIT 1");
                         $checkDr->execute(array($actorId));
                         if (!$checkDr->fetchColumn()) {
                             $insDr->execute(array($nextDrId, $actorId, $now, $now));
@@ -815,9 +832,11 @@ class InstallWizardChannels {
     }
 
     public static function ensureReservedChannels($pdo, &$log) {
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $ch = $prefix . 'channels';
         $required = array(0, 1, 42, 5100);
         try {
-            $stmt = $pdo->query('SELECT channel_id FROM lupo_channels WHERE channel_id IN (0, 1, 42, 5100)');
+            $stmt = $pdo->query('SELECT channel_id FROM ' . $ch . ' WHERE channel_id IN (0, 1, 42, 5100)');
             $have = $stmt ? $stmt->fetchAll(PDO::FETCH_COLUMN) : array();
             $missing = array_diff($required, array_map('intval', $have));
             if ($missing !== array()) {
@@ -834,14 +853,19 @@ class InstallWizardChannels {
      * Ensure every actor (imported Crafty operator) has a personal channel with captain in lupo_actor_channel_roles.
      */
     public static function ensureOperatorChannels($pdo, &$log) {
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $actors_t = $prefix . 'actors';
+        $ch = $prefix . 'channels';
+        $acr = $prefix . 'actor_channel_roles';
+        $auth_t = $prefix . 'auth_users';
         try {
             $stmt = $pdo->query("
                 SELECT a.actor_id, a.slug, a.name
-                FROM lupo_actors a
-                WHERE a.actor_source_type = 'lupo_auth_users' AND a.is_deleted = 0
+                FROM " . $actors_t . " a
+                WHERE a.actor_source_type = '" . str_replace("'", "''", $auth_t) . "' AND a.is_deleted = 0
                 AND NOT EXISTS (
-                    SELECT 1 FROM lupo_actor_channel_roles r
-                    INNER JOIN lupo_channels c ON c.channel_id = r.channel_id AND c.created_by_actor_id = r.actor_id
+                    SELECT 1 FROM " . $acr . " r
+                    INNER JOIN " . $ch . " c ON c.channel_id = r.channel_id AND c.created_by_actor_id = r.actor_id
                     WHERE r.actor_id = a.actor_id AND r.role_key = 'captain' AND r.is_deleted = 0
                 )
                 ORDER BY a.actor_id
@@ -857,18 +881,18 @@ class InstallWizardChannels {
             $departmentId = 1;
             $defaultActorId = 1;
             $now = (int) gmdate('YmdHis');
-            $nextChannelId = (int) $pdo->query('SELECT COALESCE(MAX(channel_id), 0) + 1 FROM lupo_channels')->fetchColumn();
-            $nextAcrId = (int) $pdo->query('SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM lupo_actor_channel_roles')->fetchColumn();
+            $nextChannelId = (int) $pdo->query('SELECT COALESCE(MAX(channel_id), 0) + 1 FROM ' . $ch)->fetchColumn();
+            $nextAcrId = (int) $pdo->query('SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM ' . $acr)->fetchColumn();
             $usedKeys = array();
-            foreach ($pdo->query('SELECT channel_key FROM lupo_channels WHERE federation_node_id = 1')->fetchAll(PDO::FETCH_COLUMN) as $k) {
+            foreach ($pdo->query('SELECT channel_key FROM ' . $ch . ' WHERE federation_node_id = 1')->fetchAll(PDO::FETCH_COLUMN) as $k) {
                 $usedKeys[strtolower($k)] = true;
             }
             $insChannel = $pdo->prepare("
-                INSERT INTO lupo_channels (channel_id, federation_node_id, created_by_actor_id, default_actor_id, department_id, channel_key, channel_slug, channel_type, language, channel_name, description, website_link, status_flag, created_ymdhis, updated_ymdhis, is_deleted, is_kernel)
+                INSERT INTO " . $ch . " (channel_id, federation_node_id, created_by_actor_id, default_actor_id, department_id, channel_key, channel_slug, channel_type, language, channel_name, description, website_link, status_flag, created_ymdhis, updated_ymdhis, is_deleted, is_kernel)
                 VALUES (?, ?, ?, ?, ?, ?, ?, 'chat_room', 'en', ?, ?, NULL, 1, ?, ?, 0, 0)
             ");
             $insAcr = $pdo->prepare("
-                INSERT INTO lupo_actor_channel_roles (actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted)
+                INSERT INTO " . $acr . " (actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted)
                 VALUES (?, ?, ?, 'captain', ?, ?, 0)
             ");
             foreach ($missing as $row) {
