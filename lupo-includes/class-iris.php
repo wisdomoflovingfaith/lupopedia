@@ -85,7 +85,7 @@ class IRIS
     }
 
     /**
-     * Load agent configuration from agent_registry + agent_properties.
+     * Load agent configuration from lupo_unified_registry + agent_properties.
      *
      * PHASE 1:
      *   - Only loads system_prompt, persona, rules
@@ -93,38 +93,24 @@ class IRIS
      */
     protected function loadAgentConfig(int $agentId): ?array
     {
-        // Load from lupo_agent_registry (using agent_registry_id, not id)
-        $sql = "
-            SELECT 
-                ar.agent_registry_id as id,
-                ar.code,
-                ar.name,
-                ar.layer,
-                ar.is_active,
-                ar.is_kernel
-            FROM lupo_agent_registry ar
-            WHERE ar.agent_registry_id = :agent_id
-              AND ar.is_deleted = 0
-            LIMIT 1
-        ";
-
-        $agent = $this->db->fetchRow($sql, ['agent_id' => $agentId]);
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $reg = $prefix . 'unified_registry';
+        $sql = "SELECT entity_id AS id, code, name, layer, is_active, is_kernel
+                FROM " . $reg . "
+                WHERE entity_type = 'agent' AND entity_id = :agent_id
+                  AND (is_deleted = 0 OR is_deleted IS NULL)
+                LIMIT 1";
+        $agent = $this->db->fetchRow($sql, array('agent_id' => $agentId));
 
         if (!$agent) {
             return null;
         }
 
-        // Load properties from lupo_agent_properties
-        $propsSql = "
-            SELECT 
-                property_key,
-                property_value
-            FROM lupo_agent_properties
-            WHERE actor_id = :actor_id
-              AND is_deleted = 0
-        ";
-
-        $properties = $this->db->fetchAll($propsSql, ['actor_id' => $agentId]);
+        // Load properties from agent_properties (actor_id = entity_id for agents)
+        $propsTable = $prefix . 'agent_properties';
+        $propsSql = "SELECT property_key, property_value FROM " . $propsTable . "
+                     WHERE actor_id = :actor_id AND is_deleted = 0";
+        $properties = $this->db->fetchAll($propsSql, array('actor_id' => $agentId));
         
         // Convert properties array to key-value pairs
         $props = [];
@@ -133,9 +119,9 @@ class IRIS
         }
 
         // Merge agent data with properties
-        $agent['system_prompt'] = $props['system_prompt'] ?? "You are {$agent['name']} ({$agent['code']}).";
-        $agent['persona'] = $props['persona'] ?? "";
-        $agent['rules'] = $props['rules'] ?? "";
+        $agent['system_prompt'] = isset($props['system_prompt']) ? $props['system_prompt'] : "You are {$agent['name']} ({$agent['code']}).";
+        $agent['persona'] = isset($props['persona']) ? $props['persona'] : "";
+        $agent['rules'] = isset($props['rules']) ? $props['rules'] : "";
 
         return $agent;
     }

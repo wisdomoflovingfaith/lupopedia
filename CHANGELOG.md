@@ -10,6 +10,96 @@ Canonical version history.
 
 ---
 
+## Lupopedia 4.0.8 — Agent Registry Deprecation (Unified Registry Only)
+
+Lupopedia 4.0.8 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
+There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
+
+This patch removes all use of the deprecated table **lupo_agent_registry**. All agent-related logic now uses **lupo_unified_registry** exclusively (entity_type = 'agent', entity_id / dedicated_index_id for identity).
+
+### 1. Install SQL — lupo_agent_registry No Longer Created
+
+- **install_new_lupopedia.sql:** Removed the entire `CREATE TABLE lupo_agent_registry` block and `CREATE UNIQUE INDEX lupo_agent_registry_unique_code`.
+- Fresh installs no longer create the table. The canonical registry for agents, channels, modules, and actors is **lupo_unified_registry** only.
+
+### 2. Runtime — Agent Config and Lookups Use Unified Registry
+
+- **lupo-includes/class-iris.php:** `loadAgentConfig()` now loads agent metadata from **lupo_unified_registry** with `entity_type = 'agent'` and `entity_id = :agent_id`. Uses table prefix; agent properties still loaded from **lupo_agent_properties** by `actor_id` (same as entity_id for agents). PHP 5.3: `??` replaced with `isset() ? :` in property merge.
+- **lupo-includes/classes/LABSValidator.php:** `check_utc_timekeeper_available()` now queries **lupo_unified_registry** with `entity_type = 'agent'` and `(code = 'UTC_TIMEKEEPER' OR entity_key = 'UTC_TIMEKEEPER')` and `is_active = 1`; uses configurable table prefix.
+
+### 3. System Health — Unified Registry Check
+
+- **app/Services/System/SystemHealthService.php:** `checkAgentRegistry()` now checks for the existence of table **lupo_unified_registry** (instead of `lupo_agent_registry`). Messages updated to "Unified registry" / "Unified registry (agents, channels, modules) healthy".
+- **app/Http/Controllers/SystemHealthController.php:** Health response key changed from `agent_registry` to `unified_registry`; still calls `checkAgentRegistry()`.
+
+### 4. Verification (No Changes Required)
+
+- **import_from_old_crafty_syntax.sql:** No references to lupo_agent_registry.
+- **drop_old_crafty_syntax_tables.sql:** No references to lupo_agent_registry.
+- **install_wizard_classes.php**, **install.php:** No references to lupo_agent_registry.
+- **seed_lupopedia.sql:** References only the **column** `agent_registry_parent_id` on lupo_unified_registry (schema), not the removed table.
+
+### 5. Migration for Existing Databases
+
+- **database/migrations/migration_unified_registry_agents_columns_and_insert.sql** is unchanged. It remains the one-time migration that copies agent data from **lupo_agent_registry** into **lupo_unified_registry** for existing DBs that still have the old table. New installs never create lupo_agent_registry.
+
+**Files modified (4.0.8):** `database/migrations/install_new_lupopedia.sql`, `lupo-includes/class-iris.php`, `lupo-includes/classes/LABSValidator.php`, `app/Services/System/SystemHealthService.php`, `app/Http/Controllers/SystemHealthController.php`.
+
+**Versioning Note:**  
+Lupopedia 4.0.x is a development/stabilization series.  
+The ONLY supported upgrade path is:
+
+    Crafty Syntax 3.7.5 → Lupopedia 4.0.x
+
+There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**.
+
+---
+
+## Lupopedia 4.0.7 — Stabilization Patch (Installer Run Step, Seed SET, Channel Roles Fix, Analytics Visits Import)
+
+Lupopedia 4.0.7 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
+There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
+
+This patch includes:
+
+### 1. Installer Run Step Fix (install.php)
+
+- **Problem:** When the user clicked "Run installation" on the Confirm step, the wizard redirected to `install.php?step=run`. The next request was a **GET**, but the run step required **POST** and redirected back to Confirm. Install/seed/import/drop SQL never executed.
+- **Fix:** On Confirm step, when POST and `action=run` and no errors, set `$step = 'run'` and continue in the same request instead of redirecting. The run block then executes with POST, so install_new_lupopedia.sql, seed_lupopedia.sql, import (upgrade), and drop run as intended.
+- **Result:** New installs get schema + seed + reserved channels; upgrades get import + operator channels + drop legacy tables.
+
+### 2. Seed SQL SET Statements Fix (install_wizard_classes.php)
+
+- **Problem:** `InstallWizardSqlRunner::runSqlFile()` filtered out any statement matching `^\s*SET\s+`. Seed file uses `SET @now = ...` and `SET @node_id = ...`; those were never run, so INSERTs using `@now` / `@node_id` failed or inserted NULLs. Tables appeared empty after install.
+- **Fix:** Removed the SET filter in the statement filter. Only empty statements are now excluded; SET (and all other statements) are executed.
+- **Result:** seed_lupopedia.sql runs correctly; departments 0 and 1 and all seed data insert with valid timestamps and IDs.
+
+### 3. module-loader.php — lupo_channel_roles Removal
+
+- **Problem:** Two queries still used the dropped table `lupo_channel_roles` (POST channel permission check and list of channels where user has a role). Would break after 4.0.6.
+- **Fix:** Replaced with `lupo_actor_channel_roles`, `role_key` (aliased as `role_type` for the signon view), and `(is_deleted = 0 OR is_deleted IS NULL)` to match AuthRoleResolver.
+- **Files:** `lupo-includes/modules/module-loader.php` — no references to `lupo_channel_roles` remain; PHP 5.3 compatible.
+
+### 4. Analytics Visits Import (import_from_old_crafty_syntax.sql)
+
+- **Context:** Existing import already populated **lupo_unified_visits** from livehelp_visits_daily and livehelp_visits_monthly. **lupo_analytics_visits_daily** and **lupo_analytics_visits_monthly** were not populated from Crafty.
+- **Addition:** After the lupo_unified_visits imports, added:
+  - **livehelp_visits_daily → lupo_analytics_visits_daily:** Aggregated by (livehelp_id, dateof) to match unique (content_id, date_ymd). content_id = livehelp_id, date_ymd = dateof, visits = SUM(levelvisits + directvisits), direct_visits = SUM(directvisits), url_path = SUBSTRING(MAX(pageurl), 1, 500), department_id = MAX(department). Columns without Crafty equivalents (unique_sessions, unique_actors, internal_visits, entry_count, exit_count, total_seconds, avg_seconds) set to 0. created_ymdhis/updated_ymdhis via UTC_TIMESTAMP.
+  - **livehelp_visits_monthly → lupo_analytics_visits_monthly:** Aggregated by dateof (content_id = 0; one row per month). Same visit/direct_visits and timestamp logic. TRUNCATE before each insert; analytics_visits_daily_id / analytics_visits_monthly_id assigned via @rn.
+- **lupo_analytics_visits** (raw per-session table): No Crafty source; not imported; remains for runtime only.
+
+**Files modified (4.0.7):** `install.php`, `install_wizard_classes.php`, `lupo-includes/modules/module-loader.php`, `database/migrations/import_from_old_crafty_syntax.sql`.
+
+**Versioning Note:**  
+Lupopedia 4.0.x is a development/stabilization series.  
+The ONLY supported upgrade path is:
+
+    Crafty Syntax 3.7.5 → Lupopedia 4.0.x
+
+There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**.
+
+---
+
 ## Lupopedia 4.0.6 — Stabilization Patch (System Department, 3-Layer Permissions, Installer Fixes)
 
 Lupopedia 4.0.6 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  

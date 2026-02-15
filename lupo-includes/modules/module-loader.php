@@ -281,7 +281,7 @@ function lupo_route_slug($slug) {
                 $actor_id = $current_user ? (isset($current_user['actor_id']) ? $current_user['actor_id'] : null) : null;
                 if ($actor_id) {
                     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-                    $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
+                    $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1");
                     $stmt->execute(array(':channel_id' => $channel_id, ':actor_id' => $actor_id));
                     if ($stmt->fetch()) {
                         $channel_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
@@ -308,10 +308,10 @@ function lupo_route_slug($slug) {
                 if ($db) {
                     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
                     $stmt = $db->prepare(
-                        "SELECT r.channel_id, r.role_type, c.channel_name, c.department_id " .
-                        "FROM {$table_prefix}channel_roles r " .
+                        "SELECT r.channel_id, r.role_key AS role_type, c.channel_name, c.department_id " .
+                        "FROM {$table_prefix}actor_channel_roles r " .
                         "INNER JOIN {$table_prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
-                        "WHERE r.actor_id = :actor_id AND r.is_deleted = 0"
+                        "WHERE r.actor_id = :actor_id AND (r.is_deleted = 0 OR r.is_deleted IS NULL)"
                     );
                     $stmt->execute(array(':actor_id' => $actor_id));
                     $channels = $stmt->fetchAll(PDO::FETCH_ASSOC);

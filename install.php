@@ -329,8 +329,8 @@ if ($step === 'confirm') {
         exit;
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'run' && empty($errors)) {
-        header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=run');
-        exit;
+        $step = 'run';
+        // Process run in same request so SQL actually executes (no redirect → GET step=run would bounce back to confirm)
     }
 }
 
@@ -433,22 +433,24 @@ if ($step === 'run') {
 
 // ----- Step: config (site settings form, then write config)
 $config_errors = array();
-$config_values = array('site_name' => '', 'base_url' => '', 'admin_email' => '', 'timezone' => 'UTC', 'default_language' => 'en', 'support_email' => '', 'default_visitor_channel' => '1', 'enable_ai_channels' => '0');
+$config_values = array('site_name' => '', 'base_url' => '', 'admin_email' => '', 'timezone' => 'UTC', 'default_language' => 'en', 'support_email' => '', 'default_visitor_channel' => '1', 'enable_ai_channels' => '1');
 if ($step === 'config') {
     if (empty($_SESSION['lupo_run_done'])) {
         header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=confirm');
         exit;
     }
     $baseSuggested = rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/');
+    $basePathForUrl = ($baseSuggested === '') ? '' : ltrim($baseSuggested, '/');
+    $defaultBaseUrl = ($basePathForUrl === '') ? '/' : '/' . $basePathForUrl . '/';
     $config_values = array(
         'site_name' => trim(strip_tags((string) (isset($_POST['site_name']) ? $_POST['site_name'] : (isset($_SESSION['lupo_config_site_name']) ? $_SESSION['lupo_config_site_name'] : 'Lupopedia')))),
-        'base_url'  => trim((string) (isset($_POST['base_url']) ? $_POST['base_url'] : (isset($_SESSION['lupo_config_base_url']) ? $_SESSION['lupo_config_base_url'] : ($baseSuggested === '' ? '/' : '/' . $baseSuggested . '/')))),
+        'base_url'  => trim((string) (isset($_POST['base_url']) ? $_POST['base_url'] : (isset($_SESSION['lupo_config_base_url']) ? $_SESSION['lupo_config_base_url'] : $defaultBaseUrl))),
         'admin_email' => trim((string) (isset($_POST['admin_email']) ? $_POST['admin_email'] : (isset($_SESSION['lupo_config_admin_email']) ? $_SESSION['lupo_config_admin_email'] : ''))),
         'timezone'  => trim((string) (isset($_POST['timezone']) ? $_POST['timezone'] : (isset($_SESSION['lupo_config_timezone']) ? $_SESSION['lupo_config_timezone'] : 'UTC'))),
         'default_language' => trim((string) (isset($_POST['default_language']) ? $_POST['default_language'] : (isset($_SESSION['lupo_config_default_language']) ? $_SESSION['lupo_config_default_language'] : 'en'))),
         'support_email' => trim((string) (isset($_POST['support_email']) ? $_POST['support_email'] : (isset($_SESSION['lupo_config_support_email']) ? $_SESSION['lupo_config_support_email'] : ''))),
-        'default_visitor_channel' => trim((string) (isset($_POST['default_visitor_channel']) ? $_POST['default_visitor_channel'] : (isset($_SESSION['lupo_config_default_visitor_channel']) ? $_SESSION['lupo_config_default_visitor_channel'] : '1'))),
-        'enable_ai_channels' => isset($_POST['enable_ai_channels']) ? '1' : (isset($_SESSION['lupo_config_enable_ai_channels']) ? $_SESSION['lupo_config_enable_ai_channels'] : '0'),
+        'default_visitor_channel' => '1',
+        'enable_ai_channels' => '1',
     );
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'write_config' && empty($errors)) {
         $config_errors = array();
@@ -708,7 +710,7 @@ if ($baseUrl === '') {
     <?php elseif ($step === 'normalize'): ?>
         <div class="step warning">
             <h2>Identity normalization</h2>
-            <p><strong>Reserved system channels (0, 1, 42, 5100) have been created.</strong> Channel 1 is the global Administration channel. Next: resolve identities for <strong>Crafty operators only</strong> (isoperator = Y). Visitor sessions are not changed. Crafty Syntax uses username/password; Lupopedia uses email/password and requires a unique email per operator. <strong>Email</strong> is kept as the real email (e.g. <code>helen@lupopedia.com</code>). <strong>Username</strong> for operators becomes slug format (e.g. <code>helen</code> → <code>helen-at-lupopedia-com</code>). You can correct any proposed email below. All emails must be unique and valid before you can continue.</p>
+            <p><strong>Reserved system channels (0, 1, 42, 5100) have been created.</strong> Department 0 is the global system department (not department 1). Channel 1 is the Administration channel. Next: resolve identities for <strong>Crafty operators only</strong> (isoperator = Y). Visitor sessions are not changed. Crafty Syntax uses username/password; Lupopedia uses email/password and requires a unique email per operator. <strong>Email</strong> is kept as the real email (e.g. <code>johndoe@domainname.com</code>). <strong>Username</strong> for operators becomes slug format (e.g. <code>johndoe</code> → <code>johndoe-at-domainname-com</code>). You can correct any proposed email below. All emails must be unique and valid before you can continue.</p>
             <?php if (!empty($normalize_warnings)): ?>
                 <div class="normalize-warnings">
                     <strong>Warnings</strong>
@@ -757,7 +759,7 @@ if ($baseUrl === '') {
                                 <td><?php echo htmlspecialchars($row['username']); ?></td>
                                 <td><?php echo htmlspecialchars($row['email']); ?></td>
                                 <td><?php echo $row['isoperator'] ? 'Y' : 'N'; ?></td>
-                                <td><code style="font-size:0.8rem;" title="Slug rules: @ → -at-, . → -dot-, lowercase, a-z 0-9 and hyphen only; suffix -at-lupopedia-com"><?php echo htmlspecialchars($row['proposed_email']); ?></code><br><span class="slug-tip">Slug: @→-at- .→-dot-</span></td>
+                                <td><code style="font-size:0.8rem;" title="Slug rules: @ → -at-, . → -dot-, lowercase, a-z 0-9 and hyphen only; suffix -at-domainname-com"><?php echo htmlspecialchars($row['proposed_email']); ?></code><br><span class="slug-tip">Slug: @→-at- .→-dot-</span></td>
                                 <td>
                                     <input type="text" id="email_<?php echo (int) $row['user_id']; ?>" name="email_<?php echo (int) $row['user_id']; ?>" value="<?php echo htmlspecialchars(isset($_POST['email_' . $row['user_id']]) ? $_POST['email_' . $row['user_id']] : $row['proposed_email']); ?>" style="width:100%; max-width:18rem;" required data-proposed="<?php echo htmlspecialchars($row['proposed_email']); ?>" data-id="<?php echo (int) $row['user_id']; ?>">
                                     <div style="margin-top:0.25rem;">
@@ -924,8 +926,10 @@ if ($baseUrl === '') {
                 </label>
                 <label>Default language <input type="text" name="default_language" value="<?php echo htmlspecialchars($config_values['default_language']); ?>" required></label>
                 <label>Support email (optional) <input type="email" name="support_email" value="<?php echo htmlspecialchars($config_values['support_email']); ?>" placeholder=""></label>
-                <label>Default channel for new visitors (optional) <input type="text" name="default_visitor_channel" value="<?php echo htmlspecialchars($config_values['default_visitor_channel']); ?>" placeholder="1"></label>
-                <label><input type="checkbox" name="enable_ai_channels" value="1" <?php echo $config_values['enable_ai_channels'] === '1' ? 'checked' : ''; ?>> Enable AI agent channels (optional)</label>
+                <input type="hidden" name="default_visitor_channel" value="1">
+                <p class="diag-ok">Default channel for new visitors: 1 (department 1).</p>
+                <input type="hidden" name="enable_ai_channels" value="1">
+                <p class="diag-ok">AI agent channels: enabled.</p>
                 <p style="margin-top:1rem;"><button type="submit">Write config and finish</button></p>
             </form>
         </div>

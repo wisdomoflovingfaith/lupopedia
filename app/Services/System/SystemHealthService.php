@@ -87,7 +87,7 @@ class SystemHealthService
     public function checkAgentRegistry(): array
     {
         try {
-            // Check if agent registry table exists
+            // Check if unified registry table exists (canonical for agents, channels, modules)
             if (!$this->db) {
                 return [
                     'status' => 'warning',
@@ -95,22 +95,22 @@ class SystemHealthService
                 ];
             }
 
-            $stmt = $this->db->query("SHOW TABLES LIKE 'lupo_agent_registry'");
+            $stmt = $this->db->query("SHOW TABLES LIKE 'lupo_unified_registry'");
             if ($stmt->rowCount() === 0) {
                 return [
                     'status' => 'warning',
-                    'message' => 'Agent registry table not found',
+                    'message' => 'Unified registry table not found',
                 ];
             }
 
             return [
                 'status' => 'ok',
-                'message' => 'Agent registry healthy',
+                'message' => 'Unified registry (agents, channels, modules) healthy',
             ];
         } catch (\Exception $e) {
             return [
                 'status' => 'error',
-                'message' => 'Agent registry check failed: ' . $e->getMessage(),
+                'message' => 'Unified registry check failed: ' . $e->getMessage(),
             ];
         }
     }

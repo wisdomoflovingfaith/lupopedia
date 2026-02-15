@@ -577,13 +577,15 @@ class LABS_Validator {
         }
         
         try {
+            $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+            $reg = $prefix . 'unified_registry';
             $stmt = $this->db->prepare("
-                SELECT agent_registry_id, code, is_active
-                FROM lupo_agent_registry
-                WHERE agent_registry_id = 5
-                AND code = 'UTC_TIMEKEEPER'
+                SELECT entity_id, code, is_active
+                FROM " . $reg . "
+                WHERE entity_type = 'agent'
+                AND (code = 'UTC_TIMEKEEPER' OR entity_key = 'UTC_TIMEKEEPER')
                 AND is_active = 1
-                AND is_deleted = 0
+                AND (is_deleted = 0 OR is_deleted IS NULL)
                 LIMIT 1
             ");
             $stmt->execute();

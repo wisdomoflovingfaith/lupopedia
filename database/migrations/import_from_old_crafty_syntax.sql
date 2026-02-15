@@ -1409,6 +1409,110 @@ SELECT
 FROM livehelp_visits_monthly r;
 
 -- ======================================================================
+-- livehelp_visits_daily                → lupo_analytics_visits_daily
+-- livehelp_visits_monthly              → lupo_analytics_visits_monthly
+-- Aggregated by (content_id, date_ymd) / (content_id, date_ym) to match
+-- TOON unique keys. Crafty levelvisits+directvisits → visits; directvisits → direct_visits.
+-- ======================================================================
+TRUNCATE lupo_analytics_visits_daily;
+INSERT INTO lupo_analytics_visits_daily (
+    analytics_visits_daily_id,
+    content_id,
+    url_path,
+    department_id,
+    date_ymd,
+    visits,
+    unique_sessions,
+    unique_actors,
+    direct_visits,
+    internal_visits,
+    entry_count,
+    exit_count,
+    total_seconds,
+    avg_seconds,
+    created_ymdhis,
+    updated_ymdhis
+)
+SELECT
+    @rn := @rn + 1,
+    t.content_id,
+    t.url_path,
+    t.department_id,
+    t.date_ymd,
+    t.visits,
+    0,
+    0,
+    t.direct_visits,
+    0,
+    0,
+    0,
+    0,
+    0,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED)
+FROM (SELECT @rn := 0) r,
+(
+    SELECT
+        r.livehelp_id AS content_id,
+        SUBSTRING(MAX(r.pageurl), 1, 500) AS url_path,
+        MAX(r.department) AS department_id,
+        r.dateof AS date_ymd,
+        SUM(r.levelvisits + r.directvisits) AS visits,
+        SUM(r.directvisits) AS direct_visits
+    FROM livehelp_visits_daily r
+    GROUP BY r.livehelp_id, r.dateof
+) t;
+
+TRUNCATE lupo_analytics_visits_monthly;
+INSERT INTO lupo_analytics_visits_monthly (
+    analytics_visits_monthly_id,
+    content_id,
+    url_path,
+    department_id,
+    date_ym,
+    visits,
+    unique_sessions,
+    unique_actors,
+    direct_visits,
+    internal_visits,
+    entry_count,
+    exit_count,
+    total_seconds,
+    avg_seconds,
+    created_ymdhis,
+    updated_ymdhis
+)
+SELECT
+    @rn := @rn + 1,
+    t.content_id,
+    t.url_path,
+    t.department_id,
+    t.date_ym,
+    t.visits,
+    0,
+    0,
+    t.direct_visits,
+    0,
+    0,
+    0,
+    0,
+    0,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED)
+FROM (SELECT @rn := 0) r,
+(
+    SELECT
+        0 AS content_id,
+        SUBSTRING(MAX(r.pageurl), 1, 500) AS url_path,
+        MAX(r.department) AS department_id,
+        r.dateof AS date_ym,
+        SUM(r.levelvisits + r.directvisits) AS visits,
+        SUM(r.directvisits) AS direct_visits
+    FROM livehelp_visits_monthly r
+    GROUP BY r.dateof
+) t;
+
+-- ======================================================================
 -- livehelp_paths_firsts               → lupo_unified_analytics_paths
  -- See: /docs/doctrine/migrations/livehelp_paths_firsts_migration.md
 ALTER TABLE livehelp_paths_firsts

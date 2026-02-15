@@ -186,7 +186,7 @@ class InstallWizardSqlRunner {
         $statements = array_filter(
             array_map('trim', explode(';', $sql)),
             function ($s) {
-                return $s !== '' && !preg_match('/^\s*SET\s+/i', $s);
+                return $s !== '';
             }
         );
         $ok = true;

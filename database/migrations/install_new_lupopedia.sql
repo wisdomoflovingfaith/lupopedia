@@ -598,27 +598,6 @@ CREATE INDEX lupo_agent_properties_idx_created_ymdhis ON lupo_agent_properties (
 CREATE INDEX lupo_agent_properties_idx_updated_ymdhis ON lupo_agent_properties (updated_ymdhis);
 CREATE INDEX lupo_agent_properties_idx_is_deleted ON lupo_agent_properties (is_deleted);
 
-CREATE TABLE lupo_agent_registry (
-  agent_registry_id bigint NOT NULL,
-  agent_registry_parent_id bigint DEFAULT NULL,
-  code varchar(64) NOT NULL,
-  name varchar(255) NOT NULL,
-  layer varchar(64) NOT NULL,
-  is_required tinyint NOT NULL DEFAULT '0',
-  is_active tinyint NOT NULL DEFAULT '0',
-  is_kernel tinyint NOT NULL DEFAULT '0',
-  dedicated_slot int DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  classification_json json DEFAULT NULL,
-  metadata json NOT NULL,
-  agent_class varchar(64) NOT NULL DEFAULT 'production',
-  can_use_humor tinyint NOT NULL DEFAULT '0',
-  can_use_emotion tinyint NOT NULL DEFAULT '0',
-  PRIMARY KEY (agent_registry_id)
-);
-
-CREATE UNIQUE INDEX lupo_agent_registry_unique_code ON lupo_agent_registry (code);
-
 CREATE TABLE lupo_agent_tool_calls (
   agent_tool_call_id bigint NOT NULL,
   agent_id bigint NOT NULL,
@@ -3848,6 +3827,15 @@ CREATE TABLE lupo_unified_registry (
   is_active tinyint NOT NULL DEFAULT '1',
   is_kernel tinyint NOT NULL DEFAULT '0',
   metadata_json json DEFAULT NULL,
+  agent_registry_parent_id bigint DEFAULT NULL,
+  code varchar(64) DEFAULT NULL,
+  name varchar(255) DEFAULT NULL,
+  layer varchar(64) DEFAULT NULL,
+  is_required tinyint NOT NULL DEFAULT 0,
+  classification_json json DEFAULT NULL,
+  agent_class varchar(64) NOT NULL DEFAULT 'production',
+  can_use_humor tinyint NOT NULL DEFAULT 0,
+  can_use_emotion tinyint NOT NULL DEFAULT 0,
   PRIMARY KEY (unified_registry_id)
 );
 
