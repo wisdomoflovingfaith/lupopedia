@@ -212,11 +212,17 @@ if ($step === 'credentials') {
                 // Run install + seed + reserved channels immediately after detect upgrade, then go to normalize.
                 $migrationsDir = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'migrations';
                 $bootstrapLog = array();
-                InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog);
-                InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_lupopedia.sql', $bootstrapLog);
-                InstallWizardChannels::createReservedSystemChannels($pdo, $bootstrapLog);
-                $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
-                header('Location: ' . $base . '/install.php?step=bootstrap');
+                try {
+                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_lupopedia.sql', $bootstrapLog);
+                    InstallWizardChannels::createReservedSystemChannels($pdo, $bootstrapLog);
+                    $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
+                    header('Location: ' . $base . '/install.php?step=bootstrap');
+                } catch (RuntimeException $e) {
+                    $errors[] = $e->getMessage();
+                    $bootstrapLog[] = InstallWizardLogger::logEntry('error', $e->getMessage());
+                    $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
+                }
             } else {
                 header('Location: ' . $base . '/install.php?step=confirm');
             }
@@ -366,6 +372,7 @@ if ($step === 'run') {
         // Upgrade: install/seed/reserved were already run after detect upgrade (before normalize). Only import → personal channels/roles → drop → config.
         // New install: run install → seed → reserved channels → config.
 
+        try {
         if ($install_type === 'upgrade' && !empty($_SESSION['lupo_bootstrap_log'])) {
             $log = array_merge($log, $_SESSION['lupo_bootstrap_log']);
             $log[] = InstallWizardLogger::logEntry('ok', '--- Run step: import → personal channels and captain roles → drop ---');
@@ -428,6 +435,12 @@ if ($step === 'run') {
         $_SESSION['lupo_run_log'] = $log;
         $_SESSION['lupo_run_done'] = true;
         // Do not redirect; show run result with progress bar and log, then user clicks "Continue to Config"
+        } catch (RuntimeException $e) {
+            $errors[] = $e->getMessage();
+            $log[] = InstallWizardLogger::logEntry('error', $e->getMessage());
+            $_SESSION['lupo_run_log'] = $log;
+            $step = 'confirm';
+        }
     }
 }
 

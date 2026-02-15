@@ -167,6 +167,67 @@ class InstallWizardDb {
     }
 }
 
+class InstallWizardUnifiedRegistryValidator {
+
+    /**
+     * Extract unified_registry_id values from SQL that contains INSERT INTO ... unified_registry ... VALUES.
+     * Only considers statements that insert into unified_registry (ignores other tables).
+     *
+     * @param string $sql Raw SQL content (will be split by ; for statement detection)
+     * @return array List of integer IDs (may be empty)
+     */
+    public static function extractUnifiedRegistryIdsFromSql($sql) {
+        $ids = array();
+        $statements = array_filter(
+            array_map('trim', explode(';', $sql)),
+            function ($s) {
+                return $s !== '';
+            }
+        );
+        foreach ($statements as $stmt) {
+            if (stripos($stmt, 'INSERT') === false || stripos($stmt, 'unified_registry') === false || stripos($stmt, 'VALUES') === false) {
+                continue;
+            }
+            if (preg_match_all('/\(\s*(\d+)\s*,/', $stmt, $m)) {
+                foreach (isset($m[1]) ? $m[1] : array() as $id) {
+                    $id = (int) $id;
+                    $ids[] = $id;
+                }
+            }
+        }
+        return array_unique($ids);
+    }
+
+    /**
+     * Check if any of the given IDs already exist in lupo_unified_registry.
+     * Doctrine: if exists, must not insert — show fatal error.
+     *
+     * @param PDO $pdo
+     * @param array $ids List of unified_registry_id values about to be inserted
+     * @param string $tableName Table name (default lupo_unified_registry)
+     * @return int|null First conflicting ID, or null if no conflict
+     */
+    public static function checkUnifiedRegistryIdConflict($pdo, $ids, $tableName = 'lupo_unified_registry') {
+        if (empty($ids)) {
+            return null;
+        }
+        $tableSafe = '`' . str_replace('`', '``', $tableName) . '`';
+        foreach ($ids as $id) {
+            $id = (int) $id;
+            try {
+                $stmt = $pdo->prepare('SELECT 1 FROM ' . $tableSafe . ' WHERE unified_registry_id = :id LIMIT 1');
+                $stmt->execute(array('id' => $id));
+                if ($stmt->fetch()) {
+                    return $id;
+                }
+            } catch (PDOException $e) {
+                return null;
+            }
+        }
+        return null;
+    }
+}
+
 class InstallWizardSqlRunner {
 
     public static function runSqlFile($pdo, $path, &$log) {
@@ -189,6 +250,15 @@ class InstallWizardSqlRunner {
                 return $s !== '';
             }
         );
+        if (stripos($sql, 'unified_registry') !== false && stripos($sql, 'INSERT') !== false) {
+            $ids = InstallWizardUnifiedRegistryValidator::extractUnifiedRegistryIdsFromSql($sql);
+            if (!empty($ids)) {
+                $conflictId = InstallWizardUnifiedRegistryValidator::checkUnifiedRegistryIdConflict($pdo, $ids, 'lupo_unified_registry');
+                if ($conflictId !== null) {
+                    throw new RuntimeException('Unified registry ID conflict: ID ' . (int) $conflictId . ' already exists.');
+                }
+            }
+        }
         $ok = true;
         foreach ($statements as $stmt) {
             if ($stmt === '') {
