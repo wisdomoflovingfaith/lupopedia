@@ -39,7 +39,7 @@ This doctrine is **permanent** until the auto-installer release cycle (Installat
 
 ### Historical normalization rule
 
-- All **4.0.x (x ≠ 1)** references that denote **historical** pre-normalization versions in the repo must be expressed as **3.0.x** (historical dev marker). Cursor must never reintroduce 4.0.x historical markers (e.g. 4.0.7, 4.0.81, 4_0_70) for old artifacts; use 3.0.x instead.
+- All **4.0.x (x ≠ 1)** references that denote **historical** pre-normalization versions in the repo must be expressed as **3.0.x** (historical dev marker). Cursor must never reintroduce 4.0.x historical markers (e.g. 4.0.8, 4.0.81, 4_0_70) for old artifacts; use 3.0.x instead.
 - Date-like patterns (e.g. 2026-04-01) are not version numbers and must not be changed.
 
 ---

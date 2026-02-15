@@ -27,7 +27,7 @@ The file **database/migrations/future_features_lupopedia.sql** is **canonical**.
 
 ## 2. Required Tables File (MANDATORY)
 
-**docs/REQUIRED_TABLES_4.0.6.md** is the authoritative required-tables list for version 4.0.6. Keep it updated in every patch cycle (e.g. when bumping to 4.0.7, update the doc to reflect the current patch).
+**docs/REQUIRED_TABLES_4.0.6.md** is the authoritative required-tables list for version 4.0.6. Keep it updated in every patch cycle (e.g. when bumping to 4.0.8, update the doc to reflect the current patch).
 
 **Required tables** = ALL of:
 - Tables referenced in **import_from_old_crafty_syntax.sql**
