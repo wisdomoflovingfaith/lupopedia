@@ -2,6 +2,12 @@
 
 Canonical version history.
 
+Each release entry follows this format:
+
+## Lupopedia [VERSION] — [single line description] - [YYYY-MM-DD]
+
+As we continue development on a version, we append new changes under that version's header until it is released.
+
 ## Versioning doctrine (4.0.x)
 
 - **Purpose of 4.0.x:** The 4.0.x series (4.0.0 → 4.0.x and all future 4.0.x patches) is a development and stabilization series. It exists solely to refine the single supported upgrade path: **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. Each patch is an iteration on the installer, wizard, importer, doctrine enforcement, and compatibility rules for that path.
@@ -10,7 +16,26 @@ Canonical version history.
 
 ---
 
-## Lupopedia 4.0.9 — Version bump, installer fixes, seed duplicate removal
+ 
+## Lupopedia 4.0.10 — Version bump, actor_aliases table - 2026-02-16
+
+Lupopedia 4.0.10 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
+There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
+
+### Version bump 4.0.9 → 4.0.10
+
+- **config/global_atoms.yaml:** `file.last_modified_system_version`, `version`, `versions.lupopedia`, `GLOBAL_CURRENT_LUPOPEDIA_VERSION` set to 4.0.10; `last_updated` set to 20260216000000.
+- **lupo-includes/version.php:** Docblock `@version` and fallback literals (when atom loader unavailable) updated to 4.0.10; `LUPOPEDIA_VERSION_DATE` set to 20260216000000.
+
+### Actor aliases table (installer only)
+
+- **database/migrations/install_new_lupopedia.sql:** New table **lupo_actor_aliases** added with `alias_id` (BIGINT AUTO_INCREMENT), `actor_id`, `alias_name` (VARCHAR(255)), `created_ymdhis`, `updated_ymdhis`. Aliases are stored in a dedicated table; unified_registry remains a reserved-ID ledger only and does not store alias relationships. No seed, importer, migration, or TOON changes in this patch.
+
+**Files modified (4.0.10):** `config/global_atoms.yaml`, `lupo-includes/version.php`, `database/migrations/install_new_lupopedia.sql`, `CHANGELOG.md`.
+
+---
+
+## Lupopedia 4.0.9 — Version bump, installer fixes, seed duplicate removal - 2026-02-15
 
 Lupopedia 4.0.9 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
 There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
@@ -56,7 +81,7 @@ There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
 
 ---
 
-## Lupopedia 4.0.8 — Agent Registry Deprecation (Unified Registry Only)
+## Lupopedia 4.0.8 — Agent Registry Deprecation (Unified Registry Only) - 2026-02-14
 
 Lupopedia 4.0.8 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
 There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
@@ -134,7 +159,7 @@ There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**.
 
 ---
 
-## Lupopedia 4.0.7 — Stabilization Patch (Installer Run Step, Seed SET, Channel Roles Fix, Analytics Visits Import)
+## Lupopedia 4.0.7 — Stabilization Patch (Installer Run Step, Seed SET, Channel Roles Fix, Analytics Visits Import) - 2026-02-13
 
 Lupopedia 4.0.7 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
 There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
@@ -179,7 +204,7 @@ There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**.
 
 ---
 
-## Lupopedia 4.0.6 — Stabilization Patch (System Department, 3-Layer Permissions, Installer Fixes)
+## Lupopedia 4.0.6 — Stabilization Patch (System Department, 3-Layer Permissions, Installer Fixes) - 2026-02-12
 
 Lupopedia 4.0.6 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
 There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
@@ -312,7 +337,7 @@ There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**.
 ---
 
 
-## Lupopedia 4.0.5 — Stabilization Patch (Role-Based Identity, PHP 5.3 Compatibility)
+## Lupopedia 4.0.5 — Stabilization Patch (Role-Based Identity, PHP 5.3 Compatibility) - 2026-02-11
 
 Lupopedia 4.0.5 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
 There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
@@ -383,7 +408,7 @@ There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**.
 ---
 
 
-## Lupopedia 4.0.4 — Stabilization Patch (Crafty Syntax 3.7.5 → Lupopedia 4.0.x)
+## Lupopedia 4.0.4 — Stabilization Patch (Crafty Syntax 3.7.5 → Lupopedia 4.0.x) - 2026-02-10
 
 Lupopedia 4.0.4 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
 There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
@@ -465,7 +490,7 @@ The ONLY supported upgrade path is:
 There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**, which will not be created until after a stable 4.0.x release is published through auto-installers.
 
 
-## Lupopedia 4.0.3
+## Lupopedia 4.0.3 - updates to version and compatibility - 2026-02-09
 
 - **4.0.x doctrine:** This version is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path. No Lupopedia → Lupopedia upgrades exist for this version.
 
@@ -488,7 +513,7 @@ There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**, which will no
 
 ---
 
-## Lupopedia 4.0.2
+## Lupopedia 4.0.2 - no description - 2026-02-08
 
 - **4.0.x doctrine:** This version is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path. No Lupopedia → Lupopedia upgrades exist for this version.
 - **Helper refactors:** Domain-by-domain migration of helpers to services/wrappers (Collection Zero, Collection Tabs, Saved Collections, Redirect, Limits, Atoms/Version, Upload). Thin wrappers in `lupo-includes/functions/` call into `app/Services` and `app/Support` where applicable.
@@ -499,7 +524,7 @@ There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**, which will no
 
 ---
 
-## Lupopedia 4.0.1
+## Lupopedia 4.0.1 - no description - 2026-02-07
 
 - **4.0.x doctrine:** This version is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path. No Lupopedia → Lupopedia upgrades exist for this version.
 - **Architecture rebuild:** Structural changes and Crafty Syntax integration preparation. Legacy agent and channel directories removed; new doctrine and TOON files added; migration SQLs for actor model and related fixes.
@@ -510,7 +535,7 @@ There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**, which will no
 
 ---
 
-## Lupopedia 4.0.0
+## Lupopedia 4.0.0 - no description - 2026-02-06
 
 - **4.0.x doctrine:** This version is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path. No Lupopedia → Lupopedia upgrades exist for this version.
 - Initial Lupopedia release.
@@ -518,7 +543,7 @@ There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**, which will no
 
 ---
 
-## Crafty Syntax 3.7.5 (Legacy)
+## Crafty Syntax 3.7.5 (Legacy) - Final legacy release of Crafty Syntax - 2025-11-14
 
 - Final legacy release of Crafty Syntax.
 - This is the only supported source for upgrading to Lupopedia 4.0.x. All upgrades to Lupopedia 4.0.x are from Crafty Syntax 3.7.5 (or new installs). No other upgrade paths are valid for the 4.0.x line.
