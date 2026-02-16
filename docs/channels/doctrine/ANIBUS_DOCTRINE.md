@@ -25,6 +25,7 @@ in_this_file_we_have:
   - Coding Pattern: Orphan Detection (CRITICAL)
   - Example Use Cases
   - Integration with Lupopedia
+  - Unified Unregistry Awareness (Required for ANUBIS)
 file:
   title: "anubis Doctrine"
   description: "Custodial Intelligence system that replaces foreign keys, handles orphan resolution, memory redirection, and maintains lineage in Lupopedia"
@@ -514,6 +515,44 @@ Examples:
 - Duat = data realm, lifecycle environment, state transitions.
 
 This protocol exists to prevent confusion and ensure mythic terminology is understood as part of Lupopedia's computational architecture, not cultural or religious content.
+
+---
+
+## **15. Unified Unregistry Awareness (Required for ANUBIS)**
+
+ANUBIS participates in the global identity lifecycle. When ANUBIS performs a hard delete on any entity row, it must determine whether the deleted ID is safe to return to the **unified_unregistry** free‑list.
+
+The rules are:
+
+1. **If the deleted row has an active redirect (anubis_redirects), the ID must NOT be added to unified_unregistry.**
+   - Redirected IDs remain reserved.
+   - Redirects preserve semantic continuity.
+   - Redirected IDs must never be reused.
+
+2. **If the deleted row is an orphan that has not been resolved, the ID must NOT be added to unified_unregistry.**
+   - Unresolved orphans indicate incomplete cleanup.
+   - IDs remain reserved until ANUBIS resolves the orphan.
+
+3. **If the deleted row is fully resolved and has no redirect, ANUBIS must insert the ID into unified_unregistry.**
+   - This marks the ID as safe for reuse.
+   - The allocator (findpuka) may pop it later.
+
+4. **ANUBIS must never modify unified_registry directly.**
+   - unified_registry is the reserved‑ID ledger.
+   - Only the allocator inserts into unified_registry.
+   - ANUBIS interacts ONLY with unified_unregistry.
+
+5. **ANUBIS must use the dynamic prefix doctrine:**
+   ```php
+   $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+   $prefix . 'unified_unregistry'
+   $prefix . 'anubis_orphaned'
+   $prefix . 'anubis_redirects'
+   ```
+   (and so on for all anubis and registry table names).
+
+6. **ANUBIS must never infer schema from the live DB.**
+   - All schema definitions come from TOONs and installer SQL.
 
 ---
 

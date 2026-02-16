@@ -289,6 +289,10 @@ anubis maintains **semantic redirects** that allow:
 
 This is impossible with foreign key constraints.
 
+### **4.4 Unified Unregistry (Hard-Delete Lifecycle)**
+
+When ANUBIS performs a hard delete, it must follow the **unified_unregistry** doctrine so deleted IDs can be safely reused by the allocator (findpuka). ANUBIS must NOT add an ID to `{prefix}unified_unregistry` if the row has an active redirect in anubis_redirects or is an unresolved orphan; only fully resolved, redirect-free IDs may be returned to the free list. ANUBIS must never modify unified_registry (the reserved-ID ledger); it interacts only with unified_unregistry. See [ANIBUS_DOCTRINE.md](ANIBUS_DOCTRINE.md) section 15 for full rules and prefix doctrine.
+
 ---
 
 ## **5. How Orphans Work in Lupopedia**
