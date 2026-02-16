@@ -10,6 +10,52 @@ Canonical version history.
 
 ---
 
+## Lupopedia 4.0.9 — Version bump, installer fixes, seed duplicate removal
+
+Lupopedia 4.0.9 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
+There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
+
+### Version bump 4.0.8 → 4.0.9
+
+- **config/global_atoms.yaml:** `file.last_modified_system_version`, `version`, `versions.lupopedia`, `GLOBAL_CURRENT_LUPOPEDIA_VERSION` set to 4.0.9; `last_updated` set to 20260215000000.
+- **docs/doctrine/VERSIONING_DOCTRINE.md:** Canonical current version and patch pattern updated to 4.0.9.
+- **lupo-includes/version.php:** Docblock `@version` and fallback constants updated to 4.0.9; `LUPOPEDIA_VERSION_DATE` set to 20260215000000.
+- **lupo-includes/functions/load_atoms.php:** Fallback in `get_lupopedia_version()` changed from `'3.0.0'` to `'4.0.9'` so the wizard shows 4.0.9 when the atom loader is not set.
+
+### Install wizard version display
+
+- **install.php:** Loads `lupo-includes/version.php` and sets `$lupo_wizard_version` from `LUPOPEDIA_VERSION`. All UI strings that previously showed a hardcoded "4.0.6" (title, h1, welcome text, pre-flight error) now use `$lupo_wizard_version`.
+
+### Import from Crafty — SQL split and troubleshooting
+
+- **install_wizard_classes.php:** Added `InstallWizardSqlRunner::splitSqlStatements($sql)` so the import file is split on `;` only when not inside single-quoted strings. This fixes the broken statement caused by the semicolon inside the long `COMMENT = '...;...'` on line 1017 of **import_from_old_crafty_syntax.sql** (livehelp_smilies), which was splitting one statement into two and causing later imports (e.g. lupo_audit_log) to misbehave. On SQL failure, the runner now logs statement index and a short preview so the failing statement can be located in the import file.
+- **docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md:** New doc covering use of the log, prerequisites (34 livehelp_* tables, MySQL 5.7.8+ / MariaDB 10.2.3+ for JSON_OBJECT), and that the runner respects semicolons inside strings.
+
+### Optional drop of legacy tables
+
+- **install.php:** Checkbox on credentials step: "Drop deprecated Crafty (livehelp_*) tables after import" (default **unchecked**). Value stored in `$_SESSION['lupo_drop_livehelp_tables']`; cleared on "Start over." Upgrade run step runs **drop_old_crafty_syntax_tables.sql** and dropLivehelpTables only when that option is checked; otherwise logs "Skipped: drop deprecated livehelp_* tables (option unchecked at credentials)." Confirm step text updated so the drop is listed only when the option is checked.
+
+### Doctrine tables (doctrine_blocks removed, transition note)
+
+- **install_new_lupopedia.sql:** Entire `lupo_doctrine_blocks` CREATE and indexes **removed** (table unused).
+- **docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md:** New doc stating (1) doctrine storage should use **{prefix}contents** on **channel 42**; (2) doctrine_blocks removed from install; (3) doctrine_refinements and doctrine_evolution_audit remain in install but should be transitioned to contents on channel 42 when CIP is refactored.
+
+### Seed duplicate 0-entry records removed
+
+- **database/migrations/seed_lupopedia.sql:** Removed the **duplicate block** of `lupo_unified_registry` INSERTs (the second "TOON-defined canonical rows" section, 253 lines). The seed had been inserting the same unified_registry rows twice (ids 1–58, 59–87, 9000001–9001212), causing duplicate key and duplicate 0-entry errors during install. The first occurrence (Unified registry + actors + PK=0 rows) is retained; the duplicate section was deleted so the seed flows directly to "Actor/agent doctrine" (ALTER TABLE lupo_actors AUTO_INCREMENT = 10000) and Collection 0.
+
+### Unified registry: entity_index, drop unused columns, PHP and seed alignment
+
+- **lupo_unified_registry (install + migrations):** Column **entity_id** renamed to **entity_index**; **dedicated_index_id** dropped (redundant). Unused columns **code**, **name**, **layer**, **agent_registry_parent_id**, **is_required**, **classification_json**, **agent_class**, **can_use_humor**, **can_use_emotion** removed from install. Canonical identity is **entity_type** + **entity_index**; **entity_table** names the table that owns the reserved index; **entity_key** used for lookup by string (e.g. `UTC_TIMEKEEPER`).
+- **lupo_unified_unregistry:** Table added (install + **migration_add_unified_unregistry.sql**) with **entity_type**, **entity_index**, **federation_node_id** (default 1), **created_utc**, **metadata_json** (reference snapshot when index was freed). **migration_unified_registry_entity_index_drop_dedicated_index.sql** renames entity_id → entity_index, drops dedicated_index_id, adds metadata_json to unregistry. **migration_unified_registry_drop_unused_columns.sql** drops the nine unused registry columns on existing DBs.
+- **seed_lupopedia.sql:** All unified_registry INSERTs use only the kept columns (no code, name, layer, etc.); VALUES trimmed to match.
+- **PHP:** **lupo-includes/class-iris.php** — `loadAgentConfig()` selects **entity_index**, **entity_table**, **entity_key**, **entity_name**, **is_active**, **is_kernel**; fallback prompts use entity_key or entity_name instead of code/name. **lupo-includes/classes/LABSValidator.php** — UTC_TIMEKEEPER check selects **entity_index**, **entity_table**, **is_active** and filters by **entity_key = 'UTC_TIMEKEEPER'** only.
+- **Docs:** **docs/channels/doctrine/ACTOR_AGENT_DOCTRINE.md** and **docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md** updated to describe entity_index, entity_table, entity_key as canonical; removed columns noted.
+
+**Files modified (4.0.9):** `config/global_atoms.yaml`, `docs/doctrine/VERSIONING_DOCTRINE.md`, `lupo-includes/version.php`, `lupo-includes/functions/load_atoms.php`, `install.php`, `install_wizard_classes.php`, `database/migrations/install_new_lupopedia.sql`, `database/migrations/seed_lupopedia.sql`, `database/migrations/migration_add_unified_unregistry.sql`, `database/migrations/migration_unified_registry_entity_index_drop_dedicated_index.sql`, `database/migrations/migration_unified_registry_drop_unused_columns.sql` (new), `lupo-includes/class-iris.php`, `lupo-includes/classes/LABSValidator.php`, `docs/channels/doctrine/ACTOR_AGENT_DOCTRINE.md`, `docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md`, `docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md` (new), `docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md` (new), `CHANGELOG.md`.
+
+---
+
 ## Lupopedia 4.0.8 — Agent Registry Deprecation (Unified Registry Only)
 
 Lupopedia 4.0.8 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  

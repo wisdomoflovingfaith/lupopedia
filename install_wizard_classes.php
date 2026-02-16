@@ -234,6 +234,58 @@ class InstallWizardUnifiedRegistryValidator {
 class InstallWizardSqlRunner {
 
     /**
+     * Split SQL into statements by semicolon, respecting single-quoted strings so that
+     * semicolons inside COMMENT = '...;...' or other string literals do not break the split.
+     * Escaped single quote '' is supported. PHP 5.3 compatible.
+     *
+     * @param string $sql
+     * @return array Non-empty trimmed statements
+     */
+    public static function splitSqlStatements($sql) {
+        $len = strlen($sql);
+        $statements = array();
+        $current = '';
+        $inSingle = false;
+        $i = 0;
+        while ($i < $len) {
+            $c = $sql[$i];
+            if ($inSingle) {
+                if ($c === "'" && $i + 1 < $len && $sql[$i + 1] === "'") {
+                    $current .= "''";
+                    $i += 2;
+                    continue;
+                }
+                if ($c === "'") {
+                    $inSingle = false;
+                }
+                $current .= $c;
+                $i++;
+            } else {
+                if ($c === ';') {
+                    $trimmed = trim($current);
+                    if ($trimmed !== '') {
+                        $statements[] = $trimmed;
+                    }
+                    $current = '';
+                    $i++;
+                } elseif ($c === "'") {
+                    $inSingle = true;
+                    $current .= $c;
+                    $i++;
+                } else {
+                    $current .= $c;
+                    $i++;
+                }
+            }
+        }
+        $trimmed = trim($current);
+        if ($trimmed !== '') {
+            $statements[] = $trimmed;
+        }
+        return $statements;
+    }
+
+    /**
      * Run a SQL file. Optional $table_prefix: when set and not 'lupo_', replaces literal "lupo_" with prefix in SQL (so install/seed/import create tables with chosen prefix).
      *
      * @param PDO $pdo
@@ -259,12 +311,7 @@ class InstallWizardSqlRunner {
         if ($table_prefix !== null && $table_prefix !== '' && $table_prefix !== 'lupo_') {
             $sql = str_replace('lupo_', $table_prefix, $sql);
         }
-        $statements = array_filter(
-            array_map('trim', explode(';', $sql)),
-            function ($s) {
-                return $s !== '';
-            }
-        );
+        $statements = InstallWizardSqlRunner::splitSqlStatements($sql);
         if (stripos($sql, 'unified_registry') !== false && stripos($sql, 'INSERT') !== false) {
             $ids = InstallWizardUnifiedRegistryValidator::extractUnifiedRegistryIdsFromSql($sql);
             if (!empty($ids)) {
@@ -275,7 +322,9 @@ class InstallWizardSqlRunner {
             }
         }
         $ok = true;
+        $idx = 0;
         foreach ($statements as $stmt) {
+            $idx++;
             if ($stmt === '') {
                 continue;
             }
@@ -288,8 +337,12 @@ class InstallWizardSqlRunner {
                     $log[] = InstallWizardLogger::logEntry('skip', 'Statement skipped (already exists): ' . $basename);
                 } else {
                     $safe = substr(preg_replace('/[\r\n]/', ' ', $msg), 0, 200);
-                    $log[] = InstallWizardLogger::logEntry('error', 'SQL failed [' . $basename . ']: ' . $safe);
-                    error_log('Lupopedia install SQL error [' . $basename . ']: ' . $msg);
+                    $preview = trim(preg_replace('/\s+/', ' ', $stmt));
+                    $preview = strlen($preview) > 80 ? substr($preview, 0, 80) . '...' : $preview;
+                    $log[] = InstallWizardLogger::logEntry('error', 'SQL failed [' . $basename . '] statement ' . $idx . ': ' . $safe);
+                    $log[] = InstallWizardLogger::logEntry('error', 'Failed statement preview: ' . $preview);
+                    error_log('Lupopedia install SQL error [' . $basename . '] statement ' . $idx . ': ' . $msg);
+                    error_log('Lupopedia install SQL failed statement preview: ' . $preview);
                     $ok = false;
                 }
             }

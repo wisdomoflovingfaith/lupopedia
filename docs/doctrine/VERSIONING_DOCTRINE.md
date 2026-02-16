@@ -21,7 +21,7 @@
 
 ## 1. Canonical current version
 
-The **current version** of Lupopedia is **4.0.8**.
+The **current version** of Lupopedia is **4.0.9**.
 
 This is the only correct “current version” number for the codebase. No other “current version” may be introduced unless explicitly instructed.
 
@@ -52,6 +52,7 @@ Patch increments follow this pattern:
 4.0.5 → 4.0.6
 4.0.6 → 4.0.7
 4.0.7 → 4.0.8
+4.0.8 → 4.0.9
 …
 4.0.998 → 4.0.999
 ```
@@ -147,7 +148,7 @@ Cursor must **not** move migration files again unless explicitly instructed.
 |------|-----------|
 | **Single file** | Only `docs/doctrine/VERSIONING_DOCTRINE.md` exists; no duplicates or suffixed copies. |
 | **Cleanup** | The one-time versioning cleanup is complete. |
-| **Canonical version** | The canonical current version is **4.0.8**. |
+| **Canonical version** | The canonical current version is **4.0.9**. |
 | **4.1.0** | 4.1.0 is allowed **only** for future-release planning (required tables, roadmaps, hotfix registry, etc.); it must not be used as the current version. |
 | **Patch increments** | Only Cursor increments patch versions (4.0.6 → 4.0.7 → 4.0.8 → …); minor/major are changed only when Eric explicitly instructs. |
 | **Historical versions** | Historical version numbers (3.0.x, 3.0.0, 4.0.1, 4.1.0 as future marker) are frozen and must not be “fixed” or normalized. |

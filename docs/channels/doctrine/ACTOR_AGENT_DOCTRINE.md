@@ -29,10 +29,9 @@
 |------------------------------|--------|
 | `entity_type` | `'actor'` |
 | `entity_table` | `'lupo_agent_registry'` |
-| `entity_id` | `agent_registry_id` |
-| `dedicated_index_id` | `agent_registry_id` |
-| `entity_key` | agent `code` |
-| `entity_name` | agent `name` |
+| `entity_index` | agent registry id (reserved index in entity_table) |
+| `entity_key` | agent code / lookup key |
+| `entity_name` | display name (optional) |
 | `federation_node_id` | `1` |
 | `is_active` | `1` |
 | `metadata_json` | Must include `{"actor_source_type":"lupo_agent_registry","actor_source_id":<agent_registry_id>}` |

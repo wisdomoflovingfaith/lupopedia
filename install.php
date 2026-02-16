@@ -1,6 +1,6 @@
 <?php
 /**
- * Lupopedia 4.0.6 — Install / Upgrade Wizard
+ * Lupopedia Install / Upgrade Wizard (version from version.php / atoms)
  *
  * Two valid states only: New install | Upgrade from Crafty Syntax 3.7.5.
  * No Lupopedia → Lupopedia upgrade. Project root is webroot; no /public folder.
@@ -31,6 +31,13 @@
 if (!defined('LUPOPEDIA_PATH')) {
     define('LUPOPEDIA_PATH', __DIR__);
 }
+
+// Version for wizard UI (from version.php / atom; single source of truth)
+$version_php = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'version.php';
+if (is_file($version_php)) {
+    require_once $version_php;
+}
+$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.9';
 
 /**
  * PHP 5.3-safe random bytes. Uses random_bytes() when available (PHP 7+), else openssl_random_pseudo_bytes, else mt_rand fallback.
@@ -117,7 +124,7 @@ if (!extension_loaded('fileinfo')) {
 if (!empty($preflight_blocking)) {
     header('Content-Type: text/html; charset=utf-8');
     echo '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lupopedia — Pre-flight check failed</title></head><body>';
-    echo '<h1>Lupopedia 4.0.6 — Pre-flight check failed</h1><p>Installation cannot continue:</p><ul>';
+    echo '<h1>Lupopedia ' . htmlspecialchars($lupo_wizard_version) . ' — Pre-flight check failed</h1><p>Installation cannot continue:</p><ul>';
     foreach ($preflight_blocking as $msg) {
         echo '<li>' . htmlspecialchars($msg) . '</li>';
     }
@@ -175,7 +182,7 @@ if ($step === 'download_log') {
 
 // Start over: clear wizard session and redirect to welcome
 if (isset($_POST['action']) && $_POST['action'] === 'start_over') {
-    foreach (array('lupo_install_db_vars', 'lupo_install_type', 'lupo_install_livehelp_tables', 'lupo_normalize_applied', 'lupo_normalize_count', 'lupo_operator_channel_map', 'lupo_bootstrap_log', 'lupo_run_log', 'lupo_run_done', 'lupo_import_run', 'lupo_wizard_audit_log', 'lupo_config_log', 'lupo_config_site_name', 'lupo_config_base_url', 'lupo_config_admin_email', 'lupo_config_timezone', 'lupo_config_default_language', 'lupo_config_support_email', 'lupo_config_default_visitor_channel', 'lupo_config_enable_ai_channels', 'lupo_csrf_token') as $k) {
+    foreach (array('lupo_install_db_vars', 'lupo_install_type', 'lupo_install_livehelp_tables', 'lupo_drop_livehelp_tables', 'lupo_normalize_applied', 'lupo_normalize_count', 'lupo_operator_channel_map', 'lupo_bootstrap_log', 'lupo_run_log', 'lupo_run_done', 'lupo_import_run', 'lupo_wizard_audit_log', 'lupo_config_log', 'lupo_config_site_name', 'lupo_config_base_url', 'lupo_config_admin_email', 'lupo_config_timezone', 'lupo_config_default_language', 'lupo_config_support_email', 'lupo_config_default_visitor_channel', 'lupo_config_enable_ai_channels', 'lupo_csrf_token') as $k) {
         unset($_SESSION[$k]);
     }
     header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=welcome');
@@ -217,6 +224,7 @@ if ($step === 'credentials') {
                 $table_prefix = 'lupo_';
             }
             $_SESSION['lupo_table_prefix'] = $table_prefix;
+            $_SESSION['lupo_drop_livehelp_tables'] = isset($_POST['drop_livehelp_tables']) && $_POST['drop_livehelp_tables'] === '1';
             $livehelp_tables = InstallWizardDb::detectLivehelpTables($pdo);
             $_SESSION['lupo_install_type'] = count($livehelp_tables) > 0 ? 'upgrade' : 'new';
             $_SESSION['lupo_install_livehelp_tables'] = $livehelp_tables;
@@ -442,15 +450,18 @@ if ($step === 'run') {
             $_SESSION['lupo_operator_channel_map'] = $operatorChannelMap;
             InstallWizardChannels::ensureOperatorChannels($pdo, $log);
 
-            // Canonical migration path: drop legacy livehelp_* tables after import.
-            $dropSql = $migrationsDir . DIRECTORY_SEPARATOR . 'drop_old_crafty_syntax_tables.sql';
-            InstallWizardSqlRunner::runSqlFile($pdo, $dropSql, $log);
-            $log[] = InstallWizardLogger::logEntry('ok', 'Legacy Crafty Syntax tables dropped.');
-            // Doctrine enforcement: if any livehelp_* remain, try drop again.
-            $remaining = InstallWizardDb::detectLivehelpTables($pdo);
-            if (!empty($remaining)) {
-                InstallWizardSqlRunner::dropLivehelpTables($pdo, $remaining, $log);
-                $log[] = InstallWizardLogger::logEntry('ok', 'Dropped remaining legacy tables: ' . implode(', ', $remaining));
+            // Optional: drop legacy livehelp_* tables after import (user choice at credentials; default unchecked).
+            if (!empty($_SESSION['lupo_drop_livehelp_tables'])) {
+                $dropSql = $migrationsDir . DIRECTORY_SEPARATOR . 'drop_old_crafty_syntax_tables.sql';
+                InstallWizardSqlRunner::runSqlFile($pdo, $dropSql, $log);
+                $log[] = InstallWizardLogger::logEntry('ok', 'Legacy Crafty Syntax tables dropped.');
+                $remaining = InstallWizardDb::detectLivehelpTables($pdo);
+                if (!empty($remaining)) {
+                    InstallWizardSqlRunner::dropLivehelpTables($pdo, $remaining, $log);
+                    $log[] = InstallWizardLogger::logEntry('ok', 'Dropped remaining legacy tables: ' . implode(', ', $remaining));
+                }
+            } else {
+                $log[] = InstallWizardLogger::logEntry('skip', 'Skipped: drop deprecated livehelp_* tables (option unchecked at credentials).');
             }
         }
         $log[] = InstallWizardLogger::logEntry('ok', 'Run complete.');
@@ -599,7 +610,7 @@ if ($baseUrl === '') {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lupopedia 4.0.6 — Install / Upgrade</title>
+    <title>Lupopedia <?php echo htmlspecialchars($lupo_wizard_version); ?> — Install / Upgrade</title>
     <style>
         body { font-family: system-ui, -apple-system, sans-serif; max-width: 680px; margin: 2rem auto; padding: 0 1.25rem; color: #1a1a1a; }
         h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
@@ -654,13 +665,13 @@ if ($baseUrl === '') {
     </style>
 </head>
 <body>
-    <h1>Lupopedia 4.0.6 — Install / Upgrade Wizard</h1>
+    <h1>Lupopedia <?php echo htmlspecialchars($lupo_wizard_version); ?> — Install / Upgrade Wizard</h1>
     <p class="wizard-progress">Step <?php echo InstallWizardSteps::getCurrentStepIndex($step); ?> of <?php echo InstallWizardSteps::getTotalSteps(); ?></p>
 
     <?php if ($step === 'welcome'): ?>
         <div class="wizard-card">
             <h2>Welcome</h2>
-            <p>This wizard will install Lupopedia 4.0.6 or upgrade from Crafty Syntax 3.7.5. Two valid states only: <strong>New install</strong> or <strong>Upgrade</strong>. No Lupopedia→Lupopedia upgrade. Project root is the webroot; no /public folder.</p>
+            <p>This wizard will install Lupopedia <?php echo htmlspecialchars($lupo_wizard_version); ?> or upgrade from Crafty Syntax 3.7.5. Two valid states only: <strong>New install</strong> or <strong>Upgrade</strong>. No Lupopedia→Lupopedia upgrade. Project root is the webroot; no /public folder.</p>
             <p><strong>Requirements:</strong> PHP 5.3+, PDO MySQL, JSON extension, writable project root, and a MySQL/MariaDB database. For upgrade: existing Crafty Syntax 3.7.5 data.</p>
             <div class="log-section">
                 <h4>System diagnostics</h4>
@@ -702,6 +713,8 @@ if ($baseUrl === '') {
                 <label>User <input type="text" name="db_user" value="<?php echo htmlspecialchars(isset($_POST['db_user']) ? $_POST['db_user'] : ''); ?>" required></label>
                 <label>Password <input type="password" name="db_password" value=""></label>
                 <label>Table prefix <input type="text" name="table_prefix" value="<?php echo htmlspecialchars(isset($_POST['table_prefix']) ? $_POST['table_prefix'] : 'lupo_'); ?>" placeholder="lupo_" title="Lowercase letters, digits, underscores only. Default: lupo_"></label>
+                <label style="display:block; margin-top:0.75rem;"><input type="checkbox" name="drop_livehelp_tables" value="1"<?php echo (isset($_POST['drop_livehelp_tables']) && $_POST['drop_livehelp_tables'] === '1') ? ' checked' : ''; ?>> Drop deprecated Crafty (<code>livehelp_*</code>) tables after import</label>
+                <p class="slug-tip" style="margin-top:0.25rem;">Only applies to upgrades. Unchecked by default; leave unchecked to keep legacy tables for reference or re-import.</p>
                 <p style="margin-top:1rem;"><button type="submit" id="lupo-connect-btn">Connect and detect install type</button></p>
             </form>
             <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=welcome'); ?>" class="btn btn-secondary">Back</a></p>
@@ -840,7 +853,11 @@ if ($baseUrl === '') {
                     <li>Set <code>lupo_actors</code> so the next actor_id is at least 10000 (reserved ID doctrine)</li>
                     <li>Run <code>import_from_old_crafty_syntax.sql</code></li>
                     <li>Create personal channels and assign captain roles (<code>lupo_channels</code>, <code>lupo_actor_channel_roles</code>)</li>
-                    <li>Run <code>drop_old_crafty_syntax_tables.sql</code></li>
+                    <?php if (!empty($_SESSION['lupo_drop_livehelp_tables'])): ?>
+                    <li>Run <code>drop_old_crafty_syntax_tables.sql</code> (drop deprecated <code>livehelp_*</code> tables)</li>
+                    <?php else: ?>
+                    <li>Skip dropping legacy <code>livehelp_*</code> tables (option unchecked at credentials)</li>
+                    <?php endif; ?>
                     <li>Write <code>lupopedia-config.php</code></li>
                     <li>Redirect to login</li>
                 </ol>

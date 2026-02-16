@@ -2155,21 +2155,6 @@ CREATE INDEX lupo_dialog_threads_idx_updated ON lupo_dialog_threads (updated_ymd
 CREATE INDEX lupo_dialog_threads_idx_deleted ON lupo_dialog_threads (is_deleted);
 CREATE INDEX lupo_dialog_threads_idx_created_by_actor ON lupo_dialog_threads (created_by_actor_id);
 
-CREATE TABLE lupo_doctrine_blocks (
-  doctrine_block_id bigint NOT NULL,
-  block_key varchar(255) NOT NULL,
-  block_title varchar(255) NOT NULL,
-  block_content text NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  PRIMARY KEY (doctrine_block_id)
-);
-
-CREATE UNIQUE INDEX lupo_doctrine_blocks_unique_block_key ON lupo_doctrine_blocks (block_key);
-CREATE INDEX lupo_doctrine_blocks_idx_block_key ON lupo_doctrine_blocks (block_key);
-CREATE INDEX lupo_doctrine_blocks_idx_created_ymdhis ON lupo_doctrine_blocks (created_ymdhis);
-CREATE INDEX lupo_doctrine_blocks_idx_updated_ymdhis ON lupo_doctrine_blocks (updated_ymdhis);
-
 CREATE TABLE lupo_doctrine_evolution_audit (
   doctrine_evolution_audit_id bigint NOT NULL,
   refinement_id bigint NOT NULL,
@@ -3814,10 +3799,9 @@ ALTER TABLE lupo_unified_referers CHANGE referer_id referer_id bigint NOT NULL A
 CREATE TABLE lupo_unified_registry (
   unified_registry_id bigint NOT NULL,
   entity_type varchar(64) NOT NULL,
-  entity_id bigint NOT NULL,
+  entity_index bigint NOT NULL,
   entity_key varchar(255) DEFAULT NULL,
   entity_name varchar(255) DEFAULT NULL,
-  dedicated_index_id bigint NOT NULL,
   entity_table varchar(128) NOT NULL,
   federation_node_id bigint NOT NULL DEFAULT '1',
   created_ymdhis bigint NOT NULL DEFAULT 0,
@@ -3827,23 +3811,26 @@ CREATE TABLE lupo_unified_registry (
   is_active tinyint NOT NULL DEFAULT '1',
   is_kernel tinyint NOT NULL DEFAULT '0',
   metadata_json json DEFAULT NULL,
-  agent_registry_parent_id bigint DEFAULT NULL,
-  code varchar(64) DEFAULT NULL,
-  name varchar(255) DEFAULT NULL,
-  layer varchar(64) DEFAULT NULL,
-  is_required tinyint NOT NULL DEFAULT 0,
-  classification_json json DEFAULT NULL,
-  agent_class varchar(64) NOT NULL DEFAULT 'production',
-  can_use_humor tinyint NOT NULL DEFAULT 0,
-  can_use_emotion tinyint NOT NULL DEFAULT 0,
   PRIMARY KEY (unified_registry_id)
 );
 
-CREATE UNIQUE INDEX lupo_unified_registry_uniq_entity ON lupo_unified_registry (entity_type, entity_id);
-CREATE UNIQUE INDEX lupo_unified_registry_uniq_entity_type_dedicated_index ON lupo_unified_registry (entity_type, dedicated_index_id);
+CREATE UNIQUE INDEX lupo_unified_registry_uniq_entity ON lupo_unified_registry (entity_type, entity_index);
 CREATE INDEX lupo_unified_registry_idx_entity_key ON lupo_unified_registry (entity_key);
 CREATE INDEX lupo_unified_registry_idx_source_table ON lupo_unified_registry (entity_table);
 CREATE INDEX lupo_unified_registry_idx_entity_type ON lupo_unified_registry (entity_type);
+
+-- Polyphonic free-index registry for all entity types (freed indexes for allocation).
+-- Doctrine: no UNSIGNED, no FKs, no triggers, BIGINT timestamps.
+CREATE TABLE lupo_unified_unregistry (
+  entity_type varchar(64) NOT NULL,
+  entity_index int NOT NULL,
+  federation_node_id bigint NOT NULL DEFAULT 1,
+  created_utc bigint NOT NULL,
+  metadata_json json DEFAULT NULL,
+  PRIMARY KEY (entity_type, entity_index)
+);
+
+CREATE INDEX lupo_unified_unregistry_idx_entity_type_created_utc ON lupo_unified_unregistry (entity_type, created_utc);
 
 CREATE TABLE lupo_unified_truth_items (
   truth_item_id bigint NOT NULL,
