@@ -152,7 +152,7 @@ From this doctrine onward, all generated code must:
 - **Avoid** frameworks, Composer, and modern dependency managers unless already in use and doctrine-compliant
 - Follow the **minimal hosting doctrine** (required vs optional vs not required)
 - Follow the **slug doctrine** (mbstring-free, ASCII fallbacks)
-- Follow **reserved channel doctrine** (0, 1, 42, 5100)
+- Follow **reserved channel doctrine** (0, 1, 42, 51)
 - Follow **identity normalization doctrine** (Crafty → Lupopedia email/slug)
 - Follow **upgrade / new-install doctrine** (install, seed, import, drop, config order)
 

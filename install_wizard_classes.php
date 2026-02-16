@@ -697,7 +697,7 @@ class InstallWizardChannels {
             0   => array('key' => 'system',       'slug' => 'system',     'type' => 'system', 'name' => 'System Kernel Channel',       'desc' => 'System channel (kernel/system operations).', 'is_kernel' => 1, 'captain' => false),
             1   => array('key' => 'administration', 'slug' => 'administration', 'type' => 'public', 'name' => 'Administration', 'desc' => 'Global admin channel (channel_id = 1).', 'is_kernel' => 0, 'captain' => true),
             42  => array('key' => 'crafty-dev',   'slug' => 'crafty-dev', 'type' => 'public', 'name' => 'Crafty Syntax Development',   'desc' => 'Crafty Syntax development channel.',         'is_kernel' => 0, 'captain' => true),
-            5100=> array('key' => 'ai-dev',       'slug' => 'ai-dev',     'type' => 'public', 'name' => 'AI Agent Development',       'desc' => 'AI agent development channel.',              'is_kernel' => 0, 'captain' => true),
+            51   => array('key' => 'ai-dev',       'slug' => 'ai-dev',     'type' => 'public', 'name' => 'AI Agent Development',       'desc' => 'AI agent development channel.',              'is_kernel' => 0, 'captain' => true),
         );
 
         $check = $pdo->prepare("SELECT 1 FROM " . $ch . " WHERE channel_id = ?");
@@ -741,8 +741,9 @@ class InstallWizardChannels {
                     $nextAcrId++;
                 }
             } catch (PDOException $e) {
-                $log[] = InstallWizardLogger::logEntry('error', 'Reserved channel creation failed (see server log).');
-                error_log('Lupopedia reserved channel ' . $channelId . ': ' . $e->getMessage());
+                $msg = $e->getMessage();
+                $log[] = InstallWizardLogger::logEntry('error', 'Reserved channel ' . $channelId . ' (' . $def['key'] . ') failed: ' . $msg);
+                error_log('Lupopedia reserved channel ' . $channelId . ': ' . $msg);
             }
         }
     }
@@ -899,14 +900,22 @@ class InstallWizardChannels {
     public static function ensureReservedChannels($pdo, &$log) {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $ch = $prefix . 'channels';
-        $required = array(0, 1, 42, 5100);
+        $required = array(0, 1, 42, 51);
         try {
-            $stmt = $pdo->query('SELECT channel_id FROM ' . $ch . ' WHERE channel_id IN (0, 1, 42, 5100)');
+            $stmt = $pdo->query('SELECT channel_id FROM ' . $ch . ' WHERE channel_id IN (0, 1, 42, 51)');
             $have = $stmt ? $stmt->fetchAll(PDO::FETCH_COLUMN) : array();
             $missing = array_diff($required, array_map('intval', $have));
             if ($missing !== array()) {
+                $log[] = InstallWizardLogger::logEntry('ok', 'Creating missing reserved channels: ' . implode(', ', $missing));
                 self::createReservedSystemChannels($pdo, $log);
-                $log[] = InstallWizardLogger::logEntry('ok', 'Recreated missing reserved channels: ' . implode(', ', $missing));
+                $stmt2 = $pdo->query('SELECT channel_id FROM ' . $ch . ' WHERE channel_id IN (0, 1, 42, 51)');
+                $haveAfter = $stmt2 ? $stmt2->fetchAll(PDO::FETCH_COLUMN) : array();
+                $stillMissing = array_diff($required, array_map('intval', $haveAfter));
+                if ($stillMissing !== array()) {
+                    $log[] = InstallWizardLogger::logEntry('error', 'Reserved channel(s) still missing after create: ' . implode(', ', $stillMissing) . '. Check error(s) above.');
+                } else {
+                    $log[] = InstallWizardLogger::logEntry('ok', 'Reserved channels created: ' . implode(', ', $missing));
+                }
             }
         } catch (PDOException $e) {
             $log[] = InstallWizardLogger::logEntry('error', 'Could not verify reserved channels.');
@@ -990,5 +999,116 @@ class InstallWizardChannels {
             $log[] = InstallWizardLogger::logEntry('error', 'Could not ensure personal channels.');
             error_log('Lupopedia ensureOperatorChannels: ' . $e->getMessage());
         }
+    }
+}
+
+/**
+ * Populate lupo_unified_unregistry with free IDs (gaps) in [0, max] for channels and actors
+ * so allocation (findpuka) can reuse them FIFO. Caps the range so the table does not grow huge.
+ */
+class InstallWizardUnregistry {
+
+    /** Default cap for max id range (0 to cap) so unregistry stays small. */
+    const DEFAULT_MAX_CAP = 500;
+
+    /**
+     * Seed unified_unregistry with all free IDs from 0 to min(MAX(id), maxCap) for channels and actors.
+     * If MAX(id) &gt; maxCap, only gaps in [0, maxCap] are added (keeps table size bounded).
+     *
+     * @param PDO $pdo
+     * @param array $log
+     * @param int $maxCap Upper bound for the range to consider (default 500). Use to avoid huge unregistry.
+     */
+    public static function seedUnregistryFromGaps($pdo, &$log, $maxCap = 500) {
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $ch = $prefix . 'channels';
+        $actors_t = $prefix . 'actors';
+        $unreg = $prefix . 'unified_unregistry';
+        $federationNodeId = 1;
+        $now = (int) gmdate('YmdHis');
+        $maxCap = (int) $maxCap;
+        if ($maxCap < 1) {
+            $log[] = InstallWizardLogger::logEntry('skip', 'Unregistry seed skipped (max cap &lt; 1).');
+            return;
+        }
+        try {
+            $ins = $pdo->prepare(
+                "INSERT IGNORE INTO " . $unreg . " (entity_type, entity_index, federation_node_id, created_utc, metadata_json) VALUES (?, ?, ?, ?, NULL)"
+            );
+        } catch (PDOException $e) {
+            $log[] = InstallWizardLogger::logEntry('error', 'Unregistry seed failed (table missing?): ' . $e->getMessage());
+            return;
+        }
+
+        $totalCh = 0;
+        $totalAct = 0;
+
+        // Channels: free IDs in [0, min(MAX(channel_id), maxCap)]
+        try {
+            $stmt = $pdo->query("SELECT COALESCE(MAX(channel_id), 0) AS mx FROM " . $ch);
+            $row = $stmt ? $stmt->fetch(PDO::FETCH_ASSOC) : null;
+            $maxCh = $row && isset($row['mx']) ? (int) $row['mx'] : 0;
+            $effectiveMaxCh = $maxCh > $maxCap ? $maxCap : $maxCh;
+            if ($maxCh > $maxCap) {
+                $log[] = InstallWizardLogger::logEntry('ok', 'Unregistry: channel max id ' . $maxCh . ' capped at ' . $maxCap . ' to keep table small.');
+            }
+            $stmt2 = $pdo->query("SELECT channel_id FROM " . $ch . " WHERE channel_id >= 0 AND channel_id <= " . (int) $effectiveMaxCh);
+            $usedCh = array();
+            if ($stmt2) {
+                while (($id = $stmt2->fetchColumn()) !== false) {
+                    $usedCh[(int) $id] = true;
+                }
+            }
+            for ($i = 0; $i <= $effectiveMaxCh; $i++) {
+                if (isset($usedCh[$i])) {
+                    continue;
+                }
+                try {
+                    $ins->execute(array('channel', $i, $federationNodeId, $now));
+                    if ($ins->rowCount() > 0) {
+                        $totalCh++;
+                    }
+                } catch (PDOException $e) {
+                    // duplicate or other; skip
+                }
+            }
+        } catch (PDOException $e) {
+            $log[] = InstallWizardLogger::logEntry('error', 'Unregistry channel seed failed: ' . $e->getMessage());
+        }
+
+        // Actors: free IDs in [0, min(MAX(actor_id), maxCap)]
+        try {
+            $stmt = $pdo->query("SELECT COALESCE(MAX(actor_id), 0) AS mx FROM " . $actors_t);
+            $row = $stmt ? $stmt->fetch(PDO::FETCH_ASSOC) : null;
+            $maxAct = $row && isset($row['mx']) ? (int) $row['mx'] : 0;
+            $effectiveMaxAct = $maxAct > $maxCap ? $maxCap : $maxAct;
+            if ($maxAct > $maxCap) {
+                $log[] = InstallWizardLogger::logEntry('ok', 'Unregistry: actor max id ' . $maxAct . ' capped at ' . $maxCap . ' to keep table small.');
+            }
+            $stmt2 = $pdo->query("SELECT actor_id FROM " . $actors_t . " WHERE actor_id >= 0 AND actor_id <= " . (int) $effectiveMaxAct);
+            $usedAct = array();
+            if ($stmt2) {
+                while (($id = $stmt2->fetchColumn()) !== false) {
+                    $usedAct[(int) $id] = true;
+                }
+            }
+            for ($i = 0; $i <= $effectiveMaxAct; $i++) {
+                if (isset($usedAct[$i])) {
+                    continue;
+                }
+                try {
+                    $ins->execute(array('actor', $i, $federationNodeId, $now));
+                    if ($ins->rowCount() > 0) {
+                        $totalAct++;
+                    }
+                } catch (PDOException $e) {
+                    // duplicate or other; skip
+                }
+            }
+        } catch (PDOException $e) {
+            $log[] = InstallWizardLogger::logEntry('error', 'Unregistry actor seed failed: ' . $e->getMessage());
+        }
+
+        $log[] = InstallWizardLogger::logEntry('ok', 'Unregistry seeded: ' . $totalCh . ' channel IDs, ' . $totalAct . ' actor IDs (free list in [0, cap ' . $maxCap . ']).');
     }
 }

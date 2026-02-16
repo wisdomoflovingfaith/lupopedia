@@ -10,11 +10,11 @@ Governs Semantic OS operations via stable reference points.
 5. Kernel: System behavior
 ## Navigation Rules
 - Channel numbers are semantic (not sequential)
-- 5100-series = subsystem groups
+- 51-series = subsystem groups
 - 222 total channels (intentional count)
 - Use channel_key or channel_slug for queries
 ## Files
-- Identity: ../channels/5100/identity-layer-architecture.md
+- Identity: ../channels/51/identity-layer-architecture.md
 - Channels: ./channels.md
 - Emotional: ./emotional_topology_layer.md
 - Routing: [DRAFT]

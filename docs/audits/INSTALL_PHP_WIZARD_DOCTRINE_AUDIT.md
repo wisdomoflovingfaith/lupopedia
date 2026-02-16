@@ -199,7 +199,7 @@ No additional PHP 8.1-only violations identified; main risk is removal of 5.3-in
 | **Normalization** | OK | Upgrade path: credentials → bootstrap (install+seed+reserved) → normalize → confirm → run → config → complete. |
 | **Import** | OK | `import_from_old_crafty_syntax.sql` run after normalize; `lupo_import_run` prevents re-run. |
 | **Operator channels** | OK | `create_operator_channels` after import; `ensure_operator_channels` for idempotency. |
-| **Reserved channels** | OK | 0, 1, 42, 5100 created at bootstrap (upgrade) or at run (new); `ensure_reserved_channels` recreated if missing. |
+| **Reserved channels** | OK | 0, 1, 42, 51 created at bootstrap (upgrade) or at run (new); `ensure_reserved_channels` recreated if missing. |
 | **Drop legacy** | OK | `drop_old_crafty_syntax_tables.sql` then `detect_livehelp_tables` + `drop_livehelp_tables` for any remaining. |
 | **Config write** | OK | `write_config()`; session cleared on complete. |
 | **Session lifecycle** | OK | Start over clears session keys; complete unsets install-related keys. |
@@ -247,7 +247,7 @@ No additional PHP 8.1-only violations identified; main risk is removal of 5.3-in
 - Reference semantics: `&$log` preserved in all helpers that mutate log.
 - Wizard flow: upgrade detect → bootstrap (install+seed+reserved) → normalize → confirm → run (import → operator channels → drop) → config → complete.
 - Dual-path: uses install_new_lupopedia.sql, seed_lupopedia.sql, import_from_old_crafty_syntax.sql, drop_old_crafty_syntax_tables.sql; does not modify importer SQL.
-- Reserved channels 0, 1, 42, 5100; operator channels created after import; legacy tables dropped.
+- Reserved channels 0, 1, 42, 51; operator channels created after import; legacy tables dropped.
 - No declare(strict_types); no attributes, arrow functions, anonymous classes, match, named arguments, enums, typed properties, traits (in this file).
 
 ---

@@ -25,7 +25,7 @@ Example:
 Code
 "0042" -> 42
 "0007" -> 7
-"05100" -> 5100
+"0051" -> 51
 Tools MUST NOT write padded identifiers into manifests or metadata.
 All channel metadata MUST use the unpadded form.
 

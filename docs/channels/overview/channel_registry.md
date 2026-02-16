@@ -1,7 +1,7 @@
 ## ? Channels Missing TOON Mappings
 These channels exist in /channels/ but have no matching channel_key in lupo_channels.toon.
 
-- 5100 ? 5100
+- 51 ? 51
 - system ? system
 ## Channel 1001 - Test Awareness Channel
 - Key: test_awareness_channel
@@ -105,7 +105,7 @@ These channels exist in /channels/ but have no matching channel_key in lupo_chan
 - WHY_LUPOPEDIA_USES_PURE_DATA_STORE.md: # Why Lupopedia Uses a Pure Data Store
 
 ## Channel None - Lupopedia
-- Key: 5100
+- Key: 51
 - Type: system
 - Description: Primary system channel for Lupopedia.
 - Language: en
@@ -136,7 +136,7 @@ These channels exist in /channels/ but have no matching channel_key in lupo_chan
 
 ### Documentation Notes
 - identity-layer-architecture.md: # Lupopedia Identity and Channel Architecture
-- readme.md: THIS IS FOR THE CHANNEL 5100 (LUPOPEDIA) AND IS TO BE INSERTED INTO THE LUPO_CHANNELS TABLE AS A NEW ROW.
+- readme.md: THIS IS FOR THE CHANNEL 51 (LUPOPEDIA) AND IS TO BE INSERTED INTO THE LUPO_CHANNELS TABLE AS A NEW ROW.
 
 ## Channel None - System
 - Key: system

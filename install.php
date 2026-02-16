@@ -16,7 +16,7 @@
  *    email stays as email; username becomes slug for operators; non-operators keep valid email or get slug from username. Empty/invalid
  *    emails and duplicates are validated; the wizard blocks until all conflicts are resolved and
  *    livehelp_users is updated only after admin confirms. The importer runs only after normalization.
- * D. Reserved system channels (0, 1, 42, 5100): created immediately after detect upgrade (install+seed+reserved),
+ * D. Reserved system channels (0, 1, 42, 51): created immediately after detect upgrade (install+seed+reserved),
  *    before identity normalization, before importer SQL, before personal channel/role creation. Constitutional rule.
  * E. Upgrade run step: import → personal channels and captain roles → drop → config (install/seed/reserved already done at credentials).
  * F. New install run step: install → seed → reserved channels → config.
@@ -37,7 +37,7 @@ $version_php = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTOR
 if (is_file($version_php)) {
     require_once $version_php;
 }
-$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.9';
+$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.10';
 
 /**
  * PHP 5.3-safe random bytes. Uses random_bytes() when available (PHP 7+), else openssl_random_pseudo_bytes, else mt_rand fallback.
@@ -230,7 +230,7 @@ if ($step === 'credentials') {
             $_SESSION['lupo_install_livehelp_tables'] = $livehelp_tables;
             $base = (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.');
             if ($_SESSION['lupo_install_type'] === 'upgrade') {
-                // Constitutional: reserved system channels (0, 1, 42, 5100) must exist before normalization.
+                // Constitutional: reserved system channels (0, 1, 42, 51) must exist before normalization.
                 // Run install + seed + reserved channels immediately after detect upgrade, then go to normalize.
                 if (!defined('LUPO_TABLE_PREFIX') && isset($_SESSION['lupo_table_prefix'])) {
                     define('LUPO_TABLE_PREFIX', $_SESSION['lupo_table_prefix']);
@@ -464,6 +464,8 @@ if ($step === 'run') {
                 $log[] = InstallWizardLogger::logEntry('skip', 'Skipped: drop deprecated livehelp_* tables (option unchecked at credentials).');
             }
         }
+        // Populate unified_unregistry with free IDs (gaps) for channels and actors, cap so table stays small.
+        InstallWizardUnregistry::seedUnregistryFromGaps($pdo, $log, InstallWizardUnregistry::DEFAULT_MAX_CAP);
         $log[] = InstallWizardLogger::logEntry('ok', 'Run complete.');
         $_SESSION['lupo_run_log'] = $log;
         $_SESSION['lupo_run_done'] = true;
@@ -737,7 +739,7 @@ if ($baseUrl === '') {
     <?php elseif ($step === 'bootstrap'): ?>
         <div class="wizard-card step success">
             <h2>Bootstrap complete</h2>
-            <p>Schema (install + seed) and reserved system channels (0, 1, 42, 5100) have been created. Continue to identity normalization.</p>
+            <p>Schema (install + seed) and reserved system channels (0, 1, 42, 51) have been created. Continue to identity normalization.</p>
             <?php if (!empty($_SESSION['lupo_bootstrap_log'])): ?>
                 <div class="log-section">
                     <h4>Bootstrap log</h4>
@@ -761,7 +763,7 @@ if ($baseUrl === '') {
     <?php elseif ($step === 'normalize'): ?>
         <div class="step warning">
             <h2>Identity normalization</h2>
-            <p><strong>Reserved system channels (0, 1, 42, 5100) have been created.</strong> Department 0 is the global system department (not department 1). Channel 1 is the Administration channel. Next: resolve identities for <strong>Crafty operators only</strong> (isoperator = Y). Visitor sessions are not changed. Crafty Syntax uses username/password; Lupopedia uses email/password and requires a unique email per operator. <strong>Email</strong> is kept as the real email (e.g. <code>johndoe@domainname.com</code>). <strong>Username</strong> for operators becomes slug format (e.g. <code>johndoe</code> → <code>johndoe-at-domainname-com</code>). You can correct any proposed email below. All emails must be unique and valid before you can continue.</p>
+            <p><strong>Reserved system channels (0, 1, 42, 51) have been created.</strong> Department 0 is the global system department (not department 1). Channel 1 is the Administration channel. Next: resolve identities for <strong>Crafty operators only</strong> (isoperator = Y). Visitor sessions are not changed. Crafty Syntax uses username/password; Lupopedia uses email/password and requires a unique email per operator. <strong>Email</strong> is kept as the real email (e.g. <code>johndoe@domainname.com</code>). <strong>Username</strong> for operators becomes slug format (e.g. <code>johndoe</code> → <code>johndoe-at-domainname-com</code>). You can correct any proposed email below. All emails must be unique and valid before you can continue.</p>
             <?php if (!empty($normalize_warnings)): ?>
                 <div class="normalize-warnings">
                     <strong>Warnings</strong>
@@ -848,7 +850,7 @@ if ($baseUrl === '') {
             <h2>Confirm</h2>
             <?php if ((isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade'): ?>
                 <p><strong>Upgrade from Crafty Syntax 3.7.5</strong></p>
-                <p>Reserved system channels (0, 1, 42, 5100) and schema were created before normalization. Identity normalization applied. The wizard will now:</p>
+                <p>Reserved system channels (0, 1, 42, 51) and schema were created before normalization. Identity normalization applied. The wizard will now:</p>
                 <ol>
                     <li>Set <code>lupo_actors</code> so the next actor_id is at least 10000 (reserved ID doctrine)</li>
                     <li>Run <code>import_from_old_crafty_syntax.sql</code></li>
@@ -862,14 +864,14 @@ if ($baseUrl === '') {
                     <li>Redirect to login</li>
                 </ol>
                 <p style="font-size:0.9rem; color:#666;"><strong>Doctrine:</strong> Crafty Syntax users are migrated into the Lupopedia actor system. Actor IDs 0–9999 are reserved for system and AI agents. Human actors begin at ID 10000.</p>
-                <p style="font-size:0.9rem; color:#666;">Already done: Create reserved system channels (0, 1, 42, 5100) before normalization → Identity normalization.</p>
+                <p style="font-size:0.9rem; color:#666;">Already done: Create reserved system channels (0, 1, 42, 51) before normalization → Identity normalization.</p>
             <?php else: ?>
                 <p><strong>New install</strong></p>
                 <p>No livehelp_* tables found. The wizard will:</p>
                 <ol>
                     <li>Run <code>install_new_lupopedia.sql</code></li>
                     <li>Run <code>seed_lupopedia.sql</code></li>
-                    <li>Create reserved system channels (0, 1, 42, 5100)</li>
+                    <li>Create reserved system channels (0, 1, 42, 51)</li>
                     <li>Write <code>lupopedia-config.php</code></li>
                     <li>Redirect to login</li>
                 </ol>

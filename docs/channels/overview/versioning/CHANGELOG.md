@@ -109,8 +109,8 @@ file:
 
 - Regenerated all TOON schema files using authoritative .toon.json definitions.
 - Normalized all manifest.json files across /channels/ using corrected channel_number rules.
-- Regenerated all JSON state files for channel 5100 with corrected channel_key.
-- Added scripts/connect_to_5100.py for IDE actor registration and channel linkage.
+- Regenerated all JSON state files for channel 51 with corrected channel_key.
+- Added scripts/connect_to_51.py for IDE actor registration and channel linkage.
 - Synchronized channel state structures and ensured doctrine alignment.
 
 ### Details
@@ -121,9 +121,9 @@ file:
   - channel_number = channel_id from lupo_channels.toon
   - channel_key preserved as-is
   - channel_name, channel_type, and description filled using fallback rules
-- Regenerated channel 5100 JSON files (manifest, state, actors, layers, routing, metadata)
-  with corrected channel_key = "5100" and channel_number = 5100.
-- Added scripts/connect_to_5100.py to safely create IDE actors, connect them to channel 5100,
+- Regenerated channel 51 JSON files (manifest, state, actors, layers, routing, metadata)
+  with corrected channel_key = "51" and channel_number = 51.
+- Added scripts/connect_to_51.py to safely create IDE actors, connect them to channel 51,
   and initialize dialog threads without requiring database inference.
 - Ensured all regenerated files are pretty-printed and doctrine-aligned.
 
@@ -153,7 +153,7 @@ file:
 - Established the Semantic OS identity and channel architecture across channels, actors, and memberships.
 
 ### Details
-- Created channels 5100-5130 in two batches: 5100-5115 core system and 5116-5130 extended/experimental.
+- Created channels 51-5130 in two batches: 51-5115 core system and 5116-5130 extended/experimental.
 - Inserted system actors WOLFIE, LILITH, and LUPOPEDIA with system source type and default channel metadata.
 - Created actor-channel memberships for WOLFIE (7), LILITH (5), and LUPOPEDIA (8) using INSERT IGNORE.
 - Regenerated TOON files at 2026-01-25 08:46:04 to align schema metadata with the channel system.

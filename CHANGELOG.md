@@ -31,7 +31,34 @@ There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
 
 - **database/migrations/install_new_lupopedia.sql:** New table **lupo_actor_aliases** added with `alias_id` (BIGINT AUTO_INCREMENT), `actor_id`, `alias_name` (VARCHAR(255)), `created_ymdhis`, `updated_ymdhis`. Aliases are stored in a dedicated table; unified_registry remains a reserved-ID ledger only and does not store alias relationships. No seed, importer, migration, or TOON changes in this patch.
 
-**Files modified (4.0.10):** `config/global_atoms.yaml`, `lupo-includes/version.php`, `database/migrations/install_new_lupopedia.sql`, `CHANGELOG.md`.
+### Installer version display (4.0.10 fallbacks)
+
+- **install.php:** Fallback when `LUPOPEDIA_VERSION` is not defined changed from `'4.0.9'` to `'4.0.10'` so the wizard UI shows 4.0.10 on first step.
+- **lupo-includes/functions/load_atoms.php:** `get_lupopedia_version()` fallback when atom loader unavailable changed from `'4.0.9'` to `'4.0.10'`.
+
+### Reserved channel 5100 → 51 (install, seed, docs, doctrine)
+
+- **Rationale:** Channel 51 avoids a large gap between reserved system channels and the next `MAX(channel_id)`; reserved list is now (0, 1, 42, 51).
+- **install.php:** All reserved-channel references (0, 1, 42, 5100) updated to (0, 1, 42, 51) in comments and UI strings.
+- **install_wizard_classes.php:** Reserved channels array key and `ensureReservedChannels` / `createReservedSystemChannels` use channel id 51 (ai-dev) instead of 5100; `$required` and `WHERE channel_id IN (...)` updated to 51.
+- **database/migrations/seed_lupopedia.sql:** Lupopedia channel in unified_registry: `entity_index` and `entity_key` 5100 → 51; `channel_number` in metadata 5100 → 51 for the Lupopedia row (id 58) and for entity 1023 (lupopedia).
+- **Docs and doctrine:** CHANGELOG, audits (OPERATOR_TO_ROLE_BASED_SWEEP_REPORT, INSTALL_PHP_WIZARD_DOCTRINE_AUDIT), PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE, INDEX, channels.md, channels/filesystem_padding_layer.md, channels/0042/DOCTRINE.md, README, channel_registry, channel_summary, channels/overview/versioning/CHANGELOG, and **channels/registry.json**, **DIRECTORY_TREE.md** updated so reserved channel 51 (and references to 5100-series where appropriate) are consistent.
+
+### Reserved channel creation: error logging and verification
+
+- **install_wizard_classes.php:** When reserved channel INSERT fails, the log now includes the actual PDO exception message (e.g. `Reserved channel 51 (ai-dev) failed: ...`) instead of only "see server log." After `ensureReservedChannels` calls `createReservedSystemChannels`, the wizard re-checks which of (0, 1, 42, 51) exist; if any are still missing it logs an error; otherwise it logs "Reserved channels created: ...".
+
+### Unified unregistry seed (install wizard)
+
+- **install_wizard_classes.php:** New class **InstallWizardUnregistry** with **seedUnregistryFromGaps($pdo, &$log, $maxCap = 500)**. Populates **lupo_unified_unregistry** with free IDs (gaps) in the range [0, min(MAX(id), maxCap)] for **channel** and **actor** entity types so allocation (findpuka) can reuse them FIFO. Uses cap 500 so the table does not grow huge when MAX(channel_id) or MAX(actor_id) is large; logs when range is capped.
+- **install.php:** At end of run step (new install and upgrade), calls **InstallWizardUnregistry::seedUnregistryFromGaps($pdo, $log, InstallWizardUnregistry::DEFAULT_MAX_CAP)** so the free list is seeded after install/seed/reserved channels (and after import/operator channels on upgrade).
+
+### ANUBIS doctrine: unified_unregistry lifecycle
+
+- **docs/channels/doctrine/ANIBUS_DOCTRINE.md:** New **section 15 — Unified Unregistry Awareness (Required for ANUBIS)**. When ANUBIS performs a hard delete, it must decide whether the deleted ID is safe to return to the unified_unregistry free list: do not add if the row has an active redirect (anubis_redirects) or is an unresolved orphan; only fully resolved, redirect-free IDs may be inserted into unified_unregistry. ANUBIS must never modify unified_registry; it interacts only with unified_unregistry. Rules for dynamic table prefix and no live-DB schema inference are documented. Frontmatter `in_this_file_we_have` updated.
+- **docs/channels/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md:** New **subsection 4.4 — Unified Unregistry (Hard-Delete Lifecycle)**. Summarizes that ANUBIS must follow unified_unregistry doctrine on hard deletes and references ANIBUS_DOCTRINE.md section 15 for full rules.
+
+**Files modified (4.0.10):** `config/global_atoms.yaml`, `lupo-includes/version.php`, `lupo-includes/functions/load_atoms.php`, `install.php`, `install_wizard_classes.php`, `database/migrations/install_new_lupopedia.sql`, `database/migrations/seed_lupopedia.sql`, `CHANGELOG.md`, `channels/registry.json`, `channel_summary.md`, `DIRECTORY_TREE.md`, `docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md`, `docs/audits/INSTALL_PHP_WIZARD_DOCTRINE_AUDIT.md`, `docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md`, `docs/doctrine/INDEX.md`, `docs/doctrine/channels.md`, `docs/doctrine/channels/filesystem_padding_layer.md`, `docs/channels/0042/DOCTRINE.md`, `docs/README.md`, `docs/channels/overview/channel_registry.md`, `docs/channels/overview/versioning/CHANGELOG.md`, `docs/channels/doctrine/ANIBUS_DOCTRINE.md`, `docs/channels/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md`.
 
 ---
 
@@ -365,7 +392,7 @@ This patch includes:
 
 - **Personal channels for Crafty operators:** For each `livehelp_users` row with `isoperator='Y'`, the wizard creates a row in `lupo_channels` with `channel_name = name + "'s Channel"` and inserts into `lupo_actor_channel_roles` with `role_key = 'captain'`. No `lupo_channel_roles`; all assignments use `lupo_actor_channel_roles`.
 - **Global admin channel (channel_id = 1):** Reserved channel 1 is defined as **Administration** (key `administration`, name `Administration`). For each `livehelp_users` row with `isadmin='Y'`, the wizard inserts into `lupo_actor_channel_roles` with `actor_id = auth_user_id`, `channel_id = 1`, `role_key = 'captain'` (idempotent).
-- **Reserved channels:** System actor (actor_id = 0) is assigned captain in `lupo_actor_channel_roles` for channels 1, 42, 5100. `createReservedSystemChannels` inserts those captain entries so role-based checks see them.
+- **Reserved channels:** System actor (actor_id = 0) is assigned captain in `lupo_actor_channel_roles` for channels 1, 42, 51. `createReservedSystemChannels` inserts those captain entries so role-based checks see them.
 - **Wizard wording:** All references to "operator channels" updated to "personal channels and captain roles"; step descriptions and session keys retained for compatibility.
 
 ### 4. Importer Validation

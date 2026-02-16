@@ -9,7 +9,7 @@ If you add a new doctrine or architectural note, place it here (or in the approp
 
 ## Core Architecture
 
-- **[Channel System Doctrine (5100-5130)](../channels/5100/identity-layer-architecture.md)** - Lupopedia Channel Architecture: Complete documentation of the Semantic OS identity layer covering channels, actors, and memberships.
+- **[Channel System Doctrine (51 and system channels)](../channels/51/identity-layer-architecture.md)** - Lupopedia Channel Architecture: Complete documentation of the Semantic OS identity layer covering channels, actors, and memberships.
 
 ### Channel Numbering Clarifications
 
@@ -17,7 +17,7 @@ Lupopedia currently contains ~222 channels.
 
 Channel numbers are not sequential and do not represent a fixed range.
 
-High values (e.g., 5100-series) are intentional and correspond to subsystem groupings.
+High values (e.g., 51-series) are intentional and correspond to subsystem groupings.
 
 channel_number is a semantic identifier, not an index or capacity limit.
 

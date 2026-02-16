@@ -1,4 +1,4 @@
-## Channel 5100 (5100)
+## Channel 51 (51)
 - Name: Lupopedia
 - Type: system
 - Operational Mode: idle
@@ -9,7 +9,7 @@
 - Last Activity: None
 - Notes from MD files:
   - identity-layer-architecture.md: # Lupopedia Identity and Channel Architecture
-  - readme.md: THIS IS FOR THE CHANNEL 5100 (LUPOPEDIA) AND IS TO BE INSERTED INTO THE LUPO_CHANNELS TABLE AS A NEW ROW.
+  - readme.md: THIS IS FOR THE CHANNEL 51 (LUPOPEDIA) AND IS TO BE INSERTED INTO THE LUPO_CHANNELS TABLE AS A NEW ROW.
 
 ## Channel None (GOV‑PROGRAMMERS‑001)
 - Name: GOV PROGRAMMERS 001

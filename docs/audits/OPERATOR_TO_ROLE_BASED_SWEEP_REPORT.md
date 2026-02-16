@@ -52,7 +52,7 @@ No further edits were made to the importer in this sweep.
 
 - **Personal channels:** One captain per created channel in lupo_actor_channel_roles.
 - **Channel 1:** One captain per Crafty admin (isadmin='Y') in lupo_actor_channel_roles.
-- **Reserved channels (0, 1, 42, 5100):** System actor (0) is still assigned captain in both lupo_channel_roles and lupo_actor_channel_roles for channels 1, 42, 5100 so role-based checks see them.
+- **Reserved channels (0, 1, 42, 51):** System actor (0) is still assigned captain in both lupo_channel_roles and lupo_actor_channel_roles for channels 1, 42, 51 so role-based checks see them.
 
 ---
 

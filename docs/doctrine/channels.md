@@ -27,13 +27,13 @@ to the total number of channel records, not the numbering scheme.
 
 `channel_number` is a logical identifier, not a bounded index. Channel numbers
 are not sequential and do not form a contiguous range. Values may be sparse,
-non-linear, or grouped by subsystem (for example, the 5100-series). High channel
-numbers such as 5100 are valid and intentional, and the total count is what
+non-linear, or grouped by subsystem (for example, the 51-series). High channel
+numbers such as 51 are valid and intentional, and the total count is what
 matters, not the numeric range.
 
-Channels 5100-5130 are reserved for system and experimental spaces and were
+Channel 51 (Lupopedia reserved) and channels 5100-5130 are reserved for system and experimental spaces and were
 inserted in two batches:
-- 5100-5115: core system channels
+- 51: Lupopedia reserved; 5100-5115: core system channels
 - 5116-5130: extended system and experimental channels
 
 These channels cover:
@@ -52,9 +52,9 @@ The channel row includes an `is_kernel` flag. Kernel channels represent core
 system lanes, while non-kernel channels represent extended or experimental
 spaces. Kernel status is part of the channel definition and is not inferred.
 
-## Channels 5100-5130 (Doctrinal Role)
+## Channel 51 and channels 5100-5130 (Doctrinal Role)
 
-Channels 5100-5130 exist to define the system's core and experimental
+Channel 51 (Lupopedia) and channels 5100-5130 exist to define the system's core and experimental
 communication topology. This range provides a stable set of lanes for kernel
 logs, doctrine management, semantic routing, emotional metadata, agent training,
 system events, recovery operations, and sandboxed experimentation.
