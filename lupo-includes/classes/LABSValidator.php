@@ -570,23 +570,22 @@ class LABS_Validator {
     }
     
     /**
-     * Check if UTC_TIMEKEEPER agent is available in registry
-     * 
+     * Check if UTC_TIMEKEEPER agent is available (from actors table).
+     * Doctrine: Agent/service config and availability come from lupo_actors, not unified_registry.
+     *
      * @return bool True if agent exists and is active
      */
     private function check_utc_timekeeper_available() {
         if (!$this->db) {
             return false;
         }
-        
         try {
             $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-            $reg = $prefix . 'unified_registry';
+            $actorsTable = $prefix . 'actors';
             $stmt = $this->db->prepare("
-                SELECT entity_id, code, is_active
-                FROM " . $reg . "
-                WHERE entity_type = 'agent'
-                AND (code = 'UTC_TIMEKEEPER' OR entity_key = 'UTC_TIMEKEEPER')
+                SELECT 1 FROM " . $actorsTable . "
+                WHERE actor_type IN ('agent', 'service')
+                AND (slug = 'utc_timekeeper' OR name = 'UTC_TIMEKEEPER')
                 AND is_active = 1
                 AND (is_deleted = 0 OR is_deleted IS NULL)
                 LIMIT 1

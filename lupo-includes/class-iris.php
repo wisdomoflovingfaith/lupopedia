@@ -55,9 +55,9 @@ class IRIS
         // ---------------------------------------------------------
         // 2. Build LLM prompt
         // ---------------------------------------------------------
-        $systemPrompt = $agent['system_prompt'] ?? "You are agent {$agent['code']}.";
-        $persona      = $agent['persona'] ?? "";
-        $rules        = $agent['rules'] ?? "";
+        $systemPrompt = isset($agent['system_prompt']) ? $agent['system_prompt'] : "You are agent " . (isset($agent['slug']) ? $agent['slug'] : (isset($agent['id']) ? $agent['id'] : 'unknown')) . ".";
+        $persona      = isset($agent['persona']) ? $agent['persona'] : "";
+        $rules        = isset($agent['rules']) ? $agent['rules'] : "";
 
         $userMessage  = $packet['content'] ?? "";
 
@@ -85,41 +85,39 @@ class IRIS
     }
 
     /**
-     * Load agent configuration from lupo_unified_registry + agent_properties.
-     *
-     * PHASE 1:
-     *   - Only loads system_prompt, persona, rules
-     *   - Does NOT load faucets, capabilities, or advanced settings yet
+     * Load agent/service configuration from actors tables only.
+     * Doctrine: unified_registry is NOT a config table. All agent config comes from
+     * lupo_actors + lupo_actor_properties (actor_type = 'agent' or 'service').
      */
-    protected function loadAgentConfig(int $agentId): ?array
+    protected function loadAgentConfig(int $agentId)
     {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-        $reg = $prefix . 'unified_registry';
-        $sql = "SELECT entity_id AS id, code, name, layer, is_active, is_kernel
-                FROM " . $reg . "
-                WHERE entity_type = 'agent' AND entity_id = :agent_id
-                  AND (is_deleted = 0 OR is_deleted IS NULL)
-                LIMIT 1";
-        $agent = $this->db->fetchRow($sql, array('agent_id' => $agentId));
+        $actorsTable = $prefix . 'actors';
+        $propsTable = $prefix . 'actor_properties';
 
+        $actorSql = "SELECT actor_id, slug, name, metadata
+                     FROM " . $actorsTable . "
+                     WHERE actor_id = :agent_id
+                       AND actor_type IN ('agent', 'service')
+                       AND is_active = 1
+                       AND (is_deleted = 0 OR is_deleted IS NULL)
+                     LIMIT 1";
+        $agent = $this->db->fetchRow($actorSql, array('agent_id' => $agentId));
         if (!$agent) {
             return null;
         }
 
-        // Load properties from agent_properties (actor_id = entity_id for agents)
-        $propsTable = $prefix . 'agent_properties';
+        $agent['id'] = $agent['actor_id'];
         $propsSql = "SELECT property_key, property_value FROM " . $propsTable . "
                      WHERE actor_id = :actor_id AND is_deleted = 0";
         $properties = $this->db->fetchAll($propsSql, array('actor_id' => $agentId));
-        
-        // Convert properties array to key-value pairs
-        $props = [];
+        $props = array();
         foreach ($properties as $prop) {
             $props[$prop['property_key']] = $prop['property_value'];
         }
 
-        // Merge agent data with properties
-        $agent['system_prompt'] = isset($props['system_prompt']) ? $props['system_prompt'] : "You are {$agent['name']} ({$agent['code']}).";
+        $display = (isset($agent['name']) && $agent['name'] !== '') ? $agent['name'] : (isset($agent['slug']) ? $agent['slug'] : (string) $agent['id']);
+        $agent['system_prompt'] = isset($props['system_prompt']) ? $props['system_prompt'] : "You are " . $display . ".";
         $agent['persona'] = isset($props['persona']) ? $props['persona'] : "";
         $agent['rules'] = isset($props['rules']) ? $props['rules'] : "";
 

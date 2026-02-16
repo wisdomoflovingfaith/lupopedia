@@ -108,7 +108,7 @@ class SystemHealthService
 
             return [
                 'status' => 'ok',
-                'message' => 'Unified registry (agents, channels, modules) healthy',
+                'message' => 'Unified registry (reserved index ledger) present',
             ];
         } catch (\Exception $e) {
             return [
