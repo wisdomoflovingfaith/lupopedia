@@ -3945,5 +3945,14 @@ CREATE INDEX lupo_world_registry_idx_world_type ON lupo_world_registry (world_ty
 CREATE INDEX lupo_world_registry_idx_created_ymdhis ON lupo_world_registry (created_ymdhis);
 CREATE INDEX lupo_world_registry_idx_is_active ON lupo_world_registry (is_active);
 
+CREATE TABLE `lupo_actor_aliases` (
+    `alias_id` BIGINT NOT NULL AUTO_INCREMENT,
+    `actor_id` BIGINT NOT NULL,
+    `alias_name` VARCHAR(255) NOT NULL,
+    `created_ymdhis` BIGINT NOT NULL,
+    `updated_ymdhis` BIGINT NOT NULL,
+    PRIMARY KEY (`alias_id`)
+);
+
 -- Required seed atoms (minimal bootstrap). Expand via database/install/ seed scripts.
 -- INSERT lupo_atoms for GLOBAL_CURRENT_LUPOPEDIA_VERSION and kernel actors/channels as needed.
