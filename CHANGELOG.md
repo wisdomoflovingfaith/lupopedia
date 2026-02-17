@@ -43,6 +43,7 @@ As we continue development on a version, we append new changes under that versio
 - **docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md:** Optional FLP enrichment (mood_rgb, tags, atoms) noted in Tags section.
 - No new schema; uses existing lupo_* tables.
 - **ANUBIS adoption:** Adopted orphaned dialog message into channel 42 seed thread via ANUBIS doctrine (dialog_message_id 32).
+- **Completed ANUBIS doctrine and ANUBIS program.** Doctrine: `docs/doctrine/ANUBIS/` (ANUBIS_OVERVIEW.md, ANUBIS_ORPHAN_RULES.md, ANUBIS_PROGRAM_SPEC.md). Program: `tools/anubis_orphan_scanner.py` (Python orphan scanner, resolver, adoption planner); `lupo-includes/classes/ANUBIS_Resolver.php` (PHP 5.3: classifyOrphan, resolveParent, adoptIntoSeed). Adopted orphaned dialog message into channel 42 seed thread via ANUBIS.
 
 ---
 
