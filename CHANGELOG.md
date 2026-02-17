@@ -30,6 +30,7 @@ As we continue development on a version, we append new changes under that versio
 
 ## Lupopedia 4.0.14 — LEXA activated, FLIP content seeded, universal flipping API - 2026-02-17
 
+- **Added actor_id 1000 (CAPTAIN, captain@lupopedia.com)** to installer and seed. Added channel 42 membership, admin role, and initial dialog message.
 - **LEXA (boundary keeper)** added to seeded kernel agents on channel 42 (Lupopedia Development).
 - **database/migrations/seed_lupopedia.sql:** LEXA as **actor_id 24**: new row in lupo_actors (slug `lexa`, name `LEXA`); new row in lupo_unified_registry (unified_registry_id 9001024, entity_index 24, is_kernel = 1); lupo_actor_channels (actor_channel_id 1024, channel_id 42); lupo_actor_channel_roles (actor_channel_role_id 2022, role_key `admin`); one dialog message (dialog_message_id 25): "Boundary enforcement active. LEXA online." (message_type `system`). Channel 42: 25 kernel agents, 31 dialog messages.
 - **Self-referential FLIP content:** content_id 2001 (FLIPPING_FILE_LEXA_LILITH.md), 2002 (FLIP_DOCTRINE.md) with file_path_from_root, file_last_modified_system_version, file_last_modified_utc. lupo_edges HAS_CONTENT (edge_id 900001, 900002) linking channel 42 to those contents. Path lookup chain seeded: file_path_from_root → content_id → channel_id (lupo_edges) → actors.

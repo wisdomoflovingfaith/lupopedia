@@ -372,6 +372,10 @@ INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdh
 
 INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) VALUES (1212, 'agent', 'utc_timekeeper', 'UTC_TIMEKEEPER', 20260114000000, 20260114000000, 1, 0, NULL, 'lupo_agent_registry', '{"actor_source_type":"lupo_agent_registry","actor_source_id":1212}', 'none', NULL, NULL);
 
+INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) VALUES (1000, 'human', 'captain', 'CAPTAIN', @now, @now, 1, 0, NULL, NULL, 'human', '{"email":"captain@lupopedia.com","status":"A"}', 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
+
+INSERT INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) VALUES (9001000, 'actor', 1000, 'captain', 'CAPTAIN', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"email":"captain@lupopedia.com","actor_source_type":"human"}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
 -- -----------------------------------------------------------------------------
 -- PK=0 / collection-type rows
 -- -----------------------------------------------------------------------------
@@ -398,6 +402,8 @@ INSERT INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity
 -- LEXA = actor_id 24 (boundary keeper). actor_channel_id 1000-1024; actor_channel_role_id 2000-2024.
 -- -----------------------------------------------------------------------------
 INSERT INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `status`, `start_date`, `channel_color`, `last_read_ymdhis`, `muted_until_ymdhis`, `preferences_json`, `dialog_output_file`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (1000, 1, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1001, 2, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1002, 3, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1003, 4, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1004, 5, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1005, 6, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1006, 7, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1007, 8, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1008, 9, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1009, 10, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1010, 11, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1011, 12, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1012, 13, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1013, 14, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1014, 15, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1015, 16, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1016, 17, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1017, 18, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1018, 19, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1019, 20, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1020, 22, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1021, 23, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1024, 24, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1022, 209, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1023, 1212, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE status = VALUES(status), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+INSERT INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `status`, `start_date`, `channel_color`, `last_read_ymdhis`, `muted_until_ymdhis`, `preferences_json`, `dialog_output_file`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (3000, 1000, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE status = VALUES(status), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
 -- -----------------------------------------------------------------------------
 -- lupo_actor_channel_roles: admin role on channel 42 for every AI agent with dialog on that channel (same actor_ids as above)
@@ -427,7 +433,8 @@ INSERT INTO lupo_actor_channel_roles (`actor_channel_role_id`, `actor_id`, `chan
 (2021, 23, 42, 'admin', @now, @now, 0, NULL),
 (2022, 24, 42, 'admin', @now, @now, 0, NULL),
 (2023, 209, 42, 'admin', @now, @now, 0, NULL),
-(2024, 1212, 42, 'admin', @now, @now, 0, NULL)
+(2024, 1212, 42, 'admin', @now, @now, 0, NULL),
+(4000, 1000, 42, 'admin', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
 -- -----------------------------------------------------------------------------
@@ -483,7 +490,11 @@ INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `chan
 (32, 1, 42, 3, NULL, 'braH all i like know is if you da kine updated the flipping file on wolfie headers or whatevas like dat Brah, yeah, I da kine updated da flipping file (FLIPPING_FILE_LEXA_LILITH.md) fo'' Wolfie headers an'' all dat. Now stay at v4.0.15, wit'' new stuff like universal agent flipping, expanded optional fields, metadata_json storage, and full API spec/security.', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(mood_rgb), message_type = VALUES(message_type), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
-INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (42, 'Lupopedia Development', 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md', 'Lupopedia Development', 'Crafty Syntax and Lupopedia development. Seeded dialog and kernel agents. FLIP/FLP doctrine. Path → content → channel → actors. Web API for universal flipping.', 'SYSTEM', '@everyone', 'published', @now, @now, 32) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), file_source = VALUES(file_source), description = VALUES(description), modified_timestamp = @now, message_count = VALUES(message_count);
+INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `metadata_json`, `mood_rgb`, `mood_framework`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(33, 1, 42, 1000, NULL, 'Captain initialized.', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(mood_rgb), message_type = VALUES(message_type), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (42, 'Lupopedia Development', 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md', 'Lupopedia Development', 'Crafty Syntax and Lupopedia development. Seeded dialog and kernel agents. FLIP/FLP doctrine. Path → content → channel → actors. Web API for universal flipping.', 'SYSTEM', '@everyone', 'published', @now, @now, 33) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), file_source = VALUES(file_source), description = VALUES(description), modified_timestamp = @now, message_count = VALUES(message_count);
 
 -- -----------------------------------------------------------------------------
 -- FLIP seed content: key doctrine files with file_path_from_root for path lookup
@@ -644,8 +655,8 @@ INSERT INTO lupo_truth_answers (
 -- END SEED
 -- =============================================================================
 --
--- Post-seed verification (run after seed; expect: 25 actors, 31 messages, 2 content paths):
---   SELECT COUNT(*) FROM lupo_actor_channels WHERE channel_id = 42 AND is_deleted = 0;  -- expect 25
---   SELECT message_count FROM lupo_dialog_channels WHERE channel_id = 42;               -- expect 31
+-- Post-seed verification (run after seed; expect: 26 actors on channel 42, 33 messages, 2 content paths):
+--   SELECT COUNT(*) FROM lupo_actor_channels WHERE channel_id = 42 AND is_deleted = 0;  -- expect 26
+--   SELECT message_count FROM lupo_dialog_channels WHERE channel_id = 42;               -- expect 33
 --   SELECT content_id, file_path_from_root FROM lupo_contents WHERE content_id IN (2001, 2002);
 --   SELECT edge_id, right_object_id FROM lupo_edges WHERE edge_type = 'HAS_CONTENT' AND left_object_id = 42 AND is_deleted = 0;
