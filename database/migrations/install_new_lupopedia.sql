@@ -1539,6 +1539,7 @@ CREATE TABLE lupo_contents (
 
 CREATE UNIQUE INDEX lupo_contents_unique_content_slug_domain ON lupo_contents (federation_node_id, slug);
 CREATE UNIQUE INDEX lupo_contents_idx_custom_path ON lupo_contents (custom_path);
+CREATE INDEX lupo_contents_idx_file_path_from_root ON lupo_contents (file_path_from_root);
 CREATE INDEX lupo_contents_idx_content_parent ON lupo_contents (content_parent_id);
 CREATE INDEX lupo_contents_idx_content_type ON lupo_contents (content_type);
 CREATE INDEX lupo_contents_idx_status ON lupo_contents (status);

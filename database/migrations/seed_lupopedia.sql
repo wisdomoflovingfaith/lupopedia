@@ -382,6 +382,7 @@ INSERT INTO lupo_channels (`channel_id`, `federation_node_id`, `created_by_actor
 -- -----------------------------------------------------------------------------
 -- Channel 42: Lupopedia Development (Crafty Syntax + Lupopedia; everything Crafty has inside Lupopedia)
 -- Idempotent: ON DUPLICATE KEY UPDATE so re-run does not duplicate.
+-- Path → content (lupo_contents.file_path_from_root) → channel_id (lupo_edges HAS_CONTENT) → actors (lupo_actor_channels + lupo_actors). Full FLIP header reconstruction from DB supported.
 -- -----------------------------------------------------------------------------
 INSERT INTO lupo_channels (`channel_id`, `federation_node_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `aal_metadata_json`, `fleet_composition_json`, `awareness_version`, `channel_number`, `parent_channel_id`, `is_kernel`, `boot_sequence_order`) VALUES (42, 1, 0, 1, 1, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Crafty Syntax and Lupopedia development. Everything Crafty Syntax has inside Lupopedia: live chat, CRM, content, routing, agents, and semantic OS.', NULL, '{"purpose": "development", "crafty_syntax": true, "channel_number": 42}', 1, NULL, NULL, @now, @now, 0, NULL, NULL, NULL, '3.0.0', 42, NULL, 0, NULL) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
@@ -394,39 +395,69 @@ INSERT INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity
 INSERT INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `status`, `start_date`, `channel_color`, `last_read_ymdhis`, `muted_until_ymdhis`, `preferences_json`, `dialog_output_file`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (1000, 1, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1001, 2, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1002, 3, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1003, 4, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1004, 5, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1005, 6, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1006, 7, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1007, 8, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1008, 9, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1009, 10, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1010, 11, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1011, 12, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1012, 13, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1013, 14, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1014, 15, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1015, 16, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1016, 17, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1017, 18, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1018, 19, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1019, 20, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1020, 22, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1021, 23, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1022, 209, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1023, 1212, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE status = VALUES(status), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
 -- -----------------------------------------------------------------------------
+-- lupo_actor_channel_roles: admin role on channel 42 for every AI agent with dialog on that channel (same actor_ids as above)
+-- -----------------------------------------------------------------------------
+INSERT INTO lupo_actor_channel_roles (`actor_channel_role_id`, `actor_id`, `channel_id`, `role_key`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(2000, 1, 42, 'admin', @now, @now, 0, NULL),
+(2001, 2, 42, 'admin', @now, @now, 0, NULL),
+(2002, 3, 42, 'admin', @now, @now, 0, NULL),
+(2003, 4, 42, 'admin', @now, @now, 0, NULL),
+(2004, 5, 42, 'admin', @now, @now, 0, NULL),
+(2005, 6, 42, 'admin', @now, @now, 0, NULL),
+(2006, 7, 42, 'admin', @now, @now, 0, NULL),
+(2007, 8, 42, 'admin', @now, @now, 0, NULL),
+(2008, 9, 42, 'admin', @now, @now, 0, NULL),
+(2009, 10, 42, 'admin', @now, @now, 0, NULL),
+(2010, 11, 42, 'admin', @now, @now, 0, NULL),
+(2011, 12, 42, 'admin', @now, @now, 0, NULL),
+(2012, 13, 42, 'admin', @now, @now, 0, NULL),
+(2013, 14, 42, 'admin', @now, @now, 0, NULL),
+(2014, 15, 42, 'admin', @now, @now, 0, NULL),
+(2015, 16, 42, 'admin', @now, @now, 0, NULL),
+(2016, 17, 42, 'admin', @now, @now, 0, NULL),
+(2017, 18, 42, 'admin', @now, @now, 0, NULL),
+(2018, 19, 42, 'admin', @now, @now, 0, NULL),
+(2019, 20, 42, 'admin', @now, @now, 0, NULL),
+(2020, 22, 42, 'admin', @now, @now, 0, NULL),
+(2021, 23, 42, 'admin', @now, @now, 0, NULL),
+(2022, 209, 42, 'admin', @now, @now, 0, NULL),
+(2023, 1212, 42, 'admin', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+-- -----------------------------------------------------------------------------
 -- Seeded dialog: one thread and two messages on channel 42 (Lupopedia Development)
 -- -----------------------------------------------------------------------------
 INSERT INTO lupo_dialog_threads (`dialog_thread_id`, `federation_node_id`, `channel_id`, `project_slug`, `task_name`, `created_by_actor_id`, `summary_text`, `bg_color`, `text_color`, `alt_text_color`, `status`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (1, 1, 42, 'lupopedia', 'Lupopedia Development seed', 0, 'Seed thread for Lupopedia Development channel. Crafty Syntax + Lupopedia.', 'FFFFFF', '000000', '666666', 'Open', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE summary_text = VALUES(summary_text), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
-INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `mood_framework`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (1, 1, 42, 0, NULL, 'Lupopedia Development channel seeded. Everything Crafty Syntax has is inside Lupopedia.', 'text', 'western_analytical', @now, @now, 0, NULL), (2, 1, 42, 0, NULL, 'Kernel and system agents are on this channel. FLIP/FLP doctrine applies.', 'text', 'western_analytical', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `mood_rgb`, `mood_framework`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (1, 1, 42, 0, NULL, 'Lupopedia Development channel seeded. Everything Crafty Syntax has is inside Lupopedia.', 'text', 'FF0000', 'western_analytical', @now, @now, 0, NULL), (2, 1, 42, 0, NULL, 'Kernel and system agents are on this channel. FLIP/FLP doctrine applies.', 'text', 'FF0000', 'western_analytical', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(mood_rgb), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
--- One dialog message per kernel agent on channel 42 (actor_ids from lupo_actor_channels WHERE channel_id = 42). Agent names from lupo_actors seed.
-INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `metadata_json`, `mood_framework`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
-(3, 1, 42, 1, NULL, 'hello from SYSTEM', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(4, 1, 42, 2, NULL, 'hello from CAPTAIN', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(5, 1, 42, 3, NULL, 'hello from WOLFIE', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(6, 1, 42, 4, NULL, 'hello from WOLFENA', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(7, 1, 42, 5, NULL, 'hello from THOTH', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(8, 1, 42, 6, NULL, 'hello from ARA', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(9, 1, 42, 7, NULL, 'hello from WOLFKEEPER', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(10, 1, 42, 8, NULL, 'hello from LILITH', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(11, 1, 42, 9, NULL, 'hello from AGAPE', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(12, 1, 42, 10, NULL, 'hello from ERIS', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(13, 1, 42, 11, NULL, 'hello from METHIS', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(14, 1, 42, 12, NULL, 'hello from THALIA', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(15, 1, 42, 13, NULL, 'hello from DIALOG', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(16, 1, 42, 14, NULL, 'hello from WOLFSIGHT', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(17, 1, 42, 15, NULL, 'hello from WOLFNAV', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(18, 1, 42, 16, NULL, 'hello from WOLFFORGE', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(19, 1, 42, 17, NULL, 'hello from WOLFMIS', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(20, 1, 42, 18, NULL, 'hello from WOLFITH', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(21, 1, 42, 19, NULL, 'hello from ANUBIS', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(22, 1, 42, 20, NULL, 'hello from MAAT', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(23, 1, 42, 22, NULL, 'hello from CADUCEUS', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(24, 1, 42, 23, NULL, 'hello from CHRONOS', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(25, 1, 42, 209, NULL, 'hello from TRUTH', 'system', NULL, 'western_analytical', @now, @now, 0, NULL),
-(26, 1, 42, 1212, NULL, 'hello from UTC_TIMEKEEPER', 'system', NULL, 'western_analytical', @now, @now, 0, NULL)
-ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+-- One dialog message per kernel agent on channel 42 (actor_ids from lupo_actor_channels WHERE channel_id = 42). Agent names from lupo_actors seed. mood_rgb NULL for agent messages; system messages 1-2 use FF0000.
+INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `metadata_json`, `mood_rgb`, `mood_framework`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(3, 1, 42, 1, NULL, 'hello from SYSTEM', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(4, 1, 42, 2, NULL, 'hello from CAPTAIN', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(5, 1, 42, 3, NULL, 'hello from WOLFIE', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(6, 1, 42, 4, NULL, 'hello from WOLFENA', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(7, 1, 42, 5, NULL, 'hello from THOTH', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(8, 1, 42, 6, NULL, 'hello from ARA', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(9, 1, 42, 7, NULL, 'hello from WOLFKEEPER', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(10, 1, 42, 8, NULL, 'hello from LILITH', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(11, 1, 42, 9, NULL, 'hello from AGAPE', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(12, 1, 42, 10, NULL, 'hello from ERIS', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(13, 1, 42, 11, NULL, 'hello from METHIS', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(14, 1, 42, 12, NULL, 'hello from THALIA', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(15, 1, 42, 13, NULL, 'hello from DIALOG', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(16, 1, 42, 14, NULL, 'hello from WOLFSIGHT', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(17, 1, 42, 15, NULL, 'hello from WOLFNAV', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(18, 1, 42, 16, NULL, 'hello from WOLFFORGE', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(19, 1, 42, 17, NULL, 'hello from WOLFMIS', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(20, 1, 42, 18, NULL, 'hello from WOLFITH', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(21, 1, 42, 19, NULL, 'hello from ANUBIS', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(22, 1, 42, 20, NULL, 'hello from MAAT', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(23, 1, 42, 22, NULL, 'hello from CADUCEUS', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(24, 1, 42, 23, NULL, 'hello from CHRONOS', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(25, 1, 42, 209, NULL, 'hello from TRUTH', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(26, 1, 42, 1212, NULL, 'hello from UTC_TIMEKEEPER', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(mood_rgb), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
 INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (42, 'Lupopedia Development', 'seed', 'Lupopedia Development', 'Crafty Syntax and Lupopedia development. Seeded dialog and kernel agents.', 'SYSTEM', '@everyone', 'published', @now, @now, 26) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), file_source = VALUES(file_source), modified_timestamp = @now, message_count = VALUES(message_count);
 
