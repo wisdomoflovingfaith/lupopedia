@@ -4,6 +4,7 @@ LEXA security: parameterized SQL only; path validation (inside Lupopedia root, n
 no eval/exec/shell; header values plain text only; safe error logging (no sensitive info).
 Database user must have minimal privileges (INSERT/SELECT on required tables only).
 """
+import json
 import os
 import sys
 import mysql.connector
@@ -121,9 +122,9 @@ def serialize_dialog_for_notes(dialog_val):
 # --- HELPERS (LEXA: parameterized SQL only; no string interpolation into SQL) ---
 def insert_content(slug, title, body, file_path_from_root=None,
                    file_last_modified_system_version=None, file_last_modified_utc=None,
-                   dialog_notes=None):
+                   dialog_notes=None, tags=None):
     # All values passed as parameters; header/body stored as plain text only.
-    # FLIP fields: path + version + utc from header when present. Optional dialog_notes from header dialog block.
+    # FLIP fields: path + version + utc from header when present. Optional dialog_notes, tags from header.
     check_sql = "SELECT content_id FROM lupo_contents WHERE slug = %s AND federation_node_id = %s"
     cursor.execute(check_sql, (slug, FED_NODE))
     existing = cursor.fetchone()
@@ -136,13 +137,13 @@ def insert_content(slug, title, body, file_path_from_root=None,
     INSERT INTO lupo_contents
     (federation_node_id, actor_id, slug, title, body,
      status, visibility, created_ymdhis, updated_ymdhis, utc_cycle,
-     file_path_from_root, file_last_modified_system_version, file_last_modified_utc, dialog_notes)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+     file_path_from_root, file_last_modified_system_version, file_last_modified_utc, dialog_notes, tags)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
     utc_cycle = "import"
     vals = (FED_NODE, ACTOR_ID, slug, title, body, 'published', 'public',
             TIMESTAMP, TIMESTAMP, utc_cycle, file_path_from_root,
-            file_last_modified_system_version, file_last_modified_utc, dialog_notes)
+            file_last_modified_system_version, file_last_modified_utc, dialog_notes, tags)
     cursor.execute(sql, vals)
     db.commit()
     return cursor.lastrowid
@@ -217,10 +218,19 @@ def main():
                 dialog_notes = None
                 if header_dict and isinstance(header_dict, dict) and "dialog" in header_dict:
                     dialog_notes = serialize_dialog_for_notes(header_dict.get("dialog"))
+                # Optional: store tags from header (array of strings or dict with categories/hashtags etc.)
+                tags_json = None
+                if header_dict and isinstance(header_dict, dict) and "tags" in header_dict:
+                    try:
+                        tags_val = header_dict.get("tags")
+                        if tags_val is not None:
+                            tags_json = json.dumps(tags_val) if isinstance(tags_val, (list, dict)) else None
+                    except Exception:
+                        pass
                 title = filename.replace('-', ' ').replace('_', ' ').replace('.md', '').title()
                 content_id = insert_content(slug, title, content, file_path_from_root,
                                             file_last_modified_system_version, file_last_modified_utc,
-                                            dialog_notes)
+                                            dialog_notes, tags_json)
                 insert_edge(content_id)
                 print("Imported: rel_path=%s content_id=%s file_path_from_root=%s" % (rel_path, content_id, file_path_from_root))
             except Exception as e:

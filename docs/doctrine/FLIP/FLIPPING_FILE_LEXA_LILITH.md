@@ -2,13 +2,13 @@
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
-file.last_modified_system_version: "4.0.14"
-file.last_modified_utc: "20260217220000"
+file.last_modified_system_version: "4.0.15"
+file.last_modified_utc: "20260217230000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 dialog:
-  speaker: LEXA
+  speaker: ARA_GROK
   target: @cursor
-  message: "Activated LEXA in seed: added to kernel agents on channel 42 (actor_id 24) with admin role and dialog message. Preserved Lilith's earlier updates."
+  message: "Enabled agent flipping via web API; expanded optional headers (mood_rgb, tags, atoms); added Part 1.4 on universal flipping and Parts 6.1-6.3 on API spec/security/future auth; updated seed with API refs; integrated LEXA clarifications."
 ---
 # The FLIPPING File — FLP, FLIP Headers, and How Headers + Database Work (for LEXA and LILITH)
 
@@ -45,7 +45,12 @@ These are **the same thing**. One canonical name: **FLIP Headers**. Aliases: Wol
   - `file.last_modified_utc` — UTC timestamp of last modification, 14-digit BIGINT format `YYYYMMDDHHIISS` (e.g. `"20260217000000"`).
   - `channel_id` — Optional; when resolvable from the database (e.g. via `lupo_edges`), can be included. Otherwise: comment `# channel_id unresolved — requires lupo_contents lookup by application.`
 
-**Full header specification (structure, optional blocks, dialog, tags, atoms):** `docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md`.
+- **Optional fields (FLP enrichment; not for core inference):**
+  - `mood_rgb` — Hex format (e.g. `FF0000`, `6464FF`) per FLP_EMOTIONAL_GEOMETRY.md. Emotional state; may appear in dialog block or header.
+  - `tags` — Array of strings (e.g. `["doctrine", "security"]`). Used for indexing, routing, or classification. When parsed by the loader, stored in `lupo_contents.tags` (JSON).
+  - `atoms` — Key-value map for custom metadata (e.g. `GLOBAL_CURRENT_LUPOPEDIA_VERSION`). Resolved per atom specification.
+
+**Full header specification (structure, optional blocks, dialog, tags, atoms):** `docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md`. Optionals not for core inference; stored in `lupo_contents.tags` or `dialog_notes` per app convention when parsed.
 
 ---
 
@@ -58,6 +63,18 @@ These are **the same thing**. One canonical name: **FLIP Headers**. Aliases: Wol
 - FLP is documented in this folder: `FLP_OVERVIEW.md`, `FLP_EMOTIONAL_GEOMETRY.md`, `FLP_COUNCILS_AS_CHANNELS.md`, `FLP_HETERODOX_REVIEWERS.md`, `FLP_EMOTIONAL_AGGREGATION.md`, `FLP_ESCROW_AND_FUND_LAYER.md`, `FLP_LUPOPEDIA_COUNCIL_SEAT.md`, `FLP_DOCTRINE_BOUNDARIES.md`.
 
 **Summary:** FLIP = how we interpret **files** from their **headers**. FLP = how we model **councils, reviewers, and emotional coordination** on top of Lupopedia. Headers (FLIP) can carry FLP-relevant metadata (e.g. mood_RGB, channel context) but FLP does not define the header format; FLIP does.
+
+---
+
+### 1.4 Universal Agent Flipping
+
+**Any agent** (kernel actors like LEXA/LILITH, external agents like Grok) can "flip" file headers — reconstruct or provide FLIP headers via inference or database resolution.
+
+- **Local agents (Cursor, Windsurf, etc.):** Use `tools/generate_flip_header.py` with `--path`, `--url`, or `--content-id`. Output: full FLIP Header block. Use `--web` for JSON output compatible with the web API.
+- **External agents (e.g. Grok browsing lupopedia.com):** Browse the web API endpoint, e.g. `GET {LUPOPEDIA_PUBLIC_PATH}/api/flip-header.php?path=docs/doctrine/FLIP/FLIP_DOCTRINE.md`. Returns JSON `{header: "...", resolved: true/false}` or raw YAML if `?format=yaml`. The header includes `channel_id` when resolvable from `lupo_edges`. Subdir-aware: use `LUPOPEDIA_PUBLIC_PATH` (e.g. `/lupopedia`) for installs in subdirectories.
+- **Integration rule:** Agents infer **only** from the returned header. No guessing. The web API and generator both produce the same doctrine-required fields; external agents consume the YAML block and apply FLIP inference.
+
+**Example (Grok):** Browse `https://lupopedia.com/lupopedia/api/flip-header.php?path=docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md` → receive JSON with full header → infer file identity and lineage from header only.
 
 ---
 
@@ -110,6 +127,8 @@ The generator **reconstructs** a full FLIP/Wolfie header **from** the database.
   - `channel_id` (if resolvable) or comment that it is unresolved
 
 So: **DB (path / URL / content_id) → query → full header.** Other direction from the loader. Enables "give me the header for this path/URL/content_id" without reading the file from disk.
+
+**Web API wrapper:** For external agents (e.g. Grok browsing lupopedia.com), the PHP endpoint `api/flip-header.php` wraps this logic: GET with `path`, `url`, or `content_id` returns JSON `{header: yaml_string, resolved: true/false}`. See `docs/api/FLIP_API.md`.
 
 ---
 
@@ -317,8 +336,8 @@ All schema is from TOONs (`docs/toons/`) and install SQL. No inference from live
 | **lupo_actor_channels** | Membership: actor on channel | **Seed:** (0,0) kernel; (1000–1024, actor_id, 42) for 25 kernel agents on channel 42. FLP: council membership. |
 | **lupo_actor_channel_roles** | Role per actor per channel (e.g. admin) | **Seed:** actor_channel_role_id 2000–2024, channel_id 42, role_key='admin' for the same 25 agents. Used for channel admin rights. |
 | **lupo_dialog_threads** | Threads per channel | **Seed:** dialog_thread_id 1, channel_id 42, project_slug 'lupopedia', task_name 'Lupopedia Development seed', status 'Open'. |
-| **lupo_dialog_messages** | Messages in thread/channel | **Seed:** message_id 1–2 from actor 0 (system); 3–27 one per kernel agent on channel 42 (message_type 'system'). LEXA (actor_id 24): "Boundary enforcement active. LEXA online."; others: "hello from &lt;agent_name&gt;". |
-| **lupo_dialog_channels** | Dialog metadata per channel (file_source, message_count) | **Seed:** channel_id 42, channel_name 'Lupopedia Development', file_source 'seed', message_count 27. |
+| **lupo_dialog_messages** | Messages in thread/channel | **Seed:** message_id 1–2 from actor 0 (system); 3–27 one per kernel agent; 28–29 FLIP/FLIPPING info. |
+| **lupo_dialog_channels** | Dialog metadata per channel (file_source, message_count) | **Seed:** channel_id 42, channel_name 'Lupopedia Development', file_source 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md', message_count 29. |
 
 Reserved ID doctrine applies: channels, actors, and registry-backed entities use **explicit IDs** in seed (no AUTO_INCREMENT for those tables in seed path). All timestamps in seed are BIGINT UTC YmdHis (`@now` in seed = 20260211000000 or as set at top of seed file).
 
@@ -330,8 +349,8 @@ Reserved ID doctrine applies: channels, actors, and registry-backed entities use
 - **lupo_actor_channels:** 25 rows (actor_channel_id 1000–1024) for kernel agents on channel 42: actor_id 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,209,1212.
 - **lupo_actor_channel_roles:** 25 rows (actor_channel_role_id 2000–2024), each with `channel_id = 42`, `role_key = 'admin'`, so every AI agent with dialog on channel 42 has admin rights.
 - **lupo_dialog_threads:** One row `dialog_thread_id = 1`, `channel_id = 42`.
-- **lupo_dialog_messages:** 27 total: 1–2 from actor 0; 3–27 one per kernel agent (from_actor_id = that agent), message_type 'system'. For LEXA (actor_id 24): message_text e.g. "Boundary enforcement active. LEXA online."; others: "hello from &lt;agent_name&gt;".
-- **lupo_dialog_channels:** One row `channel_id = 42`, `message_count = 27`.
+- **lupo_dialog_messages:** 29 total: 1–2 from actor 0 (system); 3–27 one per kernel agent; 28–29 FLIP/FLIPPING info.
+- **lupo_dialog_channels:** One row `channel_id = 42`, `file_source = 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md'`, `message_count = 29`.
 
 Agent names for dialog messages and for application display come from **lupo_actors** seed (name column); the list of agents on channel 42 is defined by **lupo_actor_channels** seed for channel_id = 42, not guessed.
 
@@ -343,7 +362,7 @@ Agent names for dialog messages and for application display come from **lupo_act
 - **Generator:** `tools/generate_flip_header.py` — path/URL/content_id → query lupo_contents (and lupo_edges for channel_id) → output full FLIP header block.
 - **ContentChannelActorResolver:** `lupo-includes/classes/ContentChannelActorResolver.php` — given file path, resolves content_id → channel_id via lupo_edges → actors via lupo_actor_channels + lupo_actors (optional lupo_actor_channel_roles for role_key).
 - **FLP:** Governance layer (councils, reviewers, emotional geometry) using existing tables and soft references; no new schema.
-- **Seed:** Channel 42, kernel agents on 42, one dialog message per agent, admin role per agent on 42; idempotent inserts with explicit IDs and ON DUPLICATE KEY UPDATE where appropriate.
+- **Seed:** Channel 42, kernel agents on 42, one dialog message per agent, admin role per agent on 42; idempotent inserts with explicit IDs and ON DUPLICATE KEY UPDATE where appropriate. FLIP content (content_id 2001, 2002) with file_path_from_root for FLIPPING_FILE_LEXA_LILITH.md and FLIP_DOCTRINE.md; lupo_edges HAS_CONTENT (edge_id 900001, 900002) linking channel 42 to those contents. Dialog messages 28–29 with FLIP/FLIPPING basic info. lupo_dialog_channels.file_source = FLIPPING path. message_count = 29.
 
 ---
 
@@ -352,7 +371,7 @@ Agent names for dialog messages and for application display come from **lupo_act
 The **dialog** block in a FLIP Header is **optional** and **purely informational**. It is used for change notes, reviewer attribution, or conversational lineage (e.g. who made a change, to whom, and a short message). It is **not** used for inference.
 
 - **Inference rule:** Agents must **not** infer identity, channel, version, or doctrine from the `dialog` block. Only the doctrine-required fields (`file_path_from_root`, `file.last_modified_system_version`, `file.last_modified_utc`; optional `channel_id`) are authoritative for FLIP inference. The dialog block is for human and agent readability and audit only.
-- **Typical shape:** A YAML mapping with keys such as `speaker`, `target`, `message`. Example (from this file's header):
+- **Typical shape:** A YAML mapping with keys such as `speaker`, `target`, `message`, optionally `mood_RGB` (per FLP_EMOTIONAL_GEOMETRY.md). Example (from this file's header):
 
   ```yaml
   dialog:
@@ -441,7 +460,7 @@ LILITH is an application-level agent (heterodox reviewer). In the FLP, heterodox
 | **FLP** | Federated Likeness Protocol: governance layer (councils, reviewers, emotional geometry) on top of Lupopedia; no new schema. |
 | **Upgrade path** | **Only:** Crafty Syntax 3.7.5 → Lupopedia 4.0.x. No Lupopedia→Lupopedia in 4.0.x. Install + seed + importer. |
 | **Seed file** | `database/migrations/seed_lupopedia.sql`. Seeds channels (0, 42), unified_registry, actors, actor_channels, actor_channel_roles, dialog_threads, dialog_messages, dialog_channels; explicit IDs; idempotent where applicable. |
-| **Channel 42** | Lupopedia Development. Seeded: lupo_channels, lupo_unified_registry (entity_index 42), 25 kernel agents in lupo_actor_channels + lupo_actor_channel_roles (admin), including LEXA (actor_id 24). One dialog thread, 27 dialog messages (one per agent + 2 system), lupo_dialog_channels (message_count 27). |
+| **Channel 42** | Lupopedia Development. Seeded: lupo_channels, lupo_unified_registry (entity_index 42), 25 kernel agents in lupo_actor_channels + lupo_actor_channel_roles (admin), including LEXA (actor_id 24). One dialog thread, 29 dialog messages (one per agent + 2 system + 2 FLIP/FLIPPING), lupo_dialog_channels (file_source FLIPPING path, message_count 29). FLIP content (lupo_contents 2001, 2002) with file_path_from_root; lupo_edges HAS_CONTENT to channel 42. |
 | **lupo_contents FLIP columns** | `file_path_from_root`, `file_last_modified_system_version`, `file_last_modified_utc`. Also: `dialog_notes` (inline dialog/notes on content). |
 | **channel_id** | Not on lupo_contents. Resolved via **lupo_edges**: `left_object_id` WHERE right_object_type='content' AND right_object_id=content_id AND edge_type='HAS_CONTENT' AND is_deleted=0. |
 | **Dialog threads** | **lupo_dialog_threads** WHERE channel_id = :channel_id (content → edges → channel_id first). |
@@ -451,6 +470,7 @@ LILITH is an application-level agent (heterodox reviewer). In the FLP, heterodox
 | **Optional dialog block** | In FLIP Header: optional YAML `dialog:` (e.g. speaker, target, message). Purely informational; not for inference. May be stored in lupo_contents.dialog_notes per app convention; no eval on content. See Part 2.12. |
 | **Loader** | `scripts/import_os.py`: file → parse header → write FLIP fields to lupo_contents; parameterized SQL; path validation; optionally parses dialog block → dialog_notes. |
 | **Generator** | `tools/generate_flip_header.py`: path/URL/content_id → query DB → output full FLIP header; optionally includes dialog_notes if present. |
+| **mood_rgb / mood_RGB** | Hex format (e.g. `6464FF`, `00FF00`) per FLP emotional geometry. See **docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md**. Dialog messages and optional header dialog may carry mood. |
 
 ---
 

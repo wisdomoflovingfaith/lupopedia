@@ -111,7 +111,7 @@ This is the first time Crafty Syntax has ever had:
 - Timestamp discipline  
 - No foreign keys, no triggers, no DB logic  
 - Global registry for actors, channels, collections  
-- **FLIP (File-Level Inference Protocol)** — When a file is handed to the system or an agent, infer its identity, doctrine, meaning, and emotional state entirely from its FLIP Headers (alias: Wolfie Headers, CROP Headers); no guessing. See **docs/doctrine/FLIP/FLIP_DOCTRINE.md**.
+- **FLIP (File-Level Inference Protocol)** — When a file is handed to the system or an agent, infer its identity, doctrine, meaning, and emotional state **entirely from its FLIP Header** — no guessing, no filling in from repo scan or external context. FLIP Headers (alias: Wolfie Headers, CROP Headers, FLIPPING Headers) are the YAML block at the top of the file. Key docs: [FLIP_DOCTRINE.md](docs/doctrine/FLIP/FLIP_DOCTRINE.md) (inference rules), [FLIPPING_FILE_LEXA_LILITH.md](docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md) (headers + database, path lookup, LEXA/LILITH roles).
 
 Crafty Syntax becomes the **heart**.  
 Lupopedia becomes the **brain**.
@@ -292,7 +292,8 @@ Never introduce `user_id`. Never add foreign keys, triggers, or stored procedure
 All contributors and AI agents must read and follow:
 
 - 📘 [docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md](docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md)  
-- 📘 [docs/doctrine/FLIP/FLIP_DOCTRINE.md](docs/doctrine/FLIP/FLIP_DOCTRINE.md) — File-Level Inference Protocol: infer file identity, doctrine, and meaning from the FLIP Header only; no guessing. (FLIP Headers are also known as Wolfie Headers, CROP Headers.)  
+- 📘 [docs/doctrine/FLIP/FLIP_DOCTRINE.md](docs/doctrine/FLIP/FLIP_DOCTRINE.md) — File-Level Inference Protocol: infer file identity, doctrine, and meaning from the FLIP Header only; no guessing.  
+- 📘 [docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md](docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md) — FLIP Headers + database (lupo_contents, lupo_edges, path → content → channel → actors); LEXA boundary keeper, LILITH heterodox reviewer.  
 - 📘 [docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md](docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md) — Common AI corrections: database (no FKs, no triggers, no display widths, no UNSIGNED), time (UTC YYYYMMDDHHIISS only), state (no deadlines), identity (BIGINT only), advertising/humor/psychological manipulation prohibitions, and filename rules.  
 
 Any AI coding agent (JetBrains, Cursor, Claude, etc.) must be initialized with this doctrine before making changes to the codebase.
@@ -487,23 +488,31 @@ Lupopedia recommendations are based solely on **DATA and SYSTEM LOGIC — never 
 
 ---
 
+### Understanding FLIP (File-Level Inference Protocol)
+
+**FLIP** = **F**ile-**L**evel **I**nference **P**rotocol. When a file is "flipped" to the system (e.g. handed to Cursor or any agent), the agent must **infer** everything about that file **only from its FLIP Header** — no guessing, no hallucinating, no filling in from repo scan or external context.
+
+- **FLIP Headers** (alias: Wolfie Headers, CROP Headers, FLIPPING Headers) are the YAML block at the top of the file between `---` delimiters.
+- **Inference rule:** Identity, lineage, channel, version, emotional state, doctrine, placement, meaning — all from the header. If a field is absent, the agent must **not** invent it. Omission is information.
+- **Path lookup:** `file_path_from_root` (in `lupo_contents`) → `content_id` → `channel_id` (via `lupo_edges` HAS_CONTENT) → actors (via `lupo_actor_channels` + `lupo_actors`).
+- **Key docs:** [FLIP_DOCTRINE.md](docs/doctrine/FLIP/FLIP_DOCTRINE.md), [FLIPPING_FILE_LEXA_LILITH.md](docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md).
+
 ### FLIP Header Update Requirements
 
-Every file in Lupopedia must include a **FLIP Headers (alias: Wolfie Headers, CROP Headers)** block at the top with these required fields:
+Every file in Lupopedia should include a **FLIP Header** block at the top. Doctrine-required fields:
 
 ```
-file.last_modified_system_version: X.X.X.X
-file.channel: XXXX
+file_path_from_root: docs/path/to/file.md
+file.last_modified_system_version: "4.0.14"
+file.last_modified_utc: "20260217120000"
 ```
 
-- `file.last_modified_system_version` must be updated on every edit to reflect the current system version at that moment.  
-- `file.channel` must also be updated on every edit, indicating the channel responsible (e.g., `crafty-port`, `schema`, `doctrine`).  
+- `file_path_from_root` — Path from repo root (e.g. `docs/doctrine/FLIP/FLIP_DOCTRINE.md`).
+- `file.last_modified_system_version` — System version when the file was last edited. Update on every edit.
+- `file.last_modified_utc` — UTC timestamp of last modification, 14-digit `YYYYMMDDHHIISS`.
+- `channel_id` — Optional; when resolvable from the database (via `lupo_edges`), can be included. Otherwise: `# channel_id unresolved — requires lupo_contents lookup by application.`
 
-If the editing channel is not known:  
-- If the file already has a `file.channel` value, retain it.  
-- If not, set it to `file.channel: 0000`.
-
-This ensures accurate historical lineage and prevents ambiguity across migrations and rewrites.
+This ensures accurate historical lineage and enables path-based content → channel → actors lookup.
 
 ---
 

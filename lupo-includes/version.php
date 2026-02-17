@@ -6,7 +6,7 @@
  * version-related constants and helper functions.
  * 
  * @package Lupopedia
- * @version 4.0.13
+ * @version 4.0.14
  * 
  * @note VERSION DOCTRINE: This file now loads version from GLOBAL_CURRENT_LUPOPEDIA_VERSION
  *       atom in config/global_atoms.yaml (Phase 2 implementation). Constants are defined
@@ -36,7 +36,7 @@ if (function_exists('get_lupopedia_version')) {
 }
 
 // Fallback to hard-coded version if atom loader fails (backward compatibility)
-$current_version = $version_from_atom !== null ? $version_from_atom : '4.0.13';
+$current_version = $version_from_atom !== null ? $version_from_atom : '4.0.14';
 
 // LIMITS enforcement (dry-run mode in 3.0.103)
 // Check version bump before applying (non-blocking, logs warnings only)

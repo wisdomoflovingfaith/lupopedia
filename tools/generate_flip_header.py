@@ -10,6 +10,7 @@ Requirements: Python 3.8+. mysql-connector-python. No other external deps.
 Doctrine: docs/doctrine/FLIP/, NOTE_HEADER_VERSION_AND_MERGE.md.
 """
 import argparse
+import json
 import sys
 
 try:
@@ -110,6 +111,7 @@ def main():
     g.add_argument("--path", metavar="PATH", help="file_path_from_root (e.g. docs/doctrine/FLIP/README.md)")
     g.add_argument("--url", metavar="URL", help="Link address / content_url or custom_path")
     g.add_argument("--content-id", metavar="ID", type=int, help="content_id")
+    ap.add_argument("--web", action="store_true", help="Output JSON for API compatibility (header, resolved, channel_id)")
     ap.add_argument("--host", default=DEFAULT_DB["host"], help="MySQL host")
     ap.add_argument("--user", default=DEFAULT_DB["user"], help="MySQL user")
     ap.add_argument("--password", default=DEFAULT_DB["password"], help="MySQL password")
@@ -141,7 +143,13 @@ def main():
     content_id = row[0]
     channel_id = get_channel_id_for_content(cursor, content_id)
     header_block = build_header(row, channel_id)
-    print(header_block)
+    resolved = channel_id is not None
+
+    if getattr(args, "web", False):
+        out = {"header": header_block, "resolved": resolved, "channel_id": channel_id}
+        print(json.dumps(out, indent=2, ensure_ascii=False))
+    else:
+        print(header_block)
 
     cursor.close()
     conn.close()

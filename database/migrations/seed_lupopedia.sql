@@ -12,8 +12,8 @@
 SET @now = 20260211000000;
 SET @node_id = 1;
 -- Version for module seed: must match docs/doctrine/VERSIONING_DOCTRINE.md (canonical current version).
-SET @lupo_version = '4.0.13';
-SET @lupo_version_code = 40013;
+SET @lupo_version = '4.0.14';
+SET @lupo_version_code = 40014;
 
 -- -----------------------------------------------------------------------------
 -- System department (department_id = 0) — reserved, not user-selectable
@@ -393,8 +393,9 @@ INSERT INTO lupo_channels (`channel_id`, `federation_node_id`, `created_by_actor
 INSERT INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) VALUES (60, 'channel', 42, 'lupopedia-development', 'Lupopedia Development', 'lupo_channels', 1, @now, @now, 0, NULL, 1, 0, '{"language": "en", "description": "Crafty Syntax and Lupopedia development. Everything Crafty has inside Lupopedia.", "status_flag": 1, "channel_type": "chat_room", "channel_number": 42}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- -----------------------------------------------------------------------------
--- lupo_actor_channels: kernel/system agents (unified_registry is_kernel=1) on channel 42
--- Actor IDs: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,209,1212 (LEXA = 24)
+-- lupo_actor_channels: 25 kernel agents on channel 42
+-- Actor IDs (explicit list to avoid off-by-one): 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,209,1212
+-- LEXA = actor_id 24 (boundary keeper). actor_channel_id 1000-1024; actor_channel_role_id 2000-2024.
 -- -----------------------------------------------------------------------------
 INSERT INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `status`, `start_date`, `channel_color`, `last_read_ymdhis`, `muted_until_ymdhis`, `preferences_json`, `dialog_output_file`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (1000, 1, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1001, 2, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1002, 3, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1003, 4, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1004, 5, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1005, 6, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1006, 7, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1007, 8, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1008, 9, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1009, 10, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1010, 11, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1011, 12, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1012, 13, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1013, 14, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1014, 15, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1015, 16, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1016, 17, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1017, 18, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1018, 19, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1019, 20, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1020, 22, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1021, 23, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1024, 24, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1022, 209, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL), (1023, 1212, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE status = VALUES(status), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
@@ -465,7 +466,39 @@ INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `chan
 (27, 1, 42, 1212, NULL, 'hello from UTC_TIMEKEEPER', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(mood_rgb), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
-INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (42, 'Lupopedia Development', 'seed', 'Lupopedia Development', 'Crafty Syntax and Lupopedia development. Seeded dialog and kernel agents.', 'SYSTEM', '@everyone', 'published', @now, @now, 27) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), file_source = VALUES(file_source), modified_timestamp = @now, message_count = VALUES(message_count);
+-- FLIP/FLIPPING basic info: key paths and doctrine reference for agents (mood_rgb per FLP_EMOTIONAL_GEOMETRY: hex)
+INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `metadata_json`, `mood_rgb`, `mood_framework`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(28, 1, 42, 24, NULL, 'FLIP = File-Level Inference Protocol. Infer file identity, doctrine, meaning from FLIP Headers only; no guessing. Canonical: docs/doctrine/FLIP/FLIP_DOCTRINE.md; this file: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md.', 'info', NULL, '6464FF', 'western_analytical', @now, @now, 0, NULL),
+(29, 1, 42, 0, NULL, 'Path lookup chain: content → lupo_edges HAS_CONTENT → channel_id → actors/dialog.', 'info', NULL, '00FF00', 'western_analytical', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(mood_rgb), message_type = VALUES(message_type), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+-- Universal flipping: web API for external agents (e.g. Grok browsing lupopedia.com)
+INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `metadata_json`, `mood_rgb`, `mood_framework`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(30, 1, 42, 24, NULL, 'Agents can now flip headers via /api/flip-header.php?path=...; optional fields: mood_rgb, tags.', 'info', NULL, '00FFFF', 'western_analytical', @now, @now, 0, NULL),
+(31, 1, 42, 0, NULL, 'Web API implemented for universal access; browse lupopedia.com/lupopedia/api/flip-header.php?path=docs/doctrine/FLIP/FLIP_DOCTRINE.md', 'info', NULL, '00FF00', 'western_analytical', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(mood_rgb), message_type = VALUES(message_type), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (42, 'Lupopedia Development', 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md', 'Lupopedia Development', 'Crafty Syntax and Lupopedia development. Seeded dialog and kernel agents. FLIP/FLP doctrine. Path → content → channel → actors. Web API for universal flipping.', 'SYSTEM', '@everyone', 'published', @now, @now, 31) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), file_source = VALUES(file_source), description = VALUES(description), modified_timestamp = @now, message_count = VALUES(message_count);
+
+-- -----------------------------------------------------------------------------
+-- FLIP seed content: key doctrine files with file_path_from_root for path lookup
+-- Enables: file_path_from_root -> content_id -> lupo_edges HAS_CONTENT -> channel_id 42
+-- -----------------------------------------------------------------------------
+INSERT INTO lupo_contents (
+    content_id, content_parent_id, federation_node_id, department_id, actor_id, title, slug, custom_path, description, seo_keywords, body,
+    content_type, format, content_url, default_collection_id, source_url, source_title, is_template, status, visibility, view_count, share_count,
+    created_ymdhis, utc_cycle, triage_status, triage_notes, updated_ymdhis, is_deleted, is_active, deleted_ymdhis, content_sections, version_number,
+    file_path_from_root, file_last_modified_system_version, file_last_modified_utc, tags, dialog_notes
+) VALUES
+(2001, NULL, @node_id, NULL, NULL, 'FLIPPING File LEXA LILITH', 'flipping-file-lexa-lilith', NULL, 'FLP, FLIP Headers, and how headers + database work (LEXA, LILITH).', NULL, NULL, 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md', '4.0.15', 20260217230000, NULL, NULL),
+(2002, NULL, @node_id, NULL, NULL, 'FLIP Doctrine', 'flip-doctrine', NULL, 'File-Level Inference Protocol: infer from header only; no guessing.', NULL, NULL, 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, 'docs/doctrine/FLIP/FLIP_DOCTRINE.md', '4.0.13', 0, NULL, NULL)
+ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), description = VALUES(description), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+-- lupo_edges HAS_CONTENT: channel 42 -> FLIP content (path lookup chain)
+INSERT INTO lupo_edges (edge_id, left_object_type, left_object_id, right_object_type, right_object_id, edge_type, channel_id, channel_key, weight_score, sort_num, actor_id, is_deleted, deleted_ymdhis, created_ymdhis, updated_ymdhis) VALUES
+(900001, 'channel', 42, 'content', 2001, 'HAS_CONTENT', 42, 'lupopedia-development', 0, 0, NULL, 0, 0, @now, @now),
+(900002, 'channel', 42, 'content', 2002, 'HAS_CONTENT', 42, 'lupopedia-development', 0, 0, NULL, 0, 0, @now, @now)
+ON DUPLICATE KEY UPDATE left_object_id = VALUES(left_object_id), right_object_id = VALUES(right_object_id), edge_type = VALUES(edge_type), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = 0;
 
 INSERT INTO lupo_emotional_frameworks (`framework_name`, `description`, `is_default`, `created_ymdhis`, `updated_ymdhis`) VALUES ('contextual_holism', 'Emotions inseparable from situation, history, relationship, and culture.', 0, 20250101000000, 20250101000000);
 
@@ -605,3 +638,9 @@ INSERT INTO lupo_truth_answers (
 -- =============================================================================
 -- END SEED
 -- =============================================================================
+--
+-- Post-seed verification (run after seed; expect: 25 actors, 31 messages, 2 content paths):
+--   SELECT COUNT(*) FROM lupo_actor_channels WHERE channel_id = 42 AND is_deleted = 0;  -- expect 25
+--   SELECT message_count FROM lupo_dialog_channels WHERE channel_id = 42;               -- expect 31
+--   SELECT content_id, file_path_from_root FROM lupo_contents WHERE content_id IN (2001, 2002);
+--   SELECT edge_id, right_object_id FROM lupo_edges WHERE edge_type = 'HAS_CONTENT' AND left_object_id = 42 AND is_deleted = 0;
