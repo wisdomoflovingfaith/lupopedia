@@ -1,10 +1,25 @@
 # Lupopedia Migration Pipeline (Canonical)
 
-This directory contains the authoritative, clean migration sequence for upgrading any Crafty Syntax 3.7.5 installation into the modern Lupopedia Semantic OS.
+This directory contains the authoritative migration set used by the **install wizard**: new install, upgrade from Crafty Syntax 3.7.5, and (for dev/testing) reverting to a Crafty Syntax 3.7.5 snapshot. Only these files belong here; one-time or Lupopedia→Lupopedia migrations live in **database/migrations_legacy/**.
 
-## Development workflow baseline: `old_crafty_syntax_3_7_5.sql`
+## Canonical SQL set (wizard and revert baseline)
 
-The file **`old_crafty_syntax_3_7_5.sql`** is the canonical starting point for upgrade testing. It contains the exact 34 legacy Crafty Syntax tables. Do not modify it unless explicitly instructed. It is the baseline for importer logic, identity normalization, operator detection, and legacy table dropping. See **docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md**.
+Only the following files remain in this folder:
+
+| File | Purpose |
+|------|--------|
+| **install_new_lupopedia.sql** | Creates all required Lupopedia tables. Run on new install and at upgrade (before seed). |
+| **seed_lupopedia.sql** | Seeds unified registry, system channels, actors, Collection 0. Run after install. |
+| **import_from_old_crafty_syntax.sql** | Migrates data from livehelp_* into lupo_* (upgrade path only). |
+| **drop_old_crafty_syntax_tables.sql** | Drops legacy livehelp_* tables (optional at credentials). |
+| **future_features_lupopedia.sql** | Defines non-required tables; not run by wizard. |
+| **old_crafty_syntax_3_7_5_start.sql** | Baseline snapshot of Crafty Syntax 3.7.5 schema. Used to bring the system back to a clean Crafty 3.7.5 state for testing (not a Lupopedia rollback). |
+
+All other SQL and report files (one-time migrations, Lupopedia→Lupopedia patches, dev reports) are in **database/migrations_legacy/**.
+
+## Development workflow baseline: `old_crafty_syntax_3_7_5_start.sql`
+
+The file **`old_crafty_syntax_3_7_5_start.sql`** is the canonical starting point for upgrade testing. It contains the exact 34 legacy Crafty Syntax tables. Do not modify it unless explicitly instructed. It is the baseline for importer logic, identity normalization, operator detection, and legacy table dropping. See **docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md** and **docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md**.
 
 All migrations in this folder are:
 - idempotent
@@ -14,12 +29,7 @@ All migrations in this folder are:
 - generated only after TOON regeneration
 - ordered strictly by timestamp
 
-Legacy migrations from previous eras have been moved to:
-
-Code
-/database/migrations_legacy/
-
-Those files are frozen artifacts and must never be modified.
+One-time and Lupopedia→Lupopedia migration files have been moved to **database/migrations_legacy/** (e.g. migration_operator_to_actor_channel_roles.sql, migration_drop_lupo_channel_roles.sql, migration_unified_registry_*.sql, dev_*.sql, grant_captain_admin_channel_role.sql, registry_seed_raw_test.sql, and audit/summary .txt files). Those files are frozen artifacts and are not run by the wizard.
 
 ## Migration File Naming
 

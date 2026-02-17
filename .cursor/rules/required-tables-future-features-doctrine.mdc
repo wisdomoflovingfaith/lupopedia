@@ -56,14 +56,15 @@ Cursor must automatically:
 
 ## 4. Migrations Cleanup Doctrine
 
-The **canonical SQL set** in database/migrations/ is:
+The **canonical SQL set** in database/migrations/ is (wizard install/upgrade and revert-to-Crafty baseline only):
 - import_from_old_crafty_syntax.sql
 - install_new_lupopedia.sql
 - seed_lupopedia.sql
 - drop_old_crafty_syntax_tables.sql
 - future_features_lupopedia.sql
+- old_crafty_syntax_3_7_5_start.sql (Crafty 3.7.5 snapshot for dev/testing revert)
 
-**All other** SQL files in database/migrations/ must be moved to **database/migrations_legacy/** unless explicitly marked canonical. Update any docs that reference moved files.
+**All other** SQL files in database/migrations/ (one-time or Lupopedia→Lupopedia migrations) must be moved to **database/migrations_legacy/** unless explicitly marked canonical. Update any docs that reference moved files.
 
 ---
 

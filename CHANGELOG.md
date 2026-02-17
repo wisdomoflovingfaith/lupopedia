@@ -16,6 +16,65 @@ As we continue development on a version, we append new changes under that versio
 
 ---
 
+## Lupopedia 4.0.12 — Version bump, import actor ID range, progress blog, admin setup,  README and HISTORY - 2026-02-17
+
+Lupopedia 4.0.12 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
+There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
+
+### Version bump 4.0.11 → 4.0.12
+
+- **config/global_atoms.yaml:** `file.last_modified_system_version`, `version`, `versions.lupopedia`, `GLOBAL_CURRENT_LUPOPEDIA_VERSION` set to 4.0.12; `last_updated` set to 20260217120000.
+- **lupo-includes/version.php:** Docblock `@version` and fallback literals (when atom loader unavailable) updated to 4.0.12; `LUPOPEDIA_VERSION_DATE` set to 20260217120000.
+
+### Import: actor ID range (human users ≥ 10000)
+
+- **Actor ID doctrine:** actor_id 0–9999 = system/AI agents only; human actors must use actor_id ≥ 10000. Import now remaps Crafty `user_id` into the human range so imported users never collide with seed agents.
+- **database/migrations/import_from_old_crafty_syntax.sql:** Both **lupo_auth_users** INSERTs use `(10000 + u.user_id) AS auth_user_id`; NOT EXISTS checks updated to `(10000 + u.user_id)`. **lupo_actors** INSERT unchanged (uses `au.auth_user_id`, now ≥ 10000). Comments added for ACTOR ID RANGE and remap.
+- **Same offset applied everywhere Crafty user/operator IDs are written:** `lupo_crafty_syntax_auto_invite.operator_user_id` = (10000 + a.user_id); `lupo_crafty_syntax_layer_invites.user_id` = (10000 + `user`); `lupo_actor_departments.actor_id` (from livehelp_operator_departments) = (10000 + user_id); `lupo_actor_reply_templates.actor_id` (from livehelp_quick) = (10000 + `user`); `lupo_audit_log.entity_id` (from livehelp_operator_history.opid) = (10000 + opid).
+- **docs/doctrine/migrations/livehelp_users_migration.md:** Documented that on import, auth_user_id = 10000 + livehelp_users.user_id and imported human actor_id ≥ 10000.
+
+### Progress blog (reports_for_boss → progress_blog)
+
+- **progress_blog/pre-4_0_1.md:** Created; content moved from former `reports_for_boss/20260223.md` (Lupopedia Weekly Impact Report, Jan 22–24, 2026) as the pre–4.0.1 progress report.
+- **progress_blog/pre-4_0_1_to_4_0_11.md:** Created; summarizes CHANGELOG changes for versions 4.0.1 through 4.0.11.
+- **reports_for_boss:** Folder and contents removed.
+
+### README: narrative lead and structure
+
+- **README.md:** Lead updated to “Crafty Syntax Reborn — Now Inside a Semantic Operating System” with taglines (Same product → new universe; Everything familiar → everything extended). New sections: **Why Lupopedia Exists** (Crafty = real-time help, Lupopedia = semantic layer; visitors/pages/referrers/sessions → content atoms, tabs, collections, meaning edges); **What 4.0.x Focuses On** (rebuild Crafty inside Lupopedia, add Semantic OS layer); **Crafty Syntax + Semantic OS = Lupopedia** (Crafty provides / Lupopedia adds; heart/brain); **The Five Pillars (Simplified)**; **Upgrade Path**; **What Lupopedia Is** / **What Lupopedia Is Not**. Reference (doctrine/database, legacy/craftysyntax, migrations) and Origins (link to HISTORY.md) retained. Duplicate “What Lupopedia 4.0.x Is” and “What Lupopedia 4.0.x Is NOT” removed. **In One Sentence** updated to Crafty Syntax reborn inside a Semantic OS. “Not a replacement for your website” and “semantic reference layer” preserved.
+
+### HISTORY.md (origins and Crafty lineage)
+
+- **docs/channels/appendix/HISTORY.md:** Created and expanded. Full narrative: **Origins** (WOLFIE spiritual research engine → 222 tables → semantic OS → Lupopedia); **The Second Origin: Crafty Syntax Returns** (2002–2014 Crafty Syntax Live Help, semantic behavioral data, “missing half”); **The Evolution Path: Crafty Syntax → Lupopedia** (4.0.x as next evolutionary stage, feature list, legacy/craftysyntax reference-only); **The Modern System** (both lineages, unified successor). Link to Founder’s Note retained.
+
+### database/migrations organization (wizard vs one-time migrations)
+
+- **Canonical set in database/migrations/:** Only wizard- and revert-related SQL remain: `install_new_lupopedia.sql`, `seed_lupopedia.sql`, `import_from_old_crafty_syntax.sql`, `drop_old_crafty_syntax_tables.sql`, `future_features_lupopedia.sql`, `old_crafty_syntax_3_7_5_start.sql` (Crafty 3.7.5 snapshot for dev/testing revert). **database/migrations/README.md** updated with a canonical-set table and baseline filename `old_crafty_syntax_3_7_5_start.sql`.
+- **Moved to database/migrations_legacy/:** One-time and Lupopedia→Lupopedia migration files (not run by wizard): `migration_unified_registry_*`, `migration_operator_to_actor_channel_roles.sql`, `migration_drop_lupo_channel_roles.sql`, `migration_system_department_and_admin_roles.sql`, `grant_captain_admin_channel_role.sql`, `registry_seed_raw_test.sql`, `dev_20260212_sessions_and_unified_analytics_paths.sql`, `dev_20260204_fix_schema_alignment_summary.txt`, `reserved_word_audit_report.txt`, `transform_out.txt`, `transform_result.sql`.
+- **Docs and rules:** References to moved migrations updated to `database/migrations_legacy/` in `docs/doctrine/VERSIONING_DOCTRINE.md`, `docs/doctrine/migrations/operator_to_roles_migration.md`, `docs/doctrine/database/actor_channel_roles.md`, `docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md` (baseline name → `old_crafty_syntax_3_7_5_start.sql`), `docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md`, `docs/audits/DYNAMIC_TABLE_PREFIX_AUDIT.md`, `docs/audits/FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md`, `docs/audits/VERSIONING_DOCTRINE_ALIGNMENT_SUMMARY.md`. **.cursor/rules/required-tables-future-features-doctrine.mdc:** canonical SQL set extended to include `old_crafty_syntax_3_7_5_start.sql` and clarified as wizard + revert-to-Crafty baseline only.
+
+### Wizard version display (4.0.12 on install step)
+
+- **install.php:** Fallback when `LUPOPEDIA_VERSION` is not defined (line ~40) updated from `'4.0.10'` to `'4.0.12'`. Ensures the wizard shows the current version when run without lupopedia-config.php (no atom loader).
+- **lupo-includes/functions/load_atoms.php:** Fallback in `get_lupopedia_version()` (line ~46) updated from `'4.0.10'` to `'4.0.12'`. Used when the atom loader is not set (e.g. pre-config wizard).
+- **docs/doctrine/VERSIONING_DOCTRINE.md:** New **§8 Patch bump: locations to update** — checklist of four places to update on each patch (global_atoms.yaml, version.php, install.php, load_atoms.php). Canonical version and summary table set to 4.0.12.
+
+### Admin menu (legacy Crafty parity)
+
+- **admin.php:** Full admin navigation rewritten to match **legacy/craftysyntax/navigation.php**. Menu is grouped into sections: **Overview** (Dashboard), **General** (Documentation, Master Settings, Help, Support, Security Registration, Lupopedia Registration, Member Services, Questions and Answers), **CRM tools** (Leads Database, Email message database, Proactive Leads, Import Leads), **Agents & Channels** (Agents, Channels), **Live Help** (Live, Quick replies, Quick images, Quick URLs, Auto invite, Emotion Icons, Edit Layer Images), **Operators** (Edit your account, Create / Edit / Delete), **Departments** (HTML code for departments, Create / Edit / Delete departments), **Data** (Visits, Messages, Referrers, Visits by period, Paths, Keywords, Users), **Modules** (Questions & Answers), **Extras** (View Directory), **Information** (Donations, Updates, Changelog). Each item links to `admin.php?section=<slug>`. **Users** keeps existing AdminUsersHandler; all other sections show a placeholder (“This section is a placeholder…”).
+- **lupo-includes/themes/default/layouts/admin_layout.php:** Sidebar renders from `$admin_menu_sections` when set (grouped by section with `<h2>` per group). Fallback to flat `$admin_menu_items` when sections not set. PHP 5.3-safe arrays; `$admin_menu_sections` defaulted when unset; `.admin-placeholder-text` style added.
+
+### Crafty admin rights → Lupopedia global admin (wizard migration)
+
+- **Legacy:** In Crafty Syntax (legacy/craftysyntax/operators.php), `livehelp_users.isadmin` = 'Y' means Admin; 'N' = Normal; 'R' = Restricted; 'L' = Live-Help-ONLY. Lupopedia has no `isadmin` column; admin is determined by the 3-level role system (channel 1 captain, department 0 administrator, and/or owner on admin module).
+- **app/auth/AuthRoleResolver.php:** **getAuthUserIdFromActorId** now accepts `actor_source_type = 'user'` or `actor_source_type = 'lupo_auth_users'` so imported Crafty operators (stored as lupo_auth_users) resolve correctly for the permissions fallback (owner on admin module).
+- **install_wizard_classes.php — createOperatorChannels:** Crafty admins (livehelp_users.isadmin = 'Y') are resolved via a single JOIN (livehelp_users → lupo_auth_users → lupo_actors) so canonical **actor_id** is used for all role inserts. For each such admin the wizard ensures: (1) captain on channel 1 (Administration), (2) lupo_actor_departments (department_id = 0, System Administrator), (3) lupo_department_roles (department_id = 0, role_key = 'administrator'), (4) **lupo_permissions** owner on the **admin** module when that module exists (so they have “admin * access to everything” and AuthRoleResolver’s permissions fallback grants global admin). Non-admin operators keep normal roles only (personal channel + captain).
+- **database/migrations/seed_lupopedia.sql:** New **admin** module (module_id = 9, module_key = 'admin', module_name = 'Admin', paths /admin.php) and matching **lupo_unified_registry** row (unified_registry_id = 88, entity_type = 'module', entity_index = 9). Used by the wizard to grant owner permission to Crafty admins and by AuthRoleResolver for global admin checks.
+
+**Files modified (4.0.12):** `config/global_atoms.yaml`, `lupo-includes/version.php`, `lupo-includes/functions/load_atoms.php`, `install.php`, `admin.php`, `app/auth/AuthRoleResolver.php`, `install_wizard_classes.php`, `database/migrations/seed_lupopedia.sql`, `database/migrations/import_from_old_crafty_syntax.sql`, `database/migrations/README.md`, `docs/doctrine/migrations/livehelp_users_migration.md`, `docs/doctrine/VERSIONING_DOCTRINE.md`, `docs/doctrine/migrations/operator_to_roles_migration.md`, `docs/doctrine/database/actor_channel_roles.md`, `docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md`, `docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md`, `docs/audits/DYNAMIC_TABLE_PREFIX_AUDIT.md`, `docs/audits/FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md`, `docs/audits/VERSIONING_DOCTRINE_ALIGNMENT_SUMMARY.md`, `.cursor/rules/required-tables-future-features-doctrine.mdc`, `README.md`, `docs/channels/appendix/HISTORY.md` (new), `progress_blog/pre-4_0_1.md` (new), `progress_blog/pre-4_0_1_to_4_0_11.md` (new), `lupo-includes/themes/default/layouts/admin_layout.php`. **Removed:** `reports_for_boss/20260223.md`, `reports_for_boss/` folder. **Moved to database/migrations_legacy/:** 14 one-time migration and report files (see above).
+
+---
+
 ## Lupopedia 4.0.11 — Version bump, installer import logging, Crafty config detection and removal - 2026-02-17
 
 Lupopedia 4.0.11 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  

@@ -91,7 +91,7 @@ SELECT
     a.referer AS referrer_url,
     a.typeof AS invite_type,
     a.seconds AS trigger_seconds,
-    a.user_id AS operator_user_id,
+    (10000 + a.user_id) AS operator_user_id,
 
     CASE WHEN a.socialpane = 'Y' THEN 1 ELSE 0 END AS show_socialpane,
     CASE WHEN a.excludemobile = 'Y' THEN 1 ELSE 0 END AS exclude_mobile,
@@ -416,7 +416,7 @@ SELECT
     imagename AS image_name,
     imagemap AS image_map,
     department AS department_name,
-    `user` AS user_id,
+    (10000 + `user`) AS user_id,
     1 AS is_active,
     0 AS display_count,
     0 AS click_count,
@@ -590,7 +590,7 @@ INSERT INTO lupo_actor_departments (
 )
 SELECT
     recno AS actor_department_id,
-    user_id AS actor_id,
+    (10000 + user_id) AS actor_id,
     department AS department_id,
     extra AS title,
     DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS created_ymdhis,
@@ -628,7 +628,7 @@ SELECT
     id AS audit_log_id,
     channel AS channel_id,
     'actor' AS entity_type,
-    opid AS entity_id,
+    (10000 + opid) AS entity_id,
     action AS event_type,
     CASE 
         WHEN transcriptid > 0 THEN 'lupo_dialog_threads'
@@ -959,7 +959,7 @@ INSERT INTO lupo_actor_reply_templates (
 )
 SELECT
     id AS actor_reply_template_id,
-    `user` AS actor_id,
+    (10000 + `user`) AS actor_id,
     name AS template_key,
     message AS template_text,
     typeof AS usage_context,
@@ -990,192 +990,7 @@ ALTER TABLE livehelp_sessions
 ALTER TABLE livehelp_sessions
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
  
--- ======================================================================
--- livehelp_users               → lupo_auth_users
- -- See: /docs/doctrine/migrations/livehelp_users_migration.md
-ALTER TABLE livehelp_users
-    ENGINE=InnoDB,
-    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE livehelp_users
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
-
--- RESERVED ID DOCTRINE: lupo_auth_users.auth_user_id is NOT AUTO_INCREMENT; must supply explicit ID (here: livehelp_users.user_id).
--- Intentional: first INSERT = Crafty operators (isoperator = 'Y'); second INSERT = all remaining users. Result: ALL Crafty users become lupo_auth_users.
-INSERT INTO lupo_auth_users (
-    auth_user_id,
-    username,
-    display_name,
-    email,
-    password_hash,
-    auth_provider,
-    provider_id,
-    profile_image_url,
-    last_login_ymdhis,
-    created_ymdhis,
-    updated_ymdhis,
-    is_active,
-    is_deleted,
-    deleted_ymdhis
-)
-SELECT
-    u.user_id,
-    u.username,
-    u.displayname,
-    NULLIF(u.email, ''),
-    CASE 
-        WHEN u.password IS NULL OR u.password = '' THEN NULL
-        ELSE u.password
-    END,
-    NULLIF(u.auth_provider, ''),
-    NULLIF(u.provider_id, ''),
-    NULL,
-    CASE 
-        WHEN u.lastaction IS NULL OR u.lastaction = 0 THEN NULL
-        ELSE CAST(DATE_FORMAT(FROM_UNIXTIME(u.lastaction), '%Y%m%d%H%i%S') AS SIGNED)
-    END,
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
-    1,
-    0,
-    NULL
-FROM livehelp_users u
-WHERE u.isoperator = 'Y'
-AND NOT EXISTS (
-    SELECT 1 FROM lupo_auth_users x WHERE x.auth_user_id = u.user_id
-);
-
-
-INSERT INTO lupo_auth_users (
-    auth_user_id,
-    username,
-    display_name,
-    email,
-    password_hash,
-    auth_provider,
-    provider_id,
-    profile_image_url,
-    last_login_ymdhis,
-    created_ymdhis,
-    updated_ymdhis,
-    is_active,
-    is_deleted,
-    deleted_ymdhis
-)
-SELECT
-    u.user_id,
-    u.username,
-    u.displayname,
-    NULLIF(u.email, ''),
-    CASE 
-        WHEN u.password IS NULL OR u.password = '' THEN NULL
-        ELSE u.password
-    END,
-    NULLIF(u.auth_provider, ''),
-    NULLIF(u.provider_id, ''),
-    NULL,
-    CASE 
-        WHEN u.lastaction IS NULL OR u.lastaction = 0 THEN NULL
-        ELSE CAST(DATE_FORMAT(FROM_UNIXTIME(u.lastaction), '%Y%m%d%H%i%S') AS SIGNED)
-    END,
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
-    1,
-    0,
-    NULL
-FROM livehelp_users u
-WHERE NOT EXISTS (
-    SELECT 1 FROM lupo_auth_users x WHERE x.auth_user_id = u.user_id
-);
-
--- ======================================================================
--- Phase 1: Create lupo_actors for each imported Crafty operator (actor_type: 'user').
--- Lupopedia has no lupo_operators table; permissions use lupo_actor_channel_roles.
--- The wizard assigns roles after import. actor_id = auth_user_id for imported humans.
--- ======================================================================
-
-INSERT INTO lupo_actors (
-    actor_id,
-    actor_type,
-    slug,
-    name,
-    created_ymdhis,
-    updated_ymdhis,
-    is_active,
-    is_deleted,
-    deleted_ymdhis,
-    actor_source_id,
-    actor_source_type,
-    metadata,
-    adversarial_role,
-    adversarial_oversight_actor_id,
-    avatar_hash
-)
-SELECT
-    au.auth_user_id,
-    'user',
-    au.username,
-    au.display_name,
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
-    1,
-    0,
-    NULL,
-    au.auth_user_id,
-    'lupo_auth_users',
-    NULL,
-    'none',
-    NULL,
-    NULL
-FROM lupo_auth_users au
-INNER JOIN livehelp_users u ON u.username = au.username
-WHERE u.isoperator = 'Y'
-AND NOT EXISTS (
-    SELECT 1 FROM lupo_actors a2
-    WHERE a2.actor_id = au.auth_user_id
-    AND a2.actor_source_type = 'lupo_auth_users'
-);
-
--- Department mapping: rewire lupo_actor_departments.actor_id to match lupo_actors.actor_id (actor_id = auth_user_id).
-UPDATE lupo_actor_departments ad
-INNER JOIN livehelp_operator_departments od ON ad.actor_department_id = od.recno
-INNER JOIN livehelp_users u ON u.user_id = od.user_id
-INNER JOIN lupo_auth_users au ON au.username = u.username
-INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
-SET ad.actor_id = a.actor_id;
-
--- Global admins: assign each Crafty admin (isadmin='Y') to department 0.
--- lupo_actor_departments: actor membership in system department
--- lupo_department_roles: role_key='administrator' (admin for ALL departments)
-INSERT INTO lupo_actor_departments (actor_department_id, actor_id, department_id, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
-SELECT base + rn, actor_id, 0, 'System Administrator', ts, ts, 0, NULL
-FROM (
-    SELECT a.actor_id, @arn := @arn + 1 AS rn
-    FROM livehelp_users u
-    INNER JOIN lupo_auth_users au ON au.username = u.username
-    INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
-    CROSS JOIN (SELECT @arn := 0) v
-    WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y' AND (u.is_deleted = 0 OR u.is_deleted IS NULL)
-      AND NOT EXISTS (SELECT 1 FROM lupo_actor_departments ad2 WHERE ad2.actor_id = a.actor_id AND ad2.department_id = 0 AND (ad2.is_deleted = 0 OR ad2.is_deleted IS NULL))
-    ORDER BY a.actor_id
-) t
-CROSS JOIN (SELECT COALESCE(MAX(actor_department_id), 0) AS base FROM lupo_actor_departments) m
-CROSS JOIN (SELECT CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS ts) ts;
-
-INSERT INTO lupo_department_roles (department_role_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
-SELECT base + rn, actor_id, 0, 'administrator', ts, ts, 0, NULL
-FROM (
-    SELECT a.actor_id, @drn := @drn + 1 AS rn
-    FROM livehelp_users u
-    INNER JOIN lupo_auth_users au ON au.username = u.username
-    INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
-    CROSS JOIN (SELECT @drn := 0) v
-    WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y' AND (u.is_deleted = 0 OR u.is_deleted IS NULL)
-      AND NOT EXISTS (SELECT 1 FROM lupo_department_roles dr2 WHERE dr2.actor_id = a.actor_id AND dr2.department_id = 0 AND dr2.role_key = 'administrator' AND (dr2.is_deleted = 0 OR dr2.is_deleted IS NULL))
-    ORDER BY a.actor_id
-) t
-CROSS JOIN (SELECT COALESCE(MAX(department_role_id), 0) AS base FROM lupo_department_roles) m
-CROSS JOIN (SELECT CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS ts) ts;
-
+ 
 -- ======================================================================
 -- livehelp_referers_daily               → lupo_unified_referers
  -- See: /docs/doctrine/migrations/livehelp_referers_daily_migration.md
@@ -1649,3 +1464,193 @@ SELECT
     0 AS `is_deleted`,
     0 AS `deleted_ymdhis`
 FROM `livehelp_websites`;
+
+
+-- ======================================================================
+-- livehelp_users               → lupo_auth_users
+ -- See: /docs/doctrine/migrations/livehelp_users_migration.md
+ALTER TABLE livehelp_users
+    ENGINE=InnoDB,
+    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE livehelp_users
+  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
+
+-- RESERVED ID DOCTRINE: lupo_auth_users.auth_user_id is NOT AUTO_INCREMENT; must supply explicit ID.
+-- ACTOR ID RANGE: actor_id 0-9999 = system/AI agents only (seed). Human actors must use actor_id >= 10000.
+-- Import remaps Crafty user_id into human range: auth_user_id = 10000 + u.user_id (so actor_id = auth_user_id is >= 10000).
+-- Intentional: first INSERT = Crafty operators (isoperator = 'Y'); second INSERT = all remaining users. Result: ALL Crafty users become lupo_auth_users.
+INSERT INTO lupo_auth_users (
+    auth_user_id,
+    username,
+    display_name,
+    email,
+    password_hash,
+    auth_provider,
+    provider_id,
+    profile_image_url,
+    last_login_ymdhis,
+    created_ymdhis,
+    updated_ymdhis,
+    is_active,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    (10000 + u.user_id) AS auth_user_id,
+    u.username,
+    u.displayname,
+    NULLIF(u.email, ''),
+    CASE 
+        WHEN u.password IS NULL OR u.password = '' THEN NULL
+        ELSE u.password
+    END,
+    NULLIF(u.auth_provider, ''),
+    NULLIF(u.provider_id, ''),
+    NULL,
+    CASE 
+        WHEN u.lastaction IS NULL OR u.lastaction = 0 THEN NULL
+        ELSE CAST(DATE_FORMAT(FROM_UNIXTIME(u.lastaction), '%Y%m%d%H%i%S') AS SIGNED)
+    END,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    1,
+    0,
+    NULL
+FROM livehelp_users u
+WHERE u.isoperator = 'Y'
+AND NOT EXISTS (
+    SELECT 1 FROM lupo_auth_users x WHERE x.auth_user_id = (10000 + u.user_id)
+);
+
+
+INSERT INTO lupo_auth_users (
+    auth_user_id,
+    username,
+    display_name,
+    email,
+    password_hash,
+    auth_provider,
+    provider_id,
+    profile_image_url,
+    last_login_ymdhis,
+    created_ymdhis,
+    updated_ymdhis,
+    is_active,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    (10000 + u.user_id) AS auth_user_id,
+    u.username,
+    u.displayname,
+    NULLIF(u.email, ''),
+    CASE 
+        WHEN u.password IS NULL OR u.password = '' THEN NULL
+        ELSE u.password
+    END,
+    NULLIF(u.auth_provider, ''),
+    NULLIF(u.provider_id, ''),
+    NULL,
+    CASE 
+        WHEN u.lastaction IS NULL OR u.lastaction = 0 THEN NULL
+        ELSE CAST(DATE_FORMAT(FROM_UNIXTIME(u.lastaction), '%Y%m%d%H%i%S') AS SIGNED)
+    END,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    1,
+    0,
+    NULL
+FROM livehelp_users u
+WHERE NOT EXISTS (
+    SELECT 1 FROM lupo_auth_users x WHERE x.auth_user_id = (10000 + u.user_id)
+);
+
+-- ======================================================================
+-- Phase 1: Create lupo_actors for each imported Crafty operator (actor_type: 'user').
+-- Lupopedia has no lupo_operators table; permissions use lupo_actor_channel_roles.
+-- The wizard assigns roles after import. actor_id = auth_user_id for imported humans.
+-- auth_user_id was set to (10000 + livehelp_users.user_id) above, so actor_id >= 10000 (human range).
+-- ======================================================================
+
+INSERT INTO lupo_actors (
+    actor_id,
+    actor_type,
+    slug,
+    name,
+    created_ymdhis,
+    updated_ymdhis,
+    is_active,
+    is_deleted,
+    deleted_ymdhis,
+    actor_source_id,
+    actor_source_type,
+    metadata,
+    adversarial_role,
+    adversarial_oversight_actor_id,
+    avatar_hash
+)
+SELECT
+    au.auth_user_id,
+    'user',
+    au.username,
+    au.display_name,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    1,
+    0,
+    NULL,
+    au.auth_user_id,
+    'lupo_auth_users',
+    NULL,
+    'none',
+    NULL,
+    NULL
+FROM lupo_auth_users au
+INNER JOIN livehelp_users u ON u.username = au.username
+WHERE u.isoperator = 'Y'
+AND NOT EXISTS (
+    SELECT 1 FROM lupo_actors a2
+    WHERE a2.actor_id = au.auth_user_id
+    AND a2.actor_source_type = 'lupo_auth_users'
+);
+
+-- Department mapping: rewire lupo_actor_departments.actor_id to match lupo_actors.actor_id (actor_id = auth_user_id).
+UPDATE lupo_actor_departments ad
+INNER JOIN livehelp_operator_departments od ON ad.actor_department_id = od.recno
+INNER JOIN livehelp_users u ON u.user_id = od.user_id
+INNER JOIN lupo_auth_users au ON au.username = u.username
+INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
+SET ad.actor_id = a.actor_id;
+
+-- Global admins: assign each Crafty admin (isadmin='Y') to department 0.
+-- lupo_actor_departments: actor membership in system department
+-- lupo_department_roles: role_key='administrator' (admin for ALL departments)
+INSERT INTO lupo_actor_departments (actor_department_id, actor_id, department_id, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+SELECT base + rn, actor_id, 0, 'System Administrator', ts, ts, 0, NULL
+FROM (
+    SELECT a.actor_id, @arn := @arn + 1 AS rn
+    FROM livehelp_users u
+    INNER JOIN lupo_auth_users au ON au.username = u.username
+    INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
+    CROSS JOIN (SELECT @arn := 0) v
+    WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y' AND (u.is_deleted = 0 OR u.is_deleted IS NULL)
+      AND NOT EXISTS (SELECT 1 FROM lupo_actor_departments ad2 WHERE ad2.actor_id = a.actor_id AND ad2.department_id = 0 AND (ad2.is_deleted = 0 OR ad2.is_deleted IS NULL))
+    ORDER BY a.actor_id
+) t
+CROSS JOIN (SELECT COALESCE(MAX(actor_department_id), 0) AS base FROM lupo_actor_departments) m
+CROSS JOIN (SELECT CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS ts) ts;
+
+INSERT INTO lupo_department_roles (department_role_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+SELECT base + rn, actor_id, 0, 'administrator', ts, ts, 0, NULL
+FROM (
+    SELECT a.actor_id, @drn := @drn + 1 AS rn
+    FROM livehelp_users u
+    INNER JOIN lupo_auth_users au ON au.username = u.username
+    INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
+    CROSS JOIN (SELECT @drn := 0) v
+    WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y' AND (u.is_deleted = 0 OR u.is_deleted IS NULL)
+      AND NOT EXISTS (SELECT 1 FROM lupo_department_roles dr2 WHERE dr2.actor_id = a.actor_id AND dr2.department_id = 0 AND dr2.role_key = 'administrator' AND (dr2.is_deleted = 0 OR dr2.is_deleted IS NULL))
+    ORDER BY a.actor_id
+) t
+CROSS JOIN (SELECT COALESCE(MAX(department_role_id), 0) AS base FROM lupo_department_roles) m
+CROSS JOIN (SELECT CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS ts) ts;

@@ -21,7 +21,7 @@
 
 ## 1. Canonical current version
 
-The **current version** of Lupopedia is **4.0.9**.
+The **current version** of Lupopedia is **4.0.12**.
 
 This is the only correct “current version” number for the codebase. No other “current version” may be introduced unless explicitly instructed.
 
@@ -126,7 +126,7 @@ Only these SQL files remain in the **canonical** migrations folder (`database/mi
 - drop_old_crafty_syntax_tables.sql
 - future_features_lupopedia.sql
 
-One-time migration patches (migration_operator_to_actor_channel_roles.sql, migration_drop_lupo_channel_roles.sql) exist for existing databases; the wizard does not run them. New installs use install_new_lupopedia.sql only.
+One-time migration patches (migration_operator_to_actor_channel_roles.sql, migration_drop_lupo_channel_roles.sql, and other one-time or Lupopedia→Lupopedia migrations) live in **database/migrations_legacy/**; the wizard does not run them. New installs use install_new_lupopedia.sql only.
 
 All other migrations belong in **database/migrations_legacy/**.
 
@@ -134,7 +134,22 @@ Cursor must **not** move migration files again unless explicitly instructed.
 
 ---
 
-## 8. Required tables doctrine
+## 8. Patch bump: locations to update
+
+When incrementing the patch version (e.g. 4.0.12 → 4.0.13), update the version string in **all** of these places so the wizard and runtime show the correct version:
+
+| Location | What to update |
+|----------|----------------|
+| **config/global_atoms.yaml** | `version`, `versions.lupopedia`, `GLOBAL_CURRENT_LUPOPEDIA_VERSION`, `file.last_modified_system_version`; `last_updated` (YYYYMMDDHHIISS). |
+| **lupo-includes/version.php** | Docblock `@version`; fallback literal `$current_version` (line ~37: `'4.0.12'` → new patch); `LUPOPEDIA_VERSION_DATE` (YYYYMMDDHHIISS). |
+| **install.php** | Fallback when `LUPOPEDIA_VERSION` is not defined (line ~40): `'4.0.12'` → new patch. Used when the wizard runs without config (no atom loader). |
+| **lupo-includes/functions/load_atoms.php** | Fallback in `get_lupopedia_version()` (line ~46): `'4.0.12'` → new patch. Used when the atom loader is not set (e.g. wizard pre-config). |
+
+The wizard reads the version from **version.php** (which uses atoms when config exists). When there is no **lupopedia-config.php**, the atom loader is not set, so **version.php** gets the version from **load_atoms.php**’s fallback, and **install.php**’s fallback is used only if **LUPOPEDIA_VERSION** is still undefined. Keeping all four locations in sync ensures the wizard and app always display the current patch.
+
+---
+
+## 9. Required tables doctrine
 
 - **Required tables** = those used by the installer + Crafty import.
 - Any table that is **not** required must be moved to **future_features_lupopedia.sql**.
@@ -142,13 +157,13 @@ Cursor must **not** move migration files again unless explicitly instructed.
 
 ---
 
-## 9. Summary statements
+## 10. Summary statements
 
 | Rule | Statement |
 |------|-----------|
 | **Single file** | Only `docs/doctrine/VERSIONING_DOCTRINE.md` exists; no duplicates or suffixed copies. |
 | **Cleanup** | The one-time versioning cleanup is complete. |
-| **Canonical version** | The canonical current version is **4.0.9**. |
+| **Canonical version** | The canonical current version is **4.0.12**. |
 | **4.1.0** | 4.1.0 is allowed **only** for future-release planning (required tables, roadmaps, hotfix registry, etc.); it must not be used as the current version. |
 | **Patch increments** | Only Cursor increments patch versions (4.0.6 → 4.0.7 → 4.0.8 → …); minor/major are changed only when Eric explicitly instructs. |
 | **Historical versions** | Historical version numbers (3.0.x, 3.0.0, 4.0.1, 4.1.0 as future marker) are frozen and must not be “fixed” or normalized. |

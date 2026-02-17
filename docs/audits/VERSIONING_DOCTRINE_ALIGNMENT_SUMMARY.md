@@ -68,7 +68,7 @@
 | **Created** | database/migrations/future_features_lupopedia.sql (placeholder for future tables). |
 | **Created** | database/migrations/legacy/ directory. |
 | **Moved to database/migrations/legacy/** | All .sql in database/migrations/ except: import_from_old_crafty_syntax.sql, install_new_lupopedia.sql, seed_lupopedia.sql, drop_old_crafty_syntax_tables.sql, future_features_lupopedia.sql. |
-| **Remaining in database/migrations/** | import_from_old_crafty_syntax.sql, install_new_lupopedia.sql, seed_lupopedia.sql, drop_old_crafty_syntax_tables.sql, future_features_lupopedia.sql, README.md, dev_20260204_fix_schema_alignment_summary.txt, reserved_word_audit_report.txt. |
+| **Remaining in database/migrations/** | import_from_old_crafty_syntax.sql, install_new_lupopedia.sql, seed_lupopedia.sql, drop_old_crafty_syntax_tables.sql, future_features_lupopedia.sql, old_crafty_syntax_3_7_5_start.sql, README.md. One-time migrations and audit reports are in database/migrations_legacy/. |
 
 ---
 

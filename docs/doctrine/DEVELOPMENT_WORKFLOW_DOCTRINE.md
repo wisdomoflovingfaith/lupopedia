@@ -88,7 +88,7 @@ Update **install.php** (or wizard logic) when the change affects:
 
 ### Importer SQL
 
-**Never modify** `database/migrations/import_from_old_crafty_syntax.sql` unless **explicitly instructed**. The importer expects the legacy schema exactly as in `old_crafty_syntax_3_7_5.sql`.
+**Never modify** `database/migrations/import_from_old_crafty_syntax.sql` unless **explicitly instructed**. The importer expects the legacy schema exactly as in `old_crafty_syntax_3_7_5_start.sql`.
 
 ---
 

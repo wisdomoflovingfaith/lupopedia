@@ -14,14 +14,17 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
 $admin_page_title = isset($admin_page_title) ? $admin_page_title : 'Admin';
 $admin_main_content = isset($admin_main_content) ? $admin_main_content : '<p>Admin options will show here.</p>';
 $admin_active_key = isset($admin_active_key) ? $admin_active_key : 'Dashboard';
+if (!isset($admin_menu_sections)) {
+    $admin_menu_sections = array();
+}
 if (!isset($admin_menu_items) || !is_array($admin_menu_items)) {
-    $admin_menu_items = [
+    $admin_menu_items = array(
         'Dashboard' => 'admin.php',
         'Database' => 'admin.php?section=database',
         'Users' => 'admin.php?section=users',
         'Channels' => 'admin.php?section=channels',
         'Settings' => 'admin.php?section=settings',
-    ];
+    );
 }
 if (!isset($isUserLoggedIn)) {
     $isUserLoggedIn = false;
@@ -147,6 +150,7 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
         .admin-btn-primary { background: #2b6cb0; color: #fff; border-color: #2b6cb0; }
         .admin-btn:hover { opacity: 0.9; }
         .admin-empty { color: #718096; font-style: italic; }
+        .admin-placeholder-text { color: #4a5568; margin: 0; }
         .basic-footer {
             background: #2d3748;
             color: #a0aec0;
@@ -182,9 +186,32 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
 
     <div class="admin-body">
         <aside class="admin-sidebar" role="navigation" aria-label="Admin options">
+            <?php
+            if (!empty($admin_menu_sections) && is_array($admin_menu_sections)) {
+                foreach ($admin_menu_sections as $group) {
+                    $groupTitle = isset($group['title']) ? $group['title'] : '';
+                    $items = isset($group['items']) && is_array($group['items']) ? $group['items'] : array();
+                    if ($groupTitle !== '' || !empty($items)) {
+                        ?>
+            <h2><?= htmlspecialchars($groupTitle) ?></h2>
+            <nav>
+                        <?php foreach ($items as $label => $url): ?>
+                    <?php
+                    $href = (strpos($url, 'http') === 0 || strpos($url, '/') === 0) ? $url : $base . '/' . ltrim($url, '/');
+                    $active = ($label === $admin_active_key) ? ' active' : '';
+                    ?>
+                    <a href="<?= htmlspecialchars($href) ?>" class="<?= $active ?>"><?= htmlspecialchars($label) ?></a>
+                        <?php endforeach; ?>
+            </nav>
+                        <?php
+                    }
+                }
+            } else {
+                $fallback = isset($admin_menu_items) && is_array($admin_menu_items) ? $admin_menu_items : array();
+                ?>
             <h2>Admin</h2>
             <nav>
-                <?php foreach ($admin_menu_items as $label => $url): ?>
+                <?php foreach ($fallback as $label => $url): ?>
                     <?php
                     $href = (strpos($url, 'http') === 0 || strpos($url, '/') === 0) ? $url : $base . '/' . ltrim($url, '/');
                     $active = ($label === $admin_active_key) ? ' active' : '';
@@ -192,6 +219,9 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
                     <a href="<?= htmlspecialchars($href) ?>" class="<?= $active ?>"><?= htmlspecialchars($label) ?></a>
                 <?php endforeach; ?>
             </nav>
+            <?php
+            }
+            ?>
         </aside>
         <main class="admin-main" id="admin-main">
             <h1><?= htmlspecialchars($admin_page_title) ?></h1>

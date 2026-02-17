@@ -871,12 +871,15 @@ class InstallWizardChannels {
             $nextAcrId++;
         }
 
-        // Global admin channel (channel_id = 1): assign captain to each Crafty admin (livehelp_users.isadmin = 'Y').
-        // Also assign admins to department 0 (system department): actor_departments + department_roles (role_key='administrator').
+        // Global admin: Crafty livehelp_users.isadmin = 'Y' => Lupopedia global admin (captain on channel 1, department 0 administrator, owner on admin module).
+        // Resolve actor_id via JOIN so we use canonical lupo_actors.actor_id; grant all roles so they have "admin * access to everything".
         try {
             $adminStmt = $pdo->query("
-                SELECT u.user_id, u.username FROM livehelp_users u
-                WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y'
+                SELECT a.actor_id, au.auth_user_id, u.username
+                FROM livehelp_users u
+                INNER JOIN " . $auth_t . " au ON au.username = u.username
+                INNER JOIN " . $actors_t . " a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = '" . str_replace("'", "''", $auth_t) . "'
+                WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y' AND (a.is_deleted = 0 OR a.is_deleted IS NULL)
             ");
             if ($adminStmt) {
                 $admins = $adminStmt->fetchAll(PDO::FETCH_ASSOC);
@@ -884,32 +887,47 @@ class InstallWizardChannels {
                 $nextDrId = (int) $pdo->query("SELECT COALESCE(MAX(department_role_id), 0) + 1 FROM " . $dr_t)->fetchColumn();
                 $insAd = $pdo->prepare("INSERT INTO " . $ad_t . " (actor_department_id, actor_id, department_id, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (?, ?, 0, 'System Administrator', ?, ?, 0, NULL)");
                 $insDr = $pdo->prepare("INSERT INTO " . $dr_t . " (department_role_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (?, ?, 0, 'administrator', ?, ?, 0, NULL)");
+                $mod_t = $prefix . 'modules';
+                $perm_t = $prefix . 'permissions';
+                $adminModuleRow = $pdo->query("SELECT module_id FROM " . $mod_t . " WHERE module_key = 'admin' AND is_active = 1 AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                $adminModuleId = $adminModuleRow ? (int) $adminModuleRow['module_id'] : null;
+                $nextPermId = null;
+                $insPerm = null;
+                if ($adminModuleId !== null) {
+                    $nextPermId = (int) $pdo->query("SELECT COALESCE(MAX(permission_id), 0) + 1 FROM " . $perm_t)->fetchColumn();
+                    $insPerm = $pdo->prepare("INSERT INTO " . $perm_t . " (permission_id, target_type, target_id, user_id, department_id, permission, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (?, 'module', ?, ?, NULL, 'owner', ?, ?, 0, NULL)");
+                }
                 foreach ($admins as $admin) {
+                    $actorId = (int) $admin['actor_id'];
+                    $authUserId = (int) $admin['auth_user_id'];
                     $uname = trim((string) $admin['username']);
-                    $au = $pdo->prepare("SELECT auth_user_id FROM " . $auth_t . " WHERE username = ? LIMIT 1");
-                    $au->execute(array($uname));
-                    $authRow = $au->fetch(PDO::FETCH_ASSOC);
-                    if ($authRow) {
-                        $actorId = (int) $authRow['auth_user_id'];
-                        $check = $pdo->prepare("SELECT 1 FROM " . $acr . " WHERE actor_id = ? AND channel_id = 1 AND role_key = 'captain' AND is_deleted = 0 LIMIT 1");
-                        $check->execute(array($actorId));
-                        if (!$check->fetchColumn()) {
-                            $insAcr->execute(array($nextAcrId, $actorId, 1, $now, $now));
-                            $log[] = InstallWizardLogger::logEntry('ok', 'Assigned captain on Administration (channel 1) for ' . $uname . '.');
-                            $nextAcrId++;
-                        }
-                        $checkAd = $pdo->prepare("SELECT 1 FROM " . $ad_t . " WHERE actor_id = ? AND department_id = 0 AND is_deleted = 0 LIMIT 1");
-                        $checkAd->execute(array($actorId));
-                        if (!$checkAd->fetchColumn()) {
-                            $insAd->execute(array($nextAdId, $actorId, $now, $now));
-                            $nextAdId++;
-                        }
-                        $checkDr = $pdo->prepare("SELECT 1 FROM " . $dr_t . " WHERE actor_id = ? AND department_id = 0 AND role_key = 'administrator' AND is_deleted = 0 LIMIT 1");
-                        $checkDr->execute(array($actorId));
-                        if (!$checkDr->fetchColumn()) {
-                            $insDr->execute(array($nextDrId, $actorId, $now, $now));
-                            $log[] = InstallWizardLogger::logEntry('ok', 'Assigned administrator on System department (0) for ' . $uname . '.');
-                            $nextDrId++;
+                    $check = $pdo->prepare("SELECT 1 FROM " . $acr . " WHERE actor_id = ? AND channel_id = 1 AND role_key = 'captain' AND is_deleted = 0 LIMIT 1");
+                    $check->execute(array($actorId));
+                    if (!$check->fetchColumn()) {
+                        $insAcr->execute(array($nextAcrId, $actorId, 1, $now, $now));
+                        $log[] = InstallWizardLogger::logEntry('ok', 'Assigned captain on Administration (channel 1) for ' . $uname . '.');
+                        $nextAcrId++;
+                    }
+                    $checkAd = $pdo->prepare("SELECT 1 FROM " . $ad_t . " WHERE actor_id = ? AND department_id = 0 AND is_deleted = 0 LIMIT 1");
+                    $checkAd->execute(array($actorId));
+                    if (!$checkAd->fetchColumn()) {
+                        $insAd->execute(array($nextAdId, $actorId, $now, $now));
+                        $nextAdId++;
+                    }
+                    $checkDr = $pdo->prepare("SELECT 1 FROM " . $dr_t . " WHERE actor_id = ? AND department_id = 0 AND role_key = 'administrator' AND is_deleted = 0 LIMIT 1");
+                    $checkDr->execute(array($actorId));
+                    if (!$checkDr->fetchColumn()) {
+                        $insDr->execute(array($nextDrId, $actorId, $now, $now));
+                        $log[] = InstallWizardLogger::logEntry('ok', 'Assigned administrator on System department (0) for ' . $uname . '.');
+                        $nextDrId++;
+                    }
+                    if ($adminModuleId !== null && $insPerm !== null) {
+                        $checkPerm = $pdo->prepare("SELECT 1 FROM " . $perm_t . " WHERE target_type = 'module' AND target_id = ? AND user_id = ? AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1");
+                        $checkPerm->execute(array($adminModuleId, $authUserId));
+                        if (!$checkPerm->fetchColumn()) {
+                            $insPerm->execute(array($nextPermId, $adminModuleId, $authUserId, $now, $now));
+                            $log[] = InstallWizardLogger::logEntry('ok', 'Granted owner on Admin module for ' . $uname . ' (global admin access).');
+                            $nextPermId++;
                         }
                     }
                 }

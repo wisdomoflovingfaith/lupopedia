@@ -12,7 +12,7 @@
 | **lupo-includes/classes/AdminUsersHandler.php** | Table **channel_roles** → **actor_channel_roles**; **channel_role_id** → **actor_channel_role_id**; **role_type** → **role_key** for channel 1 (admin channel) role. |
 | **lupo-includes/themes/default/layouts/main_layout.php** | Comment: "channel operator interface" → "channel staff interface". |
 | **README.md** | "operator sessions" → "staff (captain/administrator/monitor) sessions"; uploads path "operators" removed. |
-| **database/migrations/migration_operator_to_actor_channel_roles.sql** | **New file.** Updates channel 1 to Administration; copies lupo_channel_roles into lupo_actor_channel_roles for existing DBs. |
+| **database/migrations_legacy/migration_operator_to_actor_channel_roles.sql** | One-time migration. Updates channel 1 to Administration; copies lupo_channel_roles into lupo_actor_channel_roles for existing DBs. |
 
 **Unchanged by design**
 
@@ -70,7 +70,7 @@ No further edits were made to the importer in this sweep.
 
 ## 6. Migration SQL File for Live DB
 
-- **File:** `database/migrations/migration_operator_to_actor_channel_roles.sql`
+- **File:** `database/migrations_legacy/migration_operator_to_actor_channel_roles.sql`
 - **Contents:**
   1. UPDATE lupo_channels SET channel_key/channel_slug/channel_name/description/updated_ymdhis for channel_id=1 to Administration (BIGINT UTC timestamp).
   2. INSERT into lupo_actor_channel_roles from lupo_channel_roles where no matching (actor_id, channel_id, role_key) exists; actor_channel_role_id generated as MAX(actor_channel_role_id)+row_num; role_type → role_key.

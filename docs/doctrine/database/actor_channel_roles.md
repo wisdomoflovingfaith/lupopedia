@@ -19,6 +19,6 @@
 
 **Legacy:** There was no single “roles” table in Crafty. Operator–channel assignment and “is operator” were implied by livehelp_operator_channels and livehelp_users.isoperator. Lupopedia **does not** import into lupo_actor_channel_roles from legacy; the **install wizard** assigns roles after import.
 
-**Migration:** See `docs/doctrine/migrations/operator_to_roles_migration.md`, `docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md`. The wizard inserts captain on personal channels and captain on channel_id = 1 for Crafty admins. For existing DBs that had lupo_channel_roles, `migration_operator_to_actor_channel_roles.sql` copies data into lupo_actor_channel_roles (role_type → role_key).
+**Migration:** See `docs/doctrine/migrations/operator_to_roles_migration.md`, `docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md`. The wizard inserts captain on personal channels and captain on channel_id = 1 for Crafty admins. For existing DBs that had lupo_channel_roles, `database/migrations_legacy/migration_operator_to_actor_channel_roles.sql` copies data into lupo_actor_channel_roles (role_type → role_key).
 
 **Note:** lupo_channel_roles (role_type) still exists in schema; some code uses lupo_actor_channel_roles (role_key). See docs/ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md.

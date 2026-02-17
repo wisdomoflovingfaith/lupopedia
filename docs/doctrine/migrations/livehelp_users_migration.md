@@ -25,8 +25,8 @@ session state
 
 Lupopedia replaces this with a real identity system:
 
-- **lupo_auth_users** — authentication and credentials (username, display_name, email, password_hash, auth_provider, provider_id, last_login_ymdhis).
-- **lupo_actors** — unified identity layer (one row per human/agent/service; actor_id = auth_user_id for imported users).
+- **lupo_auth_users** — authentication and credentials (username, display_name, email, password_hash, auth_provider, provider_id, last_login_ymdhis). On import, **auth_user_id = 10000 + livehelp_users.user_id** so that human IDs stay in the reserved range (actor_id 0–9999 = agents/system only; humans ≥ 10000).
+- **lupo_actors** — unified identity layer (one row per human/agent/service; actor_id = auth_user_id for imported users, so imported human actor_id ≥ 10000).
 - **lupo_actor_properties** — presence, device, and behavioral metadata.
 - **Permissions** — there is no lupo_operators table. Operator/staff permissions use the **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution order: channel → department → system. The install wizard assigns captain on personal channels and on channel_id = 1 (Administration) for Crafty admins (livehelp_users.isadmin = 'Y'). See docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md and docs/doctrine/database/actor_channel_roles.md.
 

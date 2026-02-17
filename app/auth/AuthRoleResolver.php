@@ -280,7 +280,8 @@ class AuthRoleResolver
     }
 
     /**
-     * Get auth_user_id from actor_id (actor_source_id where actor_source_type = 'user').
+     * Get auth_user_id from actor_id (actor_source_id where actor_source_type is user-type).
+     * Accepts 'user' and 'lupo_auth_users' so imported Crafty operators (stored as lupo_auth_users) resolve.
      *
      * @param int $actorId
      * @return int|null
@@ -288,11 +289,12 @@ class AuthRoleResolver
     private function getAuthUserIdFromActorId($actorId)
     {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $authTable = $prefix . 'auth_users';
         $t = $this->db->quoteIdentifier($prefix . 'actors');
         $row = $this->db->fetchRow(
             "SELECT actor_source_id as auth_user_id FROM {$t} WHERE actor_id = :actor_id 
-             AND actor_source_type = 'user' AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            array('actor_id' => $actorId)
+             AND (actor_source_type = 'user' OR actor_source_type = :auth_table) AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            array('actor_id' => $actorId, 'auth_table' => $authTable)
         );
         return $row ? (int) $row['auth_user_id'] : null;
     }

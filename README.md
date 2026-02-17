@@ -1,23 +1,206 @@
 ## 🐺 Lupopedia 4.0.x  
-### Crafty Syntax Reborn + Semantic OS + Optional AI Agents
+### Crafty Syntax Reborn — Now Inside a Semantic Operating System
 
-**Lupopedia 4.0.x is the official evolution of Crafty Syntax Live Help 3.7.5.**  
-It includes **every feature** of Crafty Syntax — real‑time chat, staff (captain/administrator/monitor) sessions, visitor tracking, departments, proactive invites, transcripts, and all legacy behavior — and extends it with a **Semantic Operating System** and **optional AI chat agents**.
+**Crafty Syntax reborn inside a Semantic OS.**  
+**Same product → new universe.**  
+**Everything familiar → everything extended.**
 
-Lupopedia is **not a CMS** and **not a framework**.  
-It is a **semantic OS** that records meaning, relationships, and navigation across content, channels, and actors. Crafty Syntax becomes **Module 1** inside this OS.
+Lupopedia 4.0.x is the **official continuation and evolution** of **Crafty Syntax Live Help 3.7.5**.  
+Everything Crafty Syntax ever did — **live chat, operators, departments, proactive invites, transcripts, visitor tracking** — is preserved exactly.
+
+But Lupopedia doesn't just *replace* Crafty Syntax.  
+It **absorbs it**, **extends it**, and **elevates it** into a **Semantic OS**.
+
+Crafty Syntax becomes **Module 1** inside a larger system that understands:
+
+- actors  
+- channels  
+- content  
+- meaning  
+- navigation  
+- relationships  
+- time  
+
+Lupopedia is the **Crafty Syntax you remember**, running inside a **knowledge engine you've never had before**.
+
+---
+
+### Why Lupopedia Exists
+
+Crafty Syntax was a **real‑time help system**.  
+Lupopedia is a **semantic layer** that sits on top of everything Crafty Syntax watches.
+
+Crafty Syntax tracked:
+
+- visitors  
+- pages  
+- referrers  
+- sessions  
+
+Lupopedia turns those same pages and URLs into:
+
+- **content atoms**  
+- **tabs**  
+- **collections**  
+- **meaning edges**  
+- **semantic relationships**  
+
+Crafty Syntax handled conversations.  
+Lupopedia handles **knowledge**.
+
+Together, they form a **federated, multi‑agent, semantic live‑help ecosystem**.
+
+---
+
+### What 4.0.x Focuses On
+
+The entire 4.0.x series (4.0.0 → 4.1.0) has two goals:
+
+#### 1. Rebuild Crafty Syntax inside Lupopedia
+
+Every feature.  
+Every behavior.  
+Every quirk.  
+Every operator workflow.  
+Every visitor flow.  
+All preserved, modernized, and doctrine‑aligned.
+
+#### 2. Add the Semantic OS layer
+
+Crafty Syntax becomes the **event stream**.  
+Lupopedia becomes the **meaning layer**.
+
+This is the first time Crafty Syntax has ever had:
+
+- a unified actor model  
+- a global registry  
+- semantic content  
+- collections and tabs  
+- knowledge edges  
+- optional AI agents  
+- federation‑safe IDs  
+- doctrine‑driven architecture  
+
+---
+
+### Crafty Syntax + Semantic OS = Lupopedia
+
+#### Crafty Syntax provides:
+
+- Live chat  
+- Operators  
+- Departments  
+- Pending/active visitor flow  
+- Proactive invites  
+- Transcripts  
+- Visitor tracking  
+- Operator cockpit  
+- Routing logic  
+- Legacy behaviors  
+
+#### Lupopedia adds:
+
+- Unified actor system (`actor_id` everywhere)  
+- Semantic content atoms  
+- Tabs and collections  
+- Meaning edges  
+- Knowledge graph  
+- Optional AI agents that can join chats  
+- Federation‑safe identity  
+- Doctrine‑driven schema  
+- Timestamp discipline  
+- No foreign keys, no triggers, no DB logic  
+- Global registry for actors, channels, collections  
+
+Crafty Syntax becomes the **heart**.  
+Lupopedia becomes the **brain**.
+
+---
+
+### The Five Pillars (Simplified)
+
+#### 1. Unified Actor Pillar  
+
+Everything — humans, agents, system identities — is an **actor**.  
+No `user_id`. No ambiguity.  
+`actor_id` is the universal identity key.
+
+#### 2. Temporal Pillar  
+
+Time is stored as `YYYYMMDDHHIISS` UTC integers.  
+No DATETIME. No triggers.  
+Application‑set timestamps only.
+
+#### 3. Relationship Pillar  
+
+No foreign keys.  
+No triggers.  
+No stored procedures.  
+All relationships are soft and application‑managed.
+
+#### 4. Doctrine Pillar  
+
+Schema comes from TOON files.  
+Rules live in doctrine.  
+Nothing drifts.
+
+#### 5. Federation Pillar  
+
+All installations share the same global ID space.  
+Actors, channels, and collections are portable across nodes.
+
+---
+
+### Upgrade Path
+
+There is **one** upgrade path in the 4.0.x series:
+
+#### **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**
+
+There are **no** Lupopedia → Lupopedia upgrades until **4.1.0**.
+
+4.0.x is the stabilization series.  
+4.1.0 will be the first forward‑upgradeable release.
+
+---
+
+### What Lupopedia Is
+
+- A **drop‑in upgrade** for Crafty Syntax  
+- A **semantic OS** that organizes meaning  
+- A **semantic reference layer** that runs alongside any website  
+- A **multi‑agent ecosystem**  
+- A **federated knowledge system**  
+- A **doctrine‑driven architecture**  
+
+### What Lupopedia Is Not
+
+- Not a CMS  
+- Not a framework  
+- Not a rewrite  
+- Not a centralized service  
+- Not an ad/SEO/marketing engine  
+- Not a replacement for your website  
+
+---
+
+### Reference: Doctrine, Legacy Code, and Migrations
+
+When implementing or migrating features from Crafty Syntax, three areas are essential:
+
+- **docs/doctrine/database/** — Per‑table doctrine for Lupopedia tables that are migration targets or central to the upgrade path. Each file (e.g. `auth_users.md`, `actors.md`, `sessions.md`) describes the table’s purpose, how it is used, and how it was mapped from legacy Crafty tables. The [README in that folder](docs/doctrine/database/README.md) is the index and summarizes the 3‑level permission model. Use these as the canonical guide for how Lupopedia tables work and how they map from Crafty.
+
+- **legacy/craftysyntax/** — The original Crafty Syntax codebase, kept **read‑only** and **reference‑only**. It exists to show which features and behaviors must be reimplemented in Lupopedia. Do not modify files under `legacy/craftysyntax`; use them only to understand legacy behavior, then implement against Lupopedia tables and doctrine.
+
+- **docs/doctrine/migrations/** — Legacy → Lupopedia mapping and migration notes. [MIGRATION_MAPPING_REFERENCE.md](docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md) is the concise index. Each migration file (e.g. `livehelp_users_migration.md`, `operator_to_roles_migration.md`) describes one or more legacy Crafty tables and their replacement in Lupopedia. Use these to know which old tables map to which new tables; do not infer from the live database.
+
+Schema source of truth for column names and types is **docs/toons/*.toon.json** (TOON files). The database/doctrine and migrations docs describe purpose and mapping; TOONs define the schema.
 
 ---
 
 ### Origins: From WOLFIE to Lupopedia
 
-Lupopedia began as **WOLFIE** (originally *Wisdom Of Loving Faith Integrity Ethics*), a spiritual research engine designed to ingest 144,000 books from 22 religions and map correlations between their teachings. That early prototype required 222 tables to capture scripture, symbolism, lineage, and cross‑textual relationships.
-
-As the system grew, it became clear that WOLFIE wasn't just analyzing religion — it was becoming a platform capable of organizing any domain of knowledge. The spiritual engine evolved into the **Web‑Organized Linked Federated Intelligent Ecosystem (WOLFIE)** architecture, and WOLFIE evolved into Lupopedia.
-
-Today, Lupopedia 4.0.x carries forward this heritage. The schema has been refined from 222 to a stable core; the goal is to keep the system under 200 tables (196 as of 2/14/2026, per TOON files). Every table has a purpose; every subsystem is a chapter in a living OS designed to last decades.
-
-For the complete origin story, see [HISTORY.md](docs/channels/appendix/HISTORY.md) and the [Founder's Note](docs/channels/appendix/FOUNDERS_NOTE.md).
+The full origin story (WOLFIE spiritual research engine → Web‑Organized Linked Federated Intelligent Ecosystem → Lupopedia) is in **[docs/channels/appendix/HISTORY.md](docs/channels/appendix/HISTORY.md)**. See also the [Founder's Note](docs/channels/appendix/appendix/FOUNDERS_NOTE.md).
 
 ---
 
@@ -53,25 +236,6 @@ Lupopedia is built on five architectural pillars:
 - **Optional AI agents** that can join live chats  
 - **Unified actor system** for humans, agents, and system identities  
 - **Doctrine‑driven architecture** (no foreign keys, UTC timestamps, TOON‑based schema)  
-
----
-
-### What Lupopedia 4.0.x Is
-
-- A **drop‑in upgrade** for Crafty Syntax 3.7.5  
-- A **semantic reference layer** that runs alongside any website  
-- A **multi‑agent ecosystem** with optional AI participation  
-- A **federated knowledge system** that installs anywhere Crafty Syntax installs  
-
----
-
-### What Lupopedia 4.0.x Is NOT
-
-- Not a CMS  
-- Not a rewrite of Crafty Syntax  
-- Not a framework  
-- Not a centralized service  
-- Not a replacement for your website  
 
 ---
 
@@ -511,4 +675,4 @@ For support or inquiries, contact the project maintainer.
 
 ### In One Sentence
 
-**Lupopedia is a Web‑Organized Linked Federated Intelligent Ecosystem (WOLFIE) that turns everyday websites into structured knowledge spaces, learns from how humans organize information, and builds a global graph of meaning across thousands of installations — all while preserving the legacy of Crafty Syntax and operating under a strict, doctrine‑driven architecture designed to last decades.**
+**Lupopedia is Crafty Syntax reborn inside a Semantic OS — preserving everything that made Crafty Syntax powerful while adding a federated, doctrine‑driven knowledge layer that understands actors, meaning, and relationships across the entire web.**

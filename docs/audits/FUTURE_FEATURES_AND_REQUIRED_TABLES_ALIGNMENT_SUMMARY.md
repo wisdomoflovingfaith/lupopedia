@@ -75,7 +75,7 @@ Their full `CREATE TABLE` and index definitions were removed from `install_new_l
 - drop_old_crafty_syntax_tables.sql  
 - future_features_lupopedia.sql  
 
-No other SQL files in `database/migrations/` are canonical for this doctrine. Non-SQL files present: README.md, dev_20260204_fix_schema_alignment_summary.txt, reserved_word_audit_report.txt (retained in migrations; not SQL).
+No other SQL files in `database/migrations/` are canonical for this doctrine. One-time migrations and audit reports (e.g. dev_20260204_fix_schema_alignment_summary.txt, reserved_word_audit_report.txt) are in `database/migrations_legacy/`.
 
 ---
 

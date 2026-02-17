@@ -9,7 +9,7 @@
 - `database/migrations/seed_lupopedia.sql`
 - `database/migrations/import_from_old_crafty_syntax.sql`
 - `database/migrations/drop_old_crafty_syntax_tables.sql`
-- `database/migrations/migration_unified_registry_agents_columns_and_insert.sql`
+- `database/migrations_legacy/migration_unified_registry_agents_columns_and_insert.sql`
 - `docs/toons/*.toon.json` (all TOON files)
 
 ## Fixed in This Pass
