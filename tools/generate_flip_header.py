@@ -29,12 +29,13 @@ DEFAULT_DB = {
 TABLE_PREFIX = "lupo_"
 
 
+_COLS = "content_id, file_path_from_root, file_last_modified_system_version, " \
+        "file_last_modified_utc, slug, title, content_url, custom_path, content_type, dialog_notes"
+
 def get_content_by_path(cursor, path):
     """Fetch one row from lupo_contents by file_path_from_root. Parameterized."""
     table = TABLE_PREFIX + "contents"
-    sql = "SELECT content_id, file_path_from_root, file_last_modified_system_version, " \
-          "file_last_modified_utc, slug, title, content_url, custom_path, content_type " \
-          "FROM " + table + " WHERE file_path_from_root = %s AND is_deleted = 0 LIMIT 1"
+    sql = "SELECT " + _COLS + " FROM " + table + " WHERE file_path_from_root = %s AND is_deleted = 0 LIMIT 1"
     cursor.execute(sql, (path,))
     return cursor.fetchone()
 
@@ -42,9 +43,7 @@ def get_content_by_path(cursor, path):
 def get_content_by_url(cursor, url):
     """Fetch one row by content_url or custom_path. Parameterized."""
     table = TABLE_PREFIX + "contents"
-    sql = "SELECT content_id, file_path_from_root, file_last_modified_system_version, " \
-          "file_last_modified_utc, slug, title, content_url, custom_path, content_type " \
-          "FROM " + table + " WHERE (content_url = %s OR custom_path = %s) AND is_deleted = 0 LIMIT 1"
+    sql = "SELECT " + _COLS + " FROM " + table + " WHERE (content_url = %s OR custom_path = %s) AND is_deleted = 0 LIMIT 1"
     cursor.execute(sql, (url, url))
     return cursor.fetchone()
 
@@ -52,9 +51,7 @@ def get_content_by_url(cursor, url):
 def get_content_by_id(cursor, content_id):
     """Fetch one row by content_id. Parameterized."""
     table = TABLE_PREFIX + "contents"
-    sql = "SELECT content_id, file_path_from_root, file_last_modified_system_version, " \
-          "file_last_modified_utc, slug, title, content_url, custom_path, content_type " \
-          "FROM " + table + " WHERE content_id = %s AND is_deleted = 0 LIMIT 1"
+    sql = "SELECT " + _COLS + " FROM " + table + " WHERE content_id = %s AND is_deleted = 0 LIMIT 1"
     cursor.execute(sql, (content_id,))
     return cursor.fetchone()
 
@@ -79,9 +76,9 @@ def format_utc(utc_val):
 
 
 def build_header(row, channel_id=None):
-    """Build a full FLIP Header block (doctrine-required fields)."""
+    """Build a full FLIP Header block (doctrine-required fields). Optionally include dialog from dialog_notes."""
     content_id, file_path_from_root, file_last_modified_system_version, \
-        file_last_modified_utc, slug, title, content_url, custom_path, content_type = row
+        file_last_modified_utc, slug, title, content_url, custom_path, content_type, dialog_notes = row
     path = file_path_from_root or ""
     ver = file_last_modified_system_version or "0000"
     utc = format_utc(file_last_modified_utc) or "00000000000000"
@@ -97,6 +94,10 @@ def build_header(row, channel_id=None):
         lines.append("channel_id: " + str(channel_id))
     else:
         lines.append("# channel_id unresolved — requires lupo_contents lookup by application.")
+    if dialog_notes and str(dialog_notes).strip():
+        lines.append("")
+        lines.append("# optional dialog (from dialog_notes; not for inference)")
+        lines.append(str(dialog_notes).strip())
     lines.append("---")
     return "\n".join(lines)
 

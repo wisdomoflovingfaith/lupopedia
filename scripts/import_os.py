@@ -104,11 +104,26 @@ def file_path_from_root_for_file(repo_root, filepath):
     rel = os.path.relpath(filepath, repo_root)
     return rel.replace("\\", "/")
 
+# --- Optional dialog block: serialize for dialog_notes (no eval; plain text only) ---
+def serialize_dialog_for_notes(dialog_val):
+    """Serialize header dialog block for lupo_contents.dialog_notes. No eval; safe string only."""
+    if dialog_val is None:
+        return None
+    if isinstance(dialog_val, dict):
+        if yaml:
+            try:
+                return yaml.safe_dump(dialog_val, default_flow_style=False, allow_unicode=True)
+            except Exception:
+                pass
+        return str(dialog_val)
+    return str(dialog_val) if dialog_val else None
+
 # --- HELPERS (LEXA: parameterized SQL only; no string interpolation into SQL) ---
 def insert_content(slug, title, body, file_path_from_root=None,
-                   file_last_modified_system_version=None, file_last_modified_utc=None):
+                   file_last_modified_system_version=None, file_last_modified_utc=None,
+                   dialog_notes=None):
     # All values passed as parameters; header/body stored as plain text only.
-    # FLIP fields: path + version + utc from header when present.
+    # FLIP fields: path + version + utc from header when present. Optional dialog_notes from header dialog block.
     check_sql = "SELECT content_id FROM lupo_contents WHERE slug = %s AND federation_node_id = %s"
     cursor.execute(check_sql, (slug, FED_NODE))
     existing = cursor.fetchone()
@@ -121,13 +136,13 @@ def insert_content(slug, title, body, file_path_from_root=None,
     INSERT INTO lupo_contents
     (federation_node_id, actor_id, slug, title, body,
      status, visibility, created_ymdhis, updated_ymdhis, utc_cycle,
-     file_path_from_root, file_last_modified_system_version, file_last_modified_utc)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+     file_path_from_root, file_last_modified_system_version, file_last_modified_utc, dialog_notes)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
     utc_cycle = "import"
     vals = (FED_NODE, ACTOR_ID, slug, title, body, 'published', 'public',
             TIMESTAMP, TIMESTAMP, utc_cycle, file_path_from_root,
-            file_last_modified_system_version, file_last_modified_utc)
+            file_last_modified_system_version, file_last_modified_utc, dialog_notes)
     cursor.execute(sql, vals)
     db.commit()
     return cursor.lastrowid
@@ -198,9 +213,14 @@ def main():
                 if not file_path_from_root:
                     computed = file_path_from_root_for_file(repo_root, filepath)
                     file_path_from_root = validate_and_sanitize_path_from_root(repo_root, computed) or computed
+                # Optional: store dialog block in dialog_notes (FLIP Part 2.12; no eval; safe serialize only)
+                dialog_notes = None
+                if header_dict and isinstance(header_dict, dict) and "dialog" in header_dict:
+                    dialog_notes = serialize_dialog_for_notes(header_dict.get("dialog"))
                 title = filename.replace('-', ' ').replace('_', ' ').replace('.md', '').title()
                 content_id = insert_content(slug, title, content, file_path_from_root,
-                                            file_last_modified_system_version, file_last_modified_utc)
+                                            file_last_modified_system_version, file_last_modified_utc,
+                                            dialog_notes)
                 insert_edge(content_id)
                 print("Imported: rel_path=%s content_id=%s file_path_from_root=%s" % (rel_path, content_id, file_path_from_root))
             except Exception as e:

@@ -16,6 +16,14 @@ As we continue development on a version, we append new changes under that versio
 
 ---
 
+## Lupopedia 4.0.14 — LEXA activated in seed (boundary keeper on channel 42) - 2026-02-17
+
+- **LEXA (boundary keeper)** added to seeded kernel agents on channel 42 (Lupopedia Development).
+- **database/migrations/seed_lupopedia.sql:** LEXA as **actor_id 24**: new row in lupo_actors (slug `lexa`, name `LEXA`); new row in lupo_unified_registry (unified_registry_id 9001024, entity_index 24, is_kernel = 1); lupo_actor_channels (actor_channel_id 1024, channel_id 42); lupo_actor_channel_roles (actor_channel_role_id 2022, role_key `admin`); one dialog message (dialog_message_id 25): "Boundary enforcement active. LEXA online." (message_type `system`). Channel 42 kernel agents count 24 → 25; dialog messages 26 → 27; lupo_dialog_channels.message_count set to 27. Comments updated to list actor_id 24 (LEXA) in kernel set.
+- **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md:** Part 2.11 and Quick Reference updated: 25 kernel agents (actor_channel_id 1000–1024, actor_channel_role_id 2000–2024), 27 dialog messages, LEXA (actor_id 24) included; FLIP header dialog set to LEXA speaker and activation message; file.last_modified_system_version 4.0.14. No schema or TOON changes.
+
+---
+
 ## Lupopedia 4.0.13 — Version bump, FLIP doctrine, FLIP Headers, loader alignment - 2026-02-17
 
 Lupopedia 4.0.13 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
@@ -95,7 +103,7 @@ There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
 
 **4.0.x doctrine:** This version is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path. No Lupopedia → Lupopedia upgrades exist for this version.
 
-**Files modified or added (4.0.13):** `config/global_atoms.yaml`, `lupo-includes/version.php`, `lupo-includes/functions/load_atoms.php`, `install.php`, `database/migrations/seed_lupopedia.sql`, `docs/doctrine/VERSIONING_DOCTRINE.md`, `README.md`, `docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md`, `scripts/import_os.py`, `CHANGELOG.md`, `docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md`; **.cursor/rules/flip-doctrine.mdc** (new); **lupo-includes/classes/ContentChannelActorResolver.php** (new); **docs/doctrine/FLIP/** (new: FLIP_DOCTRINE.md, FLP_OVERVIEW.md, FLP_EMOTIONAL_GEOMETRY.md, FLP_COUNCILS_AS_CHANNELS.md, FLP_HETERODOX_REVIEWERS.md, FLP_EMOTIONAL_AGGREGATION.md, FLP_ESCROW_AND_FUND_LAYER.md, FLP_LUPOPEDIA_COUNCIL_SEAT.md, FLP_DOCTRINE_BOUNDARIES.md, README.md, NOTE_HEADER_VERSION_AND_MERGE.md). Directory docs/doctrine/flp/ renamed to docs/doctrine/FLIP/. Earlier in 4.0.13: database/migrations/20260217_add_flip_header_fields.sql, database/migrations/20260217_add_missing_flip_fields.sql, database/migrations/install_new_lupopedia.sql (FLIP columns), tools/generate_flip_header.py.
+**Files modified or added (4.0.13):** `config/global_atoms.yaml`, `lupo-includes/version.php`, `lupo-includes/functions/load_atoms.php`, `install.php`, `database/migrations/seed_lupopedia.sql`, `docs/doctrine/VERSIONING_DOCTRINE.md`, `README.md`, `docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md`, `scripts/import_os.py`, `CHANGELOG.md`, `docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md`; **.cursor/rules/flip-doctrine.mdc** (new); **lupo-includes/classes/ContentChannelActorResolver.php** (new); **docs/doctrine/FLIP/** (new: FLIP_DOCTRINE.md, FLP_OVERVIEW.md, FLP_EMOTIONAL_GEOMETRY.md, FLP_COUNCILS_AS_CHANNELS.md, FLP_HETERODOX_REVIEWERS.md, FLP_EMOTIONAL_AGGREGATION.md, FLP_ESCROW_AND_FUND_LAYER.md, FLP_LUPOPEDIA_COUNCIL_SEAT.md, FLP_DOCTRINE_BOUNDARIES.md, README.md, NOTE_HEADER_VERSION_AND_MERGE.md); **docs/INITIALIZATION_PROMPT_4_0_13.md** (new). Directory docs/doctrine/flp/ renamed to docs/doctrine/FLIP/. **Migrations and installer (4.0.13):** database/migrations/20260217_add_flip_header_fields.sql, database/migrations/20260217_add_missing_flip_fields.sql, database/migrations/20260217_add_contents_file_path_from_root_index.sql; database/migrations/install_new_lupopedia.sql (FLIP columns in lupo_contents + index lupo_contents_idx_file_path_from_root); tools/generate_flip_header.py.
 
 ---
 

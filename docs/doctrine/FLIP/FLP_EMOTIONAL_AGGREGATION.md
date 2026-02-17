@@ -1,0 +1,46 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/FLIP/FLP_EMOTIONAL_AGGREGATION.md
+file.last_modified_system_version: "4.0.13"
+file.last_modified_utc: "00000000000000"
+# channel_id unresolved — requires lupo_contents lookup by application.
+---
+# FLP — Emotional Aggregation
+
+**Status:** Permanent. Documentation only.  
+**Audience:** All AI agents (including Cursor), contributors, and system stewards.  
+**Related:** [FLP_EMOTIONAL_GEOMETRY.md](FLP_EMOTIONAL_GEOMETRY.md), [MOOD_RGB_DOCTRINE.md](../../channels/doctrine/MOOD_RGB_DOCTRINE.md).
+
+---
+
+## 1. Aggregation performed entirely in application code
+
+All emotional aggregation in the FLP (blending across councils, rollups over time, derived mood tensors, or any composite emotional state) is performed **entirely in application code**. The database does not compute aggregates, averages, or derived emotional values.
+
+---
+
+## 2. Aggregates stored as plain data
+
+When the application computes an aggregate (e.g. a blended mood for a set of councils, or a council’s summarized emotional state), the result is stored as **plain data** written explicitly by the application. Examples:
+
+- Writing a mood_rgb or emotional-state value into channel metadata.
+- Writing a row or record into an existing table with the aggregate value in a column.
+- Writing to content or logs with timestamp and value.
+
+The database stores only what the application writes. It does not maintain running totals, running averages, or any automatic derivation.
+
+---
+
+## 3. No DB-side computation
+
+- **No triggers** to update aggregates when source data changes.
+- **No stored procedures or functions** that compute emotional aggregates.
+- **No views** that compute emotional aggregates.
+- **No generated or computed columns** that derive emotional state from other columns.
+
+Any formula or algorithm for aggregation is implemented in application code and may be documented in doctrine or design docs; it is not implemented in the database.
+
+---
+
+*End of FLP emotional aggregation. No schema, no SQL, no implementation in this document.*

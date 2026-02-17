@@ -85,6 +85,12 @@ This works **without Git, without diffs, without IDE history, and without scanni
 
 **This is why the header exists and why it must be maintained exactly as specified.**
 
+### **FLIP — File-Level Inference Protocol**
+
+The header block at the top of every file is canonically named **FLIP Headers** (alias: Wolfie Headers, CROP Headers, FLIPPING Headers). They are the same system.
+
+When a file is "flipped" to Lupopedia or to an AI agent (e.g. Cursor), the agent must **infer** everything it needs to know about that file — identity, lineage, channel, version, emotional state, doctrine, placement, semantic meaning — **entirely from the FLIP Header**, without guessing or hallucinating. This is the **File-Level Inference Protocol (FLIP)**. The FLIP Header is the boundary and truth source for that file. See **docs/doctrine/FLIP/FLIP_DOCTRINE.md** for the canonical FLIP doctrine and agent compliance checklist.
+
 Only **two fields are mandatory**.
 
 ---
@@ -270,6 +276,8 @@ Classification category for archival and retrieval
 # ðŸ’¬ **4. Dialog Block (Required on File Creation/Modification)**
 
 The `dialog:` block in the WOLFIE Header represents the **latest edit** to the file.
+
+**FLIP (File-Level Inference Protocol):** From a FLIP perspective, the dialog block is **optional** and **non-authoritative**. Agents must **not** infer identity, channel, version, or doctrine from the dialog block; only the doctrine-required header fields (e.g. `file_path_from_root`, `file.last_modified_system_version`, `file.last_modified_utc`) are used for inference. The dialog block is for human and agent readability, change notes, and conversational lineage only. See **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md** Part 2.12.
 
 **Important:** This is distinct from **inline dialogs**, which can appear anywhere in the file as margin notes. The header dialog is updated ONLY when the file itself is modified, and represents what changed in that modification.
 

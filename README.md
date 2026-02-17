@@ -111,6 +111,7 @@ This is the first time Crafty Syntax has ever had:
 - Timestamp discipline  
 - No foreign keys, no triggers, no DB logic  
 - Global registry for actors, channels, collections  
+- **FLIP (File-Level Inference Protocol)** — When a file is handed to the system or an agent, infer its identity, doctrine, meaning, and emotional state entirely from its FLIP Headers (alias: Wolfie Headers, CROP Headers); no guessing. See **docs/doctrine/FLIP/FLIP_DOCTRINE.md**.
 
 Crafty Syntax becomes the **heart**.  
 Lupopedia becomes the **brain**.
@@ -291,6 +292,7 @@ Never introduce `user_id`. Never add foreign keys, triggers, or stored procedure
 All contributors and AI agents must read and follow:
 
 - 📘 [docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md](docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md)  
+- 📘 [docs/doctrine/FLIP/FLIP_DOCTRINE.md](docs/doctrine/FLIP/FLIP_DOCTRINE.md) — File-Level Inference Protocol: infer file identity, doctrine, and meaning from the FLIP Header only; no guessing. (FLIP Headers are also known as Wolfie Headers, CROP Headers.)  
 - 📘 [docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md](docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md) — Common AI corrections: database (no FKs, no triggers, no display widths, no UNSIGNED), time (UTC YYYYMMDDHHIISS only), state (no deadlines), identity (BIGINT only), advertising/humor/psychological manipulation prohibitions, and filename rules.  
 
 Any AI coding agent (JetBrains, Cursor, Claude, etc.) must be initialized with this doctrine before making changes to the codebase.
@@ -485,9 +487,9 @@ Lupopedia recommendations are based solely on **DATA and SYSTEM LOGIC — never 
 
 ---
 
-### Wolfie Header Update Requirements
+### FLIP Header Update Requirements
 
-Every file in Lupopedia must include a **Wolfie Header** block at the top with these required fields:
+Every file in Lupopedia must include a **FLIP Headers (alias: Wolfie Headers, CROP Headers)** block at the top with these required fields:
 
 ```
 file.last_modified_system_version: X.X.X.X
@@ -542,7 +544,7 @@ See [INLINE_DIALOG_SPECIFICATION.md](docs/doctrine/INLINE_DIALOG_SPECIFICATION.m
 
 Lupopedia documentation is structured, machine‑readable system metadata using **atoms** (symbolic variables) and **scopes**. Atoms are resolved through a hierarchical scope system:
 
-- `FILE_` (highest) – File‑specific overrides in Wolfie Header `file_atoms:` block  
+- `FILE_` (highest) – File‑specific overrides in FLIP Header `file_atoms:` block  
 - `DIR_` – Directory‑specific defaults in `<directory>/_dir_atoms.yaml`  
 - `DIRR_` – Recursive directory scope (walks up parent directories)  
 - `MODULE_` – Module‑wide scope in `modules/<module>/module_atoms.yaml`  
@@ -552,7 +554,7 @@ Lupopedia documentation is structured, machine‑readable system metadata using 
 
 **Atom Reference Syntax:**  
 - In documentation prose: `@GLOBAL.LUPOPEDIA_COMPANY_STRUCTURE.company.name`  
-- In Wolfie Headers: `GLOBAL_CURRENT_LUPOPEDIA_VERSION` (no `@` prefix)
+- In FLIP Headers: `GLOBAL_CURRENT_LUPOPEDIA_VERSION` (no `@` prefix)
 
 Documentation principles:  
 - Markdown files are source code — atoms are variables; resolver is compiler; final rendered docs are build artifacts.  
