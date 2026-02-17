@@ -1,0 +1,379 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
+file.last_modified_system_version: "4.0.13"
+file.last_modified_utc: "00000000000000"
+# channel_id unresolved — requires lupo_contents lookup by application.
+dialog:
+  speaker: CURSOR
+  target: @everyone
+  message: "Incorporated LILITH's critique: Added actors navigation, dialog_notes explanation, FLP example, generator output, path validation sketch."
+---
+# The FLIPPING File — FLP, FLIP Headers, and How Headers + Database Work (for LEXA and LILITH)
+
+**Status:** Permanent.  
+**Audience:** LEXA (boundary keeper, security), LILITH (heterodox reviewer, structural critic), and all AI agents.  
+**Purpose:** Single canonical explanation of what FLP is, what FLIP/Wolfie Headers are, and how headers and the database are used so LEXA and LILITH can enforce and critique correctly.
+
+---
+
+## Part 1 — What Is What
+
+### 1.1 FLIP (File-Level Inference Protocol)
+
+**FLIP** = **F**ile-**L**evel **I**nference **P**rotocol.
+
+- When a file is "flipped" to the system (e.g. handed to Cursor or any agent), the agent must **infer** everything about that file **only from its header** — no guessing, no hallucinating, no filling in from repo scan or external context.
+- The **header** is the boundary and truth source for that file. Identity, lineage, channel, version, emotional state, doctrine, placement, meaning — all inferred from the header when present. If a field is absent, the agent must **not** invent it. Omission is information.
+
+**Canonical FLIP doctrine:** `docs/doctrine/FLIP/FLIP_DOCTRINE.md`.
+
+---
+
+### 1.2 FLIP Headers (alias: Wolfie Headers, CROP Headers, FLIPPING Headers)
+
+These are **the same thing**. One canonical name: **FLIP Headers**. Aliases: Wolfie Headers, CROP Headers, FLIPPING Headers. Same YAML block at the top of the file between `---` delimiters.
+
+- **Signature line (mandatory):**  
+  `wolfie.headers: explicit architecture with structured clarity for every file.`  
+  This line never changes. Agents must not alter, reword, shorten, or "improve" it.
+
+- **Doctrine-required fields for reconstruction and versioning:**
+  - `file_path_from_root` — Path from repo root (e.g. `docs/doctrine/FLIP/FLIP_DOCTRINE.md`).
+  - `file.last_modified_system_version` — System version when the file was last edited (e.g. `"4.0.13"`). Literal string, not an atom. Updated only when the file is modified.
+  - `file.last_modified_utc` — UTC timestamp of last modification, 14-digit BIGINT format `YYYYMMDDHHIISS` (e.g. `"20260217000000"`).
+  - `channel_id` — Optional; when resolvable from the database (e.g. via `lupo_edges`), can be included. Otherwise: comment `# channel_id unresolved — requires lupo_contents lookup by application.`
+
+**Full header specification (structure, optional blocks, dialog, tags, atoms):** `docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md`.
+
+---
+
+### 1.3 FLP (Federated Likeness Protocol)
+
+**FLP** = **F**ederated **L**ikeness **P**rotocol. This is **not** the same as FLIP.
+
+- FLP is a **governance and cultural-coordination layer** that sits **on top of** Lupopedia. It does not replace it.
+- FLP concepts: councils as channels, council members as actors, heterodox reviewers as application-level agents (e.g. LILITH-style), emotional geometry (MOOD_RGB), escrow/fund as channels + app-level logs. All realized with **existing** Lupopedia tables and **soft references**; **no** new schema, triggers, FKs, or DB-side automation for FLP.
+- FLP is documented in this folder: `FLP_OVERVIEW.md`, `FLP_EMOTIONAL_GEOMETRY.md`, `FLP_COUNCILS_AS_CHANNELS.md`, `FLP_HETERODOX_REVIEWERS.md`, `FLP_EMOTIONAL_AGGREGATION.md`, `FLP_ESCROW_AND_FUND_LAYER.md`, `FLP_LUPOPEDIA_COUNCIL_SEAT.md`, `FLP_DOCTRINE_BOUNDARIES.md`.
+
+**Summary:** FLIP = how we interpret **files** from their **headers**. FLP = how we model **councils, reviewers, and emotional coordination** on top of Lupopedia. Headers (FLIP) can carry FLP-relevant metadata (e.g. mood_RGB, channel context) but FLP does not define the header format; FLIP does.
+
+---
+
+## Part 2 — How Headers and the Database Work Together
+
+### 2.1 Database: FLIP fields in `lupo_contents`
+
+The table **`lupo_contents`** stores content (e.g. ingested docs, articles). To support **full FLIP header reconstruction** from the database, the following columns exist (doctrine-required):
+
+| Column | Type | Purpose |
+|--------|------|---------|
+| `file_path_from_root` | varchar(500) | Path from repo root; used when reconstructing header from path, URL, or content_id. |
+| `file_last_modified_system_version` | varchar(20) | System version at last file edit (e.g. 4.0.13). |
+| `file_last_modified_utc` | bigint | UTC last modified, YYYYMMDDHHIISS. |
+
+- **No foreign keys, no triggers, no DB-side logic** for these columns. Application (or loader/generator) writes and reads them.
+- **channel_id** is **not** stored on `lupo_contents`. It is resolved by the application via **`lupo_edges`**: edge type `HAS_CONTENT`, `left_object_type = 'channel'`, `right_object_type = 'content'`, `right_object_id = content_id` → `left_object_id` is the channel_id.
+
+**Schema source of truth:** TOON files in `docs/toons/` (e.g. `lupo_contents.toon.json`). Install: `database/migrations/install_new_lupopedia.sql`. One-time migration for existing DBs: `database/migrations/20260217_add_missing_flip_fields.sql` (and earlier `20260217_add_flip_header_fields.sql` for `file_path_from_root` only).
+
+---
+
+### 2.2 Loader: `scripts/import_os.py`
+
+The loader **ingests** Markdown files under `docs/` into `lupo_contents`.
+
+- **Recognizes** FLIP Headers (and Wolfie/CROP/FLIPPING as same block) by signature or presence of `file_path_from_root` in the YAML block.
+- **Reads** from the header when present: `file_path_from_root`, `file.last_modified_system_version`, `file.last_modified_utc`.
+- **Writes** those into `lupo_contents` as `file_path_from_root`, `file_last_modified_system_version`, `file_last_modified_utc`. If the header omits path, the loader computes path from repo root and validates it.
+- **Does not** infer or store `channel_id`; application resolves channel later via lupo_contents / lupo_edges lookup.
+- **Creates** an edge in `lupo_edges` (channel HAS_CONTENT content) for the imported content; that is how `channel_id` becomes resolvable for that content.
+
+So: **file on disk → header parsed → FLIP fields written to DB.** One direction. No schema or TOON changes from the loader.
+
+---
+
+### 2.3 Generator: `tools/generate_flip_header.py`
+
+The generator **reconstructs** a full FLIP/Wolfie header **from** the database.
+
+- **Input (one of):**
+  - `--path` = `file_path_from_root`
+  - `--url` = link address (content_url or custom_path)
+  - `--content-id` = `content_id`
+- **Behavior:** Queries `lupo_contents` with **parameterized SQL** to get the row; optionally queries `lupo_edges` to resolve `channel_id` for that content.
+- **Output:** A verbose, human-readable FLIP Header block (YAML between `---`) containing:
+  - `file_path_from_root`
+  - `file.last_modified_system_version`
+  - `file.last_modified_utc`
+  - `channel_id` (if resolvable) or comment that it is unresolved
+
+So: **DB (path / URL / content_id) → query → full header.** Other direction from the loader. Enables "give me the header for this path/URL/content_id" without reading the file from disk.
+
+---
+
+### 2.4 Round-trip summary
+
+| Direction | Mechanism | Use case |
+|----------|-----------|----------|
+| File → DB | `import_os.py` reads FLIP header, writes FLIP columns into `lupo_contents` | Ingest docs; persist header-derived metadata. |
+| DB → Header | `generate_flip_header.py` reads `lupo_contents` (and `lupo_edges` for channel_id), prints header block | Reconstruct header from path, URL, or content_id. |
+
+Headers and database stay aligned when: (1) the loader runs on files that have FLIP Headers and (2) the generator is used to produce headers from DB. Edits to the file header should be reflected in the DB by re-running the loader or by application logic that updates the FLIP columns.
+
+---
+
+## Part 2.5 — Database tables and navigation: from content to channel_id and dialog
+
+To get **all semantic information** for a file/content from the database — including **channel_id**, **channel details**, **dialog threads**, and **dialog messages** — use the tables and navigation below. Schema is from TOON files in `docs/toons/`; column names and types must match TOONs. Use **parameterized SQL only** (e.g. `:content_id`, `%s`); never concatenate values into SQL.
+
+### Tables relevant to FLP/FLIP and content semantics
+
+| Table | Role (TOON source: docs/toons/) |
+|-------|----------------------------------|
+| **lupo_contents** | Content row: FLIP columns (`file_path_from_root`, `file_last_modified_system_version`, `file_last_modified_utc`), `content_id`, `slug`, `title`, `body`, `content_url`, `custom_path`, `content_type`, **`dialog_notes`** (inline dialog/notes on this content), etc. |
+| **lupo_edges** | Links content to channel. Edge type `HAS_CONTENT`: `left_object_type='channel'`, `left_object_id` = channel_id, `right_object_type='content'`, `right_object_id` = content_id. Also has `channel_id`, `channel_key` on the edge. |
+| **lupo_channels** | Channel master: `channel_id`, `channel_key`, `channel_name`, `channel_slug`, `description`, `metadata_json`, `parent_channel_id`, etc. |
+| **lupo_dialog_threads** | Threads scoped by channel: `dialog_thread_id`, `channel_id`, `project_slug`, `task_name`, `created_by_actor_id`, `summary_text`, `status`, `created_ymdhis`, `updated_ymdhis`, etc. |
+| **lupo_dialog_messages** | Messages in a channel (and optionally a thread): `dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `message_body`, `mood_rgb`, `metadata_json`, `created_ymdhis`, etc. |
+| **lupo_dialog_channels** | Dialog-specific metadata per channel: `channel_id` (PK), `channel_name`, **`file_source`** (path or identifier for the dialog file), `speaker`, `target`, `title`, `description`, `categories`, `collections`, `channels`, `tags`, `message_count`, etc. |
+
+There is **no** `content_id` on `lupo_dialog_messages` or `lupo_dialog_threads`. The link from content to dialog is: **content → lupo_edges → channel_id → dialog threads and messages (by channel_id)**. Optional: **lupo_dialog_channels** links a channel to a `file_source` (e.g. which file the dialog came from), so you can also match by file path if that is stored there.
+
+### Step-by-step: get content row
+
+- **By file_path_from_root:**  
+  `SELECT content_id, file_path_from_root, file_last_modified_system_version, file_last_modified_utc, slug, title, body, content_url, custom_path, content_type, dialog_notes, ... FROM lupo_contents WHERE file_path_from_root = :path AND is_deleted = 0 LIMIT 1`
+- **By content_id:**  
+  Same `SELECT ... FROM lupo_contents WHERE content_id = :content_id AND is_deleted = 0 LIMIT 1`
+- **By URL (content_url or custom_path):**  
+  `SELECT ... FROM lupo_contents WHERE (content_url = :url OR custom_path = :url) AND is_deleted = 0 LIMIT 1`
+
+Use bound parameters for `:path`, `:content_id`, `:url`. From the row you get FLIP fields and **dialog_notes** (inline notes/dialog on this content).
+
+### Step-by-step: get channel_id for a content
+
+- **From lupo_edges (HAS_CONTENT):**  
+  `SELECT left_object_id FROM lupo_edges WHERE left_object_type = 'channel' AND right_object_type = 'content' AND right_object_id = :content_id AND edge_type = 'HAS_CONTENT' AND is_deleted = 0 LIMIT 1`  
+  → `left_object_id` is the **channel_id** for that content. (If the loader created the edge on import, this will exist for ingested content.)
+
+### Step-by-step: get channel details
+
+- **From lupo_channels:**  
+  `SELECT channel_id, channel_key, channel_name, channel_slug, description, metadata_json, parent_channel_id, ... FROM lupo_channels WHERE channel_id = :channel_id AND is_deleted = 0 LIMIT 1`
+
+### Step-by-step: get dialog threads for the channel
+
+- **From lupo_dialog_threads:**  
+  `SELECT dialog_thread_id, channel_id, project_slug, task_name, created_by_actor_id, summary_text, status, created_ymdhis, updated_ymdhis, ... FROM lupo_dialog_threads WHERE channel_id = :channel_id AND is_deleted = 0 ORDER BY created_ymdhis DESC`  
+  → All threads in the channel this content belongs to.
+
+### Step-by-step: get dialog messages (by channel or by thread)
+
+- **All messages in the channel:**  
+  `SELECT dialog_message_id, dialog_thread_id, channel_id, from_actor_id, to_actor_id, message_text, message_type, message_body, mood_rgb, created_ymdhis, ... FROM lupo_dialog_messages WHERE channel_id = :channel_id AND is_deleted = 0 ORDER BY created_ymdhis`
+- **Messages in a specific thread:**  
+  `SELECT ... FROM lupo_dialog_messages WHERE dialog_thread_id = :dialog_thread_id AND is_deleted = 0 ORDER BY created_ymdhis`
+
+### Step-by-step: get dialog-channel metadata (e.g. file_source)
+
+- **From lupo_dialog_channels:**  
+  `SELECT channel_id, channel_name, file_source, speaker, target, title, description, message_count, ... FROM lupo_dialog_channels WHERE channel_id = :channel_id LIMIT 1`  
+  → **file_source** can identify the dialog file/path associated with this channel; use for matching content or file path to a dialog stream if your app populates it.
+
+### Summary: full semantic load for one content
+
+1. **Resolve content row** by `file_path_from_root`, `content_id`, or URL (content_url/custom_path) from **lupo_contents**. You now have FLIP fields and **dialog_notes**.
+2. **Resolve channel_id** from **lupo_edges** (HAS_CONTENT, right_object_id = content_id) → left_object_id.
+3. **Load channel** from **lupo_channels** by channel_id → channel_key, channel_name, etc.
+4. **Load dialog threads** from **lupo_dialog_threads** WHERE channel_id = :channel_id.
+5. **Load dialog messages** from **lupo_dialog_messages** WHERE channel_id = :channel_id (or WHERE dialog_thread_id IN (...)
+ for selected threads).
+6. **Optionally** load **lupo_dialog_channels** by channel_id for file_source, speaker, target, etc.
+
+If you could not load the dialog thread or channel_id before, it is because: (a) **channel_id** is not on `lupo_contents` — it must be read from **lupo_edges**; (b) **dialog** is keyed by **channel_id** (and optionally **dialog_thread_id**), not by content_id. So the application must follow the path: content → edges → channel_id → dialog_threads / dialog_messages.
+
+---
+
+### Part 2.6 — Actors on a channel (LILITH-required)
+
+To list **actors on the channel** that a content belongs to, use **lupo_actor_channels** and **lupo_actors** (and optionally **lupo_actor_channel_roles** for role). Schema from TOONs: `docs/toons/lupo_actor_channels.toon.json`, `docs/toons/lupo_actors.toon.json`, `docs/toons/lupo_actor_channel_roles.toon.json`.
+
+1. Resolve **content_id** from lupo_contents (by file_path_from_root, content_id, or URL).
+2. Resolve **channel_id** from lupo_edges (HAS_CONTENT, right_object_id = content_id) → left_object_id.
+3. Query actors on that channel:
+
+```sql
+-- Actors on channel (parameterized: :channel_id)
+SELECT a.actor_id, a.name, a.actor_type, ac.status, ac.start_date, ac.created_ymdhis
+FROM lupo_actor_channels ac
+JOIN lupo_actors a ON a.actor_id = ac.actor_id
+WHERE ac.channel_id = :channel_id AND ac.is_deleted = 0 AND a.is_deleted = 0
+ORDER BY ac.created_ymdhis;
+```
+
+Optional: include **role** from lupo_actor_channel_roles:
+
+```sql
+SELECT a.actor_id, a.name, a.actor_type, ac.status, ac.start_date, ac.created_ymdhis, acr.role_key
+FROM lupo_actor_channels ac
+JOIN lupo_actors a ON a.actor_id = ac.actor_id
+LEFT JOIN lupo_actor_channel_roles acr ON acr.actor_id = ac.actor_id AND acr.channel_id = ac.channel_id AND acr.is_deleted = 0
+WHERE ac.channel_id = :channel_id AND ac.is_deleted = 0 AND a.is_deleted = 0
+ORDER BY ac.created_ymdhis;
+```
+
+Return shape (example): `array( array('actor_id' => ..., 'actor_name' => ..., 'type' => ..., 'role' => ..., 'status' => ..., 'joined_at' => ...), ... )`. Use **bound parameters** only; table prefix from LUPO_TABLE_PREFIX when in application code.
+
+---
+
+### Part 2.7 — dialog_notes: purpose and how to parse (LILITH-required)
+
+**dialog_notes** on **lupo_contents** is a **text** column. Purpose: store inline dialog or notes associated with that content (e.g. agent messages, change notes, or a transcript snippet). It is **not** the same as **lupo_dialog_messages** (channel/thread messages). It is content-scoped.
+
+- **How to parse:** Application-defined. There is no mandated format. Common patterns: plain text; YAML block; one message per line; or JSON. When reading, trim and interpret per your application’s convention. If absent or null, treat as empty. Do not guess structure; document the convention your app uses.
+- **When to use:** When the application stores dialog or notes that belong to **this content row** (e.g. “last edit” note, or a short dialog block copied from the FLIP Header). For full channel/thread dialog, use **lupo_dialog_messages** and **lupo_dialog_threads** keyed by channel_id.
+
+---
+
+### Part 2.8 — FLP soft-reference example (LILITH-required)
+
+FLP uses **soft references** only; no foreign keys. Example: **council as channel → council members as actors**.
+
+- **Council** = one row in **lupo_channels** (e.g. channel_key = `council/main`, channel_name = "Main Council").
+- **Membership** = rows in **lupo_actor_channels**: actor_id, channel_id (the council’s channel_id), status, start_date. No FK; application ensures actor_id and channel_id refer to existing rows.
+- **Optional:** **lupo_edges** can represent “council HAS_MEMBER actor”: left_object_type = 'channel', left_object_id = council channel_id, right_object_type = 'actor', right_object_id = actor_id, edge_type = 'HAS_MEMBER'. Resolution: application reads lupo_edges (and lupo_actor_channels) to list members; no DB-level referential integrity.
+
+All relationships are application-resolved; no schema or triggers added for FLP.
+
+---
+
+### Part 2.9 — Sample reconstructed FLIP header for this file (LILITH-required)
+
+Output that **tools/generate_flip_header.py** (or equivalent) can produce for this file, given `file_path_from_root: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md` and resolved channel_id (e.g. 0):
+
+```yaml
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
+file.last_modified_system_version: "4.0.13"
+file.last_modified_utc: "00000000000000"
+channel_id: 0
+---
+```
+
+If channel_id cannot be resolved from lupo_edges, the last line is: `# channel_id unresolved — requires lupo_contents lookup by application.`
+
+---
+
+### Part 2.10 — Path validation pseudocode (LEXA/LILITH)
+
+Path validation must ensure: (1) path is inside project root, (2) no `..` traversal. Pseudocode (implement in loader or resolver; use realpath and string checks):
+
+```
+function validate_path_inside_root(repo_root, filepath_abs):
+    real_root = realpath(repo_root)
+    real_path = realpath(filepath_abs)
+    return (real_path == real_root) OR (real_path starts with real_root + path_separator)
+end
+
+function validate_and_sanitize_path_from_root(repo_root, path_from_root):
+    if path_from_root is empty OR ".." in path_from_root: return None
+    path_from_root = strip(path_from_root), replace backslash with forward slash, lstrip "/"
+    if path_from_root is empty: return None
+    resolved = normpath(join(repo_root, path_from_root))
+    if NOT validate_path_inside_root(repo_root, resolved): return None
+    return path_from_root with backslashes replaced by forward slashes
+end
+```
+
+Only the **sanitized** result (or None) may be stored in the DB as `file_path_from_root`. Never store unvalidated user or header input.
+
+---
+
+## Part 3 — For LEXA (Boundary Keeper / Security)
+
+LEXA enforces doctrine and boundaries. For FLIP/FLP and headers + database, LEXA must enforce the following.
+
+### 3.1 Security and loader (import_os.py)
+
+- **Parameterized SQL only.** No string concatenation or interpolation of user/header values into SQL. All values passed as parameters (e.g. `%s` with tuple).
+- **Path validation.** Any path from the header (`file_path_from_root`) or computed from the file system must be validated: must resolve **inside** the Lupopedia repo root; **no** `..` escape. Use `validate_path_inside_root` and `validate_and_sanitize_path_from_root` (or equivalent). Reject or skip invalid paths.
+- **No eval, exec, or shell** on header values. Header values are plain text only; stored as-is. No dynamic execution.
+- **Safe error logging.** No sensitive info (no passwords, no full stack with env). Short, bounded error messages (e.g. filename + first N chars of error).
+- **No inference of channel_id in the loader.** Store path and FLIP fields only; application resolves channel via lupo_contents/lupo_edges lookup. Do not guess channel from path or filename.
+
+### 3.2 FLIP inference rules
+
+- **Infer only from the header.** Do not guess identity, channel, version, or doctrine from path, filename, or repo structure. If the header does not contain a field, do not invent it. Treat absence as absence.
+- **Do not alter the header to "fix" inference** unless explicitly asked to update the file. FLIP is read-only inference; header edits are separate operations.
+
+### 3.3 Database and schema
+
+- **No schema inference from the live DB.** Schema comes from TOON files and install/migration SQL only.
+- **No triggers, no FKs, no stored procedures** for FLIP/FLP. All behavior in application code.
+- **Table prefix:** Use configured prefix (e.g. `LUPO_TABLE_PREFIX`); in migration files use placeholder `{prefix}` and replace before execution. In installer SQL use literal `lupo_`.
+
+### 3.4 LEXA checklist (FLIP/FLP)
+
+- [ ] Loader and any script writing to DB use parameterized SQL only.
+- [ ] Paths from headers or filesystem are validated inside repo root; no `..`.
+- [ ] No eval/exec/shell on header or path values.
+- [ ] channel_id is not inferred in the loader; application resolves via lookup.
+- [ ] Agents infer only from the header; no guessing missing fields.
+- [ ] Schema changes come from TOONs and canonical migrations only; no live-DB inference.
+
+---
+
+## Part 4 — For LILITH (Heterodox Reviewer / Structural Critic)
+
+LILITH is an application-level agent (heterodox reviewer). In the FLP, heterodox reviewers analyze council minutes, emotional state, and structure; they provide a distinct perspective and can challenge or complement the narrative. For FLIP/FLP and headers + database, LILITH should understand and critique the following.
+
+### 4.1 Structural integrity
+
+- **FLIP vs FLP.** FLIP = file-level inference from headers. FLP = governance layer on top of Lupopedia (councils, reviewers, emotional aggregation). Confusion between the two is a structural flaw. Docs and code should use "FLIP" for the header protocol and "FLP" for the federated likeness protocol.
+- **Header naming.** Canonical: "FLIP Headers." Aliases: Wolfie, CROP, FLIPPING. Any doc or comment that treats "Wolfie Header" as the only name, or invents new names without tying them to FLIP, is drift.
+- **Single source of truth.** FLIP doctrine lives in `docs/doctrine/FLIP/`. Schema lives in TOONs and install/migration SQL. No duplicate or suffixed FLIP doctrine files; no schema inferred from live DB.
+
+### 4.2 Database and application boundary
+
+- **FLP adds no schema.** Councils, heterodox reviewers, emotional aggregation, escrow/fund are realized with existing tables (channels, actors, content, edges) and soft references. If something introduces new tables or columns "for FLP" without going through TOON + install + migration doctrine, that is a violation.
+- **FLIP columns in lupo_contents** are the only DB extension for headers: `file_path_from_root`, `file_last_modified_system_version`, `file_last_modified_utc`. No other header fields are required in the DB for doctrine-compliant reconstruction. Adding more columns "for headers" without doctrine requirement is scope creep.
+- **channel_id** is resolved by application via `lupo_edges`, not stored on `lupo_contents`. Any design that stores channel_id on lupo_contents for "convenience" without doctrine approval is a structural choice to critique.
+
+### 4.3 Loader and generator
+
+- **Loader** must read only the FLIP fields that doctrine requires and write only those to the DB. It must not infer channel_id. It must use parameterized SQL and path validation (LEXA). If the loader writes extra columns or infers channel from path, LILITH should flag it.
+- **Generator** must produce a header that matches the FLIP format (signature, file_path_from_root, file.last_modified_system_version, file.last_modified_utc, channel_id or comment). It must use parameterized SQL. If the generator invents fields not in doctrine or reads from non-TOON schema, LILITH should flag it.
+
+### 4.4 LILITH critique checklist (FLIP/FLP)
+
+- [ ] FLIP and FLP are clearly distinguished in docs and behavior.
+- [ ] Header naming is canonical (FLIP Headers) with aliases stated.
+- [ ] No FLP-specific schema; only existing Lupopedia tables and soft references.
+- [ ] FLIP DB columns are only the three doctrine-required fields; no undisciplined expansion.
+- [ ] Loader does not infer channel_id; generator resolves it via lupo_edges.
+- [ ] LEXA rules (parameterized SQL, path validation, no guessing) are satisfied by loader and any script that touches DB or file paths.
+
+---
+
+## Part 5 — Quick Reference
+
+| Term | Meaning |
+|------|---------|
+| **FLIP** | File-Level Inference Protocol: infer file identity/lineage/doctrine from header only; no guessing. |
+| **FLIP Headers** | Canonical name for the YAML block at top of file (aliases: Wolfie, CROP, FLIPPING). |
+| **FLP** | Federated Likeness Protocol: governance layer (councils, reviewers, emotional geometry) on top of Lupopedia; no new schema. |
+| **lupo_contents FLIP columns** | `file_path_from_root`, `file_last_modified_system_version`, `file_last_modified_utc`. Also: `dialog_notes` (inline dialog/notes on content). |
+| **channel_id** | Not on lupo_contents. Resolved via **lupo_edges**: `left_object_id` WHERE right_object_type='content' AND right_object_id=content_id AND edge_type='HAS_CONTENT' AND is_deleted=0. |
+| **Dialog threads** | **lupo_dialog_threads** WHERE channel_id = :channel_id (content → edges → channel_id first). |
+| **Dialog messages** | **lupo_dialog_messages** WHERE channel_id = :channel_id or WHERE dialog_thread_id = :dialog_thread_id. |
+| **Dialog channel metadata** | **lupo_dialog_channels** WHERE channel_id = :channel_id (file_source, speaker, target, etc.). |
+| **Loader** | `scripts/import_os.py`: file → parse header → write FLIP fields to lupo_contents; parameterized SQL; path validation. |
+| **Generator** | `tools/generate_flip_header.py`: path/URL/content_id → query DB → output full FLIP header. |
+
+---
+
+*End of FLIPPING File. LEXA enforces; LILITH critiques. No schema, no SQL in this document beyond reference to existing doctrine and artifacts.*

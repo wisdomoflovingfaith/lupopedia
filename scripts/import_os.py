@@ -34,6 +34,7 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 # --- Path validation (LEXA: must be inside Lupopedia root; no '..') ---
+# Only sanitized paths may be stored in DB as file_path_from_root. Never store raw header or user input.
 def validate_path_inside_root(repo_root, filepath_abs):
     """Return True if filepath_abs is inside repo_root; no escape via '..'."""
     try:
@@ -45,8 +46,9 @@ def validate_path_inside_root(repo_root, filepath_abs):
 
 def validate_and_sanitize_path_from_root(repo_root, path_from_root):
     """
-    path_from_root must be relative, no '..', and resolve inside repo_root.
+    LEXA path validation: path_from_root must be relative, no '..', and resolve inside repo_root.
     Returns normalized path (forward slashes) or None if invalid.
+    Only the return value (or computed path passed through this) may be stored in lupo_contents.file_path_from_root.
     Header values stored as plain text only; no dynamic execution.
     """
     if not path_from_root or ".." in path_from_root:
