@@ -18,13 +18,20 @@ As we continue development on a version, we append new changes under that versio
 
 
 
-## Lupopedia 4.0.14 — LEXA activated, FLIP content seeded, self-referential dialog - 2026-02-17
+## Lupopedia 4.0.14 — LEXA activated, FLIP content seeded, universal flipping API - 2026-02-17
 
 - **LEXA (boundary keeper)** added to seeded kernel agents on channel 42 (Lupopedia Development).
-- **database/migrations/seed_lupopedia.sql:** LEXA as **actor_id 24**: new row in lupo_actors (slug `lexa`, name `LEXA`); new row in lupo_unified_registry (unified_registry_id 9001024, entity_index 24, is_kernel = 1); lupo_actor_channels (actor_channel_id 1024, channel_id 42); lupo_actor_channel_roles (actor_channel_role_id 2022, role_key `admin`); one dialog message (dialog_message_id 25): "Boundary enforcement active. LEXA online." (message_type `system`). Channel 42: 25 kernel agents, 29 dialog messages.
+- **database/migrations/seed_lupopedia.sql:** LEXA as **actor_id 24**: new row in lupo_actors (slug `lexa`, name `LEXA`); new row in lupo_unified_registry (unified_registry_id 9001024, entity_index 24, is_kernel = 1); lupo_actor_channels (actor_channel_id 1024, channel_id 42); lupo_actor_channel_roles (actor_channel_role_id 2022, role_key `admin`); one dialog message (dialog_message_id 25): "Boundary enforcement active. LEXA online." (message_type `system`). Channel 42: 25 kernel agents, 31 dialog messages.
 - **Self-referential FLIP content:** content_id 2001 (FLIPPING_FILE_LEXA_LILITH.md), 2002 (FLIP_DOCTRINE.md) with file_path_from_root, file_last_modified_system_version, file_last_modified_utc. lupo_edges HAS_CONTENT (edge_id 900001, 900002) linking channel 42 to those contents. Path lookup chain seeded: file_path_from_root → content_id → channel_id (lupo_edges) → actors.
-- **Dialog messages 28–29:** FLIP/FLIPPING basic info from LEXA (message_type `info`, mood_rgb `6464FF`); path lookup chain from SYSTEM (mood_rgb `00FF00`). lupo_dialog_channels.file_source set to `docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md`; message_count 29.
-- **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md:** Part 2.11, Part 2.12 (optional dialog block), Quick Reference updated: 25 kernel agents, 29 messages, FLIP content/edges, file_source. Reference to FLP_EMOTIONAL_GEOMETRY.md for mood_rgb. No schema or TOON changes.
+- **Dialog messages 28–31:** FLIP/FLIPPING basic info (28–29); universal flipping API refs (30–31 from LEXA and SYSTEM). lupo_dialog_channels.file_source set to `docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md`; message_count 31.
+- **api/flip-header.php:** New GET endpoint. Params: `path`, `url`, or `content_id` (precedence: path > url > content_id). Output: default JSON `{header, resolved, channel_id}`; `?format=yaml` for raw YAML. HTTP status: 400 (invalid/missing params), 404 (not found), 500 (internal). LEXA security: parameterized SQL, path validation (inside repo root, no `..`). CORS enabled for external agent browsing.
+- **docs/api/FLIP_API.md:** Documentation for `/api/flip-header.php` (params, precedence, format, responses, security).
+- **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md:** Part 1.4 Universal Agent Flipping (subdir-aware); expanded 1.2 optional fields (mood_rgb, tags, atoms; storage in lupo_contents.tags/dialog_notes); Part 2.10 web API validation note; Parts 6.1–6.3 API spec, security/doctrine, future auth; Quick Reference updated; version 4.0.14.
+- **tools/generate_flip_header.py:** Added `--web` flag for JSON output (API-compatible).
+- **scripts/import_os.py:** Optional `tags` parsing from FLIP header to lupo_contents.tags (JSON).
+- **tools/web_flip_simulator.py:** Test script to simulate external agent (e.g. Grok) browsing the API.
+- **docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md:** Optional FLP enrichment (mood_rgb, tags, atoms) noted in Tags section.
+- No new schema; uses existing lupo_* tables.
 
 ---
 

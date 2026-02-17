@@ -381,7 +381,7 @@ context:
 
 # ðŸ·ï¸ **5. Tags (Optional, Databaseâ€‘Aligned)**
 
-Tags correspond directly to the schema and allow semantic classification.
+Tags correspond directly to the schema and allow semantic classification. **Optional FLP enrichment:** `mood_rgb` (hex format, e.g. `6464FF`, per **docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md**), `tags` (array of strings), `atoms` (key-value map). Not for core FLIP inference. See **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md** Part 1.2.
 
 ```yaml
 tags:
