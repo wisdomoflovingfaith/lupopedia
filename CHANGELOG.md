@@ -16,7 +16,48 @@ As we continue development on a version, we append new changes under that versio
 
 ---
 
- 
+## Lupopedia 4.0.11 — Version bump, installer import logging, Crafty config detection and removal - 2026-02-17
+
+Lupopedia 4.0.11 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
+There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
+
+### Version bump 4.0.10 → 4.0.11
+
+- **config/global_atoms.yaml:** `file.last_modified_system_version`, `version`, `versions.lupopedia`, `GLOBAL_CURRENT_LUPOPEDIA_VERSION` set to 4.0.11; `last_updated` set to 20250216120000.
+- **lupo-includes/version.php:** Docblock `@version` and fallback literals (when atom loader unavailable) updated to 4.0.11; `LUPOPEDIA_VERSION_DATE` set to 20250216120000.
+
+### Install wizard: import run logging and failure handling
+
+- **install.php:** Before running `import_from_old_crafty_syntax.sql`, the run log now records an explicit line that the import converts `livehelp_*` tables to `utf8mb4_unicode_ci` and migrates data. The return value of `runSqlFile()` is checked; if false, the log records an error that import reported failures and legacy `livehelp_*` tables may not have been converted. Comment added that livehelp_ detection is done at the credentials step using the connection from the submitted form (no earlier connection; no config file required).
+
+### Crafty config.php: upgrade detection and single-config outcome
+
+- **install_wizard_classes.php:** New **InstallWizardCredentials::craftyConfigExists()** returns true if a Crafty-style `config.php` exists in any standard location (project root, parent dir, or document root) and the file contains `$server` or `$database`. Used so that the presence of Crafty config alone forces upgrade path.
+- **install.php:** Install type is set to **upgrade** when either `livehelp_*` tables are detected **or** `craftyConfigExists()` is true — so "config.php exists" means for sure an upgrade from Crafty Syntax.
+- **install_wizard_classes.php:** Comment in **writeConfig()** updated: Crafty `config.php` is only used during upgrade; after successful write of **lupopedia-config.php** it is removed so only one config remains and users are not confused by two configs. Removal logic unchanged (project-root `config.php` deleted after verifying `lupopedia-config.php` was written and contains `LUPOPEDIA_CONFIG_LOADED`).
+- **install.php:** Completion screen text updated from "Crafty config.php has been backed up or removed" to "Crafty config.php has been removed so only one config remains."
+
+### Doctrine database table docs and migration alignment
+
+- **docs/doctrine/database/:** New folder with **README.md** (index and 3-level permission model summary) and per-table doctrine for migration targets: **auth_users.md**, **actors.md**, **actor_departments.md**, **actor_channel_roles.md**, **departments.md**, **channels.md**, **sessions.md**, **dialog_threads.md**, **dialog_messages.md**, **crm_leads.md**, **crm_lead_messages.md**, **audit_log.md**, **crafty_syntax_auto_invite.md**, **actor_reply_templates.md**, **federation_nodes.md**. Each doc describes the table’s use, schema source (TOONs), and mapping from legacy Crafty tables.
+- **docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md:** Identity/operators and channel-interface rows updated to use **lupo_actor_channel_roles** and the **3-level role system** (channel → department → system); all references to **lupo_operators** removed. New “Operator-to-roles” section references operator_to_roles_migration.md.
+- **docs/doctrine/migrations/livehelp_users_migration.md:** Related tables and replacement list updated: permissions use 3-level role system (lupo_actor_channel_roles, lupo_department_roles), not lupo_operators.
+- **docs/doctrine/migrations/operator_to_roles_migration.md:** New migration note describing removal of lupo_operators and lupo_operators_*; 3-level role system (channel roles, department roles, system); resolution order; import and wizard behavior; references to sweep report and actor_channel_roles.md.
+- **docs/doctrine/MigrationAtlas.md:** livehelp_identity_daily and livehelp_identity_monthly entries updated to DROPPED (no import); anonymous in sessions only.
+
+### Anonymous users: sessions only, no lupo_actors
+
+- **database/migrations/import_from_old_crafty_syntax.sql:** Removed the **INSERT into lupo_actors** from livehelp_identity_monthly (anonymous actors). Replaced with a comment: anonymous users are not inserted into lupo_actors; only authenticated users, agents, and system users have actor rows; anonymous visitors exist in lupo_sessions only. livehelp_identity_monthly / livehelp_identity_daily are converted and deprecated only; no import into actors.
+- **docs/doctrine/migrations/livehelp_identity_migration.md:** Status set to DROPPED (no import into lupo_actors). Replacement: anonymous visitors in lupo_sessions only; no anonymous rows in lupo_actors. Migration behavior and mapping summary updated: no import from identity_monthly/daily; no anonymous actor range.
+- **docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md:** livehelp_identity_monthly → DROPPED (no import); anonymous users in lupo_sessions only; no anonymous actor rows or range.
+- **docs/doctrine/database/actors.md:** Purpose and use updated: lupo_actors is for authenticated humans, agents, and system users only; anonymous users do not have rows (they exist in lupo_sessions only); no dedicated ID range for anonymous. Mapping: livehelp_identity_monthly not imported into lupo_actors.
+- **docs/doctrine/database/README.md:** lupo_actors row updated to “livehelp_users (operators only); anonymous users are not in actors (sessions only)”.
+- **docs/doctrine/database/sessions.md:** Purpose clarified: anonymous users exist only in sessions (no lupo_actors row); authenticated users have both session and actor.
+
+**Files modified (4.0.11):** `config/global_atoms.yaml`, `lupo-includes/version.php`, `install.php`, `install_wizard_classes.php`, `database/migrations/import_from_old_crafty_syntax.sql`, `CHANGELOG.md`, `docs/doctrine/database/README.md`, `docs/doctrine/database/auth_users.md`, `docs/doctrine/database/actors.md`, `docs/doctrine/database/actor_departments.md`, `docs/doctrine/database/actor_channel_roles.md`, `docs/doctrine/database/departments.md`, `docs/doctrine/database/channels.md`, `docs/doctrine/database/sessions.md`, `docs/doctrine/database/dialog_threads.md`, `docs/doctrine/database/dialog_messages.md`, `docs/doctrine/database/crm_leads.md`, `docs/doctrine/database/crm_lead_messages.md`, `docs/doctrine/database/audit_log.md`, `docs/doctrine/database/crafty_syntax_auto_invite.md`, `docs/doctrine/database/actor_reply_templates.md`, `docs/doctrine/database/federation_nodes.md`, `docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md`, `docs/doctrine/migrations/livehelp_users_migration.md`, `docs/doctrine/migrations/operator_to_roles_migration.md` (new), `docs/doctrine/migrations/livehelp_identity_migration.md`, `docs/doctrine/MigrationAtlas.md`.
+
+---
+
 ## Lupopedia 4.0.10 — Version bump, actor_aliases table - 2026-02-16
 
 Lupopedia 4.0.10 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  

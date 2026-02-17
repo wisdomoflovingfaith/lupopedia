@@ -92,6 +92,31 @@ class InstallWizardLogger {
 
 class InstallWizardCredentials {
 
+    /**
+     * Whether a Crafty Syntax config.php exists in any standard location.
+     * If true, this is for sure an upgrade from Crafty Syntax (use for install_type).
+     *
+     * @return bool
+     */
+    public static function craftyConfigExists() {
+        $docRoot = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : '';
+        $search = array(
+            dirname(LUPOPEDIA_PATH) . DIRECTORY_SEPARATOR . 'config.php',
+            ($docRoot !== '' ? $docRoot . DIRECTORY_SEPARATOR . 'config.php' : ''),
+            LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'config.php',
+        );
+        foreach ($search as $path) {
+            if ($path === '' || !is_file($path) || !is_readable($path)) {
+                continue;
+            }
+            $content = @file_get_contents($path);
+            if ($content !== false && (strpos($content, '$server') !== false || strpos($content, '$database') !== false)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static function getDbCredentials() {
         if (!empty($_POST['db_host']) && !empty($_POST['db_name']) && !empty($_POST['db_user'])) {
             return array(
@@ -441,8 +466,8 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
         @chmod($configPath, 0644);
         $log[] = InstallWizardLogger::logEntry('ok', 'Wrote lupopedia-config.php');
 
-        // INSTALL REDIRECT DOCTRINE (4.0.6+): After wizard generates lupopedia-config.php, delete old config.php.
-        // Safety: only delete if lupopedia-config.php exists, is readable, and has correct content.
+        // Crafty config.php is only used during upgrade (for credentials). After successful upgrade we remove it
+        // so only lupopedia-config.php remains and users are not confused by two configs.
         $craftyConfig = $configDir . DIRECTORY_SEPARATOR . 'config.php';
         if (is_file($craftyConfig)) {
             $safeToDelete = (is_file($configPath) && is_readable($configPath));

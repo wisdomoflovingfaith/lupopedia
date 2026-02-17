@@ -225,8 +225,11 @@ if ($step === 'credentials') {
             }
             $_SESSION['lupo_table_prefix'] = $table_prefix;
             $_SESSION['lupo_drop_livehelp_tables'] = isset($_POST['drop_livehelp_tables']) && $_POST['drop_livehelp_tables'] === '1';
+            // Detect livehelp_ tables using the connection from step 1 credentials (no earlier connection; no config file required).
             $livehelp_tables = InstallWizardDb::detectLivehelpTables($pdo);
-            $_SESSION['lupo_install_type'] = count($livehelp_tables) > 0 ? 'upgrade' : 'new';
+            // Upgrade if livehelp_ tables exist OR Crafty config.php exists (config.php = for sure upgrade from Crafty Syntax).
+            $is_upgrade = (count($livehelp_tables) > 0 || InstallWizardCredentials::craftyConfigExists());
+            $_SESSION['lupo_install_type'] = $is_upgrade ? 'upgrade' : 'new';
             $_SESSION['lupo_install_livehelp_tables'] = $livehelp_tables;
             $base = (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.');
             if ($_SESSION['lupo_install_type'] === 'upgrade') {
@@ -437,8 +440,13 @@ if ($step === 'run') {
                     $log[] = InstallWizardLogger::logEntry('error', 'Could not set actor_id minimum (see server log).');
                     error_log('Lupopedia wizard AUTO_INCREMENT: ' . $e->getMessage());
                 }
-                InstallWizardSqlRunner::runSqlFile($pdo, $importSql, $log, $table_prefix);
-                $log[] = InstallWizardLogger::logEntry('ok', 'Import complete.');
+                $log[] = InstallWizardLogger::logEntry('ok', 'Running import_from_old_crafty_syntax.sql (converts livehelp_* to utf8mb4_unicode_ci, then migrates data).');
+                $importOk = InstallWizardSqlRunner::runSqlFile($pdo, $importSql, $log, $table_prefix);
+                if ($importOk) {
+                    $log[] = InstallWizardLogger::logEntry('ok', 'Import complete.');
+                } else {
+                    $log[] = InstallWizardLogger::logEntry('error', 'Import reported failures. Check for "SQL failed" entries above. Legacy livehelp_* tables may not have been converted to utf8mb4_unicode_ci.');
+                }
                 $_SESSION['lupo_import_run'] = true;
             }
             // Import TRUNCATEs lupo_departments; ensure system (0) and default (1) exist before channel creation.
@@ -999,7 +1007,7 @@ if ($baseUrl === '') {
                 <h4>Summary</h4>
                 <ul style="list-style:none; padding:0;">
                     <li><strong>Install type:</strong> <?php echo htmlspecialchars($complete_install_type); ?></li>
-                    <li class="diag-ok"><strong>Config:</strong> <code>lupopedia-config.php</code> is active; Crafty <code>config.php</code> has been backed up or removed.</li>
+                    <li class="diag-ok"><strong>Config:</strong> <code>lupopedia-config.php</code> is active; Crafty <code>config.php</code> has been removed so only one config remains.</li>
                     <?php if ($complete_install_type === 'upgrade'): ?>
                     <li><strong>Users normalized:</strong> <?php echo (int) $complete_normalize_count; ?></li>
                     <li><strong>Personal channels created:</strong> <?php echo (int) $complete_operator_channels; ?></li>

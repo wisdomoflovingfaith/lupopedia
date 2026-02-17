@@ -10,7 +10,7 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 | Legacy | New | Notes |
 |--------|-----|--------|
 | livehelp_users | lupo_auth_users | Identity/credentials (username, display_name, email, password_hash, auth_provider, provider_id, last_login_ymdhis). Operators imported first, then visitors. |
-| livehelp_users | lupo_actors, lupo_operators, lupo_actor_properties | Related: presence, device, behavioral metadata in actor_properties. |
+| livehelp_users | lupo_actors, lupo_actor_properties | Related: presence, device, behavioral metadata in actor_properties. **Operator permissions** are not a table; they use the **3-level role system**: channel roles (lupo_actor_channel_roles: captain, administrator, monitor), department roles (lupo_department_roles), system (department_id = 0). See docs/doctrine/database/actor_channel_roles.md and OPERATOR_TO_ROLE_BASED_SWEEP_REPORT. |
 | livehelp_operator_departments | lupo_actor_departments | recno→actor_department_id, user_id→actor_id, department→department_id, extra→title. |
 
 ---
@@ -24,7 +24,7 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 | livehelp_operator_channels | **DROPPED** | Functionality replaced by lupo_channels, lupo_channel_membership / lupo_actor_channels, lupo_dialog_threads, lupo_actor_presence, metadata_json for UI colors. |
 | livehelp_channels | **DROPPED** | Operator workspace concept; replaced by UI + lupo_dialog_threads, lupo_channels (real channels). |
 
-**Channel interface:** Use **lupo_dialog_threads** (threads, bg_color in metadata/thread), **lupo_dialog_messages** (messages, created_ymdhis, from_actor_id, to_actor_id, message_text), **lupo_channels**, **lupo_actor_channels** (actor–channel membership; schema uses this name in codebase), **lupo_actors**, **lupo_operators**.
+**Channel interface:** Use **lupo_dialog_threads** (threads, bg_color in metadata/thread), **lupo_dialog_messages** (messages, created_ymdhis, from_actor_id, to_actor_id, message_text), **lupo_channels**, **lupo_actor_channels** (actor–channel membership), **lupo_actors**, **lupo_actor_channel_roles** (channel-scoped roles: captain, administrator, monitor; replaces legacy operator assignment).
 
 ---
 
@@ -60,9 +60,9 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 |--------|-----|--------|
 | livehelp_sessions | **DROPPED** | Replaced by lupo_sessions (deterministic, actor-aware). No import. |
 | **{prefix}unified_sessions** | **MERGED & DROPPED** | Logic merged into {prefix}sessions; table removed from install. Single session table is {prefix}sessions. See one_time_unified_sessions_to_sessions.sql. |
-| **{prefix}actor_roles** | **DROPPED** | Roles are channel-scoped only. Use {prefix}channel_roles (actor_id + channel_id → role_type). Default channel_id = 1 for system-wide admin. See drop_lupo_actor_roles.sql. |
+| **{prefix}actor_roles** | **DROPPED** | Replaced by **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution: channel → department → system. See drop_lupo_actor_roles.sql and docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md. |
 | livehelp_identity_daily | **DROPPED** | No import. |
-| livehelp_identity_monthly | lupo_actors (anonymous) | actor_type='anonymous', slug='anon-&lt;id&gt;', metadata_json (legacy_cookieid, legacy_visit_count, legacy_month). |
+| livehelp_identity_monthly | **DROPPED** (no import) | Anonymous users are not in lupo_actors; they exist in lupo_sessions only. No anonymous actor rows or range. |
 | livehelp_operator_channels (presence/colors) | lupo_actor_presence, metadata_json | Operator presence and UI colors; see livehelp_operator_channels_migration.md. |
 
 ---
@@ -113,8 +113,16 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 - **Typing:** Ephemeral (file cache or equivalent); clear all on send (legacy §3).
 - **Presence:** lupo_actor_presence / lupo_actor_properties where defined; lastaction/isonline/status from legacy map to new presence or session (livehelp_users_migration, operator_channels_migration).
 - **Invites:** lupo_crafty_syntax_layer_invites, lupo_crafty_syntax_auto_invite for layer and auto-invite (legacy §8).
-- **Operators/visitors list:** lupo_actors, lupo_operators, lupo_actor_channels (who is on this channel).
+- **Operators/visitors list:** lupo_actors, lupo_actor_channel_roles (who has which role on this channel), lupo_actor_channels (who is on this channel).
 - **Paths:** All internal paths use LUPOPEDIA_PUBLIC_PATH; never hardcode folder names.
+
+---
+
+---
+
+## Operator-to-roles (no lupo_operators)
+
+**lupo_operators** and **lupo_operators_*** tables were removed. Permissions use the **3-level role system** (lupo_actor_channel_roles, lupo_department_roles, system department_id=0). See **operator_to_roles_migration.md** in this folder and **docs/doctrine/database/README.md** for the table index.
 
 ---
 

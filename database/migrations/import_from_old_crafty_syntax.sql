@@ -362,45 +362,9 @@ ALTER TABLE livehelp_identity_monthly
 ALTER TABLE livehelp_identity_monthly
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
- INSERT IGNORE INTO `lupo_actors` (
-    actor_type,
-    slug,
-    name,
-    created_ymdhis,
-    updated_ymdhis,
-    is_active,
-    is_deleted,
-    deleted_ymdhis,
-    actor_source_id,
-    actor_source_type,
-    metadata,
-    adversarial_role,
-    adversarial_oversight_actor_id
-)
-SELECT
-    'anonymous',
-    CONCAT('anon-', id),
-    CONCAT('Anonymous Visitor ', id),
-    CONCAT(dateof, '01000000'),
-    CONCAT(dateof, '28000000'),
-    1,
-    0,
-    NULL,
-    id,
-    'legacy_identity_monthly',
-    CONCAT(
-        '{',
-        '"legacy_cookieid":"', REPLACE(cookieid, '"', '\"'), '",',
-        '"legacy_visit_count":', uservisits, ',',
-        '"legacy_month":', dateof,
-        '}'
-    ),
-    'none',
-    NULL
-FROM livehelp_identity_monthly
-WHERE cookieid <> '';
-
-
+-- Anonymous users are NOT inserted into lupo_actors. Only authenticated users (lupo_auth_users),
+-- agents, and system users have rows in lupo_actors. Anonymous visitors exist in lupo_sessions only.
+-- livehelp_identity_monthly / livehelp_identity_daily are converted and deprecated above; no import.
 
 
 -- ======================================================================

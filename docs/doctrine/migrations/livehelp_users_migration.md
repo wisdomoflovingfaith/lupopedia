@@ -1,7 +1,7 @@
 # Migration Note: livehelp_users
 # Status: IMPORTED -> DROPPED
 # Replacement: lupo_auth_users (identity/authentication)
-# Related: lupo_actors, lupo_operators, lupo_actor_properties
+# Related: lupo_actors, lupo_actor_properties; permissions use 3-level role system (lupo_actor_channel_roles, lupo_department_roles), not lupo_operators (removed).
 
 # 1. Summary
 livehelp_users was Crafty Syntax's legacy table for storing operator login accounts and visitor records in the same table.
@@ -25,13 +25,12 @@ session state
 
 Lupopedia replaces this with a real identity system:
 
-Code
-lupo_auth_users       -> authentication + credentials
-lupo_actors           -> unified identity layer
-lupo_operators        -> operator-specific metadata
-lupo_actor_properties -> presence, device, and behavioral metadata
-Only meaningful identity data is imported.
-The legacy table is dropped after migration.
+- **lupo_auth_users** — authentication and credentials (username, display_name, email, password_hash, auth_provider, provider_id, last_login_ymdhis).
+- **lupo_actors** — unified identity layer (one row per human/agent/service; actor_id = auth_user_id for imported users).
+- **lupo_actor_properties** — presence, device, and behavioral metadata.
+- **Permissions** — there is no lupo_operators table. Operator/staff permissions use the **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution order: channel → department → system. The install wizard assigns captain on personal channels and on channel_id = 1 (Administration) for Crafty admins (livehelp_users.isadmin = 'Y'). See docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md and docs/doctrine/database/actor_channel_roles.md.
+
+Only meaningful identity data is imported. The legacy table is dropped after migration.
 
 # 2. What the Legacy Table Actually Did
 Crafty Syntax stored both operators and visitors in the same table:

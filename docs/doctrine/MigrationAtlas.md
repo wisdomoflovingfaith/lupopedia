@@ -8,8 +8,8 @@
 | livehelp_departments | IMPORTED -> SPLIT -> DROPPED | lupo_departments, lupo_department_metadata | [livehelp_departments_migration.md](migrations/livehelp_departments_migration.md) |
 | livehelp_emailque | DROPPED | None (mail subsystem; delivery logging in CRM if needed) | [livehelp_emailque_migration.md](migrations/livehelp_emailque_migration.md) |
 | livehelp_emails | IMPORTED -> DROPPED | lupo_crm_lead_messages | [livehelp_emails_migration.md](migrations/livehelp_emails_migration.md) |
-| livehelp_identity_daily | DROPPED | lupo_actors (anonymous) + identity helper subsystem (session identity resolution) | [livehelp_identity_migration.md](migrations/livehelp_identity_migration.md) |
-| livehelp_identity_monthly | PARTIALLY IMPORTED -> DROPPED | lupo_actors (anonymous) + identity helper subsystem (session identity resolution) | [livehelp_identity_migration.md](migrations/livehelp_identity_migration.md) |
+| livehelp_identity_daily | DROPPED (no import) | Anonymous users in lupo_sessions only; no lupo_actors rows | [livehelp_identity_migration.md](migrations/livehelp_identity_migration.md) |
+| livehelp_identity_monthly | DROPPED (no import) | Anonymous users in lupo_sessions only; no lupo_actors rows | [livehelp_identity_migration.md](migrations/livehelp_identity_migration.md) |
 | livehelp_keywords_daily | DROPPED | lupo_analytics_campaign_vars | [livehelp_keywords_migration.md](migrations/livehelp_keywords_migration.md) |
 | livehelp_keywords_monthly | DROPPED | lupo_analytics_campaign_vars | [livehelp_keywords_migration.md](migrations/livehelp_keywords_migration.md) |
 | livehelp_layerinvites | IMPORTED -> DROPPED | lupo_crafty_syntax_layer_invites | [livehelp_layerinvites_migration.md](migrations/livehelp_layerinvites_migration.md) |

@@ -1,6 +1,6 @@
 # Migration Note: livehelp_identity_daily & livehelp_identity_monthly
-# Status: PARTIALLY IMPORTED -> DROPPED
-# Replacement: Anonymous actors (lupo_actors) + Lupopedia identity helper subsystem
+# Status: DROPPED (no import into lupo_actors)
+# Replacement: Anonymous visitors exist in lupo_sessions only. No anonymous rows in lupo_actors.
 
 # 1. Summary
 Crafty Syntax used two tables to track anonymous visitor identity:
@@ -73,8 +73,8 @@ hostname lookups
 
 These are privacy-unsafe and unreliable.
 
-b. Identity is now actor-based
-Every visitor -- authenticated or not -- becomes an actor_id.
+b. Identity is now actor- or session-based
+Only authenticated users, agents, and system users have rows in lupo_actors. Anonymous visitors do not; they exist in lupo_sessions only.
 
 c. Analytics are handled by modern subsystems
 Daily/monthly identity tables are replaced by:
@@ -103,50 +103,25 @@ Both tables are converted to InnoDB + utf8mb4.
 Step 2 -- Mark as deprecated
 Both tables receive a DEPRECATED comment.
 
-Step 3 -- Import continuity from monthly table
-livehelp_identity_monthly is used to create anonymous actors:
-
-actor_type = 'anonymous'
-
-slug = 'anon-<id>'
-
-name = 'Anonymous Visitor <id>'
-
-timestamps derived from the month (dateof)
-
-metadata JSON containing:
-
-legacy_cookieid
-
-legacy_visit_count
-
-legacy_month
+Step 3 -- No import into lupo_actors
+Anonymous users are not inserted into lupo_actors. Only authenticated users (lupo_auth_users), agents, and system users have rows in lupo_actors. Anonymous visitors exist in lupo_sessions only. livehelp_identity_monthly and livehelp_identity_daily are not imported; they are converted and deprecated, then dropped after migration.
 
 Step 4 -- Drop both tables
-After import, both tables are removed.
+After migration, both tables are removed.
 
 # 5. Mapping Summary
 Legacy -> New
 Code
-livehelp_identity_monthly.id           -> actor_source_id
-livehelp_identity_monthly.cookieid     -> metadata.legacy_cookieid
-livehelp_identity_monthly.uservisits   -> metadata.legacy_visit_count
-livehelp_identity_monthly.dateof       -> metadata.legacy_month
-Dropped fields
+livehelp_identity_daily   -> DROPPED (no import)
+livehelp_identity_monthly -> DROPPED (no import)
+No anonymous actor rows. Anonymous visitors are session-only (lupo_sessions).
+Dropped fields (all)
 Code
-ipaddress
-useragent
-identity
-groupidentity
-groupusername
-seconds
-username
+All legacy identity fields (cookieid, ipaddress, useragent, uservisits, dateof, etc.) are not imported.
 Replacement
 Code
-anonymous actors in lupo_actors
-identity helper subsystem
-session metadata
-analytics subsystem
+Anonymous visitors: lupo_sessions only (no lupo_actors row).
+Identity continuity / analytics: identity helper subsystem, session metadata, analytics subsystem as needed.
 6. Doctrine Notes
 This migration preserves meaning, not mechanics.
 
@@ -173,6 +148,5 @@ This follows the Slope Principle: preserve continuity without carrying forward u
 7. Final Decision
 Code
 livehelp_identity_daily   -> DROPPED (no import)
-livehelp_identity_monthly -> PARTIALLY IMPORTED -> DROPPED
-Anonymous actors created from monthly continuity data.
-Legacy fingerprinting system removed.
+livehelp_identity_monthly -> DROPPED (no import)
+Anonymous users are not in lupo_actors; they exist in sessions only. No anonymous actor range. Legacy fingerprinting and identity tables removed.
