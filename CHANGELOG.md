@@ -16,6 +16,62 @@ As we continue development on a version, we append new changes under that versio
 
 ---
 
+## Lupopedia 4.0.13 — Version bump, FLIP doctrine, FLIP Headers, loader alignment - 2026-02-17
+
+Lupopedia 4.0.13 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
+There are **no Lupopedia → Lupopedia upgrades** in the 4.0.x series.
+
+### Version bump 4.0.12 → 4.0.13
+
+- **config/global_atoms.yaml:** `file.last_modified_system_version`, `version`, `versions.lupopedia`, `GLOBAL_CURRENT_LUPOPEDIA_VERSION` set to 4.0.13; `last_updated` set to 20260217140000.
+- **lupo-includes/version.php:** Docblock `@version` and fallback literals (when atom loader unavailable) updated to 4.0.13; `LUPOPEDIA_VERSION_DATE` set to 20260217140000.
+- **install.php:** Fallback when `LUPOPEDIA_VERSION` is not defined updated to `'4.0.13'` so the wizard shows 4.0.13 when run without lupopedia-config.php.
+- **lupo-includes/functions/load_atoms.php:** Fallback in `get_lupopedia_version()` updated to `'4.0.13'`.
+- **database/migrations/seed_lupopedia.sql:** `@lupo_version` set to `'4.0.13'`, `@lupo_version_code` to 40013.
+- **docs/doctrine/VERSIONING_DOCTRINE.md:** Canonical current version and §8 patch examples updated to 4.0.13.
+
+### FLIP — File-Level Inference Protocol (canonical naming)
+
+- **FLIP** = File-Level Inference Protocol. **FLIP Headers** is the canonical name for the header block at the top of files; **Wolfie Headers**, **CROP Headers**, and **FLIPPING Headers** are aliases of the same system.
+- **docs/doctrine/FLIP/FLIP_DOCTRINE.md:** Created (then moved from docs/doctrine/ into docs/doctrine/FLIP/). Canonical FLIP doctrine: infer file identity, lineage, channel, version, emotional state, doctrine, placement, and semantic meaning entirely from the FLIP Header; no guessing. Compliance checklist for agents.
+- **docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md:** New subsection **FLIP — File-Level Inference Protocol**. States that the header block is canonically **FLIP Headers** (alias: Wolfie Headers, CROP Headers, FLIPPING Headers); inference from FLIP Header only; link to docs/doctrine/FLIP/FLIP_DOCTRINE.md.
+- **README.md:** Under "Lupopedia adds," FLIP bullet with link to docs/doctrine/FLIP/FLIP_DOCTRINE.md; under "All contributors and AI agents must read and follow," FLIP_DOCTRINE.md added to doctrine list; section **FLIP Header Update Requirements** (replacing "Wolfie Header Update Requirements") with first mention "FLIP Headers (alias: Wolfie Headers, CROP Headers)"; subsequent references use "FLIP Header(s)."
+- **.cursor/rules/flip-doctrine.mdc:** New Cursor rule (alwaysApply: true). FLIP Headers canonical; Wolfie/CROP/FLIPPING aliases; infer only from header; no guessing; treat absence as absence. When adding or editing a FLIP Header, set file.last_modified_system_version to current Lupopedia version (4.0.13); 3.x vs 4.0.x merge note and link to NOTE_HEADER_VERSION_AND_MERGE.md.
+
+### Directory docs/doctrine/flp/ → docs/doctrine/FLIP/
+
+- **Renamed** docs/doctrine/flp/ to docs/doctrine/FLIP/ (Federated Likeness Protocol docs remain FLP_*.md; FLIP doctrine lives in same folder).
+- **Moved** docs/doctrine/FLIP_DOCTRINE.md to docs/doctrine/FLIP/FLIP_DOCTRINE.md.
+- **docs/doctrine/FLIP/README.md:** Updated to list both FLIP (File-Level Inference Protocol) and FLP (Federated Likeness Protocol); FLIP_DOCTRINE.md and NOTE_HEADER_VERSION_AND_MERGE.md under FLIP; all FLP_*.md under FLP. FLP_OVERVIEW.md path reference updated from docs/doctrine/flp/ to docs/doctrine/FLIP/.
+
+### FLIP Headers added across docs/doctrine/FLIP/
+
+- All doctrine files in docs/doctrine/FLIP/ now have a **FLIP Header** (alias: Wolfie Header, CROP Header, FLIPPING Header) at the top.
+- Each header includes: canonical naming comment; `wolfie.headers: explicit architecture with structured clarity for every file.`; `file_path_from_root: docs/doctrine/FLIP/<filename>`; `file.last_modified_system_version: "4.0.13"`; `file.last_modified_utc: "00000000000000"`; comment `# channel_id unresolved — requires lupo_contents lookup by application.`
+- **Files receiving FLIP Headers:** README.md, NOTE_HEADER_VERSION_AND_MERGE.md, FLIP_DOCTRINE.md, FLP_OVERVIEW.md, FLP_EMOTIONAL_GEOMETRY.md, FLP_COUNCILS_AS_CHANNELS.md, FLP_HETERODOX_REVIEWERS.md, FLP_EMOTIONAL_AGGREGATION.md, FLP_ESCROW_AND_FUND_LAYER.md, FLP_LUPOPEDIA_COUNCIL_SEAT.md, FLP_DOCTRINE_BOUNDARIES.md. No schema or TOON changes.
+
+### NOTE_HEADER_VERSION_AND_MERGE.md
+
+- **docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md:** Created. Reminder: when editing a file, set file.last_modified_system_version to current Lupopedia version (4.0.13); source of truth global_atoms.yaml, version.php, VERSIONING_DOCTRINE.md. 3.x vs 4.0.13: when merging legacy material, prefer existing 4.0.x docs; FLIP Headers canonical, Wolfie/CROP/FLIPPING aliases. Linked from flip-doctrine.mdc and README in FLIP folder.
+
+### Loader alignment (import_os.py)
+
+- **scripts/import_os.py:** Recognizes **FLIP Headers** as canonical; treats **Wolfie/CROP/FLIPPING** as aliases (same YAML block, signature or file_path_from_root). Extracts file_path_from_root from header and stores it in lupo_contents.file_path_from_root; falls back to path from repo root when absent. **LEXA security:** parameterized SQL only for all inserts/updates; path validation (file must be inside Lupopedia root, no '..' escape); no eval/exec/shell; header values stored as plain text; safe error logging (no sensitive info). Does not infer channel_id — stores path only; application resolves channel via lupo_contents lookup later. No schema or database structure changes; no triggers or automation.
+
+### FLP — Federated Likeness Protocol (documentation only)
+
+- **docs/doctrine/FLIP/:** Contains FLP doctrine (councils as channels, emotional geometry, heterodox reviewers, emotional aggregation, escrow/fund layer, Lupopedia council seat, doctrine boundaries). All FLP_*.md files have FLIP Headers; version 4.0.13. No schema, SQL, triggers, or DB automation; documentation only.
+
+### ARA / version normalization
+
+- All doctrine and header references in this cycle aligned to **4.0.13**. Canonical naming **FLIP Headers** (aliases Wolfie, CROP, FLIPPING) used in new and updated docs. No ARA-suggested PHP classes (e.g. FlipHeaderParser, AtomResolver, InferenceEngine) implemented in this release.
+
+**4.0.x doctrine:** This version is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path. No Lupopedia → Lupopedia upgrades exist for this version.
+
+**Files modified or added (4.0.13):** `config/global_atoms.yaml`, `lupo-includes/version.php`, `lupo-includes/functions/load_atoms.php`, `install.php`, `database/migrations/seed_lupopedia.sql`, `docs/doctrine/VERSIONING_DOCTRINE.md`, `README.md`, `docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md`, `scripts/import_os.py`, `CHANGELOG.md`; **.cursor/rules/flip-doctrine.mdc** (new); **docs/doctrine/FLIP/** (new: FLIP_DOCTRINE.md, FLP_OVERVIEW.md, FLP_EMOTIONAL_GEOMETRY.md, FLP_COUNCILS_AS_CHANNELS.md, FLP_HETERODOX_REVIEWERS.md, FLP_EMOTIONAL_AGGREGATION.md, FLP_ESCROW_AND_FUND_LAYER.md, FLP_LUPOPEDIA_COUNCIL_SEAT.md, FLP_DOCTRINE_BOUNDARIES.md, README.md, NOTE_HEADER_VERSION_AND_MERGE.md). Directory docs/doctrine/flp/ renamed to docs/doctrine/FLIP/.
+
+---
+
 ## Lupopedia 4.0.12 — Version bump, import actor ID range, progress blog, admin setup,  README and HISTORY - 2026-02-17
 
 Lupopedia 4.0.12 is part of the iterative development cycle for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.x** upgrade path.  
