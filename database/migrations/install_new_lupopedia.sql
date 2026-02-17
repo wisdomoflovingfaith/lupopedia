@@ -1530,6 +1530,8 @@ CREATE TABLE lupo_contents (
   content_sections json DEFAULT NULL,
   version_number int NOT NULL DEFAULT '1',
   file_path_from_root varchar(500) DEFAULT NULL COMMENT 'FLIP Header: path from repo root (4.0.13)',
+  file_last_modified_system_version varchar(20) DEFAULT NULL COMMENT 'FLIP: system version at last file edit',
+  file_last_modified_utc bigint DEFAULT NULL COMMENT 'FLIP: UTC last modified YYYYMMDDHHIISS',
   tags json DEFAULT NULL,
   dialog_notes text,
   PRIMARY KEY (content_id)
