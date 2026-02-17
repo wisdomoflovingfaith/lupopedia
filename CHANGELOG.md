@@ -18,12 +18,22 @@ As we continue development on a version, we append new changes under that versio
 
 
 
+## Lupopedia 4.0.15 — Wizard main admin, version bump, FLIP/API docs - 2026-02-17
+
+- **Version bump 4.0.14 → 4.0.15** in config/global_atoms.yaml, lupo-includes/version.php, install.php, lupo-includes/functions/load_atoms.php, install_wizard_classes.php, database/migrations/seed_lupopedia.sql (including FLIP content 2001 and @lupo_version / @lupo_version_code).
+- **Install wizard — main admin user:** For **new installs**, the Config step now includes main admin account creation. Default email **captain@lupopedia.com**; user enters password (min 8 characters). Creates **auth_user_id 10000**, **actor_id 10000** (reserved ID doctrine: explicit ID; if exists → UPDATE, else INSERT). Main admin receives: captain role on **channel 0** (system kernel), **channel 1** (Administration), **channel 42** (Lupopedia Development); administrator on **department 0** (system); **owner** on Admin module (global admin access). InstallWizardMainAdmin class in install_wizard_classes.php; PHP 5.3–safe bcrypt in wizard (no config dependency).
+- **Universal agent flipping:** Unchanged behavior; LUPOPEDIA_PUBLIC_PATH subdir support documented. api/flip-header.php, docs/api/FLIP_API.md, docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md version references updated to 4.0.15.
+- **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md:** Header and dialog updated to 4.0.15; message notes wizard main admin and FLIP API.
+- No new schema; seed already had messages 30–31 and FLIP content; generate_flip_header.py (--web) and import_os.py (tags → lupo_contents.tags) unchanged.
+
+---
+
 ## Lupopedia 4.0.14 — LEXA activated, FLIP content seeded, universal flipping API - 2026-02-17
 
 - **LEXA (boundary keeper)** added to seeded kernel agents on channel 42 (Lupopedia Development).
 - **database/migrations/seed_lupopedia.sql:** LEXA as **actor_id 24**: new row in lupo_actors (slug `lexa`, name `LEXA`); new row in lupo_unified_registry (unified_registry_id 9001024, entity_index 24, is_kernel = 1); lupo_actor_channels (actor_channel_id 1024, channel_id 42); lupo_actor_channel_roles (actor_channel_role_id 2022, role_key `admin`); one dialog message (dialog_message_id 25): "Boundary enforcement active. LEXA online." (message_type `system`). Channel 42: 25 kernel agents, 31 dialog messages.
 - **Self-referential FLIP content:** content_id 2001 (FLIPPING_FILE_LEXA_LILITH.md), 2002 (FLIP_DOCTRINE.md) with file_path_from_root, file_last_modified_system_version, file_last_modified_utc. lupo_edges HAS_CONTENT (edge_id 900001, 900002) linking channel 42 to those contents. Path lookup chain seeded: file_path_from_root → content_id → channel_id (lupo_edges) → actors.
-- **Dialog messages 28–31:** FLIP/FLIPPING basic info (28–29); universal flipping API refs (30–31 from LEXA and SYSTEM). lupo_dialog_channels.file_source set to `docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md`; message_count 31.
+- **Dialog messages 28–32:** FLIP/FLIPPING basic info (28–29); universal flipping API refs (30–31 from LEXA and SYSTEM); orphaned dialog adopted via ANUBIS doctrine (32, WOLFIE). lupo_dialog_channels.file_source set to `docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md`; message_count 32.
 - **api/flip-header.php:** New GET endpoint. Params: `path`, `url`, or `content_id` (precedence: path > url > content_id). Output: default JSON `{header, resolved, channel_id}`; `?format=yaml` for raw YAML. HTTP status: 400 (invalid/missing params), 404 (not found), 500 (internal). LEXA security: parameterized SQL, path validation (inside repo root, no `..`). CORS enabled for external agent browsing.
 - **docs/api/FLIP_API.md:** Documentation for `/api/flip-header.php` (params, precedence, format, responses, security).
 - **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md:** Part 1.4 Universal Agent Flipping (subdir-aware); expanded 1.2 optional fields (mood_rgb, tags, atoms; storage in lupo_contents.tags/dialog_notes); Part 2.10 web API validation note; Parts 6.1–6.3 API spec, security/doctrine, future auth; Quick Reference updated; version 4.0.14.
@@ -32,6 +42,7 @@ As we continue development on a version, we append new changes under that versio
 - **tools/web_flip_simulator.py:** Test script to simulate external agent (e.g. Grok) browsing the API.
 - **docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md:** Optional FLP enrichment (mood_rgb, tags, atoms) noted in Tags section.
 - No new schema; uses existing lupo_* tables.
+- **ANUBIS adoption:** Adopted orphaned dialog message into channel 42 seed thread via ANUBIS doctrine (dialog_message_id 32).
 
 ---
 
