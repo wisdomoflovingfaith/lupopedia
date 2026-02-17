@@ -1529,7 +1529,7 @@ CREATE TABLE lupo_contents (
   deleted_ymdhis bigint DEFAULT NULL,
   content_sections json DEFAULT NULL,
   version_number int NOT NULL DEFAULT '1',
-  file_path_from_root varchar(500) DEFAULT NULL,
+  file_path_from_root varchar(500) DEFAULT NULL COMMENT 'FLIP Header: path from repo root (4.0.13)',
   tags json DEFAULT NULL,
   dialog_notes text,
   PRIMARY KEY (content_id)
