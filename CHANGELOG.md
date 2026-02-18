@@ -67,6 +67,8 @@ As we continue development on a version, we append new changes under that versio
 - Confirmed CAPTAIN identity (actor_id 1000, wisdomoflovingfaith@gmail.com) with admin roles on channels 0, 42, and 51.
 - Prepared version bump for 4.0.15 (version.php, atoms, installer text).
 - No schema changes introduced in 4.0.15.
+- Added missing HYBRID FLIP headers to INSTALLATION_PATH_DOCTRINE.md and UNIFIED_REGISTRY_DOCTRINE.md.
+- Ensured all doctrine files now contain valid FLIP headers consistent with 4.0.15 requirements.
 
 ---
 

@@ -1,3 +1,14 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/INSTALLATION_PATH_DOCTRINE.md
+file.last_modified_system_version: "4.0.15"
+file.last_modified_utc: "20260217232500"
+channel_id: 0   # System Kernel channel – foundational doctrine
+tags: ["installation", "path", "doctrine", "flip"]
+mood_rgb: "B0E0E6"
+---
+
 # Lupopedia Installation Path Doctrine
 
 **Status:** Active governance artifact  
