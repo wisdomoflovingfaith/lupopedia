@@ -25,7 +25,7 @@ As we continue development on a version, we append new changes under that versio
 - **Actor 1000 (CAPTAIN):** wisdomoflovingfaith@gmail.com; admin roles on channels 0, 42, 51 via lupo_actor_channels and lupo_actor_channel_roles.
 - **ANUBIS doctrine completed:** docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md, ANUBIS_ORPHAN_RULES.md, ANUBIS_PROGRAM_SPEC.md. Doctrine content in lupo_contents on channels 0 and 51 for contextual classification, orphan resolution hints, lineage/redirect logic.
 - **ANUBIS program implemented:** tools/anubis_orphan_scanner.py (Python orphan scanner, resolver, adoption planner); lupo-includes/classes/ANUBIS_Resolver.php (PHP 5.3: classifyOrphan, resolveParent, adoptIntoSeed).
-- **ANUBIS adoption:** Multiple orphaned dialog messages adopted into channel 42 seed thread via ANUBIS doctrine.
+- **ANUBIS adoption:** Multiple orphaned dialog messages adopted into channel 42 seed thread via ANUBIS doctrine. ANUBIS adopted a lost CAPTAIN-originated message (actor_id 1000) into channel 42 seed thread; message had no parent, no thread, and no FLIP header.
 - **HYBRID FLIP headers:** Implemented for ANUBIS doctrine files. Verified FLIP headers for all FLIP/FLP/LILITH/LEXA doctrine files.
 - **Seed-based .md ingestion:** All .md files ingested into lupo_contents, lupo_unified_registry, lupo_edges during seed. First batch (~30 doctrine .md files, content_id 5000–5029) inlined in seed_lupopedia.sql. tools/md_flip_ingest.py with --seed-mode and -o for batch generation.
 - **Channel mapping:** Doctrine .md files (docs/doctrine/) mapped to channels 0 (System Kernel) and 51 (Doctrine Council); other .md files mapped to channel 0.

@@ -496,7 +496,12 @@ INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `chan
 (33, 1, 42, 1000, NULL, 'Captain initialized.', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(mood_rgb), message_type = VALUES(message_type), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
-INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (42, 'Lupopedia Development', 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md', 'Lupopedia Development', 'Crafty Syntax and Lupopedia development. Seeded dialog and kernel agents. FLIP/FLP doctrine. Path → content → channel → actors. Web API for universal flipping.', 'SYSTEM', '@everyone', 'published', @now, @now, 33) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), file_source = VALUES(file_source), description = VALUES(description), modified_timestamp = @now, message_count = VALUES(message_count);
+-- ANUBIS adoption: lost CAPTAIN-originated message (no parent, no thread, no actor_id, no FLIP header) adopted into channel 42 seed thread (actor_id 1000)
+INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `metadata_json`, `mood_rgb`, `mood_framework`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(34, 1, 42, 1000, NULL, 'this is a lost message that was on channel 42 and on thread 1 and system 0 and said by the authenticated user ''captain@lupopedia.com''', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(mood_rgb), message_type = VALUES(message_type), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (42, 'Lupopedia Development', 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md', 'Lupopedia Development', 'Crafty Syntax and Lupopedia development. Seeded dialog and kernel agents. FLIP/FLP doctrine. Path → content → channel → actors. Web API for universal flipping.', 'SYSTEM', '@everyone', 'published', @now, @now, 34) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), file_source = VALUES(file_source), description = VALUES(description), modified_timestamp = @now, message_count = VALUES(message_count);
 
 -- -----------------------------------------------------------------------------
 -- FLIP seed content: key doctrine files with file_path_from_root for path lookup
@@ -1390,6 +1395,6 @@ INSERT INTO lupo_truth_answers (
 --
 -- Post-seed verification (run after seed; expect: 26 actors on channel 42, 33 messages, 2 content paths):
 --   SELECT COUNT(*) FROM lupo_actor_channels WHERE channel_id = 42 AND is_deleted = 0;  -- expect 26
---   SELECT message_count FROM lupo_dialog_channels WHERE channel_id = 42;               -- expect 33
+--   SELECT message_count FROM lupo_dialog_channels WHERE channel_id = 42;               -- expect 34
 --   SELECT content_id, file_path_from_root FROM lupo_contents WHERE content_id IN (2001, 2002);
 --   SELECT edge_id, right_object_id FROM lupo_edges WHERE edge_type = 'HAS_CONTENT' AND left_object_id = 42 AND is_deleted = 0;
