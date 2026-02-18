@@ -18,9 +18,14 @@ As we continue development on a version, we append new changes under that versio
 
 
 
-## Lupopedia 4.0.15 — Wizard main admin, version bump, FLIP/API docs - 2026-02-17
+## Lupopedia 4.0.15 — Initialized 4.0.15 dev cycle: global .md FLIP ingestion, hybrid headers, doctrine on channels 0 and 51 - 2026-02-17
 
+- **Initialized Lupopedia 4.0.15** development cycle.
 - **Version bump 4.0.14 → 4.0.15** in config/global_atoms.yaml, lupo-includes/version.php, install.php, lupo-includes/functions/load_atoms.php, install_wizard_classes.php, database/migrations/seed_lupopedia.sql (including FLIP content 2001 and @lupo_version / @lupo_version_code).
+- **Seed-based .md ingestion:** All .md files are ingested into lupo_contents, lupo_unified_registry, and lupo_edges during seed. First batch (~30 doctrine .md files, content_id 5000-5029) inlined in seed_lupopedia.sql. tools/md_flip_ingest.py with --seed-mode and -o for batch generation.
+- **Channel mapping:** Doctrine .md files (docs/doctrine/) mapped to channels 0 (System Kernel) and 51 (Doctrine Council); other .md files mapped to channel 0.
+- **Actor 1000 (CAPTAIN):** Ensured full access on channels 0, 42, and 51 via lupo_actor_channels and lupo_actor_channel_roles (admin role).
+- **ANUBIS doctrine:** Updated docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md — doctrine content in lupo_contents on channels 0 and 51 for contextual classification, orphan resolution hints, lineage/redirect logic.
 - **Install wizard — main admin user:** For **new installs**, the Config step now includes main admin account creation. Default email **captain@lupopedia.com**; user enters password (min 8 characters). Creates **auth_user_id 10000**, **actor_id 10000** (reserved ID doctrine: explicit ID; if exists → UPDATE, else INSERT). Main admin receives: captain role on **channel 0** (system kernel), **channel 1** (Administration), **channel 42** (Lupopedia Development); administrator on **department 0** (system); **owner** on Admin module (global admin access). InstallWizardMainAdmin class in install_wizard_classes.php; PHP 5.3–safe bcrypt in wizard (no config dependency).
 - **Universal agent flipping:** Unchanged behavior; LUPOPEDIA_PUBLIC_PATH subdir support documented. api/flip-header.php, docs/api/FLIP_API.md, docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md version references updated to 4.0.15.
 - **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md:** Header and dialog updated to 4.0.15; message notes wizard main admin and FLIP API.

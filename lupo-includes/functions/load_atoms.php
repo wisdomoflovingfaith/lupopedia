@@ -42,8 +42,16 @@ function get_atom($atom_name) {
  * @return string
  */
 function get_lupopedia_version() {
-    $loader = $GLOBALS['lupo_atom_loader'] ?? null;
-    return $loader ? $loader->getLupopediaVersion() : (get_atom('GLOBAL_CURRENT_LUPOPEDIA_VERSION') ?? ((($a = load_atoms()) && is_array($a) && isset($a['version'])) ? $a['version'] : '4.0.14'));
+    $loader = isset($GLOBALS['lupo_atom_loader']) ? $GLOBALS['lupo_atom_loader'] : null;
+    if ($loader) {
+        return $loader->getLupopediaVersion();
+    }
+    $atom = get_atom('GLOBAL_CURRENT_LUPOPEDIA_VERSION');
+    if ($atom !== null) {
+        return $atom;
+    }
+    $a = load_atoms();
+    return (is_array($a) && isset($a['version'])) ? $a['version'] : '4.0.15';
 }
 
 /**

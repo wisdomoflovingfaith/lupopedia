@@ -1,6 +1,6 @@
 <?php
 /**
- * Lupopedia 4.0.6 — Install Wizard Classes
+ * Lupopedia 4.0.15 — Install Wizard Classes
  *
  * Helper logic converted from install.php into classes per CLASS_CONVERSION_DOCTRINE.md.
  * PHP 5.3–compatible: no type hints, no return types, no short arrays, no ??.
@@ -485,6 +485,164 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
         }
 
         return $configPath;
+    }
+}
+
+/**
+ * Create the main admin user (auth_user_id 10000, actor_id 10000) for new installs.
+ * Reserved ID doctrine: explicit ID; if row exists → UPDATE, else INSERT.
+ * PHP 5.3 compatible: no ??, no [], no typed properties.
+ */
+class InstallWizardMainAdmin {
+
+    const MAIN_ADMIN_AUTH_USER_ID = 10000;
+    const MAIN_ADMIN_ACTOR_ID = 10000;
+    const DEFAULT_EMAIL = 'captain@lupopedia.com';
+
+    /**
+     * Bcrypt hash for wizard (no config required). PHP 5.3 safe.
+     *
+     * @param string $password
+     * @return string|false
+     */
+    public static function hashPassword($password) {
+        if (!is_string($password) || $password === '') {
+            return false;
+        }
+        if (function_exists('password_hash')) {
+            $opts = array('cost' => 10);
+            return password_hash($password, PASSWORD_BCRYPT, $opts);
+        }
+        $alphabet = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        $salt = '';
+        for ($i = 0; $i < 22; $i++) {
+            $salt .= $alphabet[mt_rand(0, 63)];
+        }
+        $setting = '$2y$10$' . $salt;
+        $hash = crypt($password, $setting);
+        return (is_string($hash) && strlen($hash) > 13) ? $hash : false;
+    }
+
+    /**
+     * Create or update main admin: auth_user_id 10000, actor_id 10000;
+     * captain on channels 0, 1, 42; department 0 administrator; admin module owner.
+     *
+     * @param PDO $pdo
+     * @param string $table_prefix e.g. lupo_
+     * @param string $email
+     * @param string $password
+     * @param array $log
+     * @return bool
+     */
+    public static function createMainAdmin($pdo, $table_prefix, $email, $password, &$log) {
+        $prefix = ($table_prefix !== null && $table_prefix !== '') ? $table_prefix : 'lupo_';
+        $auth_t = $prefix . 'auth_users';
+        $actors_t = $prefix . 'actors';
+        $acr_t = $prefix . 'actor_channel_roles';
+        $dr_t = $prefix . 'department_roles';
+        $ad_t = $prefix . 'actor_departments';
+        $perm_t = $prefix . 'permissions';
+        $mod_t = $prefix . 'modules';
+
+        $email = trim($email);
+        $password = is_string($password) ? $password : '';
+        if ($email === '' || $password === '') {
+            $log[] = InstallWizardLogger::logEntry('error', 'Main admin email and password are required.');
+            return false;
+        }
+        $hash = self::hashPassword($password);
+        if ($hash === false) {
+            $log[] = InstallWizardLogger::logEntry('error', 'Could not hash main admin password.');
+            return false;
+        }
+        $username = InstallWizardNormalize::usernameToSlug($email);
+        if (strlen($username) > 30) {
+            $username = substr($username, 0, 30);
+        }
+        $display_name = 'Captain';
+        $now = (int) gmdate('YmdHis');
+
+        try {
+            $auth_id = self::MAIN_ADMIN_AUTH_USER_ID;
+            $actor_id = self::MAIN_ADMIN_ACTOR_ID;
+            $checkAuth = $pdo->prepare('SELECT 1 FROM `' . str_replace('`', '``', $auth_t) . '` WHERE auth_user_id = ? LIMIT 1');
+            $checkAuth->execute(array($auth_id));
+            $authExists = $checkAuth->fetchColumn();
+            if ($authExists) {
+                $up = $pdo->prepare('UPDATE `' . str_replace('`', '``', $auth_t) . '` SET username = ?, display_name = ?, email = ?, password_hash = ?, updated_ymdhis = ? WHERE auth_user_id = ?');
+                $up->execute(array($username, $display_name, $email, $hash, $now, $auth_id));
+                $log[] = InstallWizardLogger::logEntry('ok', 'Updated main admin user (auth_user_id ' . $auth_id . ').');
+            } else {
+                $ins = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $auth_t) . '` (auth_user_id, username, display_name, email, password_hash, auth_provider, provider_id, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis) VALUES (?, ?, ?, ?, ?, ?, NULL, ?, ?, 1, 0, NULL)');
+                $ins->execute(array($auth_id, $username, $display_name, $email, $hash, 'local', $now, $now));
+                $log[] = InstallWizardLogger::logEntry('ok', 'Created main admin user (auth_user_id ' . $auth_id . ', ' . $email . ').');
+            }
+
+            $checkActor = $pdo->prepare('SELECT 1 FROM `' . str_replace('`', '``', $actors_t) . '` WHERE actor_id = ? LIMIT 1');
+            $checkActor->execute(array($actor_id));
+            $actorExists = $checkActor->fetchColumn();
+            $slug = 'user-' . $auth_id;
+            $name = $display_name;
+            if ($actorExists) {
+                $upA = $pdo->prepare('UPDATE `' . str_replace('`', '``', $actors_t) . '` SET slug = ?, name = ?, actor_source_id = ?, actor_source_type = ?, updated_ymdhis = ? WHERE actor_id = ?');
+                $upA->execute(array($slug, $name, $auth_id, $auth_t, $now, $actor_id));
+                $log[] = InstallWizardLogger::logEntry('ok', 'Updated main admin actor (actor_id ' . $actor_id . ').');
+            } else {
+                $insA = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $actors_t) . '` (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type) VALUES (?, ?, ?, ?, ?, ?, 1, 0, NULL, ?, ?)');
+                $insA->execute(array($actor_id, 'user', $slug, $name, $now, $now, $auth_id, $auth_t));
+                $log[] = InstallWizardLogger::logEntry('ok', 'Created main admin actor (actor_id ' . $actor_id . ').');
+            }
+
+            $channels = array(0, 1, 42);
+            $nextAcrId = (int) $pdo->query('SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM `' . str_replace('`', '``', $acr_t) . '`')->fetchColumn();
+            $insAcr = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $acr_t) . '` (actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted) VALUES (?, ?, ?, ?, ?, ?, 0)');
+            foreach ($channels as $chId) {
+                $checkAcr = $pdo->prepare('SELECT 1 FROM `' . str_replace('`', '``', $acr_t) . '` WHERE actor_id = ? AND channel_id = ? AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1');
+                $checkAcr->execute(array($actor_id, $chId));
+                if (!$checkAcr->fetchColumn()) {
+                    $insAcr->execute(array($nextAcrId, $actor_id, $chId, 'captain', $now, $now));
+                    $log[] = InstallWizardLogger::logEntry('ok', 'Assigned captain on channel ' . $chId . ' for main admin.');
+                    $nextAcrId++;
+                }
+            }
+
+            $checkDr = $pdo->prepare('SELECT 1 FROM `' . str_replace('`', '``', $dr_t) . '` WHERE actor_id = ? AND department_id = 0 AND role_key = ? AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1');
+            $checkDr->execute(array($actor_id, 'administrator'));
+            if (!$checkDr->fetchColumn()) {
+                $nextDrId = (int) $pdo->query('SELECT COALESCE(MAX(department_role_id), 0) + 1 FROM `' . str_replace('`', '``', $dr_t) . '`')->fetchColumn();
+                $insDr = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $dr_t) . '` (department_role_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (?, ?, 0, ?, ?, ?, 0, NULL)');
+                $insDr->execute(array($nextDrId, $actor_id, 'administrator', $now, $now));
+                $log[] = InstallWizardLogger::logEntry('ok', 'Assigned administrator on System department (0) for main admin.');
+            }
+
+            $checkAd = $pdo->prepare('SELECT 1 FROM `' . str_replace('`', '``', $ad_t) . '` WHERE actor_id = ? AND department_id = 0 AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1');
+            $checkAd->execute(array($actor_id));
+            if (!$checkAd->fetchColumn()) {
+                $nextAdId = (int) $pdo->query('SELECT COALESCE(MAX(actor_department_id), 0) + 1 FROM `' . str_replace('`', '``', $ad_t) . '`')->fetchColumn();
+                $insAd = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $ad_t) . '` (actor_department_id, actor_id, department_id, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (?, ?, 0, ?, ?, ?, 0, NULL)');
+                $insAd->execute(array($nextAdId, $actor_id, 'System Administrator', $now, $now));
+            }
+
+            $adminMod = $pdo->query("SELECT module_id FROM `" . str_replace('`', '``', $mod_t) . "` WHERE module_key = 'admin' AND is_active = 1 AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1");
+            $adminModuleRow = $adminMod ? $adminMod->fetch(PDO::FETCH_ASSOC) : null;
+            $adminModuleId = $adminModuleRow && isset($adminModuleRow['module_id']) ? (int) $adminModuleRow['module_id'] : null;
+            if ($adminModuleId !== null) {
+                $checkPerm = $pdo->prepare('SELECT 1 FROM `' . str_replace('`', '``', $perm_t) . '` WHERE target_type = ? AND target_id = ? AND user_id = ? AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1');
+                $checkPerm->execute(array('module', $adminModuleId, $auth_id));
+                if (!$checkPerm->fetchColumn()) {
+                    $nextPermId = (int) $pdo->query('SELECT COALESCE(MAX(permission_id), 0) + 1 FROM `' . str_replace('`', '``', $perm_t) . '`')->fetchColumn();
+                    $insPerm = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $perm_t) . '` (permission_id, target_type, target_id, user_id, department_id, permission, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (?, ?, ?, ?, NULL, ?, ?, ?, 0, NULL)');
+                    $insPerm->execute(array($nextPermId, 'module', $adminModuleId, $auth_id, 'owner', $now, $now));
+                    $log[] = InstallWizardLogger::logEntry('ok', 'Granted owner on Admin module for main admin (global admin access).');
+                }
+            }
+
+            return true;
+        } catch (PDOException $e) {
+            $log[] = InstallWizardLogger::logEntry('error', 'Main admin creation failed: ' . $e->getMessage());
+            error_log('Lupopedia InstallWizardMainAdmin: ' . $e->getMessage());
+            return false;
+        }
     }
 }
 

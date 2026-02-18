@@ -1,6 +1,8 @@
 ## 🐺 Lupopedia 4.0.x  
 ### Crafty Syntax Reborn — Now Inside a Semantic Operating System
 
+**Current version: 4.0.15** — All `.md` files are FLIP-headered and indexed into the database during seed. Doctrine lives on channels 0 (System Kernel) and 51 (Doctrine Council); development chatter on channel 42 (Lupopedia Development).
+
 **Crafty Syntax reborn inside a Semantic OS.**  
 **Same product → new universe.**  
 **Everything familiar → everything extended.**
@@ -503,7 +505,7 @@ Every file in Lupopedia should include a **FLIP Header** block at the top. Doctr
 
 ```
 file_path_from_root: docs/path/to/file.md
-file.last_modified_system_version: "4.0.14"
+file.last_modified_system_version: "4.0.15"
 file.last_modified_utc: "20260217120000"
 ```
 

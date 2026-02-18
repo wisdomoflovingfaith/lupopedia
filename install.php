@@ -37,7 +37,7 @@ $version_php = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTOR
 if (is_file($version_php)) {
     require_once $version_php;
 }
-$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.14';
+$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.15';
 
 /**
  * PHP 5.3-safe random bytes. Uses random_bytes() when available (PHP 7+), else openssl_random_pseudo_bytes, else mt_rand fallback.
@@ -501,7 +501,7 @@ if ($step === 'config') {
     $config_values = array(
         'site_name' => trim(strip_tags((string) (isset($_POST['site_name']) ? $_POST['site_name'] : (isset($_SESSION['lupo_config_site_name']) ? $_SESSION['lupo_config_site_name'] : 'Lupopedia')))),
         'base_url'  => trim((string) (isset($_POST['base_url']) ? $_POST['base_url'] : (isset($_SESSION['lupo_config_base_url']) ? $_SESSION['lupo_config_base_url'] : $defaultBaseUrl))),
-        'admin_email' => trim((string) (isset($_POST['admin_email']) ? $_POST['admin_email'] : (isset($_SESSION['lupo_config_admin_email']) ? $_SESSION['lupo_config_admin_email'] : ''))),
+        'admin_email' => trim((string) (isset($_POST['admin_email']) ? $_POST['admin_email'] : (isset($_SESSION['lupo_config_admin_email']) ? $_SESSION['lupo_config_admin_email'] : 'captain@lupopedia.com'))),
         'timezone'  => trim((string) (isset($_POST['timezone']) ? $_POST['timezone'] : (isset($_SESSION['lupo_config_timezone']) ? $_SESSION['lupo_config_timezone'] : 'UTC'))),
         'default_language' => trim((string) (isset($_POST['default_language']) ? $_POST['default_language'] : (isset($_SESSION['lupo_config_default_language']) ? $_SESSION['lupo_config_default_language'] : 'en'))),
         'support_email' => trim((string) (isset($_POST['support_email']) ? $_POST['support_email'] : (isset($_SESSION['lupo_config_support_email']) ? $_SESSION['lupo_config_support_email'] : ''))),
@@ -538,7 +538,19 @@ if ($step === 'config') {
         if ($config_values['support_email'] !== '' && !InstallWizardNormalize::isValidEmail($config_values['support_email'])) {
             $config_errors[] = 'Support email must be a valid email address or empty.';
         }
-        if (empty($config_errors) && (isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade') {
+        $install_type_for_config = isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : 'new';
+        if ($install_type_for_config === 'new') {
+            $admin_password = isset($_POST['admin_password']) ? (string) $_POST['admin_password'] : '';
+            $admin_password_confirm = isset($_POST['admin_password_confirm']) ? (string) $_POST['admin_password_confirm'] : '';
+            if ($admin_password === '') {
+                $config_errors[] = 'Main admin password is required for new installs.';
+            } elseif (strlen($admin_password) < 8) {
+                $config_errors[] = 'Main admin password must be at least 8 characters.';
+            } elseif ($admin_password !== $admin_password_confirm) {
+                $config_errors[] = 'Main admin password and confirmation do not match.';
+            }
+        }
+        if (empty($config_errors) && $install_type_for_config === 'upgrade') {
             $db_vars = isset($_SESSION['lupo_install_db_vars']) ? $_SESSION['lupo_install_db_vars'] : null;
             if ($db_vars !== null) {
                 try {
@@ -557,31 +569,48 @@ if ($step === 'config') {
             $db_vars = isset($_SESSION['lupo_install_db_vars']) ? $_SESSION['lupo_install_db_vars'] : null;
             if ($db_vars !== null) {
                 $writeLog = array();
-                $options = array(
-                    'site_name' => $config_values['site_name'],
-                    'base_url'  => $config_values['base_url'],
-                    'admin_email' => $config_values['admin_email'],
-                    'timezone'  => $config_values['timezone'],
-                    'default_language' => $config_values['default_language'],
-                    'table_prefix' => isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_',
-                );
-                if ($config_values['support_email'] !== '') {
-                    $options['support_email'] = $config_values['support_email'];
+                $table_prefix = isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_';
+                if ($install_type_for_config === 'new') {
+                    $admin_password = isset($_POST['admin_password']) ? (string) $_POST['admin_password'] : '';
+                    try {
+                        $pdoConfig = InstallWizardDb::connectPdo($db_vars);
+                        if (!InstallWizardMainAdmin::createMainAdmin($pdoConfig, $table_prefix, $config_values['admin_email'], $admin_password, $writeLog)) {
+                            $config_errors[] = 'Could not create main admin user. Check the log.';
+                        }
+                    } catch (PDOException $e) {
+                        $config_errors[] = 'Database connection failed when creating main admin: ' . $e->getMessage();
+                        $writeLog[] = InstallWizardLogger::logEntry('error', $e->getMessage());
+                    }
                 }
-                if ($config_values['default_visitor_channel'] !== '') {
-                    $options['default_visitor_channel'] = $config_values['default_visitor_channel'];
+                if (empty($config_errors)) {
+                    $options = array(
+                        'site_name' => $config_values['site_name'],
+                        'base_url'  => $config_values['base_url'],
+                        'admin_email' => $config_values['admin_email'],
+                        'timezone'  => $config_values['timezone'],
+                        'default_language' => $config_values['default_language'],
+                        'table_prefix' => $table_prefix,
+                    );
+                    if ($config_values['support_email'] !== '') {
+                        $options['support_email'] = $config_values['support_email'];
+                    }
+                    if ($config_values['default_visitor_channel'] !== '') {
+                        $options['default_visitor_channel'] = $config_values['default_visitor_channel'];
+                    }
+                    if ($config_values['enable_ai_channels'] === '1') {
+                        $options['enable_ai_channels'] = true;
+                    }
+                    $configPath = InstallWizardConfigWriter::writeConfig($db_vars, $writeLog, $options);
                 }
-                if ($config_values['enable_ai_channels'] === '1') {
-                    $options['enable_ai_channels'] = true;
-                }
-                $configPath = InstallWizardConfigWriter::writeConfig($db_vars, $writeLog, $options);
-                if ($configPath !== null) {
+                if (empty($config_errors) && isset($configPath) && $configPath !== null) {
                     $_SESSION['lupo_config_log'] = $writeLog;
                     unset($_SESSION['lupo_install_db_vars'], $_SESSION['lupo_install_type'], $_SESSION['lupo_install_livehelp_tables'], $_SESSION['lupo_normalize_applied'], $_SESSION['lupo_operator_channel_map'], $_SESSION['lupo_bootstrap_log'], $_SESSION['lupo_run_done']);
                     header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=complete');
                     exit;
                 }
-                $config_errors[] = 'Could not write config file.';
+                if (empty($config_errors)) {
+                    $config_errors[] = 'Could not write config file.';
+                }
             }
         }
     }
@@ -981,6 +1010,10 @@ if ($baseUrl === '') {
                 <label>Site name <input type="text" name="site_name" value="<?php echo htmlspecialchars($config_values['site_name']); ?>" required></label>
                 <label>Base URL (must end with /) <input type="text" name="base_url" value="<?php echo htmlspecialchars($config_values['base_url']); ?>" placeholder="/path/to/lupopedia/" required></label>
                 <label>Admin email <input type="email" name="admin_email" value="<?php echo htmlspecialchars($config_values['admin_email']); ?>" required></label>
+                <?php if ((isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'new'): ?>
+                <label>Main admin password (user id 10000, captain on channels 0 &amp; 42, global admin) <input type="password" name="admin_password" value="" minlength="8" required placeholder="At least 8 characters"></label>
+                <label>Confirm password <input type="password" name="admin_password_confirm" value="" minlength="8" required placeholder="Same as above"></label>
+                <?php endif; ?>
                 <label>Timezone
                     <select name="timezone">
                         <?php
