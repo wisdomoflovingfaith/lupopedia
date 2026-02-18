@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/database/departments.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # lupo_departments
 
 **Purpose:** **Department identity**: core fields for each department (id, name, description, type, default_actor_id, federation_node_id, settings). Department_id 0 is reserved for “system”; department_id 1 is the general default. UI, branding, and behavior settings that were in legacy department tables live in **lupo_department_metadata** (JSON).

@@ -2,8 +2,8 @@
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/VERSIONING_DOCTRINE.md
-file.last_modified_system_version: "4.0.15"
-file.last_modified_utc: "20260217235900"
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 ---
 # Versioning Doctrine (Single Source of Truth)
@@ -29,7 +29,7 @@ file.last_modified_utc: "20260217235900"
 
 ## 1. Canonical current version
 
-The **current version** of Lupopedia is **4.0.13**.
+The **current version** of Lupopedia is **4.0.16**.
 
 This is the only correct “current version” number for the codebase. No other “current version” may be introduced unless explicitly instructed.
 

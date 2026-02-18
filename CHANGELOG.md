@@ -18,6 +18,18 @@ As we continue development on a version, we append new changes under that versio
 
 
 
+## Lupopedia 4.0.16 — FLIP header audit, ANUBIS adoption of recovered doctrine files - 2026-02-18
+
+- **Version bump 4.0.15 → 4.0.16** in config/global_atoms.yaml, lupo-includes/version.php, install.php, lupo-includes/functions/load_atoms.php, install_wizard_classes.php, database/migrations/seed_lupopedia.sql, api/flip-header.php, docs/api/FLIP_API.md, docs/doctrine/VERSIONING_DOCTRINE.md, README.md, tools/md_flip_ingest.py.
+- **Performed full FLIP header audit** across all doctrine files (docs/doctrine/, docs/api/).
+- **Recovered and adopted missing-header doctrine files via ANUBIS.** Added HYBRID FLIP headers to 78 .md files previously missing the wolfie.headers signature.
+- **Seeded FLIP metadata for recovered files** into lupo_contents (content_id 5033 for docs/api/FLIP_API.md) and linked to channels 42, 0, and 51 via lupo_edges.
+- **Ensured total FLIP header count meets 4.0.16 baseline requirements** (102 doctrine .md files with valid FLIP headers).
+- scripts/flip_header_audit.py added for future FLIP header validation.
+- No schema changes; doctrine mapping and ANUBIS stability preserved.
+
+---
+
 ## Lupopedia 4.0.15 — Initialized 4.0.15 dev cycle: global .md FLIP ingestion, hybrid headers, doctrine on channels 0 and 51 - 2026-02-17
 
 - **Initialized Lupopedia 4.0.15** development cycle.

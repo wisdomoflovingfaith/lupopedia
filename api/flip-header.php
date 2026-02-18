@@ -12,7 +12,7 @@
  * Doctrine: PDO_DB only; no schema inference.
  *
  * @package Lupopedia\API
- * @version 4.0.15
+ * @version 4.0.16
  */
 
 $config_paths = array(

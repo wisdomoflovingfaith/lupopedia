@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/database/federation_nodes.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # lupo_federation_nodes
 
 **Purpose:** **Multi-site / federation registry**: each row represents a node (e.g. a website or instance) in a federation. Used for multi-site routing and discovery. Legacy livehelp_websites was the “websites” list in Crafty; it maps here.

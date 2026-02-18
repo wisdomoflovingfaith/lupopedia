@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/database/dialog_threads.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # lupo_dialog_threads
 
 **Purpose:** **Conversation threads** within a channel. One row per thread; holds thread identity, channel_id, optional bg_color or other UI metadata, and lifecycle timestamps. Messages in the thread are in **lupo_dialog_messages** (dialog_thread_id). Replaces legacy “channel” as the unit of a single conversation; thread-level metadata (e.g. colors) replaces what Crafty stored in livehelp_operator_channels.

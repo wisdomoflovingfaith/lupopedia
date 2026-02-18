@@ -2,7 +2,7 @@
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md
-file.last_modified_system_version: "4.0.15"
+file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260217235900"
 # channel_id unresolved — requires lupo_contents lookup by application.
 ---
@@ -25,7 +25,7 @@ file.last_modified_utc: "20260217235900"
 - **Soft-delete governance** — Respecting is_deleted; no hard deletes; timestamp stability.
 - **No guessing** — Resolution uses only TOON-defined schema and existing seed/runtime data; no inference from live DB structure.
 - **FLIP/FLP alignment** — ANUBIS does not alter FLIP headers or FLP metadata; it operates on dialog payload and lineage only.
-- **Doctrine content awareness** — As of 4.0.15, doctrine .md files are ingested into `lupo_contents` during seed, linked to channel 0 (System Kernel) and channel 51 (Doctrine Council) via `lupo_edges`. ANUBIS may use these contents for contextual classification, orphan resolution hints, and future lineage/redirect logic.
+- **Doctrine content awareness** — As of 4.0.16, doctrine .md files are ingested into `lupo_contents` during seed, linked to channel 0 (System Kernel) and channel 51 (Doctrine Council) via `lupo_edges`. ANUBIS may use these contents for contextual classification, orphan resolution hints, and future lineage/redirect logic.
 
 ---
 

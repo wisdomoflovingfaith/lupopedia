@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/database/actors.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # lupo_actors
 
 **Purpose:** **Unified identity layer** for authenticated humans, AI agents, services, and system users only. Anonymous users do not have rows in lupo_actors; they exist in **lupo_sessions** only. Every authenticated or system entity that can send messages, hold roles, or be referenced in dialogs has one row in `lupo_actors`. Identity is separated from credentials (lupo_auth_users) and from permissions (3-level role system). No dedicated ID range for anonymous users.

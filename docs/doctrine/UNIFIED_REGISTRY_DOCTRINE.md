@@ -2,7 +2,7 @@
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md
-file.last_modified_system_version: "4.0.15"
+file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260217232500"
 channel_id: 42
 tags: ["registry", "unified", "doctrine", "flip"]

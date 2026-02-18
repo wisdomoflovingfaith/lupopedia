@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/database/actor_reply_templates.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # lupo_actor_reply_templates
 
 **Purpose:** **Quick reply / canned response** templates per actor: template_key, template_text, usage_context, and actor_id. Used in the channel composer so staff can insert predefined messages. Replaces Crafty’s livehelp_quick (per-user “quick notes”).

@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/database/README.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # Lupopedia Database Tables (Doctrine)
 
 This folder contains **per-table doctrine** for Lupopedia tables that are migration targets or central to the Crafty Syntax 3.7.5 → Lupopedia 4.0.x upgrade path. Each file describes the table’s purpose, how it is used, and how it was mapped from legacy Crafty Syntax tables.

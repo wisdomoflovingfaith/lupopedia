@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # Schema and TOON Alignment — Context for AI Agents (Copilot, Cursor, etc.)
 
 Use this as a prompt or reference when working on Lupopedia schema, migrations, or TOONs. It summarizes what was done to align the live database and TOONs with doctrine.

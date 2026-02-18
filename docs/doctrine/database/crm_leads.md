@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/database/crm_leads.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # lupo_crm_leads
 
 **Purpose:** **Lead capture**: contact/lead records for CRM (e.g. pre-chat, leave-message, or marketing). Structure is defined in the TOON; typically includes identity/contact fields and lifecycle. Lead_id = 1 is often used as “broadcast” lead for bulk emails in lupo_crm_lead_messages.

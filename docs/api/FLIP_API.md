@@ -1,7 +1,20 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/api/FLIP_API.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # FLIP Header Web API
 
 **Status:** Permanent.  
-**Version:** 4.0.15.  
+**Version:** 4.0.16.  
 **Purpose:** Enable any AI agent (kernel actors, external like Grok) to "flip" file headers via web browsing.
 
 ---
@@ -92,7 +105,7 @@ Raw YAML FLIP Header block (no JSON wrapper).
 ## Security & Future
 
 - **CORS:** `Access-Control-Allow-Origin: *` for external agent browsing.
-- **Rate limiting:** Optional future; not implemented in 4.0.15.
+- **Rate limiting:** Optional future; not implemented in 4.0.16.
 - **API key:** Future versions may require API key; if added, `lupo_api_keys` table (TOON + migration approval).
 
 ---

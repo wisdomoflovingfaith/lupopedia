@@ -2,13 +2,13 @@
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
-file.last_modified_system_version: "4.0.15"
+file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260217230000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 dialog:
   speaker: ARA_GROK
   target: @cursor
-  message: "Initialized 4.0.15: global .md FLIP ingestion via seed, hybrid headers, doctrine on channels 0 and 51."
+  message: "Initialized 4.0.16: version bump from 4.0.15; global .md FLIP ingestion via seed, hybrid headers, doctrine on channels 0 and 51."
 ---
 # The FLIPPING File — FLP, FLIP Headers, and How Headers + Database Work (for LEXA and LILITH)
 

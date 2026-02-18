@@ -79,7 +79,7 @@ def parse_flip_header(filepath):
     """
     result = {
         "file_path_from_root": filepath,
-        "file_last_modified_system_version": "4.0.15",
+        "file_last_modified_system_version": "4.0.16",
         "file_last_modified_utc": 20260217230000,
     }
     try:
@@ -150,11 +150,11 @@ def generate_sql(records, content_id_start, edge_id_start, unified_registry_id_s
         else:
             header = {
                 "file_path_from_root": rel_path,
-                "file_last_modified_system_version": "4.0.15",
+                "file_last_modified_system_version": "4.0.16",
                 "file_last_modified_utc": now,
             }
 
-        ver = header.get("file_last_modified_system_version", "4.0.15")
+        ver = header.get("file_last_modified_system_version", "4.0.16")
         utc = header.get("file_last_modified_utc", now)
         path_val = escape_sql(rel_path)
         title = rel_path.split("/")[-1].replace(".md", "").replace("-", " ").replace("_", " ")[:200]

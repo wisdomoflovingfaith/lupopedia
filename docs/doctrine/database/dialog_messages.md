@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/database/dialog_messages.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # lupo_dialog_messages
 
 **Purpose:** **Messages** belonging to a dialog thread. Each row has dialog_thread_id, channel_id, from_actor_id, to_actor_id, message_text, created_ymdhis (and any other columns in the TOON). Order by created_ymdhis ASC for display. Ephemeral livehelp_messages are not imported; durable content comes from livehelp_transcripts.

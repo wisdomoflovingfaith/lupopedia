@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/migrations/livehelp_identity_migration.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # Migration Note: livehelp_identity_daily & livehelp_identity_monthly
 # Status: DROPPED (no import into lupo_actors)
 # Replacement: Anonymous visitors exist in lupo_sessions only. No anonymous rows in lupo_actors.

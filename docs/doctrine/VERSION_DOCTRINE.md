@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/VERSION_DOCTRINE.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # Version Doctrine for Lupopedia (Authoritative)
 
 This project uses a **non-standard versioning doctrine**. All refactors, documentation, code, and reasoning MUST follow these rules. They override any assumptions about semantic versioning.

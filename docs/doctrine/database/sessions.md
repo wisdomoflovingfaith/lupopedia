@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/database/sessions.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # lupo_sessions
 
 **Purpose:** **Session storage** for authenticated and anonymous users: session_id, actor_id (nullable or sentinel for anonymous), payload (session data), optional system_context, and expiry. Anonymous users exist only here—they do not have rows in lupo_actors. Authenticated users have both a session and an actor row. Replaces Crafty’s livehelp_sessions with a deterministic, actor-aware model. Single session table for the app; no separate “unified_sessions” in current install.

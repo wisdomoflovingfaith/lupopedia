@@ -1,3 +1,16 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/database/auth_users.md
+file.last_modified_system_version: "4.0.16"
+file.last_modified_utc: "20260218000000"
+channel_id: 42   # ANUBIS adoption channel
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+---
+
 # lupo_auth_users
 
 **Purpose:** Stores **authentication and credentials** for human users (and optionally visitors): username, display name, email, password hash, auth provider, provider ID, last login. This is the **identity/credential** layer; the unified **actor** layer is `lupo_actors`.
