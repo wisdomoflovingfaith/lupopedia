@@ -34,6 +34,11 @@ As we continue development on a version, we append new changes under that versio
 - **docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md:** Updated with hybrid optional field rules (mood_rgb, tags, atoms).
 - **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md:** Header and dialog updated to 4.0.15; message notes wizard main admin and FLIP API.
 - **Install wizard — main admin user:** For **new installs**, the Config step includes main admin account creation. Default email **captain@lupopedia.com**; user enters password (min 8 characters). Creates **auth_user_id 10000**, **actor_id 10000** (reserved ID doctrine: explicit ID; if exists → UPDATE, else INSERT). Main admin receives: captain role on **channel 0** (system kernel), **channel 1** (Administration), **channel 42** (Lupopedia Development); administrator on **department 0** (system); **owner** on Admin module (global admin access). InstallWizardMainAdmin class in install_wizard_classes.php; PHP 5.3–safe bcrypt in wizard (no config dependency).
+- **TOON authority replaced with seed SQL authority:** install_new_lupopedia.sql and seed_lupopedia.sql are the single source of truth for table and column definitions.
+- **Regenerated TOON files** from canonical schema via scripts/generate_toon_from_sql.py (196 tables).
+- **Verified schema consistency** between seed SQL and regenerated TOONs.
+- **Seeded all FLIP headers** into lupo_contents and mapped via lupo_edges (LILITH_ANUBIS_GUIDANCE, LILITH_ANUBIS_GUIDANCE_FLIP; channels 0, 51, 42).
+- **Ensured all doctrine files** contain HYBRID FLIP headers (ANUBIS, FLIP, root doctrine).
 - No new schema; seed already had messages 30–31 and FLIP content; generate_flip_header.py (--web) and import_os.py (tags → lupo_contents.tags) unchanged.
 
 ---
