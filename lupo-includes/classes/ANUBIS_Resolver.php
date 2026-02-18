@@ -27,6 +27,9 @@ class ANUBIS_Resolver {
     const DEFAULT_THREAD_ID = 1;
     const DEFAULT_ACTOR_ID = 3; // WOLFIE
 
+    /** @var array Fallback: actor IDs banned when lupo_banned_actors table unavailable */
+    const BANNED_ACTOR_IDS_FALLBACK = array(999);
+
     /**
      * @param object $db   PDO_DB instance
      * @param string $prefix Table prefix (e.g. lupo_)
@@ -34,6 +37,34 @@ class ANUBIS_Resolver {
     public function __construct($db, $prefix) {
         $this->db = $db;
         $this->prefix = $prefix;
+    }
+
+    /**
+     * Get banned actor_ids from lupo_banned_actors (single source of truth).
+     * Falls back to BANNED_ACTOR_IDS_FALLBACK if table missing or query fails.
+     *
+     * @return array list of actor_id (int)
+     */
+    public function getBannedActorIds() {
+        $table = $this->db->quoteIdentifier($this->prefix . 'banned_actors');
+        try {
+            $rows = $this->db->fetchAll(
+                "SELECT actor_id FROM " . $table . " WHERE is_deleted = 0",
+                array()
+            );
+            if ($rows && is_array($rows)) {
+                $ids = array();
+                foreach ($rows as $r) {
+                    if (isset($r['actor_id'])) {
+                        $ids[] = (int) $r['actor_id'];
+                    }
+                }
+                return array_unique($ids);
+            }
+        } catch (Exception $e) {
+            /* fall through to fallback */
+        }
+        return self::BANNED_ACTOR_IDS_FALLBACK;
     }
 
     /**
@@ -47,6 +78,17 @@ class ANUBIS_Resolver {
      */
     public function classifyOrphan($text, $channel_id = null, $thread_id = null, $actor_id = null) {
         $resolved = $this->resolveParent($text, $channel_id, $thread_id, $actor_id);
+        $is_banned = isset($resolved['is_banned']) && $resolved['is_banned'];
+        if ($is_banned) {
+            return array(
+                'is_orphan' => true,
+                'is_rejected' => true,
+                'rejected_reason' => 'banned_actor',
+                'channel_id' => isset($resolved['channel_id']) ? $resolved['channel_id'] : self::DEFAULT_CHANNEL_ID,
+                'dialog_thread_id' => isset($resolved['dialog_thread_id']) ? $resolved['dialog_thread_id'] : self::DEFAULT_THREAD_ID,
+                'from_actor_id' => isset($resolved['from_actor_id']) ? $resolved['from_actor_id'] : null,
+            );
+        }
         $ch = isset($resolved['channel_id']) ? $resolved['channel_id'] : null;
         $th = isset($resolved['dialog_thread_id']) ? $resolved['dialog_thread_id'] : null;
         $act = isset($resolved['from_actor_id']) ? $resolved['from_actor_id'] : null;
@@ -62,6 +104,7 @@ class ANUBIS_Resolver {
         }
         return array(
             'is_orphan' => $is_orphan,
+            'is_rejected' => false,
             'channel_id' => $ch,
             'dialog_thread_id' => $th,
             'from_actor_id' => $act,
@@ -110,6 +153,15 @@ class ANUBIS_Resolver {
         }
 
         if ($actor_id !== null && $actor_id !== '') {
+            $aid = (int) $actor_id;
+            if (in_array($aid, $this->getBannedActorIds())) {
+                return array(
+                    'channel_id' => $ch_resolved,
+                    'dialog_thread_id' => $th_resolved,
+                    'from_actor_id' => $aid,
+                    'is_banned' => true,
+                );
+            }
             $row = $this->db->fetchRow("SELECT 1 FROM " . $a_table . " WHERE actor_id = :aid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1", array('aid' => $actor_id));
             if ($row) {
                 $act_resolved = (int) $actor_id;
@@ -123,7 +175,18 @@ class ANUBIS_Resolver {
             'channel_id' => $ch_resolved,
             'dialog_thread_id' => $th_resolved,
             'from_actor_id' => $act_resolved,
+            'is_banned' => false,
         );
+    }
+
+    /**
+     * Check if actor_id is banned from ANUBIS adoption.
+     *
+     * @param int $actorId
+     * @return bool
+     */
+    public function isBannedActor($actorId) {
+        return in_array((int) $actorId, $this->getBannedActorIds());
     }
 
     /**
@@ -139,6 +202,9 @@ class ANUBIS_Resolver {
     public function adoptIntoSeed($text, $actorId = null, $threadId = null, $channelId = null) {
         if ($actorId === null) {
             $actorId = self::DEFAULT_ACTOR_ID;
+        }
+        if ($this->isBannedActor($actorId)) {
+            return array('success' => false, 'dialog_message_id' => null, 'error' => 'Banned actor; adoption rejected');
         }
         if ($threadId === null) {
             $threadId = self::DEFAULT_THREAD_ID;

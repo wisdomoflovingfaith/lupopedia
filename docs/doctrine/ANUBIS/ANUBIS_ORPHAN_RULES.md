@@ -76,6 +76,24 @@ When adopting an orphan into the seed (or runtime):
 - **lupo_dialog_channels** — To validate channel_id and to update message_count.
 - **lupo_actor_channels** — Optional: verify actor on channel.
 - **lupo_actors** — To validate from_actor_id.
+- **lupo_banned_actors** — Banned actor_ids; ANUBIS does not adopt orphans from these actors.
 - **lupo_edges** — Not required for orphan adoption; used elsewhere for HAS_CONTENT resolution.
 
 All column and table names must match TOONs. No new columns or tables are added by ANUBIS.
+
+---
+
+## 5. Banned Actors
+
+ANUBIS **must not adopt** orphans whose `from_actor_id` is on the **banned actor list**. Deprecated experimental personas that promoted forbidden doctrine (per `.cursor/rules/`) are on this list.
+
+| Rule | Behavior |
+|------|----------|
+| Source of truth | `lupo_banned_actors` table. Columns: banned_actor_id, actor_id, ip_address (optional), reason, banned_ymdhis, banned_by_actor_id, is_deleted. |
+| Lookup | ANUBIS reads `SELECT actor_id FROM lupo_banned_actors WHERE is_deleted = 0`. Fallback: `BANNED_ACTOR_IDS_FALLBACK` (e.g. 999) if table missing. |
+| Classification | When `from_actor_id` is in banned list, ANUBIS returns `is_rejected => true`, `rejected_reason => 'banned_actor'`. |
+| Adoption | `adoptIntoSeed()` rejects adoption when `actorId` is in banned list; returns `success => false`, `error => 'Banned actor; adoption rejected'`. |
+| Orphan messages | Orphan fragments attributed to banned actors are **not read or adopted**. They remain unadopted. |
+| IP | Optional `ip_address` (varchar 45) for future IP-based ban correlation; not required for ANUBIS adoption logic. |
+
+Messages from banned actors may exist in the database (e.g. from historical import); ANUBIS does not adopt **new** orphans from those actors.

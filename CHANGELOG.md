@@ -21,12 +21,32 @@ As we continue development on a version, we append new changes under that versio
 ## Lupopedia 4.0.16 — FLIP header audit, ANUBIS adoption of recovered doctrine files - 2026-02-18
 
 - **Version bump 4.0.15 → 4.0.16** in config/global_atoms.yaml, lupo-includes/version.php, install.php, lupo-includes/functions/load_atoms.php, install_wizard_classes.php, database/migrations/seed_lupopedia.sql, api/flip-header.php, docs/api/FLIP_API.md, docs/doctrine/VERSIONING_DOCTRINE.md, README.md, tools/md_flip_ingest.py.
+- **FLIP headers aligned to 4.0.16:** All doctrine .md files with `file.last_modified_system_version` updated from 4.0.13/4.0.15 to 4.0.16 (FLIP, FLP, ANUBIS, migrations, etc.). flip-doctrine.mdc, NOTE_HEADER_VERSION_AND_MERGE.md, VERSIONING_DOCTRINE.md canonical version, GOV-TOON-GENERATION-001, UNIVERSAL_WOLFIE_HEADER_SPECIFICATION. lupo_contents seed entries (file_last_modified_system_version) and dialog message 32 (v4.0.16).
 - **Performed full FLIP header audit** across all doctrine files (docs/doctrine/, docs/api/).
 - **Recovered and adopted missing-header doctrine files via ANUBIS.** Added HYBRID FLIP headers to 78 .md files previously missing the wolfie.headers signature.
 - **Seeded FLIP metadata for recovered files** into lupo_contents (content_id 5033 for docs/api/FLIP_API.md) and linked to channels 42, 0, and 51 via lupo_edges.
 - **Ensured total FLIP header count meets 4.0.16 baseline requirements** (102 doctrine .md files with valid FLIP headers).
 - scripts/flip_header_audit.py added for future FLIP header validation.
-- No schema changes; doctrine mapping and ANUBIS stability preserved.
+- **lupo_banned_actors table:** Single source of truth for banned actor_ids. Columns: banned_actor_id, actor_id, ip_address (optional), reason, banned_ymdhis, banned_by_actor_id, is_deleted. ANUBIS reads from table; fallback to BANNED_ACTOR_IDS_FALLBACK if table missing.
+- **ANUBIS banned-actor logic:** Messages from banned actor_ids (e.g. actor_id 999 DEPRECATED_BANNED) are not adopted. `ANUBIS_Resolver::getBannedActorIds()` reads from lupo_banned_actors; `adoptIntoSeed()` rejects banned actors; `classifyOrphan()` returns `is_rejected => true`, `rejected_reason => 'banned_actor'`. Python scanner `get_banned_actor_ids(cursor)` reads from table. ANUBIS_ORPHAN_RULES §5 documents banned actors.
+- **Actor 999 (DEPRECATED_BANNED):** Seeded as banned actor placeholder (is_deleted=1 in lupo_actors). Row in lupo_banned_actors (banned_actor_id 1, reason deprecated_experimental_persona, banned_by 1000). Deprecated experimental personas that promoted forbidden doctrine are on the banned list.
+- **Orphan message 36:** Example message from actor_id 999 in channel 42/thread 1; documents banned-actor behavior. message_count for channel 42 set to 36.
+- Migration 20260218_create_lupo_banned_actors.sql for existing DBs.
+- REQUIRED_TABLES: add lupo_banned_actors to required list.
+- **Channel 666 (ANUBIS Quarantine):** Seeded in lupo_channels, lupo_dialog_channels, lupo_dialog_threads. Banned/rejected messages route here.
+- **lupo_anubis_redirects:** Seeded redirect: table lupo_channels, old_id 66 -> new_id 666. References to channel 66 resolve to 666 (Quarantine).
+- **lupo_actor_channels (999↔666):** Actor 999 membership on channel 666 (actor_channel_id 1999, status I).
+- **Quarantined message 36:** Moved from channel 42/thread 1 to channel 666/thread 666. Generic text: "FORBIDDEN MESSAGE — quarantined by ANUBIS". metadata_json: banned, reason deprecated_experimental_persona. Channel 42 message_count = 35; channel 666 message_count = 1.
+- **Performed full FLP_* doctrine seeding audit.** Verified all 8 FLP_* files (docs/doctrine/FLIP/FLP_*.md) have lupo_contents (content_id 5019–5026), lupo_edges to channels 0 and 51 (HAS_CONTENT), and lupo_unified_registry (9050019–9050026). FLP files are not ANUBIS-related; channel 42 edges are optional. All FLIP headers report file.last_modified_system_version 4.0.16 and file.last_modified_utc. No missing entries; seed already complete.
+- **4.0.16 closeout: LILITH migration thread (messages 37–61).** Seeded structured 25-agent migration conversation on channel 42, thread 1. Narrative tone: reduced metaphor density, increased architectural clarity, stronger doctrinal framing. Topics: migration overview, history, FLIP headers, seeding philosophy, CHANGELOG, edges, ANUBIS (actor 999 banned), heterodoxy, compassion, chaos, tooling, growth, conversation, audit, navigation, tools, orphans, ethics, adoption, truth, emotional geometry, time, security, completion, transition. lupo_dialog_channels.message_count for channel 42 set to 61. Transition to 4.0.17 initiated.
+- **Completed channel FLIP header database audit.** Added and verified FLIP headers for all active channels (0, 42, 51, 666). Created FLP_CHANNEL_0.md, FLP_CHANNEL_42.md, FLP_CHANNEL_51.md, FLP_CHANNEL_666.md with FLIP headers (file.last_modified_system_version 4.0.16, file.last_modified_utc, channel_id, tags, mood_rgb). Seeded missing channel FLIP metadata into lupo_contents (content_id 5034–5037), lupo_unified_registry (entity_key channel:0:flip, channel:42:flip, channel:51:flip, channel:666:flip), and lupo_edges (HAS_CONTENT to channels 0, 51; 42 for ANUBIS-related; 666 for quarantine). Ensured channel-level FLIP doctrine is complete for 4.0.16.
+- **4.0.16 finalization sweep.** Channel FLIP Header Database Audit and FLIP Doctrine Seeding Audit complete. Seeded content 5033 (FLIP_API.md), 5034–5037 (FLP_CHANNEL_*). All edges and registry entries present. Migration 20260218_create_lupo_banned_actors.sql integrated (CREATE TABLE IF NOT EXISTS for existing DBs). install_new_lupopedia.sql and seed_lupopedia.sql synchronized. Ready for 4.0.17.
+
+---
+
+## Lupopedia 4.0.17 — (pending)
+
+- **Status:** Pending. Version bump and goals to be defined.
 
 ---
 

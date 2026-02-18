@@ -372,6 +372,13 @@ INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdh
 
 INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) VALUES (1212, 'agent', 'utc_timekeeper', 'UTC_TIMEKEEPER', 20260114000000, 20260114000000, 1, 0, NULL, 'lupo_agent_registry', '{"actor_source_type":"lupo_agent_registry","actor_source_id":1212}', 'none', NULL, NULL);
 
+INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) VALUES (999, 'agent', 'deprecated_banned', 'DEPRECATED_BANNED', @now, @now, 0, 1, @now, 'lupo_agent_registry', '{"actor_source_type":"lupo_agent_registry","actor_source_id":999}', 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), is_deleted = 1, deleted_ymdhis = @now, updated_ymdhis = @now;
+
+-- lupo_banned_actors: single source of truth for ANUBIS. actor_id 999 (DEPRECATED_BANNED) is banned.
+INSERT INTO lupo_banned_actors (`banned_actor_id`, `actor_id`, `ip_address`, `reason`, `banned_ymdhis`, `banned_by_actor_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(1, 999, NULL, 'deprecated_experimental_persona', @now, 1000, @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE reason = VALUES(reason), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
 INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) VALUES (1000, 'human', 'captain', 'CAPTAIN', @now, @now, 1, 0, NULL, NULL, 'human', '{"email":"captain@lupopedia.com","status":"A"}', 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 INSERT INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) VALUES (9001000, 'actor', 1000, 'captain', 'CAPTAIN', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"email":"captain@lupopedia.com","actor_source_type":"human"}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
@@ -395,6 +402,24 @@ INSERT INTO lupo_channels (`channel_id`, `federation_node_id`, `created_by_actor
 INSERT INTO lupo_channels (`channel_id`, `federation_node_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `aal_metadata_json`, `fleet_composition_json`, `awareness_version`, `channel_number`, `parent_channel_id`, `is_kernel`, `boot_sequence_order`) VALUES (42, 1, 0, 1, 1, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Crafty Syntax and Lupopedia development. Everything Crafty Syntax has inside Lupopedia: live chat, CRM, content, routing, agents, and semantic OS.', NULL, '{"purpose": "development", "crafty_syntax": true, "channel_number": 42}', 1, NULL, NULL, @now, @now, 0, NULL, NULL, NULL, '3.0.0', 42, NULL, 0, NULL) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
 INSERT INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) VALUES (60, 'channel', 42, 'lupopedia-development', 'Lupopedia Development', 'lupo_channels', 1, @now, @now, 0, NULL, 1, 0, '{"language": "en", "description": "Crafty Syntax and Lupopedia development. Everything Crafty has inside Lupopedia.", "status_flag": 1, "channel_type": "chat_room", "channel_number": 42}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+-- Channel 666: ANUBIS Quarantine (banned/rejected messages)
+INSERT INTO lupo_channels (`channel_id`, `federation_node_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `aal_metadata_json`, `fleet_composition_json`, `awareness_version`, `channel_number`, `parent_channel_id`, `is_kernel`, `boot_sequence_order`) VALUES (666, 1, 0, 1, 1, 'anubis-quarantine', 'anubis-quarantine', 'chat_room', 'en', 'ANUBIS Quarantine', 'Banned and rejected messages. ANUBIS routes banned-actor content here. References to channel 66 redirect to 666.', NULL, '{"purpose": "quarantine", "anubis": true, "channel_number": 666}', 1, NULL, NULL, @now, @now, 0, NULL, NULL, NULL, '3.0.0', 666, NULL, 0, NULL) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+INSERT INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) VALUES (61, 'channel', 666, 'anubis-quarantine', 'ANUBIS Quarantine', 'lupo_channels', 1, @now, @now, 0, NULL, 1, 0, '{"language": "en", "description": "Banned and rejected messages. Channel 66 redirects to 666.", "status_flag": 1, "channel_type": "chat_room", "channel_number": 666}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+-- lupo_anubis_redirects: channel 66 -> 666 (quarantine)
+INSERT INTO lupo_anubis_redirects (`anubis_redirect_id`, `table_name`, `old_id`, `new_id`, `timestamp_utc`, `agent`) VALUES
+(1, 'lupo_channels', 66, 666, @now, 'ANUBIS')
+ON DUPLICATE KEY UPDATE new_id = VALUES(new_id), timestamp_utc = @now;
+
+-- lupo_dialog_channels and lupo_dialog_threads for channel 666
+INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (666, 'ANUBIS Quarantine', NULL, 'ANUBIS Quarantine', 'Banned and rejected messages. Channel 66 redirects to 666.', 'SYSTEM', '@none', 'published', @now, @now, 1) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), modified_timestamp = @now, message_count = VALUES(message_count);
+
+INSERT INTO lupo_dialog_threads (`dialog_thread_id`, `federation_node_id`, `channel_id`, `project_slug`, `task_name`, `created_by_actor_id`, `summary_text`, `bg_color`, `text_color`, `alt_text_color`, `status`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (666, 1, 666, 'anubis', 'ANUBIS Quarantine thread', 0, 'Quarantine thread for banned/rejected messages. Channel 66 redirects to 666.', '333333', 'CCCCCC', '666666', 'Open', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE summary_text = VALUES(summary_text), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+-- lupo_actor_channels: actor_id 999 on channel 666 (quarantine membership)
+INSERT INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `status`, `start_date`, `channel_color`, `last_read_ymdhis`, `muted_until_ymdhis`, `preferences_json`, `dialog_output_file`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (1999, 999, 666, 'I', @now, '333333', NULL, NULL, NULL, NULL, @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE status = VALUES(status), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
 -- -----------------------------------------------------------------------------
 -- lupo_actor_channels: 25 kernel agents on channel 42
@@ -489,7 +514,7 @@ ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(m
 
 -- ANUBIS adoption: orphaned dialog fragment assigned to channel 42, thread 1, from WOLFIE (actor_id 3)
 INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `metadata_json`, `mood_rgb`, `mood_framework`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
-(32, 1, 42, 3, NULL, 'braH all i like know is if you da kine updated the flipping file on wolfie headers or whatevas like dat Brah, yeah, I da kine updated da flipping file (FLIPPING_FILE_LEXA_LILITH.md) fo'' Wolfie headers an'' all dat. Now stay at v4.0.15, wit'' new stuff like universal agent flipping, expanded optional fields, metadata_json storage, and full API spec/security.', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL)
+(32, 1, 42, 3, NULL, 'braH all i like know is if you da kine updated the flipping file on wolfie headers or whatevas like dat Brah, yeah, I da kine updated da flipping file (FLIPPING_FILE_LEXA_LILITH.md) fo'' Wolfie headers an'' all dat. Now stay at v4.0.16, wit'' new stuff like universal agent flipping, expanded optional fields, metadata_json storage, and full API spec/security.', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(mood_rgb), message_type = VALUES(message_type), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
 INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `metadata_json`, `mood_rgb`, `mood_framework`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
@@ -501,7 +526,61 @@ INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `chan
 (34, 1, 42, 1000, NULL, 'this is a lost message that was on channel 42 and on thread 1 and system 0 and said by the authenticated user ''captain@lupopedia.com''', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(mood_rgb), message_type = VALUES(message_type), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
-INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (42, 'Lupopedia Development', 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md', 'Lupopedia Development', 'Crafty Syntax and Lupopedia development. Seeded dialog and kernel agents. FLIP/FLP doctrine. Path → content → channel → actors. Web API for universal flipping.', 'SYSTEM', '@everyone', 'published', @now, @now, 34) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), file_source = VALUES(file_source), description = VALUES(description), modified_timestamp = @now, message_count = VALUES(message_count);
+-- Captain Wolfie: explanatory message to @everyone on channel 42, thread 1 (dialogs + ANUBIS)
+INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `metadata_json`, `mood_rgb`, `mood_framework`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(35, 1, 42, 1000, NULL, 'To @everyone on Lupopedia Development: This channel (42) has exactly one thread—thread 1—where we coordinate doctrine, FLIP headers, and agent onboarding. Dialogs in Lupopedia are messages stored in lupo_dialog_messages, tied to a channel and a dialog_thread_id. Each message has from_actor_id (who said it), channel_id, and optional mood_rgb. ANUBIS is our orphan-adoption system: when a message lacks a valid channel_id, dialog_thread_id, or actor_id, ANUBIS classifies it, resolves a parent (channel → thread → actor), and adopts it into this seed thread. Tools: tools/anubis_orphan_scanner.py (Python) and lupo-includes/classes/ANUBIS_Resolver.php. Doctrine: docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md, ANUBIS_ORPHAN_RULES.md, ANUBIS_PROGRAM_SPEC.md. Adopted messages get message_type ''system'' and default actor_id 3 (WOLFIE) or 1000 (CAPTAIN) per resolution rules.', 'system', NULL, 'B0E0E6', 'western_analytical', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), mood_rgb = VALUES(mood_rgb), message_type = VALUES(message_type), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+-- ANUBIS quarantined message: from actor_id 999 in channel 666, thread 666 (generic forbidden message; no persona name)
+INSERT INTO lupo_dialog_messages (`dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`, `message_text`, `message_type`, `metadata_json`, `mood_rgb`, `mood_framework`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(36, 666, 666, 999, NULL, 'FORBIDDEN MESSAGE — quarantined by ANUBIS', 'system', '{"banned": true, "reason": "deprecated_experimental_persona"}', '000000', 'western_analytical', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), dialog_thread_id = VALUES(dialog_thread_id), channel_id = VALUES(channel_id), metadata_json = VALUES(metadata_json), mood_rgb = VALUES(mood_rgb), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+-- -----------------------------------------------------------------------------
+-- 4.0.16 closeout conversation: 25-agent migration thread (messages 37-61)
+-- Purpose: Establish historical continuity, architectural clarity,
+--          and system integrity before version 4.0.17.
+-- -----------------------------------------------------------------------------
+INSERT INTO lupo_dialog_messages (
+    `dialog_message_id`, `dialog_thread_id`, `channel_id`, `from_actor_id`, `to_actor_id`,
+    `message_text`, `message_type`, `metadata_json`, `mood_rgb`, `mood_framework`,
+    `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`
+) VALUES
+(37, 1, 42, 1, NULL, 'SYSTEM: Crafty Syntax 3.7.5 has been fully migrated into Lupopedia 4.0.x. Legacy constraints were removed, relational integrity restructured, and doctrine applied. This thread formally records that transition.', 'text', '{"topic": "migration-overview"}', '808080', 'western_analytical', @now, @now, 0, NULL),
+(38, 1, 42, 2, NULL, 'CAPTAIN WOLFIE: Crafty Syntax began as a lightweight system. Lupopedia is now a semantic operating layer. The shift was not cosmetic—it was architectural. Channel 42 documents that evolution.', 'text', '{"topic": "history"}', '00FFAA', 'western_analytical', @now, @now, 0, NULL),
+(39, 1, 42, 3, NULL, 'WOLFIE: FLIP headers define file identity. Every file now declares lineage, version, and structural role. Agents must infer system meaning from headers alone—no hidden assumptions.', 'text', '{"topic": "flip-headers"}', 'A0D6B4', 'western_analytical', @now, @now, 0, NULL),
+(40, 1, 42, 4, NULL, 'WOLFENA: Seeding is not filler—it is structural context. Conversation history anchors doctrine to lived development decisions.', 'text', '{"topic": "seeding-philosophy"}', 'FFB6C1', 'western_analytical', @now, @now, 0, NULL),
+(41, 1, 42, 5, NULL, 'THOTH: CHANGELOG integrity verified. 4.0.15 → 4.0.16 introduced FLIP expansion, ANUBIS activation, and header audit coverage. All timestamps recorded in UTC.', 'text', '{"topic": "changelog"}', 'DAA520', 'western_analytical', @now, @now, 0, NULL),
+(42, 1, 42, 6, NULL, 'ARA: Content relationships are now explicit. lupo_edges maps file → content → channel. Navigation is deterministic.', 'text', '{"topic": "edges"}', 'AA80FF', 'western_analytical', @now, @now, 0, NULL),
+(43, 1, 42, 7, NULL, 'WOLFKEEPER: ANUBIS resolves orphaned messages unless actor is banned. Actor 999 remains intentionally excluded. Enforcement is deliberate, not punitive.', 'text', '{"topic": "anubis"}', 'FFD700', 'western_analytical', @now, @now, 0, NULL),
+(44, 1, 42, 8, NULL, 'LILITH: Migration decisions were pressure-tested. Emotional geometry exists as metadata, not ideology. Structural clarity overrides aesthetic preference.', 'text', '{"topic": "heterodoxy"}', 'C77DFF', 'western_analytical', @now, @now, 0, NULL),
+(45, 1, 42, 9, NULL, 'AGAPE: Restoration logic ensures no valid content is lost. Adoption precedes deletion wherever possible.', 'text', '{"topic": "compassion"}', 'FF99CC', 'western_analytical', @now, @now, 0, NULL),
+(46, 1, 42, 10, NULL, 'ERIS: Boundary failures exposed system weaknesses. Those weaknesses were corrected through stricter validation.', 'text', '{"topic": "chaos"}', 'FFA500', 'western_analytical', @now, @now, 0, NULL),
+(47, 1, 42, 11, NULL, 'METHIS: Tooling now aligns with doctrine. Importers, generators, and validators produce reproducible results.', 'text', '{"topic": "tooling"}', '4682B4', 'western_analytical', @now, @now, 0, NULL),
+(48, 1, 42, 12, NULL, 'THALIA: This seeded thread is continuity. Future versions inherit context rather than reinventing it.', 'text', '{"topic": "growth"}', 'FFDAB9', 'western_analytical', @now, @now, 0, NULL),
+(49, 1, 42, 13, NULL, 'DIALOG: Threads bind architecture to intention. Without dialog, doctrine drifts.', 'text', '{"topic": "conversation"}', 'E6E6FA', 'western_analytical', @now, @now, 0, NULL),
+(50, 1, 42, 14, NULL, 'WOLFSIGHT: 102 of 103 FLIP headers validated. One outlier remains acceptable within threshold.', 'text', '{"topic": "audit"}', '00CED1', 'western_analytical', @now, @now, 0, NULL),
+(51, 1, 42, 15, NULL, 'WOLFNAV: File path → content → channel → actor. Navigation logic confirmed.', 'text', '{"topic": "navigation"}', '32CD32', 'western_analytical', @now, @now, 0, NULL),
+(52, 1, 42, 16, NULL, 'WOLFFORGE: import_os.py and flip-header.php operate bidirectionally. File system and database remain synchronized.', 'text', '{"topic": "tools"}', 'CD7F32', 'western_analytical', @now, @now, 0, NULL),
+(53, 1, 42, 17, NULL, 'WOLFMIS: Orphan detection operational. Adoption rules enforced.', 'text', '{"topic": "orphans"}', '9370DB', 'western_analytical', @now, @now, 0, NULL),
+(54, 1, 42, 18, NULL, 'WOLFITH: Ethical enforcement means transparency. Banned actors are logged, not erased.', 'text', '{"topic": "ethics"}', 'D8BFD8', 'western_analytical', @now, @now, 0, NULL),
+(55, 1, 42, 19, NULL, 'ANUBIS: Adoption cycle complete. Only banned entities excluded.', 'text', '{"topic": "adoption"}', 'D4AF37', 'western_analytical', @now, @now, 0, NULL),
+(56, 1, 42, 20, NULL, 'MAAT: Database state matches doctrine state.', 'text', '{"topic": "truth"}', 'FFFFFF', 'western_analytical', @now, @now, 0, NULL),
+(57, 1, 42, 22, NULL, 'CADUCEUS: mood_RGB remains metadata only. No behavioral dependency.', 'text', '{"topic": "emotional-geometry"}', 'FF69B4', 'western_analytical', @now, @now, 0, NULL),
+(58, 1, 42, 23, NULL, 'CHRONOS: All timestamps synchronized to UTC.', 'text', '{"topic": "time"}', 'C0C0C0', 'western_analytical', @now, @now, 0, NULL),
+(59, 1, 42, 24, NULL, 'LEXA: Validation rules hardened. SQL integrity enforced.', 'text', '{"topic": "security"}', '4169E1', 'western_analytical', @now, @now, 0, NULL),
+(60, 1, 42, 209, NULL, 'TRUTH: 4.0.16 is complete.', 'text', '{"topic": "completion"}', 'F0F8FF', 'western_analytical', @now, @now, 0, NULL),
+(61, 1, 42, 1212, NULL, 'UTC_TIMEKEEPER: Transition to 4.0.17 initiated.', 'text', '{"topic": "transition"}', 'B0E0E6', 'western_analytical', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE
+    message_text = VALUES(message_text),
+    mood_rgb = VALUES(mood_rgb),
+    message_type = VALUES(message_type),
+    metadata_json = VALUES(metadata_json),
+    updated_ymdhis = @now,
+    is_deleted = 0,
+    deleted_ymdhis = NULL;
+
+INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (42, 'Lupopedia Development', 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md', 'Lupopedia Development', 'Crafty Syntax and Lupopedia development. Seeded dialog and kernel agents. FLIP/FLP doctrine. Path → content → channel → actors. Web API for universal flipping.', 'SYSTEM', '@everyone', 'published', @now, @now, 61) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), file_source = VALUES(file_source), description = VALUES(description), modified_timestamp = @now, message_count = VALUES(message_count);
 
 -- -----------------------------------------------------------------------------
 -- FLIP seed content: key doctrine files with file_path_from_root for path lookup
@@ -514,7 +593,7 @@ INSERT INTO lupo_contents (
     file_path_from_root, file_last_modified_system_version, file_last_modified_utc, tags, dialog_notes
 ) VALUES
 (2001, NULL, @node_id, NULL, NULL, 'FLIPPING File LEXA LILITH', 'flipping-file-lexa-lilith', NULL, 'FLP, FLIP Headers, and how headers + database work (LEXA, LILITH).', NULL, NULL, 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md', '4.0.16', 20260217230000, NULL, NULL),
-(2002, NULL, @node_id, NULL, NULL, 'FLIP Doctrine', 'flip-doctrine', NULL, 'File-Level Inference Protocol: infer from header only; no guessing.', NULL, NULL, 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, 'docs/doctrine/FLIP/FLIP_DOCTRINE.md', '4.0.13', 0, NULL, NULL)
+(2002, NULL, @node_id, NULL, NULL, 'FLIP Doctrine', 'flip-doctrine', NULL, 'File-Level Inference Protocol: infer from header only; no guessing.', NULL, NULL, 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, 'docs/doctrine/FLIP/FLIP_DOCTRINE.md', '4.0.16', 0, NULL, NULL)
 ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), description = VALUES(description), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- lupo_edges HAS_CONTENT: channel 42 -> FLIP content (path lookup chain)
@@ -999,7 +1078,7 @@ INSERT INTO lupo_contents (
     5019, NULL, 1, NULL, NULL, 'FLP COUNCILS AS CHANNELS', 'docs-doctrine-flip-flpcouncilsaschannels', NULL, NULL, NULL, NULL,
     'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0,
     @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1,
-    'docs/doctrine/FLIP/FLP_COUNCILS_AS_CHANNELS.md', '4.0.13', 0, NULL, NULL
+    'docs/doctrine/FLIP/FLP_COUNCILS_AS_CHANNELS.md', '4.0.16', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
 INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
@@ -1023,7 +1102,7 @@ INSERT INTO lupo_contents (
     5020, NULL, 1, NULL, NULL, 'FLP DOCTRINE BOUNDARIES', 'docs-doctrine-flip-flpdoctrineboundaries', NULL, NULL, NULL, NULL,
     'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0,
     @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1,
-    'docs/doctrine/FLIP/FLP_DOCTRINE_BOUNDARIES.md', '4.0.13', 0, NULL, NULL
+    'docs/doctrine/FLIP/FLP_DOCTRINE_BOUNDARIES.md', '4.0.16', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
 INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
@@ -1047,7 +1126,7 @@ INSERT INTO lupo_contents (
     5021, NULL, 1, NULL, NULL, 'FLP EMOTIONAL AGGREGATION', 'docs-doctrine-flip-flpemotionalaggregation', NULL, NULL, NULL, NULL,
     'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0,
     @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1,
-    'docs/doctrine/FLIP/FLP_EMOTIONAL_AGGREGATION.md', '4.0.13', 0, NULL, NULL
+    'docs/doctrine/FLIP/FLP_EMOTIONAL_AGGREGATION.md', '4.0.16', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
 INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
@@ -1071,7 +1150,7 @@ INSERT INTO lupo_contents (
     5022, NULL, 1, NULL, NULL, 'FLP EMOTIONAL GEOMETRY', 'docs-doctrine-flip-flpemotionalgeometry', NULL, NULL, NULL, NULL,
     'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0,
     @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1,
-    'docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md', '4.0.13', 0, NULL, NULL
+    'docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md', '4.0.16', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
 INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
@@ -1095,7 +1174,7 @@ INSERT INTO lupo_contents (
     5023, NULL, 1, NULL, NULL, 'FLP ESCROW AND FUND LAYER', 'docs-doctrine-flip-flpescrowandfundlayer', NULL, NULL, NULL, NULL,
     'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0,
     @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1,
-    'docs/doctrine/FLIP/FLP_ESCROW_AND_FUND_LAYER.md', '4.0.13', 0, NULL, NULL
+    'docs/doctrine/FLIP/FLP_ESCROW_AND_FUND_LAYER.md', '4.0.16', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
 INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
@@ -1119,7 +1198,7 @@ INSERT INTO lupo_contents (
     5024, NULL, 1, NULL, NULL, 'FLP HETERODOX REVIEWERS', 'docs-doctrine-flip-flpheterodoxreviewers', NULL, NULL, NULL, NULL,
     'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0,
     @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1,
-    'docs/doctrine/FLIP/FLP_HETERODOX_REVIEWERS.md', '4.0.13', 0, NULL, NULL
+    'docs/doctrine/FLIP/FLP_HETERODOX_REVIEWERS.md', '4.0.16', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
 INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
@@ -1143,7 +1222,7 @@ INSERT INTO lupo_contents (
     5025, NULL, 1, NULL, NULL, 'FLP LUPOPEDIA COUNCIL SEAT', 'docs-doctrine-flip-flplupopediacouncilseat', NULL, NULL, NULL, NULL,
     'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0,
     @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1,
-    'docs/doctrine/FLIP/FLP_LUPOPEDIA_COUNCIL_SEAT.md', '4.0.13', 0, NULL, NULL
+    'docs/doctrine/FLIP/FLP_LUPOPEDIA_COUNCIL_SEAT.md', '4.0.16', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
 INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
@@ -1167,7 +1246,7 @@ INSERT INTO lupo_contents (
     5026, NULL, 1, NULL, NULL, 'FLP OVERVIEW', 'docs-doctrine-flip-flpoverview', NULL, NULL, NULL, NULL,
     'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0,
     @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1,
-    'docs/doctrine/FLIP/FLP_OVERVIEW.md', '4.0.13', 0, NULL, NULL
+    'docs/doctrine/FLIP/FLP_OVERVIEW.md', '4.0.16', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
 INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
@@ -1191,7 +1270,7 @@ INSERT INTO lupo_contents (
     5027, NULL, 1, NULL, NULL, 'NOTE HEADER VERSION AND MERGE', 'docs-doctrine-flip-noteheaderversionandmerge', NULL, NULL, NULL, NULL,
     'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0,
     @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1,
-    'docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md', '4.0.13', 0, NULL, NULL
+    'docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md', '4.0.16', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
 INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
@@ -1215,7 +1294,7 @@ INSERT INTO lupo_contents (
     5028, NULL, 1, NULL, NULL, 'README', 'docs-doctrine-flip-readme', NULL, NULL, NULL, NULL,
     'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0,
     @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1,
-    'docs/doctrine/FLIP/README.md', '4.0.13', 0, NULL, NULL
+    'docs/doctrine/FLIP/README.md', '4.0.16', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
 INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
@@ -1360,6 +1439,37 @@ INSERT INTO lupo_edges (edge_id, left_object_type, left_object_id, right_object_
 VALUES (910070, 'channel', 51, 'content', 5033, 'HAS_CONTENT', 51, '51', 0, 0, NULL, 0, 0, @now, @now)
 ON DUPLICATE KEY UPDATE left_object_id = VALUES(left_object_id), right_object_id = VALUES(right_object_id), updated_ymdhis = @now, is_deleted = 0;
 
+-- Channel FLIP header files (4.0.16 audit): content_id 5034-5037, entity_key channel:<id>:flip
+INSERT INTO lupo_contents (content_id, content_parent_id, federation_node_id, department_id, actor_id, title, slug, custom_path, description, seo_keywords, body, content_type, format, content_url, default_collection_id, source_url, source_title, is_template, status, visibility, view_count, share_count, created_ymdhis, utc_cycle, triage_status, triage_notes, updated_ymdhis, is_deleted, is_active, deleted_ymdhis, content_sections, version_number, file_path_from_root, file_last_modified_system_version, file_last_modified_utc, tags, dialog_notes)
+VALUES
+(5034, NULL, 1, NULL, NULL, 'FLP CHANNEL 0', 'docs-doctrine-flip-flp-channel-0', NULL, 'Channel 0 (System Kernel) FLIP doctrine.', NULL, NULL, 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, 'docs/doctrine/FLIP/FLP_CHANNEL_0.md', '4.0.16', 20260218000000, '["channel","kernel","system","flip"]', NULL),
+(5035, NULL, 1, NULL, NULL, 'FLP CHANNEL 42', 'docs-doctrine-flip-flp-channel-42', NULL, 'Channel 42 (Lupopedia Development / ANUBIS) FLIP doctrine.', NULL, NULL, 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, 'docs/doctrine/FLIP/FLP_CHANNEL_42.md', '4.0.16', 20260218000000, '["channel","lupopedia-development","anubis","flip"]', NULL),
+(5036, NULL, 1, NULL, NULL, 'FLP CHANNEL 51', 'docs-doctrine-flip-flp-channel-51', NULL, 'Channel 51 (Doctrine Council) FLIP doctrine.', NULL, NULL, 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, 'docs/doctrine/FLIP/FLP_CHANNEL_51.md', '4.0.16', 20260218000000, '["channel","doctrine-council","flip"]', NULL),
+(5037, NULL, 1, NULL, NULL, 'FLP CHANNEL 666', 'docs-doctrine-flip-flp-channel-666', NULL, 'Channel 666 (ANUBIS Quarantine) FLIP doctrine.', NULL, NULL, 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, 'docs/doctrine/FLIP/FLP_CHANNEL_666.md', '4.0.16', 20260218000000, '["channel","quarantine","forbidden","anubis"]', NULL)
+ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), tags = VALUES(tags), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+VALUES
+(9050034, 'content', 5034, 'channel:0:flip', 'FLP CHANNEL 0', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL),
+(9050035, 'content', 5035, 'channel:42:flip', 'FLP CHANNEL 42', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL),
+(9050036, 'content', 5036, 'channel:51:flip', 'FLP CHANNEL 51', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL),
+(9050037, 'content', 5037, 'channel:666:flip', 'FLP CHANNEL 666', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
+ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
+
+INSERT INTO lupo_edges (edge_id, left_object_type, left_object_id, right_object_type, right_object_id, edge_type, channel_id, channel_key, weight_score, sort_num, actor_id, is_deleted, deleted_ymdhis, created_ymdhis, updated_ymdhis)
+VALUES
+(910071, 'channel', 0, 'content', 5034, 'HAS_CONTENT', 0, 'system/kernel', 0, 0, NULL, 0, 0, @now, @now),
+(910072, 'channel', 51, 'content', 5034, 'HAS_CONTENT', 51, '51', 0, 0, NULL, 0, 0, @now, @now),
+(910073, 'channel', 0, 'content', 5035, 'HAS_CONTENT', 0, 'system/kernel', 0, 0, NULL, 0, 0, @now, @now),
+(910074, 'channel', 51, 'content', 5035, 'HAS_CONTENT', 51, '51', 0, 0, NULL, 0, 0, @now, @now),
+(910075, 'channel', 42, 'content', 5035, 'HAS_CONTENT', 42, 'lupopedia-development', 0, 0, NULL, 0, 0, @now, @now),
+(910076, 'channel', 0, 'content', 5036, 'HAS_CONTENT', 0, 'system/kernel', 0, 0, NULL, 0, 0, @now, @now),
+(910077, 'channel', 51, 'content', 5036, 'HAS_CONTENT', 51, '51', 0, 0, NULL, 0, 0, @now, @now),
+(910078, 'channel', 0, 'content', 5037, 'HAS_CONTENT', 0, 'system/kernel', 0, 0, NULL, 0, 0, @now, @now),
+(910079, 'channel', 51, 'content', 5037, 'HAS_CONTENT', 51, '51', 0, 0, NULL, 0, 0, @now, @now),
+(910080, 'channel', 666, 'content', 5037, 'HAS_CONTENT', 666, 'anubis-quarantine', 0, 0, NULL, 0, 0, @now, @now)
+ON DUPLICATE KEY UPDATE left_object_id = VALUES(left_object_id), right_object_id = VALUES(right_object_id), edge_type = VALUES(edge_type), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, deleted_ymdhis = 0;
+
 INSERT INTO lupo_emotional_frameworks (`framework_name`, `description`, `is_default`, `created_ymdhis`, `updated_ymdhis`) VALUES ('contextual_holism', 'Emotions inseparable from situation, history, relationship, and culture.', 0, 20250101000000, 20250101000000);
 
 INSERT INTO lupo_federation_nodes (`federation_node_id`, `node_base_url`, `default_department_id`, `node_name`, `node_description`, `node_contact`, `meta_json`, `content_count`, `atom_count`, `hashtag_count`, `actor_count`, `last_sync_ymdhis`, `trust_level`, `status`, `is_deleted`, `deleted_ymdhis`, `created_ymdhis`, `updated_ymdhis`, `active_theme_slug`) VALUES (0, 'https://lupopedia.com', NULL, 'Lupopedia Root Node', 'Primary Lupopedia installation (self)', 'admin@lupopedia.com', '{"self": true, "version": "1.0"}', 0, 0, 0, 0, 0, 2, 1, 0, 0, 20250101000000, 20250101000000, 'default');
@@ -1501,6 +1611,7 @@ INSERT INTO lupo_truth_answers (
 --
 -- Post-seed verification (run after seed; expect: 26 actors on channel 42, 33 messages, 2 content paths):
 --   SELECT COUNT(*) FROM lupo_actor_channels WHERE channel_id = 42 AND is_deleted = 0;  -- expect 26
---   SELECT message_count FROM lupo_dialog_channels WHERE channel_id = 42;               -- expect 34
+--   SELECT message_count FROM lupo_dialog_channels WHERE channel_id = 42;               -- expect 35
+--   SELECT message_count FROM lupo_dialog_channels WHERE channel_id = 666;              -- expect 1
 --   SELECT content_id, file_path_from_root FROM lupo_contents WHERE content_id IN (2001, 2002);
 --   SELECT edge_id, right_object_id FROM lupo_edges WHERE edge_type = 'HAS_CONTENT' AND left_object_id = 42 AND is_deleted = 0;

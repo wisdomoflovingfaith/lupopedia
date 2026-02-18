@@ -2,7 +2,7 @@
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/FLIP/FLP_HETERODOX_REVIEWERS.md
-file.last_modified_system_version: "4.0.13"
+file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "00000000000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 ---

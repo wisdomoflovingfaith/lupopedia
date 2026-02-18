@@ -42,7 +42,7 @@ Omission is information. Do not invent missing fields.
 
 ## When adding or editing a FLIP Header
 
-- Set **file.last_modified_system_version** to the **current Lupopedia version** (e.g. 4.0.13). Source of truth: `config/global_atoms.yaml`, `lupo-includes/version.php`, or `docs/doctrine/VERSIONING_DOCTRINE.md`. Do not leave it as 0000 or an old 3.x value when the file has been edited.
+- Set **file.last_modified_system_version** to the **current Lupopedia version** (e.g. 4.0.16). Source of truth: `config/global_atoms.yaml`, `lupo-includes/version.php`, or `docs/doctrine/VERSIONING_DOCTRINE.md`. Do not leave it as 0000 or an old 3.x value when the file has been edited.
 - When merging 3.x-era header docs into 4.0.x, prefer existing repo docs and FLIP/FLIPPING/Wolfie header naming; we are on 4.0.13. See `docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md`.
 
 This rule is permanent and applies to all file handling in Lupopedia.

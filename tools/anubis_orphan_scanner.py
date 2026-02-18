@@ -35,6 +35,25 @@ DEFAULT_CHANNEL_ID = 42
 DEFAULT_THREAD_ID = 1
 DEFAULT_ACTOR_ID = 3  # WOLFIE
 
+# Fallback when lupo_banned_actors table unavailable
+BANNED_ACTOR_IDS_FALLBACK = (999,)
+
+
+def get_banned_actor_ids(cursor):
+    """Read banned actor_ids from lupo_banned_actors. Fallback to BANNED_ACTOR_IDS_FALLBACK on error."""
+    if cursor is None:
+        return BANNED_ACTOR_IDS_FALLBACK
+    try:
+        table = TABLE_PREFIX + "banned_actors"
+        sql = "SELECT actor_id FROM " + table + " WHERE is_deleted = 0"
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+        if rows:
+            return tuple(sorted(set(int(r[0]) for r in rows if r and r[0] is not None)))
+    except Exception:
+        pass
+    return BANNED_ACTOR_IDS_FALLBACK
+
 
 def resolve_channel_id(cursor, channel_id):
     """Return channel_id if it exists in lupo_dialog_channels (TOON: no is_deleted column)."""
@@ -84,6 +103,8 @@ def scan(dialog_text, channel_id=None, dialog_thread_id=None, actor_id=None, cur
     """
     result = {
         "classification": "orphan",
+        "is_rejected": False,
+        "rejected_reason": None,
         "channel_id": None,
         "dialog_thread_id": None,
         "from_actor_id": None,
@@ -115,12 +136,31 @@ def scan(dialog_text, channel_id=None, dialog_thread_id=None, actor_id=None, cur
             th_resolved = DEFAULT_THREAD_ID
 
         act_resolved = resolve_actor_id(cursor, actor_id)
+        banned_ids = get_banned_actor_ids(cursor)
+        if act_resolved is not None and act_resolved in banned_ids:
+            result["classification"] = "rejected"
+            result["is_rejected"] = True
+            result["rejected_reason"] = "banned_actor"
+            result["channel_id"] = ch_resolved or DEFAULT_CHANNEL_ID
+            result["dialog_thread_id"] = th_resolved or DEFAULT_THREAD_ID
+            result["from_actor_id"] = act_resolved
+            result["adoption_plan"] = None
+            return result
         if act_resolved is None:
             act_resolved = DEFAULT_ACTOR_ID
     else:
         ch_resolved = DEFAULT_CHANNEL_ID
         th_resolved = DEFAULT_THREAD_ID
         act_resolved = DEFAULT_ACTOR_ID if actor_id is None else actor_id
+        if act_resolved in BANNED_ACTOR_IDS_FALLBACK:
+            result["classification"] = "rejected"
+            result["is_rejected"] = True
+            result["rejected_reason"] = "banned_actor"
+            result["channel_id"] = ch_resolved
+            result["dialog_thread_id"] = th_resolved
+            result["from_actor_id"] = act_resolved
+            result["adoption_plan"] = None
+            return result
 
     result["channel_id"] = ch_resolved
     result["dialog_thread_id"] = th_resolved

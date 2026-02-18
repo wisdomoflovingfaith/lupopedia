@@ -2,7 +2,7 @@
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/FLIP/README.md
-file.last_modified_system_version: "4.0.13"
+file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "00000000000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 ---
@@ -22,7 +22,7 @@ This folder contains doctrine for two distinct protocols:
 | File | Description |
 |------|-------------|
 | [FLIP_DOCTRINE.md](FLIP_DOCTRINE.md) | Canonical FLIP doctrine: infer file identity, doctrine, and meaning from the FLIP Header only; no guessing. |
-| [NOTE_HEADER_VERSION_AND_MERGE.md](NOTE_HEADER_VERSION_AND_MERGE.md) | Reminder: set file.last_modified_system_version to current version (4.0.13) when editing; 3.x vs 4.0.x merge and FLIP/Wolfie header naming. |
+| [NOTE_HEADER_VERSION_AND_MERGE.md](NOTE_HEADER_VERSION_AND_MERGE.md) | Reminder: set file.last_modified_system_version to current version (4.0.16) when editing; 3.x vs 4.0.x merge and FLIP/Wolfie header naming. |
 
 ---
 

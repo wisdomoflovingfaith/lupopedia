@@ -5,7 +5,7 @@ Purpose
 This doctrine defines the only approved method for generating TOON files inside Lupopedia.
 TOON files represent the authoritative schema layer for all database tables and must be produced deterministically, without inference, drift, or AI involvement.
 
-Canonical Schema Source (4.0.15+)
+Canonical Schema Source (4.0.16+)
 The single source of truth for schema is install_new_lupopedia.sql and seed_lupopedia.sql. TOON files are derived from this canonical schema.
 
 Canonical Generators

@@ -29,6 +29,25 @@ CREATE INDEX lupo_actors_idx_is_active ON lupo_actors (is_active);
 CREATE INDEX lupo_actors_idx_created_ymdhis ON lupo_actors (created_ymdhis);
 -- RESERVED ID DOCTRINE: actor_id is NOT AUTO_INCREMENT; application must supply explicit ID.
 
+CREATE TABLE lupo_banned_actors (
+  banned_actor_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  ip_address varchar(45) DEFAULT NULL,
+  reason varchar(500) NOT NULL,
+  banned_ymdhis bigint NOT NULL,
+  banned_by_actor_id bigint DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (banned_actor_id)
+);
+
+CREATE INDEX lupo_banned_actors_idx_actor_id ON lupo_banned_actors (actor_id);
+CREATE INDEX lupo_banned_actors_idx_ip_address ON lupo_banned_actors (ip_address);
+CREATE INDEX lupo_banned_actors_idx_is_deleted ON lupo_banned_actors (is_deleted);
+-- Banned actors: ANUBIS does not adopt orphans from these actor_ids. Single source of truth for bans.
+
 CREATE TABLE lupo_actor_actions (
   actor_action_id bigint NOT NULL,
   actor_id bigint NOT NULL,

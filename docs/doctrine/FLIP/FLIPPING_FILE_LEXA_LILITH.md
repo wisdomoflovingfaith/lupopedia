@@ -41,7 +41,7 @@ These are **the same thing**. One canonical name: **FLIP Headers**. Aliases: Wol
 
 - **Doctrine-required fields for reconstruction and versioning:**
   - `file_path_from_root` — Path from repo root (e.g. `docs/doctrine/FLIP/FLIP_DOCTRINE.md`).
-  - `file.last_modified_system_version` — System version when the file was last edited (e.g. `"4.0.13"`). Literal string, not an atom. Updated only when the file is modified.
+  - `file.last_modified_system_version` — System version when the file was last edited (e.g. `"4.0.16"`). Literal string, not an atom. Updated only when the file is modified.
   - `file.last_modified_utc` — UTC timestamp of last modification, 14-digit BIGINT format `YYYYMMDDHHIISS` (e.g. `"20260217000000"`).
   - `channel_id` — Optional; when resolvable from the database (e.g. via `lupo_edges`), can be included. Otherwise: comment `# channel_id unresolved — requires lupo_contents lookup by application.`
 
@@ -87,7 +87,7 @@ The table **`lupo_contents`** stores content (e.g. ingested docs, articles). To 
 | Column | Type | Purpose |
 |--------|------|---------|
 | `file_path_from_root` | varchar(500) | Path from repo root; used when reconstructing header from path, URL, or content_id. |
-| `file_last_modified_system_version` | varchar(20) | System version at last file edit (e.g. 4.0.13). |
+| `file_last_modified_system_version` | varchar(20) | System version at last file edit (e.g. 4.0.16). |
 | `file_last_modified_utc` | bigint | UTC last modified, YYYYMMDDHHIISS. |
 
 - **No foreign keys, no triggers, no DB-side logic** for these columns. Application (or loader/generator) writes and reads them.
@@ -278,7 +278,7 @@ Output that **tools/generate_flip_header.py** (or equivalent) can produce for th
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
-file.last_modified_system_version: "4.0.13"
+file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "00000000000000"
 channel_id: 0
 ---
