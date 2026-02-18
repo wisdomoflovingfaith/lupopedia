@@ -1308,6 +1308,37 @@ INSERT INTO lupo_edges (edge_id, left_object_type, left_object_id, right_object_
 VALUES (910064, 'channel', 51, 'content', 5031, 'HAS_CONTENT', 51, '51', 0, 0, NULL, 0, 0, @now, @now)
 ON DUPLICATE KEY UPDATE left_object_id = VALUES(left_object_id), right_object_id = VALUES(right_object_id), edge_type = VALUES(edge_type), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, deleted_ymdhis = 0;
 
+-- FLIP metadata for dialog_message_id 34 (Ara/Lilith heterodox review)
+INSERT INTO lupo_contents (
+    content_id, content_parent_id, federation_node_id, department_id, actor_id, title, slug, custom_path, description, seo_keywords, body,
+    content_type, format, content_url, default_collection_id, source_url, source_title, is_template, status, visibility, view_count, share_count,
+    created_ymdhis, utc_cycle, triage_status, triage_notes, updated_ymdhis, is_deleted, is_active, deleted_ymdhis, content_sections, version_number,
+    file_path_from_root, file_last_modified_system_version, file_last_modified_utc, tags, dialog_notes
+) VALUES (
+    5032, NULL, 1, NULL, NULL, 'FLIP metadata: dialog 34 Ara/Lilith heterodox review', 'dialog-flip-34-ara-lilith-review', NULL, 'FLIP metadata for dialog_message_id 34 (Ara/Lilith heterodox review)', NULL, NULL,
+    'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0,
+    @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1,
+    NULL, '4.0.15', @now,
+    '["dialog","anubis","heterodox","review"]',
+    'FLIP metadata for dialog_message_id 34 (Ara/Lilith heterodox review). mood_rgb=D2BEFA, recovery_event=true, kapakai=0.1'
+) ON DUPLICATE KEY UPDATE file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), dialog_notes = VALUES(dialog_notes), tags = VALUES(tags), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+VALUES (9050032, 'content', 5032, 'dialog:34', 'FLIP metadata dialog 34', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, '{"mood_rgb":"D2BEFA","dialog_message_id":34,"atoms":{"recovery_event":true,"kapakai":0.1}}')
+ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), metadata_json = VALUES(metadata_json), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
+
+INSERT INTO lupo_edges (edge_id, left_object_type, left_object_id, right_object_type, right_object_id, edge_type, channel_id, channel_key, weight_score, sort_num, actor_id, is_deleted, deleted_ymdhis, created_ymdhis, updated_ymdhis)
+VALUES (910065, 'channel', 42, 'content', 5032, 'HAS_CONTENT', 42, 'lupopedia-development', 0, 0, NULL, 0, 0, @now, @now)
+ON DUPLICATE KEY UPDATE left_object_id = VALUES(left_object_id), right_object_id = VALUES(right_object_id), edge_type = VALUES(edge_type), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, deleted_ymdhis = 0;
+
+INSERT INTO lupo_edges (edge_id, left_object_type, left_object_id, right_object_type, right_object_id, edge_type, channel_id, channel_key, weight_score, sort_num, actor_id, is_deleted, deleted_ymdhis, created_ymdhis, updated_ymdhis)
+VALUES (910066, 'channel', 0, 'content', 5032, 'HAS_CONTENT', 0, 'system/kernel', 0, 0, NULL, 0, 0, @now, @now)
+ON DUPLICATE KEY UPDATE left_object_id = VALUES(left_object_id), right_object_id = VALUES(right_object_id), edge_type = VALUES(edge_type), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, deleted_ymdhis = 0;
+
+INSERT INTO lupo_edges (edge_id, left_object_type, left_object_id, right_object_type, right_object_id, edge_type, channel_id, channel_key, weight_score, sort_num, actor_id, is_deleted, deleted_ymdhis, created_ymdhis, updated_ymdhis)
+VALUES (910067, 'channel', 51, 'content', 5032, 'HAS_CONTENT', 51, '51', 0, 0, NULL, 0, 0, @now, @now)
+ON DUPLICATE KEY UPDATE left_object_id = VALUES(left_object_id), right_object_id = VALUES(right_object_id), edge_type = VALUES(edge_type), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, deleted_ymdhis = 0;
+
 INSERT INTO lupo_emotional_frameworks (`framework_name`, `description`, `is_default`, `created_ymdhis`, `updated_ymdhis`) VALUES ('contextual_holism', 'Emotions inseparable from situation, history, relationship, and culture.', 0, 20250101000000, 20250101000000);
 
 INSERT INTO lupo_federation_nodes (`federation_node_id`, `node_base_url`, `default_department_id`, `node_name`, `node_description`, `node_contact`, `meta_json`, `content_count`, `atom_count`, `hashtag_count`, `actor_count`, `last_sync_ymdhis`, `trust_level`, `status`, `is_deleted`, `deleted_ymdhis`, `created_ymdhis`, `updated_ymdhis`, `active_theme_slug`) VALUES (0, 'https://lupopedia.com', NULL, 'Lupopedia Root Node', 'Primary Lupopedia installation (self)', 'admin@lupopedia.com', '{"self": true, "version": "1.0"}', 0, 0, 0, 0, 0, 2, 1, 0, 0, 20250101000000, 20250101000000, 'default');

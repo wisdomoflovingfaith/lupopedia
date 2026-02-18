@@ -38,8 +38,35 @@ As we continue development on a version, we append new changes under that versio
 - **Regenerated TOON files** from canonical schema via scripts/generate_toon_from_sql.py (196 tables).
 - **Verified schema consistency** between seed SQL and regenerated TOONs.
 - **Seeded all FLIP headers** into lupo_contents and mapped via lupo_edges (LILITH_ANUBIS_GUIDANCE, LILITH_ANUBIS_GUIDANCE_FLIP; channels 0, 51, 42).
+- **Added FLIP metadata entry for dialog_message_id 34 (Ara/Lilith heterodox review).** content_id 5032, slug `dialog-flip-34-ara-lilith-review`; lupo_unified_registry (9050032, entity_key `dialog:34`); lupo_edges HAS_CONTENT to channels 42, 0, 51.
+- **Ensured dialogs also have FLIP metadata seeded from the beginning.**
+- **Verified regenerated TOONs match canonical schema** (install_new_lupopedia.sql and seed_lupopedia.sql).
 - **Ensured all doctrine files** contain HYBRID FLIP headers (ANUBIS, FLIP, root doctrine).
 - No new schema; seed already had messages 30–31 and FLIP content; generate_flip_header.py (--web) and import_os.py (tags → lupo_contents.tags) unchanged.
+
+**4.0.15 thread summary (canonical):**
+- Replaced outdated TOON authority with canonical schema from install_new_lupopedia.sql and seed_lupopedia.sql.
+- Regenerated all TOON files from canonical schema (lupo_contents, lupo_edges, lupo_channels, lupo_unified_registry, lupo_actors, lupo_actor_channels, lupo_actor_channel_roles, lupo_dialog_threads, lupo_dialog_messages, lupo_dialog_channels).
+- Verified schema consistency between regenerated TOONs and seed SQL (no mismatches; no drift).
+- Verified FLIP headers for all doctrine files under docs/doctrine/.
+- Added missing HYBRID FLIP headers to INSTALLATION_PATH_DOCTRINE.md, UNIFIED_REGISTRY_DOCTRINE.md, and VERSIONING_DOCTRINE.md.
+- Created FLIP-only file docs/doctrine/ANUBIS/LILITH_ANUBIS_GUIDANCE_FLIP.md containing only the FLIP header.
+- Seeded all FLIP headers into lupo_contents with explicit IDs (5000–5029) and mapped them via lupo_edges to channels 0, 51, and 42 (ANUBIS-related).
+- Ensured all FLIP metadata is seeded from the beginning (no reconstruction required).
+- Added FLIP metadata entry for dialog_message_id 34 (Ara/Lilith heterodox review) as content_id 5032, with unified registry entry and edges to channels 42, 0, and 51.
+- Adopted lost CAPTAIN message (actor_id 1000) into channel 42/thread 1 via ANUBIS.
+- Adopted Lilith's heterodox review as dialog_message_id 34 via ANUBIS.
+- Updated message_count for channel 42 accordingly.
+- Completed ANUBIS doctrine set (ANUBIS_OVERVIEW.md, ANUBIS_ORPHAN_RULES.md, ANUBIS_PROGRAM_SPEC.md).
+- Confirmed ANUBIS program stability (anubis_orphan_scanner.py and ANUBIS_Resolver.php).
+- Updated WOLFIE_HEADER_SPECIFICATION.md with hybrid optional field rules.
+- Confirmed ContentChannelActorResolver stability.
+- Confirmed universal flipping API functionality (api/flip-header.php).
+- Seeded first batch of doctrine files (content_id 5000–5029).
+- Ensured doctrine files are mapped to channels 0 and 51.
+- Confirmed CAPTAIN identity (actor_id 1000, wisdomoflovingfaith@gmail.com) with admin roles on channels 0, 42, and 51.
+- Prepared version bump for 4.0.15 (version.php, atoms, installer text).
+- No schema changes introduced in 4.0.15.
 
 ---
 

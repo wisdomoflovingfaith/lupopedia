@@ -1,7 +1,7 @@
 # FLIP Header Web API
 
 **Status:** Permanent.  
-**Version:** 4.0.14.  
+**Version:** 4.0.15.  
 **Purpose:** Enable any AI agent (kernel actors, external like Grok) to "flip" file headers via web browsing.
 
 ---
@@ -92,7 +92,7 @@ Raw YAML FLIP Header block (no JSON wrapper).
 ## Security & Future
 
 - **CORS:** `Access-Control-Allow-Origin: *` for external agent browsing.
-- **Rate limiting:** Optional future; not implemented in 4.0.14.
+- **Rate limiting:** Optional future; not implemented in 4.0.15.
 - **API key:** Future versions may require API key; if added, `lupo_api_keys` table (TOON + migration approval).
 
 ---
