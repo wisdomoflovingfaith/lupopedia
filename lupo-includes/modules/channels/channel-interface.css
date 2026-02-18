@@ -4,12 +4,14 @@
  * Layout: header (rooms bar) | body (message stream + people aside) | tabs bar | composer footer.
  */
 
-/* ---- Wrapper ---- */
+/* ---- Wrapper (legacy livehelp: fixed viewport height, no overflow) ---- */
 .channel-operator-interface {
     display: flex;
     flex-direction: column;
-    min-height: 60vh;
+    height: 100vh;
+    max-height: 100vh;
     max-width: 100%;
+    overflow: hidden;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     font-size: 14px;
 }
@@ -82,10 +84,10 @@
     font-size: 0.8125rem;
 }
 
-/* ---- Body: 2 panels (message stream + people) ---- */
+/* ---- Body: message stream (large %) + people (300px fixed, legacy livehelp layout) ---- */
 .channel-interface-body {
     display: flex;
-    flex: 1 1 auto;
+    flex: 1 1 0;
     min-height: 0;
     overflow: hidden;
 }
@@ -96,14 +98,30 @@
 .channel-panel-message-stream {
     flex: 1 1 60%;
     min-width: 0;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     border-right: 1px solid #ddd;
     background: #fafafa;
+    overflow: hidden;
+}
+/* iframe message stream: takes remaining width, height capped at 60% of viewport, scrolls inside (legacy livehelp pattern) */
+.channel-stream-iframe {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    height: 60vh;
+    max-height: 60vh;
+    min-height: 200px;
+    border: 0;
+    display: block;
+    background: #fff;
+    border-right: 1px solid #ddd;
 }
 .channel-panel-people {
-    flex: 0 0 280px;
-    min-width: 200px;
+    flex: 0 0 300px;
+    width: 300px;
+    min-width: 300px;
     background: #fff;
     border-left: 1px solid #eee;
 }
@@ -120,7 +138,9 @@
     margin: 0;
     padding: 0;
     flex: 1;
-    min-height: 200px;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .channel-no-messages {
     color: #888;

@@ -105,9 +105,19 @@ if ($visitor_mode) {
         exit;
     }
 } else {
+    $has_access = false;
     $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channels WHERE actor_id = :actor_id AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
     $stmt->execute([':actor_id' => $actor_id, ':channel_id' => $channel_id]);
-    if ($stmt->fetch() === false) {
+    if ($stmt->fetch() !== false) {
+        $has_access = true;
+    }
+    if (!$has_access && isset($GLOBALS['lupo_auth_service'])) {
+        $auth = $GLOBALS['lupo_auth_service'];
+        if (is_object($auth) && method_exists($auth, 'isAdmin') && $auth->isAdmin($actor_id)) {
+            $has_access = true;
+        }
+    }
+    if (!$has_access) {
         http_response_code(403);
         header('Content-Type: application/json');
         echo json_encode(['error' => 'Access denied to channel']);

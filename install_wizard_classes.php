@@ -1,6 +1,6 @@
 <?php
 /**
- * Lupopedia 4.0.16 — Install Wizard Classes
+ * Lupopedia 4.0.17 — Install Wizard Classes
  *
  * Helper logic converted from install.php into classes per CLASS_CONVERSION_DOCTRINE.md.
  * PHP 5.3–compatible: no type hints, no return types, no short arrays, no ??.
@@ -331,7 +331,8 @@ class InstallWizardSqlRunner {
             return false;
         }
         $sql = preg_replace('/^\xEF\xBB\xBF/', '', $sql);
-        $sql = preg_replace('/--[^\n]*/m', '', $sql);
+        // Only strip lines that are entirely comment (whitespace + -- + rest). Do not strip -- in middle of line (can be inside string or identifier).
+        $sql = preg_replace('/^\s*--[^\n]*\n/m', "\n", $sql);
         $sql = preg_replace('/\/\*.*?\*\//s', '', $sql);
         if ($table_prefix !== null && $table_prefix !== '' && $table_prefix !== 'lupo_') {
             $sql = str_replace('lupo_', $table_prefix, $sql);
@@ -350,7 +351,8 @@ class InstallWizardSqlRunner {
         $idx = 0;
         foreach ($statements as $stmt) {
             $idx++;
-            if ($stmt === '') {
+            $stmtTrim = trim($stmt);
+            if ($stmtTrim === '' || preg_match('/^\s*--/', $stmtTrim)) {
                 continue;
             }
             try {
@@ -490,6 +492,7 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
 
 /**
  * Create the main admin user (auth_user_id 10000, actor_id 10000) for new installs.
+ * Step 7 (Config) collects admin email and password; they are stored as user 10000.
  * Reserved ID doctrine: explicit ID; if row exists → UPDATE, else INSERT.
  * PHP 5.3 compatible: no ??, no [], no typed properties.
  */
@@ -539,6 +542,7 @@ class InstallWizardMainAdmin {
         $auth_t = $prefix . 'auth_users';
         $actors_t = $prefix . 'actors';
         $acr_t = $prefix . 'actor_channel_roles';
+        $ac_t = $prefix . 'actor_channels';
         $dr_t = $prefix . 'department_roles';
         $ad_t = $prefix . 'actor_departments';
         $perm_t = $prefix . 'permissions';
@@ -585,15 +589,15 @@ class InstallWizardMainAdmin {
             $name = $display_name;
             if ($actorExists) {
                 $upA = $pdo->prepare('UPDATE `' . str_replace('`', '``', $actors_t) . '` SET slug = ?, name = ?, actor_source_id = ?, actor_source_type = ?, updated_ymdhis = ? WHERE actor_id = ?');
-                $upA->execute(array($slug, $name, $auth_id, $auth_t, $now, $actor_id));
+                $upA->execute(array($slug, $name, $auth_id, 'user', $now, $actor_id));
                 $log[] = InstallWizardLogger::logEntry('ok', 'Updated main admin actor (actor_id ' . $actor_id . ').');
             } else {
                 $insA = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $actors_t) . '` (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type) VALUES (?, ?, ?, ?, ?, ?, 1, 0, NULL, ?, ?)');
-                $insA->execute(array($actor_id, 'user', $slug, $name, $now, $now, $auth_id, $auth_t));
+                $insA->execute(array($actor_id, 'user', $slug, $name, $now, $now, $auth_id, 'user'));
                 $log[] = InstallWizardLogger::logEntry('ok', 'Created main admin actor (actor_id ' . $actor_id . ').');
             }
 
-            $channels = array(0, 1, 42);
+            $channels = array(0, 1, 42, 51);
             $nextAcrId = (int) $pdo->query('SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM `' . str_replace('`', '``', $acr_t) . '`')->fetchColumn();
             $insAcr = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $acr_t) . '` (actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted) VALUES (?, ?, ?, ?, ?, ?, 0)');
             foreach ($channels as $chId) {
@@ -603,6 +607,18 @@ class InstallWizardMainAdmin {
                     $insAcr->execute(array($nextAcrId, $actor_id, $chId, 'captain', $now, $now));
                     $log[] = InstallWizardLogger::logEntry('ok', 'Assigned captain on channel ' . $chId . ' for main admin.');
                     $nextAcrId++;
+                }
+            }
+
+            $nextAcId = (int) $pdo->query('SELECT COALESCE(MAX(actor_channel_id), 0) + 1 FROM `' . str_replace('`', '``', $ac_t) . '`')->fetchColumn();
+            $insAc = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $ac_t) . '` (actor_channel_id, actor_id, channel_id, status, start_date, channel_color, created_ymdhis, updated_ymdhis, is_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0)');
+            foreach ($channels as $chId) {
+                $checkAc = $pdo->prepare('SELECT 1 FROM `' . str_replace('`', '``', $ac_t) . '` WHERE actor_id = ? AND channel_id = ? AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1');
+                $checkAc->execute(array($actor_id, $chId));
+                if (!$checkAc->fetchColumn()) {
+                    $insAc->execute(array($nextAcId, $actor_id, $chId, 'A', $now, 'F7FAFF', $now, $now));
+                    $log[] = InstallWizardLogger::logEntry('ok', 'Added main admin to channel ' . $chId . ' (actor_channels).');
+                    $nextAcId++;
                 }
             }
 

@@ -55,7 +55,7 @@ These tables are targets of `import_from_old_crafty_syntax.sql`. They **must** r
 
 ## Required Lupopedia Core Tables
 
-*(All tables in this section are in `install_new_lupopedia.sql`. Count excludes the four tables moved to future_features. lupo_channel_roles removed in 4.0.6.)*
+*(All tables in this section are in `install_new_lupopedia.sql`. 197 tables now out of 200; count excludes the four tables moved to future_features. lupo_channel_roles removed in 4.0.6.)*
 
 - lupo_actor_actions
 - lupo_actor_capabilities

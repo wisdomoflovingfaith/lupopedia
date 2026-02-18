@@ -107,9 +107,19 @@ if ($visitor_mode) {
         $stmt->execute([':tid' => $dialog_thread_id_visitor, ':channel_id' => $channel_id, ':after' => $after_ymdhis]);
     }
 } else {
+    $has_access = false;
     $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channels WHERE actor_id = :actor_id AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
     $stmt->execute([':actor_id' => $actor_id, ':channel_id' => $channel_id]);
-    if ($stmt->fetch() === false) {
+    if ($stmt->fetch() !== false) {
+        $has_access = true;
+    }
+    if (!$has_access && isset($GLOBALS['lupo_auth_service'])) {
+        $auth = $GLOBALS['lupo_auth_service'];
+        if (is_object($auth) && method_exists($auth, 'isAdmin') && $auth->isAdmin($actor_id)) {
+            $has_access = true;
+        }
+    }
+    if (!$has_access) {
         header('Content-Type: application/json');
         echo json_encode(['refresh' => false]);
         exit;

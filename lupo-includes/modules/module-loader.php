@@ -396,6 +396,39 @@ function lupo_route_slug($slug) {
         }
     }
 
+    // CHANNELS ROUTE: /channels/my-channels — list channels the current actor has a role in
+    if ($slug === 'channels/my-channels') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $channels_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channels-controller.php';
+        if (file_exists($channels_controller_path)) {
+            require_once $channels_controller_path;
+            if (function_exists('channels_handle_my_channels')) {
+                return channels_handle_my_channels();
+            }
+        }
+        $content_renderer = $app_root . '/lupo-includes/modules/content/renderers/content-renderer.php';
+        if (file_exists($content_renderer)) {
+            require_once $content_renderer;
+        }
+        return render_main_layout(array(
+            'page_body' => '<p>My Channels unavailable.</p>',
+            'page_title' => 'My Channels',
+        ));
+    }
+
+    // CHANNELS ROUTE: /channels/{channel_id}/stream — iframe message stream (legacy livehelp pattern)
+    if (preg_match('#^channels/(\d+)/stream/?$#', $slug, $matches)) {
+        $channel_id = (int)$matches[1];
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $channels_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channels-controller.php';
+        if (file_exists($channels_controller_path)) {
+            require_once $channels_controller_path;
+            if (function_exists('channels_handle_stream')) {
+                return channels_handle_stream($channel_id);
+            }
+        }
+    }
+
     // CHANNELS ROUTE: /channels/{channel_id}/ or /channels/{channel_id}
     if (preg_match('#^channels/(\d+)/?$#', $slug, $matches)) {
         $channel_id = (int)$matches[1];

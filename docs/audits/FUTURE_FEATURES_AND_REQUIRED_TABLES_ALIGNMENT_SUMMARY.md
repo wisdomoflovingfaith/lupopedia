@@ -16,7 +16,7 @@ Required tables are the union of:
 The canonical list is documented in **docs/REQUIRED_TABLES_4.0.6.md** under:
 
 - **Required Crafty Syntax Compatibility Tables (Importer)** — 21 tables (importer targets).
-- **Required Lupopedia Core Tables** — 200 tables (after moving 4 to future_features).
+- **Required Lupopedia Core Tables** — 197 tables now out of 200 (after moving 4 to future_features).
 
 All of these tables are created by `install_new_lupopedia.sql` and must not be removed or moved to `future_features_lupopedia.sql`.
 

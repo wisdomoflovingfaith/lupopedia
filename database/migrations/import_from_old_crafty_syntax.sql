@@ -1633,7 +1633,7 @@ FROM (
     INNER JOIN lupo_auth_users au ON au.username = u.username
     INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
     CROSS JOIN (SELECT @arn := 0) v
-    WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y' AND (u.is_deleted = 0 OR u.is_deleted IS NULL)
+    WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y'
       AND NOT EXISTS (SELECT 1 FROM lupo_actor_departments ad2 WHERE ad2.actor_id = a.actor_id AND ad2.department_id = 0 AND (ad2.is_deleted = 0 OR ad2.is_deleted IS NULL))
     ORDER BY a.actor_id
 ) t
@@ -1648,7 +1648,7 @@ FROM (
     INNER JOIN lupo_auth_users au ON au.username = u.username
     INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
     CROSS JOIN (SELECT @drn := 0) v
-    WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y' AND (u.is_deleted = 0 OR u.is_deleted IS NULL)
+    WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y'
       AND NOT EXISTS (SELECT 1 FROM lupo_department_roles dr2 WHERE dr2.actor_id = a.actor_id AND dr2.department_id = 0 AND dr2.role_key = 'administrator' AND (dr2.is_deleted = 0 OR dr2.is_deleted IS NULL))
     ORDER BY a.actor_id
 ) t

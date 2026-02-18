@@ -88,7 +88,7 @@ Today, Lupopedia 4.0.x carries forward both lineages:
 - the **behavioral intelligence** born from Crafty Syntax  
 
 The schema has been refined from 222 tables to a stable, doctrine‑driven core.  
-The goal is to keep the system under 200 tables (196 as of 2/14/2026 per TOON files).  
+The goal is to keep the system under 200 tables (197 as of 2/17/2026 per TOON files).  
 Every table has a purpose.  
 Every subsystem is a chapter in a living OS designed to last decades.
 

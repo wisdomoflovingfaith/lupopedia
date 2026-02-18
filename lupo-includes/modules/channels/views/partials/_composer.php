@@ -100,6 +100,10 @@ $actor_name = isset($current_actor_name) ? $current_actor_name : (isset($actor_n
             lastTypingValue = '';
             var ev = new CustomEvent('channel-message-sent');
             document.getElementById('channel-operator-interface').dispatchEvent(ev);
+            var ifr = document.getElementById('channel-stream-iframe');
+            if (ifr && ifr.contentWindow) {
+                ifr.contentWindow.postMessage('channel-message-sent', '*');
+            }
         };
         xhr.send(body);
     });

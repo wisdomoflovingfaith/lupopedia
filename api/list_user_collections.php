@@ -29,6 +29,10 @@ if (!$config_loaded) {
     exit;
 }
 
+if (!defined('LUPOPEDIA_PATH')) {
+    define('LUPOPEDIA_PATH', dirname(dirname(__DIR__)));
+}
+
 // Load bootstrap
 if (file_exists(LUPOPEDIA_PATH . '/lupo-includes/bootstrap.php')) {
     require_once LUPOPEDIA_PATH . '/lupo-includes/bootstrap.php';

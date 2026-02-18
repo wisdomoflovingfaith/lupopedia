@@ -40,17 +40,14 @@ $actor_has_channel_role = isset($actor_has_channel_role) ? $actor_has_channel_ro
         </div>
     </header>
     <div class="channel-interface-body">
-        <!-- Panel 1: Unified message stream (all threads interleaved by created_ymdhis; legacy §1) -->
-        <main class="channel-panel channel-panel-message-stream" aria-label="Channel messages (all threads)">
-            <?php
-            $partial = __DIR__ . '/partials/_message_stream.php';
-            if (file_exists($partial)) {
-                include $partial;
-            } else {
-                echo '<ul class="channel-message-stream" id="channel-message-stream" role="log"><li class="channel-no-messages">No messages yet.</li></ul>';
-            }
-            ?>
-        </main>
+        <!-- Panel 1: Message stream in iframe (legacy livehelp pattern — fixed height, does not extend past viewport) -->
+        <?php
+        $stream_src = $base . '/channels/' . $channel_id . '/stream';
+        if (!empty($_GET['clear'])) {
+            $stream_src .= '?clear=' . rawurlencode((string) $_GET['clear']);
+        }
+        ?>
+        <iframe id="channel-stream-iframe" class="channel-stream-iframe" src="<?= htmlspecialchars($stream_src) ?>" title="Channel messages"></iframe>
         <!-- Panel 2: Channel roles + visitors (legacy admin_users) -->
         <aside class="channel-panel channel-panel-people" aria-label="Channel roles and visitors">
             <h2 class="channel-panel-title">Channel roles &amp; visitors</h2>
@@ -94,128 +91,7 @@ $actor_has_channel_role = isset($actor_has_channel_role) ? $actor_has_channel_ro
     </footer>
 </div>
 <script>
-(function() {
-    var base = document.getElementById('channel-operator-interface').getAttribute('data-base') || '';
-    var channelId = document.getElementById('channel-operator-interface').getAttribute('data-channel-id') || '0';
-    var actorId = document.getElementById('channel-operator-interface').getAttribute('data-actor-id') || '0';
-    var afterYmdhis = document.getElementById('channel-operator-interface').getAttribute('data-initial-after-ymdhis') || '0';
-    var streamEl = document.getElementById('channel-message-stream');
-    var messagesUrl = base + '/api/channel/messages';
-    var checkUrl = base + '/api/channel/check';
-    var pollInterval = 2100;
-    var pollCount = 0;
-    var maxPollBeforeCheck = 15;
-    var useCheckFallback = false;
-
-    function escapeHtml(s) {
-        if (s == null) return '';
-        var div = document.createElement('div');
-        div.textContent = s;
-        return div.innerHTML;
-    }
-
-    function renderMessage(m, threadColors, actorNames) {
-        var tid = parseInt(m.dialog_thread_id, 10) || 0;
-        var bg = (threadColors[tid] && /^[0-9A-Fa-f]{6}$/.test(threadColors[tid])) ? threadColors[tid] : 'FFFACD';
-        var fromId = parseInt(m.from_actor_id, 10) || 0;
-        var sender = actorNames[fromId] || ('actor_' + fromId);
-        var msgId = parseInt(m.dialog_message_id, 10) || 0;
-        return '<li class="channel-message-block" data-message-id="' + msgId + '" data-thread-id="' + tid + '" style="background-color:#' + escapeHtml(bg) + ';">' +
-            '<span class="channel-message-block-meta">' + escapeHtml(m.created_ymdhis || '') + '</span> ' +
-            '<span class="channel-message-block-sender">' + escapeHtml(sender) + ':</span> ' +
-            '<span class="channel-message-block-text">' + escapeHtml(m.message_text || '') + '</span></li>';
-    }
-
-    function appendMessages(data) {
-        if (!streamEl || !data.messages || data.messages.length === 0) return;
-        var placeholder = streamEl.querySelector('.channel-no-messages');
-        if (placeholder) placeholder.remove();
-        var colors = data.thread_colors || {};
-        var names = data.actor_names || {};
-        var frag = document.createDocumentFragment();
-        data.messages.forEach(function(m) {
-            var li = document.createElement('li');
-            li.className = 'channel-message-block';
-            li.setAttribute('data-message-id', m.dialog_message_id || '');
-            li.setAttribute('data-thread-id', m.dialog_thread_id || '');
-            var tid = parseInt(m.dialog_thread_id, 10) || 0;
-            var bg = (colors[tid] && /^[0-9A-Fa-f]{6}$/.test(colors[tid])) ? colors[tid] : 'FFFACD';
-            li.style.backgroundColor = '#' + bg;
-            var meta = document.createElement('span');
-            meta.className = 'channel-message-block-meta';
-            meta.textContent = m.created_ymdhis || '';
-            var sender = document.createElement('span');
-            sender.className = 'channel-message-block-sender';
-            sender.textContent = (names[m.from_actor_id] || ('actor_' + m.from_actor_id)) + ': ';
-            var text = document.createElement('span');
-            text.className = 'channel-message-block-text';
-            text.textContent = m.message_text || '';
-            li.appendChild(meta);
-            li.appendChild(sender);
-            li.appendChild(text);
-            frag.appendChild(li);
-        });
-        streamEl.appendChild(frag);
-        if (data.last_ymdhis) afterYmdhis = data.last_ymdhis;
-        var main = streamEl.closest('.channel-panel-message-stream');
-        if (main) main.scrollTop = main.scrollHeight;
-    }
-
-    function primaryPoll() {
-        var url = messagesUrl + '?channel_id=' + encodeURIComponent(channelId) + '&after_ymdhis=' + encodeURIComponent(afterYmdhis);
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState !== 4) return;
-            pollCount++;
-            try {
-                var data = JSON.parse(xhr.responseText || '{}');
-                if (data.messages && data.messages.length > 0) {
-                    appendMessages(data);
-                }
-                if (data.last_ymdhis) afterYmdhis = data.last_ymdhis;
-            } catch (e) {}
-            if (pollCount >= maxPollBeforeCheck) useCheckFallback = true;
-        };
-        xhr.onerror = function() { useCheckFallback = true; };
-        xhr.send();
-    }
-
-    function secondaryCheck() {
-        var url = checkUrl + '?channel_id=' + encodeURIComponent(channelId) + '&after_ymdhis=' + encodeURIComponent(afterYmdhis);
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState !== 4) return;
-            try {
-                var data = JSON.parse(xhr.responseText || '{}');
-                if (data.refresh === true) {
-                    window.location.reload();
-                }
-            } catch (e) {}
-        };
-        xhr.send();
-    }
-
-    function tick() {
-        if (useCheckFallback) {
-            secondaryCheck();
-        } else {
-            primaryPoll();
-        }
-    }
-
-    var iface = document.getElementById('channel-operator-interface');
-    if (iface) {
-        iface.addEventListener('channel-message-sent', function() {
-            tick();
-        });
-    }
-
-    setInterval(tick, pollInterval);
-    tick();
-})();
+// Message stream polls inside the iframe (channel stream view). When composer sends a message, iframe is notified via postMessage in _composer.php.
 
 // Pending visitors poll, sound, title flash, accept (legacy: admin_users peoplestring + accept)
 (function() {

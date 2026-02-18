@@ -283,7 +283,7 @@ Users create tabs, subtabs, and collections. Lupopedia extracts tab‑paths, nor
 - **No foreign keys, triggers, or stored procedures** (absolute prohibition).  
 - All timestamps use `YYYYMMDDHHIISS` in UTC.  
 - Schema changes must come from TOON files in `/docs/toons/`.  
-- Table count goal: under 200 (196 as of 2/14/2026; enforced by doctrine).  
+- Table count goal: under 200 (197 tables now out of 200 as of 2/17/2026; enforced by doctrine).  
 - **Python** = maintenance (`scripts/python/`, PyMySQL, explicit SQL).  
 - **PHP** = runtime only (no schema changes). PHP must be compatible with **PHP 5.3 through 8.3+**. Do not use PHP 8‑only features (named arguments, attributes, union types, match expressions). New code must use OOP (classes, methods).  
 - Uploads use SHA256 hash filenames under `uploads/{actors,agents,channels}/YYYY/MM/`.  

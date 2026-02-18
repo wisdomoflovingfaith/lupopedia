@@ -37,7 +37,7 @@ $version_php = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTOR
 if (is_file($version_php)) {
     require_once $version_php;
 }
-$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.16';
+$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.17';
 
 /**
  * PHP 5.3-safe random bytes. Uses random_bytes() when available (PHP 7+), else openssl_random_pseudo_bytes, else mt_rand fallback.
@@ -539,12 +539,18 @@ if ($step === 'config') {
             $config_errors[] = 'Support email must be a valid email address or empty.';
         }
         $install_type_for_config = isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : 'new';
+        $admin_password = isset($_POST['admin_password']) ? (string) $_POST['admin_password'] : '';
+        $admin_password_confirm = isset($_POST['admin_password_confirm']) ? (string) $_POST['admin_password_confirm'] : '';
         if ($install_type_for_config === 'new') {
-            $admin_password = isset($_POST['admin_password']) ? (string) $_POST['admin_password'] : '';
-            $admin_password_confirm = isset($_POST['admin_password_confirm']) ? (string) $_POST['admin_password_confirm'] : '';
             if ($admin_password === '') {
                 $config_errors[] = 'Main admin password is required for new installs.';
             } elseif (strlen($admin_password) < 8) {
+                $config_errors[] = 'Main admin password must be at least 8 characters.';
+            } elseif ($admin_password !== $admin_password_confirm) {
+                $config_errors[] = 'Main admin password and confirmation do not match.';
+            }
+        } elseif ($admin_password !== '' || $admin_password_confirm !== '') {
+            if (strlen($admin_password) < 8) {
                 $config_errors[] = 'Main admin password must be at least 8 characters.';
             } elseif ($admin_password !== $admin_password_confirm) {
                 $config_errors[] = 'Main admin password and confirmation do not match.';
@@ -570,11 +576,12 @@ if ($step === 'config') {
             if ($db_vars !== null) {
                 $writeLog = array();
                 $table_prefix = isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_';
-                if ($install_type_for_config === 'new') {
-                    $admin_password = isset($_POST['admin_password']) ? (string) $_POST['admin_password'] : '';
+                $admin_password_for_create = isset($_POST['admin_password']) ? (string) $_POST['admin_password'] : '';
+                $should_create_main_admin = ($install_type_for_config === 'new' && $admin_password_for_create !== '') || ($install_type_for_config === 'upgrade' && $admin_password_for_create !== '');
+                if ($should_create_main_admin) {
                     try {
                         $pdoConfig = InstallWizardDb::connectPdo($db_vars);
-                        if (!InstallWizardMainAdmin::createMainAdmin($pdoConfig, $table_prefix, $config_values['admin_email'], $admin_password, $writeLog)) {
+                        if (!InstallWizardMainAdmin::createMainAdmin($pdoConfig, $table_prefix, $config_values['admin_email'], $admin_password_for_create, $writeLog)) {
                             $config_errors[] = 'Could not create main admin user. Check the log.';
                         }
                     } catch (PDOException $e) {
@@ -1010,9 +1017,11 @@ if ($baseUrl === '') {
                 <label>Site name <input type="text" name="site_name" value="<?php echo htmlspecialchars($config_values['site_name']); ?>" required></label>
                 <label>Base URL (must end with /) <input type="text" name="base_url" value="<?php echo htmlspecialchars($config_values['base_url']); ?>" placeholder="/path/to/lupopedia/" required></label>
                 <label>Admin email <input type="email" name="admin_email" value="<?php echo htmlspecialchars($config_values['admin_email']); ?>" required></label>
-                <?php if ((isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'new'): ?>
-                <label>Main admin password (user id 10000, captain on channels 0 &amp; 42, global admin) <input type="password" name="admin_password" value="" minlength="8" required placeholder="At least 8 characters"></label>
-                <label>Confirm password <input type="password" name="admin_password_confirm" value="" minlength="8" required placeholder="Same as above"></label>
+                <?php $is_new_install = (isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'new'; ?>
+                <label>Admin password (user id 10000, captain on channels 0 &amp; 42, global admin) <input type="password" name="admin_password" value="" minlength="8" <?php echo $is_new_install ? 'required' : ''; ?> placeholder="At least 8 characters"></label>
+                <label>Confirm password <input type="password" name="admin_password_confirm" value="" minlength="8" <?php echo $is_new_install ? 'required' : ''; ?> placeholder="Same as above"></label>
+                <?php if (!$is_new_install): ?>
+                <p class="slug-tip">On upgrade, password is optional; if set, the main admin user (10000) will be created or updated with this email and password.</p>
                 <?php endif; ?>
                 <label>Timezone
                     <select name="timezone">
