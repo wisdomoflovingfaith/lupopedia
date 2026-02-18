@@ -1,3 +1,11 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/doctrine/VERSIONING_DOCTRINE.md
+file.last_modified_system_version: "4.0.15"
+file.last_modified_utc: "20260217235900"
+# channel_id unresolved — requires lupo_contents lookup by application.
+---
 # Versioning Doctrine (Single Source of Truth)
 
 **Date:** 2026-02-12  

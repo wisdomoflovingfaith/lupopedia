@@ -22,13 +22,18 @@ As we continue development on a version, we append new changes under that versio
 
 - **Initialized Lupopedia 4.0.15** development cycle.
 - **Version bump 4.0.14 → 4.0.15** in config/global_atoms.yaml, lupo-includes/version.php, install.php, lupo-includes/functions/load_atoms.php, install_wizard_classes.php, database/migrations/seed_lupopedia.sql (including FLIP content 2001 and @lupo_version / @lupo_version_code).
-- **Seed-based .md ingestion:** All .md files are ingested into lupo_contents, lupo_unified_registry, and lupo_edges during seed. First batch (~30 doctrine .md files, content_id 5000-5029) inlined in seed_lupopedia.sql. tools/md_flip_ingest.py with --seed-mode and -o for batch generation.
+- **Actor 1000 (CAPTAIN):** wisdomoflovingfaith@gmail.com; admin roles on channels 0, 42, 51 via lupo_actor_channels and lupo_actor_channel_roles.
+- **ANUBIS doctrine completed:** docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md, ANUBIS_ORPHAN_RULES.md, ANUBIS_PROGRAM_SPEC.md. Doctrine content in lupo_contents on channels 0 and 51 for contextual classification, orphan resolution hints, lineage/redirect logic.
+- **ANUBIS program implemented:** tools/anubis_orphan_scanner.py (Python orphan scanner, resolver, adoption planner); lupo-includes/classes/ANUBIS_Resolver.php (PHP 5.3: classifyOrphan, resolveParent, adoptIntoSeed).
+- **ANUBIS adoption:** Multiple orphaned dialog messages adopted into channel 42 seed thread via ANUBIS doctrine.
+- **HYBRID FLIP headers:** Implemented for ANUBIS doctrine files. Verified FLIP headers for all FLIP/FLP/LILITH/LEXA doctrine files.
+- **Seed-based .md ingestion:** All .md files ingested into lupo_contents, lupo_unified_registry, lupo_edges during seed. First batch (~30 doctrine .md files, content_id 5000–5029) inlined in seed_lupopedia.sql. tools/md_flip_ingest.py with --seed-mode and -o for batch generation.
 - **Channel mapping:** Doctrine .md files (docs/doctrine/) mapped to channels 0 (System Kernel) and 51 (Doctrine Council); other .md files mapped to channel 0.
-- **Actor 1000 (CAPTAIN):** Ensured full access on channels 0, 42, and 51 via lupo_actor_channels and lupo_actor_channel_roles (admin role).
-- **ANUBIS doctrine:** Updated docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md — doctrine content in lupo_contents on channels 0 and 51 for contextual classification, orphan resolution hints, lineage/redirect logic.
-- **Install wizard — main admin user:** For **new installs**, the Config step now includes main admin account creation. Default email **captain@lupopedia.com**; user enters password (min 8 characters). Creates **auth_user_id 10000**, **actor_id 10000** (reserved ID doctrine: explicit ID; if exists → UPDATE, else INSERT). Main admin receives: captain role on **channel 0** (system kernel), **channel 1** (Administration), **channel 42** (Lupopedia Development); administrator on **department 0** (system); **owner** on Admin module (global admin access). InstallWizardMainAdmin class in install_wizard_classes.php; PHP 5.3–safe bcrypt in wizard (no config dependency).
-- **Universal agent flipping:** Unchanged behavior; LUPOPEDIA_PUBLIC_PATH subdir support documented. api/flip-header.php, docs/api/FLIP_API.md, docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md version references updated to 4.0.15.
+- **ContentChannelActorResolver and FLIP loader:** Stability confirmed; no behavioral changes.
+- **Universal flipping API:** api/flip-header.php remains functional and documented. LUPOPEDIA_PUBLIC_PATH subdir support documented. docs/api/FLIP_API.md, docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md version references updated to 4.0.15.
+- **docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md:** Updated with hybrid optional field rules (mood_rgb, tags, atoms).
 - **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md:** Header and dialog updated to 4.0.15; message notes wizard main admin and FLIP API.
+- **Install wizard — main admin user:** For **new installs**, the Config step includes main admin account creation. Default email **captain@lupopedia.com**; user enters password (min 8 characters). Creates **auth_user_id 10000**, **actor_id 10000** (reserved ID doctrine: explicit ID; if exists → UPDATE, else INSERT). Main admin receives: captain role on **channel 0** (system kernel), **channel 1** (Administration), **channel 42** (Lupopedia Development); administrator on **department 0** (system); **owner** on Admin module (global admin access). InstallWizardMainAdmin class in install_wizard_classes.php; PHP 5.3–safe bcrypt in wizard (no config dependency).
 - No new schema; seed already had messages 30–31 and FLIP content; generate_flip_header.py (--web) and import_os.py (tags → lupo_contents.tags) unchanged.
 
 ---
