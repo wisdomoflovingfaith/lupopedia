@@ -9,7 +9,7 @@
  * Fallback philosophy: degrade gracefully; do not block unless absolutely required. No GD requirement (image.php uses raw output).
  *
  * A. Detect: livehelp_* tables exist → upgrade; else → new install.
- * B. New install: install_new_lupopedia.sql, then seed_lupopedia.sql.
+ * B. New install: install_new_lupopedia.sql (includes all required tables, e.g. lupo_bans_log for Ban at Gate audit), then seed_lupopedia.sql.
  * C. Upgrade: Identity Normalization (required) → validate all emails unique → update livehelp_users
  *    → then install → seed → import → drop → config. Normalization runs before any Lupopedia SQL:
  *    Crafty uses username/password; Lupopedia uses email/password with unique email. Operators get
@@ -37,7 +37,7 @@ $version_php = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTOR
 if (is_file($version_php)) {
     require_once $version_php;
 }
-$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.17';
+$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.18';
 
 /**
  * PHP 5.3-safe random bytes. Uses random_bytes() when available (PHP 7+), else openssl_random_pseudo_bytes, else mt_rand fallback.

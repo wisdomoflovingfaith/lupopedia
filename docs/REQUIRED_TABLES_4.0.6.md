@@ -74,6 +74,7 @@ These tables are targets of `import_from_old_crafty_syntax.sql`. They **must** r
 - lupo_actor_truth_edges
 - lupo_actors
 - lupo_banned_actors
+- lupo_bans_log
 - lupo_agent_context_snapshots
 - lupo_agent_dependencies
 - lupo_agent_experiences

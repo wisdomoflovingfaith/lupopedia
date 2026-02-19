@@ -141,6 +141,85 @@ function content_lookup_by_slug($slug) {
 }
 
 /**
+ * Look up content by content_id (4.0.18 T3 — web path resolution).
+ *
+ * @param int $content_id The content ID
+ * @return array|null Content record or null if not found
+ */
+function content_lookup_by_id($content_id) {
+    if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
+        return null;
+    }
+    $content_id = (int) $content_id;
+    if ($content_id <= 0) {
+        return null;
+    }
+    try {
+        $pdo = get_pdo_connection();
+        if (!$pdo) {
+            return null;
+        }
+        $stmt = $pdo->prepare("
+            SELECT * FROM lupo_contents
+            WHERE content_id = :content_id AND (is_deleted = 0 OR is_deleted IS NULL) AND (is_active = 1 OR is_active IS NULL)
+            LIMIT 1
+        ");
+        $stmt->execute(array('content_id' => $content_id));
+        $content = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($content) {
+            if (!empty($content['metadata_json'])) {
+                $content['metadata'] = json_decode($content['metadata_json'], true);
+            }
+            if (!empty($content['aal_metadata_json'])) {
+                $content['aal_metadata'] = json_decode($content['aal_metadata_json'], true);
+            }
+            if (!isset($content['content_name']) && isset($content['title'])) {
+                $content['content_name'] = $content['title'];
+            }
+            if (!isset($content['content_body']) && isset($content['body'])) {
+                $content['content_body'] = $content['body'];
+            }
+            return $content;
+        }
+        return null;
+    } catch (Exception $e) {
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            error_log('Content lookup by ID error: ' . $e->getMessage());
+        }
+        return null;
+    }
+}
+
+/**
+ * Show content by content_id (4.0.18 T3 — serve resolved web path).
+ *
+ * @param int $content_id The content ID
+ * @return string Rendered HTML page or empty on not found
+ */
+function content_show_by_content_id($content_id) {
+    $content = content_lookup_by_id($content_id);
+    if (!$content) {
+        return content_render_404('id:' . (int) $content_id);
+    }
+    $related_edges = content_get_related_edges($content['content_id']);
+    $page_body = content_render_canonical($content, $related_edges);
+    $context = array(
+        'page_body' => $page_body,
+        'page_title' => isset($content['title']) ? $content['title'] : (isset($content['content_name']) ? $content['content_name'] : ''),
+        'content' => $content,
+        'content_type' => isset($content['content_type']) ? $content['content_type'] : 'markdown',
+        'related_edges' => $related_edges,
+        'meta' => array(
+            'description' => isset($content['description']) ? $content['description'] : '',
+            'slug' => isset($content['slug']) ? $content['slug'] : '',
+            'created_ymdhis' => isset($content['created_ymdhis']) ? $content['created_ymdhis'] : '',
+            'updated_ymdhis' => isset($content['updated_ymdhis']) ? $content['updated_ymdhis'] : '',
+        ),
+    );
+    return render_main_layout($context);
+}
+
+/**
  * Get related edges for content
  * 
  * @param int $content_id The content ID

@@ -48,6 +48,23 @@ CREATE INDEX lupo_banned_actors_idx_ip_address ON lupo_banned_actors (ip_address
 CREATE INDEX lupo_banned_actors_idx_is_deleted ON lupo_banned_actors (is_deleted);
 -- Banned actors: ANUBIS does not adopt orphans from these actor_ids. Single source of truth for bans.
 
+CREATE TABLE lupo_bans_log (
+  bans_log_id bigint NOT NULL AUTO_INCREMENT,
+  actor_id bigint NOT NULL,
+  uri varchar(1024) NOT NULL DEFAULT '',
+  resolved_uri varchar(1024) NOT NULL DEFAULT '',
+  ban_scope varchar(64) NOT NULL DEFAULT 'router',
+  banned_ymdhis bigint NOT NULL,
+  user_agent varchar(500) DEFAULT NULL,
+  ip_address varchar(45) DEFAULT NULL,
+  PRIMARY KEY (bans_log_id)
+);
+
+CREATE INDEX lupo_bans_log_idx_actor_id ON lupo_bans_log (actor_id);
+CREATE INDEX lupo_bans_log_idx_banned_ymdhis ON lupo_bans_log (banned_ymdhis);
+CREATE INDEX lupo_bans_log_idx_ban_scope ON lupo_bans_log (ban_scope);
+-- Router Ban at Gate (4.0.18 T7): audit log for 403 events; lupo_log_ban_event() writes here.
+
 CREATE TABLE lupo_actor_actions (
   actor_action_id bigint NOT NULL,
   actor_id bigint NOT NULL,

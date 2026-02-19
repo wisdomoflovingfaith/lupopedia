@@ -124,9 +124,125 @@ if (file_exists($leads_module)) {
  * @return string The response from the routed module
  */
 function lupo_route_slug($slug) {
-    // Normalize slug
-    $slug = ltrim(strtolower($slug), '/');
-    
+    $slug = ltrim(trim($slug), '/');
+    if ($slug === '') {
+        return '';
+    }
+
+    // 4.0.18 T3 — Web path resolution (doctrine/qa/docs/flp). Check before lowercasing (paths are case-sensitive).
+    if (preg_match('#^(doctrine|qa|docs|flp)/#i', $slug) && function_exists('lupo_resolve_web_path')) {
+        $resolved = lupo_resolve_web_path($slug);
+        if ($resolved && is_array($resolved)) {
+            $canonical = isset($resolved['canonical']) ? trim($resolved['canonical'], '/') : '';
+            $is_alias = isset($resolved['is_alias']) && $resolved['is_alias'];
+            $alias_redirect = isset($resolved['alias_redirect']) ? $resolved['alias_redirect'] : true;
+            $content_id = isset($resolved['content_id']) ? (int) $resolved['content_id'] : 0;
+
+            // 4.0.18 T7 — Ban at Gate: before redirect or content, block banned actors.
+            if (function_exists('lupo_get_current_actor_id') && function_exists('lupo_is_actor_banned')) {
+                $current_actor_id = lupo_get_current_actor_id();
+                if ($current_actor_id !== null && lupo_is_actor_banned($current_actor_id)) {
+                    if (function_exists('lupo_log_ban_event')) {
+                        lupo_log_ban_event($current_actor_id, $slug, $canonical !== '' ? $canonical : $slug);
+                    }
+                    if (!headers_sent()) {
+                        header('HTTP/1.0 403 Forbidden');
+                    }
+                    $tpl = defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : '');
+                    $tpl = rtrim(str_replace('\\', '/', $tpl), '/') . '/templates/errors/403_banned.php';
+                    if (is_file($tpl)) {
+                        $requested_path = $slug;
+                        ob_start();
+                        include $tpl;
+                        return ob_get_clean();
+                    }
+                    return '<div class="lupopedia-403"><h1>Access Denied</h1><p>Your account is restricted from accessing this content.</p><p>Requested path: <code>' . htmlspecialchars($slug) . '</code></p></div>';
+                }
+            }
+
+            if ($is_alias && $alias_redirect && $canonical !== '') {
+                $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+                $redirect_url = $base . '/' . $canonical;
+                if (!headers_sent()) {
+                    header('Location: ' . $redirect_url, true, 302);
+                    exit;
+                }
+            }
+            if ($content_id > 0) {
+                $content_controller = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/content-controller.php';
+                if (file_exists($content_controller)) {
+                    require_once $content_controller;
+                    if (function_exists('content_show_by_content_id')) {
+                        $out = content_show_by_content_id($content_id);
+                        if ($out !== null && $out !== '') {
+                            return $out;
+                        }
+                    }
+                }
+            }
+        } else {
+            // 4.0.18 T7 — Ban at Gate: block banned actors before Smart 404.
+            if (function_exists('lupo_get_current_actor_id') && function_exists('lupo_is_actor_banned')) {
+                $current_actor_id = lupo_get_current_actor_id();
+                if ($current_actor_id !== null && lupo_is_actor_banned($current_actor_id)) {
+                    if (function_exists('lupo_log_ban_event')) {
+                        lupo_log_ban_event($current_actor_id, $slug, '');
+                    }
+                    if (!headers_sent()) {
+                        header('HTTP/1.0 403 Forbidden');
+                    }
+                    $tpl = defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : '');
+                    $tpl = rtrim(str_replace('\\', '/', $tpl), '/') . '/templates/errors/403_banned.php';
+                    if (is_file($tpl)) {
+                        $requested_path = $slug;
+                        ob_start();
+                        include $tpl;
+                        return ob_get_clean();
+                    }
+                    return '<div class="lupopedia-403"><h1>Access Denied</h1><p>Your account is restricted from accessing this content.</p><p>Requested path: <code>' . htmlspecialchars($slug) . '</code></p></div>';
+                }
+            }
+            // 4.0.18 T4 — Smart 404: only when resolved_uri was passed, resolver returned null, under doctrine/qa/docs/flp
+            $is_auth = false;
+            $auth = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+            if ($auth && is_object($auth) && method_exists($auth, 'getCurrentUser')) {
+                $user = $auth->getCurrentUser();
+                $is_auth = is_array($user) && !empty($user);
+            } elseif (function_exists('current_user')) {
+                $user = current_user();
+                $is_auth = is_array($user) && !empty($user);
+            }
+            if (function_exists('lupo_smart_404')) {
+                $data = lupo_smart_404($slug, $is_auth);
+                $data['authenticated'] = $is_auth;
+                if (!headers_sent()) {
+                    header('HTTP/1.0 404 Not Found');
+                }
+                $tpl = defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : '');
+                $tpl = rtrim(str_replace('\\', '/', $tpl), '/') . '/templates/errors/smart_404.php';
+                if (is_file($tpl)) {
+                    ob_start();
+                    include $tpl;
+                    return ob_get_clean();
+                }
+                $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+                $html = '<div class="lupopedia-404"><h1>Page not found</h1><p>The path <code>' . htmlspecialchars($data['requested']) . '</code> was not found.</p>';
+                if (!empty($data['suggestions'])) {
+                    $html .= '<ul>';
+                    foreach ($data['suggestions'] as $p) {
+                        $html .= '<li><a href="' . htmlspecialchars($base . '/' . $p) . '">' . htmlspecialchars($p) . '</a></li>';
+                    }
+                    $html .= '</ul>';
+                }
+                $html .= '</div>';
+                return $html;
+            }
+        }
+    }
+
+    // Normalize slug for all other routes
+    $slug = strtolower($slug);
+
     // CANONICAL ROUTING DOCTRINE (New Standard)
     // Priority order:
     // 1. AUTH (authentication routes: /login, /logout, /admin)

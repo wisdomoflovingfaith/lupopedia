@@ -81,12 +81,16 @@ require_once LUPOPEDIA_CONFIG_PATH;
 
 /**
  * Extract slug from URL
- * Priority: $_GET['slug'] > PATH_INFO > REQUEST_URI
+ * Priority: $_GET['resolved_uri'] (T5 rewrite) > $_GET['slug'] > PATH_INFO > REQUEST_URI
  */
 $slug = '';
 
+// Method 0: 4.0.18 T5 — Server rewrite passed full path (doctrine/qa/docs/flp)
+if (isset($_GET['resolved_uri']) && $_GET['resolved_uri'] !== '') {
+    $slug = is_string($_GET['resolved_uri']) ? trim($_GET['resolved_uri'], '/') : '';
+}
 // Method 1: Check for slug parameter (from .htaccess rewrite)
-if (isset($_GET['slug']) && !empty($_GET['slug'])) {
+elseif (isset($_GET['slug']) && !empty($_GET['slug'])) {
     $slug = $_GET['slug'];
 }
 // Method 2: Check PATH_INFO

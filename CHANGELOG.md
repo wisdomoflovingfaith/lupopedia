@@ -15,6 +15,130 @@ As we continue development on a version, we append new changes under that versio
 - **4.1.0** will be the first version to support Lupopedia → Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
 
 ---
+ 
+
+## Lupopedia 4.0.18 — runtime web path resolution and routing — 2026-02-19 (released)
+
+### Overview
+
+**Released 2026-02-19.** 4.0.18 implements **runtime web path resolution and routing** for doctrine/qa/docs/flp: UrlResolver (DB → CSV → .md), server rewrites, PHP router wildcard, resolver caching (APCu/file), Smart 404 with auth-aware suggestions, **Ban at Gate** (router-level persona ban enforcement), and a **testing and validation suite**. Scope and task order are defined in **docs/channels/doctrine/WEB_ROUTING_DOCTRINE_4_0_18.md** and **docs/channels/doctrine/ROADMAP_4_0_18.md**.
+
+**Completed:** T1 (version bump), T2 (UrlResolver), T5 (rewrite rules), T3 (router wildcard), T6 (caching), T4 (Smart 404), T7 (Ban at Gate, including lupo_bans_log in install and migration), T8 (testing suite). All planned 4.0.18 routing tasks are complete.
+
+---
+
+### 1. Version bump (T1)
+
+- **4.0.17 → 4.0.18** in all locations per docs/doctrine/VERSIONING_DOCTRINE.md §8:
+  - **config/global_atoms.yaml** — version, last_updated (20260219000000), file.last_modified_system_version, versions.lupopedia, GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  - **lupo-includes/version.php** — docblock @version, fallback literal, LUPOPEDIA_VERSION_DATE (20260219000000), lupopedia_get_version() fallback
+  - **install.php** — wizard version fallback when LUPOPEDIA_VERSION undefined
+  - **lupo-includes/functions/load_atoms.php** — get_lupopedia_version() fallback
+  - **install_wizard_classes.php** — docblock "Lupopedia 4.0.18 — Install Wizard Classes"
+  - **database/migrations/seed_lupopedia.sql** — @lupo_version = '4.0.18', @lupo_version_code = 40018
+  - **docs/doctrine/VERSIONING_DOCTRINE.md** — canonical current version 4.0.18, provenance note, summary table, FLIP header (4.0.18 / 20260219000000)
+- **CHANGELOG.md** — "4.0.18 — Planned" replaced with "4.0.18 (in progress)" and scope summarized.
+
+---
+
+### 2. UrlResolver (T2)
+
+- **lupo-includes/classes/UrlResolver.php** — Runtime web path resolution.
+  - **Three-tier source:** (1) **DB** — lupo_contents by file_path_from_root (`docs/{path}.md` or `{path}.md`) or custom_path; (2) **Fallback 1** — exports/flip_headers.csv (web_canonical, web_aliases, web_slug, web_slug_encoding, web_base_path, web_url_pattern); (3) **Fallback 2** — parse .md FLIP headers from filesystem for paths under docs/. Logs a warning when CSV or .md fallback is used.
+  - **Normalization:** normalizePath() (trim slashes); normalizeSlug() per slug_encoding (underscore, plus, percent).
+  - **Resolve result:** content_id, file_path, canonical, is_alias, source (db|csv|md), slug_encoding, alias_redirect.
+  - **getCandidateCanonicalPaths($limit, $prefix, $is_authenticated)** — For Smart 404; supports multi-char prefix (e.g. first 3 chars of slug). **invalidateCsvCache()** for CSV map.
+  - PHP 5.3 compatible; PDO_DB only; LUPO_TABLE_PREFIX.
+- **lupo-includes/functions/url_resolver.php** — **lupo_resolve_web_path($request_path)**, **lupo_get_url_resolver()**, **lupo_invalidate_web_path_cache()**, **lupo_smart_404($request_path, $is_authenticated)** (returns array: status, suggestions, requested).
+- **lupo-includes/lupopedia-loader.php** — Loads UrlResolver class and url_resolver helper before module system.
+
+---
+
+### 3. Server rewrite rules (T5)
+
+- **.htaccess** — Rule before catch-all: `^(doctrine|qa|docs|flp)/(.+)$` → `index.php?resolved_uri=$1/$2` with `[QSA,L]`. Comment on enabling mod_rewrite (a2enmod rewrite / LoadModule).
+- **config/nginx-lupopedia-rewrite.conf** — Nginx snippet: `location ~ ^/(doctrine|qa|docs|flp)/(.+)$` with `try_files $uri /index.php?resolved_uri=$uri$is_args$args;`. Comment to adjust fastcgi_pass for PHP version.
+- **docs/channels/doctrine/4.0.18_ROUTING_DIAGNOSTICS.md** — T5 validation steps (var_dump, curl, verification). **docs/diagnostics/4.0.18_ROUTING_DIAGNOSTICS.md** — T5, T6, T4 validation and cache/Smart 404 notes.
+
+---
+
+### 4. PHP router wildcard (T3)
+
+- **index.php** — Slug extraction priority: `$_GET['resolved_uri']` first (T5 rewrite), then slug, PATH_INFO, REQUEST_URI. Doctrine/qa/docs/flp paths keep correct case.
+- **lupo-includes/modules/content/content-controller.php** — **content_lookup_by_id($content_id)**, **content_show_by_content_id($content_id)** — Lookup and render by content_id; 404 when not found. PHP 5.3 array().
+- **lupo-includes/modules/module-loader.php** — **Web-path branch** at start of lupo_route_slug (before lowercasing): pattern `^(doctrine|qa|docs|flp)/`. Calls lupo_resolve_web_path($slug). If resolved: alias + alias_redirect → 302 to canonical; content_id > 0 → content_show_by_content_id. If resolver returns null → Smart 404 (T4).
+
+---
+
+### 5. Caching (T6)
+
+- **UrlResolver.php** — **getCached($key)**, **setCached($key, $value, $ttl = 3600)**, **invalidateAllCaches()**. Cache key: `resolved_` . md5(normalized_path . (_auth|_anon)); value: full resolver result array; default TTL 3600s. **APCu** if available (apcu_fetch/apcu_store; prefix `resolved_`; index key `resolved_keys` for invalidation). **File fallback:** cache/resolved/ with JSON `{expires, value}`. **resolve()** wraps existing logic: before resolve check cache; after successful resolve store in cache; optional second parameter $is_authenticated for key; **detectAuthenticated()** for auto-detect.
+- **url_resolver.php** — **lupo_invalidate_web_path_cache()** — Calls invalidateAllCaches() and invalidateCsvCache() on resolver instance.
+- **docs/diagnostics/4.0.18_ROUTING_DIAGNOSTICS.md** — T6: how to test cache hits/misses, invalidation, APCu vs file fallback; when to invalidate (CSV change, flip_header_audit.py, installer/seed).
+
+---
+
+### 6. Smart 404 (T4)
+
+- **Trigger:** Only when T3 router has passed resolved_uri, path is under doctrine/qa/docs/flp, and UrlResolver returns null. Other paths keep existing 404 behavior.
+- **lupo_smart_404($request_path, $is_authenticated)** — Extracts slug via basename(); **prefix optimization:** first 3 chars of slug as prefix, filter candidates with getCandidateCanonicalPaths(100, $prefix); if fewer than 5 candidates, fall back to full list; Levenshtein only on candidates. **Auth-aware:** if not authenticated, suggestions array empty; if authenticated, top 5 by Levenshtein distance. Returns `array('status' => 'smart_404', 'suggestions' => array(), 'requested' => $request_path)`.
+- **templates/errors/smart_404.php** — "Page not found"; requested path in `<code>`; if suggestions: "Did you mean:" list of links; else "No similar paths found." Kapakai: authenticated with suggestions — "Try checking the spelling or browse the documentation."; anonymous — "Authenticated users may see suggestions."
+- **module-loader.php** — When resolver returns null in web-path branch: detect is_authenticated, call lupo_smart_404($slug, $is_auth), set 404 header, pass data to template (with authenticated flag), include templates/errors/smart_404.php or fallback inline HTML.
+- **docs/diagnostics/4.0.18_ROUTING_DIAGNOSTICS.md** — T4 validation: authenticated typos (e.g. /doctine/FLIP, /qa/FLIPPPING) → suggestions; anonymous → standard 404, no suggestions; non-base path → standard 404; edge case "No similar paths found."
+
+---
+
+### 7. Ban at Gate (T7)
+
+- **Purpose:** Router-level persona ban enforcement. Block banned actors (from `lupo_banned_actors`) before any content is served or Smart 404 is shown; no changes to resolver, caching, or Smart 404 logic.
+- **lupo-includes/functions/ban_gate.php** (new):
+  - **lupo_is_actor_banned($actor_id)** — Queries `lupo_banned_actors` for the given actor_id with `is_deleted = 0`; returns true if banned, false otherwise. PDO_DB with bound parameters; PHP 5.3 array() only.
+  - **lupo_get_current_actor_id()** — Returns current user’s actor_id from auth/session (`lupo_auth_service->getCurrentUser()`, `current_user()`, or `lupo_session->validateSession()`); null when not logged in.
+  - **lupo_log_ban_event($actor_id, $uri, $resolved_uri)** — Optional logging to `lupo_bans_log` (actor_id, uri, resolved_uri, ban_scope='router', banned_ymdhis, user_agent, ip_address). If the table does not exist, logging is skipped silently (no errors).
+- **lupopedia-loader.php** — Loads `ban_gate.php` after url_resolver so gate helpers are available before module routing.
+- **module-loader.php** — **Resolved path branch:** After resolving (canonical/alias) but before alias redirect or `content_show_by_content_id`: get current actor_id; if banned → call lupo_log_ban_event, send 403, render 403 template, return (no content). **Unresolved path (Smart 404) branch:** Before Smart 404: same ban check; if banned → 403 and return so banned users get 403 instead of 404 on typo paths.
+- **templates/errors/403_banned.php** (new) — "Access Denied"; "Your account is restricted from accessing this content."; requested path in `<code>`; no suggestions or Smart 404 behavior.
+- **docs/diagnostics/4.0.18_ROUTING_DIAGNOSTICS.md** — T7 validation: add actor to lupo_banned_actors → 403 on canonical, alias, and Smart 404 paths; remove ban → access restored; optional lupo_bans_log check.
+- **Ban-at-Gate database additions:**
+  - **database/migrations/install_new_lupopedia.sql** — Added **lupo_bans_log** table (after lupo_banned_actors). Columns: bans_log_id (bigint AUTO_INCREMENT PRIMARY KEY), actor_id, uri (varchar 1024), resolved_uri (varchar 1024), ban_scope (varchar 64, default 'router'), banned_ymdhis, user_agent (varchar 500), ip_address (varchar 45). Indexes: lupo_bans_log_idx_actor_id, lupo_bans_log_idx_banned_ymdhis, lupo_bans_log_idx_ban_scope.
+  - **database/migrations/20260219_create_lupo_bans_log.sql** — New idempotent migration (CREATE TABLE IF NOT EXISTS) for existing DBs; fresh installs get the table from install_new_lupopedia.sql.
+  - **docs/REQUIRED_TABLES_4.0.6.md** — Added lupo_bans_log to required tables list.
+  - **install.php** — Updated docblock for step B (new install) to state that install_new_lupopedia.sql includes lupo_bans_log for Ban-at-Gate audit logging.
+
+---
+
+### 8. Testing and validation suite (T8)
+
+- **Scope:** Tests and diagnostics only; no changes to resolver, routing, caching, Smart 404, or Ban at Gate logic.
+- **Unit tests (PHP 5.3-compatible, no PHPUnit):**
+  - **tests/unit/url_resolver_normalization.php** — normalizePath() (leading/trailing slashes, trim), normalizeSlug() for `_`, `+`, `%20` and slug_encoding (underscore, plus, percent).
+  - **tests/unit/url_resolver_tiers.php** — Null result for unknown path; CSV tier hit (e.g. doctrine/FLIP/FLIP_DOCTRINE, docs/FLIP_DOCTRINE); SKIP if exports/flip_headers.csv missing.
+  - **tests/unit/url_resolver_cache.php** — Invalidate, resolve same path twice (consistency), auth vs anon cache key (same path → same content_id).
+  - **tests/unit/smart_404.php** — Anonymous: empty suggestions; authenticated: structure, requested path, ≤5 suggestions; unrelated slug. Each script echoes PASS/FAIL and exits 0 or 1.
+  - **scripts/run_unit_tests.sh** — Wrapper: runs all tests/unit/*.php from repo root; prints "All unit tests passed (N)" or failure count; exit 0 or 1. Optional first argument: repo root path.
+  - **tests/routing/** — Legacy equivalents (test_normalization.php, test_resolver_tiers.php, test_caching.php, test_smart_404.php) remain for direct invocation.
+- **Integration tests:** **tests/integration/test_routing.sh** — Curl-based: canonical path (200/302), alias path, encoded slug (/qa/FLIPPING%2BFILES), Smart 404 path (anon → 404), non-base path, **Ban at Gate** (anon request to canonical path must not be 403; 403 expected only when logged in as banned actor). Usage: `sh tests/integration/test_routing.sh [BASE_URL]` (default http://localhost).
+- **Regression tests:** **tests/regression/legacy_paths.php** — Syntax check for index.php, module-loader.php, content-controller.php, url_resolver.php, UrlResolver.php; after loading url_resolver, verifies lupo_resolve_web_path, lupo_smart_404, lupo_get_url_resolver exist. Does not start a web server; legacy index.php?slug=... and admin paths require HTTP (manual or integration).
+- **docs/diagnostics/4.0.18_ROUTING_DIAGNOSTICS.md** — T8 section: how to run unit tests via **scripts/run_unit_tests.sh** and individually (tests/unit/*.php); integration and regression; expected outputs; **Troubleshooting and common failure modes** (cache invalidation, rewrite issues, cache not writable, auth misconfig, Smart 404 behavior, unit SKIP, integration base URL).
+
+---
+
+### Release artifacts (4.0.18)
+
+- **database/migrations/install_new_lupopedia.sql** — lupo_bans_log table added (Ban at Gate audit logging).
+- **database/migrations/20260219_create_lupo_bans_log.sql** — Idempotent migration for existing DBs.
+- **docs/REQUIRED_TABLES_4.0.6.md** — lupo_bans_log added to required tables list.
+- **install.php** — Docblock for step B (new install) updated to mention lupo_bans_log.
+- **docs/diagnostics/4.0.18_ROUTING_DIAGNOSTICS.md** — Diagnostics for T5 (rewrites), T6 (cache), T4 (Smart 404), T7 (Ban at Gate), T8 (testing).
+- **docs/channels/doctrine/4.0.18_ROUTING_DIAGNOSTICS.md** — T5 validation (Nginx/Apache).
+
+### Remaining for 4.0.18
+
+- None. All planned 4.0.18 routing tasks (T1–T8) are implemented. lupo_bans_log is created by install_new_lupopedia.sql and by migration 20260219_create_lupo_bans_log.sql for existing DBs.
+
+---
+
+
 
 ## Lupopedia 4.0.17 — Final Release Notes (2026-02-17)
 
@@ -66,19 +190,7 @@ Audit of `exports/flip_headers.csv` confirmed: **38 files** at `4.0.16`; **1 fil
 Documented in `WEB_ROUTING_DOCTRINE_4_0_18.md`: runtime URL routing, UrlResolver, slug normalization, smart 404, Apache/Nginx rewrite rules, caching + invalidation, router-level ban enforcement ("Ban at Gate"). Planning-only for 4.0.18.
 
 ---
-
-### Summary
-
-4.0.17 is a **metadata, doctrine, and diagnostics** release. It lays the foundation for 4.0.18's runtime routing without implementing it. Provenance correct, seed updated, system stable and ready for the next phase.
-
----
-
-## 4.0.18 — Planned (not yet implemented)
-
-- **Web routing and path resolution.** 4.0.18 will implement runtime routing based on the 4.0.17 Web Path Header Extension: UrlResolver (from flip_headers.csv with fallback to header parsing), wildcard routes for `/{base}/{slug}`, smart 404, server rewrite rules, and caching/invalidation. Planning only: docs/channels/doctrine/WEB_ROUTING_DOCTRINE_4_0_18.md. No implementation in 4.0.17.
-
----
-
+ 
 
 ## Lupopedia 4.0.16 — FLIP header audit, ANUBIS adoption of recovered doctrine files - 2026-02-18
 

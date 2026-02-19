@@ -43,6 +43,26 @@ if (file_exists($auth_ui_helpers)) {
 }
 
 /**
+ * Load UrlResolver and web path helper (4.0.18)
+ */
+$url_resolver_class = ABSPATH . LUPO_INCLUDES_DIR . '/classes/UrlResolver.php';
+if (file_exists($url_resolver_class)) {
+    require_once $url_resolver_class;
+}
+$url_resolver_helper = ABSPATH . LUPO_INCLUDES_DIR . '/functions/url_resolver.php';
+if (file_exists($url_resolver_helper)) {
+    require_once $url_resolver_helper;
+}
+
+/**
+ * Load Ban-at-Gate helpers (4.0.18 T7)
+ */
+$ban_gate_helper = ABSPATH . LUPO_INCLUDES_DIR . '/functions/ban_gate.php';
+if (file_exists($ban_gate_helper)) {
+    require_once $ban_gate_helper;
+}
+
+/**
  * ---------------------------------------------------------
  * 2. Load Module System
  * ---------------------------------------------------------

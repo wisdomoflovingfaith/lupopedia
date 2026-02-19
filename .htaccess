@@ -32,6 +32,10 @@ RewriteRule ^ - [F,L]
 RewriteCond %{REQUEST_URI} ^.*/(database|config|\.git)/ [NC]
 RewriteRule ^ - [F,L]
 
+# 4.0.18 T5: Funnel doctrine/qa/docs/flp to index.php with resolved_uri (full matched path)
+# Requires mod_rewrite. Enable with: a2enmod rewrite (Debian/Ubuntu); LoadModule rewrite_module ... (httpd.conf)
+RewriteRule ^(doctrine|qa|docs|flp)/(.+)$ index.php?resolved_uri=$1/$2 [QSA,L]
+
 # Route everything else to index.php
 RewriteRule ^(.*)$ index.php?slug=$1 [L,QSA]
 
