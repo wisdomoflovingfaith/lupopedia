@@ -26,6 +26,7 @@ class AdminUsersHandler {
 
         // POST: save profile
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['save_profile']) && isset($_POST['auth_user_id'])) {
+            lupo_require_valid_csrf_token();
             $auth_user_id = (int) $_POST['auth_user_id'];
             $display_name = isset($_POST['display_name']) ? trim((string) $_POST['display_name']) : '';
             $email = isset($_POST['email']) ? trim((string) $_POST['email']) : '';
@@ -44,6 +45,7 @@ class AdminUsersHandler {
 
         // POST: save permissions (channel 1 role)
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['save_permissions']) && isset($_POST['actor_id'])) {
+            lupo_require_valid_csrf_token();
             $actor_id = (int) $_POST['actor_id'];
             $new_role = isset($_POST['channel1_role_type']) ? trim((string) $_POST['channel1_role_type']) : '';
             if ($actor_id > 0) {

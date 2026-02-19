@@ -12,8 +12,8 @@
 SET @now = 20260217230000;
 SET @node_id = 1;
 -- Version for module seed: must match docs/doctrine/VERSIONING_DOCTRINE.md (canonical current version).
-SET @lupo_version = '4.0.18';
-SET @lupo_version_code = 40018;
+SET @lupo_version = '4.0.19';
+SET @lupo_version_code = 40019;
 
 -- -----------------------------------------------------------------------------
 -- System department (department_id = 0) — reserved, not user-selectable
@@ -1670,6 +1670,111 @@ INSERT INTO lupo_truth_answers (
 (5003, 0, 'This is a placeholder answer. You can edit this in the admin panel.', 0.00, 0.00, 0, 0, 0, @now, @now, 0, NULL),
 (5004, 0, 'This is a placeholder answer. You can edit this in the admin panel.', 0.00, 0.00, 0, 0, 0, @now, @now, 0, NULL),
 (5005, 0, 'This is a placeholder answer. You can edit this in the admin panel.', 0.00, 0.00, 0, 0, 0, @now, @now, 0, NULL);
+
+-- =============================================================================
+-- 4.0.19 SEED EXPANSION — Admin testing (test data only; IDs 2000+)
+-- =============================================================================
+-- Deterministic timestamp for this block.
+SET @seed19 = 20260219120000;
+
+-- A. lupo_auth_users — 10 test users (auth_user_id 2001–2010). Password: "password" (bcrypt).
+-- Hash: $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
+INSERT IGNORE INTO lupo_auth_users (auth_user_id, username, display_name, email, password_hash, auth_provider, provider_id, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis) VALUES
+(2001, 'admin_test', 'Admin Test', 'admin.test@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'local', NULL, @seed19, @seed19, 1, 0, NULL),
+(2002, 'mod_jane', 'Jane Moderator', 'mod.jane@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'local', NULL, @seed19, @seed19, 1, 0, NULL),
+(2003, 'mod_bob', 'Bob Monitor', 'mod.bob@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'local', NULL, @seed19, @seed19, 1, 0, NULL),
+(2004, 'agent_alex', 'Alex Agent', 'agent.alex@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'local', NULL, @seed19, @seed19, 1, 0, NULL),
+(2005, 'agent_sam', 'Sam Support', 'agent.sam@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'local', NULL, @seed19, @seed19, 1, 0, NULL),
+(2006, 'viewer_lee', 'Lee Viewer', 'viewer.lee@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'local', NULL, @seed19, @seed19, 1, 0, NULL),
+(2007, 'viewer_kim', 'Kim Readonly', 'viewer.kim@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'local', NULL, @seed19, @seed19, 1, 0, NULL),
+(2008, 'ops_taylor', 'Taylor Operator', 'ops.taylor@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'local', NULL, @seed19, @seed19, 1, 0, NULL),
+(2009, 'support_casey', 'Casey Support', 'support.casey@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'local', NULL, @seed19, @seed19, 1, 0, NULL),
+(2010, 'crm_jordan', 'Jordan CRM', 'crm.jordan@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'local', NULL, @seed19, @seed19, 1, 0, NULL);
+
+-- lupo_actors — user-type actors for auth_user 2001–2010 (actor_id 2001–2010).
+INSERT IGNORE INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata, adversarial_role, adversarial_oversight_actor_id, avatar_hash) VALUES
+(2001, 'user', 'user-2001', 'Admin Test', @seed19, @seed19, 1, 0, NULL, 2001, 'user', NULL, 'none', NULL, NULL),
+(2002, 'user', 'user-2002', 'Jane Moderator', @seed19, @seed19, 1, 0, NULL, 2002, 'user', NULL, 'none', NULL, NULL),
+(2003, 'user', 'user-2003', 'Bob Monitor', @seed19, @seed19, 1, 0, NULL, 2003, 'user', NULL, 'none', NULL, NULL),
+(2004, 'user', 'user-2004', 'Alex Agent', @seed19, @seed19, 1, 0, NULL, 2004, 'user', NULL, 'none', NULL, NULL),
+(2005, 'user', 'user-2005', 'Sam Support', @seed19, @seed19, 1, 0, NULL, 2005, 'user', NULL, 'none', NULL, NULL),
+(2006, 'user', 'user-2006', 'Lee Viewer', @seed19, @seed19, 1, 0, NULL, 2006, 'user', NULL, 'none', NULL, NULL),
+(2007, 'user', 'user-2007', 'Kim Readonly', @seed19, @seed19, 1, 0, NULL, 2007, 'user', NULL, 'none', NULL, NULL),
+(2008, 'user', 'user-2008', 'Taylor Operator', @seed19, @seed19, 1, 0, NULL, 2008, 'user', NULL, 'none', NULL, NULL),
+(2009, 'user', 'user-2009', 'Casey Support', @seed19, @seed19, 1, 0, NULL, 2009, 'user', NULL, 'none', NULL, NULL),
+(2010, 'user', 'user-2010', 'Jordan CRM', @seed19, @seed19, 1, 0, NULL, 2010, 'user', NULL, 'none', NULL, NULL);
+
+-- G. lupo_actor_channel_roles — channel 1 roles: 2001 captain, 2002–2003 administrator, 2004–2005 monitor, 2006–2010 monitor (viewer).
+INSERT IGNORE INTO lupo_actor_channel_roles (actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES
+(20001, 2001, 1, 'captain', @seed19, @seed19, 0, NULL),
+(20002, 2002, 1, 'administrator', @seed19, @seed19, 0, NULL),
+(20003, 2003, 1, 'administrator', @seed19, @seed19, 0, NULL),
+(20004, 2004, 1, 'monitor', @seed19, @seed19, 0, NULL),
+(20005, 2005, 1, 'monitor', @seed19, @seed19, 0, NULL),
+(20006, 2006, 1, 'monitor', @seed19, @seed19, 0, NULL),
+(20007, 2007, 1, 'monitor', @seed19, @seed19, 0, NULL),
+(20008, 2008, 1, 'monitor', @seed19, @seed19, 0, NULL),
+(20009, 2009, 1, 'monitor', @seed19, @seed19, 0, NULL),
+(20010, 2010, 1, 'monitor', @seed19, @seed19, 0, NULL);
+
+-- D. lupo_departments — 5 extra departments (2–6), default_actor_id references seeded users.
+INSERT IGNORE INTO lupo_departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES
+(2, 1, 'Support', 'Customer support team', 'general', 2002, NULL, @seed19, @seed19, 0, NULL),
+(3, 1, 'CRM', 'Sales and leads', 'general', 2010, NULL, @seed19, @seed19, 0, NULL),
+(4, 1, 'Docs', 'Documentation and knowledge', 'general', 2004, NULL, @seed19, @seed19, 0, NULL),
+(5, 1, 'Engineering', 'Development and ops', 'general', 2001, NULL, @seed19, @seed19, 0, NULL),
+(6, 1, 'Moderation', 'Content moderation', 'general', 2003, NULL, @seed19, @seed19, 0, NULL);
+
+-- B. lupo_channels — 8 channels (channel_id 2001–2008); types: system, crm, support, docs.
+INSERT IGNORE INTO lupo_channels (channel_id, federation_node_id, created_by_actor_id, default_actor_id, department_id, channel_key, channel_slug, channel_type, language, channel_name, description, website_link, metadata_json, status_flag, end_ymdhis, duration_seconds, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_kernel, boot_sequence_order) VALUES
+(2001, 1, 2001, 2001, 1, 'admin-test-system', 'admin-test-system', 'system', 'en', 'Admin Test System', 'System channel for admin testing', NULL, NULL, 1, NULL, NULL, @seed19, @seed19, 0, NULL, 0, NULL),
+(2002, 1, 2001, 2002, 2, 'support-inbox', 'support-inbox', 'support', 'en', 'Support Inbox', 'Customer support queue', NULL, NULL, 1, NULL, NULL, @seed19, @seed19, 0, NULL, 0, NULL),
+(2003, 1, 2010, 2010, 3, 'crm-leads', 'crm-leads', 'crm', 'en', 'CRM Leads', 'Lead pipeline and follow-up', NULL, NULL, 1, NULL, NULL, @seed19, @seed19, 0, NULL, 0, NULL),
+(2004, 1, 2004, 2004, 4, 'docs-internal', 'docs-internal', 'docs', 'en', 'Internal Docs', 'Internal documentation channel', NULL, NULL, 1, NULL, NULL, @seed19, @seed19, 0, NULL, 0, NULL),
+(2005, 1, 2001, 2001, 5, 'eng-dev', 'eng-dev', 'chat_room', 'en', 'Engineering Dev', 'Development and engineering', NULL, NULL, 1, NULL, NULL, @seed19, @seed19, 0, NULL, 0, NULL),
+(2006, 1, 2003, 2003, 6, 'mod-queue', 'mod-queue', 'support', 'en', 'Moderation Queue', 'Content moderation queue', NULL, NULL, 1, NULL, NULL, @seed19, @seed19, 0, NULL, 0, NULL),
+(2007, 1, 2002, 2002, 2, 'support-archive', 'support-archive', 'support', 'en', 'Support Archive', 'Archived support threads', NULL, NULL, 1, NULL, NULL, @seed19, @seed19, 0, NULL, 0, NULL),
+(2008, 1, 2010, 2010, 3, 'crm-campaigns', 'crm-campaigns', 'crm', 'en', 'CRM Campaigns', 'Marketing and campaigns', NULL, NULL, 1, NULL, NULL, @seed19, @seed19, 0, NULL, 0, NULL);
+
+-- C. lupo_agents — 6 agents (agent_id 2001–2006); archetypes, versions, descriptions.
+INSERT IGNORE INTO lupo_agents (agent_id, agent_key, agent_name, archetype, description, version, model_name, is_global_authority, is_internal_only, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES
+(2001, 'seed_router_01', 'Seed Router Agent', 'router', 'Test router agent for admin list.', '1.0', NULL, 0, 1, @seed19, @seed19, 0, NULL),
+(2002, 'seed_support_01', 'Seed Support Agent', 'support', 'Test support agent for admin list.', '1.0', NULL, 0, 1, @seed19, @seed19, 0, NULL),
+(2003, 'seed_crm_01', 'Seed CRM Agent', 'crm', 'Test CRM agent for admin list.', '1.0', NULL, 0, 1, @seed19, @seed19, 0, NULL),
+(2004, 'seed_docs_01', 'Seed Docs Agent', 'docs', 'Test documentation agent for admin list.', '1.0', NULL, 0, 1, @seed19, @seed19, 0, NULL),
+(2005, 'seed_analytics_01', 'Seed Analytics Agent', 'analytics', 'Test analytics agent for admin list.', '1.0', NULL, 0, 1, @seed19, @seed19, 0, NULL),
+(2006, 'seed_mod_01', 'Seed Moderation Agent', 'moderation', 'Test moderation agent for admin list.', '1.0', NULL, 0, 1, @seed19, @seed19, 0, NULL);
+
+-- E. lupo_crm_leads — 20 leads (crm_lead_id 2001–2020); assigned_to = actor_id 2001–2010.
+INSERT IGNORE INTO lupo_crm_leads (crm_lead_id, email, phone, first_name, last_name, source, status, lead_score, assigned_to, lead_data, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES
+(2001, 'alice@example.com', NULL, 'Alice', 'Alpha', 'website', 'new', 10, 2001, NULL, @seed19, @seed19, 0, NULL),
+(2002, 'bob@example.com', '+15551234567', 'Bob', 'Beta', 'referral', 'contacted', 25, 2002, NULL, @seed19, @seed19, 0, NULL),
+(2003, 'carol@example.com', NULL, 'Carol', 'Gamma', 'website', 'qualified', 50, 2010, NULL, @seed19, @seed19, 0, NULL),
+(2004, 'dave@example.com', NULL, 'Dave', 'Delta', 'campaign', 'new', 5, 2004, NULL, @seed19, @seed19, 0, NULL),
+(2005, 'eve@example.com', NULL, 'Eve', 'Epsilon', 'website', 'contacted', 30, 2005, NULL, @seed19, @seed19, 0, NULL),
+(2006, 'frank@example.com', NULL, 'Frank', 'Phi', 'referral', 'new', 15, 2001, NULL, @seed19, @seed19, 0, NULL),
+(2007, 'grace@example.com', NULL, 'Grace', 'Gamma', 'website', 'qualified', 60, 2010, NULL, @seed19, @seed19, 0, NULL),
+(2008, 'henry@example.com', NULL, 'Henry', 'Eta', 'campaign', 'new', 0, 2002, NULL, @seed19, @seed19, 0, NULL),
+(2009, 'iris@example.com', NULL, 'Iris', 'Iota', 'website', 'contacted', 40, 2009, NULL, @seed19, @seed19, 0, NULL),
+(2010, 'jack@example.com', NULL, 'Jack', 'Kappa', 'referral', 'new', 20, 2003, NULL, @seed19, @seed19, 0, NULL),
+(2011, 'kate@example.com', NULL, 'Kate', 'Lambda', 'website', 'qualified', 70, 2010, NULL, @seed19, @seed19, 0, NULL),
+(2012, 'leo@example.com', NULL, 'Leo', 'Mu', 'campaign', 'new', 10, 2004, NULL, @seed19, @seed19, 0, NULL),
+(2013, 'mia@example.com', NULL, 'Mia', 'Nu', 'website', 'contacted', 35, 2005, NULL, @seed19, @seed19, 0, NULL),
+(2014, 'noah@example.com', NULL, 'Noah', 'Xi', 'referral', 'new', 25, 2001, NULL, @seed19, @seed19, 0, NULL),
+(2015, 'olivia@example.com', NULL, 'Olivia', 'Omicron', 'website', 'qualified', 55, 2010, NULL, @seed19, @seed19, 0, NULL),
+(2016, 'paul@example.com', NULL, 'Paul', 'Pi', 'campaign', 'new', 5, 2002, NULL, @seed19, @seed19, 0, NULL),
+(2017, 'quinn@example.com', NULL, 'Quinn', 'Rho', 'website', 'contacted', 45, 2009, NULL, @seed19, @seed19, 0, NULL),
+(2018, 'ryan@example.com', NULL, 'Ryan', 'Sigma', 'referral', 'new', 15, 2003, NULL, @seed19, @seed19, 0, NULL),
+(2019, 'sara@example.com', NULL, 'Sara', 'Tau', 'website', 'qualified', 65, 2010, NULL, @seed19, @seed19, 0, NULL),
+(2020, 'tom@example.com', NULL, 'Tom', 'Upsilon', 'campaign', 'new', 0, 2004, NULL, @seed19, @seed19, 0, NULL);
+
+-- H. lupo_permissions — read on admin module (9) for test users 2001–2005.
+INSERT IGNORE INTO lupo_permissions (permission_id, target_type, target_id, user_id, department_id, permission, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES
+(20001, 'module', 9, 2001, NULL, 'read', @seed19, @seed19, 0, NULL),
+(20002, 'module', 9, 2002, NULL, 'read', @seed19, @seed19, 0, NULL),
+(20003, 'module', 9, 2003, NULL, 'read', @seed19, @seed19, 0, NULL),
+(20004, 'module', 9, 2004, NULL, 'read', @seed19, @seed19, 0, NULL),
+(20005, 'module', 9, 2005, NULL, 'read', @seed19, @seed19, 0, NULL);
 
 -- =============================================================================
 -- END SEED

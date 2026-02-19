@@ -17,6 +17,86 @@ As we continue development on a version, we append new changes under that versio
 ---
  
 
+## Lupopedia 4.0.19 — admin web interface and testing — 2026-02-19 (released)
+
+### Overview
+
+4.0.19 focuses on **admin web interface implementation**, **admin testing expansion**, and **admin security hardening**. Scope: admin.php, admin layouts, AdminUsersHandler, admin CRUD/permissions/content flows; no routing changes (4.0.18 stack remains). **Completed:** T1 (version bump), T2 (admin test suite), T3/T4 (admin UI and list handlers), pre-T5 (seed expansion), T5 (security hardening), Task 9 (CSRF protection). See **docs/INITIALIZATION_PROMPT_4_0_19.md**.
+
+### 1. Version bump (T1)
+
+- **4.0.18 → 4.0.19** in all locations per docs/doctrine/VERSIONING_DOCTRINE.md §8:
+  - **config/global_atoms.yaml** — version, last_updated (20260219120000), file.last_modified_system_version, versions.lupopedia, GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  - **lupo-includes/version.php** — docblock @version, fallback literal, LUPOPEDIA_VERSION_DATE (20260219120000), lupopedia_get_version() fallback
+  - **install.php** — wizard version fallback when LUPOPEDIA_VERSION undefined
+  - **lupo-includes/functions/load_atoms.php** — get_lupopedia_version() fallback
+  - **install_wizard_classes.php** — docblock "Lupopedia 4.0.19 — Install Wizard Classes"
+  - **database/migrations/seed_lupopedia.sql** — @lupo_version = '4.0.19', @lupo_version_code = 40019
+  - **docs/doctrine/VERSIONING_DOCTRINE.md** — canonical current version 4.0.19, provenance note, summary table, FLIP header (4.0.19 / 20260219120000)
+- **CHANGELOG.md** — 4.0.19 (in progress) section added with scope summary.
+
+---
+
+### 2. Admin test suite expansion (T2)
+
+- **Unit tests (4.0.19):**
+  - **tests/unit/admin_users_handler.php** — AdminUsersHandler class exists; `render()` with mock PDO_DB (empty user list) returns non-empty HTML; output contains expected markup (admin-users-section, Users, or user). PHP 5.3-compatible; sets `$_SERVER['REQUEST_METHOD'] = 'GET'` for CLI.
+  - **tests/unit/admin_menu_sections.php** — Required admin files exist (admin.php, AdminUsersHandler.php, admin_layout.php, admin_sections/users.php); expected section-slug contract (≥10 sections: users, settings, channels, agents, etc.).
+- **Integration tests:**
+  - **tests/integration/test_admin.sh** — Curl-based: unauthenticated GET admin.php and admin.php?section=users expect 302 (redirect to login) or 200 (login/access-denied content). Usage: `sh tests/integration/test_admin.sh [BASE_URL]` (default http://localhost; use http://localhost/lupopedia for subfolder).
+- **Regression tests:**
+  - **tests/regression/legacy_paths.php** — Extended: syntax check for admin.php, AdminUsersHandler.php, admin_layout.php, admin_sections/users.php; after require, verifies AdminUsersHandler class exists. Output message updated to "syntax, routing helpers, admin files".
+- **scripts/run_unit_tests.sh** — Unchanged; runs all tests/unit/*.php (now includes admin_users_handler.php and admin_menu_sections.php). Admin integration test is separate: run test_admin.sh when server is available.
+
+---
+
+### 3. Admin UI audit and implementation (T3 / T4)
+
+- **Dashboard (admin.php, no section):** Replaced generic message with welcome text and quick links to Users, Channels, Agents, Departments, Leads, Master Settings.
+- **Sections with list handlers (DB-backed):**
+  - **Channels** — AdminChannelsHandler + admin_sections/channels.php: list lupo_channels (channel_id, channel_key, channel_name, channel_type, slug, status_flag, department_id), up to 500 rows.
+  - **Agents** — AdminAgentsHandler + admin_sections/agents.php: list lupo_agents (agent_id, agent_key, agent_name, archetype, version), up to 500 rows.
+  - **Departments** — AdminDepartmentsHandler + admin_sections/departments.php: list lupo_departments (department_id, name, department_type, description, default_actor_id), up to 500 rows.
+  - **Leads** — AdminLeadsHandler + admin_sections/leads.php: list lupo_crm_leads (crm_lead_id, email, first_name, last_name, source, status, lead_score, assigned_to), up to 500 rows, newest first.
+- **All other sections (info panels):** Generic admin section info view (admin_sections/info.php) with section-specific description and optional links. Copy defined in admin.php in `$admin_section_info` for: documentation, settings, help, support, security-registration, registration, member-services, general-qa, email-messages, proactive-leads, import-leads, live, quick-replies, quick-images, quick-urls, auto-invite, emotion-icons, layer-images, my-account, operators, departments-html, data-visits, data-messages, data-referrers, data-visits-period, data-paths, data-keywords, module-qa, directory, donations, updates, changelog. No placeholder text; every section has a dedicated description and, where useful, links to related admin or public pages.
+- **admin.php:** Dispatches section= to Users (existing), Channels, Agents, Departments, Leads via handlers; all other section slugs to info panel. When database is unavailable, channels/agents/departments/leads show "Database not available."
+- **admin_layout.php:** CSS for .admin-dashboard-links, .admin-section-info, .admin-section-links, .admin-list-table.
+- **Tests:** regression/legacy_paths.php and unit admin_menu_sections.php updated to include new handler and view files (AdminChannelsHandler, AdminAgentsHandler, AdminDepartmentsHandler, AdminLeadsHandler; info, channels, agents, departments, leads views).
+
+---
+
+### 4. Seed expansion for admin testing (pre-T5)
+
+- **database/migrations/seed_lupopedia.sql** — Added 4.0.19 seed expansion block (deterministic timestamp @seed19 = 20260219120000; INSERT IGNORE for idempotency):
+  - **lupo_auth_users:** 10 test users (auth_user_id 2001–2010): admin_test, mod_jane, mod_bob, agent_alex, agent_sam, viewer_lee, viewer_kim, ops_taylor, support_casey, crm_jordan. Password hash for "password" (bcrypt) for all.
+  - **lupo_actors:** 10 user-type actors (actor_id 2001–2010) linked to auth_user 2001–2010 (actor_source_type 'user').
+  - **lupo_actor_channel_roles:** Channel 1 roles: 2001 captain, 2002–2003 administrator, 2004–2010 monitor (actor_channel_role_id 20001–20010).
+  - **lupo_departments:** 5 departments (department_id 2–6): Support, CRM, Docs, Engineering, Moderation; default_actor_id 2002, 2010, 2004, 2001, 2003.
+  - **lupo_channels:** 8 channels (channel_id 2001–2008): system, support, crm, docs, chat_room types; keys/slugs and department_id 1–6.
+  - **lupo_agents:** 6 agents (agent_id 2001–2006): router, support, crm, docs, analytics, moderation archetypes with descriptions.
+  - **lupo_crm_leads:** 20 leads (crm_lead_id 2001–2020) with email, first/last name, source, status, lead_score, assigned_to (actor_id 2001–2010).
+  - **lupo_permissions:** 5 rows (permission_id 20001–20005): read on module 9 for user_id 2001–2005.
+- **Note:** No lupo_roles or lupo_user_roles (tables do not exist); roles are represented via lupo_actor_channel_roles (channel 1). Admin list pages (Users, Channels, Agents, Departments, Leads) display meaningful rows after seed.
+
+---
+
+### 5. Admin CSRF protection (Task 9)
+
+- **Summary:** CSRF protection for all state-changing admin actions: token generation, form injection, server-side validation, unit tests, and diagnostics.
+- **A. Token generation** — **lupo-includes/functions/security.php** (new): `lupo_get_csrf_token()` generates a token if missing using `sha1(random_bytes + session_id())`; uses `openssl_random_pseudo_bytes(32)` when available, falls back to `uniqid(mt_rand(), true) . microtime(true)`; stores in `$_SESSION['csrf_token']`; PHP 5.3 compatible.
+- **B. Form injection** — Admin Users section injects `<input type="hidden" name="csrf_token" value="<?= htmlspecialchars(lupo_get_csrf_token()) ?>">` into the Edit profile form and the Edit permissions form. Channels, Agents, Departments, Leads are list-only; future mutating forms must include the same hidden field.
+- **C. Validation** — **security.php:** `lupo_require_valid_csrf_token()` reads token from POST or GET, compares to `$_SESSION['csrf_token']`; on failure sends 403 Forbidden with message "Invalid or missing CSRF token." and exits. **admin.php:** requires security.php so helpers are available. **AdminUsersHandler.php:** calls `lupo_require_valid_csrf_token()` at the start of the save_profile and save_permissions POST handlers.
+- **D. Tests & diagnostics** — **tests/unit/admin_csrf.php:** token generation, valid token acceptance, missing/invalid token rejection. **tests/unit/admin_csrf_stub.php:** used for simulating POST/GET token flows. **docs/diagnostics/4.0.19_ADMIN_DIAGNOSTICS.md:** CSRF documentation (token generation, form injection, validation behavior, how to test missing/invalid tokens).
+
+---
+
+### Deferred to 4.0.20
+
+- **T6:** Admin diagnostics + logging
+- **T7:** Admin regression testing
+
+---
+
 ## Lupopedia 4.0.18 — runtime web path resolution and routing — 2026-02-19 (released)
 
 ### Overview
@@ -137,7 +217,6 @@ As we continue development on a version, we append new changes under that versio
 - None. All planned 4.0.18 routing tasks (T1–T8) are implemented. lupo_bans_log is created by install_new_lupopedia.sql and by migration 20260219_create_lupo_bans_log.sql for existing DBs.
 
 ---
-
 
 
 ## Lupopedia 4.0.17 — Final Release Notes (2026-02-17)

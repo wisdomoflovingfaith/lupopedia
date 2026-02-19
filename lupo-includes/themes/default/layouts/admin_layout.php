@@ -151,6 +151,11 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
         .admin-btn:hover { opacity: 0.9; }
         .admin-empty { color: #718096; font-style: italic; }
         .admin-placeholder-text { color: #4a5568; margin: 0; }
+        .admin-dashboard-links { list-style: disc; margin: 1rem 0; padding-left: 1.5rem; }
+        .admin-dashboard-links li { margin: 0.5rem 0; }
+        .admin-section-info .admin-section-description { margin: 0 0 1rem 0; color: #4a5568; }
+        .admin-section-links { list-style: disc; margin: 0.5rem 0; padding-left: 1.5rem; }
+        .admin-list-table { margin-top: 1rem; }
         .basic-footer {
             background: #2d3748;
             color: #a0aec0;

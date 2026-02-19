@@ -21,6 +21,7 @@ $channel1_role = isset($channel1_role) ? $channel1_role : '';
         <div class="admin-users-edit-profile">
             <h2>Edit profile: <?= htmlspecialchars($edit_profile_user['username']) ?></h2>
             <form method="post" action="<?= htmlspecialchars($base) ?>/admin.php?section=users&amp;save_profile=1">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(function_exists('lupo_get_csrf_token') ? lupo_get_csrf_token() : '') ?>">
                 <input type="hidden" name="auth_user_id" value="<?= (int) $edit_profile_user['auth_user_id'] ?>">
                 <p><label>Username (read-only)</label><br><input type="text" value="<?= htmlspecialchars($edit_profile_user['username']) ?>" disabled class="admin-input"></p>
                 <p><label>Display name</label><br><input type="text" name="display_name" value="<?= htmlspecialchars(isset($edit_profile_user['display_name']) ? $edit_profile_user['display_name'] : '') ?>" class="admin-input" maxlength="42"></p>
@@ -34,6 +35,7 @@ $channel1_role = isset($channel1_role) ? $channel1_role : '';
             <h2>Edit permissions: <?= htmlspecialchars(isset($edit_permissions_user['display_name']) && $edit_permissions_user['display_name'] !== '' ? $edit_permissions_user['display_name'] : $edit_permissions_user['username']) ?></h2>
             <p class="admin-users-meta">Username: <?= htmlspecialchars($edit_permissions_user['username']) ?> · Actor ID: <?= (int) (isset($edit_permissions_user['actor_id']) ? $edit_permissions_user['actor_id'] : 0) ?></p>
             <form method="post" action="<?= htmlspecialchars($base) ?>/admin.php?section=users&amp;save_permissions=1">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(function_exists('lupo_get_csrf_token') ? lupo_get_csrf_token() : '') ?>">
                 <input type="hidden" name="actor_id" value="<?= (int) (isset($edit_permissions_user['actor_id']) ? $edit_permissions_user['actor_id'] : 0) ?>">
                 <p><label>Channel 1 (default) role</label><br>
                     <select name="channel1_role_type" class="admin-input">

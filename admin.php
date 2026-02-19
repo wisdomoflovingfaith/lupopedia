@@ -28,6 +28,10 @@ if (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php')) {
 
 require_once LUPOPEDIA_CONFIG_PATH;
 
+if (!function_exists('lupo_get_csrf_token')) {
+    require_once LUPOPEDIA_PATH . '/lupo-includes/functions/security.php';
+}
+
 // Require login only; if not admin, show graceful error inside layout (nav still visible)
 $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
 if ($authService) {
@@ -153,10 +157,41 @@ foreach ($admin_menu_sections as $group) {
     }
 }
 
-// Placeholder content for sections not yet implemented.
-$admin_placeholder = function ($title) {
-    return '<p class="admin-placeholder-text">This section is a placeholder. Content for <strong>' . htmlspecialchars($title) . '</strong> will be implemented here.</p>';
-};
+// Section-specific info for sections that use the generic info panel (description + optional links).
+$admin_section_info = array(
+    'documentation' => array('description' => 'Links to Lupopedia documentation and doctrine. Use the Q/A and Content areas from the main nav for browsing.', 'links' => array('Doctrine' => 'doctrine/', 'Q/A' => 'qa/', 'Docs' => 'docs/')),
+    'settings' => array('description' => 'Master settings for the installation (e.g. site name, timezone, feature flags). Configuration is stored in config and database; this panel will be expanded to edit key settings.', 'links' => array()),
+    'help' => array('description' => 'In-app help and usage guides. Content can be added here or linked to doctrine/docs.', 'links' => array()),
+    'support' => array('description' => 'Support contacts and resources for administrators.', 'links' => array()),
+    'security-registration' => array('description' => 'Security and registration settings (e.g. allowed domains, invite-only).', 'links' => array()),
+    'registration' => array('description' => 'Lupopedia product registration and license (if applicable).', 'links' => array()),
+    'member-services' => array('description' => 'Member services and subscription management.', 'links' => array()),
+    'general-qa' => array('description' => 'General questions and answers. See the Q/A section in the main nav for content.', 'links' => array('Q/A' => 'qa/')),
+    'email-messages' => array('description' => 'Email message database (outbound/inbound). Table: lupo_crm_lead_messages and related. List/detail UI can be added here.', 'links' => array('Leads' => 'admin.php?section=leads')),
+    'proactive-leads' => array('description' => 'Proactive lead outreach and automation. Configure triggers and templates.', 'links' => array()),
+    'import-leads' => array('description' => 'Import leads from CSV or other sources into lupo_crm_leads.', 'links' => array('Leads' => 'admin.php?section=leads')),
+    'live' => array('description' => 'Live help session monitor and controls.', 'links' => array()),
+    'quick-replies' => array('description' => 'Quick reply templates for operators (lupo_actor_reply_templates).', 'links' => array()),
+    'quick-images' => array('description' => 'Quick image assets for chat.', 'links' => array()),
+    'quick-urls' => array('description' => 'Quick URL shortcuts.', 'links' => array()),
+    'auto-invite' => array('description' => 'Auto-invite rules (lupo_crafty_syntax_auto_invite).', 'links' => array()),
+    'emotion-icons' => array('description' => 'Emotion icon set for chat.', 'links' => array()),
+    'layer-images' => array('description' => 'Edit layer images for the chat UI.', 'links' => array()),
+    'my-account' => array('description' => 'Edit your own operator account (profile, password). Use My Profile from the main nav for profile; admin-specific options can be added here.', 'links' => array('My Profile' => 'my-profile')),
+    'operators' => array('description' => 'Create, edit, and delete operators. User management is in the Data → Users section.', 'links' => array('Users' => 'admin.php?section=users')),
+    'departments-html' => array('description' => 'HTML code snippets for department-specific widgets or embed codes.', 'links' => array('Departments' => 'admin.php?section=departments')),
+    'data-visits' => array('description' => 'Visit analytics (lupo_unified_visits, lupo_analytics_visits). List and filter visits.', 'links' => array()),
+    'data-messages' => array('description' => 'Message database (lupo_dialog_messages). Browse and search messages.', 'links' => array()),
+    'data-referrers' => array('description' => 'Referrer analytics (lupo_unified_referers).', 'links' => array()),
+    'data-visits-period' => array('description' => 'Visits aggregated by period.', 'links' => array()),
+    'data-paths' => array('description' => 'Path analytics (lupo_unified_analytics_paths).', 'links' => array()),
+    'data-keywords' => array('description' => 'Keyword analytics.', 'links' => array()),
+    'module-qa' => array('description' => 'Questions & Answers module configuration.', 'links' => array('Q/A' => 'qa/')),
+    'directory' => array('description' => 'View directory listing (e.g. file or content directory).', 'links' => array()),
+    'donations' => array('description' => 'Donation and support information.', 'links' => array()),
+    'updates' => array('description' => 'Check for Lupopedia updates and apply patches.', 'links' => array()),
+    'changelog' => array('description' => 'Lupopedia changelog. See CHANGELOG.md in the repository or docs.', 'links' => array()),
+);
 
 if (!$isAdmin) {
     $admin_main_content = '<div class="admin-error-box">'
@@ -165,7 +200,15 @@ if (!$isAdmin) {
         . '<p><a href="' . (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/index.php">Return to home</a></p>'
         . '</div>';
 } else {
-    $admin_main_content = '<p>Admin options will show here.</p>';
+    $admin_main_content = '<p class="admin-section-description">Welcome to the admin area. Use the sidebar to open a section.</p>'
+        . '<ul class="admin-dashboard-links">'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=users') . '" class="admin-link">Users</a> — Manage auth users and channel roles</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=channels') . '" class="admin-link">Channels</a> — List channels</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=agents') . '" class="admin-link">Agents</a> — List agents</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=departments') . '" class="admin-link">Departments</a> — List departments</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=leads') . '" class="admin-link">Leads</a> — CRM leads database</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=settings') . '" class="admin-link">Master Settings</a> — Configuration</li>'
+        . '</ul>';
 }
 
 if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
@@ -173,7 +216,47 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
     $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
     $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
-    // Sections that have real content
+    // Section title and active menu key (must match menu item label)
+    $section_titles = array(
+        'documentation' => array('Documentation', 'Documentation'),
+        'settings' => array('Master Settings', 'Master Settings'),
+        'help' => array('Help', 'Help'),
+        'support' => array('Support', 'Support'),
+        'security-registration' => array('Security Registration', 'Security Registration'),
+        'registration' => array('Lupopedia Registration', 'Lupopedia Registration'),
+        'member-services' => array('Member Services', 'Member Services'),
+        'general-qa' => array('Questions and Answers', 'Questions and Answers'),
+        'leads' => array('Leads Database', 'Leads Database'),
+        'email-messages' => array('Email message database', 'Email message database'),
+        'proactive-leads' => array('Proactive Leads', 'Proactive Leads'),
+        'import-leads' => array('Import Leads', 'Import Leads'),
+        'agents' => array('Agents', 'Agents'),
+        'channels' => array('Channels', 'Channels'),
+        'live' => array('Live', 'Live'),
+        'quick-replies' => array('Quick replies', 'Quick replies'),
+        'quick-images' => array('Quick images', 'Quick images'),
+        'quick-urls' => array('Quick URLs', 'Quick URLs'),
+        'auto-invite' => array('Auto invite', 'Auto invite'),
+        'emotion-icons' => array('Emotion Icons', 'Emotion Icons'),
+        'layer-images' => array('Edit Layer Images', 'Edit Layer Images'),
+        'my-account' => array('Edit your account', 'Edit your account'),
+        'operators' => array('Create / Edit / Delete', 'Create / Edit / Delete'),
+        'departments-html' => array('HTML code for departments', 'HTML code for departments'),
+        'departments' => array('Create / Edit / Delete departments', 'Create / Edit / Delete departments'),
+        'data-visits' => array('Visits', 'Visits'),
+        'data-messages' => array('Messages', 'Messages'),
+        'data-referrers' => array('Referrers', 'Referrers'),
+        'data-visits-period' => array('Visits by period', 'Visits by period'),
+        'data-paths' => array('Paths', 'Paths'),
+        'data-keywords' => array('Keywords', 'Keywords'),
+        'module-qa' => array('Questions & Answers', 'Questions & Answers'),
+        'directory' => array('View Directory', 'View Directory'),
+        'donations' => array('Donations', 'Donations'),
+        'updates' => array('Updates', 'Updates'),
+        'changelog' => array('Changelog', 'Changelog'),
+    );
+
+    // Sections with dedicated handlers (list data from DB)
     if ($section === 'users') {
         $admin_page_title = 'Users';
         $admin_active_key = 'Users';
@@ -183,50 +266,46 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
             require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminUsersHandler.php';
             $admin_main_content = AdminUsersHandler::render($db, $prefix, $base);
         }
-    } else {
-        // Map section slug to page title and active menu key (must match menu item label)
-        $section_titles = array(
-            'documentation' => array('Documentation', 'Documentation'),
-            'settings' => array('Master Settings', 'Master Settings'),
-            'help' => array('Help', 'Help'),
-            'support' => array('Support', 'Support'),
-            'security-registration' => array('Security Registration', 'Security Registration'),
-            'registration' => array('Lupopedia Registration', 'Lupopedia Registration'),
-            'member-services' => array('Member Services', 'Member Services'),
-            'general-qa' => array('Questions and Answers', 'Questions and Answers'),
-            'leads' => array('Leads Database', 'Leads Database'),
-            'email-messages' => array('Email message database', 'Email message database'),
-            'proactive-leads' => array('Proactive Leads', 'Proactive Leads'),
-            'import-leads' => array('Import Leads', 'Import Leads'),
-            'agents' => array('Agents', 'Agents'),
-            'channels' => array('Channels', 'Channels'),
-            'live' => array('Live', 'Live'),
-            'quick-replies' => array('Quick replies', 'Quick replies'),
-            'quick-images' => array('Quick images', 'Quick images'),
-            'quick-urls' => array('Quick URLs', 'Quick URLs'),
-            'auto-invite' => array('Auto invite', 'Auto invite'),
-            'emotion-icons' => array('Emotion Icons', 'Emotion Icons'),
-            'layer-images' => array('Edit Layer Images', 'Edit Layer Images'),
-            'my-account' => array('Edit your account', 'Edit your account'),
-            'operators' => array('Create / Edit / Delete', 'Create / Edit / Delete'),
-            'departments-html' => array('HTML code for departments', 'HTML code for departments'),
-            'departments' => array('Create / Edit / Delete departments', 'Create / Edit / Delete departments'),
-            'data-visits' => array('Visits', 'Visits'),
-            'data-messages' => array('Messages', 'Messages'),
-            'data-referrers' => array('Referrers', 'Referrers'),
-            'data-visits-period' => array('Visits by period', 'Visits by period'),
-            'data-paths' => array('Paths', 'Paths'),
-            'data-keywords' => array('Keywords', 'Keywords'),
-            'module-qa' => array('Questions & Answers', 'Questions & Answers'),
-            'directory' => array('View Directory', 'View Directory'),
-            'donations' => array('Donations', 'Donations'),
-            'updates' => array('Updates', 'Updates'),
-            'changelog' => array('Changelog', 'Changelog'),
-        );
-        if (isset($section_titles[$section])) {
-            $admin_page_title = $section_titles[$section][0];
-            $admin_active_key = $section_titles[$section][1];
-            $admin_main_content = $admin_placeholder($admin_page_title);
+    } elseif ($section === 'channels' && $db) {
+        $admin_page_title = 'Channels';
+        $admin_active_key = 'Channels';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminChannelsHandler.php';
+        $admin_main_content = AdminChannelsHandler::render($db, $prefix, $base);
+    } elseif ($section === 'agents' && $db) {
+        $admin_page_title = 'Agents';
+        $admin_active_key = 'Agents';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminAgentsHandler.php';
+        $admin_main_content = AdminAgentsHandler::render($db, $prefix, $base);
+    } elseif ($section === 'departments' && $db) {
+        $admin_page_title = 'Create / Edit / Delete departments';
+        $admin_active_key = 'Create / Edit / Delete departments';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminDepartmentsHandler.php';
+        $admin_main_content = AdminDepartmentsHandler::render($db, $prefix, $base);
+    } elseif ($section === 'leads' && $db) {
+        $admin_page_title = 'Leads Database';
+        $admin_active_key = 'Leads Database';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminLeadsHandler.php';
+        $admin_main_content = AdminLeadsHandler::render($db, $prefix, $base);
+    } elseif (isset($section_titles[$section])) {
+        $admin_page_title = $section_titles[$section][0];
+        $admin_active_key = $section_titles[$section][1];
+        if ($section === 'channels' || $section === 'agents' || $section === 'departments' || $section === 'leads') {
+            $admin_main_content = '<p class="admin-empty">Database not available.</p>';
+        } elseif (isset($admin_section_info[$section])) {
+            $info = $admin_section_info[$section];
+            $admin_section_title = $admin_page_title;
+            $admin_section_description = isset($info['description']) ? $info['description'] : 'Content for this section will be implemented here.';
+            $admin_section_links = isset($info['links']) ? $info['links'] : array();
+            ob_start();
+            include LUPOPEDIA_PATH . '/lupo-includes/themes/default/layouts/admin_sections/info.php';
+            $admin_main_content = ob_get_clean();
+        } else {
+            $admin_section_title = $admin_page_title;
+            $admin_section_description = 'Content for ' . $admin_page_title . ' will be implemented here.';
+            $admin_section_links = array();
+            ob_start();
+            include LUPOPEDIA_PATH . '/lupo-includes/themes/default/layouts/admin_sections/info.php';
+            $admin_main_content = ob_get_clean();
         }
     }
 }
