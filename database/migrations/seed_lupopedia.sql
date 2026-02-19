@@ -432,7 +432,7 @@ ON DUPLICATE KEY UPDATE new_id = VALUES(new_id), timestamp_utc = @now;
 -- lupo_dialog_channels and lupo_dialog_threads for channel 666
 INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (666, 'ANUBIS Quarantine', NULL, 'ANUBIS Quarantine', 'Banned and rejected messages. Channel 66 redirects to 666.', 'SYSTEM', '@none', 'published', @now, @now, 1) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), modified_timestamp = @now, message_count = VALUES(message_count);
 
-INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (51, 'Doctrine Council', NULL, 'Doctrine Council', 'Doctrine Council channel 51. Cursor 4.0.17 validation message.', 'CURSOR', '@everyone', 'published', @now, @now, 1) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), modified_timestamp = @now, message_count = VALUES(message_count);
+INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `title`, `description`, `speaker`, `target`, `status`, `created_timestamp`, `modified_timestamp`, `message_count`) VALUES (51, 'Doctrine Council', NULL, 'Doctrine Council', 'Doctrine Council channel 51. Cursor 4.0.17 validation and governance messages.', 'CURSOR', '@everyone', 'published', @now, @now, 2) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), modified_timestamp = @now, message_count = VALUES(message_count);
 
 INSERT INTO lupo_dialog_threads (`dialog_thread_id`, `federation_node_id`, `channel_id`, `project_slug`, `task_name`, `created_by_actor_id`, `summary_text`, `bg_color`, `text_color`, `alt_text_color`, `status`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (666, 1, 666, 'anubis', 'ANUBIS Quarantine thread', 0, 'Quarantine thread for banned/rejected messages. Channel 66 redirects to 666.', '333333', 'CCCCCC', '666666', 'Open', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE summary_text = VALUES(summary_text), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
@@ -622,7 +622,8 @@ INSERT INTO lupo_dialog_messages (
     `message_text`, `message_type`, `metadata_json`, `mood_rgb`, `mood_framework`,
     `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`
 ) VALUES
-(62, 51, 51, 2000, NULL, 'Cursor reporting in on channel 51. Validation for 4.0.17 is green across the board.', 'text', NULL, NULL, 'western_analytical', @now, @now, 0, NULL)
+(62, 51, 51, 2000, NULL, 'Cursor reporting in on channel 51. Validation for 4.0.17 is green across the board.', 'text', NULL, NULL, 'western_analytical', @now, @now, 0, NULL),
+(63, 51, 51, 2000, NULL, 'Governance (4.0.17): Persona bans are enforced in ANUBIS adoption only. Router and channel-send enforcement planned for 4.0.18 (Ban at Gate). See SESSION_DOCTRINE.md.', 'system', NULL, NULL, 'western_analytical', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE
     message_text = VALUES(message_text),
     mood_rgb = VALUES(mood_rgb),
@@ -636,6 +637,7 @@ INSERT INTO lupo_dialog_channels (`channel_id`, `channel_name`, `file_source`, `
 -- -----------------------------------------------------------------------------
 -- FLIP seed content: key doctrine files with file_path_from_root for path lookup
 -- Enables: file_path_from_root -> content_id -> lupo_edges HAS_CONTENT -> channel_id 42
+-- Web Path Header Extension (4.0.17): optional web block (canonical, aliases, slug, base_path, url_pattern) is defined in UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md and exported in exports/flip_headers.csv.
 -- -----------------------------------------------------------------------------
 INSERT INTO lupo_contents (
     content_id, content_parent_id, federation_node_id, department_id, actor_id, title, slug, custom_path, description, seo_keywords, body,
@@ -1321,7 +1323,7 @@ INSERT INTO lupo_contents (
     5027, NULL, 1, NULL, NULL, 'NOTE HEADER VERSION AND MERGE', 'docs-doctrine-flip-noteheaderversionandmerge', NULL, NULL, NULL, NULL,
     'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0,
     @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1,
-    'docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md', '4.0.16', 0, NULL, NULL
+    'docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md', '4.0.17', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
 INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
@@ -1519,6 +1521,19 @@ VALUES
 (910078, 'channel', 0, 'content', 5037, 'HAS_CONTENT', 0, 'system/kernel', 0, 0, NULL, 0, 0, @now, @now),
 (910079, 'channel', 51, 'content', 5037, 'HAS_CONTENT', 51, '51', 0, 0, NULL, 0, 0, @now, @now),
 (910080, 'channel', 666, 'content', 5037, 'HAS_CONTENT', 666, 'anubis-quarantine', 0, 0, NULL, 0, 0, @now, @now)
+ON DUPLICATE KEY UPDATE left_object_id = VALUES(left_object_id), right_object_id = VALUES(right_object_id), edge_type = VALUES(edge_type), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, deleted_ymdhis = 0;
+
+-- 4.0.17: Diagnostics and compatibility note (content_id 5038); governance dialog (message 63) on channel 51.
+INSERT INTO lupo_contents (content_id, content_parent_id, federation_node_id, department_id, actor_id, title, slug, custom_path, description, seo_keywords, body, content_type, format, content_url, default_collection_id, source_url, source_title, is_template, status, visibility, view_count, share_count, created_ymdhis, utc_cycle, triage_status, triage_notes, updated_ymdhis, is_deleted, is_active, deleted_ymdhis, content_sections, version_number, file_path_from_root, file_last_modified_system_version, file_last_modified_utc, tags, dialog_notes)
+VALUES (5038, NULL, 1, NULL, NULL, '4.0.17 Diagnostics and Compatibility', 'docs-doctrine-4-0-17-diagnostics', NULL, 'Android/Messenger behavior and Crafty Syntax 3.7.5 compatibility notes for 4.0.17.', NULL, NULL, 'article', 'markdown', NULL, 0, NULL, NULL, 0, 'published', 'public', 0, 0, @now, 'seed', 'untriaged', NULL, @now, 0, 1, NULL, NULL, 1, 'docs/doctrine/4.0.17_DIAGNOSTICS_AND_COMPATIBILITY.md', '4.0.17', 20260218000000, '["diagnostics","compatibility","4.0.17","crafty","android"]', NULL)
+ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), description = VALUES(description), tags = VALUES(tags), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+VALUES (9050038, 'content', 5038, 'docs/doctrine/4.0.17_DIAGNOSTICS_AND_COMPATIBILITY.md', '4.0.17 Diagnostics and Compatibility', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
+ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
+
+INSERT INTO lupo_edges (edge_id, left_object_type, left_object_id, right_object_type, right_object_id, edge_type, channel_id, channel_key, weight_score, sort_num, actor_id, is_deleted, deleted_ymdhis, created_ymdhis, updated_ymdhis)
+VALUES (910081, 'channel', 51, 'content', 5038, 'HAS_CONTENT', 51, '51', 0, 0, NULL, 0, 0, @now, @now), (910082, 'channel', 0, 'content', 5038, 'HAS_CONTENT', 0, 'system/kernel', 0, 0, NULL, 0, 0, @now, @now)
 ON DUPLICATE KEY UPDATE left_object_id = VALUES(left_object_id), right_object_id = VALUES(right_object_id), edge_type = VALUES(edge_type), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, deleted_ymdhis = 0;
 
 INSERT INTO lupo_emotional_frameworks (`framework_name`, `description`, `is_default`, `created_ymdhis`, `updated_ymdhis`) VALUES ('contextual_holism', 'Emotions inseparable from situation, history, relationship, and culture.', 0, 20250101000000, 20250101000000);

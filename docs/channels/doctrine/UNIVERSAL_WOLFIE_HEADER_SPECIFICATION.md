@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.16
+file.last_modified_system_version: 4.0.17
 channel_key: system/kernel
 header_atoms:
   - GLOBAL_CURRENT_LUPOPEDIA_VERSION
@@ -168,6 +168,37 @@ Extensions must:
 - not override required fields  
 - not change the meaning of required fields  
 - not break deterministic parsing  
+
+### 6.1 Web Path Header Extension (4.0.17)
+
+Optional **`web`** block for canonical and alias URL paths. Use when the file is exposed via HTTP and you need a stable web path and slug.
+
+**Format:**
+
+```yaml
+web:
+  canonical: /doctrine/FLP/FLP_OVERVIEW
+  aliases:
+    - /qa/FLP+OVERVIEW
+    - /docs/FLP_OVERVIEW
+  slug: FLP_OVERVIEW
+  slug_encoding: underscore   # or plus, percent
+  base_path: /doctrine/FLP
+  url_pattern: "/{base}/{slug}"
+```
+
+**Fields:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| **canonical** | string | Canonical web path (no file extension). Used as primary URL path. |
+| **aliases** | list of string | Alternative paths (e.g. QA, docs mirror). Optional. |
+| **slug** | string | URL-safe name segment (e.g. filename without extension). |
+| **slug_encoding** | string | Encoding convention: `underscore`, `plus`, or `percent`. |
+| **base_path** | string | Directory segment of canonical path (e.g. `/doctrine/FLP`). |
+| **url_pattern** | string | Pattern for building URL, e.g. `"/{base}/{slug}"`. |
+
+Inference: agents and tools may derive `canonical` from `file_path_from_root` (strip `docs/` prefix and `.md` suffix; leading slash). Export: FLIP CSV and seed metadata may include the `web` block for routing and resolution.
 
 ---
 

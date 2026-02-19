@@ -2,7 +2,7 @@
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md
-file.last_modified_system_version: "4.0.16"
+file.last_modified_system_version: "4.0.17"
 file.last_modified_utc: "00000000000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 ---
@@ -16,7 +16,7 @@ file.last_modified_utc: "00000000000000"
 
 When you **add or edit** a FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header) in any file, set:
 
-- **`file.last_modified_system_version`** to the **current Lupopedia version** at the time of the edit.
+- **`file.last_modified_system_version`** to the **Lupopedia version in which the file’s content was last changed** (not the version when the header was generated). If you edit the file in 4.0.17, use 4.0.17; if the file was last touched in 4.0.16 and you only regenerate the header, keep 4.0.16.
 
 **Current version (as of this note):** **4.0.16**
 

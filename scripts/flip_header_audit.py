@@ -8,17 +8,42 @@ import re
 from pathlib import Path
 
 SIGNATURE = "wolfie.headers: explicit architecture with structured clarity for every file."
+
+def path_to_web(path):
+    """Derive web block (canonical, slug, base_path) from file_path_from_root. 4.0.17 Web Path Header Extension."""
+    p = path.replace("\\", "/").strip()
+    if p.startswith("docs/"):
+        p = p[5:]
+    if p.endswith(".md"):
+        p = p[:-3]
+    if not p:
+        return "/", "", "/"
+    canonical = "/" + p
+    parts = p.split("/")
+    slug = parts[-1] if parts else p
+    base_path = "/" + "/".join(parts[:-1]) if len(parts) > 1 else "/"
+    return canonical, slug, base_path
+
 FLIP_HEADER_TEMPLATE = """---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: {path}
-file.last_modified_system_version: "4.0.16"
+file.last_modified_system_version: "4.0.17"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
 tags: ["lost", "orphan", "doctrine"]
 mood_rgb: "FFDAB9"
 atoms:
   recovery_event: true
+web:
+  canonical: {web_canonical}
+  aliases:
+    - /docs/{web_slug}
+    - /qa/{web_slug_plus}
+  slug: {web_slug}
+  slug_encoding: underscore
+  base_path: {web_base_path}
+  url_pattern: "/{{base}}/{{slug}}"
 ---
 
 """
@@ -29,7 +54,16 @@ def has_flip_header(content):
 def add_flip_header(filepath, content):
     if content.startswith("---"):
         return content
-    header = FLIP_HEADER_TEMPLATE.format(path=filepath.replace("\\", "/"))
+    path = filepath.replace("\\", "/")
+    canonical, slug, base_path = path_to_web(path)
+    slug_plus = slug.replace("_", "+")
+    header = FLIP_HEADER_TEMPLATE.format(
+        path=path,
+        web_canonical=canonical,
+        web_slug=slug,
+        web_slug_plus=slug_plus,
+        web_base_path=base_path,
+    )
     return header + content
 
 def main():

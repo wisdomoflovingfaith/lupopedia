@@ -33,6 +33,8 @@ The **current version** of Lupopedia is **4.0.17**.
 
 This is the only correct “current version” number for the codebase. No other “current version” may be introduced unless explicitly instructed.
 
+**Provenance (4.0.17):** FLIP header provenance was verified: `file.last_modified_system_version` reflects the last version in which file content changed. exports/flip_headers.csv and seed_lupopedia.sql match; no incorrect 4.0.17 stamps on older files.
+
 ---
 
 ## 2. 4.1.0 — Allowed only for future-release planning

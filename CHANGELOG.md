@@ -16,44 +16,66 @@ As we continue development on a version, we append new changes under that versio
 
 ---
 
-## Lupopedia 4.0.17 — End-to-End Validation & Stabilization Patch - 2026-02-17
+## Lupopedia 4.0.17 — Final Release Notes (2026-02-17)
 
-**Summary.** This release validates the complete Lupopedia installation and runtime experience from a clean Crafty Syntax 3.7.5 baseline through the full Lupopedia 4.0.x stack. It ensures that the installer, seed, Captain login, channel navigation, dialog rendering, FLIP metadata resolution, and ANUBIS/LILITH behavior all function correctly on a fresh install.
+### Overview
 
-**Completed work (validation).** Full clean-cycle reset (DROP tables → restore Crafty 3.7.5 → run installer → run seed). Wizard installation path (Crafty 3.7.5 → Lupopedia 4.0.x) verified. Seed loads all actors, dialogs, content, edges, registry, and banned actors. Captain (main admin) created during install and can log in. Navigation to channel 0 (system/kernel) and channel 42 (lupopedia-development) verified. All 61 dialog messages appear on channel 42 (1–35, 37–61); message 36 (actor_id 999, DEPRECATED_BANNED) quarantined to channel 666 and does not appear in channel 42. FLIP metadata resolution for doctrine files and channel FLIP files verified. HAS_CONTENT edges for content 5034–5037 (channels 0, 42, 51, 666) verified. Unified registry entries for channel:0:flip, channel:42:flip, channel:51:flip, channel:666:flip verified. ANUBIS: getBannedActorIds() returns 999; classifyOrphan() rejects actor_id 999; adoptIntoSeed() does not adopt banned actors. LILITH heterodox review doctrine loads correctly. Version references updated to 4.0.17 across config/global_atoms.yaml, lupo-includes/version.php, install.php, load_atoms.php, install_wizard_classes.php, seed_lupopedia.sql. UI components updated for channel navigation and message rendering. Documentation updated (README, VERSIONING_DOCTRINE.md, HISTORY.md). Legacy migration files added for admin/captain channel membership and actor_source_type corrections.
-
-**Notes.** No schema changes in 4.0.17. No new tables. All changes are validation/stabilization only.
-
-**Status.** 4.0.17 is complete and ready for deployment.
+Lupopedia **4.0.17** is a stabilization and doctrine-expansion release.
+It introduces the **Web Path Header Extension**, formalizes several core doctrines, seeds new diagnostics and governance artifacts, and verifies historical provenance across all FLIP headers.
+No runtime routing changes were implemented in this release.
 
 ---
 
-- **Version bump 4.0.16 → 4.0.17** in config/global_atoms.yaml (version, last_updated, versions.lupopedia, GLOBAL_CURRENT_LUPOPEDIA_VERSION, file.last_modified_system_version), lupo-includes/version.php (docblock, fallbacks, LUPOPEDIA_VERSION_DATE), install.php, lupo-includes/functions/load_atoms.php, install_wizard_classes.php (docblock), database/migrations/seed_lupopedia.sql (@lupo_version, @lupo_version_code), docs/doctrine/VERSIONING_DOCTRINE.md (canonical current version 4.0.17, FLIP header).
-- **Import SQL (Crafty 3.7.5 baseline):** Removed `u.is_deleted` from import_from_old_crafty_syntax.sql. Crafty 3.7.5 `livehelp_users` has no `is_deleted` column; the two INSERTs that assigned system department and administrator role for Crafty admins were failing with "Unknown column 'u.is_deleted'". WHERE clauses now use only `UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y'` for lupo_actor_departments and lupo_department_roles.
-- **API LUPOPEDIA_PATH fallback:** api/list_user_collections.php and api/load_collection_tabs.php now define `LUPOPEDIA_PATH` when not already set (e.g. when config is loaded from a path that does not define it), using `dirname(dirname(__DIR__))` so API calls do not throw "Undefined constant LUPOPEDIA_PATH".
-- **Install wizard SQL runner (install_wizard_classes.php):** Comment stripping now removes only full-line comments (lines that are optional whitespace + `--` + rest of line), not `--` in the middle of a line, avoiding truncation of string literals or values that contain `--`. Statements that after trim are empty or start with `--` are skipped and not executed. Reduces risk of "Column count doesn't match value count" when seed SQL is processed.
-- **Install wizard Step 7 (Config):** Admin email and admin password are collected on the Config step (Step 7 of 8 on upgrade, Step 5 of 6 on new install) and stored as the main admin **user**: auth_user_id 10000, actor_id 10000 (actor_type `user`). The entered email and password are written to lupo_auth_users and the linked actor; captain role on channels 0, 1, 42; administrator on department 0; owner on Admin module. InstallWizardMainAdmin remains the single place that creates/updates this user.
-- **My Channels UI:** Route `channels/my-channels` added in module-loader.php (before numeric channel route) so the channels controller's `channels_handle_my_channels()` is invoked. New view `lupo-includes/modules/channels/views/my-channels.php` lists channels the current actor has a role in (from lupo_actor_channel_roles + lupo_channels), with links to each channel. Root entry point `my-channel.php` added: loads config and redirects to `{LUPOPEDIA_PUBLIC_PATH}/channels/my-channels`, so both `https://localhost/lupopedia/my-channel.php` and `https://localhost/lupopedia/channels/my-channels` show the My Channels list after login.
-- **channels-controller.php parse errors fixed:** Two array-assignment typos (extra closing parenthesis) corrected. (1) Pending-visitors block (~line 219): `$pending_visitors[] = array(...)` was closed with `));` instead of `);`. (2) Visitors block (~line 261): `$visitors[] = array(...)` was closed with `));` instead of `);`. Both caused "Unclosed '{' on line N does not match ')'" PHP parse errors when opening `/channels/0/` or other channel pages.
-- **Documentation — 197 tables out of 200:** CHANGELOG, README, docs/audits/FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md, docs/channels/appendix/HISTORY.md, and docs/REQUIRED_TABLES_4.0.6.md updated to state current TOON/table count: 197 tables now out of 200 (as of 2/17/2026). Regenerated TOON note in CHANGELOG set to 197 tables.
-- **debug_captain.php:** New debug page (project root) to verify main admin (user 10000) and admin access. Requires login; shows session actor_id, AuthService::getCurrentUser() (including is_admin), lupo_auth_users/lupo_actors for 10000, lupo_actor_channels/lupo_actor_channel_roles, lupo_department_roles, lupo_permissions (admin module owner), channel 1 existence, and AuthService::isAdmin(10000). Suggests SQL fix when actor_source_type is not `user`.
-- **Main admin actor_source_type = 'user':** AuthService::getCurrentUser() requires lupo_actors.actor_source_type = `user` for the main admin. Seed and wizard were using `lupo_auth_users` (or table name), so getCurrentUser() did not find the user and is_admin stayed false. **seed_lupopedia.sql:** Main admin actor 10000 now uses actor_source_type = `user`; ON DUPLICATE KEY UPDATE also sets actor_source_type = `user`. **install_wizard_classes.php:** createMainAdmin() now sets actor_source_type = `user` (not $auth_t) when creating/updating the actor.
-- **migration_fix_main_admin_actor_source_type.sql:** One-time migration to set actor 10000 actor_source_type = `user` for existing installs.
-- **migration_grant_main_admin_permissions.sql:** One-time migration to fix admin access: (1) actor 10000 actor_source_type = `user`, (2) point sessions from duplicate actor (e.g. 12151) to actor_id 10000, (3) ensure admin module (module_id 9, module_key `admin`) exists, (4) grant owner on admin module to user_id 10000 in lupo_permissions.
-- **Seed lupo_permissions:** Added lupo_permissions row for main admin: permission_id 10000, target_type `module`, target_id 9, user_id 10000, permission `owner` (after lupo_modules block in seed_lupopedia.sql). Ensures fresh installs get admin module owner for auth_user_id 10000.
-- **Channel 42 seed migration (migration_seed_channel_42_lupopedia_development.sql):** One-time migration to populate channel 42 when seed was not run: channel row, 28 lupo_actor_channels members (25 kernel agents + actor 0 + 1000 + 10000), lupo_actor_channel_roles, dialog thread 1, 27 dialog messages, lupo_dialog_channels summary. Ensures /channels/42/ shows agents and messages.
-- **Seed lupo_actors agent columns fixed:** All agent rows in seed had actor_source_id and actor_source_type swapped (actor_source_id got string `lupo_agent_registry`, actor_source_type got JSON). Schema: actor_source_id = bigint (e.g. 1, 2, 1212), actor_source_type = varchar `lupo_agent_registry`. **seed_lupopedia.sql:** Corrected 81 lupo_actors agent rows so actor_source_id = numeric id (1–24, 59, 105, 106, 209, 1200–1212, 999) and actor_source_type = `lupo_agent_registry`.
-- **migration_fix_actor_source_id_type_agents.sql:** One-time migration to fix existing lupo_actors agent rows that still have the swapped columns (set actor_source_id = actor_id, actor_source_type = `lupo_agent_registry` where actor_source_type looks like JSON).
-- **Channel cockpit message stream in iframe (legacy livehelp pattern):** Message stream on /channels/{id}/ was extending past the viewport with no scroll. Implemented the same pattern as legacy crafty_syntax livehelp.php: message stream is loaded in a fixed-height iframe so the UI does not extend past the window. **Route:** `channels/(\d+)/stream` added in module-loader.php (before the show route) calling `channels_handle_stream($channel_id)`. **Controller:** New `channels_handle_stream()` in channels-controller.php: same auth and channel-access checks as show, loads threads (colors), messages (with `clear=now`), actor names, `initial_after_ymdhis`; returns minimal HTML (no main layout) for iframe content. **View:** New `lupo-includes/modules/channels/views/stream.php` — standalone HTML document with message list (partials/_message_stream.php), channel-interface.css, and in-document polling script; listens for `postMessage('channel-message-sent')` from parent to trigger poll after send. **show.php:** Message panel replaced with `<iframe id="channel-stream-iframe" class="channel-stream-iframe" src="/channels/{id}/stream">`; `?clear=now` passed through to iframe src; parent message-polling script removed (polling runs inside iframe). **Composer:** partials/_composer.php after dispatch of `channel-message-sent` calls `channel-stream-iframe.contentWindow.postMessage('channel-message-sent', '*')` so iframe polls immediately after send.
-- **Channel cockpit layout and scrolling (channel-interface.css, stream.php):** **Width (legacy livehelp-style split):** Message stream iframe uses `flex: 1 1 auto` and `min-width: 0` so it takes the majority of window width; Channel roles & visitors panel fixed at **300px** (`flex: 0 0 300px`, `width: 300px`, `min-width: 300px`) so messages are no longer squished. **Viewport height:** `.channel-operator-interface` set to `height: 100vh`, `max-height: 100vh`, `overflow: hidden` so the cockpit stays within the viewport; `.channel-interface-body` uses `flex: 1 1 0` and `min-height: 0` so it fills remaining space; `.channel-stream-iframe` height capped at **60% of viewport** (`height: 60vh`, `max-height: 60vh`, `min-height: 200px`) so the chat stream iframe does not exceed 60% of window height and scrolls inside the iframe. **Stream view (iframe content):** stream.php adds `html, body { height: 100% }`, `.channel-stream-root` with `overflow: hidden`, `.channel-panel-message-stream` with `overflow-y: auto` and `-webkit-overflow-scrolling: touch` so the message list scrolls inside the iframe.
-- **Main admin (actor_id 10000) on channel 51:** Seed and install wizard updated so the main admin has membership and captain role on channel 51 (Doctrine Council). **seed_lupopedia.sql:** lupo_actor_channels (10003, 10000, 51, 'A', ...) and lupo_actor_channel_roles (5003, 10000, 51, 'captain', ...). **install_wizard_classes.php:** createMainAdmin() channel list extended from `array(0, 1, 42)` to `array(0, 1, 42, 51)` so new installs grant main admin access to channel 51.
-- **Global admin rights to any channel:** Main admin (and any user with global admin via AuthService::isAdmin()) is granted access to **all channels** without requiring a row in lupo_actor_channels or lupo_actor_channel_roles. **channels-controller.php:** In channels_handle_show, channels_handle_stream, channels_handle_log_show, and channels_handle_log_create, channel access and role checks allow access when isAdmin($actor_id). actor_has_channel_role set to true for global admin so Edit Channel / View Log show on any channel; log view and log create use synthetic role (captain) for global admin when no actor_channel_roles row exists. **channel-messages-api.php, channel-send-api.php, channel-check-api.php:** After actor_channels check fails, allow access when $GLOBALS['lupo_auth_service']->isAdmin($actor_id). No seed or schema change required; global access is enforced in application code.
-- **Added Cursor actor to channel 51 (Doctrine Council).** Cursor actor (actor_id 2000, reserved range 2000–2099, actor_source_type AI_AGENT) and channel 51 membership (lupo_actor_channels, lupo_actor_channel_roles) seeded in seed_lupopedia.sql. Channel 51 (Doctrine Council) row added to lupo_channels for self-contained seed.
-- **Seeded Cursor dialog message for 4.0.17 validation confirmation.** Message 62 on channel 51, thread 51: "Cursor reporting in on channel 51. Validation for 4.0.17 is green across the board." lupo_dialog_threads (thread_id 51) and lupo_dialog_channels (channel_id 51, message_count 1) seeded.
-- **Updated seed_lupopedia.sql with Cursor actor, membership, and dialog entry.** All IDs explicit (reserved ID doctrine): actor 2000, actor_channel_id 20000, actor_channel_role_id 5100, dialog_thread_id 51, dialog_message_id 62.
-- **Completed end-to-end validation for 4.0.17.** Full install → seed → Captain login → channel navigation → dialog rendering and FLIP/ANUBIS verification confirmed.
-- **Updated UI/API files touched during validation.** Channels controller, stream/composer views, channel-interface.css, channel-check-api, channel-messages-api, channel-send-api, module-loader, my-channels view, my-channel.php, debug_captain.php, API LUPOPEDIA_PATH fallbacks.
-- **Updated versioning doctrine references.** config/global_atoms.yaml, lupo-includes/version.php, install.php, load_atoms.php, install_wizard_classes.php, seed_lupopedia.sql, docs/doctrine/VERSIONING_DOCTRINE.md set to 4.0.17.
+### 1. Web Path Header Extension (Metadata-Only)
+
+The FLIP header specification now includes an optional `web:` block defining a file's web identity: `canonical`, `aliases`, `slug`, `slug_encoding`, `base_path`, `url_pattern`.
+
+Implemented in: `docs/channels/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`; `exports/flip_headers.csv` (new `web_*` columns + updated type row); `scripts/flip_header_audit.py` (new `path_to_web()` + updated header template); comment added to `seed_lupopedia.sql` documenting metadata export behavior. **No database schema changes.** Web path metadata is exported, not stored in `lupo_contents`.
+
+---
+
+### 2. Provenance Verification (FLIP Header Version Integrity)
+
+Audit of `exports/flip_headers.csv` confirmed: **38 files** at `4.0.16`; **1 file** (`NOTE_HEADER_VERSION_AND_MERGE.md`) at `4.0.17`; **1 new file** (`4.0.17_DIAGNOSTICS_AND_COMPATIBILITY.md`) at `4.0.17`. **No corrections required.** Historical provenance is accurate and complete.
+
+---
+
+### 3. Doctrine Additions & Updates
+
+- **SESSION_DOCTRINE.md** — Persona bans enforced only in ANUBIS; router/channel-send enforcement deferred to 4.0.18.
+- **VERSIONING_DOCTRINE.md** — Canonical versioning rules for FLIP headers.
+- **NOTE_HEADER_VERSION_AND_MERGE.md** — Provenance semantics and merge behavior.
+- **4.0.17_DIAGNOSTICS_AND_COMPATIBILITY.md** — Android/Messenger; Chrome/WebView fallback; Crafty Syntax 3.7.5 compatibility. All added to seed as content artifacts.
+
+---
+
+### 4. Seed SQL Updates
+
+`seed_lupopedia.sql` now includes: **content_id 5038** (`4.0.17_DIAGNOSTICS_AND_COMPATIBILITY.md`, registry `9050038`, edges `910081`/`910082` to channels 51 and 0); **dialog message 63** (channel 51, actor_id 2000/Cursor, governance note — bans in ANUBIS only, router enforcement in 4.0.18 "Ban at Gate", references SESSION_DOCTRINE.md); **channel 51** `message_count = 2` and updated description. All IDs deterministic; BIGINT UTC; no NULLs, triggers, or foreign keys.
+
+---
+
+### 5. FLP / FLIP Doctrine Clarification
+
+4.0.17 formalizes **FLP — Federated Likeness Protocol** and **FLIP — File-Level Inference Protocol**. Canonical: `FLIPPING_FILE_LEXA_LILITH.md`, `FLIP_DOCTRINE.md`.
+
+---
+
+### Deferred to 4.0.18 (Not Implemented in 4.0.17)
+
+Documented in `WEB_ROUTING_DOCTRINE_4_0_18.md`: runtime URL routing, UrlResolver, slug normalization, smart 404, Apache/Nginx rewrite rules, caching + invalidation, router-level ban enforcement ("Ban at Gate"). Planning-only for 4.0.18.
+
+---
+
+### Summary
+
+4.0.17 is a **metadata, doctrine, and diagnostics** release. It lays the foundation for 4.0.18's runtime routing without implementing it. Provenance correct, seed updated, system stable and ready for the next phase.
+
+---
+
+## 4.0.18 — Planned (not yet implemented)
+
+- **Web routing and path resolution.** 4.0.18 will implement runtime routing based on the 4.0.17 Web Path Header Extension: UrlResolver (from flip_headers.csv with fallback to header parsing), wildcard routes for `/{base}/{slug}`, smart 404, server rewrite rules, and caching/invalidation. Planning only: docs/channels/doctrine/WEB_ROUTING_DOCTRINE_4_0_18.md. No implementation in 4.0.17.
 
 ---
 
