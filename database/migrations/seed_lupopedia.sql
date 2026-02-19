@@ -12,8 +12,8 @@
 SET @now = 20260217230000;
 SET @node_id = 1;
 -- Version for module seed: must match docs/doctrine/VERSIONING_DOCTRINE.md (canonical current version).
-SET @lupo_version = '4.0.19';
-SET @lupo_version_code = 40019;
+SET @lupo_version = '4.0.20';
+SET @lupo_version_code = 40020;
 
 -- -----------------------------------------------------------------------------
 -- System department (department_id = 0) — reserved, not user-selectable
@@ -388,6 +388,29 @@ INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdh
 INSERT INTO lupo_banned_actors (`banned_actor_id`, `actor_id`, `ip_address`, `reason`, `banned_ymdhis`, `banned_by_actor_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
 (1, 999, NULL, 'deprecated_experimental_persona', @now, 1000, @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE reason = VALUES(reason), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+-- -----------------------------------------------------------------------------
+-- 4.0.20: Stoned Wolfie banned test identities (adversarial harness)
+-- AI: actor_id 420 (0-9999 system range). Human: actor_id 10001 (first free >= 10000 in fresh install).
+-- Upgrade path: wizard inserts human at next-free actor_id >= 10000 after import/seed.
+-- -----------------------------------------------------------------------------
+-- AI: lupo_agents, lupo_actors, lupo_banned_actors, lupo_auth_users (disabled)
+INSERT INTO lupo_agents (`agent_id`, `agent_key`, `agent_name`, `archetype`, `description`, `version`, `model_name`, `is_global_authority`, `is_internal_only`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `avg_response_time_ms`, `total_tokens_processed`, `success_rate`, `cost_per_1k_tokens`, `temperature`, `top_p`, `max_tokens`, `presence_penalty`, `frequency_penalty`, `system_prompt`, `provider`, `api_key_id`, `timeout_ms`, `safety_json`, `response_format`, `pono_score`, `pilau_score`, `kapakai_score`, `kapu_active`, `kapu_until`, `kapu_reason`, `kapu_consent_given`, `kapu_appeal_pending`) VALUES (420, 'stoned_wolfie_ai', 'Stoned Wolfie (AI)', 'banned_test', 'Banned AI test identity for adversarial harness. Do not use as persona.', '1.0', NULL, 0, 1, @now, @now, 1, @now, 0, 0, 1.0, '0.0000', 0.7, 1.0, 2048, 0.0, 0.0, NULL, 'openai', NULL, 20000, NULL, NULL, '1.00', '0.00', '0.50', 0, NULL, NULL, 0, 0) ON DUPLICATE KEY UPDATE agent_name = VALUES(agent_name), is_deleted = 1, deleted_ymdhis = @now, updated_ymdhis = @now;
+
+INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) VALUES (420, 'agent', 'stoned-wolfie-ai', 'Stoned Wolfie (AI)', @now, @now, 0, 1, @now, 420, 'lupo_agents', 'none', NULL, NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), is_active = 0, is_deleted = 1, deleted_ymdhis = @now, updated_ymdhis = @now;
+
+INSERT INTO lupo_banned_actors (`banned_actor_id`, `actor_id`, `ip_address`, `reason`, `banned_ymdhis`, `banned_by_actor_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (2, 420, NULL, 'banned_test_identity_ai', @now, 1000, @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE reason = VALUES(reason), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+INSERT INTO lupo_auth_users (`auth_user_id`, `username`, `display_name`, `email`, `password_hash`, `auth_provider`, `provider_id`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`) VALUES (420, 'stoned_wolfie_ai', 'Stoned Wolfie (AI)', 'stoned.wolfie.ai@banned.local', NULL, 'local', NULL, @now, @now, 0, 0, NULL) ON DUPLICATE KEY UPDATE is_active = 0, updated_ymdhis = @now;
+
+-- Human: actor_id 10001 (first slot >= 10000 after seed). On upgrade wizard uses next-free actor_id >= 10000.
+INSERT INTO lupo_auth_users (`auth_user_id`, `username`, `display_name`, `email`, `password_hash`, `auth_provider`, `provider_id`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`) VALUES (10001, 'stonedwolfie', 'Stoned Wolfie', 'stonedwolfie@lupopedia.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'local', NULL, @now, @now, 0, 0, NULL) ON DUPLICATE KEY UPDATE is_active = 0, updated_ymdhis = @now;
+
+INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) VALUES (10001, 'user', 'user-10001', 'Stoned Wolfie', @now, @now, 0, 0, NULL, 10001, 'user', NULL, 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), is_active = 0, updated_ymdhis = @now;
+
+INSERT INTO lupo_banned_actors (`banned_actor_id`, `actor_id`, `ip_address`, `reason`, `banned_ymdhis`, `banned_by_actor_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (3, 10001, NULL, 'banned_test_identity_human', @now, 1000, @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE reason = VALUES(reason), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+-- -----------------------------------------------------------------------------
 
 INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) VALUES (1000, 'human', 'captain', 'CAPTAIN', @now, @now, 1, 0, NULL, NULL, 'human', '{"email":"captain@lupopedia.com","status":"A"}', 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 

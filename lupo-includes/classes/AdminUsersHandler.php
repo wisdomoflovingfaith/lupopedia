@@ -31,6 +31,7 @@ class AdminUsersHandler {
             $display_name = isset($_POST['display_name']) ? trim((string) $_POST['display_name']) : '';
             $email = isset($_POST['email']) ? trim((string) $_POST['email']) : '';
             $is_active = isset($_POST['is_active']) && $_POST['is_active'] === '1' ? 1 : 0;
+            $profile_ok = false;
             if ($auth_user_id > 0 && $display_name !== '') {
                 $db->update($prefix . 'auth_users', array(
                     'display_name' => $display_name,
@@ -38,6 +39,12 @@ class AdminUsersHandler {
                     'is_active' => $is_active,
                     'updated_ymdhis' => $now,
                 ), 'auth_user_id = :aid', array(':aid' => $auth_user_id));
+                $profile_ok = true;
+            }
+            if (function_exists('lupo_diag_admin_action')) {
+                $cu = (isset($GLOBALS['lupo_auth_service']) && is_object($GLOBALS['lupo_auth_service']) && method_exists($GLOBALS['lupo_auth_service'], 'getCurrentUser')) ? $GLOBALS['lupo_auth_service']->getCurrentUser() : (function_exists('current_user') ? current_user() : array());
+                $actor_id = (is_array($cu) && isset($cu['actor_id'])) ? (int) $cu['actor_id'] : 0;
+                lupo_diag_admin_action($actor_id, 'save_profile', 'auth_user', $auth_user_id, $profile_ok);
             }
             header('Location: ' . $base . '/admin.php?section=users&msg=profile_saved');
             exit;
@@ -46,12 +53,13 @@ class AdminUsersHandler {
         // POST: save permissions (channel 1 role)
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['save_permissions']) && isset($_POST['actor_id'])) {
             lupo_require_valid_csrf_token();
-            $actor_id = (int) $_POST['actor_id'];
+            $target_actor_id = (int) $_POST['actor_id'];
             $new_role = isset($_POST['channel1_role_type']) ? trim((string) $_POST['channel1_role_type']) : '';
-            if ($actor_id > 0) {
+            $perm_ok = false;
+            if ($target_actor_id > 0) {
                 $db->query(
                     "UPDATE {$cr} SET is_deleted = 1, deleted_ymdhis = :now WHERE actor_id = :actor_id AND channel_id = 1",
-                    array(':now' => $now, ':actor_id' => $actor_id)
+                    array(':now' => $now, ':actor_id' => $target_actor_id)
                 );
                 if ($new_role !== '') {
                     $next_id = function_exists('lupo_findpuka') ? lupo_findpuka($db, $prefix . 'actor_channel_roles', 'actor_channel_role_id', 1, null) : (int) $db->fetchOne("SELECT COALESCE(MAX(actor_channel_role_id), 0) + 1 FROM {$cr}", array());
@@ -60,9 +68,15 @@ class AdminUsersHandler {
                     }
                     $db->query(
                         "INSERT INTO {$cr} (actor_channel_role_id, channel_id, actor_id, role_key, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:id, 1, :actor_id, :role_key, :now, :now2, 0)",
-                        array(':id' => $next_id, ':actor_id' => $actor_id, ':role_key' => $new_role, ':now' => $now, ':now2' => $now)
+                        array(':id' => $next_id, ':actor_id' => $target_actor_id, ':role_key' => $new_role, ':now' => $now, ':now2' => $now)
                     );
                 }
+                $perm_ok = true;
+            }
+            if (function_exists('lupo_diag_admin_action')) {
+                $cu = (isset($GLOBALS['lupo_auth_service']) && is_object($GLOBALS['lupo_auth_service']) && method_exists($GLOBALS['lupo_auth_service'], 'getCurrentUser')) ? $GLOBALS['lupo_auth_service']->getCurrentUser() : (function_exists('current_user') ? current_user() : array());
+                $actor_id = (is_array($cu) && isset($cu['actor_id'])) ? (int) $cu['actor_id'] : 0;
+                lupo_diag_admin_action($actor_id, 'save_permissions', 'actor_channel_role', $target_actor_id, $perm_ok);
             }
             header('Location: ' . $base . '/admin.php?section=users&msg=permissions_saved');
             exit;

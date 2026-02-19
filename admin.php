@@ -47,6 +47,40 @@ $user = $authService ? $authService->getCurrentUser() : (function_exists('curren
 $isUserLoggedIn = ($user !== false && !empty($user));
 $isAdmin = $isUserLoggedIn && !empty($user['is_admin']);
 
+// Admin diagnostics (4.0.20): session introspection, permission check — local-only, dev-only
+if (file_exists(LUPOPEDIA_PATH . '/lupo-includes/functions/admin_diagnostics.php')) {
+    require_once LUPOPEDIA_PATH . '/lupo-includes/functions/admin_diagnostics.php';
+    $diag_actor_id = ($isUserLoggedIn && isset($user['actor_id'])) ? (int) $user['actor_id'] : 0;
+    $diag_session_age = 0;
+    if ($diag_actor_id && isset($GLOBALS['mydatabase']) && function_exists('session_id')) {
+        $sid = session_id();
+        if ($sid !== '' && $sid !== false) {
+            $db = $GLOBALS['mydatabase'];
+            $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+            $t = $db->quoteIdentifier($prefix . 'sessions');
+            $row = $db->fetchRow("SELECT created_ymdhis FROM {$t} WHERE session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1", array('sid' => $sid));
+            if ($row && isset($row['created_ymdhis'])) {
+                $s = (string) $row['created_ymdhis'];
+                if (strlen($s) >= 14) {
+                    $str = substr($s, 0, 4) . '-' . substr($s, 4, 2) . '-' . substr($s, 6, 2) . ' ' . substr($s, 8, 2) . ':' . substr($s, 10, 2) . ':' . substr($s, 12, 2) . ' UTC';
+                    $ts = strtotime($str);
+                    if ($ts !== false) {
+                        $diag_session_age = max(0, time() - $ts);
+                    }
+                }
+            }
+        }
+    }
+    $diag_ip = isset($_SERVER['REMOTE_ADDR']) ? (string) $_SERVER['REMOTE_ADDR'] : '';
+    if (function_exists('lupo_diag_session')) {
+        lupo_diag_session($diag_actor_id, $diag_session_age, $diag_ip);
+    }
+    $diag_roles = $isAdmin ? array('admin') : array();
+    if (function_exists('lupo_diag_permission_check')) {
+        lupo_diag_permission_check($diag_actor_id, $diag_roles, 'admin', $isAdmin);
+    }
+}
+
 $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
 $admin_page_title = 'Dashboard';
 $admin_active_key = 'Dashboard';

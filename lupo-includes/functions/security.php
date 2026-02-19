@@ -39,6 +39,21 @@ function lupo_get_csrf_token() {
 function lupo_require_valid_csrf_token() {
     $submitted = isset($_POST['csrf_token']) ? (string) $_POST['csrf_token'] : (isset($_GET['csrf_token']) ? (string) $_GET['csrf_token'] : '');
     $session_token = isset($_SESSION['csrf_token']) ? (string) $_SESSION['csrf_token'] : '';
+    $token_present = ($submitted !== '');
+    $token_valid = ($submitted !== '' && $session_token !== '' && $submitted === $session_token);
+    $actor_id = 0;
+    if (isset($GLOBALS['lupo_auth_service']) && is_object($GLOBALS['lupo_auth_service']) && method_exists($GLOBALS['lupo_auth_service'], 'getCurrentUser')) {
+        $cu = $GLOBALS['lupo_auth_service']->getCurrentUser();
+        if (is_array($cu) && isset($cu['actor_id'])) {
+            $actor_id = (int) $cu['actor_id'];
+        }
+    }
+    if (defined('LUPOPEDIA_PATH') && file_exists(LUPOPEDIA_PATH . '/lupo-includes/functions/admin_diagnostics.php')) {
+        require_once LUPOPEDIA_PATH . '/lupo-includes/functions/admin_diagnostics.php';
+    }
+    if (function_exists('lupo_diag_csrf')) {
+        lupo_diag_csrf($actor_id, $token_present, $token_valid);
+    }
     if ($submitted === '' || $session_token === '' || $submitted !== $session_token) {
         if (!headers_sent()) {
             header('HTTP/1.0 403 Forbidden');

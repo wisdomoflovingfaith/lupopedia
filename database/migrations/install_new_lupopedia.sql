@@ -1124,7 +1124,7 @@ CREATE UNIQUE INDEX lupo_auth_providers_unique_provider_name ON lupo_auth_provid
 
 CREATE TABLE lupo_auth_users (
   auth_user_id bigint NOT NULL,
-  username varchar(30) NOT NULL,
+  username varchar(255) NOT NULL,
   display_name varchar(42) NOT NULL,
   email varchar(100) DEFAULT NULL,
   password_hash varchar(255) DEFAULT NULL,

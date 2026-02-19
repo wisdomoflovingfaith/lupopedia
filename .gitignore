@@ -92,6 +92,8 @@ docs/toons/*
 # ---------------------------------------------------------
 # Lupopedia-specific exclusions
 # ---------------------------------------------------------
+/logs/
+logs/
 /config/local.php
 /config/local/*
 /config/secret/*

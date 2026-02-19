@@ -37,7 +37,7 @@ $version_php = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTOR
 if (is_file($version_php)) {
     require_once $version_php;
 }
-$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.19';
+$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.20';
 
 /**
  * PHP 5.3-safe random bytes. Uses random_bytes() when available (PHP 7+), else openssl_random_pseudo_bytes, else mt_rand fallback.
@@ -134,7 +134,8 @@ if (!empty($preflight_blocking)) {
 
 session_start();
 
-// If config already exists and is loadable, redirect to app (no wizard)
+// Only treat as installed if lupopedia-config.php exists and defines LUPOPEDIA_CONFIG_LOADED.
+// Do NOT treat config.php or other files as installed; do not redirect during install.
 $configInRoot = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupopedia-config.php';
 if (is_file($configInRoot)) {
     $configPath = $configInRoot;
@@ -281,6 +282,10 @@ if ($step === 'bootstrap') {
         exit;
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'continue' && empty($errors)) {
+        if (function_exists('error_log')) {
+            error_log('Lupopedia wizard: bootstrap POST accepted, redirecting to step=normalize');
+        }
+        $_SESSION['lupo_wizard_step'] = 'normalize';
         header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=normalize');
         exit;
     }
@@ -364,13 +369,18 @@ if ($step === 'confirm') {
         exit;
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'run' && empty($errors)) {
+        if (function_exists('error_log')) {
+            error_log('Lupopedia wizard: confirm POST action=run accepted, setting step=run');
+        }
         $step = 'run';
-        // Process run in same request so SQL actually executes (no redirect → GET step=run would bounce back to confirm)
+        // Process run in same request so SQL actually executes (no redirect that could strip POST)
     }
 }
 
 // ----- Step: run SQL, write config, redirect (only on POST from confirm form)
 if ($step === 'run') {
+    // Allow up to 5 minutes for install/seed/import (avoids white screen from PHP timeout).
+    @set_time_limit(300);
     $db_vars = isset($_SESSION['lupo_install_db_vars']) ? $_SESSION['lupo_install_db_vars'] : null;
     $install_type = isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : 'new';
     $livehelp_tables = isset($_SESSION['lupo_install_livehelp_tables']) ? $_SESSION['lupo_install_livehelp_tables'] : array();
@@ -378,18 +388,27 @@ if ($step === 'run') {
         header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=credentials');
         exit;
     }
+    // If GET, only redirect to confirm when run has not completed yet (allows showing result after refresh)
+    $run_is_get_with_result = false;
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=confirm');
-        exit;
+        if (!empty($_SESSION['lupo_run_done']) && !empty($_SESSION['lupo_run_log'])) {
+            $log = $_SESSION['lupo_run_log'];
+            $run_is_get_with_result = true;
+        } else {
+            header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=confirm');
+            exit;
+        }
     }
-    try {
-        $pdo = InstallWizardDb::connectPdo($db_vars);
-    } catch (PDOException $e) {
-        $errors[] = 'Database connection failed. Check your credentials.';
-        error_log('Lupopedia install run step: ' . $e->getMessage());
-        $step = 'confirm';
+    if (!$run_is_get_with_result) {
+        try {
+            $pdo = InstallWizardDb::connectPdo($db_vars);
+        } catch (PDOException $e) {
+            $errors[] = 'Database connection failed. Check your credentials.';
+            error_log('Lupopedia install run step: ' . $e->getMessage());
+            $step = 'confirm';
+        }
     }
-    if ($step === 'run') {
+    if ($step === 'run' && !$run_is_get_with_result) {
         // Doctrine enforcement: upgrade must have normalized.
         if ($install_type === 'upgrade' && empty($_SESSION['lupo_normalize_applied'])) {
             header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=normalize');
@@ -474,6 +493,8 @@ if ($step === 'run') {
         }
         // Populate unified_unregistry with free IDs (gaps) for channels and actors, cap so table stays small.
         InstallWizardUnregistry::seedUnregistryFromGaps($pdo, $log, InstallWizardUnregistry::DEFAULT_MAX_CAP);
+        // 4.0.20: Ensure Stoned Wolfie (AI + human) banned test identities exist after import/seed.
+        InstallWizardBannedIdentities::ensureStonedWolfieBannedIdentities($pdo, $log, $table_prefix);
         $log[] = InstallWizardLogger::logEntry('ok', 'Run complete.');
         $_SESSION['lupo_run_log'] = $log;
         $_SESSION['lupo_run_done'] = true;
@@ -744,6 +765,7 @@ if ($baseUrl === '') {
             <div class="lupo-processing-overlay" id="lupo-processing-overlay" aria-live="polite"><span>Processing…</span></div>
             <h2>Database credentials</h2>
             <p>Enter connection details (or ensure Crafty Syntax <code>config.php</code> is in a standard location to auto-detect).</p>
+            <p class="slug-tip" style="margin-bottom:0.5rem;">If you have the legacy Crafty Syntax app in an <code>/lh/</code> folder and see a white screen or &quot;Access denied&quot; from <code>lh/config_cslh.php</code>, that app uses its own config: edit <code>lh/config_cslh.php</code> (or <code>lh/config.php</code>) so its MySQL user and password match this database, or temporarily rename the <code>lh</code> folder during install.</p>
             <?php foreach ($errors as $e): ?>
                 <p class="err"><?php echo htmlspecialchars($e); ?></p>
             <?php endforeach; ?>
@@ -783,6 +805,9 @@ if ($baseUrl === '') {
     <?php elseif ($step === 'bootstrap'): ?>
         <div class="wizard-card step success">
             <h2>Bootstrap complete</h2>
+            <?php foreach ($errors as $e): ?>
+                <p class="err"><?php echo htmlspecialchars($e); ?></p>
+            <?php endforeach; ?>
             <p>Schema (install + seed) and reserved system channels (0, 1, 42, 51) have been created. Continue to identity normalization.</p>
             <?php if (!empty($_SESSION['lupo_bootstrap_log'])): ?>
                 <div class="log-section">
@@ -890,7 +915,8 @@ if ($baseUrl === '') {
         </div>
 
     <?php elseif ($step === 'confirm'): ?>
-        <div class="step <?php echo (isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade' ? 'warning' : ''; ?>">
+        <div class="step lupo-step-wrap <?php echo (isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade' ? 'warning' : ''; ?>" id="lupo-confirm-step">
+            <div class="lupo-processing-overlay" id="lupo-run-overlay" aria-live="polite"><span>Running installation… This may take a minute.</span></div>
             <h2>Confirm</h2>
             <?php if ((isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade'): ?>
                 <p><strong>Upgrade from Crafty Syntax 3.7.5</strong></p>
@@ -920,12 +946,26 @@ if ($baseUrl === '') {
                     <li>Redirect to login</li>
                 </ol>
             <?php endif; ?>
-            <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=run'); ?>">
+            <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=confirm'); ?>" id="lupo-run-form">
                 <input type="hidden" name="lupo_csrf" value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
-                <input type="hidden" name="step" value="run">
+                <input type="hidden" name="step" value="confirm">
                 <input type="hidden" name="action" value="run">
-                <p style="margin-top:1rem;"><button type="submit">Run installation</button></p>
+                <p style="margin-top:1rem;"><button type="submit" id="lupo-run-btn">Run installation</button></p>
             </form>
+            <script>
+            (function() {
+                var form = document.getElementById('lupo-run-form');
+                var btn = document.getElementById('lupo-run-btn');
+                var overlay = document.getElementById('lupo-run-overlay');
+                if (form && btn && overlay) {
+                    form.onsubmit = function() {
+                        btn.disabled = true;
+                        overlay.className = 'lupo-processing-overlay visible';
+                        return true;
+                    };
+                }
+            })();
+            </script>
             <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>" class="btn">Back to credentials</a></p>
             <?php if ((isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade'): ?>
                 <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=normalize'); ?>" class="btn">Back to identity normalization</a></p>

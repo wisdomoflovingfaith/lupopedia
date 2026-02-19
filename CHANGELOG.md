@@ -16,6 +16,108 @@ As we continue development on a version, we append new changes under that versio
 
 ---
  
+ 
+## Lupopedia 4.0.20 — testing, diagnostics, and adversarial validation — 2026-02-19
+
+### Overview
+
+4.0.20 is a **test-only reflection release**. Scope: admin diagnostics (T2), regression test suite (T3), adversarial harness (T4), coverage report (T5), finalization (T6). No features, no UI changes, no schema changes. **Completed:** T1 (version bump), T2 (admin diagnostics with flock-based rotation and daily JSONL logs), T3 (full regression suite: admin, auth, session, legacy, csrf, permissions, installer), T4 (adversarial test harness: CSRF, privilege escalation, session tamper, malformed requests, SQLi/XSS probes, unauthorized access, rate limit), T5 (full test run and coverage), T6 (finalization). **Installer fixes:** wizard now advances correctly after "Run installation" and after bootstrap "Continue to Identity Normalization"; config detection only treats lupopedia-config.php as installed. **Seed and schema:** Stoned Wolfie (AI + human) banned test identities; lupo_auth_users.username extended to varchar(255) for email-length values.
+
+---
+
+### 1. Version bump (T1)
+
+- **4.0.19 → 4.0.20** in all locations per docs/doctrine/VERSIONING_DOCTRINE.md §8:
+  - **config/global_atoms.yaml** — version, last_updated (20260219180000), file.last_modified_system_version, versions.lupopedia, GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  - **lupo-includes/version.php** — docblock @version, fallback literal, LUPOPEDIA_VERSION_DATE (20260219180000), lupopedia_get_version() fallback
+  - **install.php** — wizard version fallback when LUPOPEDIA_VERSION undefined
+  - **lupo-includes/functions/load_atoms.php** — get_lupopedia_version() fallback
+  - **install_wizard_classes.php** — docblock "Lupopedia 4.0.20 — Install Wizard Classes"
+  - **database/migrations/seed_lupopedia.sql** — @lupo_version = '4.0.20', @lupo_version_code = 40020
+  - **docs/doctrine/VERSIONING_DOCTRINE.md** — canonical current version 4.0.20, provenance note, summary table, FLIP header (4.0.20 / 20260219180000)
+- **CHANGELOG.md** — 4.0.20 (in progress) section added.
+
+---
+
+### 2. Admin diagnostics (T2)
+
+- **T2: Admin diagnostics** — Permission traces, CSRF traces, session introspection, admin action audit; JSON lines (one object per line); daily log files; rotation at >1MB with flock. Local-only, dev-only; no behavior changes, diagnostics only.
+- **lupo-includes/functions/admin_diagnostics.php**
+  - **Core writer:** `lupo_diag_write($type, $data)` — merges `type` and `timestamp` (ISO 8601 via gmdate('c')) with `$data`, appends one JSON line. Log dir: `logs/admin/`; file per day: `YYYY-MM-DD.jsonl`. When file exceeds 1MB: exclusive flock, rename to `YYYY-MM-DD.jsonl.1`, then append to new file.
+  - **Helpers:** `lupo_diag_permission_check($actor_id, $role_list, $resource, $allowed)`, `lupo_diag_csrf($actor_id, $token_present, $token_valid)`, `lupo_diag_session($actor_id, $session_age, $ip)`, `lupo_diag_admin_action($actor_id, $action, $target_type, $target_id, $success)`.
+- **Integration (no behavior change):**
+  - **admin.php** — After login: load admin_diagnostics, compute session age from lupo_sessions.created_ymdhis, call `lupo_diag_session()` and `lupo_diag_permission_check()` (resource `admin`, roles `['admin']` or `[]`).
+  - **lupo-includes/functions/security.php** — In `lupo_require_valid_csrf_token()`: load admin_diagnostics if needed, call `lupo_diag_csrf()` (actor_id or 0) before returning or exiting 403.
+  - **AdminUsersHandler** — After save_profile and save_permissions: call `lupo_diag_admin_action()` with action, target_type, target_id, success.
+- **docs/diagnostics/4.0.20_ADMIN_TESTING.md** — Overview, log formats (permission_check, csrf, session, admin_action), rotation (1MB, .1 suffix, flock), example shell queries (grep permission denials, jq CSRF failures, count admin actions per day), how to test permission/CSRF/session/action failures.
+- **tests/unit/admin_diagnostics.php** — Assert `lupo_diag_write` defined; write permission_check and verify JSON in daily file; rotation test (fill daily file >1MB, one write, assert .1 exists and new file small; skip if rotation does not occur).
+- **tests/integration/admin_diagnostics.sh** — Curl unauthenticated GET admin.php; POST without/invalid CSRF; notes for manual checks with admin/non-admin session.
+- **.gitignore** — `logs/` (and `/logs/`) so admin logs are not committed.
+
+---
+
+### 3. Regression test suite (T3)
+
+- **T3: Regression test suite** — Admin UI, permissions, roles, CSRF, session lifecycle, actor validation, legacy behavior, installer/admin interaction. Defines baseline of correct behavior before adversarial testing (T4).
+- **Structure:** tests/regression/admin/, auth/, session/, legacy/, csrf/, permissions/, installer/. Each directory contains PHP 5.3-compatible test scripts (file/syntax/function presence; no live server required for these checks).
+- **admin/** — admin_ui_regression.php: admin.php, layout, info view, handlers (AdminUsersHandler, AdminChannelsHandler, etc.), section views (users, channels, agents, departments, leads).
+- **auth/** — auth_regression.php: auth-helpers.php, current_user, require_login, require_admin, lupo_is_admin.
+- **session/** — session_regression.php: session-compat-5.3.php, Session.php, session-helpers syntax.
+- **legacy/** — legacy_admin_regression.php: section slugs and handlers; legacy_paths_runner.php runs tests/regression/legacy_paths.php (syntax, routing helpers, admin files).
+- **csrf/** — csrf_regression.php: security.php, lupo_get_csrf_token, lupo_require_valid_csrf_token, admin_csrf_stub.
+- **permissions/** — permissions_regression.php: lupo_is_admin, lupo_has_admin_for_channel, require_admin, AuthService.
+- **installer/** — installer_admin_regression.php: admin.php, list handlers present (DB-unavailable message when DB missing is documented).
+- **scripts/run_regression_tests.sh** — Runs all regression PHP scripts; outputs PASS count, FAIL count, SKIP count; exit 0 only when FAIL=0.
+- **scripts/run_tests.sh** — Runs unit tests (run_unit_tests.sh), regression tests (run_regression_tests.sh), integration tests (tests/integration/*.sh), and adversarial tests (T4) when present.
+- **docs/diagnostics/4.0.20_ADMIN_TESTING.md** — Regression suite overview, how to run, expected outputs, how to interpret failures, how regression interacts with adversarial testing (T4).
+
+---
+
+### 4. Adversarial test harness (T4)
+
+- **T4: Adversarial test harness** — Red-team style probes: CSRF bypass attempts (missing/invalid token), privilege escalation, session tamper, malformed requests, SQLi probes, XSS attempts, unauthorized access, rate-limit/burst. Local-only, safe, non-destructive; curl-based; PHP 5.3 compatible.
+- **tests/adversarial/StonedWolfieHarness.php** — Class: constructor(base URL), makeRequest(), getSessionCookie(), runVector(name), runAll(), getResults(). Logs each result to tests/adversarial/results/YYYY-MM-DD.jsonl (JSON lines).
+- **tests/adversarial/run.php** — Entry point: php tests/adversarial/run.php [BASE_URL]. Runs all vectors, prints PASS/FAIL per vector and summary; exit 0 if all pass, 1 if any fail.
+- **Seed and wizard: Stoned Wolfie banned test identities** — Two banned identities always present after install or upgrade for adversarial harness: (1) **AI:** actor_id 420, lupo_agents (agent_id 420), lupo_actors, lupo_auth_users (is_active=0), lupo_banned_actors; (2) **Human:** stonedwolfie@lupopedia.com at next free actor_id ≥ 10000 (seed uses 10001 for fresh install; upgrade wizard allocates via MAX(actor_id)+1). database/migrations/seed_lupopedia.sql extended with idempotent INSERTs; InstallWizardBannedIdentities::ensureStonedWolfieBannedIdentities() runs after import/seed in install.php so upgrade path also gets both identities.
+- **tests/adversarial/sanity_test.php** — Single-vector sanity check (missing CSRF → 403); exit 0 on pass or server unreachable (skip), 1 on unexpected response.
+- **tests/adversarial/attack_vectors/** — Directory for harness (vectors implemented as methods in StonedWolfieHarness).
+- **tests/adversarial/results/** — JSONL log output; one line per run vector.
+- **tests/adversarial/README.md** — Quick start, vectors table, results format, how to add new vectors.
+- **scripts/run_adversarial_tests.sh** — Runs php tests/adversarial/run.php with optional BASE_URL; used by run_tests.sh.
+- **docs/diagnostics/4.0.20_ADMIN_TESTING.md** — Adversarial section: purpose, vectors covered, how to run, how to interpret results, expected pass/fail patterns.
+- **Curl optional:** run.php and sanity_test.php exit 0 with SKIP when the PHP curl extension is not loaded; makeRequest() returns code 0 without crashing.
+
+---
+
+### 5. Full test run and coverage (T5)
+
+- **T5:** Full test run (unit, regression, integration, adversarial) and coverage verification. Scripts: scripts/run_unit_tests.sh, scripts/run_regression_tests.sh, scripts/run_tests.sh, scripts/run_adversarial_tests.sh. No routing, resolver, caching, Ban-at-Gate, or admin UI changes.
+
+---
+
+### 6. Finalization (T6)
+
+- **T6:** CHANGELOG updated; version 4.0.20 reflected in all canonical locations; installer and seed fixes applied; no schema drift; ready for tag and push.
+
+---
+
+### 7. Installer wizard fixes
+
+- **Wizard not advancing after "Run installation":** Form now POSTs to `install.php?step=confirm` (same URL as current page) with hidden `step=confirm` and `action=run`, so the run step executes in the same request and no redirect can strip the POST. Prevents "same page again" when server or proxy redirects POST to GET.
+- **Run step GET with existing result:** When request is GET to `step=run` and session has `lupo_run_done` and `lupo_run_log`, the run result page is shown instead of redirecting back to confirm (allows refresh after success).
+- **Config detection:** Only treat as installed when `lupopedia-config.php` exists and defines `LUPOPEDIA_CONFIG_LOADED`. Do not treat old `config.php` or backup files as installed; do not redirect to login during install.
+- **Bootstrap → Identity:** Bootstrap "Continue to Identity Normalization" redirects to `step=normalize`; session `lupo_wizard_step` set to `normalize`; temporary debug logging when bootstrap POST is accepted.
+- **Bootstrap error display:** Errors (e.g. "Invalid security token") are now shown on the bootstrap step so CSRF or other failures are visible instead of silent re-display.
+- **Debug logging (temporary):** `error_log` when bootstrap POST is accepted and when confirm POST `action=run` is accepted; can be removed in a later patch.
+
+---
+
+### 8. Seed and schema updates
+
+- **Stoned Wolfie banned identities (seed + wizard):** Two banned test identities for adversarial harness: (1) **AI:** actor_id 420, lupo_agents (agent_id 420), lupo_actors, lupo_auth_users (is_active=0), lupo_banned_actors; (2) **Human:** stonedwolfie@lupopedia.com at next free actor_id ≥ 10000 (seed uses 10001 for fresh install; upgrade wizard allocates via MAX(actor_id)+1). Seed block in database/migrations/seed_lupopedia.sql; InstallWizardBannedIdentities::ensureStonedWolfieBannedIdentities() in install_wizard_classes.php runs after import/seed so upgrade path also gets both identities.
+- **lupo_auth_users.username length:** Column extended from varchar(30) to **varchar(255)** to support email-length usernames. Updated: database/migrations/install_new_lupopedia.sql; docs/toons/lupo_auth_users.toon.json. One-time migration for existing DBs: database/migrations_legacy/migration_auth_users_username_255.sql (idempotent ALTER TABLE).
+
+---
 
 ## Lupopedia 4.0.19 — admin web interface and testing — 2026-02-19 (released)
 
@@ -96,6 +198,7 @@ As we continue development on a version, we append new changes under that versio
 - **T7:** Admin regression testing
 
 ---
+
 
 ## Lupopedia 4.0.18 — runtime web path resolution and routing — 2026-02-19 (released)
 
