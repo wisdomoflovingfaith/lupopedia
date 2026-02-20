@@ -16,9 +16,9 @@ INSERT IGNORE INTO lupo_actors (
     `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, 
     `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`
 ) VALUES (
-    2001, 'system_tool', 'antigravity-ide', 'Antigravity IDE', 
+    2002, 'system_tool', 'antigravity-ide', 'Antigravity IDE', 
     @now, @now, 1, 0, NULL, 
-    2001, 'system_tool', 
+    2002, 'system_tool', 
     '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation","open_vsx_integration"],"version":"1.0.0","client_id":"antigravity","protected":false}', 
     'none', NULL, NULL
 ) ON DUPLICATE KEY UPDATE 
