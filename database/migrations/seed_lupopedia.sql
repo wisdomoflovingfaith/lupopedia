@@ -12,8 +12,8 @@
 SET @now = 20260217230000;
 SET @node_id = 1;
 -- Version for module seed: must match docs/doctrine/VERSIONING_DOCTRINE.md (canonical current version).
-SET @lupo_version = '4.0.21';
-SET @lupo_version_code = 40021;
+SET @lupo_version = '4.0.22';
+SET @lupo_version_code = 40022;
 
 -- -----------------------------------------------------------------------------
 -- System department (department_id = 0) — reserved, not user-selectable
@@ -426,7 +426,7 @@ INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdh
 -- Main admin user (auth_user_id 10000, actor_id 10000). Install wizard Step 7 creates lupo_auth_users row; seed ensures actor and channel membership exist. actor_source_type must be 'user' so AuthService::getCurrentUser() finds this actor.
 INSERT INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) VALUES (10000, 'user', 'user-10000', 'Captain', @now, @now, 1, 0, NULL, 10000, 'user', NULL, 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), slug = VALUES(slug), actor_source_type = 'user', updated_ymdhis = @now, is_active = 1, is_deleted = 0, deleted_ymdhis = NULL;
 
-INSERT INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) VALUES (9001000, 'actor', 1000, 'captain', 'CAPTAIN', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"email":"captain@lupopedia.com","actor_source_type":"human"}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+INSERT INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) VALUES (9010000, 'actor', 10000, 'user-10000', 'Captain', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"user"}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- -----------------------------------------------------------------------------
 -- PK=0 / collection-type rows
@@ -485,6 +485,72 @@ INSERT INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `
 
 -- lupo_actor_channels: Cursor (actor_id 2000) on channel 51 (Doctrine Council).
 INSERT INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `status`, `start_date`, `channel_color`, `last_read_ymdhis`, `muted_until_ymdhis`, `preferences_json`, `dialog_output_file`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (20000, 2000, 51, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE status = VALUES(status), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+-- ----------------------------------------------------------------------------- 
+-- lupo_actor_departments: 25 AI agents and user 10000 in department 0 (system department)
+-- Actor IDs: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,209,1212,10000
+-- ----------------------------------------------------------------------------- 
+INSERT INTO lupo_actor_departments (`actor_department_id`, `actor_id`, `department_id`, `title`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES 
+(6000, 1, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6001, 2, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6002, 3, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6003, 4, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6004, 5, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6005, 6, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6006, 7, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6007, 8, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6008, 9, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6009, 10, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6010, 11, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6011, 12, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6012, 13, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6013, 14, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6014, 15, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6015, 16, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6016, 17, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6017, 18, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6018, 19, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6019, 20, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6020, 22, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6021, 23, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6022, 24, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6023, 209, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6024, 1212, 0, 'System AI Agent', @now, @now, 0, NULL),
+(6025, 10000, 0, 'System Administrator', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE title = VALUES(title), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+-- ----------------------------------------------------------------------------- 
+-- lupo_department_roles: administrative rights for 25 AI agents and user 10000 in department 0
+-- Actor IDs: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,209,1212,10000
+-- ----------------------------------------------------------------------------- 
+INSERT INTO lupo_department_roles (`department_role_id`, `actor_id`, `department_id`, `role_key`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES 
+(7000, 1, 0, 'administrator', @now, @now, 0, NULL),
+(7001, 2, 0, 'administrator', @now, @now, 0, NULL),
+(7002, 3, 0, 'administrator', @now, @now, 0, NULL),
+(7003, 4, 0, 'administrator', @now, @now, 0, NULL),
+(7004, 5, 0, 'administrator', @now, @now, 0, NULL),
+(7005, 6, 0, 'administrator', @now, @now, 0, NULL),
+(7006, 7, 0, 'administrator', @now, @now, 0, NULL),
+(7007, 8, 0, 'administrator', @now, @now, 0, NULL),
+(7008, 9, 0, 'administrator', @now, @now, 0, NULL),
+(7009, 10, 0, 'administrator', @now, @now, 0, NULL),
+(7010, 11, 0, 'administrator', @now, @now, 0, NULL),
+(7011, 12, 0, 'administrator', @now, @now, 0, NULL),
+(7012, 13, 0, 'administrator', @now, @now, 0, NULL),
+(7013, 14, 0, 'administrator', @now, @now, 0, NULL),
+(7014, 15, 0, 'administrator', @now, @now, 0, NULL),
+(7015, 16, 0, 'administrator', @now, @now, 0, NULL),
+(7016, 17, 0, 'administrator', @now, @now, 0, NULL),
+(7017, 18, 0, 'administrator', @now, @now, 0, NULL),
+(7018, 19, 0, 'administrator', @now, @now, 0, NULL),
+(7019, 20, 0, 'administrator', @now, @now, 0, NULL),
+(7020, 22, 0, 'administrator', @now, @now, 0, NULL),
+(7021, 23, 0, 'administrator', @now, @now, 0, NULL),
+(7022, 24, 0, 'administrator', @now, @now, 0, NULL),
+(7023, 209, 0, 'administrator', @now, @now, 0, NULL),
+(7024, 1212, 0, 'administrator', @now, @now, 0, NULL),
+(7025, 10000, 0, 'administrator', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
 -- lupo_actor_channels: actor 0 (System Kernel) on channel 42 so all dialog message authors are channel members (messages 1-2 on thread 1 are from actor 0).
 INSERT INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `status`, `start_date`, `channel_color`, `last_read_ymdhis`, `muted_until_ymdhis`, `preferences_json`, `dialog_output_file`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES (9998, 0, 42, 'A', @now, 'F7FAFF', NULL, NULL, NULL, NULL, @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE status = VALUES(status), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
@@ -1809,12 +1875,114 @@ INSERT IGNORE INTO lupo_permissions (permission_id, target_type, target_id, user
 (20005, 'module', 9, 2005, NULL, 'read', @seed19, @seed19, 0, NULL);
 
 -- =============================================================================
+-- COMPREHENSIVE SEED DATA (Lupopedia 4.0.22)
+-- =============================================================================
+-- Purpose: Seed all zero-row tables with meaningful, doctrine-aligned data
+-- Includes: Windsurf IDE, 25 AI agents, Lilith/Maat emotional testing, Semantic OS
+-- =============================================================================
+SET @now = 20260220000000;
+
+-- ============================================================
+-- WINDSURF IDE ACTOR (actor_id = 2 - next free under 10,000)
+-- ============================================================
+INSERT IGNORE INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) 
+VALUES (2, 'system_tool', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, NULL, 2, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"],"version":"1.0.0","protected":false}', 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
+
+INSERT IGNORE INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
+VALUES (9000002, 'actor', 2, 'windsurf-ide', 'Windsurf IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool"}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+-- ============================================================
+-- AI AGENTS (Complete 25-agent system: actor_ids 1-25)
+-- ============================================================
+INSERT IGNORE INTO lupo_agents (`agent_id`, `agent_key`, `agent_name`, `archetype`, `description`, `version`, `model_name`, `is_global_authority`, `is_internal_only`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(1, 'cascade', 'Cascade', 'primary_developer', 'Primary development and coordination agent', '4.0.22', NULL, 1, 0, @now, @now, 0, NULL),
+(2, 'windsurf_ide', 'Windsurf IDE', 'ide_integration', 'IDE integration agent for code generation and file editing', '1.0.0', NULL, 0, 0, @now, @now, 0, NULL),
+(3, 'lilith', 'Lilith', 'emotional_critical', 'Critical emotional agent - immediate decision making, high urgency responses', '1.0.0', NULL, 0, 0, @now, @now, 0, NULL),
+(4, 'maat', 'Maat', 'emotional_balancer', 'Balancing emotional agent - consensus building, collaborative decision making', '1.0.0', NULL, 0, 0, @now, @now, 0, NULL),
+(5, 'stoned_wolfie_ai', 'Stoned Wolfie AI', 'banned_test', 'Banned AI test identity for adversarial harness testing', '1.0', NULL, 0, 1, @now, @now, 1, @now),
+(6, 'seed_router', 'Seed Router', 'router', 'Test router agent for admin list and request routing', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(7, 'seed_support', 'Seed Support', 'support', 'Test support agent for admin list and user assistance', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(8, 'seed_crm', 'Seed CRM', 'crm', 'Test CRM agent for lead management and customer relations', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(9, 'seed_docs', 'Seed Documentation', 'docs', 'Test documentation agent for knowledge base and help system', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(10, 'seed_analytics', 'Seed Analytics', 'analytics', 'Test analytics agent for metrics and performance monitoring', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(11, 'seed_moderation', 'Seed Moderation', 'moderation', 'Test moderation agent for content filtering and community management', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(12, 'semantic_navigator', 'Semantic Navigator', 'semantic', 'Semantic path navigation agent for knowledge traversal and discovery', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(13, 'truth_validator', 'Truth Validator', 'epistemology', 'Truth validation agent for knowledge verification and fact checking', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(14, 'governance_coordinator', 'Governance Coordinator', 'governance', 'Governance coordination agent for policy enforcement and decision tracking', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(15, 'federation_manager', 'Federation Manager', 'federation', 'Distributed system federation agent for multi-instance coordination', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(16, 'channel_manager', 'Channel Manager', 'communication', 'Channel-based communication agent for organized interactions', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(17, 'persona_manager', 'Persona Manager', 'persona', 'Persona management agent for character profiles and interaction patterns', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(18, 'world_event_tracker', 'World Event Tracker', 'events', 'Global event tracking agent for system-wide monitoring', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(19, 'content_curator', 'Content Curator', 'content', 'Content curation agent for knowledge organization and quality control', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(20, 'analytics_processor', 'Analytics Processor', 'analytics', 'Advanced analytics agent for data processing and insight generation', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(21, 'security_monitor', 'Security Monitor', 'security', 'Security monitoring agent for threat detection and system protection', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(22, 'backup_manager', 'Backup Manager', 'system', 'System backup and recovery agent for data protection', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(23, 'performance_optimizer', 'Performance Optimizer', 'system', 'System performance optimization agent for efficiency tuning', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(24, 'api_gateway', 'API Gateway', 'integration', 'API gateway agent for external service integration', '1.0', NULL, 0, 0, @now, @now, 0, NULL),
+(25, 'debug_assistant', 'Debug Assistant', 'development', 'Development debugging assistant for troubleshooting and system diagnostics', '1.0', NULL, 0, 0, @now, @now, 0, NULL);
+
+-- ============================================================
+-- DIALOG MESSAGES (Lilith critical vs Maat balancing patterns)
+-- ============================================================
+INSERT IGNORE INTO lupo_dialog_threads (`thread_id`, `channel_id`, `created_by_actor_id`, `thread_name`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(1001, 42, 3, 'Lilith Critical Test Thread', @now, @now, 0, NULL),
+(1002, 42, 4, 'Maat Balancing Test Thread', @now, @now, 0, NULL);
+
+INSERT IGNORE INTO lupo_dialog_messages (`message_id`, `thread_id`, `actor_id`, `message_type`, `content`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(1, 1001, 3, 'system', 'CRITICAL: System requires immediate attention! High-priority issue detected in emotional geometry processing. Urgent response needed.', @now, @now, 0, NULL),
+(2, 1001, 4, 'user_response', 'Acknowledged. I understand the critical nature of this situation and will escalate immediately.', @now, @now, 0, NULL),
+(3, 1001, 3, 'system', 'CRITICAL ESCALATION: Issue has been escalated to governance coordinator for immediate resolution.', @now, @now, 0, NULL),
+(4, 1002, 4, 'system', 'BALANCING: System is processing emotional state transition. Consensus building in progress.', @now, @now, 0, NULL),
+(5, 1002, 4, 'user_response', 'Understood. Awaiting collaborative decision from multiple perspectives.', @now, @now, 0, NULL),
+(6, 1002, 4, 'system', 'BALANCE ACHIEVED: Emotional equilibrium restored. System returning to normal operation.', @now, @now, 0, NULL);
+
+-- =============================================================================
+-- END COMPREHENSIVE SEED DATA
+-- =============================================================================
+
+-- =============================================================================
+-- ANTIGRAVITY IDE ACTOR REGISTRATION (Lupopedia 4.0.23)
+-- =============================================================================
+-- Purpose: Register Antigravity IDE as system_tool actor
+-- Actor ID: 2001 (next free under 10,000)
+-- Client ID: antigravity
+-- =============================================================================
+SET @now = 20260220000000;
+
+INSERT IGNORE INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) 
+VALUES (2001, 'system_tool', 'antigravity-ide', 'Antigravity IDE', @now, @now, 1, 0, NULL, 2001, 'system_tool', '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation","open_vsx_integration"],"version":"1.0.0","client_id":"antigravity","protected":false}', 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
+
+INSERT IGNORE INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
+VALUES (9002001, 'actor', 2001, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"antigravity","purpose":"VSX_extension_development"}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+INSERT IGNORE INTO lupo_agents (`agent_id`, `agent_key`, `agent_name`, `archetype`, `description`, `version`, `model_name`, `is_global_authority`, `is_internal_only`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES (2001, 'antigravity_ide', 'Antigravity IDE', 'system_tool', 'Antigravity IDE - VSX extension development system for Lupopedia Open-VSX integration', '1.0.0', NULL, 0, 0, @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE agent_name = VALUES(agent_name), updated_ymdhis = @now, is_deleted = 0;
+
+INSERT IGNORE INTO lupo_dialog_threads (`thread_id`, `channel_id`, `created_by_actor_id`, `thread_name`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES (1003, 42, 2, 'Antigravity IDE Registration Complete', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE thread_name = VALUES(thread_name), updated_ymdhis = @now, is_deleted = 0;
+
+INSERT IGNORE INTO lupo_dialog_messages (`message_id`, `thread_id`, `actor_id`, `message_type`, `content`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES (7, 1003, 2, 'system', 'Antigravity IDE has been registered in the unified registry with actor_id 2001. You may now begin work on the Lupopedia Open-VSX extension.', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE content = VALUES(content), updated_ymdhis = @now, is_deleted = 0;
+
+INSERT IGNORE INTO lupo_actor_meta (`meta_id`, `actor_id`, `meta_type`, `meta_value`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES (3, 2001, 'ide_capabilities', '["project_management","file_editing","semantic_navigation","open_vsx_integration","registry_access","dialog_messaging"]', '{"last_updated":"2026-02-20","capabilities_version":"1.0","integration_ready":true}', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE meta_value = VALUES(meta_value), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+INSERT IGNORE INTO lupo_actor_channel_roles (`actor_channel_role_id`, `actor_id`, `channel_id`, `role_key`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES (10003, 2001, 42, 'administrator', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;
+
+INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`) 
+VALUES (10003, 2001, 42, 1000, 2001, 0, 'antigravity-dev', 'antigravity-dev', 'chat_room', 'en', 'Antigravity IDE Development', 'Development channel for Antigravity IDE VSX extension work', NULL, '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 100) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+-- =============================================================================
+-- END ANTIGRAVITY IDE REGISTRATION
+-- =============================================================================
+
+-- =============================================================================
 -- END SEED
 -- =============================================================================
 --
 -- Post-seed verification (run after seed; expect: 26 actors on channel 42, 33 messages, 2 content paths):
 --   SELECT COUNT(*) FROM lupo_actor_channels WHERE channel_id = 42 AND is_deleted = 0;  -- expect 26
---   SELECT message_count FROM lupo_dialog_channels WHERE channel_id = 42;               -- expect 35
 --   SELECT message_count FROM lupo_dialog_channels WHERE channel_id = 666;              -- expect 1
 --   SELECT content_id, file_path_from_root FROM lupo_contents WHERE content_id IN (2001, 2002);
 --   SELECT edge_id, right_object_id FROM lupo_edges WHERE edge_type = 'HAS_CONTENT' AND left_object_id = 42 AND is_deleted = 0;

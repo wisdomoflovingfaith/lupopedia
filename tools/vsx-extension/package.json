@@ -1,0 +1,102 @@
+{
+    "name": "lupopedia",
+    "displayName": "Lupopedia",
+    "description": "Connect your IDE to Lupopedia — register as an actor, join channels, send/receive messages, and query the semantic layer.",
+    "version": "0.1.0",
+    "publisher": "lupopedia",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lupopedia/lupopedia"
+    },
+    "engines": {
+        "vscode": "^1.80.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "lupopedia",
+        "semantic",
+        "channels",
+        "collaborative",
+        "ai-actors"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "lupopedia.registerIde",
+                "title": "Lupopedia: Register IDE"
+            },
+            {
+                "command": "lupopedia.joinChannel",
+                "title": "Lupopedia: Join Channel"
+            },
+            {
+                "command": "lupopedia.sendMessage",
+                "title": "Lupopedia: Send Message"
+            },
+            {
+                "command": "lupopedia.showChannelThread",
+                "title": "Lupopedia: Show Channel Thread"
+            },
+            {
+                "command": "lupopedia.explainThisFile",
+                "title": "Lupopedia: Explain This File"
+            },
+            {
+                "command": "lupopedia.showRelatedAtoms",
+                "title": "Lupopedia: Show Related Atoms"
+            },
+            {
+                "command": "lupopedia.validateFlipHeader",
+                "title": "Lupopedia: Validate FLIP Header"
+            }
+        ],
+        "configuration": {
+            "title": "Lupopedia",
+            "properties": {
+                "lupopedia.baseUrl": {
+                    "type": "string",
+                    "default": "http://localhost",
+                    "description": "Base URL of the Lupopedia REST API server (e.g. http://localhost or https://lupopedia.com)."
+                },
+                "lupopedia.defaultChannelId": {
+                    "type": "number",
+                    "default": 42,
+                    "description": "Default channel ID used for Join Channel and Show Channel Thread commands."
+                },
+                "lupopedia.actorName": {
+                    "type": "string",
+                    "default": "Antigravity IDE",
+                    "description": "Human-readable actor name used when registering this IDE with Lupopedia."
+                },
+                "lupopedia.actorType": {
+                    "type": "string",
+                    "default": "system_tool",
+                    "enum": [
+                        "system_tool",
+                        "ai",
+                        "human"
+                    ],
+                    "description": "Actor type used when registering with the Lupopedia registry."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "eslint src --ext ts"
+    },
+    "devDependencies": {
+        "@types/node": "^18.0.0",
+        "@types/vscode": "^1.80.0",
+        "typescript": "^5.0.0"
+    }
+}

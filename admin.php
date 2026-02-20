@@ -152,6 +152,7 @@ $admin_menu_sections = array(
     array(
         'title' => 'Data',
         'items' => array(
+            'CSV Data Export' => 'admin.php?section=csv-export',
             'Visits' => 'admin.php?section=data-visits',
             'Messages' => 'admin.php?section=data-messages',
             'Referrers' => 'admin.php?section=data-referrers',
@@ -283,6 +284,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         'data-visits-period' => array('Visits by period', 'Visits by period'),
         'data-paths' => array('Paths', 'Paths'),
         'data-keywords' => array('Keywords', 'Keywords'),
+        'csv-export' => array('CSV Data Export', 'CSV Data Export'),
         'module-qa' => array('Questions & Answers', 'Questions & Answers'),
         'directory' => array('View Directory', 'View Directory'),
         'donations' => array('Donations', 'Donations'),
@@ -299,6 +301,15 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         } else {
             require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminUsersHandler.php';
             $admin_main_content = AdminUsersHandler::render($db, $prefix, $base);
+        }
+    } elseif ($section === 'csv-export') {
+        $admin_page_title = 'CSV Data Export';
+        $admin_active_key = 'CSV Data Export';
+        if (!$db) {
+            $admin_main_content = '<p class="admin-empty">Database not available.</p>';
+        } else {
+            require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminCsvExportHandler.php';
+            $admin_main_content = AdminCsvExportHandler::render($db, $prefix, $base);
         }
     } elseif ($section === 'channels' && $db) {
         $admin_page_title = 'Channels';

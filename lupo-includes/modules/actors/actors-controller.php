@@ -57,6 +57,21 @@ function actors_handle_my_profile() {
         return ob_get_clean();
     }
 
+    // Load auth_user_id for the current actor
+    $auth_user_id = null;
+    $current_email = null;
+    // The relationship is: lupo_auth_users.auth_user_id = lupo_actors.actor_id (for imported users)
+    // For users created through Lupopedia installer, auth_user_id = actor_id directly
+    $stmt = $db->prepare("SELECT au.auth_user_id, au.email FROM {$table_prefix}auth_users au 
+        JOIN {$table_prefix}actors a ON a.actor_id = au.auth_user_id 
+        WHERE a.actor_id = :actor_id AND a.is_deleted = 0 AND au.is_deleted = 0 LIMIT 1");
+    $stmt->execute(array(':actor_id' => $actor_id));
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+        $auth_user_id = (int) $row['auth_user_id'];
+        $current_email = $row['email'];
+    }
+
     $actor = null;
     $stmt = $db->prepare("SELECT actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, avatar_hash, metadata FROM {$table_prefix}actors WHERE actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
     $stmt->execute(array(':actor_id' => $actor_id));
@@ -100,6 +115,8 @@ function actors_handle_my_profile() {
     extract(array(
         'actor'             => $actor,
         'actor_id'          => $actor_id,
+        'auth_user_id'      => $auth_user_id,
+        'current_email'     => $current_email,
         'actor_properties'  => $actor_properties,
         'avatar_public_path'=> $avatar_public_path,
         'base'              => $base,
@@ -163,6 +180,52 @@ function actors_handle_my_profile_save() {
     $actor_name = isset($_POST['actor_name']) ? trim((string) $_POST['actor_name']) : '';
     if ($actor_name !== '') {
         $db->update($actors_table, array('name' => $actor_name, 'updated_ymdhis' => $now), 'actor_id = :actor_id', array('actor_id' => $actor_id));
+    }
+
+    // Handle email update with uniqueness validation
+    $email = isset($_POST['email']) ? trim((string) $_POST['email']) : '';
+    if ($email !== '') {
+        // Normalize email
+        $email = strtolower(trim($email));
+        
+        // Basic email validation
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            // Set error in session to display on GET request
+            $_SESSION['profile_error'] = 'Invalid email format.';
+            header('Location: ' . $base . '/my-profile');
+            exit;
+        }
+        
+        // Get current auth_user_id first
+        $auth_users_table = $table_prefix . 'auth_users';
+        $current_auth = $db->fetchRow(
+            "SELECT au.auth_user_id FROM " . $db->quoteIdentifier($auth_users_table) . " au 
+            JOIN {$table_prefix}actors a ON a.actor_id = au.auth_user_id 
+            WHERE a.actor_id = :actor_id AND a.is_deleted = 0 AND au.is_deleted = 0 LIMIT 1",
+            array('actor_id' => $actor_id)
+        );
+        
+        if ($current_auth && isset($current_auth['auth_user_id'])) {
+            // Check email uniqueness (excluding current user)
+            $existing = $db->fetchRow(
+                "SELECT auth_user_id FROM " . $db->quoteIdentifier($auth_users_table) . " WHERE email = :email AND is_deleted = 0 AND auth_user_id != :current_auth_user_id LIMIT 1",
+                array('email' => $email, 'current_auth_user_id' => $current_auth['auth_user_id'])
+            );
+            
+            if ($existing && isset($existing['auth_user_id'])) {
+                $_SESSION['profile_error'] = 'Email address is already in use by another user.';
+                header('Location: ' . $base . '/my-profile');
+                exit;
+            }
+            
+            // Update email
+            $db->update($auth_users_table, array('email' => $email, 'updated_ymdhis' => $now), 'auth_user_id = :auth_user_id', array('auth_user_id' => $current_auth['auth_user_id']));
+        } else {
+            // If we can't get current auth_user_id, we can't validate uniqueness properly
+            $_SESSION['profile_error'] = 'Unable to validate email uniqueness. Please try again.';
+            header('Location: ' . $base . '/my-profile');
+            exit;
+        }
     }
 
     $actor_type = 'user';

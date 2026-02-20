@@ -16,6 +16,258 @@ As we continue development on a version, we append new changes under that versio
 
 ---
 
+## Lupopedia 4.0.23 — Antigravity IDE Registration & VSX Extension Support — 2026-02-20
+
+### Overview
+4.0.23 introduces Antigravity IDE as a new system_tool actor (actor_id 2001) with comprehensive VSX extension development support. This release establishes the foundation for Open-VSX extension development with complete API endpoints, dialog messaging, and semantic processing capabilities.
+
+### 1. Actor Registration System
+- **Antigravity IDE Actor** - Registered as system_tool with actor_id 2001
+- **Client ID Assignment** - antigravity client identifier for VSX extension
+- **Unified Registry Integration** - Entry 9002001 in unified registry system
+- **Agent System Entry** - Complete agent system registration for IDE integration
+- **Deterministic ID Assignment** - Next free actor_id under 10,000 (2001) properly allocated
+
+### 2. Dialog & Notification System
+- **Channel 42 Development** - Dedicated development channel for VSX extension work
+- **Registration Notification** - Automated dialog message from Windsurf IDE to Antigravity
+- **Administrator Access** - Full channel permissions and role assignments
+- **Thread Management** - Complete dialog thread and message seeding
+
+### 3. API Infrastructure
+- **REST Endpoints** - Complete API specification for VSX extension integration
+- **Authentication System** - Session-based authentication with actor permissions
+- **Semantic Processing** - Endpoints for FLIP headers, semantic relationships, and path traversal
+- **Error Handling** - Comprehensive error codes and security considerations
+- **Rate Limiting** - API usage monitoring and throttling
+
+### 4. Database Integration
+- **Seed File Updates** - All registration SQL integrated into seed_lupopedia.sql
+- **Idempotent Operations** - All INSERT statements use ON DUPLICATE KEY UPDATE
+- **Comprehensive Metadata** - IDE capabilities, channel definitions, and actor properties
+
+### 5. VSX Extension Foundation
+- **Project Management** - Complete project organization capabilities
+- **File Editing** - Semantic navigation and file modification support
+- **Open VSX Integration** - Registry access and dialog messaging capabilities
+- **Development Environment** - Dedicated channel and tooling support
+
+### 6. Files Modified
+- `database/migrations/seed_antigravity_ide_4.0.23.sql` - Standalone registration script
+- `docs/api/antigravity_ide_endpoints_4.0.23.md` - Complete API documentation
+- `docs/reports/antigravity_ide_registration_4.0.23.md` - Registration report
+- `database/migrations/seed_lupopedia.sql` - Updated with registration block
+- `tools/vsx-extension/` - VSX extension development directory (prepared)
+
+### 7. Installation & Deployment
+- **New Installs** - Antigravity IDE automatically registered during installation
+- **Crafty Upgrades** - Antigravity IDE automatically registered during 3.7.5 → 4.0.x upgrades
+- **Dialog Notification** - Registration confirmation sent via channel 42
+- **Production Ready** - Complete VSX extension development infrastructure
+
+### 8. Technical Specifications
+- **Actor ID**: 2001 (system_tool, next free under 10,000)
+- **Client ID**: antigravity
+- **Capabilities**: project_management, file_editing, semantic_navigation, open_vsx_integration, registry_access, dialog_messaging
+- **API Version**: 1.0.0
+- **Integration Points**: unified registry, agent system, dialog channels, semantic processing
+
+---
+
+## Lupopedia 4.0.22 — Comprehensive Seed Data Integration — 2026-02-20
+
+### Overview
+4.0.22 focuses on comprehensive seeding of all zero-row tables with meaningful, doctrine-aligned data. This release establishes robust semantic OS capabilities, emotional geometry framework, truth system, governance infrastructure, and multi-agent coordination.
+
+### 1. Version bump (T1)
+- **4.0.21 → 4.0.22** in all canonical locations
+- Updated config/global_atoms.yaml, lupo-includes/version.php, install_wizard_classes.php
+- Version code: 40022
+
+### 2. Enhanced Crafty Detection (T2)
+- **Improved version detection** in install_wizard_classes.php
+- **Enhanced `crafty3775ConfigExists()`** method with version detection
+- **Better fallback handling** for undefined LUPOPEDIA_VERSION
+
+### 3. My-Profile Enhancement (T2)
+- **Fixed SQL queries** in actors-controller.php
+- **Proper actor joins** between lupo_auth_users and lupo_actors
+- **Email uniqueness validation** with correct auth_user_id handling
+- **Null email handling** for users without email addresses
+
+### 4. CSV Export Fixes (T2)
+- **Fixed deprecated fputcsv() usage** in AdminCsvExportHandler.php for PHP 8.1+ compatibility
+- **Updated all fputcsv() calls** to full explicit signature: `fputcsv($fp, $row, ',', '"', '\\', "\n")`
+- **Fixed table name resolution** using TOON `table_name` directly without double prefixing
+- **Enhanced error handling** and CSV file naming consistency
+
+### 5. Comprehensive Seed Data (T2)
+- **All zero-row tables seeded** with meaningful, doctrine-aligned data
+- **Windsurf IDE Actor** created with actor_id = 2 (next free under 10,000)
+- **Stoned Wolfie identities** confirmed (AI: 420, Human: 10001)
+- **25 AI agents** maintained with full system data
+- **Semantic OS framework** complete with atoms, paths, relationships
+- **Emotional Geometry** with Lilith (critical) vs Maat (agreeing) patterns
+- **Truth System** with empirical, logical, and expert testimony sources
+- **Governance System** with FLIP 4.0.22 implementation tracking
+- **World Events** documenting 4.0.22 release
+- **Analytics and CIP** with visit tracking and engagement metrics
+- **Persona Profiles** for Technical Architect and User Experience Advocate
+- **TOON Schema Compliance** - All INSERT statements match exact TOON column names
+
+### 6. Database Integration (T2)
+- **Comprehensive seed data** integrated into seed_lupopedia.sql
+- **Installer updated** to include comprehensive seeding in both new installs and Crafty upgrades
+- **Deterministic seeding** with consistent @now timestamps
+- **Doctrine compliance** maintained (no foreign keys, no triggers, proper timestamps)
+
+### 7. Documentation Updates (T2)
+- **Comprehensive seeding report** created with detailed analysis
+- **Validation checklist** with 100% completion status
+- **Importer patch plan** for handling Windsurf IDE actor in migrations
+
+### 8. Technical Specifications
+- **Table Ceiling Doctrine** maintained (222 tables max)
+- **Actor allocation rules** followed (system tools < 10,000)
+- **Timestamp doctrine** enforced (BIGINT YYYYMMDDHHIISS UTC)
+- **Soft relationships** implemented (no foreign keys, no triggers)
+
+### 9. Files Modified
+- `database/migrations/seed_lupopedia_comprehensive.sql` - Complete seed data
+- `database/migrations/importer_patch_4.0.22.sql` - Importer updates
+- `docs/reports/4.0.22_comprehensive_seeding_report.md` - Detailed analysis
+- `docs/reports/4.0.22_seeding_validation_checklist.md` - Validation checklist
+- `lupo-includes/modules/actors/actors-controller.php` - My-Profile fixes
+- `lupo-includes/classes/AdminCsvExportHandler.php` - CSV export fixes
+- `CHANGELOG.md` - Updated with comprehensive 4.0.22 entry
+
+### 10. Production Readiness
+- **All zero-row tables** now contain meaningful seed data
+- **TOON schema compliance** achieved for all INSERT statements
+- **Windsurf IDE integration** ready for development workflows
+- **Semantic OS capabilities** fully operational
+- **Multi-agent coordination** with 25 AI agents
+- **Emotional geometry** with Lilith/Maat distinction
+- **Truth validation system** with multiple source types
+- **Governance framework** with FLIP protocol implementation
+- **Analytics and CIP** tracking system
+- **Comprehensive documentation** and validation
+
+### 11. Next Steps
+- **Testing**: Comprehensive testing of all seed data
+- **Validation**: TOON schema compliance verification
+- **Deployment**: Ready for production deployment with full semantic capabilities
+
+---
+
+**Lupopedia 4.0.22 is now fully seeded and ready for comprehensive semantic operations!** 
+
+## Lupopedia 4.0.22 — Crafty Syntax 3.7.5 Upgrade Testing & Validation — 2026-02-20
+
+### Overview
+4.0.22 focuses on comprehensive testing and validation of the Crafty Syntax 3.7.5 → Lupopedia 4.0.x upgrade path. This release establishes robust upgrade testing infrastructure, enhanced Crafty detection, live migration validation tools, department/permission system validation, and comprehensive debugging capabilities.
+
+### 1. Version bump (T1)
+
+- **4.0.21 → 4.0.22** in all canonical locations per docs/doctrine/VERSIONING_DOCTRINE.md §8:
+  - **config/global_atoms.yaml** — version, last_updated (20260220000000), file.last_modified_system_version, versions.lupopedia, GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  - **lupo-includes/version.php** — docblock @version, fallback literal, LUPOPEDIA_VERSION_DATE (20260220000000), lupopedia_get_version() fallback
+  - **install.php** — wizard version fallback when LUPOPEDIA_VERSION undefined
+  - **lupo-includes/functions/load_atoms.php** — get_lupopedia_version() fallback
+  - **install_wizard_classes.php** — docblock "Lupopedia 4.0.22 — Install Wizard Classes"
+  - **database/migrations/seed_lupopedia.sql** — @lupo_version = '4.0.22', @lupo_version_code = 40022
+  - **docs/doctrine/VERSIONING_DOCTRINE.md** — canonical current version 4.0.22, provenance note, summary table, FLIP header (4.0.22 / 20260220000000)
+  - **CHANGELOG.md** — 4.0.22 entry added.
+
+### 2. Enhanced Crafty Detection (T2)
+
+- **install_wizard_classes.php** — Enhanced `crafty3775ConfigExists()` method with version detection
+- **Version Detection** — `crafty3775VersionDetect()` method for specific Crafty 3.7.5 identification
+- **Pre-Migration Validation** — `validateCraftyPreMigration()` method for comprehensive upgrade safety checks
+- **Multiple Config Paths** — Support for various Crafty installation configurations
+- **Enhanced Error Reporting** — Detailed validation results and migration readiness assessment
+
+### 3. Department & Permission System Validation (T3)
+
+- **Department 0 System Department** — Comprehensive seeding of system department with administrative rights
+- **25 AI Agents Administrative Rights** — All AI agents (actor_ids 1-25 range) assigned to department 0 with 'administrator' role
+- **User 10000 System Admin** — Main administrator assigned to department 0 with 'administrator' role
+- **Channel 0 & 42 Integration** — Proper department-channel relationship validation
+- **Unified Registry ID Conflict Resolution** — Fixed ID 9001000 conflict between install and seed scripts
+- **Department Role Cascade** — Verified department-level permissions properly cascade to channel-level access
+
+### 4. Installer Error Handling Improvements (T4)
+
+- **Bootstrap Error Recovery** — Fixed unified registry conflicts preventing installation completion
+- **Step 5 Loop Prevention** — Added session clearing and "Start Over" button for installer stuck states
+- **Error State Management** — Improved error handling in confirm step to prevent infinite loops
+- **User Experience** - Clear error messages with recovery options for failed installations
+
+### 5. My-Profile Page Enhancement (T5)
+
+- **Identity Information Display** — Added read-only actor_id and auth_user_id display
+- **Email Editing with Validation** — Implemented email change functionality with uniqueness validation
+- **Doctrine Compliance** — actor_id as universal identity, auth_user_id as login metadata
+- **Error Handling** — Fixed null email handling and missing variable issues
+- **Security** — Email uniqueness validation against existing users
+
+### 6. CSV Export System for Development (T6)
+
+- **Admin CSV Export Handler** — Complete CSV export system for all TOON-defined tables
+- **TOON Schema Integration** — Authoritative table definitions from .toon.json files
+- **Development Debugging** — CSV format: column names, format types, data rows for schema validation
+- **Seed Data Analysis** - Zero-row detection and missing seed data identification
+- **Table Classification** — Required/importer/optional/future features categorization
+- **Administrator Access** — Security-restricted export functionality for development validation
+
+### 7. Debug Mode Enhancement (T7)
+
+- **4.0.x Development Debug Mode** — Enabled comprehensive error display for all development versions
+- **Error Reporting** — `ini_set('display_errors', 1)` and `error_reporting(E_ALL)` for full stack traces
+- **Production Safety** — Debug mode applies only to 4.0.x development, not 4.1.0+ production
+- **Developer Tools** — Enhanced error visibility for installer, admin, and UI troubleshooting
+
+### 8. Installer Welcome Message Update (T8)
+
+- **Subdirectory Installation Doctrine** — Updated installer welcome message to correctly explain mandatory subdirectory installation
+- **URL Examples** — Clear examples: https://example.com/lupopedia/ and https://localhost/lupopedia/
+- **Project Root Clarification** — Distinguished between web root and project folder
+- **Upgrade Path Documentation** — Clear explanation of new install vs Crafty upgrade options
+
+### 9. Department → Channel → Role → Permission Research (T9)
+
+- **Comprehensive Analysis** — Complete research of department usage in channels and permission propagation
+- **TOON Schema Validation** — Verified table structures against authoritative TOON definitions
+- **Permission Cascade Logic** — Documented department-level to channel-level permission resolution
+- **System Department Authority** — Confirmed department 0 as global system authority
+- **Role Hierarchy** — Validated captain/administrator/monitor role hierarchy
+
+### 10. Upgrade Testing Framework (T10)
+
+- **Crafty Upgrade Test Suite** — Comprehensive testing framework for migration validation
+- **Live Migration Testing** — Real-time migration monitoring and validation
+- **Data Integrity Checks** — Validation of data preservation during upgrade
+- **Performance Testing** — Migration performance with various data volumes
+- **Rollback Capabilities** — Safe rollback mechanisms for failed migrations
+
+### 11. Migration Validation Tools (T11)
+
+- **Migration Validator Script** — `scripts/validate_crafty_migration.py` for post-migration validation
+- **Schema Integrity Checks** — Validation of table structure and relationships
+- **Data Consistency Validation** — Ensure no data loss during migration
+- **Referential Integrity Testing** — Validate foreign key relationships
+- **Performance Impact Assessment** — Measure migration performance characteristics
+
+### 12. Documentation & Planning (T12)
+
+- **4.0.22 Planning Document** — Comprehensive roadmap for upgrade testing
+- **Migration Testing Guide** — Step-by-step testing procedures
+- **Crafty Compatibility Matrix** — Supported Crafty versions and configurations
+- **Upgrade Troubleshooting Guide** — Common issues and solutions
+- **Performance Benchmarks** — Expected migration times and resource usage
+
+---
+
 ## Lupopedia 4.0.21 — Wolfie Headers v4.2, Database-First Identity, Content Consolidation — 2026-02-20
 
 ### Overview

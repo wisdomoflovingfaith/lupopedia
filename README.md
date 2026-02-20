@@ -1,7 +1,6 @@
-## 🐺 Lupopedia 4.0.x  
-### Crafty Syntax Reborn — Now Inside a Semantic Operating System
+## 🐺 Lupopedia 4.0.22 — Crafty Syntax 3.7.5 Upgrade Testing & Validation — 2026-02-20
 
-**Current version: 4.0.16** — All `.md` files are FLIP-headered and indexed into the database during seed. Doctrine lives on channels 0 (System Kernel) and 51 (Doctrine Council); development chatter on channel 42 (Lupopedia Development).
+**Current version: 4.0.22** — All `.md` files are FLIP-headered and indexed into the database as content atoms. Doctrine lives on channels 0 (System Kernel) and 51 (Doctrine Council); development chatter on channel 42 (Lupopedia Development).
 
 **Crafty Syntax reborn inside a Semantic OS.**  
 **Same product → new universe.**  
@@ -83,6 +82,27 @@ This is the first time Crafty Syntax has ever had:
 - federation‑safe IDs  
 - doctrine‑driven architecture  
 
+#### 4.0.21 Completed the Stabilization Foundation
+
+4.0.21 established the **database-first identity model** with **read-only Wolfie Headers v4.2** and completed the content architecture consolidation. Key achievements:
+
+- **Full schema validation** (198 TOON-backed tables with zero drift)  
+- **Required-tables alignment** (canonical 198-table list)  
+- **Importer + seed verification** (all migration paths validated)  
+- **Doctrine alignment** (single source of truth established)  
+- **No schema drift** (perfect TOON alignment maintained)
+
+#### 4.0.22 Begins Upgrade Testing & Validation
+
+4.0.22 focuses on comprehensive testing and validation of the Crafty Syntax 3.7.5 → Lupopedia upgrade path:
+
+- **Enhanced Crafty Detection** - Version-specific detection for 3.7.5 configurations  
+- **Upgrade Testing Framework** - Live migration testing with comprehensive validation  
+- **Migration Validation Tools** - Post-migration integrity and performance verification  
+- **Documentation & Planning** - Complete upgrade testing guides and troubleshooting
+
+4.0.x remains the stabilization series leading to 4.1.0.  
+
 ---
 
 ### Crafty Syntax + Semantic OS = Lupopedia
@@ -154,11 +174,46 @@ Actors, channels, and collections are portable across nodes.
 
 ---
 
-### Upgrade Path
+### 4.0.22 Roadmap (Current Development Cycle)
 
-There is **one** upgrade path in the 4.0.x series:
+#### 4.0.22 Begins Upgrade Testing & Validation
+
+4.0.22 focuses on comprehensive testing and validation of the Crafty Syntax 3.7.5 → Lupopedia upgrade path. This release establishes robust upgrade testing infrastructure, enhanced Crafty detection, and live migration validation tools.
+
+**Key Development Areas:**
+
+- **Enhanced Crafty Detection (T2)** - Version-specific detection for Crafty 3.7.5 configurations
+- **Upgrade Testing Framework (T3)** - Comprehensive testing framework for migration validation
+- **Migration Validation Tools (T4)** - Post-migration integrity and performance verification
+- **Documentation & Planning (T5)** - Complete upgrade testing guides and troubleshooting
+
+**4.0.22 Success Criteria:**
+- All Crafty 3.7.5 upgrade paths validated
+- Migration integrity verified with zero data loss
+- Performance benchmarks established for various data volumes
+- Comprehensive documentation for troubleshooting and best practices
+
+#### 4.0.23 — Forward-Upgrades (Future)
+
+4.0.23 will be the first version supporting Lupopedia → Lupopedia upgrades (post-4.1.0), enabling system evolution while maintaining single upgrade path from Crafty Syntax 3.7.5.
+
+#### 4.0.24 — Performance & Optimization (Future)
+
+4.0.24 will focus on performance optimization, caching improvements, and resource utilization efficiency based on insights gained from 4.0.22 upgrade testing.
+
+#### 4.0.25 — Advanced Features (Future)
+
+4.0.25 will introduce new semantic capabilities, advanced AI agent integration, and enhanced federation features based on the stable foundation established in 4.0.22-4.0.24.
 
 #### **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**
+
+The Crafty Syntax 3.7.5 → Lupopedia 4.0.21 upgrade path is now **fully validated** with:
+
+- **Complete schema validation** (198 TOON-backed tables)  
+- **Required-tables alignment** (canonical table classification)  
+- **Importer + seed verification** (all migration paths tested)  
+- **Doctrine alignment** (single source of truth established)  
+- **Zero schema drift** (perfect TOON alignment maintained)
 
 There are **no** Lupopedia → Lupopedia upgrades until **4.1.0**.
 
@@ -171,18 +226,12 @@ There are **no** Lupopedia → Lupopedia upgrades until **4.1.0**.
 
 - A **drop‑in upgrade** for Crafty Syntax  
 - A **semantic OS** that organizes meaning  
-- A **semantic reference layer** that runs alongside any website  
-- A **multi‑agent ecosystem**  
-- A **federated knowledge system**  
-- A **doctrine‑driven architecture**  
-
-### What Lupopedia Is Not
-
-- Not a CMS  
-- Not a framework  
-- Not a rewrite  
-- Not a centralized service  
-- Not an ad/SEO/marketing engine  
+- A **multi‑agent ecosystem** that can join live chats  
+- A **federated knowledge system** that scales across nodes  
+- A **doctrine‑driven architecture** that prevents drift  
+- **Not** a CMS, framework, or centralized service  
+- **Not** a replacement for your website  
+- **Built on five architectural pillars** that enable growth without chaos  
 - Not a replacement for your website  
 
 ---

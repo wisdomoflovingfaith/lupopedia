@@ -1,0 +1,2 @@
+"truth_item_id` bigint NOT NULL","item_type` varchar(64) NOT NULL","name` varchar(255)","slug` varchar(255)","body_text` text","metadata_json` json","created_ymdhis` bigint"
+"truth_item_id` bigint NOT NULL:BIGINT|NOT_NULL","item_type` varchar(64) NOT NULL:VARCHAR(64)|NOT_NULL","name` varchar(255):VARCHAR(255)|NULL","slug` varchar(255):VARCHAR(255)|NULL","body_text` text:TEXT|NULL","metadata_json` json:JSON|NULL","created_ymdhis` bigint:BIGINT|NULL"

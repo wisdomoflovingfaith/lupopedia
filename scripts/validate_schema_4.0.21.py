@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Schema Validation Script for Lupopedia 4.0.21
+Schema Validation Script for Lupopedia 4.0.22
 Validates all 198 tables against TOON specifications for zero drift.
 
 Usage: python scripts/validate_schema_4.0.21.py [--verbose] [--fix]
@@ -22,7 +22,7 @@ import re
 
 
 class SchemaValidator:
-    """Schema validator for Lupopedia 4.0.21"""
+    """Schema validator for Lupopedia 4.0.22"""
     
     def __init__(self, config: Dict[str, Any]):
         self.db_connection = None

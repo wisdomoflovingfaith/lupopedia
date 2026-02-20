@@ -14,7 +14,7 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.0.21"
+version: "4.0.22"
 last_updated: 20260220000000
 
 # Author Information

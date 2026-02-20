@@ -37,7 +37,7 @@ $version_php = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTOR
 if (is_file($version_php)) {
     require_once $version_php;
 }
-$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.21';
+$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.22';
 
 /**
  * PHP 5.3-safe random bytes. Uses random_bytes() when available (PHP 7+), else openssl_random_pseudo_bytes, else mt_rand fallback.
@@ -503,6 +503,8 @@ if ($step === 'run') {
             $errors[] = $e->getMessage();
             $log[] = InstallWizardLogger::logEntry('error', $e->getMessage());
             $_SESSION['lupo_run_log'] = $log;
+            // Clear run_done flag to allow retry
+            unset($_SESSION['lupo_run_done']);
             $step = 'confirm';
         }
     }
@@ -738,7 +740,9 @@ if ($baseUrl === '') {
     <?php if ($step === 'welcome'): ?>
         <div class="wizard-card">
             <h2>Welcome</h2>
-            <p>This wizard will install Lupopedia <?php echo htmlspecialchars($lupo_wizard_version); ?> or upgrade from Crafty Syntax 3.7.5. Two valid states only: <strong>New install</strong> or <strong>Upgrade</strong>. No Lupopedia→Lupopedia upgrade. Project root is the webroot; no /public folder.</p>
+            <p>This wizard will install Lupopedia <?php echo htmlspecialchars($lupo_wizard_version); ?> or upgrade from Crafty Syntax 3.7.5. Two valid states only: <strong>New install</strong> or <strong>Upgrade</strong>. No Lupopedia→Lupopedia upgrade.</p>
+            <p><strong>Important:</strong> Lupopedia must be installed in a subdirectory of your web root (e.g., /lupopedia/). The project folder itself is the web-accessible directory. All URLs and paths will be relative to this subdirectory using LUPOPEDIA_PUBLIC_PATH.</p>
+            <p><strong>Correct URL examples:</strong> https://example.com/lupopedia/ or https://localhost/lupopedia/</p>
             <p><strong>Requirements:</strong> PHP 5.3+, PDO MySQL, JSON extension, writable project root, and a MySQL/MariaDB database. For upgrade: existing Crafty Syntax 3.7.5 data.</p>
             <div class="log-section">
                 <h4>System diagnostics</h4>
@@ -967,6 +971,9 @@ if ($baseUrl === '') {
             })();
             </script>
             <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>" class="btn">Back to credentials</a></p>
+            <?php if (!empty($errors)): ?>
+                <p><form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php'); ?>" style="display:inline;"><input type="hidden" name="action" value="start_over"><button type="submit" class="btn btn-danger">Start over</button></form></p>
+            <?php endif; ?>
             <?php if ((isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade'): ?>
                 <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=normalize'); ?>" class="btn">Back to identity normalization</a></p>
             <?php endif; ?>

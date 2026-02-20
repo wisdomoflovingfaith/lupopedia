@@ -29,11 +29,11 @@ file.last_modified_utc: "20260220000000"
 
 ## 1. Canonical current version
 
-The **current version** of Lupopedia is **4.0.21**.
+The **current version** of Lupopedia is **4.0.22**.
 
 This is the only correct “current version” number for the codebase. No other “current version” may be introduced unless explicitly instructed.
 
-**Provenance (4.0.21):** Version bump from 4.0.20; test-only release; FLIP header provenance updated for 4.0.21.
+**Provenance (4.0.22):** Version bump from 4.0.21; Crafty Syntax 3.7.5 upgrade testing and validation framework.
 
 ---
 

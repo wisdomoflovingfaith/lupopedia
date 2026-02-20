@@ -6,10 +6,24 @@
  */
 $actor = isset($actor) ? $actor : array();
 $actor_id = isset($actor_id) ? (int) $actor_id : 0;
+$auth_user_id = isset($auth_user_id) ? (int) $auth_user_id : 0;
+$current_email = isset($current_email) ? $current_email : '';
 $actor_properties = isset($actor_properties) && is_array($actor_properties) ? $actor_properties : array();
 $avatar_public_path = isset($avatar_public_path) ? $avatar_public_path : '';
 $base = isset($base) ? $base : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '');
 $actor_name = isset($actor['name']) ? htmlspecialchars($actor['name']) : '';
+
+// Check for session errors
+$profile_error = '';
+if (isset($_SESSION['profile_error'])) {
+    $profile_error = htmlspecialchars($_SESSION['profile_error']);
+    unset($_SESSION['profile_error']);
+}
+
+// Handle case where current_email might be null (new user without auth_users entry)
+if ($current_email === null) {
+    $current_email = 'No email set';
+}
 
 // Timezone offset dropdown: decimal(4,2) hours from UTC (same concept as legacy timezone_offset). Value stored in actor_properties.timezone.
 $timezone_offset_options = array(
@@ -62,6 +76,29 @@ if (!isset($timezone_offset_options[$current_timezone])) {
             <a href="<?= htmlspecialchars($base) ?>/my-profile" class="my-profile-back">Refresh</a>
         </div>
     </header>
+
+    <?php if ($profile_error !== ''): ?>
+        <div style="background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 0.75rem; margin: 1rem 0; border-radius: 4px;">
+            <strong>Error:</strong> <?= $profile_error ?>
+        </div>
+    <?php endif; ?>
+
+    <div class="my-profile-section" aria-label="Identity Information">
+        <h2 class="my-profile-section-title">Identity Information</h2>
+        <div class="my-profile-field">
+            <label>Actor ID</label>
+            <input type="text" value="<?= $actor_id ?>" readonly class="my-profile-input" style="background: #f8f9fa; color: #666;">
+        </div>
+        <div class="my-profile-field">
+            <label>Auth User ID</label>
+            <input type="text" value="<?= $auth_user_id ?>" readonly class="my-profile-input" style="background: #f8f9fa; color: #666;">
+        </div>
+        <div class="my-profile-field">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" value="<?= htmlspecialchars($current_email) ?>"
+                   maxlength="255" class="my-profile-input" required>
+        </div>
+    </div>
 
     <form action="<?= htmlspecialchars($base) ?>/my-profile/save" method="post" enctype="multipart/form-data" class="my-profile-form">
         <input type="hidden" name="actor_id" value="<?= $actor_id ?>">

@@ -1,0 +1,11 @@
+"collection_tab_map_id` bigint NOT NULL","collection_tab_id` bigint NOT NULL","federations_node_id` bigint NOT NULL","item_type` varchar(20) NOT NULL","item_id` bigint NOT NULL","sort_order` int DEFAULT 0","properties` text","created_ymdhis` bigint NOT NULL DEFAULT 0","updated_ymdhis` bigint NOT NULL","is_deleted` tinyint NOT NULL DEFAULT 0","deleted_ymdhis` bigint"
+"collection_tab_map_id` bigint NOT NULL:BIGINT|NOT_NULL","collection_tab_id` bigint NOT NULL:BIGINT|NOT_NULL","federations_node_id` bigint NOT NULL:BIGINT|NOT_NULL","item_type` varchar(20) NOT NULL:VARCHAR(20)|NOT_NULL","item_id` bigint NOT NULL:BIGINT|NOT_NULL","sort_order` int DEFAULT 0:INT|NULL|DEFAULT:0","properties` text:TEXT|NULL","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0","updated_ymdhis` bigint NOT NULL:BIGINT|NOT_NULL","is_deleted` tinyint NOT NULL DEFAULT 0:INT|NOT_NULL|DEFAULT:0","deleted_ymdhis` bigint:BIGINT|NULL"
+1001,1,1,content,1001,1,,20260217230000,20260217230000,0,
+1002,2,1,content,1002,1,,20260217230000,20260217230000,0,
+1003,3,1,content,1003,1,,20260217230000,20260217230000,0,
+1004,4,1,content,1004,1,,20260217230000,20260217230000,0,
+1005,5,1,content,1005,1,,20260217230000,20260217230000,0,
+1006,6,1,content,1006,1,,20260217230000,20260217230000,0,
+1007,7,1,content,1007,1,,20260217230000,20260217230000,0,
+1008,8,1,content,1008,1,,20260217230000,20260217230000,0,
+1009,9,1,content,1009,1,,20260217230000,20260217230000,0,
