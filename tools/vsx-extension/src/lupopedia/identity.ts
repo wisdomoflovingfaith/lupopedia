@@ -2,6 +2,11 @@
  * Actor identity storage — persists actor_id, actor_name, actor_type
  * across VS Code sessions using ExtensionContext.globalState.
  *
+ * Identity is ALWAYS obtained from the registry at runtime — either by
+ * lookup (GET /registry/actors/lookup) or by registration
+ * (POST /registry/actors/register). No actor_id is ever hardcoded here;
+ * that would defeat the purpose of the unified registry.
+ *
  * @module lupopedia/identity
  */
 
@@ -28,7 +33,9 @@ export function initIdentityStorage(ctx: vscode.ExtensionContext): void {
 }
 
 /**
- * Load stored actor identity. Returns null if not yet registered.
+ * Load stored actor identity.
+ * Returns null if the IDE has not yet been registered/looked up via the registry.
+ * Callers should trigger 'lupopedia.registerIde' if this returns null.
  */
 export function loadIdentity(): ActorIdentity | null {
     if (!_ctx) {
@@ -45,7 +52,8 @@ export function loadIdentity(): ActorIdentity | null {
 }
 
 /**
- * Persist actor identity to global state.
+ * Persist actor identity returned by the registry to global state.
+ * Only call this with a server-confirmed actor_id.
  */
 export async function saveIdentity(identity: ActorIdentity): Promise<void> {
     if (!_ctx) {
@@ -57,7 +65,7 @@ export async function saveIdentity(identity: ActorIdentity): Promise<void> {
 }
 
 /**
- * Clear stored actor identity (deregisters the IDE locally).
+ * Clear stored actor identity (forces a fresh registry lookup on next activate).
  */
 export async function clearIdentity(): Promise<void> {
     if (!_ctx) {
