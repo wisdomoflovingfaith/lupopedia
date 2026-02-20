@@ -4,7 +4,7 @@
 -- required by active PHP, wizard, seed, or runtime. They are reserved for
 -- future development. Canonical install: install_new_lupopedia.sql only.
 -- Doctrine: no FKs, no triggers, BIGINT timestamps, no UNSIGNED, no display widths.
--- See docs/REQUIRED_TABLES_4.0.6.md for required vs future table lists.
+-- See docs/REQUIRED_TABLES_4.0.21.md for required vs future table lists.
 
 -- =============================================================================
 -- lupo_integration_test_results (future: integration testing)

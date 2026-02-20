@@ -1,6 +1,6 @@
 <?php
 /**
- * Lupopedia 4.0.20 — Install Wizard Classes
+ * Lupopedia 4.0.21 — Install Wizard Classes
  *
  * Helper logic converted from install.php into classes per CLASS_CONVERSION_DOCTRINE.md.
  * PHP 5.3–compatible: no type hints, no return types, no short arrays, no ??.
@@ -95,26 +95,113 @@ class InstallWizardCredentials {
     /**
      * Whether a Crafty Syntax config.php exists in any standard location.
      * If true, this is for sure an upgrade from Crafty Syntax (use for install_type).
-     *
      * @return bool
      */
     public static function craftyConfigExists() {
-        $docRoot = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : '';
-        $search = array(
-            dirname(LUPOPEDIA_PATH) . DIRECTORY_SEPARATOR . 'config.php',
-            ($docRoot !== '' ? $docRoot . DIRECTORY_SEPARATOR . 'config.php' : ''),
-            LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'config.php',
-        );
-        foreach ($search as $path) {
-            if ($path === '' || !is_file($path) || !is_readable($path)) {
-                continue;
-            }
-            $content = @file_get_contents($path);
-            if ($content !== false && (strpos($content, '$server') !== false || strpos($content, '$database') !== false)) {
-                return true;
+        $config_paths = [
+            $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'config.php',
+            dirname($_SERVER['DOCUMENT_ROOT']) . DIRECTORY_SEPARATOR . 'config.php',
+            $_SERVER['DOCUMENT_ROOT'] . '/../config.php'
+        ];
+        
+        foreach ($config_paths as $config) {
+            if (file_exists($config) && is_readable($config)) {
+                $content = file_get_contents($config);
+                if ($content !== false && 
+                    (strpos($content, '$server') !== false || strpos($content, '$database') !== false)) {
+                    return true;
+                }
             }
         }
         return false;
+    }
+
+    /**
+     * Detect Crafty Syntax 3.7.5 version from config file content.
+     * @return string|null Version detected (e.g., '3.7.5', '3.6.0', null)
+     */
+    public static function crafty3775VersionDetect() {
+        $config_paths = [
+            $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'config.php',
+            dirname($_SERVER['DOCUMENT_ROOT']) . DIRECTORY_SEPARATOR . 'config.php',
+            $_SERVER['DOCUMENT_ROOT'] . '/../config.php'
+        ];
+        
+        foreach ($config_paths as $config) {
+            if (file_exists($config) && is_readable($config)) {
+                $content = file_get_contents($config);
+                if ($content !== false) {
+                    // Look for Crafty 3.7.5 signatures
+                    if (preg_match('/livehelp_[\d\.]+\.\d+/', $content)) {
+                        return '3.7.5';
+                    }
+                    // Look for version strings in common patterns
+                    if (preg_match('/\$livehelp_version\s*=\s*[\'"]([^\'"]+)[\'"]/', $content)) {
+                        return $matches[1]; // Extract version
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Validate pre-migration state for Crafty upgrade.
+     * Checks if required Crafty tables exist and are accessible.
+     * @return array Validation result
+     */
+    public static function validateCraftyPreMigration($pdo) {
+        $validation_results = [];
+        
+        try {
+            // Check key Crafty tables that must exist for migration
+            $required_tables = [
+                'livehelp_users', 'livehelp_operator_departments', 'livehelp_departments',
+                'livehelp_operator_history', 'livehelp_requests', 'livehelp_visits',
+                'livehelp_messages', 'livehelp_chat_transcripts', 'livehelp_keywords'
+            ];
+            
+            foreach ($required_tables as $table) {
+                $result = $pdo->query("SHOW TABLES LIKE '$table'");
+                if ($result && $result->fetchColumn() === 0) {
+                    $validation_results[] = [
+                        'test' => 'crafty_tables_exist',
+                        'status' => 'FAIL',
+                        'message' => "Required Crafty table '$table' not found"
+                    ];
+                    return false;
+                }
+            }
+            
+            // Check for data integrity (no orphaned users)
+            $result = $pdo->query("
+                SELECT COUNT(*) as orphaned_count 
+                FROM livehelp_users lu 
+                LEFT JOIN lupo_actors a ON lu.username = a.slug 
+                WHERE a.actor_id IS NULL
+            ");
+            
+            $orphaned_count = $result->fetchColumn();
+            if ($orphaned_count > 0) {
+                $validation_results[] = [
+                    'test' => 'crafty_data_integrity',
+                    'status' => 'FAIL',
+                    'message' => "Found {$orphaned_count} orphaned Crafty users"
+                ];
+                return false;
+            }
+            
+            $validation_results[] = ['test' => 'crafty_pre_migration_check', 'status' => 'PASS'];
+            return true;
+            
+        } catch (Exception $e) {
+            $validation_results[] = [
+                'test' => 'crafty_pre_migration_check',
+                'status' => 'ERROR',
+                'message' => $e->getMessage()
+            ];
+            return false;
+        }
     }
 
     public static function getDbCredentials() {

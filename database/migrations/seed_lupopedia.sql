@@ -12,8 +12,8 @@
 SET @now = 20260217230000;
 SET @node_id = 1;
 -- Version for module seed: must match docs/doctrine/VERSIONING_DOCTRINE.md (canonical current version).
-SET @lupo_version = '4.0.20';
-SET @lupo_version_code = 40020;
+SET @lupo_version = '4.0.21';
+SET @lupo_version_code = 40021;
 
 -- -----------------------------------------------------------------------------
 -- System department (department_id = 0) — reserved, not user-selectable
@@ -47,6 +47,14 @@ INSERT INTO lupo_modules (module_id, module_key, module_name, namespace, version
 INSERT INTO lupo_permissions (permission_id, target_type, target_id, user_id, department_id, permission, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
 VALUES (10000, 'module', 9, 10000, NULL, 'owner', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE permission = 'owner', updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
+
+-- -----------------------------------------------------------------------------
+-- lupo_auth_providers: minimal local provider (Phase 1 seed; required for admin UI / fresh install)
+-- RESERVED ID DOCTRINE: auth_provider_id = 1 explicit; no AUTO_INCREMENT.
+-- -----------------------------------------------------------------------------
+INSERT INTO lupo_auth_providers (auth_provider_id, provider_name, client_id, client_secret, scopes, authorization_endpoint, token_endpoint, userinfo_endpoint, jwks_uri, created_ymdhis, updated_ymdhis, is_active)
+VALUES (1, 'local', '', '', NULL, '', '', NULL, NULL, @now, @now, 1)
+ON DUPLICATE KEY UPDATE provider_name = VALUES(provider_name), updated_ymdhis = @now, is_active = 1;
 
 -- -----------------------------------------------------------------------------
 -- Unified registry (lupo_unified_registry)
@@ -390,9 +398,10 @@ INSERT INTO lupo_banned_actors (`banned_actor_id`, `actor_id`, `ip_address`, `re
 ON DUPLICATE KEY UPDATE reason = VALUES(reason), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
 -- -----------------------------------------------------------------------------
--- 4.0.20: Stoned Wolfie banned test identities (adversarial harness)
+-- 4.0.21: Database-first identity with Wolfie Headers v4.2
 -- AI: actor_id 420 (0-9999 system range). Human: actor_id 10001 (first free >= 10000 in fresh install).
 -- Upgrade path: wizard inserts human at next-free actor_id >= 10000 after import/seed.
+-- Consolidation: All lupo_content_* tables eliminated, data preserved in lupo_contents JSON columns
 -- -----------------------------------------------------------------------------
 -- AI: lupo_agents, lupo_actors, lupo_banned_actors, lupo_auth_users (disabled)
 INSERT INTO lupo_agents (`agent_id`, `agent_key`, `agent_name`, `archetype`, `description`, `version`, `model_name`, `is_global_authority`, `is_internal_only`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `avg_response_time_ms`, `total_tokens_processed`, `success_rate`, `cost_per_1k_tokens`, `temperature`, `top_p`, `max_tokens`, `presence_penalty`, `frequency_penalty`, `system_prompt`, `provider`, `api_key_id`, `timeout_ms`, `safety_json`, `response_format`, `pono_score`, `pilau_score`, `kapakai_score`, `kapu_active`, `kapu_until`, `kapu_reason`, `kapu_consent_given`, `kapu_appeal_pending`) VALUES (420, 'stoned_wolfie_ai', 'Stoned Wolfie (AI)', 'banned_test', 'Banned AI test identity for adversarial harness. Do not use as persona.', '1.0', NULL, 0, 1, @now, @now, 1, @now, 0, 0, 1.0, '0.0000', 0.7, 1.0, 2048, 0.0, 0.0, NULL, 'openai', NULL, 20000, NULL, NULL, '1.00', '0.00', '0.50', 0, NULL, NULL, 0, 0) ON DUPLICATE KEY UPDATE agent_name = VALUES(agent_name), is_deleted = 1, deleted_ymdhis = @now, updated_ymdhis = @now;

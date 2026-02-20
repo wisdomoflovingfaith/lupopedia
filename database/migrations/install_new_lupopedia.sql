@@ -1570,6 +1570,21 @@ CREATE TABLE lupo_contents (
   file_last_modified_utc bigint DEFAULT NULL COMMENT 'FLIP: UTC last modified YYYYMMDDHHIISS',
   tags json DEFAULT NULL,
   dialog_notes text,
+  -- 4.0.21 Consolidation: Database-first identity columns
+  atom_mappings JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_atom_map',
+  category_mappings JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_category_map',
+  likes_total int DEFAULT 0 COMMENT 'Consolidated from lupo_content_engagement_summary',
+  shares_total int DEFAULT 0 COMMENT 'Consolidated from lupo_content_engagement_summary',
+  content_events JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_events',
+  hashtags JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_hashtag',
+  inbound_links JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_inbound_links',
+  like_users JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_likes',
+  media_attachments JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_media',
+  question_mappings JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_question_map',
+  content_references JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_references',
+  revision_history JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_revisions',
+  share_users JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_shares',
+  tag_relationships JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_tag_relationships',
   PRIMARY KEY (content_id)
 );
 
@@ -1588,264 +1603,11 @@ CREATE INDEX lupo_contents_idx_domain ON lupo_contents (federation_node_id);
 CREATE INDEX lupo_contents_idx_department ON lupo_contents (department_id);
 CREATE INDEX lupo_contents_idx_user ON lupo_contents (actor_id);
 
-CREATE TABLE lupo_content_atom_map (
-  content_atom_map_id bigint NOT NULL,
-  content_id bigint NOT NULL,
-  atom_id bigint NOT NULL,
-  purpose varchar(255) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (content_atom_map_id)
-);
-
-CREATE UNIQUE INDEX lupo_content_atom_map_unique_atom_content ON lupo_content_atom_map (content_id, atom_id);
-CREATE INDEX lupo_content_atom_map_idx_content ON lupo_content_atom_map (content_id);
-CREATE INDEX lupo_content_atom_map_idx_atom ON lupo_content_atom_map (atom_id);
-CREATE INDEX lupo_content_atom_map_idx_created_ymdhis ON lupo_content_atom_map (created_ymdhis);
-CREATE INDEX lupo_content_atom_map_idx_updated_ymdhis ON lupo_content_atom_map (updated_ymdhis);
-CREATE INDEX lupo_content_atom_map_idx_is_deleted ON lupo_content_atom_map (is_deleted);
-CREATE INDEX lupo_content_atom_map_idx_purpose ON lupo_content_atom_map (purpose);
-
-CREATE TABLE lupo_content_category_map (
-  content_category_map_id bigint NOT NULL,
-  content_id bigint NOT NULL,
-  category_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (content_category_map_id)
-);
-
-CREATE UNIQUE INDEX lupo_content_category_map_uq_content_category ON lupo_content_category_map (content_id, category_id);
-CREATE INDEX lupo_content_category_map_idx_content ON lupo_content_category_map (content_id);
-CREATE INDEX lupo_content_category_map_idx_category ON lupo_content_category_map (category_id);
-
-CREATE TABLE lupo_content_engagement_summary (
-  content_engagement_summary_id bigint NOT NULL,
-  likes_total int NOT NULL DEFAULT '0',
-  shares_total int NOT NULL DEFAULT '0',
-  updated_ymdhis bigint NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (content_engagement_summary_id)
-);
-
-CREATE INDEX lupo_content_engagement_summary_idx_updated_ymdhis ON lupo_content_engagement_summary (updated_ymdhis);
-CREATE INDEX lupo_content_engagement_summary_idx_created_ymdhis ON lupo_content_engagement_summary (created_ymdhis);
-CREATE INDEX lupo_content_engagement_summary_idx_likes_total ON lupo_content_engagement_summary (likes_total);
-CREATE INDEX lupo_content_engagement_summary_idx_shares_total ON lupo_content_engagement_summary (shares_total);
-
-CREATE TABLE lupo_content_events (
-  content_event_id bigint NOT NULL,
-  content_id bigint DEFAULT NULL,
-  actor_id bigint DEFAULT NULL,
-  session_id varchar(255) DEFAULT NULL,
-  tab_id varchar(255) DEFAULT NULL,
-  world_id bigint DEFAULT NULL,
-  world_key varchar(255) DEFAULT NULL,
-  world_type varchar(50) DEFAULT NULL,
-  event_type varchar(100) NOT NULL,
-  event_data json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (content_event_id)
-);
-
-CREATE INDEX lupo_content_events_idx_content_id ON lupo_content_events (content_id);
-CREATE INDEX lupo_content_events_idx_actor_id ON lupo_content_events (actor_id);
-CREATE INDEX lupo_content_events_idx_session_id ON lupo_content_events (session_id);
-CREATE INDEX lupo_content_events_idx_tab_id ON lupo_content_events (tab_id);
-CREATE INDEX lupo_content_events_idx_world_id ON lupo_content_events (world_id);
-CREATE INDEX lupo_content_events_idx_event_type ON lupo_content_events (event_type);
-CREATE INDEX lupo_content_events_idx_created_ymdhis ON lupo_content_events (created_ymdhis);
-CREATE INDEX lupo_content_events_idx_content_event_type ON lupo_content_events (content_id, event_type);
-
-CREATE TABLE lupo_content_hashtag (
-  content_hashtag_id bigint NOT NULL,
-  hashtag_id bigint NOT NULL,
-  context_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (content_hashtag_id)
-);
-
-CREATE INDEX lupo_content_hashtag_idx_content ON lupo_content_hashtag (content_hashtag_id);
-CREATE INDEX lupo_content_hashtag_idx_hashtag ON lupo_content_hashtag (hashtag_id);
-CREATE INDEX lupo_content_hashtag_idx_context ON lupo_content_hashtag (context_id);
-CREATE INDEX lupo_content_hashtag_idx_created_ymdhis ON lupo_content_hashtag (created_ymdhis);
-CREATE INDEX lupo_content_hashtag_idx_is_deleted ON lupo_content_hashtag (is_deleted);
-
-CREATE TABLE lupo_content_inbound_links (
-  content_inbound_link_id bigint NOT NULL,
-  target_content_id bigint NOT NULL,
-  source_type varchar(50) NOT NULL,
-  source_id bigint DEFAULT NULL,
-  source_url varchar(2000) DEFAULT NULL,
-  link_type varchar(255) DEFAULT NULL,
-  properties json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (content_inbound_link_id)
-);
-
-CREATE INDEX lupo_content_inbound_links_idx_target ON lupo_content_inbound_links (target_content_id);
-CREATE INDEX lupo_content_inbound_links_idx_source ON lupo_content_inbound_links (source_type, source_id);
-CREATE INDEX lupo_content_inbound_links_idx_url ON lupo_content_inbound_links (source_url(255));
-CREATE INDEX lupo_content_inbound_links_idx_created_ymdhis ON lupo_content_inbound_links (created_ymdhis);
-CREATE INDEX lupo_content_inbound_links_idx_updated_ymdhis ON lupo_content_inbound_links (updated_ymdhis);
-CREATE INDEX lupo_content_inbound_links_idx_is_deleted ON lupo_content_inbound_links (is_deleted);
-
-CREATE TABLE lupo_content_likes (
-  content_like_id bigint NOT NULL,
-  content_id bigint NOT NULL,
-  user_id bigint DEFAULT NULL,
-  visitor_hash char(64) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (content_like_id)
-);
-
-CREATE UNIQUE INDEX lupo_content_likes_unique_like_user ON lupo_content_likes (content_id, user_id);
-CREATE UNIQUE INDEX lupo_content_likes_unique_like_visitor ON lupo_content_likes (content_id, visitor_hash);
-CREATE INDEX lupo_content_likes_idx_content ON lupo_content_likes (content_id);
-CREATE INDEX lupo_content_likes_idx_user ON lupo_content_likes (user_id);
-CREATE INDEX lupo_content_likes_idx_created_ymdhis ON lupo_content_likes (created_ymdhis);
-CREATE INDEX lupo_content_likes_idx_updated_ymdhis ON lupo_content_likes (updated_ymdhis);
-CREATE INDEX lupo_content_likes_idx_is_deleted ON lupo_content_likes (is_deleted);
-
-CREATE TABLE lupo_content_media (
-  content_media_id bigint NOT NULL,
-  content_id bigint NOT NULL,
-  media_type varchar(64) NOT NULL,
-  original_filename varchar(255) DEFAULT NULL,
-  stored_filename varchar(255) NOT NULL,
-  stored_path varchar(512) NOT NULL,
-  file_extension varchar(20) DEFAULT NULL,
-  mime_type varchar(100) DEFAULT NULL,
-  file_size bigint DEFAULT NULL,
-  dimensions varchar(50) DEFAULT NULL,
-  duration int DEFAULT NULL,
-  media_order int NOT NULL DEFAULT '0',
-  title varchar(255) DEFAULT NULL,
-  caption_text text,
-  alt_text text,
-  description text,
-  metadata json DEFAULT NULL,
-  variants json DEFAULT NULL,
-  is_public tinyint NOT NULL DEFAULT '1',
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  PRIMARY KEY (content_media_id)
-);
-
-CREATE INDEX lupo_content_media_idx_content ON lupo_content_media (content_id);
-CREATE INDEX lupo_content_media_idx_media_type ON lupo_content_media (media_type);
-CREATE INDEX lupo_content_media_idx_mime_type ON lupo_content_media (mime_type(20));
-CREATE INDEX lupo_content_media_idx_media_order ON lupo_content_media (media_order);
-CREATE INDEX lupo_content_media_idx_is_public ON lupo_content_media (is_public);
-CREATE INDEX lupo_content_media_idx_is_deleted ON lupo_content_media (is_deleted);
-CREATE INDEX lupo_content_media_idx_created ON lupo_content_media (created_ymdhis);
-CREATE INDEX lupo_content_media_idx_updated ON lupo_content_media (updated_ymdhis);
-
-CREATE TABLE lupo_content_question_map (
-  content_question_map_id bigint NOT NULL,
-  content_id bigint NOT NULL,
-  question_id bigint NOT NULL,
-  domain_id bigint NOT NULL,
-  purpose varchar(255) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (content_question_map_id)
-);
-
-CREATE UNIQUE INDEX lupo_content_question_map_unique_question_content ON lupo_content_question_map (content_id, question_id);
-CREATE INDEX lupo_content_question_map_idx_content ON lupo_content_question_map (content_id);
-CREATE INDEX lupo_content_question_map_idx_question ON lupo_content_question_map (question_id);
-CREATE INDEX lupo_content_question_map_idx_domain ON lupo_content_question_map (domain_id);
-CREATE INDEX lupo_content_question_map_idx_created_ymdhis ON lupo_content_question_map (created_ymdhis);
-CREATE INDEX lupo_content_question_map_idx_updated_ymdhis ON lupo_content_question_map (updated_ymdhis);
-CREATE INDEX lupo_content_question_map_idx_is_deleted ON lupo_content_question_map (is_deleted);
-
-CREATE TABLE lupo_content_references (
-  content_referenc_id bigint NOT NULL,
-  content_id bigint NOT NULL,
-  section_anchor_slug varchar(255) DEFAULT NULL,
-  raw_reference text NOT NULL,
-  reference_type varchar(50) NOT NULL,
-  reference_slug varchar(255) DEFAULT NULL,
-  reference_object_id bigint DEFAULT NULL,
-  meta_json json DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT '0',
-  updated_ymdhis bigint NOT NULL DEFAULT '0',
-  PRIMARY KEY (content_referenc_id)
-);
-
-CREATE INDEX lupo_content_references_idx_content_id ON lupo_content_references (content_id);
-CREATE INDEX lupo_content_references_idx_section_anchor ON lupo_content_references (section_anchor_slug);
-CREATE INDEX lupo_content_references_idx_reference_type ON lupo_content_references (reference_type);
-CREATE INDEX lupo_content_references_idx_reference_slug ON lupo_content_references (reference_slug);
-CREATE INDEX lupo_content_references_idx_reference_object ON lupo_content_references (reference_object_id);
-CREATE INDEX lupo_content_references_idx_is_deleted ON lupo_content_references (is_deleted);
-
-CREATE TABLE lupo_content_revisions (
-  content_revision_id bigint NOT NULL,
-  content_id bigint NOT NULL,
-  version_number int NOT NULL,
-  body_snapshot text NOT NULL,
-  metadata_snapshot json DEFAULT NULL,
-  sections_snapshot json DEFAULT NULL,
-  edited_by varchar(100) DEFAULT NULL,
-  created_at bigint,
-  PRIMARY KEY (content_revision_id)
-);
-
-CREATE INDEX lupo_content_revisions_content_id ON lupo_content_revisions (content_id);
-CREATE INDEX lupo_content_revisions_version_number ON lupo_content_revisions (version_number);
-
-CREATE TABLE lupo_content_shares (
-  content_share_id bigint NOT NULL,
-  content_id bigint NOT NULL,
-  user_id bigint DEFAULT NULL,
-  visitor_hash char(64) DEFAULT NULL,
-  share_method varchar(50) DEFAULT NULL,
-  share_target varchar(255) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (content_share_id)
-);
-
-CREATE INDEX lupo_content_shares_idx_content ON lupo_content_shares (content_id);
-CREATE INDEX lupo_content_shares_idx_user ON lupo_content_shares (user_id);
-CREATE INDEX lupo_content_shares_idx_method ON lupo_content_shares (share_method);
-CREATE INDEX lupo_content_shares_idx_created_ymdhis ON lupo_content_shares (created_ymdhis);
-CREATE INDEX lupo_content_shares_idx_updated_ymdhis ON lupo_content_shares (updated_ymdhis);
-CREATE INDEX lupo_content_shares_idx_is_deleted ON lupo_content_shares (is_deleted);
-
-CREATE TABLE lupo_content_tag_relationships (
-  relationship_id bigint NOT NULL,
-  content_id bigint NOT NULL,
-  tag_id bigint NOT NULL,
-  relationship_type varchar(64) NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (relationship_id)
-);
-
-CREATE INDEX lupo_content_tag_relationships_idx_content_id ON lupo_content_tag_relationships (content_id);
-CREATE INDEX lupo_content_tag_relationships_idx_tag_id ON lupo_content_tag_relationships (tag_id);
-CREATE INDEX lupo_content_tag_relationships_idx_relationship_type ON lupo_content_tag_relationships (relationship_type);
-CREATE INDEX lupo_content_tag_relationships_idx_created ON lupo_content_tag_relationships (created_ymdhis);
-CREATE INDEX lupo_content_tag_relationships_idx_created_ymdhis ON lupo_content_tag_relationships (created_ymdhis, relationship_type, content_id, tag_id);
+-- 4.0.21 Consolidation: Performance indexes for JSON columns
+CREATE INDEX lupo_contents_idx_has_likes_shares ON lupo_contents (likes_total, shares_total);
+CREATE INDEX lupo_contents_idx_has_media ON lupo_contents ((JSON_LENGTH(media_attachments) > 0));
+CREATE INDEX lupo_contents_idx_has_events ON lupo_contents ((JSON_LENGTH(content_events) > 0));
+CREATE INDEX lupo_contents_idx_has_hashtags ON lupo_contents ((JSON_LENGTH(hashtags) > 0));
 
 CREATE TABLE lupo_crafty_user_mapping (
   crafty_user_mapping_id bigint NOT NULL auto_increment,

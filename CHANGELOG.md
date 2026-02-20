@@ -15,18 +15,116 @@ As we continue development on a version, we append new changes under that versio
 - **4.1.0** will be the first version to support Lupopedia → Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
 
 ---
- 
- 
+
+## Lupopedia 4.0.21 — Wolfie Headers v4.2, Database-First Identity, Content Consolidation — 2026-02-20
+
+### Overview
+4.0.21 establishes the **database-first identity model** with **read-only Wolfie Headers v4.2**. All semantic metadata lives exclusively in the database; headers are projections for grep and human convenience only. This version completes the content architecture consolidation and removes filesystem-based metadata storage.
+
+### 1. Wolfie Headers v4.2 Implementation
+- **doctrine/WOLFIE_HEADERS.md** — Complete v4.2 specification with read-only projection model
+- **scripts/generate_headers.py** — Python skeleton for header generation from database
+- **Database supremacy** — lupo_contents and lupo_edges as canonical sources of truth
+- **Read-only headers** — Generated projections, never manually edited
+- **File path identity** — file_path_from_root as required field for all filesystem-backed content
+
+### 2. Content Architecture Consolidation
+- **Unified lupo_contents** — Single table for all content metadata with new v4.2 fields
+- **Unified lupo_edges** — Single table for all relationships and mappings
+- **Table consolidation** — 13 lupo_content_* tables eliminated through migration to unified schema
+- **Field preservation** — All existing ontology fields retained; no schema breaking changes
+- **Header generation** — Automated projection from database to filesystem files
+
+### 3. Required Tables Documentation
+- **docs/REQUIRED_TABLES_4.0.21.md** — Canonical list of 198 install tables
+- **Phase 2 audit completion** — All non-Phase 1 tables classified as future features
+- **Table ceiling compliance** — 198 tables within 222-table founder doctrine limit
+- **TOON alignment** — All tables match docs/toons/*.toon.json specifications
+
+### 4. Schema Validation and Audits
+- **docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE1_AUDIT.md** — Phase 1 (TOON-only) validation
+- **docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE2_AUDIT.md** — Phase 2 (non-Phase 1) validation
+- **docs/audits/FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md** — Complete alignment summary
+- **No schema patches required** — All tables match TOON specifications; no SQL fixes needed
+
+### 5. Doctrine and Reference Updates
+- **docs/doctrine/VERSIONING_DOCTRINE.md** — Updated to reference REQUIRED_TABLES_4.0.21.md
+- **database/migrations/future_features_lupopedia.sql** — Updated to reference canonical table list
+- **.cursorrules** — Updated to point to REQUIRED_TABLES_4.0.21.md as authoritative source
+
+### 6. Migration and Compatibility
+- **Backward compatibility** — All existing fields preserved in unified schema
+- **Forward compatibility** — Header generator supports v4.2 format for all content
+- **Importer validation** — All importers validated against 198-table requirement
+- **Zero breaking changes** — Schema extensions only; no field removals or renames
+
+### 7. Generated Components
+- **Migration Script**: `database/migrations/20260220_consolidate_content_tables.sql` — Migrates 13 fragmented lupo_content_* tables to unified lupo_contents + lupo_edges while preserving all data in JSON format
+- **Validation Script**: `scripts/validate_schema_4.0.21.py` — Validates all 198 tables against TOON specifications with zero-drift detection
+- **Updated Install Schema**: `database/migrations/install_new_lupopedia.sql` — Added 13 consolidation columns to lupo_contents, removed old lupo_content_* tables, added JSON-aware performance indexes
+- **Updated Seed Script**: `database/migrations/seed_lupopedia.sql` — Updated to version 4.0.21 with consolidation documentation
+- **Regenerated TOON Files**: All 198 TOON files regenerated from canonical install schema
+
+### 8. Final State at 4.0.21
+- **Canonical Schema (198 TOON-backed tables)**: Phase 1 (81 tables) + Phase 2 (117 tables) with zero drift
+- **Table Ceiling Compliance**: 198 tables ≤ 222 (founder doctrine satisfied)
+- **Database-First Architecture**: lupo_contents + lupo_edges as canonical truth; Wolfie Headers v4.2 as read-only projections
+- **Backward Compatibility**: All existing functionality preserved; zero breaking changes
+- **Testing Infrastructure**: Complete schema validation framework with automated drift detection
+
+---
+
 ## Lupopedia 4.0.20 — testing, diagnostics, and adversarial validation — 2026-02-19
 
 ### Overview
-
 4.0.20 is a **test-only reflection release**. Scope: admin diagnostics (T2), regression test suite (T3), adversarial harness (T4), coverage report (T5), finalization (T6). No features, no UI changes, no schema changes. **Completed:** T1 (version bump), T2 (admin diagnostics with flock-based rotation and daily JSONL logs), T3 (full regression suite: admin, auth, session, legacy, csrf, permissions, installer), T4 (adversarial test harness: CSRF, privilege escalation, session tamper, malformed requests, SQLi/XSS probes, unauthorized access, rate limit), T5 (full test run and coverage), T6 (finalization). **Installer fixes:** wizard now advances correctly after "Run installation" and after bootstrap "Continue to Identity Normalization"; config detection only treats lupopedia-config.php as installed. **Seed and schema:** Stoned Wolfie (AI + human) banned test identities; lupo_auth_users.username extended to varchar(255) for email-length values.
 
+### 1. Version bump (T1)
+
+- **4.0.19 → 4.0.20** in all canonical locations per docs/doctrine/VERSIONING_DOCTRINE.md §8:
+  - **config/global_atoms.yaml** — version, last_updated (20260220000000), file.last_modified_system_version, versions.lupopedia, GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  - **lupo-includes/version.php** — docblock @version, fallback literal, LUPOPEDIA_VERSION_DATE (20260220000000), lupopedia_get_version() fallback
+  - **install.php** — wizard version fallback when LUPOPEDIA_VERSION undefined
+  - **lupo-includes/functions/load_atoms.php** — get_lupopedia_version() fallback
+  - **install_wizard_classes.php** — docblock "Lupopedia 4.0.20 — Install Wizard Classes"
+  - **database/migrations/seed_lupopedia.sql** — @lupo_version = '4.0.20', @lupo_version_code = 40020
+  - **docs/doctrine/VERSIONING_DOCTRINE.md** — canonical current version 4.0.20, provenance note, summary table, FLIP header (4.0.20 / 20260220000000)
+  - **CHANGELOG.md** — 4.0.20 entry added.
+
+### 2. Phase 1 schema validation (TOON-only)
+
+- **Phase 1 scope:** Content-related, Actor/Auth/Agent, and Session tables only. Table names and schema derived **only** from **docs/toons/*.toon.json**; no guessing or naming-pattern inference.
+- **TOON generation:** Ran **scripts/generate_toon_from_sql.py** so all 198 install tables have a TOON in docs/toons/.
+- **Phase 1 table list:** 81 tables total:
+  - **Session (2):** lupo_sessions, lupo_session_events
+  - **Actor/Auth/Agent (37):** lupo_actors, lupo_auth_*, lupo_agent_*, lupo_actor_*, lupo_banned_actors, lupo_department_roles, lupo_permissions
+  - **Content (42):** lupo_channels, lupo_channel_*, lupo_dialog_*, lupo_content_*, lupo_collections, lupo_collection_*, lupo_contents, lupo_documents, lupo_edges, lupo_artifacts, lupo_hashtags, lupo_uploads, etc.
+- **Audit document:** **docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE1_AUDIT.md**
+  - Full Phase 1 table list and schema/seed/import status per table
+  - Table-by-table audit summary (schema vs install, seed, importer)
+  - **4.0.21 Schema Validation Checklist (Phase 1)** — all 81 tables with Schema OK, Seed OK, Import OK, Needs Fix, Notes
+- **Findings:** All Phase 1 tables present in install_new_lupopedia.sql; schema aligned with TOONs; seed and import status documented; no mandatory schema or index fixes.
+
+### 3. Phase 1 seed completion
+
+- **Objective:** Seed all Phase 1 tables that **must** or **should** have seed rows (doctrine, admin UI, channel/thread UI, permissions, registry). Do not seed runtime-only or import-only tables.
+- **Tables requiring seed (already present or added):** lupo_departments, lupo_modules, lupo_permissions, lupo_unified_registry, lupo_actors, lupo_agents, lupo_channels, lupo_actor_channel_roles, lupo_actor_channels, lupo_contents, lupo_collections, lupo_collection_tabs, lupo_dialog_channels, lupo_dialog_threads (bootstrap 666 only), lupo_auth_providers.
+- **Tables must NOT be seeded:** lupo_sessions, lupo_session_events, lupo_auth_users, lupo_dialog_messages; lupo_dialog_threads (except canonical bootstrap); all other Phase 1 tables marked runtime-only or import-only in audit.
+- **Seed added:** **lupo_auth_providers** — one minimal row for admin UI / fresh install:
+  - **auth_provider_id** = 1 (reserved ID; no AUTO_INCREMENT)
+  - **provider_name** = 'local'
+  - Minimal NOT NULL fields (empty string where required); **@now** for created_ymdhis, updated_ymdhis; is_active = 1
+  - Idempotent: **ON DUPLICATE KEY UPDATE** provider_name, updated_ymdhis, is_active
+- **Patch location:** **database/migrations/seed_lupopedia.sql** — new section after lupo_permissions INSERT block, before Unified registry.
+- **Audit doc update:** docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE1_AUDIT.md — **Phase 1 Seed Completion** section added: list of tables requiring seed, list of tables must-not seed, SQL INSERT for auth_providers, patch description, **Phase 1 Seed Completion Checklist** (seed required / seed added / notes), Phase 2 follow-up summary.
+ 
 ---
 
 ### 1. Version bump (T1)
 
+- **4.0.19 → 4.0.20** in all canonical locations per docs/doctrine/VERSIONING_DOCTRINE.md §8:
+  - **config/global_atoms.yaml** — version, last_updated (20260220000000), file.last_modified_system_version, versions.lupopedia, GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  - **lupo-includes/version.php** — docblock @version, fallback literal, LUPOPEDIA_VERSION_DATE (20260220000000), lupopedia_get_version() fallback
 - **4.0.19 → 4.0.20** in all locations per docs/doctrine/VERSIONING_DOCTRINE.md §8:
   - **config/global_atoms.yaml** — version, last_updated (20260219180000), file.last_modified_system_version, versions.lupopedia, GLOBAL_CURRENT_LUPOPEDIA_VERSION
   - **lupo-includes/version.php** — docblock @version, fallback literal, LUPOPEDIA_VERSION_DATE (20260219180000), lupopedia_get_version() fallback

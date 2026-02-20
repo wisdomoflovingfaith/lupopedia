@@ -1,8 +1,9 @@
 # Future Features and Required Tables Alignment Summary
 
-**Date:** 2026-02-11  
-**Version context:** 4.0.2 (patch-only)  
-**Purpose:** Confirm alignment of required-tables doctrine, `install_new_lupopedia.sql`, `future_features_lupopedia.sql`, and required-tables documentation.
+**Date:** 2026-02-20  
+**Version context:** 4.0.21 (patch-only)  
+**Purpose:** Confirm alignment of required-tables doctrine, `install_new_lupopedia.sql`, `future_features_lupopedia.sql`, and required-tables documentation.  
+**Audit authority:** docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE1_AUDIT.md, docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE2_AUDIT.md, docs/REQUIRED_TABLES_4.0.21.md.
 
 ---
 
@@ -13,12 +14,12 @@ Required tables are the union of:
 - **Importer tables:** Every table referenced in `database/migrations/import_from_old_crafty_syntax.sql` (INSERT/UPDATE/TRUNCATE/DELETE targets).
 - **Runtime / wizard / seed / class-implemented:** All tables used by active PHP (app/, lupo-includes/), wizard, installer, seed_lupopedia.sql, and runtime features.
 
-The canonical list is documented in **docs/REQUIRED_TABLES_4.0.6.md** under:
+The canonical list is documented in **docs/REQUIRED_TABLES_4.0.21.md** under:
 
-- **Required Crafty Syntax Compatibility Tables (Importer)** — 21 tables (importer targets).
-- **Required Lupopedia Core Tables** — 197 tables now out of 200 (after moving 4 to future_features).
+- **Required Crafty Syntax Compatibility Tables (Importer)** — importer targets (including lupo_crm_leads, lupo_modules, lupo_analytics_visits_daily, lupo_analytics_visits_monthly).
+- **Required Lupopedia Core Tables** — all 198 tables in install (TOONs in docs/toons/); Phase 1 (81) + Phase 2 (117) per schema validation audits.
 
-All of these tables are created by `install_new_lupopedia.sql` and must not be removed or moved to `future_features_lupopedia.sql`.
+All of these tables are created by `install_new_lupopedia.sql` and must not be removed or moved to `future_features_lupopedia.sql`. **No additional tables were moved to future_features in Phase 2;** the four future-features tables remain the only ones in `future_features_lupopedia.sql`.
 
 ---
 
@@ -48,22 +49,30 @@ Their full `CREATE TABLE` and index definitions were removed from `install_new_l
 
 ---
 
+## 3a. Phase 2 (4.0.21) outcome
+
+- Schema validation Phase 2 audited all 117 non–Phase 1 tables (TOON-only).
+- **No additional tables** were recommended for move to `future_features_lupopedia.sql`. The four future-features tables above remain the only ones in that file.
+- docs/REQUIRED_TABLES_4.0.21.md was created and aligns with install, TOONs, and Phase 1 + Phase 2 audits.
+
+---
+
 ## 4. Confirmations
 
 - **All importer tables are in the required list.**  
-  Every table referenced in `import_from_old_crafty_syntax.sql` is listed in docs/REQUIRED_TABLES_4.0.6.md as Required Crafty Syntax Compatibility or Required Lupopedia Core. None were removed or moved.
+  Every table referenced in `import_from_old_crafty_syntax.sql` is listed in docs/REQUIRED_TABLES_4.0.21.md as Required Crafty Syntax Compatibility or Required Lupopedia Core. None were removed or moved.
 
 - **No importer table was removed or moved.**  
   No table that appears in `import_from_old_crafty_syntax.sql` was moved to `future_features_lupopedia.sql` or dropped from the install.
 
 - **install_new_lupopedia.sql now contains only required tables (plus optional tables still in install).**  
-  The four tables listed in §3 were removed from the install file. All remaining tables in the install file are either required (importer + runtime) or optional (documented as such; may be moved to future_features in a later pass).
+  The four tables listed in §3 were removed from the install file in an earlier cycle. All remaining tables in the install file (198 tables, per TOONs) are either required (importer + runtime) or optional (documented in REQUIRED_TABLES_4.0.21.md; may be moved to future_features in a later pass). Phase 2 schema validation (4.0.21) did not recommend moving any additional tables to future_features.
 
 - **future_features_lupopedia.sql contains only non-required tables.**  
   It contains exactly the four tables listed in §2. No DROP, ALTER, or data manipulation; only CREATE TABLE and indexes. Schema doctrine applied (no FKs, no triggers, BIGINT timestamps, no UNSIGNED, no integer display widths).
 
 - **Required-tables documentation matches the actual SQL.**  
-  docs/REQUIRED_TABLES_4.0.6.md reflects the split between required (install) and future features (future_features_lupopedia.sql) and includes the doctrine note: required = importer + runtime + wizard + seed + class-implemented; future = non-required; no table in `import_from_old_crafty_syntax.sql` may be removed or moved to future_features.
+  docs/REQUIRED_TABLES_4.0.21.md reflects the split between required (install), optional, and future features (future_features_lupopedia.sql) and includes the doctrine note: required = importer + runtime + wizard + seed + class-implemented; future = non-required; no table in `import_from_old_crafty_syntax.sql` may be removed or moved to future_features.
 
 ---
 
@@ -82,5 +91,5 @@ No other SQL files in `database/migrations/` are canonical for this doctrine. On
 ## 6. Doctrine Reminders Applied
 
 - lupopedia_rpz schema was not touched.  
-- No 4.1.x or other major/minor version introduced; document version is 4.0.2.  
+- No 4.1.x or other major/minor version introduced; document version is 4.0.21.  
 - No Lupopedia→Lupopedia migrations; only Crafty 3.7.5 → Lupopedia 4.0.x context.

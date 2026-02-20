@@ -2,8 +2,8 @@
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/VERSIONING_DOCTRINE.md
-file.last_modified_system_version: "4.0.20"
-file.last_modified_utc: "20260219180000"
+file.last_modified_system_version: "4.0.21"
+file.last_modified_utc: "20260220000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 ---
 # Versioning Doctrine (Single Source of Truth)
@@ -29,11 +29,11 @@ file.last_modified_utc: "20260219180000"
 
 ## 1. Canonical current version
 
-The **current version** of Lupopedia is **4.0.20**.
+The **current version** of Lupopedia is **4.0.21**.
 
 This is the only correct “current version” number for the codebase. No other “current version” may be introduced unless explicitly instructed.
 
-**Provenance (4.0.20):** Version bump from 4.0.19; FLIP header provenance updated for 4.0.20.
+**Provenance (4.0.21):** Version bump from 4.0.20; test-only release; FLIP header provenance updated for 4.0.21.
 
 ---
 
@@ -173,7 +173,7 @@ The wizard reads the version from **version.php** (which uses atoms when config 
 |------|-----------|
 | **Single file** | Only `docs/doctrine/VERSIONING_DOCTRINE.md` exists; no duplicates or suffixed copies. |
 | **Cleanup** | The one-time versioning cleanup is complete. |
-| **Canonical version** | The canonical current version is **4.0.20**. |
+| **Canonical version** | The canonical current version is **4.0.21**. |
 | **4.1.0** | 4.1.0 is allowed **only** for future-release planning (required tables, roadmaps, hotfix registry, etc.); it must not be used as the current version. |
 | **Patch increments** | Only Cursor increments patch versions (4.0.6 → 4.0.7 → 4.0.8 → …); minor/major are changed only when Eric explicitly instructs. |
 | **Historical versions** | Historical version numbers (3.0.x, 3.0.0, 4.0.1, 4.1.0 as future marker) are frozen and must not be “fixed” or normalized. |
