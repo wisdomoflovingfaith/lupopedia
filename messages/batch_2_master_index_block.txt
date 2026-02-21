@@ -1,0 +1,46 @@
+## BATCH 2 MASTER INDEX BLOCK — PROVENANCE EXPANSION + CANON/RITUAL
+# Ready for insertion into FLIP_HEADERS_MASTER_INDEX_4.0.24.md
+
+### 🔗 PROVENANCE EXPANSION (10 HEADERS)
+
+| # | Header | Category | Format | Purpose |
+|---|---------|----------|---------|---------|
+| 21 | X-Lupo-Provenance-Chain | Provenance | `chain: <actor_id>:<message_id>,...` | Identify complete lineage from origin to current |
+| 22 | X-Lupo-Provenance-Hash | Provenance | `hash: <sha256>` | SHA-256 hash for content integrity verification |
+| 23 | X-Lupo-Provenance-Delta | Provenance | `delta: <change_id>:<description>` | Change identifier from previous artifact state |
+| 24 | X-Lupo-Provenance-Anchor | Provenance | `anchor: <message_id>` | Anchor message ID for chain reference |
+| 25 | X-Lupo-Provenance-Mirror | Provenance | `mirror: <archive_type>:<reference_id>` | Mirror reference to external archive |
+| 26 | X-Lupo-Provenance-Fork | Provenance | `fork: <fork_id>:<parent_chain>` | Fork lineage marker for branching paths |
+| 27 | X-Lupo-Provenance-Seal | Provenance | `seal: <timestamp>:<authority_actor_id>` | Seal status for canonical completion |
+| 28 | X-Lupo-Provenance-Reconcile | Provenance | `reconcile: <conflict_id>:<resolution>` | Reconciliation flag for merge conflicts |
+| 29 | X-Lupo-Provenance-Ledger | Provenance | `ledger: <ledger_entry_id>` | Ledger entry ID for audit trail |
+| 30 | X-Lupo-Provenance-Archive | Provenance | `archive: <storage_type>:<path_or_reference>` | Archive reference to file path or storage |
+
+### 🜁 CANON/RITUAL (6 HEADERS)
+
+| # | Header | Category | Format | Purpose |
+|---|---------|----------|---------|---------|
+| 31 | X-Lupo-Canon-Seal | Canon/Ritual | `canon_seal: <timestamp>:<seal_type>:<authority>` | Seal canon event with timestamp and authority |
+| 32 | X-Lupo-Canon-Epilogue | Canon/Ritual | `epilogue: <message_id>:<epilogue_type>` | Epilogue message reference for narrative closure |
+| 33 | X-Lupo-Canon-Freeze | Canon/Ritual | `freeze: <target_type>:<target_id>:<reason>` | Freeze channel or thread state |
+| 34 | X-Lupo-Canon-Index | Canon/Ritual | `canon_index: <index_id>:<volume>:<page>` | Canon index entry for organized retrieval |
+| 35 | X-Lupo-Canon-Footprint | Canon/Ritual | `footprint: <total_count>:<verified_count>` | Footprint count for tracking and validation |
+| 36 | X-Lupo-Canon-Witness | Canon/Ritual | `witness: <actor_id>:<witness_type>:<timestamp>` | Witness actor ID for validation and attestation |
+
+---
+
+## 📊 BATCH 2 SUMMARY
+
+| Metric | Count | Status |
+|---------|--------|--------|
+| Headers in Batch 2 | 16 | ✅ Complete |
+| ID Range | 21-36 | ✅ Assigned |
+| Categories | 2 (Provenance, Canon/Ritual) | ✅ Defined |
+| Running Total | 113 | 🎯 On track (Target: 133) |
+| Remaining for Batch 3 | 20 | 🔄 Performance + Boundary + Emotional |
+
+---
+
+*Master index block ready for insertion into FLIP_HEADERS_MASTER_INDEX_4.0.24.md*
+*All 16 headers follow established FLIP header format*
+*Provenance expansion and canon/ritual framework complete*

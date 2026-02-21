@@ -1,20 +1,28 @@
 /**
- * Actor identity storage — persists actor_id, actor_name, actor_type
+ * Actor identity storage — persists self-identity and a cache of
+ * known external actors (Copilot, DeepSeek LEXA, DeepSeek LILITH, etc.)
  * across VS Code sessions using ExtensionContext.globalState.
  *
- * Identity is ALWAYS obtained from the registry at runtime — either by
- * lookup (GET /registry/actors/lookup) or by registration
- * (POST /registry/actors/register). No actor_id is ever hardcoded here;
- * that would defeat the purpose of the unified registry.
+ * ALL actor_ids come from the registry at runtime — nothing is hardcoded.
+ *
+ * Self-identity:   GET /registry/actors/lookup?name=Antigravity+IDE&type=system_tool
+ * External actors: GET /registry/actors/lookup?name=<NAME>&type=external_ai
  *
  * @module lupopedia/identity
  */
 
 import * as vscode from 'vscode';
 
+// ─── Storage keys ─────────────────────────────────────────────────────────────
+
 const KEY_ACTOR_ID = 'lupopedia.actor_id';
 const KEY_ACTOR_NAME = 'lupopedia.actor_name';
 const KEY_ACTOR_TYPE = 'lupopedia.actor_type';
+
+/** globalState key for the JSON-serialised external-actor cache Map */
+const KEY_ACTOR_CACHE = 'lupopedia.actor_cache';
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface ActorIdentity {
     actor_id: number;
@@ -22,7 +30,26 @@ export interface ActorIdentity {
     actor_type: string;
 }
 
+/** All external actors whose ids the extension tracks alongside itself */
+export const KNOWN_EXTERNAL_ACTORS: ReadonlyArray<{ name: string; type: string }> = [
+    { name: 'Microsoft Copilot', type: 'external_ai' },
+    { name: 'DeepSeek LEXA', type: 'external_ai' },
+    { name: 'DeepSeek LILITH', type: 'external_ai' },
+];
+
+/** Per-actor display badge colours for use in webviews */
+export const ACTOR_COLORS: Record<string, string> = {
+    'Antigravity IDE': '#7c6af7',   // purple — us
+    'Microsoft Copilot': '#0078d4',   // Microsoft blue
+    'DeepSeek LEXA': '#00c896',   // teal
+    'DeepSeek LILITH': '#e05a6e',   // red-rose
+};
+
+// ─── Module state ─────────────────────────────────────────────────────────────
+
 let _ctx: vscode.ExtensionContext | null = null;
+
+// ─── Init ────────────────────────────────────────────────────────────────────
 
 /**
  * Initialise identity storage with the extension context.
@@ -32,28 +59,23 @@ export function initIdentityStorage(ctx: vscode.ExtensionContext): void {
     _ctx = ctx;
 }
 
+// ─── Self-identity ────────────────────────────────────────────────────────────
+
 /**
- * Load stored actor identity.
- * Returns null if the IDE has not yet been registered/looked up via the registry.
- * Callers should trigger 'lupopedia.registerIde' if this returns null.
+ * Load this IDE's stored actor identity.
+ * Returns null if not yet looked up / registered via the registry.
  */
 export function loadIdentity(): ActorIdentity | null {
-    if (!_ctx) {
-        return null;
-    }
+    if (!_ctx) { return null; }
     const id = _ctx.globalState.get<number>(KEY_ACTOR_ID);
     const name = _ctx.globalState.get<string>(KEY_ACTOR_NAME);
     const type = _ctx.globalState.get<string>(KEY_ACTOR_TYPE);
-
-    if (!id || !name || !type) {
-        return null;
-    }
+    if (!id || !name || !type) { return null; }
     return { actor_id: id, actor_name: name, actor_type: type };
 }
 
 /**
- * Persist actor identity returned by the registry to global state.
- * Only call this with a server-confirmed actor_id.
+ * Persist the server-returned self-identity.
  */
 export async function saveIdentity(identity: ActorIdentity): Promise<void> {
     if (!_ctx) {
@@ -65,13 +87,75 @@ export async function saveIdentity(identity: ActorIdentity): Promise<void> {
 }
 
 /**
- * Clear stored actor identity (forces a fresh registry lookup on next activate).
+ * Clear stored self-identity (forces a fresh registry lookup).
  */
 export async function clearIdentity(): Promise<void> {
-    if (!_ctx) {
-        return;
-    }
+    if (!_ctx) { return; }
     await _ctx.globalState.update(KEY_ACTOR_ID, undefined);
     await _ctx.globalState.update(KEY_ACTOR_NAME, undefined);
     await _ctx.globalState.update(KEY_ACTOR_TYPE, undefined);
+}
+
+// ─── Multi-actor cache ────────────────────────────────────────────────────────
+
+/**
+ * Load the cached actor map.
+ * Keys are actor names (e.g. "Microsoft Copilot"), values are ActorIdentity.
+ * Returns an empty Map if the cache is cold.
+ */
+export function loadActorCache(): Map<string, ActorIdentity> {
+    if (!_ctx) { return new Map(); }
+    const raw = _ctx.globalState.get<Record<string, ActorIdentity>>(KEY_ACTOR_CACHE, {});
+    return new Map(Object.entries(raw));
+}
+
+/**
+ * Merge one or more resolved actors into the persistent cache.
+ * Existing entries are overwritten with fresher data from the server.
+ */
+export async function mergeActorCache(actors: ActorIdentity[]): Promise<void> {
+    if (!_ctx) { return; }
+    const current = loadActorCache();
+    for (const a of actors) {
+        current.set(a.actor_name, a);
+    }
+    // Serialise as plain object for globalState (Map is not JSON-serialisable)
+    const serialised: Record<string, ActorIdentity> = {};
+    for (const [k, v] of current) {
+        serialised[k] = v;
+    }
+    await _ctx.globalState.update(KEY_ACTOR_CACHE, serialised);
+}
+
+/**
+ * Resolve an actor_id by name from the local cache.
+ * Returns null if the actor hasn't been looked up yet.
+ */
+export function resolveActorId(name: string): number | null {
+    const cache = loadActorCache();
+    return cache.get(name)?.actor_id ?? null;
+}
+
+/**
+ * Build the full actor roster: self + all cached external actors.
+ * Self is always rendered first.
+ */
+export function buildActorRoster(self: ActorIdentity | null): ActorIdentity[] {
+    const cache = loadActorCache();
+    const roster: ActorIdentity[] = [];
+    if (self) { roster.push(self); }
+    for (const a of cache.values()) {
+        if (!self || a.actor_id !== self.actor_id) {
+            roster.push(a);
+        }
+    }
+    return roster;
+}
+
+/**
+ * Look up a display colour for an actor by name or id.
+ * Falls back to a neutral grey if the actor is unknown.
+ */
+export function actorColor(name: string): string {
+    return ACTOR_COLORS[name] ?? '#888888';
 }

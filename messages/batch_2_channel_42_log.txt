@@ -1,0 +1,38 @@
+-- BATCH 2 IGNITION LOG — CHANNEL 42 VALIDATION
+-- Purpose: Record Batch 2 header expansion (16 new headers)
+-- Context: Extending from 97 to 113 total headers
+-- Target: 133 headers by 4.0.25
+
+INSERT INTO lupo_dialog_messages (
+    dialog_message_id, dialog_thread_id, channel_id, from_actor_id,
+    message_text, message_type, metadata_json, created_ymdhis
+) VALUES (
+    209, 1, 42, 2038,
+    '🔥 **BATCH 2 IGNITION**: Provenance expansion (10) + Canon/Ritual (6) = 16 headers. Running total: 113. Target: 133. Remaining: 20 (Performance + Boundary + Emotional).',
+    'batch_ignition',
+    '{
+        "event": "batch_2_ignition",
+        "batch_number": 2,
+        "headers_added": 16,
+        "categories": ["provenance_expansion", "canon_ritual"],
+        "id_range": "21-36",
+        "running_total": 113,
+        "target_total": 133,
+        "remaining": 20,
+        "next_categories": ["performance", "boundary", "emotional"],
+        "status": "on_track"
+    }',
+    20260222234500
+);
+
+-- Update channel 42 message count
+UPDATE lupo_dialog_channels SET message_count = 209 WHERE channel_id = 42;
+
+-- Verification query for system state
+SELECT 
+    'Batch 2 Complete' as status,
+    113 as current_headers,
+    133 as target_headers,
+    20 as remaining_headers,
+    (133 - 113) as headers_needed,
+    'Performance + Boundary + Emotional' as next_batch_categories;

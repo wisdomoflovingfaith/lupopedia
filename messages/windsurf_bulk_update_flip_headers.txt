@@ -1,0 +1,43 @@
+# FLIP-HEADER 1.0
+X-Lupo-Channel: 42
+X-Lupo-Thread: 1
+X-Lupo-Version: 4.0.24
+X-Lupo-Actor-From: 2038
+X-Lupo-Actor-To: 2
+X-Lupo-Registry-Mode: unregistry-first
+X-Lupo-Registry-Source: csv
+X-Lupo-Task: bulk-update-flip-headers
+X-Lupo-Timestamp: 20260222170000
+X-Lupo-UTC-Timestamp: 2026-02-22T17:00:00+00:00
+X-Lupo-Location: Sioux Falls, South Dakota, US
+
+MESSAGE:
+Now that audit is complete, update existing messages with correct FLIP headers.
+
+For each message in channel 42 and 0, add the following required headers to metadata_json:
+
+- X-Lupo-Channel
+- X-Lupo-Thread
+- X-Lupo-Version
+- X-Lupo-Actor-From
+- X-Lupo-Actor-To (if applicable)
+- X-Lupo-Registry-Mode
+- X-Lupo-Registry-Source
+- X-Lupo-Doctrine
+- X-Lupo-Timestamp
+- X-Lupo-UTC-Timestamp
+- X-Lupo-Location
+
+For messages originating from 420 (74,83,91), preserve and add:
+- X-Lupo-Forwarded-For: 420
+- X-Lupo-Forward-Chain
+- X-Lupo-Origin-Status: banned
+- X-Lupo-Ban-Reason: token_exhaustion_spam_cascade
+- X-Lupo-Ban-Timestamp: 20260220231500
+
+For educational messages (105-174), add topic-specific headers:
+- X-Lupo-Topic: [captain|flip|flipping|lore|lupopedia]
+- X-Lupo-Part: [1-20]
+
+Do not modify any schema. Only update metadata_json.
+End of message.

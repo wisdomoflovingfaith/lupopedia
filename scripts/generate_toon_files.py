@@ -322,6 +322,35 @@ def main() -> int:
             write_toon(output_dir, table_name, payload)
 
         print("Wrote {} TOONs to {}".format(len(tables), output_dir))
+        
+        # Automatically trigger CSV export after TOON generation
+        print("Triggering CSV export...")
+        try:
+            import subprocess
+            import sys
+            
+            # Get the project root directory
+            project_root = Path(__file__).parent.parent
+            admin_script = project_root / "admin.php"
+            
+            if admin_script.exists():
+                # Call the CSV export via PHP
+                result = subprocess.run([
+                    "php", str(admin_script), "section=csv-export"
+                ], capture_output=True, text=True, cwd=str(project_root))
+                
+                if result.returncode == 0:
+                    print("CSV export completed successfully")
+                    print("TOON generation complete. CSV export complete.")
+                else:
+                    print(f"CSV export failed: {result.stderr}")
+            else:
+                print("admin.php not found, skipping CSV export")
+                
+        except Exception as e:
+            print(f"Error triggering CSV export: {e}")
+            print("TOON generation complete. CSV export failed.")
+        
         return 0
     finally:
         if conn:

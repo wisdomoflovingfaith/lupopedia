@@ -5,11 +5,15 @@
  *   POST /registry/actors/register
  *   GET  /registry/actors/lookup?name=&type=
  *
+ * lookupKnownActors() does the startup batch lookup for
+ * Microsoft Copilot, DeepSeek LEXA, and DeepSeek LILITH.
+ * Their actor_ids are NEVER hardcoded — always fetched from the server.
+ *
  * @module lupopedia/actor
  */
 
 import { lupoGet, lupoPost } from './client';
-import { ActorIdentity, saveIdentity } from './identity';
+import { ActorIdentity, KNOWN_EXTERNAL_ACTORS, saveIdentity, mergeActorCache } from './identity';
 
 export interface RegisterRequest {
     actor_name: string;
@@ -106,4 +110,60 @@ export async function lookupActor(
         actor_name: first.actor_name,
         actor_type: first.actor_type,
     };
+}
+
+// ─── Batch / external actor helpers ──────────────────────────────────────────
+
+/**
+ * Look up all registered actors of a given type.
+ * Returns as many as the server returns (no client-side limit).
+ */
+export async function lookupActorsByType(
+    baseUrl: string,
+    actorType: string
+): Promise<ActorIdentity[]> {
+    const res = await lupoGet<LookupResponse>(
+        baseUrl,
+        `/registry/actors/lookup?type=${encodeURIComponent(actorType)}`
+    );
+    if (!res.ok || !res.data.actors) {
+        return [];
+    }
+    return res.data.actors.map((a) => ({
+        actor_id: a.actor_id,
+        actor_name: a.actor_name,
+        actor_type: a.actor_type,
+    }));
+}
+
+/**
+ * Startup batch lookup for all known external actors
+ * (Microsoft Copilot, DeepSeek LEXA, DeepSeek LILITH).
+ *
+ * - Looks each one up individually by name + type.
+ * - Silently skips actors not yet seeded on the server.
+ * - Merges results into the persistent actor cache.
+ * - Returns the resolved identities (may be fewer than requested).
+ */
+export async function lookupKnownActors(
+    baseUrl: string
+): Promise<ActorIdentity[]> {
+    const resolved: ActorIdentity[] = [];
+
+    for (const { name, type } of KNOWN_EXTERNAL_ACTORS) {
+        try {
+            const identity = await lookupActor(baseUrl, name, type);
+            if (identity) {
+                resolved.push(identity);
+            }
+        } catch {
+            // Server may not have this actor seeded yet — skip silently
+        }
+    }
+
+    if (resolved.length > 0) {
+        await mergeActorCache(resolved);
+    }
+
+    return resolved;
 }

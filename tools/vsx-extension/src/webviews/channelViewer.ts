@@ -1,15 +1,29 @@
 /**
- * Channel Viewer Webview Panel
- *
- * Displays a live thread of messages from a Lupopedia channel.
- * Polls GET /channels/{id}/messages every 5 seconds.
+ * Channel Viewer Webview — displays channel 42 messages with:
+ *   • Actor roster sidebar (self + all external actors from registry)
+ *   • Per-actor colour-coded message attribution
+ *   • Live 5-second polling for new messages
+ *   • Compose box to send replies
  *
  * @module webviews/channelViewer
  */
 
 import * as vscode from 'vscode';
-import { ChannelMessage, getMessages, sendMessage } from '../lupopedia/channels';
-import { ActorIdentity } from '../lupopedia/identity';
+import { ChannelMessage, sendMessage } from '../lupopedia/channels';
+import { ActorIdentity, actorColor } from '../lupopedia/identity';
+
+// ─── Nonce helper ─────────────────────────────────────────────────────────────
+
+function getNonce(): string {
+    let text = '';
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < 32; i++) {
+        text += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return text;
+}
+
+// ─── Panel ────────────────────────────────────────────────────────────────────
 
 export class ChannelViewerPanel {
     public static currentPanel: ChannelViewerPanel | undefined;
@@ -18,22 +32,28 @@ export class ChannelViewerPanel {
     private readonly _panel: vscode.WebviewPanel;
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
-    private _pollTimer: NodeJS.Timeout | undefined;
+    private _pollTimer: ReturnType<typeof setInterval> | undefined;
 
     private _channelId: number;
     private _baseUrl: string;
-    private _identity: ActorIdentity;
+    private _self: ActorIdentity;
+    private _roster: ActorIdentity[];
     private _messages: ChannelMessage[];
     private _lastTimestamp: string | undefined;
+
+    // ─── Factory ───────────────────────────────────────────────────────────────
 
     public static createOrShow(
         extensionUri: vscode.Uri,
         channelId: number,
         initialMessages: ChannelMessage[],
         baseUrl: string,
-        identity: ActorIdentity
+        self: ActorIdentity,
+        roster: ActorIdentity[]
     ): void {
-        const column = vscode.ViewColumn.Beside;
+        const column = vscode.window.activeTextEditor
+            ? vscode.ViewColumn.Beside
+            : vscode.ViewColumn.One;
 
         if (ChannelViewerPanel.currentPanel) {
             ChannelViewerPanel.currentPanel._panel.reveal(column);
@@ -43,7 +63,7 @@ export class ChannelViewerPanel {
 
         const panel = vscode.window.createWebviewPanel(
             ChannelViewerPanel._viewType,
-            `Lupopedia: Channel ${channelId}`,
+            `Lupopedia ─ Channel ${channelId}`,
             column,
             {
                 enableScripts: true,
@@ -57,38 +77,46 @@ export class ChannelViewerPanel {
             channelId,
             initialMessages,
             baseUrl,
-            identity
+            self,
+            roster
         );
     }
+
+    // ─── Constructor ───────────────────────────────────────────────────────────
 
     private constructor(
         panel: vscode.WebviewPanel,
         extensionUri: vscode.Uri,
         channelId: number,
-        initialMessages: ChannelMessage[],
+        messages: ChannelMessage[],
         baseUrl: string,
-        identity: ActorIdentity
+        self: ActorIdentity,
+        roster: ActorIdentity[]
     ) {
         this._panel = panel;
         this._extensionUri = extensionUri;
         this._channelId = channelId;
-        this._messages = initialMessages;
+        this._messages = messages;
         this._baseUrl = baseUrl;
-        this._identity = identity;
+        this._self = self;
+        this._roster = roster;
 
-        this._update(initialMessages);
+        // Track last message timestamp for incremental fetches
+        if (messages.length > 0) {
+            this._lastTimestamp = messages[messages.length - 1].created_at;
+        }
 
-        this._panel.onDidDispose(() => this._dispose(), null, this._disposables);
+        this._update(this._messages);
+        this._startPolling();
 
-        // Handle messages from the webview (e.g. user sends a message)
+        // Handle messages from webview JS
         this._panel.webview.onDidReceiveMessage(
-            async (message: { command: string; text?: string }) => {
-                if (message.command === 'sendMessage' && message.text) {
+            async (msg: { type: string; text?: string }) => {
+                if (msg.type === 'send' && msg.text?.trim()) {
                     try {
-                        await sendMessage(this._baseUrl, this._channelId, message.text, this._identity);
-                        await this._poll(); // Immediately refresh
-                    } catch (err) {
-                        vscode.window.showErrorMessage(`Lupopedia: Send failed — ${String(err)}`);
+                        await sendMessage(this._baseUrl, this._channelId, msg.text.trim(), this._self);
+                    } catch {
+                        vscode.window.showErrorMessage('Lupopedia: Failed to send message.');
                     }
                 }
             },
@@ -96,12 +124,18 @@ export class ChannelViewerPanel {
             this._disposables
         );
 
-        // Start 5-second polling
-        this._pollTimer = setInterval(() => this._poll(), 5000);
+        this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
+    }
+
+    // ─── Polling ───────────────────────────────────────────────────────────────
+
+    private _startPolling(): void {
+        this._pollTimer = setInterval(() => void this._poll(), 5000);
     }
 
     private async _poll(): Promise<void> {
         try {
+            const { getMessages } = await import('../lupopedia/channels');
             const newMessages = await getMessages(
                 this._baseUrl,
                 this._channelId,
@@ -109,109 +143,226 @@ export class ChannelViewerPanel {
             );
             if (newMessages.length > 0) {
                 this._messages = this._messages.concat(newMessages);
-                // Track last timestamp for incremental fetches
-                const created = newMessages[newMessages.length - 1].created_at;
-                if (created) {
-                    this._lastTimestamp = created;
-                }
+                const last = newMessages[newMessages.length - 1].created_at;
+                if (last) { this._lastTimestamp = last; }
                 this._update(this._messages);
             }
         } catch {
-            // Silently ignore poll errors (server may be transiently unavailable)
+            // Silently ignore poll errors
         }
     }
 
+    // ─── Render ────────────────────────────────────────────────────────────────
+
     private _update(messages: ChannelMessage[]): void {
-        this._panel.title = `Lupopedia: Channel ${this._channelId}`;
+        if (!this._panel.visible) { return; }
         this._panel.webview.html = this._getHtml(messages);
     }
 
     private _getHtml(messages: ChannelMessage[]): string {
         const nonce = getNonce();
 
-        const messageItems = messages
-            .map(
-                (m) => `
-        <div class="message">
-          <div class="meta">
-            <span class="actor">${esc(m.actor_name ?? `Actor #${m.actor_id}`)}</span>
-            <span class="type">${esc(m.actor_type ?? '')}</span>
-            <span class="ts">${esc(m.created_at ?? '')}</span>
-          </div>
-          <div class="body">${esc(m.body)}</div>
-        </div>`
-            )
-            .join('');
+        // ── Actor roster HTML ──────────────────────────────────────────────────
+        const rosterHtml = this._roster
+            .map((a) => {
+                const color = actorColor(a.actor_name);
+                const isSelf = a.actor_id === this._self.actor_id;
+                return /* html */ `
+          <div class="actor-chip ${isSelf ? 'self' : ''}" style="--actor-col:${color}" title="actor_id: ${a.actor_id} | ${a.actor_type}">
+            <span class="dot"></span>
+            <span class="name">${esc(a.actor_name)}</span>
+            <span class="id">#${a.actor_id}</span>
+          </div>`;
+            })
+            .join('\n');
+
+        // ── Messages HTML ──────────────────────────────────────────────────────
+        const msgsHtml = messages.length === 0
+            ? `<p class="empty">No messages yet. Be the first to write!</p>`
+            : messages
+                .map((m) => {
+                    const name = m.actor_name ?? `Actor #${m.actor_id}`;
+                    const color = actorColor(name);
+                    const isSelf = m.actor_id === this._self.actor_id;
+                    const ts = m.created_at
+                        ? new Date(m.created_at).toLocaleTimeString()
+                        : '';
+                    return /* html */ `
+              <div class="message ${isSelf ? 'mine' : 'theirs'}">
+                <div class="msg-meta" style="--actor-col:${color}">
+                  <span class="dot"></span>
+                  <strong>${esc(name)}</strong>
+                  <span class="ts">${ts}</span>
+                </div>
+                <div class="msg-body">${esc(m.body ?? '')}</div>
+              </div>`;
+                })
+                .join('\n');
 
         return /* html */ `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'nonce-${nonce}'; script-src 'nonce-${nonce}';">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; style-src 'nonce-${nonce}'; script-src 'nonce-${nonce}';">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Lupopedia Channel ${this._channelId}</title>
   <style nonce="${nonce}">
     :root {
-      --bg: var(--vscode-editor-background);
-      --fg: var(--vscode-editor-foreground);
-      --border: var(--vscode-panel-border);
-      --input-bg: var(--vscode-input-background);
-      --input-fg: var(--vscode-input-foreground);
-      --btn-bg: var(--vscode-button-background);
-      --btn-fg: var(--vscode-button-foreground);
-      --meta-fg: var(--vscode-descriptionForeground);
+      --bg:          var(--vscode-editor-background);
+      --fg:          var(--vscode-editor-foreground);
+      --border:      var(--vscode-panel-border);
+      --input-bg:    var(--vscode-input-background);
+      --input-fg:    var(--vscode-input-foreground);
+      --btn-bg:      var(--vscode-button-background);
+      --btn-fg:      var(--vscode-button-foreground);
+      --meta-fg:     var(--vscode-descriptionForeground);
+      --sidebar-w:   200px;
     }
-    body { font-family: var(--vscode-font-family); background: var(--bg); color: var(--fg); margin: 0; padding: 0; display: flex; flex-direction: column; height: 100vh; }
-    h1 { font-size: 1rem; padding: 10px 16px; margin: 0; border-bottom: 1px solid var(--border); }
-    #thread { flex: 1; overflow-y: auto; padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
-    .message { border-left: 3px solid var(--btn-bg); padding: 8px 10px; border-radius: 3px; background: rgba(255,255,255,0.03); }
-    .meta { font-size: 0.78rem; color: var(--meta-fg); margin-bottom: 4px; display: flex; gap: 8px; }
-    .actor { font-weight: 600; color: var(--btn-bg); }
-    .body { font-size: 0.9rem; white-space: pre-wrap; word-break: break-word; }
-    #compose { display: flex; gap: 8px; padding: 10px 16px; border-top: 1px solid var(--border); }
-    #msg-input { flex: 1; background: var(--input-bg); color: var(--input-fg); border: 1px solid var(--border); padding: 6px 8px; border-radius: 3px; font-family: inherit; font-size: 0.9rem; resize: none; }
-    #send-btn { background: var(--btn-bg); color: var(--btn-fg); border: none; padding: 6px 14px; border-radius: 3px; cursor: pointer; font-family: inherit; }
-    #send-btn:hover { opacity: 0.85; }
-    .empty { color: var(--meta-fg); font-style: italic; text-align: center; margin-top: 40px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      display: flex; height: 100vh; overflow: hidden;
+      font-family: var(--vscode-font-family);
+      background: var(--bg); color: var(--fg);
+    }
+
+    /* ── Actor Roster Sidebar ─────────────────── */
+    .roster {
+      width: var(--sidebar-w); min-width: 160px;
+      border-right: 1px solid var(--border);
+      padding: 12px 10px; overflow-y: auto;
+      flex-shrink: 0;
+    }
+    .roster h3 {
+      font-size: 0.7rem; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--meta-fg);
+      margin-bottom: 10px;
+    }
+    .actor-chip {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 8px; border-radius: 6px;
+      margin-bottom: 6px;
+      border: 1px solid color-mix(in srgb, var(--actor-col) 40%, transparent);
+      background: color-mix(in srgb, var(--actor-col) 10%, transparent);
+    }
+    .actor-chip.self { outline: 1px solid var(--actor-col); }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--actor-col); flex-shrink: 0;
+    }
+    .actor-chip .name { font-size: 0.78rem; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .actor-chip .id   { font-size: 0.7rem; color: var(--meta-fg); }
+
+    /* ── Main column ─────────────────────────── */
+    .main {
+      flex: 1; display: flex; flex-direction: column; overflow: hidden;
+    }
+    .header {
+      padding: 10px 14px; border-bottom: 1px solid var(--border);
+      font-size: 0.85rem; color: var(--meta-fg);
+    }
+    .messages {
+      flex: 1; overflow-y: auto; padding: 12px 14px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .empty { color: var(--meta-fg); font-size: 0.85rem; text-align: center; margin-top: 40px; }
+    .message { max-width: 90%; }
+    .message.mine  { align-self: flex-end; }
+    .message.theirs { align-self: flex-start; }
+    .msg-meta {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; color: var(--meta-fg); margin-bottom: 3px;
+    }
+    .msg-meta .dot { background: var(--actor-col); }
+    .msg-meta strong { color: var(--actor-col); }
+    .msg-meta .ts { margin-left: auto; font-size: 0.68rem; }
+    .msg-body {
+      padding: 7px 10px; border-radius: 5px;
+      background: var(--input-bg);
+      font-size: 0.85rem; line-height: 1.45;
+      white-space: pre-wrap; word-break: break-word;
+    }
+    .mine .msg-body { background: color-mix(in srgb, #7c6af7 15%, var(--input-bg)); }
+
+    /* ── Compose ───────────────────────────────  */
+    .compose {
+      display: flex; gap: 8px; padding: 10px 14px;
+      border-top: 1px solid var(--border);
+    }
+    textarea {
+      flex: 1; resize: none; height: 54px;
+      background: var(--input-bg); color: var(--input-fg);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 8px;
+      font-family: inherit; font-size: 0.85rem;
+    }
+    button {
+      background: var(--btn-bg); color: var(--btn-fg);
+      border: none; padding: 0 18px; border-radius: 4px;
+      cursor: pointer; font-family: inherit; font-size: 0.85rem;
+      align-self: stretch;
+    }
+    button:hover { opacity: 0.85; }
   </style>
 </head>
 <body>
-  <h1>📡 Channel ${this._channelId} — Live Thread</h1>
-  <div id="thread">
-    ${messageItems || '<p class="empty">No messages yet. Be the first to say hello!</p>'}
+
+  <!-- Actor Roster Sidebar -->
+  <aside class="roster">
+    <h3>Actors in channel ${this._channelId}</h3>
+    ${rosterHtml}
+  </aside>
+
+  <!-- Main Chat Column -->
+  <div class="main">
+    <div class="header">
+      Channel <strong>${this._channelId}</strong> &nbsp;·&nbsp;
+      ${messages.length} message${messages.length !== 1 ? 's' : ''}
+      &nbsp;·&nbsp; auto-refreshing every 5 s
+    </div>
+    <div class="messages" id="msgs">
+      ${msgsHtml}
+    </div>
+    <div class="compose">
+      <textarea id="txt" placeholder="Message as ${esc(this._self.actor_name)} (#${this._self.actor_id})…"></textarea>
+      <button id="btn">Send</button>
+    </div>
   </div>
-  <div id="compose">
-    <textarea id="msg-input" rows="2" placeholder="Type a message…"></textarea>
-    <button id="send-btn">Send</button>
-  </div>
+
   <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
-    const btn = document.getElementById('send-btn');
-    const input = document.getElementById('msg-input');
-    const thread = document.getElementById('thread');
+    const btn = document.getElementById('btn');
+    const txt = document.getElementById('txt');
+    const msgs = document.getElementById('msgs');
 
-    function scrollBottom() { thread.scrollTop = thread.scrollHeight; }
-    scrollBottom();
+    // Scroll to bottom on load
+    msgs.scrollTop = msgs.scrollHeight;
 
     btn.addEventListener('click', () => {
-      const text = input.value.trim();
+      const text = txt.value.trim();
       if (!text) return;
-      vscode.postMessage({ command: 'sendMessage', text });
-      input.value = '';
+      vscode.postMessage({ type: 'send', text });
+      txt.value = '';
     });
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); btn.click(); }
+
+    txt.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        btn.click();
+      }
     });
   </script>
 </body>
 </html>`;
     }
 
-    private _dispose(): void {
-        ChannelViewerPanel.currentPanel = undefined;
-        if (this._pollTimer) {
+    // ─── Lifecycle ─────────────────────────────────────────────────────────────
+
+    public dispose(): void {
+        if (this._pollTimer !== undefined) {
             clearInterval(this._pollTimer);
         }
+        ChannelViewerPanel.currentPanel = undefined;
         this._panel.dispose();
         while (this._disposables.length) {
             const d = this._disposables.pop();
@@ -220,20 +371,12 @@ export class ChannelViewerPanel {
     }
 }
 
-function getNonce(): string {
-    let text = '';
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < 32; i++) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
-}
+// ─── HTML escape helper (shared by roster + messages) ─────────────────────────
 
 function esc(str: string): string {
     return str
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
+        .replace(/"/g, '&quot;');
 }

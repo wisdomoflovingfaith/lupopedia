@@ -8,10 +8,9 @@
  */
 
 import * as vscode from 'vscode';
-import * as path from 'path';
 
-import { initIdentityStorage, loadIdentity, ActorIdentity } from './lupopedia/identity';
-import { registerActor, lookupActor } from './lupopedia/actor';
+import { initIdentityStorage, loadIdentity, ActorIdentity, buildActorRoster } from './lupopedia/identity';
+import { registerActor, lookupActor, lookupKnownActors } from './lupopedia/actor';
 import { sendMessage, getMessages, joinChannel } from './lupopedia/channels';
 import { explainFile, getRelatedAtoms } from './lupopedia/semantic';
 import { parseFlipHeader, formatFlipHeader } from './lupopedia/flip';
@@ -46,7 +45,7 @@ function requireIdentity(
                 'Lupopedia: This IDE is not registered. Run "Lupopedia: Register IDE" first.',
                 'Register Now'
             )
-            .then((choice) => {
+            .then((choice: string | undefined) => {
                 if (choice === 'Register Now') {
                     vscode.commands.executeCommand('lupopedia.registerIde');
                 }
@@ -85,18 +84,26 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
     );
     ctx.subscriptions.push(statusBar);
 
-    // Attempt to load or look up identity on startup
+    // ── Startup: look up self-identity ─────────────────────────────────────
     let identity = loadIdentity();
     if (!identity) {
         try {
             const { baseUrl, actorName, actorType } = getConfig();
             identity = await lookupActor(baseUrl, actorName, actorType);
-            // We found a match on the server — no need to auto-register, just display
         } catch {
             // Server may be offline at startup — that's fine
         }
     }
     updateStatusBar(statusBar, identity);
+
+    // ── Startup: look up external actors (Copilot, LEXA, LILITH) ──────────
+    // Runs in background — failures are silent so offline installs still work.
+    try {
+        const { baseUrl } = getConfig();
+        await lookupKnownActors(baseUrl);
+    } catch {
+        // Server offline — cached ids will be used if available
+    }
 
     // ── Command: Register IDE ─────────────────────────────────────────────────
     ctx.subscriptions.push(
@@ -134,7 +141,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             const input = await vscode.window.showInputBox({
                 prompt: 'Channel ID to join',
                 value: String(defaultChannelId),
-                validateInput: (v) =>
+                validateInput: (v: string) =>
                     /^\d+$/.test(v.trim()) ? undefined : 'Must be a positive integer',
             });
             if (!input) {
@@ -192,19 +199,22 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             const { baseUrl, defaultChannelId } = getConfig();
 
             // Load initial messages
-            let messages = [];
+            let messages: import('./lupopedia/channels').ChannelMessage[] = [];
             try {
                 messages = await getMessages(baseUrl, defaultChannelId);
             } catch {
                 // Show empty panel; it will retry on next poll
             }
 
+            const roster = buildActorRoster(id);
+
             ChannelViewerPanel.createOrShow(
                 ctx.extensionUri,
                 defaultChannelId,
                 messages,
                 baseUrl,
-                id
+                id,
+                roster
             );
         })
     );

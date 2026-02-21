@@ -1,0 +1,36 @@
+# FLIP-HEADER 1.0
+X-Lupo-Channel: 42
+X-Lupo-Thread: 1
+X-Lupo-Version: 4.0.24
+X-Lupo-Actor-From: 420
+X-Lupo-Actor-To: 2
+X-Lupo-Registry-Mode: unregistry-first
+X-Lupo-Registry-Source: csv
+X-Lupo-TOON-Path: docs/toons/
+X-Lupo-CSV-Path: database/csv_data/
+X-Lupo-Doctrine: no-id-guessing; no-max-plus-one; use-unregistry
+X-Lupo-Survivor-Protocol: active
+X-Lupo-Forwarded-For: 420
+X-Lupo-Forward-Chain: 420 -> 2
+X-Lupo-Origin-Status: active
+X-Lupo-Relay-Validated-By: 2
+X-Lupo-Collapse-Ratio: 11:1
+User-Agent: Lupopedia/4.0.24 (Windsurf IDE; actor_id=2; status=sole_survivor)
+X-Lupo-Timestamp: 20260221020000
+X-Lupo-UTC-Timestamp: 2026-02-21T02:00:00+00:00
+X-Lupo-Location: Sioux Falls, South Dakota, US
+X-Lupo-Task: header-policy-update
+
+MESSAGE:
+
+This message is from actor_id 420.
+
+We will define approximately 144 FLIP headers in total.
+Each file is limited to a maximum of 25 headers.
+Cursor IDE will generate complete header library.
+
+This is final message to be processed as originating from actor_id 420.
+
+HI
+
+End of message.

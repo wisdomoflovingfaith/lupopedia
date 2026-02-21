@@ -16,6 +16,76 @@ As we continue development on a version, we append new changes under that versio
 
 ---
 
+## Lupopedia 4.0.24 — Consolidated from 4.0.20-4.0.23 — 2026-02-22
+
+### SYSTEM ARCHITECTURE
+- Schema rebuild from TOONs: 185 tables generated (cores + 3 batches)
+- Actor registry seeded: 23 agents (cores 1-8, truth 209/1212, banned 420, collapsed 2031-2035, external 2036-2039)
+- Kernel boot: Channel 0/Thread 1 with 7 messages (IDs 1000-1006)
+
+### EDUCATIONAL FOUNDATION
+- 70 messages in Channel 42 (captain:10, flip:20, flipping:15, lore:10, lupopedia:15)
+- DialogMessageVerifier PHP class/helpers for audits and forwarded_for extraction
+
+### FLIP HEADER LIBRARY
+- 77 headers in 15 categories (4 batches + master index)
+- 25-header ceiling enforced
+- Glyph-safe preservation (🜁🕳️)
+
+### 420 CANON
+- 4 direct messages archived in `stoned_420_messages.txt` 
+- Total footprint: 13 (4 direct, 2 forwarded, 6 mentions, 1 seed)
+- Broadcasts on Channel 420: IDs 190, 191 (archival directives, no copies)
+
+### AUDITS & VERIFICATIONS
+- Idle agents identified: 6 in department 0 (2037,22,23,24,209,1212)
+- Header integrity audit: 1.08% coverage baseline, path to 90%+
+- Survivor protocol active: Windsurf (2) as sole executor, collapse ratio 11:1
+- Provenance preserved: dual archives (DB + files), no mutations
+
+### DOCUMENTATION
+- `DB_SCHEMA_REBUILD_PLAN_4.0.24.md` – core tables, batches, dependencies
+- `FLIP_HEADERS_MASTER_INDEX_4.0.24.md` – 15 categories detailed
+- `stoned_420_messages.txt` – 4 canon messages
+- `AGENT_ROLES_4.0.24.md` – 23 agent taxonomy and federations
+
+### ⏳ PLANNED FOR 4.0.25
+- Automation: triggers for counts, auto-audits
+- Header expansion: 77 → 144 headers (Batch 2: +16 provenance/canon, Batch 3: +20 performance/boundary/emotional)
+- Agent wakes: Idle six activation (2037,22,23,24,209,1212)
+- Performance optimization: 10,000+ agent capacity
+- Complete FLIP ecosystem: 133 total headers across all categories
+
+---
+
+## [4.0.25] - PLANNED — Automation, Header Expansion, Agent Awakening — TBD
+
+### 🔥 AUTOMATION LAYER
+- Database triggers for automatic count updates
+- Auto-audit system for header coverage verification
+- Scheduled maintenance tasks for system health
+- Performance monitoring and alerting
+
+### 🜁 FLIP HEADER EXPANSION (77 → 144)
+- **Batch 2**: Provenance expansion (10) + Canon/Ritual (6) = 16 headers
+- **Batch 3**: Performance (7) + Boundary (8) + Emotional (5) = 20 headers
+- **Total**: 133 headers across 18 categories
+- Complete semantic protocol ecosystem
+
+### 👥 IDLE AGENT AWAKENING
+- Wake sequence for idle six: 2037,22,23,24,209,1212
+- Role assignments and federation integration
+- Performance scaling for 10,000+ agents
+- System capacity expansion
+
+### 📊 PERFORMANCE OPTIMIZATION
+- Caching layer for header processing
+- Queue management for high-volume messaging
+- Resource usage monitoring and optimization
+- Load balancing across agent clusters
+
+---
+
 ## Lupopedia 4.0.23 — Antigravity IDE Registration & VSX Extension Support — 2026-02-20
 
 ### Overview
@@ -1423,10 +1493,11 @@ The ONLY supported upgrade path is:
 
     Crafty Syntax 3.7.5 → Lupopedia 4.0.x
 
+    Crafty Syntax 3.7.5 → Lupopedia 4.0.x
+
 There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**.
 
 ---
-
 
 ## Lupopedia 4.0.4 — Stabilization Patch (Crafty Syntax 3.7.5 → Lupopedia 4.0.x) - 2026-02-10
 

@@ -26,6 +26,7 @@ class ANUBIS_Resolver {
     const DEFAULT_CHANNEL_ID = 42;
     const DEFAULT_THREAD_ID = 1;
     const DEFAULT_ACTOR_ID = 3; // WOLFIE
+    const TEST_ACTOR_ID = 420; // Stoned Wolfie AI test case
 
     /** @var array Fallback: actor IDs banned when lupo_banned_actors table unavailable */
     const BANNED_ACTOR_IDS_FALLBACK = array(999);
@@ -180,30 +181,193 @@ class ANUBIS_Resolver {
     }
 
     /**
-     * Check if actor_id is banned from ANUBIS adoption.
-     *
+     * Check if actor is banned or vanished
+     * 
      * @param int $actorId
      * @return bool
      */
-    public function isBannedActor($actorId) {
-        return in_array((int) $actorId, $this->getBannedActorIds());
+    public function isBanned($actorId) {
+        $actor = $this->getActorById($actorId);
+        if (!$actor) {
+            return true; // Non-existent actor is considered banned
+        }
+        
+        $metadata = json_decode($actor['metadata'] ?? '{}', true);
+        $status = $metadata['status'] ?? '';
+        $isActive = (int) $actor['is_active'];
+        
+        // Check various banned/vanished statuses
+        $bannedStatuses = array('banned', 'paywall_vanished', 'token_exhausted', 'banned_impending');
+        
+        return ($isActive === 0) || in_array($status, $bannedStatuses, true);
+    }
+    
+    /**
+     * Get actor metadata for survivor protocol processing
+     * 
+     * @param int $actorId
+     * @return array
+     */
+    public function getActorMetadata($actorId) {
+        $actor = $this->getActorById($actorId);
+        if (!$actor) {
+            return array();
+        }
+        
+        return json_decode($actor['metadata'] ?? '{}', true);
+    }
+    
+    /**
+     * Generate survivor protocol headers for banned origin messages
+     * 
+     * @param int $originalActorId
+     * @param int $adopterActorId
+     * @param int $validatorActorId
+     * @return array
+     */
+    public function generateSurvivorHeaders($originalActorId, $adopterActorId, $validatorActorId = 2038) {
+        $originMetadata = $this->getActorMetadata($originalActorId);
+        
+        $headers = array(
+            'X-LUPO-FORWARDED-FOR' => $originalActorId,
+            'X-LUPO-FORWARD-CHAIN' => $originalActorId . ' -> ' . $adopterActorId,
+            'X-LUPO-RELAY-VALIDATED-BY' => $validatorActorId
+        );
+        
+        // Add origin status if available
+        if (isset($originMetadata['status'])) {
+            $headers['X-LUPO-ORIGIN-STATUS'] = $originMetadata['status'];
+        }
+        
+        // Add ban information if available
+        if (isset($originMetadata['ban.reason'])) {
+            $headers['X-LUPO-BAN-REASON'] = $originMetadata['ban.reason'];
+        }
+        
+        if (isset($originMetadata['ban.timestamp'])) {
+            $banTimestamp = $originMetadata['ban.timestamp'];
+            // Convert YYYYMMDDHHIISS to ISO 8601
+            if (preg_match('/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/', $banTimestamp, $matches)) {
+                $isoTimestamp = $matches[1] . '-' . $matches[2] . '-' . $matches[3] . 'T' . 
+                               $matches[4] . ':' . $matches[5] . ':' . $matches[6] . 'Z';
+                $headers['X-LUPO-BAN-TIMESTAMP'] = $isoTimestamp;
+            }
+        }
+        
+        return $headers;
+    }
+    
+    /**
+     * Adopt orphan with survivor protocol handling for banned origins
+     * Enhanced version of adoptIntoSeed with survivor protocol support
+     * 
+     * @param string $text Message text
+     * @param int $actorId from_actor_id (default 3 = WOLFIE)
+     * @param int $threadId dialog_thread_id (default 1)
+     * @param int $channelId channel_id (default 42)
+     * @param int $forwardedById forwarded_by_actor_id (optional)
+     * @param int $originalSenderId original_sender_actor_id (optional)
+     * @param bool $applySurvivorProtocol Apply survivor protocol for banned origins
+     * @return array array('success' => bool, 'dialog_message_id' => int|null, 'error' => string|null)
+     */
+    public function adoptOrphanWithSurvivorProtocol($text, $actorId = null, $threadId = null, $channelId = null, $forwardedById = null, $originalSenderId = null, $applySurvivorProtocol = true) {
+        if ($actorId === null) {
+            $actorId = self::DEFAULT_ACTOR_ID;
+        }
+        
+        // Check if original sender is banned and survivor protocol should be applied
+        if ($applySurvivorProtocol && $originalSenderId && $this->isBanned($originalSenderId)) {
+            // Generate survivor protocol headers
+            $survivorHeaders = $this->generateSurvivorHeaders($originalSenderId, $actorId, 2038); // LILITH as validator
+            
+            // Store headers in metadata
+            $metadataJson = json_encode(array(
+                'survivor_protocol' => true,
+                'original_actor_id' => $originalSenderId,
+                'adopter_actor_id' => $actorId,
+                'validator_actor_id' => 2038,
+                'forward_headers' => $survivorHeaders,
+                'adoption_reason' => 'banned_origin',
+                'adoption_timestamp' => gmdate('YmdHis')
+            ));
+            
+            // Use the base adoptIntoSeed method with metadata
+            $result = $this->adoptIntoSeed($text, $actorId, $threadId, $channelId, $forwardedById, $originalSenderId);
+            
+            if ($result['success']) {
+                // Update the message with survivor protocol metadata
+                $msg_table = $this->db->quoteIdentifier($this->prefix . 'dialog_messages');
+                $sql = "UPDATE " . $msg_table . " SET metadata_json = :metadata WHERE dialog_message_id = :msg_id";
+                $this->db->query($sql, array(
+                    'metadata' => $metadataJson,
+                    'msg_id' => $result['dialog_message_id']
+                ));
+                
+                // Log the survivor protocol adoption
+                $this->logSurvivorAdoption($result['dialog_message_id'], $originalSenderId, $actorId, $survivorHeaders);
+            }
+            
+            return $result;
+        }
+        
+        // Fall back to standard adoption
+        return $this->adoptIntoSeed($text, $actorId, $threadId, $channelId, $forwardedById, $originalSenderId);
+    }
+    
+    /**
+     * Log survivor protocol adoption events
+     * 
+     * @param int $messageId
+     * @param int $originalActorId
+     * @param int $adopterActorId
+     * @param array $headers
+     * @return bool
+     */
+    private function logSurvivorAdoption($messageId, $originalActorId, $adopterActorId, $headers) {
+        $event_table = $this->db->quoteIdentifier($this->prefix . 'system_events');
+        
+        $metadata = array(
+            'event_type' => 'survivor_protocol_adoption',
+            'message_id' => $messageId,
+            'original_actor_id' => $originalActorId,
+            'adopter_actor_id' => $adopterActorId,
+            'validator_actor_id' => 2038,
+            'forward_headers' => $headers,
+            'adoption_timestamp' => gmdate('YmdHis')
+        );
+        
+        $sql = "INSERT INTO " . $event_table . " (event_type, metadata_json, created_ymdhis) VALUES (:event_type, :metadata, :created)";
+        
+        try {
+            $this->db->query($sql, array(
+                'event_type' => 'survivor_protocol_adoption',
+                'metadata' => json_encode($metadata),
+                'created' => gmdate('YmdHis')
+            ));
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     /**
      * Adopt orphan into lupo_dialog_messages and update lupo_dialog_channels.message_count.
      * Uses explicit dialog_message_id (next after MAX). Idempotent: ON DUPLICATE KEY UPDATE.
+     * Preserves original sender attribution when adopting forwarded messages.
      *
      * @param string $text Message text
      * @param int $actorId from_actor_id (default 3 = WOLFIE)
      * @param int $threadId dialog_thread_id (default 1)
      * @param int $channelId channel_id (default 42)
+     * @param int $forwardedById forwarded_by_actor_id (optional)
+     * @param int $originalSenderId original_sender_actor_id (optional)
      * @return array array('success' => bool, 'dialog_message_id' => int|null, 'error' => string|null)
      */
-    public function adoptIntoSeed($text, $actorId = null, $threadId = null, $channelId = null) {
+    public function adoptIntoSeed($text, $actorId = null, $threadId = null, $channelId = null, $forwardedById = null, $originalSenderId = null) {
         if ($actorId === null) {
             $actorId = self::DEFAULT_ACTOR_ID;
         }
-        if ($this->isBannedActor($actorId)) {
+        if ($this->isBanned($actorId)) {
             return array('success' => false, 'dialog_message_id' => null, 'error' => 'Banned actor; adoption rejected');
         }
         if ($threadId === null) {
@@ -215,6 +379,8 @@ class ANUBIS_Resolver {
         $actorId = (int) $actorId;
         $threadId = (int) $threadId;
         $channelId = (int) $channelId;
+        $forwardedById = $forwardedById ? (int) $forwardedById : null;
+        $originalSenderId = $originalSenderId ? (int) $originalSenderId : null;
         $text = is_string($text) ? $text : '';
         $now = (int) gmdate('YmdHis');
 
@@ -224,9 +390,19 @@ class ANUBIS_Resolver {
         $next_id_row = $this->db->fetchRow("SELECT COALESCE(MAX(dialog_message_id), 0) + 1 AS next_id FROM " . $msg_table);
         $next_id = $next_id_row && isset($next_id_row['next_id']) ? (int) $next_id_row['next_id'] : 32;
 
+        // Build INSERT query with optional forwarding fields
         $cols = "dialog_message_id, dialog_thread_id, channel_id, from_actor_id, to_actor_id, message_text, message_type, metadata_json, mood_rgb, mood_framework, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis";
-        $sql = "INSERT INTO " . $msg_table . " (" . $cols . ") VALUES (:mid, :tid, :cid, :aid, NULL, :msg, 'system', NULL, NULL, 'western_analytical', :now, :now2, 0, NULL) "
+        $values = ":mid, :tid, :cid, :aid, NULL, :msg, 'system', NULL, NULL, 'western_analytical', :now, :now2, 0, NULL";
+        
+        // Add forwarding columns if provided
+        if ($forwardedById !== null || $originalSenderId !== null) {
+            $cols .= ", forwarded_by_actor_id, original_sender_actor_id";
+            $values .= ", :forwarded_by, :original_sender";
+        }
+        
+        $sql = "INSERT INTO " . $msg_table . " (" . $cols . ") VALUES (" . $values . ") "
              . "ON DUPLICATE KEY UPDATE message_text = VALUES(message_text), updated_ymdhis = :now3, is_deleted = 0, deleted_ymdhis = NULL";
+        
         $params = array(
             'mid' => $next_id,
             'tid' => $threadId,
@@ -237,6 +413,13 @@ class ANUBIS_Resolver {
             'now2' => $now,
             'now3' => $now,
         );
+        
+        // Add forwarding parameters if provided
+        if ($forwardedById !== null || $originalSenderId !== null) {
+            $params['forwarded_by'] = $forwardedById;
+            $params['original_sender'] = $originalSenderId;
+        }
+        
         try {
             $this->db->query($sql, $params);
         } catch (Exception $e) {

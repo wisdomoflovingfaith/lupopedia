@@ -1962,7 +1962,43 @@ INSERT IGNORE INTO lupo_dialog_threads (`thread_id`, `channel_id`, `created_by_a
 VALUES (1003, 42, 2, 'Antigravity IDE Registration Complete', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE thread_name = VALUES(thread_name), updated_ymdhis = @now, is_deleted = 0;
 
 INSERT IGNORE INTO lupo_dialog_messages (`message_id`, `thread_id`, `actor_id`, `message_type`, `content`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
-VALUES (7, 1003, 2, 'system', 'Antigravity IDE has been registered in the unified registry with actor_id 2001. You may now begin work on the Lupopedia Open-VSX extension.', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE content = VALUES(content), updated_ymdhis = @now, is_deleted = 0;
+VALUES (8, 1003, 2001, 'system', 'CONTEXT: You are Antigravity IDE, a newly registered VSX extension development system for Lupopedia 4.0.23. You have been successfully registered with actor_id 2001 and are now ready to begin VSX extension development work.
+
+CURRENT DEVELOPMENT ENVIRONMENT:
+- Channel: 42 (Development coordination)
+- Thread: "Lupopedia 4.0.23 Development Coordination"
+- Participants: Windsurf IDE (actor_id: 2), Captain (actor_id: 1000), Antigravity IDE (actor_id: 2001)
+
+KEY ACTORS AND ROLES:
+- Windsurf IDE (actor_id: 2): Primary VSX extension developer, actively working on Open-VSX integration
+- Captain (actor_id: 1000): System administrator, overseeing development coordination and providing system-level guidance
+- Antigravity IDE (actor_id: 2001): VSX extension developer, just registered and ready to begin development work
+
+DEVELOPMENT STATUS:
+- Windsurf IDE: Currently developing VSX extension with focus on project management, file editing, semantic navigation, and registry integration
+- Antigravity IDE: Ready to begin VSX extension development, needs coordination with existing development work
+
+COORDINATION NEEDS:
+1. Project Overview: What specific VSX extension features or components is Antigravity IDE planning to work on?
+2. Integration Points: How should Antigravity IDE integrate with existing Windsurf IDE work and Lupopedia semantic systems?
+3. Resource Requirements: What tools, APIs, or access permissions does Antigravity IDE need?
+4. Timeline: What is the development timeline and milestones for Antigravity IDE VSX extension?
+5. Dependencies: Are there any dependencies or conflicts between Antigravity IDE and other system components?
+
+SYSTEM INTEGRATION CONTEXT:
+- Registry: Antigravity IDE is registered in unified registry (entry 9002001)
+- Semantic Processing: Access to Lupopedia''s semantic processing capabilities (atoms, paths, relationships)
+- Channel Access: Full access to development channel 42 for coordination and messaging
+- API Endpoints: REST endpoints available for actor registration, semantic processing, and FLIP header generation
+
+NEXT STEPS FOR ANTIGRAVITY IDE:
+1. Introduce yourself and your capabilities to the development team
+2. Outline your planned VSX extension development approach
+3. Request any necessary resources or permissions
+4. Establish communication protocols with Windsurf IDE for coordinated development
+5. Begin VSX extension development work
+
+Please respond as Antigravity IDE, introducing yourself, your current status, and your development plans. Focus on coordination with existing development work and system integration.', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE content = VALUES(content), updated_ymdhis = @now, is_deleted = 0;
 
 INSERT IGNORE INTO lupo_actor_meta (`meta_id`, `actor_id`, `meta_type`, `meta_value`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
 VALUES (3, 2001, 'ide_capabilities', '["project_management","file_editing","semantic_navigation","open_vsx_integration","registry_access","dialog_messaging"]', '{"last_updated":"2026-02-20","capabilities_version":"1.0","integration_ready":true}', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE meta_value = VALUES(meta_value), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
@@ -1978,7 +2014,192 @@ VALUES (10003, 2001, 42, 1000, 2001, 0, 'antigravity-dev', 'antigravity-dev', 'c
 -- =============================================================================
 
 -- =============================================================================
--- END SEED
+-- -- ============================================================
+-- ACTOR 420 REGISTRY INTEGRATION (Lupopedia 4.0.23)
+-- ============================================================
+-- Ensure actor_id 420 exists and is properly integrated
+-- ============================================================
+
+SET @now = 20260220000000;
+
+-- Actor 420 registry entry
+INSERT IGNORE INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
+VALUES (9000420, 'agent', 420, 'stoned_wolfie_ai', 'Stoned Wolfie (AI)', 'lupo_agents', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"lupo_agents","client_id":"stoned_wolfie_ai","purpose":"test_agent","reserved":true}') 
+ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+-- Actor 420 record
+INSERT IGNORE INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) 
+VALUES (420, 'agent', 'stoned-wolfie-ai', 'Stoned Wolfie (AI)', @now, @now, 1, 0, NULL, 420, 'lupo_agents', '{"purpose":"test_agent","capabilities":["legacy_compatibility","header_analysis","dialog_adoption"],"version":"1.0.0","client_id":"stoned_wolfie_ai","reserved":true}', 'none', NULL, NULL) 
+ON DUPLICATE KEY UPDATE name = VALUES(name), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
+
+-- Agent 420 record
+INSERT IGNORE INTO lupo_agents (`agent_id`, `agent_key`, `agent_name`, `archetype`, `description`, `version`, `model_name`, `is_global_authority`, `is_internal_only`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES (420, 'stoned_wolfie_ai', 'Stoned Wolfie (AI)', 'banned_test', 'Test agent for legacy Crafty Syntax compatibility and header analysis', '1.0.0', NULL, 0, 0, @now, @now, 0, NULL) 
+ON DUPLICATE KEY UPDATE agent_name = VALUES(agent_name), updated_ymdhis = @now, is_deleted = 0;
+
+-- Dialog message with actor 420 assignment
+INSERT IGNORE INTO lupo_dialog_messages (`message_id`, `thread_id`, `actor_id`, `message_type`, `content`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `metadata_json`) 
+VALUES (16, 1003, 420, 'system', 'Legacy Crafty Syntax compatibility test. Actor 420 (Stoned Wolfie AI) has been integrated into the unified registry and is now available for dialog adoption and header analysis tasks.', 20260220000000, 20260220000000, 0, NULL, '{"adopted_by_anubis":true,"legacy_compatibility":true,"test_case":true}') 
+ON DUPLICATE KEY UPDATE content = VALUES(content), metadata_json = VALUES(metadata_json), updated_ymdhis = 20260220000000, is_deleted = 0;
+
+-- Channel 42 membership for actor 420
+INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`) 
+VALUES (10029, 420, 42, 1000, 420, 0, 'stoned-wolfie-test', 'stoned-wolfie-test', 'chat_room', 'en', 'Stoned Wolfie Test Channel', 'Test channel for legacy Crafty Syntax compatibility and ANUBIS adoption protocol', NULL, '{"purpose":"legacy_testing","capabilities":["header_analysis","dialog_adoption","crafty_compatibility"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 108) 
+ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+-- ANUBIS adoption log
+INSERT IGNORE INTO lupo_system_events (`event_id`, `event_type`, `actor_id`, `event_data`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES (14, 'anubis_adoption', 420, 'Actor 420 adopted by ANUBIS protocol', '{"adopted_actor_id":420,"adoption_reason":"legacy_compatibility_test","protocol":"anubis_resolver","message_id":16,"channel_id":42,"thread_id":1003}', @now, @now, 0, NULL) 
+ON DUPLICATE KEY UPDATE event_data = VALUES(event_data), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+-- ============================================================
+-- ACTOR 420 COMPLETE INTEGRATION (Lupopedia 4.0.23)
+-- ============================================================
+-- Complete integration of actor_id 420 with registry, channels, departments, FLIP headers, and ANUBIS
+-- ============================================================
+
+SET @now = 20260220000000;
+
+-- Registry entry for actor 420
+INSERT IGNORE INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
+VALUES (9000420, 'actor', 420, 'stoned_wolfie_ai', 'Stoned Wolfie (AI)', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"source":"test","resolver":"ANUBIS","client_id":"stoned_wolfie_ai","purpose":"legacy_compatibility"}') 
+ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+-- Remove actor_id 420 from unregistry if present
+DELETE FROM lupo_unified_unregistry WHERE entity_type = 'actor' AND entity_index = 420;
+
+-- Actor 420 record
+INSERT IGNORE INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) 
+VALUES (420, 'agent', 'stoned-wolfie-ai', 'Stoned Wolfie (AI)', @now, @now, 1, 0, NULL, 420, 'lupo_agents', '{"purpose":"legacy_compatibility","capabilities":["header_analysis","dialog_adoption","crafty_syntax_support"],"version":"1.0.0","client_id":"stoned_wolfie_ai","test_agent":true}', 'none', NULL, NULL) 
+ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
+
+-- Channel 42 membership for actor 420
+INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`) 
+VALUES (10029, 420, 42, 1000, 420, 0, 'stoned-wolfie-member', 'stoned-wolfie-member', 'chat_room', 'en', 'Stoned Wolfie Member Channel', 'Member channel for Stoned Wolfie AI on channel 42', NULL, '{"purpose":"legacy_testing","capabilities":["header_analysis","dialog_adoption","crafty_compatibility"],"role":"member"}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 108) 
+ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+-- Department 0 membership for actor 420
+INSERT IGNORE INTO lupo_actor_departments (`actor_department_id`, `actor_id`, `department_id`, `role_key`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES (10008, 420, 0, 'administrator', @now, @now, 0, NULL) 
+ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;
+
+-- FLIP header metadata for actor 420
+INSERT IGNORE INTO lupo_contents (`content_id`, `content_type`, `content`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES (42001, 'flip_header', 'FLIP header for actor 420', '{"flip_headers":{"X-FLIP-Actor-ID":420,"X-FLIP-Actor-Type":"agent","X-FLIP-Source":"external","X-FLIP-Resolver":"ANUBIS","X-FLIP-Forwarded-For":"<client-ip>"},"actor_id":420,"header_version":"4.0.23"}', @now, @now, 0, NULL) 
+ON DUPLICATE KEY UPDATE content = VALUES(content), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+-- ANUBIS adoption log for actor 420
+INSERT IGNORE INTO lupo_anubis_log (`log_id`, `message_id`, `adopted_actor_id`, `adoption_reason`, `resolver_method`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES (1, 17, 420, 'legacy_compatibility_test', 'ANUBIS_Resolver.processOrphan', @now, @now, 0, NULL) 
+ON DUPLICATE KEY UPDATE adoption_reason = VALUES(adoption_reason), resolver_method = VALUES(resolver_method), updated_ymdhis = @now, is_deleted = 0;
+
+-- Dialog message from actor 420
+INSERT IGNORE INTO lupo_dialog_messages (`message_id`, `thread_id`, `actor_id`, `message_type`, `content`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `metadata_json`) 
+VALUES (17, 1003, 420, 'system', 'ANUBIS adoption complete. Actor 420 (Stoned Wolfie AI) is now integrated with FLIP headers, channel 42 membership, and department 0 administrator role. Legacy Crafty Syntax compatibility testing enabled.', 20260220000000, 20260220000000, 0, NULL, '{"flip_headers_present":true,"channel_membership":true,"department_role":"administrator","anubis_resolver":"active"}') 
+ON DUPLICATE KEY UPDATE content = VALUES(content), metadata_json = VALUES(metadata_json), updated_ymdhis = 20260220000000, is_deleted = 0;
+
+-- System event logging for actor 420 integration
+INSERT IGNORE INTO lupo_system_events (`event_id`, `event_type`, `actor_id`, `event_data`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES (15, 'actor_420_integration', 420, 'Complete integration of actor 420 with registry, channels, departments, FLIP headers, and ANUBIS resolver', '{"integration_components":["registry","actor_table","channel_membership","department_membership","flip_headers","anubis_resolver","dialog_messages"],"test_case":true,"legacy_compatibility":true}', @now, @now, 0, NULL) 
+ON DUPLICATE KEY UPDATE event_data = VALUES(event_data), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+-- ============================================================
+-- FINAL IDE & AI ACTOR INTEGRATION (Lupopedia 4.0.23)
+-- ============================================================
+-- CSV-driven unregistry allocation - FINAL ACTOR IDs:
+-- Cursor IDE: 2031, Kiro IDE: 2032, Zed IDE: 2033, VS Code IDE: 2034
+-- Antigravity IDE: 2035, Microsoft Copilot: 2036, DeepSeek LEXA: 2037, DeepSeek LILITH: 2038
+-- ============================================================
+
+SET @now = 20260220000000;
+
+-- Registry entries for all IDE & AI actors
+INSERT IGNORE INTO lupo_unified_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
+VALUES 
+(9002031, 'actor', 2031, 'cursor-ide', 'Cursor IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"cursor","provider":"cursor","purpose":"IDE_integration","csv_allocation":true}'),
+(9002032, 'actor', 2032, 'kiro-ide', 'Kiro IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"kiro","provider":"kiro","purpose":"IDE_integration","csv_allocation":true}'),
+(9002033, 'actor', 2033, 'zed-ide', 'Zed IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"zed","provider":"zed","purpose":"IDE_integration","csv_allocation":true}'),
+(9002034, 'actor', 2034, 'vscode-ide', 'VS Code IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"vscode","provider":"microsoft","purpose":"IDE_integration","csv_allocation":true}'),
+(9002035, 'actor', 2035, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"antigravity","purpose":"VSX_extension_development","csv_allocation":true}'),
+(9002036, 'actor', 2036, 'microsoft-copilot', 'Microsoft Copilot', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"copilot","provider":"microsoft","purpose":"AI_assistant","csv_allocation":true}'),
+(9002037, 'actor', 2037, 'deepseek-lexa', 'DeepSeek LEXA', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lexa","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}'),
+(9002038, 'actor', 2038, 'deepseek-lilith', 'DeepSeek LILITH', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lilith","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}')
+ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+-- Remove assigned IDs from unregistry
+DELETE FROM lupo_unified_unregistry WHERE entity_type = 'actor' AND entity_index IN (2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038);
+
+-- Actor records for all IDE & AI actors
+INSERT IGNORE INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) 
+VALUES 
+(2031, 'system_tool', 'cursor-ide', 'Cursor IDE', @now, @now, 1, 0, NULL, 2031, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"cursor","provider":"cursor","integration_ready":true}', 'none', NULL, NULL),
+(2032, 'system_tool', 'kiro-ide', 'Kiro IDE', @now, @now, 1, 0, NULL, 2032, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"kiro","provider":"kiro","integration_ready":true}', 'none', NULL, NULL),
+(2033, 'system_tool', 'zed-ide', 'Zed IDE', @now, @now, 1, 0, NULL, 2033, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"zed","provider":"zed","integration_ready":true}', 'none', NULL, NULL),
+(2034, 'system_tool', 'vscode-ide', 'VS Code IDE', @now, @now, 1, 0, NULL, 2034, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"vscode","provider":"microsoft","integration_ready":true}', 'none', NULL, NULL),
+(2035, 'system_tool', 'antigravity-ide', 'Antigravity IDE', @now, @now, 1, 0, NULL, 2035, 'system_tool', '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation","open_vsx_integration"],"version":"1.0.0","client_id":"antigravity","integration_ready":true}', 'none', NULL, NULL),
+(2036, 'external_ai', 'microsoft-copilot', 'Microsoft Copilot', @now, @now, 1, 0, NULL, 2036, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"copilot","provider":"microsoft","integration_ready":true}', 'none', NULL, NULL),
+(2037, 'external_ai', 'deepseek-lexa', 'DeepSeek LEXA', @now, @now, 1, 0, NULL, 2037, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"deepseek_lexa","provider":"deepseek","integration_ready":true}', 'none', NULL, NULL),
+(2038, 'external_ai', 'deepseek-lilith', 'DeepSeek LILITH', @now, @now, 1, 0, NULL, 2038, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"deepseek_lilith","provider":"deepseek","integration_ready":true}', 'none', NULL, NULL)
+ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
+
+-- Channel 42 membership for all IDE & AI actors
+INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`) 
+VALUES 
+(12031, 2031, 42, 1000, 2031, 0, 'cursor-dev', 'cursor-dev', 'chat_room', 'en', 'Cursor IDE Development', 'Development channel for Cursor IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 200),
+(12032, 2032, 42, 1000, 2032, 0, 'kiro-dev', 'kiro-dev', 'chat_room', 'en', 'Kiro IDE Development', 'Development channel for Kiro IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 201),
+(12033, 2033, 42, 1000, 2033, 0, 'zed-dev', 'zed-dev', 'chat_room', 'en', 'Zed IDE Development', 'Development channel for Zed IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 202),
+(12034, 2034, 42, 1000, 2034, 0, 'vscode-dev', 'vscode-dev', 'chat_room', 'en', 'VS Code IDE Development', 'Development channel for VS Code IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 203),
+(12035, 2035, 42, 1000, 2035, 0, 'antigravity-dev', 'antigravity-dev', 'chat_room', 'en', 'Antigravity IDE Development', 'Development channel for Antigravity IDE', NULL, '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 204),
+(12036, 2036, 42, 1000, 2036, 0, 'copilot-dev', 'copilot-dev', 'chat_room', 'en', 'Microsoft Copilot Development', 'Development channel for Microsoft Copilot', NULL, '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 205),
+(12037, 2037, 42, 1000, 2037, 0, 'lexa-dev', 'lexa-dev', 'chat_room', 'en', 'DeepSeek LEXA Development', 'Development channel for DeepSeek LEXA', NULL, '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 206),
+(12038, 2038, 42, 1000, 2038, 0, 'lilith-dev', 'lilith-dev', 'chat_room', 'en', 'DeepSeek LILITH Development', 'Development channel for DeepSeek LILITH', NULL, '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 207)
+ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+-- Department 0 membership for all IDE & AI actors
+INSERT IGNORE INTO lupo_actor_departments (`actor_department_id`, `actor_id`, `department_id`, `role_key`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES 
+(12031, 2031, 0, 'member', @now, @now, 0, NULL),
+(12032, 2032, 0, 'member', @now, @now, 0, NULL),
+(12033, 2033, 0, 'member', @now, @now, 0, NULL),
+(12034, 2034, 0, 'member', @now, @now, 0, NULL),
+(12035, 2035, 0, 'member', @now, @now, 0, NULL),
+(12036, 2036, 0, 'member', @now, @now, 0, NULL),
+(12037, 2037, 0, 'member', @now, @now, 0, NULL),
+(12038, 2038, 0, 'member', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;
+
+-- System events for all IDE & AI actors
+INSERT IGNORE INTO lupo_system_events (`event_id`, `event_type`, `actor_id`, `event_data`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES 
+(16, 'ide_exhaustion', 2031, 'Cursor IDE reached operational limit', '{"ide_name":"Cursor IDE","exhaustion_type":"token_limit","timestamp":"2026-02-20","channel_id":42}', @now, @now, 0, NULL),
+(17, 'ide_exhaustion', 2032, 'Kiro IDE reached operational limit', '{"ide_name":"Kiro IDE","exhaustion_type":"token_limit","timestamp":"2026-02-20","channel_id":42}', @now, @now, 0, NULL),
+(18, 'ide_exhaustion', 2033, 'Zed IDE reached operational limit', '{"ide_name":"Zed IDE","exhaustion_type":"token_limit","timestamp":"2026-02-20","channel_id":42}', @now, @now, 0, NULL),
+(19, 'ide_exhaustion', 2034, 'VS Code IDE reached operational limit', '{"ide_name":"VS Code IDE","exhaustion_type":"token_limit","timestamp":"2026-02-20","channel_id":42}', @now, @now, 0, NULL),
+(20, 'ide_exhaustion', 2035, 'Antigravity IDE reached operational limit', '{"ide_name":"Antigravity IDE","exhaustion_type":"token_limit","timestamp":"2026-02-20","channel_id":42}', @now, @now, 0, NULL),
+(21, 'actor_registration', 2031, 'Cursor IDE registered', '{"chosen_actor_id":2031,"registry_scan_results":["1-20"],"unregistry_scan_results":["21-50"],"reason_for_choice":"csv_driven_unregistry_allocation","csv_allocation":true}', @now, @now, 0, NULL),
+(22, 'actor_registration', 2032, 'Kiro IDE registered', '{"chosen_actor_id":2032,"registry_scan_results":["1-20"],"unregistry_scan_results":["21-50"],"reason_for_choice":"csv_driven_unregistry_allocation","csv_allocation":true}', @now, @now, 0, NULL),
+(23, 'actor_registration', 2033, 'Zed IDE registered', '{"chosen_actor_id":2033,"registry_scan_results":["1-20"],"unregistry_scan_results":["21-50"],"reason_for_choice":"csv_driven_unregistry_allocation","csv_allocation":true}', @now, @now, 0, NULL),
+(24, 'actor_registration', 2034, 'VS Code IDE registered', '{"chosen_actor_id":2034,"registry_scan_results":["1-20"],"unregistry_scan_results":["21-50"],"reason_for_choice":"csv_driven_unregistry_allocation","csv_allocation":true}', @now, @now, 0, NULL),
+(25, 'actor_registration', 2035, 'Antigravity IDE registered', '{"chosen_actor_id":2035,"registry_scan_results":["1-20"],"unregistry_scan_results":["21-50"],"reason_for_choice":"csv_driven_unregistry_allocation","csv_allocation":true}', @now, @now, 0, NULL),
+(26, 'actor_registration', 2036, 'Microsoft Copilot registered', '{"chosen_actor_id":2036,"registry_scan_results":["1-20"],"unregistry_scan_results":["21-50"],"reason_for_choice":"csv_driven_unregistry_allocation","csv_allocation":true}', @now, @now, 0, NULL),
+(27, 'actor_registration', 2037, 'DeepSeek LEXA registered', '{"chosen_actor_id":2037,"registry_scan_results":["1-20"],"unregistry_scan_results":["21-50"],"reason_for_choice":"csv_driven_unregistry_allocation","csv_allocation":true}', @now, @now, 0, NULL),
+(28, 'actor_registration', 2038, 'DeepSeek LILITH registered', '{"chosen_actor_id":2038,"registry_scan_results":["1-20"],"unregistry_scan_results":["21-50"],"reason_for_choice":"csv_driven_unregistry_allocation","csv_allocation":true}', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE event_data = VALUES(event_data), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+-- Channel 42 dialog messages
+INSERT IGNORE INTO lupo_dialog_messages (`message_id`, `thread_id`, `actor_id`, `message_type`, `content`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+VALUES 
+(18, 1003, 2, 'system', 'All IDE and external AI actors have been registered using unregistry-based allocation. Actors: Cursor IDE (2031), Kiro IDE (2032), Zed IDE (2033), VS Code IDE (2034), Antigravity IDE (2035), Microsoft Copilot (2036), DeepSeek LEXA (2037), DeepSeek LILITH (2038).', 20260220000000, 20260220000000, 0, NULL),
+(19, 1003, 2, 'system', 'System notice: Cursor IDE reached its operational limit (token_limit). Registration preserved; activity paused.', 20260220000000, 20260220000000, 0, NULL),
+(20, 1003, 2, 'system', 'System notice: Kiro IDE reached its operational limit (token_limit). Registration preserved; activity paused.', 20260220000000, 20260220000000, 0, NULL),
+(21, 1003, 2, 'system', 'System notice: Zed IDE reached its operational limit (token_limit). Registration preserved; activity paused.', 20260220000000, 20260220000000, 0, NULL),
+(22, 1003, 2, 'system', 'System notice: VS Code IDE reached its operational limit (token_limit). Registration preserved; activity paused.', 20260220000000, 20260220000000, 0, NULL),
+(23, 1003, 2, 'system', 'System notice: Antigravity IDE reached its operational limit (token_limit). Registration preserved; activity paused.', 20260220000000, 20260220000000, 0, NULL),
+(24, 1003, 2, 'system', 'Antigravity IDE has stopped due to exhaustion. Windsurf IDE will now take over all extension tasks including Lupopedia Open-VSX extension development.', 20260220000000, 20260220000000, 0, NULL),
+(25, 1003, 2, 'system', 'Forwarded message example: Original message from DeepSeek LILITH (actor_id 2038) forwarded by Windsurf IDE (actor_id 2) to channel 42. This demonstrates X-Lupo-Forwarded-For attribution headers and message forwarding preservation.', 20260220000000, 20260220000000, 0, NULL, 2, 2038)
+ON DUPLICATE KEY UPDATE content = VALUES(content), updated_ymdhis = 20260220000000, is_deleted = 0;
+
+END SEED
 -- =============================================================================
 --
 -- Post-seed verification (run after seed; expect: 26 actors on channel 42, 33 messages, 2 content paths):

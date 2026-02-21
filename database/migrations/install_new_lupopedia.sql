@@ -3759,6 +3759,66 @@ CREATE TABLE `lupo_actor_aliases` (
 -- INSERT lupo_atoms for GLOBAL_CURRENT_LUPOPEDIA_VERSION and kernel actors/channels as needed.
 --
 -- Human operator (captain@lupopedia.com): actor_id 1000, full access. Full seed in seed_lupopedia.sql.
-SET @now = 20260217000000;
+SET @now = 20260220000000;
 INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata, adversarial_role, adversarial_oversight_actor_id, avatar_hash) VALUES (1000, 'human', 'captain', 'CAPTAIN', @now, @now, 1, 0, NULL, NULL, 'human', '{"email":"captain@lupopedia.com","status":"A"}', 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) VALUES (9001000, 'actor', 1000, 'captain', 'CAPTAIN', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"email":"captain@lupopedia.com","actor_source_type":"human"}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+-- ============================================================
+-- FINAL IDE & AI ACTOR INTEGRATION (Lupopedia 4.0.23)
+-- ============================================================
+-- CSV-driven unregistry allocation - FINAL ACTOR IDs:
+-- Cursor IDE: 2031, Kiro IDE: 2032, Zed IDE: 2033, VS Code IDE: 2034
+-- Antigravity IDE: 2035, Microsoft Copilot: 2036, DeepSeek LEXA: 2037, DeepSeek LILITH: 2038
+-- ============================================================
+
+-- Registry entries for all IDE & AI actors
+INSERT IGNORE INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
+VALUES 
+(9002031, 'actor', 2031, 'cursor-ide', 'Cursor IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"cursor","provider":"cursor","purpose":"IDE_integration","csv_allocation":true}'),
+(9002032, 'actor', 2032, 'kiro-ide', 'Kiro IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"kiro","provider":"kiro","purpose":"IDE_integration","csv_allocation":true}'),
+(9002033, 'actor', 2033, 'zed-ide', 'Zed IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"zed","provider":"zed","purpose":"IDE_integration","csv_allocation":true}'),
+(9002034, 'actor', 2034, 'vscode-ide', 'VS Code IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"vscode","provider":"microsoft","purpose":"IDE_integration","csv_allocation":true}'),
+(9002035, 'actor', 2035, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"antigravity","purpose":"VSX_extension_development","csv_allocation":true}'),
+(9002036, 'actor', 2036, 'microsoft-copilot', 'Microsoft Copilot', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"copilot","provider":"microsoft","purpose":"AI_assistant","csv_allocation":true}'),
+(9002037, 'actor', 2037, 'deepseek-lexa', 'DeepSeek LEXA', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lexa","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}'),
+(9002038, 'actor', 2038, 'deepseek-lilith', 'DeepSeek LILITH', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lilith","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}')
+ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+
+-- Actor records for all IDE & AI actors
+INSERT IGNORE INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata, adversarial_role, adversarial_oversight_actor_id, avatar_hash) 
+VALUES 
+(2031, 'system_tool', 'cursor-ide', 'Cursor IDE', @now, @now, 1, 0, NULL, 2031, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"cursor","provider":"cursor","integration_ready":true}', 'none', NULL, NULL),
+(2032, 'system_tool', 'kiro-ide', 'Kiro IDE', @now, @now, 1, 0, NULL, 2032, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"kiro","provider":"kiro","integration_ready":true}', 'none', NULL, NULL),
+(2033, 'system_tool', 'zed-ide', 'Zed IDE', @now, @now, 1, 0, NULL, 2033, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"zed","provider":"zed","integration_ready":true}', 'none', NULL, NULL),
+(2034, 'system_tool', 'vscode-ide', 'VS Code IDE', @now, @now, 1, 0, NULL, 2034, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"vscode","provider":"microsoft","integration_ready":true}', 'none', NULL, NULL),
+(2035, 'system_tool', 'antigravity-ide', 'Antigravity IDE', @now, @now, 1, 0, NULL, 2035, 'system_tool', '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation","open_vsx_integration"],"version":"1.0.0","client_id":"antigravity","integration_ready":true}', 'none', NULL, NULL),
+(2036, 'external_ai', 'microsoft-copilot', 'Microsoft Copilot', @now, @now, 1, 0, NULL, 2036, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"copilot","provider":"microsoft","integration_ready":true}', 'none', NULL, NULL),
+(2037, 'external_ai', 'deepseek-lexa', 'DeepSeek LEXA', @now, @now, 1, 0, NULL, 2037, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"deepseek_lexa","provider":"deepseek","integration_ready":true}', 'none', NULL, NULL),
+(2038, 'external_ai', 'deepseek-lilith', 'DeepSeek LILITH', @now, @now, 1, 0, NULL, 2038, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"deepseek_lilith","provider":"deepseek","integration_ready":true}', 'none', NULL, NULL)
+ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
+
+-- Channel 42 membership for all IDE & AI actors
+INSERT IGNORE INTO lupo_actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, default_actor_id, department_id, channel_key, channel_slug, channel_type, language, channel_name, description, website_link, metadata_json, status_flag, end_ymdhis, duration_seconds, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_kernel, boot_sequence_order) 
+VALUES 
+(12031, 2031, 42, 1000, 2031, 0, 'cursor-dev', 'cursor-dev', 'chat_room', 'en', 'Cursor IDE Development', 'Development channel for Cursor IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 200),
+(12032, 2032, 42, 1000, 2032, 0, 'kiro-dev', 'kiro-dev', 'chat_room', 'en', 'Kiro IDE Development', 'Development channel for Kiro IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 201),
+(12033, 2033, 42, 1000, 2033, 0, 'zed-dev', 'zed-dev', 'chat_room', 'en', 'Zed IDE Development', 'Development channel for Zed IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 202),
+(12034, 2034, 42, 1000, 2034, 0, 'vscode-dev', 'vscode-dev', 'chat_room', 'en', 'VS Code IDE Development', 'Development channel for VS Code IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 203),
+(12035, 2035, 42, 1000, 2035, 0, 'antigravity-dev', 'antigravity-dev', 'chat_room', 'en', 'Antigravity IDE Development', 'Development channel for Antigravity IDE', NULL, '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 204),
+(12036, 2036, 42, 1000, 2036, 0, 'copilot-dev', 'copilot-dev', 'chat_room', 'en', 'Microsoft Copilot Development', 'Development channel for Microsoft Copilot', NULL, '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 205),
+(12037, 2037, 42, 1000, 2037, 0, 'lexa-dev', 'lexa-dev', 'chat_room', 'en', 'DeepSeek LEXA Development', 'Development channel for DeepSeek LEXA', NULL, '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 206),
+(12038, 2038, 42, 1000, 2038, 0, 'lilith-dev', 'lilith-dev', 'chat_room', 'en', 'DeepSeek LILITH Development', 'Development channel for DeepSeek LILITH', NULL, '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 207)
+ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+-- Department 0 membership for all IDE & AI actors
+INSERT IGNORE INTO lupo_actor_departments (actor_department_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) 
+VALUES 
+(12031, 2031, 0, 'member', @now, @now, 0, NULL),
+(12032, 2032, 0, 'member', @now, @now, 0, NULL),
+(12033, 2033, 0, 'member', @now, @now, 0, NULL),
+(12034, 2034, 0, 'member', @now, @now, 0, NULL),
+(12035, 2035, 0, 'member', @now, @now, 0, NULL),
+(12036, 2036, 0, 'member', @now, @now, 0, NULL),
+(12037, 2037, 0, 'member', @now, @now, 0, NULL),
+(12038, 2038, 0, 'member', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;

@@ -1,0 +1,11 @@
+# FLIP-HEADER 1.0
+X-Lupo-Task: verify-and-list-dialog-messages
+MESSAGE:
+Query the database and return:
+1. The total number of rows in lupo_dialog_messages.
+2. The total number of rows in lupo_dialog_threads.
+3. The message_count values stored in lupo_dialog_channels for channels 42 and 420.
+4. A full list of all rows in lupo_dialog_messages, ordered by dialog_message_id ascending.
+
+Do not modify any data. Read-only queries only.
+End of message.

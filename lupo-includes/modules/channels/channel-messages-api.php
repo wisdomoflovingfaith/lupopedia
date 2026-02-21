@@ -129,14 +129,14 @@ if ($visitor_mode) {
 // Visitor: only this thread's messages. Pending thread: channel_id IS NULL. Order by created_ymdhis ASC (legacy timeof).
 if ($visitor_mode) {
     if ($channel_id === 0) {
-        $stmt = $db->prepare("SELECT m.dialog_message_id, m.dialog_thread_id, m.channel_id, m.from_actor_id, m.to_actor_id, m.message_text, m.message_type, m.created_ymdhis FROM {$table_prefix}dialog_messages m WHERE m.dialog_thread_id = :dialog_thread_id AND m.channel_id IS NULL AND m.is_deleted = 0 AND m.created_ymdhis > :after ORDER BY m.created_ymdhis ASC LIMIT 200");
+        $stmt = $db->prepare("SELECT m.dialog_message_id, m.dialog_thread_id, m.channel_id, m.from_actor_id, m.to_actor_id, m.message_text, m.message_type, m.created_ymdhis, m.forwarded_by_actor_id, m.original_sender_actor_id FROM {$table_prefix}dialog_messages m WHERE m.dialog_thread_id = :dialog_thread_id AND m.channel_id IS NULL AND m.is_deleted = 0 AND m.created_ymdhis > :after ORDER BY m.created_ymdhis ASC LIMIT 200");
         $stmt->execute([':dialog_thread_id' => $dialog_thread_id_visitor, ':after' => $after_ymdhis]);
     } else {
-        $stmt = $db->prepare("SELECT m.dialog_message_id, m.dialog_thread_id, m.channel_id, m.from_actor_id, m.to_actor_id, m.message_text, m.message_type, m.created_ymdhis FROM {$table_prefix}dialog_messages m WHERE m.dialog_thread_id = :dialog_thread_id AND m.channel_id = :channel_id AND m.is_deleted = 0 AND m.created_ymdhis > :after ORDER BY m.created_ymdhis ASC LIMIT 200");
+        $stmt = $db->prepare("SELECT m.dialog_message_id, m.dialog_thread_id, m.channel_id, m.from_actor_id, m.to_actor_id, m.message_text, m.message_type, m.created_ymdhis, m.forwarded_by_actor_id, m.original_sender_actor_id FROM {$table_prefix}dialog_messages m WHERE m.dialog_thread_id = :dialog_thread_id AND m.channel_id = :channel_id AND m.is_deleted = 0 AND m.created_ymdhis > :after ORDER BY m.created_ymdhis ASC LIMIT 200");
         $stmt->execute([':dialog_thread_id' => $dialog_thread_id_visitor, ':channel_id' => $channel_id, ':after' => $after_ymdhis]);
     }
 } else {
-    $stmt = $db->prepare("SELECT m.dialog_message_id, m.dialog_thread_id, m.channel_id, m.from_actor_id, m.to_actor_id, m.message_text, m.message_type, m.created_ymdhis FROM {$table_prefix}dialog_messages m WHERE m.channel_id = :channel_id AND m.is_deleted = 0 AND m.created_ymdhis > :after ORDER BY m.created_ymdhis ASC LIMIT 200");
+    $stmt = $db->prepare("SELECT m.dialog_message_id, m.dialog_thread_id, m.channel_id, m.from_actor_id, m.to_actor_id, m.message_text, m.message_type, m.created_ymdhis, m.forwarded_by_actor_id, m.original_sender_actor_id FROM {$table_prefix}dialog_messages m WHERE m.channel_id = :channel_id AND m.is_deleted = 0 AND m.created_ymdhis > :after ORDER BY m.created_ymdhis ASC LIMIT 200");
     $stmt->execute([':channel_id' => $channel_id, ':after' => $after_ymdhis]);
 }
 $messages = [];
@@ -151,6 +151,20 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $aid = (int) $row['from_actor_id'];
     if ($aid && !in_array($aid, $actor_ids, true)) {
         $actor_ids[] = $aid;
+    }
+    
+    // Add forwarding actors to actor_ids collection
+    if (!empty($row['forwarded_by_actor_id'])) {
+        $forwarded_aid = (int) $row['forwarded_by_actor_id'];
+        if ($forwarded_aid && !in_array($forwarded_aid, $actor_ids, true)) {
+            $actor_ids[] = $forwarded_aid;
+        }
+    }
+    if (!empty($row['original_sender_actor_id'])) {
+        $original_aid = (int) $row['original_sender_actor_id'];
+        if ($original_aid && !in_array($original_aid, $actor_ids, true)) {
+            $actor_ids[] = $original_aid;
+        }
     }
 }
 

@@ -145,7 +145,45 @@ while (true) {
 
 // Insert message. Pending visitor: channel_id NULL. Accepted: channel_id set.
 $ins_channel_id = $channel_id > 0 ? $channel_id : null;
-$stmt_ins = $db->prepare("INSERT INTO {$table_prefix}dialog_messages (dialog_thread_id, channel_id, from_actor_id, to_actor_id, message_text, message_type, created_ymdhis, updated_ymdhis, is_deleted) VALUES (:dialog_thread_id, :channel_id, :from_actor_id, :to_actor_id, :message_text, 'text', :created_ymdhis, :updated_ymdhis, 0)");
+
+// Handle forwarding attribution from POST data or FLIP headers
+$forwarded_by_actor_id = null;
+$original_sender_actor_id = null;
+
+// Check POST data first (for manual forwarding)
+if (isset($_POST['forwarded_by_actor_id']) && $_POST['forwarded_by_actor_id'] !== '') {
+    $forwarded_by_actor_id = (int) $_POST['forwarded_by_actor_id'];
+}
+if (isset($_POST['original_sender_actor_id']) && $_POST['original_sender_actor_id'] !== '') {
+    $original_sender_actor_id = (int) $_POST['original_sender_actor_id'];
+}
+
+// Check FLIP headers for forwarding attribution
+if (!$forwarded_by_actor_id && isset($_SERVER['HTTP_X_FLIP_FORWARDED_BY_ACTOR_ID'])) {
+    $forwarded_by_actor_id = (int) $_SERVER['HTTP_X_FLIP_FORWARDED_BY_ACTOR_ID'];
+}
+if (!$original_sender_actor_id && isset($_SERVER['HTTP_X_FLIP_ORIGINAL_SENDER_ACTOR_ID'])) {
+    $original_sender_actor_id = (int) $_SERVER['HTTP_X_FLIP_ORIGINAL_SENDER_ACTOR_ID'];
+}
+
+// Validate forwarding actor IDs if provided
+if ($forwarded_by_actor_id && $forwarded_by_actor_id > 0) {
+    $stmt_check_actor = $db->prepare("SELECT 1 FROM {$table_prefix}actors WHERE actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
+    $stmt_check_actor->execute([':actor_id' => $forwarded_by_actor_id]);
+    if ($stmt_check_actor->fetch() === false) {
+        $forwarded_by_actor_id = null; // Invalid actor ID, ignore
+    }
+}
+
+if ($original_sender_actor_id && $original_sender_actor_id > 0) {
+    $stmt_check_actor = $db->prepare("SELECT 1 FROM {$table_prefix}actors WHERE actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
+    $stmt_check_actor->execute([':actor_id' => $original_sender_actor_id]);
+    if ($stmt_check_actor->fetch() === false) {
+        $original_sender_actor_id = null; // Invalid actor ID, ignore
+    }
+}
+
+$stmt_ins = $db->prepare("INSERT INTO {$table_prefix}dialog_messages (dialog_thread_id, channel_id, from_actor_id, to_actor_id, message_text, message_type, created_ymdhis, updated_ymdhis, is_deleted, forwarded_by_actor_id, original_sender_actor_id) VALUES (:dialog_thread_id, :channel_id, :from_actor_id, :to_actor_id, :message_text, 'text', :created_ymdhis, :updated_ymdhis, 0, :forwarded_by_actor_id, :original_sender_actor_id)");
 $stmt_ins->execute([
     ':dialog_thread_id' => $dialog_thread_id,
     ':channel_id'      => $ins_channel_id,
@@ -154,6 +192,8 @@ $stmt_ins->execute([
     ':message_text'    => $message_text,
     ':created_ymdhis'  => $now,
     ':updated_ymdhis'  => $now,
+    ':forwarded_by_actor_id' => $forwarded_by_actor_id,
+    ':original_sender_actor_id' => $original_sender_actor_id,
 ]);
 
 // Legacy: on send, clear typing for the channel (skip when pending/channel_id=0)

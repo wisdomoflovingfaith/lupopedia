@@ -1,0 +1,18 @@
+# FLIP-HEADER 1.0
+X-Lupo-Channel: 42
+X-Lupo-Thread: 1
+X-Lupo-Version: 4.0.24
+X-Lupo-Actor-From: 420
+X-Lupo-Actor-To: 2
+X-Lupo-Registry-Mode: unregistry-first
+X-Lupo-Registry-Source: csv
+X-Lupo-TOON-Path: docs/toons/
+X-Lupo-CSV-Path: database/csv_data/
+X-Lupo-Doctrine: no-id-guessing; no-max-plus-one; use-unregistry
+X-Lupo-Survivor-Protocol: active
+X-Lupo-Forwarded-For: 420
+X-Lupo-Forward-Chain: 420 -> 2
+X-Lupo-Origin-Status: active
+X-Lupo-Relay-Validated-By: 2
+X-Lupo-Collapse-Ratio: 11:1
+X-Lupo-Task: forward-grok-message-to-windsurf
