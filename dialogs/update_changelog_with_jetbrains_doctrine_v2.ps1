@@ -1,4 +1,4 @@
-$newEntry = @"
+﻿$newEntry = @"
 ## [3.0.95] - 2026-01-17
 ### Version 3.0.95 — JETBRAINS 3.1.x BRANCH HANDING DOCTRINE ESTABLISHED 🚀
 
