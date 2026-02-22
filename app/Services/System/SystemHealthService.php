@@ -97,7 +97,7 @@ class SystemHealthService
             }
 
             $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-            $regTable = $prefix . 'unified_registry';
+            $regTable = $prefix . 'registry';
             $stmt = $this->db->query("SHOW TABLES LIKE '" . str_replace("'", "''", $regTable) . "'");
             if ($stmt->rowCount() === 0) {
                 return [

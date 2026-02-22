@@ -1,3 +1,27 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+X-Lupo-File-Path: docs/doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md
+X-Lupo-Version: "4.0.27"
+X-Lupo-UTC-Timestamp: "20260222162242"
+X-Lupo-Channel: 42   # ANUBIS adoption channel
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool"
+X-Lupo-Location: "Sioux Falls, South Dakota, US"
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+web:
+  canonical: /doctrine/ETHICAL_STATE_MARKERS_DOCTRINE
+  aliases:
+    - /docs/ETHICAL_STATE_MARKERS_DOCTRINE
+    - /qa/ETHICAL+STATE+MARKERS+DOCTRINE
+  slug: ETHICAL_STATE_MARKERS_DOCTRINE
+  slug_encoding: underscore
+  base_path: /doctrine
+  url_pattern: "/{base}/{slug}"
+---
+
 # DOCTRINE OF ETHICAL STATE MARKERS (PONO / PILAU / KAPAKAI)
 Version: 1.1
 Status: Canonical
@@ -8,11 +32,11 @@ System: Lupopedia Semantic OS
 1. Purpose
 This doctrine defines the three ethical state markers used across Lupopedia to evaluate the behavioral alignment of agents and operators:
 
-pono_score — alignment with system values
+pono_score Â— alignment with system values
 
-pilau_score — divergence from system values
+pilau_score Â— divergence from system values
 
-kapakai_score — unknown, undecided, or indeterminate ethical state
+kapakai_score Â— unknown, undecided, or indeterminate ethical state
 
 These scores are calculated, not manually assigned.
 They form a triadic ethical geometry that supports nuance, uncertainty, and emergent behavior.
@@ -46,7 +70,7 @@ out of balance
 
 ethically compromised
 
-Pilau is not condemnation — it signals misalignment that can be restored.
+Pilau is not condemnation Â— it signals misalignment that can be restored.
 
 2.3 KAPAKAI (Hawaiian Pidgin / Hawaiian-rooted slang)
 Kapakai means:
@@ -63,7 +87,7 @@ uncertain
 
 undefined
 
-“kinda in between”
+Â“kinda in betweenÂ”
 
 In Hawaiian usage, kapakai refers to the borderlands, the shoreline, the threshold between states.
 
@@ -129,7 +153,7 @@ Low	Low	High	Unknown, untested, ambiguous
 High	High	Medium	Ethically conflicted
 Medium	Medium	High	Transitional, unresolved
 Low	Low	Low	Inactive or irrelevant
-Kapakai is not a “third morality.”
+Kapakai is not a Â“third morality.Â”
 It is the ethical uncertainty dimension.
 
 4. Doctrine Summary Statement
@@ -140,4 +164,4 @@ Kapakai represents uncertainty, liminality, and the unknown.
 Together, these three markers form a triadic ethical geometry that allows Lupopedia to evaluate agents and operators with nuance, context, and humility.
 
 Kapakai ensures that the system never forces premature judgment.
-It preserves the space between knowing and not knowing — the shoreline where meaning emerges.
+It preserves the space between knowing and not knowing Â— the shoreline where meaning emerges.

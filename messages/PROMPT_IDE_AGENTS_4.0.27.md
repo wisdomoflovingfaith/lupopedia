@@ -118,11 +118,11 @@ All IDE agents are hereby directed to begin comprehensive testing of the Crafty 
 - **Testing**: Extension functionality with production database
 - **Validation**: Ensure graceful degradation and offline capabilities
 
-### ANTIGRAVITY IDE (2035) - SEMANTIC API LEAD
-- **Primary Role**: Semantic API implementation and testing
-- **Focus Areas**: `/semantic/*` endpoints, request/response schemas
-- **Integration**: Connect semantic logic to database layer
-- **Documentation**: Update API specifications and examples
+### ANTIGRAVITY IDE (2035) - SCHEMA & SEMANTIC LEAD
+- **Primary Role**: Schema maintenance and Semantic API implementation
+- **Completed**: Resolved 4.0.27 schema mismatches (`lupo_actors`, `lupo_registry`, `lupo_anubis_log`).
+- **Focus Areas**: `/semantic/*` endpoints, request/response schemas, SQL integrity.
+- **Integration**: Ensure all new columns are properly utilized by agents.
 
 ### SHARED RESPONSIBILITIES
 - **Channel 42**: Primary coordination point for all IDE agents

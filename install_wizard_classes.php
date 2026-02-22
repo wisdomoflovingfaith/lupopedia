@@ -1304,7 +1304,7 @@ class InstallWizardChannels {
 }
 
 /**
- * Populate lupo_unified_unregistry with free IDs (gaps) in [0, max] for channels and actors
+ * Populate lupo_registry_open with free IDs (gaps) in [0, max] for channels and actors
  * so allocation (findpuka) can reuse them FIFO. Caps the range so the table does not grow huge.
  */
 class InstallWizardUnregistry {
@@ -1313,7 +1313,7 @@ class InstallWizardUnregistry {
     const DEFAULT_MAX_CAP = 500;
 
     /**
-     * Seed unified_unregistry with all free IDs from 0 to min(MAX(id), maxCap) for channels and actors.
+     * Seed registry_open with all free IDs from 0 to min(MAX(id), maxCap) for channels and actors.
      * If MAX(id) &gt; maxCap, only gaps in [0, maxCap] are added (keeps table size bounded).
      *
      * @param PDO $pdo
@@ -1324,7 +1324,7 @@ class InstallWizardUnregistry {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $ch = $prefix . 'channels';
         $actors_t = $prefix . 'actors';
-        $unreg = $prefix . 'unified_unregistry';
+        $unreg = $prefix . 'registry_open';
         $federationNodeId = 1;
         $now = (int) gmdate('YmdHis');
         $maxCap = (int) $maxCap;

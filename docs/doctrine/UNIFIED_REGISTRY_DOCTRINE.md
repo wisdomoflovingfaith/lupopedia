@@ -9,23 +9,23 @@ tags: ["registry", "unified", "doctrine", "flip"]
 mood_rgb: "98FB98"
 ---
 
-# Unified Registry Doctrine (Identity and Global IDs)
+# Registry Doctrine (Identity and Global IDs)
 
 **Status:** Permanent.  
 **Purpose:** Define the identity and update rules for the single global registry used by all Lupopedia installations.
 
 ---
 
-## 1. UNIFIED_REGISTRY — Reserved Index Ledger (NOT Config)
+## 1. REGISTRY — Reserved Index Ledger (NOT Config)
 
-- **lupo_unified_registry** is the **reserved index ledger**. It stores **all reserved IDs** for all entity types (channels, agents, actors, nodes, edges, etc.).
+- **lupo_registry** is the **reserved index ledger**. It stores **all reserved IDs** for all entity types (channels, agents, actors, nodes, edges, etc.).
 - It contains IDs that are active, soft-deleted, pending cleanup, or reserved but not yet implemented. It **prevents accidental reuse of IDs**.
-- It is **NOT** a configuration table. It is **NOT** a runtime lookup table. It is **NOT** where agent or service config lives. Runtime code (e.g. IRIS, LABS) must **never** load agent/service configuration from unified_registry.
+- It is **NOT** a configuration table. It is **NOT** a runtime lookup table. It is **NOT** where agent or service config lives. Runtime code (e.g. IRIS, LABS) must **never** load agent/service configuration from registry.
 - Canonical identity: **entity_type** + **entity_index**; **entity_table** names the table that owns that index. Use only for: ID reservation, ID existence checks, and allocation (e.g. MAX(entity_index)+1). **Never** for runtime config.
 
-## 2. UNIFIED_UNREGISTRY — Rolling Free List (NOT Config)
+## 2. REGISTRY_OPEN — Rolling Free List (NOT Config)
 
-- **lupo_unified_unregistry** is the **rolling free list**. It stores **only** IDs that were recently hard-deleted and are safe to reuse.
+- **lupo_registry_open** is the **rolling free list**. It stores **only** IDs that were recently hard-deleted and are safe to reuse.
 - Used by allocation logic (e.g. findpuka) to **pop freed IDs (FIFO)** before allocating new ones. Optional **metadata_json** stores a reference snapshot when the index was freed.
 - It is **NOT** a configuration table. It is **NOT** a runtime lookup table. Use only for freed-ID reuse and FIFO popping. **Never** for runtime config.
 
@@ -35,25 +35,25 @@ mood_rgb: "98FB98"
   - **lupo_actors**
   - **lupo_actor_properties**
 - **actor_type** determines whether the actor is: `agent`, `service`, `human`, `system`.
-- IRIS and any other runtime code **must** load agent/service configuration from **lupo_actors** and **lupo_actor_properties**, **not** from unified_registry.
+- IRIS and any other runtime code **must** load agent/service configuration from **lupo_actors** and **lupo_actor_properties**, **not** from registry.
 
 ## 4. Allocation Doctrine (findpuka)
 
-- **Step 1:** Check **unified_unregistry** for freed IDs (FIFO).
-- **Step 2:** If none exist, compute **MAX(entity_index)+1** from the target entity table (or from unified_registry for that entity_type).
-- **Step 3:** Insert the new ID into **unified_registry** immediately to reserve it.
-- unified_registry prevents collisions; unified_unregistry provides fast reuse.
+- **Step 1:** Check **registry_open** for freed IDs (FIFO).
+- **Step 2:** If none exist, compute **MAX(entity_index)+1** from the target entity table (or from registry for that entity_type).
+- **Step 3:** Insert the new ID into **registry** immediately to reserve it.
+- registry prevents collisions; registry_open provides fast reuse.
 
-## 5. PURPOSE OF THE UNIFIED REGISTRY (Legacy Summary)
+## 5. PURPOSE OF THE REGISTRY (Legacy Summary)
 
-- Every row in **lupo_unified_registry** has a **globally-agreed primary key ID** and an **entity_index** (the reserved ID in the table named by **entity_table**).
+- Every row in **lupo_registry** has a **globally-agreed primary key ID** and an **entity_index** (the reserved ID in the table named by **entity_table**).
 - All installations share the same reserved IDs so that system roles, channel roles, department roles, and cross-install data exchange remain consistent. **Config and runtime behavior** come from actors (and related) tables, not from the registry.
 
 ---
 
 ## 6. IDENTITY DOCTRINE
 
-- The primary key ID in **lupo_unified_registry** is a **GLOBAL IDENTITY**.
+- The primary key ID in **lupo_registry** is a **GLOBAL IDENTITY**.
 - It must **never** be auto-generated for system-defined rows.
 - It must **never** be renumbered.
 - It must **never** be changed after creation.

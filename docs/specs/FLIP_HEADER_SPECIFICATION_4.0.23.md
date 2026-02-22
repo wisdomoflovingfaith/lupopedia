@@ -1,3 +1,27 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+X-Lupo-File-Path: docs/specs/FLIP_HEADER_SPECIFICATION_4.0.23.md
+X-Lupo-Version: "4.0.27"
+X-Lupo-UTC-Timestamp: "20260222162242"
+X-Lupo-Channel: 42   # ANUBIS adoption channel
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool"
+X-Lupo-Location: "Sioux Falls, South Dakota, US"
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+web:
+  canonical: /specs/FLIP_HEADER_SPECIFICATION_4.0.23
+  aliases:
+    - /docs/FLIP_HEADER_SPECIFICATION_4.0.23
+    - /qa/FLIP+HEADER+SPECIFICATION+4.0.23
+  slug: FLIP_HEADER_SPECIFICATION_4.0.23
+  slug_encoding: underscore
+  base_path: /specs
+  url_pattern: "/{base}/{slug}"
+---
+
 # FLIP Header Specification (Lupopedia 4.0.23)
 
 ## Overview

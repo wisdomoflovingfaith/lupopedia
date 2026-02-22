@@ -20,7 +20,8 @@
  * @param string|null $atom_name Optional: return specific atom, or null for all
  * @return mixed|array|null
  */
-function load_atoms($atom_name = null) {
+function load_atoms($atom_name = null)
+{
     $loader = $GLOBALS['lupo_atom_loader'] ?? null;
     return $loader ? $loader->loadAtoms($atom_name) : null;
 }
@@ -31,7 +32,8 @@ function load_atoms($atom_name = null) {
  * @param string $atom_name e.g. 'GLOBAL_CURRENT_LUPOPEDIA_VERSION'
  * @return mixed|null
  */
-function get_atom($atom_name) {
+function get_atom($atom_name)
+{
     $loader = $GLOBALS['lupo_atom_loader'] ?? null;
     return $loader ? $loader->getAtom($atom_name) : load_atoms($atom_name);
 }
@@ -41,7 +43,8 @@ function get_atom($atom_name) {
  *
  * @return string
  */
-function get_lupopedia_version() {
+function get_lupopedia_version()
+{
     $loader = isset($GLOBALS['lupo_atom_loader']) ? $GLOBALS['lupo_atom_loader'] : null;
     if ($loader) {
         return $loader->getLupopediaVersion();
@@ -51,7 +54,7 @@ function get_lupopedia_version() {
         return $atom;
     }
     $a = load_atoms();
-    return (is_array($a) && isset($a['version'])) ? $a['version'] : '4.0.26';
+    return (is_array($a) && isset($a['version'])) ? $a['version'] : '4.0.27';
 }
 
 /**
@@ -60,8 +63,11 @@ function get_lupopedia_version() {
  * @param string $version e.g. "3.0.0"
  * @return int
  */
-function calculate_version_num($version) {
-    return class_exists('App\Support\VersionUtils') ? \App\Support\VersionUtils::calculateVersionNum((string) $version) : (function($v) { $p = explode('.', $v); return ((int)($p[0]??0)*10000) + ((int)($p[1]??0)*100) + (int)($p[2]??0); })($version);
+function calculate_version_num($version)
+{
+    return class_exists('App\Support\VersionUtils') ? \App\Support\VersionUtils::calculateVersionNum((string) $version) : (function ($v) {
+        $p = explode('.', $v);
+        return ((int) ($p[0] ?? 0) * 10000) + ((int) ($p[1] ?? 0) * 100) + (int) ($p[2] ?? 0); })($version);
 }
 
 // ---------------------------------------------------------------------------
@@ -77,7 +83,8 @@ function calculate_version_num($version) {
  * @param string $path Absolute path to YAML file
  * @return array
  */
-function _parse_atoms_yaml($path) {
+function _parse_atoms_yaml($path)
+{
     $loader = $GLOBALS['lupo_atom_loader'] ?? null;
     return $loader ? $loader->parseAtomsYaml($path) : [];
 }
@@ -88,7 +95,8 @@ function _parse_atoms_yaml($path) {
  * @param string $content Raw YAML content
  * @return array
  */
-function _parse_atoms_yaml_regex($content) {
+function _parse_atoms_yaml_regex($content)
+{
     $loader = $GLOBALS['lupo_atom_loader'] ?? null;
     return $loader ? $loader->parseAtomsYamlRegex($content) : [];
 }
@@ -98,7 +106,8 @@ function _parse_atoms_yaml_regex($content) {
  *
  * @return array
  */
-function read_cosmic_microwave_background() {
+function read_cosmic_microwave_background()
+{
     $loader = $GLOBALS['lupo_atom_loader'] ?? null;
     return $loader ? $loader->readCosmicMicrowaveBackground() : [];
 }
@@ -109,7 +118,8 @@ function read_cosmic_microwave_background() {
  * @param string $key e.g. 'GLOBAL_CURRENT_LUPOPEDIA_VERSION', 'authors.primary'
  * @return mixed|null
  */
-function get_base_atom($key) {
+function get_base_atom($key)
+{
     $loader = $GLOBALS['lupo_atom_loader'] ?? null;
     return $loader ? $loader->getBaseAtom((string) $key) : null;
 }

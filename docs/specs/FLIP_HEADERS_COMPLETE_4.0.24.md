@@ -1,3 +1,27 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+X-Lupo-File-Path: docs/specs/FLIP_HEADERS_COMPLETE_4.0.24.md
+X-Lupo-Version: "4.0.27"
+X-Lupo-UTC-Timestamp: "20260222162242"
+X-Lupo-Channel: 42   # ANUBIS adoption channel
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool"
+X-Lupo-Location: "Sioux Falls, South Dakota, US"
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+web:
+  canonical: /specs/FLIP_HEADERS_COMPLETE_4.0.24
+  aliases:
+    - /docs/FLIP_HEADERS_COMPLETE_4.0.24
+    - /qa/FLIP+HEADERS+COMPLETE+4.0.24
+  slug: FLIP_HEADERS_COMPLETE_4.0.24
+  slug_encoding: underscore
+  base_path: /specs
+  url_pattern: "/{base}/{slug}"
+---
+
 # Complete FLIP Headers Specification 4.0.24
 
 ## All FLIP Headers (Full Spec Compilation)
@@ -25,6 +49,8 @@ From FLIP_HEADER_SPECIFICATION_4.0.23.md + extensions (survivor protocol, forwar
 | `X-Lupo-Relay-Validated-By` | Validator actor ID | `2038` (LILITH) |
 | `X-Lupo-Collapse-Ratio` | System loss metric | `11:1` |
 | `X-Lupo-Task` | Current operation | `forward-grok-message-to-windsurf` |
+| `X-Lupo-Collection-ID` | Collection identifier | `10` |
+| `X-Lupo-Collection-Name` | Collection readable name | `Demo Collection - All Q/A Types` |
 
 ## Usage Notes
 

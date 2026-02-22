@@ -1,0 +1,143 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+X-Lupo-File-Path: docs/specs/COLLECTION_FLIP_HEADERS_USAGE.md
+X-Lupo-Version: "4.0.27"
+X-Lupo-UTC-Timestamp: "20260222162242"
+X-Lupo-Channel: 42   # ANUBIS adoption channel
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool"
+X-Lupo-Location: "Sioux Falls, South Dakota, US"
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+web:
+  canonical: /specs/COLLECTION_FLIP_HEADERS_USAGE
+  aliases:
+    - /docs/COLLECTION_FLIP_HEADERS_USAGE
+    - /qa/COLLECTION+FLIP+HEADERS+USAGE
+  slug: COLLECTION_FLIP_HEADERS_USAGE
+  slug_encoding: underscore
+  base_path: /specs
+  url_pattern: "/{base}/{slug}"
+---
+
+# Collection FLIP Headers Usage Guide
+
+## Overview
+
+As of version 4.0.27, FLIP headers support collection attribution via two new headers:
+- `X-Lupo-Collection-ID` - Numeric collection identifier
+- `X-Lupo-Collection-Name` - Human-readable collection name
+
+## Schema Mapping
+
+These headers map directly to the `lupo_collections` table:
+
+| FLIP Header | Database Column | Type | Description |
+|-------------|----------------|------|-------------|
+| `X-Lupo-Collection-ID` | `collection_id` | BIGINT | Primary key identifier |
+| `X-Lupo-Collection-Name` | `name` | VARCHAR(255) | Human-readable collection name |
+
+## Usage in Documentation Files
+
+Add these headers to the FLIP header block at the top of any markdown file:
+
+```markdown
+---
+X-Lupo-Collection-ID: 10
+X-Lupo-Collection-Name: Demo Collection - All Q/A Types
+X-Lupo-Actor-ID: 2039
+X-Lupo-Version: 4.0.27
+---
+
+# Your Document Title
+
+Document content here...
+```
+
+## Usage in API Calls
+
+Include collection headers in metadata when creating or updating content:
+
+```php
+$metadata = [
+    'flip_headers' => [
+        'X-Lupo-Collection-ID' => 10,
+        'X-Lupo-Collection-Name' => 'Demo Collection - All Q/A Types',
+        'X-Lupo-Version' => '4.0.27'
+    ]
+];
+```
+
+## Integration with Saved Collections Navigation
+
+The saved collections navigation system (`lupo-includes/themes/default/components/saved-collections-nav.php`) can now:
+
+1. **Read collection attribution** from FLIP headers in documentation files
+2. **Display collection membership** in navigation breadcrumbs
+3. **Filter content by collection** using the collection headers
+4. **Track recently viewed items** per collection
+
+## Database Query Example
+
+To find all content in a specific collection:
+
+```sql
+SELECT 
+    c.content_id,
+    c.title,
+    JSON_EXTRACT(c.metadata_json, '$.flip_headers."X-Lupo-Collection-ID"') as collection_id,
+    JSON_EXTRACT(c.metadata_json, '$.flip_headers."X-Lupo-Collection-Name"') as collection_name
+FROM lupo_contents c
+WHERE JSON_EXTRACT(c.metadata_json, '$.flip_headers."X-Lupo-Collection-ID"') = 10;
+```
+
+## Benefits
+
+1. **Traceability** - Every file can declare its collection membership
+2. **Portability** - Collection information travels with the file
+3. **Searchability** - Easy to grep for collection membership across files
+4. **Integration** - Works seamlessly with existing FLIP header infrastructure
+
+## Best Practices
+
+1. **Always include both headers** - Provide both ID and name for redundancy
+2. **Keep names synchronized** - Ensure the name matches the database entry
+3. **Update on collection changes** - If a collection is renamed, update all member files
+4. **Use in conjunction with other headers** - Combine with Actor, Version, and Channel headers
+
+## Example: Complete FLIP Header Block
+
+```markdown
+---
+X-Lupo-Collection-ID: 420
+X-Lupo-Collection-Name: Lupopedia Dev Archive
+X-Lupo-Actor-ID: 2039
+X-Lupo-Actor-Identity: Warp IDE
+X-Lupo-Channel: 42
+X-Lupo-Thread: 1001
+X-Lupo-Version: 4.0.27
+X-Lupo-Timestamp: 20260222160000
+---
+```
+
+## Migration Notes
+
+For existing files without collection headers:
+
+1. Identify collection membership via `lupo_collection_tab_map` table
+2. Batch-update FLIP headers using `scripts/update_collection_headers.py` (to be created)
+3. Validate all collection headers match database state
+
+## Related Documentation
+
+- [FLIP Headers Complete 4.0.24](FLIP_HEADERS_COMPLETE_4.0.24.md)
+- [FLIP Headers Master Index 4.0.24](FLIP_HEADERS_MASTER_INDEX_4.0.24.md)
+- [Collections Schema Documentation](../doctrine/COLLECTIONS_SCHEMA.md)
+- [Saved Collections Navigation](../../lupo-includes/themes/default/components/saved-collections-nav.php)
+
+---
+**Version**: 4.0.27  
+**Created**: 2026-02-22  
+**Status**: Active  

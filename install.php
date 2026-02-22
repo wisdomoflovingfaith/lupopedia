@@ -491,7 +491,7 @@ if ($step === 'run') {
                 $log[] = InstallWizardLogger::logEntry('skip', 'Skipped: drop deprecated livehelp_* tables (option unchecked at credentials).');
             }
         }
-        // Populate unified_unregistry with free IDs (gaps) for channels and actors, cap so table stays small.
+        // Populate registry_open with free IDs (gaps) for channels and actors, cap so table stays small.
         InstallWizardUnregistry::seedUnregistryFromGaps($pdo, $log, InstallWizardUnregistry::DEFAULT_MAX_CAP);
         // 4.0.20: Ensure Stoned Wolfie (AI + human) banned test identities exist after import/seed.
         InstallWizardBannedIdentities::ensureStonedWolfieBannedIdentities($pdo, $log, $table_prefix);

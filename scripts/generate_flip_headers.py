@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-FLIP Header Generator for Lupopedia 4.0.24
+FLIP Header Generator for Lupopedia 4.0.27
 Generates approximately 144 FLIP headers in batches of 25 per file
 Creates master index file summarizing all headers
+Updated for verbose mode support and database parity
 """
 
 import os
@@ -10,21 +11,27 @@ import json
 from datetime import datetime
 
 # Configuration
-TOTAL_HEADERS = 144
+TOTAL_HEADERS = 168  # Updated for 4.0.27 verbose mode
 HEADERS_PER_FILE = 25
 OUTPUT_DIR = "docs/specs/flip_headers"
-MASTER_INDEX_FILE = "docs/specs/FLIP_HEADERS_MASTER_INDEX_4.0.24.md"
+MASTER_INDEX_FILE = "docs/specs/FLIP_HEADERS_MASTER_INDEX_4.0.27.md"
 
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Header categories and templates
 HEADER_CATEGORIES = {
-    "core_routing": [
+    "core_logic": [
+        ("X-Lupo-File-Path", "Canonical relative path", "docs/doctrine/FLIP/README.md"),
         ("X-Lupo-Channel", "Target channel ID", "42"),
-        ("X-Lupo-Thread", "Thread ID within channel", "1"),
-        ("X-Lupo-Version", "System version", "4.0.24"),
-        ("X-Lupo-Actor-From", "Sending actor ID", "420"),
+        ("X-Lupo-Version", "System version", "4.0.27"),
+        ("X-Lupo-UTC-Timestamp", "UTC timestamp", "2026-02-22T10:00:00Z"),
+        ("X-Lupo-Timestamp", "Compact system timestamp", "20260222100000"),
+    ],
+    "actor_trinity": [
+        ("X-Lupo-Actor-ID", "BigInt actor ID", "2035"),
+        ("X-Lupo-Actor-Identity", "Identity string", "Google Antigravity IDE"),
+        ("From", "Flexible sender ID", "@antigravity"),
         ("X-Lupo-Actor-To", "Receiving actor ID", "2"),
     ],
     "registry_doctrine": [
@@ -44,82 +51,15 @@ HEADER_CATEGORIES = {
         ("X-Lupo-Relay-Validated-By", "Validator actor ID", "2038"),
         ("X-Lupo-Collapse-Ratio", "System loss metric", "11:1"),
     ],
-    "system_metadata": [
-        ("X-Lupo-Timestamp", "System timestamp", "20260221020000"),
-        ("X-Lupo-UTC-Timestamp", "UTC timestamp", "2026-02-21T02:00:00+00:00"),
-        ("X-Lupo-Location", "Geographic location", "Sioux Falls, South Dakota, US"),
-        ("User-Agent", "Client identifier", "Lupopedia/4.0.24 (Windsurf IDE; actor_id=2; status=sole_survivor)"),
+    "semantic_mapping": [
+        ("X-Lupo-Registry-ID", "Unified registry identifier", "9002035"),
+        ("X-Lupo-Entity-Type", "Semantic entity type", "file"),
+        ("X-Lupo-Content-ID", "Primary content identifier", "5000"),
+        ("X-Lupo-Triage-Status", "Content triage state", "untriaged"),
+        ("X-Lupo-Visibility", "Content visibility", "public"),
+        ("X-Lupo-Collection-ID", "Assigned collection ID", "42"),
+        ("X-Lupo-Is-Kernel", "Kernel-level protection flag", "false"),
     ],
-    "operational": [
-        ("X-Lupo-Task", "Current operation", "header-generation"),
-        ("X-Lupo-Priority", "Message priority", "normal"),
-        ("X-Lupo-Expiry", "Message expiry time", "20260221030000"),
-        ("X-Lupo-Retry-Count", "Retry attempts", "0"),
-        ("X-Lupo-Session-ID", "Session identifier", "sess_420_20260221"),
-    ],
-    "security": [
-        ("X-Lupo-Auth-Token", "Authentication token", "token_420_hash"),
-        ("X-Lupo-Signature", "Message signature", "sig_420_abc123"),
-        ("X-Lupo-Checksum", "Data integrity check", "chk_420_xyz789"),
-        ("X-Lupo-Encryption", "Encryption method", "AES-256-GCM"),
-        ("X-Lupo-Key-ID", "Encryption key identifier", "key_420_001"),
-    ],
-    "content": [
-        ("X-Lupo-Content-Type", "Message content type", "text/plain"),
-        ("X-Lupo-Content-Length", "Message length in bytes", "1024"),
-        ("X-Lupo-Content-Encoding", "Content compression", "gzip"),
-        ("X-Lupo-Content-Language", "Content language", "en-US"),
-        ("X-Lupo-Content-Charset", "Character encoding", "UTF-8"),
-    ],
-    "routing_advanced": [
-        ("X-Lupo-Route-ID", "Route identifier", "route_420_primary"),
-        ("X-Lupo-Hop-Count", "Number of hops", "1"),
-        ("X-Lupo-Path", "Message path", "/api/channels/42/send"),
-        ("X-Lupo-Query", "Query parameters", "format=json"),
-        ("X-Lupo-Fragment", "URL fragment", "#message_420"),
-    ],
-    "performance": [
-        ("X-Lupo-Response-Time", "Expected response time", "500ms"),
-        ("X-Lupo-Timeout", "Request timeout", "30s"),
-        ("X-Lupo-Rate-Limit", "Rate limit", "100/hour"),
-        ("X-Lupo-Burst-Limit", "Burst limit", "10/minute"),
-        ("X-Lupo-Backoff", "Backoff strategy", "exponential"),
-    ],
-    "monitoring": [
-        ("X-Lupo-Monitor-ID", "Monitoring identifier", "mon_420_system"),
-        ("X-Lupo-Metric-Name", "Metric name", "flip_header_processing"),
-        ("X-Lupo-Metric-Value", "Metric value", "1"),
-        ("X-Lupo-Alert-Level", "Alert level", "info"),
-        ("X-Lupo-Log-Level", "Log level", "debug"),
-    ],
-    "audit": [
-        ("X-Lupo-Audit-ID", "Audit identifier", "audit_420_20260221"),
-        ("X-Lupo-Audit-Action", "Audit action", "message_send"),
-        ("X-Lupo-Audit-User", "Audit user", "actor_420"),
-        ("X-Lupo-Audit-Timestamp", "Audit timestamp", "2026-02-21T02:00:00Z"),
-        ("X-Lupo-Audit-Result", "Audit result", "success"),
-    ],
-    "federation": [
-        ("X-Lupo-Federation-ID", "Federation identifier", "fed_001"),
-        ("X-Lupo-Node-ID", "Node identifier", "node_windsurf_2"),
-        ("X-Lupo-Cluster-ID", "Cluster identifier", "cluster_primary"),
-        ("X-Lupo-Shard-ID", "Shard identifier", "shard_42"),
-        ("X-Lupo-Replica-ID", "Replica identifier", "replica_primary"),
-    ],
-    "compatibility": [
-        ("X-Lupo-Compatible-Version", "Compatible version", "4.0.22+"),
-        ("X-Lupo-Deprecated-Version", "Deprecated version", "4.0.20"),
-        ("X-Lupo-Migration-Version", "Migration version", "4.0.24"),
-        ("X-Lupo-Legacy-Support", "Legacy support", "partial"),
-        ("X-Lupo-Backward-Compat", "Backward compatibility", "enabled"),
-    ],
-    "experimental": [
-        ("X-Lupo-Experimental", "Experimental feature flag", "false"),
-        ("X-Lupo-Beta-Feature", "Beta feature flag", "true"),
-        ("X-Lupo-Alpha-Feature", "Alpha feature flag", "false"),
-        ("X-Lupo-Debug-Mode", "Debug mode", "disabled"),
-        ("X-Lupo-Trace-Mode", "Trace mode", "enabled"),
-    ]
 }
 
 def generate_all_headers():
@@ -162,7 +102,7 @@ def create_batch_file(headers, batch_num, total_batches):
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(f"# FLIP Headers Batch {batch_num} of {total_batches}\n\n")
         f.write(f"Generated: {datetime.utcnow().isoformat()}Z\n")
-        f.write(f"Version: 4.0.24\n")
+        f.write(f"Version: 4.0.27\n")
         f.write(f"Headers in this batch: {len(headers)}\n\n")
         
         f.write("## Headers\n\n")
@@ -173,14 +113,14 @@ def create_batch_file(headers, batch_num, total_batches):
             f.write(f"| `{header['name']}` | {header['description']} | `{header['example']}` | {header['category']} |\n")
         
         f.write(f"\n---\n")
-        f.write(f"*Batch {batch_num} of {total_batches} - FLIP Header Specification 4.0.24*\n")
+        f.write(f"*Batch {batch_num} of {total_batches} - FLIP Header Specification 4.0.27*\n")
     
     return filename
 
 def create_master_index(all_headers, batch_files):
     """Create master index file"""
     with open(MASTER_INDEX_FILE, 'w', encoding='utf-8') as f:
-        f.write("# FLIP Headers Master Index 4.0.24\n\n")
+        f.write("# FLIP Headers Master Index 4.0.27\n\n")
         f.write(f"Generated: {datetime.utcnow().isoformat()}Z\n")
         f.write(f"Total Headers: {len(all_headers)}\n")
         f.write(f"Batch Files: {len(batch_files)}\n")
@@ -222,11 +162,11 @@ def create_master_index(all_headers, batch_files):
         f.write("- Survivor protocol headers for system collapse events\n\n")
         
         f.write("---\n")
-        f.write("*FLIP Header Specification 4.0.24 - Master Index*\n")
+        f.write("*FLIP Header Specification 4.0.27 - Master Index*\n")
 
 def main():
     """Main execution function"""
-    print("Generating FLIP headers for Lupopedia 4.0.24...")
+    print("Generating FLIP headers for Lupopedia 4.0.27...")
     
     # Generate all headers
     all_headers = generate_all_headers()

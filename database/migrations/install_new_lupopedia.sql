@@ -15,11 +15,17 @@ CREATE TABLE lupo_actors (
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   actor_source_id bigint DEFAULT NULL,
-  actor_source_type varchar(50) DEFAULT NULL,
+  actor_source_type varchar(64) DEFAULT NULL,
   metadata text,
   adversarial_role varchar(64) DEFAULT 'none',
   adversarial_oversight_actor_id bigint DEFAULT NULL,
   avatar_hash varchar(64) DEFAULT NULL,
+  primary_federation_node_id bigint NOT NULL DEFAULT 1,
+  department_id bigint DEFAULT NULL,
+  is_kernel tinyint NOT NULL DEFAULT '0',
+  can_login tinyint NOT NULL DEFAULT '0',
+  metadata_json json DEFAULT NULL,
+  identity_provider_config json DEFAULT NULL,
   paired_actor_id bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (actor_id)
 );
@@ -846,6 +852,23 @@ CREATE UNIQUE INDEX lupo_analytics_visits_periods_uq_visits_period ON lupo_analy
 CREATE INDEX lupo_analytics_visits_periods_idx_period_date ON lupo_analytics_visits_periods (period_date);
 CREATE INDEX lupo_analytics_visits_periods_idx_content ON lupo_analytics_visits_periods (content_id, period_date);
 CREATE INDEX lupo_analytics_visits_periods_idx_department ON lupo_analytics_visits_periods (department_id, period_date);
+
+CREATE TABLE lupo_anubis_log (
+  log_id bigint NOT NULL AUTO_INCREMENT,
+  message_id bigint NOT NULL DEFAULT 0,
+  adopted_actor_id bigint NOT NULL DEFAULT 0,
+  adoption_reason text,
+  resolver_method varchar(64) DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (log_id)
+);
+
+CREATE INDEX lupo_anubis_log_idx_message_id ON lupo_anubis_log (message_id);
+CREATE INDEX lupo_anubis_log_idx_actor_id ON lupo_anubis_log (adopted_actor_id);
+CREATE INDEX lupo_anubis_log_idx_created ON lupo_anubis_log (created_ymdhis);
 
 CREATE TABLE lupo_anubis_deletion_log (
   anubis_deletion_id bigint NOT NULL,
@@ -3607,13 +3630,22 @@ ALTER TABLE lupo_unified_referers CHANGE referer_id referer_id bigint NOT NULL A
 
 CREATE TABLE lupo_registry (
   registry_id bigint NOT NULL AUTO_INCREMENT,
-  unified_registry_id bigint NOT NULL DEFAULT 0,
   entity_type varchar(50) NOT NULL,
-  entity_index_id bigint NOT NULL,
+  entity_index_id bigint NOT NULL DEFAULT 0,
   entity_index bigint NOT NULL DEFAULT 0,
   federation_node_id bigint NOT NULL DEFAULT 0,
   reserved_ymdhis bigint NOT NULL DEFAULT 0,
   metadata text,
+  entity_key varchar(255) DEFAULT NULL,
+  entity_name varchar(255) DEFAULT NULL,
+  entity_table varchar(255) DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  is_active tinyint NOT NULL DEFAULT 1,
+  is_kernel tinyint NOT NULL DEFAULT 0,
+  metadata_json text,
   PRIMARY KEY (registry_id)
 );
 
@@ -3763,13 +3795,15 @@ CREATE TABLE `lupo_actor_aliases` (
     PRIMARY KEY (`alias_id`)
 );
 
--- Required seed atoms (minimal bootstrap). Expand via database/install/ seed scripts.
--- INSERT lupo_atoms for GLOBAL_CURRENT_LUPOPEDIA_VERSION and kernel actors/channels as needed.
---
--- Human operator (captain@lupopedia.com): actor_id 1000, full access. Full seed in seed_lupopedia.sql.
-SET @now = 20260220000000;
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata, adversarial_role, adversarial_oversight_actor_id, avatar_hash) VALUES (1000, 'human', 'captain', 'CAPTAIN', @now, @now, 1, 0, NULL, NULL, 'human', '{"email":"captain@lupopedia.com","status":"A"}', 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
-INSERT INTO lupo_registry (registry_id, unified_registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) VALUES (9001000, 9001000, 'actor', 1000, 1000, 'captain', 'CAPTAIN', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"email":"captain@lupopedia.com","actor_source_type":"human"}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
+-- ============================================================
+-- SEED DATA REMOVED - USE seed_minimal_4.0.26.sql INSTEAD
+-- ============================================================
+-- ALL SEED DATA COMMENTED OUT (2026-02-22)
+-- Reason: Schema mismatches between INSERT column names and actual table definitions
+-- Solution: Seed data moved to database/migrations/seed_minimal_4.0.26.sql
+-- This file now contains ONLY table definitions (CREATE TABLE statements)
+-- install.php loads schema from this file, then seeds from seed_minimal_4.0.26.sql
+-- ============================================================
 
 -- ============================================================
 -- FINAL IDE & AI ACTOR INTEGRATION (Lupopedia 4.0.23)
@@ -3780,16 +3814,16 @@ INSERT INTO lupo_registry (registry_id, unified_registry_id, entity_type, entity
 -- ============================================================
 
 -- Registry entries for all IDE & AI actors
-INSERT IGNORE INTO lupo_registry (registry_id, unified_registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
+INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
 VALUES 
-(9002031, 9002031, 'actor', 2031, 2031, 'cursor-ide', 'Cursor IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"cursor","provider":"cursor","purpose":"IDE_integration","csv_allocation":true}'),
-(9002032, 9002032, 'actor', 2032, 2032, 'kiro-ide', 'Kiro IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"kiro","provider":"kiro","purpose":"IDE_integration","csv_allocation":true}'),
-(9002033, 9002033, 'actor', 2033, 2033, 'zed-ide', 'Zed IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"zed","provider":"zed","purpose":"IDE_integration","csv_allocation":true}'),
-(9002034, 9002034, 'actor', 2034, 2034, 'vscode-ide', 'VS Code IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"vscode","provider":"microsoft","purpose":"IDE_integration","csv_allocation":true}'),
-(9002035, 9002035, 'actor', 2035, 2035, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"antigravity","purpose":"VSX_extension_development","csv_allocation":true}'),
-(9002036, 9002036, 'actor', 2036, 2036, 'microsoft-copilot', 'Microsoft Copilot', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"copilot","provider":"microsoft","purpose":"AI_assistant","csv_allocation":true}'),
-(9002037, 9002037, 'actor', 2037, 2037, 'deepseek-lexa', 'DeepSeek LEXA', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lexa","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}'),
-(9002038, 9002038, 'actor', 2038, 2038, 'deepseek-lilith', 'DeepSeek LILITH', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lilith","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}')
+(9002031, 'actor', 2031, 2031, 'cursor-ide', 'Cursor IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"cursor","provider":"cursor","purpose":"IDE_integration","csv_allocation":true}'),
+(9002032, 'actor', 2032, 2032, 'kiro-ide', 'Kiro IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"kiro","provider":"kiro","purpose":"IDE_integration","csv_allocation":true}'),
+(9002033, 'actor', 2033, 2033, 'zed-ide', 'Zed IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"zed","provider":"zed","purpose":"IDE_integration","csv_allocation":true}'),
+(9002034, 'actor', 2034, 2034, 'vscode-ide', 'VS Code IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"vscode","provider":"microsoft","purpose":"IDE_integration","csv_allocation":true}'),
+(9002035, 'actor', 2035, 2035, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"antigravity","purpose":"VSX_extension_development","csv_allocation":true}'),
+(9002036, 'actor', 2036, 2036, 'microsoft-copilot', 'Microsoft Copilot', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"copilot","provider":"microsoft","purpose":"AI_assistant","csv_allocation":true}'),
+(9002037, 'actor', 2037, 2037, 'deepseek-lexa', 'DeepSeek LEXA', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lexa","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}'),
+(9002038, 'actor', 2038, 2038, 'deepseek-lilith', 'DeepSeek LILITH', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lilith","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}')
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- Actor records for all IDE & AI actors
@@ -3823,33 +3857,33 @@ INSERT INTO lupo_channels (
 );
 
 -- Channel 42 membership: All 25 active actors (excluding actor_id 420)
-INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, default_actor_id, department_id, channel_key, channel_slug, channel_type, language, channel_name, description, website_link, metadata_json, status_flag, end_ymdhis, duration_seconds, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_kernel, boot_sequence_order) 
+INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, created_ymdhis, updated_ymdhis, is_deleted) 
 VALUES 
-(12001, 1, 42, 1, 1, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 1),
-(12002, 2, 42, 1, 2, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 2),
-(12003, 3, 42, 1, 3, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 3),
-(12004, 4, 42, 1, 4, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 4),
-(12005, 5, 42, 1, 5, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 5),
-(12006, 6, 42, 1, 6, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 6),
-(12007, 7, 42, 1, 7, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 7),
-(12008, 8, 42, 1, 8, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 8),
-(12009, 9, 42, 1, 9, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 9),
-(12010, 10, 42, 1, 10, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 10),
-(12011, 11, 42, 1, 11, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 11),
-(12012, 12, 42, 1, 12, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 12),
-(12013, 13, 42, 1, 13, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 13),
-(12014, 14, 42, 1, 14, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 14),
-(12015, 15, 42, 1, 15, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 15),
-(12016, 16, 42, 1, 16, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 16),
-(12017, 17, 42, 1, 17, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 17),
-(12018, 18, 42, 1, 18, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 18),
-(12019, 19, 42, 1, 19, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 19),
-(12020, 20, 42, 1, 20, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 20),
-(12021, 21, 42, 1, 21, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 21),
-(12022, 22, 42, 1, 22, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 22),
-(12023, 23, 42, 1, 23, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 23),
-(12024, 24, 42, 1, 24, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 24),
-(12025, 25, 42, 1, 25, 0, 'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 'Main development channel for Lupopedia system development, architecture, and coordination.', NULL, '{"purpose":"development","system":true}', 1, NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 0, 25)
+(12001, 1, 42, 1, 20260221000000, 20260221000000, 0),
+(12002, 2, 42, 1, 20260221000000, 20260221000000, 0),
+(12003, 3, 42, 1, 20260221000000, 20260221000000, 0),
+(12004, 4, 42, 1, 20260221000000, 20260221000000, 0),
+(12005, 5, 42, 1, 20260221000000, 20260221000000, 0),
+(12006, 6, 42, 1, 20260221000000, 20260221000000, 0),
+(12007, 7, 42, 1, 20260221000000, 20260221000000, 0),
+(12008, 8, 42, 1, 20260221000000, 20260221000000, 0),
+(12009, 9, 42, 1, 20260221000000, 20260221000000, 0),
+(12010, 10, 42, 1, 20260221000000, 20260221000000, 0),
+(12011, 11, 42, 1, 20260221000000, 20260221000000, 0),
+(12012, 12, 42, 1, 20260221000000, 20260221000000, 0),
+(12013, 13, 42, 1, 20260221000000, 20260221000000, 0),
+(12014, 14, 42, 1, 20260221000000, 20260221000000, 0),
+(12015, 15, 42, 1, 20260221000000, 20260221000000, 0),
+(12016, 16, 42, 1, 20260221000000, 20260221000000, 0),
+(12017, 17, 42, 1, 20260221000000, 20260221000000, 0),
+(12018, 18, 42, 1, 20260221000000, 20260221000000, 0),
+(12019, 19, 42, 1, 20260221000000, 20260221000000, 0),
+(12020, 20, 42, 1, 20260221000000, 20260221000000, 0),
+(12021, 21, 42, 1, 20260221000000, 20260221000000, 0),
+(12022, 22, 42, 1, 20260221000000, 20260221000000, 0),
+(12023, 23, 42, 1, 20260221000000, 20260221000000, 0),
+(12024, 24, 42, 1, 20260221000000, 20260221000000, 0),
+(12025, 25, 42, 1, 20260221000000, 20260221000000, 0)
 ON DUPLICATE KEY UPDATE 
     actor_id = VALUES(actor_id),
     channel_id = VALUES(channel_id),
@@ -3879,8 +3913,8 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 -- ============================================================
 
 -- Registry entry for Warp IDE
-INSERT IGNORE INTO lupo_registry (registry_id, unified_registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
-VALUES (9002039, 9002039, 'actor', 2039, 2039, 'warp-ide', 'Warp IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"warp","provider":"warp","purpose":"IDE_integration","paired_actor_id":10000}')
+INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+VALUES (9002039, 'actor', 2039, 2039, 'warp-ide', 'Warp IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"warp","provider":"warp","purpose":"IDE_integration","paired_actor_id":10000}')
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- Actor record for Warp IDE (with paired_actor_id)
@@ -3906,8 +3940,8 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 -- ============================================================
 
 -- Registry entry for Windsurf IDE
-INSERT IGNORE INTO lupo_registry (registry_id, unified_registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
-VALUES (9002040, 9002040, 'actor', 2040, 2040, 'windsurf-ide', 'Windsurf IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"windsurf","provider":"windsurf","purpose":"IDE_integration","paired_actor_id":10000}')
+INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+VALUES (9002040, 'actor', 2040, 2040, 'windsurf-ide', 'Windsurf IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"windsurf","provider":"windsurf","purpose":"IDE_integration","paired_actor_id":10000}')
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- Actor record for Windsurf IDE (with paired_actor_id)

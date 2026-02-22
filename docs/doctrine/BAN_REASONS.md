@@ -1,3 +1,27 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+X-Lupo-File-Path: docs/doctrine/BAN_REASONS.md
+X-Lupo-Version: "4.0.27"
+X-Lupo-UTC-Timestamp: "20260222162242"
+X-Lupo-Channel: 42   # ANUBIS adoption channel
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool"
+X-Lupo-Location: "Sioux Falls, South Dakota, US"
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+web:
+  canonical: /doctrine/BAN_REASONS
+  aliases:
+    - /docs/BAN_REASONS
+    - /qa/BAN+REASONS
+  slug: BAN_REASONS
+  slug_encoding: underscore
+  base_path: /doctrine
+  url_pattern: "/{base}/{slug}"
+---
+
 # Ban Reasons – Canonical Enum (Lupopedia 4.0.24)
 
 ## Overview

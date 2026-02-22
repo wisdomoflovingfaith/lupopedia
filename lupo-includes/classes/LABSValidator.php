@@ -571,7 +571,7 @@ class LABS_Validator {
     
     /**
      * Check if UTC_TIMEKEEPER agent is available (from actors table).
-     * Doctrine: Agent/service config and availability come from lupo_actors, not unified_registry.
+     * Doctrine: Agent/service config and availability come from lupo_actors, not registry.
      *
      * @return bool True if agent exists and is active
      */

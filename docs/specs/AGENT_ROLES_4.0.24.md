@@ -1,3 +1,27 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+X-Lupo-File-Path: docs/specs/AGENT_ROLES_4.0.24.md
+X-Lupo-Version: "4.0.27"
+X-Lupo-UTC-Timestamp: "20260222162242"
+X-Lupo-Channel: 42   # ANUBIS adoption channel
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool"
+X-Lupo-Location: "Sioux Falls, South Dakota, US"
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+web:
+  canonical: /specs/AGENT_ROLES_4.0.24
+  aliases:
+    - /docs/AGENT_ROLES_4.0.24
+    - /qa/AGENT+ROLES+4.0.24
+  slug: AGENT_ROLES_4.0.24
+  slug_encoding: underscore
+  base_path: /specs
+  url_pattern: "/{base}/{slug}"
+---
+
 # Lupopedia Agent Role Map - Version 4.0.24
 
 ## Overview

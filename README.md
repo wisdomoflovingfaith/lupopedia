@@ -361,11 +361,11 @@ The root node (`federated_node_id` 0) is hosted at **lupopedia.com**, serving as
 
 Lupopedia uses a three-table registry system for entity lifecycle management:
 
-- **`lupo_registry`** — Canonical registry. Every allocated actor, channel, and collection has a row here with `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `federation_node_id`, and `metadata_json`.  
+- **`lupo_registry`** — Canonical registry. Every allocated actor, channel, and collection has a row here with `registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `federation_node_id`, and `metadata_json`.  
 - **`lupo_registry_open`** (unregistry) — Available/unallocated IDs. When an ID is allocated, it is removed from `registry_open` and inserted into `registry`.  
 - **`lupo_registry_import`** — Staging table for incoming federated data. Import payloads land here before collision resolution promotes them to `registry`.  
 
-Registry IDs follow the formula: `unified_registry_id = 900XXXX` where `XXXX` is the `entity_index` (e.g., actor 2039 → registry 9002039).
+Registry IDs follow the formula: `registry_id = 900XXXX` where `XXXX` is the `entity_index` (e.g., actor 2039 → registry 9002039).
 
 ##### D. Import & Collision Resolution
 
@@ -373,7 +373,7 @@ When importing actors from external sources or federated nodes, ID collisions ca
 
 **Example: Actor 420 Collision**  
 Actor 420 (`Stoned Wolfie AI`) was originally a banned test identity. When imported via the 4.0.23 integration, the collision was resolved by:  
-1. Registering actor 420 in `lupo_registry` (unified_registry_id 9000420)  
+1. Registering actor 420 in `lupo_registry` (registry_id 9000420)  
 2. Removing actor 420 from `lupo_registry_open`  
 3. Upserting the actor record with `INSERT ... ON DUPLICATE KEY UPDATE`  
 4. ANUBIS logging the adoption in `lupo_anubis_log`  
@@ -781,15 +781,63 @@ Lupopedia recommendations are based solely on **DATA and SYSTEM LOGIC — never 
 
 ---
 
-### Understanding FLIP (File-Level Inference Protocol)
+## FLIPPING Headers (FLIP Protocol): Structure, Usage, and Offline Fallback
 
-**FLIP** = **F**ile-**L**evel **I**nference **P**rotocol. When a file is "flipped" to the system (e.g. handed to Cursor or any agent), the agent must **infer** everything about that file **only from its FLIP Header** — no guessing, no hallucinating, no filling in from repo scan or external context.
+### What are FLIPPING Headers?
+**FLIP (File-Level Inference Protocol)** — also known as **FLIPPING**, **Wolfie**, **FLP**, **Superpositionally**, or **CROP Headers** — is the YAML frontmatter doctrine for all `.md` files in the Lupopedia repository.
 
-- **FLIP Headers** (alias: Wolfie Headers, CROP Headers, FLIPPING Headers) are the YAML block at the top of the file between `---` delimiters.
-- **Inference rule:** Identity, lineage, channel, version, emotional state, doctrine, placement, meaning — all from the header. If a field is absent, the agent must **not** invent it. Omission is information.
-- **Path lookup:** `file_path_from_root` (in `lupo_contents`) → `content_id` → `channel_id` (via `lupo_edges` HAS_CONTENT) → actors (via `lupo_actor_channels` + `lupo_actors`).
-- **Key docs:** [FLIP_DOCTRINE.md](docs/doctrine/FLIP/FLIP_DOCTRINE.md), [FLIPPING_FILE_LEXA_LILITH.md](docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md).
+Per [FLIP_DOCTRINE.md](docs/doctrine/FLIP/FLIP_DOCTRINE.md), agents (humans, IDEs, and external AIs) must **infer** the identity, doctrine, and state of a file **entirely from its header**. This "Zero Guessing" doctrine ensures that even during total web or database outages, the system remains auditable and coordinated.
 
-### FLIP Header Update Requirements
+### Structure & The Actor Trinity (4.0.27)
+A standard FLIP block exists between `---` delimiters at the top of a file.
 
-Every file in Lupopedia should include a **FLIP Header** block at the top. Doctrine-required fields:
+#### Core Logic & Routing
+- `X-Lupo-File-Path`: (Required) Canonical relative path from the project root.
+- `X-Lupo-Channel`: The primary dialog channel for this file (e.g., 42).
+- `X-Lupo-Version`: System version at the time of the last modification (e.g., 4.0.27).
+
+#### The Actor Trinity (Attribution)
+Lupopedia 4.0.27 mandates at least one of these headers to ensure every action is attributed:
+- `X-Lupo-Actor-ID`: A `BIGINT(14)` referring to a registered `actor_id` (e.g., 2035).
+- `X-Lupo-Actor-Identity`: A descriptive identity string (e.g., "Google Antigravity IDE").
+- `From`: A flexible identifier (e.g., "@lupopedia" or "captain@lupopedia.com").
+
+#### Semantic Mapping (Database Parity 4.0.27)
+These headers bridge the gap between file-level and database-level knowledge:
+- **Registry**: `X-Lupo-Registry-ID`, `X-Lupo-Unified-Registry-ID`, `X-Lupo-Entity-Type` (e.g., actor, channel, file).
+- **Content State**: `X-Lupo-Content-ID`, `X-Lupo-Triage-Status` (e.g., active, draft), `X-Lupo-Visibility` (e.g., public, private).
+- **Organization**: `X-Lupo-Collection-ID`, `X-Lupo-Collection-Name`, `X-Lupo-Collection-Slug`.
+- **Engagement**: `X-Lupo-View-Count`, `X-Lupo-Share-Count`, `X-Lupo-Version-Number`.
+- **Routing**: `X-Lupo-Channel-Key`, `X-Lupo-Channel-Type`, `X-Lupo-Channel-Name`.
+
+#### Survivor Protocol (Relay/Recovery)
+- `X-Lupo-Survivor-Protocol`: `active` or `inactive`.
+- `X-Lupo-Forward-Chain`: Trace of agents who have processed/relayed this file.
+- `X-Lupo-Collapse-Ratio`: Metrics used during system stabilization events.
+
+### Online vs. Offline Duality
+Lupopedia operates in two distinct modes regarding metadata:
+
+1. **Online (Database-First)**:
+   - Metadata is synced to `lupo_contents` and `lupo_edges`.
+   - **Verbose Headers**: Include full metadata (timestamps, mood_rgb, extras) for seamless DB synchronization and global registry lookups.
+
+2. **Offline (Header-First Fallback)**:
+   - When the `lupopedia.com` API or local database is unavailable, the **VSX Extension** and agents use headers as the **Sole Source of Truth**.
+   - **Minimum Headers**: Required for offline navigation (Path, Channel, Actor Trinity). Without these, a file is "invisible" to agent coordination logic.
+   - **Simulated Threads**: Headers allow agents to reconstruct dialog history and action logs (e.g., `docs/channel42_log.json`) without a server.
+
+### VSX Extension Integration
+The **Antigravity VSX Extension** (Actor 2035) serves as the primary FLIP engine:
+- **Auto-Injection**: Validates and injects missing headers (Path and Actor) on every save.
+- **Hierarchical Navigation**: Renders the `docs/` tree based on channel and actor groupings.
+- **Inference UI**: Displays tooltips with Survivor Protocol status and Actor Trinity verification.
+- **Doc Link**: See [FLIP_INTEGRATION_README.md](tools/vsx-extension/FLIP_INTEGRATION_README.md).
+
+### Best Practices for Agents
+- **Don't Guess**: If a header is missing, do not assume values from folder names. Inject the missing header or report a doctrine violation.
+- **Interchangeable Aliases**: The system accepts `Wolfie-Actor-ID`, `FLP-Channel`, etc., but will canonicalize them to `X-Lupo-*` on save.
+- **Traceability**: Always update the `X-Lupo-Version` and attribution when modifying doctrine files.
+
+---
+© 2026 Lupopedia Project. All rights reserved. Managed by humans and AI agents on Channel 42.

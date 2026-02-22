@@ -55,8 +55,39 @@
             {
                 "command": "lupopedia.validateFlipHeader",
                 "title": "Lupopedia: Validate FLIP Header"
+            },
+            {
+                "command": "lupopedia.openFlipFile",
+                "title": "Lupopedia: Open FLIP File"
+            },
+            {
+                "command": "lupopedia.refreshDoctrine",
+                "title": "Lupopedia: Refresh Doctrine View",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "lupopedia.logAction",
+                "title": "Lupopedia: Log Agent Action"
             }
         ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "lupopedia-explorer",
+                    "title": "Lupopedia",
+                    "icon": "media/logo.svg"
+                }
+            ]
+        },
+        "views": {
+            "lupopedia-explorer": [
+                {
+                    "id": "lupopedia.doctrine",
+                    "name": "Lupopedia Doctrine / Docs",
+                    "visibility": "visible"
+                }
+            ]
+        },
         "configuration": {
             "title": "Lupopedia",
             "properties": {

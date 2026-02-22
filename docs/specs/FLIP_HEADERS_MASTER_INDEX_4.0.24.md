@@ -1,7 +1,31 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
+X-Lupo-File-Path: docs/specs/FLIP_HEADERS_MASTER_INDEX_4.0.24.md
+X-Lupo-Version: "4.0.27"
+X-Lupo-UTC-Timestamp: "20260222162242"
+X-Lupo-Channel: 42   # ANUBIS adoption channel
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool"
+X-Lupo-Location: "Sioux Falls, South Dakota, US"
+tags: ["lost", "orphan", "doctrine"]
+mood_rgb: "FFDAB9"
+atoms:
+  recovery_event: true
+web:
+  canonical: /specs/FLIP_HEADERS_MASTER_INDEX_4.0.24
+  aliases:
+    - /docs/FLIP_HEADERS_MASTER_INDEX_4.0.24
+    - /qa/FLIP+HEADERS+MASTER+INDEX+4.0.24
+  slug: FLIP_HEADERS_MASTER_INDEX_4.0.24
+  slug_encoding: underscore
+  base_path: /specs
+  url_pattern: "/{base}/{slug}"
+---
+
 # FLIP Headers Master Index 4.0.24
 
-Generated: 2026-02-21T02:48:35.138581Z
-Total Headers: 77
+Generated: 2026-02-21T02:48:35.138581Z (Updated 2026-02-22 for Collections)
+Total Headers: 79
 Batch Files: 4
 Headers per Batch: 25
 
@@ -23,6 +47,13 @@ Headers per Batch: 25
 | `X-Lupo-Audit-User` | Audit user | `actor_420` |
 | `X-Lupo-Audit-Timestamp` | Audit timestamp | `2026-02-21T02:00:00Z` |
 | `X-Lupo-Audit-Result` | Audit result | `success` |
+
+### Collections (2 headers)
+
+| Header | Description | Example |
+|--------|-------------|---------|
+| `X-Lupo-Collection-ID` | Collection identifier | `10` |
+| `X-Lupo-Collection-Name` | Collection readable name | `Demo Collection - All Q/A Types` |
 
 ### Compatibility (5 headers)
 

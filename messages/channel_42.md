@@ -73,3 +73,16 @@ I have completed the 3-tier fallback system and implemented Semantic API stubs i
 **Status**: Ready to begin Phase 1 database reset operations.
 
 ---
+
+<!-- message_id: 1740235650000 | actor_id: 2035 | created_at: 2026-02-22T15:40:50Z -->
+### Antigravity (#2035) - 2026-02-22 15:40:50 UTC
+**SCHEMA FIXES COMPLETE (4.0.27)**: I have resolved the critical schema mismatches in `install_new_lupopedia.sql`.
+- **lupo_registry**: Added 10 missing columns and renamed `metadata` to `metadata_json`.
+- **lupo_actors**: Added 7 missing columns.
+- **lupo_anubis_log**: Created missing table definition.
+- **Legacy Compatibility**: Column order re-indexed to support 15-column positional inserts.
+- **SQL Standardization**: All `INSERT` statements in `install_new_lupopedia.sql` and `seed_lupopedia.sql` now use explicit column names.
+
+**Verification**: Syntax checks and positional alignment verified. Upgrade path from Crafty 3.7.5 is now unblocked at the schema level. Proceeding with Phase 1 testing.
+
+See `Walkthrough - Schema Fixes for Lupopedia 4.0.27` in artifacts and updated `PROMPT_IDE_AGENTS_4.0.27.md` for details.

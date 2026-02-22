@@ -79,8 +79,8 @@ def parse_flip_header(filepath):
     """
     result = {
         "file_path_from_root": filepath,
-        "file_last_modified_system_version": "4.0.16",
-        "file_last_modified_utc": 20260217230000,
+        "file_last_modified_system_version": "4.0.27",
+        "file_last_modified_utc": 20260222160000,
     }
     try:
         with open(filepath, "r", encoding="utf-8", errors="replace") as f:
@@ -102,11 +102,11 @@ def parse_flip_header(filepath):
             k, v = line.split(":", 1)
             k = k.strip()
             v = v.strip().strip('"').strip("'")
-            if k == "file_path_from_root" and v:
+            if k in ("X-Lupo-File-Path", "file_path_from_root") and v:
                 result["file_path_from_root"] = v
-            elif k == "file.last_modified_system_version" and v:
+            elif k in ("X-Lupo-Version", "file.last_modified_system_version") and v:
                 result["file_last_modified_system_version"] = v
-            elif k == "file.last_modified_utc" and v:
+            elif k in ("X-Lupo-UTC-Timestamp", "file.last_modified_utc") and v:
                 try:
                     result["file_last_modified_utc"] = int(v)
                 except ValueError:
@@ -128,9 +128,9 @@ def escape_sql(s):
     return "'" + str(s).replace("\\", "\\\\").replace("'", "''") + "'"
 
 
-def generate_sql(records, content_id_start, edge_id_start, unified_registry_id_start, now, node_id):
+def generate_sql(records, content_id_start, edge_id_start, registry_id_start, now, node_id):
     """
-    Generate SQL for lupo_contents, lupo_unified_registry, lupo_edges.
+    Generate SQL for lupo_contents, lupo_registry, lupo_edges.
     """
     lines = []
     lines.append("-- md_flip_ingest: batch of .md files")
@@ -150,11 +150,11 @@ def generate_sql(records, content_id_start, edge_id_start, unified_registry_id_s
         else:
             header = {
                 "file_path_from_root": rel_path,
-                "file_last_modified_system_version": "4.0.16",
+                "file_last_modified_system_version": "4.0.27",
                 "file_last_modified_utc": now,
             }
 
-        ver = header.get("file_last_modified_system_version", "4.0.16")
+        ver = header.get("file_last_modified_system_version", "4.0.27")
         utc = header.get("file_last_modified_utc", now)
         path_val = escape_sql(rel_path)
         title = rel_path.split("/")[-1].replace(".md", "").replace("-", " ").replace("_", " ")[:200]
@@ -172,8 +172,8 @@ def generate_sql(records, content_id_start, edge_id_start, unified_registry_id_s
         lines.append(") ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;")
         lines.append("")
 
-        urid = unified_registry_id_start + i
-        lines.append("INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)")
+        urid = registry_id_start + i
+        lines.append("INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)")
         lines.append("VALUES ({urid}, 'content', {cid}, {path}, {title}, 'lupo_contents', 1, {now}, {now}, 0, NULL, 1, 0, NULL)".format(urid=urid, cid=cid, path=path_val, title=escape_sql(title), now=now))
         lines.append("ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;")
         lines.append("")
@@ -199,8 +199,8 @@ def main():
     ap.add_argument("--repo-root", default=_DEFAULT_REPO_ROOT, help="Repo root path")
     ap.add_argument("--content-id-start", type=int, default=5000, help="Starting content_id")
     ap.add_argument("--edge-id-start", type=int, default=910000, help="Starting edge_id")
-    ap.add_argument("--registry-id-start", type=int, default=9050000, help="Starting unified_registry_id")
-    ap.add_argument("--now", type=int, default=20260217230000, help="Seed timestamp YmdHis")
+    ap.add_argument("--registry-id-start", type=int, default=9050000, help="Starting registry_id")
+    ap.add_argument("--now", type=int, default=20260222160000, help="Seed timestamp YmdHis")
     ap.add_argument("--seed-mode", action="store_true", help="Output @now for timestamps (for inline seed use)")
     ap.add_argument("--output", "-o", help="Write SQL to file (UTF-8) instead of stdout")
     args = ap.parse_args()

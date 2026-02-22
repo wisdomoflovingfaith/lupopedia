@@ -48,7 +48,7 @@ def build_unified_registry_row_from_agent(agent_row: Optional[Dict[str, Any]]) -
     }, separators=(",", ":"))
     unified_id = UNIFIED_REGISTRY_AGENT_OFFSET + int(agent_registry_id)
     return {
-        "unified_registry_id": unified_id,
+        "registry_id": unified_id,
         "entity_type": "actor",
         "entity_id": agent_registry_id,
         "entity_key": code,

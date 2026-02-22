@@ -12,8 +12,8 @@
 SET @now = 20260217230000;
 SET @node_id = 1;
 -- Version for module seed: must match docs/doctrine/VERSIONING_DOCTRINE.md (canonical current version).
-SET @lupo_version = '4.0.26';
-SET @lupo_version_code = 40026;
+SET @lupo_version = '4.0.27';
+SET @lupo_version_code = 40027;
 
 -- -----------------------------------------------------------------------------
 -- System department (department_id = 0) — reserved, not user-selectable

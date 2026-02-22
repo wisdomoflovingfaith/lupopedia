@@ -86,7 +86,7 @@ class IRIS
 
     /**
      * Load agent/service configuration from actors tables only.
-     * Doctrine: unified_registry is NOT a config table. All agent config comes from
+     * Doctrine: registry is NOT a config table. All agent config comes from
      * lupo_actors + lupo_actor_properties (actor_type = 'agent' or 'service').
      */
     protected function loadAgentConfig(int $agentId)
