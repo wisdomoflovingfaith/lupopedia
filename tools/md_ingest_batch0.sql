@@ -12,7 +12,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/AGENT_BOUNDARIES_COMPACT.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050000, 'content', 5000, 'docs/doctrine/AGENT_BOUNDARIES_COMPACT.md', 'AGENT BOUNDARIES COMPACT', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -36,7 +36,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/AI_AGENT_BOOT_NOTES.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050001, 'content', 5001, 'docs/doctrine/AI_AGENT_BOOT_NOTES.md', 'AI AGENT BOOT NOTES', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -60,7 +60,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/ANUBIS/ANUBIS_IMPLEMENTATION_SUMMARY.md', '4.0.16', 20260217153700, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050002, 'content', 5002, 'docs/doctrine/ANUBIS/ANUBIS_IMPLEMENTATION_SUMMARY.md', 'ANUBIS IMPLEMENTATION SUMMARY', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -84,7 +84,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050003, 'content', 5003, 'docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md', 'ANUBIS ORPHAN RULES', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -108,7 +108,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050004, 'content', 5004, 'docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md', 'ANUBIS OVERVIEW', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -132,7 +132,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050005, 'content', 5005, 'docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md', 'ANUBIS PROGRAM SPEC', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -156,7 +156,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050006, 'content', 5006, 'docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md', 'CASCADE TABLE CEILING PROTOCOL', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -180,7 +180,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/CLASS_CONVERSION_DOCTRINE.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050007, 'content', 5007, 'docs/doctrine/CLASS_CONVERSION_DOCTRINE.md', 'CLASS CONVERSION DOCTRINE', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -204,7 +204,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/COMPATIBILITY_MATRIX.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050008, 'content', 5008, 'docs/doctrine/COMPATIBILITY_MATRIX.md', 'COMPATIBILITY MATRIX', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -228,7 +228,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/CONSOLIDATION_VALIDATION_REQUIREMENTS.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050009, 'content', 5009, 'docs/doctrine/CONSOLIDATION_VALIDATION_REQUIREMENTS.md', 'CONSOLIDATION VALIDATION REQUIREMENTS', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -252,7 +252,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/CRAFTY_SYNTAX_IMPORT_IMPLEMENTATION_CHECKLIST.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050010, 'content', 5010, 'docs/doctrine/CRAFTY_SYNTAX_IMPORT_IMPLEMENTATION_CHECKLIST.md', 'CRAFTY SYNTAX IMPORT IMPLEMENTATION CHECKLIST', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -276,7 +276,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050011, 'content', 5011, 'docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md', 'CRAFTY SYNTAX INTEGRATION PLAN', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -300,7 +300,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050012, 'content', 5012, 'docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md', 'CRAFTY SYNTAX MIGRATION PROJECT BRIEF', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -324,7 +324,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050013, 'content', 5013, 'docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md', 'CRAFTY SYNTAX STATE BASED IMPLEMENTATION PLAN', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -348,7 +348,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050014, 'content', 5014, 'docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md', 'DEVELOPMENT WORKFLOW DOCTRINE', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -372,7 +372,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/DOCTRINE_FILE_STRUCTURE.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050015, 'content', 5015, 'docs/doctrine/DOCTRINE_FILE_STRUCTURE.md', 'DOCTRINE FILE STRUCTURE', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -396,7 +396,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050016, 'content', 5016, 'docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md', 'DOCTRINE TABLES TRANSITION NOTE', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -420,7 +420,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050017, 'content', 5017, 'docs/doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md', 'ETHICAL STATE MARKERS DOCTRINE', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -444,7 +444,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050018, 'content', 5018, 'docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md', 'FILESYSTEM MIGRATION GUIDE', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -468,7 +468,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/FLIP/FLP_COUNCILS_AS_CHANNELS.md', '4.0.13', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050019, 'content', 5019, 'docs/doctrine/FLIP/FLP_COUNCILS_AS_CHANNELS.md', 'FLP COUNCILS AS CHANNELS', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -492,7 +492,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/FLIP/FLP_DOCTRINE_BOUNDARIES.md', '4.0.13', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050020, 'content', 5020, 'docs/doctrine/FLIP/FLP_DOCTRINE_BOUNDARIES.md', 'FLP DOCTRINE BOUNDARIES', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -516,7 +516,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/FLIP/FLP_EMOTIONAL_AGGREGATION.md', '4.0.13', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050021, 'content', 5021, 'docs/doctrine/FLIP/FLP_EMOTIONAL_AGGREGATION.md', 'FLP EMOTIONAL AGGREGATION', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -540,7 +540,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md', '4.0.13', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050022, 'content', 5022, 'docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md', 'FLP EMOTIONAL GEOMETRY', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -564,7 +564,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/FLIP/FLP_ESCROW_AND_FUND_LAYER.md', '4.0.13', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050023, 'content', 5023, 'docs/doctrine/FLIP/FLP_ESCROW_AND_FUND_LAYER.md', 'FLP ESCROW AND FUND LAYER', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -588,7 +588,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/FLIP/FLP_HETERODOX_REVIEWERS.md', '4.0.13', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050024, 'content', 5024, 'docs/doctrine/FLIP/FLP_HETERODOX_REVIEWERS.md', 'FLP HETERODOX REVIEWERS', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -612,7 +612,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/FLIP/FLP_LUPOPEDIA_COUNCIL_SEAT.md', '4.0.13', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050025, 'content', 5025, 'docs/doctrine/FLIP/FLP_LUPOPEDIA_COUNCIL_SEAT.md', 'FLP LUPOPEDIA COUNCIL SEAT', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -636,7 +636,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/FLIP/FLP_OVERVIEW.md', '4.0.13', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050026, 'content', 5026, 'docs/doctrine/FLIP/FLP_OVERVIEW.md', 'FLP OVERVIEW', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -660,7 +660,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md', '4.0.13', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050027, 'content', 5027, 'docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md', 'NOTE HEADER VERSION AND MERGE', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -684,7 +684,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/FLIP/README.md', '4.0.13', 0, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050028, 'content', 5028, 'docs/doctrine/FLIP/README.md', 'README', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
@@ -708,7 +708,7 @@ INSERT INTO lupo_contents (
     'docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md', '4.0.16', 20260217230000, NULL, NULL
 ) ON DUPLICATE KEY UPDATE file_path_from_root = VALUES(file_path_from_root), file_last_modified_system_version = VALUES(file_last_modified_system_version), file_last_modified_utc = VALUES(file_last_modified_utc), title = VALUES(title), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 
-INSERT INTO lupo_unified_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
+INSERT INTO lupo_registry (unified_registry_id, entity_type, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
 VALUES (9050029, 'content', 5029, 'docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md', 'IMPORT FROM CRAFTY TROUBLESHOOTING', 'lupo_contents', 1, @now, @now, 0, NULL, 1, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_key = VALUES(entity_key), updated_ymdhis = VALUES(updated_ymdhis), is_deleted = 0, is_active = 1;
 

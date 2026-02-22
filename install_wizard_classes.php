@@ -282,61 +282,55 @@ class InstallWizardDb {
 class InstallWizardUnifiedRegistryValidator {
 
     /**
-     * Extract unified_registry_id values from SQL that contains INSERT INTO ... unified_registry ... VALUES.
-     * Only considers statements that insert into unified_registry (ignores other tables).
+     * Extract registry_id values from SQL that contains INSERT INTO ... registry ... VALUES.
+     * Only considers statements that insert into registry (ignores other tables).
      *
      * @param string $sql Raw SQL content (will be split by ; for statement detection)
      * @return array List of integer IDs (may be empty)
      */
-    public static function extractUnifiedRegistryIdsFromSql($sql) {
+    public static function extractRegistryIdsFromSql($sql) {
         $ids = array();
-        $statements = array_filter(
-            array_map('trim', explode(';', $sql)),
-            function ($s) {
-                return $s !== '';
-            }
-        );
+        $statements = explode(';', $sql);
         foreach ($statements as $stmt) {
-            if (stripos($stmt, 'INSERT') === false || stripos($stmt, 'unified_registry') === false || stripos($stmt, 'VALUES') === false) {
+            if (stripos($stmt, 'INSERT') === false || stripos($stmt, 'registry') === false || stripos($stmt, 'VALUES') === false) {
                 continue;
             }
-            if (preg_match_all('/\(\s*(\d+)\s*,/', $stmt, $m)) {
-                foreach (isset($m[1]) ? $m[1] : array() as $id) {
-                    $id = (int) $id;
-                    $ids[] = $id;
-                }
+            if (preg_match_all('/\s*(\d+)\s*,/', $stmt, $m)) {
+                $ids = array_merge($ids, array_map('intval', $m));
             }
         }
         return array_unique($ids);
     }
 
     /**
-     * Check if any of the given IDs already exist in lupo_unified_registry.
+     * Check if any of the given IDs already exist in lupo_registry.
      * Doctrine: if exists, must not insert — show fatal error.
      *
      * @param PDO $pdo
-     * @param array $ids List of unified_registry_id values about to be inserted
-     * @param string|null $tableName Full table name (default: LUPO_TABLE_PREFIX . 'unified_registry')
+     * @param array $ids List of registry_id values about to be inserted
+     * @param string|null $tableName Full table name (default: LUPO_TABLE_PREFIX . 'registry')
      * @return int|null First conflicting ID, or null if no conflict
      */
-    public static function checkUnifiedRegistryIdConflict($pdo, $ids, $tableName = null) {
+    public static function checkRegistryIdConflict($pdo, $ids, $tableName = null) {
         if ($tableName === null || $tableName === '') {
-            $tableName = (defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_') . 'unified_registry';
+            $tableName = (defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_') . 'registry';
         }
         if (empty($ids)) {
             return null;
         }
-        $tableSafe = '`' . str_replace('`', '``', $tableName) . '`';
+
+        $tableSafe = preg_replace('/[^a-zA-Z0-9_]/', '', $tableName);
         foreach ($ids as $id) {
             $id = (int) $id;
             try {
-                $stmt = $pdo->prepare('SELECT 1 FROM ' . $tableSafe . ' WHERE unified_registry_id = :id LIMIT 1');
+                $stmt = $pdo->prepare('SELECT 1 FROM ' . $tableSafe . ' WHERE registry_id = :id LIMIT 1');
                 $stmt->execute(array('id' => $id));
                 if ($stmt->fetch()) {
                     return $id;
                 }
-            } catch (PDOException $e) {
-                return null;
+            } catch (Exception $e) {
+                // Log error but continue checking
+                continue;
             }
         }
         return null;

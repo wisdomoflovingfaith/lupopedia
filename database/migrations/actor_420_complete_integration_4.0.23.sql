@@ -11,7 +11,7 @@ SET @now = 20260220000000;
 -- 1. REGISTRY REQUIREMENTS
 -- ============================================================
 -- Check and insert actor_id 420 into unified registry
-INSERT IGNORE INTO lupo_unified_registry (
+INSERT IGNORE INTO lupo_registry (
     `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
@@ -28,7 +28,7 @@ INSERT IGNORE INTO lupo_unified_registry (
     is_active = 1;
 
 -- Remove actor_id 420 from unregistry if present
-DELETE FROM lupo_unified_unregistry 
+DELETE FROM lupo_registry_open 
 WHERE entity_type = 'actor' 
   AND entity_index = 420;
 

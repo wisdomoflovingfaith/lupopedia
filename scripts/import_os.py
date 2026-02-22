@@ -49,13 +49,16 @@ def validate_and_sanitize_path_from_root(repo_root, path_from_root):
     """
     LEXA path validation: path_from_root must be relative, no '..', and resolve inside repo_root.
     Returns normalized path (forward slashes) or None if invalid.
-    Only the return value (or computed path passed through this) may be stored in lupo_contents.file_path_from_root.
+    Only return value (or computed path passed through this) may be stored in lupo_contents.file_path_from_root.
     Header values stored as plain text only; no dynamic execution.
     """
     if not path_from_root or ".." in path_from_root:
         return None
-    path_from_root = path_from_root.strip().replace("\\", "/").lstrip("/")
-    if not path_from_root:
+    try:
+        real_root = os.path.realpath(repo_root)
+        real_path = os.path.realpath(path_from_root)
+        return real_path == real_root or real_path.startswith(real_root + os.sep)
+    except Exception:
         return None
     resolved = os.path.normpath(os.path.join(repo_root, path_from_root))
     if not validate_path_inside_root(repo_root, resolved):

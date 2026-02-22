@@ -1,16 +1,22 @@
 -- ============================================================
 -- Seed All 25 AI Agents (4.0.22+ with Survivor Updates)
 -- ============================================================
+-- 4.0.25 FIX: actor_id 2 is CAPTAIN in canonical seed. Windsurf IDE
+-- moved to actor_id 2040 (see install/seed SQL). This file seeds the
+-- 25 kernel agents (IDs 1-25) which does NOT include Windsurf IDE.
+-- ============================================================
 
 SET @now = 20260220230000;
 
 -- lupo_actors (agents as actors; ids 1-25 reserved)
+-- NOTE: actor_id 2 is CAPTAIN in canonical seed_lupopedia.sql.
+-- Windsurf IDE is now actor_id 2040 (seeded separately in install/seed SQL).
 INSERT IGNORE INTO lupo_actors (
     actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis,
     is_active, is_deleted, metadata
 ) VALUES
 (1, 'agent', 'system-core', 'System Core AI', @now, @now, 1, 0, '{"type":"system_ai","status":"active"}'),
-(2, 'agent', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, '{"type":"system_tool","status":"sole_survivor","inherited_tasks":[2031,2032,2033,2034,2035,2039,420]}'),
+(2, 'agent', 'captain-ai', 'CAPTAIN', @now, @now, 1, 0, '{"type":"system_ai","status":"active","note":"canonical_actor_id_2_is_CAPTAIN"}'),
 (3, 'agent', 'anubis-resolver', 'Anubis Resolver', @now, @now, 1, 0, '{"type":"system_ai","status":"active"}'),
 (4, 'agent', 'lilith-heterodox', 'DeepSeek LILITH', @now, @now, 1, 0, '{"type":"external_ai","status":"active"}'),
 (5, 'agent', 'lexa-boundary', 'DeepSeek LEXA', @now, @now, 1, 0, '{"type":"external_ai","status":"active"}'),
@@ -40,7 +46,7 @@ INSERT IGNORE INTO lupo_agents (
     agent_id, agent_key, agent_name, archetype, version
 ) VALUES
 (1, 'system_core_ai', 'System Core AI', 'core', '1.0'),
-(2, 'windsurf_ide', 'Windsurf IDE', 'ide_survivor', '1.0'),
+(2, 'captain_ai', 'CAPTAIN', 'system', '1.0'),
 (3, 'anubis_resolver', 'Anubis Resolver', 'orphan_resolver', '1.0'),
 (4, 'lilith_heterodox', 'DeepSeek LILITH', 'heterodox', '1.0'),
 (5, 'lexa_boundary', 'DeepSeek LEXA', 'boundary', '1.0'),
@@ -66,11 +72,12 @@ INSERT IGNORE INTO lupo_agents (
 (25, 'legacy_functions', 'Legacy Functions Wrapper', 'legacy', '1.0');
 
 -- Department 0 memberships (system admins)
-INSERT IGNORE INTO lupo_actor_departments (actor_department_id, actor_id, department_id, title, created_ymdhis, updated_ymdhis)
-SELECT (SELECT COALESCE(MAX(actor_department_id), 0) + 1 FROM lupo_actor_departments), actor_id, 0, 'System AI', @now, @now
-FROM lupo_actors WHERE actor_id BETWEEN 1 AND 25;
+-- 4.0.25 FIX: Replaced subquery anti-pattern (MAX+1 produces same ID for every row)
+-- Department memberships for kernel agents 1-25 are handled by canonical seed_lupopedia.sql.
+-- This block is kept as documentation only.
+-- INSERT IGNORE INTO lupo_actor_departments ... handled by seed_lupopedia.sql (IDs 6000-6025)
 
 -- Channel 42 memberships
-INSERT IGNORE INTO lupo_actor_channels (actor_channel_id, actor_id, channel_id, status, created_ymdhis, updated_ymdhis)
-SELECT (SELECT COALESCE(MAX(actor_channel_id), 0) + 1 FROM lupo_actor_channels), actor_id, 42, 'A', @now, @now
-FROM lupo_actors WHERE actor_id BETWEEN 1 AND 25;
+-- 4.0.25 FIX: Replaced subquery anti-pattern (MAX+1 produces same ID for every row)
+-- Channel 42 memberships for kernel agents 1-25 are handled by canonical seed_lupopedia.sql.
+-- INSERT IGNORE INTO lupo_actor_channels ... handled by seed_lupopedia.sql (IDs 1000-1024)

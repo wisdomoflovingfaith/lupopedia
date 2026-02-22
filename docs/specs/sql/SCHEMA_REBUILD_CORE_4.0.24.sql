@@ -64,8 +64,8 @@ INDEX `lupo_dialog_messages_idx_message_type` (`message_type`);
 INDEX `lupo_dialog_messages_idx_to_actor_id` (`to_actor_id`);
 INDEX `lupo_dialog_messages_idx_updated` (`updated_ymdhis`);
 
--- lupo_unified_registry
-CREATE TABLE `lupo_unified_registry` (
+-- lupo_registry
+CREATE TABLE `lupo_registry` (
   `unified_registry_id` bigint NOT NULL,
   `entity_type` varchar(64) NOT NULL,
   `entity_index` bigint NOT NULL,
@@ -83,10 +83,10 @@ CREATE TABLE `lupo_unified_registry` (
   PRIMARY KEY (None)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INDEX `lupo_unified_registry_idx_entity_key` (`entity_key`);
-INDEX `lupo_unified_registry_idx_entity_type` (`entity_type`);
-INDEX `lupo_unified_registry_idx_source_table` (`entity_table`);
-UNIQUE INDEX `lupo_unified_registry_uniq_entity` (`entity_type`, `entity_index`);
+INDEX `lupo_registry_idx_entity_key` (`entity_key`);
+INDEX `lupo_registry_idx_entity_type` (`entity_type`);
+INDEX `lupo_registry_idx_source_table` (`entity_table`);
+UNIQUE INDEX `lupo_registry_uniq_entity` (`entity_type`, `entity_index`);
 
 -- lupo_actor_channels
 CREATE TABLE `lupo_actor_channels` (

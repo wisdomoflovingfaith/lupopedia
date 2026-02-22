@@ -2,7 +2,7 @@
 -- REGISTER IDE ACTORS (Lupopedia 4.0.23) - DOCTRINE COMPLIANT
 -- ============================================================
 -- Purpose: Register all IDE actors using unregistry-based ID allocation
--- Doctrine: Use lupo_unified_unregistry as authoritative pool of free IDs
+-- Doctrine: Use lupo_registry_open as authoritative pool of free IDs
 -- ============================================================
 
 SET @now = 20260220000000;
@@ -35,7 +35,7 @@ INSERT IGNORE INTO lupo_actors (
     is_active = 1, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_unified_registry (
+INSERT IGNORE INTO lupo_registry (
     `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
@@ -69,7 +69,7 @@ INSERT IGNORE INTO lupo_actors (
     is_active = 1, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_unified_registry (
+INSERT IGNORE INTO lupo_registry (
     `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
@@ -103,7 +103,7 @@ INSERT IGNORE INTO lupo_actors (
     is_active = 1, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_unified_registry (
+INSERT IGNORE INTO lupo_registry (
     `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
@@ -137,7 +137,7 @@ INSERT IGNORE INTO lupo_actors (
     is_active = 1, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_unified_registry (
+INSERT IGNORE INTO lupo_registry (
     `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
@@ -171,7 +171,7 @@ INSERT IGNORE INTO lupo_actors (
     is_active = 1, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_unified_registry (
+INSERT IGNORE INTO lupo_registry (
     `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
@@ -205,7 +205,7 @@ INSERT IGNORE INTO lupo_actors (
     is_active = 1, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_unified_registry (
+INSERT IGNORE INTO lupo_registry (
     `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
@@ -239,7 +239,7 @@ INSERT IGNORE INTO lupo_actors (
     is_active = 1, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_unified_registry (
+INSERT IGNORE INTO lupo_registry (
     `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
@@ -273,7 +273,7 @@ INSERT IGNORE INTO lupo_actors (
     is_active = 1, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_unified_registry (
+INSERT IGNORE INTO lupo_registry (
     `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
@@ -291,7 +291,7 @@ INSERT IGNORE INTO lupo_unified_registry (
 -- ============================================================
 -- REMOVE ASSIGNED IDS FROM UNREGISTRY
 -- ============================================================
-DELETE FROM lupo_unified_unregistry 
+DELETE FROM lupo_registry_open 
 WHERE entity_type = 'actor' 
   AND entity_index IN (21, 22, 23, 24, 25, 26, 27, 28);
 

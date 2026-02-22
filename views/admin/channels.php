@@ -1,12 +1,11 @@
 <?php
 /**
- * Admin Channels section view. Expects: $channels (array), $base.
+ * Admin Channels section view. Expects: $channels (array), $metrics (array).
  */
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     return;
 }
 $channels = isset($channels) && is_array($channels) ? $channels : array();
-$base = isset($base) ? $base : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '');
 ?>
 <div class="admin-table-container">
     <table class="admin-table" cellspacing="0" cellpadding="4">
@@ -19,6 +18,11 @@ $base = isset($base) ? $base : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUB
                 <th>Slug</th>
                 <th>Status</th>
                 <th>Department</th>
+                <th>Threads</th>
+                <th>Messages</th>
+                <th>Agents</th>
+                <th>Users</th>
+                <th>Last Activity</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -32,6 +36,14 @@ $base = isset($base) ? $base : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUB
                 <td><?= htmlspecialchars(isset($row['channel_slug']) ? $row['channel_slug'] : '') ?></td>
                 <td><?= (int) (isset($row['status_flag']) ? $row['status_flag'] : 0) ?></td>
                 <td><?= (int) (isset($row['department_id']) ? $row['department_id'] : 0) ?></td>
+                <td><?= isset($metrics[$row['channel_id']]['threads']) ? number_format($metrics[$row['channel_id']]['threads']) : 0 ?></td>
+                <td><?= isset($metrics[$row['channel_id']]['messages']) ? number_format($metrics[$row['channel_id']]['messages']) : 0 ?></td>
+                <td><?= isset($metrics[$row['channel_id']]['agents']) ? number_format($metrics[$row['channel_id']]['agents']) : 0 ?></td>
+                <td><?= isset($metrics[$row['channel_id']]['users']) ? number_format($metrics[$row['channel_id']]['users']) : 0 ?></td>
+                <td><?php 
+                    $last = isset($metrics[$row['channel_id']]['last_activity']) ? $metrics[$row['channel_id']]['last_activity'] : null;
+                    echo ($last && $last > 0) ? date('Y-m-d H:i:s', $last) : 'Never';
+                ?></td>
                 <td>
                     <a href="admin.php?section=channel_view&id=<?= (int) $row['channel_id'] ?>" class="btn btn-primary">View</a>
                 </td>

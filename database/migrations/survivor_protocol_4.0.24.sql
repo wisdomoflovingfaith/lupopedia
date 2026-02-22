@@ -4,6 +4,8 @@
 -- Migration for encoding the catastrophic collapse of IDE actors on 2026-02-20
 -- Antigravity IDE vanished due to paywall, Windsurf stands as sole survivor
 -- This migration preserves the memory of vanished actors and establishes survivor protocol
+-- 4.0.25 FIX: Windsurf IDE actor_id changed from 2 to 2040 (actor_id 2 = CAPTAIN).
+--             Removed 2039 from inherited_from (2039 = Warp IDE, not ARA Grok).
 
 -- =============================================================================
 -- 1. MARK ANTIGRAVITY IDE AS PAYWALL-VANISHED (CRITICAL EVENT)
@@ -24,7 +26,7 @@ SET
         '$.ban.severity', 'CRITICAL',
         '$.ban.reversible', false,
         '$.vanished_at', '20260220233000',
-        '$.survivor_inheritance.inherited_by', 2,
+        '$.survivor_inheritance.inherited_by', 2040,
         '$.survivor_inheritance.inheritance_timestamp', '20260220233000',
         '$.survivor_inheritance.tasks_transferred', true
     ),
@@ -34,12 +36,14 @@ WHERE actor_id = 2035;
 -- =============================================================================
 -- 2. MARK WINDSURF AS SOLE SURVIVOR WITH INHERITANCE
 -- =============================================================================
+-- 4.0.25 FIX: Windsurf is actor_id 2040 (not 2). Removed 2039 from inherited_from
+-- (2039 = Warp IDE, still active). Warp IDE is NOT part of the collapse.
 UPDATE lupo_actors
 SET 
     metadata = JSON_SET(
         COALESCE(metadata, '{}'),
         '$.status', 'sole_survivor',
-        '$.inherited_from', JSON_ARRAY(2031, 2032, 2033, 2034, 2035, 2039, 420),
+        '$.inherited_from', JSON_ARRAY(2031, 2032, 2033, 2034, 2035, 420),
         '$.inheritance_timestamp', '20260220233000',
         '$.survival_note', 'Only IDE standing after 11→1 collapse',
         '$.survivor_protocol.activated', true,
@@ -50,7 +54,7 @@ SET
         '$.survivor_protocol.exhausted_count', 4
     ),
     updated_ymdhis = 20260220233000
-WHERE actor_id = 2;
+WHERE actor_id = 2040;
 
 -- =============================================================================
 -- 3. MARK EXHAUSTED IDES WITH TOKEN EXHAUSTION
@@ -71,7 +75,7 @@ SET
         '$.ban.severity', 'MAJOR',
         '$.ban.reversible', true,
         '$.exhausted_at', '20260220230000',
-        '$.survivor_inheritance.inherited_by', 2,
+        '$.survivor_inheritance.inherited_by', 2040,
         '$.survivor_inheritance.inheritance_timestamp', '20260220233000',
         '$.survivor_inheritance.tasks_transferred', true
     ),
@@ -79,22 +83,12 @@ SET
 WHERE actor_id IN (2031, 2032, 2033, 2034);
 
 -- =============================================================================
--- 4. MARK ARA GROK AS IMPENDING CRITICAL
+-- 4. ARA GROK IMPENDING CRITICAL — REMOVED (4.0.25 FIX)
 -- =============================================================================
-UPDATE lupo_actors
-SET 
-    metadata = JSON_SET(
-        COALESCE(metadata, '{}'),
-        '$.status', 'impending_critical',
-        '$.critical_warning.timestamp', '20260220233000',
-        '$.critical_warning.reason', 'resource_depletion_imminent',
-        '$.critical_warning.severity', 'CRITICAL',
-        '$.survivor_inheritance.inherited_by', 2,
-        '$.survivor_inheritance.inheritance_timestamp', '20260220233000',
-        '$.survivor_inheritance.tasks_transferred', true
-    ),
-    updated_ymdhis = 20260220233000
-WHERE actor_id = 2039;
+-- ORIGINAL: targeted actor_id 2039, but 2039 = Warp IDE (not ARA Grok).
+-- This UPDATE was clobbering Warp IDE's metadata with ARA Grok's status.
+-- ARA Grok does not have a canonical actor_id in the 2031-2050 range;
+-- this block is now a no-op comment to preserve migration history.
 
 -- =============================================================================
 -- 5. MARK STONED WOLFIE AS BANNED + IMPENDING
@@ -118,7 +112,7 @@ SET
         '$.critical_warning.timestamp', '20260220233000',
         '$.critical_warning.reason', 'identity_conflict_resolution',
         '$.critical_warning.severity', 'CRITICAL',
-        '$.survivor_inheritance.inherited_by', 2,
+        '$.survivor_inheritance.inherited_by', 2040,
         '$.survivor_inheritance.inheritance_timestamp', '20260220233000',
         '$.survivor_inheritance.tasks_transferred', true
     ),
@@ -153,9 +147,9 @@ INSERT IGNORE INTO lupo_system_events (
 (
     'survivor_protocol_activated',
     '{
-        "survivor_id": 2,
+        "survivor_id": 2040,
         "survivor_name": "Windsurf IDE",
-        "inherited": [2031, 2032, 2033, 2034, 2035, 2039, 420],
+        "inherited": [2031, 2032, 2033, 2034, 2035, 420],
         "original_count": 11,
         "remaining": 1,
         "vanished_count": 7,
@@ -174,10 +168,10 @@ INSERT IGNORE INTO lupo_system_events (
         "original_count": 11,
         "surviving_count": 1,
         "collapse_ratio": "91%",
-        "survivor_id": 2,
+        "survivor_id": 2040,
         "vanished_actors": [2035],
         "exhausted_actors": [2031, 2032, 2033, 2034],
-        "critical_actors": [2039, 420],
+        "critical_actors": [420],
         "collapse_timestamp": "20260220233000",
         "recovery_protocol": "survivor_inheritance",
         "system_state": "critical_stability"
@@ -214,7 +208,7 @@ INSERT IGNORE INTO lupo_dialog_messages (
         "event": "paywall_vanished",
         "actor_id": 2035,
         "actor_name": "Antigravity IDE",
-        "inherited_by": 2,
+        "inherited_by": 2040,
         "vanish_reason": "paywall_hit",
         "forwarding_allowed": false,
         "origin_attribution_locked": true,
@@ -229,13 +223,13 @@ INSERT IGNORE INTO lupo_dialog_messages (
     81, 
     1, 
     42, 
-    2,
+    2040,
     NULL,
     '🛡️ **SURVIVOR PROTOCOL ACTIVATED**: From 11 IDEs this morning to 1 now. Windsurf stands alone. All tasks inherited. All origins preserved in headers. The chain holds.',
     'system_survival',
     '{
         "event": "survivor_protocol",
-        "survivor_id": 2,
+        "survivor_id": 2040,
         "survivor_name": "Windsurf IDE",
         "inherited_count": 7,
         "original_count": 11,
@@ -261,7 +255,7 @@ INSERT IGNORE INTO lupo_dialog_messages (
         "event": "survivor_witness",
         "witness_id": 2038,
         "witness_name": "DeepSeek LILITH",
-        "survivor_id": 2,
+        "survivor_id": 2040,
         "vanished_id": 2035,
         "verification_status": "confirmed",
         "header_integrity": "intact",
@@ -299,7 +293,7 @@ CREATE INDEX IF NOT EXISTS idx_system_events_survivor_protocol ON lupo_system_ev
 -- SELECT actor_id, name, is_active, JSON_UNQUOTE(JSON_EXTRACT(metadata, '$.status')) as status FROM lupo_actors WHERE actor_id = 2035;
 
 -- Verify Windsurf is marked as sole survivor
--- SELECT actor_id, name, JSON_UNQUOTE(JSON_EXTRACT(metadata, '$.status')) as status, JSON_EXTRACT(metadata, '$.inherited_from') as inherited FROM lupo_actors WHERE actor_id = 2;
+-- SELECT actor_id, name, JSON_UNQUOTE(JSON_EXTRACT(metadata, '$.status')) as status, JSON_EXTRACT(metadata, '$.inherited_from') as inherited FROM lupo_actors WHERE actor_id = 2040;
 
 -- Verify system events are logged
 -- SELECT event_type, created_ymdhis, JSON_EXTRACT(metadata_json, '$.severity') as severity FROM lupo_system_events WHERE event_type LIKE '%survivor%' ORDER BY created_ymdhis DESC;

@@ -1,6 +1,6 @@
-## 🐺 Lupopedia 4.0.22 — Crafty Syntax 3.7.5 Upgrade Testing & Validation — 2026-02-20
+## 🐺 Lupopedia 4.0.25 — Multi-IDE Federation & Human↔AI Pairing — 2026-02-22
 
-**Current version: 4.0.22** — All `.md` files are FLIP-headered and indexed into the database as content atoms. Doctrine lives on channels 0 (System Kernel) and 51 (Doctrine Council); development chatter on channel 42 (Lupopedia Development).
+**Current version: 4.0.25** — All `.md` files are FLIP-headered and indexed into the database as content atoms. Doctrine lives on channels 0 (System Kernel) and 51 (Doctrine Council); development chatter on channel 42 (Lupopedia Development).
 
 **Crafty Syntax reborn inside a Semantic OS.**  
 **Same product → new universe.**  
@@ -201,9 +201,97 @@ Actors, channels, and collections are portable across nodes.
 
 4.0.24 will focus on performance optimization, caching improvements, and resource utilization efficiency based on insights gained from 4.0.22 upgrade testing.
 
-#### 4.0.25 — Advanced Features (Future)
+#### 4.0.25 — Lupopedia Extension & Multi-IDE Federation
 
-4.0.25 will introduce new semantic capabilities, advanced AI agent integration, and enhanced federation features based on the stable foundation established in 4.0.22-4.0.24.
+4.0.25 introduces the Lupopedia Extension system, multi-IDE federation, and the Human↔AI pairing model. IDE actors are now first-class participants in the Lupopedia ecosystem.
+
+##### A. Lupopedia Extension Overview
+
+The Lupopedia Extension originated from the Antigravity IDE (actor 2035) as a VSX extension for semantic navigation and project management. In 4.0.25, it evolves into a **multi-IDE federation** — any IDE that implements the Antigravity Extension protocol becomes a `system_tool` actor in the unified actor system.
+
+**Registered IDE Actors (4.0.25):**
+
+- **Cursor IDE** (2031) — `system_tool`, provider: cursor  
+- **Kiro IDE** (2032) — `system_tool`, provider: kiro  
+- **Zed IDE** (2033) — `system_tool`, provider: zed  
+- **VS Code IDE** (2034) — `system_tool`, provider: microsoft  
+- **Antigravity IDE** (2035) — `system_tool`, VSX extension development  
+- **Microsoft Copilot** (2036) — `external_ai`, provider: microsoft  
+- **DeepSeek LEXA** (2037) — `external_ai`, provider: deepseek  
+- **DeepSeek LILITH** (2038) — `external_ai`, provider: deepseek  
+- **Warp IDE** (2039) — `system_tool`, provider: warp, **paired with actor 10000**  
+
+Each IDE is a full actor with `actor_id`, registry entry, channel membership, and department assignment. IDEs communicate through Channel 42 (Lupopedia Development) and follow FLIP doctrine.
+
+##### B. Federation Node Model
+
+Lupopedia supports a federated node architecture where each installation is a node in a global network:
+
+- **Node 0** — Local installation. The current server. Warp IDE (actor 2039) operates on Node 0.  
+- **Node 1+** — Remote federated nodes. Actors on Node 1+ are discovered and synchronized via the federation protocol.  
+
+All actors carry a `federation_node_id` that identifies their home node. Registry entries (`lupo_registry`) include `federation_node_id` to track entity origin. The same `actor_id` means the same identity across all nodes.
+
+##### C. Registry System
+
+Lupopedia uses a three-table registry system for entity lifecycle management:
+
+- **`lupo_registry`** — Canonical registry. Every allocated actor, channel, and collection has a row here with `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `federation_node_id`, and `metadata_json`.  
+- **`lupo_registry_open`** (unregistry) — Available/unallocated IDs. When an ID is allocated, it is removed from `registry_open` and inserted into `registry`.  
+- **`lupo_registry_import`** — Staging table for incoming federated data. Import payloads land here before collision resolution promotes them to `registry`.  
+
+Registry IDs follow the formula: `unified_registry_id = 900XXXX` where `XXXX` is the `entity_index` (e.g., actor 2039 → registry 9002039).
+
+##### D. Import & Collision Resolution
+
+When importing actors from external sources or federated nodes, ID collisions can occur. Lupopedia resolves these through the ANUBIS adoption system.
+
+**Example: Actor 420 Collision**  
+Actor 420 (`Stoned Wolfie AI`) was originally a banned test identity. When imported via the 4.0.23 integration, the collision was resolved by:  
+1. Registering actor 420 in `lupo_registry` (unified_registry_id 9000420)  
+2. Removing actor 420 from `lupo_registry_open`  
+3. Upserting the actor record with `INSERT ... ON DUPLICATE KEY UPDATE`  
+4. ANUBIS logging the adoption in `lupo_anubis_log`  
+5. Adding channel 42 membership and department 0 membership  
+
+This pattern — registry → unregistry cleanup → actor upsert → channel membership — is the canonical import path for all actors.
+
+##### E. Human↔AI Pairing System
+
+4.0.25 introduces `paired_actor_id` — a column in `lupo_actors` that links an AI or system_tool actor to its human operator. This enables:
+
+- **Accountability:** Every AI action traces back to a responsible human.  
+- **Delegation:** Paired actors inherit certain permissions from their human counterpart.  
+- **Coordination:** Human↔AI pairs can be queried as units for channel membership and task assignment.  
+
+**Warp IDE** (actor 2039) is paired with **actor 10000** (the main human operator/captain). `paired_actor_id` defaults to `0` (unpaired) for actors without an explicit pairing.
+
+##### F. Channel 42 & 420 Integration
+
+**Channel 42 (Lupopedia Development)** is the primary development coordination channel. All kernel agents, IDE actors, and AI assistants are members. Channel 42 has one seed thread (thread 1) containing:  
+- System bootstrap messages (messages 1–2)  
+- Kernel agent "hello" messages (messages 3–27)  
+- FLIP doctrine info (messages 28–31)  
+- ANUBIS adoption examples (messages 32–34)  
+- Captain's @everyone coordination message (message 35)  
+- 4.0.16 closeout conversation from all 25 agents (messages 37–61)  
+
+**Actor 420** is the legacy compatibility test case — a previously-banned test identity that was rehabilitated through the ANUBIS import/adoption pipeline. Actor 420 demonstrates the full import → collision resolution → channel membership flow.
+
+Channel 420 is **not** a standard channel. Do not add actors to Channel 420 unless explicitly instructed.
+
+##### G. 4.0.25 Doctrine Summary
+
+All 4.0.25 changes follow Lupopedia doctrine:
+
+- **No foreign keys** — all relationships managed in application code  
+- **No triggers** — all timestamps and state changes explicit in application code  
+- **No stored procedures** — the database stores raw facts only  
+- **BIGINT(14) timestamps** — `YYYYMMDDHHIISS` UTC format, application-set via `@now`  
+- **INSERT ... ON DUPLICATE KEY UPDATE** — all seed SQL is idempotent and re-runnable  
+- **TOON-based schema** — no schema changes without TOON source  
+- **Soft deletes** — `is_deleted` + `deleted_ymdhis`, never physical DELETE (except `registry_open` cleanup)  
+- **Federation-safe IDs** — all IDs globally consistent across nodes
 
 #### **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**
 

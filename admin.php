@@ -314,8 +314,14 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
     } elseif ($section === 'channels' && $db) {
         $admin_page_title = 'Channels';
         $admin_active_key = 'Channels';
-        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminChannelsHandler.php';
-        $admin_main_content = AdminChannelsHandler::render($db, $prefix, $base);
+        require_once LUPOPEDIA_PATH . '/lupo-includes/themes/default/layouts/admin_sections/channels.php';
+        include LUPOPEDIA_PATH . '/lupo-includes/themes/default/layouts/admin_sections/channels.php';
+    } elseif ($section === 'channel_view' && $db) {
+        $admin_page_title = 'Channel View';
+        $admin_active_key = 'Channels';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/modules/channels/ChannelsController.php';
+        $controller = new ChannelsController($db);
+        $controller->admin_view(isset($_GET['id']) ? (int)$_GET['id'] : 0);
     } elseif ($section === 'agents' && $db) {
         $admin_page_title = 'Agents';
         $admin_active_key = 'Agents';

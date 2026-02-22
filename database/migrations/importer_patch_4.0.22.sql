@@ -138,7 +138,7 @@ VALUES (999, 'crafty_import', 'actor', 2, 'success', 'Windsurf IDE system_tool a
 
 -- If issues occur, rollback by removing system_tool actor:
 -- DELETE FROM lupo_actors WHERE actor_id = 2 AND actor_type = 'system_tool';
--- DELETE FROM lupo_unified_registry WHERE entity_type = 'actor' AND entity_index = 2;
+-- DELETE FROM lupo_registry WHERE entity_type = 'actor' AND entity_index = 2;
 
 -- ============================================================
 -- CONCLUSION

@@ -1,7 +1,7 @@
 -- =============================================================================
--- ONE-TIME MIGRATION: lupo_unified_registry — add columns required to store
+-- ONE-TIME MIGRATION: lupo_registry — add columns required to store
 -- agents (from lupo_agent_registry TOON) and insert all agents from
--- lupo_agent_registry into lupo_unified_registry.
+-- lupo_agent_registry into lupo_registry.
 --
 -- Doctrine: TOONs are the only source of truth. No install SQL or TOON files
 -- are modified. No UNSIGNED, no display widths, no FK/triggers.
@@ -11,7 +11,7 @@
 -- -----------------------------------------------------------------------------
 -- 1. Missing columns (from TOON comparison)
 -- -----------------------------------------------------------------------------
--- lupo_unified_registry already has: unified_registry_id, entity_type, entity_id,
+-- lupo_registry already has: unified_registry_id, entity_type, entity_id,
 -- entity_key, entity_name, dedicated_index_id, entity_table, federation_node_id,
 -- created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel,
 -- metadata_json.
@@ -35,8 +35,8 @@
 -- If you already ran the original migration and have dedicated_slot/metadata, run the DROPs.
 -- If you get "Unknown column" on either DROP, that column was never added; skip that line.
 
-ALTER TABLE lupo_unified_registry DROP COLUMN dedicated_slot;
-ALTER TABLE lupo_unified_registry DROP COLUMN metadata;
+ALTER TABLE lupo_registry DROP COLUMN dedicated_slot;
+ALTER TABLE lupo_registry DROP COLUMN metadata;
 
 -- -----------------------------------------------------------------------------
 -- 2b. ALTER TABLE: add missing columns (run once)
@@ -45,15 +45,15 @@ ALTER TABLE lupo_unified_registry DROP COLUMN metadata;
 -- We add only columns that are not duplicates: no dedicated_slot (use dedicated_index_id),
 -- no metadata (use metadata_json).
 
-ALTER TABLE lupo_unified_registry ADD COLUMN agent_registry_parent_id bigint DEFAULT NULL;
-ALTER TABLE lupo_unified_registry ADD COLUMN code varchar(64) DEFAULT NULL;
-ALTER TABLE lupo_unified_registry ADD COLUMN name varchar(255) DEFAULT NULL;
-ALTER TABLE lupo_unified_registry ADD COLUMN layer varchar(64) DEFAULT NULL;
-ALTER TABLE lupo_unified_registry ADD COLUMN is_required tinyint NOT NULL DEFAULT 0;
-ALTER TABLE lupo_unified_registry ADD COLUMN classification_json json DEFAULT NULL;
-ALTER TABLE lupo_unified_registry ADD COLUMN agent_class varchar(64) NOT NULL DEFAULT 'production';
-ALTER TABLE lupo_unified_registry ADD COLUMN can_use_humor tinyint NOT NULL DEFAULT 0;
-ALTER TABLE lupo_unified_registry ADD COLUMN can_use_emotion tinyint NOT NULL DEFAULT 0;
+ALTER TABLE lupo_registry ADD COLUMN agent_registry_parent_id bigint DEFAULT NULL;
+ALTER TABLE lupo_registry ADD COLUMN code varchar(64) DEFAULT NULL;
+ALTER TABLE lupo_registry ADD COLUMN name varchar(255) DEFAULT NULL;
+ALTER TABLE lupo_registry ADD COLUMN layer varchar(64) DEFAULT NULL;
+ALTER TABLE lupo_registry ADD COLUMN is_required tinyint NOT NULL DEFAULT 0;
+ALTER TABLE lupo_registry ADD COLUMN classification_json json DEFAULT NULL;
+ALTER TABLE lupo_registry ADD COLUMN agent_class varchar(64) NOT NULL DEFAULT 'production';
+ALTER TABLE lupo_registry ADD COLUMN can_use_humor tinyint NOT NULL DEFAULT 0;
+ALTER TABLE lupo_registry ADD COLUMN can_use_emotion tinyint NOT NULL DEFAULT 0;
 
 -- -----------------------------------------------------------------------------
 -- 3. INSERT agents from lupo_agent_registry; ON DUPLICATE KEY UPDATE overwrites
@@ -62,9 +62,9 @@ ALTER TABLE lupo_unified_registry ADD COLUMN can_use_emotion tinyint NOT NULL DE
 -- Map: entity_type = 'agent', entity_id = agent_registry_id; metadata in metadata_json.
 -- unified_registry_id: next available ID for new rows (unchanged on duplicate).
 
-SET @uid = (SELECT COALESCE(MAX(unified_registry_id), 0) FROM lupo_unified_registry);
+SET @uid = (SELECT COALESCE(MAX(unified_registry_id), 0) FROM lupo_registry);
 
-INSERT INTO lupo_unified_registry (
+INSERT INTO lupo_registry (
   unified_registry_id,
   entity_type,
   entity_id,

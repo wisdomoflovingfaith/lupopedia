@@ -466,8 +466,8 @@ CREATE TABLE `lupo_unified_truth_items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
--- lupo_unified_unregistry
-CREATE TABLE `lupo_unified_unregistry` (
+-- lupo_registry_open
+CREATE TABLE `lupo_registry_open` (
   `entity_type` varchar(64) NOT NULL,
   `entity_index` int NOT NULL,
   `federation_node_id` bigint NOT NULL DEFAULT 1,
@@ -476,7 +476,7 @@ CREATE TABLE `lupo_unified_unregistry` (
   PRIMARY KEY (None)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INDEX `lupo_unified_unregistry_idx_entity_type_created_utc` (`entity_type`, `created_utc`);
+INDEX `lupo_registry_open_idx_entity_type_created_utc` (`entity_type`, `created_utc`);
 
 -- lupo_unified_visits
 CREATE TABLE `lupo_unified_visits` (
