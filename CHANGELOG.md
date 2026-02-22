@@ -124,7 +124,25 @@ X-LUPO-dialog_messages.dialog_message_id: 2000
 
 ---
 
-## [4.0.27] - SCHEMA FIX & MINIMAL SEED - UPGRADE TESTING READY (2026-02-22)
+## [4.0.29] — FINAL 420-SERIES RELEASE (2026-02-22)
+
+### MISSION: FINAL PATCH OF 420-SERIES
+- **Series Completion**: 4.0.29 marks the final patch in the 4.0.x development series.
+- **Production Ready**: All critical issues resolved, installation stable, upgrade path validated.
+- **Foundation for 4.1.0**: Clean baseline for future Lupopedia → Lupopedia upgrades.
+
+### STATUS
+- **PRODUCTION READY** - Complete Crafty Syntax 3.7.5 → Lupopedia 4.0.x upgrade path.
+- **INSTALLATION STABLE** - All SQL, PHP, and FLIP issues resolved.
+- **420-SERIES COMPLETE** - Ready for auto-installer publication (Softaculous, Installatron).
+
+### NEXT PHASE
+- **4.1.0 Development** - First version supporting Lupopedia → Lupopedia upgrades.
+- **Auto-Installer Publication** - Stable 4.0.x series ready for distribution platforms.
+
+---
+
+## [4.0.28] - TOTAL REGISTRY PURGE & SQL SEED FIXES (2026-02-22)
 
 ### CRITICAL SCHEMA MISMATCH RESOLUTION (Warp IDE - actor 2039)
 - **Schema Crisis Identified**: `seed_lupopedia.sql` used incompatible column names vs actual `install_new_lupopedia.sql` schema, causing 200+ SQL errors during bootstrap
