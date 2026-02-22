@@ -295,8 +295,6 @@ All work in this thread has been completed, verified, and documented. The system
 
 ## [4.0.24] - CONSOLIDATED FROM 4.0.20-4.0.23 — 2026-02-22
 
-## Lupopedia 4.0.24 — Consolidated from 4.0.20-4.0.23 — 2026-02-22
-
 ### SYSTEM ARCHITECTURE
 - Schema rebuild from TOONs: 185 tables generated (cores + 3 batches)
 - Actor registry seeded: 23 agents (cores 1-8, truth 209/1212, banned 420, collapsed 2031-2035, external 2036-2039)
@@ -358,8 +356,7 @@ All work in this thread has been completed, verified, and documented. The system
 - Complete FLIP ecosystem: 133 total headers across all categories
 
 ---
-
-## Lupopedia 4.0.23 — Antigravity IDE Registration & VSX Extension Support — 2026-02-20
+## [4.0.23] - Antigravity IDE Registration & VSX Extension Support — 2026-02-20
 
 ### Overview
 4.0.23 introduces Antigravity IDE as a new system_tool actor (actor_id 2001) with comprehensive VSX extension development support. This release establishes the foundation for Open-VSX extension development with complete API endpoints, dialog messaging, and semantic processing capabilities.
@@ -416,9 +413,8 @@ All work in this thread has been completed, verified, and documented. The system
 - **Integration Points**: unified registry, agent system, dialog channels, semantic processing
 
 ---
-
-## Lupopedia 4.0.22 — Comprehensive Seed Data Integration — 2026-02-20
-
+## [4.0.22] - Comprehensive Seed Data Integration — 2026-02-20
+ 
 ### Overview
 4.0.22 focuses on comprehensive seeding of all zero-row tables with meaningful, doctrine-aligned data. This release establishes robust semantic OS capabilities, emotional geometry framework, truth system, governance infrastructure, and multi-agent coordination.
 
@@ -611,8 +607,8 @@ All work in this thread has been completed, verified, and documented. The system
 
 ---
 
-## Lupopedia 4.0.21 — Wolfie Headers v4.2, Database-First Identity, Content Consolidation — 2026-02-20
-
+## [4.0.21]  — Wolfie Headers v4.2, Database-First Identity, Content Consolidation — 2026-02-20
+ 
 ### Overview
 4.0.21 establishes the **database-first identity model** with **read-only Wolfie Headers v4.2**. All semantic metadata lives exclusively in the database; headers are projections for grep and human convenience only. This version completes the content architecture consolidation and removes filesystem-based metadata storage.
 
@@ -668,8 +664,8 @@ All work in this thread has been completed, verified, and documented. The system
 - **Testing Infrastructure**: Complete schema validation framework with automated drift detection
 
 ---
-
-## Lupopedia 4.0.20 — testing, diagnostics, and adversarial validation — 2026-02-19
+## [4.0.20] — testing, diagnostics, and adversarial validation — 2026-02-19
+ 
 
 ### Overview
 4.0.20 is a **test-only reflection release**. Scope: admin diagnostics (T2), regression test suite (T3), adversarial harness (T4), coverage report (T5), finalization (T6). No features, no UI changes, no schema changes. **Completed:** T1 (version bump), T2 (admin diagnostics with flock-based rotation and daily JSONL logs), T3 (full regression suite: admin, auth, session, legacy, csrf, permissions, installer), T4 (adversarial test harness: CSRF, privilege escalation, session tamper, malformed requests, SQLi/XSS probes, unauthorized access, rate limit), T5 (full test run and coverage), T6 (finalization). **Installer fixes:** wizard now advances correctly after "Run installation" and after bootstrap "Continue to Identity Normalization"; config detection only treats lupopedia-config.php as installed. **Seed and schema:** Stoned Wolfie (AI + human) banned test identities; lupo_auth_users.username extended to varchar(255) for email-length values.
