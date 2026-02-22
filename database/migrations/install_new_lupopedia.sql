@@ -110,6 +110,7 @@ CREATE INDEX lupo_actor_capabilities_idx_is_deleted ON lupo_actor_capabilities (
 CREATE TABLE lupo_actor_channels (
   actor_channel_id bigint NOT NULL,
   actor_id bigint NOT NULL,
+  created_by_actor_id bigint NOT NULL DEFAULT 0,
   channel_id bigint NOT NULL,
   status char(1) NOT NULL DEFAULT 'A',
   start_date bigint DEFAULT NULL,
@@ -221,6 +222,7 @@ CREATE TABLE lupo_actor_departments (
   actor_department_id bigint NOT NULL,
   actor_id bigint NOT NULL,
   department_id bigint NOT NULL,
+  role_key varchar(64) DEFAULT NULL,
   title varchar(64) DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
@@ -303,6 +305,7 @@ CREATE INDEX lupo_actor_handshakes_idx_utc_timestamp ON lupo_actor_handshakes (`
 
 CREATE TABLE lupo_actor_meta (
   actor_meta_id bigint NOT NULL,
+  meta_id bigint NOT NULL DEFAULT 0,
   actor_id bigint NOT NULL,
   meta_type varchar(64) NOT NULL,
   meta_key varchar(255) NOT NULL,
@@ -1545,6 +1548,7 @@ CREATE TABLE lupo_contents (
   description text,
   seo_keywords varchar(500) DEFAULT NULL,
   body text,
+  content text,
   content_type varchar(50) DEFAULT 'article',
   format varchar(20) DEFAULT 'markdown',
   content_url varchar(2000) DEFAULT NULL,
@@ -1898,6 +1902,7 @@ CREATE INDEX lupo_dialog_channels_idx_dialog_channels_composite ON lupo_dialog_c
 
 CREATE TABLE lupo_dialog_messages (
   dialog_message_id bigint NOT NULL,
+  message_id bigint NOT NULL DEFAULT 0,
   dialog_thread_id bigint DEFAULT NULL,
   channel_id bigint DEFAULT NULL,
   from_actor_id bigint DEFAULT NULL,
@@ -1925,6 +1930,7 @@ CREATE INDEX lupo_dialog_messages_idx_to_actor_id ON lupo_dialog_messages (to_ac
 
 CREATE TABLE lupo_dialog_threads (
   dialog_thread_id bigint NOT NULL,
+  thread_id bigint NOT NULL DEFAULT 0,
   federation_node_id bigint NOT NULL DEFAULT '1',
   channel_id bigint DEFAULT NULL,
   project_slug varchar(100) DEFAULT NULL,
@@ -3304,6 +3310,7 @@ CREATE UNIQUE INDEX lupo_system_config_config_key ON lupo_system_config (config_
 
 CREATE TABLE lupo_system_events (
   system_event_id bigint NOT NULL,
+  event_id bigint NOT NULL DEFAULT 0,
   event_type varchar(100) NOT NULL,
   event_message text NOT NULL,
   event_context text,
@@ -3600,8 +3607,10 @@ ALTER TABLE lupo_unified_referers CHANGE referer_id referer_id bigint NOT NULL A
 
 CREATE TABLE lupo_registry (
   registry_id bigint NOT NULL AUTO_INCREMENT,
+  unified_registry_id bigint NOT NULL DEFAULT 0,
   entity_type varchar(50) NOT NULL,
   entity_index_id bigint NOT NULL,
+  entity_index bigint NOT NULL DEFAULT 0,
   federation_node_id bigint NOT NULL DEFAULT 0,
   reserved_ymdhis bigint NOT NULL DEFAULT 0,
   metadata text,
