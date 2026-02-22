@@ -12,8 +12,8 @@
 SET @now = 20260217230000;
 SET @node_id = 1;
 -- Version for module seed: must match docs/doctrine/VERSIONING_DOCTRINE.md (canonical current version).
-SET @lupo_version = '4.0.22';
-SET @lupo_version_code = 40022;
+SET @lupo_version = '4.0.26';
+SET @lupo_version_code = 40026;
 
 -- -----------------------------------------------------------------------------
 -- System department (department_id = 0) — reserved, not user-selectable
@@ -1890,7 +1890,7 @@ SET @now = 20260220000000;
 INSERT IGNORE INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) 
 VALUES (2, 'system_tool', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, NULL, 2, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"],"version":"1.0.0","protected":false}', 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
-INSERT IGNORE INTO lupo_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
+INSERT IGNORE INTO lupo_registry (`registry_id`, `entity_type`, `entity_index_id`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
 VALUES (9000002, 'actor', 2, 'windsurf-ide', 'Windsurf IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool"}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- ============================================================
@@ -1954,7 +1954,7 @@ SET @now = 20260220000000;
 INSERT IGNORE INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) 
 VALUES (2001, 'system_tool', 'antigravity-ide', 'Antigravity IDE', @now, @now, 1, 0, NULL, 2001, 'system_tool', '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation","open_vsx_integration"],"version":"1.0.0","client_id":"antigravity","protected":false}', 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
-INSERT IGNORE INTO lupo_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
+INSERT IGNORE INTO lupo_registry (`registry_id`, `entity_type`, `entity_index_id`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
 VALUES (9002001, 'actor', 2001, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"antigravity","purpose":"VSX_extension_development"}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 INSERT IGNORE INTO lupo_agents (`agent_id`, `agent_key`, `agent_name`, `archetype`, `description`, `version`, `model_name`, `is_global_authority`, `is_internal_only`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
@@ -2008,7 +2008,7 @@ VALUES (3, 2001, 'ide_capabilities', '["project_management","file_editing","sema
 INSERT IGNORE INTO lupo_actor_channel_roles (`actor_channel_role_id`, `actor_id`, `channel_id`, `role_key`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
 VALUES (10003, 2001, 42, 'administrator', @now, @now, 0, NULL) ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;
 
-INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`) 
+INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`) 
 VALUES (10003, 2001, 42, 1000, 2001, 0, 'antigravity-dev', 'antigravity-dev', 'chat_room', 'en', 'Antigravity IDE Development', 'Development channel for Antigravity IDE VSX extension work', NULL, '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 100) ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
 -- =============================================================================
@@ -2025,7 +2025,7 @@ VALUES (10003, 2001, 42, 1000, 2001, 0, 'antigravity-dev', 'antigravity-dev', 'c
 SET @now = 20260220000000;
 
 -- Actor 420 registry entry
-INSERT IGNORE INTO lupo_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
+INSERT IGNORE INTO lupo_registry (`registry_id`, `entity_type`, `entity_index_id`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
 VALUES (9000420, 'agent', 420, 'stoned_wolfie_ai', 'Stoned Wolfie (AI)', 'lupo_agents', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"lupo_agents","client_id":"stoned_wolfie_ai","purpose":"test_agent","reserved":true}') 
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
@@ -2045,14 +2045,14 @@ VALUES (16, 1003, 420, 'system', 'Legacy Crafty Syntax compatibility test. Actor
 ON DUPLICATE KEY UPDATE content = VALUES(content), metadata_json = VALUES(metadata_json), updated_ymdhis = 20260220000000, is_deleted = 0;
 
 -- Channel 42 membership for actor 420
-INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`) 
+INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`) 
 VALUES (10029, 420, 42, 1000, 420, 0, 'stoned-wolfie-test', 'stoned-wolfie-test', 'chat_room', 'en', 'Stoned Wolfie Test Channel', 'Test channel for legacy Crafty Syntax compatibility and ANUBIS adoption protocol', NULL, '{"purpose":"legacy_testing","capabilities":["header_analysis","dialog_adoption","crafty_compatibility"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 108) 
 ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
 -- ANUBIS adoption log
-INSERT IGNORE INTO lupo_system_events (`event_id`, `event_type`, `actor_id`, `event_data`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+INSERT IGNORE INTO lupo_system_events (`system_event_id`, `event_type`, `actor_id`, `event_message`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
 VALUES (14, 'anubis_adoption', 420, 'Actor 420 adopted by ANUBIS protocol', '{"adopted_actor_id":420,"adoption_reason":"legacy_compatibility_test","protocol":"anubis_resolver","message_id":16,"channel_id":42,"thread_id":1003}', @now, @now, 0, NULL) 
-ON DUPLICATE KEY UPDATE event_data = VALUES(event_data), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+ON DUPLICATE KEY UPDATE event_message = VALUES(event_message), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
 -- ============================================================
 -- ACTOR 420 COMPLETE INTEGRATION (Lupopedia 4.0.23)
@@ -2063,7 +2063,7 @@ ON DUPLICATE KEY UPDATE event_data = VALUES(event_data), metadata_json = VALUES(
 SET @now = 20260220000000;
 
 -- Registry entry for actor 420
-INSERT IGNORE INTO lupo_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
+INSERT IGNORE INTO lupo_registry (`registry_id`, `entity_type`, `entity_index_id`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
 VALUES (9000420, 'actor', 420, 'stoned_wolfie_ai', 'Stoned Wolfie (AI)', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"source":"test","resolver":"ANUBIS","client_id":"stoned_wolfie_ai","purpose":"legacy_compatibility"}') 
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), federation_node_id = 0, updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
@@ -2076,7 +2076,7 @@ VALUES (420, 'agent', 'stoned-wolfie-ai', 'Stoned Wolfie (AI)', @now, @now, 1, 0
 ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 -- Channel 42 membership for actor 420 — DEACTIVATED (4.0.25: banned actor must not be in active channel)
-INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`) 
+INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`) 
 VALUES (10029, 420, 42, 1000, 420, 0, 'stoned-wolfie-member', 'stoned-wolfie-member', 'chat_room', 'en', 'Stoned Wolfie Member Channel', 'Member channel for Stoned Wolfie AI on channel 42', NULL, '{"purpose":"legacy_testing","capabilities":["header_analysis","dialog_adoption","crafty_compatibility"],"role":"member","deactivated_reason":"banned_actor_conflict"}', 1, NULL, NULL, @now, @now, 1, @now, 0, 108) 
 ON DUPLICATE KEY UPDATE is_deleted = 1, deleted_ymdhis = @now, updated_ymdhis = @now;
 
@@ -2101,9 +2101,9 @@ VALUES (17, 1003, 420, 'system', 'ANUBIS adoption complete. Actor 420 (Stoned Wo
 ON DUPLICATE KEY UPDATE content = VALUES(content), metadata_json = VALUES(metadata_json), updated_ymdhis = 20260220000000, is_deleted = 0;
 
 -- System event logging for actor 420 integration
-INSERT IGNORE INTO lupo_system_events (`event_id`, `event_type`, `actor_id`, `event_data`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+INSERT IGNORE INTO lupo_system_events (`system_event_id`, `event_type`, `actor_id`, `event_message`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
 VALUES (15, 'actor_420_integration', 420, 'Complete integration of actor 420 with registry, channels, departments, FLIP headers, and ANUBIS resolver', '{"integration_components":["registry","actor_table","channel_membership","department_membership","flip_headers","anubis_resolver","dialog_messages"],"test_case":true,"legacy_compatibility":true}', @now, @now, 0, NULL) 
-ON DUPLICATE KEY UPDATE event_data = VALUES(event_data), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+ON DUPLICATE KEY UPDATE event_message = VALUES(event_message), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
 -- ============================================================
 -- FINAL IDE & AI ACTOR INTEGRATION (Lupopedia 4.0.23)
@@ -2116,7 +2116,7 @@ ON DUPLICATE KEY UPDATE event_data = VALUES(event_data), metadata_json = VALUES(
 SET @now = 20260220000000;
 
 -- Registry entries for all IDE & AI actors
-INSERT IGNORE INTO lupo_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
+INSERT IGNORE INTO lupo_registry (`registry_id`, `entity_type`, `entity_index_id`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
 VALUES 
 (9002031, 'actor', 2031, 'cursor-ide', 'Cursor IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"cursor","provider":"cursor","purpose":"IDE_integration","csv_allocation":true}'),
 (9002032, 'actor', 2032, 'kiro-ide', 'Kiro IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"kiro","provider":"kiro","purpose":"IDE_integration","csv_allocation":true}'),
@@ -2145,7 +2145,7 @@ VALUES
 ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 -- Channel 42 membership for all IDE & AI actors
-INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`) 
+INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`) 
 VALUES 
 (12031, 2031, 42, 1000, 2031, 0, 'cursor-dev', 'cursor-dev', 'chat_room', 'en', 'Cursor IDE Development', 'Development channel for Cursor IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 200),
 (12032, 2032, 42, 1000, 2032, 0, 'kiro-dev', 'kiro-dev', 'chat_room', 'en', 'Kiro IDE Development', 'Development channel for Kiro IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"]}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 201),
@@ -2171,7 +2171,7 @@ VALUES
 ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;
 
 -- System events for all IDE & AI actors
-INSERT IGNORE INTO lupo_system_events (`event_id`, `event_type`, `actor_id`, `event_data`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
+INSERT IGNORE INTO lupo_system_events (`system_event_id`, `event_type`, `actor_id`, `event_message`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
 VALUES 
 (16, 'ide_exhaustion', 2031, 'Cursor IDE reached operational limit', '{"ide_name":"Cursor IDE","exhaustion_type":"token_limit","timestamp":"2026-02-20","channel_id":42}', @now, @now, 0, NULL),
 (17, 'ide_exhaustion', 2032, 'Kiro IDE reached operational limit', '{"ide_name":"Kiro IDE","exhaustion_type":"token_limit","timestamp":"2026-02-20","channel_id":42}', @now, @now, 0, NULL),
@@ -2186,7 +2186,7 @@ VALUES
 (26, 'actor_registration', 2036, 'Microsoft Copilot registered', '{"chosen_actor_id":2036,"registry_scan_results":["1-20"],"unregistry_scan_results":["21-50"],"reason_for_choice":"csv_driven_unregistry_allocation","csv_allocation":true}', @now, @now, 0, NULL),
 (27, 'actor_registration', 2037, 'DeepSeek LEXA registered', '{"chosen_actor_id":2037,"registry_scan_results":["1-20"],"unregistry_scan_results":["21-50"],"reason_for_choice":"csv_driven_unregistry_allocation","csv_allocation":true}', @now, @now, 0, NULL),
 (28, 'actor_registration', 2038, 'DeepSeek LILITH registered', '{"chosen_actor_id":2038,"registry_scan_results":["1-20"],"unregistry_scan_results":["21-50"],"reason_for_choice":"csv_driven_unregistry_allocation","csv_allocation":true}', @now, @now, 0, NULL)
-ON DUPLICATE KEY UPDATE event_data = VALUES(event_data), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+ON DUPLICATE KEY UPDATE event_message = VALUES(event_message), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
 -- Channel 42 dialog messages
 INSERT IGNORE INTO lupo_dialog_messages (`message_id`, `thread_id`, `actor_id`, `message_type`, `content`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) 
@@ -2209,12 +2209,12 @@ ON DUPLICATE KEY UPDATE content = VALUES(content), updated_ymdhis = 202602200000
 -- ============================================================
 
 -- Registry entry for Warp IDE
-INSERT IGNORE INTO lupo_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`)
+INSERT IGNORE INTO lupo_registry (`registry_id`, `entity_type`, `entity_index_id`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`)
 VALUES (9002039, 'actor', 2039, 'warp-ide', 'Warp IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"warp","provider":"warp","purpose":"IDE_integration","paired_actor_id":10000}')
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- Remove Warp IDE from unregistry
-DELETE FROM lupo_registry_open WHERE entity_type = 'actor' AND entity_index = 2039;
+DELETE FROM lupo_registry_open WHERE entity_type = 'actor' AND entity_index_id = 2039;
 
 -- Actor record for Warp IDE (with paired_actor_id)
 INSERT IGNORE INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`, `paired_actor_id`)
@@ -2222,8 +2222,8 @@ VALUES (2039, 'system_tool', 'warp-ide', 'Warp IDE', @now, @now, 1, 0, NULL, 203
 ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), paired_actor_id = VALUES(paired_actor_id), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 -- Channel 42 membership for Warp IDE
-INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`)
-VALUES (12039, 2039, 42, 1000, 2039, 0, 'warp-dev', 'warp-dev', 'chat_room', 'en', 'Warp IDE Development', 'Development channel for Warp IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","terminal_integration"],"paired_actor_id":10000}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 208)
+INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`)
+VALUES (12039, 2039, 42, 2039, 0, 'warp-dev', 'warp-dev', 'chat_room', 'en', 'Warp IDE Development', 'Development channel for Warp IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","terminal_integration"],"paired_actor_id":10000}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 208)
 ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
 -- Department 0 membership for Warp IDE
@@ -2239,12 +2239,12 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 -- ============================================================
 
 -- Registry entry for Windsurf IDE
-INSERT IGNORE INTO lupo_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`)
+INSERT IGNORE INTO lupo_registry (`registry_id`, `entity_type`, `entity_index_id`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`)
 VALUES (9002040, 'actor', 2040, 'windsurf-ide', 'Windsurf IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"windsurf","provider":"windsurf","purpose":"IDE_integration","paired_actor_id":10000}')
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- Remove Windsurf IDE from unregistry
-DELETE FROM lupo_registry_open WHERE entity_type = 'actor' AND entity_index = 2040;
+DELETE FROM lupo_registry_open WHERE entity_type = 'actor' AND entity_index_id = 2040;
 
 -- Actor record for Windsurf IDE (with paired_actor_id)
 INSERT IGNORE INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`, `paired_actor_id`)
@@ -2252,8 +2252,8 @@ VALUES (2040, 'system_tool', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, N
 ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), paired_actor_id = VALUES(paired_actor_id), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 -- Channel 42 membership for Windsurf IDE
-INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `created_by_actor_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`)
-VALUES (12040, 2040, 42, 1000, 2040, 0, 'windsurf-dev', 'windsurf-dev', 'chat_room', 'en', 'Windsurf IDE Development', 'Development channel for Windsurf IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","vsx_extension_development"],"paired_actor_id":10000}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 209)
+INSERT IGNORE INTO lupo_actor_channels (`actor_channel_id`, `actor_id`, `channel_id`, `default_actor_id`, `department_id`, `channel_key`, `channel_slug`, `channel_type`, `language`, `channel_name`, `description`, `website_link`, `metadata_json`, `status_flag`, `end_ymdhis`, `duration_seconds`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_kernel`, `boot_sequence_order`)
+VALUES (12040, 2040, 42, 2040, 0, 'windsurf-dev', 'windsurf-dev', 'chat_room', 'en', 'Windsurf IDE Development', 'Development channel for Windsurf IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","vsx_extension_development"],"paired_actor_id":10000}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 209)
 ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
 -- Department 0 membership for Windsurf IDE
@@ -2262,9 +2262,9 @@ VALUES (12040, 2040, 0, 'member', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;
 
 -- System event for Windsurf IDE registration
-INSERT IGNORE INTO lupo_system_events (`event_id`, `event_type`, `actor_id`, `event_data`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`)
+INSERT IGNORE INTO lupo_system_events (`system_event_id`, `event_type`, `actor_id`, `event_message`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`)
 VALUES (30, 'actor_registration', 2040, 'Windsurf IDE registered (reassigned from actor_id 2)', '{"chosen_actor_id":2040,"federation_node_id":0,"paired_actor_id":10000,"reason_for_choice":"conflict_resolution_actor_id_2_is_CAPTAIN","actor_type":"system_tool","previous_actor_id":2}', @now, @now, 0, NULL)
-ON DUPLICATE KEY UPDATE event_data = VALUES(event_data), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+ON DUPLICATE KEY UPDATE event_message = VALUES(event_message), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
 -- ============================================================
 -- PAIRED ACTOR + FEDERATION NODE FIXES (Lupopedia 4.0.25)
@@ -2276,14 +2276,14 @@ UPDATE lupo_actors SET `paired_actor_id` = 10000, `updated_ymdhis` = @now WHERE 
 UPDATE lupo_actors SET `paired_actor_id` = 10000, `updated_ymdhis` = @now WHERE `actor_id` = 2038 AND (`paired_actor_id` IS NULL OR `paired_actor_id` = 0);
 
 -- federation_node_id fix: Actor 420 registry → 0 (local node)
-UPDATE lupo_registry SET `federation_node_id` = 0, `updated_ymdhis` = @now WHERE `entity_type` = 'actor' AND `entity_index` = 420;
+UPDATE lupo_registry SET `federation_node_id` = 0, `updated_ymdhis` = @now WHERE `entity_type` = 'actor' AND `entity_index_id` = 420;
 -- federation_node_id fix: Human 10000 registry → 0 (local node)
-UPDATE lupo_registry SET `federation_node_id` = 0, `updated_ymdhis` = @now WHERE `entity_type` = 'actor' AND `entity_index` = 10000;
+UPDATE lupo_registry SET `federation_node_id` = 0, `updated_ymdhis` = @now WHERE `entity_type` = 'actor' AND `entity_index_id` = 10000;
 
 -- System event for Warp IDE registration
-INSERT IGNORE INTO lupo_system_events (`event_id`, `event_type`, `actor_id`, `event_data`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`)
+INSERT IGNORE INTO lupo_system_events (`system_event_id`, `event_type`, `actor_id`, `event_message`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`)
 VALUES (29, 'actor_registration', 2039, 'Warp IDE registered', '{"chosen_actor_id":2039,"federation_node_id":0,"paired_actor_id":10000,"reason_for_choice":"next_available_system_tool_id","actor_type":"system_tool"}', @now, @now, 0, NULL)
-ON DUPLICATE KEY UPDATE event_data = VALUES(event_data), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+ON DUPLICATE KEY UPDATE event_message = VALUES(event_message), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
 END SEED
 -- =============================================================================

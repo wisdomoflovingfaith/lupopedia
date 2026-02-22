@@ -11,7 +11,7 @@ import * as vscode from 'vscode';
 
 import { initIdentityStorage, loadIdentity, ActorIdentity, buildActorRoster } from './lupopedia/identity';
 import { registerActor, lookupActor, lookupKnownActors } from './lupopedia/actor';
-import { sendMessage, getMessages, joinChannel } from './lupopedia/channels';
+import { sendMessage, getMessages, joinChannel, CommMode } from './lupopedia/channels';
 import { explainFile, getRelatedAtoms } from './lupopedia/semantic';
 import { parseFlipHeader, formatFlipHeader } from './lupopedia/flip';
 import { ChannelViewerPanel } from './webviews/channelViewer';
@@ -25,13 +25,15 @@ function getConfig(): {
     defaultChannelId: number;
     actorName: string;
     actorType: string;
+    communicationMode: 'remote' | 'local' | 'offline' | 'auto';
 } {
     const cfg = vscode.workspace.getConfiguration('lupopedia');
     return {
-        baseUrl: cfg.get<string>('baseUrl', 'http://localhost'),
+        baseUrl: cfg.get<string>('baseUrl', 'https://lupopedia.com/lupopedia'),
         defaultChannelId: cfg.get<number>('defaultChannelId', 42),
         actorName: cfg.get<string>('actorName', 'Antigravity IDE'),
         actorType: cfg.get<string>('actorType', 'system_tool'),
+        communicationMode: cfg.get<'remote' | 'local' | 'offline' | 'auto'>('communicationMode', 'auto'),
     };
 }
 
@@ -149,7 +151,8 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             }
             const channelId = parseInt(input, 10);
             try {
-                await joinChannel(baseUrl, channelId, id);
+                const { communicationMode } = getConfig();
+                await joinChannel(baseUrl, channelId, id, communicationMode);
                 vscode.window.showInformationMessage(
                     `Lupopedia: Joined channel ${channelId}`
                 );
@@ -177,7 +180,8 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
                 return;
             }
             try {
-                const result = await sendMessage(baseUrl, defaultChannelId, body, id);
+                const { communicationMode } = getConfig();
+                const result = await sendMessage(baseUrl, defaultChannelId, body, id, undefined, communicationMode);
                 vscode.window.showInformationMessage(
                     `Lupopedia: Message sent (id: ${result.message_id})`
                 );
@@ -201,7 +205,8 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             // Load initial messages
             let messages: import('./lupopedia/channels').ChannelMessage[] = [];
             try {
-                messages = await getMessages(baseUrl, defaultChannelId);
+                const { communicationMode } = getConfig();
+                messages = await getMessages(baseUrl, defaultChannelId, undefined, communicationMode);
             } catch {
                 // Show empty panel; it will retry on next poll
             }
@@ -214,7 +219,8 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
                 messages,
                 baseUrl,
                 id,
-                roster
+                roster,
+                getConfig().communicationMode
             );
         })
     );
@@ -333,6 +339,19 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
                     `Lupopedia: FLIP header invalid:\n• ${errList}`
                 );
             }
+        })
+    );
+
+    // ── Command: Toggle Communication Mode ────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.toggleCommunicationMode', async () => {
+            const cfg = vscode.workspace.getConfiguration('lupopedia');
+            const current = cfg.get<string>('communicationMode', 'auto');
+            const modes = ['remote', 'local', 'offline', 'auto'];
+            const currentIndex = modes.indexOf(current);
+            const next = modes[(currentIndex + 1) % modes.length];
+            await cfg.update('communicationMode', next, vscode.ConfigurationTarget.Global);
+            vscode.window.showInformationMessage(`Lupopedia: Communication mode switched to ${next.toUpperCase()}`);
         })
     );
 }

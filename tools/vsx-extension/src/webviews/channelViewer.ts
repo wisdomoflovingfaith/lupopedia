@@ -15,179 +15,183 @@ import { ActorIdentity, actorColor } from '../lupopedia/identity';
 // ─── Nonce helper ─────────────────────────────────────────────────────────────
 
 function getNonce(): string {
-    let text = '';
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < 32; i++) {
-        text += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return text;
+  let text = '';
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (let i = 0; i < 32; i++) {
+    text += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return text;
 }
 
 // ─── Panel ────────────────────────────────────────────────────────────────────
 
 export class ChannelViewerPanel {
-    public static currentPanel: ChannelViewerPanel | undefined;
-    private static readonly _viewType = 'lupopediaChannel';
+  public static currentPanel: ChannelViewerPanel | undefined;
+  private static readonly _viewType = 'lupopediaChannel';
 
-    private readonly _panel: vscode.WebviewPanel;
-    private readonly _extensionUri: vscode.Uri;
-    private _disposables: vscode.Disposable[] = [];
-    private _pollTimer: ReturnType<typeof setInterval> | undefined;
+  private readonly _panel: vscode.WebviewPanel;
+  private readonly _extensionUri: vscode.Uri;
+  private _disposables: vscode.Disposable[] = [];
+  private _pollTimer: ReturnType<typeof setInterval> | undefined;
 
-    private _channelId: number;
-    private _baseUrl: string;
-    private _self: ActorIdentity;
-    private _roster: ActorIdentity[];
-    private _messages: ChannelMessage[];
-    private _lastTimestamp: string | undefined;
+  private _channelId: number;
+  private _baseUrl: string;
+  private _self: ActorIdentity;
+  private _roster: ActorIdentity[];
+  private _messages: ChannelMessage[];
+  private _lastTimestamp: string | undefined;
 
-    // ─── Factory ───────────────────────────────────────────────────────────────
+  // ─── Factory ───────────────────────────────────────────────────────────────
 
-    public static createOrShow(
-        extensionUri: vscode.Uri,
-        channelId: number,
-        initialMessages: ChannelMessage[],
-        baseUrl: string,
-        self: ActorIdentity,
-        roster: ActorIdentity[]
-    ): void {
-        const column = vscode.window.activeTextEditor
-            ? vscode.ViewColumn.Beside
-            : vscode.ViewColumn.One;
+  public static createOrShow(
+    extensionUri: vscode.Uri,
+    channelId: number,
+    initialMessages: ChannelMessage[],
+    baseUrl: string,
+    self: ActorIdentity,
+    roster: ActorIdentity[],
+    mode: 'remote' | 'local' | 'offline' | 'auto'
+  ): void {
+    const column = vscode.window.activeTextEditor
+      ? vscode.ViewColumn.Beside
+      : vscode.ViewColumn.One;
 
-        if (ChannelViewerPanel.currentPanel) {
-            ChannelViewerPanel.currentPanel._panel.reveal(column);
-            ChannelViewerPanel.currentPanel._update(initialMessages);
-            return;
-        }
-
-        const panel = vscode.window.createWebviewPanel(
-            ChannelViewerPanel._viewType,
-            `Lupopedia ─ Channel ${channelId}`,
-            column,
-            {
-                enableScripts: true,
-                localResourceRoots: [vscode.Uri.joinPath(extensionUri, 'media')],
-            }
-        );
-
-        ChannelViewerPanel.currentPanel = new ChannelViewerPanel(
-            panel,
-            extensionUri,
-            channelId,
-            initialMessages,
-            baseUrl,
-            self,
-            roster
-        );
+    if (ChannelViewerPanel.currentPanel) {
+      ChannelViewerPanel.currentPanel._panel.reveal(column);
+      ChannelViewerPanel.currentPanel._update(initialMessages);
+      return;
     }
 
-    // ─── Constructor ───────────────────────────────────────────────────────────
+    const panel = vscode.window.createWebviewPanel(
+      ChannelViewerPanel._viewType,
+      `Lupopedia ─ Channel ${channelId}`,
+      column,
+      {
+        enableScripts: true,
+        localResourceRoots: [vscode.Uri.joinPath(extensionUri, 'media')],
+      }
+    );
 
-    private constructor(
-        panel: vscode.WebviewPanel,
-        extensionUri: vscode.Uri,
-        channelId: number,
-        messages: ChannelMessage[],
-        baseUrl: string,
-        self: ActorIdentity,
-        roster: ActorIdentity[]
-    ) {
-        this._panel = panel;
-        this._extensionUri = extensionUri;
-        this._channelId = channelId;
-        this._messages = messages;
-        this._baseUrl = baseUrl;
-        this._self = self;
-        this._roster = roster;
+    ChannelViewerPanel.currentPanel = new ChannelViewerPanel(
+      panel,
+      extensionUri,
+      channelId,
+      initialMessages,
+      baseUrl,
+      self,
+      roster,
+      mode
+    );
+  }
 
-        // Track last message timestamp for incremental fetches
-        if (messages.length > 0) {
-            this._lastTimestamp = messages[messages.length - 1].created_at;
+  // ─── Constructor ───────────────────────────────────────────────────────────
+
+  private constructor(
+    panel: vscode.WebviewPanel,
+    extensionUri: vscode.Uri,
+    channelId: number,
+    messages: ChannelMessage[],
+    baseUrl: string,
+    self: ActorIdentity,
+    roster: ActorIdentity[],
+    private readonly _mode: 'remote' | 'local' | 'offline' | 'auto'
+  ) {
+    this._panel = panel;
+    this._extensionUri = extensionUri;
+    this._channelId = channelId;
+    this._messages = messages;
+    this._baseUrl = baseUrl;
+    this._self = self;
+    this._roster = roster;
+
+    // Track last message timestamp for incremental fetches
+    if (messages.length > 0) {
+      this._lastTimestamp = messages[messages.length - 1].created_at;
+    }
+
+    this._update(this._messages);
+    this._startPolling();
+
+    // Handle messages from webview JS
+    this._panel.webview.onDidReceiveMessage(
+      async (msg: { type: string; text?: string }) => {
+        if (msg.type === 'send' && msg.text?.trim()) {
+          try {
+            await sendMessage(this._baseUrl, this._channelId, msg.text.trim(), this._self, undefined, this._mode);
+          } catch {
+            vscode.window.showErrorMessage('Lupopedia: Failed to send message.');
+          }
         }
+      },
+      null,
+      this._disposables
+    );
 
+    this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
+  }
+
+  // ─── Polling ───────────────────────────────────────────────────────────────
+
+  private _startPolling(): void {
+    this._pollTimer = setInterval(() => void this._poll(), 5000);
+  }
+
+  private async _poll(): Promise<void> {
+    try {
+      const { getMessages } = await import('../lupopedia/channels');
+      const newMessages = await getMessages(
+        this._baseUrl,
+        this._channelId,
+        this._lastTimestamp,
+        this._mode
+      );
+      if (newMessages.length > 0) {
+        this._messages = this._messages.concat(newMessages);
+        const last = newMessages[newMessages.length - 1].created_at;
+        if (last) { this._lastTimestamp = last; }
         this._update(this._messages);
-        this._startPolling();
-
-        // Handle messages from webview JS
-        this._panel.webview.onDidReceiveMessage(
-            async (msg: { type: string; text?: string }) => {
-                if (msg.type === 'send' && msg.text?.trim()) {
-                    try {
-                        await sendMessage(this._baseUrl, this._channelId, msg.text.trim(), this._self);
-                    } catch {
-                        vscode.window.showErrorMessage('Lupopedia: Failed to send message.');
-                    }
-                }
-            },
-            null,
-            this._disposables
-        );
-
-        this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
+      }
+    } catch {
+      // Silently ignore poll errors
     }
+  }
 
-    // ─── Polling ───────────────────────────────────────────────────────────────
+  // ─── Render ────────────────────────────────────────────────────────────────
 
-    private _startPolling(): void {
-        this._pollTimer = setInterval(() => void this._poll(), 5000);
-    }
+  private _update(messages: ChannelMessage[]): void {
+    if (!this._panel.visible) { return; }
+    this._panel.webview.html = this._getHtml(messages);
+  }
 
-    private async _poll(): Promise<void> {
-        try {
-            const { getMessages } = await import('../lupopedia/channels');
-            const newMessages = await getMessages(
-                this._baseUrl,
-                this._channelId,
-                this._lastTimestamp
-            );
-            if (newMessages.length > 0) {
-                this._messages = this._messages.concat(newMessages);
-                const last = newMessages[newMessages.length - 1].created_at;
-                if (last) { this._lastTimestamp = last; }
-                this._update(this._messages);
-            }
-        } catch {
-            // Silently ignore poll errors
-        }
-    }
+  private _getHtml(messages: ChannelMessage[]): string {
+    const nonce = getNonce();
 
-    // ─── Render ────────────────────────────────────────────────────────────────
-
-    private _update(messages: ChannelMessage[]): void {
-        if (!this._panel.visible) { return; }
-        this._panel.webview.html = this._getHtml(messages);
-    }
-
-    private _getHtml(messages: ChannelMessage[]): string {
-        const nonce = getNonce();
-
-        // ── Actor roster HTML ──────────────────────────────────────────────────
-        const rosterHtml = this._roster
-            .map((a) => {
-                const color = actorColor(a.actor_name);
-                const isSelf = a.actor_id === this._self.actor_id;
-                return /* html */ `
+    // ── Actor roster HTML ──────────────────────────────────────────────────
+    const rosterHtml = this._roster
+      .map((a) => {
+        const color = actorColor(a.actor_name);
+        const isSelf = a.actor_id === this._self.actor_id;
+        return /* html */ `
           <div class="actor-chip ${isSelf ? 'self' : ''}" style="--actor-col:${color}" title="actor_id: ${a.actor_id} | ${a.actor_type}">
             <span class="dot"></span>
             <span class="name">${esc(a.actor_name)}</span>
             <span class="id">#${a.actor_id}</span>
           </div>`;
-            })
-            .join('\n');
+      })
+      .join('\n');
 
-        // ── Messages HTML ──────────────────────────────────────────────────────
-        const msgsHtml = messages.length === 0
-            ? `<p class="empty">No messages yet. Be the first to write!</p>`
-            : messages
-                .map((m) => {
-                    const name = m.actor_name ?? `Actor #${m.actor_id}`;
-                    const color = actorColor(name);
-                    const isSelf = m.actor_id === this._self.actor_id;
-                    const ts = m.created_at
-                        ? new Date(m.created_at).toLocaleTimeString()
-                        : '';
-                    return /* html */ `
+    // ── Messages HTML ──────────────────────────────────────────────────────
+    const msgsHtml = messages.length === 0
+      ? `<p class="empty">No messages yet. Be the first to write!</p>`
+      : messages
+        .map((m) => {
+          const name = m.actor_name ?? `Actor #${m.actor_id}`;
+          const color = actorColor(name);
+          const isSelf = m.actor_id === this._self.actor_id;
+          const ts = m.created_at
+            ? new Date(m.created_at).toLocaleTimeString()
+            : '';
+          return /* html */ `
               <div class="message ${isSelf ? 'mine' : 'theirs'}">
                 <div class="msg-meta" style="--actor-col:${color}">
                   <span class="dot"></span>
@@ -196,10 +200,10 @@ export class ChannelViewerPanel {
                 </div>
                 <div class="msg-body">${esc(m.body ?? '')}</div>
               </div>`;
-                })
-                .join('\n');
+        })
+        .join('\n');
 
-        return /* html */ `<!DOCTYPE html>
+    return /* html */ `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -354,29 +358,29 @@ export class ChannelViewerPanel {
   </script>
 </body>
 </html>`;
-    }
+  }
 
-    // ─── Lifecycle ─────────────────────────────────────────────────────────────
+  // ─── Lifecycle ─────────────────────────────────────────────────────────────
 
-    public dispose(): void {
-        if (this._pollTimer !== undefined) {
-            clearInterval(this._pollTimer);
-        }
-        ChannelViewerPanel.currentPanel = undefined;
-        this._panel.dispose();
-        while (this._disposables.length) {
-            const d = this._disposables.pop();
-            if (d) { d.dispose(); }
-        }
+  public dispose(): void {
+    if (this._pollTimer !== undefined) {
+      clearInterval(this._pollTimer);
     }
+    ChannelViewerPanel.currentPanel = undefined;
+    this._panel.dispose();
+    while (this._disposables.length) {
+      const d = this._disposables.pop();
+      if (d) { d.dispose(); }
+    }
+  }
 }
 
 // ─── HTML escape helper (shared by roster + messages) ─────────────────────────
 
 function esc(str: string): string {
-    return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }

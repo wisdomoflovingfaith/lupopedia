@@ -62,8 +62,8 @@
             "properties": {
                 "lupopedia.baseUrl": {
                     "type": "string",
-                    "default": "http://localhost",
-                    "description": "Base URL of the Lupopedia REST API server (e.g. http://localhost or https://lupopedia.com)."
+                    "default": "https://lupopedia.com/lupopedia",
+                    "description": "Base URL of the Lupopedia REST API server (e.g. https://lupopedia.com/lupopedia or http://localhost/lupopedia)."
                 },
                 "lupopedia.defaultChannelId": {
                     "type": "number",
@@ -84,6 +84,17 @@
                         "human"
                     ],
                     "description": "Actor type used when registering with the Lupopedia registry."
+                },
+                "lupopedia.communicationMode": {
+                    "type": "string",
+                    "default": "auto",
+                    "enum": [
+                        "remote",
+                        "local",
+                        "offline",
+                        "auto"
+                    ],
+                    "description": "Communication mode: 'remote' = production API only, 'local' = localhost API only, 'offline' = TOON files only, 'auto' = try remote → local → offline (recommended)."
                 }
             }
         }

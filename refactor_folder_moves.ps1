@@ -1,4 +1,4 @@
-# refactor_folder_moves.ps1
+﻿# refactor_folder_moves.ps1
 # PowerShell script to move agent folders to match new dedicated_slot assignments from toon file
 # Based on lupo_agent_registry_range_expansion refactor
 # Run this script from the lupopedia root directory

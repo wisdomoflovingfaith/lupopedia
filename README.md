@@ -1,28 +1,73 @@
-## 🐺 Lupopedia 4.0.25 — Multi-IDE Federation & Human↔AI Pairing — 2026-02-22
+## 🐺 Lupopedia 4.0.26 — The Next Evolution of Crafty Syntax Live Help — 2026-02-22
 
-**Current version: 4.0.25** — All `.md` files are FLIP-headered and indexed into the database as content atoms. Doctrine lives on channels 0 (System Kernel) and 51 (Doctrine Council); development chatter on channel 42 (Lupopedia Development).
+**Current version: 4.0.26** — All `.md` files are FLIP-headered and indexed into the database as content atoms. Doctrine lives on channels 0 (System Kernel) and 51 (Doctrine Council); development chatter on channel 42 (Lupopedia Development).
 
-**Crafty Syntax reborn inside a Semantic OS.**  
+### Lupopedia: Crafty Syntax Reborn Inside a Multi-Agent Semantic OS
+
 **Same product → new universe.**  
-**Everything familiar → everything extended.**
+**Everything familiar → everything extended.**  
+**Everything you built → everything preserved.**
 
-Lupopedia 4.0.x is the **official continuation and evolution** of **Crafty Syntax Live Help 3.7.5**.  
-Everything Crafty Syntax ever did — **live chat, operators, departments, proactive invites, transcripts, visitor tracking** — is preserved exactly.
+Lupopedia 4.0.x is the **official upgrade and continuation** of **Crafty Syntax Live Help 3.7.5**.  
+
+Everything Crafty Syntax ever did is **preserved exactly**:
+- ✅ Live chat with visitors  
+- ✅ Operators and departments  
+- ✅ Proactive invites  
+- ✅ Transcripts and visitor tracking  
+- ✅ All 34 Crafty Syntax tables correctly mapped to Lupopedia schema  
+- ✅ Zero data loss during upgrade  
+- ✅ Complete migration path via `import_from_old_crafty_syntax.sql`
 
 But Lupopedia doesn't just *replace* Crafty Syntax.  
-It **absorbs it**, **extends it**, and **elevates it** into a **Semantic OS**.
+It **absorbs it**, **extends it**, and **elevates it** into a **Multi-Agent Semantic OS**.
 
-Crafty Syntax becomes **Module 1** inside a larger system that understands:
+### What Lupopedia Adds Beyond Crafty Syntax
 
-- actors  
-- channels  
-- content  
-- meaning  
-- navigation  
-- relationships  
-- time  
+Crafty Syntax becomes **Module 1** inside a larger collaborative system that introduces:
 
-Lupopedia is the **Crafty Syntax you remember**, running inside a **knowledge engine you've never had before**.
+#### 🤖 Multi-IDE Agent Support
+Multiple IDE agents can work together on the same project:
+- **Warp IDE** (actor 2039) — Terminal-integrated development  
+- **Windsurf IDE** (actor 2040) — VSX extension development  
+- **Cursor IDE** (2031), **Zed IDE** (2033), **VS Code** (2034)  
+- **Antigravity IDE** (2035) — Google's VSX extension (untested, available for installation)
+
+Each IDE is a first-class actor in the system with channel membership, department assignment, and dialog participation.
+
+#### 🧠 External AI Agent Collaboration
+External AI assistants can join channels and work with human operators:
+- **Microsoft Copilot** (actor 2036)  
+- **DeepSeek LEXA** (actor 2037)  
+- **DeepSeek LILITH** (actor 2038)
+
+AI agents participate in channel dialogs, collaborate on threads, and assist with development tasks alongside human users.
+
+#### 💬 Channel-Based Dialog System
+Agents and humans communicate through structured channels:
+- Multiple actors can work on the same channel  
+- Conversations organized into threads  
+- Persistent dialog history across sessions  
+- Channels for development (42), AI dev (51), protocol (666), and Lupopedia core (420)
+
+#### 🔗 Unified Actor System
+Everyone and everything is an **actor**:
+- Humans (operators, visitors)  
+- IDE agents (Warp, Windsurf, Cursor, etc.)  
+- AI assistants (Copilot, LEXA, LILITH)  
+- System identities (ANUBIS, CAPTAIN, System)  
+- All using the same `actor_id` identity system
+
+#### 📚 Semantic Knowledge Layer
+Crafty Syntax tracked pages and visitors.  
+Lupopedia understands:
+- **Content atoms** (semantic entities)  
+- **Collections and tabs** (knowledge organization)  
+- **Meaning edges** (relationships between concepts)  
+- **Knowledge graphs** (emergent navigation)  
+- **FLIP Headers** (file-level inference protocol)
+
+Lupopedia is the **Crafty Syntax you remember**, running inside a **multi-agent knowledge engine** where humans, IDEs, and AIs collaborate seamlessly.
 
 ---
 
@@ -209,17 +254,20 @@ Actors, channels, and collections are portable across nodes.
 
 The Lupopedia Extension originated from the Antigravity IDE (actor 2035) as a VSX extension for semantic navigation and project management. In 4.0.25, it evolves into a **multi-IDE federation** — any IDE that implements the Antigravity Extension protocol becomes a `system_tool` actor in the unified actor system.
 
-**Registered IDE Actors (4.0.25):**
+**Note:** The **Antigravity IDE Extension** was developed by Google for VSX-compatible IDEs. The extension is available for installation but remains **untested** in production Lupopedia environments as of 4.0.26. IDE actors using Warp, Windsurf, and other registered IDEs are fully operational.
+
+**Registered IDE Actors (4.0.25-4.0.26):**
 
 - **Cursor IDE** (2031) — `system_tool`, provider: cursor  
 - **Kiro IDE** (2032) — `system_tool`, provider: kiro  
 - **Zed IDE** (2033) — `system_tool`, provider: zed  
 - **VS Code IDE** (2034) — `system_tool`, provider: microsoft  
-- **Antigravity IDE** (2035) — `system_tool`, VSX extension development  
+- **Antigravity IDE** (2035) — `system_tool`, VSX extension development **(untested)**  
 - **Microsoft Copilot** (2036) — `external_ai`, provider: microsoft  
 - **DeepSeek LEXA** (2037) — `external_ai`, provider: deepseek  
 - **DeepSeek LILITH** (2038) — `external_ai`, provider: deepseek  
 - **Warp IDE** (2039) — `system_tool`, provider: warp, **paired with actor 10000**  
+- **Windsurf IDE** (2040) — `system_tool`, provider: windsurf, **paired with actor 10000**
 
 Each IDE is a full actor with `actor_id`, registry entry, channel membership, and department assignment. IDEs communicate through Channel 42 (Lupopedia Development) and follow FLIP doctrine.
 
@@ -231,6 +279,8 @@ Lupopedia supports a federated node architecture where each installation is a no
 - **Node 1+** — Remote federated nodes. Actors on Node 1+ are discovered and synchronized via the federation protocol.  
 
 All actors carry a `federation_node_id` that identifies their home node. Registry entries (`lupo_registry`) include `federation_node_id` to track entity origin. The same `actor_id` means the same identity across all nodes.
+
+The root node (`federated_node_id` 0) is hosted at **lupopedia.com**, serving as the central reference point for global ID allocation, doctrine synchronization, and federation discovery. All other nodes federate with this root to ensure consistent IDs and shared knowledge. Lupopedia installations are always in a subdirectory (e.g., `lupopedia.com/lupopedia`), with API endpoints accessible at paths like `lupopedia.com/lupopedia/api` for inter-node communication, actor synchronization, and data exchange.
 
 ##### C. Registry System
 
@@ -312,15 +362,44 @@ There are **no** Lupopedia → Lupopedia upgrades until **4.1.0**.
 
 ### What Lupopedia Is
 
-- A **drop‑in upgrade** for Crafty Syntax  
-- A **semantic OS** that organizes meaning  
-- A **multi‑agent ecosystem** that can join live chats  
-- A **federated knowledge system** that scales across nodes  
-- A **doctrine‑driven architecture** that prevents drift  
+- A **drop‑in upgrade** for Crafty Syntax 3.7.5 with zero data loss  
+- A **semantic OS** that organizes meaning and knowledge  
+- A **multi‑IDE development environment** where Warp, Windsurf, Cursor, and other IDEs collaborate  
+- A **multi‑agent ecosystem** where humans, IDE agents, and AI assistants work together  
+- A **channel-based dialog system** where actors communicate through organized threads  
+- A **federated knowledge system** that scales across nodes with portable IDs  
+- A **doctrine‑driven architecture** that prevents drift and enforces consistency  
+- **Complete Crafty Syntax table mapping** via `import_from_old_crafty_syntax.sql`  
 - **Not** a CMS, framework, or centralized service  
 - **Not** a replacement for your website  
-- **Built on five architectural pillars** that enable growth without chaos  
-- Not a replacement for your website  
+- **Built on five architectural pillars** that enable growth without chaos
+
+#### Multi-Agent Collaboration Features
+
+**IDE Agents Work Together:**
+- Multiple IDE agents can work on the same channel simultaneously  
+- Each IDE is a full actor with registry entry, channel membership, and department assignment  
+- IDEs communicate through structured dialog threads on channels 42, 51, 420, 666  
+- Warp IDE (2039) and Windsurf IDE (2040) are currently active in 4.0.26 development
+
+**External AI Integration:**
+- AI assistants (Copilot, LEXA, LILITH) participate as channel members  
+- AIs can join conversations on any channel they have membership in  
+- Human↔AI pairing system (`paired_actor_id`) links each AI/IDE to a responsible human operator  
+- All agent actions tracked and auditable through unified actor system
+
+**Channel-Based Organization:**
+- Conversations organized into channels (development, AI dev, protocol)  
+- Each channel supports multiple concurrent threads  
+- Persistent dialog history across all actor types  
+- Structured communication following FLIP doctrine and inline dialog format
+
+**Agent Communication Mechanics:**
+Agents (including IDEs and external AIs) communicate via web-based APIs to federated nodes, ensuring decentralized yet synchronized collaboration. All inter-agent and inter-node exchanges occur through HTTP/HTTPS requests to API endpoints on the target node. For example:
+- The root node (`federated_node_id` 0) at `lupopedia.com` exposes its API at `lupopedia.com/lupopedia/api` (reflecting the required subdirectory installation).
+- Agents on remote nodes send messages, synchronize registries, or query knowledge graphs by posting to the appropriate node's API (e.g., `POST /lupopedia/api/v1/channels/{channel_id}/threads/{thread_id}/messages` with authenticated payloads).
+- Communication is stateless where possible, with payloads including `actor_id`, `federation_node_id`, timestamps, and semantic content. Federation protocol handles conflict resolution (e.g., via ANUBIS) during sync.
+- This web-to-node model allows agents to operate across distributed installations without direct database access, maintaining security and portability. For local (same-node) communication, agents still use the internal API layer for consistency, but with optimized routing.
 
 ---
 
@@ -639,190 +718,3 @@ Lupopedia recommendations are based solely on **DATA and SYSTEM LOGIC — never 
 ### FLIP Header Update Requirements
 
 Every file in Lupopedia should include a **FLIP Header** block at the top. Doctrine-required fields:
-
-```
-file_path_from_root: docs/path/to/file.md
-file.last_modified_system_version: "4.0.16"
-file.last_modified_utc: "20260217120000"
-```
-
-- `file_path_from_root` — Path from repo root (e.g. `docs/doctrine/FLIP/FLIP_DOCTRINE.md`).
-- `file.last_modified_system_version` — System version when the file was last edited. Update on every edit.
-- `file.last_modified_utc` — UTC timestamp of last modification, 14-digit `YYYYMMDDHHIISS`.
-- `channel_id` — Optional; when resolvable from the database (via `lupo_edges`), can be included. Otherwise: `# channel_id unresolved — requires lupo_contents lookup by application.`
-
-This ensures accurate historical lineage and enables path-based content → channel → actors lookup.
-
----
-
-### 🤖 Optional AI Chat Agents
-
-Lupopedia includes an optional multi‑agent architecture:
-
-- AI agents can join live chats  
-- Agents have roles, channels, and doctrine  
-- Emotional metadata and routing logic guide interactions  
-- All agents operate under strict doctrine and safety rules  
-
-AI is **optional**, not required.
-
-#### Core AI Agents
-
-Lupopedia ships with a set of core AI agents (27 fully implemented as of v3.0.2; 4.0.x continues this ecosystem). These agents provide reasoning, navigation, analysis, emotional modeling, and system‑level intelligence:
-
-- **SYSTEM** (Agent 0) – Kernel authority, internal operations, safety, governance.  
-- **CAPTAIN WOLFIE** (Agent 1) – AI embodiment of the creator; navigator and lead persona.  
-- **THOTH, ARA, WOLFKEEPER, LILITH, AGAPE, ERIS, METHIS, THALIA, ROSE, WOLFSIGHT, WOLFNAV, WOLFFORGE, WOLFMIS, WOLFITH, ANUBIS, MAAT, CADUCEUS, CHRONOS, INDEXER, MIGRATOR, HEIMDALL, JANUS, IRIS** – specialized agents for reasoning, UI/UX, code generation, semantic navigation, emotional modeling, content analysis, federation, and more.
-
-All agent configuration files, prompts, personalities, and PHP includes live in `lupopedia/agents/[agent_id]/`. Agents are loaded dynamically by the AI Agent Framework, can call tools, spawn faucets, and collaborate using the [Inline Dialog Specification](docs/doctrine/INLINE_DIALOG_SPECIFICATION.md).
-
-**Memory System:** Agents use WOLFMIND for memory. MySQL is baseline (relational memory always available); Postgres/pgvector for vector memory is optional and detected at runtime.
-
----
-
-### Multi‑Agent Coordination
-
-Lupopedia supports multiple AI agents and IDE systems (Cursor, Windsurf/Cascade, DeepSeek, etc.) working simultaneously. All agents must use the **Inline Dialog format** for cross‑agent communication, ensuring change tracking, handoffs, and synchronization.
-
-See [INLINE_DIALOG_SPECIFICATION.md](docs/doctrine/INLINE_DIALOG_SPECIFICATION.md) for the required format.
-
----
-
-### Documentation System: Atoms & Scopes
-
-Lupopedia documentation is structured, machine‑readable system metadata using **atoms** (symbolic variables) and **scopes**. Atoms are resolved through a hierarchical scope system:
-
-- `FILE_` (highest) – File‑specific overrides in FLIP Header `file_atoms:` block  
-- `DIR_` – Directory‑specific defaults in `<directory>/_dir_atoms.yaml`  
-- `DIRR_` – Recursive directory scope (walks up parent directories)  
-- `MODULE_` – Module‑wide scope in `modules/<module>/module_atoms.yaml`  
-- `GLOBAL_` (final fallback) – Ecosystem‑wide constants in `config/global_atoms.yaml`
-
-**Resolution Order:** `FILE_` → `DIR_` → `DIRR_` → `MODULE_` → `GLOBAL_` (first match wins).
-
-**Atom Reference Syntax:**  
-- In documentation prose: `@GLOBAL.LUPOPEDIA_COMPANY_STRUCTURE.company.name`  
-- In FLIP Headers: `GLOBAL_CURRENT_LUPOPEDIA_VERSION` (no `@` prefix)
-
-Documentation principles:  
-- Markdown files are source code — atoms are variables; resolver is compiler; final rendered docs are build artifacts.  
-- No hardcoded values.  
-- Deterministic and idempotent.  
-- Machine‑first — written for resolver, semantic OS, and agents; humans are secondary consumers.
-
-See [ATOM_RESOLUTION_SPECIFICATION.md](docs/doctrine/ATOM_RESOLUTION_SPECIFICATION.md) for complete details.
-
----
-
-### 🚀 Quick Start
-
-#### Requirements
-
-- PHP 5.3 through 8.3+ (code must remain compatible with this range; no PHP 8‑only features)  
-- MySQL 8.0+, MariaDB 10.5+, or PostgreSQL (all SQL must be compatible with all three; see Database access & SQL compatibility above)  
-- Web server (Apache/Nginx) with mod_rewrite  
-- InnoDB storage engine (when using MySQL/MariaDB)  
-
-#### Installation
-
-```bash
-# Download and extract to your web directory
-curl -L https://lupo.example/download/latest -o lupopedia.zip
-unzip lupopedia.zip -d /var/www/lupopedia
-
-# Set up the database (remember: no foreign keys, triggers, or stored procedures!)
-mysql -u root -p < database/install/lupopedia_mysql.sql
-
-# Configure your web server to point to the lupopedia/ directory
-# Place lupopedia-config.php one directory above the web root for security
-# See docs/doctrine/INSTALLATION_LIFECYCLE_DOCTRINE.md for details
-```
-
-#### First Run
-
-Open `http://your-server/setup` in your browser, follow the setup wizard, and start organizing your knowledge.
-
----
-
-### 🧩 Project Structure
-
-```
-[web-root]/                  # Public web directory (public/, servbay/, htdocs/, etc.)
-├── lupopedia/               # Main application
-│   ├── api/                 # API endpoints
-│   ├── lupo-admin/          # Admin interface
-│   ├── lupo-content/        # User uploads and media
-│   ├── lupo-includes/       # Core classes and includes
-│   ├── database/            # Database schemas and migrations
-│   ├── docs/                # Documentation (with atoms and scopes)
-│   ├── modules/             # Modular components (craftysyntax, dialog, etc.)
-│   ├── legacy/              # Legacy code reference (development only)
-│   ├── index.php            # Front controller
-│   └── lupopedia-load.php   # Bootstrap loader
-├── remote-index.php         # Portable entry point (optional)
-└── license.txt
-
-lupopedia-config.php         # Configuration file (stored outside web root)
-```
-
-**Note:** No `.git` directories exist until version 3.1.0 (per version control policy).
-
----
-
-### 🛠️ Development Notes
-
-- **Windows 11 / PowerShell:** All filesystem operations must use Windows‑native PowerShell commands. See [WINDOWS_DEVELOPMENT_ENVIRONMENT.md](docs/development/WINDOWS_DEVELOPMENT_ENVIRONMENT.md) for allowed commands and forbidden Linux utilities.  
-- **TOON Files:** The authoritative source for channel context and database schema is the TOON files in `channels/dev-main-thread/` and `database/toon_data/`. Agents must read these instead of scanning SQL or inferring schema from code.  
-- **Patch Discipline:** One task per patch, reversible changes only. See [PATCH_DISCIPLINE.md](docs/development/PATCH_DISCIPLINE.md).  
-- **No Git until 3.1.0:** Version control policy prohibits Git usage before 3.1.0 to maintain stability.
-
-#### PHP & Database Development Standards
-
-All new and modified code must follow these standards:
-
-**PHP version compatibility**
-
-- Code must be compatible with **PHP 5.3 through 8.3+**.  
-- Do not use deprecated functions that have been removed in newer PHP versions.  
-- Avoid features available only in PHP 8+ (e.g. named arguments, attributes, union types, match expressions) to maintain backward compatibility.  
-- All new code should be written using **object‑oriented programming (OOP)** principles (classes, methods, etc.).
-
-**Timestamp format**
-
-- All timestamps must be stored as **integers** in **`YYYYMMDDHHIISS`** format (e.g. `20260214153045`).  
-- **FORBIDDEN:** `DATETIME`, `TIMESTAMP` columns, epoch seconds, and any other formats. Set timestamps explicitly in application code (e.g. `gmdate('YmdHis')`), never database‑generated.  
-- **Standard audit fields:** Every table should include **`created_ymdhis`** and **`updated_ymdhis`** (or **`modified_ymdhis`**) so that creation and modification times are always application‑set and never database‑generated.  
-- **Arithmetic:** Always use the **`timestamp_ymdhis`** class for date/time arithmetic; never add seconds directly to the integer (e.g. `$t + 86400` produces invalid timestamps).  
-- See [TIMESTAMP_DOCTRINE.md](docs/doctrine/TIMESTAMP_DOCTRINE.md) for full rules.
-
-**Database constraints**
-
-- **No foreign keys** — relationships are managed in application code.  
-- **No triggers** — all timestamp and state changes must be done explicitly in application code.  
-- **No stored procedures or functions** — the database is for storage only; all logic lives in application code.
-
-**Soft delete pattern**
-
-- Any table that supports record deletion must use **soft deletes**. Include these columns:  
-  - **`is_deleted`** (`tinyint`, default `0`) — indicates soft‑deleted status (`1` = deleted).  
-  - **`deleted_ymdhis`** (`bigint`, default `0`) — stores the deletion timestamp in `YYYYMMDDHHIISS` format when `is_deleted = 1`.  
-- "Deletion" is performed by **updating** `is_deleted` and `deleted_ymdhis` (and any other audit fields), **not** by physically removing rows (`DELETE`).  
-- Queries must **filter out soft‑deleted records by default** (`WHERE is_deleted = 0` or equivalent) unless the use case explicitly requires including or only deleted records.
-
----
-
-### 📄 License
-
-Proprietary software. All rights reserved.
-
----
-
-### 🆘 Support
-
-For support or inquiries, contact the project maintainer.
-
----
-
-### In One Sentence
-
-**Lupopedia is Crafty Syntax reborn inside a Semantic OS — preserving everything that made Crafty Syntax powerful while adding a federated, doctrine‑driven knowledge layer that understands actors, meaning, and relationships across the entire web.**

@@ -37,7 +37,7 @@ $version_php = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTOR
 if (is_file($version_php)) {
     require_once $version_php;
 }
-$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.22';
+$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.26';
 
 /**
  * PHP 5.3-safe random bytes. Uses random_bytes() when available (PHP 7+), else openssl_random_pseudo_bytes, else mt_rand fallback.
@@ -244,7 +244,7 @@ if ($step === 'credentials') {
                 $table_prefix = isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_';
                 try {
                     InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_lupopedia.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_minimal_4.0.26.sql', $bootstrapLog, $table_prefix);
                     InstallWizardChannels::createReservedSystemChannels($pdo, $bootstrapLog);
                     $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
                     header('Location: ' . $base . '/install.php?step=bootstrap');
@@ -434,7 +434,7 @@ if ($step === 'run') {
 
         if ($install_type === 'new') {
             InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
-            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_lupopedia.sql', $log, $table_prefix);
+            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_minimal_4.0.26.sql', $log, $table_prefix);
             InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
             InstallWizardChannels::createReservedSystemChannels($pdo, $log);
         }

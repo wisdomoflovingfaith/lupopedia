@@ -452,6 +452,28 @@ function lupo_route_slug($slug) {
         return render_main_layout($context);
     }
 
+    // ── REST API: Registry (actor lookup / register) ─────────────────────────
+    if (preg_match('#^api/registry/actors/(lookup|register)$#', $slug, $api_m)) {
+        $registry_api_action = $api_m[1];
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'api' . DIRECTORY_SEPARATOR . 'registry-api.php';
+        if (file_exists($api_path)) {
+            require_once $api_path;
+            exit;
+        }
+    }
+
+    // ── REST API: Channels (RESTful messages for VSX extension) ────────────────
+    if (preg_match('#^api/channels/(\d+)/messages/?$#', $slug, $api_m)) {
+        $channels_api_channel_id = (int) $api_m[1];
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'api' . DIRECTORY_SEPARATOR . 'channels-api.php';
+        if (file_exists($api_path)) {
+            require_once $api_path;
+            exit;
+        }
+    }
+
     // API: Channel typing preview (GET = operator poll, POST = visitor submit draft)
     if (preg_match('#^api/channel/typing$#', $slug)) {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;

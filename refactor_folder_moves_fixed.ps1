@@ -1,4 +1,4 @@
-# refactor_folder_moves_fixed.ps1
+﻿# refactor_folder_moves_fixed.ps1
 # PowerShell script to move agent folders to match new dedicated_slot assignments
 # Uses temporary folder names to handle swaps correctly
 # Run this script from the lupopedia root directory

@@ -14,6 +14,9 @@
 
 import { lupoGet, lupoPost } from './client';
 import { ActorIdentity, KNOWN_EXTERNAL_ACTORS, saveIdentity, mergeActorCache } from './identity';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as vscode from 'vscode';
 
 export interface RegisterRequest {
     actor_name: string;
@@ -146,13 +149,55 @@ export async function lookupActorsByType(
  * - Returns the resolved identities (may be fewer than requested).
  */
 export async function lookupKnownActors(
-    baseUrl: string
+    baseUrl: string,
+    mode: 'remote' | 'local' | 'offline' | 'auto' = 'auto'
 ): Promise<ActorIdentity[]> {
-    const resolved: ActorIdentity[] = [];
+    // Tier 3: Offline mode - use TOON files directly
+    if (mode === 'offline') {
+        return lookupKnownActorsLocal();
+    }
 
+    // Tier 2: Local mode - use localhost API
+    if (mode === 'local') {
+        try {
+            return await lookupKnownActorsApi('http://localhost/lupopedia');
+        } catch {
+            // Localhost failed, fall through to TOON files
+            return lookupKnownActorsLocal();
+        }
+    }
+
+    // Tier 1: Remote mode - use production API
+    if (mode === 'remote') {
+        try {
+            return await lookupKnownActorsApi('https://lupopedia.com/lupopedia');
+        } catch {
+            // Production failed, fall through to TOON files
+            return lookupKnownActorsLocal();
+        }
+    }
+
+    // Auto mode: Try all tiers in order
+    try {
+        // Try production first
+        return await lookupKnownActorsApi('https://lupopedia.com/lupopedia');
+    } catch {
+        try {
+            // Production failed, try localhost
+            return await lookupKnownActorsApi('http://localhost/lupopedia');
+        } catch {
+            // Both failed, use TOON files
+            return lookupKnownActorsLocal();
+        }
+    }
+}
+
+async function lookupKnownActorsApi(apiBaseUrl: string): Promise<ActorIdentity[]> {
+    const resolved: ActorIdentity[] = [];
+    
     for (const { name, type } of KNOWN_EXTERNAL_ACTORS) {
         try {
-            const identity = await lookupActor(baseUrl, name, type);
+            const identity = await lookupActor(apiBaseUrl, name, type);
             if (identity) {
                 resolved.push(identity);
             }
@@ -166,4 +211,57 @@ export async function lookupKnownActors(
     }
 
     return resolved;
+}
+
+// ── Local TOON file fallback ─────────────────────────────────────────────────
+
+interface ToonAgent {
+    agent_id?: number;
+    agent_key?: string;
+    agent_name?: string;
+    archetype?: string;
+    [key: string]: unknown;
+}
+
+async function lookupKnownActorsLocal(): Promise<ActorIdentity[]> {
+    const folders = vscode.workspace.workspaceFolders;
+    if (!folders || folders.length === 0) { return []; }
+
+    const toonPath = path.join(
+        folders[0].uri.fsPath,
+        'docs', 'toons', 'lupo_agents.toon.json'
+    );
+
+    if (!fs.existsSync(toonPath)) { return []; }
+
+    try {
+        const raw = fs.readFileSync(toonPath, 'utf-8');
+        const parsed = JSON.parse(raw) as { data?: ToonAgent[] };
+        if (!parsed.data) { return []; }
+
+        const knownNames = new Set(KNOWN_EXTERNAL_ACTORS.map((a) => a.name));
+        const resolved: ActorIdentity[] = [];
+
+        for (const agent of parsed.data) {
+            if (
+                agent.agent_name &&
+                knownNames.has(agent.agent_name) &&
+                agent.agent_id !== null &&
+                agent.agent_id !== undefined
+            ) {
+                resolved.push({
+                    actor_id: agent.agent_id,
+                    actor_name: agent.agent_name,
+                    actor_type: 'external_ai',
+                });
+            }
+        }
+
+        if (resolved.length > 0) {
+            await mergeActorCache(resolved);
+        }
+        return resolved;
+    } catch {
+        return [];
+    }
 }

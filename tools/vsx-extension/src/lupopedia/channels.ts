@@ -8,8 +8,13 @@
  * @module lupopedia/channels
  */
 
+import * as fs from 'fs';
+import * as path from 'path';
+import * as vscode from 'vscode';
 import { lupoGet, lupoPost } from './client';
 import { ActorIdentity } from './identity';
+
+export type CommMode = 'remote' | 'local' | 'offline' | 'auto';
 
 export interface ChannelMessage {
     message_id?: number;
@@ -21,7 +26,7 @@ export interface ChannelMessage {
     created_at?: string;
     meta?: Record<string, unknown>;
 }
-
+// ... (rest of interfaces)
 export interface SendMessageRequest {
     actor_id: number;
     actor_name: string;
@@ -45,10 +50,57 @@ export interface GetMessagesResponse {
 
 /**
  * Send a message to a Lupopedia channel.
- * The actor identity is automatically included in the payload.
  */
 export async function sendMessage(
     baseUrl: string,
+    channelId: number,
+    body: string,
+    identity: ActorIdentity,
+    meta?: Record<string, unknown>,
+    mode: CommMode = 'auto'
+): Promise<SendMessageResponse> {
+    // Tier 3: Offline mode - use local files directly
+    if (mode === 'offline') {
+        return sendMessageLocal(channelId, body, identity);
+    }
+
+    // Tier 2: Local mode - use localhost API
+    if (mode === 'local') {
+        try {
+            return await sendMessageApi('http://localhost/lupopedia', channelId, body, identity, meta);
+        } catch {
+            // Localhost failed, fall through to offline mode
+            return sendMessageLocal(channelId, body, identity);
+        }
+    }
+
+    // Tier 1: Remote mode - use production API
+    if (mode === 'remote') {
+        try {
+            return await sendMessageApi('https://lupopedia.com/lupopedia', channelId, body, identity, meta);
+        } catch {
+            // Production failed, fall through to offline mode
+            return sendMessageLocal(channelId, body, identity);
+        }
+    }
+
+    // Auto mode: Try all tiers in order
+    try {
+        // Try production first
+        return await sendMessageApi('https://lupopedia.com/lupopedia', channelId, body, identity, meta);
+    } catch {
+        try {
+            // Production failed, try localhost
+            return await sendMessageApi('http://localhost/lupopedia', channelId, body, identity, meta);
+        } catch {
+            // Both failed, use local files
+            return sendMessageLocal(channelId, body, identity);
+        }
+    }
+}
+
+async function sendMessageApi(
+    apiBaseUrl: string,
     channelId: number,
     body: string,
     identity: ActorIdentity,
@@ -63,7 +115,7 @@ export async function sendMessage(
     };
 
     const res = await lupoPost<SendMessageResponse>(
-        baseUrl,
+        apiBaseUrl,
         `/channels/${channelId}/messages`,
         payload
     );
@@ -79,18 +131,61 @@ export async function sendMessage(
 
 /**
  * Retrieve messages from a Lupopedia channel.
- *
- * @param since - Optional UTC timestamp (YYYYMMDDHHmmss) to only fetch
- *                messages after a given point.
  */
 export async function getMessages(
     baseUrl: string,
+    channelId: number,
+    since?: string,
+    mode: CommMode = 'auto'
+): Promise<ChannelMessage[]> {
+    // Tier 3: Offline mode - use local files directly
+    if (mode === 'offline') {
+        return getMessagesLocal(channelId, since);
+    }
+
+    // Tier 2: Local mode - use localhost API
+    if (mode === 'local') {
+        try {
+            return await getMessagesApi('http://localhost/lupopedia', channelId, since);
+        } catch {
+            // Localhost failed, fall through to offline mode
+            return getMessagesLocal(channelId, since);
+        }
+    }
+
+    // Tier 1: Remote mode - use production API
+    if (mode === 'remote') {
+        try {
+            return await getMessagesApi('https://lupopedia.com/lupopedia', channelId, since);
+        } catch {
+            // Production failed, fall through to offline mode
+            return getMessagesLocal(channelId, since);
+        }
+    }
+
+    // Auto mode: Try all tiers in order
+    try {
+        // Try production first
+        return await getMessagesApi('https://lupopedia.com/lupopedia', channelId, since);
+    } catch {
+        try {
+            // Production failed, try localhost
+            return await getMessagesApi('http://localhost/lupopedia', channelId, since);
+        } catch {
+            // Both failed, use local files
+            return getMessagesLocal(channelId, since);
+        }
+    }
+}
+
+async function getMessagesApi(
+    apiBaseUrl: string,
     channelId: number,
     since?: string
 ): Promise<ChannelMessage[]> {
     const params = since ? `?since=${encodeURIComponent(since)}` : '';
     const res = await lupoGet<GetMessagesResponse>(
-        baseUrl,
+        apiBaseUrl,
         `/channels/${channelId}/messages${params}`
     );
 
@@ -110,13 +205,117 @@ export async function getMessages(
 export async function joinChannel(
     baseUrl: string,
     channelId: number,
-    identity: ActorIdentity
+    identity: ActorIdentity,
+    mode: CommMode = 'auto'
 ): Promise<void> {
     await sendMessage(
         baseUrl,
         channelId,
         `[JOIN] ${identity.actor_name} joined channel ${channelId}.`,
         identity,
-        { event: 'join', actor_type: identity.actor_type }
+        { event: 'join', actor_type: identity.actor_type },
+        mode
     );
+}
+
+// ── Local filesystem helpers ──────────────────────────────────────────────────
+
+function localChannelPath(channelId: number): string | null {
+    const folders = vscode.workspace.workspaceFolders;
+    if (!folders || folders.length === 0) { return null; }
+    return path.join(folders[0].uri.fsPath, 'messages', `channel_${channelId}.md`);
+}
+
+function ensureLocalFile(filePath: string): void {
+    const dir = path.dirname(filePath);
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+    }
+    if (!fs.existsSync(filePath)) {
+        fs.writeFileSync(filePath, `# Channel Local Fallback Log\n\n`, 'utf-8');
+    }
+}
+
+async function sendMessageLocal(
+    channelId: number,
+    body: string,
+    identity: ActorIdentity
+): Promise<SendMessageResponse> {
+    const filePath = localChannelPath(channelId);
+    if (!filePath) {
+        throw new Error('No workspace folder open — cannot use local mode.');
+    }
+    ensureLocalFile(filePath);
+
+    const ts = Date.now();
+    const iso = new Date().toISOString();
+    const human = iso.replace('T', ' ').replace(/\.\d+Z$/, ' UTC');
+
+    const block = [
+        `<!-- message_id: ${ts} | actor_id: ${identity.actor_id} | created_at: ${iso} -->`,
+        `### ${identity.actor_name} (#${identity.actor_id}) - ${human}`,
+        body,
+        '',
+        '---',
+        '',
+    ].join('\n');
+
+    fs.appendFileSync(filePath, block, 'utf-8');
+
+    return {
+        message_id: ts,
+        channel_id: channelId,
+        accepted: true,
+    };
+}
+
+const LOCAL_MSG_RE = /^<!--\s*message_id:\s*(\d+)\s*\|\s*actor_id:\s*(\d+)\s*\|\s*created_at:\s*(.+?)\s*-->$/;
+
+async function getMessagesLocal(
+    channelId: number,
+    since?: string
+): Promise<ChannelMessage[]> {
+    const filePath = localChannelPath(channelId);
+    if (!filePath || !fs.existsSync(filePath)) {
+        return [];
+    }
+
+    const raw = fs.readFileSync(filePath, 'utf-8');
+    const blocks = raw.split(/^---$/m);
+    const messages: ChannelMessage[] = [];
+
+    for (const block of blocks) {
+        const lines = block.trim().split('\n');
+        if (lines.length < 2) { continue; }
+
+        const metaMatch = LOCAL_MSG_RE.exec(lines[0].trim());
+        if (!metaMatch) { continue; }
+
+        const msgId = parseInt(metaMatch[1], 10);
+        const actorId = parseInt(metaMatch[2], 10);
+        const createdAt = metaMatch[3].trim();
+        const bodyLines = lines.slice(2); // skip meta comment + header
+        const body = bodyLines.join('\n').trim();
+
+        if (since) {
+            // Compare ISO timestamps or numeric
+            const sinceTs = /^\d{14}$/.test(since)
+                ? new Date(
+                    since.slice(0, 4) + '-' + since.slice(4, 6) + '-' + since.slice(6, 8) +
+                    'T' + since.slice(8, 10) + ':' + since.slice(10, 12) + ':' + since.slice(12, 14) + 'Z'
+                ).getTime()
+                : new Date(since).getTime();
+            if (msgId <= sinceTs) { continue; }
+        }
+
+        messages.push({
+            message_id: msgId,
+            actor_id: actorId,
+            channel_id: channelId,
+            body,
+            created_at: createdAt,
+        });
+    }
+
+    return messages;
 }

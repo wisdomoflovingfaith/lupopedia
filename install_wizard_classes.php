@@ -1,6 +1,6 @@
 <?php
 /**
- * Lupopedia 4.0.22 — Install Wizard Classes
+ * Lupopedia 4.0.26 — Install Wizard Classes
  *
  * Helper logic converted from install.php into classes per CLASS_CONVERSION_DOCTRINE.md.
  * PHP 5.3–compatible: no type hints, no return types, no short arrays, no ??.
@@ -419,12 +419,12 @@ class InstallWizardSqlRunner {
             $sql = str_replace('lupo_', $table_prefix, $sql);
         }
         $statements = InstallWizardSqlRunner::splitSqlStatements($sql);
-        if (stripos($sql, 'unified_registry') !== false && stripos($sql, 'INSERT') !== false) {
-            $ids = InstallWizardUnifiedRegistryValidator::extractUnifiedRegistryIdsFromSql($sql);
+        if (stripos($sql, 'registry') !== false && stripos($sql, 'INSERT') !== false) {
+            $ids = InstallWizardUnifiedRegistryValidator::extractRegistryIdsFromSql($sql);
             if (!empty($ids)) {
-                $conflictId = InstallWizardUnifiedRegistryValidator::checkUnifiedRegistryIdConflict($pdo, $ids, null);
+                $conflictId = InstallWizardUnifiedRegistryValidator::checkRegistryIdConflict($pdo, $ids, null);
                 if ($conflictId !== null) {
-                    throw new RuntimeException('Unified registry ID conflict: ID ' . (int) $conflictId . ' already exists.');
+                    throw new RuntimeException('Registry ID conflict: ID ' . (int) $conflictId . ' already exists.');
                 }
             }
         }

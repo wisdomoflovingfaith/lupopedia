@@ -14,8 +14,8 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.0.22"
-last_updated: 20260220000000
+version: "4.0.27"
+last_updated: 20260222
 
 # Author Information
 authors:
@@ -37,10 +37,10 @@ project:
 
 # Version Information
 versions:
-  lupopedia: "4.0.21"
-  crafty_syntax: "3.0.120"
-  wolfie_headers: "3.0.120"
-  schema: "3.0.115"
+  lupopedia: "4.0.27"
+  crafty_syntax: "4.0.27"
+  wolfie_headers: "4.0.27"
+  schema: "4.0.27"
 
 # Common Metadata
 metadata:
@@ -75,7 +75,7 @@ timestamp:
 # Global Atoms (Single Source of Truth for WOLFIE Headers)
 
 # Current Lupopedia Version (Use this in all WOLFIE headers instead of hardcoding)
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.21"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.27"
 
 # Current Authors (Use in WOLFIE headers)
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie (lupopedia-at-gmail-com)"
@@ -296,7 +296,7 @@ GLOBAL_ERIC_WOLFIE_TLDNR_2026:
     system_type: "Semantic OS (not a CMS)"
     total_tables: 120
     schemas: "3 (core, orchestration, ephemeral)"
-    crafty_syntax: "3.0.70"
+    crafty_syntax: "4.0.27"
     ai_agents: 128
     architecture: "Actor-centric (humans, AI agents, services share identity)"
     doctrine:
