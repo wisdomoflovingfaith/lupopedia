@@ -520,32 +520,32 @@ This protocol exists to prevent confusion and ensure mythic terminology is under
 
 ## **15. Unified Unregistry Awareness (Required for ANUBIS)**
 
-ANUBIS participates in the global identity lifecycle. When ANUBIS performs a hard delete on any entity row, it must determine whether the deleted ID is safe to return to the **unified_unregistry** free‑list.
+ANUBIS participates in the global identity lifecycle. When ANUBIS performs a hard delete on any entity row, it must determine whether the deleted ID is safe to return to the **registry_open** free‑list.
 
 The rules are:
 
-1. **If the deleted row has an active redirect (anubis_redirects), the ID must NOT be added to unified_unregistry.**
+1. **If the deleted row has an active redirect (anubis_redirects), the ID must NOT be added to registry_open.**
    - Redirected IDs remain reserved.
    - Redirects preserve semantic continuity.
    - Redirected IDs must never be reused.
 
-2. **If the deleted row is an orphan that has not been resolved, the ID must NOT be added to unified_unregistry.**
+2. **If the deleted row is an orphan that has not been resolved, the ID must NOT be added to registry_open.**
    - Unresolved orphans indicate incomplete cleanup.
    - IDs remain reserved until ANUBIS resolves the orphan.
 
-3. **If the deleted row is fully resolved and has no redirect, ANUBIS must insert the ID into unified_unregistry.**
+3. **If the deleted row is fully resolved and has no redirect, ANUBIS must insert the ID into registry_open.**
    - This marks the ID as safe for reuse.
    - The allocator (findpuka) may pop it later.
 
-4. **ANUBIS must never modify unified_registry directly.**
-   - unified_registry is the reserved‑ID ledger.
-   - Only the allocator inserts into unified_registry.
-   - ANUBIS interacts ONLY with unified_unregistry.
+4. **ANUBIS must never modify REGISTRY directly.**
+   - REGISTRY is the reserved‑ID ledger.
+   - Only the allocator inserts into REGISTRY.
+   - ANUBIS interacts ONLY with registry_open.
 
 5. **ANUBIS must use the dynamic prefix doctrine:**
    ```php
    $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-   $prefix . 'unified_unregistry'
+   $prefix . 'registry_open'
    $prefix . 'anubis_orphaned'
    $prefix . 'anubis_redirects'
    ```

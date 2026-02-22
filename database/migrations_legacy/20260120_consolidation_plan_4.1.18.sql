@@ -9,7 +9,7 @@
 --     4. Collections system (collections + tabs)
 --   Actual CREATE/DROP operations will occur in 3.1.19+
 
--- Placeholder: CREATE TABLE lupo_unified_dialog_messages (...)
--- Placeholder: CREATE TABLE lupo_unified_analytics_paths (...)
--- Placeholder: CREATE TABLE lupo_unified_truth_items (...)
+-- Placeholder: CREATE TABLE lupo_dialog_messages (...)
+-- Placeholder: CREATE TABLE lupo_analytics_paths (...)
+-- Placeholder: CREATE TABLE lupo_truth_items (...)
 -- Placeholder: ALTER TABLE lupo_collections ADD parent_id INT NULL;

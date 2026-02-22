@@ -7,7 +7,7 @@
 -- A) DIALOG SYSTEM CONSOLIDATION
 -- ======================================================================
 
-CREATE TABLE lupo_unified_dialog_messages (
+CREATE TABLE lupo_dialog_messages (
   dialog_message_id BIGINT NOT NULL,
   thread_id BIGINT,
   actor_id BIGINT,
@@ -18,7 +18,7 @@ CREATE TABLE lupo_unified_dialog_messages (
   PRIMARY KEY (dialog_message_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO lupo_unified_dialog_messages (
+INSERT INTO lupo_dialog_messages (
   dialog_message_id,
   thread_id,
   actor_id,
@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS lupo_dialog_message_bodies;
 -- B) ANALYTICS CONSOLIDATION
 -- ======================================================================
 
-CREATE TABLE lupo_unified_analytics_paths (
+CREATE TABLE lupo_analytics_paths (
   analytics_path_id BIGINT NOT NULL,
   period ENUM('daily','monthly') NOT NULL,
   visit_content_id BIGINT,
@@ -54,7 +54,7 @@ CREATE TABLE lupo_unified_analytics_paths (
   PRIMARY KEY (analytics_path_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO lupo_unified_analytics_paths (
+INSERT INTO lupo_analytics_paths (
   analytics_path_id,
   period,
   visit_content_id,
@@ -71,7 +71,7 @@ SELECT
   created_ymdhis
 FROM lupo_analytics_paths_daily;
 
-INSERT INTO lupo_unified_analytics_paths (
+INSERT INTO lupo_analytics_paths (
   analytics_path_id,
   period,
   visit_content_id,
@@ -95,7 +95,7 @@ DROP TABLE IF EXISTS lupo_analytics_paths_monthly;
 -- C) TRUTH SYSTEM CONSOLIDATION
 -- ======================================================================
 
-CREATE TABLE lupo_unified_truth_items (
+CREATE TABLE lupo_truth_items (
   truth_item_id BIGINT NOT NULL,
   item_type ENUM('question','answer') NOT NULL,
   name VARCHAR(255),
@@ -106,7 +106,7 @@ CREATE TABLE lupo_unified_truth_items (
   PRIMARY KEY (truth_item_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO lupo_unified_truth_items (
+INSERT INTO lupo_truth_items (
   truth_item_id,
   item_type,
   name,
@@ -125,7 +125,7 @@ SELECT
   created_ymdhis
 FROM lupo_truth_questions;
 
-INSERT INTO lupo_unified_truth_items (
+INSERT INTO lupo_truth_items (
   truth_item_id,
   item_type,
   name,

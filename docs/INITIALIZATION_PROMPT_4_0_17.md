@@ -19,7 +19,7 @@ All of the following must be true after a fresh install and seed. The validation
 | # | Deliverable | Verification |
 |---|-------------|--------------|
 | D1 | **Wizard runs from Crafty Syntax 3.7.5 baseline** | DROP tables; restore `database/migrations/old_crafty_syntax_3_7_5_start.sql`; run install.php; wizard completes successfully. |
-| D2 | **All seed data is loaded into the database** | Actors (lupo_actors), dialogs (lupo_dialog_messages), content (lupo_contents), edges (lupo_edges), registry (lupo_unified_registry), channels, threads, banned actors (lupo_banned_actors). |
+| D2 | **All seed data is loaded into the database** | Actors (lupo_actors), dialogs (lupo_dialog_messages), content (lupo_contents), edges (lupo_edges), registry (lupo_registry), channels, threads, banned actors (lupo_banned_actors). |
 | D3 | **Orphaned message from banned agent exists and is quarantined** | Message 36 (from actor_id 999, DEPRECATED_BANNED) exists in DB with `channel_id = 666`; it does **not** appear in channel 42. |
 | D4 | **Messages from Captain Wolfie (actor_id 1000) exist** | Messages 33–35 and others (e.g. message 38) have `from_actor_id = 1000`. |
 | D5 | **Login user (actor_id 1000) is set during install/upgrade** | Captain (actor_id 1000) is the human operator; auth and session allow login via captain@lupopedia.com or wisdomoflovingfaith@gmail.com. |
@@ -88,7 +88,7 @@ The new thread must treat every development cycle as a **clean, empty, fresh sta
 Before taking any action, load and apply **ALL** of the following doctrine from the repository:
 
 - **Installer doctrine** — Only valid path: Crafty Syntax 3.7.5 → Lupopedia 4.0.x. No Lupopedia→Lupopedia upgrade in 4.0.x. See docs/doctrine/INSTALLATION_PATH_DOCTRINE.md.
-- **Unified Registry doctrine** — Reserved IDs; no AUTO_INCREMENT for registry-backed tables. See docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md.
+- **Unified Registry doctrine** — Reserved IDs; no AUTO_INCREMENT for registry-backed tables. See docs/doctrine/REGISTRY_DOCTRINE.md.
 - **Identity doctrine** — Actors, auth_users, actor_source_type; roles via 3-level model.
 - **Permission doctrine** — 3-layer model: channel roles, department roles, system.
 - **Department doctrine** — department_id = 0 is system (reserved); department_id = 1 is general.
@@ -117,7 +117,7 @@ The repository state is **canonical** for the following. The new thread must tre
 - **FLIP headers** — 106+ doctrine .md files with valid FLIP headers (file.last_modified_system_version 4.0.16). scripts/flip_header_audit.py for validation.
 - **lupo_contents** — Content 5000–5037: doctrine .md files, FLIP_API.md (5033), FLP_CHANNEL_0/42/51/666 (5034–5037).
 - **lupo_edges** — HAS_CONTENT edges linking content to channels 0, 51, 42 (ANUBIS-related), 666 (quarantine). Path lookup: file_path_from_root → lupo_contents → lupo_edges HAS_CONTENT → channel_id.
-- **lupo_unified_registry** — Entity keys including channel:0:flip, channel:42:flip, channel:51:flip, channel:666:flip.
+- **lupo_registry** — Entity keys including channel:0:flip, channel:42:flip, channel:51:flip, channel:666:flip.
 - **lupo_banned_actors** — Single source of truth for banned actor_ids. Actor 999 (DEPRECATED_BANNED) seeded as banned. ANUBIS_Resolver::getBannedActorIds(); anubis_orphan_scanner.py get_banned_actor_ids(). Migration: 20260218_create_lupo_banned_actors.sql.
 - **Channel 666 (ANUBIS Quarantine)** — Seeded. lupo_anubis_redirects: old_id 66 → new_id 666. Message 36 (actor 999) quarantined to channel 666.
 - **Channel 42 dialog** — 61 messages total: 1–2 system; 3–27 kernel agents; 28–31 FLIP/API refs; 32–35 ANUBIS adoption; 36 quarantined to 666; 37–61 LILITH migration thread (25-agent closeout). lupo_dialog_channels.message_count = 61.
@@ -139,7 +139,7 @@ Perform the following validation in order:
 5a. **Banned orphan visibility** — Confirm that message 36 (from banned actor_id 999) does **not** appear in channel 42's thread 1. Verify in the database that message 36 exists with `channel_id = 666` (quarantine).
 6. **FLIP metadata** — For sample paths (e.g. docs/doctrine/FLIP/FLP_OVERVIEW.md, docs/doctrine/FLIP/FLP_CHANNEL_42.md), verify lupo_contents row exists, file_path_from_root matches. Before version bump: `file_last_modified_system_version = 4.0.16`. After bump: `4.0.17`.
 7. **Edge resolution** — For content_id 5034–5037, verify lupo_edges HAS_CONTENT to channels 0, 51; 5035 to 42; 5037 to 666.
-8. **Registry** — Verify lupo_unified_registry entries for channel:0:flip, channel:42:flip, channel:51:flip, channel:666:flip.
+8. **Registry** — Verify lupo_registry entries for channel:0:flip, channel:42:flip, channel:51:flip, channel:666:flip.
 9. **Doctrine loading** — Load a sample doctrine file via web or path lookup. Verify no 404 or missing-content errors.
 10. **ANUBIS** — Run tools/anubis_orphan_scanner.py in no-DB mode or with test DB. Verify classifyOrphan rejects actor_id 999. Verify getBannedActorIds returns (999) or table-derived list. **Fallback test:** Temporarily drop lupo_banned_actors (or simulate absence); verify getBannedActorIds() still returns fallback list including 999.
 11. **ANUBIS adoption verification (active behavior)** — Identify a seeded orphan message that is not from a banned actor. Confirm: classifyOrphan() returns adoptable; resolveParent() assigns channel 42 and thread 1; adoptIntoSeed() persists correct channel_id + thread_id; message is visible in channel 42 UI; adoption logic did not bypass resolver.

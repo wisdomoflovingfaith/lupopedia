@@ -1,4 +1,4 @@
-﻿-- Test registry table creation
+-- Test registry table creation
 CREATE TABLE lupo_registry (
   registry_id bigint NOT NULL AUTO_INCREMENT,
   entity_type varchar(50) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE lupo_registry (
   PRIMARY KEY (registry_id)
 );
 
--- Test INSERT without unified_registry_id
+-- Test INSERT without registry_id
 INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
 VALUES (1, 'actor', 1000, 1000, 'test', 'Test Actor', 'lupo_actors', 1, 20260222120000, 20260222120000, 0, NULL, 1, 0, '{"test":true}');
 

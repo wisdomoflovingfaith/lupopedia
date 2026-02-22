@@ -1569,7 +1569,7 @@ def select_one_from_test_performance_metrics(db):
     """
     return db.query(sql)
 
-def select_one_from_unified_analytics_paths(db):
+def select_one_from_analytics_paths(db):
     sql = """
         SELECT
             analytics_path_id,
@@ -1578,12 +1578,12 @@ def select_one_from_unified_analytics_paths(db):
             exit_content_id,
             metadata_json,
             created_ymdhis
-        FROM unified_analytics_paths
+        FROM analytics_paths
         LIMIT 1;
     """
     return db.query(sql)
 
-def select_one_from_unified_dialog_messages(db):
+def select_one_from_dialog_messages(db):
     sql = """
         SELECT
             dialog_message_id,
@@ -1593,12 +1593,12 @@ def select_one_from_unified_dialog_messages(db):
             updated_ymdhis,
             metadata_json,
             body_text
-        FROM unified_dialog_messages
+        FROM dialog_messages
         LIMIT 1;
     """
     return db.query(sql)
 
-def select_one_from_unified_truth_items(db):
+def select_one_from_truth_items(db):
     sql = """
         SELECT
             truth_item_id,
@@ -1608,7 +1608,7 @@ def select_one_from_unified_truth_items(db):
             body_text,
             metadata_json,
             created_ymdhis
-        FROM unified_truth_items
+        FROM truth_items
         LIMIT 1;
     """
     return db.query(sql)

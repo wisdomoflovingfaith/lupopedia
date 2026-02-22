@@ -19,7 +19,7 @@ atoms:
 # livehelp_visits_daily -> IMPORTED -> DROPPED
 #
 # livehelp_visits_monthly -> IMPORTED -> DROPPED
-# Replacement: lupo_unified_visits
+# Replacement: lupo_visits
 
 # 1. Summary
 Crafty Syntax used three different tables to track page visits:
@@ -31,17 +31,17 @@ Not durable. Not analytics. Not imported.
 2. livehelp_visits_daily
 Aggregated daily visit counts.
 No real URLs (only pageurl strings).
-Imported into lupo_unified_visits.
+Imported into lupo_visits.
 
 3. livehelp_visits_monthly
 Aggregated monthly visit counts.
 Contains real URLs.
-Imported into lupo_unified_visits.
+Imported into lupo_visits.
 
 Lupopedia replaces all three with:
 
 Code
-lupo_unified_visits
+lupo_visits
 A single, normalized analytics table.
 
 # 2. What the Legacy Tables Actually Did
@@ -86,7 +86,7 @@ data is aggregated monthly
 This is the only table with reliable URLs.
 
 # 3. Why Lupopedia Uses a Unified Table
-lupo_unified_visits provides:
+lupo_visits provides:
 
 normalized URL fields
 
@@ -127,7 +127,7 @@ livehelp_visits_daily and livehelp_visits_monthly are marked as imported -> safe
 
 Step 3 -- Clear the unified table
 Code
-TRUNCATE lupo_unified_visits;
+TRUNCATE lupo_visits;
 Step 4 -- Import daily data
 Daily table rows become:
 
@@ -175,7 +175,7 @@ The migration preserves the data without pretending to know what it means.
 
 # 6. Mapping Summary
 Legacy -> New
-Legacy Field	lupo_unified_visits Field	Notes
+Legacy Field	lupo_visits Field	Notes
 pageurl	page_url	preserved
 dateof	date_ymd	preserved
 levelvisits + directvisits	visits	preserved
@@ -232,4 +232,4 @@ livehelp_visit_track   -> DROPPED (ephemeral)
 livehelp_visits_daily  -> IMPORTED -> DROPPED
 livehelp_visits_monthly -> IMPORTED -> DROPPED
 
-All legacy visit analytics preserved in lupo_unified_visits.metadata_json.
+All legacy visit analytics preserved in lupo_visits.metadata_json.

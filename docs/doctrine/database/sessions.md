@@ -13,7 +13,7 @@ atoms:
 
 # lupo_sessions
 
-**Purpose:** **Session storage** for authenticated and anonymous users: session_id, actor_id (nullable or sentinel for anonymous), payload (session data), optional system_context, and expiry. Anonymous users exist only here—they do not have rows in lupo_actors. Authenticated users have both a session and an actor row. Replaces Crafty’s livehelp_sessions with a deterministic, actor-aware model. Single session table for the app; no separate “unified_sessions” in current install.
+**Purpose:** **Session storage** for authenticated and anonymous users: session_id, actor_id (nullable or sentinel for anonymous), payload (session data), optional system_context, and expiry. Anonymous users exist only here—they do not have rows in lupo_actors. Authenticated users have both a session and an actor row. Replaces Crafty’s livehelp_sessions with a deterministic, actor-aware model. Single session table for the app; no separate “sessions” in current install.
 
 **Schema:** See `docs/toons/lupo_sessions.toon.json`. Primary key: `session_id`. Timestamps BIGINT UTC (e.g. expires_ymdhis). Session data is stored in the payload/lifecycle columns as defined in the TOON.
 

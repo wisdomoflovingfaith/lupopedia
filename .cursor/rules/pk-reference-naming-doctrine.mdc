@@ -27,7 +27,7 @@ Cursor MUST enforce explicit, doctrine-aligned naming for all primary keys and a
 | lupo_sessions             | session_id              |
 | lupo_actors               | actor_id                |
 | lupo_crafty_syntax_logs   | crafty_syntax_log_id    |
-| lupo_unified_visits       | unified_visits_id       |
+| lupo_visits       | visit_id       |
 
 ## Reference keys
 

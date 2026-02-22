@@ -1904,71 +1904,71 @@ Columns corrected (non-PK only; PK skipped to preserve AUTO_INCREMENT):
   lupo_truth_topics.updated_ymdhis -> bigint NOT NULL
   lupo_truth_topics.is_deleted -> tinyint NOT NULL DEFAULT '0'
   lupo_truth_topics.deleted_ymdhis -> bigint DEFAULT NULL
-  lupo_unified_analytics_paths.from_page_id -> bigint DEFAULT NULL
-  lupo_unified_analytics_paths.to_page_id -> bigint DEFAULT NULL
-  lupo_unified_analytics_paths.year_month -> char(6) NOT NULL
-  lupo_unified_analytics_paths.transition_type -> varchar(64) NOT NULL
-  lupo_unified_analytics_paths.transition_count -> int NOT NULL DEFAULT '0'
-  lupo_unified_analytics_paths.metadata_json -> json DEFAULT NULL
-  lupo_unified_analytics_paths.created_ymdhis -> bigint NOT NULL
-  lupo_unified_analytics_paths.updated_ymdhis -> bigint NOT NULL
-  lupo_unified_analytics_paths.is_deleted -> tinyint NOT NULL DEFAULT '0'
-  lupo_unified_analytics_paths.deleted_ymdhis -> bigint DEFAULT NULL
-  lupo_unified_referers.content_id -> bigint NOT NULL
-  lupo_unified_referers.actor_id -> bigint NOT NULL
-  lupo_unified_referers.referer_url -> varchar(2000) DEFAULT NULL
-  lupo_unified_referers.referer_domain -> varchar(255) DEFAULT NULL
-  lupo_unified_referers.referer_path -> varchar(2000) DEFAULT NULL
-  lupo_unified_referers.referer_content_id -> bigint DEFAULT NULL
-  lupo_unified_referers.date_ymd -> int NOT NULL
-  lupo_unified_referers.visits -> int NOT NULL DEFAULT '1'
-  lupo_unified_referers.depth -> int NOT NULL DEFAULT '0'
-  lupo_unified_referers.metadata_json -> json DEFAULT NULL
-  lupo_unified_registry.entity_type -> varchar(64) NOT NULL
-  lupo_unified_registry.entity_id -> bigint NOT NULL
-  lupo_unified_registry.entity_key -> varchar(255) DEFAULT NULL
-  lupo_unified_registry.entity_name -> varchar(255) DEFAULT NULL
-  lupo_unified_registry.dedicated_index_id -> bigint NOT NULL
-  lupo_unified_registry.entity_table -> varchar(128) NOT NULL
-  lupo_unified_registry.federation_node_id -> bigint NOT NULL DEFAULT '1'
-  lupo_unified_registry.created_ymdhis -> bigint NOT NULL
-  lupo_unified_registry.updated_ymdhis -> bigint NOT NULL
-  lupo_unified_registry.is_deleted -> tinyint NOT NULL DEFAULT '0'
-  lupo_unified_registry.deleted_ymdhis -> bigint DEFAULT NULL
-  lupo_unified_registry.is_active -> tinyint NOT NULL DEFAULT '1'
-  lupo_unified_registry.is_kernel -> tinyint NOT NULL DEFAULT '0'
-  lupo_unified_registry.metadata_json -> json DEFAULT NULL
-  lupo_unified_sessions.session_id -> varchar(255) NOT NULL
-  lupo_unified_sessions.user_id -> bigint DEFAULT NULL
-  lupo_unified_sessions.system_context -> varchar(50) NOT NULL
-  lupo_unified_sessions.session_data -> json DEFAULT NULL
-  lupo_unified_sessions.expires_at -> bigint
-  lupo_unified_sessions.created_at -> bigint
-  lupo_unified_sessions.updated_at -> bigint
-  lupo_unified_truth_items.item_type -> varchar(64) NOT NULL
-  lupo_unified_truth_items.name -> varchar(255) DEFAULT NULL
-  lupo_unified_truth_items.slug -> varchar(255) DEFAULT NULL
-  lupo_unified_truth_items.body_text -> text
-  lupo_unified_truth_items.metadata_json -> json DEFAULT NULL
-  lupo_unified_truth_items.created_ymdhis -> bigint DEFAULT NULL
-  lupo_unified_visits.content_id -> bigint NOT NULL DEFAULT '0'
-  lupo_unified_visits.actor_id -> bigint NOT NULL DEFAULT '0'
-  lupo_unified_visits.page_url -> varchar(500) NOT NULL
-  lupo_unified_visits.page_domain -> varchar(255) NOT NULL
-  lupo_unified_visits.page_path -> varchar(500) NOT NULL
-  lupo_unified_visits.date_ymd -> int NOT NULL
-  lupo_unified_visits.visits -> int NOT NULL DEFAULT '0'
-  lupo_unified_visits.depth -> int NOT NULL DEFAULT '0'
-  lupo_unified_visits.metadata_json -> json DEFAULT NULL
-  lupo_unified_visits.created_ymdhis -> bigint NOT NULL DEFAULT '0'
-  lupo_unified_visits.updated_ymdhis -> bigint NOT NULL DEFAULT '0'
-  lupo_unified_websites.livehelp_id -> bigint NOT NULL DEFAULT '1'
-  lupo_unified_websites.site_name -> varchar(255) NOT NULL
-  lupo_unified_websites.site_url -> varchar(500) NOT NULL
-  lupo_unified_websites.default_department -> int NOT NULL DEFAULT '0'
-  lupo_unified_websites.metadata_json -> json DEFAULT NULL
-  lupo_unified_websites.created_at -> bigint
-  lupo_unified_websites.updated_at -> bigint
+  lupo_analytics_paths.from_page_id -> bigint DEFAULT NULL
+  lupo_analytics_paths.to_page_id -> bigint DEFAULT NULL
+  lupo_analytics_paths.year_month -> char(6) NOT NULL
+  lupo_analytics_paths.transition_type -> varchar(64) NOT NULL
+  lupo_analytics_paths.transition_count -> int NOT NULL DEFAULT '0'
+  lupo_analytics_paths.metadata_json -> json DEFAULT NULL
+  lupo_analytics_paths.created_ymdhis -> bigint NOT NULL
+  lupo_analytics_paths.updated_ymdhis -> bigint NOT NULL
+  lupo_analytics_paths.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_analytics_paths.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_referers.content_id -> bigint NOT NULL
+  lupo_referers.actor_id -> bigint NOT NULL
+  lupo_referers.referer_url -> varchar(2000) DEFAULT NULL
+  lupo_referers.referer_domain -> varchar(255) DEFAULT NULL
+  lupo_referers.referer_path -> varchar(2000) DEFAULT NULL
+  lupo_referers.referer_content_id -> bigint DEFAULT NULL
+  lupo_referers.date_ymd -> int NOT NULL
+  lupo_referers.visits -> int NOT NULL DEFAULT '1'
+  lupo_referers.depth -> int NOT NULL DEFAULT '0'
+  lupo_referers.metadata_json -> json DEFAULT NULL
+  lupo_registry.entity_type -> varchar(64) NOT NULL
+  lupo_registry.entity_id -> bigint NOT NULL
+  lupo_registry.entity_key -> varchar(255) DEFAULT NULL
+  lupo_registry.entity_name -> varchar(255) DEFAULT NULL
+  lupo_registry.dedicated_index_id -> bigint NOT NULL
+  lupo_registry.entity_table -> varchar(128) NOT NULL
+  lupo_registry.federation_node_id -> bigint NOT NULL DEFAULT '1'
+  lupo_registry.created_ymdhis -> bigint NOT NULL
+  lupo_registry.updated_ymdhis -> bigint NOT NULL
+  lupo_registry.is_deleted -> tinyint NOT NULL DEFAULT '0'
+  lupo_registry.deleted_ymdhis -> bigint DEFAULT NULL
+  lupo_registry.is_active -> tinyint NOT NULL DEFAULT '1'
+  lupo_registry.is_kernel -> tinyint NOT NULL DEFAULT '0'
+  lupo_registry.metadata_json -> json DEFAULT NULL
+  lupo_sessions.session_id -> varchar(255) NOT NULL
+  lupo_sessions.user_id -> bigint DEFAULT NULL
+  lupo_sessions.system_context -> varchar(50) NOT NULL
+  lupo_sessions.session_data -> json DEFAULT NULL
+  lupo_sessions.expires_at -> bigint
+  lupo_sessions.created_at -> bigint
+  lupo_sessions.updated_at -> bigint
+  lupo_truth_items.item_type -> varchar(64) NOT NULL
+  lupo_truth_items.name -> varchar(255) DEFAULT NULL
+  lupo_truth_items.slug -> varchar(255) DEFAULT NULL
+  lupo_truth_items.body_text -> text
+  lupo_truth_items.metadata_json -> json DEFAULT NULL
+  lupo_truth_items.created_ymdhis -> bigint DEFAULT NULL
+  lupo_visits.content_id -> bigint NOT NULL DEFAULT '0'
+  lupo_visits.actor_id -> bigint NOT NULL DEFAULT '0'
+  lupo_visits.page_url -> varchar(500) NOT NULL
+  lupo_visits.page_domain -> varchar(255) NOT NULL
+  lupo_visits.page_path -> varchar(500) NOT NULL
+  lupo_visits.date_ymd -> int NOT NULL
+  lupo_visits.visits -> int NOT NULL DEFAULT '0'
+  lupo_visits.depth -> int NOT NULL DEFAULT '0'
+  lupo_visits.metadata_json -> json DEFAULT NULL
+  lupo_visits.created_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_visits.updated_ymdhis -> bigint NOT NULL DEFAULT '0'
+  lupo_websites.livehelp_id -> bigint NOT NULL DEFAULT '1'
+  lupo_websites.site_name -> varchar(255) NOT NULL
+  lupo_websites.site_url -> varchar(500) NOT NULL
+  lupo_websites.default_department -> int NOT NULL DEFAULT '0'
+  lupo_websites.metadata_json -> json DEFAULT NULL
+  lupo_websites.created_at -> bigint
+  lupo_websites.updated_at -> bigint
   lupo_uploads.actor_id -> bigint NOT NULL
   lupo_uploads.channel_id -> bigint DEFAULT NULL
   lupo_uploads.original_filename -> varchar(255) NOT NULL

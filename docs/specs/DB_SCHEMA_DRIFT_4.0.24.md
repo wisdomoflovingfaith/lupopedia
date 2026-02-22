@@ -205,12 +205,12 @@ The following tables are defined in TOONs but missing from the database:
 - **lupo_truth_relations** - Defined in `lupo_truth_relations.toon.json`
 - **lupo_truth_sources** - Defined in `lupo_truth_sources.toon.json`
 - **lupo_truth_topics** - Defined in `lupo_truth_topics.toon.json`
-- **lupo_unified_analytics_paths** - Defined in `lupo_unified_analytics_paths.toon.json`
-- **lupo_unified_referers** - Defined in `lupo_unified_referers.toon.json`
-- **lupo_unified_registry** - Defined in `lupo_unified_registry.toon.json`
-- **lupo_unified_truth_items** - Defined in `lupo_unified_truth_items.toon.json`
-- **lupo_unified_unregistry** - Defined in `lupo_unified_unregistry.toon.json`
-- **lupo_unified_visits** - Defined in `lupo_unified_visits.toon.json`
+- **lupo_analytics_paths** - Defined in `lupo_analytics_paths.toon.json`
+- **lupo_referers** - Defined in `lupo_referers.toon.json`
+- **lupo_registry** - Defined in `lupo_registry.toon.json`
+- **lupo_truth_items** - Defined in `lupo_truth_items.toon.json`
+- **lupo_registry_open** - Defined in `lupo_registry_open.toon.json`
+- **lupo_visits** - Defined in `lupo_visits.toon.json`
 - **lupo_uploads** - Defined in `lupo_uploads.toon.json`
 - **lupo_user_comments** - Defined in `lupo_user_comments.toon.json`
 - **lupo_world_events** - Defined in `lupo_world_events.toon.json`
@@ -801,23 +801,23 @@ The following SQL statements are suggested to bring the database in line with TO
 -- Add missing table: lupo_truth_topics
 -- TODO: Implement CREATE TABLE statement for lupo_truth_topics
 
--- Add missing table: lupo_unified_analytics_paths
--- TODO: Implement CREATE TABLE statement for lupo_unified_analytics_paths
+-- Add missing table: lupo_analytics_paths
+-- TODO: Implement CREATE TABLE statement for lupo_analytics_paths
 
--- Add missing table: lupo_unified_referers
--- TODO: Implement CREATE TABLE statement for lupo_unified_referers
+-- Add missing table: lupo_referers
+-- TODO: Implement CREATE TABLE statement for lupo_referers
 
--- Add missing table: lupo_unified_registry
--- TODO: Implement CREATE TABLE statement for lupo_unified_registry
+-- Add missing table: lupo_registry
+-- TODO: Implement CREATE TABLE statement for lupo_registry
 
--- Add missing table: lupo_unified_truth_items
--- TODO: Implement CREATE TABLE statement for lupo_unified_truth_items
+-- Add missing table: lupo_truth_items
+-- TODO: Implement CREATE TABLE statement for lupo_truth_items
 
--- Add missing table: lupo_unified_unregistry
--- TODO: Implement CREATE TABLE statement for lupo_unified_unregistry
+-- Add missing table: lupo_registry_open
+-- TODO: Implement CREATE TABLE statement for lupo_registry_open
 
--- Add missing table: lupo_unified_visits
--- TODO: Implement CREATE TABLE statement for lupo_unified_visits
+-- Add missing table: lupo_visits
+-- TODO: Implement CREATE TABLE statement for lupo_visits
 
 -- Add missing table: lupo_uploads
 -- TODO: Implement CREATE TABLE statement for lupo_uploads

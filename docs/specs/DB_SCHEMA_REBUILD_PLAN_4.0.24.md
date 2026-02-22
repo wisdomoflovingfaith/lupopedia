@@ -47,7 +47,7 @@ Critical tables that must exist before any other operations:
 
 - **lupo_dialog_channels** - Essential for system operations
 - **lupo_dialog_messages** - Essential for system operations
-- **lupo_unified_registry** - Essential for system operations
+- **lupo_registry** - Essential for system operations
 - **lupo_actor_channels** - Essential for system operations
 - **lupo_banned_actors** - Essential for system operations
 - **lupo_system_events** - Essential for system operations
@@ -237,11 +237,11 @@ The following tables will be created in dependency-aware batches:
 - **lupo_truth_relations**
 - **lupo_truth_sources**
 - **lupo_truth_topics**
-- **lupo_unified_analytics_paths**
-- **lupo_unified_referers**
-- **lupo_unified_truth_items**
-- **lupo_unified_unregistry**
-- **lupo_unified_visits**
+- **lupo_analytics_paths**
+- **lupo_referers**
+- **lupo_truth_items**
+- **lupo_registry_open**
+- **lupo_visits**
 - **lupo_uploads**
 - **lupo_user_comments**
 - **lupo_world_events**

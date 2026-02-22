@@ -184,7 +184,7 @@ A table that stores semantic edges with:
 
 This table is the working memory for semantic computation.
 
-### lupo_unified_analytics_paths update
+### lupo_analytics_paths update
 The period ENUM must include:
 
 - yearly

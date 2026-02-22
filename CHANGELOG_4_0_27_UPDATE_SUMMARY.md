@@ -4,8 +4,8 @@
 
 ### New Section: "COMPREHENSIVE REGISTRY TABLE RENAME FIXES"
 - Documented completion of 4.0.25 registry renaming
-- Listed all table name changes (unified_* → registry_*)
-- Documented column schema fixes (removed unified_registry_id)
+- Listed all table name changes (* → registry_*)
+- Documented column schema fixes (removed registry_id)
 
 ### PHP Application Code Fixes (7 files)
 - api/flip-header.php
@@ -26,7 +26,7 @@
 - tools/vsx-extension/out/*.js (auto-compiled)
 
 ### Documentation & Doctrine Updates
-- docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md
+- docs/doctrine/REGISTRY_DOCTRINE.md
 - README.md
 
 ### Schema Files Corrected

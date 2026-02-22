@@ -66,7 +66,7 @@ INDEX `lupo_dialog_messages_idx_updated` (`updated_ymdhis`);
 
 -- lupo_registry
 CREATE TABLE `lupo_registry` (
-  `unified_registry_id` bigint NOT NULL,
+  `registry_id` bigint NOT NULL,
   `entity_type` varchar(64) NOT NULL,
   `entity_index` bigint NOT NULL,
   `entity_key` varchar(255),

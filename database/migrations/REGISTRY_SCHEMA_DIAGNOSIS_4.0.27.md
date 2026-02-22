@@ -1,6 +1,6 @@
 # Registry Schema Diagnosis - Lupopedia 4.0.27
 **Date**: 2026-02-22  
-**Issue**: Column 'unified_registry_id' not found errors during installation  
+**Issue**: Column 'registry_id' not found errors during installation  
 **Root Cause**: Schema definition vs seed data mismatch
 
 ## THE PROBLEM
@@ -8,11 +8,11 @@
 ### What's Happening
 Installation fails with error:
 ```
-SQLSTATE[42S22]: Column not found: 1054 Unknown column 'unified_registry_id' in 'field list'
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'registry_id' in 'field list'
 ```
 
 ### Root Cause
-The `lupo_registry` table definition in `install_new_lupopedia.sql` (lines 3631-3650) does NOT include a column named `unified_registry_id`:
+The `lupo_registry` table definition in `install_new_lupopedia.sql` (lines 3631-3650) does NOT include a column named `registry_id`:
 
 ```sql
 CREATE TABLE lupo_registry (
@@ -37,10 +37,10 @@ CREATE TABLE lupo_registry (
 );
 ```
 
-**NO `unified_registry_id` column exists!**
+**NO `registry_id` column exists!**
 
 ### But Files Try To Use It
-Many seed files attempt to INSERT with `unified_registry_id`:
+Many seed files attempt to INSERT with `registry_id`:
 - `seed_lupopedia.sql` - 100+ INSERT statements
 - `install_new_lupopedia.sql` (lines 3805+) - Broken seed data embedded in schema file
 - Various migration scripts
@@ -61,7 +61,7 @@ Many seed files attempt to INSERT with `unified_registry_id`:
 
 ### 3. ⚠️ NEEDS FIX: seed_lupopedia.sql
 **Still contains 100+ broken registry INSERTs**
-- Uses non-existent `unified_registry_id` column
+- Uses non-existent `registry_id` column
 - This file is NOT used by minimal install
 - Will be regenerated later from TOON files with correct schema
 
@@ -100,7 +100,7 @@ Many seed files attempt to INSERT with `unified_registry_id`:
 - Fresh Crafty Syntax 3.7.5 → Lupopedia 4.0.27 upgrade will work
 
 ### ⚠️ NEEDS ATTENTION
-- PHP/Python code referencing `unified_registry_id`
+- PHP/Python code referencing `registry_id`
 - `seed_lupopedia.sql` (not used, will be regenerated)
 
 ## RECOMMENDED ACTION
@@ -111,7 +111,7 @@ Many seed files attempt to INSERT with `unified_registry_id`:
 3. ✅ Registry entries handled by application AUTO_INCREMENT
 
 ### For Full System (Future)
-1. Review PHP code - Replace `unified_registry_id` references with `registry_id`
+1. Review PHP code - Replace `registry_id` references with `registry_id`
 2. Review Python scripts - Update to use correct column name
 3. Regenerate `seed_lupopedia.sql` from TOON files with correct schema
 
@@ -129,7 +129,7 @@ DESC lupo_registry;
 
 Should show:
 - `registry_id` (PK, AUTO_INCREMENT)
-- NO `unified_registry_id` column
+- NO `registry_id` column
 
 ### Test Registry Insert
 ```sql
@@ -141,12 +141,12 @@ Should work - `registry_id` auto-generates.
 
 ## SCHEMA HISTORY
 
-The table name IS `lupo_registry` (not `lupo_unified_registry`).  
-The primary key IS `registry_id` (not `unified_registry_id`).  
+The table name IS `lupo_registry` (not `lupo_registry`).  
+The primary key IS `registry_id` (not `registry_id`).  
 The index names still reference "unified" for historical reasons (harmless).
 
 **Doctrine**: Registry IDs are application-managed, not manually seeded.
 
 ---
 **Status**: Installation blocking issue RESOLVED for 4.0.27  
-**Next**: Full codebase audit for `unified_registry_id` references
+**Next**: Full codebase audit for `registry_id` references

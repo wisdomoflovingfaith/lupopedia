@@ -16,7 +16,7 @@ MESSAGE:
 Execute post-rebuild data seeding:
 
 ## Core Data Seeding
-1. Seed lupo_unified_registry with initial ID ranges
+1. Seed lupo_registry with initial ID ranges
 2. Create system actors (kernel, admin, system)
 3. Initialize channels 42 and 420
 4. Seed basic system events

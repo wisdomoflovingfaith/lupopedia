@@ -1149,12 +1149,12 @@ CREATE TABLE `test_performance_metrics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================
--- Table: lupo_unified_analytics_paths
+-- Table: lupo_analytics_paths
 -- Fields: 6
 -- Primary Key: analytics_path_id
 -- ============================================
 
-CREATE TABLE `lupo_unified_analytics_paths` (
+CREATE TABLE `lupo_analytics_paths` (
   `analytics_path_id` bigint NOT NULL,
   `period` enum('daily','monthly') NOT NULL,
   `visit_content_id` bigint,
@@ -1165,12 +1165,12 @@ CREATE TABLE `lupo_unified_analytics_paths` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================
--- Table: lupo_unified_dialog_messages
+-- Table: lupo_dialog_messages
 -- Fields: 7
 -- Primary Key: dialog_message_id
 -- ============================================
 
-CREATE TABLE `lupo_unified_dialog_messages` (
+CREATE TABLE `lupo_dialog_messages` (
   `dialog_message_id` bigint NOT NULL,
   `thread_id` bigint,
   `actor_id` bigint,
@@ -1182,12 +1182,12 @@ CREATE TABLE `lupo_unified_dialog_messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================
--- Table: lupo_unified_truth_items
+-- Table: lupo_truth_items
 -- Fields: 7
 -- Primary Key: truth_item_id
 -- ============================================
 
-CREATE TABLE `lupo_unified_truth_items` (
+CREATE TABLE `lupo_truth_items` (
   `truth_item_id` bigint NOT NULL,
   `item_type` enum('question','answer') NOT NULL,
   `name` varchar(255),

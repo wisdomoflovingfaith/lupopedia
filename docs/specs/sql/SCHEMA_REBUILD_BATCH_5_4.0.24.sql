@@ -414,9 +414,9 @@ INDEX `lupo_truth_topics_actor_id` (`actor_id`);
 INDEX `lupo_truth_topics_slug` (`slug`);
 INDEX `lupo_truth_topics_topic_name` (`topic_name`);
 
--- lupo_unified_analytics_paths
-CREATE TABLE `lupo_unified_analytics_paths` (
-  `unified_analytics_path_id` bigint NOT NULL auto_increment,
+-- lupo_analytics_paths
+CREATE TABLE `lupo_analytics_paths` (
+  `analytics_path_id` bigint NOT NULL auto_increment,
   `from_page_id` bigint,
   `to_page_id` bigint,
   `year_month_yyyymm` char(6) NOT NULL,
@@ -431,8 +431,8 @@ CREATE TABLE `lupo_unified_analytics_paths` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
--- lupo_unified_referers
-CREATE TABLE `lupo_unified_referers` (
+-- lupo_referers
+CREATE TABLE `lupo_referers` (
   `referer_id` bigint NOT NULL auto_increment,
   `content_id` bigint NOT NULL,
   `actor_id` bigint NOT NULL,
@@ -447,14 +447,14 @@ CREATE TABLE `lupo_unified_referers` (
   PRIMARY KEY (None)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INDEX `lupo_unified_referers_idx_actor_id` (`actor_id`);
-INDEX `lupo_unified_referers_idx_content_id` (`content_id`);
-INDEX `lupo_unified_referers_idx_date` (`date_ymd`);
-INDEX `lupo_unified_referers_idx_referer_content_id` (`referer_content_id`);
-INDEX `lupo_unified_referers_idx_referer_domain` (`referer_domain`);
+INDEX `lupo_referers_idx_actor_id` (`actor_id`);
+INDEX `lupo_referers_idx_content_id` (`content_id`);
+INDEX `lupo_referers_idx_date` (`date_ymd`);
+INDEX `lupo_referers_idx_referer_content_id` (`referer_content_id`);
+INDEX `lupo_referers_idx_referer_domain` (`referer_domain`);
 
--- lupo_unified_truth_items
-CREATE TABLE `lupo_unified_truth_items` (
+-- lupo_truth_items
+CREATE TABLE `lupo_truth_items` (
   `truth_item_id` bigint NOT NULL,
   `item_type` varchar(64) NOT NULL,
   `name` varchar(255),
@@ -478,9 +478,9 @@ CREATE TABLE `lupo_registry_open` (
 
 INDEX `lupo_registry_open_idx_entity_type_created_utc` (`entity_type`, `created_utc`);
 
--- lupo_unified_visits
-CREATE TABLE `lupo_unified_visits` (
-  `unified_visits_id` bigint NOT NULL auto_increment,
+-- lupo_visits
+CREATE TABLE `lupo_visits` (
+  `visit_id` bigint NOT NULL auto_increment,
   `content_id` bigint NOT NULL DEFAULT 0,
   `actor_id` bigint NOT NULL DEFAULT 0,
   `page_url` varchar(500) NOT NULL,
@@ -495,9 +495,9 @@ CREATE TABLE `lupo_unified_visits` (
   PRIMARY KEY (None)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INDEX `lupo_unified_visits_content_id` (`content_id`);
-INDEX `lupo_unified_visits_date_ymd` (`date_ymd`);
-INDEX `lupo_unified_visits_page_domain` (`page_domain`);
+INDEX `lupo_visits_content_id` (`content_id`);
+INDEX `lupo_visits_date_ymd` (`date_ymd`);
+INDEX `lupo_visits_page_domain` (`page_domain`);
 
 -- lupo_uploads
 CREATE TABLE `lupo_uploads` (

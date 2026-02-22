@@ -21,7 +21,7 @@ PLAN_FILE = "docs/specs/DB_SCHEMA_REBUILD_PLAN_4.0.24.md"
 CRITICAL_TABLES = [
     "lupo_dialog_channels",
     "lupo_dialog_messages", 
-    "lupo_unified_registry",
+    "lupo_registry",
     "lupo_actor_channels",
     "lupo_banned_actors",
     "lupo_system_events",
@@ -183,11 +183,11 @@ def analyze_dependencies():
     dependencies = {
         'lupo_dialog_channels': [],
         'lupo_dialog_messages': ['lupo_dialog_channels'],
-        'lupo_unified_registry': [],
-        'lupo_actor_channels': ['lupo_unified_registry', 'lupo_actors'],
-        'lupo_banned_actors': ['lupo_unified_registry'],
+        'lupo_registry': [],
+        'lupo_actor_channels': ['lupo_registry', 'lupo_actors'],
+        'lupo_banned_actors': ['lupo_registry'],
         'lupo_system_events': [],
-        'lupo_actor_departments': ['lupo_unified_registry', 'lupo_actors']
+        'lupo_actor_departments': ['lupo_registry', 'lupo_actors']
     }
     return dependencies
 

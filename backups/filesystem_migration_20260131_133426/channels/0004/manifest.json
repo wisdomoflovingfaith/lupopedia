@@ -1,4 +1,4 @@
-﻿{
+{
     "channel_key":  "test_awareness_channel",
     "channel_name":  "Test Awareness Channel",
     "channel_description":  "Channel initialized during v2.0 migration",

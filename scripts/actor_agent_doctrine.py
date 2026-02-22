@@ -12,22 +12,22 @@ from typing import Any, Dict, Optional
 
 # Table names
 AGENT_REGISTRY_TABLE = "lupo_agent_registry"
-UNIFIED_REGISTRY_TABLE = "lupo_unified_registry"
+REGISTRY_TABLE = "lupo_registry"
 ACTORS_TABLE = "lupo_actors"
 
 # Actor ID space: 0–9999 reserved for AI agents; human actors start at 10000
 ACTOR_ID_RESERVED_MAX = 9999
 ACTOR_HUMAN_START = 10000
 
-# Unified registry ID for agent-derived rows: 9000000 + agent_registry_id (fixed, do not change)
-UNIFIED_REGISTRY_AGENT_OFFSET = 9000000
+# Registry ID for agent-derived rows: 9000000 + agent_registry_id (fixed, do not change)
+REGISTRY_AGENT_OFFSET = 9000000
 
 
-def build_unified_registry_row_from_agent(agent_row: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+def build_registry_row_from_agent(agent_row: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
     """
-    Build a lupo_unified_registry row (as column_name -> value) from an active agent row.
+    Build a lupo_registry row (as column_name -> value) from an active agent row.
 
-    Doctrine: entity_type='actor', entity_table='lupo_agent_registry', entity_id=dedicated_index_id=agent_registry_id,
+    Doctrine: entity_type='actor', entity_table='lupo_agent_registry', entity_index_id=entity_index=agent_registry_id,
     entity_key=code, entity_name=name, federation_node_id=1, is_active=1, metadata_json with actor_source_type/id.
 
     Returns dict suitable for both seed (convert values to SQL via sql_value) and TOON (json_serializable).
@@ -46,14 +46,14 @@ def build_unified_registry_row_from_agent(agent_row: Optional[Dict[str, Any]]) -
         "actor_source_type": "lupo_agent_registry",
         "actor_source_id": agent_registry_id,
     }, separators=(",", ":"))
-    unified_id = UNIFIED_REGISTRY_AGENT_OFFSET + int(agent_registry_id)
+    registry_id = REGISTRY_AGENT_OFFSET + int(agent_registry_id)
     return {
-        "registry_id": unified_id,
+        "registry_id": registry_id,
         "entity_type": "actor",
-        "entity_id": agent_registry_id,
+        "entity_index_id": agent_registry_id,
+        "entity_index": agent_registry_id,
         "entity_key": code,
         "entity_name": name,
-        "dedicated_index_id": agent_registry_id,
         "entity_table": "lupo_agent_registry",
         "federation_node_id": 1,
         "created_ymdhis": created,

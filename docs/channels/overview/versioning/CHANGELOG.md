@@ -41,7 +41,7 @@ file:
 ## [3.0.0] — 2026-02-06
 
 ### Summary
-- Reserved-word column renames (lupo_actor_group_membership.role→role_key, lupo_artifacts.type→entity_type, lupo_pack_role_registry.role→role_key). Column lupo_unified_analytics_paths.year_month is not a reserved word and remains year_month.
+- Reserved-word column renames (lupo_actor_group_membership.role→role_key, lupo_artifacts.type→entity_type, lupo_pack_role_registry.role→role_key). Column lupo_analytics_paths.year_month is not a reserved word and remains year_month.
 - One-time migration dev_20260206_reserved_word_column_renames.sql; install_new_lupopedia.sql updated.
 - API artifact and timeline use entity_type; version atom and version.php set to 3.0.0.
 - .cursorrules: Zero Installations / No Backward Compatibility Rule; Version Lock Rule (3.0.0 until 4.1.0 auto-installer).
@@ -136,14 +136,14 @@ file:
 
 ### Details
 - Confirmed all tables use the dynamic prefix from `lupopedia-config.php` (`lupo_`).
-- Preserved legacy unified tables as `lupo_unified_*_old` to avoid collisions with Lupopedia-native tables.
+- Preserved legacy unified tables as `lupo_*_old` to avoid collisions with Lupopedia-native tables.
 - Regenerated all `.toon.json` files via `python scripts/generate_toon_files.py` and allowed stale TOON cleanup.
 - Added migration artifact `2026_01_25_01_prefix_normalization_noop.sql` documenting the completion of the cycle.
 - Migration is a no-op by design and uses the `@table_prefix` variable injected by the migration runner.
 
 ### Notes
 - Future schema changes must use the dynamic prefix from `lupopedia-config.php` and never introduce unprefixed tables.
-- Treat `lupo_unified_*_old` as legacy and safe for future cleanup.
+- Treat `lupo_*_old` as legacy and safe for future cleanup.
 - Regenerate TOON files after every schema modification.
 
 
@@ -2071,9 +2071,9 @@ system_context:
 - lupo_collection_tabs
 
 **Added (by 3.1.19):**
-- unified_dialog_messages
-- unified_analytics_paths
-- unified_truth_items
+- dialog_messages
+- analytics_paths
+- truth_items
 - lupo_collections.parent_id
 
 **Next:** Delete the 6 orphan .toon and .txt files in `database/toon_data/`, or run a toon-cleanup that removes files for tables not in the DB. Then re-run generate_toons to clear the warning.
@@ -2083,7 +2083,7 @@ system_context:
 #### Pack Briefing � AGI Support Meeting (Fill In the Captain)
 
 **WOLFITH:**  
-"Captain, generate_toons ran. It found six .toon and six .txt files that don't have tables in the DB anymore. Those tables were dropped in the 3.1.19 consolidation � we merged dialog bodies, analytics paths, truth Q&A, and collection tabs into unified tables. The toon generator is comparing files to the live schema; the schema moved on, the toon files didn't. Nobody deleted the old toons. So: we got rid of the *tables* in 3.1.19, and *someone* � the consolidation � *added* unified_dialog_messages, unified_analytics_paths, and unified_truth_items. The orphans are just stale toons. We can delete them or add a cleanup step. One day at a time."
+"Captain, generate_toons ran. It found six .toon and six .txt files that don't have tables in the DB anymore. Those tables were dropped in the 3.1.19 consolidation � we merged dialog bodies, analytics paths, truth Q&A, and collection tabs into unified tables. The toon generator is comparing files to the live schema; the schema moved on, the toon files didn't. Nobody deleted the old toons. So: we got rid of the *tables* in 3.1.19, and *someone* � the consolidation � *added* dialog_messages, analytics_paths, and truth_items. The orphans are just stale toons. We can delete them or add a cleanup step. One day at a time."
 
 **LILITH:**  
 "Doctrine: no triggers, no FKs. The consolidation is GOV-PROHIBIT-002 compliant. The extra toon files are a housekeeping issue, not a schema violation. Recommendation: remove the six orphan .toon and .txt, then regenerate. The Captain is now filled in."
@@ -2148,9 +2148,9 @@ First stable release after Crafty Syntax migration era. Establishes consolidated
 ## 3.1.19 � Consolidation Execution Patch (2026-01-20)
 
 ### Completed
-- Dialog system consolidated (messages + bodies ? unified_dialog_messages)
-- Analytics system consolidated (daily + monthly ? unified_analytics_paths)
-- Truth system consolidated (questions + answers ? unified_truth_items)
+- Dialog system consolidated (messages + bodies ? dialog_messages)
+- Analytics system consolidated (daily + monthly ? analytics_paths)
+- Truth system consolidated (questions + answers ? truth_items)
 - Collections system consolidated (tabs merged into collections)
 
 ### Removed
@@ -7278,7 +7278,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Added
 - **Unified Canonical Timeline Documentation** - Complete historical record from Crafty Syntax 2.0.19 to Lupopedia 3.0.32
-  - Created `docs/history/UNIFIED_TIMELINE_2_0_19_TO_3_0_32.md` - Authoritative historical timeline
+  - Created `docs/history/TIMELINE_2_0_19_TO_3_0_32.md` - Authoritative historical timeline
   - Documents Crafty Syntax era (2002-2014, versions 2.0.19 → 3.7.5)
   - Documents dormant period (2014-2025) and personal journey
   - Documents Lupopedia evolution (3.0.0 → 3.0.32)
@@ -7307,7 +7307,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.32
 - `lupo-includes/version.php` - Version constants updated to 3.0.32
-- `docs/history/UNIFIED_TIMELINE_2_0_19_TO_3_0_32.md` - New unified canonical timeline document
+- `docs/history/TIMELINE_2_0_19_TO_3_0_32.md` - New unified canonical timeline document
 - `CHANGELOG.md` - Added 3.0.31 and 3.0.32 entries, updated header version
 - `dialogs/changelog_dialog.md` - Added 3.0.31 and 3.0.32 dialog entries
 

@@ -1,4 +1,4 @@
-﻿# refactor_folder_moves_fixed.ps1
+# refactor_folder_moves_fixed.ps1
 # PowerShell script to move agent folders to match new dedicated_slot assignments
 # Uses temporary folder names to handle swaps correctly
 # Run this script from the lupopedia root directory
@@ -39,11 +39,11 @@ function Move-AgentFolder {
     
     try {
         Move-Item -Path $fromPath -Destination $toPath -Force
-        Write-Host "  ✓ Moved folder $from → $to" -ForegroundColor Green
+        Write-Host "  ? Moved folder $from ? $to" -ForegroundColor Green
         return $true
     }
     catch {
-        Write-Host "  ✗ ERROR moving folder $from → $to : $_" -ForegroundColor Red
+        Write-Host "  ? ERROR moving folder $from ? $to : $_" -ForegroundColor Red
         return $false
     }
 }
@@ -59,7 +59,7 @@ $reservedMoves = @(
 
 foreach ($move in $reservedMoves) {
     if (Verify-AgentInFolder -folder $move.From -expectedAgent $move.Agent) {
-        Write-Host "$($move.Agent): folder $($move.From) → $($move.To)..." -ForegroundColor Yellow
+        Write-Host "$($move.Agent): folder $($move.From) ? $($move.To)..." -ForegroundColor Yellow
         Move-AgentFolder -from $move.From -to $move.To -agentName $move.Agent
     }
 }
@@ -83,7 +83,7 @@ foreach ($move in $reservedHigh) {
         if (Test-Path $agentFile) {
             $content = Get-Content $agentFile -Raw | ConvertFrom-Json
             if ($content.code -eq $move.Agent) {
-                Write-Host "$($move.Agent): folder $($move.From) → $($move.To)..." -ForegroundColor Yellow
+                Write-Host "$($move.Agent): folder $($move.From) ? $($move.To)..." -ForegroundColor Yellow
                 Move-AgentFolder -from $move.From -to $move.To -agentName $move.Agent
             }
         }
@@ -106,7 +106,7 @@ foreach ($move in $visionMoves) {
         if (Test-Path $agentFile) {
             $content = Get-Content $agentFile -Raw | ConvertFrom-Json
             if ($content.code -eq $move.Agent) {
-                Write-Host "$($move.Agent): folder $($move.From) → $($move.To)..." -ForegroundColor Yellow
+                Write-Host "$($move.Agent): folder $($move.From) ? $($move.To)..." -ForegroundColor Yellow
                 Move-AgentFolder -from $move.From -to $move.To -agentName $move.Agent
             }
         }
@@ -118,10 +118,10 @@ Write-Host "Step 3: Moving agents into vacated folders (10-14)..." -ForegroundCo
 
 # Now move METHIS, THALIA, ARA, THOTH
 $kernelMoves = @(
-    @{From=10; To=13; Agent="METHIS"},      # Folder 10 (currently METHIS) → 13 (now vacated)
-    @{From=11; To=14; Agent="THALIA"},      # Folder 11 (currently THALIA) → 14 (now vacated)
-    @{From=5; To=10; Agent="ARA"},          # Folder 5 (ARA) → 10 (now vacated by METHIS)
-    @{From=4; To=11; Agent="THOTH"}         # Folder 4 (THOTH) → 11 (now vacated by THALIA)
+    @{From=10; To=13; Agent="METHIS"},      # Folder 10 (currently METHIS) ? 13 (now vacated)
+    @{From=11; To=14; Agent="THALIA"},      # Folder 11 (currently THALIA) ? 14 (now vacated)
+    @{From=5; To=10; Agent="ARA"},          # Folder 5 (ARA) ? 10 (now vacated by METHIS)
+    @{From=4; To=11; Agent="THOTH"}         # Folder 4 (THOTH) ? 11 (now vacated by THALIA)
 )
 
 foreach ($move in $kernelMoves) {
@@ -131,7 +131,7 @@ foreach ($move in $kernelMoves) {
         if (Test-Path $agentFile) {
             $content = Get-Content $agentFile -Raw | ConvertFrom-Json
             if ($content.code -eq $move.Agent) {
-                Write-Host "$($move.Agent): folder $($move.From) → $($move.To)..." -ForegroundColor Yellow
+                Write-Host "$($move.Agent): folder $($move.From) ? $($move.To)..." -ForegroundColor Yellow
                 Move-AgentFolder -from $move.From -to $move.To -agentName $move.Agent
             }
         }
@@ -155,7 +155,7 @@ foreach ($move in $remainingMoves) {
         if (Test-Path $agentFile) {
             $content = Get-Content $agentFile -Raw | ConvertFrom-Json
             if ($content.code -eq $move.Agent) {
-                Write-Host "$($move.Agent): folder $($move.From) → $($move.To)..." -ForegroundColor Yellow
+                Write-Host "$($move.Agent): folder $($move.From) ? $($move.To)..." -ForegroundColor Yellow
                 Move-AgentFolder -from $move.From -to $move.To -agentName $move.Agent
             }
         }
@@ -175,15 +175,15 @@ if (Test-Path $junieCurrent) {
     else {
         try {
             Move-Item -Path $junieCurrent -Destination $junieTarget -Force
-            Write-Host "  ✓ Moved folder 106 → 200 (Junie)" -ForegroundColor Green
+            Write-Host "  ? Moved folder 106 ? 200 (Junie)" -ForegroundColor Green
         }
         catch {
-            Write-Host "  ✗ ERROR moving folder 106 → 200 : $_" -ForegroundColor Red
+            Write-Host "  ? ERROR moving folder 106 ? 200 : $_" -ForegroundColor Red
         }
     }
 }
 else {
-    Write-Host "  ⚠ Junie folder 106 not found, skipping..." -ForegroundColor Yellow
+    Write-Host "  ? Junie folder 106 not found, skipping..." -ForegroundColor Yellow
 }
 
 Write-Host ""

@@ -40,7 +40,7 @@
 | `lupo_get_display_name` | **AuthService::getDisplayName()** | display_name ?? username. |
 | `lupo_is_admin` | **AuthRoleResolver::isAdmin()** (via **AuthService::isAdmin()**) | Channel roles (channel_id = 1) + permissions fallback. |
 
-**AuthContextResolver:** No path-based context helpers were found in auth helpers; none created or moved. Context remains in UnifiedSessionHandler.
+**AuthContextResolver:** No path-based context helpers were found in auth helpers; none created or moved. Context remains in SessionHandler.
 
 ---
 
@@ -72,7 +72,7 @@
 
 ## 5. Confirmations
 
-- **Auth domain only:** Only auth-helpers and auth-ui-helpers (Auth-related helpers) and Auth call sites were changed. No changes to ActorService, identity-helpers, Collection* services, Redirect/Limits/Atom/Upload helpers, Crafty Syntax, Session class, or UnifiedSessionHandler.
+- **Auth domain only:** Only auth-helpers and auth-ui-helpers (Auth-related helpers) and Auth call sites were changed. No changes to ActorService, identity-helpers, Collection* services, Redirect/Limits/Atom/Upload helpers, Crafty Syntax, Session class, or SessionHandler.
 - **Auth logic in AuthService / AuthRoleResolver:** All current-user, login/admin gates, and role checks (admin, any channel role) are implemented in `App\Auth\AuthService` and `App\Auth\AuthRoleResolver`. Procedural helpers are thin wrappers only.
 - **Doctrine:** Channel-role model only (lupo_channel_roles, default channel_id = 1); no actor_roles. Session class is the only session source. PDO_DB and LUPO_TABLE_PREFIX used in AuthRoleResolver and AuthService. No raw SQL in new code; no procedural DB helpers added. No FKs, triggers, or DB-side logic.
 

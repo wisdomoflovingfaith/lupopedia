@@ -25,7 +25,7 @@ in_this_file_we_have:
   - Version 4.2.2 (2026-01-20): GOV Event schema (lupo_gov_*), seed GOV-LUPO-0001, LupopediaMigrationController, lupo_migration_log; governance enforcement (immutable lupo_gov_*, NO-ADS, table ceiling 185, no FK/triggers)
   - Version 4.2.0 (2026-01-20): Stability Release; first stable post–Crafty Syntax; schema freeze, TOON regeneration, doctrine verified; 173/180; baseline for 4.3.x
   - Version 3.1.20 (2026-01-20): Doctrine Audit Patch; full doctrine audit post-consolidation; timestamp, column, table count, documentation validated; no schema
-  - Version 3.1.19 (2026-01-20): Consolidation Execution Patch; unified_dialog_messages, unified_analytics_paths, unified_truth_items; collections parent_id; 6 tables dropped; TOON regeneration required
+  - Version 3.1.19 (2026-01-20): Consolidation Execution Patch; dialog_messages, analytics_paths, truth_items; collections parent_id; 6 tables dropped; TOON regeneration required
   - Version 3.1.18 (2026-01-20): Consolidation Planning Patch; dialog, analytics, truth, collections targets; migration skeleton; no schema; execution 3.1.19+
   - Version 3.1.17 (2026-01-20): Legacy Table Reduction Patch; 8 deprecated tables dropped; doctrine ceiling 180; TOON regeneration required
   - Version 3.1.16 (2026-01-20): Version Patch Bump; system version 3.1.15 → 3.1.16; atoms, version.php updated; no schema changes
@@ -6162,7 +6162,7 @@ file:
 **Message:** "Version 3.0.32 complete: Created unified canonical timeline documenting complete lineage from Crafty Syntax 2.0.19 through Lupopedia 3.0.32. Documented complete system evolution, preserved architectural doctrine origins, and prepared orchestrator execution logic foundation. System ready for orchestrator state machine implementation in 3.0.33+."
 
 **Work Summary:**
-- Created `docs/history/UNIFIED_TIMELINE_2_0_19_TO_3_0_32.md` - Authoritative historical timeline
+- Created `docs/history/TIMELINE_2_0_19_TO_3_0_32.md` - Authoritative historical timeline
 - Documented Crafty Syntax era (2002-2014, versions 2.0.19 → 3.7.5)
 - Documented dormant period (2014-2025) and personal journey
 - Documented Lupopedia evolution (3.0.0 → 3.0.32)

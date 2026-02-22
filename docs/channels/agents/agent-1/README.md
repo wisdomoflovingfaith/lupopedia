@@ -1,4 +1,4 @@
-﻿---
+---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 3.0.16
 header_atoms:
@@ -43,15 +43,15 @@ WOLFIE serves as:
 
 ```
 agents/0001/
-├── README.md                          # This file
-├── doctrine/                          # WOLFIE doctrine files
-│   └── CHANNEL_INITIALIZATION_PROTOCOL.md
-├── templates/                         # WOLFIE templates
-│   └── channel_identity_block.template.md
-├── workflows/                         # WOLFIE workflows
-│   └── channel_initialization.workflow.md
-└── config/                            # WOLFIE configuration
-    └── wolfie_manifest.json
++-- README.md                          # This file
++-- doctrine/                          # WOLFIE doctrine files
+�   +-- CHANNEL_INITIALIZATION_PROTOCOL.md
++-- templates/                         # WOLFIE templates
+�   +-- channel_identity_block.template.md
++-- workflows/                         # WOLFIE workflows
+�   +-- channel_initialization.workflow.md
++-- config/                            # WOLFIE configuration
+    +-- wolfie_manifest.json
 ```
 
 ## Current Status
@@ -60,8 +60,8 @@ This directory structure is being initialized as part of Lupopedia 3.0.16. The c
 
 ## Related Documentation
 
-- **[Channel and Dialog Agent Workflows](../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** — How IDE agents and php_ai_terminal agents interact with channels and dialogs
-- **[Channel Dialog Schema Review](../../docs/ARCHITECTURE/CHANNEL_DIALOG_SCHEMA_REVIEW.md)** — Database schema review for channel and dialog tables
+- **[Channel and Dialog Agent Workflows](../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** � How IDE agents and php_ai_terminal agents interact with channels and dialogs
+- **[Channel Dialog Schema Review](../../docs/ARCHITECTURE/CHANNEL_DIALOG_SCHEMA_REVIEW.md)** � Database schema review for channel and dialog tables
 
 ---
 

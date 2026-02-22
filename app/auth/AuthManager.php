@@ -17,13 +17,13 @@ class AuthManager
     /** @var \PDO_DB */
     private $db;
 
-    /** @var UnifiedSessionHandler */
+    /** @var SessionHandler */
     protected $sessionHandler;
 
-    public function __construct($db, UnifiedSessionHandler $sessionHandler = null)
+    public function __construct($db, SessionHandler $sessionHandler = null)
     {
         $this->db = $db;
-        $this->sessionHandler = $sessionHandler !== null ? $sessionHandler : new UnifiedSessionHandler($db);
+        $this->sessionHandler = $sessionHandler !== null ? $sessionHandler : new SessionHandler($db);
     }
 
     public function checkUnifiedAuth()
@@ -45,8 +45,8 @@ class AuthManager
         if ($user) {
             return array(
                 'user' => $user,
-                'context' => isset($unifiedSession['system_context']) ? $unifiedSession['system_context'] : UnifiedSessionHandler::CONTEXT_LUPOPEDIA,
-                'source' => 'unified_session',
+                'context' => isset($unifiedSession['system_context']) ? $unifiedSession['system_context'] : SessionHandler::CONTEXT_LUPOPEDIA,
+                'source' => 'session',
             );
         }
         return null;

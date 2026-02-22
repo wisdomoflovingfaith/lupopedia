@@ -6,10 +6,10 @@ Generates JSON TOON files for all tables using live MySQL schema introspection
 (SHOW TABLES / SHOW FULL COLUMNS / SHOW INDEX) and optionally canonical rows:
 
 - PK=0 row: for any table with a primary key, include the row where pk = 0 if it exists.
-- lupo_unified_registry: all rows from DB + active agents as actors (doctrine; no inactive agents).
+- lupo_registry: all rows from DB + active agents as actors (doctrine; no inactive agents).
 
 Actor/agent doctrine: active agents (lupo_agent_registry WHERE is_active=1) are included in
-lupo_unified_registry TOON data as entity_type='actor', entity_table='lupo_agent_registry'.
+lupo_registry TOON data as entity_type='actor', entity_table='lupo_agent_registry'.
 
 Output: docs/toons/<table_name>.toon.json
 DB config: read from lupopedia-config.php (project root). See scripts/db_config.py.
@@ -34,8 +34,8 @@ except ImportError:
 from db_config import get_connection_params
 from actor_agent_doctrine import (
     AGENT_REGISTRY_TABLE,
-    UNIFIED_REGISTRY_TABLE,
-    build_unified_registry_row_from_agent as doctrine_build_unified_row,
+    REGISTRY_TABLE,
+    build_REGISTRY_row_from_agent as doctrine_build_registry_row,
 )
 
 STRING_TYPES = {
@@ -218,7 +218,7 @@ def fetch_canonical_data(
 ) -> List[Dict[str, Any]]:
     """Return list of canonical row dicts for the TOON 'data' array.
     - If SKIP_DB: return [].
-    - If lupo_unified_registry: return all rows + active agents as actors (doctrine; no inactive agents).
+    - If lupo_registry: return all rows + active agents as actors (doctrine; no inactive agents).
     - Else if table has PK: return [row where pk=0] if exists.
     - Else: return [].
     """
@@ -226,7 +226,7 @@ def fetch_canonical_data(
         return []
 
     data = []
-    if table_name == UNIFIED_REGISTRY_TABLE:
+    if table_name == REGISTRY_TABLE:
         rows = fetch_all_rows(cursor, table_name)
         existing_keys = set()
         for row in rows:
@@ -240,7 +240,7 @@ def fetch_canonical_data(
             aid = rl.get("agent_registry_id")
             if aid is None or ("actor", aid) in existing_keys:
                 continue
-            by_col = doctrine_build_unified_row(agent_row)
+            by_col = doctrine_build_registry_row(agent_row)
             if by_col is not None:
                 row_dict = {c: json_serializable(by_col.get(c)) for c in column_names}
                 data.append(row_dict)

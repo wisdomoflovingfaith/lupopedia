@@ -1,6 +1,6 @@
-﻿CREATE TABLE lupo_registry (
+CREATE TABLE lupo_registry (
   registry_id bigint NOT NULL AUTO_INCREMENT,
-  unified_registry_id bigint NOT NULL DEFAULT 0,
+  registry_id bigint NOT NULL DEFAULT 0,
   entity_type varchar(50) NOT NULL,
   entity_index_id bigint NOT NULL DEFAULT 0,
   entity_index bigint NOT NULL DEFAULT 0,

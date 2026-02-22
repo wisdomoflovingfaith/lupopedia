@@ -105,8 +105,8 @@ if (function_exists('date_default_timezone_set')) {
  * Session class replaces procedural session helpers. One instance per request.
  */
 $app_auth = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'auth';
-if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'UnifiedSessionHandler.php')) {
-    require_once $app_auth . DIRECTORY_SEPARATOR . 'UnifiedSessionHandler.php';
+if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'SessionHandler.php')) {
+    require_once $app_auth . DIRECTORY_SEPARATOR . 'SessionHandler.php';
 }
 if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'Session.php')) {
     require_once $app_auth . DIRECTORY_SEPARATOR . 'Session.php';
@@ -133,12 +133,17 @@ if (file_exists($session_manager_class)) {
     require_once $session_manager_class;
 }
 
+$session_handler_class = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'auth' . DIRECTORY_SEPARATOR . 'UnifiedSessionHandler.php';
+if (file_exists($session_handler_class)) {
+    require_once $session_handler_class;
+}
+
 // Create Session instance; handler delegates all DB to Session (thin wrapper: cookie + system_context only)
 $lupo_session = null;
 if (class_exists('App\Auth\Session') && isset($GLOBALS['mydatabase'])) {
-    $unified_handler = new \App\Auth\UnifiedSessionHandler($GLOBALS['mydatabase']);
-    $lupo_session = new \App\Auth\Session($GLOBALS['mydatabase'], $unified_handler);
-    $unified_handler->setSession($lupo_session);
+    $handler = new \App\Auth\SessionHandler($GLOBALS['mydatabase']);
+    $lupo_session = new \App\Auth\Session($GLOBALS['mydatabase'], $handler);
+    $handler->setSession($lupo_session);
     $GLOBALS['lupo_session'] = $lupo_session;
 
     // Auth domain: AuthRoleResolver + AuthService (replaces procedural auth helpers)

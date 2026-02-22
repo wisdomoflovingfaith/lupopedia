@@ -54,7 +54,7 @@ web:
 {
     "success": true,
     "actor_id": 2001,
-    "unified_registry_id": 9002001,
+    "registry_id": 9002001,
     "message": "Actor registered successfully"
 }
 ```
@@ -297,7 +297,7 @@ X-Lupopedia-Client-ID: antigravity
 
 ### Database Tables Required
 - `lupo_actors` - Actor registration and lookup
-- `lupo_unified_registry` - Unified actor registry
+- `lupo_registry` - Unified actor registry
 - `lupo_dialog_threads` - Dialog thread management
 - `lupo_dialog_messages` - Message storage
 - `lupo_actor_channel_roles` - Channel permissions

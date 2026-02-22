@@ -87,7 +87,7 @@
 | lupo_channels | COMPLETE | 3 | 100% |
 | lupo_dialog_messages | COMPLETE | 210 | 100% |
 | lupo_dialog_threads | COMPLETE | 1 | 100% |
-| lupo_unified_registry | COMPLETE | 87 | 100% |
+| lupo_registry | COMPLETE | 87 | 100% |
 
 ### Missing Seed Coverage
 - **TOON-defined tables without seeds**: 142 tables

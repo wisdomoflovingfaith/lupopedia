@@ -7,7 +7,7 @@ I'm performing a **fresh install** of Lupopedia 4.0.27 from Crafty Syntax 3.7.5 
 
 ### What We've Already Fixed
 ✅ **Schema Updates Applied**: Added missing columns to `install_new_lupopedia.sql`:
-- `unified_registry_id` and `entity_index` to `lupo_registry`
+- `registry_id` and `entity_index` to `lupo_registry`
 - `created_by_actor_id` to `lupo_actor_channels`
 - `role_key` to `lupo_actor_departments`
 - `thread_id` to `lupo_dialog_threads`
@@ -23,7 +23,7 @@ The installer is still failing with these errors:
 
 **1. Registry Column Mismatches (Most Critical)**
 ```
-Unknown column 'unified_registry_id' in 'field list'
+Unknown column 'registry_id' in 'field list'
 Unknown column 'entity_key' in 'field list'
 Unknown column 'entity_index' in 'field list'
 ```
@@ -47,7 +47,7 @@ Table 'lupopedia.lupo_anubis_log' doesn't exist
 1. **Analyze the Current Schema**: Compare `install_new_lupopedia.sql` table definitions with what `seed_lupopedia.sql` expects
 
 2. **Fix Registry Table Issues**: The seed file expects:
-   - `unified_registry_id` column (we added this but INSERT statements still fail)
+   - `registry_id` column (we added this but INSERT statements still fail)
    - `entity_key` column (missing from schema)
    - `entity_index` column (we added this but queries still fail)
 

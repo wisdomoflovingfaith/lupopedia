@@ -537,9 +537,9 @@ Traceback: Traceback (most recent call last):
     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 44: character maps to <undefined>
-Processing: lupo_unified_analytics_paths... ERROR: 'charmap' codec can't encode character '\u2192' in position 44: character maps to <undefined>
+Processing: lupo_analytics_paths... ERROR: 'charmap' codec can't encode character '\u2192' in position 44: character maps to <undefined>
 
-Processing: lupo_unified_dialog_messages... ERROR: 'charmap' codec can't encode character '\u2192' in position 44: character maps to <undefined>
+Processing: lupo_dialog_messages... ERROR: 'charmap' codec can't encode character '\u2192' in position 44: character maps to <undefined>
 Traceback: Traceback (most recent call last):
   File "C:\ServBay\www\servbay\lupopedia\database\generate_toon_files.py", line 637, in main
     print(f"OK ({fetched_rows} rows{trunc_msg}, {len(field_defs)} fields{metadata_msg})")
@@ -558,7 +558,7 @@ Traceback: Traceback (most recent call last):
            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 40: character maps to <undefined>
 
-Processing: lupo_unified_truth_items... ERROR: 'charmap' codec can't encode character '\u2192' in position 40: character maps to <undefined>
+Processing: lupo_truth_items... ERROR: 'charmap' codec can't encode character '\u2192' in position 40: character maps to <undefined>
 Processing: lupo_user_comments... OK (0 rows, 12 fields [PK=user_comment_id, 8 indexes])
 Processing: lupo_world_events... OK (0 rows, 6 fields [PK=world_event_id, 4 indexes])
 Processing: migration_alerts... OK (0 rows, 13 fields)
@@ -618,13 +618,13 @@ Output directory: C:\ServBay\www\servbay\lupopedia\database\toon_data
    - lupo_system_health_snapshots: 'charmap' codec can't encode character '\u2192' in position 37: character maps to <undefined>
    - lupo_system_logs: 'charmap' codec can't encode character '\u2192' in position 34: character maps to <undefined>
    - lupo_temporal_coherence_snapshots: 'charmap' codec can't encode character '\u2192' in position 38: character maps to <undefined>
-   - lupo_unified_analytics_paths: 'charmap' codec can't encode character '\u2192' in position 44: character maps to <undefined>
-   - lupo_unified_dialog_messages: 'charmap' codec can't encode character '\u2192' in position 44: character maps to <undefined>
-   - lupo_unified_truth_items: 'charmap' codec can't encode character '\u2192' in position 40: character maps to <undefined>
+   - lupo_analytics_paths: 'charmap' codec can't encode character '\u2192' in position 44: character maps to <undefined>
+   - lupo_dialog_messages: 'charmap' codec can't encode character '\u2192' in position 44: character maps to <undefined>
+   - lupo_truth_items: 'charmap' codec can't encode character '\u2192' in position 40: character maps to <undefined>
 
 === Verification ===
-[WARNING] Extra .toon files (not in DB) (3): unified_analytics_paths, unified_dialog_messages, unified_truth_items
-[WARNING] Extra .txt files (not in DB) (3): unified_analytics_paths, unified_dialog_messages, unified_truth_items
+[WARNING] Extra .toon files (not in DB) (3): analytics_paths, dialog_messages, truth_items
+[WARNING] Extra .txt files (not in DB) (3): analytics_paths, dialog_messages, truth_items
 
 Done!
 

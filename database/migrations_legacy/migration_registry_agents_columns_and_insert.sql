@@ -11,7 +11,7 @@
 -- -----------------------------------------------------------------------------
 -- 1. Missing columns (from TOON comparison)
 -- -----------------------------------------------------------------------------
--- lupo_registry already has: unified_registry_id, entity_type, entity_id,
+-- lupo_registry already has: registry_id, entity_type, entity_id,
 -- entity_key, entity_name, dedicated_index_id, entity_table, federation_node_id,
 -- created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel,
 -- metadata_json.
@@ -21,7 +21,7 @@
 -- created_ymdhis, classification_json, metadata, agent_class, can_use_humor,
 -- can_use_emotion.
 --
--- Columns in agent_registry that do NOT exist in unified_registry (by name):
+-- Columns in agent_registry that do NOT exist in REGISTRY (by name):
 --   agent_registry_parent_id, code, name, layer, is_required, classification_json,
 --   agent_class, can_use_humor, can_use_emotion.
 -- We do NOT add dedicated_slot (same concept as dedicated_index_id) or metadata
@@ -60,12 +60,12 @@ ALTER TABLE lupo_registry ADD COLUMN can_use_emotion tinyint NOT NULL DEFAULT 0;
 -- -----------------------------------------------------------------------------
 -- Unique key (entity_type, entity_id) triggers overwrite when agent already exists.
 -- Map: entity_type = 'agent', entity_id = agent_registry_id; metadata in metadata_json.
--- unified_registry_id: next available ID for new rows (unchanged on duplicate).
+-- registry_id: next available ID for new rows (unchanged on duplicate).
 
-SET @uid = (SELECT COALESCE(MAX(unified_registry_id), 0) FROM lupo_registry);
+SET @uid = (SELECT COALESCE(MAX(registry_id), 0) FROM lupo_registry);
 
 INSERT INTO lupo_registry (
-  unified_registry_id,
+  registry_id,
   entity_type,
   entity_id,
   entity_key,

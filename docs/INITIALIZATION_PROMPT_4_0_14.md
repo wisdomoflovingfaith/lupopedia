@@ -46,8 +46,8 @@ The new thread must treat every development cycle as a **clean, empty, fresh sta
 Before taking any action, load and apply **ALL** of the following doctrine from the repository:
 
 - **Installer doctrine** — Only valid path: Crafty Syntax 3.7.5 → Lupopedia 4.0.x. No Lupopedia→Lupopedia upgrade in 4.0.x. See docs/doctrine/INSTALLATION_PATH_DOCTRINE.md and CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md.
-- **Unified Registry doctrine** — 24-column canonical table (`docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md`); reserved IDs; no AUTO_INCREMENT for registry-backed tables.
-- **Unified Unregistry doctrine** — Rolling free-list allocator; lifecycle rules with ANUBIS. See UNIFIED_REGISTRY_DOCTRINE and related allocator docs.
+- **Unified Registry doctrine** — 24-column canonical table (`docs/doctrine/REGISTRY_DOCTRINE.md`); reserved IDs; no AUTO_INCREMENT for registry-backed tables.
+- **Unified Unregistry doctrine** — Rolling free-list allocator; lifecycle rules with ANUBIS. See REGISTRY_DOCTRINE and related allocator docs.
 - **Identity doctrine** — Actors, auth_users, actor_source_type (user / lupo_auth_users); roles via 3-level model. See docs/doctrine/database/actors.md, auth_users.md, actor_channel_roles.md.
 - **Permission doctrine** — 3-layer model: (1) channel roles (lupo_actor_channel_roles: captain, administrator, monitor), (2) department roles (lupo_department_roles), (3) system (department_id = 0). Resolution order: channel → department → system.
 - **Department doctrine** — department_id = 0 is system (reserved); department_id = 1 is general; no user-selectable system department. See docs/doctrine/database/departments.md.
@@ -57,8 +57,8 @@ Before taking any action, load and apply **ALL** of the following doctrine from 
 - **Versioning doctrine** — Patch-only bumps (4.0.13 → 4.0.14); single canonical file `docs/doctrine/VERSIONING_DOCTRINE.md`; no duplicate versioning files.
 - **Reserved ID doctrine** — Registry-backed tables do not use AUTO_INCREMENT; explicit IDs; if row exists → UPDATE, else INSERT with explicit ID. No ON DUPLICATE KEY UPDATE for registry-backed tables. See .cursor/rules/reserved-id-doctrine.mdc.
 - **No lupo_agent_registry** — Do not use or reintroduce lupo_agent_registry anywhere in production logic.
-- **ANUBIS doctrine** — Orphan logging, redirect logic; ANUBIS + unified_unregistry lifecycle rules as documented.
-- **ANUBIS + unified_unregistry lifecycle rules** — As documented in doctrine; do not bypass.
+- **ANUBIS doctrine** — Orphan logging, redirect logic; ANUBIS + registry_open lifecycle rules as documented.
+- **ANUBIS + registry_open lifecycle rules** — As documented in doctrine; do not bypass.
 - **Database logic prohibition** — No FOREIGN KEYs, triggers, stored procedures, DEFAULT CURRENT_TIMESTAMP, or any DB-side logic; all logic in application code. See .cursor/rules/database-logic-prohibition-doctrine.mdc.
 - **PDO_DB only** — All database access via the project's PDO_DB wrapper; no raw PDO query/exec in application paths. See .cursor/rules/pdo-db-database-access-doctrine.mdc.
 - **Migration doctrine** — Any schema change requires BOTH a migration file AND an update to install_new_lupopedia.sql. See docs/doctrine/MIGRATION_DOCTRINE.md and .cursor/rules/migration-doctrine.mdc.
@@ -113,7 +113,7 @@ The repository state is **canonical** for the following. The new thread must tre
 - **lupo_actor_channels:** 25 rows (actor_channel_id 1000–1024) for channel 42; lupo_actor_channel_roles: 25 rows (actor_channel_role_id 2000–2024), role_key 'admin'.
 - **One dialog message per actor** in dialog_thread_id = 1: message_ids 1–2 from actor 0 (system); 3–27 one per kernel agent (from_actor_id = that agent), message_type 'system'. LEXA (actor_id 24): message_text "Boundary enforcement active. LEXA online." Others: "hello from &lt;agent_name&gt;".
 - **lupo_dialog_channels:** channel_id 42, message_count = 27.
-- Seed uses explicit IDs and ON DUPLICATE KEY UPDATE where appropriate (idempotent). Reserved-ID tables (e.g. lupo_unified_registry for LEXA) use explicit INSERT only.
+- Seed uses explicit IDs and ON DUPLICATE KEY UPDATE where appropriate (idempotent). Reserved-ID tables (e.g. lupo_registry for LEXA) use explicit INSERT only.
 
 **FLIPPING_FILE_LEXA_LILITH.md (4.0.13 + 4.0.14):**
 
@@ -124,7 +124,7 @@ The repository state is **canonical** for the following. The new thread must tre
 
 - **docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md** — FLIP subsection; dialog block optional and non-authoritative; link to FLIPPING_FILE_LEXA_LILITH.md Part 2.12.
 - **README.md** — FLIP bullet, FLIP Header Update Requirements, doctrine list includes FLIP_DOCTRINE.md.
-- **database/migrations/seed_lupopedia.sql** — @lupo_version 4.0.13, @lupo_version_code 40013; channel 42 with 25 kernel agents including LEXA (actor_id 24); 27 dialog messages; lupo_unified_registry row for LEXA (unified_registry_id 9001024, is_kernel = 1); lupo_actors row for LEXA (actor_id 24, slug lexa, name LEXA).
+- **database/migrations/seed_lupopedia.sql** — @lupo_version 4.0.13, @lupo_version_code 40013; channel 42 with 25 kernel agents including LEXA (actor_id 24); 27 dialog messages; lupo_registry row for LEXA (registry_id 9001024, is_kernel = 1); lupo_actors row for LEXA (actor_id 24, slug lexa, name LEXA).
 
 All 4.0.13 and 4.0.14 work above is committed and pushed. The new thread must treat this state as canonical and build 4.0.14 from here.
 

@@ -70,7 +70,7 @@ lupopedia/
 │   │   ├── AuthRoleResolver.php
 │   │   ├── AuthService.php
 │   │   ├── Session.php
-│   │   └── UnifiedSessionHandler.php
+│   │   └── SessionHandler.php
 │   ├── Http/
 │   │   ├── Controllers/
 │   │   │   ├── Admin/
@@ -1640,7 +1640,7 @@ lupopedia/
 │   │   │   ├── INDEX.md
 │   │   │   ├── README.md
 │   │   │   ├── TIMELINE_1996_2026.md
-│   │   │   └── UNIFIED_TIMELINE_2_0_19_TO_3_0_32.md
+│   │   │   └── TIMELINE_2_0_19_TO_3_0_32.md
 │   │   ├── kernel/
 │   │   │   ├── components/
 │   │   │   │   ├── ContinuityValidator.md
@@ -2159,11 +2159,11 @@ lupopedia/
 │   │   ├── lupo_truth_relations.toon.json
 │   │   ├── lupo_truth_sources.toon.json
 │   │   ├── lupo_truth_topics.toon.json
-│   │   ├── lupo_unified_analytics_paths.toon.json
-│   │   ├── lupo_unified_referers.toon.json
-│   │   ├── lupo_unified_registry.toon.json
-│   │   ├── lupo_unified_truth_items.toon.json
-│   │   ├── lupo_unified_visits.toon.json
+│   │   ├── lupo_analytics_paths.toon.json
+│   │   ├── lupo_referers.toon.json
+│   │   ├── lupo_registry.toon.json
+│   │   ├── lupo_truth_items.toon.json
+│   │   ├── lupo_visits.toon.json
 │   │   ├── lupo_uploads.toon.json
 │   │   ├── lupo_user_comments.toon.json
 │   │   ├── lupo_world_events.toon.json
@@ -2173,7 +2173,7 @@ lupopedia/
 │   ├── ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md
 │   ├── ACTOR_REFACTOR_REPORT.md
 │   ├── AUTH_REFACTOR_REPORT.md
-│   ├── DIALOG_MESSAGES_VS_UNIFIED_ANALYSIS.md
+│   ├── DIALOG_MESSAGES_VS_ANALYSIS.md
 │   ├── HELPER_TO_CLASS_MAPPING_ANALYSIS.md
 │   ├── IMAGE_PHP_MIGRATION.md
 │   ├── LIVEHELP_REMOVAL_REPORT.md
@@ -2185,11 +2185,11 @@ lupopedia/
 │   ├── README.md
 │   ├── REMAINING_HELPERS_REFACTOR_REPORT.md
 │   ├── REQUIRED_TABLES_4.1.0.md
-│   ├── SESSIONS_VS_UNIFIED_SESSIONS_INVESTIGATION.md
+│   ├── SESSIONS_VS_sessions_INVESTIGATION.md
 │   ├── TOON_SOURCE_OF_TRUTH_AUDIT.md
-│   ├── UNIFIED_DIALOG_TABLE_REMOVAL_REPORT.md
-│   ├── UNIFIED_PATHS_FIRSTS_REMOVAL_REPORT.md
-│   ├── UNIFIED_PATHS_FIRSTS_VS_ANALYTICS_PATHS_ANALYSIS.md
+│   ├── DIALOG_TABLE_REMOVAL_REPORT.md
+│   ├── PATHS_FIRSTS_REMOVAL_REPORT.md
+│   ├── PATHS_FIRSTS_VS_ANALYTICS_PATHS_ANALYSIS.md
 │   └── VERSION_DOCTRINE_APPLICATION_REPORT.md
 ├── examples/
 │   └── cip_system_demo.php
@@ -8791,8 +8791,8 @@ lupopedia/
 │   ├── WOLFIE_v0_5_Essential_Test_Suite.php
 │   └── WOLFIE_v0_5_IntegrationTest.php
 ├── migrations/
-│   ├── 2026_01_22_001_unified_auth_tables.php
-│   ├── 2026_01_22_002_unified_auth_tables.sql
+│   ├── 2026_01_22_001_auth_tables.php
+│   ├── 2026_01_22_002_auth_tables.sql
 │   ├── 2026_01_24_01_add_custom_path_to_lupo_contents.php
 │   ├── 2026_01_24_02_add_semantic_aliases_and_overlays.php
 │   ├── 2026_01_25_01_prefix_normalization_noop.sql

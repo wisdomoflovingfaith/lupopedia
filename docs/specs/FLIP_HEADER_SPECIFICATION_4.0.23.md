@@ -218,6 +218,44 @@ public function processFlipHeaders($message) {
 ?>
 ```
 
+## Database Mapping Layer (Optional)
+The `X-LUPO-{table}.{column}` namespace allows explicit mapping between header
+fields and database schema. This layer is optional and must not replace
+semantic FLIP fields. It is intended for advanced tooling, migrations, and
+schema-aware agents.
+
+## Database Mapping Layer (Optional) - New in 4.0.28
+
+The `X-LUPO-{table}.{column}` namespace allows explicit mapping between header
+fields and database schema. This layer is optional and Must not replace
+semantic FLIP fields. It is intended for advanced tooling, migrations, and
+schema-aware agents.
+
+### Syntax
+```
+X-LUPO-{table}.{column}: {value}
+```
+
+### Valid Examples
+```
+X-LUPO-actors.actor_id: 2038
+X-LUPO-channels.channel_id: 42
+X-LUPO-dialog_messages.dialog_message_id: 2000
+```
+
+### Constraints
+- Must use `X-LUPO-` prefix (all caps)
+- Must validate table/column against schema
+- Must not override semantic headers
+- Must not be required for processing
+- Must not be used for schema guessing
+
+### Implementation Notes
+- Values are treated as opaque strings (no type inference)
+- Table and column names are validated against `install_new_lupopedia.sql`
+- SQL generation must explicitly list all columns (no positional INSERTs)
+- Required timestamp columns (`created_ymdhis`, `updated_ymdhis`) must be included
+
 ## Database Storage
 
 ### FLIP Header Metadata Storage

@@ -1,6 +1,6 @@
-# Analysis: lupo_dialog_messages vs lupo_unified_dialog_messages
+# Analysis: lupo_dialog_messages vs lupo_dialog_messages
 
-**Purpose:** Determine which table is actually used by the codebase and whether **lupo_unified_dialog_messages** can be safely dropped.  
+**Purpose:** Determine which table is actually used by the codebase and whether **lupo_dialog_messages** can be safely dropped.  
 **Scope:** Full repository search; analysis only (no code changes).
 
 ---
@@ -10,7 +10,7 @@
 | Table | Purpose (from schema) |
 |-------|------------------------|
 | **lupo_dialog_messages** | Message storage: dialog_message_id, dialog_thread_id, channel_id, from_actor_id, to_actor_id, message_text, message_type, message_body, metadata_json, mood_rgb, mood_framework, created_ymdhis, updated_ymdhis, is_deleted. |
-| **lupo_unified_dialog_messages** | Alternate schema: dialog_message_id, thread_id, actor_id, created_ymdhis, updated_ymdhis, metadata_json, body_text. Different column set (thread_id vs dialog_thread_id, actor_id vs from_actor_id/to_actor_id, body_text vs message_text/message_body). |
+| **lupo_dialog_messages** | Alternate schema: dialog_message_id, thread_id, actor_id, created_ymdhis, updated_ymdhis, metadata_json, body_text. Different column set (thread_id vs dialog_thread_id, actor_id vs from_actor_id/to_actor_id, body_text vs message_text/message_body). |
 
 ---
 
@@ -44,27 +44,27 @@
 | docs/doctrine/CRAFTY_SYNTAX_*.md, docs/channels/... (multiple) | various | Mapping, schema, implementation plans | Doc | Reference |
 | CHANGELOG.md, DIRECTORY_STRUCTURE_DOCTRINE.md, DIRECTORY_TREE.md, migrate_dialog_channels.php, lupo-agents/..., dialogs/... | various | Mentions or examples of lupo_dialog_messages | Doc / script | Reference |
 
-### lupo_unified_dialog_messages
+### lupo_dialog_messages
 
 | File path | Line(s) | Snippet / usage | Operation | Active / legacy |
 |-----------|---------|------------------|-----------|------------------|
-| database/migrations/install_new_lupopedia.sql | 3902–3911 | CREATE TABLE lupo_unified_dialog_messages (dialog_message_id, thread_id, actor_id, ...) | Schema | Definition only |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | 1934–1939 | ALTER TABLE lupo_unified_dialog_messages MODIFY ... | Migration | Schema only |
+| database/migrations/install_new_lupopedia.sql | 3902–3911 | CREATE TABLE lupo_dialog_messages (dialog_message_id, thread_id, actor_id, ...) | Schema | Definition only |
+| database/migrations/dev_20260204_fix_schema_alignment.sql | 1934–1939 | ALTER TABLE lupo_dialog_messages MODIFY ... | Migration | Schema only |
 | database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1934–1939 | Column summary | Doc | Reference |
 | docs/REQUIRED_TABLES_4.1.0.md | 227 | List entry | Doc | Reference |
-| database/migrations_legacy/*.sql | various | CREATE TABLE lupo_unified_dialog_messages; INSERT in one legacy script | Schema / legacy INSERT | Legacy |
-| database/migrations/README.md | 79 | "unified_dialog_messages -> lupo_unified_dialog_messages_old" (rename example for deprecated tables) | Doc | Reference |
-| complete_schema.txt | 836 | TABLE: lupo_unified_dialog_messages | Doc | Reference |
+| database/migrations_legacy/*.sql | various | CREATE TABLE lupo_dialog_messages; INSERT in one legacy script | Schema / legacy INSERT | Legacy |
+| database/migrations/README.md | 79 | "dialog_messages -> lupo_dialog_messages_old" (rename example for deprecated tables) | Doc | Reference |
+| complete_schema.txt | 836 | TABLE: lupo_dialog_messages | Doc | Reference |
 | DIRECTORY_TREE.md | 893–894, 1610, 4080–4081 | TOON/file listing | Doc | Reference |
 | .output.txt, database/toon_output.txt | — | File/TOON processing output | Output | Reference |
 
-**PHP runtime:** No PHP file references **lupo_unified_dialog_messages** or **unified_dialog_messages** (with or without prefix). Grep over `*.php` for `unified_dialog` returns no matches.
+**PHP runtime:** No PHP file references **lupo_dialog_messages** or **dialog_messages** (with or without prefix). Grep over `*.php` for `dialog` returns no matches.
 
 ---
 
 ## 3. Which table is actually used (summary)
 
-| Consumer | lupo_dialog_messages | lupo_unified_dialog_messages |
+| Consumer | lupo_dialog_messages | lupo_dialog_messages |
 |----------|----------------------|------------------------------|
 | **Dialog thread creation** | — (threads in lupo_dialog_threads) | No |
 | **Message creation** | Yes (channel-send-api INSERT; import_from_old_crafty_syntax INSERT; DialogManager intent) | No |
@@ -79,40 +79,40 @@
 
 **Conclusion:**  
 - **lupo_dialog_messages** is the only table used by application code for dialog messages. All channel APIs, channels-controller, operator-accept-visitor, LegacyAdminChatFlush, import script, and ActorService use it (via `$table_prefix . 'dialog_messages'` or explicit `lupo_dialog_messages`).  
-- **lupo_unified_dialog_messages** has **zero active PHP or runtime references**. It appears only in install SQL, one dev alignment migration, REQUIRED_TABLES list, legacy migration files, migrations README (as rename example), and generated/list files (complete_schema, DIRECTORY_TREE, toon output).
+- **lupo_dialog_messages** has **zero active PHP or runtime references**. It appears only in install SQL, one dev alignment migration, REQUIRED_TABLES list, legacy migration files, migrations README (as rename example), and generated/list files (complete_schema, DIRECTORY_TREE, toon output).
 
 ---
 
 ## 4. Duplicate or unused table
 
-- **lupo_unified_dialog_messages** is an **unused** table: same general purpose (dialog messages) but different column design (thread_id, actor_id, body_text) and **never referenced by any PHP or API**.  
+- **lupo_dialog_messages** is an **unused** table: same general purpose (dialog messages) but different column design (thread_id, actor_id, body_text) and **never referenced by any PHP or API**.  
 - It is the **duplicate** in the sense that the codebase standardized on **lupo_dialog_messages** (channel_id, dialog_thread_id, from_actor_id, to_actor_id, message_text, etc.) for all message creation, retrieval, and updates.
 
 ---
 
 ## 5. Recommendation
 
-**lupo_unified_dialog_messages can be dropped** from the schema from a **code and runtime** perspective: there are **zero active references** to it. No dialog creation, message creation, message retrieval, UI, API, service, or Crafty compatibility code uses it.
+**lupo_dialog_messages can be dropped** from the schema from a **code and runtime** perspective: there are **zero active references** to it. No dialog creation, message creation, message retrieval, UI, API, service, or Crafty compatibility code uses it.
 
 Before dropping:
 
-1. **Data:** If any deployment ever wrote data into lupo_unified_dialog_messages (e.g. via a legacy script or one-off migration), decide whether to migrate that data into lupo_dialog_messages or discard it.
+1. **Data:** If any deployment ever wrote data into lupo_dialog_messages (e.g. via a legacy script or one-off migration), decide whether to migrate that data into lupo_dialog_messages or discard it.
 2. **Schema and docs:** Remove the table from install SQL, alignment migration, REQUIRED_TABLES, and any legacy migration or doc that assumes it exists; update or remove TOON/listing references as needed.
 
 ---
 
-## 6. Files that would need cleanup before dropping lupo_unified_dialog_messages
+## 6. Files that would need cleanup before dropping lupo_dialog_messages
 
 | File | Change |
 |------|--------|
-| database/migrations/install_new_lupopedia.sql | Remove CREATE TABLE lupo_unified_dialog_messages and its block (lines ~3902–3911). |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | Remove ALTER TABLE lupo_unified_dialog_messages statements (lines ~1934–1939). |
-| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Remove lupo_unified_dialog_messages column lines. |
-| docs/REQUIRED_TABLES_4.1.0.md | Remove list entry for lupo_unified_dialog_messages. |
-| database/migrations/README.md | Update or remove the "unified_dialog_messages -> lupo_unified_dialog_messages_old" example if it implies the table is still part of the active schema. |
+| database/migrations/install_new_lupopedia.sql | Remove CREATE TABLE lupo_dialog_messages and its block (lines ~3902–3911). |
+| database/migrations/dev_20260204_fix_schema_alignment.sql | Remove ALTER TABLE lupo_dialog_messages statements (lines ~1934–1939). |
+| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Remove lupo_dialog_messages column lines. |
+| docs/REQUIRED_TABLES_4.1.0.md | Remove list entry for lupo_dialog_messages. |
+| database/migrations/README.md | Update or remove the "dialog_messages -> lupo_dialog_messages_old" example if it implies the table is still part of the active schema. |
 | database/migrations_legacy/*.sql | Optional: leave as historical record or add a comment that the table has been dropped from active schema. |
-| complete_schema.txt | Regenerate or edit to remove lupo_unified_dialog_messages. |
-| docs/toons/ (if TOON exists) | Remove or regenerate lupo_unified_dialog_messages.toon.json (and related) after schema change. |
-| DIRECTORY_TREE.md | Update if it lists TOONs/files for lupo_unified_dialog_messages. |
+| complete_schema.txt | Regenerate or edit to remove lupo_dialog_messages. |
+| docs/toons/ (if TOON exists) | Remove or regenerate lupo_dialog_messages.toon.json (and related) after schema change. |
+| DIRECTORY_TREE.md | Update if it lists TOONs/files for lupo_dialog_messages. |
 
-No PHP or channel/API code changes are required to drop **lupo_unified_dialog_messages**; no application code references it.
+No PHP or channel/API code changes are required to drop **lupo_dialog_messages**; no application code references it.

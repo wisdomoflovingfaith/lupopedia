@@ -34,20 +34,20 @@ atoms:
 | livehelp_operator_channels | DROPPED | lupo_channels, lupo_dialog_threads (routing subsystem + dialog system) | [livehelp_operator_channels_migration.md](migrations/livehelp_operator_channels_migration.md) |
 | livehelp_operator_departments | IMPORTED -> DROPPED | lupo_actor_departments | [livehelp_operator_departments_migration.md](migrations/livehelp_operator_departments_migration.md) |
 | livehelp_operator_history | IMPORTED -> DROPPED | lupo_audit_log | [livehelp_operator_history_migration.md](migrations/livehelp_operator_history_migration.md) |
-| livehelp_paths_firsts | IMPORTED -> DROPPED | lupo_unified_analytics_paths | [livehelp_paths_firsts_migration.md](migrations/livehelp_paths_firsts_migration.md) |
-| livehelp_paths_monthly | IMPORTED -> DROPPED | lupo_unified_analytics_paths | [livehelp_paths_firsts_migration.md](migrations/livehelp_paths_firsts_migration.md) |
+| livehelp_paths_firsts | IMPORTED -> DROPPED | lupo_analytics_paths | [livehelp_paths_firsts_migration.md](migrations/livehelp_paths_firsts_migration.md) |
+| livehelp_paths_monthly | IMPORTED -> DROPPED | lupo_analytics_paths | [livehelp_paths_firsts_migration.md](migrations/livehelp_paths_firsts_migration.md) |
 | livehelp_qa | IMPORTED -> DROPPED | lupo_collection_tabs, lupo_collections, lupo_truth_answers, lupo_truth_questions | [livehelp_qa_migration.md](migrations/livehelp_qa_migration.md) |
 | livehelp_questions | IMPORTED -> DROPPED | lupo_crafty_syntax_chat_questions | [livehelp_questions_migration.md](migrations/livehelp_questions_migration.md) |
 | livehelp_quick | IMPORTED -> DROPPED | lupo_actor_reply_templates | [livehelp_quick_migration.md](migrations/livehelp_quick_migration.md) |
-| livehelp_referers_daily | IMPORTED -> DROPPED | lupo_unified_referers (analytics subsystem) | [livehelp_referers_daily_migration.md](migrations/livehelp_referers_daily_migration.md) |
-| livehelp_referers_monthly | IMPORTED -> DROPPED | lupo_unified_referers (analytics subsystem) | [livehelp_referers_daily_migration.md](migrations/livehelp_referers_daily_migration.md) |
+| livehelp_referers_daily | IMPORTED -> DROPPED | lupo_referers (analytics subsystem) | [livehelp_referers_daily_migration.md](migrations/livehelp_referers_daily_migration.md) |
+| livehelp_referers_monthly | IMPORTED -> DROPPED | lupo_referers (analytics subsystem) | [livehelp_referers_daily_migration.md](migrations/livehelp_referers_daily_migration.md) |
 | livehelp_sessions | DROPPED | lupo_sessions (session subsystem) | [livehelp_sessions_migration.md](migrations/livehelp_sessions_migration.md) |
 | livehelp_smilies | DROPPED | chat_smilies/ directory + emoji tokens | [livehelp_smilies_migration.md](migrations/livehelp_smilies_migration.md) |
 | livehelp_transcripts | IMPORTED -> DROPPED | lupo_dialog_messages, lupo_dialog_threads | [livehelp_transcripts_migration.md](migrations/livehelp_transcripts_migration.md) |
 | livehelp_users | IMPORTED -> DROPPED | lupo_auth_users | [livehelp_users_migration.md](migrations/livehelp_users_migration.md) |
-| livehelp_visit_track | DROPPED | lupo_unified_visits (analytics subsystem; ephemeral session tracking dropped) | [livehelp_visit_track_migration.md](migrations/livehelp_visit_track_migration.md) |
-| livehelp_visits_daily | IMPORTED -> DROPPED | lupo_unified_visits | [livehelp_visit_track_migration.md](migrations/livehelp_visit_track_migration.md) |
-| livehelp_visits_monthly | IMPORTED -> DROPPED | lupo_unified_visits | [livehelp_visit_track_migration.md](migrations/livehelp_visit_track_migration.md) |
+| livehelp_visit_track | DROPPED | lupo_visits (analytics subsystem; ephemeral session tracking dropped) | [livehelp_visit_track_migration.md](migrations/livehelp_visit_track_migration.md) |
+| livehelp_visits_daily | IMPORTED -> DROPPED | lupo_visits | [livehelp_visit_track_migration.md](migrations/livehelp_visit_track_migration.md) |
+| livehelp_visits_monthly | IMPORTED -> DROPPED | lupo_visits | [livehelp_visit_track_migration.md](migrations/livehelp_visit_track_migration.md) |
 | livehelp_websites | IMPORTED -> DROPPED | lupo_federation_nodes | [livehelp_websites_migration.md](migrations/livehelp_websites_migration.md) |
 | Demo Operators | APPLIED | lupo_auth_users, lupo_actors, lupo_operators, lupo_operator_status | [2026_01_30_demo_operators.md](migrations/2026_01_30_demo_operators.md) |
 

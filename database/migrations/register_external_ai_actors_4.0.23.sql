@@ -26,7 +26,7 @@ INSERT IGNORE INTO lupo_actors (
     is_deleted = 0;
 
 INSERT IGNORE INTO lupo_registry (
-    `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
+    `registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
 ) VALUES (
@@ -60,7 +60,7 @@ INSERT IGNORE INTO lupo_actors (
     is_deleted = 0;
 
 INSERT IGNORE INTO lupo_registry (
-    `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
+    `registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
 ) VALUES (
@@ -94,7 +94,7 @@ INSERT IGNORE INTO lupo_actors (
     is_deleted = 0;
 
 INSERT IGNORE INTO lupo_registry (
-    `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
+    `registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
 ) VALUES (

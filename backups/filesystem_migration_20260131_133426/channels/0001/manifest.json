@@ -1,4 +1,4 @@
-﻿{
+{
     "channel_key":  "dev-main-thread",
     "channel_name":  "Dev Main Thread",
     "channel_description":  "Channel initialized during v2.0 migration",

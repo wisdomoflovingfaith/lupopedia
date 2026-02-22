@@ -14,7 +14,7 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.0.27"
+version: "4.0.28"
 last_updated: 20260222
 
 # Author Information
@@ -37,10 +37,10 @@ project:
 
 # Version Information
 versions:
-  lupopedia: "4.0.27"
-  crafty_syntax: "4.0.27"
-  wolfie_headers: "4.0.27"
-  schema: "4.0.27"
+  lupopedia: "4.0.28"
+  crafty_syntax: "4.0.28"
+  wolfie_headers: "4.0.28"
+  schema: "4.0.28"
 
 # Common Metadata
 metadata:
@@ -75,7 +75,7 @@ timestamp:
 # Global Atoms (Single Source of Truth for WOLFIE Headers)
 
 # Current Lupopedia Version (Use this in all WOLFIE headers instead of hardcoding)
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.27"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.28"
 
 # Current Authors (Use in WOLFIE headers)
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie (lupopedia-at-gmail-com)"

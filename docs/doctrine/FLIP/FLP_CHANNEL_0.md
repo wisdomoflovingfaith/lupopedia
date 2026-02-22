@@ -31,4 +31,4 @@ Channel 0 (`system/kernel`) is the root channel. All kernel-level content, doctr
 
 ## 3. Registry
 
-- **lupo_unified_registry:** `entity_type='channel'`, `entity_index=0`, `entity_key='system/kernel'`.
+- **lupo_registry:** `entity_type='channel'`, `entity_index=0`, `entity_key='system/kernel'`.

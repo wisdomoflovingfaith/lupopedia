@@ -144,9 +144,9 @@ TESTING & DEVELOPMENT:
   test_performance_metrics            (9 fields)
 
 UNIFIED VIEWS:
-  unified_analytics_paths             (6 fields)
-  unified_dialog_messages             (7 fields)
-  unified_truth_items                 (7 fields)
+  analytics_paths             (6 fields)
+  dialog_messages             (7 fields)
+  truth_items                 (7 fields)
 ```
 
 ## 🚀 Execution Plan

@@ -76,7 +76,7 @@ Tests MUST pass on at least **two** real installations:
 
 - `database/generate_toon_files.py` runs without error.
 - `.toon` (and `.txt`) count matches current table count (e.g. 173).
-- Spot-check: `lupo_actors`, `lupo_dialog_messages`, `unified_dialog_messages` (or current unified tables) exist in `database/toon_data/`.
+- Spot-check: `lupo_actors`, `lupo_dialog_messages`, `dialog_messages` (or current unified tables) exist in `database/toon_data/`.
 
 ---
 

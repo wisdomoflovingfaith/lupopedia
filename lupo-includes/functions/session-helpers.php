@@ -5,7 +5,7 @@
  * All session logic now lives in App\Auth\Session (app/auth/Session.php).
  * Bootstrap creates one instance as $GLOBALS['lupo_session'].
  *
- * Use: $session = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : new \App\Auth\Session($db, new \App\Auth\UnifiedSessionHandler($db));
+ * Use: $session = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : new \App\Auth\Session($db, new \App\Auth\SessionHandler($db));
  * Then: $session->start(), $session->getSessionId(), $session->validateSession(), $session->createSession(), etc.
  *
  * No procedural session functions. Do not add new helpers here.

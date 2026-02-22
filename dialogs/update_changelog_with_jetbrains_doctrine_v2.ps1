@@ -1,16 +1,16 @@
-﻿$newEntry = @"
+$newEntry = @"
 ## [3.0.95] - 2026-01-17
-### Version 3.0.95 — JETBRAINS 3.1.x BRANCH HANDING DOCTRINE ESTABLISHED 🚀
+### Version 3.0.95 � JETBRAINS 3.1.x BRANCH HANDING DOCTRINE ESTABLISHED ??
 
 **Date:** 2026-01-17  
 **Type:** Doctrine Creation & Branch Management  
-**Status:** 🟢 COMPLETE - Development Framework Established  
+**Status:** ?? COMPLETE - Development Framework Established  
 **Migration ID:** jetbrains_branch_handling_doctrine_3_0_95
 
 ### Summary
 Version 3.0.95 establishes the comprehensive JetBrains 3.1.x Branch Handling Doctrine to govern multi-branch development in Lupopedia v3.1.x series. This doctrine provides clear protocols for branch creation, switching, merging, and version management while preventing the version drift and system instability that occurred during the 3.0.x development cycle.
 
-### 🚀 JETBRAINS 3.1.X BRANCH HANDING DOCTRINE ESTABLISHED
+### ?? JETBRAINS 3.1.X BRANCH HANDING DOCTRINE ESTABLISHED
 
 #### **Comprehensive Framework Created**
 - **Document**: `docs/doctrine/JETBRAINS_4_1_X_BRANCH_HANDLING_DOCTRINE.md`
@@ -25,7 +25,7 @@ Version 3.0.95 establishes the comprehensive JetBrains 3.1.x Branch Handling Doc
 - **Federation Support**: Multi-universe coordination protocols
 
 #### **Development Workflow**
-- **Phase-Based Development**: Development → Integration → Production phases
+- **Phase-Based Development**: Development ? Integration ? Production phases
 - **Isolation Protocols**: Feature branch separation and testing environments
 - **Merge Procedures**: Structured pull requests and approval workflows
 
@@ -34,7 +34,7 @@ Version 3.0.95 establishes the comprehensive JetBrains 3.1.x Branch Handling Doc
 - **Development Team**: Branch coordination and compliance with established protocols
 - **Integration Testing**: Comprehensive testing across all branches
 
-### 🔧 SYSTEM IMPROVEMENTS
+### ?? SYSTEM IMPROVEMENTS
 
 #### **Version Drift Prevention**
 - **Automated Enforcement**: GitHub Actions for branch naming and rule compliance
@@ -46,7 +46,7 @@ Version 3.0.95 establishes the comprehensive JetBrains 3.1.x Branch Handling Doc
 - **Version Synchronization**: Cross-universe alignment protocols
 - **Conflict Resolution**: Clear protocols for multi-universe version conflicts
 
-### 📋 MONDAY WOLFIE PREPARATION
+### ?? MONDAY WOLFIE PREPARATION
 
 #### **Development Framework Ready**
 - **Architecture**: Comprehensive branch management system established

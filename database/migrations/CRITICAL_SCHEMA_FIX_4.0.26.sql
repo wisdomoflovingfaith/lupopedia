@@ -17,7 +17,7 @@
 -- ============================================================================
 
 -- PROBLEM: seed_lupopedia.sql used wrong column names
--- SEED USED: unified_registry_id, entity_key, entity_name, entity_table
+-- SEED USED: registry_id, entity_key, entity_name, entity_table
 -- ACTUAL SCHEMA: registry_id, entity_type, entity_index_id, federation_node_id
 
 -- CORRECT INSERT FORMAT:

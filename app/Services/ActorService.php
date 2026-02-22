@@ -5,7 +5,7 @@ namespace App\Services;
 /**
  * Actor domain service — actor–auth_user linkage, actor creation, slug checks,
  * anonymous allocation, JSRN, and merge. Uses PDO_DB and LUPO_TABLE_PREFIX only.
- * No actor_roles, no unified_sessions, no operator tables. Doctrine: all logic in app.
+ * No actor_roles, no sessions, no operator tables. Doctrine: all logic in app.
  */
 
 if (!defined('LUPO_TABLE_PREFIX')) {

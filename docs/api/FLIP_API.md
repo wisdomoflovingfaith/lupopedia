@@ -115,4 +115,58 @@ Raw YAML FLIP Header block (no JSON wrapper).
 - **External agents (e.g. Grok):** Browse the URL, parse the JSON `header` field or raw YAML, infer file identity and lineage from the YAML only (FLIP inference).
 - **Local agents:** Prefer `tools/generate_flip_header.py` for CLI; use this API when web access is required.
 
+---
+
+## Database Mapping Layer (Optional)
+
+The FLIP header system supports an optional database mapping layer using the `X-LUPO-{table}.{column}` namespace:
+
+```yaml
+---
+# FLIP Header (alias: Wolfie Header, CROP Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/example.md
+file.last_modified_system_version: "4.0.28"
+file.last_modified_utc: "20260222140000"
+channel_id: 42
+
+# Database Mapping Layer (Optional)
+X-LUPO-actors.actor_id: 2038
+X-LUPO-channels.channel_id: 42
+X-LUPO-dialog_messages.dialog_message_id: 2000
+---
+```
+
+### Mapping Layer Rules
+
+- **Optional:** Never required for inference or basic operations
+- **Namespaced:** Must use `X-LUPO-{table}.{column}` format
+- **Non-overriding:** Cannot override semantic FLIP fields
+- **Opaque values:** Treated as strings, no schema inference
+- **Tooling-only:** Intended for advanced tooling, migrations, and schema-aware agents
+
+### Valid Examples
+
+```
+X-LUPO-actors.actor_id: 2038
+X-LUPO-channels.channel_id: 42
+X-LUPO-dialog_messages.dialog_message_id: 2000
+X-LUPO-registry.registry_id: 9002031
+```
+
+### Invalid Examples
+
+```
+# Wrong format - missing dot separator
+X-LUPO-actorid: 2038
+
+# Wrong prefix - not X-LUPO-
+X-FLIP-actors.actor_id: 2038
+
+# Overrides semantic field - not allowed
+X-LUPO-file_path: docs/example.md
+```
+
+The mapping layer is preserved in the `database_mappings` field of the parsed header and is included when formatting headers back to YAML.
+
 See **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md** Part 1.4 (Universal Agent Flipping), Parts 6.1–6.3 (API spec, security, future auth).

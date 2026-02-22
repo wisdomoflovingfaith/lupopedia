@@ -55,7 +55,7 @@ Before taking any action, load and apply ALL of the following doctrine from the 
 - **Versioning doctrine** — Patch-only bumps (4.0.12 → 4.0.13); single canonical file `docs/doctrine/VERSIONING_DOCTRINE.md`; no duplicate versioning files.
 - **Reserved ID doctrine** — Registry-backed tables do not use AUTO_INCREMENT; explicit IDs; INSERT only with explicit ID; if row exists → UPDATE, else INSERT.
 - **No lupo_agent_registry** — Do not use or reintroduce lupo_agent_registry anywhere in production logic.
-- **ANUBIS doctrine** — Orphan logging, redirect logic, revised/mirrored tables; ANUBIS + unified_unregistry lifecycle rules as documented.
+- **ANUBIS doctrine** — Orphan logging, redirect logic, revised/mirrored tables; ANUBIS + registry_open lifecycle rules as documented.
 - **Database logic prohibition** — No FOREIGN KEYs, triggers, stored procedures, DEFAULT CURRENT_TIMESTAMP, or any DB-side logic; all logic in application code.
 - **PDO_DB only** — All database access via the project’s PDO_DB wrapper; no raw PDO query/exec in application paths.
 - **Migration doctrine** — See §4 below: any schema change requires BOTH a migration file AND an update to install_new_lupopedia.sql.

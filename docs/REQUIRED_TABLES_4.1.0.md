@@ -35,7 +35,7 @@ signature: cascade
 **Total Tables:** 261  
 **Ceiling Status:** 39 over ceiling - requires consolidation
 
-**Session table:** The single session table is `{prefix}sessions`. The table `{prefix}unified_sessions` is obsolete and has been removed from the install; its logic was merged into `{prefix}sessions`.
+**Session table:** The single session table is `{prefix}sessions`. The table `{prefix}sessions` is obsolete and has been removed from the install; its logic was merged into `{prefix}sessions`.
 
 **Roles:** Roles are channel-scoped only. The only role table is `{prefix}channel_roles` (actor_id + channel_id → role_type). The table `{prefix}actor_roles` is **DROPPED**; do not create or reference it. Use `{prefix}channel_roles` with default channel_id = 1 for system-wide permissions.
 
@@ -63,9 +63,9 @@ signature: cascade
 - lupo_federation_nodes
 - lupo_truth_answers
 - lupo_truth_questions
-- lupo_unified_analytics_paths
-- lupo_unified_referers
-- lupo_unified_visits
+- lupo_analytics_paths
+- lupo_referers
+- lupo_visits
 
 ---
 
@@ -215,9 +215,9 @@ signature: cascade
 - lupo_truth_relations
 - lupo_truth_sources
 - lupo_truth_topics
-- lupo_unified_registry
-- lupo_unified_truth_items
-- lupo_unified_websites
+- lupo_registry
+- lupo_truth_items
+- lupo_websites
 - lupo_user_comments
 - lupo_world_events
 - lupo_world_registry

@@ -83,13 +83,13 @@ Extracted from `import_from_old_crafty_syntax.sql`. **34 legacy tables**:
 | 23 | livehelp_smilies | — | ARCHIVE | No import; token-based emoji in Lupopedia |
 | 24 | livehelp_sessions | — | DROPPED | No target |
 | 25 | livehelp_users | lupo_auth_users | INSERT | Operators first, then rest; Phase 1 SQL then creates lupo_actors (operator only) and lupo_operators, and fixes lupo_actor_departments.actor_id |
-| 26 | livehelp_referers_daily | lupo_unified_referers | INSERT | content_id from legacy |
-| 27 | livehelp_referers_monthly | lupo_unified_referers | INSERT | Same |
+| 26 | livehelp_referers_daily | lupo_referers | INSERT | content_id from legacy |
+| 27 | livehelp_referers_monthly | lupo_referers | INSERT | Same |
 | 28 | livehelp_visit_track | — | ALTER only | No INSERT in snippet; visits go via daily/monthly |
-| 29 | livehelp_visits_daily | lupo_unified_visits | INSERT | |
-| 30 | livehelp_visits_monthly | lupo_unified_visits | INSERT | |
-| 31 | livehelp_paths_firsts | lupo_unified_analytics_paths | INSERT | |
-| 32 | livehelp_paths_monthly | lupo_unified_analytics_paths | INSERT | |
+| 29 | livehelp_visits_daily | lupo_visits | INSERT | |
+| 30 | livehelp_visits_monthly | lupo_visits | INSERT | |
+| 31 | livehelp_paths_firsts | lupo_analytics_paths | INSERT | |
+| 32 | livehelp_paths_monthly | lupo_analytics_paths | INSERT | |
 | 33 | livehelp_transcripts | lupo_dialog_threads, lupo_dialog_messages | INSERT | recno→thread_id and message_id; transcript→message_body |
 | 34 | livehelp_websites | lupo_federation_nodes | INSERT | id→federation_node_id; DELETE node 0 guard |
 
@@ -110,7 +110,7 @@ Extracted from `import_from_old_crafty_syntax.sql`. **34 legacy tables**:
 - **Users:** livehelp_users → lupo_auth_users (and actor model elsewhere); no lupo_users table.
 - **Config:** livehelp_config → lupo_modules.config_json (single JSON blob).
 - **Chat:** livehelp_transcripts → lupo_dialog_threads + lupo_dialog_messages (normalized).
-- **Analytics:** livehelp_visits/referers/paths → lupo_unified_visits, lupo_unified_referers, lupo_unified_analytics_paths (unified model).
+- **Analytics:** livehelp_visits/referers/paths → lupo_visits, lupo_referers, lupo_analytics_paths (unified model).
 - **Identity:** livehelp_identity_monthly → lupo_actors (anonymous); identity_daily/keywords dropped by design.
 - **Operators:** Operator–department link in lupo_actor_departments; operator identity in lupo_operators (auth_user_id + actor_id).
 
@@ -137,7 +137,7 @@ Extracted from `import_from_old_crafty_syntax.sql`. **34 legacy tables**:
 
 ### 6.3 Documentation Inconsistencies
 
-- **CRAFTY_SYNTAX_MIGRATION_DOCTRINE.md** lists livehelp_visits_daily/monthly and livehelp_websites as "Dropped / No target mapping"; **import SQL actually migrates** them to lupo_unified_visits and lupo_federation_nodes. Update doctrine to match SQL.
+- **CRAFTY_SYNTAX_MIGRATION_DOCTRINE.md** lists livehelp_visits_daily/monthly and livehelp_websites as "Dropped / No target mapping"; **import SQL actually migrates** them to lupo_visits and lupo_federation_nodes. Update doctrine to match SQL.
 - **CRAFTY_SYNTAX_TO_LUPOPEDIA_STRUCTURED_MAPPING.md** says livehelp_channels → lupo_channels and livehelp_operator_channels → lupo_actor_departments; **import SQL** does not INSERT into lupo_channels or create operator_channel rows. Align doc with SQL or add migration path.
 
 ---
@@ -207,7 +207,7 @@ Each phase ends in a **stable system state**. Transitions:
 
 **Goal:** Single source of truth; no contradictory docs or SQL.
 
-- [x] Align CRAFTY_SYNTAX_MIGRATION_DOCTRINE.md with import SQL (visits, referers, websites, channels). *(Done: visits/referers/websites documented as migrated to lupo_unified_visits, lupo_unified_referers, lupo_federation_nodes.)*
+- [x] Align CRAFTY_SYNTAX_MIGRATION_DOCTRINE.md with import SQL (visits, referers, websites, channels). *(Done: visits/referers/websites documented as migrated to lupo_visits, lupo_referers, lupo_federation_nodes.)*
 - [x] Align CRAFTY_SYNTAX_TO_LUPOPEDIA_STRUCTURED_MAPPING.md with import SQL (channels, operator_channels). *(Done: livehelp_channels and livehelp_operator_channels documented as dropped with no INSERT.)*
 - [x] Fix import SQL: lupo_crafty_syntax_leave_message SELECT alias → `crafty_syntax_leave_message_id`. *(Done.)*
 - [x] Fix import SQL: lupo_collections INSERT use `actor_id` (TOON schema); column and VALUES updated to actor_id. *(Done.)*

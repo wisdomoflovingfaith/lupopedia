@@ -279,7 +279,7 @@ class InstallWizardDb {
     }
 }
 
-class InstallWizardUnifiedRegistryValidator {
+class InstallWizardRegistryValidator {
 
     /**
      * Extract registry_id values from SQL that contains INSERT INTO ... registry ... VALUES.
@@ -420,9 +420,9 @@ class InstallWizardSqlRunner {
         }
         $statements = InstallWizardSqlRunner::splitSqlStatements($sql);
         if (stripos($sql, 'registry') !== false && stripos($sql, 'INSERT') !== false) {
-            $ids = InstallWizardUnifiedRegistryValidator::extractRegistryIdsFromSql($sql);
+            $ids = InstallWizardRegistryValidator::extractRegistryIdsFromSql($sql);
             if (!empty($ids)) {
-                $conflictId = InstallWizardUnifiedRegistryValidator::checkRegistryIdConflict($pdo, $ids, null);
+                $conflictId = InstallWizardRegistryValidator::checkRegistryIdConflict($pdo, $ids, null);
                 if ($conflictId !== null) {
                     throw new RuntimeException('Registry ID conflict: ID ' . (int) $conflictId . ' already exists.');
                 }

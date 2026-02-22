@@ -5,7 +5,7 @@ namespace App\Auth;
 /**
  * Session — OOP session management. Replaces procedural session helpers.
  *
- * Constructor injection: ($db, $sessionHandler). Uses PDO/PDO_DB and UnifiedSessionHandler.
+ * Constructor injection: ($db, $sessionHandler). Uses PDO/PDO_DB and SessionHandler.
  * Doctrine: BIGINT UTC YmdHis for all timestamps; no DB-side logic.
  * Table: lupo_sessions (TOON). Columns after security_level: name_key (VARCHAR(100) NULL), is_named (TINYINT default 0).
  */
@@ -35,7 +35,7 @@ class Session
     /** @var \PDO|\PDO_DB */
     private $db;
 
-    /** @var UnifiedSessionHandler */
+    /** @var SessionHandler */
     private $sessionHandler;
 
     /** @var string */
@@ -494,7 +494,7 @@ class Session
 
     /**
      * Create or update a session row for the unified/cookie flow (actor_id, system_context, session_data, expires).
-     * Used by UnifiedSessionHandler; does not set cookie. Table: {prefix}sessions only.
+     * Used by SessionHandler; does not set cookie. Table: {prefix}sessions only.
      *
      * @param string      $sessionId     PHP session_id()
      * @param int|null    $userId        actor_id (0 for anonymous)
@@ -560,7 +560,7 @@ class Session
         if (!$session) {
             return null;
         }
-        $systemContext = UnifiedSessionHandler::CONTEXT_LUPOPEDIA;
+        $systemContext = SessionHandler::CONTEXT_LUPOPEDIA;
         if (isset($session['system_context']) && $session['system_context'] !== null && $session['system_context'] !== '') {
             $systemContext = $session['system_context'];
         }

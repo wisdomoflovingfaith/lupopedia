@@ -100,6 +100,9 @@ export interface FlipHeader {
 
     /** Any extra keys found in the FLIP block that weren't mapped */
     extras: Record<string, string>;
+
+    /** Database mapping layer - X-LUPO-{table}.{column} entries */
+    database_mapping: Record<string, string>;
 }
 
 export interface FlipParseResult {
@@ -221,6 +224,54 @@ const CANONICAL_MAP: Record<string, keyof FlipHeader | string> = {
 };
 
 /**
+ * Validate X-LUPO-{table}.{column} database mapping format
+ */
+function isValidDatabaseMapping(key: string): boolean {
+    const lowerKey = key.toLowerCase();
+    if (!lowerKey.startsWith('x-lupo-')) {
+        return false;
+    }
+    const afterPrefix = lowerKey.slice(8); // Remove 'x-lupo-'
+    const parts = afterPrefix.split('.');
+    return parts.length === 2 && parts[0].length > 0 && parts[1].length > 0;
+}
+
+/**
+ * Schema tables and columns for validation
+ */
+const SCHEMA_TABLES: Record<string, string[]> = {
+    'actors': [
+        'actor_id', 'actor_type', 'slug', 'name', 'created_ymdhis',
+        'updated_ymdhis', 'is_active', 'is_deleted', 'paired_actor_id',
+        'primary_federation_node_id', 'department_id', 'is_kernel', 'can_login',
+        'metadata_json', 'identity_provider_config', 'avatar_hash'
+    ],
+    'channels': [
+        'channel_id', 'federation_node_id', 'channel_key', 'channel_slug',
+        'channel_type', 'channel_name', 'created_ymdhis', 'updated_ymdhis',
+        'is_deleted', 'deleted_ymdhis', 'is_active'
+    ],
+    'dialog_messages': [
+        'dialog_message_id', 'message_id', 'dialog_thread_id', 'channel_id',
+        'from_actor_id', 'to_actor_id', 'message_text', 'message_type',
+        'created_ymdhis', 'updated_ymdhis', 'is_deleted', 'deleted_ymdhis'
+    ],
+    'registry': [
+        'registry_id', 'entity_type', 'entity_index_id', 'entity_name',
+        'entity_table', 'federation_node_id', 'created_ymdhis', 'updated_ymdhis',
+        'is_deleted', 'deleted_ymdhis', 'is_active', 'is_kernel', 'metadata_json'
+    ]
+};
+
+function isValidTable(table: string): boolean {
+    return table in SCHEMA_TABLES;
+}
+
+function isValidColumn(table: string, column: string): boolean {
+    return SCHEMA_TABLES[table]?.includes(column) ?? false;
+}
+
+/**
  * Extract the first YAML front-matter block from text.
  * Returns null when no `--- ... ---` block is found at or near the top.
  */
@@ -294,11 +345,30 @@ export function parseFlipHeader(text: string): FlipParseResult {
         }
 
         const kv = parseKV(raw);
-        const mapped: Partial<FlipHeader> = { extras: {} };
+        const mapped: Partial<FlipHeader> = { extras: {}, database_mapping: {} };
 
         // Process all keys, mapping to canonical if possible
         for (const [key, value] of Object.entries(kv)) {
             const lowerKey = key.toLowerCase();
+
+            // Check for database mapping layer first
+            if (isValidDatabaseMapping(key)) {
+                // Validate table and column against schema
+                const match = key.toLowerCase().match(/^x-lupo-([a-z_]+)\.([a-z_]+):\s*(.+)$/);
+                if (match) {
+                    const [, table, column] = match;
+                    if (isValidTable(table) && isValidColumn(table, column)) {
+                        mapped.database_mapping![key] = value;
+                    } else {
+                        // Invalid table or column - store in extras with warning
+                        console.warn(`Invalid database mapping: ${key} - unknown table or column`);
+                        mapped.extras![key] = value;
+                    }
+                } else {
+                    mapped.database_mapping![key] = value;
+                }
+                continue;
+            }
 
             // Handle fuzzy prefix aliases if not direct match
             let canonicalKey: string | undefined = CANONICAL_MAP[lowerKey] as string;
@@ -319,7 +389,7 @@ export function parseFlipHeader(text: string): FlipParseResult {
                 } else if (k === 'is_kernel' || k === 'is_active' || k === 'is_deleted') {
                     const lowVal = value.toLowerCase().trim();
                     (mapped as any)[k] = (lowVal === 'true' || lowVal === '1' || lowVal === 'yes');
-                } else if (k !== 'extras') {
+                } else if (k !== 'extras' && k !== 'database_mapping') {
                     (mapped as any)[k] = value;
                 }
             } else {
@@ -339,6 +409,7 @@ export function parseFlipHeader(text: string): FlipParseResult {
             lupo_actor_identity: mapped.lupo_actor_identity || null,
             from: mapped.from || null,
             extras: mapped.extras || {},
+            database_mapping: mapped.database_mapping || {},
             ...mapped
         };
 
@@ -355,6 +426,13 @@ export function parseFlipHeader(text: string): FlipParseResult {
         // Validate UTC timestamp format: exactly 14 digits
         if (header.file_last_modified_utc && !/^\d{14}$/.test(header.file_last_modified_utc)) {
             errors.push(`file.last_modified_utc must be exactly 14 digits (YYYYMMDDHHmmss), got: "${header.file_last_modified_utc}"`);
+        }
+
+        // Validate Database Mapping Layer
+        for (const [key, value] of Object.entries(header.database_mapping)) {
+            if (!isValidDatabaseMapping(key)) {
+                errors.push(`Invalid database mapping format: "${key}". Must be X-LUPO-{table}.{column}`);
+            }
         }
 
         return {
@@ -443,6 +521,11 @@ export function formatFlipHeader(header: FlipHeader): string {
     if (header.is_active !== undefined) lines.push(`X-Lupo-Is-Active: ${header.is_active}`);
     if (header.is_deleted !== undefined) lines.push(`X-Lupo-Is-Deleted: ${header.is_deleted}`);
 
+    // Database Mapping Layer (Optional)
+    for (const [key, value] of Object.entries(header.database_mapping)) {
+        lines.push(`${key}: ${value}`);
+    }
+
     for (const [k, v] of Object.entries(header.extras)) {
         if (!k.startsWith('X-Lupo-') && !k.startsWith('wolfie.')) {
             lines.push(`${k}: ${v}`);
@@ -450,6 +533,44 @@ export function formatFlipHeader(header: FlipHeader): string {
     }
     lines.push('---');
     return lines.join('\n');
+}
+
+/**
+ * Generate INSERT statement from database mapping layer
+ */
+export function generateInsertFromMapping(
+    table: string,
+    mapping: Record<string, string>
+): string {
+    // Extract columns for this table
+    const columns: string[] = [];
+    const values: string[] = [];
+    
+    for (const [key, value] of Object.entries(mapping)) {
+        const [mappedTable, column] = key.split('.');
+        
+        if (mappedTable === table) {
+            columns.push(column);
+            // Quote string values for SQL
+            values.push(`'${value.replace(/'/g, "''")}'`);
+        }
+    }
+    
+    // Ensure required timestamp columns
+    if (SCHEMA_TABLES[table]?.includes('created_ymdhis') && !columns.includes('created_ymdhis')) {
+        console.warn(`Missing required column: created_ymdhis`);
+    }
+    
+    if (SCHEMA_TABLES[table]?.includes('updated_ymdhis') && !columns.includes('updated_ymdhis')) {
+        console.warn(`Missing required column: updated_ymdhis`);
+    }
+    
+    // Generate SQL with explicit column list
+    if (columns.length === 0) {
+        return `-- No mapping columns found for table: ${table}`;
+    }
+    
+    return `INSERT INTO lupo_${table} (${columns.join(', ')}) VALUES (${values.join(', ')});`;
 }
 
 /**

@@ -13,7 +13,7 @@ atoms:
 
 # Migration Note: livehelp_referers_daily & livehelp_referers_monthly
 # Status: IMPORTED -> DROPPED
-# Replacement: lupo_unified_referers
+# Replacement: lupo_referers
 
 # 1. Summary
 Crafty Syntax stored referer analytics in two separate tables:
@@ -41,7 +41,7 @@ The data was inconsistent, incomplete, and often corrupted across installs.
 Lupopedia replaces this entire subsystem with:
 
 Code
-lupo_unified_referers
+lupo_referers
 A single, normalized, doctrine-aligned analytics table.
 
 Legacy data is imported only as metadata, not as first-class referer URLs, because the old system did not store real URLs in the daily table.
@@ -98,7 +98,7 @@ no domain/path extraction
 The system was not salvageable as a modern analytics model.
 
 # 3. Why Lupopedia Uses a Unified Table
-lupo_unified_referers provides:
+lupo_referers provides:
 
 normalized URL fields
 
@@ -139,7 +139,7 @@ Code
 COMMENT = 'DEPRECATED...'
 Step 3 -- Clear the unified table
 Code
-TRUNCATE lupo_unified_referers;
+TRUNCATE lupo_referers;
 Step 4 -- Import daily data (no URLs available)
 Daily table rows become:
 
@@ -168,7 +168,7 @@ This preserves the only real URL data Crafty Syntax ever stored.
 
 # 5. Mapping Summary
 Legacy -> New
-Legacy Field	lupo_unified_referers Field	Notes
+Legacy Field	lupo_referers Field	Notes
 pageurl	referer_url (monthly only)	daily table has NULL
 dateof	date_ymd	preserved
 levelvisits + directvisits	visits	preserved
@@ -222,4 +222,4 @@ We preserve what exists and discard what cannot be trusted.
 Code
 livehelp_referers_daily   -> IMPORTED -> DROPPED
 livehelp_referers_monthly -> IMPORTED -> DROPPED
-All legacy analytics preserved in lupo_unified_referers.metadata_json.
+All legacy analytics preserved in lupo_referers.metadata_json.

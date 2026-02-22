@@ -125,7 +125,7 @@ LimitsEnforcementService is loaded via require_once when needed; DB from `$GLOBA
 
 ## 5. Confirmations
 
-- **Only allowed domains modified:** Only Collection Zero, Collection Tabs, Saved Collections, Redirect, Limits, Atoms, Upload. AuthService, AuthRoleResolver, AuthContextResolver, ActorService, Session, UnifiedSessionHandler, Crafty Syntax, and other domains were **not** modified.
+- **Only allowed domains modified:** Only Collection Zero, Collection Tabs, Saved Collections, Redirect, Limits, Atoms, Upload. AuthService, AuthRoleResolver, AuthContextResolver, ActorService, Session, SessionHandler, Crafty Syntax, and other domains were **not** modified.
 - **Logic in correct classes:** Collection Zero → CollectionZeroService; Collection Tabs → CollectionTabsService; Saved Collections → SavedCollectionsService; Redirect → RedirectUtils; Limits logging → LimitsLogger and LimitsEnforcementService; Atoms/version → AtomLoader and VersionUtils; Upload → UploadService.
 - **DB access uses PDO_DB:** CollectionZeroService, CollectionTabsService, SavedCollectionsService use `$this->db` (PDO_DB from bootstrap) and `fetchRow`, `fetchAll`, `query`, `insert` with named parameters only.
 - **Table names use LUPO_TABLE_PREFIX:** All new service code uses `$this->prefix` (LUPO_TABLE_PREFIX) or `quoteIdentifier($this->prefix . 'table_name')`. No hardcoded `lupo_*` in new code.

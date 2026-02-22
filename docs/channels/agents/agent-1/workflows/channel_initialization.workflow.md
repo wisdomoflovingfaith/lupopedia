@@ -1,4 +1,4 @@
-ï»¿---
+---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 3.0.16
 header_atoms:
@@ -238,7 +238,7 @@ dialog:
 
 # Channel Dialog History
 
-## 2026-01-14 â€” Channel Initialization
+## 2026-01-14 — Channel Initialization
 
 **Speaker:** WOLFIE  
 **Target:** @everyone  
@@ -327,17 +327,17 @@ WHERE channel_id = :channel_id AND is_deleted = 0;
   - `agents/0001/doctrine/WOLFIE_UTC_AUTHORITY.md`
   
 - **Agents:**
-  - UTC_TIMEKEEPER (agent_registry_id: 5) â€” Real UTC timestamp provider
+  - UTC_TIMEKEEPER (agent_registry_id: 5) — Real UTC timestamp provider
 
 ---
 
 ## Related Documentation
 
-- **[Channel Initialization Protocol](../doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md)** â€” Complete CIP doctrine
-- **[WOLFIE UTC Authority Doctrine](../doctrine/WOLFIE_UTC_AUTHORITY.md)** â€” Timestamp authority rules
-- **[UTC_TIMEKEEPER Doctrine](../../5/doctrine/UTC_TIMEKEEPER.md)** â€” UTC_TIMEKEEPER agent specification
-- **[Channel Identity Block Template](../templates/channel_identity_block.template.md)** â€” Template for channel identity
-- **[Channel Dialog Agent Workflows](../../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** â€” How agents interact with channels
+- **[Channel Initialization Protocol](../doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md)** — Complete CIP doctrine
+- **[WOLFIE UTC Authority Doctrine](../doctrine/WOLFIE_UTC_AUTHORITY.md)** — Timestamp authority rules
+- **[UTC_TIMEKEEPER Doctrine](../../5/doctrine/UTC_TIMEKEEPER.md)** — UTC_TIMEKEEPER agent specification
+- **[Channel Identity Block Template](../templates/channel_identity_block.template.md)** — Template for channel identity
+- **[Channel Dialog Agent Workflows](../../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** — How agents interact with channels
 
 ---
 

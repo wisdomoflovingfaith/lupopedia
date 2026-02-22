@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS `lupo_crafty_user_mapping` (
     UNIQUE KEY `unique_crafty_operator_mapping` (`crafty_operator_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='User mapping between Lupopedia and Crafty Syntax systems';
 
--- Create unified_sessions table for cross-system session tracking
-CREATE TABLE IF NOT EXISTS `unified_sessions` (
+-- Create sessions table for cross-system session tracking
+CREATE TABLE IF NOT EXISTS `sessions` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'Primary key for session',
     `session_id` varchar(255) NOT NULL COMMENT 'Session identifier',
     `user_id` bigint NULL COMMENT 'Reference to lupo_auth_users.auth_user_id',
@@ -133,19 +133,19 @@ PREPARE mapping_fk_stmt FROM @mapping_fk_sql;
 EXECUTE mapping_fk_stmt;
 DEALLOCATE PREPARE mapping_fk_stmt;
 
--- Add foreign key constraint for unified_sessions if it doesn't exist
+-- Add foreign key constraint for sessions if it doesn't exist
 SET @session_fk_exists = (SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS 
                          WHERE TABLE_SCHEMA = 'lupopedia' 
-                         AND TABLE_NAME = 'unified_sessions' 
+                         AND TABLE_NAME = 'sessions' 
                          AND CONSTRAINT_NAME = 'fk_sessions_user_id');
 
 SET @session_fk_sql = IF(@session_fk_exists = 0,
-    'ALTER TABLE `unified_sessions` ADD CONSTRAINT `fk_sessions_user_id` 
+    'ALTER TABLE `sessions` ADD CONSTRAINT `fk_sessions_user_id` 
          FOREIGN KEY (`user_id`) 
          REFERENCES `lupo_auth_users`(`auth_user_id`) 
          ON DELETE CASCADE 
          ON UPDATE CASCADE',
-    'SELECT ''Foreign key fk_sessions_user_id already exists on unified_sessions table''
+    'SELECT ''Foreign key fk_sessions_user_id already exists on sessions table''
 );
 
 PREPARE session_fk_stmt FROM @session_fk_sql;

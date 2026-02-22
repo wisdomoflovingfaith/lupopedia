@@ -20,12 +20,12 @@
 
 - **Source table:** `lupo_agent_registry`.
 - For **every row where `is_active = 1`**:
-  - Insert a corresponding row into **`lupo_unified_registry`**.
+  - Insert a corresponding row into **`lupo_registry`**.
   - **Inactive agents (`is_active = 0`) must NOT be added.**
 
 ### Required field mapping
 
-| lupo_unified_registry column | Value |
+| lupo_registry column | Value |
 |------------------------------|--------|
 | `entity_type` | `'actor'` |
 | `entity_table` | `'lupo_agent_registry'` |
@@ -44,7 +44,7 @@ Other columns (e.g. `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_y
 
 - To avoid collisions with existing unified registry rows, each **agent-derived actor row** must use:
   ```text
-  unified_registry_id = 9000000 + agent_registry_id
+  registry_id = 9000000 + agent_registry_id
   ```
 - This offset (**9000000**) is **fixed** and **must not change**.
 
@@ -54,7 +54,7 @@ Other columns (e.g. `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_y
 
 The seed file **must** include, in order:
 
-1. All existing **`lupo_unified_registry`** rows from the DB.
+1. All existing **`lupo_registry`** rows from the DB.
 2. One unified registry row for **each active agent** (as in §2).
 3. All **PK=0** rows for tables with a primary key.
 4. Any **TOON-defined canonical** rows.
@@ -66,7 +66,7 @@ The seed file **must** include, in order:
 
 ## 5. TOON Generation Requirements
 
-- The TOON for **`lupo_unified_registry`** must include:
+- The TOON for **`lupo_registry`** must include:
   1. All existing unified registry rows.
   2. One row per **active agent** (as in §2).
   3. **No inactive agents.**

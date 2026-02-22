@@ -14,7 +14,7 @@ Critical schema mismatches between `install_new_lupopedia.sql` and `seed_lupoped
 - ✅ **Minimal Seed Created**: `database/migrations/seed_minimal_4.0.26.sql`
 - ✅ **Install Wizard Updated**: Now uses `seed_minimal_4.0.26.sql` instead of broken `seed_lupopedia.sql`
 - ✅ **Correct Column Names**: All schema mismatches resolved
-  - `lupo_registry`: Uses `registry_id`, `entity_index_id` (no unified_registry_id)
+  - `lupo_registry`: Uses `registry_id`, `entity_index_id` (no registry_id)
   - `lupo_actor_channels`: Only uses actor_channel table columns
   - `lupo_actor_departments`: Uses `title` field (role_key moved to lupo_department_roles)
   - `lupo_dialog_channels`: `file_source` provided (NOT NULL)

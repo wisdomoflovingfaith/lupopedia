@@ -149,13 +149,13 @@ class SemanticValidator:
         core_tables = [
             'atoms', 'semantic_paths', 'semantic_relationships',
             'emotional_stars', 'emotional_constellations', 'emotional_translations',
-            'truth_sources', 'truth_relations', 'truth_evidence', 'unified_truth_items',
+            'truth_sources', 'truth_relations', 'truth_evidence', 'truth_items',
             'governance_events', 'governance_valuations', 'world_events',
             'persona_profiles', 'persona_dialogue_patterns'
         ]
         
         # Actor/Agent tables
-        actor_tables = ['actors', 'agents', 'unified_registry']
+        actor_tables = ['actors', 'agents', 'REGISTRY']
         
         for table in core_tables + actor_tables:
             validation_results[table] = self.validate_table(table)

@@ -20,7 +20,7 @@ Table                                         Column                    Violates
 lupo_actor_group_membership                   role                      MySQL, PostgreSQL  HIGH   role_key or role_id or role_name
 lupo_artifacts                                type                      MySQL, PostgreSQL  HIGH   type_key or content_type or entity_type
 lupo_pack_role_registry                       role                      MySQL, PostgreSQL  HIGH   role_key or role_id or role_name
-lupo_unified_analytics_paths                  year_month                MySQL              LOW    year_month_id or year_month_key or year_month_value
+lupo_analytics_paths                  year_month                MySQL              LOW    year_month_id or year_month_key or year_month_value
 
 NOTE: This is a read-only audit. No TOONs, schema, or code were modified.
 In SQL, always quote column names with backticks (e.g. `order`) to avoid errors.

@@ -30,4 +30,4 @@ Channel 51 represents the Doctrine Council in the Federated Likeness Protocol. D
 
 ## 3. Registry
 
-- **lupo_unified_registry:** `entity_type='channel'`, `entity_index=51`, `entity_key='51'` (Doctrine Council).
+- **lupo_registry:** `entity_type='channel'`, `entity_index=51`, `entity_key='51'` (Doctrine Council).

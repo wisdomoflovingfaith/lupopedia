@@ -1,4 +1,4 @@
-﻿---
+---
 operation: repo_organization
 date: 2026-01-22
 mode: safe

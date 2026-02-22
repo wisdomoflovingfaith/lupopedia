@@ -47,7 +47,7 @@ The new thread must treat every development cycle as a **clean, empty, fresh sta
 Before taking any action, load and apply **ALL** of the following doctrine from the repository:
 
 - **Installer doctrine** — Only valid path: Crafty Syntax 3.7.5 → Lupopedia 4.0.x. No Lupopedia→Lupopedia upgrade in 4.0.x. See docs/doctrine/INSTALLATION_PATH_DOCTRINE.md.
-- **Unified Registry doctrine** — Reserved IDs; no AUTO_INCREMENT for registry-backed tables. See docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md.
+- **Unified Registry doctrine** — Reserved IDs; no AUTO_INCREMENT for registry-backed tables. See docs/doctrine/REGISTRY_DOCTRINE.md.
 - **Identity doctrine** — Actors, auth_users, actor_source_type; roles via 3-level model.
 - **Permission doctrine** — 3-layer model: channel roles, department roles, system.
 - **Department doctrine** — department_id = 0 is system (reserved); department_id = 1 is general.

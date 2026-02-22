@@ -41,7 +41,7 @@
 | **lupo-includes/modules/crafty_syntax/choosedepartment.php** | Replaced **$db->query()** and fetchAll with **$db->fetchAll()**. |
 | **lupo-includes/modules/help/help-model.php** | Replaced **$db->query()->fetchAll(PDO::FETCH_COLUMN)** with **$db->fetchAll()** and array_column. |
 
-*(Previously refactored in earlier steps: Session, UnifiedSessionHandler, bootstrap, LegacySessionManager, LegacySessionIdentity, LegacyAdminCommon, LegacyAdminChatFlush, LegacyUserChatFlush, LegacyAuthentication, LegacyIsFlushDetection, live.php.)*
+*(Previously refactored in earlier steps: Session, SessionHandler, bootstrap, LegacySessionManager, LegacySessionIdentity, LegacyAdminCommon, LegacyAdminChatFlush, LegacyUserChatFlush, LegacyAuthentication, LegacyIsFlushDetection, live.php.)*
 
 ---
 

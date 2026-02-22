@@ -16,7 +16,7 @@ class AuthGuard
     /** @var \PDO_DB */
     private $db;
 
-    /** @var UnifiedSessionHandler */
+    /** @var SessionHandler */
     protected $sessionHandler;
 
     /** @var AuthManager */
@@ -25,7 +25,7 @@ class AuthGuard
     public function __construct($db)
     {
         $this->db = $db;
-        $this->sessionHandler = new UnifiedSessionHandler($db);
+        $this->sessionHandler = new SessionHandler($db);
         $this->authManager = new AuthManager($db, $this->sessionHandler);
     }
 

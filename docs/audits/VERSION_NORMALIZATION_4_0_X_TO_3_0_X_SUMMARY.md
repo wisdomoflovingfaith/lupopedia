@@ -28,7 +28,7 @@ All filenames that contained the historical version pattern (dot or underscore f
 - 3.0.17-ui_change_integration_dialog.md; 3.0.70_Agent_Awareness.md, 3.0.71_Integration_Testing.md, 3.0.72_Multi_Agent_Protocols.md, 3.0.73_CIP_Implementation.md, 3.0.74_CIP_Activation.md, 3.0.75_CIP_Refinement.md; migration_orchestrator_3_0_25_dialog.md, integration_testing_coordination_3_0_71.md, IDE_COORDINATION_PROTOCOL_v3_0_70.md, CURSOR_WINDSURF_HANDOFF_v3_0_70.md, cip_execution_status_3_0_75.md; test_setup_integration_testing_v3_0_71.sql, test_setup_integration_testing_v3_0_71_fixed.sql.
 
 ### Docs (channels overview, versioning, doctrine, architecture, history)
-- VERSION_3_0_60_PLAN.md, CHANGELOG_3_0_71.md, CHANGELOG_3_0_72.md, VERSION_3_0_73_CIP_ROADMAP.md, STABILIZATION_ORDER_COMPLETION_3_0_75.md, QUARANTINE_INVENTORY_3_0_75.md, UNIFIED_TIMELINE_2_0_19_TO_3_0_32.md, TRIGGER_PROCEDURE_INVENTORY_3_0_75.md, PACK_BEHAVIOR_MATRIX_v3_0_90.md, INTEGRATION_TESTING_DOCTRINE_v3_0_71.md, INTEGRATION_TESTING_BLUEPRINT_v3_0_71.md, system_truth_table_3_0_81.md, lupopedia_v3_0_70_agent_awareness_layer.md, ARCHITECTURE_MAP_v3_0_70.md.
+- VERSION_3_0_60_PLAN.md, CHANGELOG_3_0_71.md, CHANGELOG_3_0_72.md, VERSION_3_0_73_CIP_ROADMAP.md, STABILIZATION_ORDER_COMPLETION_3_0_75.md, QUARANTINE_INVENTORY_3_0_75.md, TIMELINE_2_0_19_TO_3_0_32.md, TRIGGER_PROCEDURE_INVENTORY_3_0_75.md, PACK_BEHAVIOR_MATRIX_v3_0_90.md, INTEGRATION_TESTING_DOCTRINE_v3_0_71.md, INTEGRATION_TESTING_BLUEPRINT_v3_0_71.md, system_truth_table_3_0_81.md, lupopedia_v3_0_70_agent_awareness_layer.md, ARCHITECTURE_MAP_v3_0_70.md.
 
 ### Audits
 - php_implementation_audit_3.0.101.md, patch_implementation_audit_3.0.100.md.

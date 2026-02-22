@@ -235,6 +235,18 @@ When the database is unreachable, verbose FLIP headers provide all semantic meta
 - 100+ headers typical
 - Enables full semantic search and navigation without database
 
+## Database Mapping Layer (Optional)
+The `X-LUPO-{table}.{column}` namespace allows explicit mapping between header
+fields and database schema. This layer is optional and must not replace
+semantic FLIP fields. It is intended for advanced tooling, migrations, and
+schema-aware agents.
+
+### Doctrine Requirements:
+- **Optional**: Never required for system inference.
+- **Namespaced**: Must use the `X-LUPO-` prefix.
+- **Non-Invasive**: Must never override semantic fields like `actor_id` or `channel_id`.
+- **Stateless**: Never used for schema guessing or write-back unless explicitly invoked.
+
 ## Implementation Notes
 
 ### When to Use Verbose Mode
@@ -314,7 +326,55 @@ function parse_verbose_flip_headers($file_path) {
 - **X-Lupo-Audit-Trail**: Complete audit log as JSON array
 
 ---
-**Version**: 4.0.27  
+
+## Database Mapping Layer (Optional) - New in 4.0.28
+
+### Overview
+The `X-LUPO-{table}.{column}` namespace provides explicit mapping between
+FLIP headers and database schema. This layer is **optional** and **must not**
+replace semantic FLIP fields.
+
+### When to Use
+- Advanced migration tooling
+- Schema-aware agents
+- Explicit database write-back
+- Debugging and validation
+
+### When NOT to Use
+- Standard file attribution (use semantic headers)
+- Inference-based processing
+- Schema-agnostic operations
+
+### Syntax
+```
+X-LUPO-{table}.{column}: {value}
+```
+
+### Example
+```markdown
+X-Lupo-Actor-ID: 2040
+X-Lupo-Channel-ID: 42
+X-LUPO-actors.actor_type: system_tool
+X-LUPO-actors.slug: windsurf-ide
+X-LUPO-channels.channel_key: windsurf-dev
+```
+
+### Constraints
+- Must use `X-LUPO-` prefix (all caps)
+- Must validate table/column against schema
+- Must not override semantic headers
+- Must not be required for processing
+- Must not be used for schema guessing
+
+### Implementation Notes
+- Values are treated as opaque strings (no type inference)
+- Table and column names are validated against `install_new_lupopedia.sql`
+- SQL generation must explicitly list all columns (no positional INSERTs)
+- Required timestamp columns (`created_ymdhis`, `updated_ymdhis`) must be included
+
+---
+
+**Version**: 4.0.28  
 **Created**: 2026-02-22  
 **Status**: Active  
-**Header Count**: 168 total (79 existing + 89 new verbose)
+**Header Count**: 168 total (79 existing + 89 new verbose + database mapping layer)

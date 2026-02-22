@@ -23,7 +23,7 @@ atoms:
 
 - **Single identity table:** Channels, threads, messages, roles, and presence refer to `actor_id`. No separate “operator” or “visitor” table; type and source distinguish them.
 - **Human actors:** For imported Crafty users, `actor_id = auth_user_id` and `actor_source_type = 'lupo_auth_users'`. Only operators (isoperator = 'Y') get a lupo_actors row at import; visitors may be created on demand or via other flows.
-- **Agents/services:** System and AI agents have `actor_type` = 'agent' or 'service', `actor_source_type` = 'system' or registry; reserved IDs from unified_registry.
+- **Agents/services:** System and AI agents have `actor_type` = 'agent' or 'service', `actor_source_type` = 'system' or registry; reserved IDs from REGISTRY.
 - **Anonymous:** Anonymous visitors do not get rows in lupo_actors. They exist only in lupo_sessions. No anonymous actor range.
 
 ---

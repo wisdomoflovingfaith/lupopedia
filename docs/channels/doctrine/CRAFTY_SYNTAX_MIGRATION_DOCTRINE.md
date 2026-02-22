@@ -81,10 +81,10 @@ This doctrine is derived **exclusively** from the existing migration SQL file `c
 |--------------|----------------|----------------------|
 | `livehelp_config` | `lupo_modules.config_json` | Converted to JSON configuration |
 | `livehelp_qa` | `lupo_truth_questions`, `lupo_truth_answers`, `lupo_collections`, `lupo_collection_tabs` | Complex multi-table mapping |
-| `livehelp_paths_firsts` | `lupo_unified_analytics_paths` | INSERT from paths_firsts; content_id resolution as needed |
-| `livehelp_paths_monthly` | `lupo_unified_analytics_paths` | INSERT from paths_monthly |
-| `livehelp_referers_daily` | `lupo_unified_referers` | INSERT from referers_daily |
-| `livehelp_referers_monthly` | `lupo_unified_referers` | INSERT from referers_monthly |
+| `livehelp_paths_firsts` | `lupo_analytics_paths` | INSERT from paths_firsts; content_id resolution as needed |
+| `livehelp_paths_monthly` | `lupo_analytics_paths` | INSERT from paths_monthly |
+| `livehelp_referers_daily` | `lupo_referers` | INSERT from referers_daily |
+| `livehelp_referers_monthly` | `lupo_referers` | INSERT from referers_monthly |
 
 ### ✅ **Visits, Referers, and Websites (Migrated — Not Dropped)**
 
@@ -92,13 +92,13 @@ These legacy tables **are migrated** in `import_from_old_crafty_syntax.sql`. The
 
 | Legacy Table(s) | Target Table | Migration Type |
 |-----------------|--------------|----------------|
-| `livehelp_visits_daily` | `lupo_unified_visits` | INSERT INTO lupo_unified_visits |
-| `livehelp_visits_monthly` | `lupo_unified_visits` | INSERT INTO lupo_unified_visits |
-| `livehelp_referers_daily` | `lupo_unified_referers` | INSERT INTO lupo_unified_referers |
-| `livehelp_referers_monthly` | `lupo_unified_referers` | INSERT INTO lupo_unified_referers |
+| `livehelp_visits_daily` | `lupo_visits` | INSERT INTO lupo_visits |
+| `livehelp_visits_monthly` | `lupo_visits` | INSERT INTO lupo_visits |
+| `livehelp_referers_daily` | `lupo_referers` | INSERT INTO lupo_referers |
+| `livehelp_referers_monthly` | `lupo_referers` | INSERT INTO lupo_referers |
 | `livehelp_websites` | `lupo_federation_nodes` | INSERT INTO lupo_federation_nodes (after DELETE guard for node 0) |
 
-**Note:** `livehelp_visit_track` is only ALTERed/deprecated in the SQL; no INSERT from that table. Visit data is migrated from `livehelp_visits_daily` and `livehelp_visits_monthly` into `lupo_unified_visits`.
+**Note:** `livehelp_visit_track` is only ALTERed/deprecated in the SQL; no INSERT from that table. Visit data is migrated from `livehelp_visits_daily` and `livehelp_visits_monthly` into `lupo_visits`.
 
 ### ❌ **Dropped Tables (Not Migrated)**
 
@@ -115,7 +115,7 @@ These legacy tables **are migrated** in `import_from_old_crafty_syntax.sql`. The
 | `livehelp_operator_channels` | No target table; dropped with no INSERT | Dropped |
 | `livehelp_sessions` | No target mapping | Dropped |
 | `livehelp_smilies` | Replaced by token system | Preserved as archive |
-| `livehelp_visit_track` | No INSERT in SQL; visit data from visits_daily/monthly → lupo_unified_visits | Dropped |
+| `livehelp_visit_track` | No INSERT in SQL; visit data from visits_daily/monthly → lupo_visits | Dropped |
 
 ---
 
@@ -341,7 +341,7 @@ Per Lupopedia doctrine: **no reliance on auto_increment for identity** where exp
 |-------|-----------------|------|
 | `lupo_channels` | `channel_id` | Uses explicit ID ranges. IDs must be checked for availability before insert. |
 
-All other migration target tables (e.g. `lupo_auth_users`, `lupo_departments`, `lupo_dialog_messages`, `lupo_unified_visits`, `lupo_federation_nodes`, etc.) use **auto_increment** for their primary key unless added to this list. This section is documentation only; no schema changes. As doctrine is updated, any additional tables that use explicit ID ranges must be listed here.
+All other migration target tables (e.g. `lupo_auth_users`, `lupo_departments`, `lupo_dialog_messages`, `lupo_visits`, `lupo_federation_nodes`, etc.) use **auto_increment** for their primary key unless added to this list. This section is documentation only; no schema changes. As doctrine is updated, any additional tables that use explicit ID ranges must be listed here.
 
 ### **Summary**
 

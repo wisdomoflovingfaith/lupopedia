@@ -10,8 +10,8 @@ SET @now = 20260220000000;
 -- ============================================================
 -- ACTOR ID ALLOCATION (DOCTRINE COMPLIANT)
 -- ============================================================
--- Registry scan: actors 1-20 assigned (from unified_registry.csv)
--- Unregistry scan: actors 1-50 available (from unified_unregistry.csv)
+-- Registry scan: actors 1-20 assigned (from REGISTRY.csv)
+-- Unregistry scan: actors 1-50 available (from registry_open.csv)
 -- FREE_IDS = unregistry_ids - registry_ids = [21-50]
 -- Lowest available IDs: 21, 22, 23, 24, 25, 26, 27, 28, 29, 30
 -- ============================================================
@@ -36,7 +36,7 @@ INSERT IGNORE INTO lupo_actors (
     is_deleted = 0;
 
 INSERT IGNORE INTO lupo_registry (
-    `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
+    `registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
 ) VALUES (
@@ -70,7 +70,7 @@ INSERT IGNORE INTO lupo_actors (
     is_deleted = 0;
 
 INSERT IGNORE INTO lupo_registry (
-    `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
+    `registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
 ) VALUES (
@@ -104,7 +104,7 @@ INSERT IGNORE INTO lupo_actors (
     is_deleted = 0;
 
 INSERT IGNORE INTO lupo_registry (
-    `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
+    `registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
 ) VALUES (
@@ -138,7 +138,7 @@ INSERT IGNORE INTO lupo_actors (
     is_deleted = 0;
 
 INSERT IGNORE INTO lupo_registry (
-    `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
+    `registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
 ) VALUES (
@@ -172,7 +172,7 @@ INSERT IGNORE INTO lupo_actors (
     is_deleted = 0;
 
 INSERT IGNORE INTO lupo_registry (
-    `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
+    `registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
 ) VALUES (
@@ -206,7 +206,7 @@ INSERT IGNORE INTO lupo_actors (
     is_deleted = 0;
 
 INSERT IGNORE INTO lupo_registry (
-    `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
+    `registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
 ) VALUES (
@@ -240,7 +240,7 @@ INSERT IGNORE INTO lupo_actors (
     is_deleted = 0;
 
 INSERT IGNORE INTO lupo_registry (
-    `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
+    `registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
 ) VALUES (
@@ -274,7 +274,7 @@ INSERT IGNORE INTO lupo_actors (
     is_deleted = 0;
 
 INSERT IGNORE INTO lupo_registry (
-    `unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
+    `registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, 
     `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, 
     `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`
 ) VALUES (

@@ -4,7 +4,7 @@ md_flip_ingest.py — Discover .md files, read FLIP headers, output SQL for seed
 
 Scans the repo for .md files. For each file, reads the FLIP header (or infers
 minimal metadata). Produces deterministic SQL inserts for lupo_contents,
-lupo_unified_registry, and lupo_edges for seed_lupopedia.sql.
+lupo_registry, and lupo_edges for seed_lupopedia.sql.
 
 Channel mapping:
 - docs/doctrine/ → channels 0 (System Kernel) and 51 (Doctrine Council)

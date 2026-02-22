@@ -123,7 +123,7 @@ Federation/alias handlers.
 ## 5. Agent Lifecycle
 
 ### Birth
-- **Registration**: New actors entered via `lupo_unified_registry`
+- **Registration**: New actors entered via `lupo_registry`
 - **Assignment**: Roles determined by function and cluster needs
 - **Integration**: Federation membership based on capabilities
 

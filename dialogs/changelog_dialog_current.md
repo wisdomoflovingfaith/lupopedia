@@ -12,7 +12,7 @@ dialog:
   speaker: CURSOR
   target: @everyone
   mood_RGB: "FFD700"
-  message: "Version 3.0.0 - Reserved-Word Column Renames + Version Lock + Doctrine Rules. One-time migration dev_20260206_reserved_word_column_renames.sql renames role→role_key (actor_group_membership, pack_role_registry), type→entity_type (artifacts). Column lupo_unified_analytics_paths.year_month is not a reserved word and remains year_month. install_new_lupopedia.sql and API (artifact.php, timeline.php) updated. Zero Installations / No Backward Compatibility Rule and Version Lock Rule (3.0.0 frozen until 4.1.0 auto-installer) added to .cursorrules. Version atom and version.php set to 3.0.0. TOONs not modified; user regenerates after migration."
+  message: "Version 3.0.0 - Reserved-Word Column Renames + Version Lock + Doctrine Rules. One-time migration dev_20260206_reserved_word_column_renames.sql renames role→role_key (actor_group_membership, pack_role_registry), type→entity_type (artifacts). Column lupo_analytics_paths.year_month is not a reserved word and remains year_month. install_new_lupopedia.sql and API (artifact.php, timeline.php) updated. Zero Installations / No Backward Compatibility Rule and Version Lock Rule (3.0.0 frozen until 4.1.0 auto-installer) added to .cursorrules. Version atom and version.php set to 3.0.0. TOONs not modified; user regenerates after migration."
 tags:
   categories: ["dialog", "doctrine", "changelog", "schema", "version-sync", "metadata", "wolfie-router", "temporal-consciousness", "dialog-segmentation", "token-safe"]
   collections: ["dialogs", "doctrine", "core-governance"]
@@ -31,7 +31,7 @@ in_this_file_we_have:
   - Version 4.2.2 (2026-01-20): GOV Event schema (lupo_gov_*), seed GOV-LUPO-0001, LupopediaMigrationController, lupo_migration_log; governance enforcement (immutable lupo_gov_*, NO-ADS, table ceiling 185, no FK/triggers)
   - Version 4.2.0 (2026-01-20): Stability Release; first stable post–Crafty Syntax; schema freeze, TOON regeneration, doctrine verified; 173/180; baseline for 4.3.x
   - Version 3.1.20 (2026-01-20): Doctrine Audit Patch; full doctrine audit post-consolidation; timestamp, column, table count, documentation validated; no schema
-  - Version 3.1.19 (2026-01-20): Consolidation Execution Patch; unified_dialog_messages, unified_analytics_paths, unified_truth_items; collections parent_id; 6 tables dropped; TOON regeneration required
+  - Version 3.1.19 (2026-01-20): Consolidation Execution Patch; dialog_messages, analytics_paths, truth_items; collections parent_id; 6 tables dropped; TOON regeneration required
   - Version 3.1.18 (2026-01-20): Consolidation Planning Patch; dialog, analytics, truth, collections targets; migration skeleton; no schema; execution 3.1.19+
   - Version 4.3.3 (2026-01-20): Dialog Segmentation Implementation; mandatory directive implemented to prevent token overflow and timestamp drift; archived changelog_dialog.md to changelog_dialog_UTC_2026-01-20.md; created new changelog_dialog_current.md as active dialog log; token-safe reconciliation workflow activated; timestamp inference disabled; browser metadata isolation enforced; architecture freeze maintained; no new subsystems or protocols introduced; segmentation prevents generation exceeded max tokens limit; eliminates hallucinated future timestamps; prevents context bleed-through; ensures clean versioning going forward
   - Version 3.1.16 (2026-01-20): Version Patch Bump; system version 3.1.15 → 3.1.16; atoms, version.php updated; no schema changes
@@ -64,7 +64,7 @@ in_this_file_we_have:
   - Version 4.2.2 (2026-01-20): GOV Event schema (lupo_gov_*), seed GOV-LUPO-0001, LupopediaMigrationController, lupo_migration_log; governance enforcement (immutable lupo_gov_*, NO-ADS, table ceiling 185, no FK/triggers)
   - Version 4.2.0 (2026-01-20): Stability Release; first stable post–Crafty Syntax; schema freeze, TOON regeneration, doctrine verified; 173/180; baseline for 4.3.x
   - Version 3.1.20 (2026-01-20): Doctrine Audit Patch; full doctrine audit post-consolidation; timestamp, column, table count, documentation validated; no schema
-  - Version 3.1.19 (2026-01-20): Consolidation Execution Patch; unified_dialog_messages, unified_analytics_paths, unified_truth_items; collections parent_id; 6 tables dropped; TOON regeneration required
+  - Version 3.1.19 (2026-01-20): Consolidation Execution Patch; dialog_messages, analytics_paths, truth_items; collections parent_id; 6 tables dropped; TOON regeneration required
   - Version 3.1.18 (2026-01-20): Consolidation Planning Patch; dialog, analytics, truth, collections targets; migration skeleton; no schema; execution 3.1.19+
   - Version 3.1.1
 

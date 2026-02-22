@@ -942,7 +942,7 @@ Lupopedia replaces this entirely with:
 
 lupo_modules — canonical module registry
 
-lupo_unified_registry — global identity map
+lupo_registry — global identity map
 
 module_group_access — modern visibility rules
 
@@ -1149,7 +1149,7 @@ doctrine‑aligned timestamps
 
 Everything the legacy table was trying to express, but properly structured.
 
-REFACTOR ENTRY — livehelp_paths_firsts + livehelp_paths_monthly → lupo_unified_analytics_paths
+REFACTOR ENTRY — livehelp_paths_firsts + livehelp_paths_monthly → lupo_analytics_paths
 Legacy Purpose (Crafty Syntax)
 livehelp_paths_firsts
 Tracked first‑time transitions per month:
@@ -1174,7 +1174,7 @@ Both tables referenced the old pageurl table via recno IDs.
 They were redundant, inconsistent, and required two separate queries to reconstruct navigation behavior.
 
 🟦 Modern Destination (Lupopedia)
-✔ lupo_unified_analytics_paths
+✔ lupo_analytics_paths
 A single, normalized table that stores:
 
 path_id

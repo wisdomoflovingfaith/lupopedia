@@ -128,7 +128,7 @@ All INSERT statements in the minimal seed:
 ## Key Fixes Applied
 
 ### Registry Table
-- **Before**: Used `unified_registry_id`, `entity_key`, `entity_name`
+- **Before**: Used `registry_id`, `entity_key`, `entity_name`
 - **After**: Uses `registry_id`, `entity_type`, `entity_index_id`
 
 ### Actor Channels Table

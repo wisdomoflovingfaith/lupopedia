@@ -17,7 +17,7 @@
 
 ## Session, Roles, and Scope
 
-- **Session table:** `{prefix}sessions`. The table `{prefix}unified_sessions` is obsolete and has been removed from the install.
+- **Session table:** `{prefix}sessions`. The table `{prefix}sessions` is obsolete and has been removed from the install.
 - **Roles (3-layer model):** (1) Channel roles (`{prefix}actor_channel_roles`: captain, administrator, monitor); (2) Department roles (`{prefix}department_roles`: administrator for channel's department); (3) System roles (department_id = 0: administrator = global admin). Resolution order: channel → department → system. If any match → permission granted. **NO lupo_channel_roles** (removed in 4.0.6).
 - **Organizational scope:** The sole organizational unit is the **department**. Use `{prefix}departments` and `{prefix}actor_departments`. Department 0 is reserved (system department); not user-selectable. Permissions (`{prefix}permissions`) use `department_id`; do not use `{prefix}groups` or `{prefix}actor_group_membership` (removed).
 
@@ -45,9 +45,9 @@ These tables are targets of `import_from_old_crafty_syntax.sql`. They **must** r
 - lupo_federation_nodes
 - lupo_truth_answers
 - lupo_truth_questions
-- lupo_unified_analytics_paths
-- lupo_unified_referers
-- lupo_unified_visits
+- lupo_analytics_paths
+- lupo_referers
+- lupo_visits
 
 *(lupo_crm_leads and lupo_modules are also importer targets; they appear in Required Lupopedia Core below.)*
 
@@ -203,9 +203,9 @@ These tables are targets of `import_from_old_crafty_syntax.sql`. They **must** r
 - lupo_truth_relations
 - lupo_truth_sources
 - lupo_truth_topics
-- lupo_unified_registry
-- lupo_unified_truth_items
-- lupo_unified_websites
+- lupo_registry
+- lupo_truth_items
+- lupo_websites
 - lupo_user_comments
 - lupo_world_events
 - lupo_world_registry

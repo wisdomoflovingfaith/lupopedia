@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Auth\UnifiedSessionHandler;
+use App\Auth\SessionHandler;
 
 /**
  * Auth controller — plain PHP, PDO. No Laravel.
- * Constructor: ($db, UnifiedSessionHandler $sessionHandler = null).
+ * Constructor: ($db, SessionHandler $sessionHandler = null).
  * All timestamps BIGINT YmdHis UTC.
  */
 
@@ -19,13 +19,13 @@ class AuthController
     /** @var \PDO_DB */
     private $db;
 
-    /** @var UnifiedSessionHandler */
+    /** @var SessionHandler */
     protected $sessionHandler;
 
-    public function __construct($db, UnifiedSessionHandler $sessionHandler = null)
+    public function __construct($db, SessionHandler $sessionHandler = null)
     {
         $this->db = $db;
-        $this->sessionHandler = $sessionHandler ?? new UnifiedSessionHandler($db);
+        $this->sessionHandler = $sessionHandler ?? new SessionHandler($db);
     }
 
     /**

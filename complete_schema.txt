@@ -80,7 +80,7 @@ Indexes: N/A
 
 === TABLE: lupo_actor_object_edges ===
 Primary Key: actor_object_edge_id
-Columns: `actor_object_edge_id` bigint NOT NULL auto_increment, `actor_id` bigint NOT NULL, `target_table` varchar(100) NOT NULL COMMENT 'e.g., lupo_contents, lupo_unified_truth_items, lupo_hashtags, lupo_topics, lupo_channels, etc.', `target_id` bigint NOT NULL, `edge_type` varchar(50) NOT NULL COMMENT 'e.g., read, liked, disliked, created, commented_on, shared_from, etc.', `properties_json` json, `created_ymdhis` bigint NOT NULL, `updated_ymdhis` bigint NOT NULL
+Columns: `actor_object_edge_id` bigint NOT NULL auto_increment, `actor_id` bigint NOT NULL, `target_table` varchar(100) NOT NULL COMMENT 'e.g., lupo_contents, lupo_truth_items, lupo_hashtags, lupo_topics, lupo_channels, etc.', `target_id` bigint NOT NULL, `edge_type` varchar(50) NOT NULL COMMENT 'e.g., read, liked, disliked, created, commented_on, shared_from, etc.', `properties_json` json, `created_ymdhis` bigint NOT NULL, `updated_ymdhis` bigint NOT NULL
 Indexes: INDEX: idx_actor_edge_type (actor_id, edge_type); INDEX: idx_target_lookup (target_table, target_id); UNIQUE: uniq_actor_target_type (actor_id, target_table, target_id, edge_type)
 
 === TABLE: lupo_actor_persona_relationships ===
@@ -828,17 +828,17 @@ Primary Key: truth_topic_id
 Columns: `truth_topic_id` bigint NOT NULL auto_increment, `topic_name` varchar(255) NOT NULL DEFAULT '', `slug` varchar(255) NOT NULL DEFAULT '', `topic_description` text, `actor_id` bigint NOT NULL DEFAULT 0, `weight_score` decimal(5,2) NOT NULL DEFAULT 0.00, `importance_score` decimal(5,2) NOT NULL DEFAULT 0.00, `created_ymdhis` bigint NOT NULL, `updated_ymdhis` bigint NOT NULL, `is_deleted` tinyint NOT NULL DEFAULT 0, `deleted_ymdhis` bigint
 Indexes: INDEX: actor_id (actor_id); INDEX: slug (slug); INDEX: topic_name (topic_name)
 
-=== TABLE: lupo_unified_analytics_paths ===
+=== TABLE: lupo_analytics_paths ===
 Primary Key: analytics_path_id
 Columns: `analytics_path_id` bigint NOT NULL, `period` enum('daily','monthly') NOT NULL, `visit_content_id` bigint, `exit_content_id` bigint, `metadata_json` json, `created_ymdhis` bigint
 Indexes: N/A
 
-=== TABLE: lupo_unified_dialog_messages ===
+=== TABLE: lupo_dialog_messages ===
 Primary Key: dialog_message_id
 Columns: `dialog_message_id` bigint NOT NULL, `thread_id` bigint, `actor_id` bigint, `created_ymdhis` bigint, `updated_ymdhis` bigint, `metadata_json` json, `body_text` longtext
 Indexes: N/A
 
-=== TABLE: lupo_unified_truth_items ===
+=== TABLE: lupo_truth_items ===
 Primary Key: truth_item_id
 Columns: `truth_item_id` bigint NOT NULL, `item_type` enum('question','answer') NOT NULL, `name` varchar(255), `slug` varchar(255), `body_text` longtext, `metadata_json` json, `created_ymdhis` bigint
 Indexes: N/A
@@ -903,22 +903,22 @@ Primary Key: N/A
 Columns: `test_id` bigint NOT NULL auto_increment, `test_category` varchar(64) NOT NULL, `test_name` varchar(128) NOT NULL, `execution_time_ms` int NOT NULL, `memory_usage_mb` decimal(10,2), `cpu_usage_percent` decimal(5,2), `success_rate` decimal(5,2), `error_count` int DEFAULT 0, `created_ymdhis` bigint NOT NULL
 Indexes: N/A
 
-=== TABLE: unified_analytics_paths ===
+=== TABLE: analytics_paths ===
 Primary Key: N/A
 Columns: `analytics_path_id` bigint NOT NULL, `period` enum('daily','monthly') NOT NULL, `visit_content_id` bigint, `exit_content_id` bigint, `metadata_json` json, `created_ymdhis` bigint
 Indexes: N/A
 
-=== TABLE: unified_dialog_messages ===
+=== TABLE: dialog_messages ===
 Primary Key: N/A
 Columns: `dialog_message_id` bigint NOT NULL, `thread_id` bigint, `actor_id` bigint, `created_ymdhis` bigint, `updated_ymdhis` bigint, `metadata_json` json, `body_text` longtext
 Indexes: N/A
 
-=== TABLE: unified_sessions ===
+=== TABLE: sessions ===
 Primary Key: N/A
 Columns: `id` bigint NOT NULL auto_increment COMMENT 'Primary key for session', `session_id` varchar(255) NOT NULL COMMENT 'Session identifier', `user_id` bigint COMMENT 'Reference to lupo_auth_users.auth_user_id', `system_context` varchar(50) NOT NULL COMMENT 'lupopedia, crafty_syntax, or unified', `session_data` json COMMENT 'Session metadata and preferences', `expires_at` timestamp NOT NULL COMMENT 'Session expiration time', `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED COMMENT 'Creation timestamp', `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP DEFAULT_GENERATED on update CURRENT_TIMESTAMP COMMENT 'Last update timestamp'
 Indexes: N/A
 
-=== TABLE: unified_truth_items ===
+=== TABLE: truth_items ===
 Primary Key: N/A
 Columns: `truth_item_id` bigint NOT NULL, `item_type` enum('question','answer') NOT NULL, `name` varchar(255), `slug` varchar(255), `body_text` longtext, `metadata_json` json, `created_ymdhis` bigint
 Indexes: N/A

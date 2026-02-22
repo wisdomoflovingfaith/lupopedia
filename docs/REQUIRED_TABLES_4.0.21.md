@@ -20,7 +20,7 @@
 
 ## Session, Roles, and Scope
 
-- **Session table:** `{prefix}sessions`. The table `{prefix}unified_sessions` is obsolete and has been removed from the install.
+- **Session table:** `{prefix}sessions`. The table `{prefix}sessions` is obsolete and has been removed from the install.
 - **Roles (3-layer model):** (1) Channel roles (`{prefix}actor_channel_roles`: captain, administrator, monitor); (2) Department roles (`{prefix}department_roles`); (3) System roles (department_id = 0). Resolution order: channel → department → system.
 - **Organizational scope:** The sole organizational unit is the **department**. Use `{prefix}departments` and `{prefix}actor_departments`. Department 0 is reserved (system department); not user-selectable.
 
@@ -52,9 +52,9 @@ These tables are targets of `import_from_old_crafty_syntax.sql`. They **must** r
 | lupo_modules | required / importer (UPDATE) + seed |
 | lupo_truth_answers | required / importer |
 | lupo_truth_questions | required / importer |
-| lupo_unified_analytics_paths | required / importer |
-| lupo_unified_referers | required / importer |
-| lupo_unified_visits | required / importer |
+| lupo_analytics_paths | required / importer |
+| lupo_referers | required / importer |
+| lupo_visits | required / importer |
 | lupo_analytics_visits_daily | required / importer |
 | lupo_analytics_visits_monthly | required / importer |
 
@@ -67,7 +67,7 @@ All tables in this section are in `install_new_lupopedia.sql` and have TOON file
 **Required** = importer targets (above) plus tables used by seed, wizard, or active PHP/runtime. The following list is the full set of tables that have TOONs and are in the install file; classification (required vs optional) is per Phase 1/Phase 2 audits.
 
 - All Phase 1 tables (81): session, actor/auth/agent, content — see docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE1_AUDIT.md.
-- All Phase 2 tables (117): analytics, api, anubis, atoms, audit_log, bans_log, calibration, cip, contexts, crafty_syntax, crm, department_metadata, departments, doctrine_*, emotional_*, entity_properties, event_*, federation_*, gov_*, governance_overrides, help_*, hotfix_registry, human_history_meta, interface_translations, interpretation_log, kapu_*, labs_*, legacy_content_mapping, memory_*, meta_log_events, metrics_archive_legacy, modules, modules_departments, mood_*, multi_agent_critique_sync, notifications, pack_role_registry, persona_*, reference_*, relationships, search_*, semantic_*, system_*, tab_events, temporal_coherence_snapshots, tldnr, truth_*, unified_*, user_comments, world_* — see docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE2_AUDIT.md.
+- All Phase 2 tables (117): analytics, api, anubis, atoms, audit_log, bans_log, calibration, cip, contexts, crafty_syntax, crm, department_metadata, departments, doctrine_*, emotional_*, entity_properties, event_*, federation_*, gov_*, governance_overrides, help_*, hotfix_registry, human_history_meta, interface_translations, interpretation_log, kapu_*, labs_*, legacy_content_mapping, memory_*, meta_log_events, metrics_archive_legacy, modules, modules_departments, mood_*, multi_agent_critique_sync, notifications, pack_role_registry, persona_*, reference_*, relationships, search_*, semantic_*, system_*, tab_events, temporal_coherence_snapshots, tldnr, truth_*, *, user_comments, world_* — see docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE2_AUDIT.md.
 
 *(Explicit enumeration matches the TOON filenames in docs/toons/; no table that is only in future_features_lupopedia.sql is listed here.)*
 

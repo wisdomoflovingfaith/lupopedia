@@ -7,7 +7,7 @@
 
 ## Summary
 
-- **Laravel and framework middleware are not used.** All request handling is plain PHP with arrays for input, PDO for DB, UnifiedSessionHandler, and explicit BIGINT UTC YmdHis timestamps.
+- **Laravel and framework middleware are not used.** All request handling is plain PHP with arrays for input, PDO for DB, SessionHandler, and explicit BIGINT UTC YmdHis timestamps.
 - **Middleware system removed.** The class formerly named `AuthMiddleware` is now **AuthGuard** (`App\Auth\AuthGuard`); it is a plain PHP helper, not framework middleware.
 - **Kernel and Laravel routes replaced.** Kernel is a stub; routes are plain PHP arrays in `auth_routes.php` and `terminal_routes.php` for use with your own router.
 - **Laravel migrations deprecated.** Equivalent SQL lives in `database/migrations/*.sql`; run with PDO.
@@ -20,7 +20,7 @@
 
 | File | Change |
 |------|--------|
-| `.cursor/rules/no-laravel-no-middleware.mdc` | **Added.** Permanent rule: no Laravel, no middleware; plain PHP, PDO, UnifiedSessionHandler, AuthGuard, timestamp doctrine. |
+| `.cursor/rules/no-laravel-no-middleware.mdc` | **Added.** Permanent rule: no Laravel, no middleware; plain PHP, PDO, SessionHandler, AuthGuard, timestamp doctrine. |
 | `docs/NO_LARAVEL_NO_MIDDLEWARE_REPORT.md` | **Added.** This report. |
 
 ### Kernel and auth “middleware”
@@ -51,7 +51,7 @@
 | File | Change |
 |------|--------|
 | `migrations/README.md` | **Added.** States project does not use Laravel migrations; use `database/migrations/*.sql` and PDO. |
-| `migrations/2026_01_22_001_unified_auth_tables.php` | **Replaced.** Deprecation stub; points to `database/migrations/` SQL. No Illuminate. |
+| `migrations/2026_01_22_001_auth_tables.php` | **Replaced.** Deprecation stub; points to `database/migrations/` SQL. No Illuminate. |
 | `migrations/2026_01_24_01_add_custom_path_to_lupo_contents.php` | **Replaced.** Deprecation stub; points to SQL file. |
 | `migrations/2026_01_24_02_add_semantic_aliases_and_overlays.php` | **Replaced.** Deprecation stub; points to SQL file. |
 | `database/migrations/add_custom_path_to_lupo_contents.sql` | **Added.** SQL equivalent of 2026_01_24_01 (run via PDO). |
@@ -63,7 +63,7 @@
 
 - **No Laravel references remain** in active code paths: no Illuminate, no Kernel middleware stack, no Route facade in executed route logic, no Request/Response/redirect()/abort() in refactored controllers, no Laravel timestamp helpers in our auth/session code.
 - **No middleware references remain:** no middleware registration, no middleware stacks, no “middleware” in class names (AuthGuard replaces AuthMiddleware). Request handling does not assume any middleware runs.
-- **Controllers and handlers** use only our architecture: array input, PDO, UnifiedSessionHandler, AuthGuard, BIGINT UTC YmdHis where applicable.
+- **Controllers and handlers** use only our architecture: array input, PDO, SessionHandler, AuthGuard, BIGINT UTC YmdHis where applicable.
 
 ---
 

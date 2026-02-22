@@ -2,7 +2,7 @@
 
 **Purpose:** Map every procedural helper in `lupo-includes/functions/` to the correct OOP class based on **actual code behavior**. No refactoring in this step.
 
-**Source:** Real function implementations read from the codebase. Role model: channel roles only (`lupo_channel_roles`, default `channel_id = 1`). Session model: `App\Auth\Session` only. No `actor_roles`, no `unified_sessions`, no operator tables.
+**Source:** Real function implementations read from the codebase. Role model: channel roles only (`lupo_channel_roles`, default `channel_id = 1`). Session model: `App\Auth\Session` only. No `actor_roles`, no `sessions`, no operator tables.
 
 ---
 
@@ -69,7 +69,7 @@
 
 | Helper | Reason |
 |--------|--------|
-| **None** | No helper in the scanned files references `actor_roles`, `unified_sessions`, or `livehelp_operator*` tables. No helper is marked "Obsolete — delete" solely from this analysis. |
+| **None** | No helper in the scanned files references `actor_roles`, `sessions`, or `livehelp_operator*` tables. No helper is marked "Obsolete — delete" solely from this analysis. |
 | *(Future)* | Any helper discovered later that only references dropped tables should be deleted or rewritten per doctrine. |
 
 ---
@@ -95,7 +95,7 @@
 
 | Helper | Issue | Action |
 |--------|--------|--------|
-| **None** | No helper references `actor_roles`, `unified_sessions`, or operator tables. | — |
+| **None** | No helper references `actor_roles`, `sessions`, or operator tables. | — |
 | `allocateAnonymousActorId`, `getOrAllocateJsrnForActor`, `mergeAnonymousActorIntoRealActor` | Use hardcoded `lupo_*` table names instead of `LUPO_TABLE_PREFIX`. | Rewrite to use prefix (or ActorService with injected table name). |
 | `render_saved_collections`, `load_tab_children`, `count_tab_items` | Use `lupo_collections` with `c.id`, `lupo_collection_tabs`, `lupo_collection_tab_map`; also `lupo_actor_group_membership` with `actor_group_membership_id = :user_id` (likely should be actor_id or different column per TOONs). | Verify column/table names against TOONs and install SQL; rewrite if schema differs. |
 
@@ -107,8 +107,8 @@
 |--------|--------------------|------------------------|
 | **Auth / session identity** | Validate session, load current actor+auth_user, return "current user" array | AuthService |
 | **Roles / permissions** | Check channel_roles (channel_id=1), permissions (owner on module) | AuthRoleResolver |
-| **Context** | Path-based lupopedia vs crafty_syntax (no helpers in list; UnifiedSessionHandler does it) | AuthContextResolver |
-| **Session** | All session read/write is in Session + UnifiedSessionHandler; no procedural session helpers left | Session |
+| **Context** | Path-based lupopedia vs crafty_syntax (no helpers in list; SessionHandler does it) | AuthContextResolver |
+| **Session** | All session read/write is in Session + SessionHandler; no procedural session helpers left | Session |
 | **Actor** | Actor creation, slug existence, actor_id↔auth_user_id, anonymous allocation, JSRN, merge | ActorService |
 | **Collection Zero** | Ensure collection 0 exists, populate doc tabs, get Collection 0 URL, init | CollectionZeroService |
 | **Collection tabs** | Load tabs (root + children) for a collection, get collection name | CollectionZeroService or CollectionTabsService |
@@ -127,4 +127,4 @@
 - **Actor:** Actor–auth_user linkage, actor creation, slug existence, and identity-helpers (anonymous, JSRN, merge) map to **ActorService**; identity-helpers need table prefix fix.
 - **Collection Zero / tabs / saved collections:** Map to **CollectionZeroService** (and optionally CollectionTabsService / CollectionService); render_saved_collections schema should be verified against TOONs.
 - **Redirect, limits, atoms, upload:** Map to Support/System/Config or existing services as in the table; no auth/session/role tables.
-- **No helpers** in the analyzed files reference **actor_roles**, **unified_sessions**, or **livehelp_operator*** tables.
+- **No helpers** in the analyzed files reference **actor_roles**, **sessions**, or **livehelp_operator*** tables.

@@ -14,7 +14,7 @@ SET @now = 20260220000000;
 INSERT IGNORE INTO lupo_actors (`actor_id`, `actor_type`, `slug`, `name`, `created_ymdhis`, `updated_ymdhis`, `is_active`, `is_deleted`, `deleted_ymdhis`, `actor_source_id`, `actor_source_type`, `metadata`, `adversarial_role`, `adversarial_oversight_actor_id`, `avatar_hash`) 
 VALUES (2, 'system_tool', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, NULL, 2, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management"],"version":"1.0.0","protected":false}', 'none', NULL, NULL) ON DUPLICATE KEY UPDATE name = VALUES(name), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
-INSERT IGNORE INTO lupo_registry (`unified_registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
+INSERT IGNORE INTO lupo_registry (`registry_id`, `entity_type`, `entity_index`, `entity_key`, `entity_name`, `entity_table`, `federation_node_id`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, `is_active`, `is_kernel`, `metadata_json`) 
 VALUES (9000002, 'actor', 2, 'windsurf-ide', 'Windsurf IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool"}') ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- ============================================================
@@ -114,7 +114,7 @@ INSERT IGNORE INTO lupo_truth_relations (`truth_relation_id`, `left_object_type`
 (1, 'truth_source', 1, 'truth_source', 2, 'supports', 1000, @now),
 (2, 'truth_source', 2, 'truth_source', 3, 'validates', 1000, @now);
 
-INSERT IGNORE INTO lupo_unified_truth_items (`truth_item_id`, `claim_text`, `confidence_score`, `source_ids`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+INSERT IGNORE INTO lupo_truth_items (`truth_item_id`, `claim_text`, `confidence_score`, `source_ids`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
 (1, 'Lupopedia OS provides semantic knowledge organization', 0.9, '1,2', '{"validation_status":"verified","evidence_count":2}', @now, @now, 0, NULL);
 
 -- ============================================================
@@ -152,10 +152,10 @@ INSERT IGNORE INTO lupo_document_chunks (`chunk_id`, `document_id`, `chunk_index
 -- ============================================================
 -- ANALYTICS AND CIP
 -- ============================================================
-INSERT IGNORE INTO lupo_unified_visits (`unified_visits_id`, `content_id`, `actor_id`, `page_domain`, `date_ymd`, `session_duration`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+INSERT IGNORE INTO lupo_visits (`visit_id`, `content_id`, `actor_id`, `page_domain`, `date_ymd`, `session_duration`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
 (1, 1, 1000, 'localhost', 20260220, 300, '{"page_type":"admin","action":"csv_export"}', @now, @now, 0, NULL);
 
-INSERT IGNORE INTO lupo_unified_referers (`unified_referers_id`, `content_id`, `actor_id`, `referer_domain`, `date_ymd`, `visits`, `depth`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+INSERT IGNORE INTO lupo_referers (`referer_id`, `content_id`, `actor_id`, `referer_domain`, `date_ymd`, `visits`, `depth`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
 (1, 1, 1000, 'direct', 20260220, 1, 1, '{"traffic_type":"direct_access","campaign":"none"}', @now, @now, 0, NULL);
 
 INSERT IGNORE INTO lupo_cip_analytics (`cip_analytics_id`, `content_id`, `actor_id`, `interaction_type`, `cip_score`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES

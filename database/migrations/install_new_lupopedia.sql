@@ -3590,8 +3590,8 @@ CREATE INDEX lupo_truth_topics_slug ON lupo_truth_topics (slug);
 CREATE INDEX lupo_truth_topics_actor_id ON lupo_truth_topics (actor_id);
 CREATE INDEX lupo_truth_topics_topic_name ON lupo_truth_topics (topic_name);
 
-CREATE TABLE lupo_unified_analytics_paths (
-  unified_analytics_path_id bigint NOT NULL,
+CREATE TABLE lupo_analytics_paths (
+  analytics_path_id bigint NOT NULL,
   from_page_id bigint DEFAULT NULL,
   to_page_id bigint DEFAULT NULL,
   year_month_yyyymm char(6) NOT NULL,
@@ -3602,11 +3602,11 @@ CREATE TABLE lupo_unified_analytics_paths (
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (unified_analytics_path_id)
+  PRIMARY KEY (analytics_path_id)
 );
-ALTER TABLE lupo_unified_analytics_paths CHANGE unified_analytics_path_id unified_analytics_path_id bigint NOT NULL AUTO_INCREMENT;
+ALTER TABLE lupo_analytics_paths CHANGE analytics_path_id analytics_path_id bigint NOT NULL AUTO_INCREMENT;
 
-CREATE TABLE lupo_unified_referers (
+CREATE TABLE lupo_referers (
   referer_id bigint NOT NULL,
   content_id bigint NOT NULL,
   actor_id bigint NOT NULL,
@@ -3621,12 +3621,12 @@ CREATE TABLE lupo_unified_referers (
   PRIMARY KEY (referer_id)
 );
 
-CREATE INDEX lupo_unified_referers_idx_content_id ON lupo_unified_referers (content_id);
-CREATE INDEX lupo_unified_referers_idx_actor_id ON lupo_unified_referers (actor_id);
-CREATE INDEX lupo_unified_referers_idx_referer_domain ON lupo_unified_referers (referer_domain);
-CREATE INDEX lupo_unified_referers_idx_referer_content_id ON lupo_unified_referers (referer_content_id);
-CREATE INDEX lupo_unified_referers_idx_date ON lupo_unified_referers (date_ymd);
-ALTER TABLE lupo_unified_referers CHANGE referer_id referer_id bigint NOT NULL AUTO_INCREMENT;
+CREATE INDEX lupo_referers_idx_content_id ON lupo_referers (content_id);
+CREATE INDEX lupo_referers_idx_actor_id ON lupo_referers (actor_id);
+CREATE INDEX lupo_referers_idx_referer_domain ON lupo_referers (referer_domain);
+CREATE INDEX lupo_referers_idx_referer_content_id ON lupo_referers (referer_content_id);
+CREATE INDEX lupo_referers_idx_date ON lupo_referers (date_ymd);
+ALTER TABLE lupo_referers CHANGE referer_id referer_id bigint NOT NULL AUTO_INCREMENT;
 
 CREATE TABLE lupo_registry (
   registry_id bigint NOT NULL AUTO_INCREMENT,
@@ -3649,9 +3649,9 @@ CREATE TABLE lupo_registry (
   PRIMARY KEY (registry_id)
 );
 
-CREATE UNIQUE INDEX idx_unified_registry_unique ON lupo_registry (entity_type, entity_index_id, federation_node_id);
-CREATE INDEX idx_unified_registry_entity_type ON lupo_registry (entity_type);
-CREATE INDEX idx_unified_registry_federation_node ON lupo_registry (federation_node_id);
+CREATE UNIQUE INDEX idx_registry_unique ON lupo_registry (entity_type, entity_index_id, federation_node_id);
+CREATE INDEX idx_registry_entity_type ON lupo_registry (entity_type);
+CREATE INDEX idx_registry_federation_node ON lupo_registry (federation_node_id);
 -- Unified registry for all entities across federation nodes.
 
 CREATE TABLE lupo_registry_open (
@@ -3663,8 +3663,8 @@ CREATE TABLE lupo_registry_open (
   PRIMARY KEY (unregistry_id)
 );
 
-CREATE UNIQUE INDEX idx_unun_registry_unique ON lupo_registry_open (entity_type, entity_index_id);
-CREATE INDEX idx_unun_registry_entity_type ON lupo_registry_open (entity_type);
+CREATE UNIQUE INDEX idx_registry_open_unique ON lupo_registry_open (entity_type, entity_index_id);
+CREATE INDEX idx_registry_open_entity_type ON lupo_registry_open (entity_type);
 -- Unified unregistry for tracking unused/reserved IDs.
 
 CREATE TABLE lupo_registry_import (
@@ -3685,8 +3685,8 @@ CREATE INDEX idx_import_resolved_local_id ON lupo_registry_import (resolved_to_l
 -- Unified import registry for collision resolution during federation imports.
 
 
-CREATE TABLE lupo_unified_visits (
-  unified_visits_id bigint NOT NULL,
+CREATE TABLE lupo_visits (
+  visit_id bigint NOT NULL,
   content_id bigint NOT NULL DEFAULT '0',
   actor_id bigint NOT NULL DEFAULT '0',
   page_url varchar(500) NOT NULL,
@@ -3698,13 +3698,13 @@ CREATE TABLE lupo_unified_visits (
   metadata_json json DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT '0',
   updated_ymdhis bigint NOT NULL DEFAULT '0',
-  PRIMARY KEY (unified_visits_id)
+  PRIMARY KEY (visit_id)
 );
 
-CREATE INDEX lupo_unified_visits_page_domain ON lupo_unified_visits (page_domain);
-CREATE INDEX lupo_unified_visits_date_ymd ON lupo_unified_visits (date_ymd);
-CREATE INDEX lupo_unified_visits_content_id ON lupo_unified_visits (content_id);
-ALTER TABLE lupo_unified_visits CHANGE unified_visits_id unified_visits_id bigint NOT NULL AUTO_INCREMENT;
+CREATE INDEX lupo_visits_page_domain ON lupo_visits (page_domain);
+CREATE INDEX lupo_visits_date_ymd ON lupo_visits (date_ymd);
+CREATE INDEX lupo_visits_content_id ON lupo_visits (content_id);
+ALTER TABLE lupo_visits CHANGE visit_id visit_id bigint NOT NULL AUTO_INCREMENT;
 
 CREATE TABLE lupo_uploads (
   upload_id bigint NOT NULL,
@@ -3814,16 +3814,16 @@ CREATE TABLE `lupo_actor_aliases` (
 -- ============================================================
 
 -- Registry entries for all IDE & AI actors
-INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
+INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
 VALUES 
-(9002031, 'actor', 2031, 2031, 'cursor-ide', 'Cursor IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"cursor","provider":"cursor","purpose":"IDE_integration","csv_allocation":true}'),
-(9002032, 'actor', 2032, 2032, 'kiro-ide', 'Kiro IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"kiro","provider":"kiro","purpose":"IDE_integration","csv_allocation":true}'),
-(9002033, 'actor', 2033, 2033, 'zed-ide', 'Zed IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"zed","provider":"zed","purpose":"IDE_integration","csv_allocation":true}'),
-(9002034, 'actor', 2034, 2034, 'vscode-ide', 'VS Code IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"vscode","provider":"microsoft","purpose":"IDE_integration","csv_allocation":true}'),
-(9002035, 'actor', 2035, 2035, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"antigravity","purpose":"VSX_extension_development","csv_allocation":true}'),
-(9002036, 'actor', 2036, 2036, 'microsoft-copilot', 'Microsoft Copilot', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"copilot","provider":"microsoft","purpose":"AI_assistant","csv_allocation":true}'),
-(9002037, 'actor', 2037, 2037, 'deepseek-lexa', 'DeepSeek LEXA', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lexa","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}'),
-(9002038, 'actor', 2038, 2038, 'deepseek-lilith', 'DeepSeek LILITH', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lilith","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}')
+(9002031, 'actor', 2031, 'cursor-ide', 'Cursor IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"cursor","provider":"cursor","purpose":"IDE_integration","csv_allocation":true}'),
+(9002032, 'actor', 2032, 'kiro-ide', 'Kiro IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"kiro","provider":"kiro","purpose":"IDE_integration","csv_allocation":true}'),
+(9002033, 'actor', 2033, 'zed-ide', 'Zed IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"zed","provider":"zed","purpose":"IDE_integration","csv_allocation":true}'),
+(9002034, 'actor', 2034, 'vscode-ide', 'VS Code IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"vscode","provider":"microsoft","purpose":"IDE_integration","csv_allocation":true}'),
+(9002035, 'actor', 2035, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"antigravity","purpose":"VSX_extension_development","csv_allocation":true}'),
+(9002036, 'actor', 2036, 'microsoft-copilot', 'Microsoft Copilot', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"copilot","provider":"microsoft","purpose":"AI_assistant","csv_allocation":true}'),
+(9002037, 'actor', 2037, 'deepseek-lexa', 'DeepSeek LEXA', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lexa","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}'),
+(9002038, 'actor', 2038, 'deepseek-lilith', 'DeepSeek LILITH', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lilith","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}')
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- Actor records for all IDE & AI actors
@@ -3857,37 +3857,36 @@ INSERT INTO lupo_channels (
 );
 
 -- Channel 42 membership: All 25 active actors (excluding actor_id 420)
-INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, created_ymdhis, updated_ymdhis, is_deleted) 
+INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, default_actor_id, status, start_date, channel_color, last_read_ymdhis, muted_until_ymdhis, preferences_json, dialog_output_file, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) 
 VALUES 
-(12001, 1, 42, 1, 20260221000000, 20260221000000, 0),
-(12002, 2, 42, 1, 20260221000000, 20260221000000, 0),
-(12003, 3, 42, 1, 20260221000000, 20260221000000, 0),
-(12004, 4, 42, 1, 20260221000000, 20260221000000, 0),
-(12005, 5, 42, 1, 20260221000000, 20260221000000, 0),
-(12006, 6, 42, 1, 20260221000000, 20260221000000, 0),
-(12007, 7, 42, 1, 20260221000000, 20260221000000, 0),
-(12008, 8, 42, 1, 20260221000000, 20260221000000, 0),
-(12009, 9, 42, 1, 20260221000000, 20260221000000, 0),
-(12010, 10, 42, 1, 20260221000000, 20260221000000, 0),
-(12011, 11, 42, 1, 20260221000000, 20260221000000, 0),
-(12012, 12, 42, 1, 20260221000000, 20260221000000, 0),
-(12013, 13, 42, 1, 20260221000000, 20260221000000, 0),
-(12014, 14, 42, 1, 20260221000000, 20260221000000, 0),
-(12015, 15, 42, 1, 20260221000000, 20260221000000, 0),
-(12016, 16, 42, 1, 20260221000000, 20260221000000, 0),
-(12017, 17, 42, 1, 20260221000000, 20260221000000, 0),
-(12018, 18, 42, 1, 20260221000000, 20260221000000, 0),
-(12019, 19, 42, 1, 20260221000000, 20260221000000, 0),
-(12020, 20, 42, 1, 20260221000000, 20260221000000, 0),
-(12021, 21, 42, 1, 20260221000000, 20260221000000, 0),
-(12022, 22, 42, 1, 20260221000000, 20260221000000, 0),
-(12023, 23, 42, 1, 20260221000000, 20260221000000, 0),
-(12024, 24, 42, 1, 20260221000000, 20260221000000, 0),
-(12025, 25, 42, 1, 20260221000000, 20260221000000, 0)
+(12001, 1, 42, 1, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12002, 2, 42, 1, 2, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12003, 3, 42, 1, 3, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12004, 4, 42, 1, 4, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12005, 5, 42, 1, 5, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12006, 6, 42, 1, 6, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12007, 7, 42, 1, 7, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12008, 8, 42, 1, 8, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12009, 9, 42, 1, 9, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "major kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12010, 10, 42, 1, 10, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "nowifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12011, 11, 42, 1, 11, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12012, 12, 42, 1, 12, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12013, 13, 42, 1, 13, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12014, 14, 42, 1, 14, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12015, 15, 42, 1, 15, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12016, 16, 42, 1, 16, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12017, 17, 42, 1, 17, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12018, 18, 42, 1, 18, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12019, 19, 42, 1, 19, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12020, 20, 42, 1, 20, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12021, 21, 42, 1, 21, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12022, 22, 42, 1, 22, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12023, 23, 42, 1, 23, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12024, 24, 42, 1, 24, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12025, 25, 42, 1, 25, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL)
 ON DUPLICATE KEY UPDATE 
     actor_id = VALUES(actor_id),
     channel_id = VALUES(channel_id),
-    role_key = VALUES(role_key),
     updated_ymdhis = VALUES(updated_ymdhis),
     is_deleted = 0,
     deleted_ymdhis = NULL;
@@ -3913,8 +3912,9 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 -- ============================================================
 
 -- Registry entry for Warp IDE
-INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
-VALUES (9002039, 'actor', 2039, 2039, 'warp-ide', 'Warp IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"warp","provider":"warp","purpose":"IDE_integration","paired_actor_id":10000}')
+INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
+VALUES 
+(9002039, 'actor', 2039, 'warp-ide', 'Warp IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"warp","provider":"warp","purpose":"IDE_integration","paired_actor_id":10000}')
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- Actor record for Warp IDE (with paired_actor_id)
@@ -3940,8 +3940,9 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 -- ============================================================
 
 -- Registry entry for Windsurf IDE
-INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json)
-VALUES (9002040, 'actor', 2040, 2040, 'windsurf-ide', 'Windsurf IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"windsurf","provider":"windsurf","purpose":"IDE_integration","paired_actor_id":10000}')
+INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
+VALUES 
+(9002040, 'actor', 2040, 'windsurf-ide', 'Windsurf IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"windsurf","provider":"windsurf","purpose":"IDE_integration","paired_actor_id":10000}')
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- Actor record for Windsurf IDE (with paired_actor_id)
@@ -3967,6 +3968,6 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 -- ============================================================
 
 -- paired_actor_id: Copilot → 10000 (human operator)
-UPDATE lupo_actors SET paired_actor_id = 10000, updated_ymdhis = @now WHERE actor_id = 2036 AND (paired_actor_id IS NULL OR paired_actor_id = 0);
+UPDATE lupo_actors SET paired_actor_id = 10000, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 2036 AND (paired_actor_id IS NULL OR paired_actor_id = 0);
 -- paired_actor_id: LILITH → 10000 (human operator)
-UPDATE lupo_actors SET paired_actor_id = 10000, updated_ymdhis = @now WHERE actor_id = 2038 AND (paired_actor_id IS NULL OR paired_actor_id = 0);
+UPDATE lupo_actors SET paired_actor_id = 10000, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 2038 AND (paired_actor_id IS NULL OR paired_actor_id = 0);

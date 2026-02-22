@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Auth\AuthManager;
-use App\Auth\UnifiedSessionHandler;
+use App\Auth\SessionHandler;
 
 /**
  * Admin authentication controller — plain PHP, PDO. No Laravel.
- * Constructor: ($db, AuthManager $authManager = null, UnifiedSessionHandler $sessionHandler = null).
+ * Constructor: ($db, AuthManager $authManager = null, SessionHandler $sessionHandler = null).
  * Tables: lupo_crafty_user_mapping (PK crafty_user_mapping_id), lupo_sessions, lupo_auth_audit_log. All timestamps BIGINT YmdHis UTC.
  */
 
@@ -30,13 +30,13 @@ class AuthenticationController
     /** @var AuthManager */
     protected $authManager;
 
-    /** @var UnifiedSessionHandler */
+    /** @var SessionHandler */
     protected $sessionHandler;
 
-    public function __construct($db, AuthManager $authManager = null, UnifiedSessionHandler $sessionHandler = null)
+    public function __construct($db, AuthManager $authManager = null, SessionHandler $sessionHandler = null)
     {
         $this->db = $db;
-        $this->sessionHandler = $sessionHandler ?? new UnifiedSessionHandler($db);
+        $this->sessionHandler = $sessionHandler ?? new SessionHandler($db);
         $this->authManager = $authManager ?? new AuthManager($db, $this->sessionHandler);
     }
 
@@ -140,7 +140,7 @@ class AuthenticationController
     }
 
     /**
-     * Stats. Uses lupo_sessions (not unified_sessions) and lupo_auth_audit_log. Timestamps YmdHis.
+     * Stats. Uses lupo_sessions (not sessions) and lupo_auth_audit_log. Timestamps YmdHis.
      */
     public function getAuthenticationStats(): array
     {

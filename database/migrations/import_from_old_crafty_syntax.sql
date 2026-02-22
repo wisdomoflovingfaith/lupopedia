@@ -992,7 +992,7 @@ ALTER TABLE livehelp_sessions
  
  
 -- ======================================================================
--- livehelp_referers_daily               → lupo_unified_referers
+-- livehelp_referers_daily               → lupo_referers
  -- See: /docs/doctrine/migrations/livehelp_referers_daily_migration.md
  
 ALTER TABLE livehelp_referers_daily
@@ -1010,8 +1010,8 @@ ALTER TABLE livehelp_referers_daily
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
-TRUNCATE lupo_unified_referers;
-INSERT INTO lupo_unified_referers (
+TRUNCATE lupo_referers;
+INSERT INTO lupo_referers (
     content_id,
     actor_id,
     referer_url,
@@ -1044,7 +1044,7 @@ SELECT
 FROM livehelp_referers_daily r;
 
 
-INSERT INTO lupo_unified_referers (
+INSERT INTO lupo_referers (
     content_id,
     actor_id,
     referer_url,
@@ -1093,7 +1093,7 @@ FROM livehelp_referers_monthly r;
 
 
 -- ======================================================================
--- livehelp_visit_track               → lupo_unified_visits
+-- livehelp_visit_track               → lupo_visits
  -- See: /docs/doctrine/migrations/livehelp_visit_track_migration.md 
 
 ALTER TABLE livehelp_visit_track
@@ -1108,7 +1108,7 @@ ALTER TABLE livehelp_visits_daily
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 ALTER TABLE livehelp_visits_daily
-  COMMENT = 'DEPRECATED: Imported into lupo_unified_visits. Safe to delete after migration.';
+  COMMENT = 'DEPRECATED: Imported into lupo_visits. Safe to delete after migration.';
 
 ALTER TABLE livehelp_visits_monthly
     ENGINE=InnoDB,
@@ -1117,8 +1117,8 @@ ALTER TABLE livehelp_visits_monthly
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
-TRUNCATE lupo_unified_visits;
-INSERT INTO lupo_unified_visits (
+TRUNCATE lupo_visits;
+INSERT INTO lupo_visits (
     content_id,
     actor_id,
     page_url,
@@ -1153,7 +1153,7 @@ SELECT
 
 FROM livehelp_visits_daily r;
 
-INSERT INTO lupo_unified_visits (
+INSERT INTO lupo_visits (
     content_id,
     actor_id,
     page_url,
@@ -1292,7 +1292,7 @@ FROM (SELECT @rn := 0) r,
 ) t;
 
 -- ======================================================================
--- livehelp_paths_firsts               → lupo_unified_analytics_paths
+-- livehelp_paths_firsts               → lupo_analytics_paths
  -- See: /docs/doctrine/migrations/livehelp_paths_firsts_migration.md
 ALTER TABLE livehelp_paths_firsts
     ENGINE=InnoDB,
@@ -1307,9 +1307,9 @@ ALTER TABLE livehelp_paths_monthly
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
-TRUNCATE lupo_unified_analytics_paths;
+TRUNCATE lupo_analytics_paths;
 
-INSERT INTO `lupo_unified_analytics_paths` (
+INSERT INTO `lupo_analytics_paths` (
     `from_page_id`,
     `to_page_id`,
     `year_month_yyyymm`,
@@ -1334,7 +1334,7 @@ SELECT
     NULL AS `deleted_ymdhis`
 FROM `livehelp_paths_firsts`;
  
-INSERT INTO `lupo_unified_analytics_paths` (
+INSERT INTO `lupo_analytics_paths` (
     `from_page_id`,
     `to_page_id`,
     `year_month_yyyymm`,

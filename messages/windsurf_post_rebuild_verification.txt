@@ -26,7 +26,7 @@ Execute comprehensive post-rebuild verification:
 ## Core Tables to Test
 - lupo_dialog_channels
 - lupo_dialog_messages  
-- lupo_unified_registry
+- lupo_registry
 - lupo_actor_channels
 - lupo_banned_actors
 - lupo_system_events

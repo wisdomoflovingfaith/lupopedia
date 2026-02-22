@@ -78,9 +78,9 @@ Consolidation candidates (combine into fewer tables):
 **Impact:** Medium - removes data unification features**
 
 ```
-1. unified_analytics_paths           (6 fields) - Analytics unification
-2. unified_dialog_messages           (7 fields) - Dialog unification
-3. unified_truth_items               (7 fields) - Truth system unification
+1. analytics_paths           (6 fields) - Analytics unification
+2. dialog_messages           (7 fields) - Dialog unification
+3. truth_items               (7 fields) - Truth system unification
 4. lupo_legacy_content_mapping       (8 fields) - Legacy content mapping
 5. lupo_help_topics_old              (8 fields) - Deprecated help system
 ```

@@ -5,9 +5,9 @@ namespace App\Auth;
 /**
  * Unified session handler — thin wrapper for cookie + context only.
  *
- * Table: obsolete. This handler does NOT use {prefix}unified_sessions (dropped).
+ * Table: obsolete. This handler does NOT use {prefix}sessions (dropped).
  * All session storage uses {prefix}sessions via App\Auth\Session. This class:
- * - Reads/writes the unified cookie (LUPO_TABLE_PREFIX . 'unified_session')
+ * - Reads/writes the unified cookie (LUPO_TABLE_PREFIX . 'session')
  * - Detects system_context from path (lupopedia vs crafty_syntax)
  * - Delegates all DB operations to Session (createOrUpdateForUnified, getSessionForUnified,
  *   deleteSessionRow, cleanupExpiredSessions, getActiveSessionsForUser, validateSessionIntegrity).
@@ -19,7 +19,7 @@ if (!defined('LUPO_TABLE_PREFIX')) {
     define('LUPO_TABLE_PREFIX', 'lupo_');
 }
 
-class UnifiedSessionHandler
+class SessionHandler
 {
     const CONTEXT_LUPOPEDIA = 'lupopedia';
     const CONTEXT_CRAFTY_SYNTAX = 'crafty_syntax';
@@ -57,7 +57,7 @@ class UnifiedSessionHandler
 
     private function cookieName()
     {
-        return LUPO_TABLE_PREFIX . 'unified_session';
+        return LUPO_TABLE_PREFIX . 'session';
     }
 
     private function setUnifiedCookie($sessionId, $systemContext)

@@ -1,9 +1,9 @@
-﻿{
-    "channel_key":  "GOV‑PROGRAMMERS‑001",
+{
+    "channel_key":  "GOV-PROGRAMMERS-001",
     "channel_name":  "GOV PROGRAMMERS 001",
     "channel_description":  "Channel initialized during v2.0 migration",
     "federation_node_id":  1,
-    "dialog_output_file":  "dialogs/GOV‑PROGRAMMERS‑001_dialog.md",
+    "dialog_output_file":  "dialogs/GOV-PROGRAMMERS-001_dialog.md",
     "created_by_actor_id":  1,
     "created_ymdhis":  "\u003cYYYY-MM-DD HH:MM:SS\u003e",
     "updated_ymdhis":  "\u003cYYYY-MM-DD HH:MM:SS\u003e",

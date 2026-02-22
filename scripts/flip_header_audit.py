@@ -125,6 +125,11 @@ def extract_flip_metadata(content: str, filepath: str) -> Optional[Dict]:
                 metadata['tags'] = value
             elif key == 'mood_rgb':
                 metadata['mood_rgb'] = value
+            elif key.startswith('X-LUPO-') and '.' in key:
+                # Database Mapping Layer: X-LUPO-{table}.{column}
+                if 'database_mappings' not in metadata:
+                    metadata['database_mappings'] = {}
+                metadata['database_mappings'][key] = value
     
     # Required fields validation
     required = ['version', 'modified_utc']

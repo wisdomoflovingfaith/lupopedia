@@ -29,7 +29,7 @@ All migrations in this folder are:
 - generated only after TOON regeneration
 - ordered strictly by timestamp
 
-One-time and Lupopedia→Lupopedia migration files have been moved to **database/migrations_legacy/** (e.g. migration_operator_to_actor_channel_roles.sql, migration_drop_lupo_channel_roles.sql, migration_unified_registry_*.sql, dev_*.sql, grant_captain_admin_channel_role.sql, registry_seed_raw_test.sql, and audit/summary .txt files). Those files are frozen artifacts and are not run by the wizard.
+One-time and Lupopedia→Lupopedia migration files have been moved to **database/migrations_legacy/** (e.g. migration_operator_to_actor_channel_roles.sql, migration_drop_lupo_channel_roles.sql, migration_REGISTRY_*.sql, dev_*.sql, grant_captain_admin_channel_role.sql, registry_seed_raw_test.sql, and audit/summary .txt files). Those files are frozen artifacts and are not run by the wizard.
 
 ## Migration File Naming
 
@@ -90,7 +90,7 @@ Legacy Crafty Syntax tables and early unified subsystem tables must be:
 Example:
 
 Code
-unified_dialog_messages -> lupo_unified_dialog_messages_old
+dialog_messages -> lupo_dialog_messages_old
 
 These tables remain available for data extraction during upgrade but are not part of the active schema.
 

@@ -72,7 +72,7 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 | Legacy | New | Notes |
 |--------|-----|--------|
 | livehelp_sessions | **DROPPED** | Replaced by lupo_sessions (deterministic, actor-aware). No import. |
-| **{prefix}unified_sessions** | **MERGED & DROPPED** | Logic merged into {prefix}sessions; table removed from install. Single session table is {prefix}sessions. See one_time_unified_sessions_to_sessions.sql. |
+| **{prefix}sessions** | **MERGED & DROPPED** | Logic merged into {prefix}sessions; table removed from install. Single session table is {prefix}sessions. See one_time_sessions_to_sessions.sql. |
 | **{prefix}actor_roles** | **DROPPED** | Replaced by **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution: channel → department → system. See drop_lupo_actor_roles.sql and docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md. |
 | livehelp_identity_daily | **DROPPED** | No import. |
 | livehelp_identity_monthly | **DROPPED** (no import) | Anonymous users are not in lupo_actors; they exist in lupo_sessions only. No anonymous actor rows or range. |
@@ -96,10 +96,10 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 
 | Legacy | New | Notes |
 |--------|-----|--------|
-| livehelp_referers_daily, livehelp_referers_monthly | lupo_unified_referers | Legacy fields in metadata_json where needed. |
+| livehelp_referers_daily, livehelp_referers_monthly | lupo_referers | Legacy fields in metadata_json where needed. |
 | livehelp_visit_track | **DROPPED** | Ephemeral. |
-| livehelp_visits_daily, livehelp_visits_monthly | lupo_unified_visits | |
-| livehelp_paths_firsts, livehelp_paths_monthly | lupo_unified_analytics_paths | transition_type 'first' | 'all'. |
+| livehelp_visits_daily, livehelp_visits_monthly | lupo_visits | |
+| livehelp_paths_firsts, livehelp_paths_monthly | lupo_analytics_paths | transition_type 'first' | 'all'. |
 | livehelp_keywords_* | **DROPPED** | Replaced by lupo_analytics_campaign_vars (no import). |
 
 ---

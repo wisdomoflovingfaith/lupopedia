@@ -1,6 +1,6 @@
 {
-  "generated_at": "20260222162242",
-  "total_files": 107,
+  "generated_at": "20260222194455",
+  "total_files": 108,
   "by_status": {
     "Unknown": [
       "docs/api/FLIP_API.md",
@@ -103,13 +103,14 @@
       "docs/doctrine/migrations/operator_to_roles_migration.md",
       "docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md",
       "docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md",
+      "docs/doctrine/REGISTRY_DOCTRINE.md",
       "docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md",
       "docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md",
       "docs/doctrine/TABLE_CONSOLIDATION_PLAN.md",
-      "docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md",
       "docs/doctrine/VERSION_DOCTRINE.md",
       "docs/doctrine/VERSIONING_DOCTRINE.md",
-      "docs/doctrine/WOLFIE_HEADERS.md"
+      "docs/doctrine/WOLFIE_HEADERS.md",
+      "docs/specs/test_mapping.md"
     ]
   },
   "by_channel": {
@@ -191,12 +192,13 @@
       "docs/doctrine/migrations/operator_to_roles_migration.md",
       "docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md",
       "docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md",
+      "docs/doctrine/REGISTRY_DOCTRINE.md",
       "docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md",
       "docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md",
       "docs/doctrine/TABLE_CONSOLIDATION_PLAN.md",
-      "docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md",
       "docs/doctrine/VERSION_DOCTRINE.md",
-      "docs/doctrine/WOLFIE_HEADERS.md"
+      "docs/doctrine/WOLFIE_HEADERS.md",
+      "docs/specs/test_mapping.md"
     ],
     "0": [
       "docs/doctrine/FLIP/FLP_CHANNEL_0.md",
@@ -1159,6 +1161,16 @@
       "mood_rgb": "FFDAB9"
     },
     {
+      "file_path_from_root": "docs/doctrine/REGISTRY_DOCTRINE.md",
+      "has_valid_header": true,
+      "errors": [],
+      "version": "4.0.16",
+      "modified_utc": "20260217232500",
+      "channel_id": 42,
+      "tags": "[\"registry\", \"unified\", \"doctrine\", \"flip\"]",
+      "mood_rgb": "98FB98"
+    },
+    {
       "file_path_from_root": "docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md",
       "has_valid_header": true,
       "errors": [],
@@ -1189,16 +1201,6 @@
       "mood_rgb": "FFDAB9"
     },
     {
-      "file_path_from_root": "docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
-      "version": "4.0.16",
-      "modified_utc": "20260217232500",
-      "channel_id": 42,
-      "tags": "[\"registry\", \"unified\", \"doctrine\", \"flip\"]",
-      "mood_rgb": "98FB98"
-    },
-    {
       "file_path_from_root": "docs/doctrine/VERSION_DOCTRINE.md",
       "has_valid_header": true,
       "errors": [],
@@ -1224,6 +1226,19 @@
       "channel_id": 42,
       "tags": "[\"lost\", \"orphan\", \"doctrine\"]",
       "mood_rgb": "FFDAB9"
+    },
+    {
+      "file_path_from_root": "docs/specs/test_mapping.md",
+      "has_valid_header": true,
+      "errors": [],
+      "version": "4.0.28",
+      "modified_utc": "20260222140000",
+      "channel_id": 42,
+      "actor_id": "2040",
+      "database_mappings": {
+        "X-LUPO-actors.actor_id": "2040",
+        "X-LUPO-contents.content_id": "99999"
+      }
     }
   ]
 }

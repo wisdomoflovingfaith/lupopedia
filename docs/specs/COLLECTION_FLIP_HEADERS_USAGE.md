@@ -107,6 +107,12 @@ WHERE JSON_EXTRACT(c.metadata_json, '$.flip_headers."X-Lupo-Collection-ID"') = 1
 3. **Update on collection changes** - If a collection is renamed, update all member files
 4. **Use in conjunction with other headers** - Combine with Actor, Version, and Channel headers
 
+## Database Mapping Layer (Optional)
+The `X-LUPO-{table}.{column}` namespace allows explicit mapping between header
+fields and database schema. This layer is optional and must not replace
+semantic FLIP fields. It is intended for advanced tooling, migrations, and
+schema-aware agents.
+
 ## Example: Complete FLIP Header Block
 
 ```markdown
@@ -121,6 +127,39 @@ X-Lupo-Version: 4.0.27
 X-Lupo-Timestamp: 20260222160000
 ---
 ```
+
+## Database Mapping Layer (Optional) - New in 4.0.28
+
+The `X-LUPO-{table}.{column}` namespace allows explicit mapping between header
+fields and database schema. This layer is optional and must not replace
+semantic FLIP fields. It is intended for advanced tooling, migrations, and
+schema-aware agents.
+
+### Syntax
+```
+X-LUPO-{table}.{column}: {value}
+```
+
+### Valid Examples
+```
+X-LUPO-collections.collection_id: 420
+X-LUPO-collections.collection_name: Lupopedia Dev Archive
+X-LUPO-actors.actor_id: 2039
+X-LUPO-channels.channel_id: 42
+```
+
+### Constraints
+- Must use `X-LUPO-` prefix (all caps)
+- Must validate table/column against schema
+- Must not override semantic headers
+- Must not be required for processing
+- Must not be used for schema guessing
+
+### Implementation Notes
+- Values are treated as opaque strings (no type inference)
+- Table and column names are validated against `install_new_lupopedia.sql`
+- SQL generation must explicitly list all columns (no positional INSERTs)
+- Required timestamp columns (`created_ymdhis`, `updated_ymdhis`) must be included
 
 ## Migration Notes
 

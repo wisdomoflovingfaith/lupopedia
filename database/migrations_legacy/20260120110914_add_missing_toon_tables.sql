@@ -1675,11 +1675,11 @@ CREATE TABLE `test_performance_metrics` (
 
 
 -- ============================================
--- Table 75/77: lupo_unified_analytics_paths
+-- Table 75/77: lupo_analytics_paths
 -- ============================================
 
--- Table structure for table `lupo_unified_analytics_paths`
-CREATE TABLE `lupo_unified_analytics_paths` (
+-- Table structure for table `lupo_analytics_paths`
+CREATE TABLE `lupo_analytics_paths` (
   `analytics_path_id` bigint NOT NULL,
   `period` enum('daily','monthly') NOT NULL,
   `visit_content_id` bigint,
@@ -1690,11 +1690,11 @@ CREATE TABLE `lupo_unified_analytics_paths` (
 
 
 -- ============================================
--- Table 76/77: lupo_unified_dialog_messages
+-- Table 76/77: lupo_dialog_messages
 -- ============================================
 
--- Table structure for table `lupo_unified_dialog_messages`
-CREATE TABLE `lupo_unified_dialog_messages` (
+-- Table structure for table `lupo_dialog_messages`
+CREATE TABLE `lupo_dialog_messages` (
   `dialog_message_id` bigint NOT NULL,
   `thread_id` bigint,
   `actor_id` bigint,
@@ -1706,11 +1706,11 @@ CREATE TABLE `lupo_unified_dialog_messages` (
 
 
 -- ============================================
--- Table 77/77: lupo_unified_truth_items
+-- Table 77/77: lupo_truth_items
 -- ============================================
 
--- Table structure for table `lupo_unified_truth_items`
-CREATE TABLE `lupo_unified_truth_items` (
+-- Table structure for table `lupo_truth_items`
+CREATE TABLE `lupo_truth_items` (
   `truth_item_id` bigint NOT NULL,
   `item_type` enum('question','answer') NOT NULL,
   `name` varchar(255),

@@ -193,7 +193,7 @@ Missing FLIP header: 25
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/EXAMPLE.md
-file.last_modified_system_version: "4.0.27"
+file.last_modified_system_version: "4.0.28"
 file.last_modified_utc: "20260222150000"
 channel_id: 42
 status: Active
@@ -201,8 +201,32 @@ thread_id: 1001
 actor_id: 2039
 tags: ["doctrine", "schema", "upgrade"]
 mood_rgb: "569CD6"
+
+# Database Mapping Layer (Optional)
+X-LUPO-actors.actor_id: 2038
+X-LUPO-channels.channel_id: 42
+X-LUPO-dialog_messages.dialog_message_id: 2000
 ---
 ```
+
+#### Database Mapping Layer (New in 4.0.28)
+
+The FLIP header system now supports an optional database mapping layer:
+
+- **Format**: `X-LUPO-{table}.{column}: <value>`
+- **Purpose**: Explicit mapping between header fields and database schema
+- **Usage**: Advanced tooling, migrations, and schema-aware agents
+- **Rules**: 
+  - Never overrides semantic FLIP fields
+  - Treated as opaque strings (no inference)
+  - Optional for all operations
+  - Must use exact `{table}.{column}` format
+
+**VSX Extension Behavior**:
+- When offline, includes mapping layer only if present in file
+- Does NOT auto-generate mapping layer unless explicitly requested
+- Does NOT infer table or column names
+- Treats mapping layer as metadata only
 
 ### Data Flow
 

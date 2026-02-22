@@ -33,12 +33,12 @@
 
 | Legacy Table | New Table | Migration Type | Key Changes |
 |-------------|-----------|--------------|-------------|
-| `livehelp_visits_daily` | `lupo_unified_visits` | **INSERT** | ✅ Migrated in import_from_old_crafty_syntax.sql |
-| `livehelp_visits_monthly` | `lupo_unified_visits` | **INSERT** | ✅ Migrated in import_from_old_crafty_syntax.sql |
-| `livehelp_referers_daily` | `lupo_unified_referers` | **INSERT** | ✅ Migrated in import SQL |
-| `livehelp_referers_monthly` | `lupo_unified_referers` | **INSERT** | ✅ Migrated in import SQL |
-| `livehelp_paths_firsts` | `lupo_unified_analytics_paths` | **INSERT** | ✅ Migrated in import SQL |
-| `livehelp_paths_monthly` | `lupo_unified_analytics_paths` | **INSERT** | ✅ Migrated in import SQL |
+| `livehelp_visits_daily` | `lupo_visits` | **INSERT** | ✅ Migrated in import_from_old_crafty_syntax.sql |
+| `livehelp_visits_monthly` | `lupo_visits` | **INSERT** | ✅ Migrated in import_from_old_crafty_syntax.sql |
+| `livehelp_referers_daily` | `lupo_referers` | **INSERT** | ✅ Migrated in import SQL |
+| `livehelp_referers_monthly` | `lupo_referers` | **INSERT** | ✅ Migrated in import SQL |
+| `livehelp_paths_firsts` | `lupo_analytics_paths` | **INSERT** | ✅ Migrated in import SQL |
+| `livehelp_paths_monthly` | `lupo_analytics_paths` | **INSERT** | ✅ Migrated in import SQL |
 | `livehelp_websites` | `lupo_federation_nodes` | **INSERT** | ✅ Migrated in import SQL (node 0 guard) |
 
 ### **Lead Management System**

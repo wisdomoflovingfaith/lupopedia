@@ -110,7 +110,7 @@ This document defines the interoperability framework between the Kritik Integrat
 
 #### Integration Tables
 - **lupo_cip_kip_correlation**: Cross-protocol event correlation
-- **lupo_unified_critique_view**: Consolidated critique processing view
+- **lupo_critique_view**: Consolidated critique processing view
 - **lupo_protocol_coordination**: Inter-protocol coordination metadata
 
 ### API Integration Framework

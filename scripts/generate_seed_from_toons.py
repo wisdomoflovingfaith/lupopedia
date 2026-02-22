@@ -3,12 +3,12 @@
 Generate seed_lupopedia.sql from TOON files and live database.
 
 Sources:
-1. Unified registry (lupo_unified_registry): all rows from DB + active agents as actors (doctrine).
+1. Unified registry (lupo_registry): all rows from DB + active agents as actors (doctrine).
 2. PK=0 rows: for each table with a primary key, include row where pk=0 if it exists in DB.
 3. TOON "data" array: emit INSERTs for rows explicitly defined in TOONs.
 4. Actor/agent doctrine: ALTER TABLE lupo_actors AUTO_INCREMENT = 10000 (human actors start at 10000).
 
-Active agents (lupo_agent_registry WHERE is_active=1) are emitted as unified_registry rows with
+Active agents (lupo_agent_registry WHERE is_active=1) are emitted as REGISTRY rows with
 entity_type='actor', entity_table='lupo_agent_registry', dedicated_index_id=agent_registry_id.
 
 Output: INSERTs + one ALTER. Writes to database/migrations/seed_lupopedia.sql.
@@ -31,11 +31,11 @@ except ImportError:
 from db_config import get_connection_params
 from actor_agent_doctrine import (
     AGENT_REGISTRY_TABLE,
-    UNIFIED_REGISTRY_TABLE,
+    REGISTRY_TABLE,
     ACTORS_TABLE,
     ACTOR_HUMAN_START,
-    UNIFIED_REGISTRY_AGENT_OFFSET,
-    build_unified_registry_row_from_agent as doctrine_build_unified_row,
+    REGISTRY_AGENT_OFFSET,
+    build_REGISTRY_row_from_agent as doctrine_build_registry_row,
     build_actor_row_from_agent as doctrine_build_actor_row,
 )
 
@@ -110,10 +110,10 @@ def load_toons(toon_dir):
     return toons
 
 
-def fetch_unified_registry_rows(cursor):
-    """Fetch all rows from lupo_unified_registry."""
+def fetch_REGISTRY_rows(cursor):
+    """Fetch all rows from lupo_registry."""
     try:
-        cursor.execute("SELECT * FROM `{}`".format(UNIFIED_REGISTRY_TABLE))
+        cursor.execute("SELECT * FROM `{}`".format(REGISTRY_TABLE))
         return cursor.fetchall()
     except Exception as e:
         print("Warning: could not fetch unified registry:", e, file=sys.stderr)
@@ -182,8 +182,8 @@ def main():
     registry_inserts = []
     agent_registry_insert_count = 0
     actor_inserts = []  # INSERT INTO lupo_actors for each active agent
-    if UNIFIED_REGISTRY_TABLE in table_info:
-        info = table_info[UNIFIED_REGISTRY_TABLE]
+    if REGISTRY_TABLE in table_info:
+        info = table_info[REGISTRY_TABLE]
         cols = info["cols"]
         actors_cols = table_info.get(ACTORS_TABLE, {}).get("cols")
         if not skip_db and pymysql is not None:
@@ -191,11 +191,11 @@ def main():
                 conn = pymysql.connect(cursorclass=DictCursor, **get_connection_params())
                 try:
                     with conn.cursor() as cur:
-                        rows = fetch_unified_registry_rows(cur)
+                        rows = fetch_REGISTRY_rows(cur)
                         existing_entity_keys = set()
                         for row in rows:
                             vals = row_to_values_list(row, cols)
-                            registry_inserts.append(build_insert(UNIFIED_REGISTRY_TABLE, cols, vals))
+                            registry_inserts.append(build_insert(REGISTRY_TABLE, cols, vals))
                             rl = {str(k).lower(): v for k, v in (row or {}).items()}
                             existing_entity_keys.add((rl.get("entity_type"), rl.get("entity_id")))
                         # Doctrine: active agents become actors in unified registry + lupo_actors (no duplicates).
@@ -205,10 +205,10 @@ def main():
                             aid = row_lower.get("agent_registry_id")
                             if aid is None or ("actor", aid) in existing_entity_keys:
                                 continue
-                            by_col = doctrine_build_unified_row(agent_row)
+                            by_col = doctrine_build_registry_row(agent_row)
                             if by_col is not None:
                                 vals = [sql_value(by_col.get(c)) for c in cols]
-                                registry_inserts.append(build_insert(UNIFIED_REGISTRY_TABLE, cols, vals))
+                                registry_inserts.append(build_insert(REGISTRY_TABLE, cols, vals))
                                 agent_registry_insert_count += 1
                                 existing_entity_keys.add(("actor", aid))
                             # One lupo_actors row per active agent.
@@ -231,7 +231,7 @@ def main():
             try:
                 with conn.cursor() as cur:
                     for table_name in sorted(table_info.keys()):
-                        if table_name == UNIFIED_REGISTRY_TABLE:
+                        if table_name == REGISTRY_TABLE:
                             continue
                         info = table_info[table_name]
                         pk_col = info.get("pk_col")
@@ -277,7 +277,7 @@ def main():
 
     # (a) Unified registry
     lines.append("-- -----------------------------------------------------------------------------")
-    lines.append("-- Unified registry (lupo_unified_registry)")
+    lines.append("-- Unified registry (lupo_registry)")
     lines.append("-- -----------------------------------------------------------------------------")
     if registry_inserts:
         for stmt in registry_inserts:
@@ -287,7 +287,7 @@ def main():
         lines.append("-- (none)")
         lines.append("")
 
-    # (a2) Active agents as actors (lupo_actors) — one row per unified_registry actor from agent registry
+    # (a2) Active agents as actors (lupo_actors) — one row per REGISTRY actor from agent registry
     lines.append("-- -----------------------------------------------------------------------------")
     lines.append("-- Active agents as actors (lupo_actors) — is_active=1 in unified registry")
     lines.append("-- -----------------------------------------------------------------------------")

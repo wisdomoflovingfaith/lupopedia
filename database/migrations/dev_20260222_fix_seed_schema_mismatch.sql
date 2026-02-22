@@ -3,9 +3,9 @@
 -- Purpose: Fix schema mismatch between install_new_lupopedia.sql and seed_lupopedia.sql
 -- This migration adds missing columns to support the seed data format
 
--- Fix lupo_registry table - add unified_registry_id and entity_index columns
+-- Fix lupo_registry table - add registry_id and entity_index columns
 ALTER TABLE lupo_registry 
-ADD COLUMN unified_registry_id bigint NOT NULL DEFAULT 0 AFTER registry_id,
+ADD COLUMN registry_id bigint NOT NULL DEFAULT 0 AFTER registry_id,
 ADD COLUMN entity_index bigint NOT NULL DEFAULT 0 AFTER entity_index_id;
 
 -- Fix lupo_actor_channels table - add created_by_actor_id column

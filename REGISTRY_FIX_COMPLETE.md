@@ -10,18 +10,18 @@
 ✅ lupo-includes/classes/LABSValidator.php - Updated doctrinal comments
 
 ## MD Files Fixed:
-✅ docs/doctrine/UNIFIED_REGISTRY_DOCTRINE.md - Comprehensive doctrine updates
+✅ docs/doctrine/REGISTRY_DOCTRINE.md - Comprehensive doctrine updates
 ✅ README.md - Updated registry system documentation
 
 ## Schema Files Fixed:
-✅ database/migrations/install_new_lupopedia.sql - Removed unified_registry_id column
+✅ database/migrations/install_new_lupopedia.sql - Removed registry_id column
 ✅ database/migrations/seed_minimal_4.0.26.sql - Updated INSERT statements
 
 ## Summary of Changes:
-- Table names: lupo_unified_registry → lupo_registry
-- Table names: lupo_unified_unregistry → lupo_registry_open  
-- Table names: lupo_unified_import_registry → lupo_registry_import
-- Column names: unified_registry_id → REMOVED (uses registry_id as PK)
+- Table names: lupo_registry → lupo_registry
+- Table names: lupo_registry_open → lupo_registry_open  
+- Table names: lupo_import_registry → lupo_registry_import
+- Column names: registry_id → REMOVED (uses registry_id as PK)
 - All INSERT statements updated to match new schema
 - All doctrinal documentation updated
 - All PHP code updated to use correct table names

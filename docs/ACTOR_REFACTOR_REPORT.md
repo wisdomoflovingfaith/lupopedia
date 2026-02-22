@@ -51,7 +51,7 @@ No other PHP files called the identity-helpers (allocateAnonymousActorId, getOrA
 
 ## 5. Confirmations
 
-- **Actor domain only:** Only Actor-related helpers (auth-helpers actor four, identity-helpers three) and auth-controller’s actor get/create were changed. AuthService, AuthRoleResolver, AuthContextResolver, Session, UnifiedSessionHandler, Collection* services, Redirect/Limits/Atom/Upload, Crafty Syntax were not modified.
+- **Actor domain only:** Only Actor-related helpers (auth-helpers actor four, identity-helpers three) and auth-controller’s actor get/create were changed. AuthService, AuthRoleResolver, AuthContextResolver, Session, SessionHandler, Collection* services, Redirect/Limits/Atom/Upload, Crafty Syntax were not modified.
 - **Actor logic in ActorService:** All actor–auth_user linkage, actor creation, slug checks, anonymous allocation, JSRN, and merge logic live in `App\Services\ActorService`. Procedural helpers are thin wrappers only.
 - **Table names use LUPO_TABLE_PREFIX:** ActorService uses `$this->prefix` (from LUPO_TABLE_PREFIX) for all table names: actors, sessions, actor_events, session_events, tab_events, content_events, world_events, dialog_messages. No hardcoded `lupo_*` in the service.
 - **DB access uses PDO_DB:** ActorService is constructed with `$db` (PDO_DB from bootstrap). All queries use `$this->db->fetchRow`, `fetchAll`, `query`, `insert`, `beginTransaction`, `commit`, `rollBack`. Named parameters only; no raw SQL or procedural DB helpers.
@@ -62,7 +62,7 @@ No other PHP files called the identity-helpers (allocateAnonymousActorId, getOrA
 
 - **lupo_actors:** TOON column `metadata` (text) used for JSRN and merge (JSON_EXTRACT/JSON_SET). Install uses `metadata text`; if your environment uses a `metadata_json` column, consider a one-time migration or service branch to match.
 - Merge tables and columns used: lupo_sessions.actor_id, lupo_actor_events.actor_id, lupo_session_events.actor_id, lupo_tab_events.actor_id, lupo_content_events.actor_id, lupo_world_events.actor_id, lupo_dialog_messages.from_actor_id. All prefixed via LUPO_TABLE_PREFIX.
-- No references to actor_roles, unified_sessions, or operator tables.
+- No references to actor_roles, sessions, or operator tables.
 
 ---
 

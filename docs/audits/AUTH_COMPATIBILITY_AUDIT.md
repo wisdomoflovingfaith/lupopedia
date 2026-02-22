@@ -12,7 +12,7 @@
 |------|----------------|
 | **lupo-includes/functions/session-compat-5.3.php** | **New.** Defines session_status() and PHP_SESSION_DISABLED/NONE/ACTIVE when not present (PHP 5.4+). Required by Session.php, auth-helpers.php, auth-controller.php. |
 | **app/auth/Session.php** | Require session-compat-5.3.php after config check. No other syntax changes (already array(), no ??, no return types). |
-| **app/auth/UnifiedSessionHandler.php** | No changes (already compliant). |
+| **app/auth/SessionHandler.php** | No changes (already compliant). |
 | **app/auth/AuthService.php** | []→array(); ??→isset ternary; removed return types (getCurrentUserData, isLoggedIn, getUsername, getDisplayName, isAdmin, hasAnyChannelRole, requireLogin, requireAdmin); removed parameter type (isAdmin, hasAnyChannelRole). |
 | **app/auth/AuthGuard.php** | Removed return/parameter types (detectSystemContext, isAllowed, logAuthenticationActivity, updateUserActivity, getSessionHandler, getAuthManager); []→array() for requestInfo; ??→isset ternary for REMOTE_ADDR/HTTP_USER_AGENT. |
 | **app/auth/AuthManager.php** | $sessionHandler ?? → isset ternary; []→array() for fetchRow/insert/return arrays; ??→isset ternary (user_id, system_context, display_name, role_type, requestInfo, system_context, ip_address, user_agent); removed return/param types (checkUnifiedAuth, getUserPermissions, validateAccess, logAuthEvent). |
@@ -25,7 +25,7 @@
 | **lupo-includes/modules/auth/auth-renderer.php** | (Final sweep.) admin_dashboard(): $user['username'] ?? 'User' etc. → isset ternary. |
 | **app/auth/AuthManager.php** | (Final sweep.) in_array(..., ['captain','administrator'], true) → array('captain','administrator'); same for ['monitor','operator','support']. |
 
-**Not changed:** app/auth/Session.php (already uses array(), no ??, no return types; only session-compat require added). app/auth/UnifiedSessionHandler.php (already compliant). lupo-includes/functions/session-helpers.php (deprecated stub, no code). Crafty Syntax visitor-session-helper.php and related were fixed in the UI PHP pass.
+**Not changed:** app/auth/Session.php (already uses array(), no ??, no return types; only session-compat require added). app/auth/SessionHandler.php (already compliant). lupo-includes/functions/session-helpers.php (deprecated stub, no code). Crafty Syntax visitor-session-helper.php and related were fixed in the UI PHP pass.
 
 ---
 
@@ -69,7 +69,7 @@ No typed closures, arrow functions, or modern session/password APIs were used; p
 All of the following report *No syntax errors detected*:
 
 - app/auth/Session.php
-- app/auth/UnifiedSessionHandler.php
+- app/auth/SessionHandler.php
 - app/auth/AuthService.php
 - app/auth/AuthGuard.php
 - app/auth/AuthManager.php
@@ -154,7 +154,7 @@ All of the following report *No syntax errors detected*:
 - Identity resolution and Crafty Syntax compatibility unchanged.
 
 **PHP -l verification (2026-02-12):** All of the following report *No syntax errors detected*:
-- app/auth/Session.php, UnifiedSessionHandler.php, AuthService.php, AuthGuard.php, AuthManager.php, AuthRoleResolver.php
+- app/auth/Session.php, SessionHandler.php, AuthService.php, AuthGuard.php, AuthManager.php, AuthRoleResolver.php
 - lupo-includes/functions/session-compat-5.3.php, auth-helpers.php, identity-helpers.php, auth-ui-helpers.php
 - lupo-includes/modules/auth/auth-controller.php, auth-renderer.php
 - lupo-includes/security/password-hash.php

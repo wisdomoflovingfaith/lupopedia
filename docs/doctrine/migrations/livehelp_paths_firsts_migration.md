@@ -13,7 +13,7 @@ atoms:
 
 # Migration Note: livehelp_paths_firsts & livehelp_paths_monthly
 # Status: IMPORTED -> DROPPED
-# Replacement: lupo_unified_analytics_paths
+# Replacement: lupo_analytics_paths
 # Transition Types: first, all
 
 # 1. Summary
@@ -42,7 +42,7 @@ no lifecycle fields
 Lupopedia replaces both with a single unified table:
 
 Code
-lupo_unified_analytics_paths
+lupo_analytics_paths
 The legacy tables are imported and then dropped.
 
 # 2. What the Legacy Tables Actually Did
@@ -96,7 +96,7 @@ no referential integrity
 But the core meaning of the data was stable and salvageable.
 
 # 3. Why Lupopedia Uses a Unified Table
-lupo_unified_analytics_paths provides:
+lupo_analytics_paths provides:
 
 a single table for all transition types
 
@@ -137,10 +137,10 @@ Code
 COMMENT = 'DEPRECATED...'
 Step 3 -- Clear the unified table
 Code
-TRUNCATE lupo_unified_analytics_paths;
+TRUNCATE lupo_analytics_paths;
 Step 4 -- Import first-time transitions
 Code
-INSERT INTO lupo_unified_analytics_paths (...)
+INSERT INTO lupo_analytics_paths (...)
 SELECT
     visit_recno,
     exit_recno,
@@ -155,7 +155,7 @@ SELECT
 FROM livehelp_paths_firsts;
 Step 5 -- Import all transitions
 Code
-INSERT INTO lupo_unified_analytics_paths (...)
+INSERT INTO lupo_analytics_paths (...)
 SELECT
     visit_recno,
     exit_recno,
@@ -240,4 +240,4 @@ Code
 livehelp_paths_firsts  -> IMPORTED -> DROPPED
 livehelp_paths_monthly -> IMPORTED -> DROPPED
 
-All transitions preserved in lupo_unified_analytics_paths.
+All transitions preserved in lupo_analytics_paths.
