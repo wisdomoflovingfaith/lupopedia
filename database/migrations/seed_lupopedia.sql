@@ -12,6 +12,7 @@
 SET @now = 20260217230000;
 SET @node_id = 1;
 -- Version for module seed: must match docs/doctrine/VERSIONING_DOCTRINE.md (canonical current version).
+-- FINAL 420-CHANNEL RELEASE WITH AGENT 420 - This is the last version on channel 420
 SET @lupo_version = '4.0.29';
 SET @lupo_version_code = 40029;
 
