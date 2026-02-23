@@ -131,14 +131,67 @@ def extract_flip_metadata(content: str, filepath: str) -> Optional[Dict]:
                     metadata['database_mappings'] = {}
                 metadata['database_mappings'][key] = value
     
-    # Required fields validation
+    # Required fields validation (Core Doctrine)
     required = ['version', 'modified_utc']
     for field in required:
         if field not in metadata:
             metadata['errors'].append(f'Missing required field: {field}')
     
+    # Routing Validation (4.0.30 Orphan Prevention)
+    if 'channel_id' not in metadata:
+        metadata['errors'].append('Missing routing field: channel_id (or X-Lupo-Channel)')
+    
+    if 'actor_id' not in metadata and 'actor_identity' not in metadata:
+        metadata['errors'].append('Missing attribution: actor_id or actor_identity required for routing')
+    
+    # Path Consistency Check
+    if 'X-Lupo-File-Path' in metadata:
+        normalized_meta_path = metadata['X-Lupo-File-Path'].replace('\\', '/')
+        if normalized_meta_path != metadata['file_path_from_root']:
+             metadata['errors'].append(f"Path mismatch: Header='{normalized_meta_path}' vs Actual='{metadata['file_path_from_root']}'")
+
     metadata['has_valid_header'] = len(metadata['errors']) == 0
     return metadata
+
+def fix_flip_header(filepath, content, metadata):
+    """
+    Automated fix for existing headers missing required routing fields.
+    """
+    if not metadata:
+        return content
+    
+    lines = content.split('\n')
+    end_idx = -1
+    for i in range(1, min(50, len(lines))):
+        if lines[i].strip() == '---':
+            end_idx = i
+            break
+    
+    if end_idx == -1:
+        return content
+    
+    header_lines = lines[1:end_idx]
+    modified = False
+    
+    # Check for missing routing fields and inject them
+    if 'channel_id' not in metadata:
+        header_lines.append('X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)')
+        modified = True
+    
+    if 'actor_id' not in metadata and 'actor_identity' not in metadata:
+        header_lines.append('X-Lupo-Actor-ID: 2035')
+        header_lines.append('X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"')
+        modified = True
+    
+    if 'X-Lupo-File-Path' not in content:
+        header_lines.append(f"X-Lupo-File-Path: {filepath}")
+        modified = True
+
+    if modified:
+        new_header = "---\n" + "\n".join(header_lines) + "\n---"
+        return new_header + "\n" + "\n".join(lines[end_idx+1:])
+    
+    return content
 
 def add_flip_header(filepath, content):
     if content.startswith("---"):
@@ -312,20 +365,42 @@ def main():
         for m in missing:
             print("  -", m)
 
-    # Add headers to missing files (optional - prompt user)
     if missing:
-        print("\n⚙️ Add FLIP headers to missing files? (y/N): ", end='')
-        response = input().strip().lower()
-        if response == 'y':
-            for rel in missing:
-                fp = base / rel.replace("/", os.sep)
-                try:
-                    content = fp.read_text(encoding="utf-8")
-                    new_content = add_flip_header(rel, content)
-                    fp.write_text(new_content, encoding="utf-8")
-                    print(f"  ✓ Added FLIP header: {rel}")
-                except Exception as e:
-                    print(f"  ✗ Failed to add header to {rel}: {e}")
+        print(f"\n⚙️ Auto-adding FLIP headers to {len(missing)} files...")
+        for rel in missing:
+            fp = base / rel.replace("/", os.sep)
+            try:
+                content = fp.read_text(encoding="utf-8")
+                new_content = add_flip_header(rel, content)
+                fp.write_text(new_content, encoding="utf-8")
+                print(f"  ✓ Added: {rel}")
+                # Re-parse to include in metadata list
+                meta = extract_flip_metadata(new_content, rel)
+                if meta:
+                    all_metadata.append(meta)
+            except Exception as e:
+                print(f"  ✗ Failed to add header to {rel}: {e}")
+    
+    # Auto-fix existing headers
+    fixed_count = 0
+    for meta in all_metadata:
+        if not meta.get('has_valid_header', False):
+            rel = meta['file_path_from_root']
+            fp = base / rel.replace("/", os.sep)
+            try:
+                content = fp.read_text(encoding="utf-8")
+                fixed_content = fix_flip_header(rel, content, meta)
+                if fixed_content != content:
+                    fp.write_text(fixed_content, encoding="utf-8")
+                    fixed_count += 1
+                    # Update metadata for report
+                    new_meta = extract_flip_metadata(fixed_content, rel)
+                    meta.update(new_meta)
+            except Exception as e:
+                print(f"  ✗ Failed to fix {rel}: {e}")
+    
+    if fixed_count:
+        print(f"⚙️ Auto-fixed routing fields in {fixed_count} existing headers.")
     
     # Generate offline navigation and validation report
     print("\n📊 Generating reports...\n")

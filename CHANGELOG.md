@@ -61,6 +61,36 @@ As we continue development on a version, we append new changes under that versio
 - **Capability System**: Fine-grained feature control
 - **Federation Support**: Cross-node hybrid actor validation
 
+### ANUBIS UNKNOWN RECIPIENT ROUTING
+- **Protocol**: UNKNOWN_RECIPIENT_PROTOCOL_ACTIVE implemented
+- **Actor 59**: ANUBIS (Orphan Resolver) created and operational
+- **Service**: `AnubisUnknownRecipientService` for deterministic orphan handling
+- **Validator**: `FlipHeaderValidatorService` for header validation and routing
+- **Migration**: `dev_20260222_anubis_unknown_recipient_routing.sql` deployed
+- **Doctrine**: `ANUBIS_ORPHAN_RULES.md` defines adoption and processing rules
+
+### ROUTING LOGIC
+- **Unknown Recipients**: Files with invalid/missing recipients routed to ANUBIS
+- **Validation**: Comprehensive FLIP header structure and integrity checks
+- **Classification**: Risk assessment (low/high) determines adoption vs quarantine
+- **Adoption**: Safe files → Channel 42, Risky files → Channel 666 (quarantine)
+- **Logging**: Complete audit trail in `lupo_anubis_log` table
+- **Atomic Processing**: All operations in transactions with rollback capability
+
+### IMPLEMENTATION FILES
+- **Migration**: `database/migrations/dev_20260222_anubis_unknown_recipient_routing.sql`
+- **ANUBIS Service**: `app/Services/AnubisUnknownRecipientService.php`
+- **Validator Service**: `app/Services/FlipHeaderValidatorService.php`
+- **Doctrine**: `docs/doctrine/ANUBIS_ORPHAN_RULES.md`
+- **Schema**: `lupo_anubis_log` table for orphan tracking
+
+### SECURITY FEATURES
+- **Rate Limiting**: Max 100 adoptions per hour
+- **File Validation**: Size limits, content type safety, malicious payload detection
+- **Audit Trail**: Full logging with timestamps, decisions, and rationale
+- **Quarantine System**: Separate channel (666) for risky or malicious files
+- **Error Handling**: Graceful degradation with detailed error reporting
+
 ---
 
 ## [4.0.29] — PENDING FINAL APPROVAL

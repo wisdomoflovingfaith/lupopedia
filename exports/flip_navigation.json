@@ -1,6 +1,6 @@
 {
-  "generated_at": "20260222194455",
-  "total_files": 108,
+  "generated_at": "20260223003231",
+  "total_files": 107,
   "by_status": {
     "Unknown": [
       "docs/api/FLIP_API.md",
@@ -109,8 +109,7 @@
       "docs/doctrine/TABLE_CONSOLIDATION_PLAN.md",
       "docs/doctrine/VERSION_DOCTRINE.md",
       "docs/doctrine/VERSIONING_DOCTRINE.md",
-      "docs/doctrine/WOLFIE_HEADERS.md",
-      "docs/specs/test_mapping.md"
+      "docs/doctrine/WOLFIE_HEADERS.md"
     ]
   },
   "by_channel": {
@@ -197,8 +196,7 @@
       "docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md",
       "docs/doctrine/TABLE_CONSOLIDATION_PLAN.md",
       "docs/doctrine/VERSION_DOCTRINE.md",
-      "docs/doctrine/WOLFIE_HEADERS.md",
-      "docs/specs/test_mapping.md"
+      "docs/doctrine/WOLFIE_HEADERS.md"
     ],
     "0": [
       "docs/doctrine/FLIP/FLP_CHANNEL_0.md",
@@ -215,8 +213,10 @@
   "files": [
     {
       "file_path_from_root": "docs/api/FLIP_API.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -225,15 +225,20 @@
     },
     {
       "file_path_from_root": "docs/doctrine/4.0.17_DIAGNOSTICS_AND_COMPATIBILITY.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.17",
       "modified_utc": "20260218000000"
     },
     {
       "file_path_from_root": "docs/doctrine/AGENT_BOUNDARIES_COMPACT.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -242,8 +247,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/AI_AGENT_BOOT_NOTES.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -252,8 +259,11 @@
     },
     {
       "file_path_from_root": "docs/doctrine/ANUBIS/ANUBIS_IMPLEMENTATION_SUMMARY.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260217153700",
       "mood_rgb": "00FF00",
@@ -261,29 +271,41 @@
     },
     {
       "file_path_from_root": "docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260217235900"
     },
     {
       "file_path_from_root": "docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260217235900"
     },
     {
       "file_path_from_root": "docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260217235900"
     },
     {
       "file_path_from_root": "docs/doctrine/ANUBIS/LILITH_ANUBIS_GUIDANCE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260217232500",
       "mood_rgb": "D2BEFA",
@@ -291,8 +313,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/ANUBIS/LILITH_ANUBIS_GUIDANCE_FLIP.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260217232500",
       "channel_id": 42,
@@ -301,8 +325,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -311,8 +337,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/channels/filesystem_padding_layer.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -321,8 +349,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/channels.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -331,8 +361,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/CLASS_CONVERSION_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -341,8 +373,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/COMPATIBILITY_MATRIX.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -351,8 +385,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/CONSOLIDATION_VALIDATION_REQUIREMENTS.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -361,8 +397,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/CRAFTY_SYNTAX_IMPORT_IMPLEMENTATION_CHECKLIST.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -371,8 +409,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -381,8 +421,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -391,8 +433,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -401,8 +445,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/actor_channel_roles.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -411,8 +457,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/actor_departments.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -421,8 +469,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/actor_reply_templates.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -431,8 +481,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/actors.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -441,8 +493,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/audit_log.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -451,8 +505,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/auth_users.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -461,8 +517,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/channels.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -471,8 +529,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/crafty_syntax_auto_invite.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -481,8 +541,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/crm_lead_messages.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -491,8 +553,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/crm_leads.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -501,8 +565,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/departments.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -511,8 +577,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/dialog_messages.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -521,8 +589,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/dialog_threads.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -531,8 +601,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/federation_nodes.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -541,8 +613,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/README.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -551,8 +625,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/database/sessions.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -561,8 +637,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -571,8 +649,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/DOCTRINE_FILE_STRUCTURE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -581,8 +661,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -591,8 +673,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -601,22 +685,30 @@
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLIP_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "00000000000000"
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260217230000"
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLP_CHANNEL_0.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 0,
@@ -625,8 +717,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLP_CHANNEL_42.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -635,8 +729,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLP_CHANNEL_51.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 51,
@@ -645,8 +741,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLP_CHANNEL_666.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 666,
@@ -655,78 +753,110 @@
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLP_COUNCILS_AS_CHANNELS.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "00000000000000"
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLP_DOCTRINE_BOUNDARIES.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "00000000000000"
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLP_EMOTIONAL_AGGREGATION.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "00000000000000"
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "00000000000000"
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLP_ESCROW_AND_FUND_LAYER.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "00000000000000"
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLP_HETERODOX_REVIEWERS.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "00000000000000"
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLP_LUPOPEDIA_COUNCIL_SEAT.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "00000000000000"
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/FLP_OVERVIEW.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "00000000000000"
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.17",
       "modified_utc": "00000000000000"
     },
     {
       "file_path_from_root": "docs/doctrine/FLIP/README.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "00000000000000"
     },
     {
       "file_path_from_root": "docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -735,8 +865,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/INDEX.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -745,8 +877,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/INSTALLATION_PATH_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260217232500",
       "channel_id": 0,
@@ -755,8 +889,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/LEXA_GATEWAY_INTEGRATION.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -765,8 +901,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -775,8 +913,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/LUPOPEDIA_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -785,8 +925,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/LUPOPEDIA_DOCTRINE_v1.1.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -795,8 +937,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/MASTER_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -805,15 +949,20 @@
     },
     {
       "file_path_from_root": "docs/doctrine/MIGRATION_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260217235900"
     },
     {
       "file_path_from_root": "docs/doctrine/MigrationAtlas.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -822,8 +971,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/crafty_syntax_ancestral_intent.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -832,8 +983,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/generated/README.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -842,8 +995,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_autoinvite_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -852,8 +1007,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_channels_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -862,8 +1019,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_config_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -872,8 +1031,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_departments_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -882,8 +1043,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_emailque_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -892,8 +1055,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_emails_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -902,8 +1067,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_identity_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -912,8 +1079,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_keywords_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -922,8 +1091,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_layerinvites_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -932,8 +1103,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_leads_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -942,8 +1115,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_leavemessage_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -952,8 +1127,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_messages_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -962,8 +1139,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_modules_dep_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -972,8 +1151,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_modules_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -982,8 +1163,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_operator_channels_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -992,8 +1175,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_operator_departments_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1002,8 +1187,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_operator_history_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1012,8 +1199,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_paths_firsts_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1022,8 +1211,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_qa_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1032,8 +1223,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_questions_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1042,8 +1235,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_quick_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1052,8 +1247,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_referers_daily_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1062,8 +1259,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_sessions_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1072,8 +1271,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_smilies_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1082,8 +1283,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_transcripts_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1092,8 +1295,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_users_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1102,8 +1307,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_visit_track_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1112,8 +1319,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/livehelp_websites_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1122,8 +1331,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1132,8 +1343,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/migrations/operator_to_roles_migration.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1142,8 +1355,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1152,8 +1367,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1162,8 +1379,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/REGISTRY_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260217232500",
       "channel_id": 42,
@@ -1172,8 +1391,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1182,8 +1403,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1192,8 +1415,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/TABLE_CONSOLIDATION_PLAN.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1202,8 +1427,10 @@
     },
     {
       "file_path_from_root": "docs/doctrine/VERSION_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
@@ -1212,33 +1439,25 @@
     },
     {
       "file_path_from_root": "docs/doctrine/VERSIONING_DOCTRINE.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing routing field: channel_id (or X-Lupo-Channel)",
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.21",
       "modified_utc": "20260220000000"
     },
     {
       "file_path_from_root": "docs/doctrine/WOLFIE_HEADERS.md",
-      "has_valid_header": true,
-      "errors": [],
+      "has_valid_header": false,
+      "errors": [
+        "Missing attribution: actor_id or actor_identity required for routing"
+      ],
       "version": "4.0.16",
       "modified_utc": "20260218000000",
       "channel_id": 42,
       "tags": "[\"lost\", \"orphan\", \"doctrine\"]",
       "mood_rgb": "FFDAB9"
-    },
-    {
-      "file_path_from_root": "docs/specs/test_mapping.md",
-      "has_valid_header": true,
-      "errors": [],
-      "version": "4.0.28",
-      "modified_utc": "20260222140000",
-      "channel_id": 42,
-      "actor_id": "2040",
-      "database_mappings": {
-        "X-LUPO-actors.actor_id": "2040",
-        "X-LUPO-contents.content_id": "99999"
-      }
     }
   ]
 }
