@@ -1,3 +1,13 @@
+---
+# FLIP Header (alias: Wolfie Header, CROP Header)
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: CHANGELOG.md
+file.last_modified_system_version: "4.0.30"
+file.last_modified_utc: "20260222214600"
+channel_id: 42
+actor_id: 10000
+---
+
 # Lupopedia Changelog
 
 Canonical version history.
