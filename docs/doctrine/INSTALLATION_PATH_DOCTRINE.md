@@ -7,6 +7,9 @@ file.last_modified_utc: "20260217232500"
 channel_id: 0   # System Kernel channel – foundational doctrine
 tags: ["installation", "path", "doctrine", "flip"]
 mood_rgb: "B0E0E6"
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
+X-Lupo-File-Path: docs/doctrine/INSTALLATION_PATH_DOCTRINE.md
 ---
 
 # Lupopedia Installation Path Doctrine

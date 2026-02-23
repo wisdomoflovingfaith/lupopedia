@@ -5,6 +5,10 @@ file_path_from_root: docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md
 file.last_modified_system_version: "4.0.17"
 file.last_modified_utc: "00000000000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
+X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
+X-Lupo-File-Path: docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md
 ---
 # NOTE: FLIP Header version and 3.x → 4.0.x merge
 

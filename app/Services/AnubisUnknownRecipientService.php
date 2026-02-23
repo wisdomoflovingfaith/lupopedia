@@ -51,7 +51,16 @@ class AnubisUnknownRecipientService
             ];
         }
         
-        // 3. Unknown → ANUBIS
+        // 3. Valid edge
+        if (isset($flipHeader['edge_id']) && $this->edgeExists($flipHeader['edge_id'])) {
+            return [
+                'type' => 'edge',
+                'id' => $flipHeader['edge_id'],
+                'reason' => 'valid_edge'
+            ];
+        }
+        
+        // 4. Unknown → ANUBIS
         return [
             'type' => 'actor',
             'id' => self::ANUBIS_ACTOR_ID,
@@ -83,6 +92,24 @@ class AnubisUnknownRecipientService
         $result = $this->executeAdoption($filePath, $flipHeader, $adoption, $logId);
         
         return $result;
+    }
+    
+    /**
+     * Check if an edge exists and is operational
+     * 
+     * @param int $edgeId Edge ID to check
+     * @return bool True if edge exists and is active
+     */
+    private function edgeExists($edgeId)
+    {
+        // For now, check if edge exists in lupo_contents
+        // Future: check dedicated lupo_edges table
+        $result = $this->db->fetch(
+            "SELECT edge_id FROM lupo_contents 
+             WHERE edge_id = :id AND is_deleted = 0",
+            ['id' => $edgeId]
+        );
+        return !empty($result);
     }
     
     /**

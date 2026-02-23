@@ -9,6 +9,9 @@ tags: ["lost", "orphan", "doctrine"]
 mood_rgb: "FFDAB9"
 atoms:
   recovery_event: true
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
+X-Lupo-File-Path: docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md
 ---
 
 # Import from Crafty Syntax — Troubleshooting

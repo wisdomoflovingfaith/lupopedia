@@ -61,6 +61,15 @@ class AuthService
             return false;
         }
 
+        // Hybrid Actor Security Gate (4.0.29 Centralization)
+        try {
+            if (class_exists('\HybridActorSecurityService')) {
+                \HybridActorSecurityService::assertActorOperational($user['actor_id'], 'session_validation');
+            }
+        } catch (\SecurityException $e) {
+            return false;
+        }
+
         $user['is_admin'] = $this->roleResolver->isAdmin((int) $user['actor_id']);
         return array(
             'actor_id' => (int) $user['actor_id'],

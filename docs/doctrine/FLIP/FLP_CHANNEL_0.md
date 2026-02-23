@@ -7,6 +7,9 @@ file.last_modified_utc: "20260218000000"
 channel_id: 0
 tags: ["channel", "kernel", "system", "flip"]
 mood_rgb: "FFFFFF"
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
+X-Lupo-File-Path: docs/doctrine/FLIP/FLP_CHANNEL_0.md
 ---
 # FLP — Channel 0 (System Kernel)
 

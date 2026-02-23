@@ -13,6 +13,10 @@ mood_rgb: "00FF00"
 tags: ["anubis", "orphan-adoption", "implementation-summary"]
 atoms:
   commit_hash: "b91afdc"
+X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
+X-Lupo-File-Path: docs/doctrine/ANUBIS/ANUBIS_IMPLEMENTATION_SUMMARY.md
 ---
 # ANUBIS Implementation Summary (Adopted from Orphan)
 

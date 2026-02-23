@@ -7,6 +7,9 @@ file.last_modified_utc: "20260217232500"
 channel_id: 42
 tags: ["registry", "unified", "doctrine", "flip"]
 mood_rgb: "98FB98"
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
+X-Lupo-File-Path: docs/doctrine/REGISTRY_DOCTRINE.md
 ---
 
 # Registry Doctrine (Identity and Global IDs)

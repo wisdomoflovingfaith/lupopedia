@@ -14,7 +14,8 @@ if (!defined('LUPOPEDIA_PATH')) {
  *
  * @return string CSRF token value
  */
-function lupo_get_csrf_token() {
+function lupo_get_csrf_token()
+{
     if (!isset($_SESSION['csrf_token']) || $_SESSION['csrf_token'] === '') {
         $raw = '';
         if (function_exists('openssl_random_pseudo_bytes')) {
@@ -36,7 +37,8 @@ function lupo_get_csrf_token() {
  * state-changing requests (create/update/delete). On failure sends 403 and exits.
  * Does not return on success; caller continues.
  */
-function lupo_require_valid_csrf_token() {
+function lupo_require_valid_csrf_token()
+{
     $submitted = isset($_POST['csrf_token']) ? (string) $_POST['csrf_token'] : (isset($_GET['csrf_token']) ? (string) $_GET['csrf_token'] : '');
     $session_token = isset($_SESSION['csrf_token']) ? (string) $_SESSION['csrf_token'] : '';
     $token_present = ($submitted !== '');
@@ -48,6 +50,20 @@ function lupo_require_valid_csrf_token() {
             $actor_id = (int) $cu['actor_id'];
         }
     }
+
+    // Hybrid Actor Security Gate (4.0.29 Centralization)
+    if ($actor_id > 0) {
+        try {
+            if (class_exists('HybridActorSecurityService')) {
+                HybridActorSecurityService::assertActorOperational($actor_id, 'csrf_validation');
+            }
+        } catch (SecurityException $e) {
+            header('HTTP/1.0 403 Forbidden');
+            echo 'Access denied: Non-operational actor.';
+            exit;
+        }
+    }
+
     if (defined('LUPOPEDIA_PATH') && file_exists(LUPOPEDIA_PATH . '/lupo-includes/functions/admin_diagnostics.php')) {
         require_once LUPOPEDIA_PATH . '/lupo-includes/functions/admin_diagnostics.php';
     }

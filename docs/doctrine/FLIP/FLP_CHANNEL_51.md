@@ -7,6 +7,9 @@ file.last_modified_utc: "20260218000000"
 channel_id: 51
 tags: ["channel", "doctrine-council", "flip"]
 mood_rgb: "DAA520"
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
+X-Lupo-File-Path: docs/doctrine/FLIP/FLP_CHANNEL_51.md
 ---
 # FLP — Channel 51 (Doctrine Council)
 

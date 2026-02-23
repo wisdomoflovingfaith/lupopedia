@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Auth\SessionHandler;
+use HybridActorSecurityService;
+use SecurityException;
 
 /**
  * Auth controller — plain PHP, PDO. No Laravel.
@@ -22,7 +24,7 @@ class AuthController
     /** @var SessionHandler */
     protected $sessionHandler;
 
-    public function __construct($db, SessionHandler $sessionHandler = null)
+    public function __construct($db, ?SessionHandler $sessionHandler = null)
     {
         $this->db = $db;
         $this->sessionHandler = $sessionHandler ?? new SessionHandler($db);
@@ -32,7 +34,7 @@ class AuthController
      * Unified login. $input: email, password. $requestInfo: ip, user_agent (optional).
      * Returns ['success' => bool, 'message' => string?, 'user_id' => ?, 'user_type' => ?, 'user_data' => ?, 'redirect' => ?].
      */
-    public function unifiedLogin(array $input, array $requestInfo = null): array
+    public function unifiedLogin(array $input, ?array $requestInfo = null): array
     {
         $email = $input['email'] ?? '';
         $password = $input['password'] ?? '';
@@ -75,13 +77,27 @@ class AuthController
     {
         $t = $this->db->quoteIdentifier(LUPO_TABLE_PREFIX . 'auth_users');
         $row = $this->db->fetchRow(
-            "SELECT auth_user_id, email, display_name, password_hash FROM $t WHERE email = :email AND is_active = 1 AND (is_deleted = 0 OR is_deleted IS NULL)",
+            "SELECT au.auth_user_id, au.email, au.display_name, au.password_hash, a.actor_id 
+             FROM $t au
+             JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'user'
+             WHERE au.email = :email AND au.is_active = 1 AND (au.is_deleted = 0 OR au.is_deleted IS NULL)",
             ['email' => $email]
         );
+
         if (!$row) {
             return ['success' => false, 'message' => 'User not found'];
         }
+
         if (password_verify($password, $row['password_hash'] ?? '')) {
+            // Hybrid Actor Security Gate (4.0.29 Centralization)
+            try {
+                if (class_exists('HybridActorSecurityService')) {
+                    HybridActorSecurityService::assertActorOperational($row['actor_id'], 'login_attempt');
+                }
+            } catch (SecurityException $e) {
+                return ['success' => false, 'message' => 'Access denied: Guest/Banned account.'];
+            }
+
             return [
                 'success' => true,
                 'user_id' => $row['auth_user_id'],
@@ -95,7 +111,7 @@ class AuthController
     /**
      * Unified logout. $sessionId from session_id(). Returns ['redirect' => url].
      */
-    public function unifiedLogout(string $sessionId = null): array
+    public function unifiedLogout(?string $sessionId = null): array
     {
         if ($sessionId === null && function_exists('session_id')) {
             $sessionId = session_id();
@@ -124,7 +140,7 @@ class AuthController
     /**
      * Get session info for JSON. Returns array with user_id, system_context, expires_ymdhis.
      */
-    public function getSessionInfo(string $sessionId = null): array
+    public function getSessionInfo(?string $sessionId = null): array
     {
         if ($sessionId === null && function_exists('session_id')) {
             $sessionId = session_id();
@@ -140,7 +156,7 @@ class AuthController
         ];
     }
 
-    public function validateSession(string $sessionId = null): array
+    public function validateSession(?string $sessionId = null): array
     {
         if ($sessionId === null && function_exists('session_id')) {
             $sessionId = session_id();

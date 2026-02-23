@@ -4,6 +4,10 @@ wolfie.headers: session and ban enforcement doctrine.
 file_path_from_root: docs/doctrine/SESSION_DOCTRINE.md
 file.last_modified_system_version: "4.0.17"
 file.last_modified_utc: "20260218000000"
+X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
+X-Lupo-File-Path: docs/doctrine/SESSION_DOCTRINE.md
 ---
 # Session Doctrine — Binding and Ban Enforcement (4.0.17)
 

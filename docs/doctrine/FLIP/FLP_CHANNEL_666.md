@@ -7,6 +7,9 @@ file.last_modified_utc: "20260218000000"
 channel_id: 666
 tags: ["channel", "quarantine", "forbidden", "anubis"]
 mood_rgb: "000000"
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
+X-Lupo-File-Path: docs/doctrine/FLIP/FLP_CHANNEL_666.md
 ---
 # FLP — Channel 666 (ANUBIS Quarantine)
 

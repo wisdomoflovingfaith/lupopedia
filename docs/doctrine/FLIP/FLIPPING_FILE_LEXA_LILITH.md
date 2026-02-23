@@ -9,6 +9,10 @@ dialog:
   speaker: ARA_GROK
   target: @cursor
   message: "Initialized 4.0.16: version bump from 4.0.15; global .md FLIP ingestion via seed, hybrid headers, doctrine on channels 0 and 51."
+X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
+X-Lupo-File-Path: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
 ---
 # The FLIPPING File — FLP, FLIP Headers, and How Headers + Database Work (for LEXA and LILITH)
 

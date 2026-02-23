@@ -5,6 +5,10 @@ file_path_from_root: docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260217235900"
 # channel_id unresolved — requires lupo_contents lookup by application.
+X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
+X-Lupo-Actor-ID: 2035
+X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
+X-Lupo-File-Path: docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md
 ---
 # ANUBIS Program Specification
 
