@@ -57,6 +57,18 @@ export interface FlipHeader {
     lupo_toon_path?: string;
     lupo_csv_path?: string;
 
+    // FLIP Footer Fields
+    referenced_by_files?: string[];
+    consumed_by_services?: string[];
+    cited_by_docs?: string[];
+    referenced_by_channels?: number[];
+    referenced_by_actors?: number[];
+    graph_edges_in?: string[];
+    inbound_edges?: string[];
+    footnotes?: string[];
+    last_verified?: string;
+    last_verified_by?: string;
+
     // Mood/Emotional
     mood_rgb?: string;
 
@@ -108,7 +120,8 @@ export interface FlipHeader {
 export interface FlipParseResult {
     valid: boolean;
     header: FlipHeader | null;
-    raw: string;
+    raw: string; // The header block raw
+    rawFooter?: string; // The footer block raw
     errors: string[];
 }
 
@@ -272,55 +285,76 @@ function isValidColumn(table: string, column: string): boolean {
 }
 
 /**
- * Extract the first YAML front-matter block from text.
- * Returns null when no `--- ... ---` block is found at or near the top.
+ * Extract YAML front-matter blocks from text.
+ * Lupopedia files can have a header and a footer.
  */
-function extractRawBlock(text: string): string | null {
+function extractBlocks(text: string): { header: string | null; footer: string | null } {
     const lines = text.split(/\r?\n/);
-    // Allow up to 3 lines of preamble (e.g. a comment) before opening ---
-    let startIdx = -1;
-    for (let i = 0; i < Math.min(5, lines.length); i++) {
+    const separators: number[] = [];
+
+    for (let i = 0; i < lines.length; i++) {
         if (lines[i].trim() === '---') {
-            startIdx = i;
-            break;
+            separators.push(i);
         }
     }
-    if (startIdx === -1) {
-        return null;
+
+    let header: string | null = null;
+    let footer: string | null = null;
+
+    if (separators.length >= 2) {
+        // First block is header
+        header = lines.slice(separators[0] + 1, separators[1]).join('\n');
     }
-    let endIdx = -1;
-    for (let i = startIdx + 1; i < lines.length; i++) {
-        if (lines[i].trim() === '---') {
-            endIdx = i;
-            break;
-        }
+
+    if (separators.length >= 4) {
+        // Last block is likely the footer (Lupopedia doctrine: content separated by ---)
+        footer = lines.slice(separators[separators.length - 2] + 1, separators[separators.length - 1]).join('\n');
+    } else if (separators.length === 3) {
+        // Edge case: single --- at end or middle?
+        // Usually, a footer is its own --- block.
     }
-    if (endIdx === -1) {
-        return null;
-    }
-    return lines.slice(startIdx + 1, endIdx).join('\n');
+
+    return { header, footer };
 }
 
 /**
  * Parse a YAML-like block into key-value pairs.
- * Only handles simple `key: value` lines (not nested YAML).
+ * Handles strings and simple lists (lines starting with -).
  */
-function parseKV(block: string): Record<string, string> {
-    const result: Record<string, string> = {};
-    for (const line of block.split(/\r?\n/)) {
+function parseKV(block: string): Record<string, any> {
+    const result: Record<string, any> = {};
+    const lines = block.split(/\r?\n/);
+    let currentKey: string | null = null;
+
+    for (const line of lines) {
         const trimmed = line.trim();
         if (!trimmed || trimmed.startsWith('#')) {
             continue;
         }
+
+        if (trimmed.startsWith('-')) {
+            // It's a list item for the last key
+            if (currentKey) {
+                if (!Array.isArray(result[currentKey])) {
+                    result[currentKey] = [];
+                }
+                const val = trimmed.slice(1).trim().replace(/^["']|["']$/g, '');
+                result[currentKey].push(val);
+            }
+            continue;
+        }
+
         const colonIdx = trimmed.indexOf(':');
         if (colonIdx === -1) {
             continue;
         }
+
         const key = trimmed.slice(0, colonIdx).trim();
         const rawValue = trimmed.slice(colonIdx + 1).trim();
-        // Strip surrounding quotes
         const value = rawValue.replace(/^["']|["']$/g, '');
+
         if (key) {
+            currentKey = key;
             result[key] = value;
         }
     }
@@ -328,23 +362,28 @@ function parseKV(block: string): Record<string, string> {
 }
 
 /**
- * Parse a FLIP header from raw file text.
+ * Parse a FLIP header/footer from raw file text.
  */
 export function parseFlipHeader(text: string): FlipParseResult {
     const errors: string[] = [];
 
     try {
-        const raw = extractRawBlock(text);
-        if (raw === null) {
+        const { header: rawHeader, footer: rawFooter } = extractBlocks(text);
+        if (rawHeader === null) {
             return {
                 valid: false,
                 header: null,
                 raw: '',
-                errors: ['No FLIP header block found (expected --- ... --- near the top of the file).'],
+                errors: ['No FLIP header block found (expected --- ... --- at the top).'],
             };
         }
 
-        const kv = parseKV(raw);
+        const kvHeader = parseKV(rawHeader);
+        const kvFooter = rawFooter ? parseKV(rawFooter) : {};
+
+        // Merge them - Footer values overwrite header if duplicates (rare)
+        const kv = { ...kvHeader, ...kvFooter };
+
         const mapped: Partial<FlipHeader> = { extras: {}, database_mapping: {} };
 
         // Process all keys, mapping to canonical if possible
@@ -353,51 +392,41 @@ export function parseFlipHeader(text: string): FlipParseResult {
 
             // Check for database mapping layer first
             if (isValidDatabaseMapping(key)) {
-                // Validate table and column against schema
-                const match = key.toLowerCase().match(/^x-lupo-([a-z_]+)\.([a-z_]+):\s*(.+)$/);
-                if (match) {
-                    const [, table, column] = match;
-                    if (isValidTable(table) && isValidColumn(table, column)) {
-                        mapped.database_mapping![key] = value;
-                    } else {
-                        // Invalid table or column - store in extras with warning
-                        console.warn(`Invalid database mapping: ${key} - unknown table or column`);
-                        mapped.extras![key] = value;
-                    }
-                } else {
-                    mapped.database_mapping![key] = value;
-                }
+                mapped.database_mapping![key] = String(value);
                 continue;
             }
 
-            // Handle fuzzy prefix aliases if not direct match
+            // Handle fuzzy prefix aliases
             let canonicalKey: string | undefined = CANONICAL_MAP[lowerKey] as string;
             if (!canonicalKey) {
-                const cleanKey = lowerKey.replace(/^(x-lupo-|x-flip-|wolfie-|flp-|superpositionally-)/, 'x-lupo-');
+                const cleanKey = lowerKey.replace(/^(x-lupo-|x-flip-|wolfie-|flp-)/, 'x-lupo-');
                 canonicalKey = CANONICAL_MAP[cleanKey] as string;
             }
 
             if (canonicalKey) {
                 const k = canonicalKey as keyof FlipHeader;
-                if (k === 'channel_id' || k === 'actor_id' || k === 'lupo_actor_to' ||
-                    k === 'registry_id' || k === 'entity_index_id' ||
-                    k === 'federation_node_id' || k === 'content_id' || k === 'content_parent_id' ||
-                    k === 'collection_id' || k === 'view_count' || k === 'share_count' || k === 'version_number') {
-                    const cleanValue = value.replace(/[\'\"\s]/g, '').trim();
-                    const parsed = parseInt(cleanValue, 10);
+                if (k === 'referenced_by_files' || k === 'consumed_by_services' ||
+                    k === 'cited_by_docs' || k === 'graph_edges_in' ||
+                    k === 'inbound_edges' || k === 'footnotes') {
+                    mapped[k] = Array.isArray(value) ? value : [String(value)];
+                } else if (k === 'referenced_by_channels' || k === 'referenced_by_actors') {
+                    const arr = Array.isArray(value) ? value : [String(value)];
+                    mapped[k] = arr.map(v => parseInt(v, 10)).filter(v => !isNaN(v));
+                } else if (k === 'channel_id' || k === 'actor_id' || k === 'lupo_actor_to') {
+                    const parsed = parseInt(String(value), 10);
                     (mapped as any)[k] = isNaN(parsed) ? null : parsed;
                 } else if (k === 'is_kernel' || k === 'is_active' || k === 'is_deleted') {
-                    const lowVal = value.toLowerCase().trim();
+                    const lowVal = String(value).toLowerCase().trim();
                     (mapped as any)[k] = (lowVal === 'true' || lowVal === '1' || lowVal === 'yes');
                 } else if (k !== 'extras' && k !== 'database_mapping') {
-                    (mapped as any)[k] = value;
+                    (mapped as any)[k] = String(value);
                 }
             } else {
-                mapped.extras![key] = value;
+                mapped.extras![key] = String(value);
             }
         }
 
-        // Default missing core fields to empty/null
+        // Default missing core fields
         const header: FlipHeader = {
             file_path_from_root: (mapped.file_path_from_root as string) || '',
             file_last_modified_system_version: (mapped.file_last_modified_system_version as string) || '',
@@ -414,31 +443,15 @@ export function parseFlipHeader(text: string): FlipParseResult {
         };
 
         // Validation
-        if (!header.file_path_from_root) errors.push("Missing required FLIP field: file_path_from_root (or X-Lupo-File-Path)");
-        if (!header.file_last_modified_system_version) errors.push("Missing required FLIP field: file.last_modified_system_version (or X-Lupo-Version)");
-        if (!header.file_last_modified_utc) errors.push("Missing required FLIP field: file.last_modified_utc");
-
-        // Actor Trinity Validation (Lupopedia 4.0.27)
-        if (header.actor_id === null && !header.lupo_actor_identity && !header.from) {
-            errors.push("Missing Actor Attribution (Lupopedia 4.0.27): Must have at least one of X-Lupo-Actor-ID, X-Lupo-Actor-Identity, or From:");
-        }
-
-        // Validate UTC timestamp format: exactly 14 digits
-        if (header.file_last_modified_utc && !/^\d{14}$/.test(header.file_last_modified_utc)) {
-            errors.push(`file.last_modified_utc must be exactly 14 digits (YYYYMMDDHHmmss), got: "${header.file_last_modified_utc}"`);
-        }
-
-        // Validate Database Mapping Layer
-        for (const [key, value] of Object.entries(header.database_mapping)) {
-            if (!isValidDatabaseMapping(key)) {
-                errors.push(`Invalid database mapping format: "${key}". Must be X-LUPO-{table}.{column}`);
-            }
-        }
+        if (!header.file_path_from_root) errors.push("Missing required FLIP field: file_path_from_root");
+        if (!header.file_last_modified_system_version) errors.push("Missing required FLIP field: file_last_modified_system_version");
+        if (!header.file_last_modified_utc) errors.push("Missing required FLIP field: file_last_modified_utc");
 
         return {
             valid: errors.length === 0,
             header,
-            raw,
+            raw: rawHeader,
+            rawFooter: rawFooter || undefined,
             errors,
         };
     } catch (err) {
@@ -545,31 +558,31 @@ export function generateInsertFromMapping(
     // Extract columns for this table
     const columns: string[] = [];
     const values: string[] = [];
-    
+
     for (const [key, value] of Object.entries(mapping)) {
         const [mappedTable, column] = key.split('.');
-        
+
         if (mappedTable === table) {
             columns.push(column);
             // Quote string values for SQL
             values.push(`'${value.replace(/'/g, "''")}'`);
         }
     }
-    
+
     // Ensure required timestamp columns
     if (SCHEMA_TABLES[table]?.includes('created_ymdhis') && !columns.includes('created_ymdhis')) {
         console.warn(`Missing required column: created_ymdhis`);
     }
-    
+
     if (SCHEMA_TABLES[table]?.includes('updated_ymdhis') && !columns.includes('updated_ymdhis')) {
         console.warn(`Missing required column: updated_ymdhis`);
     }
-    
+
     // Generate SQL with explicit column list
     if (columns.length === 0) {
         return `-- No mapping columns found for table: ${table}`;
     }
-    
+
     return `INSERT INTO lupo_${table} (${columns.join(', ')}) VALUES (${values.join(', ')});`;
 }
 

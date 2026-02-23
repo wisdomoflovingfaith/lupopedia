@@ -194,7 +194,7 @@ export async function lookupKnownActors(
 
 async function lookupKnownActorsApi(apiBaseUrl: string): Promise<ActorIdentity[]> {
     const resolved: ActorIdentity[] = [];
-    
+
     for (const { name, type } of KNOWN_EXTERNAL_ACTORS) {
         try {
             const identity = await lookupActor(apiBaseUrl, name, type);
@@ -213,7 +213,9 @@ async function lookupKnownActorsApi(apiBaseUrl: string): Promise<ActorIdentity[]
     return resolved;
 }
 
-// ── Local TOON file fallback ─────────────────────────────────────────────────
+import { parseFlipHeader } from './flip';
+
+// ... (previous interfaces)
 
 interface ToonAgent {
     agent_id?: number;
@@ -223,45 +225,62 @@ interface ToonAgent {
     [key: string]: unknown;
 }
 
+async function extractAgentsFromInventoryMD(workspaceRoot: string): Promise<ActorIdentity[]> {
+    const inventoryPath = path.join(workspaceRoot, 'docs', 'AGENT_INVENTORY.md');
+    if (!fs.existsSync(inventoryPath)) { return []; }
+
+    const raw = fs.readFileSync(inventoryPath, 'utf-8');
+    const agents: ActorIdentity[] = [];
+
+    // Simple regex for table rows: | 1001 | KIRO | ... |
+    const rowRegex = /^\|\s*(\d+)\s*\|\s*([^|]+)\s*\|\s*([^|]+)\s*\|/gm;
+    let match;
+    while ((match = rowRegex.exec(raw)) !== null) {
+        const id = parseInt(match[1], 10);
+        const name = match[2].trim();
+        const type = match[3].trim();
+        if (!isNaN(id) && name && !name.toLowerCase().includes('actor')) {
+            agents.push({ actor_id: id, actor_name: name, actor_type: type });
+        }
+    }
+    return agents;
+}
+
 async function lookupKnownActorsLocal(): Promise<ActorIdentity[]> {
     const folders = vscode.workspace.workspaceFolders;
     if (!folders || folders.length === 0) { return []; }
+    const root = folders[0].uri.fsPath;
 
-    const toonPath = path.join(
-        folders[0].uri.fsPath,
-        'docs', 'toons', 'lupo_agents.toon.json'
-    );
+    const resolved: ActorIdentity[] = [];
 
-    if (!fs.existsSync(toonPath)) { return []; }
-
+    // 1. Try AGENT_INVENTORY.md (New Doctrine)
     try {
-        const raw = fs.readFileSync(toonPath, 'utf-8');
-        const parsed = JSON.parse(raw) as { data?: ToonAgent[] };
-        if (!parsed.data) { return []; }
+        const mdAgents = await extractAgentsFromInventoryMD(root);
+        resolved.push(...mdAgents);
+    } catch { }
 
-        const knownNames = new Set(KNOWN_EXTERNAL_ACTORS.map((a) => a.name));
-        const resolved: ActorIdentity[] = [];
-
-        for (const agent of parsed.data) {
-            if (
-                agent.agent_name &&
-                knownNames.has(agent.agent_name) &&
-                agent.agent_id !== null &&
-                agent.agent_id !== undefined
-            ) {
-                resolved.push({
-                    actor_id: agent.agent_id,
-                    actor_name: agent.agent_name,
-                    actor_type: 'external_ai',
-                });
+    // 2. Try TOON file (Legacy Fallback)
+    const toonPath = path.join(root, 'docs', 'toons', 'lupo_agents.toon.json');
+    if (fs.existsSync(toonPath)) {
+        try {
+            const raw = fs.readFileSync(toonPath, 'utf-8');
+            const parsed = JSON.parse(raw) as { data?: ToonAgent[] };
+            if (parsed.data) {
+                for (const agent of parsed.data) {
+                    if (agent.agent_name && agent.agent_id && !resolved.some(a => a.actor_id === agent.agent_id)) {
+                        resolved.push({
+                            actor_id: agent.agent_id,
+                            actor_name: agent.agent_name,
+                            actor_type: agent.archetype || 'system_tool',
+                        });
+                    }
+                }
             }
-        }
-
-        if (resolved.length > 0) {
-            await mergeActorCache(resolved);
-        }
-        return resolved;
-    } catch {
-        return [];
+        } catch { }
     }
+
+    if (resolved.length > 0) {
+        await mergeActorCache(resolved);
+    }
+    return resolved;
 }

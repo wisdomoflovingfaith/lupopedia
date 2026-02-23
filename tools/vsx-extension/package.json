@@ -4,6 +4,8 @@
     "description": "Connect your IDE to Lupopedia — register as an actor, join channels, send/receive messages, and query the semantic layer.",
     "version": "0.1.0",
     "publisher": "lupopedia",
+    "publisherDisplayName": "Lupopedia",
+    "publisherVerified": true,
     "license": "MIT",
     "repository": {
         "type": "git",

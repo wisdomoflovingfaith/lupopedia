@@ -14,11 +14,11 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.0.34"
+version: "4.0.35"
 last_updated: 20260223
-# VERSION 4.0.34 - System Alignment Complete
-# Timestamp migration, identity normalization, registry alignment complete
-release_note: "System alignment complete. Metadata infrastructure normalized."
+# VERSION 4.0.35 - Development Cycle Initiated
+# Registry consolidation, agent detection automation, VX extension integration
+release_note: "Version 4.0.35 development cycle initiated. Focus on registry consolidation and automation."
 
 # Author Information
 authors:
@@ -40,10 +40,10 @@ project:
 
 # Version Information
 versions:
-  lupopedia: "4.0.34"
-  crafty_syntax: "4.0.34"
-  wolfie_headers: "4.0.34"
-  schema: "4.0.34"
+  lupopedia: "4.0.35"
+  crafty_syntax: "4.0.35"
+  wolfie_headers: "4.0.35"
+  schema: "4.0.35"
 
 # Common Metadata
 metadata:
@@ -78,8 +78,8 @@ timestamp:
 # Global Atoms (Single Source of Truth for WOLFIE Headers)
 
 # Current Lupopedia Version (Use this in all WOLFIE headers instead of hardcoding)
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.34"
-# System alignment complete - metadata infrastructure normalized
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.35"
+# Version 4.0.35 development cycle initiated
 
 # Current Authors (Use in WOLFIE headers)
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie (lupopedia-at-gmail-com)"

@@ -218,12 +218,60 @@ export async function joinChannel(
     );
 }
 
-// ── Local filesystem helpers ──────────────────────────────────────────────────
+// ... (previous imports)
+import { parseFlipHeader } from './flip';
+
+export async function discoverChannelsLocal(): Promise<number[]> {
+    const folders = vscode.workspace.workspaceFolders;
+    if (!folders || folders.length === 0) { return []; }
+    const root = folders[0].uri.fsPath;
+
+    const channels = new Set<number>();
+
+    // Discover from messages/ directory
+    const msgDir = path.join(root, 'messages');
+    if (fs.existsSync(msgDir)) {
+        const files = fs.readdirSync(msgDir);
+        for (const file of files) {
+            const match = /channel_(\d+)\.md/.exec(file);
+            if (match) {
+                channels.add(parseInt(match[1], 10));
+            }
+        }
+    }
+
+    // Discover from docs/channels/ directory
+    const docsChanDir = path.join(root, 'docs', 'channels');
+    if (fs.existsSync(docsChanDir)) {
+        const subdirs = fs.readdirSync(docsChanDir);
+        for (const dir of subdirs) {
+            const id = parseInt(dir, 10);
+            if (!isNaN(id)) {
+                channels.add(id);
+            }
+        }
+    }
+
+    return Array.from(channels);
+}
 
 function localChannelPath(channelId: number): string | null {
     const folders = vscode.workspace.workspaceFolders;
     if (!folders || folders.length === 0) { return null; }
-    return path.join(folders[0].uri.fsPath, 'messages', `channel_${channelId}.md`);
+    const root = folders[0].uri.fsPath;
+
+    // Check paths in order of doctrine priority
+    const paths = [
+        path.join(root, 'messages', `channel_${channelId}.md`),
+        path.join(root, 'docs', 'channels', String(channelId), 'index.md'),
+        path.join(root, 'channels', String(channelId), 'thread.md'),
+    ];
+
+    for (const p of paths) {
+        if (fs.existsSync(p)) { return p; }
+    }
+
+    return paths[0]; // Default for new files
 }
 
 function ensureLocalFile(filePath: string): void {

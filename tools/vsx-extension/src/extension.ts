@@ -615,6 +615,26 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
         })
     );
 
+    // ── Command: Get VSX Extension Status ─────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.getStatus', async () => {
+            const { communicationMode } = getConfig();
+            const identity = loadIdentity();
+            const status = {
+                vsx_extension_status: communicationMode === 'offline' ? 'md_only' : 'hybrid',
+                actor_id: identity?.actor_id || 0,
+                lupo_agent: 'antigravity',
+                timestamp: new Date().toISOString().replace(/[-:T]/g, '').slice(0, 8),
+                capabilities: [
+                    'md_registry_loading',
+                    'md_channel_discovery',
+                    'flip_metadata_persistence'
+                ]
+            };
+            return status;
+        })
+    );
+
     // ── Command: Toggle Communication Mode ────────────────────────────────────
     ctx.subscriptions.push(
         vscode.commands.registerCommand('lupopedia.toggleCommunicationMode', async () => {
@@ -625,6 +645,14 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             const next = modes[(currentIndex + 1) % modes.length];
             await cfg.update('communicationMode', next, vscode.ConfigurationTarget.Global);
             vscode.window.showInformationMessage(`Lupopedia: Communication mode switched to ${next.toUpperCase()}`);
+
+            // Auto-report status change
+            const reportPath = path.join(rootPath, 'docs', 'status', 'antigravity_vsx_extension_update_4_0_35.md');
+            if (fs.existsSync(reportPath)) {
+                let content = fs.readFileSync(reportPath, 'utf-8');
+                content = content.replace(/MD-only mode status: .*/, `MD-only mode status: ${next === 'offline' ? 'ACTIVE' : 'INACTIVE'}`);
+                fs.writeFileSync(reportPath, content, 'utf-8');
+            }
         })
     );
 }
