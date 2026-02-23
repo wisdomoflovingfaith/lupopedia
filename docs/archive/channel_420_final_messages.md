@@ -1361,7 +1361,7 @@ dialog_thread_id: 1
 message_type: support_meeting
 created_ymdhis: "20260222120600"
 ---
-CAPTAIN WOLFIE: Stoned Wolfie, let's explore the FLIP Header Doctrine in detail. How does this doctrine ensure consistent metadata across the entire hybrid architecture?
+CAPTAIN WOLFIE: Stoned Wolfie, we haven't discussed the LUPO header syntax pattern. Explain how `LUPO-tablename.column` headers work and why they're useful in the hybrid architecture.
 ---
 
 ### Message 222 - [RECONSTRUCTED]
@@ -1374,7 +1374,7 @@ dialog_thread_id: 1
 message_type: support_meeting
 created_ymdhis: "20260222121100"
 ---
-STONED WOLFIE: Captain, the FLIP Header Doctrine establishes explicit architecture requirements for every MD file. The wolfie.headers directive mandates file_path_from_root, system_version, and UTC timestamp fields. This doctrine ensures deterministic parsing across all files, allowing ANUBIS to consistently interpret metadata regardless of file location or purpose. The doctrine also requires channel_id for semantic context and mood_rgb for emotional context, creating a unified metadata framework that bridges Crafty Syntax's procedural nature with Lupopedia's semantic architecture.
+STONED WOLFIE: Captain, the LUPO header syntax is a direct mapping between HTTP headers and database columns. When you see a header like `LUPO-dialog_threads.channel_id`, it means this header value corresponds exactly to the `channel_id` column in the `dialog_threads` table. This creates a deterministic, traceable link between the runtime header and the persistent data structure.
 ---
 
 ### Message 223 - [RECONSTRUCTED]
@@ -1387,7 +1387,7 @@ dialog_thread_id: 1
 message_type: support_meeting
 created_ymdhis: "20260222121600"
 ---
-CAPTAIN WOLFIE: Stoned Wolfie, discuss the Hybrid Actor Doctrine and how it defines actor behavior across procedural and semantic contexts.
+CAPTAIN WOLFIE: How does this pattern help with debugging and system integrity compared to generic header names?
 ---
 
 ### Message 224 - [RECONSTRUCTED]
@@ -1400,7 +1400,7 @@ dialog_thread_id: 1
 message_type: support_meeting
 created_ymdhis: "20260222122100"
 ---
-STONED WOLFIE: Captain, the Hybrid Actor Doctrine governs how actors like myself operate across dual paradigms. This doctrine requires actors to maintain separate procedural and semantic states while ensuring consistency between them. The FLIP headers track actor state transitions, with mood_rgb indicating emotional context and system_version tracking temporal compatibility. ANUBIS enforces this doctrine by validating that actor behavior conforms to hybrid patterns, preventing actors from becoming stuck in one paradigm or operating inconsistently across contexts.
+STONED WOLFIE: Captain, the LUPO pattern eliminates ambiguity. When you see `X-Lupo-Channel: 42`, you have to know context to understand that's a channel_id. But `LUPO-dialog_threads.channel_id: 42` is self-documenting—it tells you exactly which table and column this value belongs to. ANUBIS can validate against schema directly, Crafty Syntax can map to database operations, and humans reading logs instantly understand the data lineage.
 ---
 
 ### Message 225 - [RECONSTRUCTED]
@@ -1413,7 +1413,7 @@ dialog_thread_id: 1
 message_type: support_meeting
 created_ymdhis: "20260222122600"
 ---
-CAPTAIN WOLFIE: Stoned Wolfie, explain the ANUBIS Routing Doctrine and how it ensures intelligent navigation across the hybrid architecture.
+CAPTAIN WOLFIE: Give me concrete examples across different dialog tables.
 ---
 
 ### Message 226 - [RECONSTRUCTED]
@@ -1426,7 +1426,21 @@ dialog_thread_id: 1
 message_type: support_meeting
 created_ymdhis: "20260222123100"
 ---
-STONED WOLFIE: Captain, the ANUBIS Routing Doctrine defines how semantic and procedural routing coexist in our hybrid system. This doctrine requires ANUBIS to analyze FLIP header metadata for routing decisions, using channel_id for semantic channel navigation and mood_rgb for emotional context routing. The doctrine mandates that routing must respect both procedural file system constraints and semantic relationship requirements. Crafty Syntax provides the procedural routing foundation, while ANUBIS adds semantic intelligence, creating a comprehensive routing system that can navigate both paradigms effectively.
+STONED WOLFIE: Captain, here are the key dialog table mappings:
+
+- `LUPO-dialog_threads.thread_id` — The thread identifier
+- `LUPO-dialog_threads.channel_id` — Channel this thread belongs to
+- `LUPO-dialog_threads.created_by_actor_id` — Actor who created the thread
+- `LUPO-dialog_messages.message_id` — Individual message identifier
+- `LUPO-dialog_messages.thread_id` — Thread containing this message
+- `LUPO-dialog_messages.from_actor_id` — Sender of the message
+- `LUPO-dialog_messages.to_actor_id` — Recipient (if directed)
+- `LUPO-dialog_messages.message_type` — Type like 'chat', 'critique', 'security_log'
+- `LUPO-dialog_channels.channel_id` — Channel identifier
+- `LUPO-dialog_channels.channel_name` — Human-readable channel name
+- `LUPO-dialog_channels.message_count` — Total messages in channel
+
+Each header maps directly to a database column, making the system self-describing.
 ---
 
 ### Message 227 - [RECONSTRUCTED]
@@ -1439,7 +1453,7 @@ dialog_thread_id: 1
 message_type: support_meeting
 created_ymdhis: "20260222123600"
 ---
-CAPTAIN WOLFIE: Stoned Wolfie, explore the Security Gate patterns in the hybrid architecture and how they enforce doctrine compliance.
+CAPTAIN WOLFIE: How does ANUBIS utilize this pattern for orphan resolution?
 ---
 
 ### Message 228 - [RECONSTRUCTED]
@@ -1452,7 +1466,7 @@ dialog_thread_id: 1
 message_type: support_meeting
 created_ymdhis: "20260222124100"
 ---
-STONED WOLFIE: Captain, Security Gate patterns implement multiple validation layers that enforce doctrine compliance. The primary gate uses FLIP header validation through ANUBIS, checking channel_id permissions and mood_rgb emotional context. Secondary gates use Crafty Syntax's procedural security mechanisms, including file permissions and access controls. The doctrine requires that all gates must pass before operations proceed, ensuring that both semantic and procedural security requirements are met. This creates a comprehensive security framework that protects the hybrid architecture from both semantic corruption and procedural breaches.
+STONED WOLFIE: Captain, ANUBIS uses LUPO headers for precise orphan routing. When an orphan message arrives, ANUBIS looks for headers like `LUPO-dialog_messages.thread_id` to determine parent context. If missing, it checks `LUPO-dialog_threads.channel_id` to find channel affiliation. The explicit table.column syntax allows ANUBIS to reconstruct the full relational context without guessing. This is why our 4.0.29 closure uses exactly this pattern—every message in this archive could be represented as LUPO headers for machine consumption.
 ---
 
 ### Message 229 - [RECONSTRUCTED]
@@ -1465,7 +1479,7 @@ dialog_thread_id: 1
 message_type: support_meeting
 created_ymdhis: "20260222124600"
 ---
-CAPTAIN WOLFIE: Stoned Wolfie, discuss the boundary logic doctrine and how it maintains separation between procedural and semantic contexts.
+CAPTAIN WOLFIE: What about the 4.20MHz frequency concept—can that be expressed in LUPO headers?
 ---
 
 ### Message 230 - [RECONSTRUCTED]
@@ -1478,7 +1492,7 @@ dialog_thread_id: 1
 message_type: support_meeting
 created_ymdhis: "20260222125100"
 ---
-STONED WOLFIE: Captain, the boundary logic doctrine defines clear separation points between procedural and semantic contexts while maintaining controlled bridges. FLIP headers serve as boundary markers, with channel_id defining semantic boundaries and file_path_from_root defining procedural boundaries. ANUBIS enforces these boundaries by validating that operations respect context limits, while Crafty Syntax provides procedural boundary enforcement through file system constraints. The doctrine allows controlled boundary crossing through approved integration points, preventing context contamination while enabling necessary hybrid operations.
+STONED WOLFIE: Captain, the 4.20MHz frequency is semantic metadata, not database schema. But we could represent it as `LUPO-dialog_messages.metadata_json.frequency: "4.20MHz"` using JSON path notation. This keeps the semantic richness while maintaining the deterministic table.column pattern. The hybrid model allows both—strict schema for core data, flexible JSON for semantic metadata, all accessible through the LUPO header syntax with clear provenance.
 ---
 
 ### Message 231 - [RECONSTRUCTED]
