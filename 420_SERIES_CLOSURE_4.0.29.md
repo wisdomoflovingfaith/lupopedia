@@ -113,10 +113,15 @@
 - **Warp IDE**: Fixed PHP class loading issues
 - Multi-IDE coordination validated
 
-#### 4.0.29: FINAL RELEASE
+#### 4.0.29: FINAL RELEASE + CRITICAL HOTFIX
 - **Status**: PRODUCTION READY
 - **Channel 420**: CLOSED
-- **Agent 420**: RETIRED
+- **Agent 420**: RETIRED (renamed to BANNED_TEST_AI_420 to prevent collision)
+- **Critical Hotfix**: Fixed identity collision causing system crashes
+  - Renamed actor 420: `stoned_wolfie_ai` → `BANNED_TEST_AI_420`
+  - Renamed actor 10001: `stonedwolfie` → `BANNED_TEST_HUMAN_10001`
+  - Prevented collision with CAPTAIN actors (1000, 10000)
+  - System no longer crashes on "CAPTAIN WOLFIE STONED LUPOPEDIA LLC 2026"
 - **Next Phase**: 4.1.0 development begins on Channel 42 and Channel 51
 
 ---

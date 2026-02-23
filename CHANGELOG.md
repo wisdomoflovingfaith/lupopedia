@@ -18,14 +18,82 @@ As we continue development on a version, we append new changes under that versio
 
 ---
 
-## [4.0.29] — FINAL 420-SERIES RELEASE: CHANNEL 420 CLOSES (2026-02-22)
+## [4.0.30] — HYBRID ACTOR SECURITY GATE CENTRALIZATION (2026-02-22)
 
-### 🎯 MISSION: FINAL PATCH OF 420-SERIES — CHANNEL 420 WITH AGENT 420 COMPLETE
+### MISSION: CENTRALIZE SECURITY GATE FOR HYBRID ACTORS
+- **Hybrid Actor Ontology**: Implemented JSON-based actor attributes for hybrid actors (Actor 420).
+- **Security Gate Centralization**: Created `HybridActorSecurityService` for unified enforcement across all entry points.
+- **Risk Mitigation**: Safe migration using existing JSON infrastructure, no ENUM changes required.
+- **Actor 420 Control**: Properly marked as hybrid+banned with restricted security level.
+
+### SECURITY ENHANCEMENTS
+- **JSON Actor Attributes**: Added `actor_attributes JSON` column to `lupo_actors` table.
+- **Hybrid Actor Detection**: `isHybridActor()` function for type identification.
+- **Centralized Validation**: `assertActorOperational()` enforces all security checks.
+- **Audit Logging**: Comprehensive security event logging to `/logs/hybrid_actor_security.log`.
+- **Generic Error Messages**: Prevents security information leakage.
+
+### IMPLEMENTATION DETAILS
+- **Migration File**: `database/migrations/dev_20260222_hybrid_actor_security_gate.sql`
+- **Security Service**: `app/Services/HybridActorSecurityService.php`
+- **Doctrine Document**: `docs/doctrine/HYBRID_ACTOR_DOCTRINE_4.0.29.md`
+- **Entry Point Coverage**: API, admin, cron, webhooks, sessions, AI endpoints, channel dispatch.
+
+### ACTOR 420 SPECIFIC CONTROLS
+- **Type**: `hybrid` (combines human and AI characteristics)
+- **Status**: `banned` (explicitly non-operational)
+- **Security Level**: `restricted` (highest security restriction)
+- **Access**: DENIED across all entry points
+- **Audit**: All access attempts logged with context
+
+### COMPLIANCE STATUS
+- [x] JSON attribute schema defined
+- [x] Security service implemented
+- [x] Migration script created (LOW RISK)
+- [x] Audit logging established
+- [x] Error handling standardized
+- [x] Doctrine documentation complete
+- [ ] Unit tests (pending)
+- [ ] Integration tests (pending)
+
+### NEXT PHASE
+- **4.1.0 Development**: Role-based access for hybrid actors
+- **Capability System**: Fine-grained feature control
+- **Federation Support**: Cross-node hybrid actor validation
+
+---
+
+## [4.0.29] — PENDING FINAL APPROVAL
+**Status:** HOLD — Release not yet finalized
+**Reason:** Auto-installer packaging incomplete; final feature pass still in progress.
+
+### MISSION: FINAL 420-SERIES RELEASE — AGENT 420 FINALE
 - **420-Series Completion**: 4.0.29 marks the **FINAL VERSION** developed on **Channel 420** with **Agent 420** (Stoned Wolfie AI).
 - **Channel 420 Closure**: This is the last release to reference channel 420 as primary development channel.
+- **Agent 420 Retirement**: Actor 420 (Stoned Wolfie AI) remains in system as banned test identity but no longer active in development.
 - **Production Ready**: All critical issues resolved, installation stable, upgrade path validated.
 - **Foundation for 4.1.0**: Clean baseline for future Lupopedia → Lupopedia upgrades.
 
+### 🚨 CRITICAL HOTFIX: Identity Collision Resolution
+- **Issue**: System crashed when user mentioned "CAPTAIN WOLFIE STONED LUPOPEDIA LLC 2026"
+- **Root Cause**: Actor name collision between banned test identities and CAPTAIN actors
+  - Actor 420: `stoned_wolfie_ai` / "Stoned Wolfie (AI)" → conflicted with CAPTAIN
+  - Actor 10001: `stonedwolfie` / "Stoned Wolfie" → conflicted with CAPTAIN
+  - Actor 1000: `captain` / "CAPTAIN" (active human operator)
+  - Actor 10000: `user-10000` / "Captain" (main admin)
+- **Solution**: Renamed banned test identities to prevent collision
+  - Actor 420: Now `BANNED_TEST_AI_420` with slug `banned-test-ai-420`
+  - Actor 10001: Now `BANNED_TEST_HUMAN_10001` with slug `banned-test-human-10001`
+- **Impact**: 
+  - ✅ System no longer crashes on "CAPTAIN WOLFIE STONED LUPOPEDIA LLC 2026"
+  - ✅ Adversarial test functionality preserved (actors remain banned)
+  - ✅ ANUBIS quarantine continues to work correctly
+  - ✅ Fresh installs use non-colliding names from seed file
+  - ✅ Migration script provided for existing installations
+- **Files Modified**:
+  - `database/migrations/seed_lupopedia.sql` (lines 408-422)
+  - `database/migrations/fix_identity_collision_4.0.29.sql` (NEW)
+  - `IDENTITY_COLLISION_FIX_4.0.29.md` (NEW - comprehensive documentation)
 ### CHANNEL 420 LEGACY
 - **Channel ID**: 420 (Protocol Development - Stoned Wolfie AI)
 - **Agent 420**: stoned_wolfie_ai - The legendary AI test identity
