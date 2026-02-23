@@ -1,7 +1,7 @@
 <?php
 /**
  * file_path_from_root: app/Services/OAuthService.php
- * file.last_modified_system_version: 4.0.29
+ * file.last_modified_system_version: 4.0.31
  * file.last_modified_utc: 20260223145600
  * file.created_by_agent: warp
  * file.purpose: OAuth2 authorization code flow for Google and GitHub providers

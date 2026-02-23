@@ -1,7 +1,7 @@
 <?php
 /**
  * file_path_from_root: lupo-includes/modules/auth/oauth_controller.php
- * file.last_modified_system_version: 4.0.29
+ * file.last_modified_system_version: 4.0.31
  * file.last_modified_utc: 20260223145600
  * file.created_by_agent: warp
  * file.purpose: OAuth route controller for Google and GitHub login

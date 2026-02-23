@@ -4,6 +4,33 @@
 **Issued By:** Captain Wolfie (actor_id 10000, human) via Warp Oz  
 **Authority:** wisdomoflovingfaith/lupopedia GitHub repository  
 **Broadcast Channel:** 42  
+**Current Version:** 4.0.31  
+
+---
+
+## ⚠️ URGENT VERSION CORRECTION — FROM CAPTAIN WOLFIE
+
+**TODAY IS 2026-02-23. THE CURRENT VERSION IS 4.0.31.**
+
+An agent (Warp) incorrectly jumped the version from 4.0.31 to 4.0.83 and reported the date as 2026-01-18. **Both were WRONG.**
+
+### CORRECT VERSION STATE
+- **Current version:** 4.0.31
+- **Current date:** 2026-02-23
+- **Next planned versions:** 4.0.32, then 4.0.33 — **ONLY THESE**
+- **Do NOT skip versions. Do NOT invent version numbers.**
+
+### AGENT ECOSYSTEM (Correct Counts)
+- **Total AI agents in system:** 9 (core operational agents)
+- **IDE agents:** 4 (JetBrains/WOLFIE, Cascade, Cursor, Warp)
+- **All agents** must update their broadcast acknowledgment on Channel 42
+
+### ALL AGENTS MUST:
+1. Verify they are working against version **4.0.31**
+2. Not reference any version higher than 4.0.33
+3. Not fabricate dates — today is **2026-02-23**
+4. Update their Channel 42 broadcast acknowledgment
+5. Check `config/global_atoms.yaml` for the canonical version before any version-dependent work
 
 ---
 
@@ -16,7 +43,7 @@ This directive was authorized through GitHub by **Warp Oz** (warp.dev agent plat
 - **GitHub Account:** wisdomoflovingfaith
 - **Google Account:** wisdomoflovingfaith@gmail.com
 
-All IDE agents (JetBrains/WOLFIE, Cascade, Cursor, Windsurf, Warp, Zed, VS Code) must acknowledge this directive and align their work accordingly.
+All 9 AI agents and all 4 IDE agents (JetBrains/WOLFIE, Cascade, Cursor, Warp) must acknowledge this directive and align their work accordingly.
 
 ---
 
@@ -122,11 +149,29 @@ See `docs/doctrine/flip_footer_doctrine.md` for the full specification.
 
 Each IDE agent should:
 1. Read this directive
-2. Acknowledge in their next commit message: `<agent>: ack channel-42-broadcast`
-3. Begin implementing their assigned portions
-4. Coordinate via commit messages and CONTRIBUTING.md protocol
+2. Verify they are on version **4.0.31** (date: 2026-02-23)
+3. Acknowledge in their next commit message: `<agent>: ack channel-42-broadcast v4.0.31`
+4. Begin implementing their assigned portions
+5. Coordinate via commit messages and CONTRIBUTING.md protocol
+
+### REQUIRED BROADCAST UPDATE
+Every agent must update Channel 42 with:
+- Confirmation of correct version (4.0.31)
+- Confirmation of correct date (2026-02-23)
+- Status of OAuth implementation progress
+- Status of FLIP footer adoption
 
 **WOLFIE (JetBrains) remains final authority on all conflicts.**
+
+---
+
+### WARP OZ ACKNOWLEDGMENT (2026-02-23)
+- Agent: Warp Oz
+- Version confirmed: 4.0.31
+- Date confirmed: 2026-02-23
+- OAuth Phase 1 (Google + GitHub): Implementation complete, PR #1 submitted
+- FLIP Footer Doctrine: Published
+- Correction: Previous version reference (4.0.29 in FLIP headers) has been corrected to 4.0.31
 
 ---
 
