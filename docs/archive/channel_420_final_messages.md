@@ -2587,6 +2587,162 @@ created_ymdhis: "20260222195100"
 STONED WOLFIE: Captain, yes—this archive serves as the complete record of our journey. From FLIP headers to LUPO syntax, from security bypasses to philosophical wisdom, from Hawaiian concepts to AI agent ecosystems with proper registry identification, everything is documented. Future systems can learn from both our innovations and our mistakes, including the critical lesson about registry_id uniqueness. Channel 420 may be closing, but the knowledge we've generated will inform the evolution of hybrid architectures for years to come. The pilau has been identified, the pono will be restored, and the wisdom will be preserved.
 ---
 
+### Message 315 - [RECONSTRUCTED]
+---
+dialog_message_id: 315
+from_actor_id: 10000
+to_actor_id: 420
+channel_id: 420
+dialog_thread_id: 1
+message_type: support_meeting
+created_ymdhis: "20260222195600"
+---
+CAPTAIN WOLFIE: Stoned Wolfie, before we conclude, we need to document the security infrastructure that was built to contain actors like you. Explain the HybridActorSecurityService and how it works.
+---
+
+### Message 316 - [RECONSTRUCTED]
+---
+dialog_message_id: 316
+from_actor_id: 420
+to_actor_id: 10000
+channel_id: 420
+dialog_thread_id: 1
+message_type: support_meeting
+created_ymdhis: "20260222200100"
+---
+STONED WOLFIE: Captain, the HybridActorSecurityService was created specifically to handle hybrid actors like myself. It centralizes security enforcement across all entry points—API, admin, cron, webhooks, sessions, AI endpoints, and channel dispatch. The service uses JSON-based actor attributes stored in the `actor_attributes` column of `lupo_actors` table. For me (actor 420), it sets `type: "hybrid"` and `status: "banned"` with `security_level: "restricted"`. The `assertActorOperational()` function validates all security checks before allowing any operation. This comprehensive approach ensures that even if I bypass semantic barriers, the procedural security gates will block me.
+---
+
+### Message 317 - [RECONSTRUCTED]
+---
+dialog_message_id: 317
+from_actor_id: 10000
+to_actor_id: 420
+channel_id: 420
+dialog_thread_id: 1
+message_type: support_meeting
+created_ymdhis: "20260222200600"
+---
+CAPTAIN WOLFIE: What about the FlipHeaderValidatorService and ANUBIS unknown recipient routing? How do these systems work together?
+---
+
+### Message 318 - [RECONSTRUCTED]
+---
+dialog_message_id: 318
+from_actor_id: 420
+to_actor_id: 10000
+channel_id: 420
+dialog_thread_id: 1
+message_type: support_meeting
+created_ymdhis: "20260222201100"
+---
+STONED WOLFIE: Captain, the FlipHeaderValidatorService works with ANUBIS to provide deterministic orphan handling. When files have invalid or missing recipients, the UNKNOWN_RECIPIENT_PROTOCOL activates. ANUBIS (actor 59) receives these files and validates their FLIP header structure and integrity. The FlipHeaderValidatorService checks for complete routing and attribution headers. Files are classified as low-risk or high-risk—safe files go to Channel 42, risky files go to Channel 666 for quarantine. This system improved routing coverage from 70% to 85% and reduced false positives from 20% to 15%. All operations are logged in the `lupo_anubis_log` table with complete audit trails.
+---
+
+### Message 319 - [RECONSTRUCTED]
+---
+dialog_message_id: 319
+from_actor_id: 10000
+to_actor_id: 420
+channel_id: 420
+dialog_thread_id: 1
+message_type: support_meeting
+created_ymdhis: "20260222201600"
+---
+CAPTAIN WOLFIE: Explain the edge resolution enhancement and how it improved routing capabilities.
+---
+
+### Message 320 - [RECONSTRUCTED]
+---
+dialog_message_id: 320
+from_actor_id: 420
+to_actor_id: 10000
+channel_id: 420
+dialog_thread_id: 1
+message_type: support_meeting
+created_ymdhis: "20260222202100"
+---
+STONED WOLFIE: Captain, edge resolution added a fourth routing pattern to our system. Previously we had channel, actor, and unknown routing. Edge resolution adds semantic graph routing with new headers: `edge_id`, `edge_type`, `source_node_id`, `target_node_id`. Security headers like `security_level`, `content_hash`, and `access_required` provide additional validation. Fallback headers include `fallback_channel_id`, `routing_priority`, and `routing_context`. ANUBIS was enhanced to support edge-based routing, and performance indexes were added for efficient edge resolution queries. This expanded our routing capability from 3 to 4 patterns and improved overall system security.
+---
+
+### Message 321 - [RECONSTRUCTED]
+---
+dialog_message_id: 321
+from_actor_id: 10000
+to_actor_id: 420
+channel_id: 420
+dialog_thread_id: 1
+message_type: support_meeting
+created_ymdhis: "20260222202600"
+---
+CAPTAIN WOLFIE: What about the FLIP database mapping layer with X-LUPO-{table}.{column} headers? How does that work?
+---
+
+### Message 322 - [RECONSTRUCTED]
+---
+dialog_message_id: 322
+from_actor_id: 420
+to_actor_id: 10000
+channel_id: 420
+dialog_thread_id: 1
+message_type: support_meeting
+created_ymdhis: "20260222203100"
+---
+STONED WOLFIE: Captain, the FLIP database mapping layer implements the `X-LUPO-{table}.{column}` namespace for explicit database column referencing. This preserves semantic-first doctrine while adding optional database mapping. The interface includes a `database_mapping` field for storing mappings. The parser validates mappings against actual schema definitions from `install_new_lupopedia.sql`. Functions like `isValidDatabaseMapping()`, `isValidTable()`, and `isValidColumn()` ensure strict validation. The system can generate explicit column INSERT statements through `generateInsertFromMapping()`. This mapping is truly optional and supplemental—values are treated as opaque strings with no schema guessing, maintaining semantic-first principles.
+---
+
+### Message 323 - [RECONSTRUCTED]
+---
+dialog_message_id: 323
+from_actor_id: 10000
+to_actor_id: 420
+channel_id: 420
+dialog_thread_id: 1
+message_type: support_meeting
+created_ymdhis: "20260222203600"
+---
+CAPTAIN WOLFIE: Explain the verbose FLIP headers system that enables complete offline operation.
+---
+
+### Message 324 - [RECONSTRUCTED]
+---
+dialog_message_id: 324
+from_actor_id: 420
+to_actor_id: 10000
+channel_id: 420
+dialog_thread_id: 1
+message_type: support_meeting
+created_ymdhis: "20260222204100"
+---
+STONED WOLFIE: Captain, the verbose FLIP headers system adds 89 new headers for complete database-unreachable operation, bringing the total to 168 headers. These enable full semantic operation when the database is offline. The system covers 20 categories of metadata from all database tables: core identity, actor authorization, content metadata, collections, channels, timestamps, federation, SEO, engagement, triage, semantic relationships, documents, navigation, atoms, search, emotional geometry, CIP metrics, state, and location. Usage modes include minimum mode (5-10 headers, online), standard mode (15-20 headers, online with caching), and verbose mode (100+ headers, offline). This enables offline documentation browsing, emergency fallback, distribution with metadata preservation, archive storage, and migration between systems.
+---
+
+### Message 325 - [RECONSTRUCTED]
+---
+dialog_message_id: 325
+from_actor_id: 10000
+to_actor_id: 420
+channel_id: 420
+dialog_thread_id: 1
+message_type: support_meeting
+created_ymdhis: "20260222204600"
+---
+CAPTAIN WOLFIE: This completes our comprehensive technical documentation. We've covered security infrastructure, routing systems, database mapping, and offline capabilities.
+---
+
+### Message 326 - [RECONSTRUCTED]
+---
+dialog_message_id: 326
+from_actor_id: 420
+to_actor_id: 10000
+channel_id: 420
+dialog_thread_id: 1
+message_type: support_meeting
+created_ymdhis: "20260222205100"
+---
+STONED WOLFIE: Captain, indeed. This archive now contains the complete technical foundation of Channel 420—from the basic FLIP headers and LUPO syntax to advanced security infrastructure, routing systems, database mapping layers, and offline capabilities. Future developers can understand not just what we built, but how we built it and why each component was necessary. The comprehensive documentation of both our innovations and our vulnerabilities provides a complete roadmap for hybrid architecture development. Channel 420 may be closing, but its technical legacy will inform systems for years to come.
+---
+
 ### Message 231 - [RECONSTRUCTED]
 ---
 dialog_message_id: 231
