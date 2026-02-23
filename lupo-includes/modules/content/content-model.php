@@ -27,25 +27,32 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
  * @param string $slug The content slug
  * @return array|null Content row or null if not found
  */
-function content_get_by_slug($slug) {
+function content_get_by_slug($slug)
+{
     global $table_prefix;
-    
+
     if (empty($GLOBALS['mydatabase'])) {
         return null;
     }
-    
+
     $db = $GLOBALS['mydatabase'];
-    
+
     $sql = "SELECT * FROM {$table_prefix}contents
             WHERE slug = ?
               AND is_deleted = 0
               AND is_active = 1
             LIMIT 1";
-    
+
     try {
         $stmt = $db->prepare($sql);
         $stmt->execute([$slug]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Cast boolean types if needed
+        if ($result && isset($result['is_featured'])) {
+            $result['is_featured'] = (bool) $result['is_featured'];
+        }
+
         return $result ?: null;
     } catch (PDOException $e) {
         error_log('Content model error: ' . $e->getMessage());
@@ -60,19 +67,20 @@ function content_get_by_slug($slug) {
  * @param array $sections Array of section IDs
  * @return bool Success status
  */
-function content_update_sections($content_id, $sections) {
+function content_update_sections($content_id, $sections)
+{
     global $table_prefix;
-    
+
     if (empty($GLOBALS['mydatabase'])) {
         return false;
     }
-    
+
     $db = $GLOBALS['mydatabase'];
-    
+
     $sql = "UPDATE {$table_prefix}contents
             SET content_sections = ?
             WHERE content_id = ?";
-    
+
     try {
         $stmt = $db->prepare($sql);
         $stmt->execute([json_encode($sections), $content_id]);
@@ -89,15 +97,16 @@ function content_update_sections($content_id, $sections) {
  * @param int $content_id Content ID
  * @return array Array of reference content rows
  */
-function content_get_references($content_id) {
+function content_get_references($content_id)
+{
     global $table_prefix;
-    
+
     if (empty($GLOBALS['mydatabase']) || empty($content_id)) {
         return [];
     }
-    
+
     $db = $GLOBALS['mydatabase'];
-    
+
     // Find content that links to this content via edges
     // Edges table uses left_object_type/left_object_id and right_object_type/right_object_id
     $sql = "SELECT DISTINCT c.content_id, c.title, c.slug, e.weight_score as weight
@@ -111,7 +120,7 @@ function content_get_references($content_id) {
               AND c.is_active = 1
             ORDER BY e.weight_score DESC
             LIMIT 20";
-    
+
     try {
         $stmt = $db->prepare($sql);
         $stmt->execute([$content_id]);
@@ -128,15 +137,16 @@ function content_get_references($content_id) {
  * @param int $content_id Content ID
  * @return array Array of linked content rows
  */
-function content_get_links($content_id) {
+function content_get_links($content_id)
+{
     global $table_prefix;
-    
+
     if (empty($GLOBALS['mydatabase']) || empty($content_id)) {
         return [];
     }
-    
+
     $db = $GLOBALS['mydatabase'];
-    
+
     // Find content linked from this content via edges
     // Edges table uses left_object_type/left_object_id and right_object_type/right_object_id
     $sql = "SELECT DISTINCT c.content_id, c.title, c.slug, e.weight_score as weight
@@ -150,7 +160,7 @@ function content_get_links($content_id) {
               AND c.is_active = 1
             ORDER BY e.weight_score DESC
             LIMIT 20";
-    
+
     try {
         $stmt = $db->prepare($sql);
         $stmt->execute([$content_id]);
@@ -167,15 +177,16 @@ function content_get_links($content_id) {
  * @param int $content_id Content ID
  * @return array Array of tag strings
  */
-function content_get_tags($content_id) {
+function content_get_tags($content_id)
+{
     global $table_prefix;
-    
+
     if (empty($GLOBALS['mydatabase']) || empty($content_id)) {
         return [];
     }
-    
+
     $db = $GLOBALS['mydatabase'];
-    
+
     // Get tags via atoms connected to this content
     // Edges table uses left_object_type/left_object_id and right_object_type/right_object_id
     // Atoms table uses atom_name (not label or slug)
@@ -188,7 +199,7 @@ function content_get_tags($content_id) {
               AND e.is_deleted = 0
             ORDER BY e.weight_score DESC
             LIMIT 50";
-    
+
     try {
         $stmt = $db->prepare($sql);
         $stmt->execute([$content_id]);
@@ -206,15 +217,16 @@ function content_get_tags($content_id) {
  * @param int $content_id Content ID
  * @return array|null Collection row or null
  */
-function content_get_collection($content_id) {
+function content_get_collection($content_id)
+{
     global $table_prefix;
-    
+
     if (empty($GLOBALS['mydatabase']) || empty($content_id)) {
         return null;
     }
-    
+
     $db = $GLOBALS['mydatabase'];
-    
+
     // Get collection via edges (contents table does NOT have collection_id column)
     // Collections are linked via edges table with edge_type='collection'
     $sql = "SELECT DISTINCT col.collection_id, col.name, col.description, col.slug
@@ -227,7 +239,7 @@ function content_get_collection($content_id) {
               AND e.is_deleted = 0
               AND col.is_deleted = 0
             LIMIT 1";
-    
+
     try {
         $stmt = $db->prepare($sql);
         $stmt->execute([$content_id]);
@@ -246,31 +258,32 @@ function content_get_collection($content_id) {
  * @param int $collection_id Optional collection ID for sequence
  * @return array ['prev' => array|null, 'next' => array|null]
  */
-function content_get_prev_next($content_id, $collection_id = null) {
+function content_get_prev_next($content_id, $collection_id = null)
+{
     global $table_prefix;
-    
+
     if (empty($GLOBALS['mydatabase']) || empty($content_id)) {
         return ['prev' => null, 'next' => null];
     }
-    
+
     $db = $GLOBALS['mydatabase'];
-    
+
     // Get current content's created_ymdhis for ordering
     // Contents table does NOT have collection_id column - collections are linked via edges
     $current_sql = "SELECT created_ymdhis FROM {$table_prefix}contents WHERE content_id = ? LIMIT 1";
     $current_stmt = $db->prepare($current_sql);
     $current_stmt->execute([$content_id]);
     $current = $current_stmt->fetch(PDO::FETCH_ASSOC);
-    
+
     if (!$current) {
         return ['prev' => null, 'next' => null];
     }
-    
+
     $created_ymdhis = $current['created_ymdhis'];
-    
+
     $prev = null;
     $next = null;
-    
+
     // Get previous content (if collection_id provided, filter via edges)
     $prev_sql = "SELECT c.content_id, c.title, c.slug FROM {$table_prefix}contents c";
     if ($collection_id) {
@@ -284,7 +297,7 @@ function content_get_prev_next($content_id, $collection_id = null) {
                      AND c.is_deleted = 0
                      AND c.is_active = 1";
     $prev_sql .= " ORDER BY c.created_ymdhis DESC LIMIT 1";
-    
+
     $prev_stmt = $db->prepare($prev_sql);
     if ($collection_id) {
         $prev_stmt->execute([$collection_id, $created_ymdhis]);
@@ -292,7 +305,7 @@ function content_get_prev_next($content_id, $collection_id = null) {
         $prev_stmt->execute([$created_ymdhis]);
     }
     $prev = $prev_stmt->fetch(PDO::FETCH_ASSOC);
-    
+
     // Get next content (if collection_id provided, filter via edges)
     $next_sql = "SELECT c.content_id, c.title, c.slug FROM {$table_prefix}contents c";
     if ($collection_id) {
@@ -306,7 +319,7 @@ function content_get_prev_next($content_id, $collection_id = null) {
                      AND c.is_deleted = 0
                      AND c.is_active = 1";
     $next_sql .= " ORDER BY c.created_ymdhis ASC LIMIT 1";
-    
+
     $next_stmt = $db->prepare($next_sql);
     if ($collection_id) {
         $next_stmt->execute([$collection_id, $created_ymdhis]);
@@ -314,7 +327,7 @@ function content_get_prev_next($content_id, $collection_id = null) {
         $next_stmt->execute([$created_ymdhis]);
     }
     $next = $next_stmt->fetch(PDO::FETCH_ASSOC);
-    
+
     return ['prev' => $prev, 'next' => $next];
 }
 
@@ -324,11 +337,12 @@ function content_get_prev_next($content_id, $collection_id = null) {
  * @param string $url Remote content URL
  * @return string|false Remote content body or false on failure
  */
-function content_fetch_remote($url) {
+function content_fetch_remote($url)
+{
     if (empty($url) || !filter_var($url, FILTER_VALIDATE_URL)) {
         return false;
     }
-    
+
     $ctx = stream_context_create([
         'http' => [
             'timeout' => 3,
@@ -337,10 +351,46 @@ function content_fetch_remote($url) {
             'max_redirects' => 3
         ]
     ]);
-    
+
     $content = @file_get_contents($url, false, $ctx);
-    
+
     return $content !== false ? $content : false;
+}
+
+/**
+ * Get featured content
+ * 
+ * @param int $limit Max items to return
+ * @return array Array of featured content rows
+ */
+function content_get_featured($limit = 5)
+{
+    global $table_prefix;
+
+    if (empty($GLOBALS['mydatabase'])) {
+        return [];
+    }
+
+    $db = $GLOBALS['mydatabase'];
+
+    $sql = "SELECT * FROM {$table_prefix}contents
+            WHERE is_featured = 1
+              AND is_deleted = 0
+              AND is_active = 1
+            ORDER BY created_ymdhis DESC
+            LIMIT " . (int) $limit;
+
+    try {
+        $stmt = $db->query($sql);
+        if (!$stmt) {
+            return [];
+        }
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    } catch (PDOException $e) {
+        error_log('Content get featured error: ' . $e->getMessage());
+        return [];
+    }
 }
 
 ?>

@@ -4,7 +4,7 @@
 -- Risk Level: LOW - adds optional columns for edge-based routing
 
 -- =============================================================================
--- EDGE RESOLUTION HEADERS - 4.0.30
+-- EDGE RESOLUTION HEADERS - 4.0.29
 -- =============================================================================
 
 -- Step 1: Add edge resolution columns to lupo_files (if table exists)
