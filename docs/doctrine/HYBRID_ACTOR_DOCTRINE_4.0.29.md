@@ -26,8 +26,8 @@ web:
 
 **File**: docs/doctrine/HYBRID_ACTOR_DOCTRINE_4.0.29.md  
 **Purpose**: Define security and operational rules for hybrid actors (Actor 420 and similar)  
-**Version**: 4.0.29  
-**Status**: ACTIVE  
+**Version**: 4.0.29 (Comprehensive 420-Series Stabilization)  
+**Status**: ACTIVE - IN PROGRESS  
 
 ---
 

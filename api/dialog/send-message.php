@@ -58,6 +58,31 @@ try {
         throw new Exception('Missing required fields: actor_id and content are required');
     }
 
+    // Hybrid Actor Security Gate (4.0.29 Centralization)
+    try {
+        if (class_exists('HybridActorSecurityService')) {
+            HybridActorSecurityService::assertActorOperational((int) $data['actor_id'], 'api_send_message');
+        }
+    } catch (SecurityException $e) {
+        http_response_code(403);
+        echo json_encode(['success' => false, 'error' => 'Access denied: Actor is non-operational.']);
+        exit;
+    }
+
+    // Build message packet
+    $packet = [
+        'actor_id' => (int) $data['actor_id'],
+        'to_actor' => isset($data['to_actor']) ? (int) $data['to_actor'] : null,
+        'content' => trim($data['content']),
+        'mood_rgb' => $data['mood_rgb'] ?? '666666',
+        'thread_id' => isset($data['thread_id']) ? (int) $data['thread_id'] : null,
+        'message_type' => $data['message_type'] ?? 'text'
+    ];
+
+    // Validate content is not empty
+    if (empty($packet['content'])) {
+        throw new Exception('Content cannot be empty');
+    }
 
     // Validate mood_rgb format
     if (!preg_match('/^[0-9A-Fa-f]{6}$/', $packet['mood_rgb'])) {
@@ -90,5 +115,4 @@ try {
         'error' => $e->getMessage()
     ]);
 }
-
 ?>
