@@ -23,6 +23,7 @@ require_once(LUPOPEDIA_ABSPATH . 'lupo-includes/security/password-hash.php');
 require_once(LUPOPEDIA_ABSPATH . 'lupo-includes/functions/auth-helpers.php');
 require_once(LUPOPEDIA_ABSPATH . 'lupo-includes/functions/redirect-helpers.php');
 require_once(__DIR__ . '/auth-renderer.php');
+require_once(__DIR__ . '/oauth_controller.php');
 
 /**
  * Authentication Controller
@@ -53,6 +54,14 @@ function auth_handle_slug($slug) {
     $slug = preg_replace('/\.php$/', '', $slug); // Remove .php extension
     
     // Route to appropriate handler
+    // OAuth routes: auth/google, auth/github, auth/*/callback
+    if (strpos($slug, 'auth/') === 0 && function_exists('oauth_handle_slug')) {
+        $result = oauth_handle_slug($slug);
+        if ($result !== '') {
+            return $result;
+        }
+    }
+
     if ($slug === 'login') {
         // Check if POST request
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
