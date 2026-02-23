@@ -2628,3 +2628,46 @@ There are **no Lupopedia → Lupopedia upgrades** until **4.1.0**, which will no
 
 - Final legacy release of Crafty Syntax.
 - This is the only supported source for upgrading to Lupopedia 4.0.x. All upgrades to Lupopedia 4.0.x are from Crafty Syntax 3.7.5 (or new installs). No other upgrade paths are valid for the 4.0.x line.
+
+---
+
+## [4.0.29] — 420-SERIES STABILIZATION (2026-02-22)
+
+### 🏗️ ARCHITECTURE & DOCTRINE
+- Hybrid Actor Model implemented (actor_status: active, banned, mythological, hybrid)
+- Security Gate centralized and enforced system-wide
+- ANUBIS Routing Protocol established (Actor 59)
+- FLIP Header Doctrine enforced across documentation
+- Channel Archival Process standardized for future series
+
+### 📁 CANONICAL DOCUMENTATION
+- Channel 420 Tombstone created (`docs/archive/CHANNEL_420_TOMBSTONE.md`)
+- Channel 420 Final Archive created (`docs/archive/channel_420_final_messages.md`)
+- Actor profiles updated and validated
+- IDE Agent Agreement achieved for canonical archive
+
+### 🗄️ DATABASE MIGRATIONS
+- 20260215_hybrid_actors.sql — Hybrid actor model
+- 20260222_anubis_routing.sql — ANUBIS routing
+- 20260228_security_gate.sql — Security gate
+- 20260222_420_final_closure.sql — Channel 420 archival (pending execution)
+
+### 🎯 420-SERIES CLOSURE
+- Final declaration message defined (Message 67)
+- Channel 420 marked as archived
+- Actor 420 set to mythological
+- All 420-series work merged into 4.0.29
+
+### 📋 REMAINING WORK BEFORE FINALIZATION
+| Task | Status | Action Needed |
+|------|--------|---------------|
+| Run closure migration | Pending | Execute 20260222_420_final_closure.sql |
+| Commit canonical archive | Pending | Commit channel_420_final_messages.md |
+| Update seed database | Pending | Ensure fresh install reflects 4.0.29 |
+| Final validation | Pending | Verify headers, migrations, documentation |
+| Captain trigger | Pending | `CAPTAIN WOLFIE LUPOPEDIA 2026 LLC` |
+
+### NEXT PHASE (4.1.0)
+- Begin 4.1.0 development after finalization
+- First Lupopedia → Lupopedia upgrade path
+- Auto-installer preparation (Softaculous/Installatron)
