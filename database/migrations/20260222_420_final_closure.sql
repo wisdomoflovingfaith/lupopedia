@@ -32,9 +32,8 @@ WHERE NOT EXISTS (
 -- 2) Archive Channel 420 (idempotent)
 UPDATE lupo_channels
 SET 
-    channel_status = 'archived',
-    featured = 1,
+    status_flag = 0,  -- 0 = archived/inactive
     updated_ymdhis = 20260222000000
-WHERE channel_id = 420 AND channel_status != 'archived';
+WHERE channel_id = 420 AND status_flag != 0;
 
 COMMIT;
