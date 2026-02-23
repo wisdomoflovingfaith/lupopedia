@@ -40,6 +40,17 @@ if (file_exists($auth_module)) {
 
 /**
  * ---------------------------------------------------------
+ * 1.5. Load OAuth Module
+ * ---------------------------------------------------------
+ * Handles OAuth authentication routes: /oauth/login/{provider}, /oauth/callback/{provider}
+ */
+$oauth_module = LUPOPEDIA_ABSPATH . 'lupo-includes/modules/auth/oauth-controller.php';
+if (file_exists($oauth_module)) {
+    require_once $oauth_module;
+}
+
+/**
+ * ---------------------------------------------------------
  * 2. Load TRUTH Module
  * ---------------------------------------------------------
  * Handles question prefixes: what/, who/, where/, when/, why/, how/
@@ -265,6 +276,15 @@ function lupo_route_slug($slug) {
             if (!empty($result)) {
                 return $result;
             }
+        }
+    }
+
+    // Check for OAuth routes (high priority, after auth)
+    if (strpos($normalized_slug, 'oauth/') === 0) {
+        if (function_exists('oauth_route_request')) {
+            oauth_route_request($slug);
+            // OAuth controller handles redirects and exits
+            return '';
         }
     }
 

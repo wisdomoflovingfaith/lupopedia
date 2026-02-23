@@ -1,11 +1,36 @@
 ---
-wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "docs/archive/channel_420_honest_post_migration.md"
-file.last_modified_system_version: "4.0.29"
-file.last_modified_utc: "20260222000000"
-channel_id: 420
-channel_420_status: "archived"
-mood_rgb: "808080"
+wolfie.headers:
+  file_path_from_root: "docs/archive/channel_420_honest_post_migration.md"
+  system_version: "4.0.29"
+  channel_id: 420
+  mood_rgb: "808080"
+  purpose: "Post-migration database state verification for Channel 420"
+  last_modified_utc: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "docs/archive/CHANNEL_420_TOMBSTONE.md"
+    - "docs/archive/channel_420_final_messages.md"
+    - "CHANGELOG.md"
+  referenced_by_channels:
+    - 420
+  referenced_by_actors:
+    - 420   # Actor 420 (banned)
+    - 1001  # KIRO IDE
+    - 10000 # Captain Wolfie
+  inbound_edges:
+    - "channel_420_archive"
+    - "post_migration_verification"
+  footnotes:
+    - "Archive file - created in 4.0.29"
+    - "Post-migration database state verification"
+    - "Channel 420 permanently archived"
+  version: "4.0.29"
+  last_verified_utc: "20260223"
+  last_verified_by: "kiro"
 ---
 
 # Channel 420 Post-Migration Archive

@@ -1,3 +1,39 @@
+---
+wolfie.headers:
+  file_path_from_root: "docs/archive/CHANNEL_420_TOMBSTONE.md"
+  system_version: "4.0.29"
+  channel_id: 420
+  mood_rgb: "000000"
+  purpose: "Channel 420 tombstone and final archive marker"
+  last_modified_utc: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "docs/archive/channel_420_honest_post_migration.md"
+    - "docs/archive/channel_420_final_messages.md"
+    - "CHANGELOG.md"
+  referenced_by_channels:
+    - 420
+  referenced_by_actors:
+    - 420   # Actor 420 (banned)
+    - 1001  # KIRO IDE
+    - 10000 # Captain Wolfie
+  inbound_edges:
+    - "channel_420_archive"
+    - "tombstone"
+    - "final_closure"
+  footnotes:
+    - "Archive file - created in 4.0.29"
+    - "Channel 420 tombstone marker"
+    - "Permanent archive status"
+  version: "4.0.29"
+  last_verified_utc: "20260223"
+  last_verified_by: "kiro"
+---
+
 # Channel 420 Tombstone Entry
 **Status**: ARCHIVED PERMANENTLY
 **Final Message ID**: 67

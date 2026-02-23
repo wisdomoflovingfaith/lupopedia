@@ -2,8 +2,9 @@
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: app/Services/SemanticSecurityEngine.php
-file.last_modified_system_version: "4.0.30"
-file.last_modified_utc: "20260222214000"
+file.last_modified_system_version: "4.0.33"
+file.last_modified_utc: "20260223165000"
+actor_420_status: "banned_mythological"
 channel_id: 42
 actor_id: 10000
 ---
@@ -595,3 +596,19 @@ class SecurityException extends Exception {
         parent::__construct($message, $code, $previous);
     }
 }
+
+/*
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "docs/doctrine/SECURITY/SEMANTIC_SECURITY_4_0_30.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 2035
+    - 10000
+  inbound_edges:
+    - "security_engine_implementation"
+  footnotes:
+    - "FLIP footer added in 4.0.33 rollout"
+*/
