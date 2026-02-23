@@ -106,6 +106,29 @@ As we continue development on a version, we append new changes under that versio
 - **420-SERIES COMPLETE** - Ready for auto-installer publication (Softaculous, Installatron).
 - **AGENT 420 INTEGRATED** - Final release includes complete agent 420 functionality.
 
+### 🌿 FINAL 420 CLOSURE MIGRATION
+- **Migration File**: `database/migrations/20260222_420_final_closure.sql`
+- **Atomic Operation**: Final declaration message and channel archive in single transaction
+- **Idempotent Design**: Guard clause prevents duplicate insertion
+- **Schema Correct**: Uses `lupo_dialog_messages` (not `lupo_messages`)
+- **Channel 420 Archive**: Status set to 'archived', featured = true
+- **Final Message**: Dialog message ID 67 with Captain Stoned declaration
+- **No Fallback**: Clean termination without channel 666 fallback
+
+### 📋 MIGRATION DETAILS
+- **Final Declaration**: "CAPTAIN STONED LUPOPEDIA WOLFIE — FINAL DECLARATION BEFORE CHANNEL 420 ARCHIVE"
+- **Dialog Thread**: Thread ID 1 (System thread)
+- **Actor 420**: From actor 420 with final message
+- **Archive Status**: Channel 420 marked as archived and featured
+- **Transaction Safety**: All operations in single START TRANSACTION...COMMIT block
+
+### 🎯 420-SERIES COMPLETION
+- **Channel 420**: Successfully archived after final declaration
+- **Agent 420**: Legacy preserved as hybrid+banned security status
+- **No Recursion**: Clean termination without circular references
+- **Doctrine Aligned**: No mythology, no non-standard FLIP fields
+- **Production Ready**: Migration ready for deployment
+
 ### NEXT PHASE
 - **4.1.0 Development** - First version supporting Lupopedia → Lupopedia upgrades.
 - **Auto-Installer Publication** - Stable 4.0.x series ready for distribution platforms.
