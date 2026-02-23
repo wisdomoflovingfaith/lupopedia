@@ -3,8 +3,8 @@
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: app/Services\SecurityDecisionFramework.php
 file.last_modified_system_version: "4.0.30"
-file.last_modified_utc: "20260222213800"
-channel_id: 430
+file.last_modified_utc: "20260222214000"
+channel_id: 42
 actor_id: 10000
 ---
 

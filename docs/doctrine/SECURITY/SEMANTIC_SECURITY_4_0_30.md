@@ -3,8 +3,8 @@
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/SECURITY/SEMANTIC_SECURITY_4_0_30.md
 file.last_modified_system_version: "4.0.30"
-file.last_modified_utc: "20260222212400"
-channel_id: 430
+file.last_modified_utc: "20260222214000"
+channel_id: 42
 actor_id: 10000
 ---
 
