@@ -1,15 +1,15 @@
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/audit/FLIP_HEADER_COMPLETENESS_AUDIT_4.0.30.md
-file.last_modified_system_version: "4.0.30"
+file_path_from_root: docs/audit/FLIP_HEADER_COMPLETENESS_AUDIT_4.0.29.md
+file.last_modified_system_version: "4.0.29"
 file.last_modified_utc: "20260222000000"
 channel_id: 0        # System-level audit
 purpose: "Answer critical question: Do we have all the FLIP headers we need?"
 affects_database: false
 ---
 
-# FLIP Header Completeness Audit - 4.0.30
+# FLIP Header Completeness Audit - 4.0.29
 
 **Critical Question**: Do we have all the FLIP headers we need — complete, doctrinal, resolvable, and sufficient to guarantee correct routing without orphan leakage?
 

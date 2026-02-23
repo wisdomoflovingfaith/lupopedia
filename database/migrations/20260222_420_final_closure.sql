@@ -29,12 +29,12 @@ WHERE NOT EXISTS (
     WHERE dialog_message_id = 67 AND channel_id = 420
 );
 
--- 2) Archive Channel 420
+-- 2) Archive Channel 420 (idempotent)
 UPDATE lupo_channels
 SET 
     channel_status = 'archived',
     featured = 1,
     updated_ymdhis = 20260222000000
-WHERE channel_id = 420;
+WHERE channel_id = 420 AND channel_status != 'archived';
 
 COMMIT;
