@@ -38,6 +38,333 @@ lupo_header_namespace:
     - X-Lupo-Semantic-Context
     - X-Lupo-Boundary-Status
     - X-Lupo-Compliance-Status
+  verbose_headers:
+    # Core Identity Headers
+    - X-Lupo-Content-ID
+    - X-Lupo-Content-Title
+    - X-Lupo-Content-Slug
+    - X-Lupo-Content-Path
+    - X-Lupo-Custom-Path
+    - X-Lupo-Content-Type
+    - X-Lupo-Content-Format
+    - X-Lupo-Content-Description
+    - X-Lupo-Content-Parent-ID
+    - X-Lupo-Content-Status
+    - X-Lupo-Content-Visibility
+    - X-Lupo-Content-Template
+    - X-Lupo-Content-Version
+    
+    # Actor & Authorization Headers
+    - X-Lupo-Actor-Identity
+    - X-Lupo-Actor-Type
+    - X-Lupo-Created-By-Actor-ID
+    - X-Lupo-Department-ID
+    - X-Lupo-Actor-Source-ID
+    - X-Lupo-Actor-Source-Type
+    - X-Lupo-Actor-Federation-Node-ID
+    - X-Lupo-Actor-Paired-Actor-ID
+    
+    # Collection Headers
+    - X-Lupo-Collection-ID
+    - X-Lupo-Collection-Name
+    - X-Lupo-Default-Collection-ID
+    
+    # Channel & Thread Headers
+    - X-Lupo-Channel-Key
+    - X-Lupo-Channel-Slug
+    - X-Lupo-Channel-Type
+    - X-Lupo-Channel-Language
+    - X-Lupo-Channel-Name
+    - X-Lupo-Channel-Description
+    - X-Lupo-Channel-Website-Link
+    - X-Lupo-Channel-Default-Actor-ID
+    - X-Lupo-Channel-Department-ID
+    - X-Lupo-Thread-ID
+    - X-Lupo-Thread-Title
+    - X-Lupo-Thread-Type
+    
+    # Timestamp Headers
+    - X-Lupo-Created-YMDHIS
+    - X-Lupo-Updated-YMDHIS
+    - X-Lupo-UTC-Cycle
+    - X-Lupo-File-Modified-UTC
+    - X-Lupo-System-Version
+    - X-Lupo-Timestamp
+    - X-Lupo-UTC-Timestamp
+    - X-Lupo-Location
+    - X-Lupo-Latitude
+    - X-Lupo-Longitude
+    
+    # Federation Headers
+    - X-Lupo-Federation-Node-ID
+    - X-Lupo-Federation-Node-Name
+    
+    # SEO & Discovery Headers
+    - X-Lupo-Keywords
+    - X-Lupo-Source-URL
+    - X-Lupo-Source-Title
+    - X-Lupo-Content-URL
+    - X-Lupo-Search-Index-ID
+    - X-Lupo-Relevance-Score
+    
+    # Engagement Metrics Headers
+    - X-Lupo-View-Count
+    - X-Lupo-Share-Count
+    - X-Lupo-Likes-Total
+    - X-Lupo-Shares-Total
+    
+    # Triage Headers
+    - X-Lupo-Triage-Status
+    - X-Lupo-Triage-Notes
+    
+    # Semantic Headers
+    - X-Lupo-Tags
+    - X-Lupo-Hashtags
+    - X-Lupo-Atom-Mappings
+    - X-Lupo-Category-Mappings
+    - X-Lupo-Semantic-Relationships
+    - X-Lupo-Related-Content-IDs
+    - X-Lupo-Parent-Content-ID
+    - X-Lupo-Child-Content-IDs
+    
+    # Document Headers
+    - X-Lupo-Document-ID
+    - X-Lupo-Document-Name
+    - X-Lupo-MIME-Type
+    - X-Lupo-File-Size
+    - X-Lupo-SHA256-Checksum
+    
+    # Navigation Headers
+    - X-Lupo-Semantic-Category-ID
+    - X-Lupo-Semantic-Category-Slug
+    - X-Lupo-Tag-IDs
+    
+    # Atom Headers
+    - X-Lupo-Atom-IDs
+    - X-Lupo-Atom-Names
+    - X-Lupo-Context-ID
+    - X-Lupo-Is-Authoritative
+    
+    # Search Headers
+    - X-Lupo-Search-Index-ID
+    - X-Lupo-Search-Keywords
+    - X-Lupo-Search-Relevance-Score
+    
+    # Emotional Geometry Headers
+    - X-Lupo-Emotional-Framework-Name
+    - X-Lupo-Emotional-Constellation-ID
+    
+    # CIP Metrics Headers
+    - X-Lupo-CIP-Event-ID
+    - X-Lupo-CIP-Defensiveness-Index
+    - X-Lupo-CIP-Integration-Velocity
+    
+    # State Headers
+    - X-Lupo-Is-Active
+    - X-Lupo-Is-Deleted
+    - X-Lupo-Deleted-YMDHIS
+    
+    # Database Mapping Headers
+    - X-Lupo-Actors-Actor-ID
+    - X-Lupo-Actors-Actor-Type
+    - X-Lupo-Actors-Actor-Name
+    - X-Lupo-Actors-Slug
+    - X-Lupo-Actors-Created-YMDHIS
+    - X-Lupo-Actors-Updated-YMDHIS
+    - X-Lupo-Actors-Is-Active
+    - X-Lupo-Actors-Is-Deleted
+    - X-Lupo-Actors-Deleted-YMDHIS
+    - X-Lupo-Actors-Actor-Source-ID
+    - X-Lupo-Actors-Actor-Source-Type
+    - X-Lupo-Actors-Metadata
+    - X-Lupo-Actors-Adversarial-Role
+    - X-Lupo-Actors-Adversarial-Oversight-Actor-ID
+    - X-Lupo-Actors-Avatar-Hash
+    - X-Lupo-Actors-Primary-Federation-Node-ID
+    - X-Lupo-Actors-Department-ID
+    - X-Lupo-Actors-Is-Kernel
+    - X-Lupo-Actors-Can-Login
+    - X-Lupo-Actors-Metadata-Json
+    - X-Lupo-Actors-Identity-Provider-Config
+    - X-Lupo-Actors-Paired-Actor-ID
+    
+    - X-Lupo-Channels-Channel-ID
+    - X-Lupo-Channels-Federation-Node-ID
+    - X-Lupo-Channels-Created-By-Actor-ID
+    - X-Lupo-Channels-Default-Actor-ID
+    - X-Lupo-Channels-Department-ID
+    - X-Lupo-Channels-Channel-Key
+    - X-Lupo-Channels-Channel-Slug
+    - X-Lupo-Channels-Channel-Type
+    - X-Lupo-Channels-Language
+    - X-Lupo-Channels-Channel-Name
+    - X-Lupo-Channels-Description
+    - X-Lupo-Channels-Website-Link
+    - X-Lupo-Channels-Metadata-Json
+    - X-Lupo-Channels-Status-Flag
+    - X-Lupo-Channels-End-YMDHIS
+    - X-Lupo-Channels-Duration-Seconds
+    - X-Lupo-Channels-Created-YMDHIS
+    - X-Lupo-Channels-Updated-YMDHIS
+    - X-Lupo-Channels-Is-Deleted
+    - X-Lupo-Channels-Deleted-YMDHIS
+    - X-Lupo-Channels-AAL-Metadata-Json
+    - X-Lupo-Channels-Fleet-Composition-Json
+    - X-Lupo-Channels-Awareness-Version
+    - X-Lupo-Channels-Channel-Number
+    - X-Lupo-Channels-Parent-Channel-ID
+    - X-Lupo-Channels-Is-Kernel
+    - X-Lupo-Channels-Boot-Sequence-Order
+    
+    - X-Lupo-Dialog-Messages-Dialog-Message-ID
+    - X-Lupo-Dialog-Messages-From-Actor-ID
+    - X-Lupo-Dialog-Messages-To-Actor-ID
+    - X-Lupo-Dialog-Messages-Channel-ID
+    - X-Lupo-Dialog-Messages-Dialog-Thread-ID
+    - X-Lupo-Dialog-Messages-Message-Type
+    - X-Lupo-Dialog-Messages-Created-YMDHIS
+    - X-Lupo-Dialog-Messages-Updated-YMDHIS
+    - X-Lupo-Dialog-Messages-Is-Deleted
+    - X-Lupo-Dialog-Messages-Deleted-YMDHIS
+    
+    - X-Lupo-Registry-Registry-ID
+    - X-Lupo-Registry-Entity-Type
+    - X-Lupo-Registry-Entity-Index-ID
+    - X-Lupo-Registry-Entity-Index
+    - X-Lupo-Registry-Federation-Node-ID
+    - X-Lupo-Registry-Reserved-YMDHIS
+    - X-Lupo-Registry-Metadata
+    - X-Lupo-Registry-Entity-Key
+    - X-Lupo-Registry-Entity-Name
+    - X-Lupo-Registry-Entity-Table
+    - X-Lupo-Registry-Created-YMDHIS
+    - X-Lupo-Registry-Updated-YMDHIS
+    - X-Lupo-Registry-Is-Deleted
+    - X-Lupo-Registry-Deleted-YMDHIS
+    - X-Lupo-Registry-Is-Active
+    - X-Lupo-Registry-Is-Kernel
+    - X-Lupo-Registry-Metadata-Json
+```
+
+### Semantic Relations Headers
+```yaml
+semantic_relations_headers:
+  parent_child_relations:
+    - X-Lupo-Parent-Content-ID
+    - X-Lupo-Child-Content-IDs
+    - X-Lupo-Parent-Relation-Type
+    - X-Lupo-Child-Relation-Type
+  
+  sibling_relations:
+    - X-Lupo-Sibling-Content-IDs
+    - X-Lupo-Next-Sibling-ID
+    - X-Lupo-Previous-Sibling-ID
+  
+  category_relations:
+    - X-Lupo-Primary-Category-ID
+    - X-Lupo-Secondary-Category-IDs
+    - X-Lupo-Category-Hierarchy
+    - X-Lupo-Category-Path
+  
+  tag_relations:
+    - X-Lupo-Primary-Tag-ID
+    - X-Lupo-Secondary-Tag-IDs
+    - X-Lupo-Tag-Weight
+    - X-Lupo-Tag-Context
+  
+  semantic_connections:
+    - X-Lupo-Semantic-Connection-ID
+    - X-Lupo-Semantic-Connection-Type
+    - X-Lupo-Semantic-Strength
+    - X-Lupo-Semantic-Direction
+```
+
+### Database Mapping Headers (Verbose Mode)
+```yaml
+database_mapping_verbose:
+  actors_table:
+    - X-Lupo-Actors-Actor-ID
+    - X-Lupo-Actors-Actor-Type
+    - X-Lupo-Actors-Actor-Name
+    - X-Lupo-Actors-Slug
+    - X-Lupo-Actors-Created-YMDHIS
+    - X-Lupo-Actors-Updated-YMDHIS
+    - X-Lupo-Actors-Is-Active
+    - X-Lupo-Actors-Is-Deleted
+    - X-Lupo-Actors-Deleted-YMDHIS
+    - X-Lupo-Actors-Actor-Source-ID
+    - X-Lupo-Actors-Actor-Source-Type
+    - X-Lupo-Actors-Metadata
+    - X-Lupo-Actors-Adversarial-Role
+    - X-Lupo-Actors-Adversarial-Oversight-Actor-ID
+    - X-Lupo-Actors-Avatar-Hash
+    - X-Lupo-Actors-Primary-Federation-Node-ID
+    - X-Lupo-Actors-Department-ID
+    - X-Lupo-Actors-Is-Kernel
+    - X-Lupo-Actors-Can-Login
+    - X-Lupo-Actors-Metadata-Json
+    - X-Lupo-Actors-Identity-Provider-Config
+    - X-Lupo-Actors-Paired-Actor-ID
+  
+  channels_table:
+    - X-Lupo-Channels-Channel-ID
+    - X-Lupo-Channels-Federation-Node-ID
+    - X-Lupo-Channels-Created-By-Actor-ID
+    - X-Lupo-Channels-Default-Actor-ID
+    - X-Lupo-Channels-Department-ID
+    - X-Lupo-Channels-Channel-Key
+    - X-Lupo-Channels-Channel-Slug
+    - X-Lupo-Channels-Channel-Type
+    - X-Lupo-Channels-Language
+    - X-Lupo-Channels-Channel-Name
+    - X-Lupo-Channels-Description
+    - X-Lupo-Channels-Website-Link
+    - X-Lupo-Channels-Metadata-Json
+    - X-Lupo-Channels-Status-Flag
+    - X-Lupo-Channels-End-YMDHIS
+    - X-Lupo-Channels-Duration-Seconds
+    - X-Lupo-Channels-Created-YMDHIS
+    - X-Lupo-Channels-Updated-YMDHIS
+    - X-Lupo-Channels-Is-Deleted
+    - X-Lupo-Channels-Deleted-YMDHIS
+    - X-Lupo-Channels-AAL-Metadata-Json
+    - X-Lupo-Channels-Fleet-Composition-Json
+    - X-Lupo-Channels-Awareness-Version
+    - X-Lupo-Channels-Channel-Number
+    - X-Lupo-Channels-Parent-Channel-ID
+    - X-Lupo-Channels-Is-Kernel
+    - X-Lupo-Channels-Boot-Sequence-Order
+  
+  dialog_messages_table:
+    - X-Lupo-Dialog-Messages-Dialog-Message-ID
+    - X-Lupo-Dialog-Messages-From-Actor-ID
+    - X-Lupo-Dialog-Messages-To-Actor-ID
+    - X-Lupo-Dialog-Messages-Channel-ID
+    - X-Lupo-Dialog-Messages-Dialog-Thread-ID
+    - X-Lupo-Dialog-Messages-Message-Type
+    - X-Lupo-Dialog-Messages-Created-YMDHIS
+    - X-Lupo-Dialog-Messages-Updated-YMDHIS
+    - X-Lupo-Dialog-Messages-Is-Deleted
+    - X-Lupo-Dialog-Messages-Deleted-YMDHIS
+  
+  registry_table:
+    - X-Lupo-Registry-Registry-ID
+    - X-Lupo-Registry-Entity-Type
+    - X-Lupo-Registry-Entity-Index-ID
+    - X-Lupo-Registry-Entity-Index
+    - X-Lupo-Registry-Federation-Node-ID
+    - X-Lupo-Registry-Reserved-YMDHIS
+    - X-Lupo-Registry-Metadata
+    - X-Lupo-Registry-Entity-Key
+    - X-Lupo-Registry-Entity-Name
+    - X-Lupo-Registry-Entity-Table
+    - X-Lupo-Registry-Created-YMDHIS
+    - X-Lupo-Registry-Updated-YMDHIS
+    - X-Lupo-Registry-Is-Deleted
+    - X-Lupo-Registry-Deleted-YMDHIS
+    - X-Lupo-Registry-Is-Active
+    - X-Lupo-Registry-Is-Kernel
+    - X-Lupo-Registry-Metadata-Json
 ```
 
 ## Request Header Expansion

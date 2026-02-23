@@ -81,6 +81,47 @@ actor_id: 10000
 - **Header Validation**: Comprehensive header syntax and semantic validation
 - **Cross-System Consistency**: Header consistency across all system components
 - **Security Headers**: Header-based security enforcement mechanisms
+- **Verbose Header System**: 168+ headers for complete offline semantic operation
+- **Semantic Relations**: Complete parent-child, sibling, category, and tag relationship headers
+- **Database Mapping**: Full X-LUPO-{table}.{column} mapping for offline operation
+- **Offline Capability**: Full semantic operation without database connectivity
+- **Use Cases**: Offline documentation, emergency fallback, distribution, archive, migration
+
+### Verbose Header Categories
+1. **Core Identity** (5): Content ID, Title, Slug, File Path, Custom Path
+2. **Actor & Authorization** (5): Actor ID/Identity/Type, Created By, Department
+3. **Content Metadata** (8): Type, Format, Description, Parent, Status, Visibility, Template, Version
+4. **Collections** (3): Collection ID/Name, Default Collection
+5. **Channels & Threads** (4): Channel ID/Key, Thread ID/Title
+6. **Timestamps** (8): Created, Updated, UTC Cycle, File Modified, System Version
+7. **Federation** (2): Node ID/Name
+8. **SEO & Discovery** (4): Keywords, Source URL/Title, Content URL
+9. **Engagement** (4): View Count, Share Count, Likes Total, Shares Total
+10. **Triage** (2): Triage Status/Notes
+11. **Semantic** (4): Tags, Hashtags, Atom Mappings, Category Mappings, Semantic Relationships
+12. **Relationships** (4): Related/Parent/Child Content IDs, Semantic Relationships (JSON)
+13. **Documents** (5): Document ID/Name, MIME Type, File Size, SHA256 Checksum
+14. **Navigation** (3): Semantic Category ID/Slug, Tag IDs (JSON)
+15. **Atoms** (4): Atom IDs/Names (JSON), Context ID, Is Authoritative
+16. **Search** (3): Search Index ID, Keywords, Relevance Score
+17. **Emotional** (2): Framework Name, Constellation ID
+18. **CIP** (3): Event ID, Defensiveness Index, Integration Velocity
+19. **State** (3): Is Active, Is Deleted, Deleted Timestamp
+20. **Location** (3): Location, Latitude, Longitude
+
+### Database Mapping Headers
+- **Actors Table**: 22 headers for complete actor information
+- **Channels Table**: 27 headers for complete channel metadata
+- **Dialog Messages Table**: 8 headers for message tracking
+- **Registry Table**: 12 headers for registry information
+- **Cross-Table Relations**: Headers for semantic relationships and connections
+
+### Offline Operation Capabilities
+- **Git Repository Browsing**: Complete semantic navigation without database
+- **Emergency Fallback**: System continues operating when database is unavailable
+- **Distribution**: Files contain complete metadata for distribution
+- **Archive**: Long-term storage with full semantic context
+- **Migration**: Zero data loss migration between systems
 
 ### Hybrid Actor 2.0
 - **Security-First Design**: Security as primary design principle
