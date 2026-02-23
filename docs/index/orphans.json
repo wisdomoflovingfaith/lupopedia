@@ -1,0 +1,146 @@
+{
+  "generated_at": "20260223",
+  "total_orphans": 35,
+  "orphans": [
+    {
+      "file_path": "docs/channels/CHANNEL_42_BROADCAST_OAUTH_FLIP_FOOTERS.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/FINAL_WINDSURF_DIRECTIVE_4_0_31.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/status/windsurf_audit_kiro_work_4_0_33.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/status/windsurf_sql_seed_alignment_report_4_0_33.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_kiro_stoned_wolfie_metadata_update.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_multi_agent_tasklist.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_v4_0_33_agent_roles_and_status.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_v4_0_33_changelog_sync.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_v4_0_33_stoned_wolfie_metadata_sync.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_windsurf_audit_complete.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_windsurf_changelog_complete.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_windsurf_changelog_git_push_ready.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_windsurf_git_push_complete.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_windsurf_sql_seed_alignment.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_windsurf_sql_seed_complete.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "CHANGELOG.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/CHANNEL_42_BROADCAST_OAUTH_FLIP_FOOTERS.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/FINAL_WINDSURF_DIRECTIVE_4_0_31.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/status/windsurf_audit_kiro_work_4_0_33.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/status/windsurf_sql_seed_alignment_report_4_0_33.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_kiro_stoned_wolfie_metadata_update.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_multi_agent_tasklist.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_v4_0_33_agent_roles_and_status.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_v4_0_33_changelog_sync.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_v4_0_33_stoned_wolfie_metadata_sync.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_windsurf_audit_complete.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_windsurf_changelog_complete.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_windsurf_changelog_git_push_ready.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_windsurf_git_push_complete.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_windsurf_sql_seed_alignment.md",
+      "issue": "missing_header"
+    },
+    {
+      "file_path": "docs/channels/42/broadcasts/20260223_windsurf_sql_seed_complete.md",
+      "issue": "missing_header"
+    }
+  ]
+}

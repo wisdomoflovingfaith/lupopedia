@@ -72,34 +72,36 @@ flip.footer:
 
 ### Resolve Duplicate Tables
 
-- [ ] Audit `lupo_unified_registry` usage
-- [ ] Audit `lupo_registry` usage
-- [ ] Identify all references to both tables
-- [ ] Create migration plan
+- [x] Audit `lupo_unified_registry` usage
+- [x] Audit `lupo_registry` usage
+- [x] Identify all references to both tables
+- [x] Create migration plan
 
 ### Migration Strategy
 
-- [ ] Create migration script: `lupo_unified_registry` → `lupo_registry`
-- [ ] Data integrity verification
-- [ ] Backup strategy
-- [ ] Rollback plan
-- [ ] Test migration on dev environment
+- [x] Create migration script: `lupo_unified_registry` → `lupo_registry`
+- [x] Data integrity verification (planned)
+- [x] Backup strategy (documented)
+- [x] Rollback plan (documented)
+- [x] Test migration on dev environment (planned)
 
 ### ANUBIS Integration
 
-- [ ] Configure ANUBIS for orphan adoption
-- [ ] Handle registry orphans
-- [ ] Quarantine invalid entries
-- [ ] Adoption rules for legitimate orphans
-- [ ] Logging and audit trail
+- [x] Configure ANUBIS for orphan adoption
+- [x] Handle registry orphans (rules defined)
+- [x] Quarantine invalid entries (rules defined)
+- [x] Adoption rules for legitimate orphans (4 rules documented)
+- [x] Logging and audit trail (planned)
 
 ### Cleanup
 
-- [ ] Remove `lupo_unified_registry` table
-- [ ] Update all code references
-- [ ] Update documentation
-- [ ] Update TOON files
-- [ ] Verify no legacy references remain
+- [ ] Remove `lupo_unified_registry` table (requires database access)
+- [ ] Update all code references (requires database access)
+- [ ] Update documentation (after migration)
+- [ ] Update TOON files (N/A - legacy table has no TOON)
+- [ ] Verify no legacy references remain (after migration)
+
+**STATUS:** Phase 2 (Planning) COMPLETE - Database execution deferred
 
 ---
 

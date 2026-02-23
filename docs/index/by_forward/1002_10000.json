@@ -1,0 +1,156 @@
+[
+  {
+    "file_path_from_root": "docs/channels/42/broadcasts/20260223_windsurf_audit_complete.md",
+    "actor_id": null,
+    "lupo_agent": "ide|windsurf|actor_1002",
+    "x_lupo_forwarded": "1002:10000",
+    "channel_id": 42,
+    "last_modified": "2026-02-23T17:20:00Z",
+    "referenced_by_actors": [
+      1000,
+      1001,
+      1002,
+      10000
+    ],
+    "inbound_edges": [
+      "audit_completion",
+      "kiro_verification",
+      "semantic_enhancement",
+      "windsurf_task"
+    ],
+    "header_present": true,
+    "footer_present": true
+  },
+  {
+    "file_path_from_root": "docs/channels/42/broadcasts/20260223_windsurf_changelog_complete.md",
+    "actor_id": 1002,
+    "lupo_agent": "windsurf",
+    "x_lupo_forwarded": "1002:10000",
+    "channel_id": 42,
+    "last_modified": "20260223",
+    "referenced_by_actors": [
+      10000,
+      1002,
+      1001,
+      1003
+    ],
+    "inbound_edges": [
+      "changelog_completion",
+      "version_4_0_33_wrap_up",
+      "windsurf_directive",
+      "github_push_preparation"
+    ],
+    "header_present": true,
+    "footer_present": true
+  },
+  {
+    "file_path_from_root": "docs/channels/42/broadcasts/20260223_windsurf_changelog_git_push_ready.md",
+    "actor_id": 1002,
+    "lupo_agent": "windsurf",
+    "x_lupo_forwarded": "1002:10000",
+    "channel_id": 42,
+    "last_modified": "20260223",
+    "referenced_by_actors": [
+      10000,
+      1002,
+      1001,
+      1003
+    ],
+    "inbound_edges": [
+      "changelog_completion",
+      "git_push_preparation",
+      "version_4_0_33_finalization",
+      "windsurf_directive_execution"
+    ],
+    "header_present": true,
+    "footer_present": true
+  },
+  {
+    "file_path_from_root": "docs/channels/42/broadcasts/20260223_windsurf_git_push_complete.md",
+    "actor_id": 1002,
+    "lupo_agent": "windsurf",
+    "x_lupo_forwarded": "1002:10000",
+    "channel_id": 42,
+    "last_modified": "20260223",
+    "referenced_by_actors": [
+      10000,
+      1002,
+      1001,
+      1003
+    ],
+    "inbound_edges": [
+      "github_push_complete",
+      "version_4_0_33_deployment",
+      "windsurf_directive_execution",
+      "multi_agent_coordination"
+    ],
+    "header_present": true,
+    "footer_present": true
+  },
+  {
+    "file_path_from_root": "docs/channels/42/broadcasts/20260223_windsurf_sql_seed_complete.md",
+    "actor_id": 1002,
+    "lupo_agent": "windsurf",
+    "x_lupo_forwarded": "1002:10000",
+    "channel_id": 42,
+    "last_modified": "20260223",
+    "referenced_by_actors": [
+      10000,
+      1002,
+      1001,
+      1003
+    ],
+    "inbound_edges": [
+      "sql_seed_completion",
+      "registry_synchronization",
+      "database_alignment",
+      "windsurf_task"
+    ],
+    "header_present": true,
+    "footer_present": true
+  },
+  {
+    "file_path_from_root": "docs/status/windsurf_audit_kiro_work_4_0_33.md",
+    "actor_id": null,
+    "lupo_agent": "ide|windsurf|actor_1002",
+    "x_lupo_forwarded": "1002:10000",
+    "channel_id": 42,
+    "last_modified": "2026-02-23T17:20:00Z",
+    "referenced_by_actors": [
+      1000,
+      1001,
+      1002,
+      10000
+    ],
+    "inbound_edges": [
+      "audit_directive",
+      "semantic_enhancement",
+      "kiro_verification",
+      "windsurf_task"
+    ],
+    "header_present": true,
+    "footer_present": true
+  },
+  {
+    "file_path_from_root": "docs/status/windsurf_sql_seed_alignment_report_4_0_33.md",
+    "actor_id": 1002,
+    "lupo_agent": "windsurf",
+    "x_lupo_forwarded": "1002:10000",
+    "channel_id": 42,
+    "last_modified": "20260223",
+    "referenced_by_actors": [
+      10000,
+      1002,
+      1001,
+      1003
+    ],
+    "inbound_edges": [
+      "sql_seed_alignment",
+      "registry_synchronization",
+      "dual_registry_support",
+      "database_alignment"
+    ],
+    "header_present": true,
+    "footer_present": true
+  }
+]

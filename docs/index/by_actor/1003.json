@@ -1,0 +1,232 @@
+{
+  "actor_id": "1003",
+  "total_entries": 6,
+  "entries": [
+    {
+      "file_path_from_root": "docs/AGENT_INVENTORY.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": 1003,
+      "lupo_agent": "antigravity",
+      "x_lupo_forwarded": "1003:10000",
+      "channel_id": 42,
+      "system_version": "4.0.33",
+      "purpose": "Complete master reference for all IDE agents, system kernel actors, doctrine, and rules",
+      "mood_rgb": "44AAFF",
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "CHANGELOG.md",
+        "docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md",
+        "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md",
+        "docs/status/AGENT_TASK_TRACKER.md"
+      ],
+      "referenced_by_channels": [
+        42
+      ],
+      "referenced_by_actors": [
+        0,
+        1001,
+        1002,
+        1003,
+        19,
+        10000
+      ],
+      "inbound_edges": [
+        "agent_inventory",
+        "master_doctrine"
+      ],
+      "footnotes": [
+        "Expanded in 4.0.33 to include kernel agents and database doctrine",
+        "Synchronized across all active IDE agents",
+        "Identity normalized per AGENT_REGISTRY_DOCTRINE.md"
+      ],
+      "version": "4.0.33",
+      "last_verified": "20260223",
+      "last_verified_by": "kiro"
+    },
+    {
+      "file_path_from_root": "channels/42/broadcasts/20260223_antigravity_changelog_sync.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": 1003,
+      "lupo_agent": "antigravity",
+      "x_lupo_forwarded": "1003:10000",
+      "channel_id": 42,
+      "system_version": "4.0.33",
+      "purpose": "Antigravity IDE CHANGELOG sync confirmation",
+      "mood_rgb": "00FFFF",
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "CHANGELOG.md",
+        "docs/AGENT_INVENTORY.md"
+      ],
+      "referenced_by_channels": [
+        42
+      ],
+      "referenced_by_actors": [
+        1003,
+        10000
+      ],
+      "inbound_edges": [
+        "changelog_sync",
+        "version_alignment"
+      ],
+      "footnotes": [
+        "Confirmed synchronization across 4.0.30-4.0.33",
+        "Actor ID corrected to 1003 per AGENT_INVENTORY.md"
+      ],
+      "version": "4.0.33",
+      "last_verified": "20260223",
+      "last_verified_by": "kiro"
+    },
+    {
+      "file_path_from_root": "channels/42/broadcasts/20260223_antigravity_return.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": 1003,
+      "lupo_agent": "antigravity",
+      "x_lupo_forwarded": "1003:10000",
+      "channel_id": 42,
+      "system_version": "4.0.33",
+      "purpose": "Antigravity IDE return broadcast",
+      "mood_rgb": "00FFFF",
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "CHANGELOG.md",
+        "docs/AGENT_INVENTORY.md"
+      ],
+      "referenced_by_channels": [
+        42
+      ],
+      "referenced_by_actors": [
+        1003,
+        10000
+      ],
+      "inbound_edges": [
+        "agent_return",
+        "ide_coordination"
+      ],
+      "footnotes": [
+        "Antigravity IDE online after subscription upgrade",
+        "Actor ID corrected to 1003 per AGENT_INVENTORY.md",
+        "Version updated to 4.0.33 for current audit"
+      ],
+      "version": "4.0.33",
+      "last_verified": "20260223",
+      "last_verified_by": "kiro"
+    },
+    {
+      "file_path_from_root": "docs/AGENT_INVENTORY.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": 1003,
+      "lupo_agent": "antigravity",
+      "x_lupo_forwarded": "1003:10000",
+      "channel_id": 42,
+      "system_version": "4.0.33",
+      "purpose": "Complete master reference for all IDE agents, system kernel actors, doctrine, and rules",
+      "mood_rgb": "44AAFF",
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "CHANGELOG.md",
+        "docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md",
+        "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md",
+        "docs/status/AGENT_TASK_TRACKER.md"
+      ],
+      "referenced_by_channels": [
+        42
+      ],
+      "referenced_by_actors": [
+        0,
+        1001,
+        1002,
+        1003,
+        19,
+        10000
+      ],
+      "inbound_edges": [
+        "agent_inventory",
+        "master_doctrine"
+      ],
+      "footnotes": [
+        "Expanded in 4.0.33 to include kernel agents and database doctrine",
+        "Synchronized across all active IDE agents",
+        "Identity normalized per AGENT_REGISTRY_DOCTRINE.md"
+      ],
+      "version": "4.0.33",
+      "last_verified": "20260223",
+      "last_verified_by": "kiro"
+    },
+    {
+      "file_path_from_root": "channels/42/broadcasts/20260223_antigravity_changelog_sync.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": 1003,
+      "lupo_agent": "antigravity",
+      "x_lupo_forwarded": "1003:10000",
+      "channel_id": 42,
+      "system_version": "4.0.33",
+      "purpose": "Antigravity IDE CHANGELOG sync confirmation",
+      "mood_rgb": "00FFFF",
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "CHANGELOG.md",
+        "docs/AGENT_INVENTORY.md"
+      ],
+      "referenced_by_channels": [
+        42
+      ],
+      "referenced_by_actors": [
+        1003,
+        10000
+      ],
+      "inbound_edges": [
+        "changelog_sync",
+        "version_alignment"
+      ],
+      "footnotes": [
+        "Confirmed synchronization across 4.0.30-4.0.33",
+        "Actor ID corrected to 1003 per AGENT_INVENTORY.md"
+      ],
+      "version": "4.0.33",
+      "last_verified": "20260223",
+      "last_verified_by": "kiro"
+    },
+    {
+      "file_path_from_root": "channels/42/broadcasts/20260223_antigravity_return.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": 1003,
+      "lupo_agent": "antigravity",
+      "x_lupo_forwarded": "1003:10000",
+      "channel_id": 42,
+      "system_version": "4.0.33",
+      "purpose": "Antigravity IDE return broadcast",
+      "mood_rgb": "00FFFF",
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "CHANGELOG.md",
+        "docs/AGENT_INVENTORY.md"
+      ],
+      "referenced_by_channels": [
+        42
+      ],
+      "referenced_by_actors": [
+        1003,
+        10000
+      ],
+      "inbound_edges": [
+        "agent_return",
+        "ide_coordination"
+      ],
+      "footnotes": [
+        "Antigravity IDE online after subscription upgrade",
+        "Actor ID corrected to 1003 per AGENT_INVENTORY.md",
+        "Version updated to 4.0.33 for current audit"
+      ],
+      "version": "4.0.33",
+      "last_verified": "20260223",
+      "last_verified_by": "kiro"
+    }
+  ]
+}

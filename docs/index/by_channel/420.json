@@ -1,0 +1,240 @@
+{
+  "channel_id": "420",
+  "total_entries": 6,
+  "entries": [
+    {
+      "file_path_from_root": "docs/archive/channel_420_final_messages.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": null,
+      "lupo_agent": null,
+      "x_lupo_forwarded": "1001:10000",
+      "channel_id": 420,
+      "system_version": "4.0.31",
+      "purpose": null,
+      "mood_rgb": null,
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "CHANGELOG.md",
+        "channels/42/broadcasts/20260223_kiro_takeover.md",
+        "docs/doctrine/SEMANTIC_SECURITY_FRAMEWORK.md"
+      ],
+      "referenced_by_channels": [
+        42,
+        0
+      ],
+      "referenced_by_actors": [
+        1000,
+        10000
+      ],
+      "inbound_edges": [
+        "semantic_security_enforcement",
+        "actor_420_ban",
+        "channel_migration"
+      ],
+      "footnotes": [
+        "Channel 420 permanently archived on 2026-02-23.",
+        "Actor 420 banned for semantic security violations.",
+        "All functions transferred to Channel 42.",
+        "Archive preserved for reconstruction and analysis purposes."
+      ],
+      "version": null,
+      "last_verified": null,
+      "last_verified_by": null
+    },
+    {
+      "file_path_from_root": "docs/archive/channel_420_honest_post_migration.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": 1001,
+      "lupo_agent": "kiro",
+      "x_lupo_forwarded": "1001:10000",
+      "channel_id": 420,
+      "system_version": "4.0.29",
+      "purpose": "Post-migration database state verification for Channel 420",
+      "mood_rgb": "808080",
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "docs/archive/CHANNEL_420_TOMBSTONE.md",
+        "docs/archive/channel_420_final_messages.md",
+        "CHANGELOG.md"
+      ],
+      "referenced_by_channels": [
+        420
+      ],
+      "referenced_by_actors": [
+        420,
+        1001,
+        10000
+      ],
+      "inbound_edges": [
+        "channel_420_archive",
+        "post_migration_verification"
+      ],
+      "footnotes": [
+        "Archive file - created in 4.0.29",
+        "Post-migration database state verification",
+        "Channel 420 permanently archived"
+      ],
+      "version": "4.0.29",
+      "last_verified": "20260223",
+      "last_verified_by": "kiro"
+    },
+    {
+      "file_path_from_root": "docs/archive/CHANNEL_420_TOMBSTONE.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": 1001,
+      "lupo_agent": "kiro",
+      "x_lupo_forwarded": "1001:10000",
+      "channel_id": 420,
+      "system_version": "4.0.29",
+      "purpose": "Channel 420 tombstone and final archive marker",
+      "mood_rgb": "000000",
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "docs/archive/channel_420_honest_post_migration.md",
+        "docs/archive/channel_420_final_messages.md",
+        "CHANGELOG.md"
+      ],
+      "referenced_by_channels": [
+        420
+      ],
+      "referenced_by_actors": [
+        420,
+        1001,
+        10000
+      ],
+      "inbound_edges": [
+        "channel_420_archive",
+        "tombstone",
+        "final_closure"
+      ],
+      "footnotes": [
+        "Archive file - created in 4.0.29",
+        "Channel 420 tombstone marker",
+        "Permanent archive status"
+      ],
+      "version": "4.0.29",
+      "last_verified": "20260223",
+      "last_verified_by": "kiro"
+    },
+    {
+      "file_path_from_root": "docs/archive/channel_420_final_messages.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": null,
+      "lupo_agent": null,
+      "x_lupo_forwarded": "1001:10000",
+      "channel_id": 420,
+      "system_version": "4.0.31",
+      "purpose": null,
+      "mood_rgb": null,
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "CHANGELOG.md",
+        "channels/42/broadcasts/20260223_kiro_takeover.md",
+        "docs/doctrine/SEMANTIC_SECURITY_FRAMEWORK.md"
+      ],
+      "referenced_by_channels": [
+        42,
+        0
+      ],
+      "referenced_by_actors": [
+        1000,
+        10000
+      ],
+      "inbound_edges": [
+        "semantic_security_enforcement",
+        "actor_420_ban",
+        "channel_migration"
+      ],
+      "footnotes": [
+        "Channel 420 permanently archived on 2026-02-23.",
+        "Actor 420 banned for semantic security violations.",
+        "All functions transferred to Channel 42.",
+        "Archive preserved for reconstruction and analysis purposes."
+      ],
+      "version": null,
+      "last_verified": null,
+      "last_verified_by": null
+    },
+    {
+      "file_path_from_root": "docs/archive/channel_420_honest_post_migration.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": 1001,
+      "lupo_agent": "kiro",
+      "x_lupo_forwarded": "1001:10000",
+      "channel_id": 420,
+      "system_version": "4.0.29",
+      "purpose": "Post-migration database state verification for Channel 420",
+      "mood_rgb": "808080",
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "docs/archive/CHANNEL_420_TOMBSTONE.md",
+        "docs/archive/channel_420_final_messages.md",
+        "CHANGELOG.md"
+      ],
+      "referenced_by_channels": [
+        420
+      ],
+      "referenced_by_actors": [
+        420,
+        1001,
+        10000
+      ],
+      "inbound_edges": [
+        "channel_420_archive",
+        "post_migration_verification"
+      ],
+      "footnotes": [
+        "Archive file - created in 4.0.29",
+        "Post-migration database state verification",
+        "Channel 420 permanently archived"
+      ],
+      "version": "4.0.29",
+      "last_verified": "20260223",
+      "last_verified_by": "kiro"
+    },
+    {
+      "file_path_from_root": "docs/archive/CHANNEL_420_TOMBSTONE.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": 1001,
+      "lupo_agent": "kiro",
+      "x_lupo_forwarded": "1001:10000",
+      "channel_id": 420,
+      "system_version": "4.0.29",
+      "purpose": "Channel 420 tombstone and final archive marker",
+      "mood_rgb": "000000",
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "docs/archive/channel_420_honest_post_migration.md",
+        "docs/archive/channel_420_final_messages.md",
+        "CHANGELOG.md"
+      ],
+      "referenced_by_channels": [
+        420
+      ],
+      "referenced_by_actors": [
+        420,
+        1001,
+        10000
+      ],
+      "inbound_edges": [
+        "channel_420_archive",
+        "tombstone",
+        "final_closure"
+      ],
+      "footnotes": [
+        "Archive file - created in 4.0.29",
+        "Channel 420 tombstone marker",
+        "Permanent archive status"
+      ],
+      "version": "4.0.29",
+      "last_verified": "20260223",
+      "last_verified_by": "kiro"
+    }
+  ]
+}

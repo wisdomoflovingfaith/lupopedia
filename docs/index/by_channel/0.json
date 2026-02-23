@@ -1,0 +1,38 @@
+[
+  {
+    "file_path_from_root": "docs/audit/FLIP_HEADER_COMPLETENESS_AUDIT_4.0.29.md",
+    "actor_id": null,
+    "lupo_agent": null,
+    "x_lupo_forwarded": null,
+    "channel_id": 0,
+    "last_modified": "20260222",
+    "referenced_by_actors": [],
+    "inbound_edges": [],
+    "header_present": true,
+    "footer_present": false
+  },
+  {
+    "file_path_from_root": "docs/doctrine/INSTALLATION_PATH_DOCTRINE.md",
+    "actor_id": 2035,
+    "lupo_agent": "Lupopedia Audit Tool (Auto-Fixed)",
+    "x_lupo_forwarded": null,
+    "channel_id": 0,
+    "last_modified": "20260217",
+    "referenced_by_actors": [],
+    "inbound_edges": [],
+    "header_present": true,
+    "footer_present": false
+  },
+  {
+    "file_path_from_root": "docs/doctrine/FLIP/FLP_CHANNEL_0.md",
+    "actor_id": 2035,
+    "lupo_agent": "Lupopedia Audit Tool (Auto-Fixed)",
+    "x_lupo_forwarded": null,
+    "channel_id": 0,
+    "last_modified": "20260218",
+    "referenced_by_actors": [],
+    "inbound_edges": [],
+    "header_present": true,
+    "footer_present": false
+  }
+]

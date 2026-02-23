@@ -1,0 +1,94 @@
+{
+  "x_lupo_forwarded": "external:ai:chatgpt:10000",
+  "total_entries": 2,
+  "entries": [
+    {
+      "file_path_from_root": "prompts/windsurf/20260223_kiro_work_audit_prompt.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": null,
+      "lupo_agent": "external_ai|chatgpt",
+      "x_lupo_forwarded": "external_ai_chatgpt:10000",
+      "channel_id": 42,
+      "system_version": "4.0.33",
+      "purpose": "Directive for Windsurf to audit KIRO's recent work and enhance semantic metadata across Lupopedia",
+      "mood_rgb": "0044FF",
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "docs/audits/prompt_message_audit_20260223.md",
+        "CHANGELOG.md",
+        "docs/doctrine/FLIP_FOOTER_DOCTRINE.md",
+        "docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md",
+        "docs/AGENT_INVENTORY.md"
+      ],
+      "referenced_by_channels": [
+        42
+      ],
+      "referenced_by_actors": [
+        1000,
+        1001,
+        1002,
+        10000
+      ],
+      "inbound_edges": [
+        "audit_directive",
+        "semantic_enhancement",
+        "kiro_verification",
+        "windsurf_task"
+      ],
+      "footnotes": [
+        "Improved clarity, structure, and doctrine compliance from original prompt",
+        "Focuses on KIRO's recent metadata work (v4.0.33)",
+        "Enhances FLIP footers with semantic cross-references",
+        "Compliant with Lupopedia metadata doctrine"
+      ],
+      "version": null,
+      "last_verified": null,
+      "last_verified_by": null
+    },
+    {
+      "file_path_from_root": "prompts/windsurf/20260223_kiro_work_audit_prompt.md",
+      "header_present": true,
+      "footer_present": true,
+      "actor_id": null,
+      "lupo_agent": "external_ai|chatgpt",
+      "x_lupo_forwarded": "external_ai_chatgpt:10000",
+      "channel_id": 42,
+      "system_version": "4.0.33",
+      "purpose": "Directive for Windsurf to audit KIRO's recent work and enhance semantic metadata across Lupopedia",
+      "mood_rgb": "0044FF",
+      "last_modified": "20260223",
+      "referenced_by_files": [
+        "docs/audits/prompt_message_audit_20260223.md",
+        "CHANGELOG.md",
+        "docs/doctrine/FLIP_FOOTER_DOCTRINE.md",
+        "docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md",
+        "docs/AGENT_INVENTORY.md"
+      ],
+      "referenced_by_channels": [
+        42
+      ],
+      "referenced_by_actors": [
+        1000,
+        1001,
+        1002,
+        10000
+      ],
+      "inbound_edges": [
+        "audit_directive",
+        "semantic_enhancement",
+        "kiro_verification",
+        "windsurf_task"
+      ],
+      "footnotes": [
+        "Improved clarity, structure, and doctrine compliance from original prompt",
+        "Focuses on KIRO's recent metadata work (v4.0.33)",
+        "Enhances FLIP footers with semantic cross-references",
+        "Compliant with Lupopedia metadata doctrine"
+      ],
+      "version": null,
+      "last_verified": null,
+      "last_verified_by": null
+    }
+  ]
+}

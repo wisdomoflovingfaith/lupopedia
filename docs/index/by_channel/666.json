@@ -1,0 +1,14 @@
+[
+  {
+    "file_path_from_root": "docs/doctrine/FLIP/FLP_CHANNEL_666.md",
+    "actor_id": 2035,
+    "lupo_agent": "Lupopedia Audit Tool (Auto-Fixed)",
+    "x_lupo_forwarded": null,
+    "channel_id": 666,
+    "last_modified": "20260218",
+    "referenced_by_actors": [],
+    "inbound_edges": [],
+    "header_present": true,
+    "footer_present": false
+  }
+]

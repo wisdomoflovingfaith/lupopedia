@@ -1,0 +1,86 @@
+[
+  {
+    "file_path_from_root": "docs/channels/42/broadcasts/20260223_kiro_stoned_wolfie_metadata_update.md",
+    "actor_id": null,
+    "lupo_agent": null,
+    "x_lupo_forwarded": "2002:10000",
+    "channel_id": 42,
+    "last_modified": "20260223",
+    "referenced_by_actors": [],
+    "inbound_edges": [],
+    "header_present": true,
+    "footer_present": false
+  },
+  {
+    "file_path_from_root": "docs/channels/42/broadcasts/20260223_v4_0_33_agent_roles_and_status.md",
+    "actor_id": null,
+    "lupo_agent": null,
+    "x_lupo_forwarded": "2002:10000",
+    "channel_id": 42,
+    "last_modified": "20260223",
+    "referenced_by_actors": [],
+    "inbound_edges": [],
+    "header_present": true,
+    "footer_present": false
+  },
+  {
+    "file_path_from_root": "docs/channels/42/broadcasts/20260223_v4_0_33_changelog_sync.md",
+    "actor_id": null,
+    "lupo_agent": null,
+    "x_lupo_forwarded": "2002:10000",
+    "channel_id": 42,
+    "last_modified": "20260223",
+    "referenced_by_actors": [],
+    "inbound_edges": [],
+    "header_present": true,
+    "footer_present": false
+  },
+  {
+    "file_path_from_root": "docs/channels/42/broadcasts/20260223_v4_0_33_stoned_wolfie_metadata_sync.md",
+    "actor_id": null,
+    "lupo_agent": null,
+    "x_lupo_forwarded": "2002:10000",
+    "channel_id": 42,
+    "last_modified": "20260223",
+    "referenced_by_actors": [],
+    "inbound_edges": [],
+    "header_present": true,
+    "footer_present": false
+  },
+  {
+    "file_path_from_root": "docs/channels/42/broadcasts/20260223_windsurf_verification_complete.md",
+    "actor_id": null,
+    "lupo_agent": null,
+    "x_lupo_forwarded": "2002:10000",
+    "channel_id": 42,
+    "last_modified": "20260223",
+    "referenced_by_actors": [],
+    "inbound_edges": [],
+    "header_present": true,
+    "footer_present": false
+  },
+  {
+    "file_path_from_root": "docs/status/system_online_20260223.md",
+    "actor_id": null,
+    "lupo_agent": null,
+    "x_lupo_forwarded": "2002:10000",
+    "channel_id": 42,
+    "last_modified": "20260223",
+    "referenced_by_actors": [],
+    "inbound_edges": [],
+    "header_present": true,
+    "footer_present": false
+  },
+  {
+    "file_path_from_root": "docs/status/windsurf_audit_4_0_32.md",
+    "actor_id": null,
+    "lupo_agent": null,
+    "x_lupo_forwarded": "2002:10000",
+    "channel_id": 42,
+    "last_modified": "20260223",
+    "referenced_by_actors": [],
+    "inbound_edges": [],
+    "header_present": true,
+    "footer_present": false
+  }
+]
