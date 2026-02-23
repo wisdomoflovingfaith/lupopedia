@@ -95,7 +95,6 @@ actor_id: 420
 name: STONED WOLFIE AI
 actor_type: hybrid
 status: mythological
-role: Primary Test Identity
 ---
 **Role**: Primary experimental AI test identity  
 **Status**: Mythological (non-operational, historical reference only)  
