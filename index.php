@@ -1,5 +1,51 @@
 <?php
 /**
+ * @wolfie.headers {
+ *   file_path_from_root: "index.php",
+ *   system_version: "4.0.39",
+ *   channel_id: 42,
+ *   mood_rgb: "4169E1",
+ *   purpose: "Front controller and routing entry point - loads config, resolves slug, invokes routing system",
+ *   last_modified_utc: "20260224",
+ *   delegation_chain: "1001:10000",
+ *   actor_id: 1001,
+ *   lupo_agent: "kiro",
+ *   artifact_type: "controller",
+ *   artifact_kind: "front_controller",
+ *   traits: ["critical", "entrypoint", "routing", "p0"],
+ *   hashtags: ["#front_controller", "#routing", "#entrypoint", "#critical"],
+ *   engagement: { likes: 0, shares: 0, views: 0, last_interaction_utc: "20260224" },
+ *   graph_stats: { inbound_count: 10, outbound_count: 8, centrality_score: 0.95 }
+ * }
+ * 
+ * @flip.footer {
+ *   inbound_edges: [
+ *     { from: "README.md", type: "references", weight: 0.9, hashtag: "#architecture" },
+ *     { from: ".htaccess", type: "routes_to", weight: 1.0, hashtag: "#routing" },
+ *     { from: "install.php", type: "redirects_to", weight: 0.8, hashtag: "#installer" },
+ *     { from: "admin.php", type: "references", weight: 0.6, hashtag: "#admin" }
+ *   ],
+ *   outbound_edges: [
+ *     { to: "lupopedia-config.php", type: "requires", weight: 1.0, hashtag: "#config" },
+ *     { to: "lupo-includes/bootstrap.php", type: "requires", weight: 1.0, hashtag: "#bootstrap" },
+ *     { to: "lupo-includes/lupopedia-loader.php", type: "requires", weight: 1.0, hashtag: "#loader" },
+ *     { to: "lupo-includes/modules/module-loader.php", type: "invokes", weight: 0.9, hashtag: "#routing" },
+ *     { to: "install.php", type: "redirects_to", weight: 0.7, hashtag: "#installer" }
+ *   ],
+ *   referenced_by_actors: [1001, 1002, 10000],
+ *   references: {
+ *     by_files: ["README.md", ".htaccess", "install.php"],
+ *     by_actors: [1001, 10000]
+ *   },
+ *   semantic_tags: ["front_controller", "routing", "config_loading", "subdirectory_install"],
+ *   enrichment: { llm_inferred_edges: [], federated_metrics: {} },
+ *   version: "4.0.39",
+ *   last_verified_utc: "20260224",
+ *   last_verified_by: "kiro"
+ * }
+ */
+
+/**
  * FILE: index.php
  * TYPE: php
  *

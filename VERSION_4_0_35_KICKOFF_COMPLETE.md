@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "VERSION_4_0_35_KICKOFF_COMPLETE.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "00FF44"
   purpose: "Version 4.0.35 kickoff completion summary"
@@ -26,7 +26,7 @@ flip.footer:
   footnotes:
     - "Version 4.0.35 kickoff complete"
     - "All initialization tasks completed"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "kiro"
 ---
@@ -52,8 +52,8 @@ Version 4.0.35 development cycle has been successfully initiated per Captain Wol
 ### 1. Version Markers Updated ✅
 
 **config/global_atoms.yaml:**
-- `version: "4.0.35"`
-- `GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.35"`
+- `version: "4.0.36"`
+- `GLOBAL_CURRENT_LUPOPEDIA_version: "4.0.36"`
 - `versions.lupopedia: "4.0.35"`
 - `versions.crafty_syntax: "4.0.35"`
 - `versions.wolfie_headers: "4.0.35"`

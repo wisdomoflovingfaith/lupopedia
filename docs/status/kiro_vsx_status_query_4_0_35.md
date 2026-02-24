@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "docs/status/kiro_vsx_status_query_4_0_35.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "0088FF"
   purpose: "KIRO status query report for VSX Extension operational mode"
@@ -27,7 +27,7 @@ flip.footer:
   footnotes:
     - "KIRO verification of VSX Extension status"
     - "Integrated with MD-only fallback architecture"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "kiro"
 ---

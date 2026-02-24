@@ -2,7 +2,7 @@
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers:
   file_path_from_root: "versions/4.0.35/DEVELOPMENT_ROADMAP.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "4B0082"
   purpose: "Version 4.0.35 development roadmap for phases and milestones"
@@ -30,7 +30,7 @@ flip.footer:
     - "Version 4.0.35 development roadmap"
     - "Registry consolidation and agent detection automation focus"
     - "Four-phase development plan"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "1002"
   verification_method: "Roadmap creation and phase planning"

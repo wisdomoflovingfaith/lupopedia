@@ -6,12 +6,13 @@
  * version-related constants and helper functions.
  * 
  * @package Lupopedia
- * @version 4.0.29
+ * @version 4.0.39
  * 
  * @note VERSION DOCTRINE: This file now loads version from GLOBAL_CURRENT_LUPOPEDIA_VERSION
  *       atom in config/global_atoms.yaml (Phase 2 implementation). Constants are defined
  *       from the atom at parse time, ensuring single source of truth. See
  *       docs/doctrine/VERSION_DOCTRINE.md for complete versioning doctrine.
+ * @note FLIP v2: Version 4.0.37 includes FLIP v2 schema support and enhanced metadata
  */
 
 // Load atom loader function if not already loaded
@@ -36,7 +37,7 @@ if (function_exists('get_lupopedia_version')) {
 }
 
 // Fallback to hard-coded version if atom loader fails (backward compatibility)
-$current_version = $version_from_atom !== null ? $version_from_atom : '4.0.26';
+$current_version = $version_from_atom !== null ? $version_from_atom : '4.0.39';
 
 // LIMITS enforcement (dry-run mode in 3.0.103)
 // Check version bump before applying (non-blocking, logs warnings only)
@@ -90,9 +91,9 @@ if (!defined('LUPOPEDIA_VERSION_NUM')) {
     } else {
         // Fallback calculation
         $parts = explode('.', $current_version);
-        $major = isset($parts[0]) ? (int)$parts[0] : 0;
-        $minor = isset($parts[1]) ? (int)$parts[1] : 0;
-        $patch = isset($parts[2]) ? (int)$parts[2] : 0;
+        $major = isset($parts[0]) ? (int) $parts[0] : 0;
+        $minor = isset($parts[1]) ? (int) $parts[1] : 0;
+        $patch = isset($parts[2]) ? (int) $parts[2] : 0;
         define('LUPOPEDIA_VERSION_NUM', ($major * 10000) + ($minor * 100) + $patch);
     }
 }
@@ -107,7 +108,7 @@ if (!defined('LUPOPEDIA_VERSION_NUM')) {
  * @var int
  */
 if (!defined('LUPOPEDIA_VERSION_DATE')) {
-    define('LUPOPEDIA_VERSION_DATE', 20260222000000);
+    define('LUPOPEDIA_VERSION_DATE', 20260223000000);
 }
 
 /**
@@ -117,7 +118,8 @@ if (!defined('LUPOPEDIA_VERSION_DATE')) {
  * 
  * @return string The version string (e.g., "3.0.0")
  */
-function lupopedia_get_version() {
+function lupopedia_get_version()
+{
     // Try to load from atom first (most up-to-date)
     if (function_exists('get_lupopedia_version')) {
         $atom_version = get_lupopedia_version();
@@ -126,7 +128,7 @@ function lupopedia_get_version() {
         }
     }
     // Fallback to constant
-    return defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.26';
+    return defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.39';
 }
 
 /**
@@ -134,7 +136,8 @@ function lupopedia_get_version() {
  * 
  * @return string The database version string
  */
-function lupopedia_get_db_version() {
+function lupopedia_get_db_version()
+{
     return LUPOPEDIA_DB_VERSION;
 }
 
@@ -143,7 +146,8 @@ function lupopedia_get_db_version() {
  * 
  * @return int The version number
  */
-function lupopedia_get_version_num() {
+function lupopedia_get_version_num()
+{
     return LUPOPEDIA_VERSION_NUM;
 }
 
@@ -152,7 +156,8 @@ function lupopedia_get_version_num() {
  * 
  * @return int The version date as BIGINT UTC timestamp
  */
-function lupopedia_get_version_date() {
+function lupopedia_get_version_date()
+{
     return LUPOPEDIA_VERSION_DATE;
 }
 
@@ -161,11 +166,12 @@ function lupopedia_get_version_date() {
  * 
  * @return bool True if this is a dev/pre-release version
  */
-function lupopedia_is_dev_version() {
-    return (strpos(LUPOPEDIA_VERSION, '-dev') !== false || 
-            strpos(LUPOPEDIA_VERSION, '-alpha') !== false ||
-            strpos(LUPOPEDIA_VERSION, '-beta') !== false ||
-            strpos(LUPOPEDIA_VERSION, '-rc') !== false);
+function lupopedia_is_dev_version()
+{
+    return (strpos(LUPOPEDIA_VERSION, '-dev') !== false ||
+        strpos(LUPOPEDIA_VERSION, '-alpha') !== false ||
+        strpos(LUPOPEDIA_VERSION, '-beta') !== false ||
+        strpos(LUPOPEDIA_VERSION, '-rc') !== false);
 }
 
 /**
@@ -173,14 +179,15 @@ function lupopedia_is_dev_version() {
  * 
  * @return array Associative array with version information
  */
-function lupopedia_get_version_info() {
+function lupopedia_get_version_info()
+{
     return array(
         'version' => LUPOPEDIA_VERSION,
         'db_version' => LUPOPEDIA_DB_VERSION,
         'version_num' => LUPOPEDIA_VERSION_NUM,
         'version_date' => LUPOPEDIA_VERSION_DATE,
         'is_dev' => lupopedia_is_dev_version(),
-        'release_date' => date('Y-m-d H:i:s', strtotime(substr((string)LUPOPEDIA_VERSION_DATE, 0, 8)))
+        'release_date' => date('Y-m-d H:i:s', strtotime(substr((string) LUPOPEDIA_VERSION_DATE, 0, 8)))
     );
 }
 
@@ -191,15 +198,16 @@ function lupopedia_get_version_info() {
  * @param string $version2 Second version to compare
  * @return int Returns -1 if version1 < version2, 0 if equal, 1 if version1 > version2
  */
-function lupopedia_compare_versions($version1, $version2) {
+function lupopedia_compare_versions($version1, $version2)
+{
     $v1_parts = explode('.', preg_replace('/[^0-9.]/', '', $version1));
     $v2_parts = explode('.', preg_replace('/[^0-9.]/', '', $version2));
-    
+
     // Pad arrays to same length
     $max_length = max(count($v1_parts), count($v2_parts));
     $v1_parts = array_pad($v1_parts, $max_length, 0);
     $v2_parts = array_pad($v2_parts, $max_length, 0);
-    
+
     for ($i = 0; $i < $max_length; $i++) {
         if ($v1_parts[$i] < $v2_parts[$i]) {
             return -1;
@@ -207,7 +215,7 @@ function lupopedia_compare_versions($version1, $version2) {
             return 1;
         }
     }
-    
+
     return 0;
 }
 
@@ -218,7 +226,8 @@ function lupopedia_compare_versions($version1, $version2) {
  * @param string $current_version Version to check (defaults to current Lupopedia version)
  * @return bool True if current version meets or exceeds required version
  */
-function lupopedia_version_meets_requirement($required_version, $current_version = null) {
+function lupopedia_version_meets_requirement($required_version, $current_version = null)
+{
     if ($current_version === null) {
         $current_version = LUPOPEDIA_VERSION;
     }

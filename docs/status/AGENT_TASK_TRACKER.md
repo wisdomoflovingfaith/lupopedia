@@ -1,10 +1,10 @@
 ---
 wolfie.headers:
   file_path_from_root: "docs/status/AGENT_TASK_TRACKER.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "FFCC00"
-  purpose: "Real-time task tracking for IDE agents in version 4.0.35"
+  purpose: "Real-time task tracking for IDE agents in version 4.0.36"
   last_modified_utc: "20260223"
   x_lupo_forwarded: "1003:10000"
   actor_id: 1003
@@ -25,28 +25,40 @@ flip.footer:
     - "task_tracking"
     - "status_updates"
   footnotes:
-    - "Updated for 4.0.35 development cycle"
-  version: "4.0.35"
+    - "Updated for 4.0.36 development cycle"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "antigravity"
 ---
 
-# AGENT TASK TRACKER — v4.0.35
+# AGENT TASK TRACKER — v4.0.36
 
 This document tracks active development tasks across the IDE federation.
 
-## 🟪 VERSION 4.0.35 (Current Phase)
+## 🟪 VERSION 4.0.37 (Current Phase)
 
 | Task ID | Description | Assigned Agent | Status | Notes |
 |:---|:---|:---|:---|:---|
-| T-35-01 | Registry Consolidation (DB Phase) | KIRO | ⏸️ PENDING | Waiting for maintenance window |
-| T-35-02 | Agent Detection Automation | KIRO | 🚧 IN PROGRESS | Planning detection service |
+| T-37-01 | FLIP v2 VSX Implementation (Parsers/Storage) | Antigravity | ✅ CORE COMPLETE | Report: docs/status/antigravity_flip_v2_implementation_4_0_37.md |
+| T-37-02 | Crafty 3.7.5 → Lupopedia 4.0.37 Upgrade Test | KIRO/Windsurf | ⏸️ PENDING | |
+
+## 🟦 VERSION 4.0.36
+
+| Task ID | Description | Assigned Agent | Status | Notes |
+|:---|:---|:---|:---|:---|
+| T-36-01 | VSX Extension Full Test Execution | Antigravity | ✅ COMPLETE | Report: vsx_extension_test_report_4_0_36.md |
+| T-36-02 | Crafty 3.7.5 → Lupo 4.0.36 Upgrade Test | KIRO/Windsurf | ⏩ MIGRATED | See T-37-02 |
+| T-36-03 | Registry Consolidation (DB Execution) | KIRO | ⏩ MIGRATED | See 4.0.37 Backlog |
+| T-36-04 | Agent Detection Automation (Service) | KIRO | ⏩ MIGRATED | See 4.0.37 Backlog |
+
+## 🟦 COMPLETED (v4.0.35)
+
+| Task ID | Description | Assigned Agent | Status | Notes |
+|:---|:---|:---|:---|:---|
 | T-35-03 | VSX Extension MD-only Fallback | Antigravity | ✅ COMPLETE | Directive D-35-01 / D-35-02 |
 | T-35-05 | VSX Publisher Identity Verify | Antigravity | ✅ COMPLETE | Directive D-35-02 |
-| T-35-04 | Semantic Security Expansion | KIRO/Antigravity | ⏸️ PENDING | |
-| T-33-01 | Finalize OAuth 2.0 (Google/GitHub) | KIRO | 🚧 IN PROGRESS | Callback handling |
-
-## 🟦 COMPLETED (v4.0.34)
+| T-35-01 | Registry Consolidation Planning | KIRO | ✅ COMPLETE | |
+| T-35-02 | Agent Detection Planning | KIRO | ✅ COMPLETE | |
 
 | Task ID | Description | Assigned Agent | Status | Notes |
 |:---|:---|:---|:---|:---|

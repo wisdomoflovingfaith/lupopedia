@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "docs/versions/4.0.35/TODO.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "AA00FF"
   purpose: "Task tracking for version 4.0.35"
@@ -12,7 +12,7 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "antigravity"
 ---

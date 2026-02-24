@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.21
+file.last_modified_system_version: 4.0.37
 file.channel: schema
 # Global Atoms Configuration
 # Single source of truth for ecosystem-wide metadata used in WOLFIE Headers
@@ -14,11 +14,27 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.0.35"
-last_updated: 20260223
-# VERSION 4.0.35 - Development Cycle Initiated
-# Registry consolidation, agent detection automation, VX extension integration
-release_note: "Version 4.0.35 development cycle initiated. Focus on registry consolidation and automation."
+version: "4.0.37"
+last_updated: 20260224
+# VERSION 4.0.37 - FLIP v2 VSX Implementation
+# Implementation of FLIP v2 in VSX Extension, refined header/footer parsing
+
+# Global Version Atoms
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.39"
+GLOBAL_FLIP_SCHEMA_VERSION: "2.0"
+
+# System Configuration Atoms
+SYSTEM_DATABASE_COMPATIBILITY: ["mysql", "postgresql", "mariadb"]
+SYSTEM_PHP_COMPATIBILITY: ["5.3", "5.4", "5.5", "5.6", "7.0", "7.1", "7.2", "7.3", "7.4", "8.0", "8.1", "8.2", "8.3"]
+SYSTEM_TIMESTAMP_FORMAT: "YYYYMMDDHHIISS"
+SYSTEM_TABLE_LIMIT: 222
+
+# FLIP v2 Configuration Atoms
+FLIP_V2_ENABLED: true
+FLIP_V2_RELATIONSHIP_DISCOVERY: true
+FLIP_V2_SEMANTIC_INFERENCE: true
+FLIP_V2_ENHANCED_ATTRIBUTION: true
+release_note: "Version 4.0.37 development cycle initiated. Focus on FLIP v2 VSX implementation and header/footer enhancements."
 
 # Author Information
 authors:
@@ -40,10 +56,10 @@ project:
 
 # Version Information
 versions:
-  lupopedia: "4.0.35"
-  crafty_syntax: "4.0.35"
-  wolfie_headers: "4.0.35"
-  schema: "4.0.35"
+  lupopedia: "4.0.36"
+  crafty_syntax: "4.0.36"
+  wolfie_headers: "4.0.36"
+  schema: "4.0.36"
 
 # Common Metadata
 metadata:
@@ -78,8 +94,8 @@ timestamp:
 # Global Atoms (Single Source of Truth for WOLFIE Headers)
 
 # Current Lupopedia Version (Use this in all WOLFIE headers instead of hardcoding)
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.35"
-# Version 4.0.35 development cycle initiated
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.36"
+# Version 4.0.36 development cycle initiated - VSX testing and full upgrade validation
 
 # Current Authors (Use in WOLFIE headers)
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie (lupopedia-at-gmail-com)"
@@ -225,10 +241,53 @@ GLOBAL_TIMEZONE_UTC: "UTC"
 GLOBAL_BIGINT_TIMESTAMP_TYPE: "BIGINT(14) UNSIGNED"
 
 # UTC_TIMEKEEPER Group ID (YYYYMMDD of UTC day when last patch cycle started before moving to next patch)
-UTC_TIMEKEEPER__GROUP_ID: "20260119"
+UTC_TIMEKEEPER__GROUP_ID: "20260224"
 
 # UTC_TIMEKEEPER Channel ID (Channel-bound temporal grouping - binds temporal grouping to existing channel identity)
 UTC_TIMEKEEPER__CHANNEL_ID: "dev"
+
+# Global Atoms Configuration - Version 4.0.38
+# Last Updated: 20260224
+# System Version: 4.0.38
+# Schema Version: FLIP v2 (2.0)
+
+# Core System Atoms
+GLOBAL_FLIP_SCHEMA_VERSION: "2.0"
+GLOBAL_SYSTEM_MODE: "development"
+GLOBAL_DEFAULT_TIMEZONE: "UTC"
+
+# FLIP v2 Configuration Atoms
+GLOBAL_FLIP_V2_ENABLED: true
+GLOBAL_FLIP_RELATIONSHIP_DISCOVERY: true
+GLOBAL_FLIP_SEMANTIC_INFERENCE: true
+GLOBAL_FLIP_ENHANCED_ATTRIBUTION: true
+
+# Version Control Atoms
+GLOBAL_VERSION_BUMP_ENABLED: false
+GLOBAL_AUTO_MIGRATION_ENABLED: false
+GLOBAL_SCHEMA_VALIDATION_ENABLED: true
+
+# Performance Atoms
+GLOBAL_CACHE_ENABLED: true
+GLOBAL_QUERY_TIMEOUT: 30
+GLOBAL_MAX_CONCURRENT_QUERIES: 10
+
+# Security Atoms
+GLOBAL_CSRF_PROTECTION_ENABLED: true
+GLOBAL_SESSION_TIMEOUT: 3600
+GLOBAL_MAX_LOGIN_ATTEMPTS: 5
+
+# Database Atoms
+GLOBAL_DB_CONNECTION_POOL_SIZE: 10
+GLOBAL_DB_QUERY_LOGGING: false
+GLOBAL_DB_SLOW_QUERY_THRESHOLD: 1000
+
+# Author Metadata
+author: "Captain Wolfie"
+author_actor_id: 10000
+last_modified_by: "Windsurf IDE"
+last_modified_by_actor_id: 1002
+last_modified_utc: "20260224"
 
 # Project Names
 GLOBAL_PROJECT_CRAFTY_SYNTAX: "Crafty Syntax"

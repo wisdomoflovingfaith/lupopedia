@@ -1,17 +1,43 @@
 ---
-# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/migrations/livehelp_modules_dep_migration.md
-file.last_modified_system_version: "4.0.16"
-file.last_modified_utc: "20260218000000"
-channel_id: 42   # ANUBIS adoption channel
-tags: ["lost", "orphan", "doctrine"]
-mood_rgb: "FFDAB9"
-atoms:
-  recovery_event: true
-X-Lupo-Actor-ID: 2035
-X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/migrations/livehelp_modules_dep_migration.md
+wolfie.headers: {
+  file_path_from_root: "docs/doctrine/migrations/livehelp_modules_dep_migration.md",
+  system_version: "4.0.39",
+  channel_id: 42,
+  mood_rgb: "8B4513",
+  purpose: "Migration doctrine for livehelp_modules_dep → lupo_modules_departments",
+  last_modified_utc: "20260224",
+  delegation_chain: "1001:10000",
+  actor_id: 1001,
+  lupo_agent: "kiro",
+  artifact_type: "doctrine",
+  artifact_kind: "migration_mapping",
+  traits: ["crafty_syntax", "migration", "table_mapping", "livehelp_modules_dep", "dropped"],
+  hashtags: ["#migration", "#crafty_syntax", "#livehelp_modules_dep", "#module_visibility", "#dropped", "#upgrade_path"],
+  engagement: { likes: 0, shares: 0, views: 0, last_interaction_utc: "20260224" },
+  graph_stats: { inbound_count: 2, outbound_count: 3, centrality_score: 0.66 }
+}
+
+flip.footer: {
+  inbound_edges: [
+    { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" },
+    { from: "docs/doctrine/migrations/livehelp_modules_migration.md", type: "related_to", weight: 0.7, hashtag: "#module_system" }
+  ],
+  outbound_edges: [
+    { to: "docs/doctrine/database/modules_departments.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
+    { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" },
+    { to: "docs/doctrine/migrations/livehelp_departments_migration.md", type: "related_to", weight: 0.6, hashtag: "#departments" }
+  ],
+  referenced_by_actors: [1001, 10000],
+  references: {
+    by_files: ["docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
+    by_actors: [1001, 10000]
+  },
+  semantic_tags: ["livehelp_modules_dep_mapping", "module_visibility", "department_modules", "dropped_table"],
+  enrichment: { llm_inferred_edges: [], federated_metrics: {} },
+  version: "4.0.39",
+  last_verified_utc: "20260224",
+  last_verified_by: "kiro"
+}
 ---
 
 # Migration Note: livehelp_modules_dep

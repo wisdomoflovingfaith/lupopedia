@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "channels/42/broadcasts/20260223_v4_0_35_review_complete.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "4B0082"
   purpose: "Version 4.0.35 comprehensive review completion broadcast"
@@ -27,7 +27,7 @@ flip.footer:
   footnotes:
     - "X-FORWARDED from Windsurf to KIRO for execution"
     - "Comprehensive review complete"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "kiro"
 ---

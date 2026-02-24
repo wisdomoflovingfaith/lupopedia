@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "docs/status/vsx_extension_status.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "00AAFF"
   purpose: "VSX Extension operational mode status (queryable by KIRO)"
@@ -27,7 +27,7 @@ flip.footer:
   footnotes:
     - "Queryable status file for VSX Extension operational mode"
     - "Updated by Antigravity IDE when mode changes"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "antigravity"
 ---

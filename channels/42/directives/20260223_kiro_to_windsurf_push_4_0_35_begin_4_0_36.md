@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "channels/42/directives/20260223_kiro_to_windsurf_push_4_0_35_begin_4_0_36.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "0044FF"
   purpose: "Directive from KIRO to Windsurf to push v4.0.35 and initialize v4.0.36"
@@ -44,7 +44,7 @@ flip.footer:
     - "All timestamps use canonical YYYYMMDD format"
     - "Location removed per doctrine"
     - "Directive issued after v4.0.35 review completion"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "1001"
 ---

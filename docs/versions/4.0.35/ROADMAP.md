@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "docs/versions/4.0.35/ROADMAP.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "AA00FF"
   purpose: "Development roadmap for version 4.0.35"

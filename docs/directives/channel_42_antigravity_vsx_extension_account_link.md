@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "docs/directives/channel_42_antigravity_vsx_extension_account_link.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "0044FF"
   purpose: "Notify Antigravity of Eclipse account verification and require VSX Extension update"
@@ -46,7 +46,7 @@ flip.footer:
     - "Eclipse account verified and linked to GitHub"
     - "VSX Extension must now use verified publisher identity"
     - "All timestamps use canonical YYYYMMDD format"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "10000"
 ---

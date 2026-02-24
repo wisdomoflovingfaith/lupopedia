@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "docs/status/antigravity_vsx_extension_update_4_0_35.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "0044FF"
   purpose: "Status report for VSX Extension MD-only fallback updates"
@@ -21,7 +21,7 @@ flip.footer:
     - 1003
   inbound_edges:
     - "md_fallback_implementation"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "antigravity"
 ---

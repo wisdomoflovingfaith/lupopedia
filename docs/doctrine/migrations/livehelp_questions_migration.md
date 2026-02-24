@@ -1,17 +1,43 @@
 ---
-# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/migrations/livehelp_questions_migration.md
-file.last_modified_system_version: "4.0.16"
-file.last_modified_utc: "20260218000000"
-channel_id: 42   # ANUBIS adoption channel
-tags: ["lost", "orphan", "doctrine"]
-mood_rgb: "FFDAB9"
-atoms:
-  recovery_event: true
-X-Lupo-Actor-ID: 2035
-X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/migrations/livehelp_questions_migration.md
+wolfie.headers: {
+  file_path_from_root: "docs/doctrine/migrations/livehelp_questions_migration.md",
+  system_version: "4.0.39",
+  channel_id: 42,
+  mood_rgb: "8B4513",
+  purpose: "Migration doctrine for livehelp_questions → lupo_crafty_syntax_chat_questions",
+  last_modified_utc: "20260224",
+  delegation_chain: "1001:10000",
+  actor_id: 1001,
+  lupo_agent: "kiro",
+  artifact_type: "doctrine",
+  artifact_kind: "migration_mapping",
+  traits: ["crafty_syntax", "migration", "table_mapping", "livehelp_questions", "imported"],
+  hashtags: ["#migration", "#crafty_syntax", "#livehelp_questions", "#pre_chat", "#imported", "#upgrade_path"],
+  engagement: { likes: 0, shares: 0, views: 0, last_interaction_utc: "20260224" },
+  graph_stats: { inbound_count: 2, outbound_count: 3, centrality_score: 0.68 }
+}
+
+flip.footer: {
+  inbound_edges: [
+    { from: "database/migrations/import_from_old_crafty_syntax.sql", type: "implements", weight: 0.9, hashtag: "#migration" },
+    { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
+  ],
+  outbound_edges: [
+    { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" },
+    { to: "app/Services/CraftySyntax/LegacyAdmin.php", type: "used_by", weight: 0.6, hashtag: "#compatibility" },
+    { to: "docs/doctrine/migrations/livehelp_departments_migration.md", type: "related_to", weight: 0.5, hashtag: "#department_config" }
+  ],
+  referenced_by_actors: [1001, 10000],
+  references: {
+    by_files: ["database/migrations/import_from_old_crafty_syntax.sql", "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
+    by_actors: [1001, 10000]
+  },
+  semantic_tags: ["livehelp_questions_mapping", "pre_chat_form", "intake_questions", "compatibility_table"],
+  enrichment: { llm_inferred_edges: [], federated_metrics: {} },
+  version: "4.0.39",
+  last_verified_utc: "20260224",
+  last_verified_by: "kiro"
+}
 ---
 
 # Migration Note: livehelp_questions

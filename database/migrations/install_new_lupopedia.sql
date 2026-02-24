@@ -3971,3 +3971,66 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 UPDATE lupo_actors SET paired_actor_id = 10000, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 2036 AND (paired_actor_id IS NULL OR paired_actor_id = 0);
 -- paired_actor_id: LILITH → 10000 (human operator)
 UPDATE lupo_actors SET paired_actor_id = 10000, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 2038 AND (paired_actor_id IS NULL OR paired_actor_id = 0);
+
+-- ============================================================
+-- FLIP v2 ARTIFACTS TABLE (Lupopedia 4.0.37)
+-- ============================================================
+-- Table for storing FLIP/WOLFIE header and footer artifacts
+-- Supports automatic relationship discovery and enhanced attribution
+-- ============================================================
+
+CREATE TABLE lupo_flip_artifacts (
+  flip_artifact_id bigint NOT NULL,
+  file_path_from_root varchar(500) NOT NULL,
+  artifact_kind varchar(50) NOT NULL,
+  channel_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  agent_slug varchar(255) NOT NULL,
+  agent_type varchar(64) NOT NULL,
+  system_version varchar(20) NOT NULL,
+  last_modified_ymd bigint NOT NULL,
+  x_forward_from_actor_id bigint DEFAULT NULL,
+  x_forward_to_actor_id bigint DEFAULT NULL,
+  x_lupo_forwarded varchar(64) DEFAULT NULL,
+  header_json text,
+  footer_json text,
+  file_hash varchar(64) DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  PRIMARY KEY (flip_artifact_id)
+);
+
+CREATE INDEX idx_flip_path ON lupo_flip_artifacts (file_path_from_root);
+CREATE INDEX idx_flip_actor_date ON lupo_flip_artifacts (actor_id, last_modified_ymd);
+CREATE INDEX idx_flip_channel_date ON lupo_flip_artifacts (channel_id, last_modified_ymd);
+CREATE INDEX idx_flip_forward_chain ON lupo_flip_artifacts (x_forward_from_actor_id, x_forward_to_actor_id);
+CREATE INDEX idx_flip_kind_date ON lupo_flip_artifacts (artifact_kind, last_modified_ymd);
+-- RESERVED ID DOCTRINE: flip_artifact_id is NOT AUTO_INCREMENT; application must supply explicit ID.
+
+-- ============================================================
+-- FLIP v2 REGISTRY ENTRIES (Lupopedia 4.0.37)
+-- ============================================================
+
+-- FLIP Schema Version Registry
+INSERT INTO lupo_registry (registry_id, entity_type, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (9005001, 'flip_schema_version', 1, 'v2.0', 'FLIP Schema Version 2.0', 1, '{"version": "2.0", "features": ["relationship_mapping", "enhanced_attribution", "semantic_inference"]}', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+-- Artifact Kind Registry
+INSERT INTO lupo_registry (registry_id, entity_type, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (9005002, 'artifact_kind', 1, 'header', 'FLIP Header Artifact', 1, '{"description": "FLIP/WOLFIE header metadata"}', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+INSERT INTO lupo_registry (registry_id, entity_type, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (9005003, 'artifact_kind', 2, 'footer', 'FLIP Footer Artifact', 1, '{"description": "FLIP footer metadata and relationships"}', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+-- Edge Type Registry
+INSERT INTO lupo_registry (registry_id, entity_type, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (9005004, 'edge_type', 1, 'inbound_edge', 'File Inbound Edge', 1, '{"description": "References pointing to this file"}', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+INSERT INTO lupo_registry (registry_id, entity_type, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (9005005, 'edge_type', 2, 'semantic_relationship', 'Semantic Relationship', 1, '{"description": "Semantic relationships between files"}', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;

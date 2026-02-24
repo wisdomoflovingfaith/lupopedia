@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "channels/42/broadcasts/20260223_notify_antigravity_v4_0_35_review.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "4B0082"
   purpose: "Notify Antigravity of Windsurf/ KIRO v4.0.35 review results and next steps"
@@ -43,7 +43,7 @@ flip.footer:
     - "Antigravity notified of v4.0.35 review results"
     - "All timestamps use canonical YYYYMMDD format"
     - "Location removed per doctrine"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "1001"
 ---

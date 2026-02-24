@@ -1,12 +1,312 @@
-## 🐺 Lupopedia 4.0.33 — OAuth Completion & FLIP Footer Rollout — 2026-02-23
+---
+wolfie.headers: {
+  file_path_from_root: "README.md",
+  system_version: "4.0.39",
+  channel_id: 1,
+  mood_rgb: "4169E1",
+  purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS",
+  last_modified_utc: "20260224",
+  delegation_chain: "1001:10000",
+  actor_id: 1001,
+  lupo_agent: "kiro",
+  artifact_type: "guide",
+  artifact_kind: "documentation",
+  traits: ["essential", "entrypoint", "comprehensive", "v4.0.39"],
+  hashtags: ["#readme", "#overview", "#architecture", "#multi_agent", "#semantic_os"],
+  engagement: {
+    likes: 0,
+    shares: 0,
+    views: 0,
+    last_interaction_utc: "20260224"
+  },
+  graph_stats: {
+    inbound_count: 15,
+    outbound_count: 25,
+    centrality_score: 0.95
+  }
+}
 
-**Current version: 4.0.33** — **IN PROGRESS**. Focus: Finalizing OAuth 2.0 flows and systematic rollout of FLIP footers across the semantic OS codebase.
+flip.footer: {
+  inbound_edges: [
+    { from: "QUICKSTART.md", type: "references", weight: 1.0, hashtag: "#onboarding" },
+    { from: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9, hashtag: "#guide" },
+    { from: "CHANGELOG.md", type: "references", weight: 0.8, hashtag: "#versions" },
+    { from: "docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md", type: "implements", weight: 1.0, hashtag: "#doctrine" },
+    { from: "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md", type: "implements", weight: 0.9, hashtag: "#actors" },
+    { from: "docs/doctrine/FLIP/FLIP_DOCTRINE.md", type: "implements", weight: 0.9, hashtag: "#flip" },
+    { from: "docs/README.md", type: "references", weight: 0.7, hashtag: "#docs" },
+    { from: "channels/42/broadcasts/", type: "references", weight: 0.6, hashtag: "#coordination" },
+    { from: "docs/status/", type: "references", weight: 0.5, hashtag: "#status" },
+    { from: "docs/versions/", type: "references", weight: 0.5, hashtag: "#roadmap" },
+    { from: "tools/vsx-extension/README.md", type: "references", weight: 0.7, hashtag: "#extension" },
+    { from: "database/migrations/install_new_lupopedia.sql", type: "implements", weight: 0.8, hashtag: "#schema" },
+    { from: "legacy/craftysyntax/", type: "supersedes", weight: 0.6, hashtag: "#legacy" },
+    { from: "docs/channels/appendix/HISTORY.md", type: "references", weight: 0.5, hashtag: "#history" },
+    { from: "docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md", type: "implements", weight: 0.9, hashtag: "#ai_doctrine" }
+  ],
+  outbound_edges: [
+    { to: "QUICKSTART.md", type: "references", weight: 1.0, hashtag: "#onboarding" },
+    { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9, hashtag: "#guide" },
+    { to: "CHANGELOG.md", type: "references", weight: 0.8, hashtag: "#versions" },
+    { to: "docs/doctrine/", type: "references", weight: 1.0, hashtag: "#doctrine" },
+    { to: "docs/README.md", type: "references", weight: 0.7, hashtag: "#docs" },
+    { to: "tools/vsx-extension/", type: "references", weight: 0.8, hashtag: "#extension" },
+    { to: "database/migrations/", type: "references", weight: 0.7, hashtag: "#schema" },
+    { to: "legacy/craftysyntax/", type: "references", weight: 0.5, hashtag: "#legacy" },
+    { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 0.6, hashtag: "#history" },
+    { to: "docs/channels/appendix/FOUNDERS_NOTE.md", type: "references", weight: 0.5, hashtag: "#history" },
+    { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8, hashtag: "#database" },
+    { to: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8, hashtag: "#migration" },
+    { to: "docs/toons/", type: "references", weight: 0.7, hashtag: "#schema" },
+    { to: "docs/doctrine/TIMESTAMP_DOCTRINE.md", type: "references", weight: 0.9, hashtag: "#time" },
+    { to: "docs/doctrine/MIGRATION_DOCTRINE.md", type: "references", weight: 0.8, hashtag: "#migration" },
+    { to: "docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md", type: "references", weight: 0.8, hashtag: "#installation" },
+    { to: "docs/doctrine/PTSD_ADVERTISING_DOCTRINE.md", type: "references", weight: 0.7, hashtag: "#boundaries" },
+    { to: "docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md", type: "references", weight: 0.9, hashtag: "#ai_doctrine" },
+    { to: ".cursor/rules/", type: "references", weight: 0.6, hashtag: "#rules" },
+    { to: "lupopedia-config.php", type: "references", weight: 0.7, hashtag: "#config" },
+    { to: "index.php", type: "references", weight: 0.6, hashtag: "#entrypoint" },
+    { to: "lupo-includes/bootstrap.php", type: "references", weight: 0.7, hashtag: "#bootstrap" },
+    { to: "lupo-includes/lupopedia-loader.php", type: "references", weight: 0.7, hashtag: "#loader" },
+    { to: "app/auth/", type: "references", weight: 0.6, hashtag: "#auth" },
+    { to: "app/Services/", type: "references", weight: 0.6, hashtag: "#services" }
+  ],
+  referenced_by_actors: [1001, 1002, 1003, 1004, 1005, 2038, 24, 10000],
+  references: {
+    by_files: [
+      "QUICKSTART.md",
+      "HOW_TO_USE_LUPOPEDIA.md",
+      "CHANGELOG.md",
+      "docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md",
+      "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md",
+      "docs/README.md"
+    ],
+    by_actors: [1001, 1002, 1003, 10000]
+  },
+  semantic_tags: [
+    "project_overview",
+    "architecture",
+    "multi_agent_ecosystem",
+    "semantic_os",
+    "crafty_syntax_upgrade",
+    "five_pillars",
+    "doctrine_driven",
+    "federation",
+    "actor_model",
+    "flip_protocol"
+  ],
+  enrichment: {
+    llm_inferred_edges: [],
+    federated_metrics: {}
+  },
+  version: "4.0.39",
+  last_verified_utc: "20260224",
+  last_verified_by: "kiro"
+}
+---
 
-### 🚀 4.0.33 Objectives
-- **OAuth Expansion**: Completing Google/GitHub auth refinement.
-- **FLIP Footer Rollout**: 100% compliance for file-level metadata.
-- **Semantic Mapping**: Enhancing relationships between content atoms.
-- **Database Safety**: Maintaining zero-corruption safety protocols.
+## 🐺 Lupopedia 4.0.39 — Header Completion & ANUBIS Fallback System — 2026-02-24
+
+**Current version: 4.0.39** — **IN PROGRESS**. Focus: Universal header coverage via ANUBIS automated fallback system, priority file header generation, and batch migration workflow establishment.
+
+### 🚀 4.0.39 Objectives
+- **ANUBIS Fallback System**: Automated header detection, generation, and file classification system.
+- **Priority File Headers**: Generate FLIP v3 headers for ~200 critical files across 5 batches.
+- **Batch Migration Workflow**: Establish coordinated multi-agent header migration process.
+- **4.0.40 Preparation**: Ready for strict header compliance enforcement in next version.
+
+### 🛠️ The Lupopedia VSX Extension
+
+The **Lupopedia VSX Extension** is a Visual Studio Code extension that transforms your IDE into a full participant in the Lupopedia multi-agent ecosystem. It serves as the communication bridge between your local development environment and the Lupopedia semantic OS, enabling seamless collaboration between IDE agents (KIRO, Windsurf, Antigravity), AI assistants, and human developers.
+
+**What It Does:**
+The extension provides real-time access to Lupopedia's actor model, semantic content graph, and channel-based communication system. It reads and writes FLIP/WOLFIE headers, manages actor identities, coordinates multi-agent workflows, and maintains synchronization between your local files and the shared semantic database.
+
+**Role in the Ecosystem:**
+In Lupopedia's multi-agent architecture, the VSX extension is the IDE's "eyes and ears." It allows your code editor to understand semantic relationships, track actor contributions, participate in development channels, and coordinate with other agents working on the same codebase. Without it, your IDE operates in isolation; with it, your IDE becomes a collaborative workspace aware of the entire development ecosystem.
+
+#### 🚀 Installation & Setup
+
+**VS Code Marketplace Installation:**
+```bash
+# Install from VS Code Marketplace
+code --install-extension lupopedia.lupopedia
+
+# Or search for "Lupopedia" in VS Code Extensions
+```
+
+**Manual Installation:**
+```bash
+# Download .vsix file from releases
+code --install-extension lupopedia-*.vsix
+```
+
+**Initial Configuration:**
+1. **Open Command Palette** (`Ctrl+Shift+P` or `Cmd+Shift+P`)
+2. **Run "Lupopedia: Initialize"** - Sets up your actor identity
+3. **Configure Actor ID** - Your unique identifier in the Lupopedia ecosystem
+4. **Select Communication Mode** - DB-Online, Hybrid, or MD-Only fallback
+
+#### 🎯 Core Features
+
+**🔄 Multi-Mode Operation:**
+
+The extension supports three operational modes that determine how it connects to Lupopedia's semantic database:
+
+- **DB-Online Mode** (Full Connectivity):
+  - Direct connection to MySQL/MariaDB/PostgreSQL database
+  - Real-time synchronization of actor status, channel messages, and semantic graph updates
+  - Immediate visibility of changes made by other agents
+  - Required for: Multi-agent coordination, live channel participation, real-time status reporting
+  - Use when: You have database access and need full collaboration features
+
+- **Hybrid Mode** (Recommended):
+  - Primary: Database connection with automatic fallback to local markdown files
+  - Graceful degradation: If database is unavailable, switches to MD-Only mode automatically
+  - Best of both worlds: Full features when online, continued operation when offline
+  - Required for: Reliable development workflows that tolerate network interruptions
+  - Use when: You want maximum reliability and don't want database issues to block your work
+
+- **MD-Only Mode** (Offline Fallback):
+  - Complete offline operation using local markdown files only
+  - Reads actor inventory from `AGENT_INVENTORY.md`, channel data from `channels/*/registry.json`
+  - No database required, no network connectivity needed
+  - Limited features: No real-time sync, no live channel messages, no cross-agent status
+  - Required for: Air-gapped environments, initial setup, database-free development
+  - Use when: Database is unavailable or you're working in isolation
+
+**When to Use Each Mode:**
+- **Starting out?** Use Hybrid mode (safest default)
+- **Full team collaboration?** Use DB-Online mode (maximum features)
+- **Working offline or solo?** Use MD-Only mode (no dependencies)
+
+**📝 Metadata Management:**
+- **FLIP/WOLFIE Header Parsing**: Extracts actor_id, timestamps, routing info
+- **Footer Block Support**: Reads referenced_by_files, inbound_edges, graph data
+- **Real-time Validation**: Ensures metadata compliance automatically
+
+**🤝 Actor Coordination:**
+- **Status Reporting**: `lupopedia.getStatus()` for real-time agent status
+- **Channel Discovery**: Automatic detection of active development channels
+- **Registry Fallback**: Loads agent inventory from `AGENT_INVENTORY.md` when offline
+
+**🔌 Semantic Integration:**
+- **Context Awareness**: Understands code relationships and dependencies
+- **Cross-Reference Resolution**: Links related files and concepts
+- **Semantic Search**: Find code by meaning, not just text
+
+#### 💬 How to Use the Extension
+
+**Daily Development Workflow:**
+```bash
+# 1. Start your development session
+Ctrl+Shift+P → "Lupopedia: Start Session"
+
+# 2. Join a development channel
+Ctrl+Shift+P → "Lupopedia: Join Channel" → Enter channel ID (e.g., 42)
+
+# 3. Check agent status
+Ctrl+Shift+P → "Lupopedia: Check Status" → See who's online
+
+# 4. Send messages to channel
+Ctrl+Shift+P → "Lupopedia: Send Message" → Type your message
+
+# 5. View semantic context
+Ctrl+Shift+P → "Lupopedia: Show Context" → See related files and actors
+```
+
+**Status Bar Integration:**
+- **Online Status**: Green (DB-Online), Yellow (Hybrid), Red (MD-Only)
+- **Active Channel**: Shows current channel number and participant count
+- **Unread Messages**: Badge count for new channel messages
+- **Actor ID**: Your current actor identification
+
+**Code Editor Integration:**
+- **Semantic Highlights**: Code colored by semantic relationships
+- **Actor Annotations**: See who last modified each line
+- **Channel References**: Quick navigation to related discussions
+- **Context Suggestions**: AI-powered code completions based on channel context
+
+#### 🛠️ Advanced Configuration
+
+**Settings (settings.json):**
+```json
+{
+  "lupopedia.actorId": 1002,
+  "lupopedia.defaultChannel": 42,
+  "lupopedia.communicationMode": "hybrid",
+  "lupopedia.registryPath": "./docs/AGENT_INVENTORY.md",
+  "lupopedia.channelPaths": [
+    "./channels/",
+    "./docs/channels/"
+  ],
+  "lupopedia.semanticDepth": 3,
+  "lupopedia.autoSync": true,
+  "lupopedia.showActorAnnotations": true,
+  "lupopedia.enableSemanticHighlights": true
+}
+```
+
+**Channel 42 Integration:**
+```bash
+# Connect to main development coordination channel
+Ctrl+Shift+P → "Lupopedia: Connect to Channel 42"
+
+# View all active agents in Channel 42
+Ctrl+Shift+P → "Lupopedia: Show Channel Members"
+
+# Get channel history and context
+Ctrl+Shift+P → "Lupopedia: Load Channel History"
+```
+
+#### 🔄 Fallback & Resilience
+
+**Automatic Failover:**
+- **Database Connection Lost** → Automatically switch to MD-Only mode
+- **Network Issues** → Use cached registry and channel data
+- **Service Unavailable** → Continue working with local file synchronization
+
+**Manual Recovery:**
+```bash
+# Force MD-Only mode
+Ctrl+Shift+P → "Lupopedia: Force Offline Mode"
+
+# Restore database connectivity
+Ctrl+Shift+P → "Lupopedia: Reconnect Database"
+
+# Sync offline changes
+Ctrl+Shift+P → "Lupopedia: Sync Offline Changes"
+```
+
+#### 🎯 Real-World Usage Examples
+
+**Multi-Agent Development:**
+```javascript
+// While coding, you see annotations like this:
+function calculateUserPermissions(userId) {
+  // 🤝 Windsurf IDE (1002) - Added role validation
+  // 📋 Channel 42 discussion: Permission system redesign
+  // 🔗 Related: auth-service.php, user-model.ts
+}
+```
+
+**Channel Collaboration:**
+```bash
+# Real-time message from another agent:
+[KIRO IDE 1001]: "I've updated the registry consolidation script. Please review."
+[Windsurf IDE 1002]: "Reviewing now... Found 3 issues that need addressing."
+[Antigravity IDE 1003]: "VSX extension fallback tested successfully in MD-only mode."
+```
+
+**Semantic Context:**
+```bash
+# Extension shows related work automatically:
+Current File: user-service.ts
+├── Modified by: Antigravity IDE (1003) - 2 hours ago
+├── Channel Discussion: Channel 42 - Authentication improvements
+├── Related Files: auth-controller.php, user-model.ts, permissions.md
+└── Semantic Tags: authentication, user-management, security
+```
 
 ### Lupopedia: Where Multiple IDEs and AI Agents Work Together
 
@@ -152,7 +452,24 @@ Lupopedia is the **Crafty Syntax you remember**, running inside a **multi-agent 
 
 ---
 
+### 🌌 Strategic Vision: The Semantic Operating System
+
+Lupopedia is not a traditional CMS; it is a **Semantic Operating System**. It layers a meaningful "brain" over the raw "heart" of legacy communication systems.
+
+#### 🧠 The Actor Model
+In Lupopedia, there is no distinction between a human user and an AI service. Everyone is an **Actor**.
+- **Human Actors**: Operators, administrators, and visitors.
+- **IDE Agents**: Development environments (Antigravity, Windsurf) that actively build the system.
+- **AI Assistants**: Specialized LLMs (LILITH, LEXA, Copilot) that participate in coordination and review.
+
+#### 🔗 Semantic Navigation
+Lupopedia organizes information through **Atoms**, **Edges**, and **Tabs**.
+- **Atoms**: The smallest units of meaning (a file, a URL, a concept).
+- **Edges**: The weighted relationships between atoms (e.g., "this file explains that database table").
+- **Tabs/Collections**: Human-defined lenses that organize the knowledge graph into navigable universes.
+
 ### Why Lupopedia Exists
+
 
 Crafty Syntax was a **real‑time help system**.  
 Lupopedia is a **semantic layer** that sits on top of everything Crafty Syntax watches.

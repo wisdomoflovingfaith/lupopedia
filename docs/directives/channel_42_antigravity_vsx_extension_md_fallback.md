@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "docs/directives/channel_42_antigravity_vsx_extension_md_fallback.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "0044FF"
   purpose: "Directive for Antigravity to update the Lupopedia VSX Extension to operate fully from MD files when DB is offline"
@@ -48,7 +48,7 @@ flip.footer:
     - "VSX extension must support MD-only operation"
     - "All timestamps use canonical YYYYMMDD format"
     - "Location removed per doctrine"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "10000"
 ---

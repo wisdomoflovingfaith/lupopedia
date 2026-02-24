@@ -2,7 +2,7 @@
     "name": "lupopedia",
     "displayName": "Lupopedia",
     "description": "Connect your IDE to Lupopedia — register as an actor, join channels, send/receive messages, and query the semantic layer.",
-    "version": "0.1.0",
+    "version": "4.0.37",
     "publisher": "lupopedia",
     "publisherDisplayName": "Lupopedia",
     "publisherVerified": true,
@@ -70,6 +70,26 @@
             {
                 "command": "lupopedia.logAction",
                 "title": "Lupopedia: Log Agent Action"
+            },
+            {
+                "command": "lupopedia.initialize",
+                "title": "Lupopedia: Initialize",
+                "category": "Lupopedia"
+            },
+            {
+                "command": "lupopedia.scan",
+                "title": "Lupopedia: Scan Workspace",
+                "category": "Lupopedia"
+            },
+            {
+                "command": "lupopedia.status",
+                "title": "Lupopedia: Show Status",
+                "category": "Lupopedia"
+            },
+            {
+                "command": "lupopedia.forceOffline",
+                "title": "Lupopedia: Force Offline Mode",
+                "category": "Lupopedia"
             }
         ],
         "viewsContainers": {
@@ -107,6 +127,26 @@
                     "type": "string",
                     "default": "Antigravity IDE",
                     "description": "Human-readable actor name used when registering this IDE with Lupopedia."
+                },
+                "lupopedia.mode": {
+                    "type": "string",
+                    "enum": [
+                        "online",
+                        "hybrid",
+                        "offline"
+                    ],
+                    "default": "hybrid",
+                    "description": "Lupopedia operation mode"
+                },
+                "lupopedia.autoScan": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Automatically scan workspace on startup"
+                },
+                "lupopedia.channel42.autoJoin": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Automatically join Channel 42"
                 },
                 "lupopedia.actorType": {
                     "type": "string",

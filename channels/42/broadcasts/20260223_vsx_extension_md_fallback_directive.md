@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "channels/42/broadcasts/20260223_vsx_extension_md_fallback_directive.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "0044FF"
   purpose: "Broadcast of Directive for Antigravity to update Lupopedia VSX Extension"
@@ -18,7 +18,7 @@ flip.footer:
   referenced_by_actors:
     - 10000
     - 1003
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "10000"
 ---

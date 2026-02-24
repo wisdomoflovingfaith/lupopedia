@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "channels/42/broadcasts/20260223_windsurf_version_4_0_35_initialized.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "4B0082"
   purpose: "Broadcast announcing version 4.0.35 initialization after 4.0.34 push"
@@ -38,7 +38,7 @@ flip.footer:
     - "Version 4.0.34 successfully pushed to GitHub"
     - "Version 4.0.35 initialized with TODO and ROADMAP"
     - "Ready for next development cycle"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "1002"
   verification_method: "Version initialization and file creation"

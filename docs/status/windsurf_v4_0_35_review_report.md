@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "docs/status/windsurf_v4_0_35_review_report.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "4B0082"
   purpose: "Comprehensive review of v4.0.35 work and version readiness assessment"
@@ -28,7 +28,7 @@ flip.footer:
   footnotes:
     - "X-FORWARDED from Windsurf to KIRO for execution"
     - "Comprehensive review of all v4.0.35 work"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "kiro"
 ---
@@ -191,7 +191,7 @@ Version 4.0.35 has been successfully initialized with significant progress on VS
 ## DOCTRINE COMPLIANCE VERIFICATION
 
 ### Version Markers ✅
-- All files reflect `system_version: "4.0.35"`
+- All files reflect `system_version: "4.0.36"`
 - LUPEDIA_VERSION: 4.0.35
 - config/global_atoms.yaml: 4.0.35
 - **Status:** PASS

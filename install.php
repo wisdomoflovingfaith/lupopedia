@@ -1,5 +1,62 @@
 <?php
 /**
+ * @wolfie.headers {
+ *   file_path_from_root: "install.php",
+ *   system_version: "4.0.39",
+ *   channel_id: 42,
+ *   mood_rgb: "FF6347",
+ *   purpose: "Main installer and upgrade wizard for Lupopedia - handles fresh install and Crafty Syntax 3.7.5 upgrade",
+ *   last_modified_utc: "20260224",
+ *   delegation_chain: "1001:10000",
+ *   actor_id: 1001,
+ *   lupo_agent: "kiro",
+ *   artifact_type: "installer",
+ *   artifact_kind: "upgrade_wizard",
+ *   traits: ["critical", "crafty_syntax", "upgrade_path", "p0", "installer"],
+ *   hashtags: ["#installer", "#crafty_syntax", "#upgrade", "#wizard", "#critical"],
+ *   engagement: { likes: 0, shares: 0, views: 0, last_interaction_utc: "20260224" },
+ *   graph_stats: { inbound_count: 8, outbound_count: 12, centrality_score: 0.98 }
+ * }
+ * 
+ * @flip.footer {
+ *   inbound_edges: [
+ *     { from: "README.md", type: "references", weight: 1.0, hashtag: "#installation" },
+ *     { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "implements", weight: 1.0, hashtag: "#migration" },
+ *     { from: "database/migrations/install_new_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#schema" },
+ *     { from: "database/migrations/seed_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#seed" },
+ *     { from: "database/migrations/import_from_old_crafty_syntax.sql", type: "executes", weight: 1.0, hashtag: "#import" },
+ *     { from: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "detects", weight: 0.9, hashtag: "#legacy" },
+ *     { from: "install/index.php", type: "includes", weight: 0.9, hashtag: "#ui" },
+ *     { from: "install/wizard.php", type: "includes", weight: 0.9, hashtag: "#wizard" }
+ *   ],
+ *   outbound_edges: [
+ *     { to: "lupopedia-config.php", type: "generates", weight: 1.0, hashtag: "#config" },
+ *     { to: "lupo-includes/version.php", type: "requires", weight: 1.0, hashtag: "#version" },
+ *     { to: "database/migrations/install_new_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#schema" },
+ *     { to: "database/migrations/seed_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#seed" },
+ *     { to: "database/migrations/import_from_old_crafty_syntax.sql", type: "executes", weight: 1.0, hashtag: "#import" },
+ *     { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "detects", weight: 0.9, hashtag: "#legacy" },
+ *     { to: "app/Services/CraftyMigrationService.php", type: "uses", weight: 0.8, hashtag: "#migration" },
+ *     { to: "app/Services/CraftyConfigTransformer.php", type: "uses", weight: 0.8, hashtag: "#config" },
+ *     { to: "install/index.php", type: "includes", weight: 0.9, hashtag: "#ui" },
+ *     { to: "install/wizard.php", type: "includes", weight: 0.9, hashtag: "#wizard" },
+ *     { to: "index.php", type: "redirects_to", weight: 0.7, hashtag: "#completion" },
+ *     { to: "admin.php", type: "redirects_to", weight: 0.6, hashtag: "#admin" }
+ *   ],
+ *   referenced_by_actors: [1001, 1002, 10000],
+ *   references: {
+ *     by_files: ["README.md", "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", "database/migrations/install_new_lupopedia.sql"],
+ *     by_actors: [1001, 10000]
+ *   },
+ *   semantic_tags: ["installer", "upgrade_wizard", "crafty_syntax_3_7_5", "identity_normalization", "reserved_channels"],
+ *   enrichment: { llm_inferred_edges: [], federated_metrics: {} },
+ *   version: "4.0.39",
+ *   last_verified_utc: "20260224",
+ *   last_verified_by: "kiro"
+ * }
+ */
+
+/**
  * Lupopedia Install / Upgrade Wizard (version from version.php / atoms)
  *
  * Two valid states only: New install | Upgrade from Crafty Syntax 3.7.5.

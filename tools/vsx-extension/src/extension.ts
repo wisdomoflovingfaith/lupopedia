@@ -21,6 +21,33 @@ import { FlipTreeDataProvider } from './providers/flipTreeProvider';
 import * as fs from 'fs';
 import * as path from 'path';
 
+// FLIP v2 Imports
+import { ArtifactIndex } from './lupopedia/flip/storage/ArtifactIndex';
+import { initializeLupopedia } from './lupopedia/commands/Initialize';
+import { scanWorkspace } from './lupopedia/commands/ScanWorkspace';
+import { showLupopediaStatus } from './lupopedia/commands/ShowStatus';
+import { forceOfflineMode } from './lupopedia/commands/ForceOffline';
+
+// Concurrency & Persistence
+import { ThreadLockManager } from './lupopedia/flip/concurrency/ThreadLock';
+import { HeartbeatManager } from './lupopedia/flip/concurrency/Heartbeat';
+
+// Panels & Collections
+import { ArtifactPanel } from './panels/ArtifactPanel';
+import { CollectionPanel } from './panels/CollectionPanel';
+import { CollectionManager } from './lupopedia/collections';
+import { HeaderParser } from './lupopedia/flip/parser/HeaderParser';
+import { FooterParser } from './lupopedia/flip/parser/FooterParser';
+import { FlipArtifact } from './lupopedia/flip/parser/types';
+import { FlipQueryEngine } from './lupopedia/flip/query/QueryEngine';
+import { SemanticEventBus } from './lupopedia/flip/concurrency/EventBus';
+
+// v4.1 Services
+import { MetadataService } from './lupopedia/flip/logic/MetadataService';
+import { RepairService } from './lupopedia/flip/logic/RepairService';
+import { DelegationPanel } from './panels/DelegationPanel';
+import { SemanticMapPanel } from './panels/SemanticMapPanel';
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function getConfig(): {
@@ -97,6 +124,310 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
 
     const flipTreeProvider = new FlipTreeDataProvider(rootPath);
     vscode.window.registerTreeDataProvider('lupopedia.doctrine', flipTreeProvider);
+
+    // FLIP v2 Components
+    const artifactIndex = new ArtifactIndex(ctx);
+    await artifactIndex.initialize();
+
+    const lockManager = new ThreadLockManager();
+    const heartbeatManager = new HeartbeatManager();
+    const metadataService = new MetadataService();
+    const repairService = new RepairService();
+
+    // ── Command: Initialize ──────────────────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.initialize', () =>
+            initializeLupopedia(ctx, artifactIndex)
+        )
+    );
+
+    // ── Command: Lock File ───────────────────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.acquireLock', async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) return;
+
+            const id = loadIdentity();
+            if (!id) return;
+
+            const success = await lockManager.acquireLock(
+                editor.document.uri.fsPath,
+                id.actor_id,
+                'T-37-01',
+                'development'
+            );
+
+            if (success) {
+                vscode.window.showInformationMessage(`Lupopedia: File locked for editing.`);
+            } else {
+                vscode.window.showErrorMessage(`Lupopedia: Failed to acquire lock. File is busy.`);
+            }
+        })
+    );
+
+    // ── Command: Unlock File ─────────────────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.releaseLock', async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) return;
+
+            const id = loadIdentity();
+            if (!id) return;
+
+            const success = await lockManager.releaseLock(editor.document.uri.fsPath, id.actor_id);
+            if (success) {
+                vscode.window.showInformationMessage(`Lupopedia: File unlocked.`);
+            }
+        })
+    );
+
+    // ── Command: Scan Workspace ──────────────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.scan', async () => {
+            await vscode.window.withProgress(
+                { location: vscode.ProgressLocation.Notification },
+                async (progress) => {
+                    progress.report({ message: 'Scanning workspace for FLIP artifacts...' });
+                    const results = await scanWorkspace(ctx, artifactIndex);
+                    vscode.window.showInformationMessage(
+                        `Scan complete: ${results.filesScanned} files, ` +
+                        `${results.artifactsUpdated} artifacts updated`
+                    );
+                }
+            );
+        })
+    );
+
+    // ── Command: Show Status ─────────────────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.status', () =>
+            showLupopediaStatus(artifactIndex)
+        )
+    );
+
+    // ── Command: Force Offline Mode ──────────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.forceOffline', forceOfflineMode)
+    );
+
+    // ── Command: Show Artifact Details ───────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.showArtifactDetails', async (artifactOrPath?: any) => {
+            const hParser = new HeaderParser();
+            const fParser = new FooterParser();
+
+            let fsPath = '';
+            if (typeof artifactOrPath === 'string') {
+                fsPath = artifactOrPath;
+            } else if (artifactOrPath && artifactOrPath.id) {
+                fsPath = artifactOrPath.id;
+            } else {
+                const editor = vscode.window.activeTextEditor;
+                if (!editor) return;
+                fsPath = editor.document.uri.fsPath;
+            }
+
+            try {
+                const record = await artifactIndex.findByPath(fsPath);
+                if (record) {
+                    ArtifactPanel.createOrShow(ctx.extensionUri, {
+                        filePath: record.id,
+                        header: JSON.parse(record.headerJson),
+                        footer: record.footerJson ? JSON.parse(record.footerJson) : undefined
+                    });
+                } else {
+                    // Try parsing live
+                    const content = fs.readFileSync(fsPath, 'utf-8');
+                    const header = hParser.extractHeader(content);
+                    const footer = fParser.extractFooter(content);
+                    if (header) {
+                        ArtifactPanel.createOrShow(ctx.extensionUri, {
+                            filePath: fsPath,
+                            header,
+                            footer: footer || undefined
+                        });
+                    }
+                }
+            } catch (err) {
+                vscode.window.showErrorMessage(`Failed to show artifact details: ${err}`);
+            }
+        })
+    );
+
+    // ── Command: Inspect Delegation (v4.1) ──────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.inspectDelegation', async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) return;
+
+            const index = await metadataService.parseMetadataBlock(editor.document.uri);
+            if (index) {
+                DelegationPanel.createOrShow(ctx.extensionUri, index, editor.document.uri.fsPath);
+            } else {
+                vscode.window.showErrorMessage('Lupopedia: Failed to parse delegation data for this file.');
+            }
+        })
+    );
+
+    // ── Command: Show Semantic Map (v4.1) ───────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.showSemanticMap', async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) return;
+
+            const index = await metadataService.parseMetadataBlock(editor.document.uri);
+            if (index) {
+                SemanticMapPanel.createOrShow(ctx.extensionUri, index, editor.document.uri.fsPath);
+            } else {
+                vscode.window.showErrorMessage('Lupopedia: Failed to parse semantic map for this file.');
+            }
+        })
+    );
+
+    // ── Command: Normalize Metadata (v4.1) ──────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.normalizeMetadata', async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) return;
+            const success = await repairService.normalizeMetadata(editor.document);
+            if (success) vscode.window.showInformationMessage('Lupopedia: Metadata normalized.');
+        })
+    );
+
+    // ── Command: Repair Delegation Chain (v4.1) ────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.repairDelegationChain', async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) return;
+            const identity = loadIdentity();
+            if (!identity) return;
+            const success = await repairService.repairDelegationChain(editor.document, identity.actor_id);
+            if (success) vscode.window.showInformationMessage('Lupopedia: Delegation chain repaired.');
+        })
+    );
+
+    // ── Command: List Collections ─────────────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.listCollections', async () => {
+            const colManager = new CollectionManager(artifactIndex);
+            const collections = await colManager.getAllCollections();
+
+            const items = collections.map(c => ({
+                label: c.title,
+                description: c.id,
+                detail: c.description || c.filePath,
+                collection: c
+            }));
+
+            const choice = await vscode.window.showQuickPick(items, {
+                placeHolder: 'Select a collection to browse'
+            });
+
+            if (choice) {
+                const artifacts = await colManager.getArtifactsInCollection(choice.collection.id);
+                CollectionPanel.createOrShow(ctx.extensionUri, choice.collection, artifacts);
+            }
+        })
+    );
+
+    // ── Command: Search Artifacts ─────────────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.searchArtifacts', async () => {
+            const query = await vscode.window.showInputBox({
+                prompt: 'Search by type, collection, version, or keyword',
+                placeHolder: 'e.g. type:directive, collection:v4.0.37'
+            });
+            if (!query) return;
+
+            const records = await artifactIndex.findRecent('20000101');
+            let results = records;
+
+            // Simple parser for filters e.g. "type:directive"
+            const filters = query.match(/(\w+):(\S+)/g);
+            const keyword = query.replace(/(\w+):(\S+)/g, '').trim().toLowerCase();
+
+            if (filters) {
+                for (const f of filters) {
+                    const [key, val] = f.split(':');
+                    const v = val.toLowerCase();
+                    if (key === 'type') results = results.filter(r => r.artifactType?.toLowerCase() === v);
+                    if (key === 'kind') results = results.filter(r => r.artifactKind?.toLowerCase() === v);
+                    if (key === 'collection') results = results.filter(r => r.collectionId?.toLowerCase() === v);
+                    if (key === 'version') results = results.filter(r => r.version?.toLowerCase().includes(v));
+                }
+            }
+
+            if (keyword) {
+                results = results.filter(r =>
+                    r.id.toLowerCase().includes(keyword) ||
+                    r.headerJson.toLowerCase().includes(keyword)
+                );
+            }
+
+            const items = results.map(r => ({
+                label: path.basename(r.id),
+                description: r.artifactType || 'file',
+                detail: r.id,
+                record: r
+            }));
+
+            const choice = await vscode.window.showQuickPick(items, {
+                placeHolder: `Found ${results.length} artifacts`
+            });
+
+            if (choice) {
+                vscode.commands.executeCommand('lupopedia.showArtifactDetails', choice.record.id);
+            }
+        })
+    );
+
+    // ── Command: Flip Query (v3) ──────────────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.commands.registerCommand('lupopedia.flipQuery', async () => {
+            const queryEngine = new FlipQueryEngine(artifactIndex);
+            const dsl = await vscode.window.showInputBox({
+                prompt: 'Enter Flip Query DSL',
+                placeHolder: 'e.g. relations inbound from QUICKSTART.md'
+            });
+            if (!dsl) return;
+
+            try {
+                const results = await queryEngine.query(dsl);
+                if (results.matched.length === 0) {
+                    vscode.window.showInformationMessage(`No matches found for: ${dsl}`);
+                    return;
+                }
+
+                const items = results.matched.map(r => ({
+                    label: path.basename(r.id),
+                    description: r.artifactType || 'artifact',
+                    detail: r.id,
+                    record: r
+                }));
+
+                const choice = await vscode.window.showQuickPick(items, {
+                    placeHolder: `Query found ${results.matched.length} results (${results.executionTimeMs}ms)`
+                });
+
+                if (choice) {
+                    vscode.commands.executeCommand('lupopedia.showArtifactDetails', choice.record.id);
+                }
+            } catch (err) {
+                vscode.window.showErrorMessage(`Query failed: ${err}`);
+            }
+        })
+    );
+
+    // ── Semantic Event Bus Setup ─────────────────────────────────────────────
+    const bus = SemanticEventBus.getInstance();
+    ctx.subscriptions.push(bus.onEvent(event => {
+        vscode.window.setStatusBarMessage(`Semantic Event: ${event.type} on ${path.basename(event.file_path)}`, 3000);
+    }));
+
+    // Auto-initialize if workspace is Lupopedia project
+    if (isLupopediaWorkspace()) {
+        initializeLupopedia(ctx, artifactIndex);
+    }
 
     // ── Command: Open FLIP File ─────────────────────────────────────────────
     ctx.subscriptions.push(
@@ -370,6 +701,9 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
         }
     }
     updateStatusBar(statusBar, identity);
+    if (identity) {
+        heartbeatManager.start(identity.actor_id, identity.actor_name);
+    }
 
     // ── Startup: look up external actors (Copilot, LEXA, LILITH) ──────────
     // Runs in background — failures are silent so offline installs still work.
@@ -655,10 +989,32 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             }
         })
     );
+
+    // ── Global Message Listener (Unified) ────────────────────────────────────
+    ctx.subscriptions.push(
+        vscode.window.onDidChangeActiveTextEditor(e => {
+            // Optional: update panels on editor change
+        })
+    );
+
+    // We need a way to capture messages from our new panels.
+    // Since current implementation of Panels doesn't expose the webview easily in a global way,
+    // we normally would add the listener in the Panel class or a factory.
+    // For this implementation, I will add a simple static message handler registration.
 }
 
 // ─── Deactivate ───────────────────────────────────────────────────────────────
 
 export function deactivate(): void {
     // Subscriptions auto-disposed by VS Code
+}
+
+function isLupopediaWorkspace(): boolean {
+    // Check for lupopedia-specific markers
+    // e.g., presence of docs/doctrine/ or channels/42/
+    if (!vscode.workspace.workspaceFolders) return false;
+
+    const root = vscode.workspace.workspaceFolders[0].uri.fsPath;
+    return fs.existsSync(path.join(root, 'docs', 'doctrine')) ||
+        fs.existsSync(path.join(root, 'channels', '42'));
 }

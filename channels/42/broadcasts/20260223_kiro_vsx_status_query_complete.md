@@ -1,7 +1,7 @@
 ---
 wolfie.headers:
   file_path_from_root: "channels/42/broadcasts/20260223_kiro_vsx_status_query_complete.md"
-  system_version: "4.0.35"
+  system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "00CCFF"
   purpose: "VSX Extension status query integration completion broadcast"
@@ -27,7 +27,7 @@ flip.footer:
   footnotes:
     - "VSX Extension status query integration complete"
     - "MD-only fallback architecture integrated"
-  version: "4.0.35"
+  version: "4.0.36"
   last_verified: "20260223"
   last_verified_by: "kiro"
 ---
