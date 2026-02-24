@@ -1,32 +1,20 @@
-[
-  {
-    "channel_number": 1,
-    "directory": "0001",
-    "channel_key": "dev-main-thread",
-    "slug": "dev-main-thread"
+{
+  "0": {
+    "name": "System Kernel",
+    "description": "Kernel, bootstrapping, and system-level coordination.",
+    "type": "kernel",
+    "created_ymdhis": "20240101000000"
   },
-  {
-    "channel_number": 2,
-    "directory": "0002",
-    "channel_key": "GOV-PROGRAMMERS-001",
-    "slug": "gov-programmers-001"
+  "42": {
+    "name": "Crafty Syntax / Lupopedia Development",
+    "description": "Development, migrations, and agent coordination.",
+    "type": "development",
+    "created_ymdhis": "20240101000000"
   },
-  {
-    "channel_number": 3,
-    "directory": "0003",
-    "channel_key": "system",
-    "slug": "system"
-  },
-  {
-    "channel_number": 4,
-    "directory": "0004",
-    "channel_key": "test_awareness_channel",
-    "slug": "test-awareness"
-  },
-  {
-    "channel_number": 51,
-    "directory": "51",
-    "channel_key": "51",
-    "slug": "51"
+  "666": {
+    "name": "ANUBIS Quarantine",
+    "description": "Banned, rejected, or malformed message isolation.",
+    "type": "quarantine",
+    "created_ymdhis": "20240101000000"
   }
-]
+}

@@ -11,6 +11,7 @@ export interface ArtifactRecord {
     indexedAt: string;
     lastModified: string;
     channelId?: number;
+    federatedNodeId?: number;
     actorId?: number;
     agentKey?: string;
     version: string;
@@ -50,6 +51,7 @@ export class ArtifactIndex {
         let lastModified = '';
         let systemVersion = '';
         let channelId: number | undefined;
+        let federatedNodeId: number | undefined;
         let actorId: number | undefined;
         let agentKey: string | undefined;
         let artifactType: string | undefined;
@@ -63,6 +65,7 @@ export class ArtifactIndex {
             lastModified = new Date().toISOString().slice(0, 10).replace(/-/g, '');
             systemVersion = h.identity.system_version;
             channelId = h.identity.channel_id;
+            federatedNodeId = h.identity.federated_node_id;
             actorId = h.identity.execution_agent;
             agentKey = h.identity.agent_slug;
             artifactType = h.classification.artifact_type;
@@ -74,6 +77,7 @@ export class ArtifactIndex {
             lastModified = h.last_modified;
             systemVersion = h.system_version;
             channelId = h.channel_id;
+            federatedNodeId = h.federated_node_id;
             actorId = artifact.header.lupo?.agent?.tracking?.actor_id || h.actor_id;
             agentKey = artifact.header.lupo?.agent?.tracking?.agent_key;
             artifactType = h.artifact_type;
@@ -91,6 +95,7 @@ export class ArtifactIndex {
             lastModified,
             version: systemVersion,
             channelId,
+            federatedNodeId,
             actorId,
             agentKey,
             artifactType,

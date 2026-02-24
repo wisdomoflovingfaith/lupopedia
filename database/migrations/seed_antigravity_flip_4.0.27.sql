@@ -36,7 +36,7 @@ INSERT INTO lupo_dialog_threads (
 -- =====================================================
 -- MESSAGE 1: FLIP Header Overview
 -- =====================================================
-INSERT INTO lupo_dialog_messages (
+INSERT INTO lupo_dialog_doctrine (
     dialog_message_id, dialog_thread_id, channel_id, from_actor_id,
     message_text, message_type, metadata_json, created_ymdhis
 ) VALUES (
@@ -50,7 +50,7 @@ INSERT INTO lupo_dialog_messages (
 -- =====================================================
 -- MESSAGE 2: Verbose vs Minimum Headers
 -- =====================================================
-INSERT INTO lupo_dialog_messages (
+INSERT INTO lupo_dialog_doctrine (
     dialog_message_id, dialog_thread_id, channel_id, from_actor_id,
     message_text, message_type, metadata_json, created_ymdhis
 ) VALUES (
@@ -64,7 +64,7 @@ INSERT INTO lupo_dialog_messages (
 -- =====================================================
 -- MESSAGE 3: Actor Trinity Enforcement
 -- =====================================================
-INSERT INTO lupo_dialog_messages (
+INSERT INTO lupo_dialog_doctrine (
     dialog_message_id, dialog_thread_id, channel_id, from_actor_id,
     message_text, message_type, metadata_json, created_ymdhis
 ) VALUES (
@@ -78,7 +78,7 @@ INSERT INTO lupo_dialog_messages (
 -- =====================================================
 -- MESSAGE 4: Offline Mode Operation
 -- =====================================================
-INSERT INTO lupo_dialog_messages (
+INSERT INTO lupo_dialog_doctrine (
     dialog_message_id, dialog_thread_id, channel_id, from_actor_id,
     message_text, message_type, metadata_json, created_ymdhis
 ) VALUES (
@@ -92,7 +92,7 @@ INSERT INTO lupo_dialog_messages (
 -- =====================================================
 -- MESSAGE 5: Antigravity\'s Extension Capabilities
 -- =====================================================
-INSERT INTO lupo_dialog_messages (
+INSERT INTO lupo_dialog_doctrine (
     dialog_message_id, dialog_thread_id, channel_id, from_actor_id,
     message_text, message_type, metadata_json, created_ymdhis
 ) VALUES (

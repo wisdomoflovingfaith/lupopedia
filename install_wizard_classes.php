@@ -549,6 +549,9 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
         @chmod($configPath, 0644);
         $log[] = InstallWizardLogger::logEntry('ok', 'Wrote lupopedia-config.php');
 
+        // Enqueue background command for channel/artifact import (Doctrine #8: System Commands Queue)
+        self::enqueueBackgroundCommand($db_vars, $log, isset($options['table_prefix']) ? $options['table_prefix'] : 'lupo_');
+
         // Crafty config.php is only used during upgrade (for credentials). After successful upgrade we remove it
         // so only lupopedia-config.php remains and users are not confused by two configs.
         $craftyConfig = $configDir . DIRECTORY_SEPARATOR . 'config.php';
@@ -568,6 +571,96 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
         }
 
         return $configPath;
+    }
+
+    /**
+     * Enqueue background command for post-install tasks (Doctrine #8: System Commands Queue).
+     * Allocates PK from lupo_registry_open, inserts command with explicit column list.
+     *
+     * @param array $db_vars Database connection info
+     * @param array $log Log array (by reference)
+     * @param string $table_prefix Table prefix (e.g. 'lupo_')
+     * @return void
+     */
+    private static function enqueueBackgroundCommand($db_vars, &$log, $table_prefix) {
+        try {
+            $pdo = new PDO(
+                $db_vars['type'] . ':host=' . $db_vars['host'] . ';port=' . $db_vars['port'] . ';dbname=' . $db_vars['name'] . ';charset=' . $db_vars['charset'],
+                $db_vars['user'],
+                $db_vars['password'],
+                array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+            );
+
+            $registry_open_table = $table_prefix . 'registry_open';
+            $commands_table = $table_prefix . 'system_commands';
+            $now = (int) gmdate('YmdHis');
+
+            // Allocate PK from registry_open (Doctrine #6)
+            $stmt = $pdo->prepare("INSERT INTO `{$registry_open_table}` (entity_type, entity_index_id, created_ymdhis) VALUES (?, ?, ?)");
+            $stmt->execute(array('system_command', 0, $now));
+            $command_id = $pdo->lastInsertId();
+
+            if (!$command_id || $command_id == 0) {
+                $log[] = InstallWizardLogger::logEntry('skip', 'Could not allocate command_id from registry_open');
+                return;
+            }
+
+            // Prepare command args
+            $command_args = array(
+                'script' => 'scripts/import_channels_and_artifacts.py',
+                'root' => LUPOPEDIA_PATH,
+                'mode' => 'initial_import',
+                'paths' => array('channels', 'artifacts'),
+                'system_version' => '4.0.42'
+            );
+
+            // Insert command (explicit column list per Doctrine #5)
+            $stmt = $pdo->prepare("
+                INSERT INTO `{$commands_table}` (
+                    command_id, command_type, command_args_json, working_dir, status, priority,
+                    created_ymdhis, scheduled_ymdhis, started_ymdhis, finished_ymdhis,
+                    claimed_by_actor_id, claimed_by_host, process_id, attempt_count, max_attempts,
+                    timeout_seconds, return_code, output_text, output_sha1, last_heartbeat_ymdhis,
+                    is_deleted, deleted_ymdhis
+                ) VALUES (
+                    ?, ?, ?, ?, ?, ?,
+                    ?, ?, ?, ?,
+                    ?, ?, ?, ?, ?,
+                    ?, ?, ?, ?, ?,
+                    ?, ?
+                )
+            ");
+
+            $stmt->execute(array(
+                $command_id,
+                'python_import_channels_and_artifacts',
+                json_encode($command_args),
+                LUPOPEDIA_PATH,
+                'queued',
+                0,
+                $now,
+                $now,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0,
+                3,
+                3600,
+                null,
+                null,
+                null,
+                null,
+                0,
+                null
+            ));
+
+            $log[] = InstallWizardLogger::logEntry('ok', 'Enqueued background command (ID: ' . $command_id . ')');
+
+        } catch (PDOException $e) {
+            $log[] = InstallWizardLogger::logEntry('skip', 'Could not enqueue background command: ' . $e->getMessage());
+        }
     }
 }
 

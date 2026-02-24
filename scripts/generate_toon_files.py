@@ -35,7 +35,7 @@ from db_config import get_connection_params
 from actor_agent_doctrine import (
     AGENT_REGISTRY_TABLE,
     REGISTRY_TABLE,
-    build_REGISTRY_row_from_agent as doctrine_build_registry_row,
+    build_registry_row_from_agent as doctrine_build_registry_row,
 )
 
 STRING_TYPES = {

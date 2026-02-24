@@ -27,6 +27,7 @@ import { initializeLupopedia } from './lupopedia/commands/Initialize';
 import { scanWorkspace } from './lupopedia/commands/ScanWorkspace';
 import { showLupopediaStatus } from './lupopedia/commands/ShowStatus';
 import { forceOfflineMode } from './lupopedia/commands/ForceOffline';
+import { ComplianceProvider } from './providers/complianceProvider';
 
 // Concurrency & Persistence
 import { ThreadLockManager } from './lupopedia/flip/concurrency/ThreadLock';
@@ -133,6 +134,9 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
     const heartbeatManager = new HeartbeatManager();
     const metadataService = new MetadataService();
     const repairService = new RepairService();
+
+    // ── Version 4.0.40 Compliance Gate ────────────────────────────────────────
+    new ComplianceProvider(ctx);
 
     // ── Command: Initialize ──────────────────────────────────────────────────
     ctx.subscriptions.push(

@@ -377,7 +377,7 @@ ON DUPLICATE KEY UPDATE
 -- ============================================================
 -- CHANNEL 42 DIALOG MESSAGES
 -- ============================================================
-INSERT IGNORE INTO lupo_dialog_messages (
+INSERT IGNORE INTO lupo_dialog_doctrine (
     `message_id`, `thread_id`, `actor_id`, `message_type`, `content`, 
     `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`
 ) VALUES 
@@ -389,7 +389,7 @@ INSERT IGNORE INTO lupo_dialog_messages (
     updated_ymdhis = 20260220000000, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_dialog_messages (
+INSERT IGNORE INTO lupo_dialog_doctrine (
     `message_id`, `thread_id`, `actor_id`, `message_type`, `content`, 
     `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`
 ) VALUES 
@@ -401,7 +401,7 @@ INSERT IGNORE INTO lupo_dialog_messages (
     updated_ymdhis = 20260220000000, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_dialog_messages (
+INSERT IGNORE INTO lupo_dialog_doctrine (
     `message_id`, `thread_id`, `actor_id`, `message_type`, `content`, 
     `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`
 ) VALUES 
@@ -413,7 +413,7 @@ INSERT IGNORE INTO lupo_dialog_messages (
     updated_ymdhis = 20260220000000, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_dialog_messages (
+INSERT IGNORE INTO lupo_dialog_doctrine (
     `message_id`, `thread_id`, `actor_id`, `message_type`, `content`, 
     `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`
 ) VALUES 
@@ -425,7 +425,7 @@ INSERT IGNORE INTO lupo_dialog_messages (
     updated_ymdhis = 20260220000000, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_dialog_messages (
+INSERT IGNORE INTO lupo_dialog_doctrine (
     `message_id`, `thread_id`, `actor_id`, `message_type`, `content`, 
     `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`
 ) VALUES 
@@ -437,7 +437,7 @@ INSERT IGNORE INTO lupo_dialog_messages (
     updated_ymdhis = 20260220000000, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_dialog_messages (
+INSERT IGNORE INTO lupo_dialog_doctrine (
     `message_id`, `thread_id`, `actor_id`, `message_type`, `content`, 
     `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`
 ) VALUES 
@@ -449,7 +449,7 @@ INSERT IGNORE INTO lupo_dialog_messages (
     updated_ymdhis = 20260220000000, 
     is_deleted = 0;
 
-INSERT IGNORE INTO lupo_dialog_messages (
+INSERT IGNORE INTO lupo_dialog_doctrine (
     `message_id`, `thread_id`, `actor_id`, `message_type`, `content`, 
     `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`
 ) VALUES 

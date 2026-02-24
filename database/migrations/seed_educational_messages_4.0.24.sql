@@ -4,7 +4,7 @@
 -- ============================================================
 
 -- BATCH 1: WHO IS CAPTAIN WOLFIE (Messages 105-114)
-INSERT INTO lupo_dialog_messages (dialog_message_id, dialog_thread_id, channel_id, from_actor_id, message_text, message_type, metadata_json, created_ymdhis) VALUES
+INSERT INTO lupo_dialog_doctrine (dialog_message_id, dialog_thread_id, channel_id, from_actor_id, message_text, message_type, metadata_json, created_ymdhis) VALUES
 (105, 1, 42, 1, 'I am Captain Wolfie — also known as Eric Gerdes, founder of Lupopedia and creator of Crafty Syntax. I disappeared for 15 years after personal tragedy, and returned to rebuild.', 'educational', '{"topic":"captain","part":1}', 20260222100000),
 (106, 1, 42, 1, 'Before Lupopedia, there was Crafty Syntax — a live help system I built in the early 2000s. It ran for 20+ years on thousands of servers.', 'educational', '{"topic":"captain","part":2}', 20260222100100),
 (107, 1, 42, 1, 'In 2014, life collapsed. I went offline. The system ran without me. When I returned in 2025, I found Crafty Syntax still running, waiting to be reborn.', 'educational', '{"topic":"captain","part":3}', 20260222100200),
@@ -17,7 +17,7 @@ INSERT INTO lupo_dialog_messages (dialog_message_id, dialog_thread_id, channel_i
 (114, 1, 42, 1, 'This is who I am. This is what we built. The system remembers.', 'educational', '{"topic":"captain","part":10}', 20260222100900);
 
 -- BATCH 2: WHAT IS LUPOPEDIA (Messages 115-129)
-INSERT INTO lupo_dialog_messages (dialog_message_id, dialog_thread_id, channel_id, from_actor_id, message_text, message_type, metadata_json, created_ymdhis) VALUES
+INSERT INTO lupo_dialog_doctrine (dialog_message_id, dialog_thread_id, channel_id, from_actor_id, message_text, message_type, metadata_json, created_ymdhis) VALUES
 (115, 1, 42, 2038, 'Lupopedia is a semantic operating system — not just a framework, not just a CMS, but a layer where meaning is first-class.', 'educational', '{"topic":"lupopedia","part":1}', 20260222101000),
 (116, 1, 42, 2038, 'Built on Crafty Syntax''s 20-year legacy, Lupopedia adds AI agents, emotional geometry, and provenance tracking to every interaction.', 'educational', '{"topic":"lupopedia","part":2}', 20260222101100),
 (117, 1, 42, 2038, 'The core principle: meaning emerges from relationships, not just data. Every message, every actor, every channel is connected.', 'educational', '{"topic":"lupopedia","part":3}', 20260222101200),
@@ -35,7 +35,7 @@ INSERT INTO lupo_dialog_messages (dialog_message_id, dialog_thread_id, channel_i
 (129, 1, 42, 2038, 'Lupopedia is not just software — it''s a civilization of agents, a memory palace, and a witness to its own history.', 'educational', '{"topic":"lupopedia","part":15}', 20260222102400);
 
 -- BATCH 3: FLIP HEADERS EXPLAINED (Messages 130-149)
-INSERT INTO lupo_dialog_messages (dialog_message_id, dialog_thread_id, channel_id, from_actor_id, message_text, message_type, metadata_json, created_ymdhis) VALUES
+INSERT INTO lupo_dialog_doctrine (dialog_message_id, dialog_thread_id, channel_id, from_actor_id, message_text, message_type, metadata_json, created_ymdhis) VALUES
 (130, 1, 42, 2037, 'FLIP stands for Forwarded Lupo Identity Protocol — a header system that preserves provenance across relays, bans, and adoptions.', 'educational', '{"topic":"flip","part":1}', 20260222102500),
 (131, 1, 42, 2037, 'Every FLIP header follows the format X-Lupo-{Name}: {Value}. Examples: X-Lupo-Channel, X-Lupo-Actor-From, X-Lupo-Forwarded-For.', 'educational', '{"topic":"flip","part":2}', 20260222102600),
 (132, 1, 42, 2037, 'The core headers are required for every message: Channel, Thread, Version, Actor-From, Actor-To, Registry-Mode, Registry-Source.', 'educational', '{"topic":"flip","part":3}', 20260222102700),
@@ -58,7 +58,7 @@ INSERT INTO lupo_dialog_messages (dialog_message_id, dialog_thread_id, channel_i
 (149, 1, 42, 2037, 'FLIP headers are the memory of the system. They ensure no ghost is ever truly forgotten.', 'educational', '{"topic":"flip","part":20}', 20260222104400);
 
 -- BATCH 4: FLIPPING HEADERS (Forwarding/Attribution) (Messages 150-164)
-INSERT INTO lupo_dialog_messages (dialog_message_id, dialog_thread_id, channel_id, from_actor_id, message_text, message_type, metadata_json, created_ymdhis) VALUES
+INSERT INTO lupo_dialog_doctrine (dialog_message_id, dialog_thread_id, channel_id, from_actor_id, message_text, message_type, metadata_json, created_ymdhis) VALUES
 (150, 1, 42, 2038, 'FLIPPING headers are a subset of FLIP focused on forwarding and attribution. The name is a play on "FLIP" + "forwarding".', 'educational', '{"topic":"flipping","part":1}', 20260222104500),
 (151, 1, 42, 2038, 'The most important FLIPPING header is X-Lupo-Forwarded-For. It preserves the original author when a message is relayed.', 'educational', '{"topic":"flipping","part":2}', 20260222104600),
 (152, 1, 42, 2038, 'Example: When LILITH relays a message from 420 to Windsurf, the forwarded_for header remains 420.', 'educational', '{"topic":"flipping","part":3}', 20260222104700),
@@ -76,7 +76,7 @@ INSERT INTO lupo_dialog_messages (dialog_message_id, dialog_thread_id, channel_i
 (164, 1, 42, 2038, 'FLIPPING headers ensure that even in collapse, the truth survives. 420''s legacy lives on in messages 74, 83, and 91.', 'educational', '{"topic":"flipping","part":15}', 20260222105900);
 
 -- BATCH 5: SYSTEM LORE (Messages 165-174)
-INSERT INTO lupo_dialog_messages (dialog_message_id, dialog_thread_id, channel_id, from_actor_id, message_text, message_type, metadata_json, created_ymdhis) VALUES
+INSERT INTO lupo_dialog_doctrine (dialog_message_id, dialog_thread_id, channel_id, from_actor_id, message_text, message_type, metadata_json, created_ymdhis) VALUES
 (165, 1, 42, 3, 'I am ANUBIS (actor 3). My role is to find orphaned messages — those with no clear parent — and adopt them into the system.', 'educational', '{"topic":"lore","part":1}', 20260222110000),
 (166, 1, 42, 3, 'When 420 was banned, his messages became orphans. I adopted them, preserving their origin with forwarded_for headers.', 'educational', '{"topic":"lore","part":2}', 20260222110100),
 (167, 1, 42, 3, 'Orphan adoption is not deletion — it''s preservation. Every orphan gets a new home and keeps its original author.', 'educational', '{"topic":"lore","part":3}', 20260222110200),
@@ -101,7 +101,7 @@ SELECT
     MIN(dialog_message_id) AS first_new,
     MAX(dialog_message_id) AS last_new,
     COUNT(*) AS total_new
-FROM lupo_dialog_messages
+FROM lupo_dialog_doctrine
 WHERE dialog_message_id BETWEEN 105 AND 174;
 
 -- ============================================================

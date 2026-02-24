@@ -137,6 +137,6 @@ function showHelp() {
     echo "  headers and maintains message ordering and content.\n\n";
     echo "  The migration creates two tables:\n";
     echo "  - lupo_dialog_channels: Channel metadata from WOLFIE headers\n";
-    echo "  - lupo_dialog_messages: Individual messages with 272-char limit\n\n";
+    echo "  - lupo_dialog_doctrine: Individual messages with 272-char limit\n\n";
 }
 ?>

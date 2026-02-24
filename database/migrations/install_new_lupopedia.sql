@@ -1,8 +1,5 @@
--- FILE: database/migrations/install_new_lupopedia.sql
--- TYPE: sql
--- Purpose: Install brand-new Lupopedia database from scratch. DB-agnostic (MySQL + PostgreSQL).
--- Doctrine 17: no FKs, no triggers, BIGINT timestamps, no display widths, no UNSIGNED.
 -- No Crafty Syntax logic, no migration, no DROP TABLE.
+SET @now = 20260224000000;
 
 CREATE TABLE lupo_actors (
   actor_id bigint NOT NULL,
@@ -27,6 +24,7 @@ CREATE TABLE lupo_actors (
   metadata_json json DEFAULT NULL,
   identity_provider_config json DEFAULT NULL,
   paired_actor_id bigint NOT NULL DEFAULT 0,
+  is_agent tinyint NOT NULL DEFAULT 0,
   PRIMARY KEY (actor_id)
 );
 
@@ -1056,14 +1054,35 @@ CREATE INDEX lupo_api_webhooks_idx_expires ON lupo_api_webhooks (expires_ymdhis)
 CREATE TABLE lupo_artifacts (
   artifact_id bigint NOT NULL,
   actor_id bigint NOT NULL,
+  federation_node_id bigint NOT NULL DEFAULT 1,
   `utc_timestamp` bigint NOT NULL,
   entity_type varchar(64) NOT NULL,
   content text NOT NULL,
+  metadata json DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (artifact_id)
 );
+
+CREATE TABLE lupo_artifact_chunks (
+  artifact_chunk_id bigint NOT NULL,
+  artifact_id bigint NOT NULL,
+  chunk_index int NOT NULL,
+  chunk_content mediumtext NOT NULL,
+  token_count int DEFAULT NULL,
+  metadata json DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (artifact_chunk_id)
+);
+
+CREATE UNIQUE INDEX lupo_artifact_chunks_art_chunk_unique ON lupo_artifact_chunks (artifact_id, chunk_index);
+CREATE INDEX lupo_artifact_chunks_artifact_id ON lupo_artifact_chunks (artifact_id);
+
 
 CREATE INDEX lupo_artifacts_idx_utc_timestamp ON lupo_artifacts (`utc_timestamp`);
 CREATE INDEX lupo_artifacts_idx_actor_id ON lupo_artifacts (actor_id);
@@ -1923,13 +1942,15 @@ CREATE INDEX lupo_dialog_channels_idx_created_timestamp ON lupo_dialog_channels 
 CREATE INDEX lupo_dialog_channels_idx_modified_timestamp ON lupo_dialog_channels (modified_timestamp);
 CREATE INDEX lupo_dialog_channels_idx_dialog_channels_composite ON lupo_dialog_channels (status, created_timestamp);
 
-CREATE TABLE lupo_dialog_messages (
+CREATE TABLE lupo_dialog_doctrine (
   dialog_message_id bigint NOT NULL,
   message_id bigint NOT NULL DEFAULT 0,
   dialog_thread_id bigint DEFAULT NULL,
   channel_id bigint DEFAULT NULL,
   from_actor_id bigint DEFAULT NULL,
   to_actor_id bigint DEFAULT NULL,
+  read_by_actor_id bigint NOT NULL DEFAULT 0,
+  read_by_actor_utc bigint NOT NULL DEFAULT 0,
   message_text varchar(1000) NOT NULL,
   message_type varchar(64) NOT NULL DEFAULT 'text',
   metadata_json json DEFAULT NULL,
@@ -1943,13 +1964,15 @@ CREATE TABLE lupo_dialog_messages (
   PRIMARY KEY (dialog_message_id)
 );
 
-CREATE INDEX lupo_dialog_messages_idx_channel ON lupo_dialog_messages (channel_id);
-CREATE INDEX lupo_dialog_messages_idx_created ON lupo_dialog_messages (created_ymdhis);
-CREATE INDEX lupo_dialog_messages_idx_updated ON lupo_dialog_messages (updated_ymdhis);
-CREATE INDEX lupo_dialog_messages_idx_deleted ON lupo_dialog_messages (is_deleted);
-CREATE INDEX lupo_dialog_messages_idx_message_type ON lupo_dialog_messages (message_type);
-CREATE INDEX lupo_dialog_messages_idx_dialog_thread_id ON lupo_dialog_messages (dialog_thread_id);
-CREATE INDEX lupo_dialog_messages_idx_to_actor_id ON lupo_dialog_messages (to_actor_id);
+CREATE INDEX lupo_dialog_doctrine_idx_channel ON lupo_dialog_doctrine (channel_id);
+CREATE INDEX lupo_dialog_doctrine_idx_created ON lupo_dialog_doctrine (created_ymdhis);
+CREATE INDEX lupo_dialog_doctrine_idx_updated ON lupo_dialog_doctrine (updated_ymdhis);
+CREATE INDEX lupo_dialog_doctrine_idx_deleted ON lupo_dialog_doctrine (is_deleted);
+CREATE INDEX lupo_dialog_doctrine_idx_message_type ON lupo_dialog_doctrine (message_type);
+CREATE INDEX lupo_dialog_doctrine_idx_dialog_thread_id ON lupo_dialog_doctrine (dialog_thread_id);
+CREATE INDEX lupo_dialog_doctrine_idx_to_actor_id ON lupo_dialog_doctrine (to_actor_id);
+CREATE INDEX lupo_dialog_doctrine_idx_read_by_actor ON lupo_dialog_doctrine (read_by_actor_id);
+CREATE INDEX lupo_dialog_doctrine_idx_read_utc ON lupo_dialog_doctrine (read_by_actor_utc);
 
 CREATE TABLE lupo_dialog_threads (
   dialog_thread_id bigint NOT NULL,
@@ -2003,62 +2026,59 @@ CREATE INDEX lupo_doctrine_evolution_audit_idx_refinement_step ON lupo_doctrine_
 CREATE INDEX lupo_doctrine_evolution_audit_idx_step_status ON lupo_doctrine_evolution_audit (step_status);
 CREATE INDEX lupo_doctrine_evolution_audit_idx_completion_time ON lupo_doctrine_evolution_audit (completed_ymdhis);
 
-CREATE TABLE lupo_doctrine_refinements (
-  doctrine_refinement_id bigint NOT NULL,
-  cip_event_id bigint NOT NULL,
-  doctrine_file_path varchar(500) NOT NULL,
-  refinement_type varchar(64) NOT NULL,
-  change_description text NOT NULL,
-  before_content_hash varchar(64) DEFAULT NULL,
-  after_content_hash varchar(64) NOT NULL,
-  impact_assessment_json json DEFAULT NULL,
-  approval_status varchar(64) DEFAULT 'pending',
-  approved_by varchar(100) DEFAULT NULL,
-  applied_ymdhis bigint DEFAULT NULL,
+CREATE TABLE lupo_tickets (
+  ticket_id bigint NOT NULL,
+  channel_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  status varchar(64) NOT NULL DEFAULT 'open',
+  priority varchar(64) NOT NULL DEFAULT 'medium',
+  subject varchar(255) NOT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
-  refinement_version varchar(20) DEFAULT '3.0.0',
-  PRIMARY KEY (doctrine_refinement_id)
-);
-
-CREATE INDEX lupo_doctrine_refinements_idx_cip_event ON lupo_doctrine_refinements (cip_event_id);
-CREATE INDEX lupo_doctrine_refinements_idx_doctrine_file ON lupo_doctrine_refinements (doctrine_file_path(255));
-CREATE INDEX lupo_doctrine_refinements_idx_approval_status ON lupo_doctrine_refinements (approval_status);
-CREATE INDEX lupo_doctrine_refinements_idx_applied_time ON lupo_doctrine_refinements (applied_ymdhis);
-
-CREATE TABLE lupo_documents (
-  document_id bigint NOT NULL,
-  domain_id int NOT NULL DEFAULT '1',
-  document_name varchar(256) NOT NULL,
-  source_type varchar(64) NOT NULL,
-  source_url text,
-  mime_type varchar(128) DEFAULT NULL,
-  file_size_bytes int DEFAULT NULL,
-  checksum_sha256 varchar(64) DEFAULT NULL,
-  metadata json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  metadata_json json DEFAULT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
   deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (document_id)
+  PRIMARY KEY (ticket_id)
 );
 
+CREATE INDEX lupo_tickets_idx_channel ON lupo_tickets (channel_id);
+CREATE INDEX lupo_tickets_idx_actor ON lupo_tickets (actor_id);
+CREATE INDEX lupo_tickets_idx_status ON lupo_tickets (status);
 
-CREATE TABLE lupo_document_chunks (
-  document_chunk_id bigint NOT NULL,
-  document_id bigint NOT NULL,
-  chunk_index int NOT NULL,
-  chunk_content mediumtext NOT NULL,
-  token_count int DEFAULT NULL,
-  metadata json DEFAULT NULL,
+CREATE TABLE lupo_ticket_messages (
+  ticket_message_id bigint NOT NULL,
+  ticket_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  message_text text NOT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
+  is_deleted tinyint NOT NULL DEFAULT 0,
   deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (document_chunk_id)
+  PRIMARY KEY (ticket_message_id)
 );
 
-CREATE UNIQUE INDEX lupo_document_chunks_doc_chunk_unique ON lupo_document_chunks (document_id, chunk_index);
-CREATE INDEX lupo_document_chunks_document_id ON lupo_document_chunks (document_id);
+CREATE INDEX lupo_ticket_messages_idx_ticket ON lupo_ticket_messages (ticket_id);
+
+-- DEPRECATED in 4.0.42: lupo_doctrine_refinements replaced by lupo_tickets
+-- CREATE TABLE lupo_doctrine_refinements (
+--   doctrine_refinement_id bigint NOT NULL,
+--   cip_event_id bigint NOT NULL,
+--   doctrine_file_path varchar(500) NOT NULL,
+--   refinement_type varchar(64) NOT NULL,
+--   change_description text NOT NULL,
+--   before_content_hash varchar(64) DEFAULT NULL,
+--   after_content_hash varchar(64) NOT NULL,
+--   impact_assessment_json json DEFAULT NULL,
+--   approval_status varchar(64) DEFAULT 'pending',
+--   approved_by varchar(100) DEFAULT NULL,
+--   applied_ymdhis bigint DEFAULT NULL,
+--   created_ymdhis bigint NOT NULL DEFAULT 0,
+--   refinement_version varchar(20) DEFAULT '3.0.0',
+--   PRIMARY KEY (doctrine_refinement_id)
+-- );
+
+
+-- lupo_documents and lupo_document_chunks replaced by lupo_artifacts and lupo_artifact_chunks in 4.0.42.
+
 
 CREATE TABLE lupo_document_embeddings (
   document_embedding_id bigint NOT NULL,
@@ -3387,6 +3407,37 @@ CREATE INDEX lupo_system_logs_idx_actor_slug ON lupo_system_logs (actor_slug);
 CREATE INDEX lupo_system_logs_idx_created_ymdhis ON lupo_system_logs (created_ymdhis);
 CREATE INDEX lupo_system_logs_idx_is_deleted ON lupo_system_logs (is_deleted);
 
+CREATE TABLE lupo_system_commands (
+  command_id bigint NOT NULL,
+  command_type varchar(128) NOT NULL,
+  command_args_json text,
+  working_dir varchar(512) DEFAULT NULL,
+  status varchar(32) NOT NULL,
+  priority int NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL,
+  scheduled_ymdhis bigint NOT NULL,
+  started_ymdhis bigint DEFAULT NULL,
+  finished_ymdhis bigint DEFAULT NULL,
+  claimed_by_actor_id bigint DEFAULT NULL,
+  claimed_by_host varchar(256) DEFAULT NULL,
+  process_id varchar(64) DEFAULT NULL,
+  attempt_count int NOT NULL DEFAULT 0,
+  max_attempts int NOT NULL DEFAULT 3,
+  timeout_seconds int NOT NULL DEFAULT 3600,
+  return_code int DEFAULT NULL,
+  output_text text,
+  output_sha1 varchar(64) DEFAULT NULL,
+  last_heartbeat_ymdhis bigint DEFAULT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (command_id)
+);
+
+CREATE INDEX lupo_system_commands_idx_status_priority_scheduled ON lupo_system_commands (status, priority, scheduled_ymdhis);
+CREATE INDEX lupo_system_commands_idx_status_heartbeat ON lupo_system_commands (status, last_heartbeat_ymdhis);
+CREATE INDEX lupo_system_commands_idx_created_ymdhis ON lupo_system_commands (created_ymdhis);
+CREATE INDEX lupo_system_commands_idx_is_deleted ON lupo_system_commands (is_deleted);
+
 CREATE TABLE lupo_tab_events (
   tab_event_id bigint NOT NULL,
   tab_id varchar(255) NOT NULL,
@@ -3814,15 +3865,14 @@ CREATE TABLE `lupo_actor_aliases` (
 -- ============================================================
 
 -- Registry entries for all IDE & AI actors
-INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
+INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
 VALUES 
-(9002031, 'actor', 2031, 'cursor-ide', 'Cursor IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"cursor","provider":"cursor","purpose":"IDE_integration","csv_allocation":true}'),
-(9002032, 'actor', 2032, 'kiro-ide', 'Kiro IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"kiro","provider":"kiro","purpose":"IDE_integration","csv_allocation":true}'),
-(9002033, 'actor', 2033, 'zed-ide', 'Zed IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"zed","provider":"zed","purpose":"IDE_integration","csv_allocation":true}'),
-(9002034, 'actor', 2034, 'vscode-ide', 'VS Code IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"vscode","provider":"microsoft","purpose":"IDE_integration","csv_allocation":true}'),
-(9002035, 'actor', 2035, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"antigravity","purpose":"VSX_extension_development","csv_allocation":true}'),
-(9002036, 'actor', 2036, 'microsoft-copilot', 'Microsoft Copilot', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"copilot","provider":"microsoft","purpose":"AI_assistant","csv_allocation":true}'),
-(9002037, 'actor', 2037, 'deepseek-lexa', 'DeepSeek LEXA', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lexa","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}'),
+(9002031, 'actor', 2031, 2031, 'cursor-ide', 'Cursor IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"cursor","provider":"cursor","purpose":"IDE_integration","csv_allocation":true}'),
+(9002033, 'actor', 2033, 2033, 'zed-ide', 'Zed IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"zed","provider":"zed","purpose":"IDE_integration","csv_allocation":true}'),
+(9002034, 'actor', 2034, 2034, 'vscode-ide', 'VS Code IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"vscode","provider":"microsoft","purpose":"IDE_integration","csv_allocation":true}'),
+(9002035, 'actor', 2035, 2035, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"antigravity","purpose":"VSX_extension_development","csv_allocation":true}'),
+(9002036, 'actor', 2036, 2036, 'microsoft-copilot', 'Microsoft Copilot', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"copilot","provider":"microsoft","purpose":"AI_assistant","csv_allocation":true}'),
+(9002037, 'actor', 2037, 2037, 'deepseek-lexa', 'DeepSeek LEXA', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lexa","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}'),
 (9002038, 'actor', 2038, 'deepseek-lilith', 'DeepSeek LILITH', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lilith","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}')
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
@@ -3857,33 +3907,33 @@ INSERT INTO lupo_channels (
 );
 
 -- Channel 42 membership: All 25 active actors (excluding actor_id 420)
-INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, default_actor_id, status, start_date, channel_color, last_read_ymdhis, muted_until_ymdhis, preferences_json, dialog_output_file, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) 
+INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, status, start_date, channel_color, last_read_ymdhis, muted_until_ymdhis, preferences_json, dialog_output_file, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) 
 VALUES 
-(12001, 1, 42, 1, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12002, 2, 42, 1, 2, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12003, 3, 42, 1, 3, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12004, 4, 42, 1, 4, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12005, 5, 42, 1, 5, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12006, 6, 42, 1, 6, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12007, 7, 42, 1, 7, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12008, 8, 42, 1, 8, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12009, 9, 42, 1, 9, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "major kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12010, 10, 42, 1, 10, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "nowifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12011, 11, 42, 1, 11, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12012, 12, 42, 1, 12, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12013, 13, 42, 1, 13, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12014, 14, 42, 1, 14, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12015, 15, 42, 1, 15, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12016, 16, 42, 1, 16, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12017, 17, 42, 1, 17, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12018, 18, 42, 1, 18, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12019, 19, 42, 1, 19, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12020, 20, 42, 1, 20, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12021, 21, 42, 1, 21, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12022, 22, 42, 1, 22, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12023, 23, 42, 1, 23, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12024, 24, 42, 1, 24, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12025, 25, 42, 1, 25, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL)
+(12001, 1, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12002, 2, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12003, 3, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12004, 4, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12005, 5, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12006, 6, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12007, 7, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12008, 8, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12009, 9, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "major kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12010, 10, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "nowifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12011, 11, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12012, 12, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12013, 13, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12014, 14, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12015, 15, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12016, 16, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12017, 17, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12018, 18, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12019, 19, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12020, 20, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12021, 21, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12022, 22, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12023, 23, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12024, 24, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
+(12025, 25, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL)
 ON DUPLICATE KEY UPDATE 
     actor_id = VALUES(actor_id),
     channel_id = VALUES(channel_id),
@@ -3912,9 +3962,9 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 -- ============================================================
 
 -- Registry entry for Warp IDE
-INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
+INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
 VALUES 
-(9002039, 'actor', 2039, 'warp-ide', 'Warp IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"warp","provider":"warp","purpose":"IDE_integration","paired_actor_id":10000}')
+(9002039, 'actor', 2039, 2039, 'warp-ide', 'Warp IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"warp","provider":"warp","purpose":"IDE_integration","paired_actor_id":10000}')
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- Actor record for Warp IDE (with paired_actor_id)
@@ -3923,9 +3973,9 @@ VALUES (2039, 'system_tool', 'warp-ide', 'Warp IDE', @now, @now, 1, 0, NULL, 203
 ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), paired_actor_id = VALUES(paired_actor_id), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 -- Channel 42 membership for Warp IDE
-INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, default_actor_id, department_id, channel_key, channel_slug, channel_type, language, channel_name, description, website_link, metadata_json, status_flag, end_ymdhis, duration_seconds, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_kernel, boot_sequence_order)
-VALUES (12039, 2039, 42, 1000, 2039, 0, 'warp-dev', 'warp-dev', 'chat_room', 'en', 'Warp IDE Development', 'Development channel for Warp IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","terminal_integration"],"paired_actor_id":10000}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 208)
-ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, status, start_date, channel_color, last_read_ymdhis, muted_until_ymdhis, preferences_json, dialog_output_file, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (12039, 2039, 42, 1000, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","terminal_integration"],"paired_actor_id":10000}', NULL, @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE actor_id = VALUES(actor_id), channel_id = VALUES(channel_id), updated_ymdhis = @now, is_deleted = 0;
 
 -- Department 0 membership for Warp IDE
 INSERT IGNORE INTO lupo_actor_departments (actor_department_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
@@ -3940,9 +3990,9 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 -- ============================================================
 
 -- Registry entry for Windsurf IDE
-INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
+INSERT IGNORE INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, entity_table, federation_node_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_active, is_kernel, metadata_json) 
 VALUES 
-(9002040, 'actor', 2040, 'windsurf-ide', 'Windsurf IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"windsurf","provider":"windsurf","purpose":"IDE_integration","paired_actor_id":10000}')
+(9002040, 'actor', 2040, 2040, 'windsurf-ide', 'Windsurf IDE', 'lupo_actors', 0, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"windsurf","provider":"windsurf","purpose":"IDE_integration","paired_actor_id":10000}')
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- Actor record for Windsurf IDE (with paired_actor_id)
@@ -3951,9 +4001,9 @@ VALUES (2040, 'system_tool', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, N
 ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), paired_actor_id = VALUES(paired_actor_id), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 -- Channel 42 membership for Windsurf IDE
-INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, default_actor_id, department_id, channel_key, channel_slug, channel_type, language, channel_name, description, website_link, metadata_json, status_flag, end_ymdhis, duration_seconds, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, is_kernel, boot_sequence_order)
-VALUES (12040, 2040, 42, 1000, 2040, 0, 'windsurf-dev', 'windsurf-dev', 'chat_room', 'en', 'Windsurf IDE Development', 'Development channel for Windsurf IDE', NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","vsx_extension_development"],"paired_actor_id":10000}', 1, NULL, NULL, @now, @now, 0, NULL, 0, 209)
-ON DUPLICATE KEY UPDATE channel_name = VALUES(channel_name), description = VALUES(description), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, status, start_date, channel_color, last_read_ymdhis, muted_until_ymdhis, preferences_json, dialog_output_file, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (12040, 2040, 42, 1000, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","vsx_extension_development"],"paired_actor_id":10000}', NULL, @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE actor_id = VALUES(actor_id), channel_id = VALUES(channel_id), updated_ymdhis = @now, is_deleted = 0;
 
 -- Department 0 membership for Windsurf IDE
 INSERT IGNORE INTO lupo_actor_departments (actor_department_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
@@ -4013,24 +4063,24 @@ CREATE INDEX idx_flip_kind_date ON lupo_flip_artifacts (artifact_kind, last_modi
 -- ============================================================
 
 -- FLIP Schema Version Registry
-INSERT INTO lupo_registry (registry_id, entity_type, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
-VALUES (9005001, 'flip_schema_version', 1, 'v2.0', 'FLIP Schema Version 2.0', 1, '{"version": "2.0", "features": ["relationship_mapping", "enhanced_attribution", "semantic_inference"]}', @now, @now, 0, NULL)
+INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (9005001, 'flip_schema_version', 1, 1, 'v2.0', 'FLIP Schema Version 2.0', 1, '{"version": "2.0", "features": ["relationship_mapping", "enhanced_attribution", "semantic_inference"]}', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
 -- Artifact Kind Registry
-INSERT INTO lupo_registry (registry_id, entity_type, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
-VALUES (9005002, 'artifact_kind', 1, 'header', 'FLIP Header Artifact', 1, '{"description": "FLIP/WOLFIE header metadata"}', @now, @now, 0, NULL)
+INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (9005002, 'artifact_kind', 1, 1, 'header', 'FLIP Header Artifact', 1, '{"description": "FLIP/WOLFIE header metadata"}', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
-INSERT INTO lupo_registry (registry_id, entity_type, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
-VALUES (9005003, 'artifact_kind', 2, 'footer', 'FLIP Footer Artifact', 1, '{"description": "FLIP footer metadata and relationships"}', @now, @now, 0, NULL)
+INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (9005003, 'artifact_kind', 2, 2, 'footer', 'FLIP Footer Artifact', 1, '{"description": "FLIP footer metadata and relationships"}', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
 -- Edge Type Registry
-INSERT INTO lupo_registry (registry_id, entity_type, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
-VALUES (9005004, 'edge_type', 1, 'inbound_edge', 'File Inbound Edge', 1, '{"description": "References pointing to this file"}', @now, @now, 0, NULL)
+INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (9005004, 'edge_type', 1, 1, 'inbound_edge', 'File Inbound Edge', 1, '{"description": "References pointing to this file"}', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
-INSERT INTO lupo_registry (registry_id, entity_type, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
-VALUES (9005005, 'edge_type', 2, 'semantic_relationship', 'Semantic Relationship', 1, '{"description": "Semantic relationships between files"}', @now, @now, 0, NULL)
+INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES (9005005, 'edge_type', 2, 2, 'semantic_relationship', 'Semantic Relationship', 1, '{"description": "Semantic relationships between files"}', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;

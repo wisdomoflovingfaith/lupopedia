@@ -185,7 +185,7 @@ INSERT INTO lupo_dialog_threads (
 -- =====================================================
 -- 6. CREATE INITIAL DIALOG MESSAGES
 -- =====================================================
-INSERT INTO lupo_dialog_messages (
+INSERT INTO lupo_dialog_doctrine (
     dialog_message_id, dialog_thread_id, channel_id, from_actor_id, to_actor_id, 
     message_text, message_type, metadata_json, mood_rgb, mood_framework, 
     created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis

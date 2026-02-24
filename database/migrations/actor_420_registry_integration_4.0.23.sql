@@ -64,7 +64,7 @@ INSERT IGNORE INTO lupo_agents (
 -- ============================================================
 -- DIALOG MESSAGE WITH ACTOR 420 ASSIGNMENT
 -- ============================================================
-INSERT IGNORE INTO lupo_dialog_messages (
+INSERT IGNORE INTO lupo_dialog_doctrine (
     `message_id`, `thread_id`, `actor_id`, `message_type`, `content`, 
     `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`,
     `metadata_json`

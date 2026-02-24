@@ -61,7 +61,7 @@ All agent identity in Lupopedia is registry-driven. Files reference agents by ac
 |----------|----------------|------|------|--------|------------|
 | 10000 | Captain Wolfie | captain_wolfie | human | active | captain_wolfie |
 
-### IDE Agents (5)
+### IDE Agents (10)
 
 | actor_id | canonical_name | slug | type | status | human_operator | lupo_agent |
 |----------|----------------|------|------|--------|----------------|------------|
@@ -70,22 +70,39 @@ All agent identity in Lupopedia is registry-driven. Files reference agents by ac
 | 1003 | Antigravity IDE | antigravity | ide | active | 10000 | antigravity |
 | 1004 | Warp IDE | warp | ide | offline | 10000 | warp |
 | 1005 | Cursor IDE | cursor | ide | offline | 10000 | cursor |
+| 1006 | Zed IDE | zed | ide | dormant | 10000 | zed |
+| 1007 | IntelliJ IDEA | intelij | ide | dormant | 10000 | intelij |
+| 1008 | WebStorm | webstorm | ide | dormant | 10000 | webstorm |
+| 1009 | Theia IDE | theiaide | ide | dormant | 10000 | theiaide |
+| 1010 | CS Code | cs_code | ide | dormant | 10000 | cs_code |
 
-### System Kernel Agents (13)
+### System Kernel Agents (25)
 
 | actor_id | canonical_name | slug | type | status | lupo_agent |
 |----------|----------------|------|------|--------|------------|
-| 0 | System Kernel | kernel | system | active | kernel |
 | 1 | Authenticator | authenticator | system | active | authenticator |
 | 2 | Captain | captain | system | active | captain |
 | 3 | Wolfie | wolfie | system | active | wolfie |
+| 4 | Wolfena | wolfena | system | active | wolfena |
 | 5 | Thoth | thoth | system | active | thoth |
 | 6 | Ara | ara | system | active | ara |
+| 7 | Wolfkeeper | wolfkeeper | system | active | wolfkeeper |
 | 8 | Lilith | lilith | system | active | lilith |
+| 9 | Agape | agape | system | active | agape |
+| 10 | Eris | eris | system | active | eris |
+| 11 | Methis | methis | system | active | methis |
+| 12 | Thalia | thalia | system | active | thalia |
+| 13 | Dialog | dialog | system | active | dialog |
+| 14 | Wolfsight | wolfsight | system | active | wolfsight |
+| 15 | Wolfnav | wolfnav | system | active | wolfnav |
+| 16 | Wolfforge | wolfforge | system | active | wolfforge |
+| 17 | Wolfmis | wolfmis | system | active | wolfmis |
+| 18 | Wolfith | wolfith | system | active | wolfith |
 | 19 | Anubis | anubis | system | active | anubis |
 | 20 | Maat | maat | system | active | maat |
+| 22 | Caduceus | caduceus | system | active | caduceus |
+| 23 | Chronos | chronos | system | active | chronos |
 | 24 | Lexa | lexa | system | active | lexa |
-| 59 | Indexer | indexer | system | active | indexer |
 | 209 | Truth | truth | system | active | truth |
 | 1212 | UTC Timekeeper | utc_timekeeper | system | active | utc_timekeeper |
 

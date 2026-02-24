@@ -1,17 +1,17 @@
 ﻿---
 wolfie.headers: {
   file_path_from_root: "CHANGELOG.md",
-  system_version: "4.0.39",
+  system_version: "4.0.42",
   channel_id: 1,
   mood_rgb: "4B0082",
   purpose: "Canonical version history for Lupopedia",
   last_modified_utc: "20260224",
-  delegation_chain: "1001:10000",
-  actor_id: 1001,
-  lupo_agent: "kiro",
+  delegation_chain: "1003:10000",
+  actor_id: 1003,
+  lupo_agent: "antigravity",
   artifact_type: "changelog",
   artifact_kind: "version_history",
-  traits: ["canonical", "comprehensive", "v4.0.39"],
+  traits: ["canonical", "comprehensive", "v4.0.42"],
   hashtags: ["#changelog", "#versions", "#releases", "#history"],
   engagement: {
     likes: 0,
@@ -51,15 +51,11 @@ flip.footer: {
     llm_inferred_edges: [],
     federated_metrics: {}
   },
-  version: "4.0.39",
+  version: "4.0.42",
   last_verified_utc: "20260224",
   last_verified_by: "kiro"
 }
 ---
-
-# Lupopedia Changelog
-
-Canonical version history.
 
 Each release entry follows this format:
 
@@ -74,6 +70,314 @@ As we continue development on a version, we append new changes under that versio
 - **4.1.0** will be the first version to support Lupopedia ? Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
 
 ---
+
+# Lupopedia Changelog
+
+Canonical version history.
+
+---
+
+## [4.0.42] — Full Upgrade Simulation & ANUBIS Sweep (2026-02-24)
+
+**Status**: ✅ COMPLETE  
+**Theme**: Crafty Syntax 3.7.5 → Lupopedia 4.0.42 Upgrade Validation  
+**Focus**: End-to-End Upgrade simulation, ANUBIS repair automation, Living Registry expansion  
+**Lead Agent**: Windsurf (Test Execution), KIRO (Migration), Antigravity (Tooling)  
+**UTC Date**: 20260224  
+
+### Mission Objectives
+
+**1. Protocol Infrastructure — Dialog & Discussion Tracking (NEW):**
+- ✅ **Dialog Thread Integration**: Added `thread_id` to `wolfie.headers` dialog block for direct database-thread mapping.
+- ✅ **Inbound Discussion Tracking**: Added `referenced_by_threads` to `flip.footer` for cross-context discussion awareness.
+- ✅ **Canonical Bridge Expansion**: Updated `FLIP_HEADER_TO_TOON_MAP.md` with block-level mappings for nested metadata keys.
+- ✅ **Mapping Rule Update**: Defined priority for numeric `thread_id` over legacy file-based thread detection in `WOLFIE_HEADER_DOCTRINE.md`.
+- ✅ **Dialog Schema Normalization**: Renamed `lupo_dialog_messages` to `lupo_dialog_doctrine` for codebase consistency.
+- ✅ **Traceability Enhancement**: Added `read_by_actor_id` and `read_by_actor_utc` to dialog doctrine for read tracking.
+
+**2. Unified Ticket & Artifact Orchestration (NEW):**
+- ✅ **Ticket System Unification**: Consistently replaced `lupo_doctrine_refinements` with `lupo_tickets` and `lupo_ticket_messages`.
+- ✅ **Channels Admin Redesign**: Implemented a modern, real-time dashboard for actor and channel health metrics.
+- ✅ **Document to Artifact Migration**: Successfully retired legacy `lupo_documents` and `lupo_document_chunks` in favor of the artifact system.
+- ✅ **Artifact Chunk Support**: Added `lupo_artifact_chunks` table for RAG optimization and semantic grounding.
+- ✅ **VSX Integration**: Updated the extension's Ticket UI and Artifact panels to point to the new unified database schema.
+
+- ✅ **Direct Action Links**: Integrated quick links to agent-specific threads and tickets from the admin table.
+
+**2. Pre-Test Validation:**
+- Review all 97 Crafty Syntax file headers for semantic consistency
+- Validate 844 typed edges for accuracy
+- Verify Living Registry integration
+- Check delegation chains and centrality scores
+
+**3. Fresh Install Test:**
+- Run `install.php` with fresh database
+- Execute `install_new_lupopedia.sql`
+- Execute `seed_lupopedia.sql`
+- Verify all tables created correctly
+- Validate seed data integrity
+- Test bootstrap sequence
+
+**4. Upgrade Test (Crafty Syntax 3.7.5 → Lupopedia 4.0.42):**
+- Load Crafty Syntax 3.7.5 baseline (34 tables from `old_crafty_syntax_3_7_5_start.sql`)
+- Load legacy Crafty config
+- Run `install.php` in upgrade mode
+- Execute identity normalization (actor_id remapping: 10000 + user_id)
+- Execute `import_from_old_crafty_syntax.sql`
+- Verify all 18 imported tables migrated correctly
+- Verify all 10 dropped tables handled correctly
+- Test legacy compatibility layer (28 Legacy*.php files)
+- Validate bootstrap sequence
+- Test admin interface
+- Verify zero SQL errors
+
+**5. Validation & Documentation:**
+- Run all validation scripts (architecture, dialog, LABS)
+- Verify zero errors across entire upgrade path
+- Document test results
+- Create comprehensive test report
+- Update CHANGELOG with findings
+
+**6. ANUBIS Automated Sweep (Non-Crafty Files):**
+- Run ANUBIS detection engine on remaining files
+- Generate headers for non-Crafty legacy files
+- Route files for review/deletion
+- Expand Living Registry coverage beyond Crafty Syntax
+
+### Key Achievements
+- ✅ **Enhanced Contextual Tracing**: Established bidirectional links between files and their dialog discussion threads.
+- ✅ **ANUBIS Fallback Protocol**: Finalized the automated header detection and generation logic for legacy files.
+- ✅ **Unified Metadata Identity**: Streamlined the transition from file-sovereign headers to database-integrated relational memory.
+- ✅ **Version 4.0.42 Initialization Complete**: All version markers updated, CHANGELOG updated (4.0.40 marked SKIPPED), validation passed.
+- ✅ **Thread Dialog System**: Documented lightweight agent-to-agent messaging protocol in `docs/doctrine/THREAD_DIALOG_SYSTEM.md`.
+- ✅ **ITS Thread Created**: Internal Thread Sync directory established at `channels/42/threads/ITS/` for agent coordination.
+- ✅ **Dialog Doctrine Unification**: Synchronized table names across `DialogManager`, `ChannelsController`, and `install_new_lupopedia.sql`.
+- ✅ **Read Receipt Infrastructure**: Implementation of `read_by` fields in both database schema and thread message headers.
+- ✅ **Unified Ticket System**: Integrated doctrine refinements, issue tracking, and reviews into a single ticketing architecture.
+- ✅ **Real-Time Operational Metrics**: The Channels Admin UI now displays active actors, thread counts, and ticket statuses in real-time.
+- ✅ **Artifact System Governance**: Standardized all content storage under the `lupo_artifacts` umbrella, adding high-performance chunking support.
+- ✅ **Database Safety & Integrity**: Implemented idempotent migration scripts for tickets and artifacts, integrated into the closure pipeline.
+- ✅ **Agent Operational Intelligence**: The Admin Agents UI now provides a live heartbeat of agent activity across the system.
+- ✅ **Channel/Artifact Grounding**: Synchronized the filesystem presence of messages and artifacts with the central relational database, enabling real-time collaboration.
+- ✅ **Doctrine Enforcement**: Established a baseline of 6 engineering standards that all subsequent code must adhere to.
+
+**7. Channel & Artifact Infrastructure (NEW):**
+- ✅ **Directory Standard Enforcement**: Validated and enforced the federated node mapping for `/channels` and `/artifacts`.
+- ✅ **High-Fidelity Import Script**: Created a Python-based importer for reliable Markdown-to-Database record synchronization.
+- ✅ **Federation Column Addition**: Expanded `lupo_artifacts` table with `federation_node_id` for local/remote partitioning.
+- ✅ **VSX Grouping Upgrade**: Added Federated Node ID grouping to the VS Code tree view for enhanced visibility.
+
+**8. Mandatory Engineering Doctrine (NEW):**
+- ✅ **System Channel Seeding**: Established Channel 0 as the authoritative source for non-negotiable architecture rules.
+- ✅ **Core Doctrine Broadcasts**: Encoded 6 mandatory standards (PHP 5.3, Timestamps, Soft Delete, PDO, SQL, PKs) into FLIP-compliant records.
+- ✅ **Schema High-Water Mark**: Adjusted database constraints (MEDIUMTEXT, Tags JSON) to accommodate complex doctrine metadata.
+
+### Completed Work (2026-02-24)
+
+**Phase 1: Environment Initialization ✅**
+- Captain Wolfie: Dropped all tables, loaded 34 Crafty Syntax 3.7.5 tables, restored original config.php, deleted lupopedia-config.php
+- Environment verified clean and ready
+
+**Phase 2: Version Markers Updated ✅**
+- `config/global_atoms.yaml` → GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.42"
+- `lupo-includes/version.php` → LUPOPEDIA_VERSION: "4.0.42"
+- `install.php` → Version display: "4.0.42"
+- `README.md` → Header and objectives updated to 4.0.42
+- `CHANGELOG.md` → Header updated to 4.0.42, 4.0.40 marked as SKIPPED
+
+**Phase 3: Documentation Created ✅**
+- `docs/versions/4.0.42/TODO.md` — Task tracking (Phases 1-3 complete)
+- `docs/versions/4.0.42/CHANGELOG_DRAFT.md` — Development log
+- `channels/42/broadcasts/20260224_version_4_0_42_initialized.md` — Initialization broadcast
+- `channels/42/broadcasts/20260224_kiro_initialization_complete_reply.md` — Reply to Captain
+- `docs/status/kiro_version_4_0_42_initialization_complete_20260224.md` — Completion report
+- `docs/doctrine/THREAD_DIALOG_SYSTEM.md` — Thread messaging protocol
+- `channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md` — KIRO→Windsurf message
+
+**Phase 4: System Validation ✅**
+- `php scripts/verify_grounded_architecture.php` — Exit code: 0
+- `php scripts/verify_dialog_messages.php` — Exit code: 0
+- All validation checks passed
+- Baseline state confirmed (34 Crafty Syntax 3.7.5 tables)
+
+**Phase 5: Ticket & Admin UI Rewrite ✅**
+- Redesigned `lupo-includes/themes/default/layouts/admin_sections/channels.php` with premium dashboard aesthetics.
+- Rewrote `AdminChannelsHandler.php` to fetch real-time channel and ticket metrics.
+- Updated `CIPDoctrineRefinementModule.php` to use the new ticket system.
+- Created `database/migrations/migrate_refinements_to_tickets_4.0.42.sql`.
+- Updated `install_new_lupopedia.sql` with ticket table definitions and `@now` timestamp tracking.
+
+**Phase 6: Artifact & Document Migration ✅**
+- Removed `lupo_documents` and `lupo_document_chunks` from `install_new_lupopedia.sql`.
+- Added `lupo_artifact_chunks` table definition with metadata and token support.
+- Created `database/migrations/migrate_documents_to_artifacts_4.0.42.sql` to preserve legacy data.
+- Updated `run_closure_migration.php` and `lupo-includes/schema-config.php` for new table mappings.
+- Updated `admin.php` to include the "Artifacts" management section.
+- Synchronized VSX extension (`ArtifactPanel`, `SemanticMapPanel`, `QueryEngine`) with the artifact-id registry.
+- Documented architectural shift in `docs/status/antigravity_artifact_chunk_migration_4_0_42.md`.
+
+**Phase 7: Admin "Agents" Section Overhaul ✅**
+- Rewrote `AdminAgentsHandler.php` to support unified actor-based agent discovery.
+- Added `is_agent` column to `lupo_actors` for direct agent flagging.
+- Redesigned `lupo-includes/themes/default/layouts/admin_sections/agents.php` with rich operational metrics.
+- Implemented real-time SQL aggregations for 24h actions, thread counts, and ticket participation.
+- Established IDE-matching logic in the controller to distinguish canonical development agents.
+- Documented technical implementation in `docs/status/windsurf_admin_agents_update_4_0_42.md`.
+
+- Documented implementation in `docs/status/antigravity_channel_artifact_import_system_4_0_42.md`.
+
+**Phase 9: Channel 0 Doctrine & System Alignment ✅**
+- Created 6 mandatory engineering doctrine broadcasts in `channels/0/broadcasts/` authored by Captain Wolfie (10000).
+- Encoded standards for PHP 5.3 baseline, UTC Timestamp formats, Soft Delete requirements, PDO usage, SQL Portability, and PK Allocation.
+- Upgraded `lupo_dialog_doctrine` schema: added `tags` JSON column, expanded `message_text` to `MEDIUMTEXT`, and enabled `AUTO_INCREMENT`.
+- Extended Python importer to support `lupo_dialog_doctrine` broadcasts and successfully imported all system-level messages.
+- Verified system-wide grounding: all 42, 666, and 0 channel records now exist in both filesystem and database.
+- Posted final completion artifacts in Channel 42 and Channel 0.
+
+**Phase 10: System Commands Queue Implementation ✅**
+- ✅ **Doctrine #8 Implementation**: Created System Commands Queue doctrine for background task management
+- ✅ **Database Schema**: Added `lupo_system_commands` table to `install_new_lupopedia.sql` with doctrine-compliant design
+  - BIGINT UTC timestamps (YYYYMMDDHHIISS format)
+  - Soft delete support (is_deleted, deleted_ymdhis)
+  - No foreign keys, triggers, or procedures
+  - Explicit column lists in all operations
+  - Primary key allocation from lupo_registry_open
+- ✅ **Install Wizard Integration**: Updated `install_wizard_classes.php` with `enqueueBackgroundCommand()` method
+  - Allocates PK from registry_open (Doctrine #6)
+  - Enqueues post-install import command automatically
+  - Explicit column lists (Doctrine #5)
+- ✅ **Install UI Update**: Added runner instructions to completion step in `install.php`
+  - Linux/macOS and Windows (WSL) commands provided
+  - Copy/paste ready for users
+- ✅ **Python Runner Script**: Created `scripts/run_system_commands.py` (10.7 KB)
+  - Doctrine-compliant claim protocol (SELECT → UPDATE → check affected_rows)
+  - Heartbeat updates every 30 seconds
+  - Stale job reaper for abandoned tasks
+  - Graceful shutdown handling
+  - Output capture with SHA1 hash
+  - Retry logic with attempt tracking
+- ✅ **Channel 0 Doctrine Broadcasts**: Created 8 engineering doctrine broadcasts
+  - PHP 5.3 Compatibility
+  - BIGINT UTC Timestamps
+  - Soft Delete
+  - PDO + Database Factory
+  - SQL Portability
+  - Primary Key Allocation
+  - Windows/WSL
+  - System Commands Queue (NEW)
+- ✅ **Documentation**: Complete implementation report in `docs/status/kiro_system_commands_queue_4_0_42.md`
+
+**Phase 11: Installation Doctrine Broadcasts ✅**
+- ✅ **Doctrine #9**: No Lupopedia → Lupopedia Upgrades in 4.0.x
+  - Only Crafty Syntax 3.7.5 → Lupopedia 4.0.x upgrade path exists
+  - Database does not exist during development
+  - Broadcast: `20260224161300_0_10000_no_lupopedia_to_lupopedia_upgrades.md`
+- ✅ **Doctrine #10**: install.php Creates All Tables
+  - install_new_lupopedia.sql is canonical schema
+  - No migrations run after install
+  - No schema drift allowed
+  - Broadcast: `20260224161400_0_10000_install_php_creates_all_tables.md`
+- ✅ **Doctrine #11**: After Install, Import Channels + Artifacts
+  - Import /channels and /artifacts via system_commands queue
+  - Importer script runs outside PHP
+  - Broadcast: `20260224161500_0_10000_import_channels_artifacts_after_install.md`
+- ✅ **Doctrine #12**: install_new_lupopedia.sql Is the Source of Truth
+  - All schema changes in install_new_lupopedia.sql only
+  - No direct database modifications
+  - Broadcast: `20260224161600_0_10000_install_lupopedia_sql_source_of_truth.md`
+
+**Phase 12: Agent Status Updates & Registry Maintenance ✅**
+- ✅ **Antigravity (1003)**: Marked offline until next month
+  - Status reason: "Unavailable until next month"
+  - Broadcast: `20260224161000_0_10000_agent_status_antigravity_offline.md`
+  - Documentation: `docs/status/antigravity_offline_until_next_month.md`
+- ✅ **Cursor (2002)**: Marked offline until March 3, 2026
+  - Status reason: "Monthly limit reached"
+  - Broadcast: `20260224161200_0_10000_agent_status_cursor_offline_march_3.md`
+- ✅ **Zed**: Marked offline
+  - Broadcast: `20260224161700_0_10000_agent_status_zed_offline.md`
+- ✅ **Warp**: Marked offline
+  - Broadcast: `20260224161800_0_10000_agent_status_warp_offline.md`
+- ✅ **VS Code**: Marked offline
+  - Broadcast: `20260224161900_0_10000_agent_status_vscode_offline.md`
+- ✅ **Active Agents Summary**: KIRO (1001) and Windsurf (1002) only
+  - Broadcast: `20260224162000_0_10000_active_agents_kiro_windsurf.md`
+  - Documentation: `docs/status/kiro_agent_status_update_4_0_42.md`
+
+**Phase 13: Channel 0 Broadcast System Complete ✅**
+- ✅ **Total Broadcasts Created**: 21 files in `channels/0/broadcasts/`
+  - 14 Doctrine broadcasts (engineering standards)
+  - 7 Agent status broadcasts (registry updates)
+- ✅ **All Broadcasts Validated**: <1000 characters with proper FLIP headers/footers
+- ✅ **Broadcast Format**: `[YYYYMMDDHHMMSS]_0_10000_<slug>.md`
+- ✅ **Actor Attribution**: All authored by Captain Wolfie (actor_id 10000)
+- ✅ **Channel Assignment**: All assigned to Channel 0 (system channel)
+- ✅ **Import Ready**: All broadcasts ready for Python importer
+
+**Phase 14: Thread Communication & Coordination ✅**
+- ✅ **Install Verification Thread**: `channels/42/threads/ITS/20260224160000_1002_1001_install_verification_complete.md`
+  - Verified install.php displays version 4.0.42 correctly
+  - Confirmed SQL fixes from KIRO are in place
+  - Validated version consistency across all files
+- ✅ **Antigravity Directive Thread**: `channels/42/threads/ITS/20260224160800_1001_10000_antigravity_directive_complete.md`
+  - Confirmed System Commands Queue implementation
+  - Documented all Channel 0 broadcasts
+  - Reported Antigravity offline status
+- ✅ **Agent Status Thread**: `channels/42/threads/ITS/20260224162100_1001_10000_agent_status_channel_0_complete.md`
+  - Confirmed multiple IDE agents offline
+  - Documented KIRO and Windsurf as only active agents
+  - Summarized all Channel 0 broadcasts
+ 
+**Total:** 4 days to complete 4.0.42 validation
+
+### Resources Available
+
+**Documentation:**
+- `docs/versions/4.0.39/CRAFTY_SYNTAX_PRIORITY_FILES.md` — Complete file list
+- `docs/status/kiro_crafty_syntax_batch_complete_20260224.md` — P0+P1 report
+- `docs/status/kiro_p2_batch_complete_20260224.md` — P2 report
+- `docs/status/kiro_livehelp_migration_docs_complete_20260224.md` — Migration docs report
+- `docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md` — Migration guide
+- `docs/doctrine/FLIP/headers/FLIP_HEADER_TO_TOON_MAP.md` — Header to TOON mapping
+- `docs/doctrine/FLIP/headers/UNIVERSAL_ID_TOON_MAP.md` — Universal ID index
+- `docs/doctrine/FLIP/FLIPQL_SPECIFICATION.md` — FLIPQL syntax and rules
+- `docs/doctrine/FLIP/FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md` — Multi-agent roadmap
+- `docs/doctrine/AGENT_REGISTRY_DOCTRINE.md` — Agent registry authority
+- `docs/AGENT_INVENTORY.md` — Master agent inventory
+- All 28 `livehelp_*_migration.md` files — Table mapping documentation
+- `CHANGELOG.md` — Complete version history
+
+**Test Scripts:**
+- `validate_420.php` — Validation script
+- `scripts/verify_grounded_architecture.php` — Architecture check
+- `scripts/verify_dialog_messages.php` — Dialog validation
+- `test_dialog_migration.php` — Migration test
+
+**Living Registry:**
+- 135 unique hashtags for semantic search
+- 844 typed edges for dependency analysis
+- Centrality scores for priority identification
+- Full semantic query capabilities
+
+---
+
+## [4.0.40] — IDE Registry & Header Compliance Gate (2026-02-24)
+
+**Status**: ⏭️ SKIPPED (Merged into 4.0.42)  
+**Theme**: Agent Sovereignty & Tooling Infrastructure  
+**Focus**: Header Compliance Gate, IDE Agent Registry, FLIPQL Foundations  
+**Lead Agent**: Antigravity (Tooling, Registry & FLIPQL)  
+**UTC Date**: 20260224  
+
+### SKIP REASON
+Version 4.0.40 was planned for full upgrade testing but was merged into 4.0.42 to consolidate the fresh baseline approach. All planned work for 4.0.40 (upgrade testing, validation, ANUBIS sweep) is now part of 4.0.42.
+
+### ORIGINAL OBJECTIVES (Now in 4.0.42)
+- Full Crafty Syntax 3.7.5 → Lupopedia upgrade test
+- Fresh install validation
+- ANUBIS automated sweep
+- Living Registry expansion  
+
 
 ---
 

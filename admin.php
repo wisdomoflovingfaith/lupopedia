@@ -97,6 +97,7 @@ $admin_menu_sections = array(
     array(
         'title' => 'General',
         'items' => array(
+            'Artifacts' => 'admin.php?section=artifacts',
             'Documentation' => 'admin.php?section=documentation',
             'Master Settings' => 'admin.php?section=settings',
             'Help' => 'admin.php?section=help',
@@ -194,6 +195,7 @@ foreach ($admin_menu_sections as $group) {
 
 // Section-specific info for sections that use the generic info panel (description + optional links).
 $admin_section_info = array(
+    'artifacts' => array('description' => 'Manage system artifacts and chunks. Replaces the legacy document system for RAG and semantic mapping.', 'links' => array('Artifacts API' => 'api/v1/artifact.php')),
     'documentation' => array('description' => 'Links to Lupopedia documentation and doctrine. Use the Q/A and Content areas from the main nav for browsing.', 'links' => array('Doctrine' => 'doctrine/', 'Q/A' => 'qa/', 'Docs' => 'docs/')),
     'settings' => array('description' => 'Master settings for the installation (e.g. site name, timezone, feature flags). Configuration is stored in config and database; this panel will be expanded to edit key settings.', 'links' => array()),
     'help' => array('description' => 'In-app help and usage guides. Content can be added here or linked to doctrine/docs.', 'links' => array()),
@@ -216,7 +218,7 @@ $admin_section_info = array(
     'operators' => array('description' => 'Create, edit, and delete operators. User management is in the Data → Users section.', 'links' => array('Users' => 'admin.php?section=users')),
     'departments-html' => array('description' => 'HTML code snippets for department-specific widgets or embed codes.', 'links' => array('Departments' => 'admin.php?section=departments')),
     'data-visits' => array('description' => 'Visit analytics (lupo_visits, lupo_analytics_visits). List and filter visits.', 'links' => array()),
-    'data-messages' => array('description' => 'Message database (lupo_dialog_messages). Browse and search messages.', 'links' => array()),
+    'data-messages' => array('description' => 'Message database (lupo_dialog_doctrine). Browse and search messages.', 'links' => array()),
     'data-referrers' => array('description' => 'Referrer analytics (lupo_referers).', 'links' => array()),
     'data-visits-period' => array('description' => 'Visits aggregated by period.', 'links' => array()),
     'data-paths' => array('description' => 'Path analytics (lupo_analytics_paths).', 'links' => array()),
@@ -253,6 +255,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
 
     // Section title and active menu key (must match menu item label)
     $section_titles = array(
+        'artifacts' => array('Artifacts', 'Artifacts'),
         'documentation' => array('Documentation', 'Documentation'),
         'settings' => array('Master Settings', 'Master Settings'),
         'help' => array('Help', 'Help'),
@@ -321,7 +324,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         $admin_active_key = 'Channels';
         require_once LUPOPEDIA_PATH . '/lupo-includes/modules/channels/ChannelsController.php';
         $controller = new ChannelsController($db);
-        $controller->admin_view(isset($_GET['id']) ? (int)$_GET['id'] : 0);
+        $controller->admin_view(isset($_GET['id']) ? (int) $_GET['id'] : 0);
     } elseif ($section === 'agents' && $db) {
         $admin_page_title = 'Agents';
         $admin_active_key = 'Agents';

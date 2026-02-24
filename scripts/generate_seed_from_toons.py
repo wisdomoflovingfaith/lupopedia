@@ -35,7 +35,7 @@ from actor_agent_doctrine import (
     ACTORS_TABLE,
     ACTOR_HUMAN_START,
     REGISTRY_AGENT_OFFSET,
-    build_REGISTRY_row_from_agent as doctrine_build_registry_row,
+    build_registry_row_from_agent as doctrine_build_registry_row,
     build_actor_row_from_agent as doctrine_build_actor_row,
 )
 

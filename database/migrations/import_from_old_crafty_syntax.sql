@@ -1361,7 +1361,7 @@ FROM `livehelp_paths_monthly`;
 
  
 -- ======================================================================
--- livehelp_transcripts               → lupo_dialog_threads & lupo_dialog_messages
+-- livehelp_transcripts               → lupo_dialog_threads & lupo_dialog_doctrine
  -- See: /docs/doctrine/migrations/livehelp_transcripts_migration.md
 
 ALTER TABLE livehelp_transcripts
@@ -1392,8 +1392,8 @@ SELECT
     `endtime`
 FROM `livehelp_transcripts`;
 
-TRUNCATE lupo_dialog_messages;
-INSERT INTO `lupo_dialog_messages` (
+TRUNCATE lupo_dialog_doctrine;
+INSERT INTO `lupo_dialog_doctrine` (
     `dialog_message_id`,
     `dialog_thread_id`,
     `channel_id`,

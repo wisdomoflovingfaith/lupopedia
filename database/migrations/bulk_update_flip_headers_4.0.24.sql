@@ -6,7 +6,7 @@
 -- ============================================================
 -- Update Message 74 (420 origin, forwarded)
 -- ============================================================
-UPDATE lupo_dialog_messages
+UPDATE lupo_dialog_doctrine
 SET metadata_json = JSON_SET(
     COALESCE(metadata_json, '{}'),
     '$.X-Lupo-Channel', 42,
@@ -31,7 +31,7 @@ WHERE dialog_message_id = 74;
 -- ============================================================
 -- Update Message 83 (420 origin, forwarded)
 -- ============================================================
-UPDATE lupo_dialog_messages
+UPDATE lupo_dialog_doctrine
 SET metadata_json = JSON_SET(
     COALESCE(metadata_json, '{}'),
     '$.X-Lupo-Channel', 42,
@@ -56,7 +56,7 @@ WHERE dialog_message_id = 83;
 -- ============================================================
 -- Update Message 91 (420 origin, self-attributed)
 -- ============================================================
-UPDATE lupo_dialog_messages
+UPDATE lupo_dialog_doctrine
 SET metadata_json = JSON_SET(
     COALESCE(metadata_json, '{}'),
     '$.X-Lupo-Channel', 42,
@@ -78,7 +78,7 @@ WHERE dialog_message_id = 91;
 -- ============================================================
 -- Update Educational Messages 105-114 (Captain Wolfie)
 -- ============================================================
-UPDATE lupo_dialog_messages
+UPDATE lupo_dialog_doctrine
 SET metadata_json = JSON_SET(
     COALESCE(metadata_json, '{}'),
     '$.X-Lupo-Channel', 42,
@@ -110,7 +110,7 @@ WHERE dialog_message_id BETWEEN 105 AND 114;
 -- ============================================================
 -- Update Educational Messages 115-129 (Lupopedia Overview)
 -- ============================================================
-UPDATE lupo_dialog_messages
+UPDATE lupo_dialog_doctrine
 SET metadata_json = JSON_SET(
     COALESCE(metadata_json, '{}'),
     '$.X-Lupo-Channel', 42,
@@ -147,7 +147,7 @@ WHERE dialog_message_id BETWEEN 115 AND 129;
 -- ============================================================
 -- Update Educational Messages 130-149 (FLIP Headers)
 -- ============================================================
-UPDATE lupo_dialog_messages
+UPDATE lupo_dialog_doctrine
 SET metadata_json = JSON_SET(
     COALESCE(metadata_json, '{}'),
     '$.X-Lupo-Channel', 42,
@@ -189,7 +189,7 @@ WHERE dialog_message_id BETWEEN 130 AND 149;
 -- ============================================================
 -- Update Educational Messages 150-164 (FLIPPING Headers)
 -- ============================================================
-UPDATE lupo_dialog_messages
+UPDATE lupo_dialog_doctrine
 SET metadata_json = JSON_SET(
     COALESCE(metadata_json, '{}'),
     '$.X-Lupo-Channel', 42,
@@ -226,7 +226,7 @@ WHERE dialog_message_id BETWEEN 150 AND 164;
 -- ============================================================
 -- Update Educational Messages 165-174 (System Lore)
 -- ============================================================
-UPDATE lupo_dialog_messages
+UPDATE lupo_dialog_doctrine
 SET metadata_json = JSON_SET(
     COALESCE(metadata_json, '{}'),
     '$.X-Lupo-Channel', 42,
@@ -264,7 +264,7 @@ WHERE dialog_message_id BETWEEN 165 AND 174;
 -- ============================================================
 -- Log Bulk Update Start
 -- ============================================================
-INSERT INTO lupo_dialog_messages (
+INSERT INTO lupo_dialog_doctrine (
     dialog_message_id, dialog_thread_id, channel_id, from_actor_id,
     message_text, message_type, metadata_json, created_ymdhis
 ) VALUES (
@@ -293,6 +293,6 @@ SELECT
     dialog_message_id,
     JSON_LENGTH(metadata_json) AS header_count,
     JSON_KEYS(metadata_json) AS headers_present
-FROM lupo_dialog_messages
+FROM lupo_dialog_doctrine
 WHERE dialog_message_id IN (74,83,91,105,174,1000)
 ORDER BY dialog_message_id;

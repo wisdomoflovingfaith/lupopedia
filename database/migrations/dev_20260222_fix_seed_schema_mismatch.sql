@@ -20,8 +20,8 @@ ADD COLUMN role_key varchar(64) DEFAULT NULL AFTER department_id;
 ALTER TABLE lupo_dialog_threads 
 ADD COLUMN thread_id bigint NOT NULL DEFAULT 0 AFTER dialog_thread_id;
 
--- Fix lupo_dialog_messages table - add message_id column
-ALTER TABLE lupo_dialog_messages 
+-- Fix lupo_dialog_doctrine table - add message_id column
+ALTER TABLE lupo_dialog_doctrine 
 ADD COLUMN message_id bigint NOT NULL DEFAULT 0 AFTER dialog_message_id;
 
 -- Fix lupo_actor_meta table - add meta_id column

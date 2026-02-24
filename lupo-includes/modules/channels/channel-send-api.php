@@ -2,7 +2,7 @@
 /**
  * Channel send message API — POST only.
  * Legacy: admin_chat_bot.php whattodo=send. Insert dialog_message, clear all typing (writediv), timestamp uniqueness.
- * Schema: lupo_dialog_messages, file-based typing cache. All paths use LUPOPEDIA_PUBLIC_PATH.
+ * Schema: lupo_dialog_doctrine, file-based typing cache. All paths use LUPOPEDIA_PUBLIC_PATH.
  */
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {

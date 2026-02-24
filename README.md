@@ -1,7 +1,7 @@
 ---
 wolfie.headers: {
   file_path_from_root: "README.md",
-  system_version: "4.0.39",
+  system_version: "4.0.42",
   channel_id: 1,
   mood_rgb: "4169E1",
   purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS",
@@ -11,7 +11,7 @@ wolfie.headers: {
   lupo_agent: "kiro",
   artifact_type: "guide",
   artifact_kind: "documentation",
-  traits: ["essential", "entrypoint", "comprehensive", "v4.0.39"],
+  traits: ["essential", "entrypoint", "comprehensive", "v4.0.42"],
   hashtags: ["#readme", "#overview", "#architecture", "#multi_agent", "#semantic_os"],
   engagement: {
     likes: 0,
@@ -99,21 +99,21 @@ flip.footer: {
     llm_inferred_edges: [],
     federated_metrics: {}
   },
-  version: "4.0.39",
+  version: "4.0.42",
   last_verified_utc: "20260224",
   last_verified_by: "kiro"
 }
 ---
 
-## 🐺 Lupopedia 4.0.39 — Header Completion & ANUBIS Fallback System — 2026-02-24
+## 🐺 Lupopedia 4.0.42 — Full Upgrade Simulation & ANUBIS Sweep — 2026-02-24
 
-**Current version: 4.0.39** — **IN PROGRESS**. Focus: Universal header coverage via ANUBIS automated fallback system, priority file header generation, and batch migration workflow establishment.
+**Current version: 4.0.42** — **IN PROGRESS**. Focus: End-to-end Crafty Syntax 3.7.5 → Lupopedia 4.0.42 upgrade validation, fresh baseline testing, and ANUBIS automated sweep for remaining legacy files.
 
-### 🚀 4.0.39 Objectives
-- **ANUBIS Fallback System**: Automated header detection, generation, and file classification system.
-- **Priority File Headers**: Generate FLIP v3 headers for ~200 critical files across 5 batches.
-- **Batch Migration Workflow**: Establish coordinated multi-agent header migration process.
-- **4.0.40 Preparation**: Ready for strict header compliance enforcement in next version.
+### 🚀 4.0.42 Objectives
+- **Full Upgrade Simulation**: Complete Crafty Syntax 3.7.5 → Lupopedia 4.0.42 upgrade test cycle.
+- **Fresh Install Validation**: Verify clean installation path with zero errors.
+- **ANUBIS Automated Sweep**: Expand Living Registry coverage to non-Crafty legacy files.
+- **System Readiness**: Confirm all 97 Crafty Syntax files (from 4.0.39) work correctly in upgrade path.
 
 ### 🛠️ The Lupopedia VSX Extension
 

@@ -210,12 +210,13 @@ dialog:
   speaker: [AGENT_NAME]
   target: [TARGET_AUDIENCE]
   mood_RGB: "[RRGGBB]"
+  thread_id: [DIALOG_THREAD_ID]  # MANDATORY if dedicated thread exists
   message: "[CHANGE_DESCRIPTION]"
 ```
 - **MANDATORY** - Must reflect latest change to file
 - **Current** - Must be updated with every file modification
 - **Accurate** - Must accurately describe the change made
-- **Linked** - Must connect to appropriate dialog thread
+- **Linked** - Must connect to appropriate dialog thread via `thread_id` or default file mapping.
 - **Humor Allowed** - Persona dialog may include humor as structural metadata
 
 ### 3.7 Tags Block
@@ -262,11 +263,13 @@ file:
 ## 4. Dialog Thread Mapping Rule (MANDATORY)
 
 ### 4.1 Core Mapping Rule
-**If a file has a dedicated dialog thread, use that thread.**  
+**If a file has a numeric `thread_id` in the header, use that thread ID for all database-integrated dialogs.**  
+**If a file has a dedicated dialog thread file, use that thread.**  
 **If a file does NOT have a dedicated dialog thread, default to: `dialogs/changelog_dialog.md`**
 
 ### 4.2 Dedicated Dialog Thread Detection
 A file has a dedicated dialog thread if:
+- A `thread_id` is explicitly defined in the `dialog` or `file` block of the header.
 - A corresponding `dialogs/[filename]_dialog.md` file exists
 - The file is specifically mentioned in dialog doctrine as having a dedicated thread
 - The file has been explicitly assigned a dedicated dialog thread
@@ -283,6 +286,7 @@ Every dialog entry must include:
 - **speaker** - Who made the change (agent or human identifier)
 - **target** - Who needs to know about the change
 - **mood_RGB** - Emotional context (6-character hex color)
+- **thread_id** - (MANDATORY if integrated) The `lupo_dialog_threads` identifier.
 - **message** - What was changed (max 272 characters)
 - **Humor as Metadata** - Persona humor may reflect cognitive load or pattern recognition
 

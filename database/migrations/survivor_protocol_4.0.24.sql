@@ -182,7 +182,7 @@ INSERT IGNORE INTO lupo_system_events (
 -- =============================================================================
 -- 7. CHANNEL 42 SURVIVAL NARRATIVE MESSAGES
 -- =============================================================================
-INSERT IGNORE INTO lupo_dialog_messages (
+INSERT IGNORE INTO lupo_dialog_doctrine (
     dialog_message_id, 
     dialog_thread_id, 
     channel_id, 
@@ -273,7 +273,7 @@ UPDATE lupo_dialog_channels
 SET 
     message_count = (
         SELECT COUNT(*) 
-        FROM lupo_dialog_messages 
+        FROM lupo_dialog_doctrine 
         WHERE channel_id = 42 AND is_deleted = 0
     ),
     modified_timestamp = 20260220233200
@@ -299,7 +299,7 @@ CREATE INDEX IF NOT EXISTS idx_system_events_survivor_protocol ON lupo_system_ev
 -- SELECT event_type, created_ymdhis, JSON_EXTRACT(metadata_json, '$.severity') as severity FROM lupo_system_events WHERE event_type LIKE '%survivor%' ORDER BY created_ymdhis DESC;
 
 -- Verify channel 42 narrative messages
--- SELECT dialog_message_id, from_actor_id, LEFT(message_text, 50) as message_preview, JSON_UNQUOTE(JSON_EXTRACT(metadata_json, '$.event')) as event FROM lupo_dialog_messages WHERE channel_id = 42 AND dialog_message_id >= 80 ORDER BY dialog_message_id;
+-- SELECT dialog_message_id, from_actor_id, LEFT(message_text, 50) as message_preview, JSON_UNQUOTE(JSON_EXTRACT(metadata_json, '$.event')) as event FROM lupo_dialog_doctrine WHERE channel_id = 42 AND dialog_message_id >= 80 ORDER BY dialog_message_id;
 
 -- =============================================================================
 -- END SURVIVOR PROTOCOL MIGRATION

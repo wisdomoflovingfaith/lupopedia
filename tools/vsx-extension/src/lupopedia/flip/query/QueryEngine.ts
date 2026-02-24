@@ -56,6 +56,15 @@ export class FlipQueryEngine {
                 results = all.filter(r => r.actorId === record.actorId);
             }
         }
+        else if (tokens[0] === 'compliance') {
+            const status = tokens[1]; // outdated/missing
+            const all = await this.index.findRecent('20000101');
+            if (status === 'missing') {
+                results = all.filter(r => !r.headerJson);
+            } else if (status === 'outdated') {
+                results = all.filter(r => r.version && this.compareVersions(r.version, '4.0.40') < 0);
+            }
+        }
         else {
             // Default keyword/filter search
             const all = await this.index.findRecent('20000101');
@@ -71,5 +80,17 @@ export class FlipQueryEngine {
             query: dsl,
             executionTimeMs: Date.now() - start
         };
+    }
+
+    private compareVersions(v1: string, v2: string): number {
+        const parts1 = v1.split('.').map(Number);
+        const parts2 = v2.split('.').map(Number);
+        for (let i = 0; i < Math.max(parts1.length, parts2.length); i++) {
+            const p1 = parts1[i] || 0;
+            const p2 = parts2[i] || 0;
+            if (p1 > p2) return 1;
+            if (p1 < p2) return -1;
+        }
+        return 0;
     }
 }

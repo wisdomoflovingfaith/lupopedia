@@ -351,7 +351,7 @@ class ANUBIS_Resolver {
     }
 
     /**
-     * Adopt orphan into lupo_dialog_messages and update lupo_dialog_channels.message_count.
+     * Adopt orphan into lupo_dialog_doctrine and update lupo_dialog_channels.message_count.
      * Uses explicit dialog_message_id (next after MAX). Idempotent: ON DUPLICATE KEY UPDATE.
      * Preserves original sender attribution when adopting forwarded messages.
      *

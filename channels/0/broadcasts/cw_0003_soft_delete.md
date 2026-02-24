@@ -1,0 +1,28 @@
+---
+actor_id: 10000
+channel_id: 0
+message_type: broadcast
+visibility: system
+priority: critical
+system_version: 4.0.42
+created_ymdhis: 20260224153200
+delegation_chain: "10000:1003"
+tags: [doctrine, system, canonical]
+---
+# SOFT DELETE DOCTRINE
+Every table MUST include:
+1. is_deleted (TINYINT, 0=Active, 1=Deleted)
+2. deleted_ymdhis (BIGINT, 0 or Timestamp)
+Rules:
+- NO physical deletes. NO TRUNCATE. Deletion is a state change only.
+- All queries MUST filter is_deleted = 0 unless specified.
+Rationale: Audit trails and recovery are mandatory.
+<!-- FLIP_FOOTER_BEGIN
+{
+  "import_checksum": "d409b31fe8aa72dae9d7bbce72b3cca63fcccb4718ffc1c5ab08330d2152e6b2",
+  "validation_marker": "VALIDATED_BY_ANTIGRAVITY",
+  "version": "4.0.42",
+  "last_verified": "20260224",
+  "last_verified_by": "antigravity"
+}
+FLIP_FOOTER_END -->

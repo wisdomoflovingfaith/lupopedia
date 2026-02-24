@@ -6,7 +6,7 @@
 START TRANSACTION;
 
 -- 1) Insert final declaration message (idempotent)
-INSERT INTO lupo_dialog_messages (
+INSERT INTO lupo_dialog_doctrine (
     dialog_message_id,
     dialog_thread_id,
     channel_id,
@@ -25,7 +25,7 @@ SELECT
     20260222000000,
     0
 WHERE NOT EXISTS (
-    SELECT 1 FROM lupo_dialog_messages
+    SELECT 1 FROM lupo_dialog_doctrine
     WHERE dialog_message_id = 67 AND channel_id = 420
 );
 

@@ -25,7 +25,7 @@ export interface FlipFileInfo {
     errors: string[];
 }
 
-type GroupBy = 'status' | 'channel' | 'flat' | 'activity';
+type GroupBy = 'status' | 'channel' | 'node' | 'flat' | 'activity';
 
 interface AgentAction {
     actor_id: number;
@@ -43,8 +43,10 @@ export class FlipTreeDataProvider implements vscode.TreeDataProvider<FlipTreeIte
     private actions: AgentAction[] = [];
     private groupBy: GroupBy = 'status';
     private flipCache = new Map<string, { header: FlipHeader | null, mtime: number }>();
+    private channelRegistry: Record<string, any> = {};
 
     constructor(private workspaceRoot: string) {
+        this.loadChannelRegistry();
         this.refresh();
     }
 
@@ -98,6 +100,9 @@ export class FlipTreeDataProvider implements vscode.TreeDataProvider<FlipTreeIte
         if (this.groupBy === 'channel') {
             return this.groupByChannel();
         }
+        if (this.groupBy === 'node') {
+            return this.groupByNode();
+        }
         if (this.groupBy === 'activity') {
             return this.files.map(f => this.createFileItem(f)); // Fallback
         }
@@ -135,7 +140,29 @@ export class FlipTreeDataProvider implements vscode.TreeDataProvider<FlipTreeIte
         const groups = new Map<string, FlipFileInfo[]>();
         for (const file of this.files) {
             const channelId = file.header?.channel_id ?? null;
-            const key = channelId !== null ? `Channel ${channelId}` : 'No Channel';
+            let key = 'No Channel';
+            if (channelId !== null) {
+                const reg = this.channelRegistry[String(channelId)];
+                key = reg ? `Channel ${channelId}: ${reg.name}` : `Channel ${channelId} (Unregistered)`;
+            }
+            if (!groups.has(key)) {
+                groups.set(key, []);
+            }
+            groups.get(key)!.push(file);
+        }
+
+        const items: FlipTreeItem[] = [];
+        for (const [label, files] of Array.from(groups.entries()).sort()) {
+            items.push(this.createGroupItem(label, files));
+        }
+        return items;
+    }
+
+    private groupByNode(): FlipTreeItem[] {
+        const groups = new Map<string, FlipFileInfo[]>();
+        for (const file of this.files) {
+            const nodeId = file.header?.federated_node_id ?? null;
+            const key = nodeId !== null ? `Node ${nodeId}` : 'Local Node (1)';
             if (!groups.has(key)) {
                 groups.set(key, []);
             }
@@ -340,19 +367,16 @@ export class FlipTreeDataProvider implements vscode.TreeDataProvider<FlipTreeIte
         if (!this.workspaceRoot) {
             return results;
         }
-        const docsDir = path.join(this.workspaceRoot, 'docs');
 
-        if (!fs.existsSync(docsDir)) {
-            // Check if docs is in root instead of workspaceRoot (fallback)
-            if (fs.existsSync(path.join(process.cwd(), 'docs'))) {
-                // Use process.cwd() as absolute fallback
-            } else {
-                return results;
-            }
-        }
+        const scanDirs = [
+            path.join(this.workspaceRoot, 'channels'),
+            path.join(this.workspaceRoot, 'artifacts'),
+            path.join(this.workspaceRoot, 'docs')
+        ];
 
         const scan = (dir: string) => {
             try {
+                if (!fs.existsSync(dir)) return;
                 const entries = fs.readdirSync(dir, { withFileTypes: true });
                 for (const entry of entries) {
                     const fullPath = path.join(dir, entry.name);
@@ -369,9 +393,9 @@ export class FlipTreeDataProvider implements vscode.TreeDataProvider<FlipTreeIte
                                 fsPath: fullPath,
                                 relativePath: relativePath.replace(/\\/g, '/'),
                                 header: cached.header,
-                                errors: [] // Errors not cached for simplicity
+                                errors: []
                             });
-                            continue; // Use continue instead of return to process other files in the directory
+                            continue;
                         }
 
                         try {
@@ -404,7 +428,9 @@ export class FlipTreeDataProvider implements vscode.TreeDataProvider<FlipTreeIte
             }
         };
 
-        scan(docsDir);
+        for (const d of scanDirs) {
+            scan(d);
+        }
         return results;
     }
 
@@ -420,6 +446,18 @@ export class FlipTreeDataProvider implements vscode.TreeDataProvider<FlipTreeIte
         } catch (err) {
             console.error('Failed to load actions:', err);
             return [];
+        }
+    }
+
+    private loadChannelRegistry() {
+        const registryPath = path.join(this.workspaceRoot, 'channels', 'registry.json');
+        if (fs.existsSync(registryPath)) {
+            try {
+                const raw = fs.readFileSync(registryPath, 'utf-8');
+                this.channelRegistry = JSON.parse(raw);
+            } catch (e) {
+                console.error('Failed to load channel registry:', e);
+            }
         }
     }
 

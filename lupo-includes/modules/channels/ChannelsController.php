@@ -62,7 +62,7 @@ class ChannelsController {
         $metrics['threads'] = $stmt->fetchColumn();
         
         $stmt = $this->db->prepare("
-            SELECT COUNT(*) FROM lupo_dialog_messages WHERE channel_id = ?
+            SELECT COUNT(*) FROM lupo_dialog_doctrine WHERE channel_id = ?
         ");
         $stmt->execute([$channel_id]);
         $metrics['messages'] = $stmt->fetchColumn();
@@ -84,7 +84,7 @@ class ChannelsController {
         $metrics['users'] = $stmt->fetchColumn();
         
         $stmt = $this->db->prepare("
-            SELECT MAX(created_ymdhis) FROM lupo_dialog_messages WHERE channel_id = ?
+            SELECT MAX(created_ymdhis) FROM lupo_dialog_doctrine WHERE channel_id = ?
         ");
         $stmt->execute([$channel_id]);
         $metrics['last_activity'] = $stmt->fetchColumn();
@@ -96,7 +96,7 @@ class ChannelsController {
         $stmt = $this->db->prepare("
             SELECT dm.dialog_message_id, dm.from_actor_id, dm.message_text, 
                    dm.created_ymdhis, a.name as actor_name, a.actor_type
-            FROM lupo_dialog_messages dm
+            FROM lupo_dialog_doctrine dm
             JOIN lupo_actors a ON dm.from_actor_id = a.actor_id
             WHERE dm.channel_id = ? AND dm.is_deleted = 0
             ORDER BY dm.created_ymdhis DESC

@@ -14,16 +14,18 @@
  * @author kiro (AI Assistant)
  */
 
-class CIPDoctrineRefinementModule {
-    
+class CIPDoctrineRefinementModule
+{
+
     private $db;
     private $version = '3.0.76';
     private $doctrine_base_path = 'docs/doctrine/';
-    
-    public function __construct($database_connection) {
+
+    public function __construct($database_connection)
+    {
         $this->db = $database_connection;
     }
-    
+
     /**
      * Process CIP analytics and propose doctrine refinements
      * 
@@ -31,31 +33,33 @@ class CIPDoctrineRefinementModule {
      * @param array $analytics CIP analytics results
      * @return array Proposed refinements
      */
-    public function processAnalyticsForRefinement($cip_event_id, $analytics) {
+    public function processAnalyticsForRefinement($cip_event_id, $analytics)
+    {
         $refinements = [];
-        
+
         // Analyze patterns that suggest doctrine needs updating
         $refinement_triggers = $this->identifyRefinementTriggers($analytics);
-        
+
         foreach ($refinement_triggers as $trigger) {
             $refinement = $this->proposeDoctrineRefinement($cip_event_id, $trigger, $analytics);
             if ($refinement) {
                 $refinements[] = $refinement;
             }
         }
-        
+
         return $refinements;
     }
-    
+
     /**
      * Identify triggers that suggest doctrine refinement is needed
      * 
      * @param array $analytics CIP analytics results
      * @return array Refinement triggers
      */
-    private function identifyRefinementTriggers($analytics) {
+    private function identifyRefinementTriggers($analytics)
+    {
         $triggers = [];
-        
+
         // High defensiveness suggests doctrine gaps
         if ($analytics['defensiveness_index'] > 0.7) {
             $triggers[] = [
@@ -65,7 +69,7 @@ class CIPDoctrineRefinementModule {
                 'target_doctrines' => ['CRITIQUE_INTEGRATION_PROTOCOL.md', 'COMMUNICATION_DOCTRINE.md']
             ];
         }
-        
+
         // Low integration velocity suggests process doctrine issues
         if ($analytics['integration_velocity'] < 0.3) {
             $triggers[] = [
@@ -75,7 +79,7 @@ class CIPDoctrineRefinementModule {
                 'target_doctrines' => ['INTEGRATION_PROCESS_DOCTRINE.md', 'CHANGE_MANAGEMENT_DOCTRINE.md']
             ];
         }
-        
+
         // High architectural impact with low propagation suggests coordination gaps
         if ($analytics['architectural_impact_score'] > 0.8 && $analytics['doctrine_propagation_depth'] < 3) {
             $triggers[] = [
@@ -85,7 +89,7 @@ class CIPDoctrineRefinementModule {
                 'target_doctrines' => ['MULTI_AGENT_COORDINATION_DOCTRINE.md', 'SYSTEM_INTEGRATION_DOCTRINE.md']
             ];
         }
-        
+
         // Recurring patterns suggest systematic doctrine issues
         $pattern_analysis = json_decode($analytics['trend_analysis_json'], true);
         if ($this->detectRecurringPatterns($pattern_analysis)) {
@@ -96,10 +100,10 @@ class CIPDoctrineRefinementModule {
                 'target_doctrines' => $this->identifyPatternTargetDoctrines($pattern_analysis)
             ];
         }
-        
+
         return $triggers;
     }
-    
+
     /**
      * Propose specific doctrine refinement based on trigger
      * 
@@ -108,10 +112,11 @@ class CIPDoctrineRefinementModule {
      * @param array $analytics CIP analytics
      * @return array|null Proposed refinement
      */
-    private function proposeDoctrineRefinement($cip_event_id, $trigger, $analytics) {
+    private function proposeDoctrineRefinement($cip_event_id, $trigger, $analytics)
+    {
         foreach ($trigger['target_doctrines'] as $doctrine_file) {
             $doctrine_path = $this->doctrine_base_path . $doctrine_file;
-            
+
             // Check if doctrine file exists
             if (!file_exists($doctrine_path)) {
                 // Propose creation of new doctrine
@@ -121,10 +126,10 @@ class CIPDoctrineRefinementModule {
                 return $this->proposeDoctrineModification($cip_event_id, $doctrine_path, $trigger, $analytics);
             }
         }
-        
+
         return null;
     }
-    
+
     /**
      * Propose creation of new doctrine file
      * 
@@ -134,7 +139,8 @@ class CIPDoctrineRefinementModule {
      * @param array $analytics CIP analytics
      * @return array Proposed refinement
      */
-    private function proposeNewDoctrine($cip_event_id, $doctrine_file, $trigger, $analytics) {
+    private function proposeNewDoctrine($cip_event_id, $doctrine_file, $trigger, $analytics)
+    {
         $refinement = [
             'cip_event_id' => $cip_event_id,
             'doctrine_file_path' => $this->doctrine_base_path . $doctrine_file,
@@ -147,22 +153,22 @@ class CIPDoctrineRefinementModule {
             'created_ymdhis' => $this->getCurrentTimestamp(),
             'refinement_version' => $this->version
         ];
-        
+
         // Generate proposed content
         $proposed_content = $this->generateNewDoctrineContent($doctrine_file, $trigger, $analytics);
         $refinement['after_content_hash'] = hash('sha256', $proposed_content);
         $refinement['proposed_content'] = $proposed_content;
-        
+
         // Store refinement proposal
         $refinement_id = $this->storeRefinementProposal($refinement);
         $refinement['id'] = $refinement_id;
-        
+
         // Create evolution audit trail
         $this->createEvolutionAuditTrail($refinement_id, 'new_doctrine_creation');
-        
+
         return $refinement;
     }
-    
+
     /**
      * Propose modification of existing doctrine
      * 
@@ -172,15 +178,16 @@ class CIPDoctrineRefinementModule {
      * @param array $analytics CIP analytics
      * @return array Proposed refinement
      */
-    private function proposeDoctrineModification($cip_event_id, $doctrine_path, $trigger, $analytics) {
+    private function proposeDoctrineModification($cip_event_id, $doctrine_path, $trigger, $analytics)
+    {
         $current_content = file_get_contents($doctrine_path);
         $before_hash = hash('sha256', $current_content);
-        
+
         // Analyze current doctrine and propose changes
         $proposed_changes = $this->analyzeAndProposeChanges($current_content, $trigger, $analytics);
         $modified_content = $this->applyProposedChanges($current_content, $proposed_changes);
         $after_hash = hash('sha256', $modified_content);
-        
+
         $refinement = [
             'cip_event_id' => $cip_event_id,
             'doctrine_file_path' => $doctrine_path,
@@ -195,17 +202,17 @@ class CIPDoctrineRefinementModule {
             'proposed_content' => $modified_content,
             'proposed_changes' => $proposed_changes
         ];
-        
+
         // Store refinement proposal
         $refinement_id = $this->storeRefinementProposal($refinement);
         $refinement['id'] = $refinement_id;
-        
+
         // Create evolution audit trail
         $this->createEvolutionAuditTrail($refinement_id, 'doctrine_modification');
-        
+
         return $refinement;
     }
-    
+
     /**
      * Apply approved doctrine refinement
      * 
@@ -213,13 +220,14 @@ class CIPDoctrineRefinementModule {
      * @param string $approved_by Who approved the refinement
      * @return bool Success status
      */
-    public function applyRefinement($refinement_id, $approved_by = 'system') {
+    public function applyRefinement($refinement_id, $approved_by = 'system')
+    {
         // Get refinement details
         $refinement = $this->getRefinement($refinement_id);
         if (!$refinement || $refinement['approval_status'] !== 'approved') {
             return false;
         }
-        
+
         try {
             // Apply the changes
             if ($refinement['refinement_type'] === 'addition') {
@@ -227,17 +235,17 @@ class CIPDoctrineRefinementModule {
             } else {
                 $success = $this->modifyExistingDoctrine($refinement);
             }
-            
+
             if ($success) {
                 // Update refinement status
                 $this->markRefinementApplied($refinement_id, $approved_by);
-                
+
                 // Complete evolution audit trail
                 $this->completeEvolutionAuditTrail($refinement_id);
-                
+
                 // Log doctrine evolution
                 $this->logDoctrineEvolution($refinement);
-                
+
                 return true;
             }
         } catch (Exception $e) {
@@ -245,10 +253,10 @@ class CIPDoctrineRefinementModule {
             $this->markRefinementFailed($refinement_id, $e->getMessage());
             return false;
         }
-        
+
         return false;
     }
-    
+
     /**
      * Generate new doctrine content based on trigger and analytics
      * 
@@ -257,9 +265,10 @@ class CIPDoctrineRefinementModule {
      * @param array $analytics CIP analytics
      * @return string Generated doctrine content
      */
-    private function generateNewDoctrineContent($doctrine_file, $trigger, $analytics) {
+    private function generateNewDoctrineContent($doctrine_file, $trigger, $analytics)
+    {
         $template = $this->getDoctrineTemplate($doctrine_file);
-        
+
         // Customize template based on trigger type and analytics
         $content = str_replace([
             '{{DOCTRINE_NAME}}',
@@ -274,69 +283,104 @@ class CIPDoctrineRefinementModule {
             $this->summarizeAnalytics($analytics),
             date('Y-m-d')
         ], $template);
-        
+
         return $content;
     }
-    
+
     /**
-     * Store refinement proposal in database
+     * Store refinement proposal in unified ticket system (v4.0.42 logic)
      * 
      * @param array $refinement Refinement data
-     * @return int Refinement ID
+     * @return int Ticket ID
      */
-    private function storeRefinementProposal($refinement) {
-        $sql = "INSERT INTO lupo_doctrine_refinements (
-            cip_event_id, doctrine_file_path, refinement_type, change_description,
-            before_content_hash, after_content_hash, impact_assessment_json,
-            approval_status, created_ymdhis, refinement_version
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        
+    private function storeRefinementProposal($refinement)
+    {
+        // Use cip_event_id + offset or centralized ID logic if available.
+        // For 4.0.42, we use a combination to ensure unique ticket IDs.
+        $ticket_id = (int) $refinement['cip_event_id'];
+
+        $sql = "INSERT INTO lupo_tickets (
+            ticket_id, channel_id, actor_id, status, priority, subject, 
+            created_ymdhis, updated_ymdhis, metadata_json
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $status = 'open';
+        if ($refinement['approval_status'] === 'approved' || $refinement['approval_status'] === 'rejected') {
+            $status = 'closed';
+        } elseif ($refinement['approval_status'] === 'pending') {
+            $status = 'pending';
+        }
+
+        $metadata = [
+            'cip_event_id' => $refinement['cip_event_id'],
+            'doctrine_file_path' => $refinement['doctrine_file_path'],
+            'refinement_type' => $refinement['refinement_type'],
+            'before_content_hash' => $refinement['before_content_hash'],
+            'after_content_hash' => $refinement['after_content_hash'],
+            'impact_assessment_json' => $refinement['impact_assessment_json'],
+            'refinement_version' => $refinement['refinement_version'],
+            'source' => 'doctrine_refinement'
+        ];
+
         $stmt = $this->db->prepare($sql);
         $stmt->execute([
-            $refinement['cip_event_id'],
-            $refinement['doctrine_file_path'],
-            $refinement['refinement_type'],
-            $refinement['change_description'],
-            $refinement['before_content_hash'],
-            $refinement['after_content_hash'],
-            $refinement['impact_assessment_json'],
-            $refinement['approval_status'],
+            $ticket_id,
+            42, // Channel 42 (Development)
+            1,  // SYSTEM
+            $status,
+            'medium',
+            "Doctrine Refinement: " . $refinement['refinement_type'] . " for " . $refinement['doctrine_file_path'],
             $refinement['created_ymdhis'],
-            $refinement['refinement_version']
+            $refinement['created_ymdhis'],
+            json_encode($metadata)
         ]);
-        
-        return $this->db->lastInsertId();
+
+        // Add the refinement notes as the first ticket message
+        $sqlMsg = "INSERT INTO lupo_ticket_messages (ticket_message_id, ticket_id, actor_id, message_text, created_ymdhis) VALUES (?, ?, ?, ?, ?)";
+        $stmtMsg = $this->db->prepare($sqlMsg);
+        $stmtMsg->execute([
+            $ticket_id + 1000000,
+            $ticket_id,
+            1, // SYSTEM
+            $refinement['change_description'],
+            $refinement['created_ymdhis']
+        ]);
+
+        return $ticket_id;
     }
-    
+
+
     /**
      * Create evolution audit trail for refinement
      * 
      * @param int $refinement_id Refinement ID
      * @param string $process_type Type of evolution process
      */
-    private function createEvolutionAuditTrail($refinement_id, $process_type) {
+    private function createEvolutionAuditTrail($refinement_id, $process_type)
+    {
         $steps = $this->getEvolutionSteps($process_type);
-        
+
         foreach ($steps as $step_num => $step_description) {
             $sql = "INSERT INTO lupo_doctrine_evolution_audit (
                 refinement_id, evolution_step, step_description, step_status,
                 audit_version
             ) VALUES (?, ?, ?, 'pending', ?)";
-            
+
             $stmt = $this->db->prepare($sql);
             $stmt->execute([$refinement_id, $step_num + 1, $step_description, $this->version]);
         }
     }
-    
+
     /**
      * Get current timestamp in YMDHIS format
      * 
      * @return int Current timestamp
      */
-    private function getCurrentTimestamp() {
+    private function getCurrentTimestamp()
+    {
         return intval(date('YmdHis'));
     }
-    
+
     // Additional helper methods would be implemented here...
     // (detectRecurringPatterns, assessNewDoctrineImpact, etc.)
 }

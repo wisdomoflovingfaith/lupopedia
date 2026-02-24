@@ -152,10 +152,10 @@ INSERT INTO lupo_dialog_threads (
 ) VALUES
 (1, 1, 1, 1, 'lupopedia', 'System Initialization', 1, 'Initial system bootstrap thread', 'FFFFFF', '000000', '666666', 'Open', NULL, NULL, 20250222120000, 20250222120000, 0, NULL, NULL, NULL, NULL);
 
--- Correct table name: lupo_dialog_messages (NOT lupo_messages)
+-- Correct table name: lupo_dialog_doctrine (NOT lupo_messages)
 -- Correct column name: dialog_message_id (NOT message_id)
 
-INSERT INTO lupo_dialog_messages (
+INSERT INTO lupo_dialog_doctrine (
     dialog_message_id, message_id, dialog_thread_id, channel_id, 
     from_actor_id, to_actor_id, message_text, message_type, 
     metadata_json, mood_rgb, mood_framework, created_ymdhis, updated_ymdhis, 
@@ -183,7 +183,7 @@ INSERT INTO lupo_dialog_channels (
 -- - lupo_actor_channels: uses actor_channel_id, actor_id, channel_id, created_by_actor_id
 -- - lupo_actor_departments: uses actor_department_id, actor_id, department_id
 -- - lupo_dialog_threads: uses dialog_thread_id (NOT thread_id as PK)
--- - lupo_dialog_messages: uses dialog_message_id (NOT message_id as PK)
+-- - lupo_dialog_doctrine: uses dialog_message_id (NOT message_id as PK)
 -- - lupo_dialog_channels: file_source is NOT NULL (required)
 -- - All IDE/AI actors have paired_actor_id = 10000
 -- - All timestamps use YYYYMMDDHHIISS format (20250222120000)

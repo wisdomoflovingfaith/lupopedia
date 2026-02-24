@@ -282,7 +282,7 @@ class AnubisUnknownRecipientService
         // Create adoption message
         $messageId = $this->generateMessageId();
         
-        $this->db->insert('lupo_dialog_messages', [
+        $this->db->insert('lupo_dialog_doctrine', [
             'dialog_message_id' => $messageId,
             'dialog_thread_id' => $adoption['target_thread_id'],
             'channel_id' => $adoption['target_channel_id'],

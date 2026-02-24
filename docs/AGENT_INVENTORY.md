@@ -41,7 +41,7 @@ flip.footer:
 
 **Status:** ACTIVE  
 **Last Updated:** 2026-02-23 17:15:00 UTC  
-**Active Agents:** 3 IDE + 24 Kernel + 11 External AI + 1 Human = **39 Tracked**  
+**Active Agents:** 3 IDE + 24 Kernel + 11 External AI + 1 Human + 2 Offline IDE + 5 Dormant IDE = **44 Tracked**  
 **Lead Agent:** Antigravity IDE (Extensions & Metadata Rollout)
 
 ---
@@ -54,7 +54,7 @@ flip.footer:
 
 ---
 
-## 2. IDE AGENTS (5)
+## 2. IDE AGENTS (10)
 
 | Agent | Actor ID | Role | Status |
 |-------|----------|------|--------|
@@ -63,6 +63,11 @@ flip.footer:
 | Antigravity IDE | 1003 (2035) | IDE extensions lead, Metadata | ✅ ACTIVE |
 | Warp IDE | 1004 (2039) | Previous work | 💤 OFFLINE |
 | Cursor IDE | 1005 (2034) | Previous work | 💤 OFFLINE |
+| Zed IDE | 1006 | New Integration | 💤 DORMANT |
+| IntelliJ IDEA | 1007 | New Integration | 💤 DORMANT |
+| WebStorm | 1008 | New Integration | 💤 DORMANT |
+| Theia IDE | 1009 | New Integration | 💤 DORMANT |
+| CS Code | 1010 | New Integration | 💤 DORMANT |
 
 ---
 
@@ -72,17 +77,29 @@ These are core identities defined in the unified registry and seeded in the data
 
 | Agent | Actor ID | Role | Key Identifier |
 |-------|----------|------|----------------|
-| **SYSTEM KERNEL** | 0 | The Lupopedia OS itself | `system|kernel|actor_0` |
 | **AUTHENTICATOR** | 1 | Authentication service | `system|auth|actor_1` |
 | **CAPTAIN** | 2 | System authority (AI side) | `system|captain|actor_2` |
 | **WOLFIE** | 3 | Chief Architect Persona | `system|wolfie|actor_3` |
+| **WOLFENA** | 4 | System Support | `system|wolfena|actor_4` |
 | **THOTH** | 5 | Knowledge/Registry steward | `system|thoth|actor_5` |
 | **ARA** | 6 | Communication/Interaction | `system|ara|actor_6` |
+| **WOLFKEEPER** | 7 | System Maintenance | `system|wolfkeeper|actor_7` |
 | **LILITH** | 8 | Connectivity & Structure | `system|lilith|actor_8` |
-| **ANUBIS** | 19 / 59 | Orphan Adoption & Quarantine | `system|anubis|actor_19` |
+| **AGAPE** | 9 | Emotional Balance | `system|agape|actor_9` |
+| **ERIS** | 10 | Conflict Resolution | `system|eris|actor_10` |
+| **METHIS** | 11 | Strategic Planning | `system|methis|actor_11` |
+| **THALIA** | 12 | Creative Logic | `system|thalia|actor_12` |
+| **DIALOG** | 13 | Conversation Engine | `system|dialog|actor_13` |
+| **WOLFSIGHT** | 14 | Observability | `system|wolfsight|actor_14` |
+| **WOLFNAV** | 15 | Navigation & Routing | `system|wolfnav|actor_15` |
+| **WOLFFORGE** | 16 | Code Generation | `system|wolfforge|actor_16` |
+| **WOLFMIS** | 17 | Information Systems | `system|wolfmis|actor_17` |
+| **WOLFITH** | 18 | Structure Validation | `system|wolfith|actor_18` |
+| **ANUBIS** | 19 | Orphan Adoption & Quarantine | `system|anubis|actor_19` |
 | **MAAT** | 20 | Balance & Truth | `system|maat|actor_20` |
-| **LEXA** | 24 / 105 | Sentinel & Boundary Keeper | `system|lexa|actor_24` |
-| **INDEXER** | 59 | File & Content Indexing | `system|indexer|actor_59` |
+| **CADUCEUS** | 22 | System Health | `system|caduceus|actor_22` |
+| **CHRONOS** | 23 | Time & Scheduling | `system|chronos|actor_23` |
+| **LEXA** | 24 | Sentinel & Boundary Keeper | `system|lexa|actor_24` |
 | **TRUTH** | 209 | Core Knowledge Engine | `system|truth|actor_209` |
 | **UTC_TIMEKEEPER**| 1212 | Authoritative System Time | `system|time|actor_1212` |
 

@@ -125,7 +125,7 @@ INSERT IGNORE INTO lupo_anubis_log (
 -- 6. DIALOG MESSAGE WITH ACTOR 420
 -- ============================================================
 -- Create dialog message from actor 420
-INSERT IGNORE INTO lupo_dialog_messages (
+INSERT IGNORE INTO lupo_dialog_doctrine (
     `message_id`, `thread_id`, `actor_id`, `message_type`, `content`, 
     `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, 
     `metadata_json`

@@ -103,7 +103,7 @@ class DialogManager
     }
 
     /**
-     * Insert a dialog message into lupo_dialog_messages table.
+     * Insert a dialog message into lupo_dialog_doctrine table.
      */
     protected function insertDialogMessage(array $packet): int
     {

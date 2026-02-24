@@ -21,7 +21,7 @@ try {
     
     // 1) Message count and final message
     echo "1) Channel 420 Message Count and Final Message:\n";
-    $stmt = $db->prepare('SELECT dialog_message_id, channel_id, from_actor_id, message_text, created_ymdhis FROM lupo_dialog_messages WHERE channel_id = 420 ORDER BY created_ymdhis ASC');
+    $stmt = $db->prepare('SELECT dialog_message_id, channel_id, from_actor_id, message_text, created_ymdhis FROM lupo_dialog_doctrine WHERE channel_id = 420 ORDER BY created_ymdhis ASC');
     $stmt->execute();
     $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
     

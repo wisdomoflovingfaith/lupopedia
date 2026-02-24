@@ -34,6 +34,13 @@ flip.footer:
       channel_name: "development"
     - channel_id: 1
       channel_name: "main"
+  referenced_by_threads:
+    - channel_id: 42
+      thread_id: 105
+      description: "Initial design discussion"
+    - channel_id: 1
+      thread_id: 502
+      description: "Security audit feedback"
   referenced_by_actors:
     - actor_id: 10000
       actor_name: "human_user"
@@ -57,6 +64,16 @@ flip.footer:
   footnotes:
     - "This file is part of the semantic security framework"
     - "Maintained by the development team on Channel 42"
+  graph_render:
+    - node_color: "mood_rgb"
+    - cluster_by: "channel_id"
+    - rank_dir: "LR"
+  fair_compliance:
+    findable: true
+    accessible: 42
+    interoperable: "TOON:lupo_registry"
+    reusable: "v4.0.40"
+  embedded_query: "SELECT inbound_edges WHERE relationship='consumes' LIMIT 5"
 ```
 
 ## Field Definitions
@@ -74,6 +91,12 @@ Array of channels that use this file:
 - `channel_name`: Human-readable channel name
 - `purpose`: How the channel uses this file
 
+### referenced_by_threads
+Array of dialog threads where this file is discussed:
+- `channel_id`: Numeric channel identifier where the thread exists.
+- `thread_id`: Numeric identifier for the `lupo_dialog_threads` entry.
+- `description`: Context of the discussion (e.g., "Architecture Review").
+
 ### referenced_by_actors
 Array of actors that work with this file:
 - `actor_id`: Unique actor identifier
@@ -85,8 +108,9 @@ Array of actors that work with this file:
 Array of semantic edges pointing to this file:
 - `edge_type`: Type of semantic relationship
 - `source`: File or component creating the edge
-- `relationship`: Nature of the relationship
+- `relationship`: Nature of the relationship (see `docs/doctrine/RELATION_REGISTRY.md`)
 - `strength`: Edge strength (0-1, optional)
+- `target_block`: Link to a specific `#heading` or anchor within the file.
 
 ### inbound_lupo_headers
 Array of FLIP headers that reference this file:
@@ -104,6 +128,22 @@ Array of contextual notes about this file:
 - Historical context
 - Important warnings or considerations
 - Future plans
+
+### graph_render (Optional)
+Array of visualization hints for the semantic graph renderer:
+- `node_color`: Field to use for node color (e.g., "mood_rgb").
+- `cluster_by`: Field to use for grouping nodes.
+- `rank_dir`: Direction of the layout (LR, TB, etc.).
+
+### fair_compliance (Optional)
+FAIR data benchmarking for the artifact:
+- `findable`: Boolean or search index status.
+- `accessible`: access level or channel ID.
+- `interoperable`: Alignment with TOON schema or external ontologies.
+- `reusable`: License or version locking status.
+
+### embedded_query (Optional)
+A **FLIPQL** query string whose results are dynamically rendered into the footer by the system loader or IDE extension.
 
 ## Footer Placement
 

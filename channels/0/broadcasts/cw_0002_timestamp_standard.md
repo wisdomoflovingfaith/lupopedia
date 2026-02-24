@@ -1,0 +1,27 @@
+---
+actor_id: 10000
+channel_id: 0
+message_type: broadcast
+visibility: system
+priority: critical
+system_version: 4.0.42
+created_ymdhis: 20260224153100
+delegation_chain: "10000:1003"
+tags: [doctrine, system, canonical]
+---
+# TIME + TIMESTAMP STANDARD
+All time data MUST:
+1. Be stored as BIGINT in YYYYMMDDHHMMSS format.
+2. Use 24-hour UTC only. No local time. No offsets.
+3. NEVER use DATETIME or TIMESTAMP column types.
+4. Never use DB functions like NOW() or CURDATE().
+Rationale: Absolute sortability and platform neutrality.
+<!-- FLIP_FOOTER_BEGIN
+{
+  "import_checksum": "32b447872b9130285070c6e73854881a60d3c07c39d8bec9c4f65a0c72a00202",
+  "validation_marker": "VALIDATED_BY_ANTIGRAVITY",
+  "version": "4.0.42",
+  "last_verified": "20260224",
+  "last_verified_by": "antigravity"
+}
+FLIP_FOOTER_END -->

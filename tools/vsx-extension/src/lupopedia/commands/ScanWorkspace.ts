@@ -13,7 +13,7 @@ export async function scanWorkspace(context: vscode.ExtensionContext, artifactIn
     const hashGenerator = new HashGenerator();
     const edgeMapper = new EdgeMapper();
 
-    const files = await vscode.workspace.findFiles('**/*.md', '**/node_modules/**');
+    const files = await vscode.workspace.findFiles('{channels,artifacts}/**/*.md', '**/node_modules/**');
     let filesScanned = 0;
     let artifactsUpdated = 0;
 
@@ -25,10 +25,41 @@ export async function scanWorkspace(context: vscode.ExtensionContext, artifactIn
             const content = new TextDecoder().decode(contentBuffer);
 
             const header = headerParser.extractHeader(content);
-            if (!header) continue;
+            if (!header) {
+                console.warn(`Missing or invalid FLIP header in ${file.fsPath}`);
+                continue;
+            }
 
             const hash = await hashGenerator.generateHash(content);
             const stored = await artifactIndex.findByPath(file.fsPath);
+
+            // Extract folder mapping
+            const relPath = vscode.workspace.asRelativePath(file);
+            const pathParts = relPath.split('/');
+            let folderId: number | undefined;
+            let isChannel = false;
+            let isArtifact = false;
+
+            if (pathParts[0] === 'channels' && pathParts[1] && /^\d+$/.test(pathParts[1])) {
+                folderId = parseInt(pathParts[1]);
+                isChannel = true;
+            } else if (pathParts[0] === 'artifacts' && pathParts[1] && /^\d+$/.test(pathParts[1])) {
+                folderId = parseInt(pathParts[1]);
+                isArtifact = true;
+            }
+
+            // Sync folder ID with header metadata if missing
+            if (folderId !== undefined) {
+                if ('identity' in header) {
+                    if (isChannel && header.identity.channel_id === undefined) {
+                        header.identity.channel_id = folderId;
+                    }
+                } else if (header.wolfie?.headers) {
+                    if (isChannel && header.wolfie.headers.channel_id === undefined) {
+                        header.wolfie.headers.channel_id = folderId;
+                    }
+                }
+            }
 
             if (!stored || stored.fileHash !== hash) {
                 const footer = footerParser.extractFooter(content);

@@ -15,6 +15,7 @@ export interface FlipHeaderV2 {
             x_lupo_forwarded?: string;
             delegation_chain?: string; // New in v4.1 - accountability path
             actor_id?: number;
+            federated_node_id?: number;
             lupo_agent?: string;
 
             // New fields for v4.0.37
@@ -94,6 +95,7 @@ export interface FlipHeaderV3 {
         agent_slug: string;
         system_version: string;
         channel_id?: number;
+        federated_node_id?: number;
     };
     classification: {
         artifact_kind: string;
@@ -150,6 +152,7 @@ export interface IndexFields {
     filePath: string;
     version: string;
     channelId?: number;
+    federatedNodeId?: number;
     actorId?: number;
     agentKey?: string;
     lastModified: string;

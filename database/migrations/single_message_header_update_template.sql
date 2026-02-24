@@ -4,7 +4,7 @@
 -- ============================================================
 
 -- Example: Update one message safely
-UPDATE lupo_dialog_messages
+UPDATE lupo_dialog_doctrine
 SET metadata_json = JSON_SET(
     COALESCE(metadata_json, '{}'),
     '$.X-Lupo-Channel', 42,
@@ -27,5 +27,5 @@ SELECT
     dialog_message_id,
     JSON_LENGTH(metadata_json) AS header_count,
     JSON_KEYS(metadata_json) AS headers_present
-FROM lupo_dialog_messages
+FROM lupo_dialog_doctrine
 WHERE dialog_message_id = MESSAGE_ID_HERE;

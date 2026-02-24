@@ -61,7 +61,7 @@ INSERT INTO lupo_dialog_threads (dialog_thread_id, channel_id, title, created_by
 (1, 42, 'Crafty Syntax Upgrade', 2, 20260222120000, 20260222120000, 0, NULL);
 
 -- ============================================================================
--- TABLE: lupo_dialog_messages
+-- TABLE: lupo_dialog_doctrine
 -- ============================================================================
 
 -- PROBLEM: seed_lupopedia.sql used wrong column name
@@ -69,7 +69,7 @@ INSERT INTO lupo_dialog_threads (dialog_thread_id, channel_id, title, created_by
 -- ACTUAL SCHEMA: dialog_message_id
 
 -- CORRECT INSERT FORMAT:
-INSERT INTO lupo_dialog_messages (dialog_message_id, dialog_thread_id, actor_id, message_text, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES 
+INSERT INTO lupo_dialog_doctrine (dialog_message_id, dialog_thread_id, actor_id, message_text, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES 
 (1, 1, 2, 'Starting upgrade process', 20260222120000, 20260222120000, 0, NULL);
 
 -- ============================================================================

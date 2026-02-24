@@ -54,8 +54,9 @@ $GLOBALS['lupo_ephemeral_tables'] = [
     'lupo_api_clients',
     'lupo_api_webhooks',
     'lupo_narrative_fragments',
-    'lupo_document_chunks',
+    'lupo_artifact_chunks',
 ];
+
 
 /**
  * Get schema-qualified table name
@@ -63,19 +64,20 @@ $GLOBALS['lupo_ephemeral_tables'] = [
  * @param string $table Table name (without schema prefix)
  * @return string Schema-qualified table name
  */
-function lupo_table($table) {
+function lupo_table($table)
+{
     global $lupo_orchestration_tables, $lupo_ephemeral_tables;
-    
+
     // Check if table is orchestration
     if (in_array($table, $GLOBALS['lupo_orchestration_tables'])) {
         return LUPO_SCHEMA_ORCHESTRATION . '.' . $table;
     }
-    
+
     // Check if table is ephemeral
     if (in_array($table, $GLOBALS['lupo_ephemeral_tables'])) {
         return LUPO_SCHEMA_EPHEMERAL . '.' . $table;
     }
-    
+
     // Default to core schema
     return LUPO_SCHEMA_CORE . '.' . $table;
 }
@@ -86,17 +88,18 @@ function lupo_table($table) {
  * @param string $table Table name (without schema prefix)
  * @return string Schema name
  */
-function lupo_table_schema($table) {
+function lupo_table_schema($table)
+{
     global $lupo_orchestration_tables, $lupo_ephemeral_tables;
-    
+
     if (in_array($table, $GLOBALS['lupo_orchestration_tables'])) {
         return LUPO_SCHEMA_ORCHESTRATION;
     }
-    
+
     if (in_array($table, $GLOBALS['lupo_ephemeral_tables'])) {
         return LUPO_SCHEMA_EPHEMERAL;
     }
-    
+
     return LUPO_SCHEMA_CORE;
 }
 

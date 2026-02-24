@@ -98,6 +98,9 @@ When handling any Lupopedia file that has a FLIP Header, the agent MUST:
 | **Inference = from header only** | Identity, lineage, channel, version, emotional state, doctrine, placement, meaning — all inferred from the header. No guessing. |
 | **Protocol** | FLIP is the formal rule set for how Lupopedia and AI agents interpret files. |
 
+- **FLIP System Review & Roadmap (4.0.35)** — Outlines the evolution of FLIP for multi-agent IDE collaboration, including conflict resolution and high-precision temporal tracking. See `docs/doctrine/FLIP/FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md`.
+- **FLIPQL Specification** — Defines the File-Level Inference Protocol Query Language for repo-wide metadata discovery. See `docs/doctrine/FLIP/FLIPQL_SPECIFICATION.md`.
+
 ---
 
 *End of FLIP doctrine.*

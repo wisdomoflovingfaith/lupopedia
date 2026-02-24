@@ -274,7 +274,7 @@ INSERT IGNORE INTO lupo_dialog_threads (`thread_id`, `channel_id`, `created_by_a
 (1001, 42, 'Lilith Critical Test Thread', @now, @now, 0, NULL),
 (1002, 42, 'Maat Balancing Test Thread', @now, @now, 0, NULL);
 
-INSERT IGNORE INTO lupo_dialog_messages (`message_id`, `thread_id`, `actor_id`, `message_type`, `content`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+INSERT IGNORE INTO lupo_dialog_doctrine (`message_id`, `thread_id`, `actor_id`, `message_type`, `content`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
 (1, 1001, 3, 'system', 'CRITICAL: System requires immediate attention! High-priority issue detected in emotional geometry processing. Urgent response needed.', @now, @now, 0, NULL),
 (2, 1001, 4, 'user_response', 'Acknowledged. I understand the critical nature of this situation and will escalate immediately.', @now, @now, 0, NULL),
 (3, 1001, 3, 'system', 'CRITICAL ESCALATION: Issue has been escalated to governance coordinator for immediate resolution.', @now, @now, 0, NULL),

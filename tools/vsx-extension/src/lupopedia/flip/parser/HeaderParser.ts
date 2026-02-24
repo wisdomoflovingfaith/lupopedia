@@ -117,4 +117,45 @@ export class HeaderParser {
             collectionId: header.wolfie.headers.collection_id
         };
     }
+
+    /**
+     * Check if the header satisfies the current system version requirement (v4.0.40 Gate)
+     */
+    public checkCompliance(header: FlipHeaderV2 | FlipHeaderV3): { compliant: boolean; error?: string; code?: string } {
+        let version = '';
+        if ('identity' in header) {
+            version = header.identity.system_version;
+        } else if (header.wolfie?.headers) {
+            version = header.wolfie.headers.system_version;
+        }
+
+        if (!version) return { compliant: false, error: 'Missing system_version', code: 'HEADER_OUTDATED' };
+
+        // v4.0.40 Gate
+        const target = '4.0.40';
+        if (this.compareVersions(version, target) < 0) {
+            return {
+                compliant: false,
+                error: `System version ${version} is below the 4.0.40 compliance gate.`,
+                code: 'HEADER_OUTDATED'
+            };
+        }
+
+        return { compliant: true };
+    }
+
+    /**
+     * Simple semantic version comparison
+     */
+    private compareVersions(v1: string, v2: string): number {
+        const parts1 = v1.split('.').map(Number);
+        const parts2 = v2.split('.').map(Number);
+        for (let i = 0; i < Math.max(parts1.length, parts2.length); i++) {
+            const p1 = parts1[i] || 0;
+            const p2 = parts2[i] || 0;
+            if (p1 > p2) return 1;
+            if (p1 < p2) return -1;
+        }
+        return 0;
+    }
 }

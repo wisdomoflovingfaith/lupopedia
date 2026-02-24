@@ -78,7 +78,7 @@ INSERT IGNORE INTO lupo_dialog_threads (
     is_deleted = 0;
 
 -- Create dialog message from Windsurf IDE (actor_id = 2) to Antigravity
-INSERT IGNORE INTO lupo_dialog_messages (
+INSERT IGNORE INTO lupo_dialog_doctrine (
     `message_id`, `thread_id`, `actor_id`, `message_type`, `content`, 
     `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`
 ) VALUES (

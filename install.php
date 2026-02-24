@@ -2,7 +2,7 @@
 /**
  * @wolfie.headers {
  *   file_path_from_root: "install.php",
- *   system_version: "4.0.39",
+ *   system_version: "4.0.42",
  *   channel_id: 42,
  *   mood_rgb: "FF6347",
  *   purpose: "Main installer and upgrade wizard for Lupopedia - handles fresh install and Crafty Syntax 3.7.5 upgrade",
@@ -50,7 +50,7 @@
  *   },
  *   semantic_tags: ["installer", "upgrade_wizard", "crafty_syntax_3_7_5", "identity_normalization", "reserved_channels"],
  *   enrichment: { llm_inferred_edges: [], federated_metrics: {} },
- *   version: "4.0.39",
+ *   version: "4.0.42",
  *   last_verified_utc: "20260224",
  *   last_verified_by: "kiro"
  * }
@@ -89,12 +89,26 @@ if (!defined('LUPOPEDIA_PATH')) {
     define('LUPOPEDIA_PATH', __DIR__);
 }
 
-// Version for wizard UI (from version.php / atom; single source of truth)
+// Version for wizard UI - Direct parse from global_atoms.yaml (install.php runs standalone, no bootstrap)
+$lupo_wizard_version = '4.0.42'; // Fallback
+$atoms_file = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml';
+if (is_file($atoms_file)) {
+    $atoms_content = file_get_contents($atoms_file);
+    if (preg_match('/^GLOBAL_CURRENT_LUPOPEDIA_VERSION:\s*["\']?([0-9.]+)["\']?/m', $atoms_content, $matches)) {
+        $lupo_wizard_version = $matches[1];
+    }
+}
+
+// Also load version.php for constants (but wizard version already set from atoms)
 $version_php = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'version.php';
 if (is_file($version_php)) {
     require_once $version_php;
 }
-$lupo_wizard_version = defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.29';
+// Use LUPOPEDIA_VERSION if defined and different from atoms (shouldn't happen, but safety check)
+if (defined('LUPOPEDIA_VERSION') && LUPOPEDIA_VERSION !== $lupo_wizard_version) {
+    // Atoms take precedence in install.php
+    $lupo_wizard_version = LUPOPEDIA_VERSION;
+}
 
 /**
  * PHP 5.3-safe random bytes. Uses random_bytes() when available (PHP 7+), else openssl_random_pseudo_bytes, else mt_rand fallback.
@@ -1174,6 +1188,15 @@ if ($baseUrl === '') {
                     <pre class="log"><?php foreach ($complete_config_log as $e) { $c=$e[0]; $t=htmlspecialchars($e[1]); $ts=isset($e[2]) ? htmlspecialchars($e[2]) . ' ' : ''; echo "<span class=\"{$c}\">[{$c}] {$ts}{$t}</span>\n"; } ?></pre>
                 </div>
             <?php endif; ?>
+            <div class="step warning" style="margin-top:1.5rem;">
+                <h4>⚠️ Background Jobs Queued</h4>
+                <p>Post-install tasks have been queued in the system_commands table. Run the system command runner to process them:</p>
+                <p><strong>Linux/macOS:</strong></p>
+                <pre style="background:#f5f5f5; padding:0.5rem; border-radius:4px; font-family:monospace; font-size:0.85rem;">python3 scripts/run_system_commands.py</pre>
+                <p><strong>Windows (WSL):</strong></p>
+                <pre style="background:#f5f5f5; padding:0.5rem; border-radius:4px; font-family:monospace; font-size:0.85rem;">wsl python3 /mnt/c/ServBay/www/servbay/lupopedia/scripts/run_system_commands.py</pre>
+                <p style="font-size:0.85rem; color:#666;">The runner will import channels and artifacts. You can run it now or later.</p>
+            </div>
             <p>
                 <a href="<?php echo htmlspecialchars($baseUrl . $loginUrl); ?>" class="btn">Go to Login</a>
                 <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=download_log&which=bootstrap'); ?>" class="btn btn-secondary" download>Download bootstrap log</a>

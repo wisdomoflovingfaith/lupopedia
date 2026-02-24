@@ -5,7 +5,7 @@ try {
     $db = DatabaseFactory::getConnection();
     
     // Task 1: Verify Channel 420 exists and count messages
-    $stmt = $db->prepare('SELECT COUNT(*) AS message_count FROM lupo_dialog_messages WHERE channel_id = 420');
+    $stmt = $db->prepare('SELECT COUNT(*) AS message_count FROM lupo_dialog_doctrine WHERE channel_id = 420');
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $message_count = $result['message_count'];

@@ -24,6 +24,8 @@ export interface FlipHeader {
     file_last_modified_utc: string;
     /** Canonical: X-Lupo-Channel or channel_id */
     channel_id: number | null;
+    /** Canonical: X-Lupo-Federated-Node-ID or federated_node_id */
+    federated_node_id: number | null;
     /** Canonical: X-Lupo-Status or status */
     status: string | null;
     /** Canonical: X-Lupo-Thread or thread_id */
@@ -155,6 +157,9 @@ const CANONICAL_MAP: Record<string, keyof FlipHeader | string> = {
     'channel_id': 'channel_id',
     'x-lupo-channel': 'channel_id',
     'wolfie-channel': 'channel_id',
+    'federated_node_id': 'federated_node_id',
+    'x-lupo-federated-node-id': 'federated_node_id',
+    'x-flip-federated-node-id': 'federated_node_id',
     'thread_id': 'thread_id',
     'x-lupo-thread': 'thread_id',
     'x-flip-thread': 'thread_id',
@@ -432,6 +437,7 @@ export function parseFlipHeader(text: string): FlipParseResult {
             file_last_modified_system_version: (mapped.file_last_modified_system_version as string) || '',
             file_last_modified_utc: (mapped.file_last_modified_utc as string) || '',
             channel_id: mapped.channel_id ?? null,
+            federated_node_id: mapped.federated_node_id ?? null,
             status: mapped.status ?? null,
             thread_id: mapped.thread_id ?? null,
             actor_id: mapped.actor_id ?? null,
