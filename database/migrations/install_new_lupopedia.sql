@@ -307,21 +307,30 @@ CREATE INDEX lupo_actor_handshakes_idx_actor_id ON lupo_actor_handshakes (actor_
 CREATE INDEX lupo_actor_handshakes_idx_is_deleted ON lupo_actor_handshakes (is_deleted);
 CREATE INDEX lupo_actor_handshakes_idx_utc_timestamp ON lupo_actor_handshakes (`utc_timestamp`);
 
-CREATE TABLE lupo_actor_meta (
-  actor_meta_id bigint NOT NULL,
-  meta_id bigint NOT NULL DEFAULT 0,
-  actor_id bigint NOT NULL,
-  meta_type varchar(64) NOT NULL,
-  meta_key varchar(255) NOT NULL,
-  meta_value text NOT NULL,
+-- Consolidated metadata table replacing lupo_actor_meta, lupo_actor_properties, lupo_agent_properties
+CREATE TABLE lupo_metadata (
+  metadata_id bigint NOT NULL,
+  entity_type varchar(32) NOT NULL,
+  entity_id bigint NOT NULL,
+  domain_id bigint DEFAULT NULL,
+  meta_type varchar(64) DEFAULT NULL,
+  property_key varchar(255) NOT NULL,
+  property_value text,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
-  PRIMARY KEY (actor_meta_id)
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (metadata_id)
 );
 
-CREATE INDEX lupo_actor_meta_actor_id ON lupo_actor_meta (actor_id);
-CREATE INDEX lupo_actor_meta_meta_type ON lupo_actor_meta (meta_type);
-CREATE INDEX lupo_actor_meta_meta_key ON lupo_actor_meta (meta_key);
+CREATE UNIQUE INDEX lupo_metadata_unique_entity_domain_property ON lupo_metadata (entity_type, entity_id, domain_id, property_key);
+CREATE INDEX lupo_metadata_idx_entity ON lupo_metadata (entity_type, entity_id);
+CREATE INDEX lupo_metadata_idx_domain ON lupo_metadata (domain_id);
+CREATE INDEX lupo_metadata_idx_meta_type ON lupo_metadata (meta_type);
+CREATE INDEX lupo_metadata_idx_property_key ON lupo_metadata (property_key);
+CREATE INDEX lupo_metadata_idx_created_ymdhis ON lupo_metadata (created_ymdhis);
+CREATE INDEX lupo_metadata_idx_updated_ymdhis ON lupo_metadata (updated_ymdhis);
+CREATE INDEX lupo_metadata_idx_is_deleted ON lupo_metadata (is_deleted);
 
 CREATE TABLE lupo_actor_moods (
   actor_id bigint NOT NULL,
@@ -364,21 +373,6 @@ CREATE INDEX lupo_actor_persona_relationships_idx_actor_id ON lupo_actor_persona
 CREATE INDEX lupo_actor_persona_relationships_idx_persona_id ON lupo_actor_persona_relationships (persona_id);
 CREATE INDEX lupo_actor_persona_relationships_idx_relationship_type ON lupo_actor_persona_relationships (relationship_type);
 
-CREATE TABLE lupo_actor_properties (
-  actor_property_id bigint NOT NULL,
-  actor_type varchar(32) NOT NULL,
-  actor_id bigint NOT NULL,
-  property_key varchar(64) NOT NULL,
-  property_value text,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (actor_property_id)
-);
-
-CREATE INDEX lupo_actor_properties_idx_entity ON lupo_actor_properties (actor_type, actor_id);
-CREATE INDEX lupo_actor_properties_idx_property ON lupo_actor_properties (property_key);
 
 CREATE TABLE lupo_actor_reply_templates (
   actor_reply_template_id bigint NOT NULL,
@@ -621,26 +615,6 @@ CREATE INDEX lupo_agent_heartbeats_idx_last_heartbeat_ymdhis ON lupo_agent_heart
 CREATE INDEX lupo_agent_heartbeats_idx_created_ymdhis ON lupo_agent_heartbeats (created_ymdhis);
 CREATE INDEX lupo_agent_heartbeats_idx_is_deleted ON lupo_agent_heartbeats (is_deleted);
 
-CREATE TABLE lupo_agent_properties (
-  agent_property_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  domain_id bigint NOT NULL,
-  property_key varchar(100) NOT NULL,
-  property_value text,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (agent_property_id)
-);
-
-CREATE UNIQUE INDEX lupo_agent_properties_unique_agent_domain_property ON lupo_agent_properties (actor_id, domain_id, property_key);
-CREATE INDEX lupo_agent_properties_idx_agent_domain ON lupo_agent_properties (actor_id, domain_id);
-CREATE INDEX lupo_agent_properties_idx_domain_id ON lupo_agent_properties (domain_id);
-CREATE INDEX lupo_agent_properties_idx_property_key ON lupo_agent_properties (property_key);
-CREATE INDEX lupo_agent_properties_idx_created_ymdhis ON lupo_agent_properties (created_ymdhis);
-CREATE INDEX lupo_agent_properties_idx_updated_ymdhis ON lupo_agent_properties (updated_ymdhis);
-CREATE INDEX lupo_agent_properties_idx_is_deleted ON lupo_agent_properties (is_deleted);
 
 CREATE TABLE lupo_agent_tool_calls (
   agent_tool_call_id bigint NOT NULL,
@@ -749,8 +723,10 @@ CREATE INDEX lupo_analytics_referers_periods_idx_referer ON lupo_analytics_refer
 CREATE INDEX lupo_analytics_referers_periods_idx_department ON lupo_analytics_referers_periods (department_id, period_date);
 CREATE INDEX lupo_analytics_referers_periods_idx_level ON lupo_analytics_referers_periods (level, period_date);
 
+-- Consolidated analytics visits table replacing 4 analytics tables
 CREATE TABLE lupo_analytics_visits (
   analytics_visit_id bigint NOT NULL,
+  visit_type varchar(20) NOT NULL DEFAULT 'realtime',
   session_id varchar(100) NOT NULL,
   actor_id bigint NOT NULL DEFAULT '0',
   content_id bigint DEFAULT NULL,
@@ -760,10 +736,24 @@ CREATE TABLE lupo_analytics_visits (
   referer_domain varchar(255) DEFAULT NULL,
   referer_path varchar(500) DEFAULT NULL,
   came_from varchar(500) DEFAULT NULL,
+  department_id bigint NOT NULL DEFAULT '1',
+  period_type varchar(64) DEFAULT NULL,
+  period_date bigint DEFAULT NULL,
+  date_ymd bigint DEFAULT NULL,
+  date_ym bigint DEFAULT NULL,
   first_seen_ymdhis bigint NOT NULL,
   last_seen_ymdhis bigint NOT NULL,
   view_count int NOT NULL DEFAULT '1',
+  visits int NOT NULL DEFAULT '0',
+  unique_sessions int NOT NULL DEFAULT '0',
+  unique_actors int NOT NULL DEFAULT '0',
+  direct_visits int NOT NULL DEFAULT '0',
+  internal_visits int NOT NULL DEFAULT '0',
+  entry_count int NOT NULL DEFAULT '0',
+  exit_count int NOT NULL DEFAULT '0',
   seconds_active int NOT NULL DEFAULT '0',
+  total_seconds int NOT NULL DEFAULT '0',
+  avg_seconds int NOT NULL DEFAULT '0',
   user_agent varchar(255) DEFAULT NULL,
   ip_address varchar(45) DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
@@ -771,85 +761,24 @@ CREATE TABLE lupo_analytics_visits (
   PRIMARY KEY (analytics_visit_id)
 );
 
+CREATE UNIQUE INDEX lupo_analytics_visits_uq_realtime ON lupo_analytics_visits (session_id, url_path, visit_type) WHERE visit_type = 'realtime';
+CREATE UNIQUE INDEX lupo_analytics_visits_uq_daily ON lupo_analytics_visits (content_id, date_ymd) WHERE visit_type = 'daily';
+CREATE UNIQUE INDEX lupo_analytics_visits_uq_monthly ON lupo_analytics_visits (content_id, date_ym) WHERE visit_type = 'monthly';
+CREATE UNIQUE INDEX lupo_analytics_visits_uq_period ON lupo_analytics_visits (content_id, period_type, period_date) WHERE visit_type = 'period';
+CREATE INDEX lupo_analytics_visits_idx_session ON lupo_analytics_visits (session_id);
+CREATE INDEX lupo_analytics_visits_idx_actor ON lupo_analytics_visits (actor_id);
+CREATE INDEX lupo_analytics_visits_idx_content ON lupo_analytics_visits (content_id);
+CREATE INDEX lupo_analytics_visits_idx_department ON lupo_analytics_visits (department_id);
+CREATE INDEX lupo_analytics_visits_idx_period_date ON lupo_analytics_visits (period_date);
+CREATE INDEX lupo_analytics_visits_idx_date_ymd ON lupo_analytics_visits (date_ymd);
+CREATE INDEX lupo_analytics_visits_idx_date_ym ON lupo_analytics_visits (date_ym);
+CREATE INDEX lupo_analytics_visits_idx_visit_type ON lupo_analytics_visits (visit_type);
+CREATE INDEX lupo_analytics_visits_idx_created ON lupo_analytics_visits (created_ymdhis);
+CREATE INDEX lupo_analytics_visits_idx_updated ON lupo_analytics_visits (updated_ymdhis);
 
-CREATE TABLE lupo_analytics_visits_daily (
-  analytics_visits_daily_id bigint NOT NULL,
-  content_id bigint NOT NULL DEFAULT '0',
-  url_path varchar(500) NOT NULL DEFAULT '',
-  department_id bigint NOT NULL DEFAULT '1',
-  date_ymd bigint NOT NULL,
-  visits int NOT NULL DEFAULT '0',
-  unique_sessions int NOT NULL DEFAULT '0',
-  unique_actors int NOT NULL DEFAULT '0',
-  direct_visits int NOT NULL DEFAULT '0',
-  internal_visits int NOT NULL DEFAULT '0',
-  entry_count int NOT NULL DEFAULT '0',
-  exit_count int NOT NULL DEFAULT '0',
-  total_seconds int NOT NULL DEFAULT '0',
-  avg_seconds int NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  PRIMARY KEY (analytics_visits_daily_id)
-);
 
-CREATE UNIQUE INDEX lupo_analytics_visits_daily_uq_visits_daily ON lupo_analytics_visits_daily (content_id, date_ymd);
-CREATE INDEX lupo_analytics_visits_daily_idx_date_ymd ON lupo_analytics_visits_daily (date_ymd);
-CREATE INDEX lupo_analytics_visits_daily_idx_content ON lupo_analytics_visits_daily (content_id, date_ymd);
-CREATE INDEX lupo_analytics_visits_daily_idx_department ON lupo_analytics_visits_daily (department_id, date_ymd);
-CREATE INDEX lupo_analytics_visits_daily_idx_created ON lupo_analytics_visits_daily (created_ymdhis);
-CREATE INDEX lupo_analytics_visits_daily_idx_updated ON lupo_analytics_visits_daily (updated_ymdhis);
 
-CREATE TABLE lupo_analytics_visits_monthly (
-  analytics_visits_monthly_id bigint NOT NULL,
-  content_id bigint NOT NULL DEFAULT '0',
-  url_path varchar(500) NOT NULL DEFAULT '',
-  department_id bigint NOT NULL DEFAULT '1',
-  date_ym bigint NOT NULL,
-  visits int NOT NULL DEFAULT '0',
-  unique_sessions int NOT NULL DEFAULT '0',
-  unique_actors int NOT NULL DEFAULT '0',
-  direct_visits int NOT NULL DEFAULT '0',
-  internal_visits int NOT NULL DEFAULT '0',
-  entry_count int NOT NULL DEFAULT '0',
-  exit_count int NOT NULL DEFAULT '0',
-  total_seconds int NOT NULL DEFAULT '0',
-  avg_seconds int NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  PRIMARY KEY (analytics_visits_monthly_id)
-);
 
-CREATE UNIQUE INDEX lupo_analytics_visits_monthly_uq_visits_monthly ON lupo_analytics_visits_monthly (content_id, date_ym);
-CREATE INDEX lupo_analytics_visits_monthly_idx_content ON lupo_analytics_visits_monthly (content_id, date_ym);
-CREATE INDEX lupo_analytics_visits_monthly_idx_department ON lupo_analytics_visits_monthly (department_id, date_ym);
-CREATE INDEX lupo_analytics_visits_monthly_idx_created ON lupo_analytics_visits_monthly (created_ymdhis);
-CREATE INDEX lupo_analytics_visits_monthly_idx_updated ON lupo_analytics_visits_monthly (updated_ymdhis);
-
-CREATE TABLE lupo_analytics_visits_periods (
-  analytics_visits_period_id bigint NOT NULL,
-  content_id bigint NOT NULL DEFAULT '0',
-  url_path varchar(500) NOT NULL DEFAULT '',
-  department_id bigint NOT NULL DEFAULT '1',
-  period_type varchar(64) NOT NULL,
-  period_date bigint NOT NULL,
-  visits int NOT NULL DEFAULT '0',
-  unique_sessions int NOT NULL DEFAULT '0',
-  unique_actors int NOT NULL DEFAULT '0',
-  direct_visits int NOT NULL DEFAULT '0',
-  internal_visits int NOT NULL DEFAULT '0',
-  entry_count int NOT NULL DEFAULT '0',
-  exit_count int NOT NULL DEFAULT '0',
-  total_seconds int NOT NULL DEFAULT '0',
-  avg_seconds int NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  PRIMARY KEY (analytics_visits_period_id)
-);
-
-CREATE UNIQUE INDEX lupo_analytics_visits_periods_uq_visits_period ON lupo_analytics_visits_periods (content_id, period_type, period_date);
-CREATE INDEX lupo_analytics_visits_periods_idx_period_date ON lupo_analytics_visits_periods (period_date);
-CREATE INDEX lupo_analytics_visits_periods_idx_content ON lupo_analytics_visits_periods (content_id, period_date);
-CREATE INDEX lupo_analytics_visits_periods_idx_department ON lupo_analytics_visits_periods (department_id, period_date);
 
 CREATE TABLE lupo_anubis_log (
   log_id bigint NOT NULL AUTO_INCREMENT,
@@ -2095,6 +2024,7 @@ CREATE TABLE lupo_document_embeddings (
 CREATE INDEX lupo_document_embeddings_chunk_id ON lupo_document_embeddings (chunk_id);
 CREATE INDEX lupo_document_embeddings_embedding_model ON lupo_document_embeddings (embedding_model);
 
+-- Enhanced edges table replacing lupo_edge_types, lupo_relationships, lupo_entity_edges
 CREATE TABLE lupo_edges (
   edge_id bigint NOT NULL,
   left_object_type varchar(50) NOT NULL,
@@ -2102,8 +2032,11 @@ CREATE TABLE lupo_edges (
   right_object_type varchar(50) NOT NULL,
   right_object_id bigint NOT NULL,
   edge_type varchar(100) NOT NULL,
+  edge_category varchar(100) DEFAULT NULL,
+  edge_description text,
   channel_id bigint DEFAULT NULL,
   channel_key varchar(64) DEFAULT NULL,
+  domain_id bigint NOT NULL DEFAULT '1',
   weight_score int NOT NULL DEFAULT '0',
   sort_num int NOT NULL DEFAULT '0',
   actor_id bigint DEFAULT NULL,
@@ -2115,29 +2048,23 @@ CREATE TABLE lupo_edges (
   relationship_type varchar(64) DEFAULT 'semantic',
   bidirectional tinyint NOT NULL DEFAULT '0',
   context_scope varchar(100) DEFAULT NULL,
+  properties json DEFAULT NULL,
   PRIMARY KEY (edge_id)
 );
 
 CREATE INDEX lupo_edges_idx_left ON lupo_edges (left_object_type, left_object_id);
 CREATE INDEX lupo_edges_idx_right ON lupo_edges (right_object_type, right_object_id);
 CREATE INDEX lupo_edges_idx_edge_type ON lupo_edges (edge_type);
+CREATE INDEX lupo_edges_idx_edge_category ON lupo_edges (edge_category);
 CREATE INDEX lupo_edges_idx_actor ON lupo_edges (actor_id);
+CREATE INDEX lupo_edges_idx_domain ON lupo_edges (domain_id);
 CREATE INDEX lupo_edges_idx_is_deleted ON lupo_edges (is_deleted);
 CREATE INDEX lupo_edges_idx_semantic_weight ON lupo_edges (semantic_weight);
 CREATE INDEX lupo_edges_idx_relationship_type ON lupo_edges (relationship_type);
 CREATE INDEX lupo_edges_idx_channel_semantic ON lupo_edges (channel_id, relationship_type, semantic_weight);
+CREATE INDEX lupo_edges_idx_created ON lupo_edges (created_ymdhis);
+CREATE INDEX lupo_edges_idx_updated ON lupo_edges (updated_ymdhis);
 
-CREATE TABLE lupo_edge_types (
-  edge_type_id bigint NOT NULL,
-  edge_type varchar(100) NOT NULL,
-  description text,
-  category varchar(100) DEFAULT NULL,
-  created_ymd bigint NOT NULL DEFAULT '0',
-  updated_ymd bigint NOT NULL DEFAULT '0',
-  PRIMARY KEY (edge_type_id)
-);
-
-CREATE INDEX lupo_edge_types_idx_edge_type ON lupo_edge_types (edge_type);
 
 CREATE TABLE lupo_emotional_constellations (
   constellation_id char(26) NOT NULL,
@@ -2214,28 +2141,6 @@ CREATE TABLE lupo_emotional_translations (
 );
 
 
-CREATE TABLE lupo_entity_edges (
-  entity_edge_id bigint NOT NULL,
-  source_entity_type varchar(64) NOT NULL,
-  source_entity_id bigint NOT NULL,
-  target_entity_type varchar(64) NOT NULL,
-  target_entity_id bigint NOT NULL,
-  edge_type varchar(50) NOT NULL,
-  domain_id bigint NOT NULL DEFAULT '1',
-  properties json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (entity_edge_id)
-);
-
-CREATE INDEX lupo_entity_edges_idx_source ON lupo_entity_edges (source_entity_type, source_entity_id);
-CREATE INDEX lupo_entity_edges_idx_target ON lupo_entity_edges (target_entity_type, target_entity_id);
-CREATE INDEX lupo_entity_edges_idx_edge_type ON lupo_entity_edges (edge_type);
-CREATE INDEX lupo_entity_edges_idx_domain ON lupo_entity_edges (domain_id);
-CREATE INDEX lupo_entity_edges_idx_created ON lupo_entity_edges (created_ymdhis);
-CREATE INDEX lupo_entity_edges_idx_is_deleted ON lupo_entity_edges (is_deleted);
 
 CREATE TABLE lupo_entity_properties (
   entity_property_id bigint NOT NULL,
@@ -3054,20 +2959,6 @@ CREATE INDEX lupo_reference_objects_idx_object_slug ON lupo_reference_objects (o
 CREATE INDEX lupo_reference_objects_idx_type_slug ON lupo_reference_objects (object_type, object_slug);
 CREATE INDEX lupo_reference_objects_idx_is_deleted ON lupo_reference_objects (is_deleted);
 
-CREATE TABLE lupo_relationships (
-  relationship_id bigint NOT NULL,
-  source_type varchar(50) DEFAULT NULL,
-  source_id bigint DEFAULT NULL,
-  edge_type varchar(50) DEFAULT NULL,
-  target_type varchar(50) DEFAULT NULL,
-  target_id bigint DEFAULT NULL,
-  created_ymdhis bigint DEFAULT NULL,
-  updated_ymdhis bigint DEFAULT NULL,
-  is_deleted tinyint DEFAULT '0',
-  PRIMARY KEY (relationship_id)
-);
-
-CREATE INDEX lupo_relationships_idx_relationship_lookup ON lupo_relationships (source_type, source_id, edge_type, is_deleted);
 
 CREATE TABLE lupo_search_index (
   search_index_id bigint NOT NULL,
@@ -3113,168 +3004,65 @@ CREATE INDEX lupo_search_rebuild_log_idx_status_retry ON lupo_search_rebuild_log
 CREATE INDEX lupo_search_rebuild_log_idx_created ON lupo_search_rebuild_log (created_ymdhis);
 CREATE INDEX lupo_search_rebuild_log_idx_entity ON lupo_search_rebuild_log (entity_type, entity_id);
 
-CREATE TABLE lupo_semantic_categories (
-  category_id bigint NOT NULL,
-  category_name varchar(255) NOT NULL,
-  category_slug varchar(255) NOT NULL,
+-- Consolidated semantic index table replacing 7 semantic tables
+CREATE TABLE lupo_semantic_index (
+  semantic_id bigint NOT NULL,
+  semantic_type varchar(32) NOT NULL,
+  slug varchar(255) DEFAULT NULL,
+  name varchar(255) DEFAULT NULL,
+  title varchar(255) DEFAULT NULL,
   description text,
-  parent_category_id bigint DEFAULT NULL,
-  sort_order int NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_active tinyint NOT NULL DEFAULT '1',
-  PRIMARY KEY (category_id)
-);
-
-CREATE UNIQUE INDEX lupo_semantic_categories_uk_category_slug ON lupo_semantic_categories (category_slug);
-CREATE INDEX lupo_semantic_categories_idx_parent_category ON lupo_semantic_categories (parent_category_id);
-CREATE INDEX lupo_semantic_categories_idx_sort_order ON lupo_semantic_categories (sort_order);
-CREATE INDEX lupo_semantic_categories_idx_is_active ON lupo_semantic_categories (is_active);
-CREATE INDEX lupo_semantic_categories_idx_created ON lupo_semantic_categories (created_ymdhis);
-CREATE INDEX lupo_semantic_categories_idx_created_ymdhis ON lupo_semantic_categories (created_ymdhis, is_active);
-
-CREATE TABLE lupo_semantic_content_views (
-  semantic_view_id bigint NOT NULL,
-  view_name varchar(255) NOT NULL,
-  view_type varchar(64) NOT NULL,
-  title varchar(255) NOT NULL,
-  description text,
-  template_path varchar(512) NOT NULL,
+  parent_id bigint DEFAULT NULL,
+  sort_order int DEFAULT 0,
+  weight float DEFAULT 0,
+  relationship_strength decimal(3,2) DEFAULT 1.00,
+  layer varchar(64) DEFAULT NULL,
+  timeframe varchar(64) DEFAULT NULL,
+  language_code varchar(8) DEFAULT NULL,
+  color varchar(7) DEFAULT '#666666',
+  template_path varchar(512) DEFAULT NULL,
+  json_data json DEFAULT NULL,
+  text_value text,
+  source_content_id bigint DEFAULT NULL,
+  target_content_id bigint DEFAULT NULL,
+  source_page_id bigint DEFAULT NULL,
+  target_page_id bigint DEFAULT NULL,
+  entity_type varchar(32) DEFAULT NULL,
+  entity_id bigint DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
   is_default tinyint NOT NULL DEFAULT '0',
-  PRIMARY KEY (semantic_view_id)
-);
-
-CREATE UNIQUE INDEX lupo_semantic_content_views_uk_view_name ON lupo_semantic_content_views (view_name);
-CREATE INDEX lupo_semantic_content_views_idx_view_type ON lupo_semantic_content_views (view_type);
-CREATE INDEX lupo_semantic_content_views_idx_is_active ON lupo_semantic_content_views (is_active);
-CREATE INDEX lupo_semantic_content_views_idx_is_default ON lupo_semantic_content_views (is_default);
-CREATE INDEX lupo_semantic_content_views_idx_created_ymdhis ON lupo_semantic_content_views (created_ymdhis, is_default, is_active);
-
-CREATE TABLE lupo_semantic_navigation_overview (
-  navigation_id bigint NOT NULL,
-  title varchar(255) NOT NULL,
-  description text,
-  navigation_tree json NOT NULL,
-  content_categories json NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (navigation_id)
-);
-
-CREATE INDEX lupo_semantic_navigation_overview_idx_created ON lupo_semantic_navigation_overview (created_ymdhis);
-CREATE INDEX lupo_semantic_navigation_overview_idx_is_deleted ON lupo_semantic_navigation_overview (is_deleted);
-CREATE INDEX lupo_semantic_navigation_overview_idx_created_ymdhis ON lupo_semantic_navigation_overview (created_ymdhis, is_deleted);
-
-CREATE TABLE lupo_semantic_overlays (
-  semantic_overlay_id int NOT NULL,
-  slug varchar(255) NOT NULL,
-  overlay_key varchar(255) NOT NULL,
-  overlay_value text NOT NULL,
-  context varchar(255) DEFAULT NULL,
-  created_at bigint,
-  PRIMARY KEY (semantic_overlay_id)
-);
-
-CREATE INDEX lupo_semantic_overlays_idx_slug ON lupo_semantic_overlays (slug);
-CREATE INDEX lupo_semantic_overlays_idx_context ON lupo_semantic_overlays (context);
-
-CREATE TABLE lupo_semantic_paths (
-  semantic_path_id bigint NOT NULL,
-  source_page_id bigint NOT NULL,
-  target_page_id bigint NOT NULL,
-  layer varchar(64) NOT NULL,
-  weight float NOT NULL DEFAULT '0',
-  decay_factor float NOT NULL DEFAULT '1',
-  trend_score float NOT NULL DEFAULT '0',
-  timeframe varchar(64) NOT NULL,
-  custom_start bigint,
-  custom_end bigint,
-  created_at bigint,
-  updated_at bigint,
-  PRIMARY KEY (semantic_path_id)
-);
-
-CREATE INDEX lupo_semantic_paths_source_page_id ON lupo_semantic_paths (source_page_id);
-CREATE INDEX lupo_semantic_paths_target_page_id ON lupo_semantic_paths (target_page_id);
-CREATE INDEX lupo_semantic_paths_layer ON lupo_semantic_paths (layer);
-CREATE INDEX lupo_semantic_paths_timeframe ON lupo_semantic_paths (timeframe);
-
-CREATE TABLE lupo_semantic_relationships (
-  relationship_id bigint NOT NULL,
-  source_content_id bigint NOT NULL,
-  target_content_id bigint DEFAULT NULL,
-  relationship_type varchar(64) NOT NULL,
-  relationship_strength decimal(3,2) NOT NULL DEFAULT '1.00',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (relationship_id)
-);
-
-CREATE INDEX lupo_semantic_relationships_idx_source_content ON lupo_semantic_relationships (source_content_id);
-CREATE INDEX lupo_semantic_relationships_idx_target_content ON lupo_semantic_relationships (target_content_id);
-CREATE INDEX lupo_semantic_relationships_idx_relationship_type ON lupo_semantic_relationships (relationship_type);
-CREATE INDEX lupo_semantic_relationships_idx_created ON lupo_semantic_relationships (created_ymdhis);
-CREATE INDEX lupo_semantic_relationships_idx_created_ymdhis ON lupo_semantic_relationships (created_ymdhis, relationship_type, source_content_id, target_content_id);
-
-CREATE TABLE lupo_semantic_search_index (
-  search_index_id bigint NOT NULL,
-  index_name varchar(255) NOT NULL,
-  index_type varchar(64) NOT NULL,
-  description text,
-  index_data json NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_active tinyint NOT NULL DEFAULT '1',
-  PRIMARY KEY (search_index_id)
-);
-
-CREATE UNIQUE INDEX lupo_semantic_search_index_uk_index_name ON lupo_semantic_search_index (index_name);
-CREATE INDEX lupo_semantic_search_index_idx_index_type ON lupo_semantic_search_index (index_type);
-CREATE INDEX lupo_semantic_search_index_idx_is_active ON lupo_semantic_search_index (is_active);
-CREATE INDEX lupo_semantic_search_index_idx_created ON lupo_semantic_search_index (created_ymdhis);
-CREATE INDEX lupo_semantic_search_index_idx_created_ymdhis ON lupo_semantic_search_index (created_ymdhis, is_active);
-
-CREATE TABLE lupo_semantic_tags (
-  tag_id bigint NOT NULL,
-  tag_name varchar(255) NOT NULL,
-  tag_slug varchar(255) NOT NULL,
-  description text,
-  color varchar(7) NOT NULL DEFAULT '#666666',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_active tinyint NOT NULL DEFAULT '1',
-  PRIMARY KEY (tag_id)
-);
-
-CREATE UNIQUE INDEX lupo_semantic_tags_uk_tag_slug ON lupo_semantic_tags (tag_slug);
-CREATE INDEX lupo_semantic_tags_idx_is_active ON lupo_semantic_tags (is_active);
-CREATE INDEX lupo_semantic_tags_idx_created ON lupo_semantic_tags (created_ymdhis);
-CREATE INDEX lupo_semantic_tags_idx_created_ymdhis ON lupo_semantic_tags (created_ymdhis, is_active);
-
-CREATE TABLE lupo_semantic_translations (
-  semantic_translation_id bigint NOT NULL,
-  language_code varchar(8) NOT NULL,
-  entity_type varchar(32) NOT NULL,
-  entity_id bigint NOT NULL,
-  translated_text text NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint DEFAULT NULL,
   created_by bigint DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (semantic_translation_id)
+  PRIMARY KEY (semantic_id)
 );
 
-CREATE UNIQUE INDEX lupo_semantic_translations_unq_translation ON lupo_semantic_translations (entity_type, entity_id, language_code);
-CREATE INDEX lupo_semantic_translations_idx_entity_lookup ON lupo_semantic_translations (entity_type, entity_id, language_code);
-CREATE INDEX lupo_semantic_translations_idx_language_entity ON lupo_semantic_translations (language_code, entity_type, entity_id);
-CREATE INDEX lupo_semantic_translations_idx_created ON lupo_semantic_translations (created_ymdhis);
-CREATE INDEX lupo_semantic_translations_idx_updated ON lupo_semantic_translations (updated_ymdhis);
-CREATE INDEX lupo_semantic_translations_idx_deleted ON lupo_semantic_translations (is_deleted);
+CREATE UNIQUE INDEX lupo_semantic_index_uk_type_slug ON lupo_semantic_index (semantic_type, slug);
+CREATE INDEX lupo_semantic_index_idx_type ON lupo_semantic_index (semantic_type);
+CREATE INDEX lupo_semantic_index_idx_parent ON lupo_semantic_index (parent_id);
+CREATE INDEX lupo_semantic_index_idx_source_content ON lupo_semantic_index (source_content_id);
+CREATE INDEX lupo_semantic_index_idx_target_content ON lupo_semantic_index (target_content_id);
+CREATE INDEX lupo_semantic_index_idx_source_page ON lupo_semantic_index (source_page_id);
+CREATE INDEX lupo_semantic_index_idx_target_page ON lupo_semantic_index (target_page_id);
+CREATE INDEX lupo_semantic_index_idx_entity ON lupo_semantic_index (entity_type, entity_id);
+CREATE INDEX lupo_semantic_index_idx_language ON lupo_semantic_index (language_code);
+CREATE INDEX lupo_semantic_index_idx_layer ON lupo_semantic_index (layer);
+CREATE INDEX lupo_semantic_index_idx_timeframe ON lupo_semantic_index (timeframe);
+CREATE INDEX lupo_semantic_index_idx_created_ymdhis ON lupo_semantic_index (created_ymdhis, is_active, is_deleted);
+CREATE INDEX lupo_semantic_index_idx_updated_ymdhis ON lupo_semantic_index (updated_ymdhis);
+CREATE INDEX lupo_semantic_index_idx_is_active ON lupo_semantic_index (is_active);
+CREATE INDEX lupo_semantic_index_idx_is_default ON lupo_semantic_index (is_default);
+CREATE INDEX lupo_semantic_index_idx_is_deleted ON lupo_semantic_index (is_deleted);
+
+
+
+
+
+
+
+
 
 CREATE TABLE lupo_sessions (
   session_id varchar(255) NOT NULL,
@@ -3501,145 +3289,83 @@ CREATE INDEX lupo_tldnr_idx_system_version ON lupo_tldnr (system_version);
 CREATE INDEX lupo_tldnr_idx_is_deleted ON lupo_tldnr (is_deleted);
 CREATE INDEX lupo_tldnr_idx_created ON lupo_tldnr (created_ymdhis);
 
-CREATE TABLE lupo_truth_answers (
-  truth_answer_id bigint NOT NULL,
-  truth_question_id bigint NOT NULL,
+-- Consolidated truth knowledge table replacing 6 truth tables
+CREATE TABLE lupo_truth_knowledge (
+  truth_id bigint NOT NULL,
+  truth_type varchar(32) NOT NULL,
+  parent_id bigint DEFAULT NULL,
+  question_id bigint DEFAULT NULL,
+  answer_id bigint DEFAULT NULL,
+  evidence_id bigint DEFAULT NULL,
+  source_id bigint DEFAULT NULL,
+  topic_id bigint DEFAULT NULL,
+  relation_id bigint DEFAULT NULL,
   actor_id bigint NOT NULL DEFAULT '0',
-  answer_text text NOT NULL,
-  confidence_score decimal(5,2) NOT NULL DEFAULT '0.00',
-  evidence_score decimal(5,2) NOT NULL DEFAULT '0.00',
-  contradiction_flag tinyint NOT NULL DEFAULT '0',
-  likes_count bigint NOT NULL DEFAULT '0',
-  shares_count bigint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (truth_answer_id)
-);
-
-CREATE INDEX lupo_truth_answers_idx_question ON lupo_truth_answers (truth_question_id);
-ALTER TABLE lupo_truth_answers CHANGE truth_answer_id truth_answer_id bigint NOT NULL AUTO_INCREMENT;
-
-CREATE TABLE lupo_truth_evidence (
-  truth_evidence_id bigint NOT NULL,
-  truth_answer_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  evidence_text text NOT NULL,
-  evidence_type varchar(50) NOT NULL DEFAULT '',
-  weight_score decimal(5,2) NOT NULL DEFAULT '0.00',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (truth_evidence_id)
-);
-
-CREATE INDEX lupo_truth_evidence_truth_answer_id ON lupo_truth_evidence (truth_answer_id);
-CREATE INDEX lupo_truth_evidence_actor_id ON lupo_truth_evidence (actor_id);
-
-CREATE TABLE lupo_truth_questions (
-  truth_question_id bigint NOT NULL,
-  truth_question_parent_id bigint DEFAULT NULL,
-  actor_id bigint NOT NULL DEFAULT '0',
-  qtype varchar(50) NOT NULL DEFAULT 'unknown',
-  status varchar(64) NOT NULL DEFAULT 'active',
-  sort_num int NOT NULL DEFAULT '0',
-  slug varchar(255) NOT NULL,
-  question_text text NOT NULL,
-  format varchar(64) NOT NULL DEFAULT 'text',
-  format_override varchar(50) DEFAULT NULL,
-  view_count bigint NOT NULL DEFAULT '0',
-  likes_count bigint NOT NULL DEFAULT '0',
-  shares_count bigint NOT NULL DEFAULT '0',
-  answer_count bigint NOT NULL DEFAULT '0',
-  last_activity_ymdhis bigint DEFAULT NULL,
-  is_featured tinyint NOT NULL DEFAULT '0',
-  is_verified tinyint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  default_collection_id bigint NOT NULL DEFAULT '0',
-  PRIMARY KEY (truth_question_id)
-);
-
-CREATE INDEX lupo_truth_questions_idx_parent ON lupo_truth_questions (truth_question_parent_id);
-CREATE INDEX lupo_truth_questions_idx_slug ON lupo_truth_questions (slug);
-
-CREATE TABLE lupo_truth_questions_map (
-  truth_questions_map_id bigint NOT NULL,
-  truth_question_id bigint NOT NULL,
-  object_type varchar(50) NOT NULL,
-  object_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (truth_questions_map_id)
-);
-
-CREATE INDEX lupo_truth_questions_map_truth_question_id ON lupo_truth_questions_map (truth_question_id);
-CREATE INDEX lupo_truth_questions_map_object_type ON lupo_truth_questions_map (object_type);
-CREATE INDEX lupo_truth_questions_map_object_id ON lupo_truth_questions_map (object_id);
-CREATE INDEX lupo_truth_questions_map_actor_id ON lupo_truth_questions_map (actor_id);
-
-CREATE TABLE lupo_truth_relations (
-  truth_relation_id bigint NOT NULL,
-  left_object_type varchar(50) NOT NULL,
-  left_object_id bigint NOT NULL,
-  right_object_type varchar(50) NOT NULL,
-  right_object_id bigint NOT NULL,
-  relation_type varchar(50) NOT NULL DEFAULT '',
-  actor_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (truth_relation_id)
-);
-
-CREATE INDEX lupo_truth_relations_left_object_type ON lupo_truth_relations (left_object_type);
-CREATE INDEX lupo_truth_relations_right_object_type ON lupo_truth_relations (right_object_type);
-CREATE INDEX lupo_truth_relations_relation_type ON lupo_truth_relations (relation_type);
-
-CREATE TABLE lupo_truth_sources (
-  truth_sourc_id bigint NOT NULL,
-  truth_evidence_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
+  object_type varchar(50) DEFAULT NULL,
+  object_id bigint DEFAULT NULL,
+  left_object_type varchar(50) DEFAULT NULL,
+  left_object_id bigint DEFAULT NULL,
+  right_object_type varchar(50) DEFAULT NULL,
+  right_object_id bigint DEFAULT NULL,
+  slug varchar(255) DEFAULT NULL,
+  title varchar(255) DEFAULT NULL,
+  text_content text,
+  question_text text,
+  answer_text text,
+  evidence_text text,
   source_url text,
-  source_title varchar(255) NOT NULL DEFAULT '',
-  source_type varchar(50) NOT NULL DEFAULT '',
-  reliability_score decimal(5,2) NOT NULL DEFAULT '0.00',
+  source_title varchar(255) DEFAULT '',
+  qtype varchar(50) DEFAULT 'unknown',
+  status varchar(64) DEFAULT 'active',
+  evidence_type varchar(50) DEFAULT '',
+  source_type varchar(50) DEFAULT '',
+  relation_type varchar(50) DEFAULT '',
+  format varchar(64) DEFAULT 'text',
+  format_override varchar(50) DEFAULT NULL,
+  confidence_score decimal(5,2) DEFAULT '0.00',
+  evidence_score decimal(5,2) DEFAULT '0.00',
+  weight_score decimal(5,2) DEFAULT '0.00',
+  reliability_score decimal(5,2) DEFAULT '0.00',
+  importance_score decimal(5,2) DEFAULT '0.00',
+  sort_num int DEFAULT '0',
+  view_count bigint DEFAULT '0',
+  likes_count bigint DEFAULT '0',
+  shares_count bigint DEFAULT '0',
+  answer_count bigint DEFAULT '0',
+  contradiction_flag tinyint DEFAULT '0',
+  is_featured tinyint DEFAULT '0',
+  is_verified tinyint DEFAULT '0',
+  last_activity_ymdhis bigint DEFAULT NULL,
+  default_collection_id bigint DEFAULT '0',
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (truth_sourc_id)
+  PRIMARY KEY (truth_id)
 );
 
-CREATE INDEX lupo_truth_sources_truth_evidence_id ON lupo_truth_sources (truth_evidence_id);
-CREATE INDEX lupo_truth_sources_actor_id ON lupo_truth_sources (actor_id);
+CREATE UNIQUE INDEX lupo_truth_knowledge_uk_type_slug ON lupo_truth_knowledge (truth_type, slug);
+CREATE INDEX lupo_truth_knowledge_idx_type ON lupo_truth_knowledge (truth_type);
+CREATE INDEX lupo_truth_knowledge_idx_parent ON lupo_truth_knowledge (parent_id);
+CREATE INDEX lupo_truth_knowledge_idx_question ON lupo_truth_knowledge (question_id);
+CREATE INDEX lupo_truth_knowledge_idx_answer ON lupo_truth_knowledge (answer_id);
+CREATE INDEX lupo_truth_knowledge_idx_evidence ON lupo_truth_knowledge (evidence_id);
+CREATE INDEX lupo_truth_knowledge_idx_source ON lupo_truth_knowledge (source_id);
+CREATE INDEX lupo_truth_knowledge_idx_topic ON lupo_truth_knowledge (topic_id);
+CREATE INDEX lupo_truth_knowledge_idx_actor ON lupo_truth_knowledge (actor_id);
+CREATE INDEX lupo_truth_knowledge_idx_object ON lupo_truth_knowledge (object_type, object_id);
+CREATE INDEX lupo_truth_knowledge_idx_left_object ON lupo_truth_knowledge (left_object_type, left_object_id);
+CREATE INDEX lupo_truth_knowledge_idx_right_object ON lupo_truth_knowledge (right_object_type, right_object_id);
+CREATE INDEX lupo_truth_knowledge_idx_status ON lupo_truth_knowledge (status);
+CREATE INDEX lupo_truth_knowledge_idx_created_ymdhis ON lupo_truth_knowledge (created_ymdhis, is_deleted);
+CREATE INDEX lupo_truth_knowledge_idx_updated_ymdhis ON lupo_truth_knowledge (updated_ymdhis);
+CREATE INDEX lupo_truth_knowledge_idx_is_deleted ON lupo_truth_knowledge (is_deleted);
 
-CREATE TABLE lupo_truth_topics (
-  truth_topic_id bigint NOT NULL,
-  topic_name varchar(255) NOT NULL DEFAULT '',
-  slug varchar(255) NOT NULL DEFAULT '',
-  topic_description text,
-  actor_id bigint NOT NULL DEFAULT '0',
-  weight_score decimal(5,2) NOT NULL DEFAULT '0.00',
-  importance_score decimal(5,2) NOT NULL DEFAULT '0.00',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (truth_topic_id)
-);
 
-CREATE INDEX lupo_truth_topics_slug ON lupo_truth_topics (slug);
-CREATE INDEX lupo_truth_topics_actor_id ON lupo_truth_topics (actor_id);
-CREATE INDEX lupo_truth_topics_topic_name ON lupo_truth_topics (topic_name);
+
+
+
+
 
 CREATE TABLE lupo_analytics_paths (
   analytics_path_id bigint NOT NULL,

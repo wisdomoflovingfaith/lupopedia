@@ -63,24 +63,16 @@ INSERT IGNORE INTO lupo_atoms (`atom_id`, `atom_name`, `context_id`, `is_authori
 (10, 'actor_registry', 1, 1, '{"type":"identity","description":"Universal actor identity and registry system"}', 'Actor Registry - Universal identity system for all actors (human, AI, system)', 'actors,identity,registry,authentication', @now, @now);
 
 -- ============================================================
--- SEMANTIC PATHS
+-- SEMANTIC INDEX (Consolidated from semantic_paths, semantic_relationships, semantic_search_index)
 -- ============================================================
-INSERT IGNORE INTO lupo_semantic_paths (`semantic_path_id`, `source_page_id`, `target_page_id`, `layer`, `weight`, `decay_factor`, `trend_score`, `timeframe`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'governance', 1.0, 1.0, 0.0, 'implementation', @now, @now),
-(2, 3, 4, 'emotional', 0.8, 1.0, 0.0, 'processing', @now, @now),
-(3, 5, 6, 'epistemology', 0.9, 1.0, 0.0, 'validation', @now, @now),
-(4, 7, 8, 'multi_agent', 0.7, 1.0, 0.0, 'coordination', @now, @now),
-(5, 9, 10, 'knowledge', 1.0, 1.0, 0.0, 'navigation', @now, @now);
-
--- ============================================================
--- SEMANTIC RELATIONSHIPS
--- ============================================================
-INSERT IGNORE INTO lupo_semantic_relationships (`relationship_id`, `source_content_id`, `target_content_id`, `relationship_type`, `relationship_strength`, `created_ymdhis`) VALUES
-(1, 1, 2, 'implements', 1.00, @now),
-(2, 1, 3, 'includes', 0.80, @now),
-(3, 1, 4, 'includes', 0.80, @now),
-(4, 1, 5, 'includes', 0.80, @now),
-(5, 2, 7, 'governs', 1.00, @now);
+INSERT IGNORE INTO lupo_semantic_index (`semantic_id`, `semantic_type`, `source_page_id`, `target_page_id`, `source_content_id`, `target_content_id`, `layer`, `weight`, `relationship_strength`, `timeframe`, `json_data`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(1, 'path', 1, 2, NULL, NULL, 'governance', 1.0, 1.00, 'implementation', '{"decay_factor":1.0,"trend_score":0.0}', @now, @now, 0, NULL),
+(2, 'path', 3, 4, NULL, NULL, 'emotional', 0.8, 1.00, 'processing', '{"decay_factor":1.0,"trend_score":0.0}', @now, @now, 0, NULL),
+(3, 'path', 5, 6, NULL, NULL, 'epistemology', 0.9, 1.00, 'validation', '{"decay_factor":1.0,"trend_score":0.0}', @now, @now, 0, NULL),
+(4, 'relationship', NULL, NULL, 1, 2, NULL, NULL, 1.00, NULL, '{"relationship_type":"implements"}', @now, @now, 0, NULL),
+(5, 'relationship', NULL, NULL, 1, 3, NULL, NULL, 0.80, NULL, '{"relationship_type":"includes"}', @now, @now, 0, NULL),
+(6, 'relationship', NULL, NULL, 1, 4, NULL, NULL, 0.80, NULL, '{"relationship_type":"includes"}', @now, @now, 0, NULL),
+(7, 'search_index', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"atom_id":1,"content_id":1,"semantic_vector":[0.9,0.1,0.2,0.3,0.4],"context_tags":["semantic_os","core","framework"]}', @now, @now, 0, NULL);
 
 -- ============================================================
 -- EMOTIONAL GEOMETRY
@@ -207,8 +199,6 @@ INSERT IGNORE INTO lupo_system_health_snapshots (`snapshot_id`, `system_status`,
 INSERT IGNORE INTO lupo_search_index (`search_index_id`, `content_id`, `search_terms`, `content_type`, `relevance_score`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
 (1, 1, 'lupopedia semantic operating system architecture', 'document', 0.95, '{"language":"english","indexed_at":"' + CAST(@now AS CHAR) + '","term_frequency":{"lupopedia":1,"semantic":1,"operating":1,"system":1,"architecture":1}}', @now, @now, 0, NULL);
 
-INSERT IGNORE INTO lupo_semantic_search_index (`semantic_index_id`, `atom_id`, `content_id`, `semantic_vector`, `context_tags`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
-(1, 1, 1, '[0.9,0.1,0.2,0.3,0.4]', 'semantic_os,core,framework', @now, @now, 0, NULL);
 
 -- ============================================================
 -- UPLOADS AND NOTIFICATIONS
@@ -261,8 +251,8 @@ INSERT IGNORE INTO lupo_agent_versions (`version_id`, `agent_id`, `version_numbe
 INSERT IGNORE INTO lupo_actor_actions (`action_id`, `actor_id`, `action_type`, `action_name`, `description`, `target_object_type`, `target_object_id`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
 (1, 2, 'system_operation', 'csv_export', 'Export all TOON-defined tables to CSV format', 'system', 1, '{"tables_processed":198,"export_format":"csv","duration_ms":2300}', @now, @now, 0, NULL);
 
-INSERT IGNORE INTO lupo_actor_meta (`meta_id`, `actor_id`, `meta_key`, `meta_value`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
-(1, 2, 'ide_capabilities', '["code_generation","file_editing","project_management","debug_mode"]', '{"last_updated":"2026-02-20","capabilities_version":"1.0"}', @now, @now, 0, NULL);
+INSERT IGNORE INTO lupo_metadata (`metadata_id`, `entity_type`, `entity_id`, `domain_id`, `meta_type`, `property_key`, `property_value`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
+(1, 'actor', 2, NULL, 'system', 'ide_capabilities', '["code_generation","file_editing","project_management","debug_mode"]', @now, @now, 0, NULL);
 
 INSERT IGNORE INTO lupo_actor_edges (`actor_edge_id`, `source_actor_id`, `target_actor_id`, `edge_type`, `relationship_strength`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
 (1, 2, 1000, 'assists', 0.8, '{"assistance_type":"development_tools","collaboration_mode":"ide_integration"}', @now, @now, 0, NULL);

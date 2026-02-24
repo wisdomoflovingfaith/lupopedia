@@ -153,8 +153,9 @@ function truth_get_sources($evidence_id) {
     
     $db = $GLOBALS['mydatabase'];
     
-    $sql = "SELECT * FROM {$table_prefix}truth_sources
-            WHERE truth_evidence_id = ?
+    $sql = "SELECT * FROM {$table_prefix}truth_knowledge
+            WHERE truth_type = 'source'
+              AND answer_id = ?
               AND is_deleted = 0
             ORDER BY reliability_score DESC, created_ymdhis DESC";
     
@@ -183,8 +184,9 @@ function truth_get_topic_by_slug($slug) {
     
     $db = $GLOBALS['mydatabase'];
     
-    $sql = "SELECT * FROM {$table_prefix}truth_topics
-            WHERE slug = ?
+    $sql = "SELECT * FROM {$table_prefix}truth_knowledge
+            WHERE truth_type = 'topic'
+              AND slug = ?
               AND is_deleted = 0
             LIMIT 1";
     
@@ -215,8 +217,9 @@ function truth_get_questions_by_type($qtype, $limit = 50) {
     
     $db = $GLOBALS['mydatabase'];
     
-    $sql = "SELECT * FROM {$table_prefix}truth_questions
-            WHERE qtype = ?
+    $sql = "SELECT * FROM {$table_prefix}truth_knowledge
+            WHERE truth_type = 'question'
+              AND qtype = ?
               AND status = 'active'
               AND is_deleted = 0
             ORDER BY is_featured DESC, answer_count DESC, created_ymdhis DESC
@@ -294,18 +297,17 @@ function truth_get_questions_for_slug($slug) {
     $db = $GLOBALS['mydatabase'];
     
     // Find questions that reference content with this slug
-    // Uses lupo_truth_questions_map to link questions to content via object_type='content' and object_id
+    // Uses lupo_truth_knowledge with truth_type='question' to link questions to content via object_type='content' and object_id
     // This is a simple lookup - no inference logic
-    $sql = "SELECT DISTINCT tq.*
-            FROM {$table_prefix}truth_questions tq
-            LEFT JOIN {$table_prefix}truth_questions_map tqm ON tqm.truth_question_id = tq.truth_question_id
-              AND tqm.object_type = 'content'
-              AND tqm.is_deleted = 0
-            LEFT JOIN {$table_prefix}contents c ON c.content_id = tqm.object_id
-            WHERE (c.slug = ? OR tq.slug LIKE ?)
-              AND tq.status = 'active'
-              AND tq.is_deleted = 0
-            ORDER BY tq.is_featured DESC, tq.answer_count DESC
+    $sql = "SELECT DISTINCT tk.*
+            FROM {$table_prefix}truth_knowledge tk
+              LEFT JOIN {$table_prefix}contents c ON c.content_id = tk.object_id
+              WHERE tk.truth_type = 'question'
+              AND tk.object_type = 'content'
+              AND (c.slug = ? OR tk.slug LIKE ?)
+              AND tk.status = 'active'
+              AND tk.is_deleted = 0
+            ORDER BY tk.is_featured DESC, tk.answer_count DESC
             LIMIT 20";
     
     try {
@@ -337,15 +339,14 @@ function truth_get_answers_for_slug($slug) {
     $db = $GLOBALS['mydatabase'];
     
     // Find answers for questions related to this slug
-    // Uses lupo_truth_questions_map to link questions to content via object_type='content' and object_id
+    // Uses lupo_truth_knowledge with truth_type='answer' to link answers to questions via question_id
     $sql = "SELECT DISTINCT ta.*
-            FROM {$table_prefix}truth_answers ta
-            JOIN {$table_prefix}truth_questions tq ON tq.truth_question_id = ta.truth_question_id
-            LEFT JOIN {$table_prefix}truth_questions_map tqm ON tqm.truth_question_id = tq.truth_question_id
-              AND tqm.object_type = 'content'
-              AND tqm.is_deleted = 0
-            LEFT JOIN {$table_prefix}contents c ON c.content_id = tqm.object_id
-            WHERE (c.slug = ? OR tq.slug LIKE ?)
+            FROM {$table_prefix}truth_knowledge ta
+            LEFT JOIN {$table_prefix}truth_knowledge tq ON tq.question_id = ta.question_id
+              WHERE ta.truth_type = 'answer'
+              AND tq.truth_type = 'question'
+              AND tq.object_type = 'content'
+              AND (tq.object_id = ? OR tq.slug LIKE ?)
               AND tq.status = 'active'
               AND tq.is_deleted = 0
               AND ta.is_deleted = 0
@@ -376,28 +377,21 @@ function truth_get_evidence_for_slug($slug) {
     
     if (empty($GLOBALS['mydatabase']) || empty($slug)) {
         return [];
-    }
-    
-    $db = $GLOBALS['mydatabase'];
-    
-    // Find evidence for answers related to this slug
-    // Uses lupo_truth_questions_map to link questions to content via object_type='content' and object_id
-    // Phase 2: Just structural data, no weighting logic
     $sql = "SELECT DISTINCT te.*
-            FROM {$table_prefix}truth_evidence te
-            JOIN {$table_prefix}truth_answers ta ON ta.truth_answer_id = te.truth_answer_id
-            JOIN {$table_prefix}truth_questions tq ON tq.truth_question_id = ta.truth_question_id
-            LEFT JOIN {$table_prefix}truth_questions_map tqm ON tqm.truth_question_id = tq.truth_question_id
-              AND tqm.object_type = 'content'
-              AND tqm.is_deleted = 0
-            LEFT JOIN {$table_prefix}contents c ON c.content_id = tqm.object_id
-            WHERE (c.slug = ? OR tq.slug LIKE ?)
+            FROM {$table_prefix}truth_knowledge te
+            LEFT JOIN {$table_prefix}truth_knowledge ta ON ta.answer_id = te.answer_id
+            LEFT JOIN {$table_prefix}truth_knowledge tq ON tq.question_id = ta.question_id
+              WHERE te.truth_type = 'evidence'
+              AND ta.truth_type = 'answer'
+              AND tq.truth_type = 'question'
+              AND tq.object_type = 'content'
+              AND (tq.object_id = ? OR tq.slug LIKE ?)
               AND tq.status = 'active'
               AND tq.is_deleted = 0
               AND ta.is_deleted = 0
               AND te.is_deleted = 0
-            ORDER BY te.created_ymdhis DESC
-            LIMIT 50";
+            ORDER BY te.weight_score DESC
+            LIMIT 20";
     
     try {
         $slug_pattern = '%' . $slug . '%';

@@ -26,9 +26,9 @@ This document lists every column ending in `_id` across the entire **TOON Schema
 | `actor_event_id` | lupo_actor_events | |
 | `actor_handshake_id` | lupo_actor_handshakes | |
 | `actor_id` | lupo_actor_actions, lupo_actor_aliases, lupo_actor_capabilities, lupo_actor_channel_roles, lupo_actor_channels, lupo_actor_collections, lupo_actor_departments, lupo_actor_events, lupo_actor_handshakes, lupo_actor_meta, lupo_actor_moods, lupo_actor_object_edges, lupo_actor_persona_relationships, lupo_actor_properties, lupo_actor_reply_templates, lupo_actor_truth_edges, lupo_actors, lupo_agent_context_snapshots, lupo_agent_faucets, lupo_agent_properties, lupo_analytics_visits, lupo_api_clients, lupo_api_rate_limits, lupo_api_token_logs, lupo_api_tokens, lupo_api_webhooks, lupo_artifacts, lupo_banned_actors, lupo_bans_log, lupo_channel_boot_log, lupo_channel_escalations, lupo_channel_logs, lupo_collections, lupo_contents, lupo_crm_lead_messages, lupo_department_roles, lupo_edges, lupo_gov_event_actor_edges, lupo_labs_declarations, lupo_labs_violations, lupo_memory_events, lupo_memory_rollups, lupo_meta_log_events, lupo_notifications, lupo_referers, lupo_session_events, lupo_sessions, lupo_system_config, lupo_system_events, lupo_tab_events, lupo_truth_answers, lupo_truth_evidence, lupo_truth_questions, lupo_truth_questions_map, lupo_truth_relations, lupo_truth_sources, lupo_truth_topics, lupo_uploads, lupo_visits, lupo_world_events | |
-| `actor_meta_id` | lupo_actor_meta | |
+| `metadata_id` | lupo_metadata | |
 | `actor_object_edge_id` | lupo_actor_object_edges | |
-| `actor_property_id` | lupo_actor_properties | |
+| `metadata_id` | lupo_metadata | |
 | `actor_reply_template_id` | lupo_actor_reply_templates | |
 | `actor_source_id` | lupo_actors | |
 | `actor_truth_edge_id` | lupo_actor_truth_edges | |

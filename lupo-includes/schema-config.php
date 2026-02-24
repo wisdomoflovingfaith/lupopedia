@@ -48,7 +48,7 @@ $GLOBALS['lupo_ephemeral_tables'] = [
     'lupo_analytics_campaign_vars_daily',
     'lupo_analytics_paths_daily',
     'lupo_analytics_referers_daily',
-    'lupo_analytics_visits_daily',
+    'lupo_analytics_visits',
     'lupo_analytics_visits',
     'lupo_api_tokens',
     'lupo_api_clients',

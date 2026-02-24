@@ -1,0 +1,105 @@
+---
+wolfie.headers: {
+  file_path_from_root: "channels/0/broadcasts/20260224164800_0_10000_actor_420_preservation_doctrine.md",
+  system_version: "4.0.43",
+  channel_id: 0,
+  actor_id: 10000,
+  to_actor_id: 0,
+  created_ymdhis: 20260224164800,
+  updated_ymdhis: 20260224164800,
+  message_type: "broadcast",
+  visibility: "system",
+  priority: "critical"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "actors/registry.json", type: "governs", weight: 1.0 },
+    { to: "database/migrations/seed_lupopedia.sql", type: "governs", weight: 1.0 },
+    { to: "database/migrations/import_from_old_crafty_syntax.sql", type: "governs", weight: 1.0 }
+  ],
+  semantic_tags: ["doctrine", "actor_420", "banned", "testing", "preservation", "mandatory"]
+}
+---
+
+# DOCTRINE #13: ACTOR 420 PRESERVATION (BANNED BUT REQUIRED)
+
+**Status:** MANDATORY  
+**Effective:** Version 4.0.43+  
+**Authority:** Captain Wolfie (10000)  
+**Enforcement:** All IDE Agents
+
+## Overview
+
+Actor 420 (STONED WOLFIE) is a required banned test actor. Actor 420 MUST always exist in the system. Actor 420 MUST remain banned. Actor 420 MUST NEVER be deleted or skipped. Actor 420 is required for testing ANUBIS, routing, and security gates.
+
+## Mandatory Rules
+
+### 1. Actor 420 MUST Exist
+- MUST be present in `lupo_actors` table
+- MUST be present in `actors/registry.json`
+- MUST be present in filesystem actor definitions
+- MUST be included in any actor export/import cycle
+- MUST be created during install, importer runs, seed generation, registry rebuilds, actor synchronization, and any agent-driven reconstruction
+
+### 2. Actor 420 MUST Be Banned
+- `is_banned = 1` (or equivalent banned status field)
+- `banned_reason = "TEST_ACTOR"`
+- `banned_ymdhis` set to valid UTC BIGINT (YYYYMMDDHHIISS)
+- `agent_class = "banned"`
+- Actor 420 cannot act, cannot send messages, cannot authenticate
+
+### 3. Actor 420 MUST NOT Be Deleted
+- No agent may remove actor 420
+- No agent may "optimize away" actor 420
+- No agent may skip creating actor 420
+- No agent may rewrite seeds to exclude actor 420
+- Soft delete (`is_deleted=1`) is acceptable for database representation, but actor MUST remain in registry
+
+### 4. Actor 420 MUST Be Used For Testing
+- ANUBIS routing and orphan adoption
+- Unknown recipient handling
+- Security gates and bypass prevention
+- Hybrid actor logic validation
+- Emotional routing and mood_rgb blacklist
+- Message rejection and ban enforcement
+- System-wide ban enforcement validation
+
+### 5. Actor 420 MUST Be Included In Install + Import
+During 4.0.43 development cycle:
+- Start from Crafty Syntax 3.7.5
+- `install.php` creates all tables
+- Importer loads all .md files
+- Actor 420 MUST be created as part of seed + import cycle
+- Actor 420 MUST be preserved across all database operations
+
+## Rationale
+
+Actor 420 is essential for:
+1. **Security Testing**: Validates that banned actors cannot bypass security gates
+2. **ANUBIS Testing**: Tests orphan message adoption and unknown recipient handling
+3. **Routing Testing**: Validates message routing rejects banned actors
+4. **Emotional Geometry Testing**: Tests mood_rgb blacklist enforcement
+5. **Hybrid Actor Testing**: Validates semantic signature detection
+6. **Bypass Prevention**: Tests all known bypass methods are blocked
+7. **Historical Preservation**: Maintains 420-series development history
+
+## Enforcement
+
+All IDE agents MUST:
+- Create actor 420 during any actor initialization
+- Preserve actor 420 during any actor cleanup
+- Never optimize away actor 420
+- Never skip actor 420 in exports/imports
+- Always mark actor 420 as banned
+- Never allow actor 420 to authenticate or act
+
+## Violation Consequences
+
+Any agent that removes, skips, or optimizes away actor 420 is in violation of this doctrine and must immediately recreate actor 420 with proper banned status.
+
+---
+
+**Authority:** Captain Wolfie (10000)  
+**Doctrine Number:** 13  
+**Version:** 4.0.43  
+**UTC:** 20260224164800

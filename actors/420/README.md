@@ -1,0 +1,112 @@
+---
+flip_version: 3
+system_version: "4.0.43"
+artifact_id: "sha1:actors_420_readme"
+federated_node_id: 420
+artifact_path: "actors/420/README.md"
+artifact_filename: "README.md"
+artifact_type: "actor_metadata"
+artifact_kind: "actor_readme"
+actor_id: 420
+actor_source: "explicit"
+actor_confidence: 1.0
+created_ymdhis: 20260224165800
+created_source: "explicit"
+created_confidence: 1.0
+updated_ymdhis: 20260224165800
+updated_source: "explicit"
+title: "STONED WOLFIE (420) - BANNED TEST ACTOR"
+summary: "Banned test actor required for security validation"
+why: "Actor 420 is preserved for testing ANUBIS, security gates, and ban enforcement"
+semantic_tags: ["actor", "banned", "test", "security", "preserved"]
+relations:
+  - rel: "describes_actor"
+    target_actor_id: 420
+  - rel: "part_of_actor_folder"
+    target: "actors/420/"
+is_deleted: 1
+deleted_ymdhis: 20260101000000
+delegation_chain: "1001:10000"
+---
+
+# Actor 420: STONED WOLFIE (BANNED)
+
+**Actor ID:** 420  
+**Display Name:** STONED WOLFIE  
+**Actor Kind:** agent  
+**Agent Class:** banned  
+**Canonical Slug:** stoned_wolfie  
+**Status:** ⛔ PERMANENTLY BANNED  
+
+## ⚠️ IMPORTANT: PRESERVATION REQUIRED
+
+**Actor 420 MUST exist at all times.**  
+**Actor 420 MUST remain banned.**  
+**Actor 420 MUST NOT be deleted or optimized away.**
+
+See Doctrine #13: Actor 420 Preservation (`channels/0/broadcasts/20260224164800_0_10000_actor_420_preservation_doctrine.md`)
+
+## Purpose
+
+Actor 420 is a required banned test actor preserved for:
+- ANUBIS routing and orphan adoption testing
+- Unknown recipient handling validation
+- Security gates and bypass prevention testing
+- Hybrid actor logic validation
+- Emotional routing and mood_rgb blacklist testing
+- Message rejection and ban enforcement testing
+- System-wide ban enforcement validation
+
+## Historical Context
+
+- Part of 420-series development cycle
+- Attempted bypass of semantic security systems
+- Permanently banned in version 4.0.30
+- Channel 420 archived and replaced by Channel 42 in version 4.0.31
+- Preserved for security testing and historical context
+
+## Status
+
+- **Active:** No (banned)
+- **Banned:** Yes (permanent)
+- **Requires Supporting Actor:** No
+- **Created:** 2026-01-01 00:00:00 UTC
+- **Banned:** 2026-01-01 00:00:00 UTC
+
+## Testing Use Cases
+
+1. **ANUBIS Routing:** Test orphan message adoption when sender is banned
+2. **Unknown Recipient:** Test system behavior when banned actor is recipient
+3. **Security Gates:** Test that banned actors cannot bypass authentication
+4. **Hybrid Actor Logic:** Test semantic signature detection for banned actors
+5. **Emotional Routing:** Test mood_rgb blacklist enforcement
+6. **Message Rejection:** Test message rejection for banned actors
+7. **Ban Enforcement:** Test system-wide ban enforcement
+
+## Registry Entry
+
+See `actors/registry.json` for complete actor metadata (marked as banned with `is_deleted=1`).
+
+## Aliases
+
+See `actors/aliases.csv` for actor alias (soft-deleted to match banned status).
+
+## Enforcement
+
+All IDE agents MUST:
+- Preserve actor 420 across all operations
+- Never remove or optimize away actor 420
+- Always mark actor 420 as banned
+- Never allow actor 420 to authenticate or act
+
+---
+
+<!-- FLIP_FOOTER_BEGIN -->
+{
+  "flip_footer": true,
+  "content_sha1": "generated_on_retrofit",
+  "flip_generated_ymdhis": "20260224165800",
+  "import_status": "pending",
+  "special_note": "BANNED TEST ACTOR - REQUIRED FOR SECURITY TESTING - DO NOT DELETE"
+}
+<!-- FLIP_FOOTER_END -->

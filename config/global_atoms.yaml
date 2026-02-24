@@ -20,7 +20,7 @@ last_updated: 20260224
 # Implementation of FLIP v2 in VSX Extension, refined header/footer parsing
 
 # Global Version Atoms
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.42"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.43"
 GLOBAL_FLIP_SCHEMA_VERSION: "2.0"
 
 # System Configuration Atoms
@@ -95,7 +95,7 @@ timestamp:
 
 # Current Lupopedia Version (Use this in all WOLFIE headers instead of hardcoding)
 # NOTE: Version is defined at top of file (line 23) - DO NOT DUPLICATE
-# GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.42" (see line 23)
+# GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.43" (see line 23)
 
 # Current Authors (Use in WOLFIE headers)
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie (lupopedia-at-gmail-com)"

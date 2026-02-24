@@ -10,7 +10,7 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
 
 /**
  * Handle GET /my-profile — show current actor's profile form.
- * Loads actor from lupo_actors, properties from lupo_actor_properties, computes avatar path.
+ * Loads actor from lupo_actors, properties from lupo_metadata, computes avatar path.
  * Renders via basic_layout.php (top graphic, drop menu, content) so My Profile has full UI navigation.
  *
  * @return string HTML (basic template with navigation)
@@ -133,9 +133,9 @@ function actors_handle_my_profile() {
 
 /**
  * Handle POST /my-profile/save — save actor name, properties, and optional avatar upload.
- * Uses TOON: lupo_actors (name, updated_ymdhis, actor_id, avatar_hash), lupo_actor_properties
- * (actor_property_id, actor_type, actor_id, property_key, property_value, created_ymdhis, updated_ymdhis, is_deleted),
- * lupo_uploads (upload_id, actor_id, ...). actor_property_id has no auto_increment in install — we allocate next id.
+ * Uses TOON: lupo_actors (name, updated_ymdhis, actor_id, avatar_hash), lupo_metadata
+ * (metadata_id, entity_type, entity_id, domain_id, meta_type, property_key, property_value, created_ymdhis, updated_ymdhis, is_deleted),
+ * lupo_uploads (upload_id, actor_id, ...). metadata_id has no auto_increment in install — we allocate next id.
  * PHP 5.3+ compatible; PDO_DB only (query, fetchRow, fetchOne, update, insert).
  *
  * @return void Redirects to /my-profile
@@ -173,7 +173,7 @@ function actors_handle_my_profile_save() {
     }
 
     $actors_table = $table_prefix . 'actors';
-    $props_table = $table_prefix . 'actor_properties';
+    $metadata_table = $table_prefix . 'metadata';
     $uploads_table = $table_prefix . 'uploads';
     $now = gmdate('YmdHis');
 
@@ -248,17 +248,19 @@ function actors_handle_my_profile_save() {
         }
         $property_value = is_string($value) ? trim($value) : (string) $value;
         $existing = $db->fetchRow(
-            "SELECT actor_property_id FROM " . $db->quoteIdentifier($props_table) . " WHERE actor_id = :actor_id AND property_key = :pk AND is_deleted = 0 LIMIT 1",
+            "SELECT metadata_id FROM " . $db->quoteIdentifier($metadata_table) . " WHERE entity_type = 'actor' AND entity_id = :actor_id AND property_key = :pk AND is_deleted = 0 LIMIT 1",
             array('actor_id' => $actor_id, 'pk' => $property_key)
         );
-        if ($existing && isset($existing['actor_property_id'])) {
-            $db->update($props_table, array('property_value' => $property_value, 'updated_ymdhis' => $now), 'actor_property_id = :id', array('id' => $existing['actor_property_id']));
+        if ($existing && isset($existing['metadata_id'])) {
+            $db->update($metadata_table, array('property_value' => $property_value, 'updated_ymdhis' => $now), 'metadata_id = :id', array('id' => $existing['metadata_id']));
         } else {
-            $next_id = (int) $db->fetchOne("SELECT COALESCE(MAX(actor_property_id), 0) + 1 FROM " . $db->quoteIdentifier($props_table), array());
-            $db->insert($props_table, array(
-                'actor_property_id' => $next_id,
-                'actor_type' => $actor_type,
-                'actor_id' => $actor_id,
+            $next_id = (int) $db->fetchOne("SELECT COALESCE(MAX(metadata_id), 0) + 1 FROM " . $db->quoteIdentifier($metadata_table), array());
+            $db->insert($metadata_table, array(
+                'metadata_id' => $next_id,
+                'entity_type' => 'actor',
+                'entity_id' => $actor_id,
+                'domain_id' => null,
+                'meta_type' => null,
                 'property_key' => $property_key,
                 'property_value' => $property_value,
                 'created_ymdhis' => $now,
@@ -306,17 +308,19 @@ function actors_handle_my_profile_save() {
             $db->update($actors_table, array('avatar_hash' => $stored_filename, 'updated_ymdhis' => $now), 'actor_id = :actor_id', array('actor_id' => $actor_id));
 
             $ex = $db->fetchRow(
-                "SELECT actor_property_id FROM " . $db->quoteIdentifier($props_table) . " WHERE actor_id = :actor_id AND property_key = 'avatar_storage_path' AND is_deleted = 0 LIMIT 1",
+                "SELECT metadata_id FROM " . $db->quoteIdentifier($metadata_table) . " WHERE entity_type = 'actor' AND entity_id = :actor_id AND property_key = 'avatar_storage_path' AND is_deleted = 0 LIMIT 1",
                 array('actor_id' => $actor_id)
             );
-            if ($ex && isset($ex['actor_property_id'])) {
-                $db->update($props_table, array('property_value' => $storage_path, 'updated_ymdhis' => $now), 'actor_property_id = :id', array('id' => $ex['actor_property_id']));
+            if ($ex && isset($ex['metadata_id'])) {
+                $db->update($metadata_table, array('property_value' => $storage_path, 'updated_ymdhis' => $now), 'metadata_id = :id', array('id' => $ex['metadata_id']));
             } else {
-                $next_id = (int) $db->fetchOne("SELECT COALESCE(MAX(actor_property_id), 0) + 1 FROM " . $db->quoteIdentifier($props_table), array());
-                $db->insert($props_table, array(
-                    'actor_property_id' => $next_id,
-                    'actor_type' => $actor_type,
-                    'actor_id' => $actor_id,
+                $next_id = (int) $db->fetchOne("SELECT COALESCE(MAX(metadata_id), 0) + 1 FROM " . $db->quoteIdentifier($metadata_table), array());
+                $db->insert($metadata_table, array(
+                    'metadata_id' => $next_id,
+                    'entity_type' => 'actor',
+                    'entity_id' => $actor_id,
+                    'domain_id' => null,
+                    'meta_type' => null,
                     'property_key' => 'avatar_storage_path',
                     'property_value' => $storage_path,
                     'created_ymdhis' => $now,
