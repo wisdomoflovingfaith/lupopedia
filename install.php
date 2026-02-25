@@ -161,6 +161,7 @@ function lupo_hash_equals($a, $b) {
 }
 
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install_wizard_classes.php';
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'InstallWizardMdImporter.php';
 
 // ----- Pre-flight checks (PHP 5.3+ compatible; minimal and fallback-friendly)
 $preflight_blocking = array();
@@ -315,7 +316,10 @@ if ($step === 'credentials') {
                 $table_prefix = isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_';
                 try {
                     InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_minimal_4.0.26.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $bootstrapLog, $table_prefix);
                     InstallWizardChannels::createReservedSystemChannels($pdo, $bootstrapLog);
                     $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
                     header('Location: ' . $base . '/install.php?step=bootstrap');
@@ -505,9 +509,15 @@ if ($step === 'run') {
 
         if ($install_type === 'new') {
             InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
-            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_minimal_4.0.26.sql', $log, $table_prefix);
+            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $log, $table_prefix);
+            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $log, $table_prefix);
+            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $log, $table_prefix);
+            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
             InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
             InstallWizardChannels::createReservedSystemChannels($pdo, $log);
+            
+            // Import MD files from channels/0/broadcasts/
+            InstallWizardMdImporter::importAllMdFiles($pdo, $log, $table_prefix);
         }
 
         if ($install_type === 'upgrade') {
@@ -562,6 +572,10 @@ if ($step === 'run') {
                 $log[] = InstallWizardLogger::logEntry('skip', 'Skipped: drop deprecated livehelp_* tables (option unchecked at credentials).');
             }
         }
+        
+        // Import MD files from channels/0/broadcasts/ (for both new install and upgrade)
+        InstallWizardMdImporter::importAllMdFiles($pdo, $log, $table_prefix);
+        
         // Populate registry_open with free IDs (gaps) for channels and actors, cap so table stays small.
         InstallWizardUnregistry::seedUnregistryFromGaps($pdo, $log, InstallWizardUnregistry::DEFAULT_MAX_CAP);
         // 4.0.20: Ensure Stoned Wolfie (AI + human) banned test identities exist after import/seed.

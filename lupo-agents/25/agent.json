@@ -1,9 +1,10 @@
 {
-  "code": "AGAPE",
-  "name": "AGAPE",
+  "code": "VISHWAKARMA",
+  "name": "VISHWAKARMA",
   "layer": "kernel",
   "is_required": true,
   "is_kernel": true,
-  "recommended_slot": 8,
-  "version": "1.0.0"
+  "dedicated_slot": 25,
+  "version": "1.0.0",
+  "aliases": ["VISH"]
 }

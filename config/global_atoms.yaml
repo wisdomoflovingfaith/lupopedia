@@ -20,7 +20,7 @@ last_updated: 20260224
 # Implementation of FLIP v2 in VSX Extension, refined header/footer parsing
 
 # Global Version Atoms
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.44"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.45"
 GLOBAL_FLIP_SCHEMA_VERSION: "2.0"
 
 # System Configuration Atoms

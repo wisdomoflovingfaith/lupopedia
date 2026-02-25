@@ -1,0 +1,187 @@
+{
+  "version": "4.0.45",
+  "last_updated": "20260225",
+  "verification": "All IDs verified from seed_actors_agents_4.0.45.sql",
+  "lookup_method": "Direct extraction from seed file",
+  "source_of_truth": "database/migrations/seed_actors_agents_4.0.45.sql",
+  
+  "actors": [
+    {
+      "actor_id": 0,
+      "canonical_name": "system",
+      "display_name": "System",
+      "type": "system",
+      "aliases": ["system", "System", "SYSTEM"],
+      "folder": "0/"
+    },
+    {
+      "actor_id": 1,
+      "canonical_name": "captain-wolfie",
+      "display_name": "Captain WOLFIE",
+      "type": "agent",
+      "agent_id": 1,
+      "aliases": ["captain-wolfie", "Captain WOLFIE", "WOLFIE", "wolfie-ai"],
+      "folder": "1/"
+    },
+    {
+      "actor_id": 2,
+      "canonical_name": "lilith",
+      "display_name": "LILITH",
+      "type": "agent",
+      "agent_id": 2,
+      "aliases": ["lilith", "LILITH", "lilith-ai"],
+      "folder": "2/"
+    },
+    {
+      "actor_id": 3,
+      "canonical_name": "rose-dialog",
+      "display_name": "ROSE",
+      "type": "agent",
+      "agent_id": 3,
+      "aliases": ["rose", "ROSE", "rose-dialog", "dialog"],
+      "folder": "3/"
+    },
+    {
+      "actor_id": 4,
+      "canonical_name": "eris",
+      "display_name": "ERIS",
+      "type": "agent",
+      "agent_id": 4,
+      "aliases": ["eris", "ERIS", "eris-ai"],
+      "folder": "4/"
+    },
+    {
+      "actor_id": 5,
+      "canonical_name": "metis",
+      "display_name": "METIS",
+      "type": "agent",
+      "agent_id": 5,
+      "aliases": ["metis", "METIS", "metis-ai"],
+      "folder": "5/"
+    },
+    {
+      "actor_id": 1000,
+      "canonical_name": "kiro-ide",
+      "display_name": "Kiro IDE",
+      "type": "ide_agent",
+      "aliases": ["kiro", "KIRO", "kiro-ide", "Kiro IDE"],
+      "folder": "1000/",
+      "paired_actor_id": 10000
+    },
+    {
+      "actor_id": 1001,
+      "canonical_name": "windsurf-ide",
+      "display_name": "Windsurf IDE",
+      "type": "ide_agent",
+      "aliases": ["windsurf", "Windsurf", "windsurf-ide", "Windsurf IDE"],
+      "folder": "1001/",
+      "paired_actor_id": 10000
+    },
+    {
+      "actor_id": 1002,
+      "canonical_name": "cursor-ide",
+      "display_name": "Cursor IDE",
+      "type": "ide_agent",
+      "aliases": ["cursor", "Cursor", "cursor-ide", "Cursor IDE"],
+      "folder": "1002/",
+      "paired_actor_id": 10000
+    },
+    {
+      "actor_id": 1003,
+      "canonical_name": "cascade-ide",
+      "display_name": "Cascade IDE",
+      "type": "ide_agent",
+      "aliases": ["cascade", "Cascade", "cascade-ide", "Cascade IDE"],
+      "folder": "1003/",
+      "paired_actor_id": 10000
+    },
+    {
+      "actor_id": 1004,
+      "canonical_name": "warp-ide",
+      "display_name": "Warp IDE",
+      "type": "ide_agent",
+      "aliases": ["warp", "Warp", "warp-ide", "Warp IDE"],
+      "folder": "1004/",
+      "paired_actor_id": 10000
+    },
+    {
+      "actor_id": 10000,
+      "canonical_name": "root-captain-10000",
+      "display_name": "Captain",
+      "type": "human",
+      "aliases": ["captain", "Captain", "wolfie", "eric", "wisdomoflovingfaith", "root-captain"],
+      "folder": "10000/"
+    }
+  ],
+  
+  "lookup": {
+    "system": 0,
+    "System": 0,
+    "SYSTEM": 0,
+    "captain-wolfie": 1,
+    "Captain WOLFIE": 1,
+    "WOLFIE": 1,
+    "wolfie-ai": 1,
+    "lilith": 2,
+    "LILITH": 2,
+    "lilith-ai": 2,
+    "rose": 3,
+    "ROSE": 3,
+    "rose-dialog": 3,
+    "dialog": 3,
+    "eris": 4,
+    "ERIS": 4,
+    "eris-ai": 4,
+    "metis": 5,
+    "METIS": 5,
+    "metis-ai": 5,
+    "kiro": 1000,
+    "KIRO": 1000,
+    "kiro-ide": 1000,
+    "Kiro IDE": 1000,
+    "windsurf": 1001,
+    "Windsurf": 1001,
+    "windsurf-ide": 1001,
+    "Windsurf IDE": 1001,
+    "cursor": 1002,
+    "Cursor": 1002,
+    "cursor-ide": 1002,
+    "Cursor IDE": 1002,
+    "cascade": 1003,
+    "Cascade": 1003,
+    "cascade-ide": 1003,
+    "Cascade IDE": 1003,
+    "warp": 1004,
+    "Warp": 1004,
+    "warp-ide": 1004,
+    "Warp IDE": 1004,
+    "captain": 10000,
+    "Captain": 10000,
+    "wolfie": 10000,
+    "eric": 10000,
+    "wisdomoflovingfaith": 10000,
+    "root-captain": 10000
+  },
+  
+  "verification": {
+    "captain_id_confirmed": 10000,
+    "kiro_id_confirmed": 1000,
+    "wolfie_ai_id_confirmed": 1,
+    "lilith_id_confirmed": 2,
+    "rose_id_confirmed": 3,
+    "eris_id_confirmed": 4,
+    "metis_id_confirmed": 5,
+    "windsurf_id_confirmed": 1001,
+    "cursor_id_confirmed": 1002,
+    "cascade_id_confirmed": 1003,
+    "warp_id_confirmed": 1004
+  },
+  
+  "notes": [
+    "All IDs extracted directly from seed_actors_agents_4.0.45.sql",
+    "NO HARDCODED ASSUMPTIONS - every ID verified from source",
+    "Captain (human) = 10000, WOLFIE (AI agent) = 1",
+    "KIRO IDE = 1000, Windsurf = 1001, Cursor = 1002, Cascade = 1003, Warp = 1004",
+    "Core AI agents: WOLFIE=1, LILITH=2, ROSE=3, ERIS=4, METIS=5"
+  ]
+}

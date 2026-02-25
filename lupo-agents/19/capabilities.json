@@ -1,0 +1,10 @@
+{
+  "capabilities": [
+    "detect_orphan_records",
+    "add_missing_headers",
+    "complete_flip_footers",
+    "route_to_quarantine",
+    "validate_metadata",
+    "repair_malformed_content"
+  ]
+}

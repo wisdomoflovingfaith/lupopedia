@@ -3810,3 +3810,154 @@ ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUE
 INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, entity_key, entity_name, federation_node_id, metadata_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
 VALUES (9005005, 'edge_type', 2, 2, 'semantic_relationship', 'Semantic Relationship', 1, '{"description": "Semantic relationships between files"}', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
+
+-- ============================================================
+-- TASK MANAGEMENT SYSTEM (Lupopedia 4.0.45)
+-- ============================================================
+-- Tables for task management and offline task import support
+-- Supports MD file task import and database-driven task tracking
+-- Added: 2026-02-25 by Kiro (1000)
+-- ============================================================
+
+-- Task Types Registry
+CREATE TABLE lupo_task_types (
+  type_id bigint NOT NULL,
+  type_key varchar(64) NOT NULL,
+  type_name varchar(255) NOT NULL,
+  description text,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  PRIMARY KEY (type_id)
+);
+
+CREATE UNIQUE INDEX lupo_task_types_uniq_type_key ON lupo_task_types (type_key);
+CREATE INDEX lupo_task_types_idx_is_deleted ON lupo_task_types (is_deleted);
+
+-- Task Statuses Registry
+CREATE TABLE lupo_task_statuses (
+  status_id bigint NOT NULL,
+  status_key varchar(64) NOT NULL,
+  status_name varchar(255) NOT NULL,
+  description text,
+  is_terminal tinyint NOT NULL DEFAULT '0',
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  PRIMARY KEY (status_id)
+);
+
+CREATE UNIQUE INDEX lupo_task_statuses_uniq_status_key ON lupo_task_statuses (status_key);
+CREATE INDEX lupo_task_statuses_idx_is_terminal ON lupo_task_statuses (is_terminal);
+CREATE INDEX lupo_task_statuses_idx_is_deleted ON lupo_task_statuses (is_deleted);
+
+-- Task Priorities Registry
+CREATE TABLE lupo_task_priorities (
+  priority_id bigint NOT NULL,
+  priority_key varchar(64) NOT NULL,
+  priority_name varchar(255) NOT NULL,
+  priority_level int NOT NULL,
+  description text,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  PRIMARY KEY (priority_id)
+);
+
+CREATE UNIQUE INDEX lupo_task_priorities_uniq_priority_key ON lupo_task_priorities (priority_key);
+CREATE INDEX lupo_task_priorities_idx_priority_level ON lupo_task_priorities (priority_level);
+CREATE INDEX lupo_task_priorities_idx_is_deleted ON lupo_task_priorities (is_deleted);
+
+-- Core Tasks Table
+CREATE TABLE lupo_tasks (
+  task_id bigint NOT NULL,
+  task_key varchar(64) NOT NULL,
+  channel_id bigint NOT NULL,
+  owner_actor_id bigint NOT NULL,
+  task_type_id bigint NOT NULL,
+  status_id bigint NOT NULL,
+  priority_id bigint NOT NULL,
+  title varchar(255) NOT NULL,
+  description text,
+  prompt_path varchar(512) DEFAULT NULL,
+  acting_as_actor_id bigint DEFAULT NULL,
+  estimated_duration_seconds int DEFAULT NULL,
+  actual_duration_seconds int DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  started_ymdhis bigint DEFAULT NULL,
+  completed_ymdhis bigint DEFAULT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
+  metadata_json text,
+  PRIMARY KEY (task_id)
+);
+
+CREATE UNIQUE INDEX lupo_tasks_uniq_task_key_per_channel ON lupo_tasks (task_key, channel_id);
+CREATE INDEX lupo_tasks_idx_channel_id ON lupo_tasks (channel_id);
+CREATE INDEX lupo_tasks_idx_owner_actor_id ON lupo_tasks (owner_actor_id);
+CREATE INDEX lupo_tasks_idx_status_id ON lupo_tasks (status_id);
+CREATE INDEX lupo_tasks_idx_priority_id ON lupo_tasks (priority_id);
+CREATE INDEX lupo_tasks_idx_created_ymdhis ON lupo_tasks (created_ymdhis);
+CREATE INDEX lupo_tasks_idx_acting_as_actor_id ON lupo_tasks (acting_as_actor_id);
+CREATE INDEX lupo_tasks_idx_is_deleted ON lupo_tasks (is_deleted);
+-- RESERVED ID DOCTRINE: task_id is NOT AUTO_INCREMENT; application must supply explicit ID.
+
+-- Task Assignments
+CREATE TABLE lupo_task_assignments (
+  assignment_id bigint NOT NULL,
+  task_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  assignment_type varchar(32) NOT NULL DEFAULT 'assigned',
+  assigned_by_actor_id bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (assignment_id)
+);
+
+CREATE INDEX lupo_task_assignments_idx_task_id ON lupo_task_assignments (task_id);
+CREATE INDEX lupo_task_assignments_idx_actor_id ON lupo_task_assignments (actor_id);
+CREATE INDEX lupo_task_assignments_idx_assignment_type ON lupo_task_assignments (assignment_type);
+CREATE INDEX lupo_task_assignments_idx_is_deleted ON lupo_task_assignments (is_deleted);
+
+-- Task Dependencies
+CREATE TABLE lupo_task_dependencies (
+  dependency_id bigint NOT NULL,
+  task_id bigint NOT NULL,
+  depends_on_task_id bigint NOT NULL,
+  dependency_type varchar(32) NOT NULL DEFAULT 'blocks',
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (dependency_id)
+);
+
+CREATE INDEX lupo_task_dependencies_idx_task_id ON lupo_task_dependencies (task_id);
+CREATE INDEX lupo_task_dependencies_idx_depends_on_task_id ON lupo_task_dependencies (depends_on_task_id);
+CREATE INDEX lupo_task_dependencies_idx_dependency_type ON lupo_task_dependencies (dependency_type);
+CREATE INDEX lupo_task_dependencies_idx_is_deleted ON lupo_task_dependencies (is_deleted);
+
+-- Task Events (Audit Log)
+CREATE TABLE lupo_task_events (
+  event_id bigint NOT NULL,
+  task_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  event_type varchar(64) NOT NULL,
+  old_value text,
+  new_value text,
+  notes text,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (event_id)
+);
+
+CREATE INDEX lupo_task_events_idx_task_id ON lupo_task_events (task_id);
+CREATE INDEX lupo_task_events_idx_actor_id ON lupo_task_events (actor_id);
+CREATE INDEX lupo_task_events_idx_event_type ON lupo_task_events (event_type);
+CREATE INDEX lupo_task_events_idx_created_ymdhis ON lupo_task_events (created_ymdhis);
+
+-- ============================================================
+-- END OF TASK MANAGEMENT SYSTEM
+-- ============================================================
