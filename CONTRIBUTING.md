@@ -1,3 +1,25 @@
+---
+wolfie.headers: {
+  file_path_from_root: "CONTRIBUTING.md",
+  system_version: "4.0.44",
+  channel_id: 1,
+  actor_id: 1002,
+  created_ymdhis: 20260224172000,
+  updated_ymdhis: 20260224172000,
+  message_type: "documentation",
+  visibility: "public",
+  priority: "high",
+  purpose: "Multi-agent contribution guidelines and development workflow"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "AGENTS.md", type: "references", weight: 1.0 },
+    { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.9 }
+  ],
+  semantic_tags: ["contributing", "multi_agent", "development_workflow", "git_workflow"]
+}
+---
+
 🐺 Lupopedia Multi‑Agent Contribution Model
 Lupopedia is developed using a distributed multi‑agent workflow, where each IDE and AI assistant operates as an independent contributor with its own identity, responsibilities, and commit signature. This document explains how to participate in this ecosystem safely, consistently, and in alignment with the project’s doctrine.
 

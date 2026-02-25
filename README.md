@@ -1,7 +1,7 @@
 ---
 wolfie.headers: {
   file_path_from_root: "README.md",
-  system_version: "4.0.42",
+  system_version: "4.0.44",
   channel_id: 1,
   mood_rgb: "4169E1",
   purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS",
@@ -11,7 +11,7 @@ wolfie.headers: {
   lupo_agent: "kiro",
   artifact_type: "guide",
   artifact_kind: "documentation",
-  traits: ["essential", "entrypoint", "comprehensive", "v4.0.42"],
+  traits: ["essential", "entrypoint", "comprehensive", "v4.0.44"],
   hashtags: ["#readme", "#overview", "#architecture", "#multi_agent", "#semantic_os"],
   engagement: {
     likes: 0,

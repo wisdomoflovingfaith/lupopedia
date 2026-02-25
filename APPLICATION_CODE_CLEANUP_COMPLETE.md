@@ -1,3 +1,26 @@
+---
+wolfie.headers: {
+  file_path_from_root: "APPLICATION_CODE_CLEANUP_COMPLETE.md",
+  system_version: "4.0.44",
+  channel_id: 42,
+  actor_id: 1002,
+  created_ymdhis: 20260224172500,
+  updated_ymdhis: 20260224172500,
+  message_type: "status_report",
+  visibility: "system",
+  priority: "medium",
+  purpose: "Code cleanup completion report for Python and TypeScript files"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "tools/md_flip_ingest.py", type: "documents", weight: 1.0 },
+    { to: "scripts/actor_agent_doctrine.py", type: "documents", weight: 1.0 },
+    { to: "tools/vsx-extension/src/lupopedia/flip.ts", type: "documents", weight: 0.9 }
+  ],
+  semantic_tags: ["code_cleanup", "python", "typescript", "registry_fix", "vsx_extension"]
+}
+---
+
 # APPLICATION CODE REGISTRY CLEANUP COMPLETE
 
 ## Python Files Fixed (2 total):

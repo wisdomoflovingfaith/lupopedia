@@ -377,6 +377,7 @@ function truth_get_evidence_for_slug($slug) {
     
     if (empty($GLOBALS['mydatabase']) || empty($slug)) {
         return [];
+    }
     $sql = "SELECT DISTINCT te.*
             FROM {$table_prefix}truth_knowledge te
             LEFT JOIN {$table_prefix}truth_knowledge ta ON ta.answer_id = te.answer_id

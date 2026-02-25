@@ -3,7 +3,7 @@ wolfie.headers: {
   channel_id: 0,
   actor_id: 10000,
   to_actor_id: 0,
-  system_version: "4.0.43",
+  system_version: "4.0.44",
   broadcast_type: "doctrine",
   artifact_kind: "doctrine",
   purpose: "Mandatory Minimum FLIP Header Requirements"

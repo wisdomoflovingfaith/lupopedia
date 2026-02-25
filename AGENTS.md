@@ -1,3 +1,26 @@
+---
+wolfie.headers: {
+  file_path_from_root: "AGENTS.md",
+  system_version: "4.0.44",
+  channel_id: 1,
+  actor_id: 1002,
+  created_ymdhis: 20260224171500,
+  updated_ymdhis: 20260224171500,
+  message_type: "documentation",
+  visibility: "public",
+  priority: "high"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 1.0 },
+    { to: "actors/registry.json", type: "references", weight: 0.9 },
+    { to: "actors/", type: "references", weight: 0.8 },
+    { to: "lupo-agents/", type: "references", weight: 0.8 }
+  ],
+  semantic_tags: ["agents", "warp", "development_environment", "architecture", "doctrine"]
+}
+---
+
 # AGENTS.md
 
 This file provides guidance to WARP (warp.dev) when working with code in this repository.
