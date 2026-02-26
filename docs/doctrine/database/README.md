@@ -1,59 +1,119 @@
----
-# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/database/README.md
-file.last_modified_system_version: "4.0.16"
-file.last_modified_utc: "20260218000000"
-channel_id: 42   # ANUBIS adoption channel
-tags: ["lost", "orphan", "doctrine"]
-mood_rgb: "FFDAB9"
-atoms:
-  recovery_event: true
-X-Lupo-Actor-ID: 2035
-X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/database/README.md
----
+# 📁 Database Documentation Moved
 
-# Lupopedia Database Tables (Doctrine)
+## 🔄 **Migration Notice**
 
-This folder contains **per-table doctrine** for Lupopedia tables that are migration targets or central to the Crafty Syntax 3.7.5 → Lupopedia 4.0.x upgrade path. Each file describes the table’s purpose, how it is used, and how it was mapped from legacy Crafty Syntax tables.
-
-**Schema source of truth:** `docs/toons/*.toon.json` (TOON files). Column names, types, and keys must match the TOONs. Cursor must not guess or invent schema; see `.cursor/rules/toon-source-of-truth.mdc`.
-
-**Legacy mapping source:** `docs/doctrine/migrations/`. Each migration file (e.g. `livehelp_users_migration.md`) describes one or more legacy tables and their replacement in Lupopedia. The index is **MIGRATION_MAPPING_REFERENCE.md**.
+**Date:** 2026-02-27  
+**Status:** ✅ Complete  
+**New Location:** `docs/database/lupopedia/tables/`
 
 ---
 
-## 3-level permission model (no lupo_operators)
+## 📍 **Where to Find Database Documentation**
 
-Lupopedia does **not** have a `lupo_operators` table. Permissions use a **3-level role system**:
+All database table documentation has been moved to the new centralized location:
 
-1. **Channel roles** — `lupo_actor_channel_roles` (role_key: captain, administrator, monitor). Channel-scoped.
-2. **Department roles** — `lupo_department_roles`. Department-scoped.
-3. **System** — department_id = 0 (global admin). Reserved.
-
-Resolution order: channel → department → system. See **docs/doctrine/migrations/operator_to_roles_migration.md** and **docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md**.
+```
+docs/database/lupopedia/tables/
+├── actor_channel_roles.md
+├── actor_departments.md
+├── actor_reply_templates.md
+├── actors.md
+├── actors_old.md
+├── audit_log.md
+├── auth_users.md
+├── channels.md
+├── crafty_syntax_auto_invite.md
+├── crm_lead_messages.md
+├── crm_leads.md
+├── departments.md
+├── dialog_messages.md
+├── federation_nodes.md
+├── sessions.md
+└── ... (all other table documentation)
+```
 
 ---
 
-## Table docs in this folder
+## 🎯 **Why This Change Was Made**
 
-| Table (lupo_*) | Doc file | Legacy source(s) |
-|----------------|----------|-------------------|
-| lupo_auth_users | [auth_users.md](auth_users.md) | livehelp_users |
-| lupo_actors | [actors.md](actors.md) | livehelp_users (operators only); anonymous users are not in actors (sessions only) |
-| lupo_actor_departments | [actor_departments.md](actor_departments.md) | livehelp_operator_departments |
-| lupo_actor_channel_roles | [actor_channel_roles.md](actor_channel_roles.md) | (replaces operator–channel assignment; no direct legacy table) |
-| lupo_departments | [departments.md](departments.md) | livehelp_departments |
-| lupo_channels | [channels.md](channels.md) | (new; legacy livehelp_channels / livehelp_operator_channels dropped) |
-| lupo_sessions | [sessions.md](sessions.md) | (replaces livehelp_sessions; no import) |
-| lupo_dialog_threads | [dialog_threads.md](dialog_threads.md) | livehelp_transcripts |
-| lupo_dialog_messages | [dialog_messages.md](dialog_messages.md) | livehelp_transcripts |
-| lupo_crm_leads | [crm_leads.md](crm_leads.md) | livehelp_leads |
-| lupo_crm_lead_messages | [crm_lead_messages.md](crm_lead_messages.md) | livehelp_emails |
-| lupo_audit_log | [audit_log.md](audit_log.md) | livehelp_operator_history |
-| lupo_crafty_syntax_auto_invite | [crafty_syntax_auto_invite.md](crafty_syntax_auto_invite.md) | livehelp_autoinvite |
-| lupo_actor_reply_templates | [actor_reply_templates.md](actor_reply_templates.md) | livehelp_quick |
-| lupo_federation_nodes | [federation_nodes.md](federation_nodes.md) | livehelp_websites |
+### **1. Database-Centric Organization**
+- **Better Structure:** All tables organized by database name
+- **Clear Separation:** Lupopedia vs Lupopedia_Worms databases
+- **Scalability:** Easy to add new databases in future
 
-For the full mapping list see **docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md**.
+### **2. Improved Navigation**
+- **Single Location:** All table docs in one place
+- **Consistent Naming:** `lupo_{table_name}.md` format
+- **Easier Discovery:** No functional categorization needed
+
+### **3. FLARE Integration**
+- **Relationship Mapping:** Better support for FLARE edge discovery
+- **Cross-Reference:** Easier to document table relationships
+- **Automation Ready:** Structure supports automated documentation tools
+
+---
+
+## 🔗 **New Documentation Structure**
+
+```
+docs/database/
+├── lupopedia/
+│   ├── tables/
+│   │   ├── lupo_actor_channel_roles.md
+│   │   ├── lupo_actor_departments.md
+│   │   ├── lupo_actor_reply_templates.md
+│   │   ├── lupo_actors.md
+│   │   ├── lupo_actors_old.md
+│   │   ├── lupo_audit_log.md
+│   │   ├── lupo_auth_users.md
+│   │   ├── lupo_channels.md
+│   │   ├── lupo_crafty_syntax_auto_invite.md
+│   │   ├── lupo_crm_lead_messages.md
+│   │   ├── lupo_crm_leads.md
+│   │   ├── lupo_departments.md
+│   │   ├── lupo_dialog_messages.md
+│   │   ├── lupo_federation_nodes.md
+│   │   ├── lupo_sessions.md
+│   │   └── ... (all other tables)
+│   └── README.md
+├── lupopedia_worms/
+│   └── tables/
+│       └── ... (worms database tables)
+└── README.md (main index)
+```
+
+---
+
+## 📋 **Files Moved**
+
+The following files have been migrated:
+
+| Original Path | New Path |
+|---------------|----------|
+| `docs/doctrine/database/actors.md` | `docs/database/lupopedia/tables/lupo_actors.md` |
+| `docs/doctrine/database/channels.md` | `docs/database/lupopedia/tables/lupo_channels.md` |
+| `docs/doctrine/database/dialog_messages.md` | `docs/database/lupopedia/tables/lupo_dialog_messages.md` |
+| `docs/doctrine/database/sessions.md` | `docs/database/lupopedia/tables/lupo_sessions.md` |
+| ... (and all other table documentation) | ... |
+
+---
+
+## 🎯 **Next Steps**
+
+1. **Update References:** Any links to old locations should be updated
+2. **FLARE Integration:** Add FLARE headers to all moved files
+3. **Relationship Mapping:** Document table relationships using FLARE edges
+4. **Complete Coverage:** Document remaining tables from TOON files
+
+---
+
+## 📞 **Contact**
+
+For questions about this migration or database documentation:
+- **Lead:** Windsurf (1001) - FLARE Protocol & Database Documentation
+- **Thread:** 4.0.47 Development - Channel 42
+- **Reference:** See `docs/database/lupopedia/README.md` for database overview
+
+---
+
+*This directory is retained for backward compatibility. All active development has moved to the new location.*

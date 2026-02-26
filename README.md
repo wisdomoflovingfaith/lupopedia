@@ -1,107 +1,39 @@
 ---
-wolfie.headers: {
-  file_path_from_root: "README.md",
-  system_version: "4.0.46",
-  channel_id: 1,
-  mood_rgb: "4169E1",
-  purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS",
-  last_modified_utc: "20260226",
-  delegation_chain: "1001:10000",
-  actor_id: 1001,
-  lupo_agent: "kiro",
-  artifact_type: "guide",
-  artifact_kind: "documentation",
-  traits: ["essential", "entrypoint", "comprehensive", "v4.0.46"],
-  hashtags: ["#readme", "#overview", "#architecture", "#multi_agent", "#semantic_os"],
-  engagement: {
-    likes: 0,
-    shares: 0,
-    views: 0,
-    last_interaction_utc: "20260226"
-  },
-  graph_stats: {
-    inbound_count: 15,
-    outbound_count: 25,
-    centrality_score: 0.95
-  }
-}
-flip.footer: {
-  inbound_edges: [
-    { from: "QUICKSTART.md", type: "references", weight: 1.0, hashtag: "#onboarding" },
-    { from: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9, hashtag: "#guide" },
-    { from: "CHANGELOG.md", type: "references", weight: 0.8, hashtag: "#versions" },
-    { from: "docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md", type: "implements", weight: 1.0, hashtag: "#doctrine" },
-    { from: "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md", type: "implements", weight: 0.9, hashtag: "#actors" },
-    { from: "docs/doctrine/FLIP/FLIP_DOCTRINE.md", type: "implements", weight: 0.9, hashtag: "#flip" },
-    { from: "docs/README.md", type: "references", weight: 0.7, hashtag: "#docs" },
-    { from: "channels/42/broadcasts/", type: "references", weight: 0.6, hashtag: "#coordination" },
-    { from: "docs/status/", type: "references", weight: 0.5, hashtag: "#status" },
-    { from: "docs/versions/", type: "references", weight: 0.5, hashtag: "#roadmap" },
-    { from: "tools/vsx-extension/README.md", type: "references", weight: 0.7, hashtag: "#extension" },
-    { from: "database/migrations/install_new_lupopedia.sql", type: "implements", weight: 0.8, hashtag: "#schema" },
-    { from: "legacy/craftysyntax/", type: "supersedes", weight: 0.6, hashtag: "#legacy" },
-    { from: "docs/channels/appendix/HISTORY.md", type: "references", weight: 0.5, hashtag: "#history" },
-    { from: "docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md", type: "implements", weight: 0.9, hashtag: "#ai_doctrine" }
-  ],
-  outbound_edges: [
-    { to: "QUICKSTART.md", type: "references", weight: 1.0, hashtag: "#onboarding" },
-    { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9, hashtag: "#guide" },
-    { to: "CHANGELOG.md", type: "references", weight: 0.8, hashtag: "#versions" },
-    { to: "docs/doctrine/", type: "references", weight: 1.0, hashtag: "#doctrine" },
-    { to: "docs/README.md", type: "references", weight: 0.7, hashtag: "#docs" },
-    { to: "tools/vsx-extension/", type: "references", weight: 0.8, hashtag: "#extension" },
-    { to: "database/migrations/", type: "references", weight: 0.7, hashtag: "#schema" },
-    { to: "legacy/craftysyntax/", type: "references", weight: 0.5, hashtag: "#legacy" },
-    { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 0.6, hashtag: "#history" },
-    { to: "docs/channels/appendix/FOUNDERS_NOTE.md", type: "references", weight: 0.5, hashtag: "#history" },
-    { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8, hashtag: "#database" },
-    { to: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8, hashtag: "#migration" },
-    { to: "docs/toons/", type: "references", weight: 0.7, hashtag: "#schema" },
-    { to: "docs/doctrine/TIMESTAMP_DOCTRINE.md", type: "references", weight: 0.9, hashtag: "#time" },
-    { to: "docs/doctrine/MIGRATION_DOCTRINE.md", type: "references", weight: 0.8, hashtag: "#migration" },
-    { to: "docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md", type: "references", weight: 0.8, hashtag: "#installation" },
-    { to: "docs/doctrine/PTSD_ADVERTISING_DOCTRINE.md", type: "references", weight: 0.7, hashtag: "#boundaries" },
-    { to: "docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md", type: "references", weight: 0.9, hashtag: "#ai_doctrine" },
-    { to: ".cursor/rules/", type: "references", weight: 0.6, hashtag: "#rules" },
-    { to: "lupopedia-config.php", type: "references", weight: 0.7, hashtag: "#config" },
-    { to: "index.php", type: "references", weight: 0.6, hashtag: "#entrypoint" },
-    { to: "lupo-includes/bootstrap.php", type: "references", weight: 0.7, hashtag: "#bootstrap" },
-    { to: "lupo-includes/lupopedia-loader.php", type: "references", weight: 0.7, hashtag: "#loader" },
-    { to: "app/auth/", type: "references", weight: 0.6, hashtag: "#auth" },
-    { to: "app/Services/", type: "references", weight: 0.6, hashtag: "#services" }
-  ],
-  referenced_by_actors: [1001, 1002, 1003, 1004, 1005, 2038, 24, 10000],
-  references: {
-    by_files: [
-      "QUICKSTART.md",
-      "HOW_TO_USE_LUPOPEDIA.md",
-      "CHANGELOG.md",
-      "docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md",
-      "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md",
-      "docs/README.md"
-    ],
-    by_actors: [1001, 1002, 1003, 10000]
-  },
-  semantic_tags: [
-    "project_overview",
-    "architecture",
-    "multi_agent_ecosystem",
-    "semantic_os",
-    "crafty_syntax_upgrade",
-    "five_pillars",
-    "doctrine_driven",
-    "federation",
-    "actor_model",
-    "flip_protocol"
-  ],
-  enrichment: {
-    llm_inferred_edges: [],
-    federated_metrics: {}
-  },
-  version: "4.0.46",
-  last_verified_utc: "20260226",
-  last_verified_by: "kiro"
-}
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+flare.headers:
+  file_path_from_root: "README.md"
+  system_version: "4.0.47"
+  channel_id: 1
+  actor_id: 1001
+  last_modified_utc: "20260226"
+  delegation_chain: "1001:10000"
+  artifact_type: "guide"
+  purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS with FLARE protocol"
+  mood_rgb: "4169E1"
+  artifact_kind: "documentation"
+  traits: ["essential", "entrypoint", "comprehensive", "v4.0.47"]
+  tags: ["readme", "overview", "architecture", "multi_agent", "semantic_os", "flare_protocol"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  outbound_edges:
+    - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
+    - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
+    - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "docs/README.md", type: "references", weight: 0.7 }
+    - { to: "tools/vsx-extension/", type: "references", weight: 0.8 }
+    - { to: "database/migrations/", type: "references", weight: 0.7 }
+    - { to: "legacy/craftysyntax/", type: "references", weight: 0.5 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "docs/toons/", type: "references", weight: 0.7 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "lupopedia-config.php", type: "references", weight: 0.7 }
+    - { to: "index.php", type: "references", weight: 0.6 }
+  semantic_tags: ["project_overview", "architecture", "multi_agent_ecosystem", "semantic_os", "crafty_syntax_upgrade", "flare_protocol"]
 ---
 ## 🐺 Lupopedia 4.0.46 — Crafty Syntax 3.7.5 → Lupopedia Upgrade Execution (2026-02-26)
 **Current version:** **4.0.46** (ACTIVE)  
@@ -116,6 +48,60 @@ flip.footer: {
 - **Fresh Install Validation**: Verify clean installation path with zero errors.
 - **ANUBIS Automated Sweep**: Expand Living Registry coverage to non-Crafty legacy files.
 - **System Readiness**: Confirm all 97 Crafty Syntax files work correctly in upgrade path.
+
+### 📋 Documentation & Communication System
+
+#### 🗂️ Channels-Based Development Communication
+Lupopedia uses a **channels and threads** system for **dialogs, status reports, and development coordination** - NOT for final documentation. This prevents the problem of writing permanent documentation before the system is finalized (like when we documented `dialog_doctrine` before realizing it should be `dialog_messages`).
+
+**Critical Distinction:**
+- **Channels/Threads**: Live dialogs, status reports, analysis, and work-in-progress discussions
+- **docs/ Directory**: Finalized documentation AFTER decisions are made and systems are complete
+
+**How It Works:**
+- **Channels** (`channels/{id}/`) represent different topics or teams (e.g., Channel 42 for development coordination)
+- **Threads** (`channels/{id}/threads/{thread_name}/`) contain focused discussions or task progress
+- **Messages** are timestamped markdown files with actor attribution and semantic metadata
+
+**Example Structure:**
+channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/ 
+├── 20260226042800_10000_1002_version_4_0_47_initialized.md 
+├── 20260226044100_10000_1002_dialog_doctrine_table_renamed.md 
+├── 20260226050900_10000_1002_livehelp_session_actor_mapping_analysis.md 
+└── 20260226051000_10000_1002_livehelp_table_mapping_comprehensive.md
+
+ 
+**Filename Format:** `YYYYMMDDHHIISS_fromActorId_toActorId_subject.md`
+ 
+**Benefits:**
+- **Iterative Development**: Discuss and refine ideas before committing to documentation
+- **Traceable Evolution**: Complete audit trail of how decisions were made
+- **Prevents Premature Documentation**: Avoid documenting systems before they're finalized
+- **Semantic**: Each message includes FLIP/WOLFIE headers for machine readability
+- **Collaborative**: Multiple agents can participate in the same threads
+- **Searchable**: Easy to find all discussions on a specific topic or time period
+
+**Types of Content in Channels/Threads:**
+- **Live Dialogs**: Real-time discussions between agents and humans
+- **Status Reports**: Progress updates and completion reports
+- **Technical Analysis**: Architecture discussions and problem-solving
+- **Decision Records**: How and why decisions were made
+- **Work-in-Progress**: Temporary analysis and exploration
+- **Bug Reports**: Issue tracking and resolution discussions
+
+**Documentation Workflow:**
+1. **Discuss in Channels**: Work through problems, analyze options, make decisions
+2. **Refine Through Dialog**: Use threaded conversations to evolve understanding
+3. **Finalize Decisions**: Reach consensus on architecture, naming, implementation
+4. **Write Documentation**: Create permanent docs/ files AFTER decisions are final
+
+**Example of This Process:**
+- **Dialog Phase**: We discussed `dialog_doctrine` vs `dialog_messages` in channels
+- **Decision Phase**: Reached consensus that `dialog_messages` is the correct name
+- **Documentation Phase**: Wrote final migration docs with correct table name
+- **Result**: No incorrect documentation to fix later
+
+This system replaces scattered status files, premature documentation, and disconnected development discussions with a unified, searchable, and semantically-rich communication platform that ensures documentation is written AFTER systems are properly designed and finalized.
 
 ### 🛠️ The Lupopedia VSX Extension
 The **Lupopedia VSX Extension** is a Visual Studio Code extension that transforms your IDE into a full participant in the Lupopedia multi-agent ecosystem. It serves as the communication bridge between your local development environment and the Lupopedia semantic OS, enabling seamless collaboration between IDE agents (KIRO, Windsurf, Antigravity), AI assistants, and human developers.
@@ -621,6 +607,7 @@ When the database is offline:
 #### Database Rules
 - **Integer types only:** `BIGINT`, `INT`, `SMALLINT`, `TINYINT` — no parenthesized display widths, no `UNSIGNED`, no `BOOLEAN`  
 - **Timestamp discipline:** All timestamps are `YYYYMMDDHHIISS` UTC integers, set via `gmdate('YmdHis')`  
+- **Special ID Pattern**: Some tables (e.g., `lupo_dialog_messages`) use timestamp-based primary keys instead of auto-increment. Insertion logic: get current UTC timestamp, compare with MAX(existing_id), use current if larger, otherwise use MAX+1  
 - **Schema authority:** TOON files in `docs/toons/` are canonical, never hand-edited  
 
 #### Actor Identity Rules

@@ -259,7 +259,7 @@ class AdminChannelsHandler
                         mood_rgb,
                         created_ymdhis,
                         updated_ymdhis
-                    FROM {$prefix}dialog_doctrine
+                    FROM {$prefix}dialog_messages
                     WHERE channel_id = :channel_id 
                     AND is_deleted = 0
                     ORDER BY created_ymdhis DESC

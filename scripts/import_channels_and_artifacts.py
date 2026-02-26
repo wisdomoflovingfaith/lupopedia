@@ -3,7 +3,7 @@
 Import channels and artifacts from filesystem markdown files into Lupopedia database.
 
 Imports:
-- channels/*/broadcasts/*.md -> lupo_dialog_doctrine
+- channels/*/broadcasts/*.md -> lupo_dialog_messages
 - artifacts/*/*.md -> lupo_artifacts
 - channels/*/threads/*.md -> lupo_dialog_threads
 
@@ -119,7 +119,7 @@ def generate_dialog_message_id(cursor, table_prefix, base_timestamp):
     for attempt in range(max_attempts):
         # Check if ID exists
         cursor.execute(
-            f"SELECT COUNT(*) FROM {table_prefix}dialog_doctrine WHERE dialog_message_id = %s",
+            f"SELECT COUNT(*) FROM {table_prefix}dialog_messages WHERE dialog_message_id = %s",
             (dialog_message_id,)
         )
         count = cursor.fetchone()[0]
@@ -184,7 +184,7 @@ def import_broadcast(cursor, table_prefix, filepath, dry_run=False, verbose=Fals
     
     # Check if already imported (by file hash)
     cursor.execute(
-        f"SELECT COUNT(*) FROM {table_prefix}dialog_doctrine WHERE metadata_json LIKE %s",
+        f"SELECT COUNT(*) FROM {table_prefix}dialog_messages WHERE metadata_json LIKE %s",
         (f'%{data["file_hash"]}%',)
     )
     if cursor.fetchone()[0] > 0:
@@ -205,7 +205,7 @@ def import_broadcast(cursor, table_prefix, filepath, dry_run=False, verbose=Fals
     
     # Insert into database
     cursor.execute(f"""
-        INSERT INTO {table_prefix}dialog_doctrine (
+        INSERT INTO {table_prefix}dialog_messages (
             dialog_message_id,
             message_id,
             dialog_thread_id,

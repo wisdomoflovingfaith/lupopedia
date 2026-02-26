@@ -11,7 +11,17 @@
  * @x_lupo_forwarded 1001:10000
  */
 
-require_once LUPOPEDIA_PATH . '/app/Services/OAuthService.php';
+// Define LUPOPEDIA_PATH if not already defined
+if (!defined('LUPOPEDIA_PATH')) {
+    define('LUPOPEDIA_PATH', dirname(__FILE__) . '/');
+}
+
+// Cross-platform path construction
+if (!defined('LUPOPEDIA_ABSPATH')) {
+    define('LUPOPEDIA_ABSPATH', str_replace('\\', '/', dirname(__FILE__)));
+}
+
+require_once LUPOPEDIA_ABSPATH . 'app/Services/OAuthService.php';
 
 /**
  * Initiate OAuth login flow

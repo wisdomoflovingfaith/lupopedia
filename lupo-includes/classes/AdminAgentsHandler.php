@@ -20,7 +20,7 @@ class AdminAgentsHandler
 
         $t_actors = $db->quoteIdentifier($prefix . 'actors');
         $t_registry = $db->quoteIdentifier($prefix . 'registry');
-        $t_dialog = $db->quoteIdentifier($prefix . 'dialog_doctrine');
+        $t_dialog = $db->quoteIdentifier($prefix . 'dialog_messages');
         $t_tickets = $db->quoteIdentifier($prefix . 'tickets');
         $t_ticket_msgs = $db->quoteIdentifier($prefix . 'ticket_messages');
 

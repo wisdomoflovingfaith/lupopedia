@@ -15,6 +15,39 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. module-loader.php cannot be called directly.");
 }
 
+// Define essential constants BEFORE loading modules
+if (!defined('LUPOPEDIA_PATH')) {
+    define('LUPOPEDIA_PATH', dirname(__FILE__) . '/');
+}
+
+if (!defined('LUPOPEDIA_ABSPATH')) {
+    define('LUPOPEDIA_ABSPATH', str_replace('\\', '/', dirname(__FILE__)));
+}
+
+if (!defined('LUPO_INCLUDES_DIR')) {
+    define('LUPO_INCLUDES_DIR', LUPOPEDIA_ABSPATH . 'lupo-includes/');
+}
+
+if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
+    // Calculate public path for web access
+    $script_name = basename($_SERVER['SCRIPT_NAME'], '.php');
+    $script_dir = dirname($_SERVER['SCRIPT_NAME']);
+    
+    $web_path_to_config = str_replace('\\', '/', str_replace(dirname($_SERVER['SCRIPT_FILENAME']), '', $script_dir));
+    
+    // Remove common subdirectory patterns
+    $patterns = ['/lupo-includes/', '/lupo-tests/', '/lupo-admin/', '/database/', '/docs/', '/scripts/', '/tools/', '/legacy/', '/channels/', '/uploads/'];
+    $clean_path = $web_path_to_config;
+    
+    foreach ($patterns as $pattern) {
+        if (strpos($clean_path, $pattern) !== false) {
+            $clean_path = substr($clean_path, 0, strpos($clean_path, $pattern) + strlen($pattern));
+        }
+    }
+    
+    define('LUPOPEDIA_PUBLIC_PATH', '/' . trim($clean_path, '/') . '/');
+}
+
 /**
  * ---------------------------------------------------------
  * Module Loading Order (Routing Priority)
