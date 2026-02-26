@@ -27,6 +27,14 @@
  * }
  */
 
+// Define LUPOPEDIA_PATH before loading config (required for bootstrap)
+if (!defined('LUPOPEDIA_PATH')) {
+    define('LUPOPEDIA_PATH', dirname(dirname(__DIR__)));
+}
+if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
+    define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(dirname(dirname(__DIR__))));
+}
+
 // Load Lupopedia bootstrap
 // Path: api/dialog/send-message.php -> lupopedia-config.php (2 levels up)
 require_once __DIR__ . '/../../lupopedia-config.php';

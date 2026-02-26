@@ -2,7 +2,7 @@
 /**
  * @wolfie.headers {
  *   file_path_from_root: "install.php",
- *   system_version: "4.0.42",
+ *   system_version: "4.0.46",
  *   channel_id: 42,
  *   mood_rgb: "FF6347",
  *   purpose: "Main installer and upgrade wizard for Lupopedia - handles fresh install and Crafty Syntax 3.7.5 upgrade",
@@ -50,8 +50,8 @@
  *   },
  *   semantic_tags: ["installer", "upgrade_wizard", "crafty_syntax_3_7_5", "identity_normalization", "reserved_channels"],
  *   enrichment: { llm_inferred_edges: [], federated_metrics: {} },
- *   version: "4.0.42",
- *   last_verified_utc: "20260224",
+ *   version: "4.0.46",
+ *   last_verified_utc: "20260226",
  *   last_verified_by: "kiro"
  * }
  */
@@ -90,7 +90,7 @@ if (!defined('LUPOPEDIA_PATH')) {
 }
 
 // Version for wizard UI - Direct parse from global_atoms.yaml (install.php runs standalone, no bootstrap)
-$lupo_wizard_version = '4.0.42'; // Fallback
+$lupo_wizard_version = '4.0.46'; // Fallback (updated to match current release)
 $atoms_file = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml';
 if (is_file($atoms_file)) {
     $atoms_content = file_get_contents($atoms_file);

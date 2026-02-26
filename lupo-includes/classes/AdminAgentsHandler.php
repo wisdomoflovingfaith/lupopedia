@@ -20,7 +20,7 @@ class AdminAgentsHandler
 
         $t_actors = $db->quoteIdentifier($prefix . 'actors');
         $t_registry = $db->quoteIdentifier($prefix . 'registry');
-        $t_dialog = $db->quoteIdentifier($prefix . 'dialog_messages');
+        $t_dialog = $db->quoteIdentifier($prefix . 'dialog_doctrine');
         $t_tickets = $db->quoteIdentifier($prefix . 'tickets');
         $t_ticket_msgs = $db->quoteIdentifier($prefix . 'ticket_messages');
 
@@ -35,7 +35,7 @@ class AdminAgentsHandler
                 a.created_ymdhis,
                 (SELECT MAX(created_ymdhis) FROM {$t_dialog} WHERE from_actor_id = a.actor_id) as last_active_ymdhis,
                 (SELECT COUNT(*) FROM {$t_dialog} WHERE from_actor_id = a.actor_id AND created_ymdhis >= '{$one_day_ago}') as actions_24h,
-                (SELECT COUNT(DISTINCT thread_id) FROM {$t_dialog} WHERE from_actor_id = a.actor_id) as thread_count,
+                (SELECT COUNT(DISTINCT dialog_thread_id) FROM {$t_dialog} WHERE from_actor_id = a.actor_id) as thread_count,
                 (SELECT COUNT(DISTINCT ticket_id) FROM (
                     SELECT ticket_id FROM {$t_tickets} WHERE actor_id = a.actor_id
                     UNION ALL

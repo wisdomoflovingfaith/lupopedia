@@ -10,6 +10,14 @@
  * @author Captain Wolfie
  */
 
+// Define LUPOPEDIA_PATH before loading config (required for bootstrap)
+if (!defined('LUPOPEDIA_PATH')) {
+    define('LUPOPEDIA_PATH', dirname(dirname(__DIR__)));
+}
+if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
+    define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(dirname(dirname(__DIR__))));
+}
+
 // Include required components
 require_once '../../lupopedia-config.php';
 require_once '../../lupo-includes/HistoryReconciliation/ContinuityValidator.php';

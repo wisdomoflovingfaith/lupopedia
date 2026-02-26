@@ -16,6 +16,10 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
  * @return string HTML (basic template with navigation)
  */
 function actors_handle_my_profile() {
+    // Enable error reporting for debugging
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    
     $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
     $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
@@ -49,6 +53,7 @@ function actors_handle_my_profile() {
 
     $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
     if (!$db) {
+        error_log("My Profile: Database not available");
         $content = array('title' => 'My Profile', 'hide_heading' => true);
         $page_body = '<p>Database unavailable.</p>';
         $isUserLoggedIn = true;
@@ -77,6 +82,7 @@ function actors_handle_my_profile() {
     $stmt->execute(array(':actor_id' => $actor_id));
     $actor = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$actor) {
+        error_log("My Profile: Actor not found for actor_id: $actor_id");
         $content = array('title' => 'My Profile', 'hide_heading' => true);
         $page_body = '<p>Actor not found.</p>';
         $isUserLoggedIn = true;
@@ -86,8 +92,8 @@ function actors_handle_my_profile() {
     }
 
     $actor_properties = array();
-    $stmt = $db->prepare("SELECT property_key, property_value FROM {$table_prefix}actor_properties WHERE actor_id = :actor_id AND (actor_type = :actor_type OR actor_type = 'user') AND is_deleted = 0");
-    $stmt->execute(array(':actor_id' => $actor_id, ':actor_type' => isset($actor['actor_type']) ? $actor['actor_type'] : 'user'));
+    $stmt = $db->prepare("SELECT property_key, property_value FROM {$table_prefix}metadata WHERE entity_type = 'actor' AND entity_id = :actor_id AND is_deleted = 0");
+    $stmt->execute(array(':actor_id' => $actor_id));
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $actor_properties[$row['property_key']] = $row['property_value'];
     }
@@ -103,6 +109,7 @@ function actors_handle_my_profile() {
 
     $view_path = $app_root . '/lupo-includes/modules/actors/views/my-profile.php';
     if (!file_exists($view_path)) {
+        error_log("My Profile: View file not found at: $view_path");
         $content = array('title' => 'My Profile', 'hide_heading' => true);
         $page_body = '<p>Profile view not found.</p>';
         $isUserLoggedIn = true;

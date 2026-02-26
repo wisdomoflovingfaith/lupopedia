@@ -7,6 +7,14 @@
  * Returns system health status and metrics.
  */
 
+// Define LUPOPEDIA_PATH before loading config (required for bootstrap)
+if (!defined('LUPOPEDIA_PATH')) {
+    define('LUPOPEDIA_PATH', dirname(dirname(dirname(__DIR__))));
+}
+if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
+    define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(dirname(dirname(dirname(__DIR__)))));
+}
+
 require_once __DIR__ . '/../../../lupopedia-config.php';
 
 header('Content-Type: application/json');

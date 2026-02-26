@@ -134,7 +134,7 @@ function channels_handle_show($channel_id) {
     $message_after = '0';
     $clear = isset($_GET['clear']) ? $_GET['clear'] : (isset($_GET['cleartonow']) ? (int) $_GET['cleartonow'] : null);
     if ($clear === 'now' || $clear === 1) {
-        $stmt = $db->prepare("SELECT created_ymdhis FROM {$table_prefix}dialog_messages WHERE channel_id = :channel_id AND is_deleted = 0 ORDER BY created_ymdhis DESC LIMIT 1");
+        $stmt = $db->prepare("SELECT created_ymdhis FROM {$table_prefix}dialog_doctrine WHERE channel_id = :channel_id AND is_deleted = 0 ORDER BY created_ymdhis DESC LIMIT 1");
         $stmt->execute(array(':channel_id' => $channel_id));
         $last = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($last && !empty($last['created_ymdhis'])) {
@@ -142,9 +142,9 @@ function channels_handle_show($channel_id) {
         }
     }
 
-    // Single unified message stream: all dialog_messages for channel, ORDER BY created_ymdhis ASC (legacy timeof; docs §1)
+    // Single unified message stream: all dialog_doctrine for channel, ORDER BY created_ymdhis ASC (legacy timeof; docs §1)
     $messages = array();
-    $stmt = $db->prepare("SELECT dialog_message_id, dialog_thread_id, channel_id, from_actor_id, to_actor_id, message_text, message_type, created_ymdhis FROM {$table_prefix}dialog_messages WHERE channel_id = :channel_id AND is_deleted = 0 AND created_ymdhis > :after ORDER BY created_ymdhis ASC LIMIT 500");
+    $stmt = $db->prepare("SELECT dialog_message_id, dialog_thread_id, channel_id, from_actor_id, to_actor_id, message_text, message_type, created_ymdhis FROM {$table_prefix}dialog_doctrine WHERE channel_id = :channel_id AND is_deleted = 0 AND created_ymdhis > :after ORDER BY created_ymdhis ASC LIMIT 500");
     $stmt->execute(array(':channel_id' => $channel_id, ':after' => $message_after));
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $messages[] = $row;

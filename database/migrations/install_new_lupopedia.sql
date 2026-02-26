@@ -761,10 +761,12 @@ CREATE TABLE lupo_analytics_visits (
   PRIMARY KEY (analytics_visit_id)
 );
 
-CREATE UNIQUE INDEX lupo_analytics_visits_uq_realtime ON lupo_analytics_visits (session_id, url_path, visit_type) WHERE visit_type = 'realtime';
-CREATE UNIQUE INDEX lupo_analytics_visits_uq_daily ON lupo_analytics_visits (content_id, date_ymd) WHERE visit_type = 'daily';
-CREATE UNIQUE INDEX lupo_analytics_visits_uq_monthly ON lupo_analytics_visits (content_id, date_ym) WHERE visit_type = 'monthly';
-CREATE UNIQUE INDEX lupo_analytics_visits_uq_period ON lupo_analytics_visits (content_id, period_type, period_date) WHERE visit_type = 'period';
+-- Note: Partial indexes (WHERE clause) require MySQL 8.0.13+ or MariaDB 10.2+
+-- For compatibility with MySQL 5.7, we use regular indexes instead
+CREATE UNIQUE INDEX lupo_analytics_visits_uq_realtime ON lupo_analytics_visits (session_id, url_path, visit_type);
+CREATE UNIQUE INDEX lupo_analytics_visits_uq_daily ON lupo_analytics_visits (content_id, date_ymd, visit_type);
+CREATE UNIQUE INDEX lupo_analytics_visits_uq_monthly ON lupo_analytics_visits (content_id, date_ym, visit_type);
+CREATE UNIQUE INDEX lupo_analytics_visits_uq_period ON lupo_analytics_visits (content_id, period_type, period_date, visit_type);
 CREATE INDEX lupo_analytics_visits_idx_session ON lupo_analytics_visits (session_id);
 CREATE INDEX lupo_analytics_visits_idx_actor ON lupo_analytics_visits (actor_id);
 CREATE INDEX lupo_analytics_visits_idx_content ON lupo_analytics_visits (content_id);
@@ -775,6 +777,45 @@ CREATE INDEX lupo_analytics_visits_idx_date_ym ON lupo_analytics_visits (date_ym
 CREATE INDEX lupo_analytics_visits_idx_visit_type ON lupo_analytics_visits (visit_type);
 CREATE INDEX lupo_analytics_visits_idx_created ON lupo_analytics_visits (created_ymdhis);
 CREATE INDEX lupo_analytics_visits_idx_updated ON lupo_analytics_visits (updated_ymdhis);
+
+-- Analytics summary tables for daily and monthly aggregations
+CREATE TABLE lupo_analytics_visits_daily (
+  analytics_visits_daily_id bigint NOT NULL AUTO_INCREMENT,
+  content_id bigint NOT NULL,
+  url_path varchar(500) DEFAULT NULL,
+  department_id bigint DEFAULT NULL,
+  date_ymd bigint NOT NULL,
+  visit_type varchar(32) NOT NULL DEFAULT 'pageview',
+  total_visits int NOT NULL DEFAULT 0,
+  unique_sessions int NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (analytics_visits_daily_id),
+  UNIQUE KEY lupo_analytics_visits_daily_uq_content_date_type (content_id, date_ymd, visit_type),
+  KEY lupo_analytics_visits_daily_idx_date (date_ymd),
+  KEY lupo_analytics_visits_daily_idx_content (content_id)
+);
+
+CREATE TABLE lupo_analytics_visits_monthly (
+  analytics_visits_monthly_id bigint NOT NULL AUTO_INCREMENT,
+  content_id bigint NOT NULL,
+  url_path varchar(500) DEFAULT NULL,
+  department_id bigint DEFAULT NULL,
+  date_ym bigint NOT NULL,
+  visit_type varchar(32) NOT NULL DEFAULT 'pageview',
+  total_visits int NOT NULL DEFAULT 0,
+  unique_sessions int NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (analytics_visits_monthly_id),
+  UNIQUE KEY lupo_analytics_visits_monthly_uq_content_date_type (content_id, date_ym, visit_type),
+  KEY lupo_analytics_visits_monthly_idx_date (date_ym),
+  KEY lupo_analytics_visits_monthly_idx_content (content_id)
+);
 
 
 
@@ -3341,6 +3382,7 @@ CREATE TABLE lupo_truth_knowledge (
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
+  truth_question_parent_id bigint DEFAULT NULL,
   PRIMARY KEY (truth_id)
 );
 
@@ -3360,6 +3402,30 @@ CREATE INDEX lupo_truth_knowledge_idx_status ON lupo_truth_knowledge (status);
 CREATE INDEX lupo_truth_knowledge_idx_created_ymdhis ON lupo_truth_knowledge (created_ymdhis, is_deleted);
 CREATE INDEX lupo_truth_knowledge_idx_updated_ymdhis ON lupo_truth_knowledge (updated_ymdhis);
 CREATE INDEX lupo_truth_knowledge_idx_is_deleted ON lupo_truth_knowledge (is_deleted);
+
+-- Legacy truth answers table for Crafty Syntax import compatibility
+CREATE TABLE lupo_truth_answers (
+  truth_answer_id bigint NOT NULL AUTO_INCREMENT,
+  truth_question_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  answer_text text,
+  confidence decimal(5,2) DEFAULT '0.00',
+  evidence_count int DEFAULT '0',
+  source_count int DEFAULT '0',
+  status varchar(64) DEFAULT 'active',
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
+  evidence_score decimal(5,2) DEFAULT '0.00',
+  contradiction_flag tinyint DEFAULT '0',
+  likes_count bigint DEFAULT '0',
+  PRIMARY KEY (truth_answer_id),
+  KEY lupo_truth_answers_idx_question (truth_question_id),
+  KEY lupo_truth_answers_idx_actor (actor_id),
+  KEY lupo_truth_answers_idx_status (status),
+  KEY lupo_truth_answers_idx_created (created_ymdhis)
+);
 
 
 
@@ -3599,7 +3665,7 @@ VALUES
 (9002035, 'actor', 2035, 2035, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"system_tool","client_id":"antigravity","purpose":"VSX_extension_development","csv_allocation":true}'),
 (9002036, 'actor', 2036, 2036, 'microsoft-copilot', 'Microsoft Copilot', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"copilot","provider":"microsoft","purpose":"AI_assistant","csv_allocation":true}'),
 (9002037, 'actor', 2037, 2037, 'deepseek-lexa', 'DeepSeek LEXA', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lexa","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}'),
-(9002038, 'actor', 2038, 'deepseek-lilith', 'DeepSeek LILITH', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lilith","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}')
+(9002038, 'actor', 2038, 2038, 'deepseek-lilith', 'DeepSeek LILITH', 'lupo_actors', 1, @now, @now, 0, NULL, 1, 0, '{"actor_source_type":"external_ai","client_id":"deepseek_lilith","provider":"deepseek","purpose":"AI_assistant","csv_allocation":true}'),
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0, is_active = 1;
 
 -- Actor records for all IDE & AI actors

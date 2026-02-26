@@ -10,6 +10,14 @@
  * @author WOLFIE Semantic Engine
  */
 
+// Define LUPOPEDIA_PATH before loading config (required for bootstrap)
+if (!defined('LUPOPEDIA_PATH')) {
+    define('LUPOPEDIA_PATH', dirname(dirname(__DIR__)));
+}
+if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
+    define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(dirname(dirname(__DIR__))));
+}
+
 // Include required files
 require_once __DIR__ . '/../../lupopedia-config.php';
 require_once __DIR__ . '/../../app/WolfieIdentity.php';

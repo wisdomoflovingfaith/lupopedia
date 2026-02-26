@@ -37,60 +37,131 @@ Execute the complete Crafty Syntax 3.7.5 → Lupopedia 4.0.46 installation and u
 - ✅ Database seed SQL files ready (6 files)
 - ✅ Crafty Syntax 3.7.5 baseline SQL ready
 - ✅ Backup of any existing data (if applicable)
+- ✅ Installer version display fixed (4.0.42 → 4.0.46) - Kiro (1000)
+
+## Completed Pre-Flight Tasks
+
+### ✅ Installer Version Banner Fixed (2026-02-26)
+**Executed By:** Kiro (1000) under Wolfie (1) directive  
+**Issue:** install.php displayed version 4.0.42 instead of 4.0.46  
+**Root Cause:** Hardcoded fallback in install.php line 93  
+**Resolution:**
+- Updated fallback from '4.0.42' to '4.0.46' (line 93)
+- Updated FLIP header system_version to 4.0.46 (line 5)
+- Updated FLIP footer version to 4.0.46 (line 53)
+- Verified no remaining 4.0.42 references in install.php
+
+**Status:** ✅ UNBLOCKED - Human can now run install.php
+
+### ✅ SQL Schema Compatibility Fixes (2026-02-26)
+**Executed By:** Kiro (1000) under Wolfie (1) directive  
+**Issues Found:** 2 SQL errors during first install attempt  
+**Fixes Applied:**
+1. Removed partial index WHERE clauses (MySQL 5.7 incompatible) - lines 764-767
+2. Fixed column count mismatch in registry INSERT (missing entity_index value) - line 3600
+
+**Status:** ✅ FIXED - Schema now compatible with MySQL 5.7+
+
+### ✅ Database Compatibility Broadcasts Updated (2026-02-26)
+**Executed By:** Kiro (1000)  
+**Updated Broadcasts:**
+- Cross-DB Compatibility Law (added 4 new rules)
+- SQL Portability Doctrine (expanded forbidden features)
+
+**Status:** ✅ COMPLETE - Future SQL errors prevented
+
+## Execution Progress
+
+### Attempt 1: Partial Success (2026-02-26)
+**Status:** ⚠️ PARTIAL - SQL errors encountered, tables partially created  
+**Action Taken:** Captain dropped all tables and reset to Crafty baseline  
+**Outcome:** SQL errors identified and fixed by Kiro
+
+### Attempt 2: SUCCESS ✅ (2026-02-26)
+**Status:** ✅ COMPLETE - Installation successful  
+**Steps Completed:**
+1. ✅ Dropped all lupo_* tables from partial install
+2. ✅ Loaded Crafty Syntax 3.7.5 baseline (34 tables)
+3. ✅ Ran install.php with fixed schema
+4. ✅ Database created successfully
+5. ✅ All 173 tables created without SQL errors
+6. ✅ Generated 210 TOON files via `python scripts/generate_toon_files.py`
+7. ✅ CSV export completed successfully
+
+**Installation Results:**
+- Database: Created ✅
+- Tables: 173 created ✅
+- TOON Files: 210 generated ✅
+- CSV Export: Complete ✅
+- SQL Errors: ZERO ✅
+
+**Admin Interface Updates:**
+- ✅ Tasks navigation added to admin.php (Kiro 1000)
+- ✅ AdminTasksHandler.php created with full implementation
+- ✅ Tasks page accessible at admin.php?section=tasks
+- ✅ Filter by channel, status, priority
+- ✅ Color-coded badges for status and priority
+- ✅ Responsive table layout with task details
+- ✅ Registry navigation added to admin.php (Kiro 1000)
+- ✅ AdminRegistryHandler.php created with full implementation
+- ✅ Registry page accessible at admin.php?section=registry
+- ✅ Add new registry entries via web form
+- ✅ Filter by entity type, kernel status, active status
+- ✅ Read-only protection (no delete/edit for data integrity)
+
+**Next Steps:**
+- ⏳ Execute seeding SQL (Step 3)
+- ⏳ Run upgrade wizard (Step 4)
+- ⏳ Basic smoke tests (Step 5)
+- ⏳ Complete post-install verification (CH0-20260226-002)
 
 ## Execution Steps
 
 ### Step 1: Database Preparation (10 minutes)
 
-**1.1 Drop All Existing Tables**
-```sql
--- Connect to MySQL/MariaDB
-mysql -u root -p lupopedia
+**STATUS: ✅ COMPLETE**
 
--- Drop all lupo_* tables
-DROP TABLE IF EXISTS lupo_actors;
-DROP TABLE IF EXISTS lupo_agents;
--- ... (drop all 173 tables if they exist)
+**1.1 Drop All Existing Tables** ✅ COMPLETE
+- Dropped all lupo_* tables from partial install attempt 1
+- Database reset successful
 
--- Or use script:
--- php scripts/drop_all_lupo_tables.php
-```
+**1.2 Load Crafty Syntax 3.7.5 Baseline** ✅ COMPLETE
+- Loaded 34 legacy Crafty tables
+- Verified 34 tables present
 
-**1.2 Load Crafty Syntax 3.7.5 Baseline**
-```sql
--- Load 34 legacy Crafty tables
-SOURCE database/migrations/old_crafty_syntax_3_7_5_start.sql;
-
--- Verify 34 tables loaded
-SHOW TABLES LIKE 'livehelp_%';
--- Should show 34 tables
-```
-
-**1.3 Load Old Crafty Config (if upgrading)**
-```bash
-# Copy old config to expected location
-cp /path/to/old/crafty/config.php lupopedia-config.php
-```
+**1.3 Load Old Crafty Config** ✅ COMPLETE
+- Removed old lupopedia-config.php
+- Ready for fresh install
 
 ### Step 2: Run Install Wizard (15 minutes)
 
-**2.1 Access Install Wizard**
-```
-http://localhost/lupopedia/install.php
-```
+**STATUS: ✅ COMPLETE**
 
-**2.2 Complete Installation Steps**
-- Database connection (already configured)
-- Admin account creation (use Captain credentials)
-- System configuration
-- Schema installation (173 tables)
+**2.1 Access Install Wizard** ✅ COMPLETE
+- Accessed http://localhost/lupopedia/install.php
+- Displayed: "Lupopedia 4.0.46 — Install / Upgrade Wizard"
 
-**2.3 Verify Installation Success**
-- Check for "Installation Complete" message
-- Verify no SQL errors in logs
-- Verify admin login works
+**2.2 Complete Installation Steps** ✅ COMPLETE
+- Database connection configured
+- Admin account created
+- System configuration completed
+- Schema installation: 173 tables created successfully
+
+**2.3 Verify Installation Success** ✅ COMPLETE
+- Installation completed successfully
+- ZERO SQL errors (fixes worked!)
+- All tables created
+
+**2.4 Generate TOON Files** ✅ COMPLETE
+```bash
+python scripts/generate_toon_files.py
+# Output: Wrote 210 TOONs to docs/toons
+# CSV export completed successfully
+```
 
 ### Step 3: Execute Seeding SQL (10 minutes)
+
+**STATUS: ⏳ PENDING - Ready to execute**
 
 **3.1 Registry Seeding**
 ```sql

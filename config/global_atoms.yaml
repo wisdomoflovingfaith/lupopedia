@@ -14,13 +14,13 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.0.43"
-last_updated: 20260224
-# VERSION 4.0.43 - Post-4.0.42 Development Initialization
-# Implementation of FLIP v2 in VSX Extension, refined header/footer parsing
+version: "4.0.46"
+last_updated: 20260226
+# VERSION 4.0.46 - Crafty Syntax 3.7.5 → Lupopedia Migration & Upgrade Execution
+# Registry canonicalization, installer version fix, upgrade execution phase
 
 # Global Version Atoms
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.45"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.46"
 GLOBAL_FLIP_SCHEMA_VERSION: "2.0"
 
 # System Configuration Atoms

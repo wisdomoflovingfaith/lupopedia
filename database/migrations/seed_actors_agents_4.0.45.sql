@@ -46,30 +46,44 @@ VALUES
 (1002, 'ide_agent', 'cursor-ide', 'Cursor IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"cursor","provider":"cursor","purpose":"IDE_integration"}'),
 (1003, 'ide_agent', 'antigravity-ide', 'Antigravity IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"antigravity","provider":"antigravity","purpose":"IDE_integration"}'),
 (1004, 'ide_agent', 'warp-ide', 'Warp IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"warp","provider":"warp","purpose":"IDE_integration"}'),
-(1005, 'ide_agent', 'cascade-ide', 'Cascade IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"cascade","provider":"cascade","purpose":"IDE_integration"}');
+(1005, 'ide_agent', 'cascade-ide', 'Cascade IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"cascade","provider":"cascade","purpose":"IDE_integration"}'),
+(1006, 'ide_agent', 'gemini-cli', 'Gemini CLI', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"gemini","provider":"google","purpose":"IDE_integration","full_name":"Google Gemini CLI"}');
 
--- ============================================================================
--- PART 3: ROOT HUMAN CAPTAIN (10000)
--- ============================================================================
+-- Root Human Captain (ID: 10000)
+INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json, is_kernel, can_login, primary_federation_node_id)
+VALUES (10000, 'human', 'root-captain-10000', 'Captain', 20260217000000, 20260220134555, 1, 0, 0, '{"email":"captain@lupopedia.com","role":"root_admin","full_access":true}', 1, 1, 1);
 
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json)
-VALUES (10000, 'human', 'captain', 'Captain', 20260217000000, 20260220134555, 1, 0, 0, '{"email":"captain@lupopedia.com","role":"root_admin","full_access":true}');
-
--- Test Users (IDs 2001-2010)
+-- Test Users (IDs 11001-11010)
 INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json)
 VALUES 
-(2001, 'user', 'user-2001', 'Admin Test', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(2002, 'user', 'user-2002', 'Jane Moderator', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(2003, 'user', 'user-2003', 'Bob Monitor', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(2004, 'user', 'user-2004', 'Alex Agent', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(2005, 'user', 'user-2005', 'Sam Support', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(2006, 'user', 'user-2006', 'Lee Viewer', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(2007, 'user', 'user-2007', 'Kim Readonly', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(2008, 'user', 'user-2008', 'Taylor Operator', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(2009, 'user', 'user-2009', 'Casey Support', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(2010, 'user', 'user-2010', 'Jordan CRM', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}');
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
-VALUES (10000, 'human', 'root-captain-10000', 'Captain', @now, @now, 1, 0, 1, 1, 0, 0, 1, '{"role":"root_admin","full_access":true,"email":"captain@lupopedia.com"}');
+(11001, 'user', 'user-11001', 'Admin Test', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+(11002, 'user', 'user-11002', 'Jane Moderator', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+(11003, 'user', 'user-11003', 'Bob Monitor', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+(11004, 'user', 'user-11004', 'Alex Agent', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+(11005, 'user', 'user-11005', 'Sam Support', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+(11006, 'user', 'user-11006', 'Lee Viewer', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+(11007, 'user', 'user-11007', 'Kim Readonly', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+(11008, 'user', 'user-11008', 'Taylor Operator', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+(11009, 'user', 'user-11009', 'Casey Support', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+(11010, 'user', 'user-11010', 'Jordan CRM', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}');
+
+-- ============================================================================
+-- BANNED TEST ACTORS (For testing ban functionality)
+-- ============================================================================
+
+-- Banned AI Agent (ID: 420 - STONED WOLFIE)
+INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json)
+VALUES (420, 'agent', 'stoned-wolfie', 'STONED WOLFIE', 20260101000000, 20260226000000, 0, 0, 1, '{"purpose":"banned_test_agent","ban_reason":"experimental_persona_violation","archetype":"banned"}');
+
+-- Banned Human User (ID: 10420)
+INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json)
+VALUES (10420, 'user', 'test-banned-user', 'Test Banned User', 20260226000000, 20260226000000, 0, 0, 0, '{"purpose":"banned_test_user","email":"test-banned-user@lupopedia.com"}');
+
+-- Ban records for banned actors
+INSERT INTO lupo_banned_actors (banned_actor_id, actor_id, reason, banned_ymdhis, banned_by_actor_id, created_ymdhis, updated_ymdhis, is_deleted)
+VALUES
+(1, 420, 'Experimental AI persona violation - STONED WOLFIE banned per doctrine', 20260101000000, 1, 20260101000000, 20260226000000, 0),
+(2, 10420, 'Test banned user for testing ban functionality and retrospective data access', 20260226000000, 10000, 20260226000000, 20260226000000, 0);
 
 -- ============================================================================
 -- PART 4: AGENTS TABLE (lupo_agents)

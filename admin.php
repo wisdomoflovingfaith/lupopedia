@@ -121,7 +121,11 @@ $admin_menu_sections = array(
         'title' => 'Agents & Channels',
         'items' => array(
             'Agents' => 'admin.php?section=agents',
+            'Actors' => 'admin.php?section=actors',
+            'Actor Status' => 'admin.php?section=actor_status',
             'Channels' => 'admin.php?section=channels',
+            'Tasks' => 'admin.php?section=tasks',
+            'Registry' => 'admin.php?section=registry',
         ),
     ),
     array(
@@ -270,6 +274,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         'import-leads' => array('Import Leads', 'Import Leads'),
         'agents' => array('Agents', 'Agents'),
         'channels' => array('Channels', 'Channels'),
+        'registry' => array('Registry', 'Registry'),
         'live' => array('Live', 'Live'),
         'quick-replies' => array('Quick replies', 'Quick replies'),
         'quick-images' => array('Quick images', 'Quick images'),
@@ -317,8 +322,8 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
     } elseif ($section === 'channels' && $db) {
         $admin_page_title = 'Channels';
         $admin_active_key = 'Channels';
-        require_once LUPOPEDIA_PATH . '/lupo-includes/themes/default/layouts/admin_sections/channels.php';
-        include LUPOPEDIA_PATH . '/lupo-includes/themes/default/layouts/admin_sections/channels.php';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminChannelsHandler.php';
+        $admin_main_content = AdminChannelsHandler::render($db, $prefix, $base);
     } elseif ($section === 'channel_view' && $db) {
         $admin_page_title = 'Channel View';
         $admin_active_key = 'Channels';
@@ -330,6 +335,29 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         $admin_active_key = 'Agents';
         require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminAgentsHandler.php';
         $admin_main_content = AdminAgentsHandler::render($db, $prefix, $base);
+    } elseif ($section === 'actors' && $db) {
+        $admin_page_title = 'Actors';
+        $admin_active_key = 'Actors';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminActorsHandler.php';
+        $admin_main_content = AdminActorsHandler::render($db, $prefix, $base);
+    } elseif ($section === 'tasks' && $db) {
+        $admin_page_title = 'Tasks';
+        $admin_active_key = 'Tasks';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminTasksHandler.php';
+        $admin_main_content = AdminTasksHandler::render($db, $prefix, $base);
+    } elseif ($section === 'registry' && $db) {
+        $admin_page_title = 'Registry';
+        $admin_active_key = 'Registry';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminRegistryHandler.php';
+        $admin_main_content = AdminRegistryHandler::render($db, $prefix, $base);
+    } elseif ($section === 'actor_status' && $db) {
+        $admin_page_title = 'Actor Status';
+        $admin_active_key = 'Actor Status';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminActorStatusHandler.php';
+        $handler = new AdminActorStatusHandler($db, $prefix);
+        ob_start();
+        $handler->render();
+        $admin_main_content = ob_get_clean();
     } elseif ($section === 'departments' && $db) {
         $admin_page_title = 'Create / Edit / Delete departments';
         $admin_active_key = 'Create / Edit / Delete departments';
@@ -340,10 +368,16 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         $admin_active_key = 'Leads Database';
         require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminLeadsHandler.php';
         $admin_main_content = AdminLeadsHandler::render($db, $prefix, $base);
+    } elseif ($section === 'settings' && $db) {
+        $admin_page_title = 'Master Settings';
+        $admin_active_key = 'Master Settings';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminSettingsHandler.php';
+        $handler = new AdminSettingsHandler($db, $prefix, $base);
+        $admin_main_content = $handler->render();
     } elseif (isset($section_titles[$section])) {
         $admin_page_title = $section_titles[$section][0];
         $admin_active_key = $section_titles[$section][1];
-        if ($section === 'channels' || $section === 'agents' || $section === 'departments' || $section === 'leads') {
+        if ($section === 'channels' || $section === 'agents' || $section === 'actors' || $section === 'departments' || $section === 'leads' || $section === 'registry') {
             $admin_main_content = '<p class="admin-empty">Database not available.</p>';
         } elseif (isset($admin_section_info[$section])) {
             $info = $admin_section_info[$section];
