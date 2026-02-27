@@ -1,6 +1,11 @@
 {
     "schema_version": "4.0.47",
     "actor_id": "10000",
+    "personal_info": {
+        "real_name": "Eric Robin Gerdes",
+        "dob": "1978-12-21",
+        "location": "Sioux Falls, South Dakota"
+    },
     "best_work": [
         {
             "achievement_id": "A47-CAPT-001",
@@ -13,11 +18,52 @@
                 "governance",
                 "architecture"
             ]
+        },
+        {
+            "achievement_id": "LEG-CS-001",
+            "title": "Crafty Syntax Live Help",
+            "description": "Lead developer and founder. Maintained from 2002-2025, including Sales Syntax fork (2015-2025).",
+            "impact": "Decades of contribution to open-source live support ecosystems.",
+            "date_range": "2002 - 2025",
+            "tags": [
+                "legacy",
+                "open-source",
+                "php"
+            ]
+        }
+    ],
+    "professional_history": [
+        {
+            "organization": "Maui Global Communications (MGCC)",
+            "period": "2000 - 2013",
+            "role": "Software Engineer",
+            "notes": "Hired full-time after Spring 2000 internship; worked for 13 years until 2013."
+        },
+        {
+            "organization": "City and County of Honolulu",
+            "period": "2000 - 2005",
+            "project": "CRM System Implementation",
+            "notes": "Developed and maintained CRM solutions."
+        },
+        {
+            "organization": "MHPCC.gov",
+            "period": "1997, 1998 (Summers)",
+            "role": "Intern"
+        }
+    ],
+    "education": [
+        {
+            "institution": "University of Wyoming",
+            "field": "Computer Science",
+            "period": "1997 - 2000",
+            "notes": "Completed internship at Maui Global Communications in Spring 2000, leading to immediate industry hire before graduation."
         }
     ],
     "skills_mastered": [
         "system_architecture",
-        "strategic_oversight"
+        "strategic_oversight",
+        "live_support_systems",
+        "CRM_engineering"
     ],
     "total_contributions": 1000
 }
