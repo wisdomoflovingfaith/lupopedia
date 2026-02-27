@@ -109,15 +109,14 @@ INSERT IGNORE INTO lupo_contents (
 -- ============================================================
 -- Log ANUBIS adoption test for actor 420
 INSERT IGNORE INTO lupo_anubis_log (
-    `log_id`, `message_id`, `adopted_actor_id`, `adoption_reason`, 
-    `resolver_method`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`
+    `anubis_log_id`, `event_type`, `severity`, `source_table`, `source_id`, 
+    `assigned_to_actor_id`, `status`, `context_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`
 ) VALUES (
-    1, 16, 420, 'legacy_compatibility_test', 
-    'ANUBIS_Resolver.adoptOrphanIntoSeed', 
-    @now, @now, 0, NULL
+    1, 'ORPHAN_FOUND', 'info', 'lupo_actors', 420, 
+    19, 'Resolved', '{"reason":"legacy_compatibility_test","method":"ANUBIS_Resolver.adoptOrphanIntoSeed","message_id":16}', 
+    @now, @now, 0
 ) ON DUPLICATE KEY UPDATE 
-    adoption_reason = VALUES(adoption_reason), 
-    resolver_method = VALUES(resolver_method), 
+    context_json = VALUES(context_json), 
     updated_ymdhis = @now, 
     is_deleted = 0;
 
@@ -125,8 +124,8 @@ INSERT IGNORE INTO lupo_anubis_log (
 -- 6. DIALOG MESSAGE WITH ACTOR 420
 -- ============================================================
 -- Create dialog message from actor 420
-INSERT IGNORE INTO lupo_dialog_doctrine (
-    `message_id`, `thread_id`, `actor_id`, `message_type`, `content`, 
+INSERT IGNORE INTO lupo_dialog_messages (
+    `dialog_message_id`, `dialog_thread_id`, `from_actor_id`, `message_type`, `message_text`, 
     `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`, 
     `metadata_json`
 ) VALUES (
@@ -135,7 +134,7 @@ INSERT IGNORE INTO lupo_dialog_doctrine (
     20260220000000, 20260220000000, 0, NULL, 
     '{"flip_headers_present":true,"channel_membership":true,"department_role":"administrator","anubis_resolver":"active"}'
 ) ON DUPLICATE KEY UPDATE 
-    content = VALUES(content), 
+    message_text = VALUES(message_text), 
     metadata_json = VALUES(metadata_json), 
     updated_ymdhis = 20260220000000, 
     is_deleted = 0;

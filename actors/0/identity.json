@@ -1,0 +1,9 @@
+{
+  "schema_version": "4.0.47",
+  "actor_id": "0",
+  "actor_type": "system",
+  "slug": "system-kernel",
+  "name": "System Kernel",
+  "created_ymdhis": "20260227000000",
+  "updated_ymdhis": "20260227000000"
+}

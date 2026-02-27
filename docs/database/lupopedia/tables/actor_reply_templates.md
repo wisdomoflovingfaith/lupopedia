@@ -1,36 +1,46 @@
 ---
-# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/database/actor_reply_templates.md
-file.last_modified_system_version: "4.0.16"
-file.last_modified_utc: "20260218000000"
-channel_id: 42   # ANUBIS adoption channel
-tags: ["lost", "orphan", "doctrine"]
-mood_rgb: "FFDAB9"
-atoms:
-  recovery_event: true
-X-Lupo-Actor-ID: 2035
-X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/database/actor_reply_templates.md
+flare.headers:
+  file_path_from_root: "docs/database/lupopedia/tables/actor_reply_templates.md"
+  system_version: "4.0.46"
+  channel_id: 0
+  actor_id: 1006
+  created_ymdhis: 20260226204058
+  updated_ymdhis: 20260226204058
+  artifact_type: "table_documentation"
+  purpose: "Quick reply / canned response templates per actor"
+  lupo_agent: "gemini-cli"
+
+flare.edges:
+  outbound_edges:
+- { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0 }
+    - { to: "docs/toons/lupo_actor_reply_templates.toon.json", type: "schema_reference", weight: 1.0 }
+  semantic_tags: ["templates", "replies", "composer", "efficiency"]
+
+flare.footer:
+  last_verified: "20260226"
+  last_verified_by: "gemini-cli"
 ---
 
-# lupo_actor_reply_templates
+# Database Documentation: lupo_actor_reply_templates
+## Version: 4.0.46
+## Date: 2026-02-26
 
-**Purpose:** **Quick reply / canned response** templates per actor: template_key, template_text, usage_context, and actor_id. Used in the channel composer so staff can insert predefined messages. Replaces Crafty’s livehelp_quick (per-user “quick notes”).
+### 1. Overview
+Purpose: **Quick reply / canned response** templates per actor: template_key, template_text, usage_context, and actor_id. Used in the channel composer so staff can insert predefined messages. Replaces Crafty’s livehelp_quick (per-user “quick notes”).
 
 **Schema:** See `docs/toons/lupo_actor_reply_templates.toon.json`. Primary key: `actor_reply_template_id`. Columns include actor_id, template_key, template_text, usage_context, and lifecycle fields.
 
----
-
-## Use and need
+### 2. Core Workflows
 
 - **Composer:** UI offers a list of templates for the current actor; selecting one inserts template_text (and optionally sets usage_context for analytics or filtering).
 - **Per-actor:** Each row is tied to an actor_id so operators have their own quick replies.
 
----
-
-## Mapping from Crafty Syntax
+### 3. Mapping from Crafty Syntax
 
 **Legacy table:** `livehelp_quick`.
 
 **Migration:** `docs/doctrine/migrations/livehelp_quick_migration.md`, `import_from_old_crafty_syntax.sql`. id → actor_reply_template_id, user → actor_id, name → template_key, message → template_text, typeof → usage_context. livehelp_quick → IMPORTED → DROPPED.
+
+---
+*Maintained by GEMINI (Actor 1006)*
+

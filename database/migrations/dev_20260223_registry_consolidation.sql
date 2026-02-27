@@ -154,23 +154,34 @@ WHERE r.registry_id IS NULL
 AND ur.is_deleted = 0;
 
 -- Log orphan adoptions to ANUBIS
+SET @log_id_seq := @migration_timestamp * 1000;
 INSERT INTO lupo_anubis_log (
+    anubis_log_id,
     event_type,
+    severity,
+    source_table,
+    source_id,
     entity_type,
     entity_index,
-    registry_id,
-    reason,
-    action_taken,
-    created_ymdhis
+    context_json,
+    status,
+    assigned_to_actor_id,
+    created_ymdhis,
+    updated_ymdhis
 )
 SELECT 
-    'registry_adoption' AS event_type,
+    @log_id_seq := @log_id_seq + 1,
+    'REGISTRY_ADOPTION' AS event_type,
+    'normal' AS severity,
+    'lupo_registry' AS source_table,
+    ur.registry_id AS source_id,
     ur.entity_type,
     ur.entity_index,
-    ur.registry_id,
-    'Orphan entry migrated from lupo_unified_registry' AS reason,
-    'Adopted to lupo_registry' AS action_taken,
-    @migration_timestamp AS created_ymdhis
+    JSON_OBJECT('reason', 'Orphan entry migrated from lupo_unified_registry', 'action', 'Adopted to lupo_registry') AS context_json,
+    'Resolved' AS status,
+    19 AS assigned_to_actor_id,
+    @migration_timestamp AS created_ymdhis,
+    @migration_timestamp AS updated_ymdhis
 FROM lupo_unified_registry ur
 LEFT JOIN lupo_registry r 
     ON ur.entity_type = r.entity_type 
@@ -199,22 +210,32 @@ AND r.is_deleted = 0;
 
 -- Log conflict resolutions to ANUBIS
 INSERT INTO lupo_anubis_log (
+    anubis_log_id,
     event_type,
+    severity,
+    source_table,
+    source_id,
     entity_type,
     entity_index,
-    registry_id,
-    reason,
-    action_taken,
-    created_ymdhis
+    context_json,
+    status,
+    assigned_to_actor_id,
+    created_ymdhis,
+    updated_ymdhis
 )
 SELECT 
-    'registry_deduplication' AS event_type,
+    @log_id_seq := @log_id_seq + 1,
+    'REGISTRY_DEDUPLICATION' AS event_type,
+    'normal' AS severity,
+    'lupo_registry' AS source_table,
+    r.registry_id AS source_id,
     r.entity_type,
     r.entity_index,
-    r.registry_id,
-    'Conflict resolved - newer data from lupo_unified_registry' AS reason,
-    'Updated lupo_registry with newer data' AS action_taken,
-    @migration_timestamp AS created_ymdhis
+    JSON_OBJECT('reason', 'Conflict resolved - newer data from lupo_unified_registry', 'action', 'Updated lupo_registry with newer data') AS context_json,
+    'Resolved' AS status,
+    19 AS assigned_to_actor_id,
+    @migration_timestamp AS created_ymdhis,
+    @migration_timestamp AS updated_ymdhis
 FROM lupo_registry r
 INNER JOIN lupo_unified_registry ur 
     ON r.entity_type = ur.entity_type 

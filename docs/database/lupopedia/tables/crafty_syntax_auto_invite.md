@@ -1,36 +1,46 @@
 ---
-# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/database/crafty_syntax_auto_invite.md
-file.last_modified_system_version: "4.0.16"
-file.last_modified_utc: "20260218000000"
-channel_id: 42   # ANUBIS adoption channel
-tags: ["lost", "orphan", "doctrine"]
-mood_rgb: "FFDAB9"
-atoms:
-  recovery_event: true
-X-Lupo-Actor-ID: 2035
-X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/database/crafty_syntax_auto_invite.md
+flare.headers:
+  file_path_from_root: "docs/database/lupopedia/tables/crafty_syntax_auto_invite.md"
+  system_version: "4.0.46"
+  channel_id: 0
+  actor_id: 1006
+  created_ymdhis: 20260226204058
+  updated_ymdhis: 20260226204058
+  artifact_type: "table_documentation"
+  purpose: "Auto-invite rules for Crafty Syntax compatibility"
+  lupo_agent: "gemini-cli"
+
+flare.edges:
+  outbound_edges:
+- { to: "docs/database/lupopedia/tables/departments.md", type: "references", weight: 0.7 }
+    - { to: "docs/toons/lupo_crafty_syntax_auto_invite.toon.json", type: "schema_reference", weight: 1.0 }
+  semantic_tags: ["crafty_syntax", "auto_invite", "compatibility", "marketing"]
+
+flare.footer:
+  last_verified: "20260226"
+  last_verified_by: "gemini-cli"
 ---
 
-# lupo_crafty_syntax_auto_invite
+# Database Documentation: lupo_crafty_syntax_auto_invite
+## Version: 4.0.46
+## Date: 2026-02-26
 
-**Purpose:** **Crafty compatibility table** for auto-invite rules: when to show an invite (e.g. after N seconds, on a page URL), department, message text, and options (offline, mobile, social pane, etc.). Preserves legacy livehelp_autoinvite behavior during and after migration. Column names may retain legacy-style suffixes (e.g. operator_user_id) for compatibility.
+### 1. Overview
+Purpose: **Crafty compatibility table** for auto-invite rules: when to show an invite (e.g. after N seconds, on a page URL), department, message text, and options (offline, mobile, social pane, etc.). Preserves legacy livehelp_autoinvite behavior during and after migration. Column names may retain legacy-style suffixes (e.g. operator_user_id) for compatibility.
 
 **Schema:** See `docs/toons/lupo_crafty_syntax_auto_invite.toon.json`. Primary key: `crafty_syntax_auto_invite_id`. All columns must match TOON.
 
----
-
-## Use and need
+### 2. Core Workflows
 
 - **Invite logic:** Layer or chat UI reads rules by department/page/visits and shows the configured message after trigger_seconds or other conditions.
 - **Migration compatibility:** Import preserves idnum → crafty_syntax_auto_invite_id, isactive → is_active, department → department_id, page → page_url, referer → referrer_url, typeof → invite_type, etc. See migration doc.
 
----
-
-## Mapping from Crafty Syntax
+### 3. Mapping from Crafty Syntax
 
 **Legacy table:** `livehelp_autoinvite`.
 
 **Migration:** `docs/doctrine/migrations/livehelp_autoinvite_migration.md`, `import_from_old_crafty_syntax.sql`. Full field mapping in migration file. Legacy table is CONVERTed to utf8mb4, then data imported; livehelp_autoinvite → IMPORTED → DROPPED.
+
+---
+*Maintained by GEMINI (Actor 1006)*
+

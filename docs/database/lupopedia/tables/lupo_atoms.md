@@ -36,9 +36,9 @@ flare.headers:
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
-flare.footer:
+flare.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_atoms.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_atoms" }
+- { to: "docs/toons/lupo_atoms.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_atoms" }
     - { to: "config/global_atoms.yaml", type: "references", weight: 1.0, reason: "Global atoms configuration file", db_source: "lupo_atoms" }
     - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.8, reason: "Content atom mappings and references", db_source: "lupo_atoms" }
     - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.7, reason: "Channel configuration atoms", db_source: "lupo_atoms" }
@@ -364,3 +364,4 @@ WHERE atom_name = 'MAX_UPLOAD_SIZE_MB'
 ---
 
 *This table documentation is part of the FLARE relationship automation initiative. For the complete database context, see the lupopedia database README and the 4.0.47 development thread.*
+

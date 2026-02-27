@@ -1,5 +1,5 @@
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 flare.headers:
   file_path_from_root: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md"
   system_version: "4.0.47"
@@ -15,6 +15,13 @@ flare.headers:
   lupo_agent: "windsurf"
 
 flare.footer:
+  view_count: 1250
+  like_count: 42
+  share_count: 15
+  last_verified: "20260227"
+  last_verified_by: "windsurf"
+
+flare.edges:
   outbound_edges:
     - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
@@ -22,9 +29,6 @@ flare.footer:
     - { to: "docs/toons", type: "schema_reference", weight: 1.0 }
     - { to: "actors/registry.json", type: "references", weight: 0.8 }
   semantic_tags: ["flare", "headers", "footers", "reference", "documentation", "tables", "api"]
-  version: "4.0.47"
-  last_verified: "20260227"
-  last_verified_by: "windsurf"
 ---
 
 # FLARE Headers and Footers - Complete Reference
@@ -37,9 +41,10 @@ flare.footer:
 
 **FLARE** = **F**ile-**L**evel **A**ttribute and **R**elationship **E**xchange
 
-FLARE defines two main components:
+FLARE defines three main components:
 - **flare.headers** → File-Level Attributes (metadata)
-- **flare.footer** → File-Level Relationships (graph edges)
+- **flare.edges** → File-Level Relationships (graph edges)
+- **flare.footer** → Engagement Snapshot (dynamic metrics)
 
 ## 🔥 **Complete flare.headers Field Reference**
 
@@ -64,6 +69,7 @@ FLARE defines two main components:
 | `artifact_kind` | string | Subtype of artifact | `"table"`, `"schema"`, `"api"`, `"ui"` | `"table"` |
 | `traits` | array | File characteristics | `["canonical", "comprehensive"]` | `["canonical"]` |
 | `tags` | array | Categorization tags | Any lowercase tags | `["database", "schema"]` |
+| `actor_ip` | string | Originating IP/System ID | IP or string | `"127.0.0.1"` |
 | `lupo_agent` | string | Agent handling the file | Agent slug | `"windsurf"` |
 
 ### **🗃️ Table-Specific Fields (for Database Documentation)**
@@ -84,6 +90,7 @@ When documenting database tables, include these additional fields that reference
 
 **For lupo_dialog_messages table:**
 ```yaml
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 flare.headers:
   # ... required fields ...
   artifact_kind: "table"
@@ -133,15 +140,27 @@ flare.headers:
 | `rate_limiting` | object | Rate limit config | `{ "requests": 100, "window": "1h" }` |
 | `data_format` | string | Request/response format | `"JSON"`, `"XML"` |
 
-## 🔗 **Complete flare.footer Field Reference**
+## 🗺️ **Complete flare.edges Field Reference**
 
-### **🎯 Required Footer Fields**
+### **🎯 Required Edge Fields**
 
 | Field | Type | Description | Example |
 |-------|------|-------------|---------|
 | `outbound_edges` | array | List of outbound references | See format below |
-| `inbound_edges` | array | List of inbound references (read-only, populated via DB scan) | See format below |
+| `inbound_edges` | array | List of inbound references (read-only snapshot) | See format below |
 | `semantic_tags` | array | Semantic relationship tags | `["database", "schema", "messaging"]` |
+
+## 📊 **Complete flare.footer Field Reference (Engagement)**
+
+### **🎯 Engagement Fields**
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `view_count` | integer | Total view count | `1234` |
+| `like_count` | integer | Total like count | `56` |
+| `share_count` | integer | Total share count | `12` |
+| `last_verified` | string | Last verification date (YYYYMMDD) | `"20260227"` |
+| `last_verified_by` | string | Actor who verified this artifact | `"windsurf"` |
 
 ### **📋 Outbound Edges Format**
 
@@ -152,7 +171,7 @@ flare.headers:
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
-flare.footer:
+flare.edges:
   outbound_edges:
     - { to: "path/to/file.md", type: "references", weight: 1.0, reason: "Primary reference", db_source: "lupo_contents" }
     - { to: "docs/toons/lupo_table.toon.json", type: "schema_reference", weight: 1.0 }
@@ -162,6 +181,12 @@ flare.footer:
     - { from: "docs/related.md", type: "related_to", weight: 0.7, last_seen: "20260227" }
 
   semantic_tags: ["tag1", "tag2", "tag3"]
+
+flare.footer:
+  view_count: 100
+  like_count: 5
+  share_count: 2
+  last_verified: "20260227"
 ```
 
 **Important:** Always include the automation tip comment above `flare.footer` to educate users about the FLARE Edge Suggester Tool. This promotes automation adoption and reduces manual edge discovery effort.
@@ -279,7 +304,7 @@ outbound_edges:
 When documenting database tables, always reference the corresponding TOON file:
 
 ```yaml
-flare.footer:
+flare.edges:
   outbound_edges:
     - { to: "docs/toons/lupo_<table_name>.toon.json", type: "schema_reference", weight: 1.0 }
     # ... other edges

@@ -222,7 +222,7 @@ $admin_section_info = array(
     'operators' => array('description' => 'Create, edit, and delete operators. User management is in the Data → Users section.', 'links' => array('Users' => 'admin.php?section=users')),
     'departments-html' => array('description' => 'HTML code snippets for department-specific widgets or embed codes.', 'links' => array('Departments' => 'admin.php?section=departments')),
     'data-visits' => array('description' => 'Visit analytics (lupo_visits, lupo_analytics_visits). List and filter visits.', 'links' => array()),
-    'data-messages' => array('description' => 'Message database (lupo_dialog_doctrine). Browse and search messages.', 'links' => array()),
+    'data-messages' => array('description' => 'Message database (lupo_dialog_messages). Browse and search messages.', 'links' => array()),
     'data-referrers' => array('description' => 'Referrer analytics (lupo_referers).', 'links' => array()),
     'data-visits-period' => array('description' => 'Visits aggregated by period.', 'links' => array()),
     'data-paths' => array('description' => 'Path analytics (lupo_analytics_paths).', 'links' => array()),

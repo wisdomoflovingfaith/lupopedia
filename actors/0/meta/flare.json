@@ -1,0 +1,21 @@
+{
+  "schema_version": "4.0.47",
+  "actor_id": "0",
+  "edges": [
+    {
+      "from": "0",
+      "to": "10000",
+      "type": "provides_services_to",
+      "weight": 1.0,
+      "reason": "System kernel provides foundational services to captain"
+    },
+    {
+      "from": "0",
+      "to": "1000",
+      "type": "supports",
+      "weight": 0.8,
+      "reason": "System kernel supports installation operations"
+    }
+  ],
+  "last_updated_utc": "20260227"
+}

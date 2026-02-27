@@ -79,9 +79,9 @@ flare.headers:
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
-flare.footer:
+flare.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_contents.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_contents" }
+- { to: "docs/toons/lupo_contents.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_contents" }
     - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9, reason: "Content author relationships", db_source: "lupo_contents" }
     - { to: "docs/database/lupopedia/tables/lupo_collections.md", type: "references", weight: 0.8, reason: "Default collection assignments", db_source: "lupo_contents" }
     - { to: "docs/database/lupopedia/tables/lupo_departments.md", type: "references", weight: 0.7, reason: "Department content ownership", db_source: "lupo_contents" }
@@ -467,3 +467,4 @@ WHERE file_path_from_root = :path;
 ---
 
 *This table documentation is part of the FLARE relationship automation initiative. For the complete database context, see the lupopedia database README and the 4.0.47 development thread.*
+

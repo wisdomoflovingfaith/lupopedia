@@ -38,9 +38,9 @@ flare.headers:
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
-flare.footer:
+flare.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_artifacts.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_artifacts" }
+- { to: "docs/toons/lupo_artifacts.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_artifacts" }
     - { to: "docs/database/lupopedia/tables/lupo_artifact_chunks.md", type: "references", weight: 1.0, reason: "Artifact chunk storage relationship", db_source: "lupo_artifacts" }
     - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9, reason: "Artifact owner relationships", db_source: "lupo_artifacts" }
     - { to: "docs/database/lupopedia/tables/lupo_federation_nodes.md", type: "references", weight: 0.7, reason: "Federation node assignments", db_source: "lupo_artifacts" }
@@ -238,3 +238,4 @@ GROUP BY a.artifact_id, a.entity_type;
 ---
 
 *This table documentation is part of the FLARE relationship automation initiative. For the complete database context, see the lupopedia database README and the 4.0.47 development thread.*
+

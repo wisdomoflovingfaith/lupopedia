@@ -1,5 +1,5 @@
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 flare.headers:
   file_path_from_root: "docs/FLARE_HEADERS_QUICK_REFERENCE.md"
   system_version: "4.0.47"
@@ -13,13 +13,17 @@ flare.headers:
   traits: ["canonical", "comprehensive"]
   tags: ["flare_headers", "quick_reference", "implementation_guide"]
   lupo_agent: "windsurf"
-flare.footer:
+flare.edges:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.8 }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9 }
     - { to: "channels/0/broadcasts/20260224163100_0_10000_minimum_flare_header_requirements.md", type: "references", weight: 1.0 }
   semantic_tags: ["flare_headers", "quick_reference", "implementation_guide", "4.0.47"]
+
+flare.footer:
+  last_verified: "20260226"
+  last_verified_by: "windsurf"
 ---
 
 # FLARE Headers Quick Reference Guide
@@ -36,7 +40,8 @@ FLARE is the formal rule set that governs how Lupopedia and its AI agents interp
 
 FLARE defines:
 - **flare.headers** → File-Level Attributes (metadata)
-- **flare.footer** → File-Level Relationships (graph edges)
+- **flare.edges** → File-Level Relationships (graph edges)
+- **flare.footer** → Engagement Snapshot (dynamic metrics)
 
 Together they form the File-Level Attribute and Relationship Exchange layer of Lupopedia.
 
@@ -44,10 +49,10 @@ Together they form the File-Level Attribute and Relationship Exchange layer of L
 
 ```yaml
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 flare.headers:
   file_path_from_root: "path/from/root.md"
-  system_version: "4.0.47"
+  system_version: "4.1.0"
   channel_id: 1
   actor_id: 1001
   last_modified_utc: "20260226"
@@ -55,10 +60,19 @@ flare.headers:
   artifact_type: "guide"
   purpose: "Brief description of file purpose"
   mood_rgb: "4B0082"
-  artifact_kind: "table"
-  traits: ["canonical", "comprehensive"]
-  tags: ["tag1", "tag2"]
-  lupo_agent: "windsurf"
+  actor_ip: "127.0.0.1"
+
+flare.edges:
+  outbound_edges:
+    - { to: "docs/related.md", type: "references", weight: 1.0 }
+  semantic_tags: ["tag1", "tag2"]
+
+flare.footer:
+  view_count: 0
+  like_count: 0
+  share_count: 0
+  last_verified: "20260226"
+  last_verified_by: "windsurf"
 ---
 ```
 
@@ -79,6 +93,7 @@ flare.headers:
 - **artifact_kind:** Kind of artifact (table, file, component, etc.)
 - **traits:** File characteristics
 - **tags:** Descriptive tags for categorization
+- **actor_ip:** IP address or system identifier of the author
 - **lupo_agent:** Agent name handling the file (can be inferred from actor_id)
 
 ## 🎯 **Channel ID Guide**
@@ -132,74 +147,53 @@ See `actors/registry.json` - the master source of truth for all actor IDs.
 ### Documentation File
 ```yaml
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 flare.headers:
   file_path_from_root: "docs/guide/example.md"
-  system_version: "4.0.47"
+  system_version: "4.1.0"
   channel_id: 1
   actor_id: 1001
   last_modified_utc: "20260226"
   delegation_chain: "1001:10000"
   artifact_type: "guide"
-  purpose: "Example implementation guide"
-  mood_rgb: "4B0082"
-  traits: ["canonical", "comprehensive"]
-  tags: ["guide", "example", "implementation"]
-  lupo_agent: "windsurf"
----
-```
 
-### Status Report
-```yaml
----
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-flare.headers:
-  file_path_from_root: "docs/status/example.md"
-  system_version: "4.0.47"
-  channel_id: 42
-  actor_id: 1001
-  last_modified_utc: "20260226"
-  delegation_chain: "1001:10000"
-  artifact_type: "status"
-  purpose: "Task completion status"
-  mood_rgb: "FF6B6B"
-  traits: ["time-sensitive", "high-priority"]
-  tags: ["status", "task", "completion"]
-  lupo_agent: "windsurf"
+flare.edges:
+  outbound_edges:
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+
+flare.footer:
+  view_count: 150
+  last_verified: "20260226"
 ---
 ```
 
 ### Doctrine File
 ```yaml
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 flare.headers:
   file_path_from_root: "channels/0/broadcasts/example_doctrine.md"
-  system_version: "4.0.47"
+  system_version: "4.1.0"
   channel_id: 0
   actor_id: 10000
   last_modified_utc: "20260226"
   delegation_chain: "10000:10000"
   artifact_type: "doctrine"
-  purpose: "System doctrine definition"
-  mood_rgb: "FFD700"
-  traits: ["canonical", "system-critical"]
-  tags: ["doctrine", "system", "definition"]
-  lupo_agent: "wolfie"
+
+flare.edges:
+  semantic_tags: ["doctrine", "system"]
+
+flare.footer:
+  view_count: 500
+  like_count: 0
+  share_count: 0
+  last_verified: "20260226"
+  last_verified_by: "windsurf"
 ---
 ```
 
-## � **flare.footer Format**
+## 🗺️ **flare.edges Format**
 
-### Required Footer Fields
 ```yaml
-# 💡 FLARE Edge Automation Tip:
-# Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
-# This will analyze content, TOON schemas, and database relationships to suggest
-# appropriate outbound_edges with weights, reasons, and discovery methods.
-
-flare.footer:
+flare.edges:
   outbound_edges:
     - { to: "docs/related.md", type: "references", weight: 1.0, reason: "Primary reference" }
     - { to: "docs/toons/lupo_table.toon.json", type: "schema_reference", weight: 1.0 }
@@ -208,14 +202,26 @@ flare.footer:
     - { from: "docs/other.md", type: "references", weight: 0.8, last_seen: "20260227" }
   
   semantic_tags: ["tag1", "tag2", "tag3"]
-  version: "4.0.47"
+```
+
+## 📊 **flare.footer Format (Engagement Snapshot)**
+
+```yaml
+flare.footer:
+  view_count: 1234
+  like_count: 56
+  share_count: 12
   last_verified: "20260227"
   last_verified_by: "windsurf"
 ```
 
-**Important:** Always include the automation tip comment above `flare.footer` to promote tool adoption.
+## 💡 FLARE Edge Automation Tip:
+# Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
+# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+# This will analyze content, TOON schemas, and database relationships to suggest
+# appropriate outbound_edges with weights, reasons, and discovery methods.
 
-## �🔧 **Date Format
+## 🔧 **Date Format
 
 ### Current Date Format
 Format: `YYYYMMDD` UTC  

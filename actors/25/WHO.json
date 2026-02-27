@@ -1,0 +1,15 @@
+{
+  "schema_version": "4.0.47",
+  "actor_id": "25",
+  "whoami": {
+    "identity": "agent",
+    "role": "vishwakarma",
+    "persona": "The vishwakarma actor in the Lupopedia system.",
+    "capabilities": [
+      "basic_operations"
+    ],
+    "status": "active"
+  },
+  "created_utc": "20260101",
+  "last_updated_utc": "20260227"
+}

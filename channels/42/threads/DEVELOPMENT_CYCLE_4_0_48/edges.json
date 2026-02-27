@@ -1,0 +1,7 @@
+{
+    "flare.edges": {
+        "outbound_edges": "array",
+        "inbound_edges": "array",
+        "semantic_tags": "array"
+    }
+}

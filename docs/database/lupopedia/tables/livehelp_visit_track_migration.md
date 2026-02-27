@@ -1,0 +1,270 @@
+---
+flare.headers: {
+  file_path_from_root: "docs/database/lupopedia/tables/livehelp_visit_track_migration.md",
+  system_version: "4.0.39",
+  channel_id: 42,
+  mood_rgb: "8B4513",
+  purpose: "Migration doctrine for livehelp_visit_track/visits_daily/monthly → lupo_visits",
+  last_modified_utc: "20260224",
+  delegation_chain: "1001:10000",
+  actor_id: 1001,
+  lupo_agent: "kiro",
+  artifact_type: "doctrine",
+  artifact_kind: "migration_mapping",
+  traits: ["crafty_syntax", "migration", "table_mapping", "livehelp_visits", "imported"],
+  hashtags: ["legacy-reference", "#migration", "#crafty_syntax", "#livehelp_visits", "#analytics", "#imported", "#upgrade_path"],
+  engagement: { likes: 0, shares: 0, views: 0, last_interaction_utc: "20260224" },
+  graph_stats: { inbound_count: 2, outbound_count: 3, centrality_score: 0.72 }
+}
+
+flip.footer: {
+  inbound_edges: [
+    { from: "database/migrations/import_from_old_crafty_syntax.sql", type: "implements", weight: 0.9, hashtag: "#migration" },
+    { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
+  ],
+  outbound_edges: [
+    { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" },
+    { to: "docs/doctrine/migrations/livehelp_paths_firsts_migration.md", type: "related_to", weight: 0.6, hashtag: "#analytics" },
+    { to: "docs/doctrine/migrations/livehelp_referers_daily_migration.md", type: "related_to", weight: 0.6, hashtag: "#analytics" }
+  ],
+  referenced_by_actors: [1001, 10000],
+  references: {
+    by_files: ["database/migrations/import_from_old_crafty_syntax.sql", "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
+    by_actors: [1001, 10000]
+  },
+  semantic_tags: ["livehelp_visits_mapping", "page_visits", "analytics", "imported"],
+  enrichment: { llm_inferred_edges: [], federated_metrics: {} },
+  version: "4.0.39",
+  last_verified_utc: "20260224",
+  last_verified_by: "kiro"
+}
+
+  ---
+
+## WARNING: Legacy Reference Only
+
+These database tables should never be used in the new Lupopedia system. They exist just for reference on what the old Crafty Syntax system's database tables contained and how they map to the new tables. All legacy tables will not exist in version 4.1.1+ of Lupopedia.
+
+
+# Migration Note: livehelp_visit_track, livehelp_visits_daily, livehelp_visits_monthly
+# Status:
+#
+# livehelp_visit_track -> DROPPED (ephemeral)
+#
+# livehelp_visits_daily -> IMPORTED -> DROPPED
+#
+# livehelp_visits_monthly -> IMPORTED -> DROPPED
+# Replacement: lupo_visits
+
+# 1. Summary
+Crafty Syntax used three different tables to track page visits:
+
+1. livehelp_visit_track
+Ephemeral, per-session, rolling page-view tracker.
+Not durable. Not analytics. Not imported.
+
+2. livehelp_visits_daily
+Aggregated daily visit counts.
+No real URLs (only pageurl strings).
+Imported into lupo_visits.
+
+3. livehelp_visits_monthly
+Aggregated monthly visit counts.
+Contains real URLs.
+Imported into lupo_visits.
+
+Lupopedia replaces all three with:
+
+Code
+lupo_visits
+A single, normalized analytics table.
+
+# 2. What the Legacy Tables Actually Did
+A. livehelp_visit_track (ephemeral)
+This table recorded:
+
+active session page hits
+
+temporary routing
+
+raw referrer strings
+
+"whendone" timestamps
+
+It was never meant to be persisted.
+It was a runtime scratchpad, not analytics.
+
+B. livehelp_visits_daily
+This table stored:
+
+pageurl (not always a real URL)
+
+parentrec (legacy tree structure)
+
+levelvisits + directvisits
+
+level (depth)
+
+department
+
+dateof (YYYYMMDD)
+
+It was a daily counter, not a real referer model.
+
+C. livehelp_visits_monthly
+Same fields as daily, but:
+
+pageurl is usually a real URL
+
+data is aggregated monthly
+
+This is the only table with reliable URLs.
+
+# 3. Why Lupopedia Uses a Unified Table
+lupo_visits provides:
+
+normalized URL fields
+
+domain/path extraction
+
+actor linkage (future)
+
+content linkage (future)
+
+lifecycle fields
+
+JSON metadata for legacy fields
+
+a single analytics pipeline
+
+Legacy data is preserved only as metadata, because:
+
+daily table URLs are unreliable
+
+parentrec trees are inconsistent
+
+visit counts are not trustworthy
+
+actor/content linkage cannot be reconstructed
+
+This is the safest, most doctrine-aligned approach.
+
+# 4. Migration Behavior (as implemented in SQL)
+Step 1 -- Convert all legacy tables for safe reading
+Code
+ALTER TABLE livehelp_visit_track ENGINE=InnoDB;
+ALTER TABLE livehelp_visits_daily ENGINE=InnoDB;
+ALTER TABLE livehelp_visits_monthly ENGINE=InnoDB;
+Step 2 -- Mark all tables as deprecated
+livehelp_visit_track is explicitly marked as ephemeral.
+
+livehelp_visits_daily and livehelp_visits_monthly are marked as imported -> safe to delete.
+
+Step 3 -- Clear the unified table
+Code
+TRUNCATE lupo_visits;
+Step 4 -- Import daily data
+Daily table rows become:
+
+page_url = r.pageurl
+
+page_domain extracted from URL
+
+page_path extracted from URL
+
+content_id = 1 (placeholder)
+
+actor_id = 1 (placeholder)
+
+all legacy fields preserved in metadata_json
+
+Step 5 -- Import monthly data
+Monthly table rows become:
+
+same mapping as daily
+
+monthly data appended to the same table
+
+This merges daily + monthly into one unified analytics model.
+
+# 5. Why content_id = 1 and actor_id = 1
+These are intentional placeholders.
+
+Legacy Crafty Syntax analytics had:
+
+no concept of content IDs
+
+no concept of actors
+
+no way to link visits to content or users
+
+Lupopedia will later:
+
+resolve URLs -> content IDs
+
+resolve sessions -> actors
+
+normalize analytics
+
+The migration preserves the data without pretending to know what it means.
+
+# 6. Mapping Summary
+Legacy -> New
+Legacy Field	lupo_visits Field	Notes
+pageurl	page_url	preserved
+dateof	date_ymd	preserved
+levelvisits + directvisits	visits	preserved
+level	depth	preserved
+parentrec	metadata_json	preserved
+department	metadata_json	preserved
+livehelp_id	metadata_json	preserved
+Added fields
+Code
+content_id = 1 (placeholder)
+actor_id = 1 (placeholder)
+page_domain = extracted
+page_path = extracted
+Dropped fields
+None -- all legacy fields are preserved in metadata.
+
+# 7. Doctrine Notes
+This migration is a perfect example of:
+
+Separating ephemeral session data from durable analytics
+livehelp_visit_track is dropped because it was never analytics.
+
+Unifying inconsistent legacy structures
+Daily and monthly tables are merged into one normalized table.
+
+Preserving historical data without misrepresenting it
+We keep:
+
+visit counts
+
+depth
+
+dates
+
+legacy metadata
+
+We do not attempt to:
+
+reconstruct missing URLs
+
+rebuild broken parent trees
+
+infer content IDs
+
+infer actors
+
+The Slope Principle
+We preserve what exists.
+We do not fabricate what does not.
+
+# 8. Final Decision
+Code
+livehelp_visit_track   -> DROPPED (ephemeral)
+livehelp_visits_daily  -> IMPORTED -> DROPPED
+livehelp_visits_monthly -> IMPORTED -> DROPPED
+
+All legacy visit analytics preserved in lupo_visits.metadata_json.

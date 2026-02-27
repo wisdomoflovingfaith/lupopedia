@@ -1,26 +1,45 @@
 ---
-# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/database/README.md
-file.last_modified_system_version: "4.0.16"
-file.last_modified_utc: "20260218000000"
-channel_id: 42   # ANUBIS adoption channel
-tags: ["lost", "orphan", "doctrine"]
-mood_rgb: "FFDAB9"
-atoms:
-  recovery_event: true
-X-Lupo-Actor-ID: 2035
-X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/database/README.md
+flare.headers: {
+  file_path_from_root: "docs/database/lupopedia/tables/README.md",
+  system_version: "4.0.48",
+  channel_id: 42,
+  actor_id: 1003,
+  last_modified_utc: "20260227",
+  delegation_chain: "10000:1003",
+  artifact_type: "documentation",
+  purpose: "Index and overview for Lupopedia database table documentation",
+  mood_rgb: "00FF00",
+  traits: ["canonical", "documentation", "index", "v4.0.48", "history-update"],
+  tags: ["database", "schema", "documentation", "index", "history-update"],
+  lupo_agent: "antigravity"
+}
+flare.edges: {
+  outbound_edges: [
+    { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 },
+    { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 1.0 }
+  ],
+  semantic_tags: ["database_index", "schema_documentation"]
+}
+flare.footer: {
+  last_verified_utc: "20260227",
+  last_verified_by: "antigravity"
+}
 ---
 
 # Lupopedia Database Tables (Doctrine)
 
 This folder contains **per-table doctrine** for Lupopedia tables that are migration targets or central to the Crafty Syntax 3.7.5 → Lupopedia 4.0.x upgrade path. Each file describes the table’s purpose, how it is used, and how it was mapped from legacy Crafty Syntax tables.
 
-**Schema source of truth:** `docs/toons/*.toon.json` (TOON files). Column names, types, and keys must match the TOONs. Cursor must not guess or invent schema; see `.cursor/rules/toon-source-of-truth.mdc`.
+**Schema source of truth:** `docs/toons/*.toon.json` (TOON files). Column names, types, and keys must match the TOONs.
 
-**Legacy mapping source:** `docs/doctrine/migrations/`. Each migration file (e.g. `livehelp_users_migration.md`) describes one or more legacy tables and their replacement in Lupopedia. The index is **MIGRATION_MAPPING_REFERENCE.md**.
+> [!NOTE]
+> For historical context on why legacy tables are deprecated and the project's evolution from 2002, see the [Full Project History](../../../channels/appendix/HISTORY.md).
+
+---
+
+## Migration Mapping Reference
+
+Legacy mapping details were previously in `docs/doctrine/migrations/` but have been consolidated here for technical reference. The central index is **[MIGRATION_MAPPING_REFERENCE.md](MIGRATION_MAPPING_REFERENCE.md)**.
 
 ---
 
@@ -32,7 +51,7 @@ Lupopedia does **not** have a `lupo_operators` table. Permissions use a **3-leve
 2. **Department roles** — `lupo_department_roles`. Department-scoped.
 3. **System** — department_id = 0 (global admin). Reserved.
 
-Resolution order: channel → department → system. See **docs/doctrine/migrations/operator_to_roles_migration.md** and **docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md**.
+Resolution order: channel → department → system. See **[operator_to_roles_migration.md](operator_to_roles_migration.md)** and **docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md**.
 
 ---
 
@@ -41,14 +60,14 @@ Resolution order: channel → department → system. See **docs/doctrine/migrati
 | Table (lupo_*) | Doc file | Legacy source(s) |
 |----------------|----------|-------------------|
 | lupo_auth_users | [auth_users.md](auth_users.md) | livehelp_users |
-| lupo_actors | [actors.md](actors.md) | livehelp_users (operators only); anonymous users are not in actors (sessions only) |
+| lupo_actors | [lupo_actors.md](lupo_actors.md) | livehelp_users (operators only) |
 | lupo_actor_departments | [actor_departments.md](actor_departments.md) | livehelp_operator_departments |
-| lupo_actor_channel_roles | [actor_channel_roles.md](actor_channel_roles.md) | (replaces operator–channel assignment; no direct legacy table) |
+| lupo_actor_channel_roles | [actor_channel_roles.md](actor_channel_roles.md) | (new; legacy operator–channel assignment replaced) |
 | lupo_departments | [departments.md](departments.md) | livehelp_departments |
-| lupo_channels | [channels.md](channels.md) | (new; legacy livehelp_channels / livehelp_operator_channels dropped) |
-| lupo_sessions | [sessions.md](sessions.md) | (replaces livehelp_sessions; no import) |
-| lupo_dialog_threads | [dialog_threads.md](dialog_threads.md) | livehelp_transcripts |
-| lupo_dialog_messages | [dialog_messages.md](dialog_messages.md) | livehelp_transcripts |
+| lupo_channels | [channels.md](channels.md) | (new functionality) |
+| lupo_sessions | [sessions.md](sessions.md) | (replaces livehelp_sessions) |
+| lupo_dialog_threads | [lupo_dialog_threads.md](lupo_dialog_threads.md) | livehelp_transcripts |
+| lupo_dialog_messages | [lupo_dialog_messages.md](lupo_dialog_messages.md) | livehelp_transcripts |
 | lupo_crm_leads | [crm_leads.md](crm_leads.md) | livehelp_leads |
 | lupo_crm_lead_messages | [crm_lead_messages.md](crm_lead_messages.md) | livehelp_emails |
 | lupo_audit_log | [audit_log.md](audit_log.md) | livehelp_operator_history |
@@ -56,4 +75,5 @@ Resolution order: channel → department → system. See **docs/doctrine/migrati
 | lupo_actor_reply_templates | [actor_reply_templates.md](actor_reply_templates.md) | livehelp_quick |
 | lupo_federation_nodes | [federation_nodes.md](federation_nodes.md) | livehelp_websites |
 
-For the full mapping list see **docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md**.
+---
+*Maintained by Antigravity (Actor 1003)*

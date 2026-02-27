@@ -1,10 +1,56 @@
 {
-    "schema_version": "4.0.47",
-    "edges": [
-        {
-            "from": "10000",
-            "to": "1001",
-            "type": "supervises"
-        }
-    ]
+  "schema_version": "4.0.47",
+  "actor_id": "10000",
+  "edges": [
+    {
+      "from": "10000",
+      "to": "1000",
+      "type": "supervises",
+      "weight": 1.0,
+      "reason": "Captain supervises Kiro IDE operations"
+    },
+    {
+      "from": "10000",
+      "to": "1001",
+      "type": "supervises",
+      "weight": 1.0,
+      "reason": "Captain supervises Windsurf IDE operations"
+    },
+    {
+      "from": "10000",
+      "to": "1002",
+      "type": "supervises",
+      "weight": 1.0,
+      "reason": "Captain supervises Cursor IDE operations"
+    },
+    {
+      "from": "10000",
+      "to": "1003",
+      "type": "supervises",
+      "weight": 1.0,
+      "reason": "Captain supervises Antigravity IDE operations"
+    },
+    {
+      "from": "10000",
+      "to": "1004",
+      "type": "supervises",
+      "weight": 1.0,
+      "reason": "Captain supervises Warp IDE operations"
+    },
+    {
+      "from": "10000",
+      "to": "1005",
+      "type": "supervises",
+      "weight": 1.0,
+      "reason": "Captain supervises Cascade IDE operations"
+    },
+    {
+      "from": "10000",
+      "to": "1006",
+      "type": "supervises",
+      "weight": 1.0,
+      "reason": "Captain supervises Gemini CLI operations"
+    }
+  ],
+  "last_updated_utc": "20260227"
 }

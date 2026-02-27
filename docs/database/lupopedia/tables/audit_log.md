@@ -1,37 +1,47 @@
 ---
-# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/database/audit_log.md
-file.last_modified_system_version: "4.0.16"
-file.last_modified_utc: "20260218000000"
-channel_id: 42   # ANUBIS adoption channel
-tags: ["lost", "orphan", "doctrine"]
-mood_rgb: "FFDAB9"
-atoms:
-  recovery_event: true
-X-Lupo-Actor-ID: 2035
-X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/database/audit_log.md
+flare.headers:
+  file_path_from_root: "docs/database/lupopedia/tables/audit_log.md"
+  system_version: "4.0.46"
+  channel_id: 0
+  actor_id: 1006
+  created_ymdhis: 20260226204058
+  updated_ymdhis: 20260226204058
+  artifact_type: "table_documentation"
+  purpose: "General audit trail for actor and system actions"
+  lupo_agent: "gemini-cli"
+
+flare.edges:
+  outbound_edges:
+- { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.8, reason: "Actor identity attribution" }
+    - { to: "docs/toons/lupo_audit_log.toon.json", type: "schema_reference", weight: 1.0 }
+  semantic_tags: ["audit", "log", "security", "history"]
+
+flare.footer:
+  last_verified: "20260226"
+  last_verified_by: "gemini-cli"
 ---
 
-# lupo_audit_log
+# Database Documentation: lupo_audit_log
+## Version: 4.0.46
+## Date: 2026-02-26
 
-**Purpose:** **Audit trail** for actor and system actions: entity_type, entity_id, event_type, optional payload_json, and timestamps. Used for operator history, login events, and other auditable actions. No foreign keys; entity references are application-managed.
+### 1. Overview
+Purpose: **Audit trail** for actor and system actions: entity_type, entity_id, event_type, optional payload_json, and timestamps. Used for operator history, login events, and other auditable actions. No foreign keys; entity references are application-managed.
 
 **Schema:** See `docs/toons/lupo_audit_log.toon.json`. Column names (e.g. entity_type, entity_id, event_type, payload_json, created_ymdhis) must match the TOON.
 
----
-
-## Use and need
+### 2. Core Workflows
 
 - **Operator history:** Legacy “operator did X” events map to entity_type = 'actor', entity_id = operator actor_id, event_type = action type, payload_json for session or context.
 - **Compliance and debugging:** Queries by entity_id or event_type for support and audits.
 - **Timestamps:** BIGINT UTC YmdHis set in application code.
 
----
-
-## Mapping from Crafty Syntax
+### 3. Mapping from Crafty Syntax
 
 **Legacy table:** `livehelp_operator_history`.
 
 **Migration:** `docs/doctrine/migrations/livehelp_operator_history_migration.md`, `import_from_old_crafty_syntax.sql`. Legacy opid → entity_id, entity_type = 'actor', event_type and payload from legacy action/session. livehelp_operator_history → IMPORTED → DROPPED.
+
+---
+*Maintained by GEMINI (Actor 1006)*
+

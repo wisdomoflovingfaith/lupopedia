@@ -18,6 +18,8 @@ require_once __DIR__ . '/class-hermes.php';
 require_once __DIR__ . '/class-caduceus.php';
 require_once __DIR__ . '/class-wolfmind.php';
 require_once __DIR__ . '/class-iris.php';
+require_once __DIR__ . '/class-hermes.php';
+require_once __DIR__ . '/class-wolfmind.php';
 
 class DialogManager
 {
@@ -29,11 +31,11 @@ class DialogManager
 
     public function __construct($db)
     {
-        $this->db       = $db;
-        $this->pdo      = $db->getPdo();
-        $this->hermes   = new HERMES($db);
+        $this->db = $db;
+        $this->pdo = $db->getPdo();
+        $this->hermes = new HERMES($db);
         $this->wolfmind = new WOLFMIND($db);
-        $this->iris     = new IRIS($db);
+        $this->iris = new IRIS($db);
     }
 
     /**
@@ -50,7 +52,7 @@ class DialogManager
      *
      * @return array  Final response packet
      */
-    public function handleMessage(array $packet): array
+    public function handleMessage($packet)
     {
         // ---------------------------------------------------------
         // 1. Insert incoming message into dialog_messages
@@ -86,9 +88,9 @@ class DialogManager
         $responseId = $this->insertDialogMessage([
             'actor_id' => $targetAgent,
             'to_actor' => $packet['actor_id'],
-            'content'  => $responseText,
+            'content' => $responseText,
             'mood_rgb' => '88FF88', // default positive
-            'thread_id'=> $packet['thread_id']
+            'thread_id' => $packet['thread_id']
         ]);
 
         // ---------------------------------------------------------
@@ -96,48 +98,59 @@ class DialogManager
         // ---------------------------------------------------------
         return [
             'response_message_id' => $responseId,
-            'response_text'       => $responseText,
-            'from_actor'          => $targetAgent,
-            'to_actor'            => $packet['actor_id']
+            'response_text' => $responseText,
+            'from_actor' => $targetAgent,
+            'to_actor' => $packet['actor_id']
         ];
     }
 
     /**
-     * Insert a dialog message into lupo_dialog_doctrine table.
+     * Insert a dialog message into lupo_dialog_messages table.
      */
-    protected function insertDialogMessage(array $packet): int
+    protected function insertDialogMessage($packet)
     {
         $now = gmdate('YmdHis');
 
         $data = [
-            'from_actor_id'   => $packet['actor_id'],
-            'to_actor_id'     => $packet['to_actor'] ?? null,
-            'message_text'    => $packet['content'],
-            'dialog_thread_id'=> $packet['thread_id'] ?? null,
-            'mood_rgb'        => $packet['mood_rgb'] ?? '666666',
-            'message_type'    => $packet['message_type'] ?? 'text',
-            'created_ymdhis'  => $now,
-            'updated_ymdhis'  => $now,
-            'is_deleted'      => 0
+            'from_actor_id' => $packet['actor_id'],
+            'to_actor_id' => $packet['to_actor'] ?? null,
+            'message_text' => $packet['content'],
+            'dialog_thread_id' => $packet['thread_id'] ?? null,
+            'mood_rgb' => $packet['mood_rgb'] ?? '666666',
+            'message_type' => $packet['message_type'] ?? 'text',
+            'created_ymdhis' => $now,
+            'updated_ymdhis' => $now,
+            'is_deleted' => 0
         ];
 
         // Add metadata_json if provided
         if (isset($packet['metadata_json'])) {
-            $data['metadata_json'] = is_string($packet['metadata_json']) 
-                ? $packet['metadata_json'] 
+            $data['metadata_json'] = is_string($packet['metadata_json'])
+                ? $packet['metadata_json']
                 : json_encode($packet['metadata_json']);
         }
 
         // Add directive_dialog_id to metadata if provided
         if (isset($packet['directive_dialog_id'])) {
-            $metadata = isset($data['metadata_json']) 
-                ? json_decode($data['metadata_json'], true) 
+            $metadata = isset($data['metadata_json'])
+                ? json_decode($data['metadata_json'], true)
                 : [];
             $metadata['directive_dialog_id'] = $packet['directive_dialog_id'];
             $data['metadata_json'] = json_encode($metadata);
         }
 
-        return (int)$this->db->insert('lupo_dialog_doctrine', $data);
+        $msgId = (int) $this->db->insert('lupo_dialog_messages', $data);
+
+        // Update counts and activity tracking (replacing triggers)
+        $servicePath = LUPOPEDIA_PATH . '/app/Services/TriggerReplacements/DialogMessagesInsertService.php';
+        if (file_exists($servicePath)) {
+            require_once $servicePath;
+            $insertService = new DialogMessagesInsertService($this->db);
+            $channelId = isset($data['channel_id']) ? $data['channel_id'] : 42; // default channel
+            $insertService->executeAfterInsert($channelId, $data['dialog_thread_id']);
+        }
+
+        return $msgId;
     }
 }
 

@@ -18,17 +18,27 @@ Complete database documentation for all remaining tables in the Lupopedia databa
 
 ## 📊 **Current Status**
 
-### **✅ Completed Tables (7 Critical Tables)**
-1. **lupo_contents.md** - Core content management (55 fields)
-2. **lupo_actors.md** - Unified actor identity (26 fields)
-3. **lupo_channels.md** - Communication channels (31 fields)
-4. **lupo_edges.md** - Relationship graph core (33 fields)
-5. **lupo_atoms.md** - Atomic configuration (9 fields)
-6. **lupo_artifacts.md** - Generic artifact storage (11 fields)
-7. **lupo_artifact_chunks.md** - Content chunking (9 fields)
+### **✅ Completed Tables (17 Critical & Suite Tables)**
+1. **lupo_contents.md** - Core content management
+2. **lupo_actors.md** - Unified actor identity
+3. **lupo_channels.md** - Communication channels
+4. **lupo_edges.md** - Relationship graph core
+5. **lupo_atoms.md** - Atomic configuration
+6. **lupo_artifacts.md** - Generic artifact storage
+7. **lupo_artifact_chunks.md** - Content chunking
+8. **lupo_dialog_threads** - Semantic conversation threads
+9. **lupo_dialog_messages** - Atomic communication events
+10. **lupo_dialog_channels** - UI and routing channel context
+11. **lupo_anubis_log** - Central custodial audit trail
+12. **lupo_anubis_deletion_log** - Referential integrity guard
+13. **lupo_anubis_mirrored** - Data lineage tracking
+14. **lupo_anubis_orphaned** - Quarantine/buffer management
+15. **lupo_anubis_events** - High-level operational events
+16. **lupo_anubis_redirects** - ID mapping and resolution
+17. **lupo_anubis_revised** - Normalization audit history
 
 ### **📋 Migrated Tables (18 from doctrine/database)**
-Already moved from `docs/doctrine/database/` to `docs/database/lupopedia/tables/`:
+Already moved from `docs/doctrine/database/` to `docs/database/lupopedia/tables/` and normalized with FLARE 4.1.0 headers:
 - actor_channel_roles.md
 - actor_departments.md
 - actor_reply_templates.md
@@ -47,8 +57,9 @@ Already moved from `docs/doctrine/database/` to `docs/database/lupopedia/tables/
 
 ### **🔢 Remaining Tables**
 - **Total TOON Files:** 210 tables
-- **Documented:** 25 tables (7 critical + 18 migrated)
-- **Remaining:** 185 tables
+- **Documented:** 35 tables (17 core/new + 18 migrated)
+- **Remaining:** 175 tables
+- **Progress:** 16.6% completion status (35/210 tables)
 - **Priority:** Document as needed for 4.0.48+ development
 
 ---
@@ -319,10 +330,20 @@ Each completed table documentation must:
 
 ### **Current Progress**
 - **Started:** 2026-02-27
-- **Completed:** 25/210 tables (11.9%)
-- **Critical Tables:** 7/7 completed (100%)
+- **Completed:** 35/210 tables (16.6%)
+- **Critical & Suite Tables:** 17/17 (100% of currently relevant core)
 - **Migrated Tables:** 18/18 completed (100%)
-- **Remaining:** 185 tables
+- **Newly Documented (4.0.48):**
+  - ✅ **lupo_dialog_threads/messages/channels**
+  - ✅ **lupo_anubis_log**
+  - ✅ **lupo_anubis_deletion_log**
+  - ✅ **lupo_anubis_mirrored**
+  - ✅ **lupo_anubis_orphaned**
+  - ✅ **lupo_anubis_events**
+  - ✅ **lupo_anubis_redirects**
+  - ✅ **lupo_anubis_revised**
+- **FLARE Compliance:** 100% (All 35 documentation files have FLARE 4.1.0 headers and edges)
+- **Remaining:** 175 tables
 
 ### **Milestone Targets**
 - **4.0.48:** Document high-priority tables (20-30 tables)

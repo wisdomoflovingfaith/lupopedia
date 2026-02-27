@@ -1,5 +1,5 @@
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 flare.headers:
   file_path_from_root: "docs/doctrine/FLARE/FLARE_DOCTRINE.md"
   system_version: "4.0.47"
@@ -55,11 +55,11 @@ FLARE replaces FLIP as the canonical protocol name, but both are currently accep
 
 **FLARE** stands for **F**ile-**L**evel **A**ttribute and **R**elationship **E**xchange.
 
-It is the formal rule set that governs how Lupopedia and its AI agents interpret files. When a file is "flared" to the system (e.g. handed to any agent), the agent must **infer** everything it needs to know about that file **entirely from the FLARE Headers** — without guessing, without hallucinating, and without requiring context from elsewhere.
-
-FLARE defines two distinct components:
-- **flare.headers** → File-Level Attributes (metadata)
-- **flare.footer** → File-Level Relationships (graph edges)
+It is the formal rule set that governs how Lupopedia and its AI agents interpret files. When a file is "flared" to the system (e.g. handed to any agent), the agent must **infer** everything it needs to know about that file **entirely from the FLARE Header** — without guessing, without hallucinating, and without requiring context from elsewhere.
+FLARE defines three distinct components:
+- **flare.headers** (Identity/Metadata) → Basic file properties, lineage, and routing.
+- **flare.edges** (Relational/Graph) → The "Map" of outbound and inbound relationships.
+- **flare.footer** (Engagement/Snapshots) → Temporal metrics and verification status.
 
 ---
 
@@ -71,13 +71,13 @@ FLARE defines two distinct components:
 | **L** — Level | Inference happens at the **file level**. | The boundary and truth source for that file is the FLARE Header. Not the database, not the system — the file. |
 | **A** — Attribute | File metadata is expressed as structured attributes. | Identity, version, channel, mood, doctrine, placement — all as explicit attributes. |
 | **R** — Relationship | Files explicitly define their relationships to other files. | Graph edges, dependencies, references, and semantic connections. |
-| **E** — Exchange | FLARE enables bidirectional exchange of file information. | Files both declare their attributes and their relationships to the broader system. |
+| **E** — Exchange | FLARE enables bidirectional exchange of file information. | Files both declare their attributes, relationships, and engagement snapshots. |
 
 ---
 
 ## 3. One-Sentence Definition
 
-**FLARE is the protocol that tells Lupopedia: when a file is flared to you, read its FLARE Header to infer file attributes and relationship edges — identity, doctrine, meaning, and connections — without guessing.**
+**FLARE is the protocol that tells Lupopedia: when a file is flared to you, read its FLARE Header to infer file attributes, graph edges, and engagement metrics — identity, doctrine, meaning, and connections — without guessing.**
 
 ---
 
@@ -96,13 +96,21 @@ When a file is flared to an agent, the agent must infer the following **entirely
 - **File placement** — Where the file sits in the semantic OS (collections, categories, paths).
 - **File semantic meaning** — What the file is for; purpose, artifact_type, tags.
 - **File delegation** — Actor delegation chain, responsibility flow.
+- **File origin** — Actor IP address or system identifier at time of creation.
 
-### 4.2 File Relationships (flare.footer)
+### 4.2 File Relationships (flare.edges)
 
 - **Outbound edges** — Files this document references or depends on.
+- **Inbound edges** — Read-only snapshot of files referencing this document.
 - **Edge types** — Nature of relationships (references, implements, schema_reference, etc.).
 - **Edge weights** — Strength/importance of relationships (0.5-1.0 scale).
 - **Semantic tags** — High-level relationship categorization.
+
+### 4.3 Engagement Snapshots (flare.footer)
+
+- **Temporal metrics** — view_count, like_count, share_count.
+- **Verification** — last_verified, last_verified_by.
+- **Temporal context** — Any other dynamic metrics captured at the time of export.
 
 If a field is absent from the header, the agent must **not** invent it. Infer only what the header provides. Omission is information.
 
@@ -116,8 +124,8 @@ FLARE is what makes FLARE Headers **operational** instead of just descriptive. T
 
 ### Key Improvements over FLIP:
 
-1. **Explicit Relationships** - Files declare their connections via `flare.footer`
-2. **Clear Separation** - Attributes vs relationships are distinct sections
+1. **Explicit Relationships** - Files declare their connections via `flare.edges`
+2. **Clear Separation** - Identity, Graph, and Engagement are distinct sections
 3. **Better Naming** - "Attribute and Relationship Exchange" is more descriptive
 4. **Graph Awareness** - Built for semantic graph navigation
 5. **Edge Taxonomy** - Standardized relationship types and weights
@@ -150,15 +158,19 @@ When handling any Lupopedia file that has a FLARE Header, the agent MUST:
 8. **Apply emotional context** — Use mood_RGB and emotional metadata for appropriate interaction.
 
 ### 7.3 Relationship Processing
-9. **Parse relationship edges** — Extract all outbound edges from `flare.footer` section.
+9. **Parse relationship edges** — Extract all edges from `flare.edges` section.
 10. **Validate edge targets** — Check that referenced files exist (when possible).
 11. **Apply edge weights** — Use weights to prioritize relationship importance.
 12. **Navigate semantic graph** — Use edges to understand file context and dependencies.
 
-### 7.4 Behavioral Rules
-13. **Use inferred state for all downstream behavior** — Routing, permissions, emotional context, and placement decisions must use the inferred file identity and metadata, not external assumptions.
-14. **Do not alter the header to "fix" inference** — If something is missing, do not add it to the header unless explicitly asked to update the file. FLARE is read-only inference; header edits are separate operations.
-15. **Handle legacy keys gracefully** — During migration, accept `flip.headers`/`flip.footer` but emit warnings.
+### 7.4 Engagement Processing
+13. **Parse engagement snapshots** — Extract metrics from `flare.footer` section.
+14. **Use metrics for ranking** — Use view_count/like_count for internal relevance ranking if applicable.
+
+### 7.5 Behavioral Rules
+15. **Use inferred state for all downstream behavior** — Routing, permissions, emotional context, and placement decisions must use the inferred file identity and metadata, not external assumptions.
+16. **Do not alter the header to "fix" inference** — If something is missing, do not add it to the header unless explicitly asked to update the file. FLARE is read-only inference; header edits are separate operations.
+17. **Handle legacy keys gracefully** — During migration, accept `flip.headers`/`flip.footer` and translate them to the 3-part structure.
 
 ---
 
@@ -166,7 +178,7 @@ When handling any Lupopedia file that has a FLARE Header, the agent MUST:
 
 ### 8.1 Required Fields Validation
 ```yaml
-# These fields MUST be present and valid
+# These fields MUST be present in flare.headers and valid
 file_path_from_root:
   validation: "^[a-zA-Z0-9_\\-/\\.]+\\.md$"
   max_length: 500
@@ -198,6 +210,11 @@ artifact_type:
   required: true
   error_message: "Artifact type must be one of: doctrine, guide, directive, broadcast, status, profile"
 ```
+
+### 8.2 Common Mistakes (CRITICAL)
+- **Relational data in Footer**: `outbound_edges` or `semantic_tags` must be in `flare.edges`, not `flare.footer`.
+- **Identity data in Edges**: `artifact_type` or `channel_id` must be in `flare.headers`.
+- **Engagement in Headers**: `view_count` belongs in `flare.footer`.
 
 ### 8.2 Actor ID Validation
 Actor IDs MUST exist in `actors/registry.json` or the database.
@@ -236,12 +253,53 @@ When database is unavailable:
 | **Exchange = bidirectional** | Files both declare their attributes and their relationships to the broader system. |
 
 ### Key Differences from FLIP:
-- ✅ **Explicit relationships** via `flare.footer`
+- ✅ **Explicit relationships** via `flare.edges`
 - ✅ **Clear separation** of attributes vs relationships
 - ✅ **Better naming** and terminology
 - ✅ **Graph-aware** design
 - ✅ **Comprehensive validation** rules
 - ✅ **Migration path** from FLIP
+
+### 10.1 Web API Resolution
+The Lupopedia Web API facilitates off-chain header resolution for external agents (e.g., browsing agents, mobile apps, federated nodes).
+
+**Endpoint:** `api/flare-header.php`  
+**Successors:** `api/flip-header.php` (deprecated)
+
+---
+
+## 11. Edges vs. Footer (The Structural Split)
+
+To ensure high-performance semantic navigation and accurate engagement tracking, FLARE v4.1.0 enforces a strict split between relational data and temporal snapshots:
+
+### 11.1 flare.edges: The "Map"
+This section defines the file's position within the Lupopedia semantic graph. It is **relational and structural**.
+- **Outbound Edges**: Explicitly declared dependencies and references.
+- **Inbound Edges**: A read-only snapshot of the broader graph's connection to this file.
+- **Semantic Tags**: The categorical labels that define the file's "neighborhood."
+
+### 11.2 flare.footer: The "Engagement Snapshot"
+This section captures **temporal and dynamic data**. It is a snapshot of how the system and users are interacting with the file at a specific point in time.
+- **Engagement Metrics**: view_count, like_count, etc. This data changes frequently and is decoupled from the file's identity.
+- **Verification Metadata**: last_verified and last_verified_by. This ensures the artifact's integrity without altering its core attributes.
+
+---
+
+## 12. Mandated Header Comments (v4.0.48+)
+
+Starting with version 4.0.48, every FLARE header MUST begin with a specific comment line linking to the authoritative web resolution. This enables human and machine consumers to quickly access the interactive documentation and Q&A for the protocol.
+
+**Format:**
+```yaml
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+flare.headers:
+  ...
+```
+
+**Reasoning:**
+- **Accessibility**: Direct links for external agents and researchers.
+- **Authority**: Verifies that the file follows the canonical Lupopedia protocol.
+- **Portability**: Ensures the protocol remains self-documenting even outside the repository environment.
 
 ---
 

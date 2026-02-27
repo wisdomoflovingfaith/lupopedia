@@ -1,5 +1,5 @@
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 flare.headers:
   file_path_from_root: "README.md"
   system_version: "4.0.48"
@@ -15,7 +15,7 @@ flare.headers:
   tags: ["readme", "overview", "architecture", "multi_agent", "semantic_os", "flare_protocol"]
   lupo_agent: "windsurf"
 
-flare.footer:
+flare.edges:
   outbound_edges:
     - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
     - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
@@ -28,12 +28,16 @@ flare.footer:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
     - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8 }
-    - { to: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
     - { to: "docs/toons/", type: "references", weight: 0.7 }
     - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
     - { to: "lupopedia-config.php", type: "references", weight: 0.7 }
     - { to: "index.php", type: "references", weight: 0.6 }
   semantic_tags: ["project_overview", "architecture", "multi_agent_ecosystem", "semantic_os", "crafty_syntax_upgrade", "flare_protocol"]
+
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
 ---
 
 ## 🐺 Lupopedia 4.0.48 — Development Cycle (2026-02-27)
@@ -63,6 +67,15 @@ flare.footer:
 Lupopedia preserves **Crafty Syntax 3.7.5 exactly** (live chat, operators, departments, transcripts) and adds a **semantic OS layer** with actors, channels, meaning edges, and doctrine. Multiple IDE agents collaborate in real-time through the same codebase using unified actor identities and channel-based communication.
 
 **Core transformation:** Crafty Syntax becomes the heart, Lupopedia becomes the brain. Everything familiar + infinitely extended + collaboratively enhanced.
+
+---
+
+### 🕰️ History
+
+Lupopedia evolves from Crafty Syntax, which began in 2002 as a popular open-source live help system. With over 1.1 million downloads through SourceForge and auto-installers like Fantastico, it became a staple of the early 2000s web. After a decade-long hiatus due to the founder's personal journey, the project returned in 2025, evolving from a spiritual research engine (WOLFIE) into a full semantic operating system.
+
+See [HISTORY.md](docs/channels/appendix/HISTORY.md) for the complete historical narrative and evolution from WOLFIE to Lupopedia.
+See also the [Founder's Note](docs/channels/appendix/appendix/FOUNDERS_NOTE.md).
 
 ---
 

@@ -54,9 +54,9 @@ flare.headers:
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
-flare.footer:
+flare.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_channels" }
+- { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_channels" }
     - { to: "channels/registry.json", type: "references", weight: 1.0, reason: "Channel registry and configuration", db_source: "lupo_channels" }
     - { to: "docs/database/lupopedia/tables/lupo_dialog_messages.md", type: "references", weight: 0.9, reason: "Dialog message routing and storage", db_source: "lupo_channels" }
     - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9, reason: "Channel ownership and participation", db_source: "lupo_channels" }
@@ -358,3 +358,4 @@ ORDER BY boot_sequence_order, channel_id;
 ---
 
 *This table documentation is part of the FLARE relationship automation initiative. For the complete database context, see the lupopedia database README and the 4.0.47 development thread.*
+

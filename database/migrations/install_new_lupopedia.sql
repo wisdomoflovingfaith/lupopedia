@@ -25,6 +25,9 @@ CREATE TABLE lupo_actors (
   identity_provider_config json DEFAULT NULL,
   paired_actor_id bigint NOT NULL DEFAULT 0,
   is_agent tinyint NOT NULL DEFAULT 0,
+  actor_root_path varchar(512) DEFAULT 'actors/{actor_id}',
+  who_json_sync_status varchar(64) DEFAULT 'pending',
+  last_sync_ymdhis bigint DEFAULT 0,
   PRIMARY KEY (actor_id)
 );
 
@@ -822,20 +825,30 @@ CREATE TABLE lupo_analytics_visits_monthly (
 
 
 CREATE TABLE lupo_anubis_log (
-  log_id bigint NOT NULL AUTO_INCREMENT,
-  message_id bigint NOT NULL DEFAULT 0,
-  adopted_actor_id bigint NOT NULL DEFAULT 0,
-  adoption_reason text,
-  resolver_method varchar(64) DEFAULT NULL,
+  anubis_log_id bigint NOT NULL,
+  event_type varchar(64) NOT NULL,
+  severity varchar(20) NOT NULL DEFAULT 'normal',
+  source_table varchar(64) DEFAULT NULL,
+  source_id bigint DEFAULT NULL,
+  file_path_from_root varchar(255) DEFAULT NULL,
+  context_json json DEFAULT NULL,
+  status varchar(64) NOT NULL DEFAULT 'Pending',
+  assigned_to_actor_id bigint NOT NULL DEFAULT 19,
+  resolution_ymdhis bigint DEFAULT NULL,
+  resolution_summary text,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT 0,
   deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (log_id)
+  PRIMARY KEY (anubis_log_id)
 );
 
-CREATE INDEX lupo_anubis_log_idx_message_id ON lupo_anubis_log (message_id);
-CREATE INDEX lupo_anubis_log_idx_actor_id ON lupo_anubis_log (adopted_actor_id);
+CREATE INDEX lupo_anubis_log_idx_event_type ON lupo_anubis_log (event_type);
+CREATE INDEX lupo_anubis_log_idx_source_id ON lupo_anubis_log (source_id);
+CREATE INDEX lupo_anubis_log_idx_source_table ON lupo_anubis_log (source_table);
+CREATE INDEX lupo_anubis_log_idx_file_path ON lupo_anubis_log (file_path_from_root);
+CREATE INDEX lupo_anubis_log_idx_assigned_actor ON lupo_anubis_log (assigned_to_actor_id);
+CREATE INDEX lupo_anubis_log_idx_status ON lupo_anubis_log (status);
 CREATE INDEX lupo_anubis_log_idx_created ON lupo_anubis_log (created_ymdhis);
 
 CREATE TABLE lupo_anubis_deletion_log (
@@ -849,6 +862,9 @@ CREATE TABLE lupo_anubis_deletion_log (
   anubis_operator varchar(255) NOT NULL,
   context_json json DEFAULT NULL,
   notes text,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
   PRIMARY KEY (anubis_deletion_id)
 );
 
@@ -860,7 +876,7 @@ CREATE TABLE lupo_anubis_events (
   event_type varchar(64) NOT NULL,
   table_name varchar(255) NOT NULL,
   row_id bigint NOT NULL,
-  timestamp_utc bigint NOT NULL,
+  created_ymdhis bigint NOT NULL,
   agent varchar(255) NOT NULL,
   details_json text NOT NULL,
   PRIMARY KEY (anubis_event_id)
@@ -872,7 +888,8 @@ CREATE TABLE lupo_anubis_mirrored (
   table_name varchar(255) NOT NULL,
   original_id bigint NOT NULL,
   mirrored_json text NOT NULL,
-  timestamp_utc bigint NOT NULL,
+  created_ymdhis bigint NOT NULL,
+  updated_ymdhis bigint NOT NULL,
   agent varchar(255) NOT NULL,
   reason varchar(255) NOT NULL,
   lineage_chain varchar(255) DEFAULT NULL,
@@ -884,8 +901,11 @@ CREATE TABLE lupo_anubis_orphaned (
   anubis_orphaned_id bigint NOT NULL,
   table_name varchar(255) NOT NULL,
   orphan_id bigint NOT NULL,
-  timestamp_utc bigint NOT NULL,
+  created_ymdhis bigint NOT NULL,
+  updated_ymdhis bigint NOT NULL,
   reason varchar(255) NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (anubis_orphaned_id)
 );
 
@@ -895,7 +915,8 @@ CREATE TABLE lupo_anubis_redirects (
   table_name varchar(255) NOT NULL,
   old_id bigint NOT NULL,
   new_id bigint NOT NULL,
-  timestamp_utc bigint NOT NULL,
+  created_ymdhis bigint NOT NULL,
+  updated_ymdhis bigint NOT NULL,
   agent varchar(255) NOT NULL,
   PRIMARY KEY (anubis_redirect_id)
 );
@@ -905,7 +926,8 @@ CREATE TABLE lupo_anubis_revised (
   anubis_revised_id bigint NOT NULL,
   table_name varchar(255) NOT NULL,
   row_id bigint NOT NULL,
-  timestamp_utc bigint NOT NULL,
+  created_ymdhis bigint NOT NULL,
+  updated_ymdhis bigint NOT NULL,
   agent varchar(255) NOT NULL,
   revision_json text NOT NULL,
   PRIMARY KEY (anubis_revised_id)
@@ -1571,7 +1593,6 @@ CREATE TABLE lupo_contents (
   status varchar(64) DEFAULT 'draft',
   visibility varchar(64) DEFAULT 'public',
   view_count int DEFAULT '0',
-  share_count int DEFAULT '0',
   created_ymdhis bigint NOT NULL DEFAULT 0,
   utc_cycle varchar(64) NOT NULL,
   triage_status varchar(64) NOT NULL DEFAULT 'untriaged',
@@ -1590,8 +1611,6 @@ CREATE TABLE lupo_contents (
   -- 4.0.21 Consolidation: Database-first identity columns
   atom_mappings JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_atom_map',
   category_mappings JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_category_map',
-  likes_total int DEFAULT 0 COMMENT 'Consolidated from lupo_content_engagement_summary',
-  shares_total int DEFAULT 0 COMMENT 'Consolidated from lupo_content_engagement_summary',
   content_events JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_events',
   hashtags JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_hashtag',
   inbound_links JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_inbound_links',
@@ -1602,6 +1621,9 @@ CREATE TABLE lupo_contents (
   revision_history JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_revisions',
   share_users JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_shares',
   tag_relationships JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_tag_relationships',
+  like_count bigint NOT NULL DEFAULT 0 COMMENT 'FLARE-aligned engagement cache',
+  share_count bigint NOT NULL DEFAULT 0 COMMENT 'FLARE-aligned engagement cache',
+  comment_count bigint NOT NULL DEFAULT 0 COMMENT 'FLARE-aligned engagement cache',
   PRIMARY KEY (content_id)
 );
 
@@ -1621,7 +1643,7 @@ CREATE INDEX lupo_contents_idx_department ON lupo_contents (department_id);
 CREATE INDEX lupo_contents_idx_user ON lupo_contents (actor_id);
 
 -- 4.0.21 Consolidation: Performance indexes for JSON columns
-CREATE INDEX lupo_contents_idx_has_likes_shares ON lupo_contents (likes_total, shares_total);
+CREATE INDEX lupo_contents_idx_engagement_counts ON lupo_contents (like_count, share_count, comment_count);
 CREATE INDEX lupo_contents_idx_has_media ON lupo_contents ((JSON_LENGTH(media_attachments) > 0));
 CREATE INDEX lupo_contents_idx_has_events ON lupo_contents ((JSON_LENGTH(content_events) > 0));
 CREATE INDEX lupo_contents_idx_has_hashtags ON lupo_contents ((JSON_LENGTH(hashtags) > 0));
@@ -1896,8 +1918,8 @@ CREATE TABLE lupo_dialog_channels (
   version varchar(20) DEFAULT NULL,
   status varchar(64) DEFAULT 'published',
   author varchar(100) DEFAULT NULL,
-  created_timestamp bigint NOT NULL,
-  modified_timestamp bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
   message_count int DEFAULT '0',
   metadata_json json DEFAULT NULL,
   PRIMARY KEY (channel_id)
@@ -1908,9 +1930,9 @@ CREATE INDEX lupo_dialog_channels_idx_file_source ON lupo_dialog_channels (file_
 CREATE INDEX lupo_dialog_channels_idx_speaker ON lupo_dialog_channels (speaker);
 CREATE INDEX lupo_dialog_channels_idx_target ON lupo_dialog_channels (target);
 CREATE INDEX lupo_dialog_channels_idx_status ON lupo_dialog_channels (status);
-CREATE INDEX lupo_dialog_channels_idx_created_timestamp ON lupo_dialog_channels (created_timestamp);
-CREATE INDEX lupo_dialog_channels_idx_modified_timestamp ON lupo_dialog_channels (modified_timestamp);
-CREATE INDEX lupo_dialog_channels_idx_dialog_channels_composite ON lupo_dialog_channels (status, created_timestamp);
+CREATE INDEX lupo_dialog_channels_idx_created_ymdhis ON lupo_dialog_channels (created_ymdhis);
+CREATE INDEX lupo_dialog_channels_idx_updated_ymdhis ON lupo_dialog_channels (updated_ymdhis);
+CREATE INDEX lupo_dialog_channels_idx_dialog_channels_composite ON lupo_dialog_channels (status, created_ymdhis);
 
 CREATE TABLE lupo_dialog_messages (
   dialog_message_id bigint NOT NULL,
@@ -1946,7 +1968,8 @@ CREATE INDEX lupo_dialog_messages_idx_read_utc ON lupo_dialog_messages (read_by_
 
 CREATE TABLE lupo_dialog_threads (
   dialog_thread_id bigint NOT NULL,
-  thread_id bigint NOT NULL DEFAULT 0,
+  title varchar(255) NOT NULL,
+  last_message_ymdhis bigint DEFAULT NULL,
   federation_node_id bigint NOT NULL DEFAULT '1',
   channel_id bigint DEFAULT NULL,
   project_slug varchar(100) DEFAULT NULL,
@@ -1978,6 +2001,7 @@ CREATE INDEX lupo_dialog_threads_idx_created ON lupo_dialog_threads (created_ymd
 CREATE INDEX lupo_dialog_threads_idx_updated ON lupo_dialog_threads (updated_ymdhis);
 CREATE INDEX lupo_dialog_threads_idx_deleted ON lupo_dialog_threads (is_deleted);
 CREATE INDEX lupo_dialog_threads_idx_created_by_actor ON lupo_dialog_threads (created_by_actor_id);
+CREATE INDEX lupo_dialog_threads_idx_last_message ON lupo_dialog_threads (last_message_ymdhis);
 
 CREATE TABLE lupo_doctrine_evolution_audit (
   doctrine_evolution_audit_id bigint NOT NULL,
@@ -3583,30 +3607,33 @@ CREATE INDEX lupo_uploads_idx_channel_id ON lupo_uploads (channel_id);
 CREATE INDEX lupo_uploads_idx_file_extension ON lupo_uploads (file_extension);
 CREATE INDEX lupo_uploads_idx_created_ymdhis ON lupo_uploads (created_ymdhis);
 
-CREATE TABLE lupo_user_comments (
-  user_comment_id bigint NOT NULL,
+CREATE TABLE lupo_comments (
+  comment_id bigint NOT NULL,
   domain_id bigint NOT NULL,
-  user_id bigint NOT NULL,
-  content_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  target_table varchar(100) NOT NULL DEFAULT 'lupo_contents',
+  target_id bigint NOT NULL,
   parent_comment_id bigint DEFAULT NULL,
   comment_text text NOT NULL,
+  status varchar(64) NOT NULL DEFAULT 'approved',
   user_agent varchar(255) DEFAULT NULL,
   ip_hash char(64) DEFAULT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (user_comment_id)
+  PRIMARY KEY (comment_id)
 );
 
-CREATE INDEX lupo_user_comments_idx_domain_id ON lupo_user_comments (domain_id);
-CREATE INDEX lupo_user_comments_idx_user_id ON lupo_user_comments (user_id);
-CREATE INDEX lupo_user_comments_idx_content_id ON lupo_user_comments (content_id);
-CREATE INDEX lupo_user_comments_idx_parent_comment_id ON lupo_user_comments (parent_comment_id);
-CREATE INDEX lupo_user_comments_idx_created_ymdhis ON lupo_user_comments (created_ymdhis);
-CREATE INDEX lupo_user_comments_idx_updated_ymdhis ON lupo_user_comments (updated_ymdhis);
-CREATE INDEX lupo_user_comments_idx_is_deleted ON lupo_user_comments (is_deleted);
-CREATE INDEX lupo_user_comments_idx_ip_hash ON lupo_user_comments (ip_hash);
+CREATE INDEX lupo_comments_idx_domain_id ON lupo_comments (domain_id);
+CREATE INDEX lupo_comments_idx_actor_id ON lupo_comments (actor_id);
+CREATE INDEX lupo_comments_idx_target ON lupo_comments (target_table, target_id);
+CREATE INDEX lupo_comments_idx_parent ON lupo_comments (parent_comment_id);
+CREATE INDEX lupo_comments_idx_status ON lupo_comments (status);
+CREATE INDEX lupo_comments_idx_is_deleted ON lupo_comments (is_deleted);
+CREATE INDEX lupo_comments_idx_ip_hash ON lupo_comments (ip_hash);
+CREATE INDEX lupo_comments_idx_created_ymdhis ON lupo_comments (created_ymdhis);
+CREATE INDEX lupo_comments_idx_updated_ymdhis ON lupo_comments (updated_ymdhis);
 
 CREATE TABLE lupo_world_events (
   world_event_id bigint NOT NULL,
@@ -4037,4 +4064,151 @@ CREATE INDEX lupo_task_events_idx_created_ymdhis ON lupo_task_events (created_ym
 
 -- ============================================================
 -- END OF TASK MANAGEMENT SYSTEM
+-- ============================================================
+
+-- ============================================================
+-- ACTOR IDENTITY CAPSULE SYSTEM (v4.0.48)
+-- ============================================================
+
+-- Table 1: lupo_actor_history
+-- Stores structured actor achievement and contribution history
+CREATE TABLE lupo_actor_history (
+    history_id BIGINT NOT NULL,
+    actor_id BIGINT NOT NULL,
+    achievement_id VARCHAR(100),
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    impact TEXT,
+    date_ymdhis BIGINT NOT NULL DEFAULT 0,
+    channel_id BIGINT,
+    tags JSON,
+    metrics JSON,
+    created_ymdhis BIGINT NOT NULL DEFAULT 0,
+    updated_ymdhis BIGINT,
+    is_deleted TINYINT NOT NULL DEFAULT 0,
+    deleted_ymdhis BIGINT
+);
+
+CREATE INDEX lupo_actor_history_idx_actor_id ON lupo_actor_history(actor_id);
+CREATE INDEX lupo_actor_history_idx_date_ymdhis ON lupo_actor_history(date_ymdhis);
+CREATE INDEX lupo_actor_history_idx_channel_id ON lupo_actor_history(channel_id);
+CREATE INDEX lupo_actor_history_idx_is_deleted ON lupo_actor_history(is_deleted);
+
+-- Table 2: lupo_actor_relationship_rules
+-- Defines governance rules for actor interactions
+CREATE TABLE lupo_actor_relationship_rules (
+    rule_id BIGINT NOT NULL,
+    source_actor_id BIGINT NOT NULL,
+    target_actor_id BIGINT NOT NULL,
+    relationship_type VARCHAR(100) NOT NULL,
+    rule_type VARCHAR(50) NOT NULL,
+    conditions JSON,
+    actions JSON,
+    weight FLOAT DEFAULT 1,
+    created_ymdhis BIGINT NOT NULL DEFAULT 0,
+    updated_ymdhis BIGINT,
+    is_deleted TINYINT NOT NULL DEFAULT 0,
+    deleted_ymdhis BIGINT
+);
+
+CREATE INDEX lupo_actor_relationship_rules_idx_source_target ON lupo_actor_relationship_rules(source_actor_id, target_actor_id);
+CREATE INDEX lupo_actor_relationship_rules_idx_relationship_type ON lupo_actor_relationship_rules(relationship_type);
+CREATE INDEX lupo_actor_relationship_rules_idx_rule_type ON lupo_actor_relationship_rules(rule_type);
+CREATE INDEX lupo_actor_relationship_rules_idx_is_deleted ON lupo_actor_relationship_rules(is_deleted);
+
+-- Table 3: lupo_capability_usage
+-- Tracks actor capability utilization and performance
+CREATE TABLE lupo_capability_usage (
+    usage_id BIGINT NOT NULL,
+    actor_id BIGINT NOT NULL,
+    capability VARCHAR(100) NOT NULL,
+    usage_count BIGINT DEFAULT 0,
+    success_rate FLOAT DEFAULT 1,
+    avg_response_time_ms INT DEFAULT 0,
+    last_used_ymdhis BIGINT DEFAULT 0,
+    performance_metrics JSON,
+    created_ymdhis BIGINT NOT NULL DEFAULT 0,
+    updated_ymdhis BIGINT,
+    is_deleted TINYINT NOT NULL DEFAULT 0,
+    deleted_ymdhis BIGINT
+);
+
+CREATE INDEX lupo_capability_usage_idx_actor_capability ON lupo_capability_usage(actor_id, capability);
+CREATE INDEX lupo_capability_usage_idx_capability ON lupo_capability_usage(capability);
+CREATE INDEX lupo_capability_usage_idx_last_used ON lupo_capability_usage(last_used_ymdhis);
+CREATE INDEX lupo_capability_usage_idx_is_deleted ON lupo_capability_usage(is_deleted);
+
+-- Table 4: lupo_llm_performance
+-- Monitors LLM module performance across actors
+CREATE TABLE lupo_llm_performance (
+    performance_id BIGINT NOT NULL,
+    actor_id BIGINT NOT NULL,
+    llm_module VARCHAR(100) NOT NULL,
+    provider VARCHAR(50),
+    total_tokens BIGINT DEFAULT 0,
+    avg_response_time_ms INT DEFAULT 0,
+    success_rate FLOAT DEFAULT 1,
+    cost_per_1k_tokens DECIMAL(10,4) DEFAULT 0.0000,
+    quality_score FLOAT DEFAULT 1,
+    last_used_ymdhis BIGINT DEFAULT 0,
+    performance_data JSON,
+    created_ymdhis BIGINT NOT NULL DEFAULT 0,
+    updated_ymdhis BIGINT,
+    is_deleted TINYINT NOT NULL DEFAULT 0,
+    deleted_ymdhis BIGINT
+);
+
+CREATE INDEX lupo_llm_performance_idx_actor_module ON lupo_llm_performance(actor_id, llm_module);
+CREATE INDEX lupo_llm_performance_idx_provider ON lupo_llm_performance(provider);
+CREATE INDEX lupo_llm_performance_idx_last_used ON lupo_llm_performance(last_used_ymdhis);
+CREATE INDEX lupo_llm_performance_idx_is_deleted ON lupo_llm_performance(is_deleted);
+
+-- Table 5: lupo_federated_trust
+-- Manages trust relationships between federated nodes
+CREATE TABLE lupo_federated_trust (
+    trust_id BIGINT NOT NULL,
+    source_node_id BIGINT NOT NULL,
+    target_node_id BIGINT NOT NULL,
+    trust_level FLOAT DEFAULT 0.5,
+    trust_type VARCHAR(50) NOT NULL,
+    capabilities JSON,
+    restrictions JSON,
+    last_verified_ymdhis BIGINT DEFAULT 0,
+    verification_method VARCHAR(100),
+    created_ymdhis BIGINT NOT NULL DEFAULT 0,
+    updated_ymdhis BIGINT,
+    is_deleted TINYINT NOT NULL DEFAULT 0,
+    deleted_ymdhis BIGINT
+);
+
+CREATE INDEX lupo_federated_trust_idx_source_target ON lupo_federated_trust(source_node_id, target_node_id);
+CREATE INDEX lupo_federated_trust_idx_trust_type ON lupo_federated_trust(trust_type);
+CREATE INDEX lupo_federated_trust_idx_last_verified ON lupo_federated_trust(last_verified_ymdhis);
+CREATE INDEX lupo_federated_trust_idx_is_deleted ON lupo_federated_trust(is_deleted);
+
+-- Table 6: lupo_session_recovery
+-- Enables session state recovery across restarts
+CREATE TABLE lupo_session_recovery (
+    recovery_id BIGINT NOT NULL,
+    actor_id BIGINT NOT NULL,
+    session_id VARCHAR(255) NOT NULL,
+    session_data JSON,
+    state_snapshot JSON,
+    context_data JSON,
+    last_activity_ymdhis BIGINT DEFAULT 0,
+    recovery_attempts INT DEFAULT 0,
+    max_recovery_attempts INT DEFAULT 3,
+    created_ymdhis BIGINT NOT NULL DEFAULT 0,
+    updated_ymdhis BIGINT,
+    is_deleted TINYINT NOT NULL DEFAULT 0,
+    deleted_ymdhis BIGINT
+);
+
+CREATE INDEX lupo_session_recovery_idx_actor_id ON lupo_session_recovery(actor_id);
+CREATE INDEX lupo_session_recovery_idx_session_id ON lupo_session_recovery(session_id);
+CREATE INDEX lupo_session_recovery_idx_last_activity ON lupo_session_recovery(last_activity_ymdhis);
+CREATE INDEX lupo_session_recovery_idx_is_deleted ON lupo_session_recovery(is_deleted);
+
+-- ============================================================
+-- END OF ACTOR IDENTITY CAPSULE SYSTEM
 -- ============================================================

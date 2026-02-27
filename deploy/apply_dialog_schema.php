@@ -22,8 +22,8 @@ echo "Environment: {$environment}\n\n";
 $db = DatabaseFactory::getConnection();
 
 // Schema name based on environment
-$schemaName = $environment === 'production' 
-    ? 'lupopedia' 
+$schemaName = $environment === 'production'
+    ? 'lupopedia'
     : 'lupopedia_staging_dialog';
 
 echo "📊 Using schema: {$schemaName}\n\n";
@@ -32,28 +32,30 @@ echo "📊 Using schema: {$schemaName}\n\n";
 $tables = [
     'lupo_dialog_threads' => "
         CREATE TABLE IF NOT EXISTS `{$schemaName}`.`lupo_dialog_threads` (
-            `dialog_thread_id` bigint NOT NULL AUTO_INCREMENT,
+            `dialog_thread_id` bigint NOT NULL,
             `channel_id` bigint DEFAULT NULL,
-            `title` varchar(255) DEFAULT NULL,
+            `title` varchar(255) NOT NULL,
+            `last_message_ymdhis` bigint DEFAULT NULL,
             `created_ymdhis` bigint NOT NULL,
             `updated_ymdhis` bigint NOT NULL,
             `is_deleted` tinyint NOT NULL DEFAULT 0,
             `deleted_ymdhis` bigint DEFAULT NULL,
             PRIMARY KEY (`dialog_thread_id`),
             KEY `idx_channel_id` (`channel_id`),
+            KEY `idx_last_message` (`last_message_ymdhis`),
             KEY `idx_created_ymdhis` (`created_ymdhis`),
             KEY `idx_is_deleted` (`is_deleted`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     ",
-    'lupo_dialog_doctrine' => "
-        CREATE TABLE IF NOT EXISTS `{$schemaName}`.`lupo_dialog_doctrine` (
-            `dialog_message_id` bigint NOT NULL AUTO_INCREMENT,
+    'lupo_dialog_messages' => "
+        CREATE TABLE IF NOT EXISTS `{$schemaName}`.`lupo_dialog_messages` (
+            `dialog_message_id` bigint NOT NULL,
             `dialog_thread_id` bigint DEFAULT NULL,
             `channel_id` bigint DEFAULT NULL,
             `from_actor_id` bigint DEFAULT NULL,
             `to_actor_id` bigint DEFAULT NULL,
             `message_text` varchar(1000) NOT NULL,
-            `message_type` enum('text','command','system','error') NOT NULL DEFAULT 'text',
+            `message_type` varchar(64) NOT NULL DEFAULT 'text',
             `metadata_json` json DEFAULT NULL,
             `mood_rgb` char(6) NOT NULL DEFAULT '666666',
             `weight` decimal(3,2) NOT NULL DEFAULT 0.00,
@@ -76,7 +78,7 @@ $tables = [
 $success = true;
 foreach ($tables as $tableName => $sql) {
     echo "📋 Creating table: {$tableName}... ";
-    
+
     try {
         $db->query($sql);
         echo "✅ SUCCESS\n";

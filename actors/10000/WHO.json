@@ -3,23 +3,12 @@
   "actor_id": "10000",
   "whoami": {
     "identity": "human",
-    "role": "captain",
-    "ide": "N/A",
-    "persona": "Lead architect and final authority for Lupopedia Semantic OS",
-    "primary_environment": "Global Lupopedia Administration",
+    "role": "root-captain-10000",
+    "persona": "The root-captain-10000 actor in the Lupopedia system.",
     "capabilities": [
-      "root_access",
-      "architectural_design",
-      "governance",
-      "oversight",
-      "expert_php_programming",
-      "expert_perl_programming",
-      "legacy_system_modernization"
+      "basic_operations"
     ],
-    "llm_modules": [],
-    "default_llm": "human-intelligence",
-    "status": "active",
-    "description": "Expert PHP/Perl programmer with roots in the early web (1999-2014). After an 11-year hiatus (2014-2025), returned to architect Lupopedia with a focus on procedural/OOP hybrid stability and strict database-agnostic doctrines."
+    "status": "active"
   },
   "created_utc": "20260101",
   "last_updated_utc": "20260227"

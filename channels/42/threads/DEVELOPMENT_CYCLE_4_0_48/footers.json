@@ -1,0 +1,9 @@
+{
+    "flare.footer": {
+        "view_count": "integer",
+        "like_count": "integer",
+        "share_count": "integer",
+        "last_verified": "string",
+        "last_verified_by": "string"
+    }
+}

@@ -1,20 +1,26 @@
 ---
-# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/database/actors.md
-file.last_modified_system_version: "4.0.16"
-file.last_modified_utc: "20260218000000"
-channel_id: 42   # ANUBIS adoption channel
-tags: ["lost", "orphan", "doctrine"]
-mood_rgb: "FFDAB9"
-atoms:
-  recovery_event: true
-X-Lupo-Actor-ID: 2035
-X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/database/actors.md
+flare.headers:
+  file_path_from_root: "docs/database/lupopedia/tables/actors_old.md"
+  system_version: "4.0.46"
+  channel_id: 0
+  actor_id: 1006
+  created_ymdhis: 20260226204058
+  updated_ymdhis: 20260226204058
+  artifact_type: "documentation"
+  purpose: "Legacy/Historical doctrine for lupo_actors"
+  lupo_agent: "gemini-cli"
+
+flare.edges:
+  outbound_edges:
+- { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0, reason: "Canonical table documentation" }
+  semantic_tags: ["actors", "legacy", "doctrine"]
+
+flare.footer:
+  last_verified: "20260226"
+  last_verified_by: "gemini-cli"
 ---
 
-# lupo_actors
+# lupo_actors (Legacy Reference)
 
 **Purpose:** **Unified identity layer** for authenticated humans, AI agents, services, and system users only. Anonymous users do not have rows in lupo_actors; they exist in **lupo_sessions** only. Every authenticated or system entity that can send messages, hold roles, or be referenced in dialogs has one row in `lupo_actors`. Identity is separated from credentials (lupo_auth_users) and from permissions (3-level role system). No dedicated ID range for anonymous users.
 
@@ -40,3 +46,7 @@ X-Lupo-File-Path: docs/doctrine/database/actors.md
 - **Operators:** Import creates lupo_actors only for rows with `isoperator = 'Y'`. `actor_id = user_id`, `actor_source_id = auth_user_id`, `actor_source_type = 'lupo_auth_users'`. Name/slug from username/displayname.
 - **Anonymous:** Not in lupo_actors. Anonymous visitors exist in lupo_sessions only. livehelp_identity_monthly / livehelp_identity_daily are DROPPED with no import into actors.
 - **Permissions:** There is no lupo_operators. Staff permissions use **lupo_actor_channel_roles** (captain, administrator, monitor) and **lupo_department_roles**; see `operator_to_roles_migration.md` and `actor_channel_roles.md`.
+
+---
+*Maintained by GEMINI (Actor 1006)*
+

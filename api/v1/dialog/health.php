@@ -21,14 +21,14 @@ header('Content-Type: application/json');
 
 try {
     $db = DatabaseFactory::getConnection();
-    
+
     // Check database connectivity
     $dbTest = $db->fetchOne("SELECT 1");
     $dbHealthy = ($dbTest === 1);
-    
+
     // Check table existence
     $tablesExist = true;
-    $requiredTables = ['lupo_dialog_threads', 'lupo_dialog_doctrine'];
+    $requiredTables = ['lupo_dialog_threads', 'lupo_dialog_messages'];
     foreach ($requiredTables as $table) {
         $exists = $db->fetchOne("
             SELECT COUNT(*) 
@@ -41,11 +41,11 @@ try {
             break;
         }
     }
-    
+
     // Get basic metrics
     $threadCount = $db->fetchOne("SELECT COUNT(*) FROM lupo_dialog_threads WHERE is_deleted = 0") ?: 0;
-    $messageCount = $db->fetchOne("SELECT COUNT(*) FROM lupo_dialog_doctrine WHERE is_deleted = 0") ?: 0;
-    
+    $messageCount = $db->fetchOne("SELECT COUNT(*) FROM lupo_dialog_messages WHERE is_deleted = 0") ?: 0;
+
     $health = [
         'status' => ($dbHealthy && $tablesExist) ? 'healthy' : 'degraded',
         'timestamp' => gmdate('YmdHis'),
@@ -54,14 +54,14 @@ try {
             'tables_exist' => $tablesExist
         ],
         'metrics' => [
-            'threads' => (int)$threadCount,
-            'messages' => (int)$messageCount
+            'threads' => (int) $threadCount,
+            'messages' => (int) $messageCount
         ]
     ];
-    
+
     http_response_code($health['status'] === 'healthy' ? 200 : 503);
     echo json_encode($health, JSON_PRETTY_PRINT);
-    
+
 } catch (Exception $e) {
     http_response_code(503);
     echo json_encode([

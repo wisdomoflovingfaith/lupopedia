@@ -33,16 +33,16 @@ web:
 
 ## Overview
 
-ANUBIS (actor_id 59) serves as the Orphan Resolver for all files with unknown FLIP header recipients. This protocol ensures deterministic handling of orphaned files while maintaining system integrity and auditability.
+ANUBIS (actor_id 19) serves as the Orphan Resolver for all files with unknown FLIP header recipients. This protocol ensures deterministic handling of orphaned files while maintaining system integrity and auditability.
 
-## Actor 59 Specification
+## Actor 19 Specification
 
 ```sql
-SELECT * FROM lupo_actors WHERE actor_id = 59;
+SELECT * FROM lupo_actors WHERE actor_id = 19;
 -- Expected: ANUBIS - Orphan Resolution System
 ```
 
-- **Actor ID**: 59
+- **Actor ID**: 19
 - **Actor Type**: `system`
 - **Name**: `ANUBIS`
 - **Slug**: `anubis`
@@ -82,19 +82,21 @@ A file is routed to ANUBIS when ANY of the following conditions are met:
 ### Step 1: Intake Logging
 ```sql
 INSERT INTO lupo_anubis_log (
-    log_id,
-    file_path,
-    original_recipient,
-    reason_code,
-    processed_ymdhis,
-    actor_id
+    anubis_log_id,
+    event_type,
+    file_path_from_root,
+    severity,
+    status,
+    assigned_to_actor_id,
+    created_ymdhis
 ) VALUES (
-    UUID(),
-    :file_path,
-    :original_recipient,
-    :reason_code,
-    :timestamp,
-    59
+    :log_id,           -- Unique BIGINT ID
+    'ORPHAN_FOUND',    -- event_type
+    :file_path,        -- file_path_from_root
+    'normal',          -- severity
+    'Pending',         -- status
+    19,                -- ANUBIS actor_id
+    :timestamp         -- YmdHis
 );
 ```
 
@@ -143,7 +145,7 @@ INSERT INTO lupo_dialog_messages (
     :message_id,
     :thread_id,
     :channel_id,
-    59,
+    19,
     CONCAT('ANUBIS: Adopted orphan file - ', :file_path, ' (Reason: ', :reason_code, ')'),
     'adoption',
     :timestamp,
@@ -192,7 +194,7 @@ function determineRecipient($file) {
     // 3. Unknown → ANUBIS
     return [
         'type' => 'actor',
-        'id' => 59,
+        'id' => 19,
         'reason' => 'unknown_recipient'
     ];
 }
@@ -230,7 +232,7 @@ define('UNKNOWN_RECIPIENT_PROTOCOL_ACTIVE', true);
 ```
 
 ### Activation Checklist
-- [x] Actor 59 exists and is operational
+- [x] Actor 19 exists and is operational
 - [x] ANUBIS_ORPHAN_RULES.md documented
 - [x] Router functions implemented
 - [x] Logging schema created
