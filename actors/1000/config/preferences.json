@@ -1,0 +1,6 @@
+{
+    "schema_version": "4.0.47",
+    "theme": "terminal",
+    "notifications": false,
+    "default_channel": 0
+}

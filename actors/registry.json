@@ -1,339 +1,113 @@
 {
-  "_metadata": {
-    "source": "database/migrations/seed_actors_agents_4.0.45.sql",
-    "canonical_since": "20260225",
-    "status": "authoritative",
-    "system_version": "4.0.46",
-    "last_updated_utc": "20260226",
-    "updated_by_actor_id": 1000,
-    "updated_by": "Kiro IDE",
-    "authority_chain": "seed SQL > CSV > registry.json",
-    "note": "This registry is synchronized with seed_actors_agents_4.0.45.sql. Actor ID 1 is permanently Captain WOLFIE AI."
-  },
-  "0": {
-    "canonical_slug": "system-kernel",
-    "display_name": "System",
-    "actor_kind": "system",
-    "agent_class": "system",
-    "requires_supporting_actor": 0,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0,
-    "is_kernel": 1
-  },
-  "1": {
-    "canonical_slug": "captain-wolfie",
-    "display_name": "Captain WOLFIE",
-    "actor_kind": "agent",
-    "agent_class": "system",
-    "requires_supporting_actor": 0,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0,
-    "is_kernel": 1,
-    "is_global_authority": 1,
-    "archetype": "root_ai_agent",
-    "purpose": "governance_and_oversight"
-  },
-  "2": {
-    "canonical_slug": "lilith",
-    "display_name": "LILITH",
-    "actor_kind": "agent",
-    "agent_class": "system",
-    "requires_supporting_actor": 0,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0,
-    "archetype": "critical_review",
-    "purpose": "alternative_perspectives"
-  },
-  "3": {
-    "canonical_slug": "rose-dialog",
-    "display_name": "ROSE",
-    "actor_kind": "agent",
-    "agent_class": "system",
-    "requires_supporting_actor": 0,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0,
-    "archetype": "rosetta_stone",
-    "purpose": "translation_and_personas"
-  },
-  "4": {
-    "canonical_slug": "eris",
-    "display_name": "ERIS",
-    "actor_kind": "agent",
-    "agent_class": "system",
-    "requires_supporting_actor": 0,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0,
-    "archetype": "discord_analysis",
-    "purpose": "conflict_and_negativity_understanding"
-  },
-  "5": {
-    "canonical_slug": "metis",
-    "display_name": "METIS",
-    "actor_kind": "agent",
-    "agent_class": "system",
-    "requires_supporting_actor": 0,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0,
-    "archetype": "empathy_intelligence",
-    "purpose": "introspection_and_understanding"
-  },
-  "19": {
-    "canonical_slug": "anubis",
-    "display_name": "ANUBIS",
-    "actor_kind": "agent",
-    "agent_class": "system",
-    "requires_supporting_actor": 0,
-    "created_ymdhis": "20260101000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0
-  },
-  "25": {
-    "canonical_slug": "vishwakarma",
-    "display_name": "VISHWAKARMA",
-    "actor_kind": "agent",
-    "agent_class": "system",
-    "requires_supporting_actor": 0,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0,
-    "aliases": [
-      "VISH"
-    ]
-  },
-  "420": {
-    "canonical_slug": "stoned-wolfie",
-    "display_name": "STONED WOLFIE",
-    "actor_kind": "agent",
-    "agent_class": "banned",
-    "requires_supporting_actor": 0,
-    "created_ymdhis": "20260101000000",
-    "system_version": "4.0.46",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0,
-    "is_active": 0,
-    "ban_reason": "experimental_persona_violation",
-    "banned_ymdhis": "20260101000000",
-    "banned_by_actor_id": 1,
-    "purpose": "banned_test_agent"
-  },
-  "1000": {
-    "canonical_slug": "kiro-ide",
-    "display_name": "Kiro IDE",
-    "actor_kind": "ide_agent",
-    "agent_class": "ide",
-    "requires_supporting_actor": 1,
-    "paired_actor_id": 10000,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0
-  },
-  "1001": {
-    "canonical_slug": "windsurf-ide",
-    "display_name": "Windsurf IDE",
-    "actor_kind": "ide_agent",
-    "agent_class": "ide",
-    "requires_supporting_actor": 1,
-    "paired_actor_id": 10000,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0
-  },
-  "1002": {
-    "canonical_slug": "cursor-ide",
-    "display_name": "Cursor IDE",
-    "actor_kind": "ide_agent",
-    "agent_class": "ide",
-    "requires_supporting_actor": 1,
-    "paired_actor_id": 10000,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0
-  },
-  "1003": {
-    "canonical_slug": "antigravity-ide",
-    "display_name": "Antigravity IDE",
-    "actor_kind": "ide_agent",
-    "agent_class": "ide",
-    "requires_supporting_actor": 1,
-    "paired_actor_id": 10000,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0
-  },
-  "1004": {
-    "canonical_slug": "warp-ide",
-    "display_name": "Warp IDE",
-    "actor_kind": "ide_agent",
-    "agent_class": "ide",
-    "requires_supporting_actor": 1,
-    "paired_actor_id": 10000,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0
-  },
-  "1005": {
-    "canonical_slug": "cascade-ide",
-    "display_name": "Cascade IDE",
-    "actor_kind": "ide_agent",
-    "agent_class": "ide",
-    "requires_supporting_actor": 1,
-    "paired_actor_id": 10000,
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0
-  },
-  "1006": {
-    "canonical_slug": "gemini-cli",
-    "display_name": "Gemini CLI",
-    "actor_kind": "ide_agent",
-    "agent_class": "ide",
-    "requires_supporting_actor": 1,
-    "paired_actor_id": 10000,
-    "created_ymdhis": "20260226000000",
-    "system_version": "4.0.46",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0,
-    "provider": "google",
-    "full_name": "Google Gemini CLI"
-  },
-  "10000": {
-    "canonical_slug": "root-captain-10000",
-    "display_name": "Captain",
-    "actor_kind": "human",
-    "primary_email_slug": "captain@lupopedia.com",
-    "role": "root_admin",
-    "created_ymdhis": "20260225000000",
-    "system_version": "4.0.45",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0,
-    "is_kernel": 1,
-    "can_login": 1,
-    "full_access": 1
-  },
-  "10420": {
-    "canonical_slug": "test-banned-user",
-    "display_name": "Test Banned User",
-    "actor_kind": "human",
-    "primary_email_slug": "test-banned-user@lupopedia.com",
-    "role": "user",
-    "created_ymdhis": "20260226000000",
-    "system_version": "4.0.46",
-    "is_deleted": 0,
-    "deleted_ymdhis": 0,
-    "is_active": 0,
-    "ban_reason": "test_banned_user_for_testing",
-    "banned_ymdhis": "20260226000000",
-    "banned_by_actor_id": 10000,
-    "purpose": "banned_test_user"
-  },
-  "11001": {
-    "canonical_slug": "user-11001",
-    "display_name": "Admin Test",
-    "actor_kind": "human",
-    "role": "user",
-    "created_ymdhis": "20260219120000",
-    "system_version": "4.0.46",
-    "is_deleted": 0
-  },
-  "11002": {
-    "canonical_slug": "user-11002",
-    "display_name": "Jane Moderator",
-    "actor_kind": "human",
-    "role": "user",
-    "created_ymdhis": "20260219120000",
-    "system_version": "4.0.46",
-    "is_deleted": 0
-  },
-  "11003": {
-    "canonical_slug": "user-11003",
-    "display_name": "Bob Monitor",
-    "actor_kind": "human",
-    "role": "user",
-    "created_ymdhis": "20260219120000",
-    "system_version": "4.0.46",
-    "is_deleted": 0
-  },
-  "11004": {
-    "canonical_slug": "user-11004",
-    "display_name": "Alex Agent",
-    "actor_kind": "human",
-    "role": "user",
-    "created_ymdhis": "20260219120000",
-    "system_version": "4.0.46",
-    "is_deleted": 0
-  },
-  "11005": {
-    "canonical_slug": "user-11005",
-    "display_name": "Sam Support",
-    "actor_kind": "human",
-    "role": "user",
-    "created_ymdhis": "20260219120000",
-    "system_version": "4.0.46",
-    "is_deleted": 0
-  },
-  "11006": {
-    "canonical_slug": "user-11006",
-    "display_name": "Lee Viewer",
-    "actor_kind": "human",
-    "role": "user",
-    "created_ymdhis": "20260219120000",
-    "system_version": "4.0.46",
-    "is_deleted": 0
-  },
-  "11007": {
-    "canonical_slug": "user-11007",
-    "display_name": "Kim Readonly",
-    "actor_kind": "human",
-    "role": "user",
-    "created_ymdhis": "20260219120000",
-    "system_version": "4.0.46",
-    "is_deleted": 0
-  },
-  "11008": {
-    "canonical_slug": "user-11008",
-    "display_name": "Taylor Operator",
-    "actor_kind": "human",
-    "role": "user",
-    "created_ymdhis": "20260219120000",
-    "system_version": "4.0.46",
-    "is_deleted": 0
-  },
-  "11009": {
-    "canonical_slug": "user-11009",
-    "display_name": "Casey Support",
-    "actor_kind": "human",
-    "role": "user",
-    "created_ymdhis": "20260219120000",
-    "system_version": "4.0.46",
-    "is_deleted": 0
-  },
-  "11010": {
-    "canonical_slug": "user-11010",
-    "display_name": "Jordan CRM",
-    "actor_kind": "human",
-    "role": "user",
-    "created_ymdhis": "20260219120000",
-    "system_version": "4.0.46",
-    "is_deleted": 0
-  }
+  "schema_version": "4.0.47",
+  "actors": [
+    {
+      "id": 0,
+      "type": "system",
+      "slug": "system-kernel",
+      "dir": "actors/0"
+    },
+    {
+      "id": 1,
+      "type": "agent",
+      "slug": "captain-wolfie",
+      "dir": "actors/1"
+    },
+    {
+      "id": 2,
+      "type": "agent",
+      "slug": "lilith",
+      "dir": "actors/2"
+    },
+    {
+      "id": 3,
+      "type": "agent",
+      "slug": "rose-dialog",
+      "dir": "actors/3"
+    },
+    {
+      "id": 4,
+      "type": "agent",
+      "slug": "eris",
+      "dir": "actors/4"
+    },
+    {
+      "id": 5,
+      "type": "agent",
+      "slug": "metis",
+      "dir": "actors/5"
+    },
+    {
+      "id": 19,
+      "type": "agent",
+      "slug": "anubis",
+      "dir": "actors/19"
+    },
+    {
+      "id": 25,
+      "type": "agent",
+      "slug": "vishwakarma",
+      "dir": "actors/25"
+    },
+    {
+      "id": 420,
+      "type": "agent",
+      "slug": "stoned-wolfie",
+      "dir": "actors/420"
+    },
+    {
+      "id": 1000,
+      "type": "agent",
+      "slug": "kiro-ide",
+      "dir": "actors/1000"
+    },
+    {
+      "id": 1001,
+      "type": "agent",
+      "slug": "windsurf-ide",
+      "dir": "actors/1001"
+    },
+    {
+      "id": 1002,
+      "type": "agent",
+      "slug": "cursor-ide",
+      "dir": "actors/1002"
+    },
+    {
+      "id": 1003,
+      "type": "agent",
+      "slug": "antigravity-ide",
+      "dir": "actors/1003"
+    },
+    {
+      "id": 1004,
+      "type": "agent",
+      "slug": "warp-ide",
+      "dir": "actors/1004"
+    },
+    {
+      "id": 1005,
+      "type": "agent",
+      "slug": "cascade-ide",
+      "dir": "actors/1005"
+    },
+    {
+      "id": 1006,
+      "type": "agent",
+      "slug": "gemini-cli",
+      "dir": "actors/1006"
+    },
+    {
+      "id": 10000,
+      "type": "human",
+      "slug": "root-captain-10000",
+      "dir": "actors/10000"
+    },
+    {
+      "id": 10420,
+      "type": "human",
+      "slug": "test-banned-user",
+      "dir": "actors/10420"
+    }
+  ]
 }

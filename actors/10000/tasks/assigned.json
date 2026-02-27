@@ -1,0 +1,10 @@
+{
+    "schema_version": "4.0.47",
+    "assigned": [
+        {
+            "id": "T2",
+            "to": 1001,
+            "desc": "Delegate validation"
+        }
+    ]
+}

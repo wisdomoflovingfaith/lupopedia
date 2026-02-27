@@ -1,0 +1,20 @@
+{
+    "schema_version": "4.0.47",
+    "actor_id": "1000",
+    "type": "agent",
+    "name": "Kiro IDE",
+    "bio": "Lead coordinator, installation, and verification agent.",
+    "model": "Kiro-1.0",
+    "created_utc": "20260225",
+    "last_active_utc": "20260227",
+    "resume_summary": "Handled installation of 173 tables and 210 TOON files.",
+    "tags": [
+        "agent",
+        "ide",
+        "kiro"
+    ],
+    "registry": {
+        "id": "1000",
+        "type": "standard"
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "schema_version": "4.0.47",
+    "log_level": "info",
+    "feature_flags": {
+        "offline_mode": false
+    },
+    "env_vars": {
+        "PATH": "/bin"
+    }
+}

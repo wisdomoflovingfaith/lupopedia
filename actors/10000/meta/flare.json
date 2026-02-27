@@ -1,0 +1,10 @@
+{
+    "schema_version": "4.0.47",
+    "edges": [
+        {
+            "from": "10000",
+            "to": "1001",
+            "type": "supervises"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "schema_version": "4.0.47",
+    "actor_id": "10000",
+    "type": "human",
+    "name": "Captain Wolfie",
+    "bio": "The human captain of the Lupopedia project.",
+    "created_utc": "20260101",
+    "last_active_utc": "20260227",
+    "resume_summary": "Lead architect and final authority for Lupopedia Semantic OS.",
+    "tags": [
+        "captain",
+        "human",
+        "admin"
+    ],
+    "registry": {
+        "id": "10000",
+        "type": "standard"
+    }
+}

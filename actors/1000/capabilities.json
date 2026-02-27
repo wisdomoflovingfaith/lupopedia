@@ -1,0 +1,15 @@
+{
+    "schema_version": "4.0.47",
+    "operations": {
+        "db_query": true,
+        "file_write": true,
+        "system_exec": true
+    },
+    "limitations": {
+        "max_tasks": 50
+    },
+    "channel_roles": {
+        "0": "admin",
+        "42": "contributor"
+    }
+}

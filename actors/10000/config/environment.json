@@ -1,0 +1,8 @@
+{
+    "schema_version": "4.0.47",
+    "agent_version": "4.0.47",
+    "dependencies": [
+        "python3",
+        "lupopedia-core"
+    ]
+}

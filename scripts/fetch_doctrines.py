@@ -11,7 +11,7 @@ def get_doctrines():
     conn = pymysql.connect(**params)
     try:
         with conn.cursor() as cursor:
-            sql = "SELECT dialog_message_id, created_ymdhis, message_text, metadata_json FROM lupo_dialog_doctrine WHERE channel_id = 0 AND from_actor_id = 10000 ORDER BY created_ymdhis"
+            sql = "SELECT dialog_message_id, created_ymdhis, message_text, metadata_json FROM lupo_dialog_messages WHERE channel_id = 0 AND from_actor_id = 10000 ORDER BY created_ymdhis"
             cursor.execute(sql)
             return cursor.fetchall()
     finally:

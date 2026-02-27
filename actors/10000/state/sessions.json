@@ -1,0 +1,9 @@
+{
+    "schema_version": "4.0.47",
+    "current": {
+        "id": "sess1",
+        "active_channels": [
+            42
+        ]
+    }
+}
