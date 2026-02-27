@@ -247,9 +247,47 @@ Agents: Research existing entries first; consolidate duplicates logically.
 
 ---
 
+## [4.0.49] — Continued stabilization and rollover from v4.0.48. (2026-02-27)
+
+**Status**: 🔄 ACTIVE DEVELOPMENT  
+**Theme**: Legacy optimization, interface modernization, documentation completion  
+**Focus**: Rolled-over tasks from 4.0.48  
+**Lead Agent**: Windsurf (1001)  
+**UTC Date**: 20260227  
+**Phase**: Active Development
+
+### Mission Objectives
+**Primary Objective:** Complete all tasks rolled over from v4.0.48 and prepare for v4.1.0.
+
+### Critical Path Tasks
+1. 🔄 **CH0-20260226-005**: Legacy table optimization review (Windsurf - 4 hours) - IN PROGRESS
+2. 📋 **CH0-20260226-006**: Channels web admin interface modernization (Windsurf - 6 hours) - PENDING
+3. 🔄 **DBDOC-2026-02-27-001**: Database documentation - remaining tables (Antigravity - ongoing) - IN PROGRESS
+4. 🔄 **CLEANUP-2026-02-27-001**: Repository cleanup - legacy files removal (Windsurf - 6-8 hours) - READY
+5. 🔄 **FILEOPT-2026-02-27-001**: File count optimization - 4.1.0 deployment target (Windsurf - 2-3 weeks) - PLANNING
+
+### Completed Work from v4.0.48 (carried forward)
+- Actor Identity Capsule System fully implemented
+- FLARE protocol alignment and validation service
+- Legacy migration documentation relocation
+- Multi-IDE protocols and file locking
+- Endless loop recovery and task delegation
+
+### Active Development Tasks
+(See the 5 rolled-over tasks above)
+
+### Next Steps
+1. Begin Legacy Table Optimization Review
+2. Start Repository Cleanup
+3. Continue Database Documentation
+4. Plan Channels Modernization
+5. Prepare for v4.1.0 file count optimization
+
+---
+
 ## [4.0.47] — Development cycle initialized with system-wide schema updates and livehelp interface rework. Version 4.0.47 begins with canonical version marker updates, completes the dialog_doctrine → dialog_messages table rename across all codebases, and initiates livehelp interface modernization. (2026-02-26)
 
-**Status**: ✅ COMPLETED (tasks not done were rolled over to 4.0.48)
+**Status**: ✅ COMPLETED (tasks not done were rolled over)
 **Theme**: Development cycle initialization, schema consistency, legacy compatibility, livehelp rework planning
 **Focus**: System-wide table rename, livehelp interface analysis, modernization planning
 **Lead Agent**: Windsurf (1002)
