@@ -4,7 +4,34 @@
     "personal_info": {
         "real_name": "Eric Robin Gerdes",
         "dob": "1978-12-21",
-        "location": "Sioux Falls, South Dakota"
+        "location": "Sioux Falls, South Dakota",
+        "biography_notes": [
+            "Expert PHP and PERL programmer with deep roots in the early web (active 1999-2014).",
+            "Experenced a significant life event in March 2014 resulting in the death of his wife; subsequently left the technology industry and remained completely offline for 11 years.",
+            "Returned to the digital world in July 2025, finding a vastly changed landscape.",
+            "Currently leads Lupopedia with a focus on core engineering principles that favor application-level logic over database-heavy features."
+        ]
+    },
+    "architectural_doctrines": {
+        "database_philosophy": [
+            "No Foreign Keys (FK): Database should be dumb storage; logic resides in PHP.",
+            "No Triggers/Stored Procedures: All business logic must be in application code.",
+            "No Database Functions/Procedures: Keep logic portable and transparent.",
+            "No Unsigned Columns: Ensure compatibility with PostgreSQL and other systems.",
+            "No Partial Indexes: Avoid 'WHERE' clauses in indexes for maximum cross-DB compatibility.",
+            "Precise Queries: Inserts and updates must specify all columns explicitly (no arbitrary column inserts)."
+        ],
+        "data_standards": [
+            "UTC Always: All timestamps must be in UTC format.",
+            "BigInt Timestamps: Store timestamps as BIGINT for precision and portability.",
+            "Manual Sync: Rely on exact PHP-driven updates, never database-level automation."
+        ],
+        "code_standards": [
+            "PHP 5.3 & 8+ Compatibility: Code must run seamlessly across version 5.3 through 8.x.",
+            "No Syntactic Sugar: Avoid short-array tags '[]' in favor of traditional 'array()'.",
+            "No Deprecated Functions: Use only stable, long-term supported PHP APIs.",
+            "OOP Foundation: Software should be primarily Object-Oriented for maintainability."
+        ]
     },
     "best_work": [
         {
@@ -33,6 +60,11 @@
         }
     ],
     "professional_history": [
+        {
+            "period": "2014-03 - 2025-07",
+            "role": "Offline Hiatus",
+            "notes": "Completely disconnected from technology; did not own a computer during this decade-plus interval."
+        },
         {
             "organization": "Maui Global Communications (MGCC)",
             "period": "2000 - 2013",
@@ -63,7 +95,9 @@
         "system_architecture",
         "strategic_oversight",
         "live_support_systems",
-        "CRM_engineering"
+        "CRM_engineering",
+        "early_web_expertise",
+        "expert_perl_programming"
     ],
     "total_contributions": 1000
 }

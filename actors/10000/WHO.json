@@ -11,12 +11,15 @@
       "root_access",
       "architectural_design",
       "governance",
-      "oversight"
+      "oversight",
+      "expert_php_programming",
+      "expert_perl_programming",
+      "legacy_system_modernization"
     ],
     "llm_modules": [],
     "default_llm": "human-intelligence",
     "status": "active",
-    "description": "The human captain overseeing the entire multi-agent development ecosystem."
+    "description": "Expert PHP/Perl programmer with roots in the early web (1999-2014). After an 11-year hiatus (2014-2025), returned to architect Lupopedia with a focus on procedural/OOP hybrid stability and strict database-agnostic doctrines."
   },
   "created_utc": "20260101",
   "last_updated_utc": "20260227"
