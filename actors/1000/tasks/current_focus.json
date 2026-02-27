@@ -1,0 +1,22 @@
+{
+    "schema_version": "4.0.47",
+    "actor_id": "1000",
+    "current_tasks": [
+        {
+            "task_id": "T47-KIRO-001",
+            "title": "Historical Identity Schema Design",
+            "status": "in-progress",
+            "channel": 42,
+            "priority": "high",
+            "started_utc": "20260227061000"
+        }
+    ],
+    "next_tasks": [
+        {
+            "task_id": "T47-KIRO-002",
+            "title": "System Verification Audit",
+            "status": "pending",
+            "estimated_duration": "1 hour"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "4.0.47",
+  "actor_id": "10000",
+  "whoami": {
+    "identity": "human",
+    "role": "captain",
+    "ide": "N/A",
+    "persona": "Lead architect and final authority for Lupopedia Semantic OS",
+    "primary_environment": "Global Lupopedia Administration",
+    "capabilities": [
+      "root_access",
+      "architectural_design",
+      "governance",
+      "oversight"
+    ],
+    "llm_modules": [],
+    "default_llm": "human-intelligence",
+    "status": "active",
+    "description": "The human captain overseeing the entire multi-agent development ecosystem."
+  },
+  "created_utc": "20260101",
+  "last_updated_utc": "20260227"
+}

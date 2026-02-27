@@ -9,12 +9,15 @@ def validate_actor(actor_id):
 
     required_files = [
         "profile.json",
+        "WHO.json",
         "capabilities.json",
         "relationships.json",
         "web.json",
         "meta/schema.json",
         "meta/flare.json",
-        "meta/flip.json"
+        "meta/flip.json",
+        "tasks/current_focus.json",
+        "history/resume.json"
     ]
 
     for f in required_files:

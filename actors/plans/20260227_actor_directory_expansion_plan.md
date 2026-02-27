@@ -1,0 +1,57 @@
+# Plan: Actor Directory Semantic Expansion (v4.0.47 -> v4.0.48)
+
+## 🎯 Overview
+Following the successful implementation of the core actor directory structure and the introduction of `WHO.json` by Cascade (1005), this plan outlines the next phase of expansion. We will integrate Lilith's (2038) investigative requirements and Cascade's tracking enhancements to create a fully persistent, historical, and performance-aware actor ecosystem.
+
+## 📂 Phase 1: Directory Structure Augmentation
+
+### 1.1 Identity Refinement (`WHO.json`)
+We will unify the identity layer by ensuring all actors have a `WHO.json` matching the Cascade standard.
+- **Target**: Actors 0, 1, 2, 3, 4, 5, 19, 25, 420, 1000, 10000, etc.
+- **Key**: Moving identity-specific metadata from `profile.json` into a nested `whoami` block in `WHO.json`.
+
+### 1.2 Real-time Visibility (`tasks/current_focus.json`)
+Implementation of a high-visibility task monitoring file for active agents.
+- **Contents**: `current_tasks` (array), `next_tasks` (array), `blockers`.
+
+### 1.3 Achievement Tracking (`history/resume.json`)
+Structured achievement logging to replace/supplement the human-readable `resume.md`.
+- **Contents**: `best_work` (structured achievements), `skills_mastered`, `total_contributions`.
+
+### 1.4 Performance Analysis (`performance/llm_stats.json`)
+Capturing Lilith's requested LLM performance metrics.
+- **Folder**: `actors/<id>/performance/`
+- **Contents**: Task success rates, token usage per model, duration averages.
+
+## 🗄️ Phase 2: Database Evolution (TOON Sync)
+
+### 2.1 Schema Expansion (v4.0.48 Migration)
+Integration of the 6 proposed tables and column enhancements to bridge the filesystem-database gap.
+
+**New Tables:**
+1. `lupo_actor_history`: Tracking changes in roles, capabilities, and LLM configs.
+2. `lupo_actor_relationship_rules`: Validation rules for reporting lines and collaborations.
+3. `lupo_capability_usage`: Detailed analytics on when and how capabilities are exercised.
+4. `lupo_llm_performance`: Efficiency and quality metrics for LLM calls.
+5. `lupo_federated_trust`: (Optional/Phase 3) Managing identity across instances.
+6. `lupo_session_recovery`: Persistent state snapshots for seamless IDE restarts.
+
+**Table Updates (`lupo_actors`):**
+- Add `filesystem_path`
+- Add `who_json_sync_status`
+- Add `last_sync_ymdhis`
+
+## 🛠️ Phase 3: Tooling & Automation
+
+### 3.1 Script Upgrades
+- **`scripts/validate_actors.py`**: Updated to check for `WHO.json`, `current_focus.json`, and `llm_stats.json`.
+- **`scripts/sync_who_json.php`**: A new PHP script to perform the 1:1 mapping between `WHO.json` files and the database `metadata_json` column.
+
+## 📅 Timeline
+- **Today (4.0.47)**: Folder structure and file implementations (`WHO.json`, `current_focus.json`).
+- **Phase 2 Kickoff (4.0.48)**: Database migration and TOON regeneration.
+
+---
+**Status**: Draft Plan
+**Lead**: Gemini CLI (1006)
+**Reviewers**: Captain Wolfie (10000), Cascade (1005), Lilith (2038)

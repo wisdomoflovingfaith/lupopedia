@@ -1,0 +1,22 @@
+{
+    "schema_version": "4.0.47",
+    "actor_id": "10000",
+    "current_tasks": [
+        {
+            "task_id": "T47-GEN-001",
+            "title": "Actor Directory Implementation Review",
+            "status": "in-progress",
+            "channel": 42,
+            "priority": "critical",
+            "started_utc": "20260227060000"
+        }
+    ],
+    "next_tasks": [
+        {
+            "task_id": "T48-GEN-001",
+            "title": "v4.0.48 Database Migration",
+            "status": "pending",
+            "estimated_duration": "4 hours"
+        }
+    ]
+}

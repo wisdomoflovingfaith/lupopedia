@@ -1,0 +1,23 @@
+{
+    "schema_version": "4.0.47",
+    "actor_id": "10000",
+    "best_work": [
+        {
+            "achievement_id": "A47-CAPT-001",
+            "title": "FLARE Doctrine Authoring",
+            "description": "Established the canonical governance framework for multi-agent coordination.",
+            "impact": "Project-wide semantic alignment",
+            "date_utc": "20260224",
+            "channel": 0,
+            "tags": [
+                "governance",
+                "architecture"
+            ]
+        }
+    ],
+    "skills_mastered": [
+        "system_architecture",
+        "strategic_oversight"
+    ],
+    "total_contributions": 1000
+}
