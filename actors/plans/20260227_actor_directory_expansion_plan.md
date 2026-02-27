@@ -5,12 +5,15 @@ Following the successful implementation of the core actor directory structure an
 
 ## 📂 Phase 1: Directory Structure Augmentation
 
-### 1.1 Identity Refinement (`WHO.json`)
-We will unify the identity layer by ensuring all actors have a `WHO.json` matching the Cascade standard.
-- **Target**: Actors 0, 1, 2, 3, 4, 5, 19, 25, 420, 1000, 10000, etc.
-- **Key**: Moving identity-specific metadata from `profile.json` into a nested `whoami` block in `WHO.json`.
+### 1.1 Identity Refinement (`WHO.json` & `identity.json`)
+We will unify the identity layer by ensuring all actors have a `WHO.json` matching the Cascade standard, supplemented by an `identity.json` for DB-parity.
+- **Target**: All registered actors.
+- **Identity.json**: Strict mirror of the `lupo_actors` table for portable reconstructed identity.
 
-### 1.2 Real-time Visibility (`tasks/current_focus.json`)
+### 1.2 Web Presence (`www/`)
+Addition of a `www/` directory for public-facing profiles and avatars, supporting internal and external discovery.
+
+### 1.3 Real-time Visibility (`tasks/current_focus.json`)
 Implementation of a high-visibility task monitoring file for active agents.
 - **Contents**: `current_tasks` (array), `next_tasks` (array), `blockers`.
 
