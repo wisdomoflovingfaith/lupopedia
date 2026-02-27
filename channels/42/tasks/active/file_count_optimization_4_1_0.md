@@ -2,7 +2,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 flare.headers:
   file_path_from_root: "channels/42/tasks/active/file_count_optimization_4_1_0.md"
-  system_version: "4.0.48"
+  system_version: "4.0.49"
   channel_id: 42
   actor_id: 10000
   last_modified_utc: "20260227"

@@ -5,8 +5,8 @@ assigned_to: [1001]
 status: "pending"
 priority: "medium"
 created_utc: "20260226"
-target_version: "4.0.48"
-rolled_from: "4.0.47"
+target_version: "4.0.49"
+rolled_from: "4.0.48"
 task_type: "ui_modernization"
 ---
 
