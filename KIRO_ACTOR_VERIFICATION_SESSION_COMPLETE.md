@@ -52,6 +52,68 @@ flip.footer: {
   ],
   semantic_tags: ["session_summary", "verification", "actors", "complete", "pre_install"]
 }
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_ACTOR_VERIFICATION_SESSION_COMPLETE.md"
+  file_hash: "6a42a2d34718aae19bfc8e2068d416af243c8b02b5b36794aca00829df305928"
+  file_path_from_root: "KIRO_ACTOR_VERIFICATION_SESSION_COMPLETE.md"
+  file_hash: "3ca8d1ea9a0af349c90fd58a41c7538f6603428db89bb2f4bf978d86b447aa1c"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_ACTOR_VERIFICATION_SESSION_COMPLETE.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_actor_verification_session_completemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: {
+  file_path_from_root: "KIRO_ACTOR_VERIFICATION_SESSION_COMPLETE.md",
+  system_version: "4.0.45",
+  channel_id: 42,
+  actor_id: 1000,
+  created_ymdhis: 20260225235000,
+  updated_ymdhis: 20260225235000,
+  message_type: "session_summary",
+  visibility: "public",
+  priority: "high"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "ACTOR_SEED_VERIFICATION_COMPLETE_4.0.45.md", type: "references", weight: 1.0 },
+    { to: "ANUBIS_VISHWAKARMA_VERIFICATION_REPORT_4.0.45.md", type: "references", weight: 1.0 },
+    { to: "CHANGELOG.md", type: "updates", weight: 0.9 },
+    { to: "HUMAN_TASKS_CAPTAIN_10000.md", type: "references", weight: 0.8 }
+  ],
+  semantic_tags: ["session_summary", "verification", "actors", "complete", "pre_install"]
+}
 ---
 
 # KIRO ACTOR VERIFICATION SESSION COMPLETE — 4.0.45

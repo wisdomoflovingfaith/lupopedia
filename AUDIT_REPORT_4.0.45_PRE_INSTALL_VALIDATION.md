@@ -47,6 +47,63 @@ flare.footer:
 
 **Key Finding:** The 4.0.45 seeding is AUTHORITATIVE and represents the correct minimal system state. Snapshot discrepancies are primarily legacy IDs that should NOT be seeded.
 
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "AUDIT_REPORT_4.0.45_PRE_INSTALL_VALIDATION.md"
+  file_hash: "b0b76faf9f0e485a258cef36556412155bf17ef4b4fef021a6b9ea6fa1522853"
+  file_path_from_root: "AUDIT_REPORT_4.0.45_PRE_INSTALL_VALIDATION.md"
+  file_hash: "ac03bbde68c3fae7d2a703a87480beacebde2029d0d752fedc98a80f4ac90337"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "CSV SNAPSHOTS VS 4.0.45 REGISTRY SEEDING AUDIT"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["audit_report_4045_pre_install_validationmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# CSV SNAPSHOTS VS 4.0.45 REGISTRY SEEDING AUDIT
+## Pre-Install Validation Report
+
+**System Version Target:** 4.0.45  
+**Status:** Pre-Install (DB Offline)  
+**Audit Date:** 2026-02-25  
+**Auditor:** KIRO (Warp IDE Agent 1004)  
+**Purpose:** Validate seeding integrity before install.php integration
+
+---
+
+## EXECUTIVE SUMMARY
+
+🟡 **MINOR GAPS DETECTED** — Seeding is mostly complete but has discrepancies with snapshot data. The 4.0.45 seeding SQL represents a CLEAN SLATE doctrine-compliant implementation, while snapshots contain legacy/experimental IDs that are intentionally excluded.
+
+**Key Finding:** The 4.0.45 seeding is AUTHORITATIVE and represents the correct minimal system state. Snapshot discrepancies are primarily legacy IDs that should NOT be seeded.
+
 ---
 
 ## 1. ACTORS AUDIT

@@ -47,6 +47,131 @@ Lupopedia development is divided into four distinct phases of maturation:
 *   **v3 Restart (2026-01-01 — 2026-02-06)**: Complete architectural reset. All previous code discarded. Implementation of canonical doctrine, TOON schema authority, and strict actor identity.
 *   **v4.0.0+ (2026-02-06 — Present)**: The stable branch. Focus on Crafty Syntax 3.7.5 integration, FLARE protocol, and production stability.
 
+  needs_review: ["manual_review"]
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+  needs_review: ["manual_review"]
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+flare.headers:
+  file_path_from_root: "CHANGELOG_ARCHIVE.md"
+  file_hash: "c4d1d6346617ce4c2ab0ba467d3bc966d4f63bc9104e932c7a5b4752233f0e55"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1003
+  last_modified_utc: "20260227"
+  delegation_chain: "1003:10000"
+  artifact_type: "changelog_archive"
+  purpose: "Historical version archive for Lupopedia with FLARE protocol migration documentation"
+  mood_rgb: "4B0082"
+  artifact_kind: "version_history"
+  traits: ["archive", "comprehensive", "v4.0.48"]
+  tags: ["changelog", "versions", "releases", "history", "archive", "flare_migration"]
+  lupo_agent: "antigravity"
+  actor_ip: "127.0.0.1"
+
+flare.edges:
+  file_path_from_root: "CHANGELOG_ARCHIVE.md"
+  outbound_edges:
+    - { to: "CHANGELOG.md", type: "references", weight: 0.9, reason: "Current active development changelog" }
+    - { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+  semantic_tags: ["changelog", "versions", "releases", "history", "archive", "flare"]
+
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+
+---
+
+## Lupopedia Version History & Evolution
+
+Lupopedia development is divided into four distinct phases of maturation:
+
+*   **v0 to v1 (2025-11-06 — 2025-12-01)**: The WOLFIE prototype. Initial ingestion of cross-religious texts and schema experimentation.
+*   **v1 to v2 (2025-12-01 — 2026-01-01)**: Expansion into a general Semantic OS model. Multi-agent framework established.
+*   **v3 Restart (2026-01-01 — 2026-02-06)**: Complete architectural reset. All previous code discarded. Implementation of canonical doctrine, TOON schema authority, and strict actor identity.
+*   **v4.0.0+ (2026-02-06 — Present)**: The stable branch. Focus on Crafty Syntax 3.7.5 integration, FLARE protocol, and production stability.
+
+  needs_review: ["manual_review"]
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+flare.headers:
+  file_path_from_root: "CHANGELOG_ARCHIVE.md"
+  file_hash: "c4d1d6346617ce4c2ab0ba467d3bc966d4f63bc9104e932c7a5b4752233f0e55"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1003
+  last_modified_utc: "20260227"
+  delegation_chain: "1003:10000"
+  artifact_type: "changelog_archive"
+  purpose: "Historical version archive for Lupopedia with FLARE protocol migration documentation"
+  mood_rgb: "4B0082"
+  artifact_kind: "version_history"
+  traits: ["archive", "comprehensive", "v4.0.48"]
+  tags: ["changelog", "versions", "releases", "history", "archive", "flare_migration"]
+  lupo_agent: "antigravity"
+  actor_ip: "127.0.0.1"
+
+flare.edges:
+  file_path_from_root: "CHANGELOG_ARCHIVE.md"
+  outbound_edges:
+    - { to: "CHANGELOG.md", type: "references", weight: 0.9, reason: "Current active development changelog" }
+    - { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+  semantic_tags: ["changelog", "versions", "releases", "history", "archive", "flare"]
+
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+
+---
+
+## Lupopedia Version History & Evolution
+
+Lupopedia development is divided into four distinct phases of maturation:
+
+*   **v0 to v1 (2025-11-06 — 2025-12-01)**: The WOLFIE prototype. Initial ingestion of cross-religious texts and schema experimentation.
+*   **v1 to v2 (2025-12-01 — 2026-01-01)**: Expansion into a general Semantic OS model. Multi-agent framework established.
+*   **v3 Restart (2026-01-01 — 2026-02-06)**: Complete architectural reset. All previous code discarded. Implementation of canonical doctrine, TOON schema authority, and strict actor identity.
+*   **v4.0.0+ (2026-02-06 — Present)**: The stable branch. Focus on Crafty Syntax 3.7.5 integration, FLARE protocol, and production stability.
+
 ---
 
 ## [4.0.46] — Lupopedia migration path, introducing database‑first admin interfaces, resolving registry identity conflicts, repairing SQL compatibility issues, and validating the entire installation pipeline. Version 4.0.46 establishes canonical identity governance, imports all broadcast doctrine into the database, adds task and registry management UIs, fixes MySQL 5.7/8.0 schema blockers, and completes the actor ID re‑indexing required for modern Lupopedia architecture. This release finalizes installation stability, unifies doctrine sources, and prepares the system for full legacy data migration and regression testing. (2026-02-26)

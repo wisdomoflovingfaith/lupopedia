@@ -35,6 +35,51 @@ flare.footer:
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 3.0.0
 file.channel: doctrine
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "STRUCTURAL_REALIGNMENT.md"
+  file_hash: "38c96390fd6d0e2a98b59a8133d4669847538b65deb9f38f62204b68de5c3736"
+  file_path_from_root: "STRUCTURAL_REALIGNMENT.md"
+  file_hash: "99a12bf50481e4a073e88a5f642fd4bd6fc144f89d7e2da1703c80aca29a079e"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for STRUCTURAL_REALIGNMENT.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["structural_realignmentmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.0
+file.channel: doctrine
 ---
 
 # STRUCTURAL_REALIGNMENT.md

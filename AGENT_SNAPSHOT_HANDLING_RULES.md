@@ -57,6 +57,73 @@ The goal is to prevent:
 Snapshots are founder‑level events.
 Agents must treat them as high‑risk, high‑discipline operations.
 
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "AGENT_SNAPSHOT_HANDLING_RULES.md"
+  file_hash: "d5408699e853045e66c0845a847b57518466677948ba30dfa511c57cda20b2a7"
+  file_path_from_root: "AGENT_SNAPSHOT_HANDLING_RULES.md"
+  file_hash: "ac7648cf8767640423791f2eac0fe52e0ffd05666e3529386512611b55889629"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "AGENT_SNAPSHOT_HANDLING_RULES.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["agent_snapshot_handling_rulesmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# AGENT_SNAPSHOT_HANDLING_RULES.md
+**Doctrine: Agent Behavior for DB Snapshot Events**
+
+---
+
+## 1. Purpose
+
+These rules define how all Lupopedia agents must behave around:
+
+- database snapshots
+- schema changes
+- TOON regenerations
+- rollback events
+- snapshot tagging
+- volatile DB artifacts
+
+The goal is to prevent:
+
+- silent drift
+- accidental commits
+- schema corruption
+- Wave‑style backend collapse
+- agents stepping on each other's work
+
+Snapshots are founder‑level events.
+Agents must treat them as high‑risk, high‑discipline operations.
+
 ---
 
 ## 2. Universal Rules (All Agents)

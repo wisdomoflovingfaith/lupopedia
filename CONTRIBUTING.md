@@ -52,6 +52,68 @@ flip.footer: {
   ],
   semantic_tags: ["contributing", "multi_agent", "development_workflow", "git_workflow", "version_policy"]
 }
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CONTRIBUTING.md"
+  file_hash: "3c701397324809a8c0d8bb4b246d1041ca5bcc0d66a71d099bf25a117c44634f"
+  file_path_from_root: "CONTRIBUTING.md"
+  file_hash: "e74b635543bdaad9d781bae9a3ab1c19f290ce7e6eb41d41805b7bb7879462bd"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for CONTRIBUTING.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["contributingmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: {
+  file_path_from_root: "CONTRIBUTING.md",
+  system_version: "4.0.49",
+  channel_id: 1,
+  actor_id: 1007,
+  created_ymdhis: 20260224172000,
+  updated_ymdhis: 20260227120000,
+  message_type: "documentation",
+  visibility: "public",
+  priority: "high",
+  purpose: "Multi-agent contribution guidelines and development workflow with version policy compliance"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "AGENTS.md", type: "references", weight: 1.0 },
+    { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.9 },
+    { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0, reason: "Critical version policy compliance requirements" }
+  ],
+  semantic_tags: ["contributing", "multi_agent", "development_workflow", "git_workflow", "version_policy"]
+}
 ---
 
 🐺 Lupopedia Multi‑Agent Contribution Model

@@ -76,6 +76,92 @@ flip.footer:
 **UTC:** 2026-02-23T17:20:00Z  
 **Location:** Sioux Falls, SD  
 
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CHATGPT_AUDIT_DIRECTIVE_COMPLETE_4_0_33.md"
+  file_hash: "4a642ff6ba5ef5161ba76aea3a35a7e3a1d54e4a054a204f8a24566ef960e79f"
+  file_path_from_root: "CHATGPT_AUDIT_DIRECTIVE_COMPLETE_4_0_33.md"
+  file_hash: "4b28eef4edc6ca2df0d59f05536e71ffd6c5879fca4e3a52dcf4c22a0b37e06c"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for CHATGPT_AUDIT_DIRECTIVE_COMPLETE_4_0_33.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["chatgpt_audit_directive_complete_4_0_33md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "CHATGPT_AUDIT_DIRECTIVE_COMPLETE_4_0_33.md"
+  system_version: "4.0.33"
+  channel_id: 42
+  mood_rgb: "3355FF"
+  purpose: "ChatGPT audit directive completion summary for Captain Wolfie"
+  last_modified_utc: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "docs/status/kiro_metadata_audit_4_0_33.md"
+    - "channels/42/broadcasts/20260223_chatgpt_audit_directive_complete.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001  # KIRO IDE
+    - 10000 # Captain Wolfie
+  inbound_edges:
+    - "audit_completion"
+    - "chatgpt_directive"
+    - "version_4_0_33"
+  footnotes:
+    - "Independent verification audit per ChatGPT directive"
+    - "All dialog MD files verified and corrected"
+    - "100% compliance achieved"
+  version: "4.0.33"
+  last_verified_utc: "20260223"
+  last_verified_by: "kiro"
+  human_verifier: "captain_wolfie"
+---
+
+# CHATGPT AUDIT DIRECTIVE COMPLETE — VERSION 4.0.33
+
+**To:** Captain Wolfie (actor_id 10000)  
+**From:** KIRO IDE (actor_id 1001)  
+**Directive:** ChatGPT External Interface → KIRO Metadata Audit  
+**Date:** 2026-02-23  
+**UTC:** 2026-02-23T17:20:00Z  
+**Location:** Sioux Falls, SD  
+
 ---
 
 ## EXECUTIVE SUMMARY

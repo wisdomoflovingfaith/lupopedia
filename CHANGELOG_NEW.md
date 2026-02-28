@@ -63,6 +63,79 @@ flare.footer:
 - **No Lupopedia → Lupopedia upgrades before 4.1.0.** In the 4.0.x line there are no supported upgrades from an existing Lupopedia installation. The only valid inputs are a new install or an upgrade from Crafty Syntax 3.7.5.
 - **4.1.0** will be the first version to support Lupopedia → Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
 
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CHANGELOG_NEW.md"
+  file_hash: "cf494da818da8a9d5a59c300cdf6a476983b2956103d25b9a45f0eb715694a95"
+  file_path_from_root: "CHANGELOG_NEW.md"
+  file_hash: "bf73702b0fead0492876c4839b361fc27b12c522964cb2ed207b91d2f459ac5e"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for CHANGELOG_NEW.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["changelog_newmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: {
+  file_path_from_root: "CHANGELOG.md",
+  system_version: "4.0.49",
+  channel_id: 1,
+  actor_id: 1003,
+  created_ymdhis: "20260227102600",
+  updated_ymdhis: "20260227102600",
+  message_type: "broadcast",
+  visibility: "public",
+  priority: "high"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.8 },
+    { to: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7 },
+    { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 },
+    { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 },
+    { to: "config/global_atoms.yaml", type: "references", weight: 0.8 },
+    { to: "CHANGELOG_ARCHIVE.md", type: "references", weight: 0.6, reason: "everything before version 4.0.46 of changelog" }
+  ],
+  semantic_tags: ["changelog", "versions", "releases", "history", "flare", "migration"]
+}
+
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+- **Purpose of 4.0.x:** The 4.0.x series (4.0.0 – 4.0.x and all future 4.0.x patches) is a development and stabilization series. It exists solely to refine the single supported upgrade path: **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. Each patch is an iteration on the installer, wizard, importer, doctrine enforcement, and compatibility rules for that path.
+- **No Lupopedia → Lupopedia upgrades before 4.1.0.** In the 4.0.x line there are no supported upgrades from an existing Lupopedia installation. The only valid inputs are a new install or an upgrade from Crafty Syntax 3.7.5.
+- **4.1.0** will be the first version to support Lupopedia → Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
+
 ---
 
 # Lupopedia Changelog

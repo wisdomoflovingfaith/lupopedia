@@ -36,6 +36,52 @@ flare.footer:
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CHANNEL_IDENTITY_BLOCK_TEMPLATE.md"
+  file_hash: "46f671b1e280ae189dc1e94ec0ee37e35f8eb13765ad020a193fb47df67ed8a6"
+  file_path_from_root: "CHANNEL_IDENTITY_BLOCK_TEMPLATE.md"
+  file_hash: "274e406c5186279e82755cbe514b4f4baef7c357814c990a61c86b3b50234c35"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "CHANNEL_IDENTITY_BLOCK_TEMPLATE.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channel_identity_block_templatemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "CHANNEL_IDENTITY_BLOCK_TEMPLATE.md"
+  file_hash: "ca457b0c188d775015b97dc9898a43bb8f44bbddb37a9ba4e74b3be2c23a0273"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
 ---
 
 # CHANNEL_IDENTITY_BLOCK_TEMPLATE.md

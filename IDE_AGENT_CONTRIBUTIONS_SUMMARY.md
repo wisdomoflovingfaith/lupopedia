@@ -75,6 +75,91 @@ Lupopedia is being developed by **4 IDE agents working simultaneously**:
 3. **Warp IDE** - Offline (credit limit) as of 2026-02-22
 4. **Cursor IDE** - Offline (token limit) as of 2026-02-22
 
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IDE_AGENT_CONTRIBUTIONS_SUMMARY.md"
+  file_hash: "ff915abfc960bcb2510976a8ba7c0c7032775dff3b24c2d62259b886c26d5925"
+  file_path_from_root: "IDE_AGENT_CONTRIBUTIONS_SUMMARY.md"
+  file_hash: "f66cf0d9fd1beed739aaefb240631f006db67f2f089759d32e8017ff93ff4533"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IDE_AGENT_CONTRIBUTIONS_SUMMARY.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["ide_agent_contributions_summarymd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "IDE_AGENT_CONTRIBUTIONS_SUMMARY.md"
+  system_version: "4.0.32"
+  channel_id: 42
+  mood_rgb: "FF6600"
+  purpose: "Summary of all IDE agent contributions across versions"
+  last_modified_utc: "20260223164500"
+  x_lupo_forwarded: "1001:10000"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "multi_agent_development"
+    - "version_tracking"
+  footnotes:
+    - "4 IDE agents working simultaneously on Lupopedia"
+    - "KIRO, Antigravity, Warp, Cursor coordination"
+---
+
+# IDE AGENT CONTRIBUTIONS SUMMARY
+
+**Date:** 2026-02-23  
+**Active IDE Agents:** 4 (KIRO, Antigravity, Warp, Cursor)  
+**Versions Covered:** 4.0.31, 4.0.32, 4.0.33  
+**Coordination Channel:** Channel 42  
+
+---
+
+## MULTI-AGENT DEVELOPMENT
+
+Lupopedia is being developed by **4 IDE agents working simultaneously**:
+
+1. **KIRO IDE** (actor_id 1001) - Primary agent, OAuth, semantic cleanup
+2. **Antigravity IDE** - VSX extensions, FLIP footer rollout, OAuth completion
+3. **Warp IDE** - Offline (credit limit) as of 2026-02-22
+4. **Cursor IDE** - Offline (token limit) as of 2026-02-22
+
 ---
 
 ## VERSION 4.0.31 — OAuth Authentication + FLIP Footers
