@@ -52,6 +52,467 @@ flip.footer: {
   ],
   semantic_tags: ["directive_completion", "version_transition", "4.0.45_closure", "4.0.46_launch"]
 }
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "46867217b3e7fd7e000d7913de0bcc6c420ca2fab3574b27ba1a4620cb47f2d0"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "0bdb0fdc89b4cbb02a3b3670ddc9de076cfeed467ccbd74d00d68d979414e121"
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "71572303eb89a8b7a318b712c5d9de4fc025a1416d8e548f527c21d214eca44b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_directive_completion_4_0_45_to_4_0_46md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: {
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md",
+  system_version: "4.0.46",
+  channel_id: 42,
+  actor_id: 1000,
+  created_ymdhis: 20260226001000,
+  updated_ymdhis: 20260226001000,
+  message_type: "directive_completion",
+  visibility: "public",
+  priority: "critical"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "VERSION_4_0_45_CLOSURE_REPORT.md", type: "references", weight: 1.0 },
+    { to: "VERSION_4_0_46_LAUNCH_REPORT.md", type: "references", weight: 1.0 },
+    { to: "channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 },
+    { to: "CHANGELOG.md", type: "updates", weight: 0.9 }
+  ],
+  semantic_tags: ["directive_completion", "version_transition", "4.0.45_closure", "4.0.46_launch"]
+}
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "46867217b3e7fd7e000d7913de0bcc6c420ca2fab3574b27ba1a4620cb47f2d0"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "0bdb0fdc89b4cbb02a3b3670ddc9de076cfeed467ccbd74d00d68d979414e121"
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "71572303eb89a8b7a318b712c5d9de4fc025a1416d8e548f527c21d214eca44b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_directive_completion_4_0_45_to_4_0_46md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: {
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md",
+  system_version: "4.0.46",
+  channel_id: 42,
+  actor_id: 1000,
+  created_ymdhis: 20260226001000,
+  updated_ymdhis: 20260226001000,
+  message_type: "directive_completion",
+  visibility: "public",
+  priority: "critical"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "VERSION_4_0_45_CLOSURE_REPORT.md", type: "references", weight: 1.0 },
+    { to: "VERSION_4_0_46_LAUNCH_REPORT.md", type: "references", weight: 1.0 },
+    { to: "channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 },
+    { to: "CHANGELOG.md", type: "updates", weight: 0.9 }
+  ],
+  semantic_tags: ["directive_completion", "version_transition", "4.0.45_closure", "4.0.46_launch"]
+}
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "46867217b3e7fd7e000d7913de0bcc6c420ca2fab3574b27ba1a4620cb47f2d0"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "2b6daa8261293ee02404a7da5856eb98d2e6bd4123e3f3ba76a9656c2d683133"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "0bdb0fdc89b4cbb02a3b3670ddc9de076cfeed467ccbd74d00d68d979414e121"
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "71572303eb89a8b7a318b712c5d9de4fc025a1416d8e548f527c21d214eca44b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_directive_completion_4_0_45_to_4_0_46md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: {
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md",
+  system_version: "4.0.46",
+  channel_id: 42,
+  actor_id: 1000,
+  created_ymdhis: 20260226001000,
+  updated_ymdhis: 20260226001000,
+  message_type: "directive_completion",
+  visibility: "public",
+  priority: "critical"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "VERSION_4_0_45_CLOSURE_REPORT.md", type: "references", weight: 1.0 },
+    { to: "VERSION_4_0_46_LAUNCH_REPORT.md", type: "references", weight: 1.0 },
+    { to: "channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 },
+    { to: "CHANGELOG.md", type: "updates", weight: 0.9 }
+  ],
+  semantic_tags: ["directive_completion", "version_transition", "4.0.45_closure", "4.0.46_launch"]
+}
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "46867217b3e7fd7e000d7913de0bcc6c420ca2fab3574b27ba1a4620cb47f2d0"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "0bdb0fdc89b4cbb02a3b3670ddc9de076cfeed467ccbd74d00d68d979414e121"
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "71572303eb89a8b7a318b712c5d9de4fc025a1416d8e548f527c21d214eca44b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_directive_completion_4_0_45_to_4_0_46md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: {
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md",
+  system_version: "4.0.46",
+  channel_id: 42,
+  actor_id: 1000,
+  created_ymdhis: 20260226001000,
+  updated_ymdhis: 20260226001000,
+  message_type: "directive_completion",
+  visibility: "public",
+  priority: "critical"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "VERSION_4_0_45_CLOSURE_REPORT.md", type: "references", weight: 1.0 },
+    { to: "VERSION_4_0_46_LAUNCH_REPORT.md", type: "references", weight: 1.0 },
+    { to: "channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 },
+    { to: "CHANGELOG.md", type: "updates", weight: 0.9 }
+  ],
+  semantic_tags: ["directive_completion", "version_transition", "4.0.45_closure", "4.0.46_launch"]
+}
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "46867217b3e7fd7e000d7913de0bcc6c420ca2fab3574b27ba1a4620cb47f2d0"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "0bdb0fdc89b4cbb02a3b3670ddc9de076cfeed467ccbd74d00d68d979414e121"
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "71572303eb89a8b7a318b712c5d9de4fc025a1416d8e548f527c21d214eca44b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_directive_completion_4_0_45_to_4_0_46md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: {
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md",
+  system_version: "4.0.46",
+  channel_id: 42,
+  actor_id: 1000,
+  created_ymdhis: 20260226001000,
+  updated_ymdhis: 20260226001000,
+  message_type: "directive_completion",
+  visibility: "public",
+  priority: "critical"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "VERSION_4_0_45_CLOSURE_REPORT.md", type: "references", weight: 1.0 },
+    { to: "VERSION_4_0_46_LAUNCH_REPORT.md", type: "references", weight: 1.0 },
+    { to: "channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 },
+    { to: "CHANGELOG.md", type: "updates", weight: 0.9 }
+  ],
+  semantic_tags: ["directive_completion", "version_transition", "4.0.45_closure", "4.0.46_launch"]
+}
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "46867217b3e7fd7e000d7913de0bcc6c420ca2fab3574b27ba1a4620cb47f2d0"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "0bdb0fdc89b4cbb02a3b3670ddc9de076cfeed467ccbd74d00d68d979414e121"
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  file_hash: "71572303eb89a8b7a318b712c5d9de4fc025a1416d8e548f527c21d214eca44b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_directive_completion_4_0_45_to_4_0_46md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: {
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md",
+  system_version: "4.0.46",
+  channel_id: 42,
+  actor_id: 1000,
+  created_ymdhis: 20260226001000,
+  updated_ymdhis: 20260226001000,
+  message_type: "directive_completion",
+  visibility: "public",
+  priority: "critical"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "VERSION_4_0_45_CLOSURE_REPORT.md", type: "references", weight: 1.0 },
+    { to: "VERSION_4_0_46_LAUNCH_REPORT.md", type: "references", weight: 1.0 },
+    { to: "channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 },
+    { to: "CHANGELOG.md", type: "updates", weight: 0.9 }
+  ],
+  semantic_tags: ["directive_completion", "version_transition", "4.0.45_closure", "4.0.46_launch"]
+}
 ---
 
 # KIRO DIRECTIVE COMPLETION: 4.0.45 → 4.0.46 TRANSITION

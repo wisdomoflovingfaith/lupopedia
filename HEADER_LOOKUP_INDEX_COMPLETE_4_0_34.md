@@ -31,6 +31,457 @@ flare.footer:
     deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "f64bcd9730ebc6ab63334c786c330365e28edc4d64b605a7b672d6e39686b5bb"
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "50def408531ec5766f8b26e368fe31cad100bf0e88b94ff14bfbbb8fbc4dad02"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["header_lookup_index_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "f64bcd9730ebc6ab63334c786c330365e28edc4d64b605a7b672d6e39686b5bb"
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "50def408531ec5766f8b26e368fe31cad100bf0e88b94ff14bfbbb8fbc4dad02"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["header_lookup_index_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "f64bcd9730ebc6ab63334c786c330365e28edc4d64b605a7b672d6e39686b5bb"
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "50def408531ec5766f8b26e368fe31cad100bf0e88b94ff14bfbbb8fbc4dad02"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["header_lookup_index_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  system_version: "4.0.34"
+  channel_id: 42
+  mood_rgb: "00DDFF"
+  purpose: "Executive summary - Header lookup index system implementation complete"
+  last_modified: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "docs/status/header_lookup_build_report_20260223.md"
+    - "channels/42/broadcasts/20260223_header_lookup_index_complete.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "header_lookup"
+    - "index_summary"
+  footnotes:
+    - "Executive summary for Captain Wolfie"
+    - "File-based header lookup system complete"
+  version: "4.0.34"
+  last_verified: "20260223"
+  last_verified_by: "kiro"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "61c35207964638aa95b564966264497b7f1d849530a4ffea5ecc05d7bed1878d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "f64bcd9730ebc6ab63334c786c330365e28edc4d64b605a7b672d6e39686b5bb"
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "50def408531ec5766f8b26e368fe31cad100bf0e88b94ff14bfbbb8fbc4dad02"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["header_lookup_index_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  system_version: "4.0.34"
+  channel_id: 42
+  mood_rgb: "00DDFF"
+  purpose: "Executive summary - Header lookup index system implementation complete"
+  last_modified: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "docs/status/header_lookup_build_report_20260223.md"
+    - "channels/42/broadcasts/20260223_header_lookup_index_complete.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "header_lookup"
+    - "index_summary"
+  footnotes:
+    - "Executive summary for Captain Wolfie"
+    - "File-based header lookup system complete"
+  version: "4.0.34"
+  last_verified: "20260223"
+  last_verified_by: "kiro"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "f64bcd9730ebc6ab63334c786c330365e28edc4d64b605a7b672d6e39686b5bb"
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "50def408531ec5766f8b26e368fe31cad100bf0e88b94ff14bfbbb8fbc4dad02"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["header_lookup_index_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  system_version: "4.0.34"
+  channel_id: 42
+  mood_rgb: "00DDFF"
+  purpose: "Executive summary - Header lookup index system implementation complete"
+  last_modified: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "docs/status/header_lookup_build_report_20260223.md"
+    - "channels/42/broadcasts/20260223_header_lookup_index_complete.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "header_lookup"
+    - "index_summary"
+  footnotes:
+    - "Executive summary for Captain Wolfie"
+    - "File-based header lookup system complete"
+  version: "4.0.34"
+  last_verified: "20260223"
+  last_verified_by: "kiro"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "f64bcd9730ebc6ab63334c786c330365e28edc4d64b605a7b672d6e39686b5bb"
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "50def408531ec5766f8b26e368fe31cad100bf0e88b94ff14bfbbb8fbc4dad02"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["header_lookup_index_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  system_version: "4.0.34"
+  channel_id: 42
+  mood_rgb: "00DDFF"
+  purpose: "Executive summary - Header lookup index system implementation complete"
+  last_modified: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "docs/status/header_lookup_build_report_20260223.md"
+    - "channels/42/broadcasts/20260223_header_lookup_index_complete.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "header_lookup"
+    - "index_summary"
+  footnotes:
+    - "Executive summary for Captain Wolfie"
+    - "File-based header lookup system complete"
+  version: "4.0.34"
+  last_verified: "20260223"
+  last_verified_by: "kiro"
+---
+
+# HEADER LOOKUP INDEX COMPLETE — VERSION 4.0.34
+
+**Directive:** Channel 42 Header Lookup Index  
+**Status:** ✅ COMPLETE  
+**Date:** 20260223  
+**Agent:** KIRO IDE (actor_id 1001)  
+**Human Operator:** Captain Wolfie (actor_id 10000)  
+
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "49041ccf993dd1675ef2ec95a28e83b4bfa278e47068bd2680931665fea331e6"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "f64bcd9730ebc6ab63334c786c330365e28edc4d64b605a7b672d6e39686b5bb"
+  file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  file_hash: "50def408531ec5766f8b26e368fe31cad100bf0e88b94ff14bfbbb8fbc4dad02"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["header_lookup_index_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
 ---
 wolfie.headers:
   file_path_from_root: "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"

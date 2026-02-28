@@ -54,6 +54,469 @@ wolfie.headers:
 
 Audit "acting as another actor" mechanism, establish canonical prompts location, add ANUBIS + VISHWAKARMA, and verify DB schema supports tasks + channels.
 
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "8478fe6c5659af66a105ebba1b416c57411fe2315e02372fe06562d439f64a2a"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "8e5e7627882e1140d7bbc9e9cd45d6893e21fd9f23e8bea3f9dbd4a7d820b561"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "52df56ccbd244cddf24b69c991e11636fa1378ac45ab8a19944f01c70d493d40"
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "ca645b5fd0612d964d5b23000e72d58dcb63c3e9afbc18117e3dfd5b334d73d6"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_thread_identity_audit_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Thread Actor-Identity Switching Doctrine + Agents Prompts Registry + DB Schema Audit"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "audit_report"
+  artifact_kind: "directive_response"
+  created_utc: "2026-02-25T19:00:00Z"
+---
+
+# THREAD ACTOR-IDENTITY SWITCHING DOCTRINE + DB AUDIT (4.0.45)
+
+**Lead IDE:** Kiro (1000)  
+**Date:** 2026-02-25  
+**Status:** ✅ AUDIT COMPLETE
+
+## 🎯 DIRECTIVE SUMMARY
+
+Audit "acting as another actor" mechanism, establish canonical prompts location, add ANUBIS + VISHWAKARMA, and verify DB schema supports tasks + channels.
+
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "8478fe6c5659af66a105ebba1b416c57411fe2315e02372fe06562d439f64a2a"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "8e5e7627882e1140d7bbc9e9cd45d6893e21fd9f23e8bea3f9dbd4a7d820b561"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "52df56ccbd244cddf24b69c991e11636fa1378ac45ab8a19944f01c70d493d40"
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "ca645b5fd0612d964d5b23000e72d58dcb63c3e9afbc18117e3dfd5b334d73d6"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_thread_identity_audit_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Thread Actor-Identity Switching Doctrine + Agents Prompts Registry + DB Schema Audit"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "audit_report"
+  artifact_kind: "directive_response"
+  created_utc: "2026-02-25T19:00:00Z"
+---
+
+# THREAD ACTOR-IDENTITY SWITCHING DOCTRINE + DB AUDIT (4.0.45)
+
+**Lead IDE:** Kiro (1000)  
+**Date:** 2026-02-25  
+**Status:** ✅ AUDIT COMPLETE
+
+## 🎯 DIRECTIVE SUMMARY
+
+Audit "acting as another actor" mechanism, establish canonical prompts location, add ANUBIS + VISHWAKARMA, and verify DB schema supports tasks + channels.
+
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "8478fe6c5659af66a105ebba1b416c57411fe2315e02372fe06562d439f64a2a"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "8e5e7627882e1140d7bbc9e9cd45d6893e21fd9f23e8bea3f9dbd4a7d820b561"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "52df56ccbd244cddf24b69c991e11636fa1378ac45ab8a19944f01c70d493d40"
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "ca645b5fd0612d964d5b23000e72d58dcb63c3e9afbc18117e3dfd5b334d73d6"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_thread_identity_audit_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Thread Actor-Identity Switching Doctrine + Agents Prompts Registry + DB Schema Audit"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "audit_report"
+  artifact_kind: "directive_response"
+  created_utc: "2026-02-25T19:00:00Z"
+---
+
+# THREAD ACTOR-IDENTITY SWITCHING DOCTRINE + DB AUDIT (4.0.45)
+
+**Lead IDE:** Kiro (1000)  
+**Date:** 2026-02-25  
+**Status:** ✅ AUDIT COMPLETE
+
+## 🎯 DIRECTIVE SUMMARY
+
+Audit "acting as another actor" mechanism, establish canonical prompts location, add ANUBIS + VISHWAKARMA, and verify DB schema supports tasks + channels.
+
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "8478fe6c5659af66a105ebba1b416c57411fe2315e02372fe06562d439f64a2a"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "52df56ccbd244cddf24b69c991e11636fa1378ac45ab8a19944f01c70d493d40"
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "ca645b5fd0612d964d5b23000e72d58dcb63c3e9afbc18117e3dfd5b334d73d6"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_thread_identity_audit_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Thread Actor-Identity Switching Doctrine + Agents Prompts Registry + DB Schema Audit"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "audit_report"
+  artifact_kind: "directive_response"
+  created_utc: "2026-02-25T19:00:00Z"
+---
+
+# THREAD ACTOR-IDENTITY SWITCHING DOCTRINE + DB AUDIT (4.0.45)
+
+**Lead IDE:** Kiro (1000)  
+**Date:** 2026-02-25  
+**Status:** ✅ AUDIT COMPLETE
+
+## 🎯 DIRECTIVE SUMMARY
+
+Audit "acting as another actor" mechanism, establish canonical prompts location, add ANUBIS + VISHWAKARMA, and verify DB schema supports tasks + channels.
+
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "8478fe6c5659af66a105ebba1b416c57411fe2315e02372fe06562d439f64a2a"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "52df56ccbd244cddf24b69c991e11636fa1378ac45ab8a19944f01c70d493d40"
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "ca645b5fd0612d964d5b23000e72d58dcb63c3e9afbc18117e3dfd5b334d73d6"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_thread_identity_audit_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Thread Actor-Identity Switching Doctrine + Agents Prompts Registry + DB Schema Audit"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "audit_report"
+  artifact_kind: "directive_response"
+  created_utc: "2026-02-25T19:00:00Z"
+---
+
+# THREAD ACTOR-IDENTITY SWITCHING DOCTRINE + DB AUDIT (4.0.45)
+
+**Lead IDE:** Kiro (1000)  
+**Date:** 2026-02-25  
+**Status:** ✅ AUDIT COMPLETE
+
+## 🎯 DIRECTIVE SUMMARY
+
+Audit "acting as another actor" mechanism, establish canonical prompts location, add ANUBIS + VISHWAKARMA, and verify DB schema supports tasks + channels.
+
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "8478fe6c5659af66a105ebba1b416c57411fe2315e02372fe06562d439f64a2a"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "52df56ccbd244cddf24b69c991e11636fa1378ac45ab8a19944f01c70d493d40"
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "ca645b5fd0612d964d5b23000e72d58dcb63c3e9afbc18117e3dfd5b334d73d6"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro_thread_identity_audit_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Thread Actor-Identity Switching Doctrine + Agents Prompts Registry + DB Schema Audit"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "audit_report"
+  artifact_kind: "directive_response"
+  created_utc: "2026-02-25T19:00:00Z"
+---
+
+# THREAD ACTOR-IDENTITY SWITCHING DOCTRINE + DB AUDIT (4.0.45)
+
+**Lead IDE:** Kiro (1000)  
+**Date:** 2026-02-25  
+**Status:** ✅ AUDIT COMPLETE
+
+## 🎯 DIRECTIVE SUMMARY
+
+Audit "acting as another actor" mechanism, establish canonical prompts location, add ANUBIS + VISHWAKARMA, and verify DB schema supports tasks + channels.
+
 ---
 
 ## 1️⃣ "ACTING AS ANOTHER ACTOR" MECHANISM - TRUTH TABLE

@@ -28,6 +28,386 @@ flare.headers:
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "11a5e8e14983aeb5e8388e861cf7d8c7af0166b0c3167146597f6edac4e27f5b"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "f7be1f14f32cdd95ee5baf14c42ccee203afe1032c4d1bd78f5d6fd825c85778"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "f6a5c5cf4bfa41f14a40649f74637824ef9fbcf8683a345f0c93cbb479a56781"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "62e65efd57a6d625fab437fbf24516b862d2bf39ea9884ef73f1cfdec770b7bf"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "SEMANTIC_LAYER_MODEL.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["semantic_layer_modelmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "11a5e8e14983aeb5e8388e861cf7d8c7af0166b0c3167146597f6edac4e27f5b"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "f7be1f14f32cdd95ee5baf14c42ccee203afe1032c4d1bd78f5d6fd825c85778"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "f6a5c5cf4bfa41f14a40649f74637824ef9fbcf8683a345f0c93cbb479a56781"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "62e65efd57a6d625fab437fbf24516b862d2bf39ea9884ef73f1cfdec770b7bf"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "SEMANTIC_LAYER_MODEL.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["semantic_layer_modelmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "11a5e8e14983aeb5e8388e861cf7d8c7af0166b0c3167146597f6edac4e27f5b"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "f7be1f14f32cdd95ee5baf14c42ccee203afe1032c4d1bd78f5d6fd825c85778"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "f6a5c5cf4bfa41f14a40649f74637824ef9fbcf8683a345f0c93cbb479a56781"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "62e65efd57a6d625fab437fbf24516b862d2bf39ea9884ef73f1cfdec770b7bf"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "SEMANTIC_LAYER_MODEL.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["semantic_layer_modelmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "11a5e8e14983aeb5e8388e861cf7d8c7af0166b0c3167146597f6edac4e27f5b"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "f6a5c5cf4bfa41f14a40649f74637824ef9fbcf8683a345f0c93cbb479a56781"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "62e65efd57a6d625fab437fbf24516b862d2bf39ea9884ef73f1cfdec770b7bf"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "SEMANTIC_LAYER_MODEL.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["semantic_layer_modelmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "f6a5c5cf4bfa41f14a40649f74637824ef9fbcf8683a345f0c93cbb479a56781"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "62e65efd57a6d625fab437fbf24516b862d2bf39ea9884ef73f1cfdec770b7bf"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "SEMANTIC_LAYER_MODEL.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["semantic_layer_modelmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "11a5e8e14983aeb5e8388e861cf7d8c7af0166b0c3167146597f6edac4e27f5b"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "f6a5c5cf4bfa41f14a40649f74637824ef9fbcf8683a345f0c93cbb479a56781"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "62e65efd57a6d625fab437fbf24516b862d2bf39ea9884ef73f1cfdec770b7bf"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "SEMANTIC_LAYER_MODEL.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["semantic_layer_modelmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "f6a5c5cf4bfa41f14a40649f74637824ef9fbcf8683a345f0c93cbb479a56781"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "62e65efd57a6d625fab437fbf24516b862d2bf39ea9884ef73f1cfdec770b7bf"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "SEMANTIC_LAYER_MODEL.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["semantic_layer_modelmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "11a5e8e14983aeb5e8388e861cf7d8c7af0166b0c3167146597f6edac4e27f5b"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "f6a5c5cf4bfa41f14a40649f74637824ef9fbcf8683a345f0c93cbb479a56781"
+  file_path_from_root: "SEMANTIC_LAYER_MODEL.md"
+  file_hash: "62e65efd57a6d625fab437fbf24516b862d2bf39ea9884ef73f1cfdec770b7bf"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "SEMANTIC_LAYER_MODEL.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["semantic_layer_modelmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
 ---
 
 # SEMANTIC_LAYER_MODEL.md

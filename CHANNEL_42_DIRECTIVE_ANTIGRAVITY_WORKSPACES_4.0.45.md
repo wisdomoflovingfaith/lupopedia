@@ -56,6 +56,475 @@ flare.footer:
 5. Create workspace README templates
 6. Update CHANGELOG.md
 
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "54ff4fead33a75b15e230b332e7991851be646242801c6609d579c44ae145c27"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "becad1dd79d69d24bab384823a467fbb21bbe4c023c998bb2ba34c59e323a2d2"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "018481bc1278c1355736fe7c096de9a98733f2382995de006afc777458ef0010"
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "75d06e19bccc33ecc462285929ba1aa5f2f1492111ad4467a93d9dab12324422"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channel_42_directive_antigravity_workspaces_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES
+## System Version 4.0.45 — Pre-Install Registry Finalization
+
+**Date:** 2026-02-25  
+**Agent:** KIRO (Warp IDE, Actor 1004)  
+**Priority:** HIGH  
+**Status:** Pre-Install (Registry Finalization Phase)
+
+---
+
+## EXECUTIVE SUMMARY
+
+🟡 **PARTIAL IMPLEMENTATION REQUIRED**
+
+**Finding 1:** Antigravity IDE is ALREADY in actors/registry.json at ID 1003 but MISSING from 4.0.45 seeding SQL.
+
+**Finding 2:** Per-channel actor workspace directories (`channels/*/actors/`) ALREADY EXIST but are EMPTY. Migration from `/prompts/` required.
+
+**Required Actions:**
+1. Add Antigravity (1003) to `seed_actors_agents_4.0.45.sql`
+2. Add Antigravity (1003) to `seed_registry_comprehensive_4.0.45.sql`
+3. Migrate `/prompts/**` → `/channels/*/actors/*/`
+4. Update registry open gaps to exclude 1003
+5. Create workspace README templates
+6. Update CHANGELOG.md
+
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "54ff4fead33a75b15e230b332e7991851be646242801c6609d579c44ae145c27"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "becad1dd79d69d24bab384823a467fbb21bbe4c023c998bb2ba34c59e323a2d2"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "018481bc1278c1355736fe7c096de9a98733f2382995de006afc777458ef0010"
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "75d06e19bccc33ecc462285929ba1aa5f2f1492111ad4467a93d9dab12324422"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channel_42_directive_antigravity_workspaces_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES
+## System Version 4.0.45 — Pre-Install Registry Finalization
+
+**Date:** 2026-02-25  
+**Agent:** KIRO (Warp IDE, Actor 1004)  
+**Priority:** HIGH  
+**Status:** Pre-Install (Registry Finalization Phase)
+
+---
+
+## EXECUTIVE SUMMARY
+
+🟡 **PARTIAL IMPLEMENTATION REQUIRED**
+
+**Finding 1:** Antigravity IDE is ALREADY in actors/registry.json at ID 1003 but MISSING from 4.0.45 seeding SQL.
+
+**Finding 2:** Per-channel actor workspace directories (`channels/*/actors/`) ALREADY EXIST but are EMPTY. Migration from `/prompts/` required.
+
+**Required Actions:**
+1. Add Antigravity (1003) to `seed_actors_agents_4.0.45.sql`
+2. Add Antigravity (1003) to `seed_registry_comprehensive_4.0.45.sql`
+3. Migrate `/prompts/**` → `/channels/*/actors/*/`
+4. Update registry open gaps to exclude 1003
+5. Create workspace README templates
+6. Update CHANGELOG.md
+
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "54ff4fead33a75b15e230b332e7991851be646242801c6609d579c44ae145c27"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "becad1dd79d69d24bab384823a467fbb21bbe4c023c998bb2ba34c59e323a2d2"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "018481bc1278c1355736fe7c096de9a98733f2382995de006afc777458ef0010"
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "75d06e19bccc33ecc462285929ba1aa5f2f1492111ad4467a93d9dab12324422"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channel_42_directive_antigravity_workspaces_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES
+## System Version 4.0.45 — Pre-Install Registry Finalization
+
+**Date:** 2026-02-25  
+**Agent:** KIRO (Warp IDE, Actor 1004)  
+**Priority:** HIGH  
+**Status:** Pre-Install (Registry Finalization Phase)
+
+---
+
+## EXECUTIVE SUMMARY
+
+🟡 **PARTIAL IMPLEMENTATION REQUIRED**
+
+**Finding 1:** Antigravity IDE is ALREADY in actors/registry.json at ID 1003 but MISSING from 4.0.45 seeding SQL.
+
+**Finding 2:** Per-channel actor workspace directories (`channels/*/actors/`) ALREADY EXIST but are EMPTY. Migration from `/prompts/` required.
+
+**Required Actions:**
+1. Add Antigravity (1003) to `seed_actors_agents_4.0.45.sql`
+2. Add Antigravity (1003) to `seed_registry_comprehensive_4.0.45.sql`
+3. Migrate `/prompts/**` → `/channels/*/actors/*/`
+4. Update registry open gaps to exclude 1003
+5. Create workspace README templates
+6. Update CHANGELOG.md
+
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "54ff4fead33a75b15e230b332e7991851be646242801c6609d579c44ae145c27"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "018481bc1278c1355736fe7c096de9a98733f2382995de006afc777458ef0010"
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "75d06e19bccc33ecc462285929ba1aa5f2f1492111ad4467a93d9dab12324422"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channel_42_directive_antigravity_workspaces_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES
+## System Version 4.0.45 — Pre-Install Registry Finalization
+
+**Date:** 2026-02-25  
+**Agent:** KIRO (Warp IDE, Actor 1004)  
+**Priority:** HIGH  
+**Status:** Pre-Install (Registry Finalization Phase)
+
+---
+
+## EXECUTIVE SUMMARY
+
+🟡 **PARTIAL IMPLEMENTATION REQUIRED**
+
+**Finding 1:** Antigravity IDE is ALREADY in actors/registry.json at ID 1003 but MISSING from 4.0.45 seeding SQL.
+
+**Finding 2:** Per-channel actor workspace directories (`channels/*/actors/`) ALREADY EXIST but are EMPTY. Migration from `/prompts/` required.
+
+**Required Actions:**
+1. Add Antigravity (1003) to `seed_actors_agents_4.0.45.sql`
+2. Add Antigravity (1003) to `seed_registry_comprehensive_4.0.45.sql`
+3. Migrate `/prompts/**` → `/channels/*/actors/*/`
+4. Update registry open gaps to exclude 1003
+5. Create workspace README templates
+6. Update CHANGELOG.md
+
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "54ff4fead33a75b15e230b332e7991851be646242801c6609d579c44ae145c27"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "018481bc1278c1355736fe7c096de9a98733f2382995de006afc777458ef0010"
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "75d06e19bccc33ecc462285929ba1aa5f2f1492111ad4467a93d9dab12324422"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channel_42_directive_antigravity_workspaces_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES
+## System Version 4.0.45 — Pre-Install Registry Finalization
+
+**Date:** 2026-02-25  
+**Agent:** KIRO (Warp IDE, Actor 1004)  
+**Priority:** HIGH  
+**Status:** Pre-Install (Registry Finalization Phase)
+
+---
+
+## EXECUTIVE SUMMARY
+
+🟡 **PARTIAL IMPLEMENTATION REQUIRED**
+
+**Finding 1:** Antigravity IDE is ALREADY in actors/registry.json at ID 1003 but MISSING from 4.0.45 seeding SQL.
+
+**Finding 2:** Per-channel actor workspace directories (`channels/*/actors/`) ALREADY EXIST but are EMPTY. Migration from `/prompts/` required.
+
+**Required Actions:**
+1. Add Antigravity (1003) to `seed_actors_agents_4.0.45.sql`
+2. Add Antigravity (1003) to `seed_registry_comprehensive_4.0.45.sql`
+3. Migrate `/prompts/**` → `/channels/*/actors/*/`
+4. Update registry open gaps to exclude 1003
+5. Create workspace README templates
+6. Update CHANGELOG.md
+
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "54ff4fead33a75b15e230b332e7991851be646242801c6609d579c44ae145c27"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "018481bc1278c1355736fe7c096de9a98733f2382995de006afc777458ef0010"
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "75d06e19bccc33ecc462285929ba1aa5f2f1492111ad4467a93d9dab12324422"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channel_42_directive_antigravity_workspaces_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES
+## System Version 4.0.45 — Pre-Install Registry Finalization
+
+**Date:** 2026-02-25  
+**Agent:** KIRO (Warp IDE, Actor 1004)  
+**Priority:** HIGH  
+**Status:** Pre-Install (Registry Finalization Phase)
+
+---
+
+## EXECUTIVE SUMMARY
+
+🟡 **PARTIAL IMPLEMENTATION REQUIRED**
+
+**Finding 1:** Antigravity IDE is ALREADY in actors/registry.json at ID 1003 but MISSING from 4.0.45 seeding SQL.
+
+**Finding 2:** Per-channel actor workspace directories (`channels/*/actors/`) ALREADY EXIST but are EMPTY. Migration from `/prompts/` required.
+
+**Required Actions:**
+1. Add Antigravity (1003) to `seed_actors_agents_4.0.45.sql`
+2. Add Antigravity (1003) to `seed_registry_comprehensive_4.0.45.sql`
+3. Migrate `/prompts/**` → `/channels/*/actors/*/`
+4. Update registry open gaps to exclude 1003
+5. Create workspace README templates
+6. Update CHANGELOG.md
+
 ---
 
 ## 1. ANTIGRAVITY INTEGRATION AUDIT

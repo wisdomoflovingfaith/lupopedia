@@ -52,6 +52,465 @@ wolfie.headers:
 **Total Tables:** 166  
 **Total Lines:** 3,812
 
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "977be7027dc0ac24bee6b608faec382da67da7c701589aa49523f422485bddeb"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "7d7522248575b619663274871d8765bd07f02f284b0fe997755b67f21662db05"
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "1945aaf3aafab51de6ece43166e463155f73b256795fc0cbc70ac67d985c6ea1"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_audit_tasks_threads_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Audit of install_new_lupopedia.sql for tasks, threads, actors, and MD import support"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "audit_report"
+  artifact_kind: "schema_audit"
+  created_utc: "2026-02-25T23:00:00Z"
+---
+
+# INSTALL SQL AUDIT - TASKS, THREADS, ACTORS, MD IMPORT
+
+**Auditor:** Kiro IDE (1000)  
+**Date:** 2026-02-25T23:00:00Z  
+**File:** `database/migrations/install_new_lupopedia.sql`  
+**Total Tables:** 166  
+**Total Lines:** 3,812
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "977be7027dc0ac24bee6b608faec382da67da7c701589aa49523f422485bddeb"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "7d7522248575b619663274871d8765bd07f02f284b0fe997755b67f21662db05"
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "1945aaf3aafab51de6ece43166e463155f73b256795fc0cbc70ac67d985c6ea1"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_audit_tasks_threads_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Audit of install_new_lupopedia.sql for tasks, threads, actors, and MD import support"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "audit_report"
+  artifact_kind: "schema_audit"
+  created_utc: "2026-02-25T23:00:00Z"
+---
+
+# INSTALL SQL AUDIT - TASKS, THREADS, ACTORS, MD IMPORT
+
+**Auditor:** Kiro IDE (1000)  
+**Date:** 2026-02-25T23:00:00Z  
+**File:** `database/migrations/install_new_lupopedia.sql`  
+**Total Tables:** 166  
+**Total Lines:** 3,812
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "977be7027dc0ac24bee6b608faec382da67da7c701589aa49523f422485bddeb"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "7d7522248575b619663274871d8765bd07f02f284b0fe997755b67f21662db05"
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "1945aaf3aafab51de6ece43166e463155f73b256795fc0cbc70ac67d985c6ea1"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_audit_tasks_threads_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Audit of install_new_lupopedia.sql for tasks, threads, actors, and MD import support"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "audit_report"
+  artifact_kind: "schema_audit"
+  created_utc: "2026-02-25T23:00:00Z"
+---
+
+# INSTALL SQL AUDIT - TASKS, THREADS, ACTORS, MD IMPORT
+
+**Auditor:** Kiro IDE (1000)  
+**Date:** 2026-02-25T23:00:00Z  
+**File:** `database/migrations/install_new_lupopedia.sql`  
+**Total Tables:** 166  
+**Total Lines:** 3,812
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "7d7522248575b619663274871d8765bd07f02f284b0fe997755b67f21662db05"
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "1945aaf3aafab51de6ece43166e463155f73b256795fc0cbc70ac67d985c6ea1"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_audit_tasks_threads_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Audit of install_new_lupopedia.sql for tasks, threads, actors, and MD import support"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "audit_report"
+  artifact_kind: "schema_audit"
+  created_utc: "2026-02-25T23:00:00Z"
+---
+
+# INSTALL SQL AUDIT - TASKS, THREADS, ACTORS, MD IMPORT
+
+**Auditor:** Kiro IDE (1000)  
+**Date:** 2026-02-25T23:00:00Z  
+**File:** `database/migrations/install_new_lupopedia.sql`  
+**Total Tables:** 166  
+**Total Lines:** 3,812
+
+---
+
+## Executive Summary
+
+**Audit Result:** ❌ TASKS TABLES MISSING (as reported in CHANGELOG)
+
+**Required Actions:**
+1. ✅ Threads: EXIST (lupo_dialog_threads)
+2. ✅ Actors: EXIST (lupo_actors, lupo_agents)
+3. ✅ Messages: EXIST (lupo_dialog_doctrine)
+4. ✅ Channels: EXIST (lupo_channels)
+5. ✅ Registry: EXIST (lupo_registry, lupo_registry_open)
+6. ❌ Tasks: MISSING (must be added)
+
+**Recommendation:** Integrate task tables from `add_tasks_schema_4.0.45.sql` directly into `install_new_lupopedia.sql` as source of truth.
+
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "e537d54c834c3f719e9c11cbf5d1a8d1b6b84185bdfc62f469960fa5715e0e23"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "7d7522248575b619663274871d8765bd07f02f284b0fe997755b67f21662db05"
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "1945aaf3aafab51de6ece43166e463155f73b256795fc0cbc70ac67d985c6ea1"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_audit_tasks_threads_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Audit of install_new_lupopedia.sql for tasks, threads, actors, and MD import support"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "audit_report"
+  artifact_kind: "schema_audit"
+  created_utc: "2026-02-25T23:00:00Z"
+---
+
+# INSTALL SQL AUDIT - TASKS, THREADS, ACTORS, MD IMPORT
+
+**Auditor:** Kiro IDE (1000)  
+**Date:** 2026-02-25T23:00:00Z  
+**File:** `database/migrations/install_new_lupopedia.sql`  
+**Total Tables:** 166  
+**Total Lines:** 3,812
+
+---
+
+## Executive Summary
+
+**Audit Result:** ❌ TASKS TABLES MISSING (as reported in CHANGELOG)
+
+**Required Actions:**
+1. ✅ Threads: EXIST (lupo_dialog_threads)
+2. ✅ Actors: EXIST (lupo_actors, lupo_agents)
+3. ✅ Messages: EXIST (lupo_dialog_doctrine)
+4. ✅ Channels: EXIST (lupo_channels)
+5. ✅ Registry: EXIST (lupo_registry, lupo_registry_open)
+6. ❌ Tasks: MISSING (must be added)
+
+**Recommendation:** Integrate task tables from `add_tasks_schema_4.0.45.sql` directly into `install_new_lupopedia.sql` as source of truth.
+
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "e537d54c834c3f719e9c11cbf5d1a8d1b6b84185bdfc62f469960fa5715e0e23"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "7d7522248575b619663274871d8765bd07f02f284b0fe997755b67f21662db05"
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  file_hash: "1945aaf3aafab51de6ece43166e463155f73b256795fc0cbc70ac67d985c6ea1"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_audit_tasks_threads_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Audit of install_new_lupopedia.sql for tasks, threads, actors, and MD import support"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "audit_report"
+  artifact_kind: "schema_audit"
+  created_utc: "2026-02-25T23:00:00Z"
+---
+
+# INSTALL SQL AUDIT - TASKS, THREADS, ACTORS, MD IMPORT
+
+**Auditor:** Kiro IDE (1000)  
+**Date:** 2026-02-25T23:00:00Z  
+**File:** `database/migrations/install_new_lupopedia.sql`  
+**Total Tables:** 166  
+**Total Lines:** 3,812
+
 ---
 
 ## Executive Summary

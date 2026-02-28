@@ -57,6 +57,476 @@ flip.footer:
   footnotes:
     - "Version 4.0.32 complete"
     - "Awaiting Windsurf audit"
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "895c54299f16749b178385664ccb241d1b7b6dded3b62782967479110a5354f8"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "0e60615bc5c9a1632819d9635a63c7dc233f0e8d4adf6d089d0afde2e50b2a5d"
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "263958daba2ab9833bf0e6cd9a23cfebdde930171f3251a6afcf595ae9016b19"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VERSION_4_0_32_COMPLETION_REPORT.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["version_4_0_32_completion_reportmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  system_version: "4.0.32"
+  channel_id: 42
+  mood_rgb: "00FF00"
+  purpose: "Version 4.0.32 completion report"
+  last_modified_utc: "20260223164000"
+  x_lupo_forwarded: "1001:10000"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "reports/dialog_inventory_4_0_32.md"
+    - "channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "version_completion"
+    - "semantic_cleanup"
+  footnotes:
+    - "Version 4.0.32 complete"
+    - "Awaiting Windsurf audit"
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "895c54299f16749b178385664ccb241d1b7b6dded3b62782967479110a5354f8"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "0e60615bc5c9a1632819d9635a63c7dc233f0e8d4adf6d089d0afde2e50b2a5d"
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "263958daba2ab9833bf0e6cd9a23cfebdde930171f3251a6afcf595ae9016b19"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VERSION_4_0_32_COMPLETION_REPORT.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["version_4_0_32_completion_reportmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  system_version: "4.0.32"
+  channel_id: 42
+  mood_rgb: "00FF00"
+  purpose: "Version 4.0.32 completion report"
+  last_modified_utc: "20260223164000"
+  x_lupo_forwarded: "1001:10000"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "reports/dialog_inventory_4_0_32.md"
+    - "channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "version_completion"
+    - "semantic_cleanup"
+  footnotes:
+    - "Version 4.0.32 complete"
+    - "Awaiting Windsurf audit"
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "895c54299f16749b178385664ccb241d1b7b6dded3b62782967479110a5354f8"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "0e60615bc5c9a1632819d9635a63c7dc233f0e8d4adf6d089d0afde2e50b2a5d"
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "263958daba2ab9833bf0e6cd9a23cfebdde930171f3251a6afcf595ae9016b19"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VERSION_4_0_32_COMPLETION_REPORT.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["version_4_0_32_completion_reportmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  system_version: "4.0.32"
+  channel_id: 42
+  mood_rgb: "00FF00"
+  purpose: "Version 4.0.32 completion report"
+  last_modified_utc: "20260223164000"
+  x_lupo_forwarded: "1001:10000"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "reports/dialog_inventory_4_0_32.md"
+    - "channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "version_completion"
+    - "semantic_cleanup"
+  footnotes:
+    - "Version 4.0.32 complete"
+    - "Awaiting Windsurf audit"
+---
+
+# VERSION 4.0.32 COMPLETION REPORT
+
+**Date:** 2026-02-23 16:40:00 UTC  
+**By:** KIRO IDE (actor_id 1001)  
+**Version:** 4.0.32  
+**Status:** ✅ COMPLETE  
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "0e60615bc5c9a1632819d9635a63c7dc233f0e8d4adf6d089d0afde2e50b2a5d"
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "263958daba2ab9833bf0e6cd9a23cfebdde930171f3251a6afcf595ae9016b19"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VERSION_4_0_32_COMPLETION_REPORT.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["version_4_0_32_completion_reportmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  system_version: "4.0.32"
+  channel_id: 42
+  mood_rgb: "00FF00"
+  purpose: "Version 4.0.32 completion report"
+  last_modified_utc: "20260223164000"
+  x_lupo_forwarded: "1001:10000"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "reports/dialog_inventory_4_0_32.md"
+    - "channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "version_completion"
+    - "semantic_cleanup"
+  footnotes:
+    - "Version 4.0.32 complete"
+    - "Awaiting Windsurf audit"
+---
+
+# VERSION 4.0.32 COMPLETION REPORT
+
+**Date:** 2026-02-23 16:40:00 UTC  
+**By:** KIRO IDE (actor_id 1001)  
+**Version:** 4.0.32  
+**Status:** ✅ COMPLETE  
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "0e60615bc5c9a1632819d9635a63c7dc233f0e8d4adf6d089d0afde2e50b2a5d"
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "263958daba2ab9833bf0e6cd9a23cfebdde930171f3251a6afcf595ae9016b19"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VERSION_4_0_32_COMPLETION_REPORT.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["version_4_0_32_completion_reportmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  system_version: "4.0.32"
+  channel_id: 42
+  mood_rgb: "00FF00"
+  purpose: "Version 4.0.32 completion report"
+  last_modified_utc: "20260223164000"
+  x_lupo_forwarded: "1001:10000"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "reports/dialog_inventory_4_0_32.md"
+    - "channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "version_completion"
+    - "semantic_cleanup"
+  footnotes:
+    - "Version 4.0.32 complete"
+    - "Awaiting Windsurf audit"
+---
+
+# VERSION 4.0.32 COMPLETION REPORT
+
+**Date:** 2026-02-23 16:40:00 UTC  
+**By:** KIRO IDE (actor_id 1001)  
+**Version:** 4.0.32  
+**Status:** ✅ COMPLETE  
+
+---
+
+## EXECUTIVE SUMMARY
+
+Version 4.0.32 semantic cleanup phase is complete. All assigned tasks have been executed successfully with no database writes performed (as directed).
+
+**Key Achievement:** Identified that priority MD files contain documentation, not actual dialog data, which may eliminate the need for database seeding in version 4.0.33.
+
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "50f7907f60237cb124fdad31194dd845df72a6dac77ca0ade8b6627e26efd8cf"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "0e60615bc5c9a1632819d9635a63c7dc233f0e8d4adf6d089d0afde2e50b2a5d"
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  file_hash: "263958daba2ab9833bf0e6cd9a23cfebdde930171f3251a6afcf595ae9016b19"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VERSION_4_0_32_COMPLETION_REPORT.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["version_4_0_32_completion_reportmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VERSION_4_0_32_COMPLETION_REPORT.md"
+  system_version: "4.0.32"
+  channel_id: 42
+  mood_rgb: "00FF00"
+  purpose: "Version 4.0.32 completion report"
+  last_modified_utc: "20260223164000"
+  x_lupo_forwarded: "1001:10000"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "reports/dialog_inventory_4_0_32.md"
+    - "channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "version_completion"
+    - "semantic_cleanup"
+  footnotes:
+    - "Version 4.0.32 complete"
+    - "Awaiting Windsurf audit"
 ---
 
 # VERSION 4.0.32 COMPLETION REPORT

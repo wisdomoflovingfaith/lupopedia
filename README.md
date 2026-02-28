@@ -58,6 +58,478 @@ flare.footer:
 
 **Start Here:** [QUICKSTART.md](QUICKSTART.md) • [HOW_TO_USE_LUPOPEDIA.md](HOW_TO_USE_LUPOPEDIA.md) • [Doctrine Index](docs/doctrine/) • [VSX Extension](tools/vsx-extension/)
 
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  file_path_from_root: "README.md"
+  file_hash: "d10f0134d3f8d347ca86ee872bbb5ad61218f212d0bd5811624e6ddde83d0553"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 10000
+  last_modified_utc: "20260227"
+  delegation_chain: null
+  artifact_type: "guide"
+  purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS with actor identity and access requirements"
+  dialog_message: "Updated for 4.0.49 with focus on actor identity, registration, and database seeding requirements for system access."
+  mood_rgb: "4169E1"
+  artifact_kind: "documentation"
+  traits: ["essential", "entrypoint", "comprehensive", "v4.0.49"]
+  tags: ["readme", "overview", "architecture", "actor_identity", "database_seeding"]
+  lupo_agent: "windsurf"
+
+flare.edges:
+  file_path_from_root: "README.md"
+  outbound_edges:
+    - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
+    - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
+    - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "docs/README.md", type: "references", weight: 0.7 }
+    - { to: "tools/vsx-extension/", type: "references", weight: 0.8 }
+    - { to: "database/migrations/", type: "references", weight: 0.7 }
+    - { to: "legacy/craftysyntax/", type: "references", weight: 0.5 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8 }
+    - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "docs/toons/", type: "references", weight: 0.7 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "lupopedia-config.php", type: "references", weight: 0.7 }
+    - { to: "index.php", type: "references", weight: 0.6 }
+    - { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0, reason: "Critical version policy and blocker information" }
+  semantic_tags: ["project_overview", "architecture", "multi_agent_ecosystem", "semantic_os", "crafty_syntax_upgrade", "flare_protocol"]
+
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+
+## 🐺 Lupopedia 4.0.49 — Development Cycle (2026-02-27)
+**Status:** Active Development  
+**Mission:** Actor identity system, database documentation, and admin interface modernization building on Crafty Syntax 3.7.5 upgrade foundation.
+
+**🚨 CRITICAL VERSION POLICY:** Lupopedia 4.0.x CANNOT advance to 4.1.0 until auto-installers (Installatron, Fantastico, Softaculous) accept 4.0.x as a Crafty Syntax 3.7.5 replacement. See [Version Policy Doctrine](docs/doctrine/VERSION_POLICY_DOCTRINE.md) for complete details.
+
+**👤 ACTOR IDENTITY & ACCESS:** To use Lupopedia, you must be a registered actor in the database. New users must be seeded into the system through proper registration and authentication processes. See [Actor Registration](#actor-registration) below for details.
+
+**Start Here:** [QUICKSTART.md](QUICKSTART.md) • [HOW_TO_USE_LUPOPEDIA.md](HOW_TO_USE_LUPOPEDIA.md) • [Doctrine Index](docs/doctrine/) • [VSX Extension](tools/vsx-extension/)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  file_path_from_root: "README.md"
+  file_hash: "d10f0134d3f8d347ca86ee872bbb5ad61218f212d0bd5811624e6ddde83d0553"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 10000
+  last_modified_utc: "20260227"
+  delegation_chain: null
+  artifact_type: "guide"
+  purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS with actor identity and access requirements"
+  dialog_message: "Updated for 4.0.49 with focus on actor identity, registration, and database seeding requirements for system access."
+  mood_rgb: "4169E1"
+  artifact_kind: "documentation"
+  traits: ["essential", "entrypoint", "comprehensive", "v4.0.49"]
+  tags: ["readme", "overview", "architecture", "actor_identity", "database_seeding"]
+  lupo_agent: "windsurf"
+
+flare.edges:
+  file_path_from_root: "README.md"
+  outbound_edges:
+    - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
+    - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
+    - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "docs/README.md", type: "references", weight: 0.7 }
+    - { to: "tools/vsx-extension/", type: "references", weight: 0.8 }
+    - { to: "database/migrations/", type: "references", weight: 0.7 }
+    - { to: "legacy/craftysyntax/", type: "references", weight: 0.5 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8 }
+    - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "docs/toons/", type: "references", weight: 0.7 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "lupopedia-config.php", type: "references", weight: 0.7 }
+    - { to: "index.php", type: "references", weight: 0.6 }
+    - { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0, reason: "Critical version policy and blocker information" }
+  semantic_tags: ["project_overview", "architecture", "multi_agent_ecosystem", "semantic_os", "crafty_syntax_upgrade", "flare_protocol"]
+
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+
+## 🐺 Lupopedia 4.0.49 — Development Cycle (2026-02-27)
+**Status:** Active Development  
+**Mission:** Actor identity system, database documentation, and admin interface modernization building on Crafty Syntax 3.7.5 upgrade foundation.
+
+**🚨 CRITICAL VERSION POLICY:** Lupopedia 4.0.x CANNOT advance to 4.1.0 until auto-installers (Installatron, Fantastico, Softaculous) accept 4.0.x as a Crafty Syntax 3.7.5 replacement. See [Version Policy Doctrine](docs/doctrine/VERSION_POLICY_DOCTRINE.md) for complete details.
+
+**👤 ACTOR IDENTITY & ACCESS:** To use Lupopedia, you must be a registered actor in the database. New users must be seeded into the system through proper registration and authentication processes. See [Actor Registration](#actor-registration) below for details.
+
+**Start Here:** [QUICKSTART.md](QUICKSTART.md) • [HOW_TO_USE_LUPOPEDIA.md](HOW_TO_USE_LUPOPEDIA.md) • [Doctrine Index](docs/doctrine/) • [VSX Extension](tools/vsx-extension/)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+  file_path_from_root: "README.md"
+  file_hash: "0a768ecee4c91534fd210a8e48962847fbe8ed5aed3de6976c9261be8413fed5"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  file_path_from_root: "README.md"
+  file_hash: "d10f0134d3f8d347ca86ee872bbb5ad61218f212d0bd5811624e6ddde83d0553"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 10000
+  last_modified_utc: "20260227"
+  delegation_chain: null
+  artifact_type: "guide"
+  purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS with actor identity and access requirements"
+  dialog_message: "Updated for 4.0.49 with focus on actor identity, registration, and database seeding requirements for system access."
+  mood_rgb: "4169E1"
+  artifact_kind: "documentation"
+  traits: ["essential", "entrypoint", "comprehensive", "v4.0.49"]
+  tags: ["readme", "overview", "architecture", "actor_identity", "database_seeding"]
+  lupo_agent: "windsurf"
+
+flare.edges:
+  file_path_from_root: "README.md"
+  outbound_edges:
+    - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
+    - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
+    - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "docs/README.md", type: "references", weight: 0.7 }
+    - { to: "tools/vsx-extension/", type: "references", weight: 0.8 }
+    - { to: "database/migrations/", type: "references", weight: 0.7 }
+    - { to: "legacy/craftysyntax/", type: "references", weight: 0.5 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8 }
+    - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "docs/toons/", type: "references", weight: 0.7 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "lupopedia-config.php", type: "references", weight: 0.7 }
+    - { to: "index.php", type: "references", weight: 0.6 }
+    - { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0, reason: "Critical version policy and blocker information" }
+  semantic_tags: ["project_overview", "architecture", "multi_agent_ecosystem", "semantic_os", "crafty_syntax_upgrade", "flare_protocol"]
+
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+
+## 🐺 Lupopedia 4.0.49 — Development Cycle (2026-02-27)
+**Status:** Active Development  
+**Mission:** Actor identity system, database documentation, and admin interface modernization building on Crafty Syntax 3.7.5 upgrade foundation.
+
+**🚨 CRITICAL VERSION POLICY:** Lupopedia 4.0.x CANNOT advance to 4.1.0 until auto-installers (Installatron, Fantastico, Softaculous) accept 4.0.x as a Crafty Syntax 3.7.5 replacement. See [Version Policy Doctrine](docs/doctrine/VERSION_POLICY_DOCTRINE.md) for complete details.
+
+**👤 ACTOR IDENTITY & ACCESS:** To use Lupopedia, you must be a registered actor in the database. New users must be seeded into the system through proper registration and authentication processes. See [Actor Registration](#actor-registration) below for details.
+
+**Start Here:** [QUICKSTART.md](QUICKSTART.md) • [HOW_TO_USE_LUPOPEDIA.md](HOW_TO_USE_LUPOPEDIA.md) • [Doctrine Index](docs/doctrine/) • [VSX Extension](tools/vsx-extension/)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  file_path_from_root: "README.md"
+  file_hash: "d10f0134d3f8d347ca86ee872bbb5ad61218f212d0bd5811624e6ddde83d0553"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 10000
+  last_modified_utc: "20260227"
+  delegation_chain: null
+  artifact_type: "guide"
+  purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS with actor identity and access requirements"
+  dialog_message: "Updated for 4.0.49 with focus on actor identity, registration, and database seeding requirements for system access."
+  mood_rgb: "4169E1"
+  artifact_kind: "documentation"
+  traits: ["essential", "entrypoint", "comprehensive", "v4.0.49"]
+  tags: ["readme", "overview", "architecture", "actor_identity", "database_seeding"]
+  lupo_agent: "windsurf"
+
+flare.edges:
+  file_path_from_root: "README.md"
+  outbound_edges:
+    - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
+    - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
+    - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "docs/README.md", type: "references", weight: 0.7 }
+    - { to: "tools/vsx-extension/", type: "references", weight: 0.8 }
+    - { to: "database/migrations/", type: "references", weight: 0.7 }
+    - { to: "legacy/craftysyntax/", type: "references", weight: 0.5 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8 }
+    - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "docs/toons/", type: "references", weight: 0.7 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "lupopedia-config.php", type: "references", weight: 0.7 }
+    - { to: "index.php", type: "references", weight: 0.6 }
+    - { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0, reason: "Critical version policy and blocker information" }
+  semantic_tags: ["project_overview", "architecture", "multi_agent_ecosystem", "semantic_os", "crafty_syntax_upgrade", "flare_protocol"]
+
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+
+## 🐺 Lupopedia 4.0.49 — Development Cycle (2026-02-27)
+**Status:** Active Development  
+**Mission:** Actor identity system, database documentation, and admin interface modernization building on Crafty Syntax 3.7.5 upgrade foundation.
+
+**🚨 CRITICAL VERSION POLICY:** Lupopedia 4.0.x CANNOT advance to 4.1.0 until auto-installers (Installatron, Fantastico, Softaculous) accept 4.0.x as a Crafty Syntax 3.7.5 replacement. See [Version Policy Doctrine](docs/doctrine/VERSION_POLICY_DOCTRINE.md) for complete details.
+
+**👤 ACTOR IDENTITY & ACCESS:** To use Lupopedia, you must be a registered actor in the database. New users must be seeded into the system through proper registration and authentication processes. See [Actor Registration](#actor-registration) below for details.
+
+**Start Here:** [QUICKSTART.md](QUICKSTART.md) • [HOW_TO_USE_LUPOPEDIA.md](HOW_TO_USE_LUPOPEDIA.md) • [Doctrine Index](docs/doctrine/) • [VSX Extension](tools/vsx-extension/)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  file_path_from_root: "README.md"
+  file_hash: "d10f0134d3f8d347ca86ee872bbb5ad61218f212d0bd5811624e6ddde83d0553"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 10000
+  last_modified_utc: "20260227"
+  delegation_chain: null
+  artifact_type: "guide"
+  purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS with actor identity and access requirements"
+  dialog_message: "Updated for 4.0.49 with focus on actor identity, registration, and database seeding requirements for system access."
+  mood_rgb: "4169E1"
+  artifact_kind: "documentation"
+  traits: ["essential", "entrypoint", "comprehensive", "v4.0.49"]
+  tags: ["readme", "overview", "architecture", "actor_identity", "database_seeding"]
+  lupo_agent: "windsurf"
+
+flare.edges:
+  file_path_from_root: "README.md"
+  outbound_edges:
+    - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
+    - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
+    - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "docs/README.md", type: "references", weight: 0.7 }
+    - { to: "tools/vsx-extension/", type: "references", weight: 0.8 }
+    - { to: "database/migrations/", type: "references", weight: 0.7 }
+    - { to: "legacy/craftysyntax/", type: "references", weight: 0.5 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8 }
+    - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "docs/toons/", type: "references", weight: 0.7 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "lupopedia-config.php", type: "references", weight: 0.7 }
+    - { to: "index.php", type: "references", weight: 0.6 }
+    - { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0, reason: "Critical version policy and blocker information" }
+  semantic_tags: ["project_overview", "architecture", "multi_agent_ecosystem", "semantic_os", "crafty_syntax_upgrade", "flare_protocol"]
+
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+
+## 🐺 Lupopedia 4.0.49 — Development Cycle (2026-02-27)
+**Status:** Active Development  
+**Mission:** Actor identity system, database documentation, and admin interface modernization building on Crafty Syntax 3.7.5 upgrade foundation.
+
+**🚨 CRITICAL VERSION POLICY:** Lupopedia 4.0.x CANNOT advance to 4.1.0 until auto-installers (Installatron, Fantastico, Softaculous) accept 4.0.x as a Crafty Syntax 3.7.5 replacement. See [Version Policy Doctrine](docs/doctrine/VERSION_POLICY_DOCTRINE.md) for complete details.
+
+**👤 ACTOR IDENTITY & ACCESS:** To use Lupopedia, you must be a registered actor in the database. New users must be seeded into the system through proper registration and authentication processes. See [Actor Registration](#actor-registration) below for details.
+
+**Start Here:** [QUICKSTART.md](QUICKSTART.md) • [HOW_TO_USE_LUPOPEDIA.md](HOW_TO_USE_LUPOPEDIA.md) • [Doctrine Index](docs/doctrine/) • [VSX Extension](tools/vsx-extension/)
+
+---
+
+## Table of Contents
+
+1. [What Lupopedia Is](#what-lupopedia-is)
+2. [Quickstart](#quickstart)
+   - [Web Install/Upgrade](#web-installupgrade)
+   - [CLI Basics](#cli-basics)
+3. [Repository Map](#repository-map)
+4. [Core Concepts](#core-concepts)
+5. [Non-Negotiable Doctrine](#non-negotiable-doctrine)
+6. [VSX Extension](#vsx-extension)
+7. [Federation & Registry](#federation--registry)
+
+  file_path_from_root: "README.md"
+  file_hash: "9898c6c0a3bb0e33493d55cdea8fd07eeff53be72d936c77b160f6fed014ed79"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  file_path_from_root: "README.md"
+  file_hash: "d10f0134d3f8d347ca86ee872bbb5ad61218f212d0bd5811624e6ddde83d0553"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 10000
+  last_modified_utc: "20260227"
+  delegation_chain: null
+  artifact_type: "guide"
+  purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS with actor identity and access requirements"
+  dialog_message: "Updated for 4.0.49 with focus on actor identity, registration, and database seeding requirements for system access."
+  mood_rgb: "4169E1"
+  artifact_kind: "documentation"
+  traits: ["essential", "entrypoint", "comprehensive", "v4.0.49"]
+  tags: ["readme", "overview", "architecture", "actor_identity", "database_seeding"]
+  lupo_agent: "windsurf"
+
+flare.edges:
+  file_path_from_root: "README.md"
+  outbound_edges:
+    - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
+    - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
+    - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "docs/README.md", type: "references", weight: 0.7 }
+    - { to: "tools/vsx-extension/", type: "references", weight: 0.8 }
+    - { to: "database/migrations/", type: "references", weight: 0.7 }
+    - { to: "legacy/craftysyntax/", type: "references", weight: 0.5 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8 }
+    - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "docs/toons/", type: "references", weight: 0.7 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "lupopedia-config.php", type: "references", weight: 0.7 }
+    - { to: "index.php", type: "references", weight: 0.6 }
+    - { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0, reason: "Critical version policy and blocker information" }
+  semantic_tags: ["project_overview", "architecture", "multi_agent_ecosystem", "semantic_os", "crafty_syntax_upgrade", "flare_protocol"]
+
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+
+## 🐺 Lupopedia 4.0.49 — Development Cycle (2026-02-27)
+**Status:** Active Development  
+**Mission:** Actor identity system, database documentation, and admin interface modernization building on Crafty Syntax 3.7.5 upgrade foundation.
+
+**🚨 CRITICAL VERSION POLICY:** Lupopedia 4.0.x CANNOT advance to 4.1.0 until auto-installers (Installatron, Fantastico, Softaculous) accept 4.0.x as a Crafty Syntax 3.7.5 replacement. See [Version Policy Doctrine](docs/doctrine/VERSION_POLICY_DOCTRINE.md) for complete details.
+
+**👤 ACTOR IDENTITY & ACCESS:** To use Lupopedia, you must be a registered actor in the database. New users must be seeded into the system through proper registration and authentication processes. See [Actor Registration](#actor-registration) below for details.
+
+**Start Here:** [QUICKSTART.md](QUICKSTART.md) • [HOW_TO_USE_LUPOPEDIA.md](HOW_TO_USE_LUPOPEDIA.md) • [Doctrine Index](docs/doctrine/) • [VSX Extension](tools/vsx-extension/)
+
 ---
 
 ## Table of Contents

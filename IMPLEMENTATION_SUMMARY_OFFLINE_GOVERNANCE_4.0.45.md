@@ -42,6 +42,439 @@ wolfie.headers:
   artifact_type: "summary"
   artifact_kind: "implementation_report"
   created_utc: "2026-02-25T16:10:00Z"
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "a8bb33307999f09a4ed8475fbeb2a39016a6fa84909690a88b2040f76e36a6a2"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "cb9b822f5a0ea4498c06e5aa6aadc28c70ec9c40187106bd58016f016da4ff24"
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "2d64f7b02f93431143ba213cc2342d395ad060ca734ae8b57ae13854d97e9d01"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["implementation_summary_offline_governance_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Implementation Summary for Offline Governance System"
+  last_modified: "20260225"
+  actor_id: 1004
+  artifact_type: "summary"
+  artifact_kind: "implementation_report"
+  created_utc: "2026-02-25T16:10:00Z"
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "a8bb33307999f09a4ed8475fbeb2a39016a6fa84909690a88b2040f76e36a6a2"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "cb9b822f5a0ea4498c06e5aa6aadc28c70ec9c40187106bd58016f016da4ff24"
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "2d64f7b02f93431143ba213cc2342d395ad060ca734ae8b57ae13854d97e9d01"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["implementation_summary_offline_governance_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Implementation Summary for Offline Governance System"
+  last_modified: "20260225"
+  actor_id: 1004
+  artifact_type: "summary"
+  artifact_kind: "implementation_report"
+  created_utc: "2026-02-25T16:10:00Z"
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "a8bb33307999f09a4ed8475fbeb2a39016a6fa84909690a88b2040f76e36a6a2"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "ee820009951034f6b51b4707c3b8a765c876f32992ea68da3de4aaae655232da"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "cb9b822f5a0ea4498c06e5aa6aadc28c70ec9c40187106bd58016f016da4ff24"
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "2d64f7b02f93431143ba213cc2342d395ad060ca734ae8b57ae13854d97e9d01"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["implementation_summary_offline_governance_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Implementation Summary for Offline Governance System"
+  last_modified: "20260225"
+  actor_id: 1004
+  artifact_type: "summary"
+  artifact_kind: "implementation_report"
+  created_utc: "2026-02-25T16:10:00Z"
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "a8bb33307999f09a4ed8475fbeb2a39016a6fa84909690a88b2040f76e36a6a2"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "cb9b822f5a0ea4498c06e5aa6aadc28c70ec9c40187106bd58016f016da4ff24"
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "2d64f7b02f93431143ba213cc2342d395ad060ca734ae8b57ae13854d97e9d01"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["implementation_summary_offline_governance_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Implementation Summary for Offline Governance System"
+  last_modified: "20260225"
+  actor_id: 1004
+  artifact_type: "summary"
+  artifact_kind: "implementation_report"
+  created_utc: "2026-02-25T16:10:00Z"
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "a8bb33307999f09a4ed8475fbeb2a39016a6fa84909690a88b2040f76e36a6a2"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "cb9b822f5a0ea4498c06e5aa6aadc28c70ec9c40187106bd58016f016da4ff24"
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "2d64f7b02f93431143ba213cc2342d395ad060ca734ae8b57ae13854d97e9d01"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["implementation_summary_offline_governance_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Implementation Summary for Offline Governance System"
+  last_modified: "20260225"
+  actor_id: 1004
+  artifact_type: "summary"
+  artifact_kind: "implementation_report"
+  created_utc: "2026-02-25T16:10:00Z"
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "a8bb33307999f09a4ed8475fbeb2a39016a6fa84909690a88b2040f76e36a6a2"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "cb9b822f5a0ea4498c06e5aa6aadc28c70ec9c40187106bd58016f016da4ff24"
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  file_hash: "2d64f7b02f93431143ba213cc2342d395ad060ca734ae8b57ae13854d97e9d01"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["implementation_summary_offline_governance_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Implementation Summary for Offline Governance System"
+  last_modified: "20260225"
+  actor_id: 1004
+  artifact_type: "summary"
+  artifact_kind: "implementation_report"
+  created_utc: "2026-02-25T16:10:00Z"
 ---
 
 # IMPLEMENTATION SUMMARY: OFFLINE GOVERNANCE SYSTEM (4.0.45)

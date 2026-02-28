@@ -60,6 +60,479 @@ To ensure consistency across contributions from multiple IDE agents, all version
 
 Agents: Research existing entries first; consolidate duplicates logically.
 
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  file_path_from_root: "CHANGELOG.md"
+  file_hash: "5ff6442ed74acf7ee9a29885448a015ec356b33f6012fb0d62d0671250aaffbe"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
+  artifact_type: "changelog"
+  purpose: "Canonical version history for Lupopedia with FLARE protocol migration documentation"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
+  mood_rgb: "4B0082"
+  artifact_kind: "version_history"
+  traits: ["canonical", "comprehensive", "v4.0.48"]
+  tags: ["changelog", "versions", "releases", "history", "flare_migration"]
+  lupo_agent: "codex-ide"
+  actor_ip: "127.0.0.1"
+
+flare.edges:
+  file_path_from_root: "CHANGELOG.md"
+  outbound_edges:
+    - { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "CHANGELOG_ARCHIVE.md", type: "references", weight: 0.6, reason: "everything before version 4.0.46 of the changelog" }
+  semantic_tags: ["changelog", "versions", "releases", "history", "flare", "migration"]
+
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+- **Purpose of 4.0.x:** The 4.0.x series (4.0.0 – 4.0.x and all future 4.0.x patches) is a development and stabilization series. It exists solely to refine the single supported upgrade path: **Crafty Syntax 3.7.5 ? Lupopedia 4.0.x**. Each patch is an iteration on the installer, wizard, importer, doctrine enforcement, and compatibility rules for that path.
+- **No Lupopedia ? Lupopedia upgrades before 4.1.0.** In the 4.0.x line there are no supported upgrades from an existing Lupopedia installation. The only valid inputs are a new install or an upgrade from Crafty Syntax 3.7.5.
+- **4.1.0** will be the first version to support Lupopedia ? Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
+
+---
+
+# Lupopedia Changelog
+
+Canonical version history.
+
+## Changelog Entry Template Standard
+To ensure consistency across contributions from multiple IDE agents, all version entries MUST follow this standardized template. This prevents duplication and maintains clarity. Agents must check for .lock files before editing (see docs/guidelines/ide_agent_protocols.md for full protocols).
+
+- **Version Section Header:** ## [X.Y.Z] — Brief descriptive title. (YYYY-MM-DD)
+- **Status/Theme/Focus/Lead Agent/UTC Date/Phase:** Bullet points for metadata.
+- **Mission Objectives:** Primary objective and critical path tasks list.
+- **Active Development Tasks:** List of ongoing tasks with links.
+- **Completed Work:** Consolidated list of achievements, grouped by category (e.g., Actor System, FLARE, Database, etc.). Avoid repetition; merge similar entries.
+- **System Impact:** High-level effects on database, actors, etc.
+- **Release Readiness:** Summary of completion and next steps.
+- **Pending Work/Technical Challenges/IDE Agent Responsibilities/Documentation Created:** As needed, without overlap.
+
+Agents: Research existing entries first; consolidate duplicates logically.
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  file_path_from_root: "CHANGELOG.md"
+  file_hash: "5ff6442ed74acf7ee9a29885448a015ec356b33f6012fb0d62d0671250aaffbe"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
+  artifact_type: "changelog"
+  purpose: "Canonical version history for Lupopedia with FLARE protocol migration documentation"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
+  mood_rgb: "4B0082"
+  artifact_kind: "version_history"
+  traits: ["canonical", "comprehensive", "v4.0.48"]
+  tags: ["changelog", "versions", "releases", "history", "flare_migration"]
+  lupo_agent: "codex-ide"
+  actor_ip: "127.0.0.1"
+
+flare.edges:
+  file_path_from_root: "CHANGELOG.md"
+  outbound_edges:
+    - { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "CHANGELOG_ARCHIVE.md", type: "references", weight: 0.6, reason: "everything before version 4.0.46 of the changelog" }
+  semantic_tags: ["changelog", "versions", "releases", "history", "flare", "migration"]
+
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+- **Purpose of 4.0.x:** The 4.0.x series (4.0.0 – 4.0.x and all future 4.0.x patches) is a development and stabilization series. It exists solely to refine the single supported upgrade path: **Crafty Syntax 3.7.5 ? Lupopedia 4.0.x**. Each patch is an iteration on the installer, wizard, importer, doctrine enforcement, and compatibility rules for that path.
+- **No Lupopedia ? Lupopedia upgrades before 4.1.0.** In the 4.0.x line there are no supported upgrades from an existing Lupopedia installation. The only valid inputs are a new install or an upgrade from Crafty Syntax 3.7.5.
+- **4.1.0** will be the first version to support Lupopedia ? Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
+
+---
+
+# Lupopedia Changelog
+
+Canonical version history.
+
+## Changelog Entry Template Standard
+To ensure consistency across contributions from multiple IDE agents, all version entries MUST follow this standardized template. This prevents duplication and maintains clarity. Agents must check for .lock files before editing (see docs/guidelines/ide_agent_protocols.md for full protocols).
+
+- **Version Section Header:** ## [X.Y.Z] — Brief descriptive title. (YYYY-MM-DD)
+- **Status/Theme/Focus/Lead Agent/UTC Date/Phase:** Bullet points for metadata.
+- **Mission Objectives:** Primary objective and critical path tasks list.
+- **Active Development Tasks:** List of ongoing tasks with links.
+- **Completed Work:** Consolidated list of achievements, grouped by category (e.g., Actor System, FLARE, Database, etc.). Avoid repetition; merge similar entries.
+- **System Impact:** High-level effects on database, actors, etc.
+- **Release Readiness:** Summary of completion and next steps.
+- **Pending Work/Technical Challenges/IDE Agent Responsibilities/Documentation Created:** As needed, without overlap.
+
+Agents: Research existing entries first; consolidate duplicates logically.
+
+---
+## CHANGE LOG ENTRIES START AFTER THIS LINE 
+
+  file_path_from_root: "CHANGELOG.md"
+  file_hash: "bf11214db72955c02691a78595de6b8a44df85af353d3344d26a611b51abf9f4"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "CHANGELOG.md"
+  file_hash: "bc009ff6c4e4c576da87bc1a6b0d2fbffeb1a980b27fc2325d4ab534e3b7700f"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  file_path_from_root: "CHANGELOG.md"
+  file_hash: "5ff6442ed74acf7ee9a29885448a015ec356b33f6012fb0d62d0671250aaffbe"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
+  artifact_type: "changelog"
+  purpose: "Canonical version history for Lupopedia with FLARE protocol migration documentation"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
+  mood_rgb: "4B0082"
+  artifact_kind: "version_history"
+  traits: ["canonical", "comprehensive", "v4.0.48"]
+  tags: ["changelog", "versions", "releases", "history", "flare_migration"]
+  lupo_agent: "codex-ide"
+  actor_ip: "127.0.0.1"
+
+flare.edges:
+  file_path_from_root: "CHANGELOG.md"
+  outbound_edges:
+    - { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "CHANGELOG_ARCHIVE.md", type: "references", weight: 0.6, reason: "everything before version 4.0.46 of the changelog" }
+  semantic_tags: ["changelog", "versions", "releases", "history", "flare", "migration"]
+
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+- **Purpose of 4.0.x:** The 4.0.x series (4.0.0 – 4.0.x and all future 4.0.x patches) is a development and stabilization series. It exists solely to refine the single supported upgrade path: **Crafty Syntax 3.7.5 ? Lupopedia 4.0.x**. Each patch is an iteration on the installer, wizard, importer, doctrine enforcement, and compatibility rules for that path.
+- **No Lupopedia ? Lupopedia upgrades before 4.1.0.** In the 4.0.x line there are no supported upgrades from an existing Lupopedia installation. The only valid inputs are a new install or an upgrade from Crafty Syntax 3.7.5.
+- **4.1.0** will be the first version to support Lupopedia ? Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
+
+---
+
+# Lupopedia Changelog
+
+Canonical version history.
+
+## Changelog Entry Template Standard
+To ensure consistency across contributions from multiple IDE agents, all version entries MUST follow this standardized template. This prevents duplication and maintains clarity. Agents must check for .lock files before editing (see docs/guidelines/ide_agent_protocols.md for full protocols).
+
+- **Version Section Header:** ## [X.Y.Z] — Brief descriptive title. (YYYY-MM-DD)
+- **Status/Theme/Focus/Lead Agent/UTC Date/Phase:** Bullet points for metadata.
+- **Mission Objectives:** Primary objective and critical path tasks list.
+- **Active Development Tasks:** List of ongoing tasks with links.
+- **Completed Work:** Consolidated list of achievements, grouped by category (e.g., Actor System, FLARE, Database, etc.). Avoid repetition; merge similar entries.
+- **System Impact:** High-level effects on database, actors, etc.
+- **Release Readiness:** Summary of completion and next steps.
+- **Pending Work/Technical Challenges/IDE Agent Responsibilities/Documentation Created:** As needed, without overlap.
+
+Agents: Research existing entries first; consolidate duplicates logically.
+
+---
+## CHANGE LOG ENTRIES START AFTER THIS LINE 
+
+  file_path_from_root: "CHANGELOG.md"
+  file_hash: "bf11214db72955c02691a78595de6b8a44df85af353d3344d26a611b51abf9f4"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  file_path_from_root: "CHANGELOG.md"
+  file_hash: "5ff6442ed74acf7ee9a29885448a015ec356b33f6012fb0d62d0671250aaffbe"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
+  artifact_type: "changelog"
+  purpose: "Canonical version history for Lupopedia with FLARE protocol migration documentation"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
+  mood_rgb: "4B0082"
+  artifact_kind: "version_history"
+  traits: ["canonical", "comprehensive", "v4.0.48"]
+  tags: ["changelog", "versions", "releases", "history", "flare_migration"]
+  lupo_agent: "codex-ide"
+  actor_ip: "127.0.0.1"
+
+flare.edges:
+  file_path_from_root: "CHANGELOG.md"
+  outbound_edges:
+    - { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "CHANGELOG_ARCHIVE.md", type: "references", weight: 0.6, reason: "everything before version 4.0.46 of the changelog" }
+  semantic_tags: ["changelog", "versions", "releases", "history", "flare", "migration"]
+
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+- **Purpose of 4.0.x:** The 4.0.x series (4.0.0 – 4.0.x and all future 4.0.x patches) is a development and stabilization series. It exists solely to refine the single supported upgrade path: **Crafty Syntax 3.7.5 ? Lupopedia 4.0.x**. Each patch is an iteration on the installer, wizard, importer, doctrine enforcement, and compatibility rules for that path.
+- **No Lupopedia ? Lupopedia upgrades before 4.1.0.** In the 4.0.x line there are no supported upgrades from an existing Lupopedia installation. The only valid inputs are a new install or an upgrade from Crafty Syntax 3.7.5.
+- **4.1.0** will be the first version to support Lupopedia ? Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
+
+---
+
+# Lupopedia Changelog
+
+Canonical version history.
+
+## Changelog Entry Template Standard
+To ensure consistency across contributions from multiple IDE agents, all version entries MUST follow this standardized template. This prevents duplication and maintains clarity. Agents must check for .lock files before editing (see docs/guidelines/ide_agent_protocols.md for full protocols).
+
+- **Version Section Header:** ## [X.Y.Z] — Brief descriptive title. (YYYY-MM-DD)
+- **Status/Theme/Focus/Lead Agent/UTC Date/Phase:** Bullet points for metadata.
+- **Mission Objectives:** Primary objective and critical path tasks list.
+- **Active Development Tasks:** List of ongoing tasks with links.
+- **Completed Work:** Consolidated list of achievements, grouped by category (e.g., Actor System, FLARE, Database, etc.). Avoid repetition; merge similar entries.
+- **System Impact:** High-level effects on database, actors, etc.
+- **Release Readiness:** Summary of completion and next steps.
+- **Pending Work/Technical Challenges/IDE Agent Responsibilities/Documentation Created:** As needed, without overlap.
+
+Agents: Research existing entries first; consolidate duplicates logically.
+
+---
+## CHANGE LOG ENTRIES START AFTER THIS LINE 
+
+  file_path_from_root: "CHANGELOG.md"
+  file_hash: "bf11214db72955c02691a78595de6b8a44df85af353d3344d26a611b51abf9f4"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  file_path_from_root: "CHANGELOG.md"
+  file_hash: "5ff6442ed74acf7ee9a29885448a015ec356b33f6012fb0d62d0671250aaffbe"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
+  artifact_type: "changelog"
+  purpose: "Canonical version history for Lupopedia with FLARE protocol migration documentation"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
+  mood_rgb: "4B0082"
+  artifact_kind: "version_history"
+  traits: ["canonical", "comprehensive", "v4.0.48"]
+  tags: ["changelog", "versions", "releases", "history", "flare_migration"]
+  lupo_agent: "codex-ide"
+  actor_ip: "127.0.0.1"
+
+flare.edges:
+  file_path_from_root: "CHANGELOG.md"
+  outbound_edges:
+    - { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "CHANGELOG_ARCHIVE.md", type: "references", weight: 0.6, reason: "everything before version 4.0.46 of the changelog" }
+  semantic_tags: ["changelog", "versions", "releases", "history", "flare", "migration"]
+
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+- **Purpose of 4.0.x:** The 4.0.x series (4.0.0 – 4.0.x and all future 4.0.x patches) is a development and stabilization series. It exists solely to refine the single supported upgrade path: **Crafty Syntax 3.7.5 ? Lupopedia 4.0.x**. Each patch is an iteration on the installer, wizard, importer, doctrine enforcement, and compatibility rules for that path.
+- **No Lupopedia ? Lupopedia upgrades before 4.1.0.** In the 4.0.x line there are no supported upgrades from an existing Lupopedia installation. The only valid inputs are a new install or an upgrade from Crafty Syntax 3.7.5.
+- **4.1.0** will be the first version to support Lupopedia ? Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
+
+---
+
+# Lupopedia Changelog
+
+Canonical version history.
+
+## Changelog Entry Template Standard
+To ensure consistency across contributions from multiple IDE agents, all version entries MUST follow this standardized template. This prevents duplication and maintains clarity. Agents must check for .lock files before editing (see docs/guidelines/ide_agent_protocols.md for full protocols).
+
+- **Version Section Header:** ## [X.Y.Z] — Brief descriptive title. (YYYY-MM-DD)
+- **Status/Theme/Focus/Lead Agent/UTC Date/Phase:** Bullet points for metadata.
+- **Mission Objectives:** Primary objective and critical path tasks list.
+- **Active Development Tasks:** List of ongoing tasks with links.
+- **Completed Work:** Consolidated list of achievements, grouped by category (e.g., Actor System, FLARE, Database, etc.). Avoid repetition; merge similar entries.
+- **System Impact:** High-level effects on database, actors, etc.
+- **Release Readiness:** Summary of completion and next steps.
+- **Pending Work/Technical Challenges/IDE Agent Responsibilities/Documentation Created:** As needed, without overlap.
+
+Agents: Research existing entries first; consolidate duplicates logically.
+
+---
+## CHANGE LOG ENTRIES START AFTER THIS LINE 
+
+  file_path_from_root: "CHANGELOG.md"
+  file_hash: "bf11214db72955c02691a78595de6b8a44df85af353d3344d26a611b51abf9f4"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  file_path_from_root: "CHANGELOG.md"
+  file_hash: "5ff6442ed74acf7ee9a29885448a015ec356b33f6012fb0d62d0671250aaffbe"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
+  artifact_type: "changelog"
+  purpose: "Canonical version history for Lupopedia with FLARE protocol migration documentation"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
+  mood_rgb: "4B0082"
+  artifact_kind: "version_history"
+  traits: ["canonical", "comprehensive", "v4.0.48"]
+  tags: ["changelog", "versions", "releases", "history", "flare_migration"]
+  lupo_agent: "codex-ide"
+  actor_ip: "127.0.0.1"
+
+flare.edges:
+  file_path_from_root: "CHANGELOG.md"
+  outbound_edges:
+    - { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
+    - { to: "CHANGELOG_ARCHIVE.md", type: "references", weight: 0.6, reason: "everything before version 4.0.46 of the changelog" }
+  semantic_tags: ["changelog", "versions", "releases", "history", "flare", "migration"]
+
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified_utc: "20260227"
+  last_verified_by: "antigravity"
+---
+- **Purpose of 4.0.x:** The 4.0.x series (4.0.0 – 4.0.x and all future 4.0.x patches) is a development and stabilization series. It exists solely to refine the single supported upgrade path: **Crafty Syntax 3.7.5 ? Lupopedia 4.0.x**. Each patch is an iteration on the installer, wizard, importer, doctrine enforcement, and compatibility rules for that path.
+- **No Lupopedia ? Lupopedia upgrades before 4.1.0.** In the 4.0.x line there are no supported upgrades from an existing Lupopedia installation. The only valid inputs are a new install or an upgrade from Crafty Syntax 3.7.5.
+- **4.1.0** will be the first version to support Lupopedia ? Lupopedia upgrades. 4.1.0 will not be created until a stable 4.0.x release is published through auto-installers (e.g. Softaculous, Installatron). Until then, 4.0.x remains the development/stabilization series.
+
+---
+
+# Lupopedia Changelog
+
+Canonical version history.
+
+## Changelog Entry Template Standard
+To ensure consistency across contributions from multiple IDE agents, all version entries MUST follow this standardized template. This prevents duplication and maintains clarity. Agents must check for .lock files before editing (see docs/guidelines/ide_agent_protocols.md for full protocols).
+
+- **Version Section Header:** ## [X.Y.Z] — Brief descriptive title. (YYYY-MM-DD)
+- **Status/Theme/Focus/Lead Agent/UTC Date/Phase:** Bullet points for metadata.
+- **Mission Objectives:** Primary objective and critical path tasks list.
+- **Active Development Tasks:** List of ongoing tasks with links.
+- **Completed Work:** Consolidated list of achievements, grouped by category (e.g., Actor System, FLARE, Database, etc.). Avoid repetition; merge similar entries.
+- **System Impact:** High-level effects on database, actors, etc.
+- **Release Readiness:** Summary of completion and next steps.
+- **Pending Work/Technical Challenges/IDE Agent Responsibilities/Documentation Created:** As needed, without overlap.
+
+Agents: Research existing entries first; consolidate duplicates logically.
+
 ---
 ## CHANGE LOG ENTRIES START AFTER THIS LINE 
 
@@ -459,12 +932,6 @@ Agents: Research existing entries first; consolidate duplicates logically.
 - Proceed to 4.0.48 for rolled-over tasks.
 
 ---
-
-
-
-
-
-
 
 
 

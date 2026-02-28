@@ -42,6 +42,439 @@ wolfie.headers:
   artifact_type: "validation_report"
   artifact_kind: "gate_report"
   created_utc: "2026-02-25T16:30:00Z"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "8f06f7013a6dad9da6dd5fc51acf757024e7d9e67534641982823e8c63303d9b"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "a9229da23d5037e81949883b80abc52faa07da7dae31be7de73a0e99cdf6ab79"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "e64c40bf4b36ee4da7a8d41a1674245df5279cdabe76e48d9c0dab06e75eb521"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VALIDATION_GATE_REPORT_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["validation_gate_report_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Broadcast Validation Gate Report"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "validation_report"
+  artifact_kind: "gate_report"
+  created_utc: "2026-02-25T16:30:00Z"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "8f06f7013a6dad9da6dd5fc51acf757024e7d9e67534641982823e8c63303d9b"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "a9229da23d5037e81949883b80abc52faa07da7dae31be7de73a0e99cdf6ab79"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "e64c40bf4b36ee4da7a8d41a1674245df5279cdabe76e48d9c0dab06e75eb521"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VALIDATION_GATE_REPORT_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["validation_gate_report_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Broadcast Validation Gate Report"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "validation_report"
+  artifact_kind: "gate_report"
+  created_utc: "2026-02-25T16:30:00Z"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "8f06f7013a6dad9da6dd5fc51acf757024e7d9e67534641982823e8c63303d9b"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "d58245076d6cda01a85e567717ca8ee2e5fdd94dd9ba15c2eaa0de401c133c4d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "a9229da23d5037e81949883b80abc52faa07da7dae31be7de73a0e99cdf6ab79"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "e64c40bf4b36ee4da7a8d41a1674245df5279cdabe76e48d9c0dab06e75eb521"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VALIDATION_GATE_REPORT_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["validation_gate_report_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Broadcast Validation Gate Report"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "validation_report"
+  artifact_kind: "gate_report"
+  created_utc: "2026-02-25T16:30:00Z"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "8f06f7013a6dad9da6dd5fc51acf757024e7d9e67534641982823e8c63303d9b"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "a9229da23d5037e81949883b80abc52faa07da7dae31be7de73a0e99cdf6ab79"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "e64c40bf4b36ee4da7a8d41a1674245df5279cdabe76e48d9c0dab06e75eb521"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VALIDATION_GATE_REPORT_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["validation_gate_report_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Broadcast Validation Gate Report"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "validation_report"
+  artifact_kind: "gate_report"
+  created_utc: "2026-02-25T16:30:00Z"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "8f06f7013a6dad9da6dd5fc51acf757024e7d9e67534641982823e8c63303d9b"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "a9229da23d5037e81949883b80abc52faa07da7dae31be7de73a0e99cdf6ab79"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "e64c40bf4b36ee4da7a8d41a1674245df5279cdabe76e48d9c0dab06e75eb521"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VALIDATION_GATE_REPORT_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["validation_gate_report_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Broadcast Validation Gate Report"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "validation_report"
+  artifact_kind: "gate_report"
+  created_utc: "2026-02-25T16:30:00Z"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "8f06f7013a6dad9da6dd5fc51acf757024e7d9e67534641982823e8c63303d9b"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "a9229da23d5037e81949883b80abc52faa07da7dae31be7de73a0e99cdf6ab79"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "e64c40bf4b36ee4da7a8d41a1674245df5279cdabe76e48d9c0dab06e75eb521"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VALIDATION_GATE_REPORT_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["validation_gate_report_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Broadcast Validation Gate Report"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "validation_report"
+  artifact_kind: "gate_report"
+  created_utc: "2026-02-25T16:30:00Z"
 ---
 
 # VALIDATION GATE REPORT (4.0.45)

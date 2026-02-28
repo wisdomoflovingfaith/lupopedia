@@ -31,6 +31,457 @@ flare.footer:
     deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "af3cee6f76ad157bc52f919c983c933881b17cf4e32444abacc16b4b3ddd2b09"
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "f389d30f84a26674ee78f69aa2196a3685afaaaecea52594d1cf3788ae83fe11"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["ide_agent_detection_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "af3cee6f76ad157bc52f919c983c933881b17cf4e32444abacc16b4b3ddd2b09"
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "f389d30f84a26674ee78f69aa2196a3685afaaaecea52594d1cf3788ae83fe11"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["ide_agent_detection_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "af3cee6f76ad157bc52f919c983c933881b17cf4e32444abacc16b4b3ddd2b09"
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "f389d30f84a26674ee78f69aa2196a3685afaaaecea52594d1cf3788ae83fe11"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["ide_agent_detection_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  system_version: "4.0.34"
+  channel_id: 42
+  mood_rgb: "0088FF"
+  purpose: "IDE agent availability detection completion summary"
+  last_modified: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "docs/status/ide_agent_availability_20260223.md"
+    - "docs/versions/4.0.34/TODO.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "agent_detection"
+    - "phase_1_complete"
+  footnotes:
+    - "Phase 1 of 4.0.34 roadmap complete"
+    - "File-based detection implemented"
+  version: "4.0.34"
+  last_verified: "20260223"
+  last_verified_by: "kiro"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "f03085cda885e20dbca36df004072f36f61b1414e4a9281be62fac5d5eefc8e8"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "af3cee6f76ad157bc52f919c983c933881b17cf4e32444abacc16b4b3ddd2b09"
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "f389d30f84a26674ee78f69aa2196a3685afaaaecea52594d1cf3788ae83fe11"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["ide_agent_detection_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  system_version: "4.0.34"
+  channel_id: 42
+  mood_rgb: "0088FF"
+  purpose: "IDE agent availability detection completion summary"
+  last_modified: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "docs/status/ide_agent_availability_20260223.md"
+    - "docs/versions/4.0.34/TODO.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "agent_detection"
+    - "phase_1_complete"
+  footnotes:
+    - "Phase 1 of 4.0.34 roadmap complete"
+    - "File-based detection implemented"
+  version: "4.0.34"
+  last_verified: "20260223"
+  last_verified_by: "kiro"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "af3cee6f76ad157bc52f919c983c933881b17cf4e32444abacc16b4b3ddd2b09"
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "f389d30f84a26674ee78f69aa2196a3685afaaaecea52594d1cf3788ae83fe11"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["ide_agent_detection_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  system_version: "4.0.34"
+  channel_id: 42
+  mood_rgb: "0088FF"
+  purpose: "IDE agent availability detection completion summary"
+  last_modified: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "docs/status/ide_agent_availability_20260223.md"
+    - "docs/versions/4.0.34/TODO.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "agent_detection"
+    - "phase_1_complete"
+  footnotes:
+    - "Phase 1 of 4.0.34 roadmap complete"
+    - "File-based detection implemented"
+  version: "4.0.34"
+  last_verified: "20260223"
+  last_verified_by: "kiro"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "af3cee6f76ad157bc52f919c983c933881b17cf4e32444abacc16b4b3ddd2b09"
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "f389d30f84a26674ee78f69aa2196a3685afaaaecea52594d1cf3788ae83fe11"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["ide_agent_detection_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  system_version: "4.0.34"
+  channel_id: 42
+  mood_rgb: "0088FF"
+  purpose: "IDE agent availability detection completion summary"
+  last_modified: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "docs/status/ide_agent_availability_20260223.md"
+    - "docs/versions/4.0.34/TODO.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "agent_detection"
+    - "phase_1_complete"
+  footnotes:
+    - "Phase 1 of 4.0.34 roadmap complete"
+    - "File-based detection implemented"
+  version: "4.0.34"
+  last_verified: "20260223"
+  last_verified_by: "kiro"
+---
+
+# IDE AGENT AVAILABILITY DETECTION — COMPLETE
+
+**To:** Captain Wolfie (actor_id 10000)  
+**From:** KIRO IDE (actor_id 1001)  
+**Date:** 20260223  
+**Location:** Sioux Falls, SD  
+**Priority:** HIGH  
+
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "a2f353f868a06931678e13dc2455b0a2661def39c243c689ad7c172d11cad879"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "af3cee6f76ad157bc52f919c983c933881b17cf4e32444abacc16b4b3ddd2b09"
+  file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  file_hash: "f389d30f84a26674ee78f69aa2196a3685afaaaecea52594d1cf3788ae83fe11"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["ide_agent_detection_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
 ---
 wolfie.headers:
   file_path_from_root: "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md"

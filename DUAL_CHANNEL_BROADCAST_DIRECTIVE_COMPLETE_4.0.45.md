@@ -55,6 +55,475 @@ flare.footer:
 **Content:** Development-focused workspace migration enforcement directive  
 **Compliance:** FULL (all required fields present)
 
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "3c194cfd1b725a8b91e167c8eb0cb93234a3e06116d19c4bb55214a587a075cb"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "d3568d3f4ea048da58a8dc31f7f300d4a6d0c850d0981de2e44b82525d683c61"
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "a3e2f61e930abbd3e9542c007cd8c4578f954d55a6f7dacea11d935e42628ca5"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["dual_channel_broadcast_directive_complete_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE
+## System Version 4.0.45 — Communications Stabilization Phase
+
+**Date:** 2026-02-25  
+**Agent:** KIRO (Warp IDE, Actor 1004)  
+**Directive:** Dual-Channel Broadcast Audit + Workspace Migration Announcement  
+**Status:** ✅ AUDIT COMPLETE | 🔴 FIXES REQUIRED
+
+---
+
+## 1. NEW BROADCASTS
+
+### Channel 0 (System Kernel)
+
+**File:** `channels/0/broadcasts/20260225120000_10000_1000_0_channel_scoped_actor_workspaces.md`  
+**Status:** ✅ EXISTS (created previously)  
+**Action Required:** Add missing header fields (`from_actor_id`, `to_actor_id`, `delegation_chain`, `created_utc`)
+
+### Channel 42 (Development)
+
+**File:** `channels/42/broadcasts/20260225140000_10000_1000_42_channel_scoped_actor_workspaces.md`  
+**Status:** ✅ CREATED  
+**Content:** Development-focused workspace migration enforcement directive  
+**Compliance:** FULL (all required fields present)
+
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "3c194cfd1b725a8b91e167c8eb0cb93234a3e06116d19c4bb55214a587a075cb"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "d3568d3f4ea048da58a8dc31f7f300d4a6d0c850d0981de2e44b82525d683c61"
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "a3e2f61e930abbd3e9542c007cd8c4578f954d55a6f7dacea11d935e42628ca5"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["dual_channel_broadcast_directive_complete_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE
+## System Version 4.0.45 — Communications Stabilization Phase
+
+**Date:** 2026-02-25  
+**Agent:** KIRO (Warp IDE, Actor 1004)  
+**Directive:** Dual-Channel Broadcast Audit + Workspace Migration Announcement  
+**Status:** ✅ AUDIT COMPLETE | 🔴 FIXES REQUIRED
+
+---
+
+## 1. NEW BROADCASTS
+
+### Channel 0 (System Kernel)
+
+**File:** `channels/0/broadcasts/20260225120000_10000_1000_0_channel_scoped_actor_workspaces.md`  
+**Status:** ✅ EXISTS (created previously)  
+**Action Required:** Add missing header fields (`from_actor_id`, `to_actor_id`, `delegation_chain`, `created_utc`)
+
+### Channel 42 (Development)
+
+**File:** `channels/42/broadcasts/20260225140000_10000_1000_42_channel_scoped_actor_workspaces.md`  
+**Status:** ✅ CREATED  
+**Content:** Development-focused workspace migration enforcement directive  
+**Compliance:** FULL (all required fields present)
+
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "3c194cfd1b725a8b91e167c8eb0cb93234a3e06116d19c4bb55214a587a075cb"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "c574a38223ebeff889f89ed8beca0a55d157738b29138fad8f7e6627ac37fa17"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "d3568d3f4ea048da58a8dc31f7f300d4a6d0c850d0981de2e44b82525d683c61"
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "a3e2f61e930abbd3e9542c007cd8c4578f954d55a6f7dacea11d935e42628ca5"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["dual_channel_broadcast_directive_complete_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE
+## System Version 4.0.45 — Communications Stabilization Phase
+
+**Date:** 2026-02-25  
+**Agent:** KIRO (Warp IDE, Actor 1004)  
+**Directive:** Dual-Channel Broadcast Audit + Workspace Migration Announcement  
+**Status:** ✅ AUDIT COMPLETE | 🔴 FIXES REQUIRED
+
+---
+
+## 1. NEW BROADCASTS
+
+### Channel 0 (System Kernel)
+
+**File:** `channels/0/broadcasts/20260225120000_10000_1000_0_channel_scoped_actor_workspaces.md`  
+**Status:** ✅ EXISTS (created previously)  
+**Action Required:** Add missing header fields (`from_actor_id`, `to_actor_id`, `delegation_chain`, `created_utc`)
+
+### Channel 42 (Development)
+
+**File:** `channels/42/broadcasts/20260225140000_10000_1000_42_channel_scoped_actor_workspaces.md`  
+**Status:** ✅ CREATED  
+**Content:** Development-focused workspace migration enforcement directive  
+**Compliance:** FULL (all required fields present)
+
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "3c194cfd1b725a8b91e167c8eb0cb93234a3e06116d19c4bb55214a587a075cb"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "d3568d3f4ea048da58a8dc31f7f300d4a6d0c850d0981de2e44b82525d683c61"
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "a3e2f61e930abbd3e9542c007cd8c4578f954d55a6f7dacea11d935e42628ca5"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["dual_channel_broadcast_directive_complete_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE
+## System Version 4.0.45 — Communications Stabilization Phase
+
+**Date:** 2026-02-25  
+**Agent:** KIRO (Warp IDE, Actor 1004)  
+**Directive:** Dual-Channel Broadcast Audit + Workspace Migration Announcement  
+**Status:** ✅ AUDIT COMPLETE | 🔴 FIXES REQUIRED
+
+---
+
+## 1. NEW BROADCASTS
+
+### Channel 0 (System Kernel)
+
+**File:** `channels/0/broadcasts/20260225120000_10000_1000_0_channel_scoped_actor_workspaces.md`  
+**Status:** ✅ EXISTS (created previously)  
+**Action Required:** Add missing header fields (`from_actor_id`, `to_actor_id`, `delegation_chain`, `created_utc`)
+
+### Channel 42 (Development)
+
+**File:** `channels/42/broadcasts/20260225140000_10000_1000_42_channel_scoped_actor_workspaces.md`  
+**Status:** ✅ CREATED  
+**Content:** Development-focused workspace migration enforcement directive  
+**Compliance:** FULL (all required fields present)
+
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "3c194cfd1b725a8b91e167c8eb0cb93234a3e06116d19c4bb55214a587a075cb"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "d3568d3f4ea048da58a8dc31f7f300d4a6d0c850d0981de2e44b82525d683c61"
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "a3e2f61e930abbd3e9542c007cd8c4578f954d55a6f7dacea11d935e42628ca5"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["dual_channel_broadcast_directive_complete_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE
+## System Version 4.0.45 — Communications Stabilization Phase
+
+**Date:** 2026-02-25  
+**Agent:** KIRO (Warp IDE, Actor 1004)  
+**Directive:** Dual-Channel Broadcast Audit + Workspace Migration Announcement  
+**Status:** ✅ AUDIT COMPLETE | 🔴 FIXES REQUIRED
+
+---
+
+## 1. NEW BROADCASTS
+
+### Channel 0 (System Kernel)
+
+**File:** `channels/0/broadcasts/20260225120000_10000_1000_0_channel_scoped_actor_workspaces.md`  
+**Status:** ✅ EXISTS (created previously)  
+**Action Required:** Add missing header fields (`from_actor_id`, `to_actor_id`, `delegation_chain`, `created_utc`)
+
+### Channel 42 (Development)
+
+**File:** `channels/42/broadcasts/20260225140000_10000_1000_42_channel_scoped_actor_workspaces.md`  
+**Status:** ✅ CREATED  
+**Content:** Development-focused workspace migration enforcement directive  
+**Compliance:** FULL (all required fields present)
+
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "3c194cfd1b725a8b91e167c8eb0cb93234a3e06116d19c4bb55214a587a075cb"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "d3568d3f4ea048da58a8dc31f7f300d4a6d0c850d0981de2e44b82525d683c61"
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "a3e2f61e930abbd3e9542c007cd8c4578f954d55a6f7dacea11d935e42628ca5"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["dual_channel_broadcast_directive_complete_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE
+## System Version 4.0.45 — Communications Stabilization Phase
+
+**Date:** 2026-02-25  
+**Agent:** KIRO (Warp IDE, Actor 1004)  
+**Directive:** Dual-Channel Broadcast Audit + Workspace Migration Announcement  
+**Status:** ✅ AUDIT COMPLETE | 🔴 FIXES REQUIRED
+
+---
+
+## 1. NEW BROADCASTS
+
+### Channel 0 (System Kernel)
+
+**File:** `channels/0/broadcasts/20260225120000_10000_1000_0_channel_scoped_actor_workspaces.md`  
+**Status:** ✅ EXISTS (created previously)  
+**Action Required:** Add missing header fields (`from_actor_id`, `to_actor_id`, `delegation_chain`, `created_utc`)
+
+### Channel 42 (Development)
+
+**File:** `channels/42/broadcasts/20260225140000_10000_1000_42_channel_scoped_actor_workspaces.md`  
+**Status:** ✅ CREATED  
+**Content:** Development-focused workspace migration enforcement directive  
+**Compliance:** FULL (all required fields present)
+
 ---
 
 ## 2. INVENTORY

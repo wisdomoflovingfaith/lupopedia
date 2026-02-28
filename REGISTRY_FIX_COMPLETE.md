@@ -28,6 +28,386 @@ flare.headers:
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "259445b6a4984b574b8ef8ca246995548fc64fd2304c2078a7a1d43f6ca0224d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "e82d594e0c4262f007e47732e40ddfa3c83d7b82a3e9c97d8286ec94848a0734"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "cfc36148ac2c146286a53dcc41781c57b0f8a41480d638e92176fc3abd8fcc2c"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "b39cd11f2d3362f06295fb5c5683576ab256843f8bfd28b4ce0ef0524f95a12b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "REGISTRY TABLE RENAME FIXES COMPLETED"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_fix_completemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "259445b6a4984b574b8ef8ca246995548fc64fd2304c2078a7a1d43f6ca0224d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "e82d594e0c4262f007e47732e40ddfa3c83d7b82a3e9c97d8286ec94848a0734"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "cfc36148ac2c146286a53dcc41781c57b0f8a41480d638e92176fc3abd8fcc2c"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "b39cd11f2d3362f06295fb5c5683576ab256843f8bfd28b4ce0ef0524f95a12b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "REGISTRY TABLE RENAME FIXES COMPLETED"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_fix_completemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "259445b6a4984b574b8ef8ca246995548fc64fd2304c2078a7a1d43f6ca0224d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "e82d594e0c4262f007e47732e40ddfa3c83d7b82a3e9c97d8286ec94848a0734"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "cfc36148ac2c146286a53dcc41781c57b0f8a41480d638e92176fc3abd8fcc2c"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "b39cd11f2d3362f06295fb5c5683576ab256843f8bfd28b4ce0ef0524f95a12b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "REGISTRY TABLE RENAME FIXES COMPLETED"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_fix_completemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "259445b6a4984b574b8ef8ca246995548fc64fd2304c2078a7a1d43f6ca0224d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "cfc36148ac2c146286a53dcc41781c57b0f8a41480d638e92176fc3abd8fcc2c"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "b39cd11f2d3362f06295fb5c5683576ab256843f8bfd28b4ce0ef0524f95a12b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "REGISTRY TABLE RENAME FIXES COMPLETED"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_fix_completemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "cfc36148ac2c146286a53dcc41781c57b0f8a41480d638e92176fc3abd8fcc2c"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "b39cd11f2d3362f06295fb5c5683576ab256843f8bfd28b4ce0ef0524f95a12b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "REGISTRY TABLE RENAME FIXES COMPLETED"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_fix_completemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "259445b6a4984b574b8ef8ca246995548fc64fd2304c2078a7a1d43f6ca0224d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "cfc36148ac2c146286a53dcc41781c57b0f8a41480d638e92176fc3abd8fcc2c"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "b39cd11f2d3362f06295fb5c5683576ab256843f8bfd28b4ce0ef0524f95a12b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "REGISTRY TABLE RENAME FIXES COMPLETED"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_fix_completemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "cfc36148ac2c146286a53dcc41781c57b0f8a41480d638e92176fc3abd8fcc2c"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "b39cd11f2d3362f06295fb5c5683576ab256843f8bfd28b4ce0ef0524f95a12b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "REGISTRY TABLE RENAME FIXES COMPLETED"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_fix_completemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "259445b6a4984b574b8ef8ca246995548fc64fd2304c2078a7a1d43f6ca0224d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "cfc36148ac2c146286a53dcc41781c57b0f8a41480d638e92176fc3abd8fcc2c"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "b39cd11f2d3362f06295fb5c5683576ab256843f8bfd28b4ce0ef0524f95a12b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "REGISTRY TABLE RENAME FIXES COMPLETED"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_fix_completemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
 ---
 
 # REGISTRY TABLE RENAME FIXES COMPLETED

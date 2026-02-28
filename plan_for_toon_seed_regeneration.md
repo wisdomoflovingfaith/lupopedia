@@ -51,6 +51,463 @@ System Version: 3.0.0
 
 Regenerate all TOON files and the seed file using the canonical Python scripts. DB credentials come from `lupopedia-config.php` via `scripts/db_config.py`. No hand-editing of TOONs, seed, or Python; run the existing scripts only.
 
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "e135d732dff61c2e311781393a272500fe4c9142cae820c1b63fffab1eaa3baf"
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "b9bec948caecd8c8a3bb408441fbd00fc6b3540a3c9fd0f65d7799961a2f883e"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for plan_for_toon_seed_regeneration.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["plan_for_toon_seed_regenerationmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.0
+file.channel: doctrine
+file.last_modified_utc: 20260204120000
+file.name: "plan_for_toon_seed_regeneration.md"
+---
+
+TOON & SEED REGENERATION PLAN
+Canonical Python tooling in /scripts/ — DO NOT create or modify Python files for this workflow.
+System Version: 3.0.0
+
+---
+
+# TOON & Seed Regeneration Plan (Canonical Workflow)
+
+## Purpose
+
+Regenerate all TOON files and the seed file using the canonical Python scripts. DB credentials come from `lupopedia-config.php` via `scripts/db_config.py`. No hand-editing of TOONs, seed, or Python; run the existing scripts only.
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "e135d732dff61c2e311781393a272500fe4c9142cae820c1b63fffab1eaa3baf"
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "b9bec948caecd8c8a3bb408441fbd00fc6b3540a3c9fd0f65d7799961a2f883e"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for plan_for_toon_seed_regeneration.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["plan_for_toon_seed_regenerationmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.0
+file.channel: doctrine
+file.last_modified_utc: 20260204120000
+file.name: "plan_for_toon_seed_regeneration.md"
+---
+
+TOON & SEED REGENERATION PLAN
+Canonical Python tooling in /scripts/ — DO NOT create or modify Python files for this workflow.
+System Version: 3.0.0
+
+---
+
+# TOON & Seed Regeneration Plan (Canonical Workflow)
+
+## Purpose
+
+Regenerate all TOON files and the seed file using the canonical Python scripts. DB credentials come from `lupopedia-config.php` via `scripts/db_config.py`. No hand-editing of TOONs, seed, or Python; run the existing scripts only.
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "cf72b3cfd164d60742725bf79f5c7497577ce6fbe8eb98630cb84e6268fbf5ee"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "e135d732dff61c2e311781393a272500fe4c9142cae820c1b63fffab1eaa3baf"
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "b9bec948caecd8c8a3bb408441fbd00fc6b3540a3c9fd0f65d7799961a2f883e"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for plan_for_toon_seed_regeneration.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["plan_for_toon_seed_regenerationmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.0
+file.channel: doctrine
+file.last_modified_utc: 20260204120000
+file.name: "plan_for_toon_seed_regeneration.md"
+---
+
+TOON & SEED REGENERATION PLAN
+Canonical Python tooling in /scripts/ — DO NOT create or modify Python files for this workflow.
+System Version: 3.0.0
+
+---
+
+# TOON & Seed Regeneration Plan (Canonical Workflow)
+
+## Purpose
+
+Regenerate all TOON files and the seed file using the canonical Python scripts. DB credentials come from `lupopedia-config.php` via `scripts/db_config.py`. No hand-editing of TOONs, seed, or Python; run the existing scripts only.
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "e135d732dff61c2e311781393a272500fe4c9142cae820c1b63fffab1eaa3baf"
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "b9bec948caecd8c8a3bb408441fbd00fc6b3540a3c9fd0f65d7799961a2f883e"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for plan_for_toon_seed_regeneration.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["plan_for_toon_seed_regenerationmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.0
+file.channel: doctrine
+file.last_modified_utc: 20260204120000
+file.name: "plan_for_toon_seed_regeneration.md"
+---
+
+TOON & SEED REGENERATION PLAN
+Canonical Python tooling in /scripts/ — DO NOT create or modify Python files for this workflow.
+System Version: 3.0.0
+
+---
+
+# TOON & Seed Regeneration Plan (Canonical Workflow)
+
+## Purpose
+
+Regenerate all TOON files and the seed file using the canonical Python scripts. DB credentials come from `lupopedia-config.php` via `scripts/db_config.py`. No hand-editing of TOONs, seed, or Python; run the existing scripts only.
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "e135d732dff61c2e311781393a272500fe4c9142cae820c1b63fffab1eaa3baf"
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "b9bec948caecd8c8a3bb408441fbd00fc6b3540a3c9fd0f65d7799961a2f883e"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for plan_for_toon_seed_regeneration.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["plan_for_toon_seed_regenerationmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.0
+file.channel: doctrine
+file.last_modified_utc: 20260204120000
+file.name: "plan_for_toon_seed_regeneration.md"
+---
+
+TOON & SEED REGENERATION PLAN
+Canonical Python tooling in /scripts/ — DO NOT create or modify Python files for this workflow.
+System Version: 3.0.0
+
+---
+
+# TOON & Seed Regeneration Plan (Canonical Workflow)
+
+## Purpose
+
+Regenerate all TOON files and the seed file using the canonical Python scripts. DB credentials come from `lupopedia-config.php` via `scripts/db_config.py`. No hand-editing of TOONs, seed, or Python; run the existing scripts only.
+
+---
+
+## Phase 1 — Regenerate TOONs (COMPLETED)
+
+### 1. Run TOON generator from project root
+
+```bash
+python scripts/generate_toon_files.py
+```
+
+### 2. Generator must
+
+- Clear `docs/toons/*.toon.json` before writing.
+- Introspect schema from the live database.
+- Include PK=0 rows where present.
+- Include unified registry rows (all from DB).
+- Include active agents as actors (actor/agent doctrine): one unified registry row per `lupo_agent_registry` WHERE `is_active = 1`.
+- Exclude inactive agents.
+- Write updated TOONs to `docs/toons/`.
+
+### 3. Output
+
+- One `.toon.json` per table in `docs/toons/`.
+- Console: e.g. `Wrote N TOONs to .../docs/toons`.
+
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "3ce0f0f18b2a898804f734aae8bb8e2123c990acf082527cee638c1547f40cf6"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "e135d732dff61c2e311781393a272500fe4c9142cae820c1b63fffab1eaa3baf"
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "b9bec948caecd8c8a3bb408441fbd00fc6b3540a3c9fd0f65d7799961a2f883e"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for plan_for_toon_seed_regeneration.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["plan_for_toon_seed_regenerationmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.0
+file.channel: doctrine
+file.last_modified_utc: 20260204120000
+file.name: "plan_for_toon_seed_regeneration.md"
+---
+
+TOON & SEED REGENERATION PLAN
+Canonical Python tooling in /scripts/ — DO NOT create or modify Python files for this workflow.
+System Version: 3.0.0
+
+---
+
+# TOON & Seed Regeneration Plan (Canonical Workflow)
+
+## Purpose
+
+Regenerate all TOON files and the seed file using the canonical Python scripts. DB credentials come from `lupopedia-config.php` via `scripts/db_config.py`. No hand-editing of TOONs, seed, or Python; run the existing scripts only.
+
 ---
 
 ## Phase 1 — Regenerate TOONs (COMPLETED)

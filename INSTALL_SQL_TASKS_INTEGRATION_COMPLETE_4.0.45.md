@@ -51,6 +51,473 @@ wolfie.headers:
 **Directive:** Channel 42 - Fix install_new_lupopedia.sql  
 **Status:** ✅ COMPLETE
 
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "4a0f945b9044513a457428904def70cd4e845f57fc97319415fa6e91c92d90bb"
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "16cf6ce87affac0f23a4f17881eb0e6d3abfb8cc248cfb421a71146895ae619b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_tasks_integration_complete_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Completion report for task tables integration into install SQL"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "completion_report"
+  artifact_kind: "schema_integration"
+  created_utc: "2026-02-25T23:30:00Z"
+---
+
+# INSTALL SQL TASKS INTEGRATION COMPLETE
+
+**Completed by:** Kiro IDE (1000)  
+**Date:** 2026-02-25T23:30:00Z  
+**Directive:** Channel 42 - Fix install_new_lupopedia.sql  
+**Status:** ✅ COMPLETE
+
+---
+
+## Executive Summary
+
+Successfully integrated 7 task management tables from `add_tasks_schema_4.0.45.sql` into `install_new_lupopedia.sql`, making it the complete source of truth for Lupopedia 4.0.45 schema.
+
+**Result:** install_new_lupopedia.sql now contains ALL required tables for tasks, threads, actors, and MD import support.
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "4a0f945b9044513a457428904def70cd4e845f57fc97319415fa6e91c92d90bb"
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "16cf6ce87affac0f23a4f17881eb0e6d3abfb8cc248cfb421a71146895ae619b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_tasks_integration_complete_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Completion report for task tables integration into install SQL"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "completion_report"
+  artifact_kind: "schema_integration"
+  created_utc: "2026-02-25T23:30:00Z"
+---
+
+# INSTALL SQL TASKS INTEGRATION COMPLETE
+
+**Completed by:** Kiro IDE (1000)  
+**Date:** 2026-02-25T23:30:00Z  
+**Directive:** Channel 42 - Fix install_new_lupopedia.sql  
+**Status:** ✅ COMPLETE
+
+---
+
+## Executive Summary
+
+Successfully integrated 7 task management tables from `add_tasks_schema_4.0.45.sql` into `install_new_lupopedia.sql`, making it the complete source of truth for Lupopedia 4.0.45 schema.
+
+**Result:** install_new_lupopedia.sql now contains ALL required tables for tasks, threads, actors, and MD import support.
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "7dc43c58b61474deee613b1b60aec188cbc267e42249422047dbbaceaa93365a"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "4a0f945b9044513a457428904def70cd4e845f57fc97319415fa6e91c92d90bb"
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "16cf6ce87affac0f23a4f17881eb0e6d3abfb8cc248cfb421a71146895ae619b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_tasks_integration_complete_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Completion report for task tables integration into install SQL"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "completion_report"
+  artifact_kind: "schema_integration"
+  created_utc: "2026-02-25T23:30:00Z"
+---
+
+# INSTALL SQL TASKS INTEGRATION COMPLETE
+
+**Completed by:** Kiro IDE (1000)  
+**Date:** 2026-02-25T23:30:00Z  
+**Directive:** Channel 42 - Fix install_new_lupopedia.sql  
+**Status:** ✅ COMPLETE
+
+---
+
+## Executive Summary
+
+Successfully integrated 7 task management tables from `add_tasks_schema_4.0.45.sql` into `install_new_lupopedia.sql`, making it the complete source of truth for Lupopedia 4.0.45 schema.
+
+**Result:** install_new_lupopedia.sql now contains ALL required tables for tasks, threads, actors, and MD import support.
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "4a0f945b9044513a457428904def70cd4e845f57fc97319415fa6e91c92d90bb"
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "16cf6ce87affac0f23a4f17881eb0e6d3abfb8cc248cfb421a71146895ae619b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_tasks_integration_complete_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Completion report for task tables integration into install SQL"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "completion_report"
+  artifact_kind: "schema_integration"
+  created_utc: "2026-02-25T23:30:00Z"
+---
+
+# INSTALL SQL TASKS INTEGRATION COMPLETE
+
+**Completed by:** Kiro IDE (1000)  
+**Date:** 2026-02-25T23:30:00Z  
+**Directive:** Channel 42 - Fix install_new_lupopedia.sql  
+**Status:** ✅ COMPLETE
+
+---
+
+## Executive Summary
+
+Successfully integrated 7 task management tables from `add_tasks_schema_4.0.45.sql` into `install_new_lupopedia.sql`, making it the complete source of truth for Lupopedia 4.0.45 schema.
+
+**Result:** install_new_lupopedia.sql now contains ALL required tables for tasks, threads, actors, and MD import support.
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "4a0f945b9044513a457428904def70cd4e845f57fc97319415fa6e91c92d90bb"
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "16cf6ce87affac0f23a4f17881eb0e6d3abfb8cc248cfb421a71146895ae619b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_tasks_integration_complete_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Completion report for task tables integration into install SQL"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "completion_report"
+  artifact_kind: "schema_integration"
+  created_utc: "2026-02-25T23:30:00Z"
+---
+
+# INSTALL SQL TASKS INTEGRATION COMPLETE
+
+**Completed by:** Kiro IDE (1000)  
+**Date:** 2026-02-25T23:30:00Z  
+**Directive:** Channel 42 - Fix install_new_lupopedia.sql  
+**Status:** ✅ COMPLETE
+
+---
+
+## Executive Summary
+
+Successfully integrated 7 task management tables from `add_tasks_schema_4.0.45.sql` into `install_new_lupopedia.sql`, making it the complete source of truth for Lupopedia 4.0.45 schema.
+
+**Result:** install_new_lupopedia.sql now contains ALL required tables for tasks, threads, actors, and MD import support.
+
+---
+
+## 1. TABLE AUDIT SUMMARY
+
+### Before Integration
+
+**Total Tables:** 166  
+**Tasks Tables:** 0 ❌  
+**Status:** INCOMPLETE
+
+### After Integration
+
+**Total Tables:** 173 (+7)  
+**Tasks Tables:** 7 ✅  
+**Status:** COMPLETE
+
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "bab6a43cea6cd9352df5ea17922013f1b369442f8d0e90f4e521b8389c63e01e"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "4a0f945b9044513a457428904def70cd4e845f57fc97319415fa6e91c92d90bb"
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "16cf6ce87affac0f23a4f17881eb0e6d3abfb8cc248cfb421a71146895ae619b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_tasks_integration_complete_4045md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  system_version: "4.0.45"
+  channel_id: 42
+  purpose: "Completion report for task tables integration into install SQL"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "completion_report"
+  artifact_kind: "schema_integration"
+  created_utc: "2026-02-25T23:30:00Z"
+---
+
+# INSTALL SQL TASKS INTEGRATION COMPLETE
+
+**Completed by:** Kiro IDE (1000)  
+**Date:** 2026-02-25T23:30:00Z  
+**Directive:** Channel 42 - Fix install_new_lupopedia.sql  
+**Status:** ✅ COMPLETE
+
 ---
 
 ## Executive Summary

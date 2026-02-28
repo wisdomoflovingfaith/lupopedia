@@ -28,6 +28,386 @@ flare.headers:
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "0ff4ddc8410aa9643ffbe6a4e3078103e01b5deaa479d57361141efcf892118d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "234c648b5e824231e5d6856016d6d6daa6aa78cd83680e5a5b90b8dad229ebba"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "270e030a3c8df6c3c334bfb5ed73dc129e779f5edfb5449d8e53f3ae9529b3e9"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "633b7f13b23f9058142fca373c7975c19002d64bb29ab5a185ad2b16b388bf29"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Unified Registry ID Global Cleanup - 4.0.27"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_cleanup_4027md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "0ff4ddc8410aa9643ffbe6a4e3078103e01b5deaa479d57361141efcf892118d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "234c648b5e824231e5d6856016d6d6daa6aa78cd83680e5a5b90b8dad229ebba"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "270e030a3c8df6c3c334bfb5ed73dc129e779f5edfb5449d8e53f3ae9529b3e9"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "633b7f13b23f9058142fca373c7975c19002d64bb29ab5a185ad2b16b388bf29"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Unified Registry ID Global Cleanup - 4.0.27"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_cleanup_4027md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "0ff4ddc8410aa9643ffbe6a4e3078103e01b5deaa479d57361141efcf892118d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "234c648b5e824231e5d6856016d6d6daa6aa78cd83680e5a5b90b8dad229ebba"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "270e030a3c8df6c3c334bfb5ed73dc129e779f5edfb5449d8e53f3ae9529b3e9"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "633b7f13b23f9058142fca373c7975c19002d64bb29ab5a185ad2b16b388bf29"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Unified Registry ID Global Cleanup - 4.0.27"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_cleanup_4027md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "0ff4ddc8410aa9643ffbe6a4e3078103e01b5deaa479d57361141efcf892118d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "270e030a3c8df6c3c334bfb5ed73dc129e779f5edfb5449d8e53f3ae9529b3e9"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "633b7f13b23f9058142fca373c7975c19002d64bb29ab5a185ad2b16b388bf29"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Unified Registry ID Global Cleanup - 4.0.27"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_cleanup_4027md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  tags: []
+  semantic_tags: []
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "270e030a3c8df6c3c334bfb5ed73dc129e779f5edfb5449d8e53f3ae9529b3e9"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "633b7f13b23f9058142fca373c7975c19002d64bb29ab5a185ad2b16b388bf29"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Unified Registry ID Global Cleanup - 4.0.27"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_cleanup_4027md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "0ff4ddc8410aa9643ffbe6a4e3078103e01b5deaa479d57361141efcf892118d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "270e030a3c8df6c3c334bfb5ed73dc129e779f5edfb5449d8e53f3ae9529b3e9"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "633b7f13b23f9058142fca373c7975c19002d64bb29ab5a185ad2b16b388bf29"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Unified Registry ID Global Cleanup - 4.0.27"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_cleanup_4027md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  flare.edges: []
+  traits: ["flare", "indexed", "v4.0.50"]
+  mood_rgb: "4169E1"
+  lupo_agent: "windsurf"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "270e030a3c8df6c3c334bfb5ed73dc129e779f5edfb5449d8e53f3ae9529b3e9"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "633b7f13b23f9058142fca373c7975c19002d64bb29ab5a185ad2b16b388bf29"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Unified Registry ID Global Cleanup - 4.0.27"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_cleanup_4027md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "0ff4ddc8410aa9643ffbe6a4e3078103e01b5deaa479d57361141efcf892118d"
+  system_version: "4.0.50"
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "270e030a3c8df6c3c334bfb5ed73dc129e779f5edfb5449d8e53f3ae9529b3e9"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "633b7f13b23f9058142fca373c7975c19002d64bb29ab5a185ad2b16b388bf29"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Unified Registry ID Global Cleanup - 4.0.27"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_cleanup_4027md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
 ---
 
 # Unified Registry ID Global Cleanup - 4.0.27
