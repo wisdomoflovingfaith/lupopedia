@@ -52,31 +52,30 @@ def main():
             # Create tag
             print("Creating tag...")
             tag_result = run_git_command(['git', 'tag', '-a', VERSION, '-m', TAG_MESSAGE])
+            tag_success = tag_result == 0
             
-            if tag_result:
-                print("✅ Tag created")
+            # Push to origin
+            print("Pushing to origin...")
+            push_result = run_git_command(['git', 'push', 'origin', 'main'])
+            push_success = push_result == 0
             
-                # Push to origin
-                print("Pushing to origin...")
-                push_result = run_git_command(['git', 'push', 'origin', 'main'])
-                
-                if push_result:
-                    print("✅ Push to origin/main successful")
-                    
-                    # Push tags
-                    print("Pushing tags...")
-                    tags_result = run_git_command(['git', 'push', 'origin', '--tags'])
-                    
-                    if tags_result:
-                        print("✅ Tags pushed successfully")
-                    else:
-                        print("❌ Tags push failed")
-                else:
-                    print("❌ Push to origin failed")
+            # Push tags
+            if push_success:
+                print("Pushing tags...")
+                tags_result = run_git_command(['git', 'push', 'origin', '--tags'])
+                tags_success = tags_result == 0
             else:
-                print("❌ Tag creation failed")
+                tags_success = False
+        else:
+            print("❌ Commit failed")
+            tag_success = False
+            push_success = False
+            tags_success = False
     else:
         print("❌ Staging failed")
+        tag_success = False
+        push_success = False
+        tags_success = False
     
     # Summary
     print(f"\n=== PUSH SUMMARY ===")
