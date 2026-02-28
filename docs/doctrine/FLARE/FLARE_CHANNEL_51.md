@@ -24,55 +24,6 @@ flare.footer:
   semantic_tags: ["flare", "channel", "doctrine", "council", "governance"]
 ---
 
-# FLARE — Channel 51 (Doctrine Council)
-
-**Status:** Permanent. Documentation only.  
-**Audience:** All AI agents (including Cascade, Cursor, Windsurf), contributors, and system stewards.  
-**Context:** Channel 51 is the Doctrine Council. All canonical doctrine files are mapped to this channel via lupo_edges HAS_CONTENT.  
-**Supersedes:** FLP_CHANNEL_51.md
-
----
-
-## 1. Purpose
-
-Channel 51 represents the Doctrine Council in the File-Level Attribute and Relationship Exchange protocol. Doctrine .md files under docs/doctrine/ are associated with channel 51 (and often channel 0) for governance and resolution.
-
-### FLARE Protocol Role
-
-Channel 51 serves as the governance hub for FLARE protocol:
-- **Doctrine Authority:** Canonical source for FLARE doctrine governance
-- **Standard Setting:** Establishes standards for FLARE header and footer usage
-- **Validation Rules:** Defines validation rules and compliance standards
-- **Evolution Control:** Manages FLARE protocol evolution and changes
-
----
-
-## 2. lupo_contents and lupo_edges
-
-### Content Management
-- **lupo_edges:** HAS_CONTENT edges link channel 51 to doctrine content. Doctrine files typically have edges to both channel 0 and channel 51.
-- **FLARE Headers:** Doctrine content uses `flare.headers:` with channel_id: 51
-- **Governance Edges:** `flare.footer` sections establish governance relationships
-
-### Relationship Graph
-- **Doctrine Graph:** Network of doctrine files and their relationships
-- **Governance Graph:** Authority and delegation relationships
-- **Validation Graph:** Validation rule dependencies and hierarchies
-
----
-
-## 3. Registry
-
-### System Registry
-- **lupo_registry:** `entity_type='channel'`, `entity_index=51`, `entity_key='doctrine-council'`.
-
-### FLARE Registry Integration
-- **Doctrine Registry:** All FLARE doctrine files indexed here
-- **Governance Registry:** Authority and delegation tracking
-- **Validation Registry:** Validation rule and standard registry
-
----
-
 ## 4. Doctrine Governance
 
 ### FLARE Standards
@@ -188,5 +139,4 @@ flare.headers:
 ---
 
 *End of FLARE Channel 51 doctrine.*
-
 

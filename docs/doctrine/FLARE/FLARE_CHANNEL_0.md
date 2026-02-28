@@ -24,55 +24,6 @@ flare.footer:
   semantic_tags: ["flare", "channel", "system", "kernel", "doctrine"]
 ---
 
-# FLARE — Channel 0 (System Kernel)
-
-**Status:** Permanent. Documentation only.  
-**Audience:** All AI agents (including Cascade, Cursor, Windsurf), contributors, and system stewards.  
-**Context:** Channel 0 is the System Kernel channel. Reserved for bootstrapping, migrations, and OS-level events.  
-**Supersedes:** FLP_CHANNEL_0.md
-
----
-
-## 1. Purpose
-
-Channel 0 (`system/kernel`) is the root channel. All kernel-level content, doctrine, and system identity is associated with this channel. Content on channel 0 is visible to system resolvers and bootstrapping logic.
-
-### FLARE Protocol Role
-
-Channel 0 serves as the foundation for FLARE protocol operations:
-- **Bootstrapping:** Initial FLARE header validation and processing
-- **System Doctrine:** Core FLARE doctrine files reside here
-- **Migration Support:** Legacy FLIP → FLARE migration coordination
-- **Registry Authority:** Canonical source for system-level metadata
-
----
-
-## 2. lupo_contents and lupo_edges
-
-### Content Management
-- **lupo_contents:** Doctrine files and kernel content use `file_path_from_root` for path lookup.
-- **FLARE Headers:** All channel 0 content must use `flare.headers:` format
-- **Validation:** Strict validation for all channel 0 FLARE headers
-
-### Relationship Graph
-- **lupo_edges:** HAS_CONTENT edges link channel 0 to content. `left_object_type='channel'`, `left_object_id=0`, `right_object_type='content'`.
-- **FLARE Footer:** Channel 0 doctrine files include `flare.footer:` with explicit relationship edges
-- **Graph Navigation:** Semantic graph traversal starts from channel 0
-
----
-
-## 3. Registry
-
-### System Registry
-- **lupo_registry:** `entity_type='channel'`, `entity_index=0`, `entity_key='system/kernel'`.
-
-### FLARE Registry Integration
-- **Header Registry:** All FLARE headers on channel 0 are indexed
-- **Edge Registry:** Relationship edges from `flare.footer:` sections
-- **Migration Registry:** Legacy FLIP header mappings during transition
-
----
-
 ## 4. FLARE-Specific Behaviors
 
 ### Header Processing
