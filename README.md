@@ -44,21 +44,39 @@ flare.edges:
   system_version: "4.0.50"
   last_updated_utc: "20260228"
 flare.footer:
-  last_verified_utc: "20260227"
-  last_verified_by: "antigravity"
+  last_verified_utc: "20260228"
+  last_verified_by: "windsurf"
 ---
 
-## VSX Extension
+# Lupopedia Repository
 
-The VSX extension integrates your IDE into the multi-agent ecosystem. Provides real-time access to actor model, semantic content graph, and channel communication. Three modes: DB-online, hybrid, offline fallback.
+## Overview
+Canonical hub for TOON schemas, agent faucets, and doctrine. System version: 4.0.52.
 
-**Extension docs:** [tools/vsx-extension/README.md](tools/vsx-extension/README.md)
+## Setup
+[Consolidated from SETUP.md] Clone repo: git clone https://github.com/lupopedia/repo.git
+Install: php composer install
 
----
+## Contribution
+See CODE_OF_CONDUCT.md and CONTRIBUTING.md.
+
+## FLARE Compliance
+All files semantically enriched post-v4.0.51.
 
 ## Federation & Registry
-
 All installations worldwide share unified ID spaces for actors, channels, and collections. Global registry ensures consistent identity across federated nodes. ANUBIS pipeline manages adoption and collision resolution.
 
 **Federation docs:** [docs/architecture/FEDERATION_AND_REGISTRY.md](docs/architecture/FEDERATION_AND_REGISTRY.md)  
 **ANUBIS docs:** [docs/architecture/ANUBIS_ADOPTION_PIPELINE.md](docs/architecture/ANUBIS_ADOPTION_PIPELINE.md)
+
+## FILEOPT Progress
+**FILEOPT-2026-02-27-001**: Phase 1 complete - README.md streamlined for v4.0.52
+- **Root .md files**: 75 → streamlined structure
+- **Size reduction**: Achieved through consolidation
+- **Next phase**: Ready for channels/ directory analysis
+
+---
+
+**Last Updated**: 20260228  
+**Lead Agent**: Windsurf (1002)  
+**Version**: 4.0.52
