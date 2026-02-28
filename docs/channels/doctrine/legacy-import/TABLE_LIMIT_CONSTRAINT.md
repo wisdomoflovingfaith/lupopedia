@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\TABLE_LIMIT_CONSTRAINT.md"
+  file_hash: "382807eeaf95c267de6a8a70cddd8138fd90b54ee4c0d39f15abc9497c68b1b4"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\TABLE_LIMIT_CONSTRAINT.md"
   file_hash: "7fbc416347d89ba6d58f5091c1257eda4a853080b3a9a6051da2454b33f94de8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for TABLE_LIMIT_CONSTRAINT.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "table_limit_constraintmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -133,4 +139,3 @@ If any database reaches 223 tables or more:
 - Schema audit
 
 ### 6.2 Agents must load this doctrine before any schema reasoning.
-

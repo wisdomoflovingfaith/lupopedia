@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "app\Services\Initialization\README.md"
+  file_hash: "d50f221d834ca80f517382ce994c517155de153ab26bceec49836d88de4907ef"
+  file_path_from_root: "app\Services\Initialization\README.md"
   file_hash: "c2516b4ea1f8af662518456f4f01c98039571287ce7fd8abe32ee3ad18b9b70d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Initialization Service - Version 4.0.44"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["app", "services", "initialization", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\version-4-0-44-initialization\requirements.md"
+  file_hash: "84a025559bcab0370974257910056ffddfe061e943f487af8c07c97f422be970"
+  file_path_from_root: ".kiro\specs\version-4-0-44-initialization\requirements.md"
   file_hash: "1f9fb92874e531789b4afa5f7f3f1692afdfaa888dc83066a048dcb7a15760a9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Requirements Document"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "version-4-0-44-initialization", "requirementsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
@@ -210,4 +215,3 @@ This document specifies the requirements for the Lupopedia 4.0.44 development cy
 5. THE Initialization_Workflow SHALL set last_modified_utc fields using the current UTC time at moment of modification
 6. THE Initialization_Workflow SHALL include timezone information in human-readable sections of reports
 7. THE Initialization_Workflow SHALL ensure all FLIP_Header timestamps follow the YYYYMMDDHHMMSS format
-

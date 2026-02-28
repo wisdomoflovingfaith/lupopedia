@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "RELEASE_4_0_29_FINAL_420_SERIES.md"
+  file_hash: "87c3a9e6982f541730e88102450669effb027aad331e89f367ad099116f5590e"
+  file_path_from_root: "RELEASE_4_0_29_FINAL_420_SERIES.md"
   file_hash: "808211eada95e6ab250cba27441320b71299bb2bd0f018e9be94864dd4809032"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "🎯 LUPOPEDIA 4.0.29 — FINAL 420-SERIES RELEASE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["release_4_0_29_final_420_seriesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

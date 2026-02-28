@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\specs\DB_SCHEMA_DRIFT_4.0.24.md"
+  file_hash: "cd29ae4f03ecaaf9ffc88ea42921fb891da7beeed44056087b23e9374e195fd0"
+  file_path_from_root: "docs\specs\DB_SCHEMA_DRIFT_4.0.24.md"
   file_hash: "882426d35b9a7454a369eb5bf0573a7e4fbe9c65900341d99959e9fd87375605"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DB_SCHEMA_DRIFT_4.0.24.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "specs", "db_schema_drift_4024md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

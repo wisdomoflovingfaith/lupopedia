@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\broadcasts\20260225120019_10000_1000_0_lupopedia_installation_process_doctrine.md"
+  file_hash: "bbef7384b05b41a7cfe1ea6613d5a27fe4de103fc76d1fe107c428bd70744469"
+  file_path_from_root: "channels\0\broadcasts\20260225120019_10000_1000_0_lupopedia_installation_process_doctrine.md"
   file_hash: "1affd3eb37f16d8470e9899141f746b1e32f7bcad540a9c04c3010bd4c70499d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225120019_10000_1000_0_lupopedia_installation_process_doctrine.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "broadcasts", "20260225120019_10000_1000_0_lupopedia_installation_process_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

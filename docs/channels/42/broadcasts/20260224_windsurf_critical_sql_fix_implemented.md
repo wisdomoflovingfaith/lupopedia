@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_critical_sql_fix_implemented.md"
+  file_hash: "c4213af3c7cb2e78e1ddf12496c392425f11c9be8e61f93cb9335f6130faf363"
+  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_critical_sql_fix_implemented.md"
   file_hash: "87cbbf7f9cc23e162311875e71701b66e08d6269ed7a47bf88925124eb505590"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224_windsurf_critical_sql_fix_implemented.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "42", "broadcasts", "20260224_windsurf_critical_sql_fix_implementedmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\protocols\WOLFIE_HEADER_RFC.md"
+  file_hash: "df87c463162d96627a7a0fce6c5b9a38fe5946c4c25e5a3bd3a85566c1b32272"
+  file_path_from_root: "docs\channels\architecture\protocols\WOLFIE_HEADER_RFC.md"
   file_hash: "5ddf8899c478856f35e028b9b88b3c1b6a531c8de6c20469e8833ad1669fba82"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for WOLFIE_HEADER_RFC.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "protocols", "wolfie_header_rfcmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

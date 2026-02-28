@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\BANNED_TEST_ACTORS_4_0_46.md"
+  file_hash: "93f67696530db881ed71502fd944627e33fd9c6bb4d725476e1f053afb1a9d49"
+  file_path_from_root: "docs\status\BANNED_TEST_ACTORS_4_0_46.md"
   file_hash: "000195b416aa7521b3f2c5834890abaf4c57212d3221ae4cac730cc43f8801e5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for BANNED_TEST_ACTORS_4_0_46.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "status", "banned_test_actors_4_0_46md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

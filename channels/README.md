@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "channels/README.md"
-  system_version: "4.0.48"
+  file_hash: "d8243ff6edd36e3fa7c89d0b832f0c11f36baa913c1d9c90fc8469947d72a7e3"
+  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1003
   last_modified_utc: "20260226"
@@ -10,12 +11,16 @@ flare.headers:
   purpose: "Explanation of the channel system and its relationship to the database"
 
 flare.edges:
+  file_path_from_root: "channels\README.md"
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "actors/registry.json", type: "references", weight: 1.0 }
     - { to: "docs/toons/", type: "references", weight: 0.9 }
   semantic_tags: ["channels", "database", "fallback", "protocol"]
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   view_count: 0
   last_verified: "20260226"

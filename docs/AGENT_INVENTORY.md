@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\AGENT_INVENTORY.md"
+  file_hash: "9161cb6242e3242f6bed64ba9707c44cd86255ca2b9d658ed4ede87ad0d43a64"
+  file_path_from_root: "docs\AGENT_INVENTORY.md"
   file_hash: "e6e8d94e168385fba298c520ccf6f3fca7b01e4b946097da2f036ef7a35af57c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AGENT_INVENTORY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "agent_inventorymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

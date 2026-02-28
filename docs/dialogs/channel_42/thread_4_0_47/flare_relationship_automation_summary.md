@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\dialogs\channel_42\thread_4_0_47\flare_relationship_automation_summary.md"
+  file_hash: "6f4296b2e95519977452058cedc7207a04dca5fdc0989fdb145723c872bfae48"
+  file_path_from_root: "docs\dialogs\channel_42\thread_4_0_47\flare_relationship_automation_summary.md"
   file_hash: "286122458951a8d9f376a9bc52f20eceb2c66a43a2a37c57187f6119043f77ea"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "🔄 FLARE Relationship Automation - 4.0.47 Implementation Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "dialogs", "channel_42", "thread_4_0_47", "flare_relationship_automation_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

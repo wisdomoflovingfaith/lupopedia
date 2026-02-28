@@ -1,8 +1,9 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:
   file_path_from_root: "actors/1007/profile.md"
-  system_version: "4.0.48"
+  file_hash: "67241f414f66f58e3cc242c693802e47b2ba7cdf5617c27ba8948a7f952d5e74"
+  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1007
   last_modified_utc: "20260227"
@@ -15,6 +16,9 @@ flare.headers:
   tags: ["actor", "profile", "codex", "ide_agent"]
   lupo_agent: "codex-ide"
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified_utc: "20260227"
   last_verified_by: "codex-ide"

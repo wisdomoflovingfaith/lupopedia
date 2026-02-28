@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "prompts\3\README.md"
+  file_hash: "0a9b46712772fa0da3b495256260ddc0b5745411830085613e85b4691b813773"
+  file_path_from_root: "prompts\3\README.md"
   file_hash: "bc4955e5037575dae32f2e784a97fad362cf7256d0db41c64dc8b3e659d0ea7f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "ROSE (Actor ID: 3, Agent ID: 3)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["prompts", "3", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

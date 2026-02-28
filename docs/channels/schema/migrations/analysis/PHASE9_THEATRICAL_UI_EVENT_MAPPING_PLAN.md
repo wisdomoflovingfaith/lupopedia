@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE9_THEATRICAL_UI_EVENT_MAPPING_PLAN.md"
+  file_hash: "f4fe8c4712803c9b35b3bc6634231844a7dba98999d8271d6e80f2dc0d76614d"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE9_THEATRICAL_UI_EVENT_MAPPING_PLAN.md"
   file_hash: "4731cae02ed1c17b5b29195a265a2c354428e9d4c3a9bd895c9fbc8565a73153"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Phase 9: Theatrical UI Event Mapping Plan**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "phase9_theatrical_ui_event_mapping_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

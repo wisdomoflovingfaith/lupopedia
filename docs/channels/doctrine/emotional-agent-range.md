@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\emotional-agent-range.md"
+  file_hash: "5c86fd86c1813702034bfd101e737e3fcbd31779be3f4de89d69a591ff1e1d24"
+  file_path_from_root: "docs\channels\doctrine\emotional-agent-range.md"
   file_hash: "013b73d9fb19d3d01e1cbde44ca318b106bc62912d785035af3db08d6fd875b0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for emotional-agent-range.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "emotional-agent-rangemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

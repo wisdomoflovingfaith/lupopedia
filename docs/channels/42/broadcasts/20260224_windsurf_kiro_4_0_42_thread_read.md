@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_kiro_4_0_42_thread_read.md"
+  file_hash: "1c07a40c6773f4169fdc03d5aa2e119a58704257c367fac3692150416009783d"
+  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_kiro_4_0_42_thread_read.md"
   file_hash: "e3c2356b774025001dee1c83acb2603fac0e29fc5d6326bd827503d91585a150"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224_windsurf_kiro_4_0_42_thread_read.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "42", "broadcasts", "20260224_windsurf_kiro_4_0_42_thread_readmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

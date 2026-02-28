@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "prompts\REORGANIZATION_COMPLETE.md"
+  file_hash: "d4755e7b819a63f031ff4a3db3b61b83c0926255061f9e99b80b38f06ccf50a1"
+  file_path_from_root: "prompts\REORGANIZATION_COMPLETE.md"
   file_hash: "1bce44d83a78eeb69b786e30eefd42d24cfd94200377c166969a12e8817a64be"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Prompts Folder Reorganization Complete"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["prompts", "reorganization_completemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

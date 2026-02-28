@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md"
+  file_hash: "fabd53e41337576a5b4acb53864980e1ed631ebe9df17020b11d324021b42bba"
+  file_path_from_root: "docs\channels\doctrine\LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md"
   file_hash: "36b7b7308fd42b091aa8ad457e4d7ead095dc58ed3f907a7e35627fd21481587"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "lupopedia_agent_dedicated_slot_rangesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\ADMIN_TASKS_INTERFACE_4_0_46.md"
+  file_hash: "b476bae4f57b62382bd0e6ba9f2d183cd43ea2784154df33769cdf1e93eca443"
+  file_path_from_root: "docs\status\ADMIN_TASKS_INTERFACE_4_0_46.md"
   file_hash: "b0d39f447ae704ef200565eb3617279b3d86fc68f8e19c70d3b91f79be9eb069"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ADMIN_TASKS_INTERFACE_4_0_46.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "status", "admin_tasks_interface_4_0_46md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

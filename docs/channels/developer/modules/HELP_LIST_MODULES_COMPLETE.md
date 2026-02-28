@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\modules\HELP_LIST_MODULES_COMPLETE.md"
+  file_hash: "d0bf9cd3c53c11a57eb3690ae673be879b07276d4140f6cfe01dce079b0ec3ed"
+  file_path_from_root: "docs\channels\developer\modules\HELP_LIST_MODULES_COMPLETE.md"
   file_hash: "f75075d088cd5378267b2a1a565af5a89d89d5b2a771a23932b70a442679ca7a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HELP_LIST_MODULES_COMPLETE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "developer", "modules", "help_list_modules_completemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

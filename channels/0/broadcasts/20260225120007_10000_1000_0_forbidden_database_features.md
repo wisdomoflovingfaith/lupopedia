@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\broadcasts\20260225120007_10000_1000_0_forbidden_database_features.md"
+  file_hash: "f8dc1788b8919fec16066645f59d6b94fe18b9ace5eff8c920908d5df72ffc3e"
+  file_path_from_root: "channels\0\broadcasts\20260225120007_10000_1000_0_forbidden_database_features.md"
   file_hash: "98d7e0e3b8f7430f8a1cf7773e62d959fba7a39fd8fedc6bf5481185fc8130ff"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225120007_10000_1000_0_forbidden_database_features.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "broadcasts", "20260225120007_10000_1000_0_forbidden_database_featuresmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

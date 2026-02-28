@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\kiro_livehelp_migration_docs_complete_20260224.md"
+  file_hash: "8babd827fd363aacc28aeaaa81c1bdebfe633178c79e0d70c9271e35f60a3a02"
+  file_path_from_root: "docs\status\kiro_livehelp_migration_docs_complete_20260224.md"
   file_hash: "86a0fb0301669d2e31b78871f81757ce6752b3fa8966af6536c02bbf7f531d28"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for kiro_livehelp_migration_docs_complete_20260224.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "status", "kiro_livehelp_migration_docs_complete_20260224md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

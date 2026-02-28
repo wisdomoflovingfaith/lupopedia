@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\IDENTITY_AND_CHANNEL_PROVENANCE_RULES.md"
+  file_hash: "9564405e5267b15f0c35483a14dd97b19713fd03dc0ab63ea3369092c449f59b"
+  file_path_from_root: "docs\channels\gov\IDENTITY_AND_CHANNEL_PROVENANCE_RULES.md"
   file_hash: "e9ca70b41fffaad70a2c236ae29d83d3ecfcbb55e530f39b6a75dc0febf24f30"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for IDENTITY_AND_CHANNEL_PROVENANCE_RULES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "identity_and_channel_provenance_rulesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

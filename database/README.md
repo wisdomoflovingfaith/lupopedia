@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "database\README.md"
+  file_hash: "44d13672ed3b218aedb06ad00dfead99f29f3c702b61cfc1abb0a7c769ce0e15"
+  file_path_from_root: "database\README.md"
   file_hash: "0da189b5c9c670d66a7f7ff9c4a38bddc65ea1cd7b9ea5964d14a8bf8cdbb9f0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Database Directory"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["database", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

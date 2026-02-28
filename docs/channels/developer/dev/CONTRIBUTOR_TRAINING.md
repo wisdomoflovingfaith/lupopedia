@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\dev\CONTRIBUTOR_TRAINING.md"
+  file_hash: "61de0c57f956f5b4e079604531f7a31ffb0c9431c2a80c9d926ed66476840a2b"
+  file_path_from_root: "docs\channels\developer\dev\CONTRIBUTOR_TRAINING.md"
   file_hash: "e04763cf2e48243f7641df4db6fd228b12944d85346ec6a6b8f04cea2288f461"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CONTRIBUTOR_TRAINING.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "developer", "dev", "contributor_trainingmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

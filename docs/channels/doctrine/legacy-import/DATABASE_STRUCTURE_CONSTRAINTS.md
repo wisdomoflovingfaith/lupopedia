@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\DATABASE_STRUCTURE_CONSTRAINTS.md"
+  file_hash: "e2b9de8d4a91a66c57d005ad81917459aef4641d1e0410015b4464133b06eafd"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\DATABASE_STRUCTURE_CONSTRAINTS.md"
   file_hash: "a8ec72fe194ce9f5c4ad0748e94d17917897f1d011111fd68ef6ce96297ba17d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DATABASE_STRUCTURE_CONSTRAINTS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "database_structure_constraintsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -416,4 +422,3 @@ violation_consequences:
 **AUTHORITY:** This doctrine defines the mandatory structural constraints for all databases in the Lupopedia ecosystem. The 222-table limit is absolute and non-negotiable.
 
 **COMPLIANCE:** Required for all database operations. System validation enforces these constraints automatically.
-

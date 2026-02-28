@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\CRITIQUE_INTEGRATION_PROTOCOL.md"
+  file_hash: "ef15cf64ab7f561ee4560cf723636551e8da2f70ac74efeea805a57ece6682f7"
+  file_path_from_root: "docs\channels\doctrine\CRITIQUE_INTEGRATION_PROTOCOL.md"
   file_hash: "d7085c1689282fa3b3637383d5f3731d190d2cd097028c2c2396798fecd4c66a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CRITIQUE_INTEGRATION_PROTOCOL.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "critique_integration_protocolmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 wolfie.headers: explicit architecture with structured clarity for every file.

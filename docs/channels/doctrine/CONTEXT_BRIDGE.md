@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\CONTEXT_BRIDGE.md"
+  file_hash: "4798fb7c199bdc3e6a25b34de0b7cae707c0701cd72377a6f001ad8ea3c04262"
+  file_path_from_root: "docs\channels\doctrine\CONTEXT_BRIDGE.md"
   file_hash: "5114bbdca03c6245cbdd0fe948092cf9a197f709e6a6e7b2bca00dfa8ad54c12"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CONTEXT_BRIDGE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "context_bridgemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\agents\INDEX.md"
+  file_hash: "ace4d739f8bff372df56adfee24ff11f74def3d57a2f05a10c7566a1eacb03c5"
+  file_path_from_root: "docs\channels\agents\INDEX.md"
   file_hash: "c6303c3fe908c624fa7bc0b995ce1832904f49b601330016f827135adad8f74a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for INDEX.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "agents", "indexmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -70,4 +76,3 @@ Related Channels:
 - [doctrine](../doctrine/README.md)
 - [architecture](../architecture/README.md)
 - [dialogs](../dialogs/README.md)
-

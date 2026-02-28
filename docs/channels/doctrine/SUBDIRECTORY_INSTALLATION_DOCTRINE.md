@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\SUBDIRECTORY_INSTALLATION_DOCTRINE.md"
+  file_hash: "e55e4320c038fcd38b69f1b96af6cac9a9d81257169d089e1fa7d2e61c3a69e7"
+  file_path_from_root: "docs\channels\doctrine\SUBDIRECTORY_INSTALLATION_DOCTRINE.md"
   file_hash: "3d0fcf1b03fa5a21997d3b9998e7d5b511cbaece0a413c8751ec4672842dd1c1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SUBDIRECTORY_INSTALLATION_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "subdirectory_installation_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

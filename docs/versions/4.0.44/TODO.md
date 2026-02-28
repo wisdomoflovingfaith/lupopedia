@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\versions\4.0.44\TODO.md"
+  file_hash: "fbc4519162a23a7a19c879471a77757b897e6b59a2d91e8109c628c43724e6b5"
+  file_path_from_root: "docs\versions\4.0.44\TODO.md"
   file_hash: "e23072da8865e253025d3228177b35a2ddf00f5cee176db6022ca136bca282b8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Version 4.0.44 — TODO List"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "versions", "4044", "todomd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

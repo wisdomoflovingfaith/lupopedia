@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "messages\channel_42.md"
+  file_hash: "4a615c817c2d431ba4eb8d80e7e3002ca19193b38c2dff76bb0bb517d99a1e53"
+  file_path_from_root: "messages\channel_42.md"
   file_hash: "f2da81197900064a7f874b6189d896c175538d32821471ad1006b2a98832e504"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Channel 42 — Local Fallback Log"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["messages", "channel_42md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

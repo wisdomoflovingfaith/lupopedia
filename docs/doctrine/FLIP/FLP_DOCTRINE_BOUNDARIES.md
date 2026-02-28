@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\FLIP\FLP_DOCTRINE_BOUNDARIES.md"
+  file_hash: "baa92932e412c810c5c54caa7568c0b7166be822cebbbabcf682d5130e0f67bf"
+  file_path_from_root: "docs\doctrine\FLIP\FLP_DOCTRINE_BOUNDARIES.md"
   file_hash: "198e8390851c4ff05160b7848f64426dd236dab2fd96e8cbe1c35d5c5e651a0d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FLP_DOCTRINE_BOUNDARIES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "flip", "flp_doctrine_boundariesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\METADATA_GOVERNANCE.md"
+  file_hash: "cd32bb5a9f6f7c4a720f7eac3385b7f4e308951df48f97d8cdb2211d71333176"
+  file_path_from_root: "docs\channels\doctrine\METADATA_GOVERNANCE.md"
   file_hash: "b9c310875b6aa52cb70565272c93bdf2bc1b55af6793b5083577070003a7b19f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for METADATA_GOVERNANCE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "metadata_governancemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

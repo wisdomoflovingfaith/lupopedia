@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\CHANNEL_MANIFEST_SPEC.md"
+  file_hash: "de1eda1e319f60f4d486188584b380472eb06422da89e6f24adde3cdefe7702b"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\CHANNEL_MANIFEST_SPEC.md"
   file_hash: "e2ef5a3fbe0d6e61a0ffe44704b49095a10aecb084ef6fbbf4aa1ec35b108275"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "DOCTRINE: CHANNEL MANIFEST SPECIFICATION"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "channel_manifest_specmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

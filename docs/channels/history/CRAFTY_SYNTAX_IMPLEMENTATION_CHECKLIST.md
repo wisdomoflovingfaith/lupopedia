@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\history\CRAFTY_SYNTAX_IMPLEMENTATION_CHECKLIST.md"
+  file_hash: "ff01181feed0016e4cd3722614bdca61b826f5bff346a46d18da8105f0b47e84"
+  file_path_from_root: "docs\channels\history\CRAFTY_SYNTAX_IMPLEMENTATION_CHECKLIST.md"
   file_hash: "d8308397aad2dcd8830e9a10e57c40b16845d40a32f38c0904062a9ed08b7a0e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Crafty Syntax Import Wizard - Concrete Implementation Checklist"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "history", "crafty_syntax_implementation_checklistmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

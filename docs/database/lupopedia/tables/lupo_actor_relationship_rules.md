@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\database\lupopedia\tables\lupo_actor_relationship_rules.md"
+  file_hash: "431eb16470ad12d9c48a74327ed70937f11dc9b2767c4930068dc892ecaa2f7c"
+  file_path_from_root: "docs\database\lupopedia\tables\lupo_actor_relationship_rules.md"
   file_hash: "f16319d7c0caeb0eb27ea232e05a271fac184e309b0ab1898c4de041cef2d919"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for lupo_actor_relationship_rules.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "database", "lupopedia", "tables", "lupo_actor_relationship_rulesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

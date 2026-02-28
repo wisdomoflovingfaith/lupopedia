@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_visit_track_migration.md",
-  system_version: "4.0.39",
+  file_hash: "1f0c3dcfdc493f63e39f66477df36f2f1cdb25822aa387fcdc05c5047f4b1e49"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_visit_track/visits_daily/monthly → lupo_visits",

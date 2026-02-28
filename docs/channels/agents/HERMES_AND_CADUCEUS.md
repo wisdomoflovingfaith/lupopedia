@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\agents\HERMES_AND_CADUCEUS.md"
+  file_hash: "cdb114a161aa0f7f609b0415538bf7b2ece8f849fdc069292b8d002d3b0c271a"
+  file_path_from_root: "docs\channels\agents\HERMES_AND_CADUCEUS.md"
   file_hash: "5ef6d15eacac4c59739672317211ea096cc29f2fb275a22faad7d07f966699ad"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HERMES_AND_CADUCEUS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "agents", "hermes_and_caduceusmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

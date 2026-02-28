@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\tasks\completed\DBDOC-ACTOR-001.md"
+  file_hash: "281e4b425a786f6cdcf4808d34c84c9ff52b686d188008ce35ab3fdfc830f7ad"
+  file_path_from_root: "channels\42\tasks\completed\DBDOC-ACTOR-001.md"
   file_hash: "6c49d29836feb33605e9dce3262bb65f4c71ad74271a86726cb48eb99f216e59"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DBDOC-ACTOR-001.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "tasks", "completed", "dbdoc-actor-001md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

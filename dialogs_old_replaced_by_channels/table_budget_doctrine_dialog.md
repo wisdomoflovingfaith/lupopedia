@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\table_budget_doctrine_dialog.md"
+  file_hash: "3f6b8fe2106adb926f3b05bb5340f2a1162ac242fe4dca1ef99aadf0ab00de88"
+  file_path_from_root: "dialogs_old_replaced_by_channels\table_budget_doctrine_dialog.md"
   file_hash: "b672516a69ee60349e664b30b41c85c556df9286f73c040540f0c1b063101282"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for table_budget_doctrine_dialog.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "table_budget_doctrine_dialogmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

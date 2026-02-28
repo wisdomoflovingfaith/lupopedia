@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\windsuf_recovery_dialog.md"
+  file_hash: "248fd7b8b2591266b480a8a776d931aa642fbddff31d83ce243358f8c8b755a5"
+  file_path_from_root: "dialogs_old_replaced_by_channels\windsuf_recovery_dialog.md"
   file_hash: "716292c40e563f3e5d1747f79883d43ad9e578f27321e8fbe9b542a472479607"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for windsuf_recovery_dialog.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "windsuf_recovery_dialogmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

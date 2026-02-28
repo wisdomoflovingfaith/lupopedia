@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\PDO_CONVERSION_DOCTRINE.md"
+  file_hash: "0042cd4873004093580724ee59b9daeff07c36cf3b62788bb13d162edebd5bc7"
+  file_path_from_root: "docs\channels\doctrine\PDO_CONVERSION_DOCTRINE.md"
   file_hash: "9c21a834a29ea685408fafcef89482bb2eeea829a68751e8363db1c70234a72b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for PDO_CONVERSION_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "pdo_conversion_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -343,4 +349,3 @@ $db->execute($sql, $params);
 *Last Updated: January 2026*  
 *Version: 3.0.0*  
 *Author: Captain Wolfie*
-

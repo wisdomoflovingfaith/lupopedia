@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\roles\system_admin.md"
+  file_hash: "de2221b4c5367242b224b85ab18aa1963df5b743fe5cd77e4f23803ee4142c3a"
+  file_path_from_root: "channels\0\roles\system_admin.md"
   file_hash: "0612c19ec1e07e8fc920060dad1af3129fa85825c35f3be2582190016659b648"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for system_admin.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "roles", "system_adminmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

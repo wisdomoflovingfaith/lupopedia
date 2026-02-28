@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_operator_channels_migration.md",
-  system_version: "4.0.39",
+  file_hash: "cccc8d6058e9ccbee1ba1c24906e83a549183d542e62dfb7b71d8619bd924489"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_operator_channels → dropped (absorbed into channel/thread/presence)",

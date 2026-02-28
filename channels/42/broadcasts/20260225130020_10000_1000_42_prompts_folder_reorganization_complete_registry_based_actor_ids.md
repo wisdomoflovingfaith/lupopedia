@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130020_10000_1000_42_prompts_folder_reorganization_complete_registry_based_actor_ids.md"
+  file_hash: "094fe9049ec70a36c948ef35221fe8aed48402147b9f805d1b41a4c3f657609b"
+  file_path_from_root: "channels\42\broadcasts\20260225130020_10000_1000_42_prompts_folder_reorganization_complete_registry_based_actor_ids.md"
   file_hash: "0af3553ffa7535fa325ac07467993225c8aa2f2cd1aa7982f351e591d0c29328"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225130020_10000_1000_42_prompts_folder_reorganization_complete_registry_based_actor_ids.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "broadcasts", "20260225130020_10000_1000_42_prompts_folder_reorganization_complete_registry_based_actor_idsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

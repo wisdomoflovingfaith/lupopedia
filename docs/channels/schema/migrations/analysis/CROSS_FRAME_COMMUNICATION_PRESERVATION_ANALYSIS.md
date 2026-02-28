@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\CROSS_FRAME_COMMUNICATION_PRESERVATION_ANALYSIS.md"
+  file_hash: "2f0bd0568a2691ef6e23c8c9e97bf87fe4b04ab32188e389565077f93d83af02"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\CROSS_FRAME_COMMUNICATION_PRESERVATION_ANALYSIS.md"
   file_hash: "c48e1f79d734fa0b01155d9d5b40c572403b3b9a9e1c50171c0d12446f9e325c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Cross-Frame Communication Preservation Analysis**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "cross_frame_communication_preservation_analysismd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

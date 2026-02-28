@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\END_GOAL_4_2_0.md"
+  file_hash: "f4abfe5df9e2c569e1cc6a88bb494d414b866f95ed60c6360837ec9a3774fcae"
+  file_path_from_root: "docs\channels\overview\END_GOAL_4_2_0.md"
   file_hash: "a7a7d9685d77da877b5de2f34a519e3549177c31b561172b5ac5dd62c03ef2c9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for END_GOAL_4_2_0.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "overview", "end_goal_4_2_0md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

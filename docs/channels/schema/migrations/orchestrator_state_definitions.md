@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\orchestrator_state_definitions.md"
+  file_hash: "ced91a9e87621cfb046d3090ab6690594c3537f904bf3f8bf53aa88da13d1321"
+  file_path_from_root: "docs\channels\schema\migrations\orchestrator_state_definitions.md"
   file_hash: "76accff8ff642ec29fb7dc1f754676b05689609f8086e614ba11d1ae69faf667"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for orchestrator_state_definitions.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "orchestrator_state_definitionsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

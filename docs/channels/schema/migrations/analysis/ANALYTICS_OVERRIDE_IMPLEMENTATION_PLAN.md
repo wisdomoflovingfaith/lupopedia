@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\ANALYTICS_OVERRIDE_IMPLEMENTATION_PLAN.md"
+  file_hash: "54452901511f403335ecb91e7df7003558643f3af77e4dcf29ce461897888880"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\ANALYTICS_OVERRIDE_IMPLEMENTATION_PLAN.md"
   file_hash: "81b6f0fee97ea64eb9ebb0728207fc5d6f118dda12b71b8567332eb034a7bfd0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Analytics Override Implementation Plan**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "analytics_override_implementation_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

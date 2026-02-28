@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\appendix\INVESTOR_COMMUNICATIONS.md"
+  file_hash: "d054cf62705625b2a90b7a230f27792176c8c0fe9bad365346c0ce99f7f84857"
+  file_path_from_root: "docs\channels\appendix\appendix\INVESTOR_COMMUNICATIONS.md"
   file_hash: "b11d2e69a2447d4771c9dc22345542dbb3b524d930ddb62535dff4ac551b7f89"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for INVESTOR_COMMUNICATIONS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "investor_communicationsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

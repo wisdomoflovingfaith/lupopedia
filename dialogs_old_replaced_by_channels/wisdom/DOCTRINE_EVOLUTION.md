@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\wisdom\DOCTRINE_EVOLUTION.md"
+  file_hash: "c32812e1e2b1ef7934e0d0b36766d52049a4f7ba45eb1fe442811b60659004f1"
+  file_path_from_root: "dialogs_old_replaced_by_channels\wisdom\DOCTRINE_EVOLUTION.md"
   file_hash: "409025b0c7f0a761699207fc931673a06779a7dd3a0d7bca86fdf05d10c2cc53"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DOCTRINE_EVOLUTION.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "wisdom", "doctrine_evolutionmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

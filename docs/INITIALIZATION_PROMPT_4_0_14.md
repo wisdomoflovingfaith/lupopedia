@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\INITIALIZATION_PROMPT_4_0_14.md"
+  file_hash: "371ae42b2b88f1915495cd573c5ffaa24ac76751f477a5c63e53a932ab665a6e"
+  file_path_from_root: "docs\INITIALIZATION_PROMPT_4_0_14.md"
   file_hash: "5de422d6652f13567837dab1633d84cae081fcfffd5155b6d9d418f607fc040a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Initialization Prompt for New Cursor Thread — Lupopedia 4.0.14"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "initialization_prompt_4_0_14md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

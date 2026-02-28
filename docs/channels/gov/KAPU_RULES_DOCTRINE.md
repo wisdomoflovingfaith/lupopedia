@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\KAPU_RULES_DOCTRINE.md"
+  file_hash: "60e3cbe0becd3be0993171f8a5261e46f2ea4ff53cd2256907e1b60a94ed4d69"
+  file_path_from_root: "docs\channels\gov\KAPU_RULES_DOCTRINE.md"
   file_hash: "6ff5ba34afe404015feefbbe9d385bfd729193cc337d5c90902022184b3ab574"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for KAPU_RULES_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "kapu_rules_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

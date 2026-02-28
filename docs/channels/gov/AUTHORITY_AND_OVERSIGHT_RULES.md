@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\AUTHORITY_AND_OVERSIGHT_RULES.md"
+  file_hash: "4a20bf112dc7ff878b1de2fb7093f1a62bc1fdf505f35369d8544a89e04a8cc9"
+  file_path_from_root: "docs\channels\gov\AUTHORITY_AND_OVERSIGHT_RULES.md"
   file_hash: "273064e21995b4f76b422a4b0a71757f4ec34beaf0ff921109420c440711d9e6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AUTHORITY_AND_OVERSIGHT_RULES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "authority_and_oversight_rulesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\FLIP\FLP_COUNCILS_AS_CHANNELS.md"
+  file_hash: "a2fd9b28bb853d918b425875679fcc497d6466fc2860f45d9cb7dc432691cabc"
+  file_path_from_root: "docs\doctrine\FLIP\FLP_COUNCILS_AS_CHANNELS.md"
   file_hash: "aa70811a28a45f44e0ee03d720c899ca8c0e9edd127db38b09989a6966e1b48a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FLP_COUNCILS_AS_CHANNELS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "flip", "flp_councils_as_channelsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "lupo-includes\themes\default\components\README.md"
+  file_hash: "935d77a290ef05fc6a75759531814bb4d8621dcda937e13c5fa6a313595a70f7"
+  file_path_from_root: "lupo-includes\themes\default\components\README.md"
   file_hash: "0737a33f29c8710c346577c9c8d9b76261c51849cb2b9371cc1fffd591f3c4d5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for README.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["lupo-includes", "themes", "default", "components", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

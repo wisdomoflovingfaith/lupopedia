@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\versions\4.0.36\ROADMAP.md"
+  file_hash: "fdb16c94ed02bb206a069daacf4991d49f6af6582e0f9aa795aa8b4bced06668"
+  file_path_from_root: "docs\versions\4.0.36\ROADMAP.md"
   file_hash: "0d7a66cbfddb6aebcd4a4d2f1977ff89e453f3faa4854846a34ec5273c27c726"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ROADMAP.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "versions", "4036", "roadmapmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

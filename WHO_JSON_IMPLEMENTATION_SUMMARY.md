@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "WHO_JSON_IMPLEMENTATION_SUMMARY.md"
+  file_hash: "324f1be3e3bee14e0c0874d4716c4f97362dcd0d45366bb9b22d804e6820f1eb"
+  file_path_from_root: "WHO_JSON_IMPLEMENTATION_SUMMARY.md"
   file_hash: "9be567c53e569bd07827f9222d7bb30a5429b58cdd221ce0b9168f0a8f01d77f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "WHO.json Implementation Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["who_json_implementation_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

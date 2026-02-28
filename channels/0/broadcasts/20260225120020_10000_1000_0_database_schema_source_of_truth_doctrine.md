@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\broadcasts\20260225120020_10000_1000_0_database_schema_source_of_truth_doctrine.md"
+  file_hash: "c6d70e40d98a0e6f57b1d81cd5a7b57a04cc3ab69f1f213f94f7787cfbfe7c5d"
+  file_path_from_root: "channels\0\broadcasts\20260225120020_10000_1000_0_database_schema_source_of_truth_doctrine.md"
   file_hash: "92965f6fad9ca9f31e4526a402b719808bc1491ade3f40e705152f03b53b1038"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225120020_10000_1000_0_database_schema_source_of_truth_doctrine.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "broadcasts", "20260225120020_10000_1000_0_database_schema_source_of_truth_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

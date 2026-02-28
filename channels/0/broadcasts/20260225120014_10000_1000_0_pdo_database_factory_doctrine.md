@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\broadcasts\20260225120014_10000_1000_0_pdo_database_factory_doctrine.md"
+  file_hash: "922db2642c0c536feaea0e694a4f304085782929a90c6443bec1f1cf99170681"
+  file_path_from_root: "channels\0\broadcasts\20260225120014_10000_1000_0_pdo_database_factory_doctrine.md"
   file_hash: "38a78a638888ac52ffc95b18d07735f0aeca06764ec6f4f999d5deb8dc450491"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225120014_10000_1000_0_pdo_database_factory_doctrine.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "broadcasts", "20260225120014_10000_1000_0_pdo_database_factory_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

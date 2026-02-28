@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md"
+  file_hash: "150308de095e578e4155ddbc4382fcd69990b2090ff3d2bca591ffab8c2129e1"
+  file_path_from_root: "docs\channels\doctrine\CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md"
   file_hash: "5e14a16b8842e63ead892f0978a993d2a170692b36b805d0c96e5fb6ee34c5cf"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "cursor_cascade_role_separation_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

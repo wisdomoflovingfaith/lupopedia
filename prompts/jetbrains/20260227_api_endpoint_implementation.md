@@ -3,7 +3,8 @@
 ---
 flare.headers:
   file_path_from_root: "prompts/jetbrains/20260227_api_endpoint_implementation.md"
-  system_version: "4.0.49"
+  file_hash: "ebcd664f6da335da2626c9c927401b4381fa988e4cde867a78fe382084f5dccb"
+  system_version: "4.0.50"
   channel_id: 42
   actor_id: 1007
   last_modified_utc: "20260227"
@@ -18,6 +19,7 @@ flare.headers:
   lupo_agent: "jetbrains"
 
 flare.edges:
+  file_path_from_root: "prompts\jetbrains\20260227_api_endpoint_implementation.md"
   outbound_edges:
     - { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227131500_10000_windsurf_api_endpoint_research_prompt.md", type: "implements", weight: 1.0, reason: "Research findings source" }
     - { to: "channels/1/assets/js/channels_comm.js", type: "updates", weight: 0.9, reason: "Wire to concrete endpoints" }
@@ -26,6 +28,9 @@ flare.edges:
     - { to: "docs/api/endpoints/", type: "updates", weight: 0.7, reason: "API documentation" }
   semantic_tags: ["api_implementation", "admin_interface", "channels", "jetbrains"]
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260227"
   last_verified_by: "lupopedia"

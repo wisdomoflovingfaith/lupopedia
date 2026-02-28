@@ -1,8 +1,9 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers: 
   file_path_from_root: "channels\42\actors\1001\README.md"
-  system_version: "4.0.49"
+  file_hash: "2adba7fd8cdc90bee811f9c556a4268306c8d61386fc9d8f9be9b1c371656ec8"
+  system_version: "4.0.50"
   channel_id: 42
 ---
 # Actor Workspace: Windsurf IDE (ID: 1001)

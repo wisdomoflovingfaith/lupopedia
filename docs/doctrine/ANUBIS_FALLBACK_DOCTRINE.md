@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\ANUBIS_FALLBACK_DOCTRINE.md"
+  file_hash: "6e6ec741b6f74e29abab600dc2b4260ed84f7e5c90c60f681d7d8ee9d19844cd"
+  file_path_from_root: "docs\doctrine\ANUBIS_FALLBACK_DOCTRINE.md"
   file_hash: "be658fbde38277a87f7b5e225551fbd34fa5a88b47900f42fa9a2ce00d31d525"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ANUBIS_FALLBACK_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "doctrine", "anubis_fallback_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
@@ -583,4 +588,3 @@ Any file with `system_version >= 4.0.40` MUST have:
 **Effective:** 2026-02-24
 
 🐺 **The safety net is woven. Every file will have an identity. ANUBIS watches over all.**
-

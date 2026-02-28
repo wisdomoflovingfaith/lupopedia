@@ -7,11 +7,13 @@ flare.headers:
   flare.edges: []
   file_path_from_root: "docs\channels\overview\logs\AGI_SUPPORTMEETING_ONE_DAY_AT_A_TIME.md"
   file_hash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  file_path_from_root: "docs\channels\overview\logs\AGI_SUPPORTMEETING_ONE_DAY_AT_A_TIME.md"
+  file_hash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AGI_SUPPORTMEETING_ONE_DAY_AT_A_TIME.md"
@@ -20,8 +22,10 @@ flare.headers:
   tags: ["docs", "channels", "overview", "logs", "agi_supportmeeting_one_day_at_a_timemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---
-

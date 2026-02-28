@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\dev\AUTH_IMPLEMENTATION_PLAN_3.0.8.md"
+  file_hash: "2ec9bd0ff7158d3acd8148ea9cf79fdd05209c004bb8483ec838edf8327f2435"
+  file_path_from_root: "docs\channels\developer\dev\AUTH_IMPLEMENTATION_PLAN_3.0.8.md"
   file_hash: "23768ac6be362c45674aeeb52c18ad8c7571f13fa53087e674cb55477370f6bd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AUTH_IMPLEMENTATION_PLAN_3.0.8.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "developer", "dev", "auth_implementation_plan_308md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

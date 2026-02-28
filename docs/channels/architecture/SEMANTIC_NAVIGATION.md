@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\SEMANTIC_NAVIGATION.md"
+  file_hash: "1bf33e969a06396336089d7f3e80317d993ad6b7cb613734b7a45a4bff8d88ba"
+  file_path_from_root: "docs\channels\architecture\SEMANTIC_NAVIGATION.md"
   file_hash: "cc33197847a6295e7b7e95bbba715bb1ba1891a75261ff5201a08ca269dca9e9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SEMANTIC_NAVIGATION.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "semantic_navigationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

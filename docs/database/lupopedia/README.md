@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\database\lupopedia\README.md"
+  file_hash: "48438eda98dca576faa5e763e98ddc101fa9803a208c9341a87198b0b791db7e"
+  file_path_from_root: "docs\database\lupopedia\README.md"
   file_hash: "62bda99f82e85ae2e4de621b8bb9fbf092f01950876467344e6261496a98a6e5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "🗄️ Lupopedia Database - Table Documentation"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "database", "lupopedia", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

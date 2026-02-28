@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\MIGRATION_APPROVAL_PROTOCOL.md"
+  file_hash: "347d5bddc95a75663c5cab4703f633ac88e8d0d1a6e299f130176c9bbc297766"
+  file_path_from_root: "docs\channels\gov\MIGRATION_APPROVAL_PROTOCOL.md"
   file_hash: "0c790031ae5198e774d8e11464577a58bb755c101c4020d472bbbee4a66b1f7a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MIGRATION_APPROVAL_PROTOCOL.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "migration_approval_protocolmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

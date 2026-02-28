@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\PATTERN_ETHICS_DOCTRINE.md"
+  file_hash: "ac078966040cc98fc3f4b440358f15d076d05daa80b8ea7c23acc7f12cfc45c5"
+  file_path_from_root: "docs\channels\doctrine\PATTERN_ETHICS_DOCTRINE.md"
   file_hash: "8773426ccabac59d93459f21f2efc9ade6d70fcb8e682ec2a2e1e4c2bcc4cd12"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GOV-PRINCIPLE-001 — Pattern Ethics Doctrine"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "pattern_ethics_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

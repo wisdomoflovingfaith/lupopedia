@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\history-reconciliation\design.md"
+  file_hash: "8d53934b0798b4ebdfce13a138989f437112d743c266b1941b9e38500af83b4a"
+  file_path_from_root: ".kiro\specs\history-reconciliation\design.md"
   file_hash: "24ea1e97381be1d11d3c0a848f5709d720a95db170d53247414a8f745f0025a6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Design Document"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "history-reconciliation", "designmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

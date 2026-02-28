@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\broadcasts\20260225120026_10000_1000_0_install_new_lupopedia_sql_is_the_source_of_truth.md"
+  file_hash: "4380a87dfe67179e762f94933d4b575a9956e04abcd9e493c7af95aa107855fb"
+  file_path_from_root: "channels\0\broadcasts\20260225120026_10000_1000_0_install_new_lupopedia_sql_is_the_source_of_truth.md"
   file_hash: "15ed5e73e3ceec73a82a9d9cc571dad7373e70cc91af4919f6f0ec3cb60fdff4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225120026_10000_1000_0_install_new_lupopedia_sql_is_the_source_of_truth.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "broadcasts", "20260225120026_10000_1000_0_install_new_lupopedia_sql_is_the_source_of_truthmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

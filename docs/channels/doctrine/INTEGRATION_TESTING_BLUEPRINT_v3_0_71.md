@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\INTEGRATION_TESTING_BLUEPRINT_v3_0_71.md"
+  file_hash: "6ee5c08fe91e85e03a82d57e300b8ebb1f0828e301392adc8b5a1fbd45d7645e"
+  file_path_from_root: "docs\channels\doctrine\INTEGRATION_TESTING_BLUEPRINT_v3_0_71.md"
   file_hash: "ee697b883b4a83f4e87978c282210b633e176cebb924be285b5df66fe3b8df2e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for INTEGRATION_TESTING_BLUEPRINT_v3_0_71.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "integration_testing_blueprint_v3_0_71md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 wolfie.headers: explicit architecture with structured clarity for every file.

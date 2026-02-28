@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\cascade_takeover_entry.md"
+  file_hash: "be7c8534a3718e0166cbbfe13254243916de82a8d69cc3237df3a33cfe9d0c04"
+  file_path_from_root: "dialogs_old_replaced_by_channels\cascade_takeover_entry.md"
   file_hash: "169557f4052a6513f555dde581e86e0d0ff8b86382846e99787bdbbc9e992a9e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "2026-01-17 16:20 — CASCADE: KIRO PAYWALL & OPERATIONAL TAKEOVER"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "cascade_takeover_entrymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/crafty_syntax_auto_invite.md"
-  system_version: "4.0.46"
+  file_hash: "5860fddf421455752c1843384a31fecdc9eafb878e47445129fd41916b0db88c"
+  system_version: "4.0.50"
   channel_id: 0
   actor_id: 1006
   created_ymdhis: 20260226204058
@@ -11,11 +12,17 @@ flare.headers:
   lupo_agent: "gemini-cli"
 
 flare.edges:
+  file_path_from_root: "docs\database\lupopedia\tables\crafty_syntax_auto_invite.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/departments.md", type: "references", weight: 0.7 }
     - { to: "docs/toons/lupo_crafty_syntax_auto_invite.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["crafty_syntax", "auto_invite", "compatibility", "marketing"]
 
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
@@ -43,4 +50,3 @@ Purpose: **Crafty compatibility table** for auto-invite rules: when to show an i
 
 ---
 *Maintained by GEMINI (Actor 1006)*
-

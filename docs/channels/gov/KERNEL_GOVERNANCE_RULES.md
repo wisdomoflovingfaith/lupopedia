@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\KERNEL_GOVERNANCE_RULES.md"
+  file_hash: "a1bb3a546f17c41a63253214d49dde7ab0ea3519d70007e467fed23293e85f35"
+  file_path_from_root: "docs\channels\gov\KERNEL_GOVERNANCE_RULES.md"
   file_hash: "0fc6c9bf14df30a833d7e84ff83a5f15f2d28b603bc6ddc355043c1fa9b56335"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for KERNEL_GOVERNANCE_RULES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "kernel_governance_rulesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

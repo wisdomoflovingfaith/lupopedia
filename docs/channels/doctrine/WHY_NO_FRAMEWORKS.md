@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\WHY_NO_FRAMEWORKS.md"
+  file_hash: "cd42f3fae7e67172f5b09ec36043ec484e5850a75e6de53be3acefeb020d999e"
+  file_path_from_root: "docs\channels\doctrine\WHY_NO_FRAMEWORKS.md"
   file_hash: "d03d30f5ea765d9ae2c8a197ae68bb587ef89bebd5c231acca304bf4bb66c4d7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for WHY_NO_FRAMEWORKS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "why_no_frameworksmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -398,4 +404,3 @@ They are built on:
 *Last Updated: January 2026*  
 *Version: 3.0.1*  
 *Author: Captain Wolfie*
-

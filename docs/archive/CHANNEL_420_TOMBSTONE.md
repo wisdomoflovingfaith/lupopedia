@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\archive\CHANNEL_420_TOMBSTONE.md"
+  file_hash: "3da40f86e808e554bccbaa7a99835c5e6fcafed8e4721fd3ec0da03e3eb1a82b"
+  file_path_from_root: "docs\archive\CHANNEL_420_TOMBSTONE.md"
   file_hash: "a6b3c901331fbc9c67a3e5f0b404e97b75b62be3ee9b21eaddd5c547ff9dac40"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CHANNEL_420_TOMBSTONE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "archive", "channel_420_tombstonemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

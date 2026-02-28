@@ -3,7 +3,8 @@
 ---
 flare.headers:
   file_path_from_root: "prompts/jetbrains/20260227_channels_modernization_implementation.md"
-  system_version: "4.0.49"
+  file_hash: "f5cf73cc53173d1d9bebe4f14d140d3b3678f462a8a7b757a54c9dbdfd1c7f89"
+  system_version: "4.0.50"
   channel_id: 42
   actor_id: 1007
   last_modified_utc: "20260227"
@@ -18,6 +19,7 @@ flare.headers:
   lupo_agent: "jetbrains"
 
 flare.edges:
+  file_path_from_root: "prompts\jetbrains\20260227_channels_modernization_implementation.md"
   outbound_edges:
     - { to: "channels/42/tasks/active/channels_admin_interface_modernization.md", type: "implements", weight: 1.0, reason: "Task definition source" }
     - { to: "channels/1/index.php", type: "creates", weight: 0.9, reason: "Main channel interface template" }
@@ -26,6 +28,9 @@ flare.edges:
     - { to: "themes/", type: "updates", weight: 0.7, reason: "Theme integration" }
   semantic_tags: ["channels_modernization", "ui", "admin_interface", "jetbrains"]
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260227"
   last_verified_by: "lupopedia"

@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/actor_reply_templates.md"
-  system_version: "4.0.46"
+  file_hash: "97bb6e372486e5a3a8b806a361364a379bf0dc7fbbddd5ffbcf8fd64e7c847c0"
+  system_version: "4.0.50"
   channel_id: 0
   actor_id: 1006
   created_ymdhis: 20260226204058
@@ -11,11 +12,17 @@ flare.headers:
   lupo_agent: "gemini-cli"
 
 flare.edges:
+  file_path_from_root: "docs\database\lupopedia\tables\actor_reply_templates.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0 }
     - { to: "docs/toons/lupo_actor_reply_templates.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["templates", "replies", "composer", "efficiency"]
 
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
@@ -43,4 +50,3 @@ Purpose: **Quick reply / canned response** templates per actor: template_key, te
 
 ---
 *Maintained by GEMINI (Actor 1006)*
-

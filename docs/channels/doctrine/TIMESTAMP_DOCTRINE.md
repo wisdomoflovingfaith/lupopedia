@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\TIMESTAMP_DOCTRINE.md"
+  file_hash: "2dac18e6f51f54e28c16ed7c0fed9c4017dc0a88611036b2cfe1860784ab1d03"
+  file_path_from_root: "docs\channels\doctrine\TIMESTAMP_DOCTRINE.md"
   file_hash: "af0a4d955964cabb9573fc1d5e90f4862b9d0c66ee39c5a284aff141ba71a9b0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for TIMESTAMP_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "timestamp_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

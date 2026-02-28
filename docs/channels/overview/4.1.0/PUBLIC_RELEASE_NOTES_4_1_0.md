@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\4.1.0\PUBLIC_RELEASE_NOTES_4_1_0.md"
+  file_hash: "60323739b66f1fa58911a1a1edda632f16f659820d34a826b0f0ef4cc4062d11"
+  file_path_from_root: "docs\channels\overview\4.1.0\PUBLIC_RELEASE_NOTES_4_1_0.md"
   file_hash: "82a31bdf095fc7d34d0cd2fc4bdbe51eb9cb5aad4378355f29be5b6e5a96302b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for PUBLIC_RELEASE_NOTES_4_1_0.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "410", "public_release_notes_4_1_0md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

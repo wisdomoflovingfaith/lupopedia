@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_DOCTRINE.md"
+  file_hash: "1d254e0f73b61753841ab51ffd95e80ac08a5d0967dc04901fb49b031c342929"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_DOCTRINE.md"
   file_hash: "de4433266becabbfdb6e8d450077296340646c10ccc9122ea6700c3f2dc5d158"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "CRAFTY SYNTAX DOCTRINE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "crafty_syntax_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

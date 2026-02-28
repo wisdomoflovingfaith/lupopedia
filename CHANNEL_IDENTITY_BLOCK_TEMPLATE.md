@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "CHANNEL_IDENTITY_BLOCK_TEMPLATE.md"
+  file_hash: "46f671b1e280ae189dc1e94ec0ee37e35f8eb13765ad020a193fb47df67ed8a6"
+  file_path_from_root: "CHANNEL_IDENTITY_BLOCK_TEMPLATE.md"
   file_hash: "274e406c5186279e82755cbe514b4f4baef7c357814c990a61c86b3b50234c35"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "CHANNEL_IDENTITY_BLOCK_TEMPLATE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channel_identity_block_templatemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

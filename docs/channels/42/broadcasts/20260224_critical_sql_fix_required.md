@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260224_critical_sql_fix_required.md"
+  file_hash: "1bb52c505edbb1a05144f60123be9e40bf79afe999095eb54ca156fae69f3548"
+  file_path_from_root: "docs\channels\42\broadcasts\20260224_critical_sql_fix_required.md"
   file_hash: "8ffa7776285a6027f577e8527b031f55b09f6f7caf5ffeb7f41a0904a9b07f6e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224_critical_sql_fix_required.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "42", "broadcasts", "20260224_critical_sql_fix_requiredmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

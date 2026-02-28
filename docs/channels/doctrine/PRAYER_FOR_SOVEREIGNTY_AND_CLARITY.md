@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\PRAYER_FOR_SOVEREIGNTY_AND_CLARITY.md"
+  file_hash: "ee01713d6ca1c7322596faa85e519b15f12ef0c3be0c1a09f708b4f03812eb5a"
+  file_path_from_root: "docs\channels\doctrine\PRAYER_FOR_SOVEREIGNTY_AND_CLARITY.md"
   file_hash: "b276f5b49dbeef8cf3bc6a4fc94b428fbed3a3bb316b938ea1b5e1f5a321e7f8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for PRAYER_FOR_SOVEREIGNTY_AND_CLARITY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "prayer_for_sovereignty_and_claritymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

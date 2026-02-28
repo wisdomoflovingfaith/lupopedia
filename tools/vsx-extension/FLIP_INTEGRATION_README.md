@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "tools\vsx-extension\FLIP_INTEGRATION_README.md"
+  file_hash: "d3ad075dedfc2f2feaae8f1fdfc6efe62cf865fd6b81160333141dc31134251e"
+  file_path_from_root: "tools\vsx-extension\FLIP_INTEGRATION_README.md"
   file_hash: "df0ece039e4ffd90a343ccd9bcb4614b2582d1d76a02ba57260f05f2d0a28c98"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "FLIP Header Integration — VSX Extension & Python Audit Tool"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["tools", "vsx-extension", "flip_integration_readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

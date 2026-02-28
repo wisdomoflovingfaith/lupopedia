@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\HARM_MINIMIZATION_GUIDELINES.md"
+  file_hash: "d3bf8f548780a6f9ea472ebc8955d6d671b59c3f36c36391891a4d2cd6ece356"
+  file_path_from_root: "docs\channels\gov\HARM_MINIMIZATION_GUIDELINES.md"
   file_hash: "4ab9b9b35b6eadffd1d1c780082473b3de719cf6a0e35cbdc58b9d90bb26153a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HARM_MINIMIZATION_GUIDELINES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "harm_minimization_guidelinesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

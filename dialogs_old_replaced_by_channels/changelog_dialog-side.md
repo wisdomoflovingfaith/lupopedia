@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\changelog_dialog-side.md"
+  file_hash: "1677c24cce9ca3aa443b47258a7907fd4716129876bc00752cc4fb70e7165757"
+  file_path_from_root: "dialogs_old_replaced_by_channels\changelog_dialog-side.md"
   file_hash: "fba11a9422d7e2239458f3cf5c3e32f13c9afb7e5477dcab78d90cc64fdc0836"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for changelog_dialog-side.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "changelog_dialog-sidemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

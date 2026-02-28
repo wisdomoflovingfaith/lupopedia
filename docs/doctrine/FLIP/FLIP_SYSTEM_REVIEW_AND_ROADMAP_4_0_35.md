@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\FLIP\FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md"
+  file_hash: "bb03b1652a5ccfffdd41b45a327469461b93f4b6f6d6d0c77132b2121c101a24"
+  file_path_from_root: "docs\doctrine\FLIP\FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md"
   file_hash: "c53e08ebfbc625fdf717471dca0a29334754c4608c664852dc0549ceba7143d2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "flip", "flip_system_review_and_roadmap_4_0_35md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

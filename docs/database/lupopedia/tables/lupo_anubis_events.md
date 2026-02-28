@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/lupo_anubis_events.md"
-  system_version: "4.0.46"
+  file_hash: "545efca9e69a1ed90dfcbebf491c9b117e347f5ef0c1e48b28e5f2a84697aba6"
+  system_version: "4.0.50"
   channel_id: 0
   actor_id: 1006
   created_ymdhis: 20260226204058
@@ -11,11 +12,17 @@ flare.headers:
   lupo_agent: "gemini-cli"
 
 flare.edges:
+  file_path_from_root: "docs\database\lupopedia\tables\lupo_anubis_events.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_anubis_log.md", type: "part_of", context: "ANUBIS Custodial Suite", weight: 1.0 }
     - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "governed_by", context: "Actor 19 (ANUBIS)", weight: 1.0 }
   semantic_tags: ["anubis", "events", "ops", "custodial"]
 
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
@@ -42,4 +49,3 @@ Purpose: High-level system event log for the ANUBIS ecosystem, tracking operatio
 
 ---
 *Maintained by GEMINI (Actor 1006)*
-

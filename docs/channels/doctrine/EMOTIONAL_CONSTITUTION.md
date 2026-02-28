@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\EMOTIONAL_CONSTITUTION.md"
+  file_hash: "7e6db26cbff90b2e12c00f1a8281bde5348a6a595c1c0c1a77c697540916ca22"
+  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_CONSTITUTION.md"
   file_hash: "7ce563a197fa4ba8b25f7c33d2f058e2818352ba96b92e506226e65d14c5d1f1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for EMOTIONAL_CONSTITUTION.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "emotional_constitutionmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "actors\10000\history\resume.md"
+  file_hash: "92b3af14119cd91fdde54ef8bda8915d53eef240c5c6616b826d81280a2f35f9"
+  file_path_from_root: "actors\10000\history\resume.md"
   file_hash: "d985810712a4370effbf270ad507fb4b99d2a2ec011023f4c255ce1f1244ca77"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Resume for Actor 10000"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["actors", "10000", "history", "resumemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

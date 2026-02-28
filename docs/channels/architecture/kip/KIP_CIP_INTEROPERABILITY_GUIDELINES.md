@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\kip\KIP_CIP_INTEROPERABILITY_GUIDELINES.md"
+  file_hash: "8f02ee9a78cb122e577a5515b3eee698a0405783aa1d6bbefd3de66781b90d44"
+  file_path_from_root: "docs\channels\architecture\kip\KIP_CIP_INTEROPERABILITY_GUIDELINES.md"
   file_hash: "dea956072fd4c301d29d4c8b5660ae5d4a6529f9e086b612b0a15a2476d6e961"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for KIP_CIP_INTEROPERABILITY_GUIDELINES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "kip", "kip_cip_interoperability_guidelinesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\actors\1000\README.md"
+  file_hash: "042c92e1193e847c55b83c2d3851346cc93dc01b43030386b83dc5fdedd49630"
+  file_path_from_root: "channels\42\actors\1000\README.md"
   file_hash: "74f88364f4d1ed5977a037f24f54d3edde0fb7b29d143f1373a9e35eb4cd7df8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Actor Workspace: KIRO IDE (ID: 1000)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "actors", "1000", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

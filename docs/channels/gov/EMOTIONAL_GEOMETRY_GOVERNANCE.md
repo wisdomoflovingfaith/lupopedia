@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\EMOTIONAL_GEOMETRY_GOVERNANCE.md"
+  file_hash: "c29dafa30f1379d683d589d6fca11526105d461fbd7f12e99b708d297345b598"
+  file_path_from_root: "docs\channels\gov\EMOTIONAL_GEOMETRY_GOVERNANCE.md"
   file_hash: "b1e70e1457836bd0a4592b1d55ea18b749fb711e438158c392d9a9cf0b4a83e1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for EMOTIONAL_GEOMETRY_GOVERNANCE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "emotional_geometry_governancemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

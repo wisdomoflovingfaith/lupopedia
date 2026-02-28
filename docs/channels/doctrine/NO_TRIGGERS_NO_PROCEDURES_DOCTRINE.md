@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\NO_TRIGGERS_NO_PROCEDURES_DOCTRINE.md"
+  file_hash: "2fff7c58d41869e65cf04b84caaaa8ccb600c36e8791b3ec767f5402b02220b2"
+  file_path_from_root: "docs\channels\doctrine\NO_TRIGGERS_NO_PROCEDURES_DOCTRINE.md"
   file_hash: "ba0703171d1411742f4d23fbe2057704dbeb66505c2034ec6a07c31a46f895b2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for NO_TRIGGERS_NO_PROCEDURES_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "no_triggers_no_procedures_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\ANUBIS_ORPHAN_RULES.md"
+  file_hash: "6924f78768af7396ec04a95fd1de235ec0a4b55d8cd1b088c009ed4fd102b6c1"
+  file_path_from_root: "docs\doctrine\ANUBIS_ORPHAN_RULES.md"
   file_hash: "154daecd219b2fcd30e375fab0d877c9a27470ae8318391ebab5e49f91ed045e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ANUBIS_ORPHAN_RULES.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "doctrine", "anubis_orphan_rulesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

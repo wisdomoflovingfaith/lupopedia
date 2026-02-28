@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130015_10000_1000_42_critical_reminder_additional_files_to_update_during_version_initialization.md"
+  file_hash: "3a009656fe5927df6ff8a9c8720dd4e60e60ab634f11f766563e271b199917c8"
+  file_path_from_root: "channels\42\broadcasts\20260225130015_10000_1000_42_critical_reminder_additional_files_to_update_during_version_initialization.md"
   file_hash: "4ea1d3e58fc335bb2c3a655a9e27f19c0be141238e89df8c396a7ceae1548c36"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225130015_10000_1000_42_critical_reminder_additional_files_to_update_during_version_initialization.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "broadcasts", "20260225130015_10000_1000_42_critical_reminder_additional_files_to_update_during_version_initializationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

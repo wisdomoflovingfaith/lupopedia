@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_crafty_syntax_confirmation.md"
+  file_hash: "a0f7f67c8943886756d7313ad3df738ebf8ca04182856da314c06a216a8654e0"
+  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_crafty_syntax_confirmation.md"
   file_hash: "fc6c57c62b9f8a527003ad878af6e79bde953a780b32fa9d79d50fb76d4b6ac7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224_windsurf_crafty_syntax_confirmation.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "42", "broadcasts", "20260224_windsurf_crafty_syntax_confirmationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

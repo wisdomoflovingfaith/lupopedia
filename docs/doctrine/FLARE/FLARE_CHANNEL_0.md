@@ -87,6 +87,10 @@ flare.headers:
 ### Footer Requirements
 ```yaml
 # Channel 0 doctrine must include relationship edges
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
@@ -163,5 +167,3 @@ During FLIP → FLARE migration (4.0.47-4.1.0):
 ---
 
 *End of FLARE Channel 0 doctrine.*
-
-

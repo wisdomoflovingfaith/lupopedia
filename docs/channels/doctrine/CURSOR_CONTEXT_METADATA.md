@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\CURSOR_CONTEXT_METADATA.md"
+  file_hash: "a7415a869c65176ff5189ae5e7bdae0a4f9c643094787f7092fb2ca4aab60464"
+  file_path_from_root: "docs\channels\doctrine\CURSOR_CONTEXT_METADATA.md"
   file_hash: "d639e5a09f638aabf7de85ded3c203a56c9b329a0db835e63aee9d0e4a4276eb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CURSOR_CONTEXT_METADATA.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "cursor_context_metadatamd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

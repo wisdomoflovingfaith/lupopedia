@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\logs\tuesday_agi_support_meeting.md"
+  file_hash: "9b3e4e5ac232a112b6d4b3024b80a6c865336ea658bf4e423fdd45c165811588"
+  file_path_from_root: "docs\channels\overview\logs\tuesday_agi_support_meeting.md"
   file_hash: "20a36a1db2d2a1600472131ec1f2161b3669b4d636fb2c9810b36e68e5008e15"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for tuesday_agi_support_meeting.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "logs", "tuesday_agi_support_meetingmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

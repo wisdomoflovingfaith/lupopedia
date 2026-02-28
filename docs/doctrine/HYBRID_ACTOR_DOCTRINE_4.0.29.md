@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\HYBRID_ACTOR_DOCTRINE_4.0.29.md"
+  file_hash: "57739cba9f0b5b66358f17aa4813f66f46cdd858482243fc5d486d596ae5e3b2"
+  file_path_from_root: "docs\doctrine\HYBRID_ACTOR_DOCTRINE_4.0.29.md"
   file_hash: "b0eff8fd5b350b90e003f4fd64b337c3d300a62365cd5beb4b50636fef14911b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HYBRID_ACTOR_DOCTRINE_4.0.29.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "doctrine", "hybrid_actor_doctrine_4029md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

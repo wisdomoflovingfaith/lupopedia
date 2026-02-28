@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\BAN_REASONS.md"
+  file_hash: "d40be25e16c0be4c2af94f1e38a6d4e369cae2308bdb66657d2f6b4470644ca0"
+  file_path_from_root: "docs\doctrine\BAN_REASONS.md"
   file_hash: "54b05177218086f5acd63130b45281ab4e6ecfe5ebe243c5f8fd0276e7b7b162"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for BAN_REASONS.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "doctrine", "ban_reasonsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "prompts\1\README.md"
+  file_hash: "64c183f270df7f8c1984b43cc8f0215a30616c200253256541717014f005201d"
+  file_path_from_root: "prompts\1\README.md"
   file_hash: "af596c2cbced39d2a9227702c8ed0dc09653d0a38d4ee78b6e2da99cb387c8cd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Captain WOLFIE (Actor ID: 1, Agent ID: 1)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["prompts", "1", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

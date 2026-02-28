@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "backups\filesystem_migration_20260131_133426\agents\0014\README.md"
+  file_hash: "6f1efe3fa1046e5d43449adb3aa415209f7d8f15565927a76cfade93e9b9d0e1"
+  file_path_from_root: "backups\filesystem_migration_20260131_133426\agents\0014\README.md"
   file_hash: "d0db5768fbb0578df8f2d7e07aef4b277ea061c5f083ea8bbc782f6697ecd692"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "WOLFNAV"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["backups", "filesystem_migration_20260131_133426", "agents", "0014", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

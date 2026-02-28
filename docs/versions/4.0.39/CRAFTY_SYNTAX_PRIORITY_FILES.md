@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\versions\4.0.39\CRAFTY_SYNTAX_PRIORITY_FILES.md"
+  file_hash: "515c70e449989e611ad00381246126d8017ef25aeee5fe79569f7f747e65153c"
+  file_path_from_root: "docs\versions\4.0.39\CRAFTY_SYNTAX_PRIORITY_FILES.md"
   file_hash: "3694ff41fa779232247c8a40963bc374fae967ad6e50623112f6e6227a92a9b5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CRAFTY_SYNTAX_PRIORITY_FILES.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "versions", "4039", "crafty_syntax_priority_filesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\HYBRID_ACTOR\HYBRID_ACTOR_2_0.md"
+  file_hash: "44de90d8289038ab4ecaed5e95bee07052d053c5fdc71ffa5e1924716fa946dd"
+  file_path_from_root: "docs\doctrine\HYBRID_ACTOR\HYBRID_ACTOR_2_0.md"
   file_hash: "8c756fde303845ac1f7f364355b290c78fe623651ad8c82661cfa27b80b45300"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HYBRID_ACTOR_2_0.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "hybrid_actor", "hybrid_actor_2_0md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

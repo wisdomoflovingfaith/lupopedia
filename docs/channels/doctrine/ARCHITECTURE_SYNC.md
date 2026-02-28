@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\ARCHITECTURE_SYNC.md"
+  file_hash: "9c3a03a5ead94f14f31bf31b55b565103e4a5a75c34750fc85437b2b594a760f"
+  file_path_from_root: "docs\channels\doctrine\ARCHITECTURE_SYNC.md"
   file_hash: "05115315151329c74f9694115066bb2011301e44efcedff968c4941fa5c16e20"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ARCHITECTURE_SYNC.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "architecture_syncmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

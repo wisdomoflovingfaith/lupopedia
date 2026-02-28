@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\dev\WOLFIE_TIMESTAMP_DOCTRINE.md"
+  file_hash: "f63ee6ce19ffdc5eaa199d0f2955c4d7e5abf0908877d1585b31b771454549d7"
+  file_path_from_root: "docs\channels\developer\dev\WOLFIE_TIMESTAMP_DOCTRINE.md"
   file_hash: "c6c7e469876774ba725ec315e12a28a3552aa4128ef6799b778357b1f8a5d1ca"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for WOLFIE_TIMESTAMP_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "developer", "dev", "wolfie_timestamp_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -234,5 +240,3 @@ $timestamp = strtotime('now');
 ---
 
 *This doctrine is non-negotiable and applies to all code, migrations, and data models in Lupopedia and Crafty Syntax.*
-
-

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\WHY_MULTIPLE_IDES_AND_AGENTS.md"
+  file_hash: "9a3e1352756c240775f5e48dfbeb725755ce8591c29385ab97a4665afe8733d4"
+  file_path_from_root: "docs\channels\architecture\WHY_MULTIPLE_IDES_AND_AGENTS.md"
   file_hash: "cf404b39702e3a4f281dac172cca6e9386702f99a4152005347c555bf6e90d11"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for WHY_MULTIPLE_IDES_AND_AGENTS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "why_multiple_ides_and_agentsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

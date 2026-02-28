@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\appendix\MY_FIRST_PYTHON_PROGRAM.md"
+  file_hash: "255d8c11591116356cf53a99619a408689f6e36e678b42efeaa3735f4162ac4c"
+  file_path_from_root: "docs\channels\appendix\appendix\MY_FIRST_PYTHON_PROGRAM.md"
   file_hash: "8df7cb5db43cc9fff88719b8ca5d1d71f35b8bfc14e23260a43d4d0f6d4e3fc0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MY_FIRST_PYTHON_PROGRAM.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "my_first_python_programmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

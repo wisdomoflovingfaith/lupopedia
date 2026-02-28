@@ -1,7 +1,7 @@
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/lupo_dialog_channels.md"
-  system_version: "4.0.48"
+  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1003
   last_modified_utc: "20260226"
@@ -40,6 +40,7 @@ flare.headers:
   table_foreign_keys: []
 
 flare.edges:
+  file_path_from_root: "docs\database\lupopedia\tables\lupo_dialog_channels.md"
   outbound_edges:
 - { to: "docs/toons/lupo_dialog_channels.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition" }
     - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.9, reason: "Maps to core channel identity" }
@@ -134,4 +135,3 @@ WHERE file_source = :folder_path;
 This table acts as the registry for "Sources". When the system scans the `channels/` directory, it uses `lupo_dialog_channels` to map the found directories back to their semantic identities.
 
 ---
-

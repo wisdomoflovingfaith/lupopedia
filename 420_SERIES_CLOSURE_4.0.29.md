@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "420_SERIES_CLOSURE_4.0.29.md"
+  file_hash: "b3d30b7223c4371b2792a9581286a64e0dd0fe4d30bba4c70ca42670d226d9a3"
+  file_path_from_root: "420_SERIES_CLOSURE_4.0.29.md"
   file_hash: "fea4127040c7ec44a8f168bbdd4840784819d5318760fb725e3e7140ec7de2a2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "🔒 420-SERIES CLOSURE — Lupopedia 4.0.29 (2026-02-22)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["420_series_closure_4029md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

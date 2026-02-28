@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_UI_THEATRICAL_DOCTRINE.md"
+  file_hash: "97d50674523b44d8a7dc0e34b65aa9c57701810ef6b9214c4b3d126cbc825df3"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_UI_THEATRICAL_DOCTRINE.md"
   file_hash: "c3a618547840370477bbf6c70ca4772cc59b657afc717c7609a50eb2b5ace34b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "CRAFTY SYNTAX UI THEATRICAL DOCTRINE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "crafty_syntax_ui_theatrical_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

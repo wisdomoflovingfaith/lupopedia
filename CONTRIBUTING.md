@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "CONTRIBUTING.md"
+  file_hash: "3c701397324809a8c0d8bb4b246d1041ca5bcc0d66a71d099bf25a117c44634f"
+  file_path_from_root: "CONTRIBUTING.md"
   file_hash: "e74b635543bdaad9d781bae9a3ab1c19f290ce7e6eb41d41805b7bb7879462bd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CONTRIBUTING.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["contributingmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

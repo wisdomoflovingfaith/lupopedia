@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\INSTALL_PHP_WIZARD_DOCTRINE_AUDIT.md"
+  file_hash: "b381a0f5be0f331cf6fc29ed38c5752991e7f0233fed93baa5a72da0d39c9b6c"
+  file_path_from_root: "docs\audits\INSTALL_PHP_WIZARD_DOCTRINE_AUDIT.md"
   file_hash: "6745a38ca16cc51cff323ec9a808bc7cb458eaaba79e3baee90c6e4bea82a183"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Install.php + Wizard — Full Doctrine Compliance Audit (PHP 5.3 → 8.1)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "install_php_wizard_doctrine_auditmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\broadcasts\20260225120016_10000_1000_0_primary_key_allocation_doctrine.md"
+  file_hash: "bece35da3a95a7cf1b3cdad44ca620909b79bd0bc99750b78258971d01541880"
+  file_path_from_root: "channels\0\broadcasts\20260225120016_10000_1000_0_primary_key_allocation_doctrine.md"
   file_hash: "fb86ec6ef99b6d1d5be0bf1eb8a85995fff68bea72860e1c2b98b8af19088688"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225120016_10000_1000_0_primary_key_allocation_doctrine.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "broadcasts", "20260225120016_10000_1000_0_primary_key_allocation_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

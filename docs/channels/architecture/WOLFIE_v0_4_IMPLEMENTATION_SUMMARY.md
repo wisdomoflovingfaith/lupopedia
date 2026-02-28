@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\WOLFIE_v0_4_IMPLEMENTATION_SUMMARY.md"
+  file_hash: "b687346409145be40f4585448e0663ce2bf970513b01714bda3b2c80efe07fe6"
+  file_path_from_root: "docs\channels\architecture\WOLFIE_v0_4_IMPLEMENTATION_SUMMARY.md"
   file_hash: "af4b70897bdae6f59c52e8446d540fa38b8e47d78c6a6fc5bbddf4635a6fbf83"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "WOLFIE Router v0.4 - Complete Implementation Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "wolfie_v0_4_implementation_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

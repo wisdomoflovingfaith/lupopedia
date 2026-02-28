@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "HOW_TO_CONFIRM_ACTOR_IDS.md"
+  file_hash: "9c99c7ede7d9eeac74c4ce0004910130e3482437cdf83c60eb1b581179ca3d6b"
+  file_path_from_root: "HOW_TO_CONFIRM_ACTOR_IDS.md"
   file_hash: "f55e6dfddf68c43cc1ca571161a107948e2d99ee635fbe3efbb4051147cf55e5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HOW_TO_CONFIRM_ACTOR_IDS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["how_to_confirm_actor_idsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

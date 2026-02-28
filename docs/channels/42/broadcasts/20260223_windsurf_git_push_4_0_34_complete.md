@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_git_push_4_0_34_complete.md"
+  file_hash: "978790aae3b1fa9574b315e87f9983d91dc3416d3dec0961f743971f86c018bb"
+  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_git_push_4_0_34_complete.md"
   file_hash: "e70f601595e81d699980db72b6df87cced56f48f5e9b8dea2c77d765dd7dcaa3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260223_windsurf_git_push_4_0_34_complete.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "42", "broadcasts", "20260223_windsurf_git_push_4_0_34_completemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

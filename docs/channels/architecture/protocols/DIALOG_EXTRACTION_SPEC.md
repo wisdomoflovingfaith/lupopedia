@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\protocols\DIALOG_EXTRACTION_SPEC.md"
+  file_hash: "659a78b095bc12fee89310b0a081b749fd79e19bf5c975c0991b0c1c9c472c6e"
+  file_path_from_root: "docs\channels\architecture\protocols\DIALOG_EXTRACTION_SPEC.md"
   file_hash: "7c1f12c10db6eaa125b58667908549558bb192ff8487f8a24c1bac234b7e09f5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DIALOG_EXTRACTION_SPEC.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "protocols", "dialog_extraction_specmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -324,4 +330,3 @@ Cursor must verify:
 - **[Architecture Sync](../ARCHITECTURE_SYNC.md)** - DialogManager system that processes extracted dialogs
 
 ---
-

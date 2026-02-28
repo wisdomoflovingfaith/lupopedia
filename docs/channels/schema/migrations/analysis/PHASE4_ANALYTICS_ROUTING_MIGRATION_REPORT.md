@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE4_ANALYTICS_ROUTING_MIGRATION_REPORT.md"
+  file_hash: "41414dc459dfcd6ecd7f9f1b4d5078fe626fed6dfdfdcb27294bb9a7c548d491"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE4_ANALYTICS_ROUTING_MIGRATION_REPORT.md"
   file_hash: "ed408a1aff02865ad18bf4a1a36d051e92ea02a77a674701dd7cc12f3dfad6c4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Phase 4: Analytics & Routing Migration Report**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "phase4_analytics_routing_migration_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

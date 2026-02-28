@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\FLIP\FLIPPING_FILE_LEXA_LILITH.md"
+  file_hash: "4b9ff2066bfe37fae681c3cd48d9f03276ed3e4516f0b7cf51b0d4614576b248"
+  file_path_from_root: "docs\doctrine\FLIP\FLIPPING_FILE_LEXA_LILITH.md"
   file_hash: "cf953fb2e7e1f69c2890763fa443ff639289f60925a1d6ba74ad1c06402778ea"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FLIPPING_FILE_LEXA_LILITH.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "flip", "flipping_file_lexa_lilithmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

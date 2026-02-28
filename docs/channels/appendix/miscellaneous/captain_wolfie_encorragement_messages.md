@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\miscellaneous\captain_wolfie_encorragement_messages.md"
+  file_hash: "42df29a24855ef5a7fff6c40d36a0e52faa5e27ade31aa817f56866252ac7346"
+  file_path_from_root: "docs\channels\appendix\miscellaneous\captain_wolfie_encorragement_messages.md"
   file_hash: "25f9cdc54c897ee04a8a68b3caf477f4a2d9d72f944531cbc4d85d218a907bfc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for captain_wolfie_encorragement_messages.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "miscellaneous", "captain_wolfie_encorragement_messagesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

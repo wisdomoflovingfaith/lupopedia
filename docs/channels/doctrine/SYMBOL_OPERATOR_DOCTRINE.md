@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\SYMBOL_OPERATOR_DOCTRINE.md"
+  file_hash: "479fd1ab28fd7f41aee5c869baadf4845dc35c55240f3b77c573a42d93685f82"
+  file_path_from_root: "docs\channels\doctrine\SYMBOL_OPERATOR_DOCTRINE.md"
   file_hash: "30f01be2784c98c52d87b7c6a27a0fd9c4cded9e93ab3483438356948ee0af09"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "SYMBOL OPERATOR DOCTRINE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "symbol_operator_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

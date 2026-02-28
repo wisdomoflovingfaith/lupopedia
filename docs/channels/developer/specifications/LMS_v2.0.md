@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\specifications\LMS_v2.0.md"
+  file_hash: "44ef3e092981f9c0474e9a48d409fd99360e5417e7ceefa99eca654c01a64115"
+  file_path_from_root: "docs\channels\developer\specifications\LMS_v2.0.md"
   file_hash: "633c478c44c9c6851f62c597cb9b50d69b5e67c634e82dc79a895418865f318d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "ðŸ›ï¸ LUPOPEDIA MARKING SPECIFICATION v2.0 â€” COMPLETE SYMBOL SET"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "developer", "specifications", "lms_v20md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

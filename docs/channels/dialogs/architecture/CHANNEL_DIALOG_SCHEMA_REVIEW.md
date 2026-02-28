@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\dialogs\architecture\CHANNEL_DIALOG_SCHEMA_REVIEW.md"
+  file_hash: "58820a0bcfb310676a27e608b75d5386e5b5fdc17a7d7b497ee01616545df98d"
+  file_path_from_root: "docs\channels\dialogs\architecture\CHANNEL_DIALOG_SCHEMA_REVIEW.md"
   file_hash: "a42510caa329d3478060a858df5c0733b6c72aac2b40bd7a547239a3751e9d95"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Channel and Dialog System Schema Review"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "dialogs", "architecture", "channel_dialog_schema_reviewmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

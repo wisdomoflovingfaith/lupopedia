@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\tasks\pending\20260225170100_task_0_19_validate_channel_666_quarantine.md"
+  file_hash: "c0983678d120207dc31c747b530652b04d23fce9c482bea48b8b99c59310d424"
+  file_path_from_root: "channels\0\tasks\pending\20260225170100_task_0_19_validate_channel_666_quarantine.md"
   file_hash: "657cf7e87a510542e20ea562be97eae2c83367b190aaabb9047a11381ad8e11a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225170100_task_0_19_validate_channel_666_quarantine.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "tasks", "pending", "20260225170100_task_0_19_validate_channel_666_quarantinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

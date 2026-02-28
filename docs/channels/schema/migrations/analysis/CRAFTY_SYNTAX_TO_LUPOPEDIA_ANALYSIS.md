@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\CRAFTY_SYNTAX_TO_LUPOPEDIA_ANALYSIS.md"
+  file_hash: "250ce21cb1d0948bbcfef64018eca359b46e6672f7f2a508722eca62495718fc"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\CRAFTY_SYNTAX_TO_LUPOPEDIA_ANALYSIS.md"
   file_hash: "8fa437e259a2939fe909fd345a6418b6773d8be09de6587007692c5bb24d7c2e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Crafty Syntax to Lupopedia Migration Analysis**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "crafty_syntax_to_lupopedia_analysismd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

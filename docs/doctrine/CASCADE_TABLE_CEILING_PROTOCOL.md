@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\CASCADE_TABLE_CEILING_PROTOCOL.md"
+  file_hash: "7cb900892a62e43011ecde72260184a5e6aab6b3a376449b0a18321e5e1707ca"
+  file_path_from_root: "docs\doctrine\CASCADE_TABLE_CEILING_PROTOCOL.md"
   file_hash: "7894f05aa6e2e22ee8b01cbde861e921eb21a817bf298c8abb3cf21f824086e9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CASCADE_TABLE_CEILING_PROTOCOL.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "cascade_table_ceiling_protocolmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\MOOD_FRAMEWORK_GOVERNANCE.md"
+  file_hash: "1375a490f6bbf9e1e4827c526e375c32ae62d01fd4c009c877802e3b3cca3dbc"
+  file_path_from_root: "docs\channels\gov\MOOD_FRAMEWORK_GOVERNANCE.md"
   file_hash: "7fcb67a62cf13a27cc7cad648734e6c480aada088f06d09bde552041ef6e60d5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MOOD_FRAMEWORK_GOVERNANCE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "mood_framework_governancemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

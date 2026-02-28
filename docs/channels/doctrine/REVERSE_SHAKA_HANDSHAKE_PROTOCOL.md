@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md"
+  file_hash: "fc52a4f8571bcb5efedfa3630017fb0eb1b1ce5270a7d64fe8e6b7928057db5b"
+  file_path_from_root: "docs\channels\doctrine\REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md"
   file_hash: "3f75a68bf2384d81e5f1a9185cc27b457ac9a5860261d6b019878145ae84d816"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "reverse_shaka_handshake_protocolmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

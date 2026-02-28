@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md"
+  file_hash: "bc953c55ab49d0b9aea483b1f40f6ccb627aa36adfae0750d05636f284c66760"
+  file_path_from_root: "docs\channels\architecture\CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md"
   file_hash: "a76fabfb2a628043477ee67d76f932de371c2a69e704b073ca1020e3559bfb24"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "case_study_multi_ide_caduceus_hermesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

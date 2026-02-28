@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/channels/appendix/HISTORY.md",
-  system_version: "4.0.48",
+  file_hash: "5981c13f9cbe887d514913de258ad4251a87beaa2f925b470108c267c2be4032"
+  system_version: "4.0.50"
   channel_id: 42,
   actor_id: 1002,
   last_modified_utc: "20260227",
@@ -41,6 +42,7 @@ flare.headers: {
   lupo_agent: "antigravity"
 }
 flare.edges: {
+  file_path_from_root: "docs\channels\appendix\HISTORY.md"
   outbound_edges: [
     { to: "README.md", type: "references", weight: 1.0 },
     { to: "docs/channels/appendix/appendix/FOUNDERS_NOTE.md", type: "references", weight: 1.0 },
@@ -48,6 +50,9 @@ flare.edges: {
   ],
   semantic_tags: ["project_history", "lineage", "crafty_syntax_origins", "rebranded_history"]
 }
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer: {
   last_verified_utc: "20260227",
   last_verified_by: "antigravity"

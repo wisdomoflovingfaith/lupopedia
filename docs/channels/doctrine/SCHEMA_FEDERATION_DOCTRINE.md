@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\SCHEMA_FEDERATION_DOCTRINE.md"
+  file_hash: "bd5582a69af25f63ad70213f45c4453935a82bc07d1f49d0f5349b3b7e69816b"
+  file_path_from_root: "docs\channels\doctrine\SCHEMA_FEDERATION_DOCTRINE.md"
   file_hash: "441376cf1eaa3d15216f0ed92494483089777f3584fef7f39e258548eb520f08"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SCHEMA_FEDERATION_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "schema_federation_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -237,4 +243,3 @@ Monitoring dashboard tracks:
 *Last Updated: January 2026*  
 *Version: GLOBAL_CURRENT_LUPOPEDIA_VERSION*  
 *Author: Captain Wolfie*
-

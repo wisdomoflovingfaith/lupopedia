@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\666\quarantine\README.md"
+  file_hash: "c7d584e20eed07731a6c9f3c04a29faea5f1fc82bd4c336ab1430bf7ff0f84a6"
+  file_path_from_root: "channels\666\quarantine\README.md"
   file_hash: "932814f00a767339cce5eeebc44ea3c6ab77cf8f1c584585f0b40d729d4f2cd2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Actor Workspace: WOLFIE AI (ID: 1)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "666", "quarantine", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

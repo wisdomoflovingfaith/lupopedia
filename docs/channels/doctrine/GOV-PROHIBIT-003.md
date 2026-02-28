@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-003.md"
+  file_hash: "e2b7bc0fd6e1cb27e713f123c3f300d1660d71987fbd35c693f4b2d4fbd5b5be"
+  file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-003.md"
   file_hash: "dcefcc282b8729052e3a8f1bd346584ad018f824c26b40975fef23f2ea89a186"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GOV-PROHIBIT-003: SUBSTANCE & STABILITY DOCTRINE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "gov-prohibit-003md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

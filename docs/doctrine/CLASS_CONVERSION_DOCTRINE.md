@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\CLASS_CONVERSION_DOCTRINE.md"
+  file_hash: "a272f9e624f0f18520f8dddbbc6508585ebd9c67a44366be1a7c7051f6678dbd"
+  file_path_from_root: "docs\doctrine\CLASS_CONVERSION_DOCTRINE.md"
   file_hash: "01ad66ce44e996c50271d0b4ef3b7406a4adcec469a840da983e62d754ce78cc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CLASS_CONVERSION_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "class_conversion_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

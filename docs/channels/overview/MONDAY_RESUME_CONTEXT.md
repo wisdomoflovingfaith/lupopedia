@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\MONDAY_RESUME_CONTEXT.md"
+  file_hash: "b714430b2fc0d638af77591a697abef1c69fe8917b68859b1932c135492e9402"
+  file_path_from_root: "docs\channels\overview\MONDAY_RESUME_CONTEXT.md"
   file_hash: "909cca1a637dd232ca3f9f97a4ea92d979f4f8f1c9745a9d74ade7e054a5ad84"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MONDAY_RESUME_CONTEXT.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "monday_resume_contextmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

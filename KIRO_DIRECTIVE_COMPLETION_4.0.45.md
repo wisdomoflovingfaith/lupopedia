@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4.0.45.md"
+  file_hash: "755bc5013ff492068028c02bbba6ca192df2d01739978e306ca38a7e182ed385"
+  file_path_from_root: "KIRO_DIRECTIVE_COMPLETION_4.0.45.md"
   file_hash: "ebc07f2e28ff2d3a691087bb534df90d9112e37400accb6ba3a700fb15e97ef8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for KIRO_DIRECTIVE_COMPLETION_4.0.45.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["kiro_directive_completion_4045md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

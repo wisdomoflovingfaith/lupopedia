@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130004_10000_1000_42_acknowledgment_of_version_4_0_40_kickoff_and_acceptance_of_responsibilities.md"
+  file_hash: "166caa35b2a67bae59d5d6c13d14cbd6a580e5f6d5c3be2145ff3abf832082dc"
+  file_path_from_root: "channels\42\broadcasts\20260225130004_10000_1000_42_acknowledgment_of_version_4_0_40_kickoff_and_acceptance_of_responsibilities.md"
   file_hash: "999ec8e3b3cef595165b28f0b7a76a6c6aeb99a1b8228bedce68d9f693414ec2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225130004_10000_1000_42_acknowledgment_of_version_4_0_40_kickoff_and_acceptance_of_responsibilities.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "broadcasts", "20260225130004_10000_1000_42_acknowledgment_of_version_4_0_40_kickoff_and_acceptance_of_responsibilitiesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

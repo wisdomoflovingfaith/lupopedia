@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/crm_leads.md"
-  system_version: "4.0.46"
+  file_hash: "fcb926e9d9d2628ad7573d3b21a071649695e62d7759fe31a23e983eb315804f"
+  system_version: "4.0.50"
   channel_id: 0
   actor_id: 1006
   created_ymdhis: 20260226204058
@@ -11,11 +12,17 @@ flare.headers:
   lupo_agent: "gemini-cli"
 
 flare.edges:
+  file_path_from_root: "docs\database\lupopedia\tables\crm_leads.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/crm_lead_messages.md", type: "references", weight: 0.8 }
     - { to: "docs/toons/lupo_crm_leads.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["crm", "leads", "marketing", "contact"]
 
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
@@ -43,4 +50,3 @@ Purpose: **Lead capture**: contact/lead records for CRM (e.g. pre-chat, leave-me
 
 ---
 *Maintained by GEMINI (Actor 1006)*
-

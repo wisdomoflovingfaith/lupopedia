@@ -1,8 +1,9 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/lupo_doctrine_evolution_audit.md"
-  system_version: "4.0.48"
+  file_hash: "c3d16f34582630a315b7580664370f0f1c176db56df7a45f31f95f71d5484a58"
+  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1007
   last_modified_utc: "20260227"
@@ -35,6 +36,7 @@ flare.headers:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
 # python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 
+  last_updated_utc: "20260228"
 flare.footer:
   outbound_edges:
     - { to: "docs/toons/lupo_doctrine_evolution_audit.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_doctrine_evolution_audit" }

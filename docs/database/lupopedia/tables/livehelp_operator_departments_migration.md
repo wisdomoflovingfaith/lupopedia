@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_operator_departments_migration.md",
-  system_version: "4.0.39",
+  file_hash: "aaa88fb07ba3caa0a2292c348b45b42d47b3c83a84560094ad4338d33e1f9fb7"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_operator_departments → lupo_actor_departments",

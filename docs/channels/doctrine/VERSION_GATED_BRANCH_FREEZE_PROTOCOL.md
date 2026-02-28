@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md"
+  file_hash: "031e67952850b07d4d52c3c91616b5412786256771e7fb6ce8b5c1a3471d3ebf"
+  file_path_from_root: "docs\channels\doctrine\VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md"
   file_hash: "79dd315b0fdbda3f88a8f445c7f3c539db418e695122b2aad9db4874fd72fe6e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "version_gated_branch_freeze_protocolmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

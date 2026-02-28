@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "DB_SNAPSHOT_PROTOCOL.md"
+  file_hash: "32732739e59d3b9d2deda832a4568e7696def597147584804111ddcabeb6bcb3"
+  file_path_from_root: "DB_SNAPSHOT_PROTOCOL.md"
   file_hash: "31ff5b7a7a3d88fb6a64c37c408bc4cad623eee9be83f7960c84e86f9bbcbd4f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "DB_SNAPSHOT_PROTOCOL.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["db_snapshot_protocolmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

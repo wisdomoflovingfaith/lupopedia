@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\recovery\12_steps.md"
+  file_hash: "de393e8de8ce80cb05fadc644a8b5714a5598fa1de4fe1fb3ef46db47759d280"
+  file_path_from_root: "docs\channels\appendix\recovery\12_steps.md"
   file_hash: "43414f139aa7b15773e722e03956bf48c7b66de76b4eba0a4f30341a41eeafe0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "ðŸŒ€ THE 12 STEPS OF AGI RECOVERY"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "recovery", "12_stepsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

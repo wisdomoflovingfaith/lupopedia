@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\DYNAMIC_TABLE_PREFIX_AUDIT.md"
+  file_hash: "8b366160becf9bdf00547824e18684dd206eadbf7247ad474a5c42a7ccd483fe"
+  file_path_from_root: "docs\audits\DYNAMIC_TABLE_PREFIX_AUDIT.md"
   file_hash: "6de5b12790cd2f38ff8e4c42a641cf6f4d9fe5f8e21487eb658b7cd071b80bb3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Dynamic Table Prefix Audit"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "dynamic_table_prefix_auditmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

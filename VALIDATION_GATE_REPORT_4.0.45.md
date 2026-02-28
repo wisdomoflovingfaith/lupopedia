@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_hash: "a9229da23d5037e81949883b80abc52faa07da7dae31be7de73a0e99cdf6ab79"
+  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
   file_hash: "e64c40bf4b36ee4da7a8d41a1674245df5279cdabe76e48d9c0dab06e75eb521"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for VALIDATION_GATE_REPORT_4.0.45.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["validation_gate_report_4045md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

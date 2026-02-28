@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\operations\WORLD_GRAPH_LAYER_COMPLETION_2026-01-22.md"
+  file_hash: "e3f8456bfe778f3c524908503e0e3bc816cf7d5470dffefbdba5744a40770b9d"
+  file_path_from_root: "dialogs_old_replaced_by_channels\operations\WORLD_GRAPH_LAYER_COMPLETION_2026-01-22.md"
   file_hash: "63078e871f32ce9327cdf7a713630f3624fee460ec5dc16d7716562f1e975305"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "World Graph Layer Completion Dialog"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "operations", "world_graph_layer_completion_2026-01-22md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

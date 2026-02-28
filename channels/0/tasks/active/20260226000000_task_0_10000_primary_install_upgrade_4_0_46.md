@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\tasks\active\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
+  file_hash: "2248a9e303263defc841143a7560f7bf6d6a42eb31c8c6567c878424a2a39524"
+  file_path_from_root: "channels\0\tasks\active\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
   file_hash: "b1baf908ddb0fbbda9c4a6a6d8f1c303aa9b659d9914ab076ab08ac555308a64"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "tasks", "active", "20260226000000_task_0_10000_primary_install_upgrade_4_0_46md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "prompts\1000\README.md"
+  file_hash: "e810d9ad7e764711d526cf601d22e7026249a97d5b70e98a5c671168e41b1b18"
+  file_path_from_root: "prompts\1000\README.md"
   file_hash: "2de7d59e64ac01530cc8f0a592458bc693e8225c80b7625f43aad9692d50b747"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "KIRO IDE (Actor ID: 1000)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["prompts", "1000", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

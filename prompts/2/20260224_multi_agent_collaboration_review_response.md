@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "prompts\2\20260224_multi_agent_collaboration_review_response.md"
+  file_hash: "59087afe6d228e9578b68da1d233982a26a3b38d4ad38802acc829ea55dece0a"
+  file_path_from_root: "prompts\2\20260224_multi_agent_collaboration_review_response.md"
   file_hash: "feec539b7334d026365e39a80aeedceddb3bce29f6aa944238f3372fc111dda7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224_multi_agent_collaboration_review_response.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["prompts", "2", "20260224_multi_agent_collaboration_review_responsemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

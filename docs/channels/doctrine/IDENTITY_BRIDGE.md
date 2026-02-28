@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\IDENTITY_BRIDGE.md"
+  file_hash: "43f6213d8959faf474dee55fb21b84213a858bdbeba3ec00f187ae94149c71f0"
+  file_path_from_root: "docs\channels\doctrine\IDENTITY_BRIDGE.md"
   file_hash: "365ebc8aa62d80d5594b2bc61b88ad6b5ffb1ad348d53723399c8feb959f373e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for IDENTITY_BRIDGE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "identity_bridgemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\tasks\completed\database_documentation_remaining_tables.md"
+  file_hash: "410b75c6eb08899efb9e142286b5625c644987f03bc6c674d97c58f4c8cf185b"
+  file_path_from_root: "channels\42\tasks\completed\database_documentation_remaining_tables.md"
   file_hash: "f60c2df23f9f4a53ce89733a3d08f3084366321d1267e08e064fe96f8ec9d608"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📚 Database Documentation - Remaining Tables Task"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "tasks", "completed", "database_documentation_remaining_tablesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
@@ -425,6 +430,3 @@ Each completed table documentation must:
 ---
 
 *This task represents the continuation of the database documentation initiative established in 4.0.47. The foundation is solid, the standards are established, and the tools are ready. The remaining work can proceed efficiently as tables become relevant to development needs.*
-
-
-

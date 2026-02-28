@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\humor\WOLFIE_OUT_OF_CONTEXT_APPENDIX.md"
+  file_hash: "facccc09e6d65c8ef5cd34727a3b7208b20a87eac4addaf46b11d7931b46246f"
+  file_path_from_root: "dialogs_old_replaced_by_channels\humor\WOLFIE_OUT_OF_CONTEXT_APPENDIX.md"
   file_hash: "8e9279b3dd8448374e58f3cb8a6bf183dc8c782f21728efed28ba63629575e32"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "WOLFIE OUT-OF-CONTEXT APPENDIX"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "humor", "wolfie_out_of_context_appendixmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

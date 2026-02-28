@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/channels/appendix/appendix/WHO_IS_CAPTAIN_WOLFIE.md",
-  system_version: "4.0.48",
+  file_hash: "d6dcb70b37133235243214137f590497a86c3ffd11360bb3b018f42b86bf6d15"
+  system_version: "4.0.50"
   channel_id: 42,
   actor_id: 1003,
   last_modified_utc: "20260227",
@@ -41,12 +42,16 @@ flare.headers: {
   lupo_agent: "antigravity"
 }
 flare.edges: {
+  file_path_from_root: "docs\channels\appendix\appendix\WHO_IS_CAPTAIN_WOLFIE.md"
   outbound_edges: [
     { to: "docs/channels/appendix/appendix/FOUNDERS_NOTE.md", type: "references", weight: 1.0 },
     { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 }
   ],
   semantic_tags: ["steward_identity", "intent_engine", "architect_profile"]
 }
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer: {
   last_verified_utc: "20260227",
   last_verified_by: "antigravity"

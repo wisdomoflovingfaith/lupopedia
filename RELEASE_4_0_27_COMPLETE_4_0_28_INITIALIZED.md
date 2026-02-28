@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "RELEASE_4_0_27_COMPLETE_4_0_28_INITIALIZED.md"
+  file_hash: "ab117b82c149834df353b2f0e196d19399703bc6ad513c62b46aba5a1b6b78cf"
+  file_path_from_root: "RELEASE_4_0_27_COMPLETE_4_0_28_INITIALIZED.md"
   file_hash: "03c46b2dfad765210d8cf2e288273ccb922109b5b9b1e316eb9bb9caecc4d4b7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "🎉 LUPopEDIA 4.0.27 RELEASE COMPLETE & 4.0.28 INITIALIZED"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["release_4_0_27_complete_4_0_28_initializedmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

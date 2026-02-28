@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\registry_consolidation_plan_4_0_34.md"
+  file_hash: "9262d6c54e2f212a796e2012b47b5a7e799d8da3f08c0380def3e1d69fb6c1f8"
+  file_path_from_root: "docs\status\registry_consolidation_plan_4_0_34.md"
   file_hash: "331ec028a474b3e3149ff567258129a6570b148f6dae53d0640661e66de6d395"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for registry_consolidation_plan_4_0_34.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "status", "registry_consolidation_plan_4_0_34md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

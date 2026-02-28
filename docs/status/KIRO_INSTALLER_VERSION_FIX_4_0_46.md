@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\KIRO_INSTALLER_VERSION_FIX_4_0_46.md"
+  file_hash: "3f6bde7be4d6b30bc5415687955fbd456c0cc8065508760e95ed95540379be85"
+  file_path_from_root: "docs\status\KIRO_INSTALLER_VERSION_FIX_4_0_46.md"
   file_hash: "3f2fb2a32eba15c9796ece8c074199538bd17c93baa9f2f9487e61e99843435b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for KIRO_INSTALLER_VERSION_FIX_4_0_46.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "status", "kiro_installer_version_fix_4_0_46md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

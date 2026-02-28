@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\tasks\active\broadcast_normalization.md"
+  file_hash: "d295ef1ecc1905d8b141967edd9abb7bdaa4f6d28c6ed2d00e746b871746175b"
+  file_path_from_root: "channels\0\tasks\active\broadcast_normalization.md"
   file_hash: "2e88aa239490c7d8217e3905eef443aa87ca0253b3e01dd6ee8abd7ae54ed34e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for broadcast_normalization.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "tasks", "active", "broadcast_normalizationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

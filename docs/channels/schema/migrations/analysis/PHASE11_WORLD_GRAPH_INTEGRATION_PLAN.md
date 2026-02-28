@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE11_WORLD_GRAPH_INTEGRATION_PLAN.md"
+  file_hash: "4562f12f7b0a185bc823b7467fde4c8ed473cd5b27a41cf91a46c6f7e2d729f0"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE11_WORLD_GRAPH_INTEGRATION_PLAN.md"
   file_hash: "6d4a1b542ce14d0ae3c8466ad32ce4049ddcd83503d991ba5a69e9dc47dd3f31"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Phase 11: World Graph Layer Integration Plan**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "phase11_world_graph_integration_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\emotional_frameworks\vector_model_v2_legacy.md"
+  file_hash: "8d399a41de609147f9d9de9b60c38595ed901a18929ebbd543a20c231ae7a69f"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\emotional_frameworks\vector_model_v2_legacy.md"
   file_hash: "af3c244fb76e9f96cdfb90ab8fae0c59fb25c593815a0be030d1c5586fdfd667"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for vector_model_v2_legacy.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "emotional_frameworks", "vector_model_v2_legacymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

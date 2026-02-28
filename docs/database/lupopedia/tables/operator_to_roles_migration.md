@@ -30,6 +30,7 @@ flare.footer:
 flare.headers: explicit architecture with structured clarity for every file.
   tags: ["legacy-reference"]
 file_path_from_root: docs/database/lupopedia/tables/operator_to_roles_migration.md
+  file_hash: "fa13f3f2dbec7ee5ca804f364bdb6cf69430a37a78158995a6d232bdcbf00e72"
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel

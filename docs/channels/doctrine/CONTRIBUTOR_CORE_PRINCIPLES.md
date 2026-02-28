@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\CONTRIBUTOR_CORE_PRINCIPLES.md"
+  file_hash: "55ce78e289762a266db001f4f0d932083bc18d086380e74725d93af646df93e7"
+  file_path_from_root: "docs\channels\doctrine\CONTRIBUTOR_CORE_PRINCIPLES.md"
   file_hash: "6a593ee67c0f2fbbefef37bbf38a65972ddbee713735c29cfdd1c442b6200354"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CONTRIBUTOR_CORE_PRINCIPLES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "contributor_core_principlesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

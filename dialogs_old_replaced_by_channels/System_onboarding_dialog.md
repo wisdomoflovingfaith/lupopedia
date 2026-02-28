@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\System_onboarding_dialog.md"
+  file_hash: "13ddea056ef0649305ae93cf4320993775692ecbdca4a241ec906c9789b78123"
+  file_path_from_root: "dialogs_old_replaced_by_channels\System_onboarding_dialog.md"
   file_hash: "b28cce42a57773961a830d572e24e36b3f49b951a6e123abf60f8519340ecdaf"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for System_onboarding_dialog.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "system_onboarding_dialogmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

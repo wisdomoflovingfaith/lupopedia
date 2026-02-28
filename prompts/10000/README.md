@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "prompts\10000\README.md"
+  file_hash: "ca75eefc095e08d332b0ac5a614c9421279d6eb72882bfb51f3083311cdfbe75"
+  file_path_from_root: "prompts\10000\README.md"
   file_hash: "fa1fd64282a90cb173fe536ab02168962dcc2276cec37b77271cd7ec1112a758"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Captain (Actor ID: 10000)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["prompts", "10000", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "tools\vsx-extension\docs\INSTALL.md"
+  file_hash: "3738e13a333114a3a0a1741ea0034265780a504f3d62334deca390c3be292691"
+  file_path_from_root: "tools\vsx-extension\docs\INSTALL.md"
   file_hash: "5eeee2a3e1dc471a55c992ce539d44500e086321573129e69ba88f3721b22f05"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Installation Guide"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["tools", "vsx-extension", "docs", "installmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\session_2026_01_16_version_3_0_46.md"
+  file_hash: "96871b555733d00c258271777404ad0836a5c9fcf70a5fbecfd63b9379060428"
+  file_path_from_root: "dialogs_old_replaced_by_channels\session_2026_01_16_version_3_0_46.md"
   file_hash: "84d8b3fa126714060e8732206a887b3c1fb4f0faa7c05fac52d6384f06859364"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for session_2026_01_16_version_3_0_46.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "session_2026_01_16_version_3_0_46md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -609,4 +615,3 @@ WOLFIE_COGNITIVE_LOAD_LIMIT: 9  # Maximum concurrent agents allowed before queue
 - Maintain One-Voice Protocol until Dry-Dock Mode ends
 
 ---
-

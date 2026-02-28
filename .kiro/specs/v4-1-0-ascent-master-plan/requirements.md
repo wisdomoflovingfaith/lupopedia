@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\v4-1-0-ascent-master-plan\requirements.md"
+  file_hash: "fd5189292b53b26a33d40505784d7b887100b45165f711be79a8fd6ea5aebfe5"
+  file_path_from_root: ".kiro\specs\v4-1-0-ascent-master-plan\requirements.md"
   file_hash: "ee933bf07e22053a69d08ef2e6baa1407c206b2639b3110f56867c9404eeaeed"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Requirements Document"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "v4-1-0-ascent-master-plan", "requirementsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

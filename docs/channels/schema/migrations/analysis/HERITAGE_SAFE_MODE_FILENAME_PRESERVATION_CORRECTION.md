@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\HERITAGE_SAFE_MODE_FILENAME_PRESERVATION_CORRECTION.md"
+  file_hash: "806501ee3baeb5453a899c9d81d36aa84f5e2b4c3c93354c60fe54ad11b9e4ea"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\HERITAGE_SAFE_MODE_FILENAME_PRESERVATION_CORRECTION.md"
   file_hash: "935766bc615f6de13da4891897da121c6c6c7e204fd89b385563c3bf94839546"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **HERITAGE-SAFE MODE OVERRIDE: Filename Preservation Correction**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "heritage_safe_mode_filename_preservation_correctionmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

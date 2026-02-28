@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "INSTALL_SQL_FIXED_READY_4.0.45.md"
+  file_hash: "cf8ca41b7fb6a93285fb1b326570afe0c55f4ac73338dbdf6329f21419683579"
+  file_path_from_root: "INSTALL_SQL_FIXED_READY_4.0.45.md"
   file_hash: "3e0ae8bfcae7436e8456a8d2ce3311cac04262ba02c3353510a01fd2b2a63eff"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for INSTALL_SQL_FIXED_READY_4.0.45.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["install_sql_fixed_ready_4045md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

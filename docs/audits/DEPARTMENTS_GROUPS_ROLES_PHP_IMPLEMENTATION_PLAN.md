@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_IMPLEMENTATION_PLAN.md"
+  file_hash: "db293cf3d694a9b823d9e6fd1749cb2540d27dbe1bd9bca1250323eb63f00e46"
+  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_IMPLEMENTATION_PLAN.md"
   file_hash: "b41eaa3ec1302a353e9c271cf45751b7b2d35348a41b6a5555c33658e82db80b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Departments / Groups / Roles Unification — PHP-Level Implementation Plan"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "departments_groups_roles_php_implementation_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

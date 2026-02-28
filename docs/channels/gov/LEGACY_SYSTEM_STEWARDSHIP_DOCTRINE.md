@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\LEGACY_SYSTEM_STEWARDSHIP_DOCTRINE.md"
+  file_hash: "324aeb9d019a05f71dd498274e7572497b60142982acee855981e9f015486c08"
+  file_path_from_root: "docs\channels\gov\LEGACY_SYSTEM_STEWARDSHIP_DOCTRINE.md"
   file_hash: "876739bb1ea1437f909f13cff0d7605621302a93277e5bbcad3b4ed341bc7dad"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LEGACY_SYSTEM_STEWARDSHIP_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "legacy_system_stewardship_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

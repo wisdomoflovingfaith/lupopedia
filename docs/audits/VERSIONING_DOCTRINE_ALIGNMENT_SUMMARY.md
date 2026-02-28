@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\VERSIONING_DOCTRINE_ALIGNMENT_SUMMARY.md"
+  file_hash: "e3a5421e38a4fa4bec50f099164016167aa018da86edfad13429812fe3e256e6"
+  file_path_from_root: "docs\audits\VERSIONING_DOCTRINE_ALIGNMENT_SUMMARY.md"
   file_hash: "a6666d8f87bf22e399fcb37c71219363dde826dec7032c42cd91e62fd8a13a50"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Versioning Doctrine Alignment Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "versioning_doctrine_alignment_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

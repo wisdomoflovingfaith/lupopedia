@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\WHY_THIS_DATASET_CANNOT_EXIST_TODAY.md"
+  file_hash: "ef3088ebc021b4e44fb670fcb5b3fdc1ac9096a39f530b8805234de1f0043365"
+  file_path_from_root: "docs\channels\overview\WHY_THIS_DATASET_CANNOT_EXIST_TODAY.md"
   file_hash: "69d5b442c865822d0582f503f6b0c226c4cda00c73c2cd913aabb45712e7a68c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "WHY THIS DATASET CANNOT BE RECREATED TODAY"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "overview", "why_this_dataset_cannot_exist_todaymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

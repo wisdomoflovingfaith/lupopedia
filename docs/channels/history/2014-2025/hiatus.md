@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\history\2014-2025\hiatus.md"
+  file_hash: "e3d0ffddaac23b7a18f8554dc6b849a703d6e026c47ee7640e27aba4e626aef4"
+  file_path_from_root: "docs\channels\history\2014-2025\hiatus.md"
   file_hash: "99230eaa014d63046d90b635df240beded8932ba0b2266d9aedff78f9b730208"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for hiatus.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "history", "2014-2025", "hiatusmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

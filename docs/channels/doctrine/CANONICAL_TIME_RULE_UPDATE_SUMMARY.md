@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\CANONICAL_TIME_RULE_UPDATE_SUMMARY.md"
+  file_hash: "e811634f0219e362cfcf42571c5244b9fca1f9f9a13623a46c831da6433bab50"
+  file_path_from_root: "docs\channels\doctrine\CANONICAL_TIME_RULE_UPDATE_SUMMARY.md"
   file_hash: "ade2579d5bc834ca97a006ffb9de4e226d5fb155ecd98ba3eb48c55a27edfc9c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CANONICAL_TIME_RULE_UPDATE_SUMMARY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "canonical_time_rule_update_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

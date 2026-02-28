@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\LUPOPEDIA_CANONICAL_DOCTRINE.md"
+  file_hash: "ed26602d155fce4ac062ee3258b78ab1dbdd51275154ac060fe1d0470e3ada00"
+  file_path_from_root: "docs\doctrine\LUPOPEDIA_CANONICAL_DOCTRINE.md"
   file_hash: "21bd2a6f2cf5df37d8f7d2613eeb0b76e58451d1e54dc24aa9187685e184af33"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LUPOPEDIA_CANONICAL_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "lupopedia_canonical_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

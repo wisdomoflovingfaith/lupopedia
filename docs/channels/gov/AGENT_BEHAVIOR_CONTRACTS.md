@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\AGENT_BEHAVIOR_CONTRACTS.md"
+  file_hash: "646511885d8c20000ac4ce35f9c2684edf35b6a6630f758fc3bfb23cf88b9cdc"
+  file_path_from_root: "docs\channels\gov\AGENT_BEHAVIOR_CONTRACTS.md"
   file_hash: "059cf220f120bbc0501712646948d71c2ba1161e3fd0914fdf9180ef8707f80a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AGENT_BEHAVIOR_CONTRACTS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "agent_behavior_contractsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

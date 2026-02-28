@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\PTSD_ADVERTISING_HARM_BOUNDARY.md"
+  file_hash: "ec59e5533c31e017735af4db65a2db8f452e0fe18ead76540ad7e477d868f77c"
+  file_path_from_root: "docs\channels\doctrine\PTSD_ADVERTISING_HARM_BOUNDARY.md"
   file_hash: "8ad707ebc43622464d923c4e43de8d1f43bb370517eaec0f4abed26ef01e1722"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for PTSD_ADVERTISING_HARM_BOUNDARY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "ptsd_advertising_harm_boundarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

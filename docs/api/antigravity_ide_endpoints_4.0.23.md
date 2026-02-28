@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\api\antigravity_ide_endpoints_4.0.23.md"
+  file_hash: "3122851ec458fa3ab5ce2d0c0385db41bcf81e52e583c2beab57b0526b08725b"
+  file_path_from_root: "docs\api\antigravity_ide_endpoints_4.0.23.md"
   file_hash: "725a379c58d2466b9ce00684d70b4d8e04340119bb56352d01ec9df22f1408ad"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for antigravity_ide_endpoints_4.0.23.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "api", "antigravity_ide_endpoints_4023md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

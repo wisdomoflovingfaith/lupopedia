@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\PHP_5_3_ARRAY_SYNTAX_SWEEP_REPORT.md"
+  file_hash: "4771a732221c7bcc1c1adcf542560853e77ad4cc53dd9a450f3cb8c04528bbff"
+  file_path_from_root: "docs\audits\PHP_5_3_ARRAY_SYNTAX_SWEEP_REPORT.md"
   file_hash: "989162eb9d6ba0e4aee789beed93685dc0a960cbbd38a7b85d1c05edf6971ebb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "PHP 5.3 Array Syntax Sweep Report"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "php_5_3_array_syntax_sweep_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

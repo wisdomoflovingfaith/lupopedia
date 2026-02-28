@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "actors\README.md"
+  file_hash: "daa7ba007579bfed39d8d805a64deb5cb7aeb65113960e797ec9df54246e1539"
+  file_path_from_root: "actors\README.md"
   file_hash: "d348397da924097e00f77aea08fb05a256da65ba3d78c51451b2f2526feff162"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Lupopedia Actors Directory"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["actors", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

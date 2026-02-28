@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\kernel\services\MOOD_SERVICES_OVERVIEW.md"
+  file_hash: "e5e744c967ac7eb0cd327300141e83a78d95cc903100d8517d3bfa472190b6ff"
+  file_path_from_root: "docs\channels\kernel\services\MOOD_SERVICES_OVERVIEW.md"
   file_hash: "9e68d6132a0efb8c611d2182802cf8e8f51eedbd9694e0715dee133729892db8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MOOD_SERVICES_OVERVIEW.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "kernel", "services", "mood_services_overviewmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

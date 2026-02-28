@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\system_truth_table_3_0_81.md"
+  file_hash: "8dd1c95701be5addd8a3696b293e0b2bc5d04396e98082975612a11513ba646b"
+  file_path_from_root: "docs\channels\architecture\system_truth_table_3_0_81.md"
   file_hash: "168801b770bab67b15ff3d8dd17dc9d64958f0b81a3d6f4dbc2e43e5af0dd397"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for system_truth_table_3_0_81.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "system_truth_table_3_0_81md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\agents\AGENT_RUNTIME.md"
+  file_hash: "afdf448dddab45e51a275410deaf69859ba177615c770417bf658d295f101b5c"
+  file_path_from_root: "docs\channels\agents\AGENT_RUNTIME.md"
   file_hash: "9f2bfd5ea995336689720a4d722ab4d843df229456fbb838730f77c14aba1372"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AGENT_RUNTIME.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "agents", "agent_runtimemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -727,4 +733,3 @@ All of this is built on the foundation of your MySQL tables, orchestrated by PHP
 - **[Agent Prompt Doctrine](../doctrine/AGENT_PROMPT_DOCTRINE.md)** â€” System prompt requirements and agent behavior rules
 - **[Database Schema Reference](../schema/DATABASE_SCHEMA.md)** â€” Complete documentation of agent-related tables
 - **[Lupopedia Agent Dedicated Slot Ranges](../doctrine/LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md)** â€” Official agent ID assignment ranges
-

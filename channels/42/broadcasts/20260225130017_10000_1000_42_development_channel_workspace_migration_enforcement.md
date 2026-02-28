@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130017_10000_1000_42_development_channel_workspace_migration_enforcement.md"
+  file_hash: "024907fdc4396aa11946bb10857f8400899531e85662aad545e803585baf2477"
+  file_path_from_root: "channels\42\broadcasts\20260225130017_10000_1000_42_development_channel_workspace_migration_enforcement.md"
   file_hash: "d59e0a167d0aa8638fd7394b3006d22fa45fe63410c3e38495939c93e564e515"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225130017_10000_1000_42_development_channel_workspace_migration_enforcement.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "broadcasts", "20260225130017_10000_1000_42_development_channel_workspace_migration_enforcementmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

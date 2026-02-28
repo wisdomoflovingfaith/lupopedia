@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\ANIBUS_DOCTRINE.md"
+  file_hash: "7615f1200bbd24d4cf6bbf24e60e844c293f0e98bf2e6759cfedc6994797a96f"
+  file_path_from_root: "docs\channels\doctrine\ANIBUS_DOCTRINE.md"
   file_hash: "cdc82671cc4e9b50eaf9d5e2e150f297829ca0a68290689522a0cfe00c22624f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ANIBUS_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "anibus_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -602,5 +608,3 @@ The rules are:
 - **[What Not To Do And Why](../appendix/appendix/WHAT_NOT_TO_DO_AND_WHY.md)** - Lessons learned that led to anubis design
 
 ---
-
-

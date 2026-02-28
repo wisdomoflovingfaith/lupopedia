@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\NO_STORED_PROCEDURES_DOCTRINE.md"
+  file_hash: "51c0050e0d25537fa577df8f029691b02495a5d6e664dc15d8eb1532c0a43f47"
+  file_path_from_root: "docs\channels\doctrine\NO_STORED_PROCEDURES_DOCTRINE.md"
   file_hash: "9a2e4cb09ef47d461d03e1c36eeeade6a0d123b6ce61040db34ed6de0a13787e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for NO_STORED_PROCEDURES_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "no_stored_procedures_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -686,4 +692,3 @@ This is how Lupopedia maintains portability, enables data merging, supports fede
 - [PHILOSOPHY.md](../../PHILOSOPHY.md) â€” Overall database philosophy
 
 ---
-

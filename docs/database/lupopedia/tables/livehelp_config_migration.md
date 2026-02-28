@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_config_migration.md",
-  system_version: "4.0.39",
+  file_hash: "7fa19918e1e129e82c0cc60ea6cd87d1600088737b72c716bef818c69d5ca4e8"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_config → lupo_modules.config_json (module_id = 1)",

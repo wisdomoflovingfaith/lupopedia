@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\operations\2026-01-22_repo_organization.md"
+  file_hash: "f32c7b711d44982b30543e6eca408d043a3ad758453a108924ae6ea29c999ec0"
+  file_path_from_root: "dialogs_old_replaced_by_channels\operations\2026-01-22_repo_organization.md"
   file_hash: "0ec808155934e9cd2cc11f174e740a0cc4a3836952bf7ae6703ab6c5e28b617d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 2026-01-22_repo_organization.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "operations", "2026-01-22_repo_organizationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

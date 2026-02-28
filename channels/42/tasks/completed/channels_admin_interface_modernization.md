@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\tasks\completed\channels_admin_interface_modernization.md"
+  file_hash: "16b3638d2c15dd79c5599276954d62b186e8448bd7f55a07ca428d380abb85e1"
+  file_path_from_root: "channels\42\tasks\completed\channels_admin_interface_modernization.md"
   file_hash: "846c5da8a62b7abd6ebc5db7a74893eb91e7650158aafbff330444bc91c6b3e0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for channels_admin_interface_modernization.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "tasks", "completed", "channels_admin_interface_modernizationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
@@ -63,4 +68,3 @@ Modernization of the legacy Crafty Syntax channels/livehelp admin interface usin
 - Implemented modern channels admin shell in channels/1/index.php.
 - Added admin pages in channels/1/admin/ with authenticated views.
 - Added custom styling and JS in channels/1/assets/ for navigation + layout.
-

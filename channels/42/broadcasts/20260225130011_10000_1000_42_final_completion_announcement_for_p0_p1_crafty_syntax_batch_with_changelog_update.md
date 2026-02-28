@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130011_10000_1000_42_final_completion_announcement_for_p0_p1_crafty_syntax_batch_with_changelog_update.md"
+  file_hash: "702862c6c8812bc8267912c47d163dbc44d043340f8704a458ff40ab9b5bbbd7"
+  file_path_from_root: "channels\42\broadcasts\20260225130011_10000_1000_42_final_completion_announcement_for_p0_p1_crafty_syntax_batch_with_changelog_update.md"
   file_hash: "62b2fe47b9cab91194b11cc2a424e9e826dbd6a9d1e91bfc986c62881755d5b8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225130011_10000_1000_42_final_completion_announcement_for_p0_p1_crafty_syntax_batch_with_changelog_update.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "broadcasts", "20260225130011_10000_1000_42_final_completion_announcement_for_p0_p1_crafty_syntax_batch_with_changelog_updatemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

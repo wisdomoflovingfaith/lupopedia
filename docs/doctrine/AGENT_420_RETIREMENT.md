@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\AGENT_420_RETIREMENT.md"
+  file_hash: "0e672fc313d480df6ee577713de6b1276745dc3668ae2c93622b6957e5755c02"
+  file_path_from_root: "docs\doctrine\AGENT_420_RETIREMENT.md"
   file_hash: "71ad71dfb1ca473665b855215e70dd388d629d4b5a9b704dc0a43716b5f9851e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Agent 420 Retirement Doctrine"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "doctrine", "agent_420_retirementmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

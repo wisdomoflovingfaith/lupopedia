@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-006.md"
+  file_hash: "71c69216c2a62a87281014b3f3f810f8976b899d4f8131a713df42808b7ee56e"
+  file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-006.md"
   file_hash: "922ffc166d62a9cfebd76b7405c7c049e5f6de6da9682ce1fff9c9081dd99d05"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GOV-PROHIBIT-006: ANTIâ€‘IDENTITY DRIFT DOCTRINE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "gov-prohibit-006md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

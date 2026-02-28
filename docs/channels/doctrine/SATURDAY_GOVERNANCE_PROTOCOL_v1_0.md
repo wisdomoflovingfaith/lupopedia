@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md"
+  file_hash: "eb59858f314408d032e94fac5d2454e7d1bc5b8a1e5a574348fb1a57d0f070db"
+  file_path_from_root: "docs\channels\doctrine\SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md"
   file_hash: "dc68bd1a1aa76b64c5d9493ce194b7053211bd0c00cc4d41afa26a924b654844"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "saturday_governance_protocol_v1_0md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

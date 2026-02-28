@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_emails_migration.md",
-  system_version: "4.0.39",
+  file_hash: "5cf1a9585af4035834c862e6df6a8822afae78cb62a1841d3b75a8dbff7f51e6"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_emails → lupo_crm_lead_messages (broadcast lead)",

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "OFFLINE_GOVERNANCE_MODEL_4.0.45.md"
+  file_hash: "8c74df03b4273a4562029ba880fca314d507c679c924ef41bb5df4f947fac00f"
+  file_path_from_root: "OFFLINE_GOVERNANCE_MODEL_4.0.45.md"
   file_hash: "f6bc484e6017566a7e06d93326394463742f2d0672c5700d7ae3637e824def5a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for OFFLINE_GOVERNANCE_MODEL_4.0.45.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["offline_governance_model_4045md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\SECURITY\SEMANTIC_SECURITY_4_0_30.md"
+  file_hash: "f3fd9d2146985a941ca889e1366217db9e2e3830c18189ca3aa6fb539e6d72bc"
+  file_path_from_root: "docs\doctrine\SECURITY\SEMANTIC_SECURITY_4_0_30.md"
   file_hash: "cba3bd49f60d29777eb6b20f3085fb593e10e825e1f005ba2bb0d89bd81d292c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SEMANTIC_SECURITY_4_0_30.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "security", "semantic_security_4_0_30md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

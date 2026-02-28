@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "IDENTITY_COLLISION_FIX_4.0.29.md"
+  file_hash: "402d6f2281bf8724c21f9d775c6e9ca157a61a58858fa709ca0782567942418c"
+  file_path_from_root: "IDENTITY_COLLISION_FIX_4.0.29.md"
   file_hash: "a5f4e42de5f304300f74f9670da9ab192a56285ec5299e62eebe7fb1ad4500da"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "🚨 IDENTITY COLLISION FIX — Lupopedia 4.0.29"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["identity_collision_fix_4029md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

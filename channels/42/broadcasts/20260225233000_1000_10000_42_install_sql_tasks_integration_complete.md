@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225233000_1000_10000_42_install_sql_tasks_integration_complete.md"
+  file_hash: "b00088e3cdb2630bc5dd7adf9a8d86772930502255f7b575bab75c37e0b2ba25"
+  file_path_from_root: "channels\42\broadcasts\20260225233000_1000_10000_42_install_sql_tasks_integration_complete.md"
   file_hash: "b5268b76a3721d4e8a446dd1960f99023642b1e0eae8b58e4c8d247ddbff2ac4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225233000_1000_10000_42_install_sql_tasks_integration_complete.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "broadcasts", "20260225233000_1000_10000_42_install_sql_tasks_integration_completemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

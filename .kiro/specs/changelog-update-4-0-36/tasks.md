@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\changelog-update-4-0-36\tasks.md"
+  file_hash: "bd4f2f2fbede61dda2d0bc4f4f36944de53ae7b05d54c20debaebb3ab9f4dd3d"
+  file_path_from_root: ".kiro\specs\changelog-update-4-0-36\tasks.md"
   file_hash: "e2d7b54f81c38f543f8a385c2bfd40d73a9a39caa60352e80cf957a2b29a9b26"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Implementation Plan: CHANGELOG.md Update for Version 4.0.36"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "changelog-update-4-0-36", "tasksmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

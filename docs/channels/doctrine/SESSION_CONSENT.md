@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\SESSION_CONSENT.md"
+  file_hash: "739c00da9b0a89368f5c456e5d1935ec1c47aa5c080dbfb05b82f7ed57e7f9c3"
+  file_path_from_root: "docs\channels\doctrine\SESSION_CONSENT.md"
   file_hash: "e6bbe55787a6e1f473a834f1fb8fc44daba05646bef2ba2d6459f25f53c7f050"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Session Consent for Lupopedia"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "session_consentmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

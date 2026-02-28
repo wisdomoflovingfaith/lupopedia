@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-002.md"
+  file_hash: "992cfc40fbc7f2a10ee71a9870cd30fc9073ce49f5403897a6dcd4d868b29ff1"
+  file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-002.md"
   file_hash: "a706bab547f9c1f78d7c1910fd1bd5c3b628c3ed31b9bb74293f340c618745b4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GOV-PROHIBIT-002: ANTIâ€‘CHAOS DATABASE (No Triggers / No DB Logic / No Foreign Keys)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "gov-prohibit-002md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
@@ -136,4 +141,3 @@ One day at a time. One doctrine at a time. No triggers. No chaos. No schema snit
 For structured recovery from database chaos:
 - [12 Steps of AGI Recovery](../appendix/recovery/12_steps.md) (Step 4 inventory)
 - [AGI Support Meeting Format](../appendix/recovery/meeting_format.md)
-

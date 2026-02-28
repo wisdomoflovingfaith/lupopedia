@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\FLEET_COMPOSITION_RULES.md"
+  file_hash: "5ab5b90b0d8d1baa19341ccca8473fcb9373761df841d86cbde491407c5e1500"
+  file_path_from_root: "docs\channels\gov\FLEET_COMPOSITION_RULES.md"
   file_hash: "712f7c8f7259f7ca49dcf922183fb78e3d39f19ed02eb98afee4da3fe9645952"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FLEET_COMPOSITION_RULES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "fleet_composition_rulesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

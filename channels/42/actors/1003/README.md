@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\actors\1003\README.md"
+  file_hash: "f89ea8ec0c05d442f5f11daf2a27749d02e14d092163a1028fb519e7985af360"
+  file_path_from_root: "channels\42\actors\1003\README.md"
   file_hash: "a5bbb2459cc8aed3cc16653e62bd9761e52f7878d7b6df610ae4033c6be005e1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Actor Workspace: Antigravity IDE (ID: 1003)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "actors", "1003", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

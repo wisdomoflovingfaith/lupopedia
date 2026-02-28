@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\HELPER_TO_CLASS_MAPPING_ANALYSIS.md"
+  file_hash: "0213b4e9aa281a5cd7b27b445eb7803629d5dfdad8fe62df8a94d101f54ddfae"
+  file_path_from_root: "docs\HELPER_TO_CLASS_MAPPING_ANALYSIS.md"
   file_hash: "6ab670175d5e9ad97a1e96db668417b72fb4977d3c672ad2e6463bc05401d08d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Helper-to-Class Mapping Plan (Analysis Only)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "helper_to_class_mapping_analysismd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

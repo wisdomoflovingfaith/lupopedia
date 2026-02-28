@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "prompts\2\20260224_multi_agent_collaboration_review.md"
+  file_hash: "12253973c3e111ebfe82d5b0961b54603345fcf550e21907d27c8a7b731aaccd"
+  file_path_from_root: "prompts\2\20260224_multi_agent_collaboration_review.md"
   file_hash: "0e69198ead24b9203fdf0b32df1759f091b44cc9884692f73be66c8200f5b3d7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224_multi_agent_collaboration_review.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["prompts", "2", "20260224_multi_agent_collaboration_reviewmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

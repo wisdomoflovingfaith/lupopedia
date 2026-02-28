@@ -1,8 +1,9 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:
   file_path_from_root: "actors/1007/20260227_channels_admin_next_steps_report.md"
-  system_version: "4.0.49"
+  file_hash: "d3bbff4cc73678f039916cc6c3ee1a9b3f83cfd750d9e338b342b79cb98ed746"
+  system_version: "4.0.50"
   channel_id: 42
   actor_id: 1007
   last_modified_utc: "20260227"
@@ -16,6 +17,9 @@ flare.headers:
   tags: ["channels", "admin", "api", "4.0.49", "next_steps"]
   lupo_agent: "jetbrains"
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   outbound_edges:
     - { to: "lupo-includes/modules/api/channels-admin-api.php", type: "references", weight: 0.9, reason: "Admin API module" }
@@ -27,7 +31,7 @@ flare.footer:
   last_verified_by: "lupopedia"
 ---
 
-# Channels Admin Modernization — Next Steps (Post-API)
+# Channels Admin Modernization ï¿½ Next Steps (Post-API)
 
 ## Status Snapshot
 - Admin shell and iframe UI are in place.

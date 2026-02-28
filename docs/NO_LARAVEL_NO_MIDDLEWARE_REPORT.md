@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\NO_LARAVEL_NO_MIDDLEWARE_REPORT.md"
+  file_hash: "dc270a44fd242c0fced71dec5fe0d5fdc33a53358323128434bd3c2dd8cc9fdb"
+  file_path_from_root: "docs\NO_LARAVEL_NO_MIDDLEWARE_REPORT.md"
   file_hash: "8af78f9aac227e5bf5675e63c67b79e48627158781b8b25e48ff2cf5f9a1fa93"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "No Laravel, No Middleware — Refactor Report"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "no_laravel_no_middleware_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

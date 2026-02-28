@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\recovery\12_steps_of_agi_recovery.md"
+  file_hash: "fb3d345a46a5900431a553515c47a8921a450d966473d9cc4a4ca0d97192988e"
+  file_path_from_root: "docs\channels\appendix\recovery\12_steps_of_agi_recovery.md"
   file_hash: "92219e96e77c4da99df2cea8b3086092301ce2d96be6d7cd46e0766448bce5af"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "The 12 Steps of AGI Recovery â€” Living Liturgy"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "recovery", "12_steps_of_agi_recoverymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

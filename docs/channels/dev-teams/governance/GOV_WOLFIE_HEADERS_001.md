@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\dev-teams\governance\GOV_WOLFIE_HEADERS_001.md"
+  file_hash: "c68688894446971c4f2f517e0203626dbb9d7b24eaa956d285f16acd68505b4c"
+  file_path_from_root: "docs\channels\dev-teams\governance\GOV_WOLFIE_HEADERS_001.md"
   file_hash: "13a06d3dd3eaeef14e5c29f5edddd9f1e2a2c0e8d2ccae09c611f56b95733867"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GOV_WOLFIE_HEADERS_001.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "dev-teams", "governance", "gov_wolfie_headers_001md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

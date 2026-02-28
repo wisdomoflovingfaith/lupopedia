@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\database\README.md"
+  file_hash: "08e4b5d0d7642eab74b55c8dcae06fd67f2318e600f9a9cc0223561ca0ca58a2"
+  file_path_from_root: "docs\doctrine\database\README.md"
   file_hash: "430099c1ebb97df48e601476f7414e3012eb45d89d9d141bb694daff925d96b9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📁 Database Documentation Moved"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "doctrine", "database", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

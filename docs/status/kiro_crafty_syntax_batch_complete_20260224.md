@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\kiro_crafty_syntax_batch_complete_20260224.md"
+  file_hash: "00d0ea18eb2eb0d05a065dcb319c7a31f9570cf72de1ae8f4eacbd30be9f1cfd"
+  file_path_from_root: "docs\status\kiro_crafty_syntax_batch_complete_20260224.md"
   file_hash: "b323b8b0bd323c64002c00666a7c110cc23ab895da87882ac96049fb903a9b18"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for kiro_crafty_syntax_batch_complete_20260224.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "status", "kiro_crafty_syntax_batch_complete_20260224md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

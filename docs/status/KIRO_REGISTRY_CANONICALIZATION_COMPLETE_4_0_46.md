@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\KIRO_REGISTRY_CANONICALIZATION_COMPLETE_4_0_46.md"
+  file_hash: "bd2288e4d6084e11aadeb096a1ebb49d2d9e4cf2689096c6d6e6347cd10d54d6"
+  file_path_from_root: "docs\status\KIRO_REGISTRY_CANONICALIZATION_COMPLETE_4_0_46.md"
   file_hash: "2b89bd0a4eba71b59cfb97d5c025705dd80b145cb2210849c06a9ba7df541c7e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for KIRO_REGISTRY_CANONICALIZATION_COMPLETE_4_0_46.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "status", "kiro_registry_canonicalization_complete_4_0_46md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

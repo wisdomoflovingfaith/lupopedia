@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "HUMAN_TASKS_CAPTAIN_10000.md"
+  file_hash: "2fe42ee7c34bc473fa65d078af43fdbe38cc17829b85823e6947507a0a6c653e"
+  file_path_from_root: "HUMAN_TASKS_CAPTAIN_10000.md"
   file_hash: "f7154920e6ccdabe5daa90335bc8e3896e2993499dee3c3d2d463df707b1f2a4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HUMAN_TASKS_CAPTAIN_10000.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["human_tasks_captain_10000md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

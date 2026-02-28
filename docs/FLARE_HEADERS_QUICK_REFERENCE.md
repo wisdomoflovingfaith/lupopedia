@@ -51,11 +51,12 @@ Together they form the File-Level Attribute and Relationship Exchange layer of L
 The header must begin with the prologue line below, followed immediately by the YAML delimiter and `flare.headers`.
 
 ```text
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:
   file_path_from_root: "path/from/root.md"
-  system_version: "4.1.0"
+  file_hash: "bbb0e81e43f423ea587c8d0dabc22ae599109222057e0390796ae951620b9df1"
+  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1007
   last_modified_utc: "20260226"
@@ -67,10 +68,14 @@ flare.headers:
   actor_ip: "127.0.0.1"
 
 flare.edges:
+  file_path_from_root: "docs\FLARE_HEADERS_QUICK_REFERENCE.md"
   outbound_edges:
     - { to: "docs/related.md", type: "references", weight: 1.0 }
   semantic_tags: ["tag1", "tag2"]
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   view_count: 0
   like_count: 0
@@ -257,7 +262,3 @@ $date = gmdate('Ymd'); // 20260226
 ---
 
 **Quick Reference Complete** 🎯
-
-
-
-

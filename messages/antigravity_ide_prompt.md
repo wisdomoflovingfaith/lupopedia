@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "messages\antigravity_ide_prompt.md"
+  file_hash: "01add3876200437b7a76c95cc99e28a60a7bfa32fe890693a7969f96ef4905c7"
+  file_path_from_root: "messages\antigravity_ide_prompt.md"
   file_hash: "871a2c7c80ba687ed075ed574aa95780914b75054a3edc871c726826a43011b0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Antigravity IDE - Windsurf Handoff Complete"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["messages", "antigravity_ide_promptmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "help"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\testing\import_trial_scorecard_livehelp.md"
+  file_hash: "96fc207790cdf239433c180c8f5e65dd2b923a91fd51acbff6fea04f9291272b"
+  file_path_from_root: "docs\channels\developer\testing\import_trial_scorecard_livehelp.md"
   file_hash: "8ffe330f946273c9d51943a7ad896061ea99f6cb30af61951a84a0ff82c8763a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Import Trial Scorecard — livehelp_ Tables"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "developer", "testing", "import_trial_scorecard_livehelpmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

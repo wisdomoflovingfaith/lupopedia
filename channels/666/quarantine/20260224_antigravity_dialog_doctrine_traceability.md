@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\666\quarantine\20260224_antigravity_dialog_doctrine_traceability.md"
+  file_hash: "10d291dae34c114101395b0271bebff5c285b82121883082f99fb4bfae454abb"
+  file_path_from_root: "channels\666\quarantine\20260224_antigravity_dialog_doctrine_traceability.md"
   file_hash: "72d0a355a2ca93c931410c0aa7e3b13950717e4a8349f989eb059f8cf1a100c6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📣 BROADCAST: DIALOG DOCTRINE RENORMALIZATION & TRACEABILITY UPGRADE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "666", "quarantine", "20260224_antigravity_dialog_doctrine_traceabilitymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

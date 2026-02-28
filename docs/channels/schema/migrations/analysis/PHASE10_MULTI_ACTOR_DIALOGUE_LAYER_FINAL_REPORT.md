@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE10_MULTI_ACTOR_DIALOGUE_LAYER_FINAL_REPORT.md"
+  file_hash: "66fa549dbb7d10d2be06849e5724e4d4f18f648c785652380b4efa7a36e28b62"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE10_MULTI_ACTOR_DIALOGUE_LAYER_FINAL_REPORT.md"
   file_hash: "bb3c0e4d2e155cf0e2624bf746dfb419b2a829eb4163f4ebe8d4f3a175c5c073"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Phase 10: Multi-Actor Dialogue Layer Report**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "phase10_multi_actor_dialogue_layer_final_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

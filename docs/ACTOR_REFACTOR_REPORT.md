@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\ACTOR_REFACTOR_REPORT.md"
+  file_hash: "14874fc0094d6cb9291c19c2d3f3144eb38d2de766816e70225d2ca2baaa5583"
+  file_path_from_root: "docs\ACTOR_REFACTOR_REPORT.md"
   file_hash: "01f3641a147970e6335e54d6c80f887ff32ba2795e8e06fd17bc5108fefcb8f4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Actor Domain Refactor Report"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "actor_refactor_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

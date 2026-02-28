@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GOV-FOUNDATIONS.md"
+  file_hash: "875afc5854c0d289f50352433096bb0b1d77ded7b62bcf0ff92e8e800d14e0d3"
+  file_path_from_root: "docs\channels\doctrine\GOV-FOUNDATIONS.md"
   file_hash: "406a48a7af4cc1b4c0fb8bfd07c27fa4770b9fd6f34f6f26a1b756e68b7fdf5d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GOV-FOUNDATIONS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "gov-foundationsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

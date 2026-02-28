@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_checklist_acknowledged.md"
+  file_hash: "838d6f0a4b17d367472898aac0c4454d63010760f328531ccc9623338d43c83b"
+  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_checklist_acknowledged.md"
   file_hash: "c81bc326f357d837d8eb6e5f58299086955e309cb3fc5308c74ba93e6e285b5e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224_windsurf_checklist_acknowledged.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "42", "broadcasts", "20260224_windsurf_checklist_acknowledgedmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

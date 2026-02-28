@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\archive\legacy_versions\AGENT_PRESENCE_MAP_4_0_33.md"
+  file_hash: "fd352a1784f7f51f7120d8690b52af6c03b020b7763874bd631d40ef9a6f1ce2"
+  file_path_from_root: "docs\status\archive\legacy_versions\AGENT_PRESENCE_MAP_4_0_33.md"
   file_hash: "2332a4229e3af17dcce642e68831b9f22b2e9a2537864be4a3124817f8106cbf"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AGENT_PRESENCE_MAP_4_0_33.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "status", "archive", "legacy_versions", "agent_presence_map_4_0_33md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

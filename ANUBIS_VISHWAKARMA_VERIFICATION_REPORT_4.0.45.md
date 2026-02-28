@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "ANUBIS_VISHWAKARMA_VERIFICATION_REPORT_4.0.45.md"
+  file_hash: "14f3b194bf193cae2391e1d39acade581defaa422c82e7bddf2be84d2f5ee435"
+  file_path_from_root: "ANUBIS_VISHWAKARMA_VERIFICATION_REPORT_4.0.45.md"
   file_hash: "7f22dd0e29c5df708eedb07b4309d27247ea8532e40a976b1fb6070dc48601a7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ANUBIS_VISHWAKARMA_VERIFICATION_REPORT_4.0.45.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["anubis_vishwakarma_verification_report_4045md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

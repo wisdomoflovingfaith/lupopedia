@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\666\quarantine\20260224145000_10000_1001_install_sql_errors_critical.md"
+  file_hash: "4d08dc5f67e85c418fe54badeeec3a8d0de894b3facd2e951aae94df3e2f5e27"
+  file_path_from_root: "channels\666\quarantine\20260224145000_10000_1001_install_sql_errors_critical.md"
   file_hash: "bb10d0621161f7d3133fd905552da8c6601ab5661df0f605833c9e90d85b5919"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224145000_10000_1001_install_sql_errors_critical.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "666", "quarantine", "20260224145000_10000_1001_install_sql_errors_criticalmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

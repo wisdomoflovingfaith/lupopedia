@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\tasks\active\db_reset_and_install.md"
+  file_hash: "a39c5cb37f5641ac53135c698a1d25d93b0234d4efc75ce1b08acc0ebe0a2463"
+  file_path_from_root: "channels\0\tasks\active\db_reset_and_install.md"
   file_hash: "0a3c7d3090546f741245380b6ea57079076d73ca29cc88a0a2707c09262d32d2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for db_reset_and_install.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "tasks", "active", "db_reset_and_installmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

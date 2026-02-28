@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\IDE_COORDINATION_PROTOCOL_v3_0_70.md"
+  file_hash: "e1af7b10f28654bcdda9ee4cf39a63f36fee26f62b243872af11fbb445e27abb"
+  file_path_from_root: "dialogs_old_replaced_by_channels\IDE_COORDINATION_PROTOCOL_v3_0_70.md"
   file_hash: "6dd13e0ca03fb57a4fdea23e8002478fec0d7d2ff1ea0a97b5fcac5c08bc3115"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for IDE_COORDINATION_PROTOCOL_v3_0_70.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "ide_coordination_protocol_v3_0_70md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

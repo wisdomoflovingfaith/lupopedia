@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130008_10000_1000_42_announce_completion_of_v4_1_how_to_use_lupopedia_md.md"
+  file_hash: "188c24a0be2212405db8afedea4783565c5e8f67328147f7040080accb2b2392"
+  file_path_from_root: "channels\42\broadcasts\20260225130008_10000_1000_42_announce_completion_of_v4_1_how_to_use_lupopedia_md.md"
   file_hash: "e4480f08237b918bb067a14d84a392325128e3c4e9ab2813876c2b7c69f5f778"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225130008_10000_1000_42_announce_completion_of_v4_1_how_to_use_lupopedia_md.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "broadcasts", "20260225130008_10000_1000_42_announce_completion_of_v4_1_how_to_use_lupopedia_mdmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

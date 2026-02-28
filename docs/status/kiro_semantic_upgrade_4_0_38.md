@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\kiro_semantic_upgrade_4_0_38.md"
+  file_hash: "5a1f95ab3d24cb313e3e5a399d3978378d6c427c38466f2e50cc9c3d40744245"
+  file_path_from_root: "docs\status\kiro_semantic_upgrade_4_0_38.md"
   file_hash: "f154b157cf046135b78ebe7bd1beb534ddfc15ed88927d429dd9049cb2b2c900"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for kiro_semantic_upgrade_4_0_38.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "status", "kiro_semantic_upgrade_4_0_38md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
@@ -356,4 +361,3 @@ All upgraded files are now **FLIP v3 ready** with:
 **UTC:** 20260224
 
 🐺 **Semantic header/footer upgrades for version 4.0.38 complete. All files aligned and validated. Ready for Captain review.**
-

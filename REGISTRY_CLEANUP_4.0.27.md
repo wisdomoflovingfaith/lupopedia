@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
+  file_hash: "270e030a3c8df6c3c334bfb5ed73dc129e779f5edfb5449d8e53f3ae9529b3e9"
+  file_path_from_root: "REGISTRY_CLEANUP_4.0.27.md"
   file_hash: "633b7f13b23f9058142fca373c7975c19002d64bb29ab5a185ad2b16b388bf29"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Unified Registry ID Global Cleanup - 4.0.27"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["registry_cleanup_4027md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

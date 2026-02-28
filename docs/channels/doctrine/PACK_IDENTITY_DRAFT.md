@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\PACK_IDENTITY_DRAFT.md"
+  file_hash: "6df0355e5432773b73cad51078b266171c90fea4f42f5968ebfe4bdfc581fe67"
+  file_path_from_root: "docs\channels\doctrine\PACK_IDENTITY_DRAFT.md"
   file_hash: "4b66f23a3dfa5619b0f390f8214014a1c0a73b933c719f75610eb394d6305241"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for PACK_IDENTITY_DRAFT.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "pack_identity_draftmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -3,7 +3,8 @@
 ---
 flare.headers:
   file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227124500_10000_windsurf_db_changes_summary.md"
-  system_version: "4.0.49"
+  file_hash: "888107a088db01122666b35e4cf3fe5ee643334a44002cb57e0c32fc55440a8e"
+  system_version: "4.0.50"
   channel_id: 42
   actor_id: 10000
   last_modified_utc: "20260227"
@@ -18,6 +19,7 @@ flare.headers:
   lupo_agent: "windsurf"
 
 flare.edges:
+  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_49\20260227124500_10000_windsurf_db_changes_summary.md"
   outbound_edges:
     - { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227123000_1007_dbdoc_recommendations.md", type: "implements", weight: 1.0, reason: "DBDOC recommendations source" }
     - { to: "docs/toons/", type: "updated", weight: 0.9, reason: "TOON schema updates" }
@@ -25,6 +27,9 @@ flare.edges:
     - { to: "database/migrations/20260227_4_0_49_schema_updates.sql", type: "creates", weight: 0.8, reason: "One-time migration file" }
   semantic_tags: ["schema", "migration", "dbdoc", "channel_42", "completed"]
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260227"
   last_verified_by: "lupopedia"

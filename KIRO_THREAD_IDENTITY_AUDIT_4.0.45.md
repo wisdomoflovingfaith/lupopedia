@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
+  file_hash: "52df56ccbd244cddf24b69c991e11636fa1378ac45ab8a19944f01c70d493d40"
+  file_path_from_root: "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
   file_hash: "ca645b5fd0612d964d5b23000e72d58dcb63c3e9afbc18117e3dfd5b334d73d6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["kiro_thread_identity_audit_4045md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

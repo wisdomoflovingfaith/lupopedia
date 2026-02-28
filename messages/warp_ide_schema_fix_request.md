@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "messages\warp_ide_schema_fix_request.md"
+  file_hash: "cca3e69288f7ea568edf48262bd682a670b3f1f340dc6c369b9b1712aae0635d"
+  file_path_from_root: "messages\warp_ide_schema_fix_request.md"
   file_hash: "afabf95145cb8b7aa8a7c2a2039668afb1e2be8cee913084ddfc1c38a36608a1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "WARP IDE - URGENT SCHEMA MISMATCH FIX REQUEST"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["messages", "warp_ide_schema_fix_requestmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

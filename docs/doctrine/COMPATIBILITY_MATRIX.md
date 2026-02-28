@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\COMPATIBILITY_MATRIX.md"
+  file_hash: "f8453c23f34d61ba4fc62fcd1c40581673fbac4849a541d5c9f202d1615e3a82"
+  file_path_from_root: "docs\doctrine\COMPATIBILITY_MATRIX.md"
   file_hash: "e6293937c282294fdf2f3292f990c726098ccdd7dff7f9d5e2097cf6f74ef529"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for COMPATIBILITY_MATRIX.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "compatibility_matrixmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\EXECUTIVE_SUMMARY.md"
+  file_hash: "a33acd48d73263595283bf5b288cd5ab08b5067622f5bf8c7882c60ea40b3bb9"
+  file_path_from_root: "docs\channels\overview\EXECUTIVE_SUMMARY.md"
   file_hash: "81bc56de316e60d19f72443711a31981126b1a4e07aa70eada6861209615fc19"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for EXECUTIVE_SUMMARY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "executive_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -244,4 +250,3 @@ Unlike traditional CMS platforms that force rigid structures or cloud services t
 *For technical details, see [Technical Architecture](docs/ARCHITECTURE.md)*  
 *For database structure, see [Database Schema Reference](docs/DATABASE_SCHEMA.md)*  
 *For vision and philosophy, see [Vision Statement](VISION.md)*
-

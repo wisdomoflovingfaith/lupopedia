@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\TABLE_CONSOLIDATION_PLAN.md"
+  file_hash: "69d80460d19db26060ae1b41436fb5b2d36cd090c34ea112eb5b704f780604a1"
+  file_path_from_root: "docs\doctrine\TABLE_CONSOLIDATION_PLAN.md"
   file_hash: "a56130cd78c4d75750150b92b953501889fdeacc9adb2e61beb0a39cf8ca6c0a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for TABLE_CONSOLIDATION_PLAN.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "table_consolidation_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

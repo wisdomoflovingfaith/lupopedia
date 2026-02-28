@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\JETBRAINS_CONFIGURATION_DOCTRINE.md"
+  file_hash: "55f478e8ab1b351af8132249d7a8bd39ed825aff92b7b627fec7a83cf090923e"
+  file_path_from_root: "docs\channels\doctrine\JETBRAINS_CONFIGURATION_DOCTRINE.md"
   file_hash: "7299f22b7e26bfb1536c473c5a1f429dc81c5a3a25a2f4d4a235f6ae6425f6ba"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for JETBRAINS_CONFIGURATION_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "jetbrains_configuration_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

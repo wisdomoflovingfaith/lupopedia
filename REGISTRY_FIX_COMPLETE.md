@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
+  file_hash: "cfc36148ac2c146286a53dcc41781c57b0f8a41480d638e92176fc3abd8fcc2c"
+  file_path_from_root: "REGISTRY_FIX_COMPLETE.md"
   file_hash: "b39cd11f2d3362f06295fb5c5683576ab256843f8bfd28b4ce0ef0524f95a12b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "REGISTRY TABLE RENAME FIXES COMPLETED"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["registry_fix_completemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

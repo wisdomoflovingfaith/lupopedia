@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\UTC_CODING_CYCLE_DOCTRINE.md"
+  file_hash: "5263a2c9ca18d3e68a837ba7fb3506e30fb318a883918fad9a12a27b3c8e1c48"
+  file_path_from_root: "docs\channels\doctrine\UTC_CODING_CYCLE_DOCTRINE.md"
   file_hash: "8ee5467c0d139d6b7ef01c904c66e869f4f4861042f354a8a8d6b8603b3effe9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "UTC_CODING_CYCLE_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "utc_coding_cycle_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

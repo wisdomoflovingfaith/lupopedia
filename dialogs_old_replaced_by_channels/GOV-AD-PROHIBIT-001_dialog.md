@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\GOV-AD-PROHIBIT-001_dialog.md"
+  file_hash: "6fafe0a11e292005fd68a90cec0eb595654f134ee8c99f89eec5ef8a5acdebff"
+  file_path_from_root: "dialogs_old_replaced_by_channels\GOV-AD-PROHIBIT-001_dialog.md"
   file_hash: "39b8a3277ccb06cba95cd39f6e7d2e059324e407248d356a18b12285a0801d90"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GOV-AD-PROHIBIT-001_dialog.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "gov-ad-prohibit-001_dialogmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\ETHICAL_FOUNDATIONS.md"
+  file_hash: "e396ca3864fed4794a8775b0ee46a6a578714f7193c4820f84ea47be8e6a2a52"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\ETHICAL_FOUNDATIONS.md"
   file_hash: "d05a0654a64ffb3b5a09e8c66701bde7fe8f08315e03c2162d5343c3494feb09"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "DOCTRINE: ETHICAL FOUNDATIONS"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "ethical_foundationsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\WOLFIE_RESURRECTION_DOCTRINE.md"
+  file_hash: "e709b9e2c8d9b39a62ea32674ee5a9ceb6dd5ea7808e24dd457be0ad840fb7cd"
+  file_path_from_root: "docs\channels\doctrine\WOLFIE_RESURRECTION_DOCTRINE.md"
   file_hash: "4d3d62b2d3a8a30e352510be3f6adda518d97d0bd227ebaf2b1d969688addb7d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for WOLFIE_RESURRECTION_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "wolfie_resurrection_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

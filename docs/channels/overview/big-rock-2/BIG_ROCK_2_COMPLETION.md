@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\big-rock-2\BIG_ROCK_2_COMPLETION.md"
+  file_hash: "5817b5384d08ee06af109cf1a120ec08e41ae922460452af56abc49db45030cc"
+  file_path_from_root: "docs\channels\overview\big-rock-2\BIG_ROCK_2_COMPLETION.md"
   file_hash: "5a0895dd9e716d1f77cfb4f7f8d37c344e96df2d0c47abbad2f3b9e3e05429cc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for BIG_ROCK_2_COMPLETION.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "big-rock-2", "big_rock_2_completionmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\roadmaps\TO_DO_FOR_VERSION_4_1_0.md"
+  file_hash: "8279a6ba22c18b97eded8aab6c330a4509e1d816269c64191a4b13419ae60d3c"
+  file_path_from_root: "docs\channels\overview\roadmaps\TO_DO_FOR_VERSION_4_1_0.md"
   file_hash: "3fb06bc0bc380a835c4e4eb394cbfb000ad8a1bfa9c50598b506053254d9c520"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for TO_DO_FOR_VERSION_4_1_0.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "roadmaps", "to_do_for_version_4_1_0md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

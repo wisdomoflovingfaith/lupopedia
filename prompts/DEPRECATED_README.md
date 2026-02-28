@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "prompts\DEPRECATED_README.md"
+  file_hash: "bb41597cf8621d26aac7b86e44d63aafbf6f9eccc9225c93567e9434dc2d205c"
+  file_path_from_root: "prompts\DEPRECATED_README.md"
   file_hash: "182b5f8cf0a9588a963e9a77bffb06d75ce5be80a4ad4af7ea3e0e81cdefb74b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "DEPRECATED: /prompts/ Root Directory"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["prompts", "deprecated_readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

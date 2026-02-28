@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\doctrines\MOOD_CALCULATION_PROTOCOL.md"
+  file_hash: "bb8028de63c1973ba5b655f886c09f7341d5a34b7bf3f00b82594e4701698fa4"
+  file_path_from_root: "docs\channels\doctrine\doctrines\MOOD_CALCULATION_PROTOCOL.md"
   file_hash: "a1a7bf316e1d9144a8fba4ae7be851e79dcd2266e6e62cf8f48161083c523497"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MOOD_CALCULATION_PROTOCOL.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "doctrines", "mood_calculation_protocolmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\ROADMAP_4_0_18.md"
+  file_hash: "f58f28c342bcaafb6d25d79300cf30610bb596e6db3620a7067dc0065c7e54af"
+  file_path_from_root: "docs\channels\doctrine\ROADMAP_4_0_18.md"
   file_hash: "912c1de918dc02df2c5ccb986393caffb12b15f7fbd9dc6ee91998d43b8a3b06"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ROADMAP_4_0_18.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "roadmap_4_0_18md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\integration_testing_coordination_3_0_71.md"
+  file_hash: "d81806a539f51b12ce99917d4403704e819189957bc3f763d09debb526ac9073"
+  file_path_from_root: "dialogs_old_replaced_by_channels\integration_testing_coordination_3_0_71.md"
   file_hash: "f6e9b2dd85b54951eec8d5667f9a22730ab53bb77a4a9b376a390e9d044ada32"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Integration Testing Coordination Dialog - Version 3.0.71"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "integration_testing_coordination_3_0_71md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

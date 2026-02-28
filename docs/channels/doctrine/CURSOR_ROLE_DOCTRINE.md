@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\CURSOR_ROLE_DOCTRINE.md"
+  file_hash: "4491b5474fa04c92bdc809f0a9a2ab80e2df0433f6dc1c927f05224840aad6c9"
+  file_path_from_root: "docs\channels\doctrine\CURSOR_ROLE_DOCTRINE.md"
   file_hash: "084a9e21ceaa7659be7e5165c76cc2662bde026656d1191824a5e7724ca275a5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CURSOR_ROLE_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "cursor_role_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

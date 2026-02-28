@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\RESTORATIVE_GOVERNANCE_DOCTRINE.md"
+  file_hash: "8aa0b164b3445786b85dc304fb779900664aa95e153ddaf5e694ec8213228ded"
+  file_path_from_root: "docs\channels\gov\RESTORATIVE_GOVERNANCE_DOCTRINE.md"
   file_hash: "ee790fd98225a7e4ff21f2a3960613d5b55db20a267f2c848590a9bf172797eb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for RESTORATIVE_GOVERNANCE_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "restorative_governance_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

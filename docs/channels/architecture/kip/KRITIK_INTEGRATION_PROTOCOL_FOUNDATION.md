@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\kip\KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md"
+  file_hash: "608c367b61d0b54bd0192c93b0eeb080f02c2f20eccbd9ef82550ee59d37ed35"
+  file_path_from_root: "docs\channels\architecture\kip\KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md"
   file_hash: "7318713f16425515903b98b5e415205e5c2f4d51cb8a03c9e1c06ee598cde35b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "kip", "kritik_integration_protocol_foundationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\directives\channel_42_antigravity_vsx_extension_md_fallback.md"
+  file_hash: "293ffa0f1c5c1cbdc6a35ba8f2077f03d133f655ba18f370fa7059c995c79512"
+  file_path_from_root: "docs\directives\channel_42_antigravity_vsx_extension_md_fallback.md"
   file_hash: "9952b5dbcfe274b14edfa5a5a88de3fd0490baa766f279cf7aeda1c349809935"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for channel_42_antigravity_vsx_extension_md_fallback.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "directives", "channel_42_antigravity_vsx_extension_md_fallbackmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

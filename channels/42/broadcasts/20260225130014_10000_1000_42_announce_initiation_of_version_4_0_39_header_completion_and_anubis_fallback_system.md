@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130014_10000_1000_42_announce_initiation_of_version_4_0_39_header_completion_and_anubis_fallback_system.md"
+  file_hash: "814be00e821b8b5b58235a4428fc079bfd49d177a4bcbeff92cdfb32328ec01d"
+  file_path_from_root: "channels\42\broadcasts\20260225130014_10000_1000_42_announce_initiation_of_version_4_0_39_header_completion_and_anubis_fallback_system.md"
   file_hash: "129221ccf0c5dc413eba2624d856cbef1665a9ccf06238b868e5d15f7b36f620"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225130014_10000_1000_42_announce_initiation_of_version_4_0_39_header_completion_and_anubis_fallback_system.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "broadcasts", "20260225130014_10000_1000_42_announce_initiation_of_version_4_0_39_header_completion_and_anubis_fallback_systemmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

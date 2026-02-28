@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\REMAINING_HELPERS_REFACTOR_REPORT.md"
+  file_hash: "6ed5d887bcb908df893135b6a4d1df71a8ea0fc771c0f2895f015f30c400a215"
+  file_path_from_root: "docs\REMAINING_HELPERS_REFACTOR_REPORT.md"
   file_hash: "8c567ce09895e9e598894838d0bb7867fdab1dffda85bbfd376bdc8134371275"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Remaining Helpers Refactor Report"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "remaining_helpers_refactor_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_EXECUTION_SUMMARY.md"
+  file_hash: "a1078f728118003902e6c71da565cd1cea370f58a0981e02b7898d8d11640d8f"
+  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_EXECUTION_SUMMARY.md"
   file_hash: "dacac8d3e431e38bb4ea08886171aa1abce6c0592a6d0a869f5d9f8859219d6c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Departments / Groups / Roles Unification — PHP Execution Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "departments_groups_roles_php_execution_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

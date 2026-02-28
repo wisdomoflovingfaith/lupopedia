@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224165400_1001_10000_flip_v3_retrofit_doctrine_acknowledged.md"
+  file_hash: "14bdfcef603ebd55e6661d5a0f82d150c737b9015aa3f64cfd156b3be0130f67"
+  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224165400_1001_10000_flip_v3_retrofit_doctrine_acknowledged.md"
   file_hash: "3664614ed2b7c16a7eab99488d65c384e93d57a63a4844f6847ef3678ad64dc6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224165400_1001_10000_flip_v3_retrofit_doctrine_acknowledged.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["channels", "42", "threads", "development_cycle_4_0_43", "20260224165400_1001_10000_flip_v3_retrofit_doctrine_acknowledgedmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

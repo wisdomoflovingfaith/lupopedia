@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_emailque_migration.md",
-  system_version: "4.0.39",
+  file_hash: "20310be56efccf019f306610d07cc43f154a13409d48cc12ef342135d6749f7d"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_emailque → dropped (mail subsystem handles delivery)",

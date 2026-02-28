@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\tasks\active\database_optimization_analysis.md"
+  file_hash: "b69b81f81d9c5e2a1450f6eb5ad32d015446d8e8f07c291684bc20a3bc04285c"
+  file_path_from_root: "channels\42\tasks\active\database_optimization_analysis.md"
   file_hash: "079783010057030743354d5f92beb97497c36bbaa0d27ac0d1899737991e5297"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Database Optimization Analysis & Recommendations"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "tasks", "active", "database_optimization_analysismd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

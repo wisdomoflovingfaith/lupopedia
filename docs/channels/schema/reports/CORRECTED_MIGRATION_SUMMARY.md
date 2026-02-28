@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\reports\CORRECTED_MIGRATION_SUMMARY.md"
+  file_hash: "e1cc0026af3518c09d3f227af0d59aad09850f50d7044e19dd1e7cb346f7ed23"
+  file_path_from_root: "docs\channels\schema\reports\CORRECTED_MIGRATION_SUMMARY.md"
   file_hash: "c4baeed745bca5ed8f31ffee8a316526f7d491dcd6756da3a652f6a4d6b67a88"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CORRECTED_MIGRATION_SUMMARY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "schema", "reports", "corrected_migration_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

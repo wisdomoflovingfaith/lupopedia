@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\WOLFIE_COGNITIVE_ARCHITECTURE.md"
+  file_hash: "335e8e5d8fc8d8d532ad9e3421b78228f0e730d24d53c6a038d9d5bb1d73a60c"
+  file_path_from_root: "docs\channels\architecture\WOLFIE_COGNITIVE_ARCHITECTURE.md"
   file_hash: "23fa973fd85ec50ce32b120ba4ab49f9e0b54a52f00a5678fb8980be5be83aa2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for WOLFIE_COGNITIVE_ARCHITECTURE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "wolfie_cognitive_architecturemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

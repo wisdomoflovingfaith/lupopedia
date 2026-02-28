@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_messages_migration.md",
-  system_version: "4.0.39",
+  file_hash: "db84d64950ded819d9999f547695f248607c1e344feb7a46e4b3812bf1fa46b8"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_messages → dropped (transcripts from livehelp_transcripts)",

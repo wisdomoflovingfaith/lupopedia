@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\broadcasts\20260225120018_10000_1000_0_system_commands_queue_doctrine.md"
+  file_hash: "005ccc9faabfe8a18550e0760791c5cd714445049dc17fcf40a5d3faacfb4be2"
+  file_path_from_root: "channels\0\broadcasts\20260225120018_10000_1000_0_system_commands_queue_doctrine.md"
   file_hash: "e9f1108a3df6025496a1559cfd0cf4dbbb198882d8e23414defbb8aca6e78b80"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225120018_10000_1000_0_system_commands_queue_doctrine.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "broadcasts", "20260225120018_10000_1000_0_system_commands_queue_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

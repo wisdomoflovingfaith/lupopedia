@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\PDO_SESSION_COMPATIBILITY_AUDIT.md"
+  file_hash: "aedff76e2153b49429b180a534018f3eebc58ee5f8bd7988a5a7041c1ad4cf79"
+  file_path_from_root: "docs\audits\PDO_SESSION_COMPATIBILITY_AUDIT.md"
   file_hash: "37a570e77c8ca67336c585125d08da9d21f886e78775eed5ace0c29f894c3cd6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "PDO_DB and Session Classes — Doctrine Compliance and PHP 5.3→8.1 Compatibility Audit"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "pdo_session_compatibility_auditmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

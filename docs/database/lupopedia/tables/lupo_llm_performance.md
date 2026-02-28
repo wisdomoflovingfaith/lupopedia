@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\database\lupopedia\tables\lupo_llm_performance.md"
+  file_hash: "bd59fa79902c0f27aee0e14a5807bda16b49f602e8c2a245d30239f717b52b8d"
+  file_path_from_root: "docs\database\lupopedia\tables\lupo_llm_performance.md"
   file_hash: "6bcb4fb5b8284ba9e14042877ec3372be38d43b61ddfc373142497d3a230dfd5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for lupo_llm_performance.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "database", "lupopedia", "tables", "lupo_llm_performancemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

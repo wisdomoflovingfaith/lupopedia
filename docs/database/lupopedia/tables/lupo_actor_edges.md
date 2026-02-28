@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\database\lupopedia\tables\lupo_actor_edges.md"
+  file_hash: "f722700515722beeb70fadea215a306f8b3bba0695156efec23e61983662c7e9"
+  file_path_from_root: "docs\database\lupopedia\tables\lupo_actor_edges.md"
   file_hash: "563c4a0ccd03b02e203274780a8b3cd7e6ceaf90ef18e24e13a4d54f1664d436"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for lupo_actor_edges.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "database", "lupopedia", "tables", "lupo_actor_edgesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

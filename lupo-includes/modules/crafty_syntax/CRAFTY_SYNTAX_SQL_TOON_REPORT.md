@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "lupo-includes\modules\crafty_syntax\CRAFTY_SYNTAX_SQL_TOON_REPORT.md"
+  file_hash: "53fa3e191e52e087e951ea1d63cdc27e0c30919520bae72dc6b51862bbc36ec6"
+  file_path_from_root: "lupo-includes\modules\crafty_syntax\CRAFTY_SYNTAX_SQL_TOON_REPORT.md"
   file_hash: "885aaacea8a82a66d3753c4f972893b153fb89c709e1c59689998bcb3e059ce3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Crafty Syntax: SQL Column References vs TOON Schema"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["lupo-includes", "modules", "crafty_syntax", "crafty_syntax_sql_toon_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

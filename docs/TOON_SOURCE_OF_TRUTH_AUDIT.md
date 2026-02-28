@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\TOON_SOURCE_OF_TRUTH_AUDIT.md"
+  file_hash: "091915018430f39027da0cc24dd2d7e2c7e2c9317dbdb3378f9ffd7f25067e91"
+  file_path_from_root: "docs\TOON_SOURCE_OF_TRUTH_AUDIT.md"
   file_hash: "265d0fff45fc4d888a330ea3ae6f38984da5bc7835d63114822843e021b6ff9b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "TOON Source of Truth — Audit and Mismatch Reporting"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "toon_source_of_truth_auditmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "UPGRADE_PLAN_4.0.45.md"
+  file_hash: "6a513c9d103fb5830986d3bdb57ba683488ba58a9cd66bd424cb3470bfe16426"
+  file_path_from_root: "UPGRADE_PLAN_4.0.45.md"
   file_hash: "06c39aef022798e5bc100a9b75c4fdae7ea4434bf570151d4b7d5e435b75529c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Lupopedia 4.0.45 Upgrade Plan"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["upgrade_plan_4045md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\SCHEMA_SYNC_3_0_46_SUMMARY.md"
+  file_hash: "0ca19c26878727268c95c8e2fcfaed4cc0412f9a2ff0b4137b2cd4b713cc78d5"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\SCHEMA_SYNC_3_0_46_SUMMARY.md"
   file_hash: "bbd4c65964d434185a989ef0663154a3be390a5ffa1a05dde6a39e85a7108c4f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SCHEMA_SYNC_3_0_46_SUMMARY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "schema_sync_3_0_46_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

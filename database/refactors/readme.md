@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "database\refactors\readme.md"
+  file_hash: "129feadf1f19136925d64d99ddf27951abf1142b7667acd66d788ee6fd8cc844"
+  file_path_from_root: "database\refactors\readme.md"
   file_hash: "fb9e1cf5e437ef1faad6d1bfd73eb1555ef32acdbc1afc522fd8d105046c99c2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for readme.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["database", "refactors", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

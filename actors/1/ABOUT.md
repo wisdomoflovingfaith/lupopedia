@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "actors/1/ABOUT.md",
-  system_version: "4.0.48",
+  file_hash: "7796b0ae9549f81c8f7682fc1e0c6552385feddf96a818ff64a2513d31b0e094"
+  system_version: "4.0.50"
   channel_id: 1,
   actor_id: 1,
   last_modified_utc: "20260227",
@@ -41,6 +42,7 @@ flare.headers: {
   lupo_agent: "antigravity"
 }
 flare.edges: {
+  file_path_from_root: "actors\1\ABOUT.md"
   outbound_edges: [
     { to: "docs/channels/appendix/appendix/WHO_IS_CAPTAIN_WOLFIE.md", type: "implements", weight: 1.0 },
     { to: "actors/1/WHO.json", type: "references", weight: 1.0 },
@@ -48,6 +50,9 @@ flare.edges: {
   ],
   semantic_tags: ["steward_identity", "intent_engine", "architect_profile"]
 }
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer: {
   last_verified_utc: "20260227",
   last_verified_by: "antigravity"

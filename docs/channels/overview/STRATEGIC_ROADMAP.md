@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\STRATEGIC_ROADMAP.md"
+  file_hash: "4c1f86f8dca266d2bd1b6a8025aa07f3259225ff83692bde96a5bbe772cdcafd"
+  file_path_from_root: "docs\channels\overview\STRATEGIC_ROADMAP.md"
   file_hash: "1a0c42bea35bc97b2d73908d2d274786db2ddf0aab961196e370ef428f854d92"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for STRATEGIC_ROADMAP.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "strategic_roadmapmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\ATOMIZATION_DOCTRINE.md"
+  file_hash: "1d2ed353f6ec16f3ffc1ec905941cecb3d202e992b45b202e96de52a129e9ace"
+  file_path_from_root: "docs\channels\doctrine\ATOMIZATION_DOCTRINE.md"
   file_hash: "782ab7288979e951f94dac491ac29a901919068ceee084fad05c7fb2f64f87c9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ATOMIZATION_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "atomization_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

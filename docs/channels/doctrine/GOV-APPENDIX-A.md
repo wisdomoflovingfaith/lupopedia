@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GOV-APPENDIX-A.md"
+  file_hash: "f5001f713fc6575b9810e47c65e4ce0de2c5fd7f6477592cf55ff266e5dbebde"
+  file_path_from_root: "docs\channels\doctrine\GOV-APPENDIX-A.md"
   file_hash: "a054cc533ac21f383374d5505f229327e7a002f5c464287aa39ca58c16fec301"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GOV-APPENDIX-A: AGI Support Meeting #1 â€” Narrative Governance Artifact"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "gov-appendix-amd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

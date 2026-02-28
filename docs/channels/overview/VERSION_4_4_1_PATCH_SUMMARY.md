@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\VERSION_4_4_1_PATCH_SUMMARY.md"
+  file_hash: "0a09cb49750b66bfba7ac1ac819498cc8cf0efc903c103ced7483a0270c121b4"
+  file_path_from_root: "docs\channels\overview\VERSION_4_4_1_PATCH_SUMMARY.md"
   file_hash: "8a2fb80194fd2567320c681380d157941087ed9c90ced987cfd101ec4a01eba4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for VERSION_4_4_1_PATCH_SUMMARY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "version_4_4_1_patch_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -184,4 +190,3 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 - Added operator layer doctrine and updated doctrine index
 - Regenerated TOON files to sync with live schema
 - Confirmed schema remains within the 222 table budget (current: 196)
-

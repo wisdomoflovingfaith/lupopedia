@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\BAN_ENFORCEMENT_4_0_30.md"
+  file_hash: "033a027ea4c2bfe5daefa76bfb3518456bf7277ddaec46ec8b5237d2febe14d3"
+  file_path_from_root: "docs\doctrine\BAN_ENFORCEMENT_4_0_30.md"
   file_hash: "41c347f35b973078806f6e520822abb1079cf51fac948a94bfee7cea8a6dbe8d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for BAN_ENFORCEMENT_4_0_30.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "ban_enforcement_4_0_30md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

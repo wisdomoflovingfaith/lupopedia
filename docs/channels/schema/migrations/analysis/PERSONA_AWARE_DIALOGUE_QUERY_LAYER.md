@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\PERSONA_AWARE_DIALOGUE_QUERY_LAYER.md"
+  file_hash: "07ea45bdb548efc2ad1da9b8ed69d7f26ee40b511a9af316bfa6f48e50b45924"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\PERSONA_AWARE_DIALOGUE_QUERY_LAYER.md"
   file_hash: "1e3b3b35f622d1a55c806b877e3fa94349ec65ad1343d62b9c30e1f266a7cdbd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Persona-Aware Dialogue Query Layer**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "persona_aware_dialogue_query_layermd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

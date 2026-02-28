@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\GOVERNANCE_CONSTITUTION.md"
+  file_hash: "c1831296609ae71dfb78b6953a454bec83e4b0d0012172dd1ef3140da709b8b5"
+  file_path_from_root: "docs\channels\gov\GOVERNANCE_CONSTITUTION.md"
   file_hash: "d4ae4af498f71c8fe9ed5e63bb3bcb3dc677fc2bd01b95a821fe389d2a66943d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GOVERNANCE_CONSTITUTION.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "governance_constitutionmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

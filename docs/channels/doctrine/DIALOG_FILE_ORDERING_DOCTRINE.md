@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\DIALOG_FILE_ORDERING_DOCTRINE.md"
+  file_hash: "783e3273555e6d77f7c984bb29a51b7588ca7216204d15819b1783f040f48a1c"
+  file_path_from_root: "docs\channels\doctrine\DIALOG_FILE_ORDERING_DOCTRINE.md"
   file_hash: "12cde1d95fa7bde38d9f9b5e43d05a9905110afd4d7bca471ee86ab2021b28bc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DIALOG_FILE_ORDERING_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "dialog_file_ordering_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

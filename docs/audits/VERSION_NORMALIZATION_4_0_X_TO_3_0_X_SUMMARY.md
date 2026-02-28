@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\VERSION_NORMALIZATION_4_0_X_TO_3_0_X_SUMMARY.md"
+  file_hash: "e5594ea6d6c7f987f1e2a7af0fd0faff035ad442e1c84760ca6930ef764a7313"
+  file_path_from_root: "docs\audits\VERSION_NORMALIZATION_4_0_X_TO_3_0_X_SUMMARY.md"
   file_hash: "4c6c53da7db7e2e50fba15afdb673c2d242ada79cc8112375d4b63ae430c5c82"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Version Normalization Sweep: Historical 4.0.x → 3.0.x Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "version_normalization_4_0_x_to_3_0_x_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

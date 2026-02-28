@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\LUPOPEDIA_DOCTRINE.md"
+  file_hash: "6162b703d3e097df32119c0fed36621207dd83f580cebfc24a081b2b5a5b5e83"
+  file_path_from_root: "docs\doctrine\LUPOPEDIA_DOCTRINE.md"
   file_hash: "ccab4571349244e50fb0316d6205c40e1273d70bad9527540019d469113096fb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LUPOPEDIA_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "lupopedia_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

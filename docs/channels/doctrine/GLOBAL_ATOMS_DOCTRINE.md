@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GLOBAL_ATOMS_DOCTRINE.md"
+  file_hash: "88c0ef531d11a7c3f0d01417f102f845124bbbf76af5890a23d7ebe8e86d477a"
+  file_path_from_root: "docs\channels\doctrine\GLOBAL_ATOMS_DOCTRINE.md"
   file_hash: "44306a366fdea2a1a91dc589a75045858d6f83709e6899696fdefdaa4a032757"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GLOBAL_ATOMS_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "global_atoms_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -3,7 +3,8 @@
 ---
 flare.headers:
   file_path_from_root: "prompts/jetbrains/20260227_repository_cleanup_implementation.md"
-  system_version: "4.0.49"
+  file_hash: "525500e7dd41d9bd567cbb40559e34e80737cf042f8af64dc2d9cfa748406bb3"
+  system_version: "4.0.50"
   channel_id: 42
   actor_id: 1007
   last_modified_utc: "20260227"
@@ -18,6 +19,7 @@ flare.headers:
   lupo_agent: "jetbrains"
 
 flare.edges:
+  file_path_from_root: "prompts\jetbrains\20260227_repository_cleanup_implementation.md"
   outbound_edges:
     - { to: "channels/42/tasks/active/repository_cleanup_legacy_files_removal.md", type: "implements", weight: 1.0, reason: "Task definition source" }
     - { to: "database/migrations/", type: "cleans", weight: 0.8, reason: "Migration files cleanup" }
@@ -26,6 +28,9 @@ flare.edges:
     - { to: "dialogs/", type: "cleans", weight: 0.6, reason: "Dialog transcript removal" }
   semantic_tags: ["repository_cleanup", "file_management", "legacy_removal", "jetbrains"]
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260227"
   last_verified_by: "lupopedia"

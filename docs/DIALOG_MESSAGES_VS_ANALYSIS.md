@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\DIALOG_MESSAGES_VS_ANALYSIS.md"
+  file_hash: "cae58f16a03ddc4fcefa729f842ebac28f4e8f844059a8af89129abb2d1d9b26"
+  file_path_from_root: "docs\DIALOG_MESSAGES_VS_ANALYSIS.md"
   file_hash: "8a0b2800e0542bc9c0d0faa18049c921145ac35abf64b3a7d59f61fdc2222732"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Analysis: lupo_dialog_messages vs lupo_dialog_messages"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "dialog_messages_vs_analysismd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

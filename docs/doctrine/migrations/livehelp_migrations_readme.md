@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/doctrine/migrations/livehelp_migrations_readme.md",
-  system_version: "4.0.47",
+  file_hash: "467afcaa1e21e7aa1f2d3bcb90b5724c035eba7d2f8b40c74797f2fec7623d9c"
+  system_version: "4.0.50"
   channel_id: 42,
   actor_id: 1003,
   last_modified_utc: "20260227",

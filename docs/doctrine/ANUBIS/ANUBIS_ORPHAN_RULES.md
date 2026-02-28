@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\ANUBIS\ANUBIS_ORPHAN_RULES.md"
+  file_hash: "27ba504c5fb2cd747afc9f6c46fd81df31826b8bbdef413accb19ef7ee221e68"
+  file_path_from_root: "docs\doctrine\ANUBIS\ANUBIS_ORPHAN_RULES.md"
   file_hash: "05664fa9692cdf9b1f46cbec2037404ec69b80456ababde4711eec06eee07df7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ANUBIS_ORPHAN_RULES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "anubis", "anubis_orphan_rulesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

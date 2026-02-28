@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\dev\TOON_METADATA_RECOMMENDATIONS.md"
+  file_hash: "a9667200e28079d9ca5fccbc4b4aba0677cd71dda432179e4b1162af23ba270f"
+  file_path_from_root: "docs\channels\developer\dev\TOON_METADATA_RECOMMENDATIONS.md"
   file_hash: "2997fc97309bd297acdfe43e87d2c9503873e4e35967761c26e0ebd9c82bce23"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for TOON_METADATA_RECOMMENDATIONS.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "developer", "dev", "toon_metadata_recommendationsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
@@ -491,4 +496,3 @@ Update `generate_toon_files.py` to:
 4. Add these fields to TOON file output
 
 This would enable automatic ALTER statement generation from TOON files without reading the SQL dump.
-

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\DIALOG_DOCTRINE.md"
+  file_hash: "1c073245da623b5397ed72c7dbd25998aebc1a52b8ba008215f7d535c2126d9c"
+  file_path_from_root: "docs\channels\doctrine\DIALOG_DOCTRINE.md"
   file_hash: "4ba3821b99d8e659f67f8b263cb6485970710112a795dc61adaf79f4c7eecaf6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DIALOG_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "dialog_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

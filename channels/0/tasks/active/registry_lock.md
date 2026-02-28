@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\tasks\active\registry_lock.md"
+  file_hash: "52554dc83cc4c1b92c3145304bd827cb76b32082cdd3572e1477ab1b0e0bd590"
+  file_path_from_root: "channels\0\tasks\active\registry_lock.md"
   file_hash: "f41226fe4f79f6a0bb03dc598331f53e20c1acc31ae54b60ab2b576d689e1d17"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for registry_lock.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "tasks", "active", "registry_lockmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

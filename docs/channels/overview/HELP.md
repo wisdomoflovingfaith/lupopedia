@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "help"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\HELP.md"
+  file_hash: "25d4addc81622e93c5f1ce1ca31ed337718cf25fbab278c4f55fe698ec0a8846"
+  file_path_from_root: "docs\channels\overview\HELP.md"
   file_hash: "7d6674b5469e40825a150b0f47d961d78f1c479a7a454840493cedf6175a5481"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HELP.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "helpmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

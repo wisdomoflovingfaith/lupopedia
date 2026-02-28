@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\EMOTIONAL_DOMAINS_SEVEN_LOVES.md"
+  file_hash: "8da96b57257987ac15df32c7541d9ee41fce5de1c6f58bc3e6d6ca41a9ad2ba8"
+  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_DOMAINS_SEVEN_LOVES.md"
   file_hash: "411b21f167bf09612679f997bfe54d7b31f09d911350c90e6e27f68fb1611a26"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for EMOTIONAL_DOMAINS_SEVEN_LOVES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "emotional_domains_seven_lovesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_referers_daily_migration.md",
-  system_version: "4.0.39",
+  file_hash: "6006d32c84a8c61131e11e6f1f982892e97c6c7a61733913224663fe4449555b"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_referers_daily/monthly → lupo_referers",

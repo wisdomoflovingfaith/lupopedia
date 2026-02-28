@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\logs\MASTER_WEDDING_THREAD_CONSOLIDATION_EMAIL.md"
+  file_hash: "3eca54df877bf44ae73ff4f57316ff2ec11795f7cd427491d4b5bf165426beae"
+  file_path_from_root: "docs\channels\overview\logs\MASTER_WEDDING_THREAD_CONSOLIDATION_EMAIL.md"
   file_hash: "d02803a508310b4a62a908249e8ddbaab0642c4539019968a92ca69f04b558a5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MASTER_WEDDING_THREAD_CONSOLIDATION_EMAIL.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "overview", "logs", "master_wedding_thread_consolidation_emailmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

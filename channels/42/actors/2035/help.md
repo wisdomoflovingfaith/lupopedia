@@ -3,6 +3,7 @@
 ---
 flare.headers:
   file_path_from_root: "channels/42/actors/2035/help.md"
+  file_hash: "e48e1ff5e17388753d11d9a7b8d1c6cf6e66637456e130a638c6ace1bf72a245"
   system_version: "4.0.50"
   channel_id: 42
   actor_id: 2035
@@ -18,6 +19,7 @@ flare.headers:
   lupo_agent: "windsurf"
 
 flare.edges:
+  file_path_from_root: "channels\42\actors\2035\help.md"
   outbound_edges:
     - { to: "channels/42/actors/2035/HELP.json", type: "references", weight: 1.0, reason: "JSON help data" }
     - { to: "channels/42/actors/2035/history/list.csv", type: "references", weight: 0.9, reason: "Actor history" }
@@ -27,6 +29,8 @@ flare.edges:
     - { to: "lupo-includes/classes/AnubisHeaderFallback.php", type: "references", weight: 0.8, reason: "Header fallback system" }
   semantic_tags: ["anubis_help", "audit_tool_operations", "4.0.50"]
 
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified_utc: "20260228"
   last_verified_by: "windsurf"

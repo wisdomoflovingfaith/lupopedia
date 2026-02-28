@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\QUANTUM_STATE_PURGE_SUMMARY.md"
+  file_hash: "05bc4792784c942b0426671c0c187d6dae98fd08e7e79a4db336ed969d05046f"
+  file_path_from_root: "docs\audits\QUANTUM_STATE_PURGE_SUMMARY.md"
   file_hash: "42251f881f46c5ab025ac5e91312855b6773ff741a87b6da1ad941fd26f0d7d2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Quantum State / Uncertainty-Metadata Purge Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "quantum_state_purge_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

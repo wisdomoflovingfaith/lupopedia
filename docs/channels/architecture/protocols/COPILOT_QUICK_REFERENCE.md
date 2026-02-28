@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\protocols\COPILOT_QUICK_REFERENCE.md"
+  file_hash: "f118ad9d9a68bccbd127f0647b11634ec135bc20601729e9026e486946718249"
+  file_path_from_root: "docs\channels\architecture\protocols\COPILOT_QUICK_REFERENCE.md"
   file_hash: "6e9cbacae1b67a7ad9f0e533111ad8b4a325ce60268eb46810d3340f38939b61"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for COPILOT_QUICK_REFERENCE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "protocols", "copilot_quick_referencemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

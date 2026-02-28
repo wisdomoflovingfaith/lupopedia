@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\agents\thoth.md"
+  file_hash: "d7318aa15899bbaea34af51be4fdae3bbf25987867549579134cc3ef423657a6"
+  file_path_from_root: "docs\channels\agents\thoth.md"
   file_hash: "edfcb1a56f5e1de0f64c34f3ffd5d2f29e82f44c60ad99b994258d34ef0000b0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for thoth.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "agents", "thothmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -128,4 +134,3 @@ Thoth does **not** replace human judgment. It provides structured visibility int
 - **[End Goal 4.2.0](../overview/END_GOAL_4_2_0.md)** - Vision for federated truth evaluation across nodes
 
 ---
-

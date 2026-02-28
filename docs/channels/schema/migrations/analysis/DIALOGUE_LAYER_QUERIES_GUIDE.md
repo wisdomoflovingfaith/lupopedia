@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\DIALOGUE_LAYER_QUERIES_GUIDE.md"
+  file_hash: "84aa0848f6f99223de43ff6d883978aa5d36bbc8ecf64a83b66e43c9977a8a6b"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\DIALOGUE_LAYER_QUERIES_GUIDE.md"
   file_hash: "fb6b53649b753330fac6935f4047b17fb4f6a7dfb06a10e73b0ac71c26121701"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Querying the Multi-Actor Dialogue Layer**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "dialogue_layer_queries_guidemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

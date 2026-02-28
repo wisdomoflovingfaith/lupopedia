@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "d3568d3f4ea048da58a8dc31f7f300d4a6d0c850d0981de2e44b82525d683c61"
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
   file_hash: "a3e2f61e930abbd3e9542c007cd8c4578f954d55a6f7dacea11d935e42628ca5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dual_channel_broadcast_directive_complete_4045md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

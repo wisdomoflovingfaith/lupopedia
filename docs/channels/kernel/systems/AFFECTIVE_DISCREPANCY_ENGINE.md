@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\kernel\systems\AFFECTIVE_DISCREPANCY_ENGINE.md"
+  file_hash: "949937facc37264c2b8dfcefe3860e11abba38459a21a99d67ad7ce0afec4fc3"
+  file_path_from_root: "docs\channels\kernel\systems\AFFECTIVE_DISCREPANCY_ENGINE.md"
   file_hash: "2b8511ee88719fbe59a2632e4fc87514468c0ab26872ebbb39e57a348a7cbf7a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AFFECTIVE_DISCREPANCY_ENGINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "kernel", "systems", "affective_discrepancy_enginemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

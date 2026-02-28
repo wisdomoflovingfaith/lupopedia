@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\DOCTRINE_TABLES_TRANSITION_NOTE.md"
+  file_hash: "adb86eb31b2f9f607368e1c870c60897f56a8c8b67440b9cd22d1fe76932da39"
+  file_path_from_root: "docs\doctrine\DOCTRINE_TABLES_TRANSITION_NOTE.md"
   file_hash: "86a77f03b2809e3b948cb0bf945ecdb18f90c89e40eef501f98b4a7fde421e3e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DOCTRINE_TABLES_TRANSITION_NOTE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "doctrine_tables_transition_notemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\0002\WHY_LUPOPEDIA_USES_PURE_DATA_STORE.md"
+  file_hash: "d9f4d8076a681e78e0f85192154f805bef28ac8abcdaa24eb3a6ef0a51f5dd50"
+  file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\0002\WHY_LUPOPEDIA_USES_PURE_DATA_STORE.md"
   file_hash: "4b5d13f957ff1c590be00aeb3e47abdd99ad20f0c9adeec0e3cc8148c41d1d6e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Why Lupopedia Uses a Pure Data Store"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["backups", "filesystem_migration_20260131_133426", "channels", "0002", "why_lupopedia_uses_pure_data_storemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

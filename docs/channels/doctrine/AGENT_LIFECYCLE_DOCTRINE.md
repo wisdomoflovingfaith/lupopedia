@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\AGENT_LIFECYCLE_DOCTRINE.md"
+  file_hash: "8c25476d9d015cb7eeaf7a034a551d3a4e12bce2f4d5af75f02add99fab21574"
+  file_path_from_root: "docs\channels\doctrine\AGENT_LIFECYCLE_DOCTRINE.md"
   file_hash: "629fd6db7a0cd4f8c9726594e34669c08b16403a8f3ad7568a0a49e43f1408c8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AGENT_LIFECYCLE_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "agent_lifecycle_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

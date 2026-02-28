@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "database\migrations\antigravity_dialog_prompt_4.0.23.md"
+  file_hash: "741cf7cc0f6ad2fb1bc754f3d61ca19d797d13ff82fa849b205d04792f9d7291"
+  file_path_from_root: "database\migrations\antigravity_dialog_prompt_4.0.23.md"
   file_hash: "b28e73148516cc77a3b9bdda054cd060e19399d281f12831b4af38a12c4155ed"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Antigravity IDE Development Context Dialog Prompt"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["database", "migrations", "antigravity_dialog_prompt_4023md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

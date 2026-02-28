@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\channel_registry.md"
+  file_hash: "34e6a781a6594e1148c94727bef078705799d413b0f9e3e1e4f95b2a088035df"
+  file_path_from_root: "docs\channels\overview\channel_registry.md"
   file_hash: "b74af27755d6befd3dddab1f908f8eb283f25a9899a3e418a573166d92334b5e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "? Channels Missing TOON Mappings"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "overview", "channel_registrymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

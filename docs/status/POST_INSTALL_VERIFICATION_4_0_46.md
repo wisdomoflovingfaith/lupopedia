@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\POST_INSTALL_VERIFICATION_4_0_46.md"
+  file_hash: "00ea3a293877e526a7337246916a2dcf72ac061294bea9b8777f6d11deb24875"
+  file_path_from_root: "docs\status\POST_INSTALL_VERIFICATION_4_0_46.md"
   file_hash: "782ab28564d9d1d00494458bd6366c1692fcd2f4e95f591fd29ab681a3069214"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for POST_INSTALL_VERIFICATION_4_0_46.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "status", "post_install_verification_4_0_46md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

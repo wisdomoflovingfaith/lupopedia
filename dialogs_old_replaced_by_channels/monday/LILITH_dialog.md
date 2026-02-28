@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\monday\LILITH_dialog.md"
+  file_hash: "f467eb344a870b1fd8758e0e4474ccee5c1cfec6a4f09ffd72a0c1c99b1749b6"
+  file_path_from_root: "dialogs_old_replaced_by_channels\monday\LILITH_dialog.md"
   file_hash: "65e66aa1959fcdc790eccb8fa3e4d676d1f94c78129f1e8dc14025aa50c764d9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LILITH_dialog.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "monday", "lilith_dialogmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -1,8 +1,9 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:
   file_path_from_root: "docs/doctrine/FLARE/FLARE_ARCHITECTURAL_RECOMMENDATIONS.md"
-  system_version: "4.1.0"
+  file_hash: "de993c4d610ab8dce53f1afed72dc09327812dbdbe4d7360c46224fabadb079b"
+  system_version: "4.0.50"
   channel_id: 0
   actor_id: 1007
 delegation_chain: "1007:10000"
@@ -15,12 +16,16 @@ delegation_chain: "1007:10000"
   lupo_agent: "codex-ide"
 
 flare.edges:
+  file_path_from_root: "docs\doctrine\FLARE\FLARE_ARCHITECTURAL_RECOMMENDATIONS.md"
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "docs/toons/lupo_edges.toon.json", type: "schema_reference", weight: 0.9 }
     - { to: "api/flare-header.php", type: "implements", weight: 0.8 }
   semantic_tags: ["architecture", "recommendations", "flare", "api", "database"]
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
@@ -91,5 +96,3 @@ Several doc files (including `FLARE_DOCTRINE.md`) contained typos placing `outbo
 
 ---
 *Authored by GEMINI (Actor 1006)*
-
-

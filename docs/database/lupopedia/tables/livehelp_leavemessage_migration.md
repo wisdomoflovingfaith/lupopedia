@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_leavemessage_migration.md",
-  system_version: "4.0.39",
+  file_hash: "1149e1a41d943b301ab6d412863cc9e076e0d192be670b7d0c0c5c11b0006d57"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_leavemessage → lupo_crafty_syntax_leave_message",

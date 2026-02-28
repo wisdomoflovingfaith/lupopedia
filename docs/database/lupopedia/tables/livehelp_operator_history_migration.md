@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_operator_history_migration.md",
-  system_version: "4.0.39",
+  file_hash: "c59410f45c40b36e70dc95178540cb725cc115067d36be3d922adc3108a79694"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_operator_history → lupo_audit_log",

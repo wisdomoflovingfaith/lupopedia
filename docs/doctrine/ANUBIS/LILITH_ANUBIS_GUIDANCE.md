@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\ANUBIS\LILITH_ANUBIS_GUIDANCE.md"
+  file_hash: "3753d00fff2c8b1b3284a2247c5aebcef04d3e14b54832258bdcf7320b59a5d2"
+  file_path_from_root: "docs\doctrine\ANUBIS\LILITH_ANUBIS_GUIDANCE.md"
   file_hash: "86af64877f8555b7f18d6e8265c408e1993cd02cba6b02d47cd618c43ad21d8d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LILITH_ANUBIS_GUIDANCE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "anubis", "lilith_anubis_guidancemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

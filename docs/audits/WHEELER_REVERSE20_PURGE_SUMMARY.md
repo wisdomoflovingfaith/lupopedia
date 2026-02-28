@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\WHEELER_REVERSE20_PURGE_SUMMARY.md"
+  file_hash: "846094d706b9cc7176c869c34420e668c1d03296510884ea839f9cadc73f9ebe"
+  file_path_from_root: "docs\audits\WHEELER_REVERSE20_PURGE_SUMMARY.md"
   file_hash: "84beca7952b42c1f0d6845639568f7224528dc4acd902f688ca20b597bbfbf23"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Wheeler / Reverse-20 Purge Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "wheeler_reverse20_purge_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

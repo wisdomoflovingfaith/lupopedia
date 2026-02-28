@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\blocks\pattern_ethics\ETHICS_TRANSPARENCY.md"
+  file_hash: "2d0a410abd7f5781264acff37ac126951cceb246654e5b179ce459cf88f4e725"
+  file_path_from_root: "docs\channels\doctrine\blocks\pattern_ethics\ETHICS_TRANSPARENCY.md"
   file_hash: "17b1d3a67e5f590c739fc4283fffdcc212255108680aefec40040dddce92076b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ETHICS_TRANSPARENCY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "blocks", "pattern_ethics", "ethics_transparencymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -516,5 +522,3 @@ This is how Lupopedia agents become truly intelligent over time.
 - **[MySQL to Postgres Memory](../appendix/appendix/MYSQL_TO_POSTGRES_MEMORY.md)** - Complete migration specification for memory tables
 
 ---
-
-

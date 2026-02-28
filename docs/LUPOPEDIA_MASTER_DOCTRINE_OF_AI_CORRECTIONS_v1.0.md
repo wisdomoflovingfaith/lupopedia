@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"
+  file_hash: "94be4932ec3825409246a120e52f5754b19de253f32b68c3c775353ff56aea96"
+  file_path_from_root: "docs\LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"
   file_hash: "4391843a8ce81218b4bbc7903c191302aa5258f12bd54266f8ba18a4d7c61979"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "lupopedia_master_doctrine_of_ai_corrections_v10md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

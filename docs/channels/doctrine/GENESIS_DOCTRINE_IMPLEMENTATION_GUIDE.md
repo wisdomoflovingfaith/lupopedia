@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GENESIS_DOCTRINE_IMPLEMENTATION_GUIDE.md"
+  file_hash: "d32c6f0d21a87aa2c18544e4b85e9c92a8bd73756ba6ee03f34d4571f3a7aa09"
+  file_path_from_root: "docs\channels\doctrine\GENESIS_DOCTRINE_IMPLEMENTATION_GUIDE.md"
   file_hash: "16667b45906d4162a1c6f382951b4a7d0e7fb7a5522f5c43c6db32fec6771bd8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GENESIS_DOCTRINE_IMPLEMENTATION_GUIDE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "genesis_doctrine_implementation_guidemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_questions_migration.md",
-  system_version: "4.0.39",
+  file_hash: "1e1d1f9868fc8faccbf9bec05e263cd2c51d261338318dc4615e776cbc05463f"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_questions → lupo_crafty_syntax_chat_questions",

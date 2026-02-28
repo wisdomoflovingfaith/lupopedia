@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\update_section.md"
+  file_hash: "adcd0d0e668b88f5efcd57e13ca6fba55de5bc7521c1a0020f2f8cdbb5934f2d"
+  file_path_from_root: "dialogs_old_replaced_by_channels\update_section.md"
   file_hash: "59fe425492f6efae76a1c2138901b16d4bf87ac3da217dd84201cb4ac700c569"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for update_section.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "update_sectionmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

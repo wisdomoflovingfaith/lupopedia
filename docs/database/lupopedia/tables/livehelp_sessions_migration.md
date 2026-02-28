@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_sessions_migration.md",
-  system_version: "4.0.39",
+  file_hash: "bb44aa355e8de0cb28bb493e1d82cd30eb88a5ae46508e95144367583366529a"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_sessions → lupo_sessions table mapping",

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\CSLH-URL-Semantics.md"
+  file_hash: "9b33540158bc15cb575c35e2a374ad54200312253a61c79afbe9dd735a9ce75c"
+  file_path_from_root: "docs\channels\doctrine\CSLH-URL-Semantics.md"
   file_hash: "23c4b33ec1920e8e999015bfee13d31eaea19babdb188b89857d58b5ed9619d6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CSLH-URL-Semantics.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "cslh-url-semanticsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

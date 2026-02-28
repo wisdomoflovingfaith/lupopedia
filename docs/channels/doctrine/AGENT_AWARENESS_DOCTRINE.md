@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\AGENT_AWARENESS_DOCTRINE.md"
+  file_hash: "d05b32b379f2f792dfebbe14d3b48bc61d3e28b92957b4c0be70533a4d970fe0"
+  file_path_from_root: "docs\channels\doctrine\AGENT_AWARENESS_DOCTRINE.md"
   file_hash: "5baee387b8c6acf4bb42e9049af494a0a2ad62208b3df6c22ca5de735cda8f0a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AGENT_AWARENESS_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "agent_awareness_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

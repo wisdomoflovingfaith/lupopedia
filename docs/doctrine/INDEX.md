@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/doctrine/INDEX.md",
-  system_version: "4.0.48",
+  file_hash: "042bfc20d863726ffc65e17d1330dfe132aae733ec1a04081cd4262c687d46c0"
+  system_version: "4.0.50"
   channel_id: 42,
   actor_id: 1003,
   last_modified_utc: "20260227",
@@ -41,6 +42,7 @@ flare.headers: {
   lupo_agent: "antigravity"
 }
 flare.edges: {
+  file_path_from_root: "docs\doctrine\INDEX.md"
   outbound_edges: [
     { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 },
     { to: "docs/doctrine/LUPOPEDIA_DOCTRINE.md", type: "references", weight: 1.0 },
@@ -48,6 +50,9 @@ flare.edges: {
   ],
   semantic_tags: ["doctrine_index", "engineering_standards"]
 }
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer: {
   last_verified_utc: "20260227",
   last_verified_by: "antigravity"

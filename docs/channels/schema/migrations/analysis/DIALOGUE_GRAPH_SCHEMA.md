@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\DIALOGUE_GRAPH_SCHEMA.md"
+  file_hash: "d437904522f390adeb7ad19394407ec0b688edf9b5c3256c26b928bf1b975a99"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\DIALOGUE_GRAPH_SCHEMA.md"
   file_hash: "ad8e6fb53d1e167e2d7ac712fb19b78df121649c919940944a02354f82f457e4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Dialogue Graph Schema**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "dialogue_graph_schemamd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

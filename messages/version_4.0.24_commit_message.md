@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "messages\version_4.0.24_commit_message.md"
+  file_hash: "a8dbd043c754366af1c307c2737a5c1b4e8379696724dad782c349fdb6fad22c"
+  file_path_from_root: "messages\version_4.0.24_commit_message.md"
   file_hash: "7ea041662c5de75fa3cc26275915c98a47ceed2d4602a1c7e29eb7b678a14a7f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "VERSION 4.0.24 RELEASE COMMIT MESSAGE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["messages", "version_4024_commit_messagemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

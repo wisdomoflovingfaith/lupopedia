@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130019_10000_1000_42_channel_42_directive_complete_antigravity_actor_workspaces.md"
+  file_hash: "51d2512fbc7fab24493e0cfa3facbae444ba4a0c573470d5aed9bcc837d2d412"
+  file_path_from_root: "channels\42\broadcasts\20260225130019_10000_1000_42_channel_42_directive_complete_antigravity_actor_workspaces.md"
   file_hash: "89d03e1b24284e1229b4a5fb7ad04c21b0b5b428df1f0a11ef952b917d4fe55c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225130019_10000_1000_42_channel_42_directive_complete_antigravity_actor_workspaces.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "broadcasts", "20260225130019_10000_1000_42_channel_42_directive_complete_antigravity_actor_workspacesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

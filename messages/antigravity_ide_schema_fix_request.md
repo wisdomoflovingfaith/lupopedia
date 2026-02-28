@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "messages\antigravity_ide_schema_fix_request.md"
+  file_hash: "93b2de6922a648499bc2f2e8afcb6545b77e52495aae028876983a16e27ce14b"
+  file_path_from_root: "messages\antigravity_ide_schema_fix_request.md"
   file_hash: "eeafb79bc081ce5833271bbc0820c9979e05f232b977f61f1480ec1564ad7f7d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "ANTIGRAVITY IDE - URGENT SCHEMA MISMATCH FIX REQUEST"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["messages", "antigravity_ide_schema_fix_requestmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

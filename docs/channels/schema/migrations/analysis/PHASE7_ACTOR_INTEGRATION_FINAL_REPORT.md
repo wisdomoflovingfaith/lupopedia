@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE7_ACTOR_INTEGRATION_FINAL_REPORT.md"
+  file_hash: "7dd36f7cb2da861059aeeab95898be6f3f0ca6459a998626a0ca11146b4d872b"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE7_ACTOR_INTEGRATION_FINAL_REPORT.md"
   file_hash: "a63ef2cbb0fa9e2b19e717758d4c5100d9b1410787f249a96ab8bce568c08f31"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Phase 7: Actor Integration Report - FINAL**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "phase7_actor_integration_final_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\TABLE_CEILING_DEFENSE_PLAN.md"
+  file_hash: "d5c4608b350acfc7eea4dfcda6fbd042a887d074f4da414fb6c950f1e69a43b6"
+  file_path_from_root: "docs\doctrine\TABLE_CEILING_DEFENSE_PLAN.md"
   file_hash: "a9b3bc2db64e6e6b7f1ffec5faaa5a1c7dc74b118f00dc98fe89b4b68e20daaa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for TABLE_CEILING_DEFENSE_PLAN.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "table_ceiling_defense_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

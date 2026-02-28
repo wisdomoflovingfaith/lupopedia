@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\appendix\GLOSSARY.md"
+  file_hash: "ea5836df001b14a5eb9d2be4f02b945b8fba1e6dcb0eae025a85f3592ebdce61"
+  file_path_from_root: "docs\channels\appendix\appendix\GLOSSARY.md"
   file_hash: "9ee6510608b5d60c4a3aa9abb12486fb4f7576da2e76e6c94e460b60531e3221"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GLOSSARY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "glossarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -616,4 +622,3 @@ Timestamp format: YYYYMMDDHHMMSS stored as BIGINT(14) in UTC.
 
 **Last Updated:** January 15, 2026  
 **Version:** GLOBAL_CURRENT_LUPOPEDIA_VERSION
-

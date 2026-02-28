@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\database\lupopedia_worms\README.md"
+  file_hash: "1524532bede4606c7770f32678a66f87331469cf1b06377814e85e8e9f291e67"
+  file_path_from_root: "docs\database\lupopedia_worms\README.md"
   file_hash: "b11abba057e7fc950548c1339c2909f0898eece2c2e61742e981e28ede08d2bd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "🐛 Lupopedia_Worms Database - AI ORM Cleanup"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "database", "lupopedia_worms", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

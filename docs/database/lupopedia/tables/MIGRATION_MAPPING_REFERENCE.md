@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md",
-  system_version: "4.0.48",
+  file_hash: "bc00b6ff7b11c7f786f66b448fb7ba36b714cf925bf0cf338f286284ca641ac3"
+  system_version: "4.0.50"
   channel_id: 42,
   actor_id: 1003,
   last_modified_utc: "20260227",
@@ -41,11 +42,15 @@ flare.headers: {
   lupo_agent: "antigravity"
 }
 flare.edges: {
+  file_path_from_root: "docs\database\lupopedia\tables\MIGRATION_MAPPING_REFERENCE.md"
   outbound_edges: [
     { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 }
   ],
   semantic_tags: ["migration_index", "legacy_mapping"]
 }
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer: {
   last_verified_utc: "20260227",
   last_verified_by: "antigravity"

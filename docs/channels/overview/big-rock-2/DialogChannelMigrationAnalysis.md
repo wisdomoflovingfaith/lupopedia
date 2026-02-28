@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\big-rock-2\DialogChannelMigrationAnalysis.md"
+  file_hash: "f7952b06009c16a696d2ebc232382c6874c6ac38f6c390f43e8d40a99d6b8dce"
+  file_path_from_root: "docs\channels\overview\big-rock-2\DialogChannelMigrationAnalysis.md"
   file_hash: "b51ffb3024237c1d4a1034057dc1b00a0ba03dc6d17e637e29f2fd4ddfb1c3ea"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DialogChannelMigrationAnalysis.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "big-rock-2", "dialogchannelmigrationanalysismd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\ADMIN_REGISTRY_INTERFACE_4_0_46.md"
+  file_hash: "022b124a4b59e868f76a0f6f27e6da70a5b57ba8e74cb369017fb60f0bea2aed"
+  file_path_from_root: "docs\status\ADMIN_REGISTRY_INTERFACE_4_0_46.md"
   file_hash: "6643a5ccb0adcabbd1bc6b96cbfb3f237798d4c611d400e061040bd788e1157f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ADMIN_REGISTRY_INTERFACE_4_0_46.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "status", "admin_registry_interface_4_0_46md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

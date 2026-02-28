@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\ascent\01_HISTORY_RECONCILIATION.md"
+  file_hash: "220f31fe81b80e907ffc12eaa7731ba7a67830047bd2a25ff8446afdf5253b2d"
+  file_path_from_root: "docs\channels\overview\ascent\01_HISTORY_RECONCILIATION.md"
   file_hash: "47eeaa42dd4fade02f62ea6bd8ed2fd1b5c0d1122aebf28741ca6caf28002d68"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 01_HISTORY_RECONCILIATION.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "ascent", "01_history_reconciliationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\specs\FLIP_DATABASE_MAPPING_LAYER_4.0.28.md"
+  file_hash: "b500a85b379c670505a043ea9b7ee3480d57dbba15c4ffcee959c1cee67abf2f"
+  file_path_from_root: "docs\specs\FLIP_DATABASE_MAPPING_LAYER_4.0.28.md"
   file_hash: "fdf2752cf4fd3fc078487597afa8bb2a039ab8351c4f31f1f9853e3fcb51a86e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FLIP_DATABASE_MAPPING_LAYER_4.0.28.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "specs", "flip_database_mapping_layer_4028md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

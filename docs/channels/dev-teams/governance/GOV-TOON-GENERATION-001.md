@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\dev-teams\governance\GOV-TOON-GENERATION-001.md"
+  file_hash: "9fc5db1561abadacc16350cb669e148de7cbc1deac07c590f0fcc5f7d7a53730"
+  file_path_from_root: "docs\channels\dev-teams\governance\GOV-TOON-GENERATION-001.md"
   file_hash: "70188d242b0efdf0712f9fb76d9d1cf870e59080e229b11f9d1b8d565d92fff7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GOV-TOON-GENERATION-001.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "dev-teams", "governance", "gov-toon-generation-001md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

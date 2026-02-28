@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\PDO_DB_DOCTRINE_REFACTOR_REPORT.md"
+  file_hash: "518833d920c32c6590c5ee2d3047159f5ed2f3db3e1b948f045fc57dd3a77b0b"
+  file_path_from_root: "docs\PDO_DB_DOCTRINE_REFACTOR_REPORT.md"
   file_hash: "f81a9d02b47aa740f4b05ebc76381b86264fc66b8a7f1bff5ce8147e03b8cd5f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "PDO_DB Doctrine + Crafty Integration Refactor Report"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "pdo_db_doctrine_refactor_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\versions\4.0.39\PRIORITY_FILES.md"
+  file_hash: "2619758c2464dda3b30f19d41b513db049a00756676444d5f1d858a6e8912c50"
+  file_path_from_root: "docs\versions\4.0.39\PRIORITY_FILES.md"
   file_hash: "3a21d989cf96a6768e7138710ac22b4a59c671f309d8365a652d488515c8b8cd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for PRIORITY_FILES.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "versions", "4039", "priority_filesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

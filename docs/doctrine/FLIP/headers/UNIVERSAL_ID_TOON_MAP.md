@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\FLIP\headers\UNIVERSAL_ID_TOON_MAP.md"
+  file_hash: "ffbbab59a8c868405c80f04b13d341b6cf52572c8cb857c15eff72fb708e6cc5"
+  file_path_from_root: "docs\doctrine\FLIP\headers\UNIVERSAL_ID_TOON_MAP.md"
   file_hash: "0a5d5680ee70b936bae609f1bc17a05f453eadf75093dfb3bb36c106729e2900"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for UNIVERSAL_ID_TOON_MAP.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "flip", "headers", "universal_id_toon_mapmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

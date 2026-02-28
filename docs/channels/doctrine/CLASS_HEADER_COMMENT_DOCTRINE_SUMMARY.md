@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\CLASS_HEADER_COMMENT_DOCTRINE_SUMMARY.md"
+  file_hash: "63b2798fc364adfd141da80df85c543c36a86ba33ad166c74e8cef5556180bec"
+  file_path_from_root: "docs\channels\doctrine\CLASS_HEADER_COMMENT_DOCTRINE_SUMMARY.md"
   file_hash: "82494ad89316d5cb12b97a0dd90ff00ab56bca4ee5f0d188640161ebc950ebce"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CLASS_HEADER_COMMENT_DOCTRINE_SUMMARY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "class_header_comment_doctrine_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

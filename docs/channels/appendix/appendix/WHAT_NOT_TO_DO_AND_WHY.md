@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\appendix\WHAT_NOT_TO_DO_AND_WHY.md"
+  file_hash: "45fe9840ad9608d75443f2c1afd159ecd9b4e35e09961cd2a73bffcdbf1d3139"
+  file_path_from_root: "docs\channels\appendix\appendix\WHAT_NOT_TO_DO_AND_WHY.md"
   file_hash: "7bd96f72c49e7d7249081d7d550800380297e3daf79843bff5f3733e49e0875a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for WHAT_NOT_TO_DO_AND_WHY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "what_not_to_do_and_whymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -199,4 +205,3 @@ This file is a map of every pitfall I've already fallen into â€” so I never
 - **[PDO Conversion Doctrine](../../doctrine/PDO_CONVERSION_DOCTRINE.md)** - Modern database practices (lessons from 2026-01)
 
 ---
-

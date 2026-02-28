@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE8_OPERATOR_CONSOLE_EVENT_INSTRUMENTATION_PLAN.md"
+  file_hash: "8dd317d00d8afa31203fd29ea11f79ed41f4e8691e9b3454d6a600c653b8f054"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE8_OPERATOR_CONSOLE_EVENT_INSTRUMENTATION_PLAN.md"
   file_hash: "e600e73157e77e29a05c7c4eb41b5c41fc65e87ecae3cbf426ac4f7564e9ea8a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Phase 8: Operator Console Event Instrumentation Plan**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "phase8_operator_console_event_instrumentation_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

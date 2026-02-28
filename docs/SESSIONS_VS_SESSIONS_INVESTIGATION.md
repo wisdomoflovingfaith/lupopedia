@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\SESSIONS_VS_SESSIONS_INVESTIGATION.md"
+  file_hash: "cf0b3ad5e6c78e98b32d9300477fe7578707536527cfe3072837c0f732d32049"
+  file_path_from_root: "docs\SESSIONS_VS_SESSIONS_INVESTIGATION.md"
   file_hash: "0698416df5d92e40b5554790271d7d995f04f5fd4044423e9da2410b565db66f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Investigation: {prefix}sessions vs {prefix}sessions"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "sessions_vs_sessions_investigationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

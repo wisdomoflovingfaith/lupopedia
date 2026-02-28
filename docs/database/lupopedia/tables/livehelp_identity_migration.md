@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_identity_migration.md",
-  system_version: "4.0.39",
+  file_hash: "ee1799ff9be4c058d49ac5e29b5cb9954b01670b9ddbaa21334323b2f0567174"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_identity_daily/monthly → dropped (anonymous in sessions only)",

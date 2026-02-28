@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "messages\GLOBAL_AGENT_SYNC_4.0.27.md"
+  file_hash: "61ee7734be748914894517239fbe681174a7ad0726950b374a4afa4e6efc59ca"
+  file_path_from_root: "messages\GLOBAL_AGENT_SYNC_4.0.27.md"
   file_hash: "379305d8a372ae0973cb98f5194ce94d37055bc59d90a9c014612927f53eef7f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GLOBAL AGENT SYNC - VERSION 4.0.27"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["messages", "global_agent_sync_4027md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

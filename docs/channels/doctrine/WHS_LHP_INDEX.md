@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\WHS_LHP_INDEX.md"
+  file_hash: "b3d12b1055a2f0430250115c997c0e1e20d095ff5c4af4ca444e44310fd1fdc4"
+  file_path_from_root: "docs\channels\doctrine\WHS_LHP_INDEX.md"
   file_hash: "8914491a9c6f726f4cce57e3d1dd9927f65dde8168636ce21e8f10a2727e69be"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for WHS_LHP_INDEX.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "whs_lhp_indexmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

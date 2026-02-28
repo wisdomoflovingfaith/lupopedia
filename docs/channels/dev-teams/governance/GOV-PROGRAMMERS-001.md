@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\dev-teams\governance\GOV-PROGRAMMERS-001.md"
+  file_hash: "8bb075cd9f193f5ec5aaba33104516cb68053ce1be6322aaa5e78add627de209"
+  file_path_from_root: "docs\channels\dev-teams\governance\GOV-PROGRAMMERS-001.md"
   file_hash: "21fcccbefde29e03d32f7d3fd554f9c53e8a0f146a14c848cf10148ad185106b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GOV‑PROGRAMMERS‑001"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "dev-teams", "governance", "gov-programmers-001md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

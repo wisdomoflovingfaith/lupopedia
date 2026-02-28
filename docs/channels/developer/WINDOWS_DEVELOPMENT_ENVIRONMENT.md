@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\WINDOWS_DEVELOPMENT_ENVIRONMENT.md"
+  file_hash: "957acd8052c50625a204ebe1bf9572c2d4ed41b619b35a7140df19da4075501b"
+  file_path_from_root: "docs\channels\developer\WINDOWS_DEVELOPMENT_ENVIRONMENT.md"
   file_hash: "014a90a7fdae46d36a7ea4bf458feb621bca4b4812b5ad9877f92e9a534fa5dc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Windows Development Environment Guidelines"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "developer", "windows_development_environmentmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\changelog-update-4-0-36\requirements.md"
+  file_hash: "737032da7bf97f16dad9bc85e7bcdcd64d06bcaccac385d327ec46774b45d546"
+  file_path_from_root: ".kiro\specs\changelog-update-4-0-36\requirements.md"
   file_hash: "d9cc11f86ea704625abeb3c3084ac9695cb9b878aa1407be1e282f5540ba84aa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for requirements.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["kiro", "specs", "changelog-update-4-0-36", "requirementsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

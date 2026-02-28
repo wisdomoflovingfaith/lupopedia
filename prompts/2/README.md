@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "prompts\2\README.md"
+  file_hash: "eb57400540254e21fcbb79bbdfb21abea266d2da51f9e5e5ec06e877f60d4e9d"
+  file_path_from_root: "prompts\2\README.md"
   file_hash: "a8f3986996092df5acb8aa3684f3518d3f90b4f9394c1dc8cd2d4680a6ef421c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "LILITH (Actor ID: 2, Agent ID: 2)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["prompts", "2", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

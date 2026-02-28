@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_transcripts_migration.md",
-  system_version: "4.0.39",
+  file_hash: "9436959d9350c004a5f7145a8f9e5fe203b0ac0a649b79dc96bf8644ef634db8"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_transcripts → lupo_dialog_threads/lupo_dialog_messages",

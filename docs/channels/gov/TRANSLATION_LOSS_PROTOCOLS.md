@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\TRANSLATION_LOSS_PROTOCOLS.md"
+  file_hash: "845f8a756438fecc140e2a16285fa7812fe52c2e80d595a13ae6652a24eccdcd"
+  file_path_from_root: "docs\channels\gov\TRANSLATION_LOSS_PROTOCOLS.md"
   file_hash: "011bc0c3d5e3b62170557623cf4b5e933577c5052fe93009995fedc1ef39dcfa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for TRANSLATION_LOSS_PROTOCOLS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "translation_loss_protocolsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

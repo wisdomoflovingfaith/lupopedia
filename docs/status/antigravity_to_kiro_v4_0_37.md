@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\antigravity_to_kiro_v4_0_37.md"
+  file_hash: "fc84224ce7c92fe0ae3e85c0cf9bca19d043bb0a548e5755fd259c3812b83c7b"
+  file_path_from_root: "docs\status\antigravity_to_kiro_v4_0_37.md"
   file_hash: "0dc42c2eb15b1c33e584600d199d959366a4d6c87ff4812fbf30ddd1030a542f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for antigravity_to_kiro_v4_0_37.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "status", "antigravity_to_kiro_v4_0_37md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

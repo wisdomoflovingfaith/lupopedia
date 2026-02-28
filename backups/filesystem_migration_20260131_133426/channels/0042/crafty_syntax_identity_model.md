@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\0042\crafty_syntax_identity_model.md"
+  file_hash: "7edce39d2e691dfc28b0d02da6caa9624c196dc360cfd7030c34e53ef0a3b829"
+  file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\0042\crafty_syntax_identity_model.md"
   file_hash: "5837c0abe3943fc51ba95ccfb75feb61f391fa563bdb7accc29ef5ee1681e27b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for crafty_syntax_identity_model.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["backups", "filesystem_migration_20260131_133426", "channels", "0042", "crafty_syntax_identity_modelmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

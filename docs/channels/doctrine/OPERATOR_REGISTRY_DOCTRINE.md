@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\OPERATOR_REGISTRY_DOCTRINE.md"
+  file_hash: "4cbac8f6f40bc4e4cd818355e75e348a3362ff248a6df4fb5c3b159ac87a40b4"
+  file_path_from_root: "docs\channels\doctrine\OPERATOR_REGISTRY_DOCTRINE.md"
   file_hash: "dece1bd0fd1441599ff49d651810dacea9bfe40b3de45023014a17452fd0e391"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for OPERATOR_REGISTRY_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "operator_registry_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

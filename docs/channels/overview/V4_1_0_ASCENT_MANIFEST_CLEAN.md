@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\V4_1_0_ASCENT_MANIFEST_CLEAN.md"
+  file_hash: "f1c6970126f8d0373cba05a0b7719ce881b1931d15bdd60d7d18d69911363467"
+  file_path_from_root: "docs\channels\overview\V4_1_0_ASCENT_MANIFEST_CLEAN.md"
   file_hash: "b998873a790fa3901a480ce9ab7d5578fb82089b9832097cadd258a7c725d813"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for V4_1_0_ASCENT_MANIFEST_CLEAN.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "v4_1_0_ascent_manifest_cleanmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

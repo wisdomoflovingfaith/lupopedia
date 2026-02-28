@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\roles\graph_intelligence_agent.md"
+  file_hash: "d9a48ba9db5777a85c088b58356f902e96558ac54c6eeca3fed36b150c316a4a"
+  file_path_from_root: "channels\0\roles\graph_intelligence_agent.md"
   file_hash: "aa29991a2c1804680cbdc4ee64092ede3540398812dafe3f8122d6aa2b6d6daa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for graph_intelligence_agent.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "roles", "graph_intelligence_agentmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

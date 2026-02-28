@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\deprecated\DEPRECATED_EMOTIONAL_GEOMETRY.md"
+  file_hash: "f380d9eb43b962a5ea9742a2acc38b19daf952d95d208bcf7de4e492f710b6e7"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\deprecated\DEPRECATED_EMOTIONAL_GEOMETRY.md"
   file_hash: "5e8ccf624fbc775eeb9e8a901647bd371ec7d9d4a8051ea804afef05cf8283ed"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DEPRECATED_EMOTIONAL_GEOMETRY.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "deprecated", "deprecated_emotional_geometrymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

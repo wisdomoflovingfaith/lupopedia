@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\versions\4.0.34\CHANGELOG_DRAFT.md"
+  file_hash: "cd11ffc82aa5395601ca98621b20de613fce5f30d78c6e8058c6304f91bb3e07"
+  file_path_from_root: "docs\versions\4.0.34\CHANGELOG_DRAFT.md"
   file_hash: "40d729cb03e5664ef2b0e0d1451bcb0c0cde15975751d5a2d0731c5636d20e17"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CHANGELOG_DRAFT.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "versions", "4034", "changelog_draftmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

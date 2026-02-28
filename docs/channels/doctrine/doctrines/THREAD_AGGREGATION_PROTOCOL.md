@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\doctrines\THREAD_AGGREGATION_PROTOCOL.md"
+  file_hash: "3a5393e9a1f810ab227f8aacb5f9ff8f552ebc57168483a2fc889b3961fa7236"
+  file_path_from_root: "docs\channels\doctrine\doctrines\THREAD_AGGREGATION_PROTOCOL.md"
   file_hash: "c9e085eb2f14dd2925cd911c993dd54bfca9dadf9c53935df8dd575f12c4fa61"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for THREAD_AGGREGATION_PROTOCOL.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "doctrines", "thread_aggregation_protocolmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

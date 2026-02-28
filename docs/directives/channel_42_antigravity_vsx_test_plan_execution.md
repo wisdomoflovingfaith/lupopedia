@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\directives\channel_42_antigravity_vsx_test_plan_execution.md"
+  file_hash: "a043e288386c2c0063c6ddce9e8495a6762b38094353915f0b54a0166087bc94"
+  file_path_from_root: "docs\directives\channel_42_antigravity_vsx_test_plan_execution.md"
   file_hash: "fffb6eae39f8eb79b9e2ece31ede00b26d2bd8d036548b6b12111e8fc91e9b3b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for channel_42_antigravity_vsx_test_plan_execution.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "directives", "channel_42_antigravity_vsx_test_plan_executionmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

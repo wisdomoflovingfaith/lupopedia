@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\AGENT_ROUTING_DOCTRINE.md"
+  file_hash: "24018ad7b4c69b8df0a82891383de31323251e5baf889e7559ce2f123df5c6e0"
+  file_path_from_root: "docs\channels\doctrine\AGENT_ROUTING_DOCTRINE.md"
   file_hash: "0436570dd5cca161027b347d7abddca77348fca88e6dabc173b8394adcdb13d8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AGENT_ROUTING_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "agent_routing_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

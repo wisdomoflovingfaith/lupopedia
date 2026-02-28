@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\RELEASE_READINESS_CHECKLIST_3.0.7.md"
+  file_hash: "51abf1c31e9e8b9acfba0670cdca2a6cf5e8c8223abca447b8cfd82313a47d5f"
+  file_path_from_root: "docs\channels\developer\RELEASE_READINESS_CHECKLIST_3.0.7.md"
   file_hash: "650a9064f95f909edc14e16aa0bde34dd8f0daa5f0e0fa499deb16cd2242aa2c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for RELEASE_READINESS_CHECKLIST_3.0.7.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "developer", "release_readiness_checklist_307md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

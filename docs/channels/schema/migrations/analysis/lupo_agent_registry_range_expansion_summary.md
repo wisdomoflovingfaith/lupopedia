@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\lupo_agent_registry_range_expansion_summary.md"
+  file_hash: "a31edd821c46fedc62e77654cbe6c54d3cd28f23771005c68b9783cbc0aa3c56"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\lupo_agent_registry_range_expansion_summary.md"
   file_hash: "1df87616da2440dde11a9ecaaccb9733c3de696233f3c81927fcd39808425ce4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "lupo_agent_registry_range_expansion - Migration Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "lupo_agent_registry_range_expansion_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE3_OPERATOR_CONSOLE_MIGRATION_REPORT.md"
+  file_hash: "b2c75da94c13b27b45c6929f004bc51799b4ce4aa8a7c2f95be873c9c5d577ea"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE3_OPERATOR_CONSOLE_MIGRATION_REPORT.md"
   file_hash: "1d41e8463b267167177369374bc5736ff7d6937d8e47b786a423f559a40c6c3d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Phase 3: Operator Console Migration Report**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "phase3_operator_console_migration_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\IMAGE_PHP_MIGRATION.md"
+  file_hash: "e6b27beb69eb8ac3f244ec726b091906476e0feea35e8b1192769fd25c0a8d42"
+  file_path_from_root: "docs\IMAGE_PHP_MIGRATION.md"
   file_hash: "8777a40228616168ba1fff49b78471d79a4e75e390e0f805ef8411bfbd77203d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "image.php Migration — Summary & Query Mapping"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "image_php_migrationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

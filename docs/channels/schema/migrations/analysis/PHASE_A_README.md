@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE_A_README.md"
+  file_hash: "ef9f8fe268ec2dff4763909426b987133ae32bc29f0044966b9d1626ade17e7c"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE_A_README.md"
   file_hash: "17da0f9504a425afa79f51bda476d383feafc6ef6b10b3af931dc5ebdec0722e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Phase A: Schema Federation Migration"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "phase_a_readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

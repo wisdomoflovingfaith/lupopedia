@@ -3,7 +3,8 @@
 ---
 flare.headers:
   file_path_from_root: "docs/doctrine/VERSION_POLICY_DOCTRINE.md"
-  system_version: "4.0.49"
+  file_hash: "dec956e3bc5a07c3caeda08ffc19f4e2f420be62ed639b396183221adedb12dc"
+  system_version: "4.0.50"
   channel_id: 51
   actor_id: 1007
   last_modified_utc: "20260227"
@@ -18,6 +19,7 @@ flare.headers:
   lupo_agent: "codex-ide"
 
 flare.edges:
+  file_path_from_root: "docs\doctrine\VERSION_POLICY_DOCTRINE.md"
   outbound_edges:
     - { to: "CHANGELOG.md", type: "governs", weight: 1.0, reason: "Version release policy" }
     - { to: "config/global_atoms.yaml", type: "references", weight: 0.9, reason: "Version configuration" }
@@ -25,6 +27,9 @@ flare.edges:
     - { to: "README.md", type: "informs", weight: 0.7, reason: "Project documentation" }
   semantic_tags: ["version_policy", "release_management", "auto_installers", "blocking", "doctrine"]
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260227"
   last_verified_by: "lupopedia"

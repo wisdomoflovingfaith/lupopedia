@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_DOCTRINE_UPDATE_SUMMARY.md"
+  file_hash: "45ed5315a0df078e1e2dab86d9034e2657ab17b6bcd40677e26f0dd24919ca91"
+  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_DOCTRINE_UPDATE_SUMMARY.md"
   file_hash: "35ae130a8ead70beeb72e500f9c8d5be148d5bb865c1047495b3621478367d33"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Departments / Groups / Roles Unification — Doctrine Update Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "departments_groups_roles_doctrine_update_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

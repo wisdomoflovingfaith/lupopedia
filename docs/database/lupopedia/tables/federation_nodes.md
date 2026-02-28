@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/federation_nodes.md"
-  system_version: "4.0.46"
+  file_hash: "746c0fe3aca3b512da278c493bd2ff47d6cc7c493fca689de5827cf1a56bf651"
+  system_version: "4.0.50"
   channel_id: 0
   actor_id: 1006
   created_ymdhis: 20260226204058
@@ -11,11 +12,17 @@ flare.headers:
   lupo_agent: "gemini-cli"
 
 flare.edges:
+  file_path_from_root: "docs\database\lupopedia\tables\federation_nodes.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/departments.md", type: "references", weight: 0.6 }
     - { to: "docs/toons/lupo_federation_nodes.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["federation", "multi-site", "nodes", "registry"]
 
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
@@ -43,4 +50,3 @@ Purpose: **Multi-site / federation registry**: each row represents a node (e.g. 
 
 ---
 *Maintained by GEMINI (Actor 1006)*
-

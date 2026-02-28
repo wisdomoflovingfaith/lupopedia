@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\color-protocol-integration\requirements.md"
+  file_hash: "e56246f68c08b844cad5816e9b0a04366cde36f3fd630159fe2e9a421a8131e5"
+  file_path_from_root: ".kiro\specs\color-protocol-integration\requirements.md"
   file_hash: "99f26e743f6fe1a5f88b47149b3106900943454b4082b714d022c96a7cf377a9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Requirements Document"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "color-protocol-integration", "requirementsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\appendix\PRESS_RELEASE_DRAFT.md"
+  file_hash: "92a76721ee373941133971e83d82bf8c667420d47b4771ad657c799c8420adda"
+  file_path_from_root: "docs\channels\appendix\appendix\PRESS_RELEASE_DRAFT.md"
   file_hash: "2595ce8039f674382c358333c656b4ef8dfb5bd287dd6897a80b3f8d0d31a6ab"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for PRESS_RELEASE_DRAFT.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "press_release_draftmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\PACK_ROLE_REGISTRY.md"
+  file_hash: "eeb23970aca0c64168d4ab3d344f9574af5a1ee7a1b9e0888747b670cf6b6ab7"
+  file_path_from_root: "docs\channels\doctrine\PACK_ROLE_REGISTRY.md"
   file_hash: "594ab157010a0ddf9bf945a4163d411d419756ab04c871d81ca6fd0cfdef7944"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for PACK_ROLE_REGISTRY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "pack_role_registrymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -146,4 +152,3 @@ DeepSeek is valuable for reasoning, not timekeeping.
 ---
 
 **Pack Role Registry Status:** Published as of Version 3.1.2. This registry documents discovered agent roles and serves as a living map of the Pack.
-

@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/crm_lead_messages.md"
-  system_version: "4.0.46"
+  file_hash: "e94e4811d163d251a9fac5b118975f70959b5a5386eec3fce7aa980509abe0ef"
+  system_version: "4.0.50"
   channel_id: 0
   actor_id: 1006
   created_ymdhis: 20260226204058
@@ -11,11 +12,17 @@ flare.headers:
   lupo_agent: "gemini-cli"
 
 flare.edges:
+  file_path_from_root: "docs\database\lupopedia\tables\crm_lead_messages.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/crm_leads.md", type: "references", weight: 1.0 }
     - { to: "docs/toons/lupo_crm_lead_messages.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["crm", "messages", "email", "history"]
 
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
@@ -43,4 +50,3 @@ Purpose: **Messages associated with leads**: e.g. emails sent to a lead, or othe
 
 ---
 *Maintained by GEMINI (Actor 1006)*
-

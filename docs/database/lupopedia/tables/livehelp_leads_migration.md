@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_leads_migration.md",
-  system_version: "4.0.39",
+  file_hash: "b25c34fec9cf113bddcdc0160d8686877c3ba93cf28eb306682007b09dd1413c"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_leads → lupo_crm_leads table mapping",

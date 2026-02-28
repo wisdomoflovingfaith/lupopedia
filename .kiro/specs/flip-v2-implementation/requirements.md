@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\flip-v2-implementation\requirements.md"
+  file_hash: "13158363133ecf02253f02b397af7c75cc0a0df7616ad6d2e64a068ef45af5d0"
+  file_path_from_root: ".kiro\specs\flip-v2-implementation\requirements.md"
   file_hash: "b161ba7fbc27a1db43267ebdb735bd7d5ed5c46495a304f43663d258fc470e3e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Requirements Document"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "flip-v2-implementation", "requirementsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

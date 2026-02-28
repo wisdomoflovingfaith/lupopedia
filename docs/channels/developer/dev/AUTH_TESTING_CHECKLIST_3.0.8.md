@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\dev\AUTH_TESTING_CHECKLIST_3.0.8.md"
+  file_hash: "c8fec57f81ee5fd337042812452cfd6d6bfe17013fa4b3318f5d1ce3954f4739"
+  file_path_from_root: "docs\channels\developer\dev\AUTH_TESTING_CHECKLIST_3.0.8.md"
   file_hash: "63c8cf1ed4725c514f6a5b5d74f25eb1e4a22846c2b397375f33b612488d7e10"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AUTH_TESTING_CHECKLIST_3.0.8.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "developer", "dev", "auth_testing_checklist_308md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

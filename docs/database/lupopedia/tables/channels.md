@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/channels.md"
-  system_version: "4.0.46"
+  file_hash: "8404fdb85aef81e30e0e21a57a52df62a8620934ef3a66fa3d17da7cc57a5eef"
+  system_version: "4.0.50"
   channel_id: 0
   actor_id: 1006
   created_ymdhis: 20260226204058
@@ -11,12 +12,18 @@ flare.headers:
   lupo_agent: "gemini-cli"
 
 flare.edges:
+  file_path_from_root: "docs\database\lupopedia\tables\channels.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_dialog_threads.md", type: "references", weight: 0.9, reason: "Threads are scoped to channels" }
     - { to: "docs/database/lupopedia/tables/actor_channel_roles.md", type: "references", weight: 0.9, reason: "Access control per channel" }
     - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["channels", "communication", "dialog", "structure"]
 
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
@@ -44,4 +51,3 @@ Purpose: **Channel identity**: each channel has an id, name, key/slug, descripti
 
 ---
 *Maintained by GEMINI (Actor 1006)*
-

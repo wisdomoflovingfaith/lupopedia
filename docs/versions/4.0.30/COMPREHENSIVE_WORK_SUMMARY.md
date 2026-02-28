@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\versions\4.0.30\COMPREHENSIVE_WORK_SUMMARY.md"
+  file_hash: "2a2a5d30bcb21903c569e170c1936b9010fd2707080383990feba2f3b2551ed9"
+  file_path_from_root: "docs\versions\4.0.30\COMPREHENSIVE_WORK_SUMMARY.md"
   file_hash: "2e6b0b5de8f2ef54d5dbab2fb5e6f1866f0f53babd790d8c0bed0280e24cdb92"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for COMPREHENSIVE_WORK_SUMMARY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "versions", "4030", "comprehensive_work_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

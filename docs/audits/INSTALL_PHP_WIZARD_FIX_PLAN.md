@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\INSTALL_PHP_WIZARD_FIX_PLAN.md"
+  file_hash: "a3c4f2effe54017b7aeecb98e17c26810ae62853dcee7cdd0534112310245e8a"
+  file_path_from_root: "docs\audits\INSTALL_PHP_WIZARD_FIX_PLAN.md"
   file_hash: "5d605d4ebfed5acd7a359d7924d7f8558033e90399b846b6d7093fcc2adc6b53"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Install.php + Wizard — Fix Plan (Do NOT Apply Yet)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "install_php_wizard_fix_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

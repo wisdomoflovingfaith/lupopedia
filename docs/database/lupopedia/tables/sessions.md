@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/sessions.md"
-  system_version: "4.0.46"
+  file_hash: "6102d95d4e9f738db614bcee8df0640eb7f70ee49128bbed334d0b9a9477f271"
+  system_version: "4.0.50"
   channel_id: 0
   actor_id: 1006
   created_ymdhis: 20260226204058
@@ -11,11 +12,17 @@ flare.headers:
   lupo_agent: "gemini-cli"
 
 flare.edges:
+  file_path_from_root: "docs\database\lupopedia\tables\sessions.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9, reason: "Binding session to identity" }
     - { to: "docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["sessions", "auth", "state", "anonymous"]
 
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
@@ -44,4 +51,3 @@ Purpose: **Session storage** for authenticated and anonymous users: session_id, 
 
 ---
 *Maintained by GEMINI (Actor 1006)*
-

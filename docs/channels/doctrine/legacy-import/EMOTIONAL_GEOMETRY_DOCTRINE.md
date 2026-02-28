@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\EMOTIONAL_GEOMETRY_DOCTRINE.md"
+  file_hash: "dcf36d386c6a957941465ed916ef4c2260ef740c6731aee1e02fb04a009ef4c2"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\EMOTIONAL_GEOMETRY_DOCTRINE.md"
   file_hash: "d24aa14c9aa66fa2e43434ef7e7b59c3d9b42e752c50c491195f079f651ca915"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for EMOTIONAL_GEOMETRY_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "emotional_geometry_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

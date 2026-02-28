@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\roles\registry_steward.md"
+  file_hash: "4945e75d38678448bdcb709b8737246b111f0363f6150acb7083f40f265bb140"
+  file_path_from_root: "channels\0\roles\registry_steward.md"
   file_hash: "d63632e76e2e8a7885bfd30566edcd47d8f62094b1acbe07c46e6b82f4778f9f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for registry_steward.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "roles", "registry_stewardmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

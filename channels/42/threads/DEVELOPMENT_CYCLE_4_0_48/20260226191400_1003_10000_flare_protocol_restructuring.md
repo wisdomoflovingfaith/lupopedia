@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260226191400_1003_10000_flare_protocol_restructuring.md"
-  system_version: "4.0.48"
+  file_hash: "f95b85f33ec7311a576841e68b554f82ce4a86511e1c15ad4db90a83921906dd"
+  system_version: "4.0.50"
   channel_id: 42
   actor_id: 1003
   last_modified_utc: "20260226"
@@ -10,11 +11,15 @@ flare.headers:
   purpose: "Document the restructuring of the FLARE protocol to v4.1.0"
 
 flare.edges:
+  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260226191400_1003_10000_flare_protocol_restructuring.md"
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "channels/42/actors/1003/20260226_flare_protocol_v410_detailed.md", type: "references", weight: 1.0 }
   semantic_tags: ["flare", "protocol", "v4.1.0", "restructuring"]
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   view_count: 0
   last_verified: "20260226"

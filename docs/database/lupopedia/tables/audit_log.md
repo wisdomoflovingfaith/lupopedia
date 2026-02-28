@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/audit_log.md"
-  system_version: "4.0.46"
+  file_hash: "5c7488a1f39139af1c714488f099c35c4a95b5080cf29df2198c5ffce922b609"
+  system_version: "4.0.50"
   channel_id: 0
   actor_id: 1006
   created_ymdhis: 20260226204058
@@ -11,11 +12,17 @@ flare.headers:
   lupo_agent: "gemini-cli"
 
 flare.edges:
+  file_path_from_root: "docs\database\lupopedia\tables\audit_log.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.8, reason: "Actor identity attribution" }
     - { to: "docs/toons/lupo_audit_log.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["audit", "log", "security", "history"]
 
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
@@ -44,4 +51,3 @@ Purpose: **Audit trail** for actor and system actions: entity_type, entity_id, e
 
 ---
 *Maintained by GEMINI (Actor 1006)*
-

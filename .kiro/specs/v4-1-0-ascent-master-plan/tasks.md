@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\v4-1-0-ascent-master-plan\tasks.md"
+  file_hash: "975b8eb6d377b2fef7104e6f38fc1608095c7fc2629be33ee49e7fde76f29584"
+  file_path_from_root: ".kiro\specs\v4-1-0-ascent-master-plan\tasks.md"
   file_hash: "54b0e63db3a4bd3eb73fc8025995260d5f7b077facae2185e681b014909ab2e5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Implementation Plan: v3.1.0 Ascent Master Plan"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "v4-1-0-ascent-master-plan", "tasksmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

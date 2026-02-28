@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\AI_INTEGRATION_SAFETY_DOCTRINE.md"
+  file_hash: "62c50e0eacbd1c1d6f8f27c6a46cc4fdc9b299c5f21e996db0a6c699fa9ba677"
+  file_path_from_root: "docs\channels\doctrine\AI_INTEGRATION_SAFETY_DOCTRINE.md"
   file_hash: "643f4a6c3a1684dc7b36d4162262c1d68d5571da1e5e84bafde464672ad8d0cf"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AI_INTEGRATION_SAFETY_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "ai_integration_safety_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

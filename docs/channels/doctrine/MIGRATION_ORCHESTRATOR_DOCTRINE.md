@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\MIGRATION_ORCHESTRATOR_DOCTRINE.md"
+  file_hash: "e3102f677bdb4806d9eb7482b3b6cbca5a26ab74b274aaeaa7d60b733b292569"
+  file_path_from_root: "docs\channels\doctrine\MIGRATION_ORCHESTRATOR_DOCTRINE.md"
   file_hash: "ab040997a2e372fa147873ff22b1ce014dae37ee9d41d999df840293ce3e8b50"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MIGRATION_ORCHESTRATOR_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "migration_orchestrator_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

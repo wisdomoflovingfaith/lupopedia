@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "prompts\1001\20260224_update_how_to_use_lupopedia.md"
+  file_hash: "9217e9488eb6649290654f35b0c85e53cc9b5da3d081b6ba666c08ee7ba074c0"
+  file_path_from_root: "prompts\1001\20260224_update_how_to_use_lupopedia.md"
   file_hash: "2b7911ff67ad0d710ac377c13f67f78187632c8474b23dc582c155aaf6ce1c6c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224_update_how_to_use_lupopedia.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["prompts", "1001", "20260224_update_how_to_use_lupopediamd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

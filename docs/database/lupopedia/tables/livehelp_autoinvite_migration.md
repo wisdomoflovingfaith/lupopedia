@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_autoinvite_migration.md",
-  system_version: "4.0.39",
+  file_hash: "c3b2eb68db60489e02856717d1a5a7212122dbaf347ca126016aff48a6bcd5b5"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_autoinvite → lupo_crafty_syntax_auto_invite",

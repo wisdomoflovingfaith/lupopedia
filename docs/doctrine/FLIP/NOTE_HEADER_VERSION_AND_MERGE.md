@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\FLIP\NOTE_HEADER_VERSION_AND_MERGE.md"
+  file_hash: "eeef1d2430fe314668555561c0afc3dd66d09c44feb48272f8bee9844442ec49"
+  file_path_from_root: "docs\doctrine\FLIP\NOTE_HEADER_VERSION_AND_MERGE.md"
   file_hash: "ec9e5918b34205b3dc442ea8c54f82b1eed86a58dc13255adfc37652b1691cd5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for NOTE_HEADER_VERSION_AND_MERGE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "flip", "note_header_version_and_mergemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -2,7 +2,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 flare.headers:
   file_path_from_root: "README.md"
-  system_version: "4.0.48"
+  file_hash: "5c087380d7f0917a410b931c7b926204486b79cedf338c0a98c74b28b68425f3"
+  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1001
   last_modified_utc: "20260227"
@@ -15,6 +16,9 @@ flare.headers:
   tags: ["readme", "overview", "architecture", "multi_agent", "semantic_os", "flare_protocol"]
   lupo_agent: "windsurf"
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   outbound_edges:
     - { to: "QUICKSTART.md", type: "references", weight: 1.0 }

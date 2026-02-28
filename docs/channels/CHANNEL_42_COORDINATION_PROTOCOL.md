@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\CHANNEL_42_COORDINATION_PROTOCOL.md"
+  file_hash: "31fb81e42da21c8e51702328c68123cf3659dffc969816beb2524001166ebc5f"
+  file_path_from_root: "docs\channels\CHANNEL_42_COORDINATION_PROTOCOL.md"
   file_hash: "94be72003988c27ef3b2485b97d130f55bf30b6935872de46f66b1c276a084ba"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CHANNEL_42_COORDINATION_PROTOCOL.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "channel_42_coordination_protocolmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

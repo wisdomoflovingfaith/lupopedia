@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\TRIGGER_PROCEDURE_INVENTORY_3_0_75.md"
+  file_hash: "22d1825974db39442192b593f3e7bd45cba19ab439d1ef23d5c36ab67497be0d"
+  file_path_from_root: "docs\channels\doctrine\TRIGGER_PROCEDURE_INVENTORY_3_0_75.md"
   file_hash: "f5fa6bf52730c2590212377802b6b11d2726540f58779e9815251655c922b6d0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for TRIGGER_PROCEDURE_INVENTORY_3_0_75.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "trigger_procedure_inventory_3_0_75md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

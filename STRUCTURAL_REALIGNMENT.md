@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "STRUCTURAL_REALIGNMENT.md"
+  file_hash: "38c96390fd6d0e2a98b59a8133d4669847538b65deb9f38f62204b68de5c3736"
+  file_path_from_root: "STRUCTURAL_REALIGNMENT.md"
   file_hash: "99a12bf50481e4a073e88a5f642fd4bd6fc144f89d7e2da1703c80aca29a079e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for STRUCTURAL_REALIGNMENT.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["structural_realignmentmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

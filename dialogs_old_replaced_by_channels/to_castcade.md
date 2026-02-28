@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\to_castcade.md"
+  file_hash: "8ee1f1d2a81f7f44205a3f4a8cff6b20d496bb6a26cc73e9d8fb7ee7e603a59e"
+  file_path_from_root: "dialogs_old_replaced_by_channels\to_castcade.md"
   file_hash: "4341a6f6e125956233c99fc9f37fda3546d61ce19be17147496417104327032d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Messages to Cascade"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "to_castcademd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

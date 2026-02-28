@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\VERSION_3_INGESTION_RULES.md"
+  file_hash: "cd7fb7e324620fca75f5a53c7de2099885ef01082880b1bf6d785f76df0f4be2"
+  file_path_from_root: "docs\channels\architecture\VERSION_3_INGESTION_RULES.md"
   file_hash: "6b95b95f33ae574f7c04271d399a864f409a26bc78bace9b2336100535c6e601"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for VERSION_3_INGESTION_RULES.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "version_3_ingestion_rulesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\appendix\MYSQL_TO_POSTGRES_MEMORY.md"
+  file_hash: "bae2172437e75d8878ab333fefe6a5b9dac1ea262f57ddc4e7bc17a375cc0eb1"
+  file_path_from_root: "docs\channels\appendix\appendix\MYSQL_TO_POSTGRES_MEMORY.md"
   file_hash: "48a872a92e219b8b26122a67325414ba2668d47acb5100d9201c71bb30ab4d15"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MYSQL_TO_POSTGRES_MEMORY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "mysql_to_postgres_memorymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -397,4 +403,3 @@ This is exactly how a semantic OS should evolve.
 - **[History](../../history/HISTORY.md)** - Background on why progressive enhancement became necessary
 
 ---
-

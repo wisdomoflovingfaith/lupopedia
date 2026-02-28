@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\history-reconciliation\requirements.md"
+  file_hash: "a0c2ad3c2c7e64bbd40fb8d6ea02f67050554c853656aec199ae4f26507374c0"
+  file_path_from_root: ".kiro\specs\history-reconciliation\requirements.md"
   file_hash: "34742da54fe1f54adb6b1b89ced21b844e36607710d7e1a71f881b6e32f70b39"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Requirements Document"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "history-reconciliation", "requirementsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

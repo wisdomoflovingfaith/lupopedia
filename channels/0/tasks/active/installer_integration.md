@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\tasks\active\installer_integration.md"
+  file_hash: "bd70a4c3c77211455473dba6d3f61ec122cbf788b9801743c2808236e51e05c4"
+  file_path_from_root: "channels\0\tasks\active\installer_integration.md"
   file_hash: "84040f35d0f793b2be6127059918155a644ac1f18becb1c171dc9ac79c3c4fe3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for installer_integration.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "tasks", "active", "installer_integrationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

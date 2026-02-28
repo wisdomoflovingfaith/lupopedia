@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\TEMPORAL_TRUTH_MONITORING_GUIDE.md"
+  file_hash: "bf07639b864a4e2dceba013609befda85e761ebe0113fc51ef9e7b6926f2c80f"
+  file_path_from_root: "docs\channels\doctrine\TEMPORAL_TRUTH_MONITORING_GUIDE.md"
   file_hash: "a3ff9eb91b9a00b76fe89f6145741468055067c23a5678a637e005134d5a08b3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Temporal Truth Monitoring Guide"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "temporal_truth_monitoring_guidemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

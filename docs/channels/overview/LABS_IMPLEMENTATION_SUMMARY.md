@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\LABS_IMPLEMENTATION_SUMMARY.md"
+  file_hash: "0d8838ee023224a84cb88d272438150955ee5df8b808c8082cccbc098ec7bf58"
+  file_path_from_root: "docs\channels\overview\LABS_IMPLEMENTATION_SUMMARY.md"
   file_hash: "9e235d95fd8c466ced172ac8a9b732ef95b54cd512ba132c5a58d4c6d26b2c9e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LABS_IMPLEMENTATION_SUMMARY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "labs_implementation_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

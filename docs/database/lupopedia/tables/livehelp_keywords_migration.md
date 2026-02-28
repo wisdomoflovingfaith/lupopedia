@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_keywords_migration.md",
-  system_version: "4.0.39",
+  file_hash: "09da1af724bf7d4ab5f8e5a05e196fb90d5cad20298e3147096d2ff82e582d33"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_keywords → deprecated/replaced",

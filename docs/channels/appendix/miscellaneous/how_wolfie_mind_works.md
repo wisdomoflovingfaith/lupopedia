@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\miscellaneous\how_wolfie_mind_works.md"
+  file_hash: "f3254ca2aef26197fc5a0d90345ac81763e09ec174effa5f681cb1313f730cfd"
+  file_path_from_root: "docs\channels\appendix\miscellaneous\how_wolfie_mind_works.md"
   file_hash: "0d41794cab958b818363f17f1bf8e53ed8c376c8b5b0f4a9f541ff70172e45e0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for how_wolfie_mind_works.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "miscellaneous", "how_wolfie_mind_worksmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

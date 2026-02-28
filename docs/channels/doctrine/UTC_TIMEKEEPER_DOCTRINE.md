@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\UTC_TIMEKEEPER_DOCTRINE.md"
+  file_hash: "9a84a170f2005da07277505ce7ec13c6ad588ab109cf3025a069704cb6579af2"
+  file_path_from_root: "docs\channels\doctrine\UTC_TIMEKEEPER_DOCTRINE.md"
   file_hash: "14fa4c178227c1e5735924214522b579acfa7f231ce2717b198e8c4fb9748f31"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for UTC_TIMEKEEPER_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "utc_timekeeper_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -353,4 +359,3 @@ UTC_TIMEKEEPER must scale for:
 ---
 
 *This doctrine establishes UTC_TIMEKEEPER as the fundamental temporal authority in Lupopedia, ensuring consistent, reliable, and auditable timestamp management across all agents, channels, and federation nodes while preventing temporal drift and inference.*
-

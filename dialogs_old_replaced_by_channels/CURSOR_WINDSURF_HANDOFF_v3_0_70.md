@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\CURSOR_WINDSURF_HANDOFF_v3_0_70.md"
+  file_hash: "e5bbc04ba28672bf20112b74dd5121d04d7a4580ae22f3dfa01a41f3cac87068"
+  file_path_from_root: "dialogs_old_replaced_by_channels\CURSOR_WINDSURF_HANDOFF_v3_0_70.md"
   file_hash: "08be7c6566071cfa864067462fb411fb50d8fd58fcf30cf907b0ac572f540284"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CURSOR_WINDSURF_HANDOFF_v3_0_70.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "cursor_windsurf_handoff_v3_0_70md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

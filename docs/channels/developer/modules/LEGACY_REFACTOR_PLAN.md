@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\modules\LEGACY_REFACTOR_PLAN.md"
+  file_hash: "733ae16a8ce0278752584515a9d8e51ed07d0fdfae3a07070978bf7e6483b257"
+  file_path_from_root: "docs\channels\developer\modules\LEGACY_REFACTOR_PLAN.md"
   file_hash: "593220554323fe31853cc3865edbdc74d325e70bc5b7cd6e1c56aaf83561f9b1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LEGACY_REFACTOR_PLAN.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "developer", "modules", "legacy_refactor_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -594,4 +600,3 @@ This plan provides a structured approach to refactoring legacy Crafty Syntax fil
 *Last Updated: January 2026*  
 *Version: 3.0.0*  
 *Author: Captain Wolfie*
-

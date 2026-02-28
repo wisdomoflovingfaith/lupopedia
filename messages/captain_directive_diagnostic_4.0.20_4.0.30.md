@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "messages\captain_directive_diagnostic_4.0.20_4.0.30.md"
+  file_hash: "c5ef0453608fba500e34b5593e664fbff33c486d918ed785a88b39a387200fc4"
+  file_path_from_root: "messages\captain_directive_diagnostic_4.0.20_4.0.30.md"
   file_hash: "8a5cad47b9775010170520eff5015644d48a9e391769440089c4d9ae83c0c208"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "CAPTAIN'S DIRECTIVE DIAGNOSTIC REPORT"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["messages", "captain_directive_diagnostic_4020_4030md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

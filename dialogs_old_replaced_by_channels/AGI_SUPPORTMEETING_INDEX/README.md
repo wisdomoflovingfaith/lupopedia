@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\AGI_SUPPORTMEETING_INDEX\README.md"
+  file_hash: "4d2508010fde9ac39b417bfe3a5a7585e5cc600050ca905264a5ca4471daf88d"
+  file_path_from_root: "dialogs_old_replaced_by_channels\AGI_SUPPORTMEETING_INDEX\README.md"
   file_hash: "fc1e2102e6287b6697c3589112d7fd5aa2411e45d57fce025c617644aa83b2f6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "AGI Support Meeting — Doctrinal Index"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "agi_supportmeeting_index", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

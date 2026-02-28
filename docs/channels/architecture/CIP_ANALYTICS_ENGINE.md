@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\CIP_ANALYTICS_ENGINE.md"
+  file_hash: "1e5a42d85b23c34de33310bf4678d70a825df72c8e6bec41e8d172eabd03ad93"
+  file_path_from_root: "docs\channels\architecture\CIP_ANALYTICS_ENGINE.md"
   file_hash: "72ac8a6d896c1343ba12683b1188f0575543c2bd8583146d99a8c0a242333e2a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CIP_ANALYTICS_ENGINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "cip_analytics_enginemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

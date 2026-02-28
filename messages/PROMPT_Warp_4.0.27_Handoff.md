@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "messages\PROMPT_Warp_4.0.27_Handoff.md"
+  file_hash: "e92cb9d741418ebdf4bcf21f15b01a41339f839d4f6b44694c0d1aa954017a84"
+  file_path_from_root: "messages\PROMPT_Warp_4.0.27_Handoff.md"
   file_hash: "75a5ee9e14cc0e19b6c477998fea0cb6d7249852e280294754fde331e5830ef1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "MISSION BRIEF: HANDOFF TO WARP IDE (#2039) - VERSION 4.0.27"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["messages", "prompt_warp_4027_handoffmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

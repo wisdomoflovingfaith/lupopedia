@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\EMERGENCY_BROADCAST_VERSION_CORRECTION.md"
+  file_hash: "ec0ed4bf3f082ff1a617adad7809f7c6cdda55f51fd3b4b1c5c3bcf0e6fa6b75"
+  file_path_from_root: "docs\channels\EMERGENCY_BROADCAST_VERSION_CORRECTION.md"
   file_hash: "cd22eb933cbe21e1b5da36ba28dcdcdb2bf220a89b7b67c06ec72e90abdc181c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for EMERGENCY_BROADCAST_VERSION_CORRECTION.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "emergency_broadcast_version_correctionmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

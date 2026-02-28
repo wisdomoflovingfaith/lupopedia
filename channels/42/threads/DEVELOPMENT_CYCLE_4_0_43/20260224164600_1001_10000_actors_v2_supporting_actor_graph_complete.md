@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224164600_1001_10000_actors_v2_supporting_actor_graph_complete.md"
+  file_hash: "564d3b8167c256937591e2d65fb8ace9ecf01fb0ae9dca7a4a82f9aa94d5c68a"
+  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224164600_1001_10000_actors_v2_supporting_actor_graph_complete.md"
   file_hash: "80e20cdc32cea74d781cf652f93791d21472fc85eb6b1f2e86e37d62fa28b63a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224164600_1001_10000_actors_v2_supporting_actor_graph_complete.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["channels", "42", "threads", "development_cycle_4_0_43", "20260224164600_1001_10000_actors_v2_supporting_actor_graph_completemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md"
+  file_hash: "7516e6bf033196063354c161e1f42e4d99759661684bfcbe5dc70a99e0e03372"
+  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md"
   file_hash: "89b19c9885099e51e66547947c00cce21e2610ba1ff29ee7af270d9c29ecad37"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Departments, Groups, and Roles — Structural Simplification Feasibility Report"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "departments_groups_roles_structural_feasibility_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

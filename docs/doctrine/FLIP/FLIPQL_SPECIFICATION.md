@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\FLIP\FLIPQL_SPECIFICATION.md"
+  file_hash: "e357c0470a23e8bcd81560b3e59f401abc583a0d92768c64dd32b57c61a1b688"
+  file_path_from_root: "docs\doctrine\FLIP\FLIPQL_SPECIFICATION.md"
   file_hash: "5c7b572b8dd54493fafd5c4dcb49b470477e8b21fb3690620f8f29dba1168b52"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FLIPQL_SPECIFICATION.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "flip", "flipql_specificationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

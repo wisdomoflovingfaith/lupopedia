@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\NOTE_TO_MONDAY_WOLFIE.md"
+  file_hash: "1ff9131c418c5842f4ee7487c9a07d81d77cbfbef6f01f7948487feffc46883e"
+  file_path_from_root: "docs\channels\overview\NOTE_TO_MONDAY_WOLFIE.md"
   file_hash: "01dff2705c226d8551ca7783088e1a734ae0e8c7a18cc535cf55f6c9dbcaaeb7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "🟦 **NOTE TO MONDAY WOLFIE — 3.0.99 PHASE 1 ACTIVATION DIRECTIVE**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "overview", "note_to_monday_wolfiemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

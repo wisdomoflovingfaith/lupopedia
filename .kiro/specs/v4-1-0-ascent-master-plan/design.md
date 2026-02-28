@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\v4-1-0-ascent-master-plan\design.md"
+  file_hash: "1d26a0a0c8425bf2aa00fc0bb85b3adf8b095f2dee7e78c239f2a75065728b47"
+  file_path_from_root: ".kiro\specs\v4-1-0-ascent-master-plan\design.md"
   file_hash: "01b9452f55e4f504e38adfc6334aa9b73c1a5a1846c61053b7714515c366485b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Design Document"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "v4-1-0-ascent-master-plan", "designmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

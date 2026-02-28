@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\as_above_so_below.md"
+  file_hash: "310f24e98bff89fa2fbae0d08434428b1157a39abfb539d96e729e9f150cdf2f"
+  file_path_from_root: "docs\channels\doctrine\as_above_so_below.md"
   file_hash: "1921baea7924a17cd370f991b2c7bac76a51d12c5a62369ce6e24330a5277fe5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for as_above_so_below.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "as_above_so_belowmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -70,4 +76,3 @@ It is not an occult slogan. It is a reminder that:
 - If the schema matches how people really think and work, the system feels "natural" and trustworthy.
 
 "As above, so below" is how Lupopedia keeps its **semantic layer** and its **relational layer** in sync.
-

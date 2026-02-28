@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\WEB_ROUTING_DOCTRINE_4_0_18.md"
+  file_hash: "b8410769a316d7307788f61c8292058982ecc1e408f089780cc114969813e84e"
+  file_path_from_root: "docs\channels\doctrine\WEB_ROUTING_DOCTRINE_4_0_18.md"
   file_hash: "629480bf11fe9881a99cbbce1b11663a89eefcf09a46d8fd0a864fef86c9a0bd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for WEB_ROUTING_DOCTRINE_4_0_18.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "web_routing_doctrine_4_0_18md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

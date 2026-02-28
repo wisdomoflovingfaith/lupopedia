@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\SEMANTIC_LENSES_DOCTRINE.md"
+  file_hash: "fbad303eef41b0b98723566b55e1c4f9a28f09cf2893d5cb891a622b04a24261"
+  file_path_from_root: "docs\channels\doctrine\SEMANTIC_LENSES_DOCTRINE.md"
   file_hash: "b41210363e62fec80c3732f225038ef6288dd090e53965ecc1512abd9e04a255"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SEMANTIC_LENSES_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "semantic_lenses_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

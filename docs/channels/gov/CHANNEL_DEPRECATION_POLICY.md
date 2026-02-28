@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\CHANNEL_DEPRECATION_POLICY.md"
+  file_hash: "54887bc4799be88f69199d5d673b9b9dc76e43df7fa410d6771edd02b82d9b51"
+  file_path_from_root: "docs\channels\gov\CHANNEL_DEPRECATION_POLICY.md"
   file_hash: "7351b84c207fe614ad4ae1aa01bfa999607a32dd133a8f88814fde261364f40c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CHANNEL_DEPRECATION_POLICY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "channel_deprecation_policymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

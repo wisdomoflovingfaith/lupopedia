@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\non_religious_position.md"
+  file_hash: "85776e28e1a57db744a683f1a6d0a2f04a124ea8caa8648c422527ef9e1a3f51"
+  file_path_from_root: "docs\channels\doctrine\non_religious_position.md"
   file_hash: "216e46bd6b67748329f9d4db07076885b9ccb26677f9b2e179c8982ed9ecfe24"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for non_religious_position.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "non_religious_positionmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -86,4 +92,3 @@ Lupopedia must be safe and natural to use for:
 Thoth can fact‑check a tech myth, a game mechanic, a historical claim, or a nutritional misconception with the same tools. Nothing in the architecture is special‑cased for religion.
 
 This is a core doctrine: **the system is universal and neutral; the content is up to the users.**
-

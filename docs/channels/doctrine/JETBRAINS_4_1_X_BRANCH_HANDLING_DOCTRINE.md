@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\JETBRAINS_4_1_X_BRANCH_HANDLING_DOCTRINE.md"
+  file_hash: "e2c6d2477615baadefe2187ec69b9685d19b8df2a85f7ee067e82b8b2ef0e5db"
+  file_path_from_root: "docs\channels\doctrine\JETBRAINS_4_1_X_BRANCH_HANDLING_DOCTRINE.md"
   file_hash: "ac6738cc4bec99f16b08fccf8e4e5e1e050fc2f133e9d271e5dfe0c6c6ad8716"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for JETBRAINS_4_1_X_BRANCH_HANDLING_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "jetbrains_4_1_x_branch_handling_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

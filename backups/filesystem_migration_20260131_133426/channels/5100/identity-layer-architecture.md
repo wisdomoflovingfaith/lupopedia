@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\5100\identity-layer-architecture.md"
+  file_hash: "5bee5d93522e11db274205067c9e0ec2cab24ca47aefe08a16f648731235b3e7"
+  file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\5100\identity-layer-architecture.md"
   file_hash: "8dc5a17088b0bd65419576a46fefdf8c749942e8b1afe2a5198b75dee1aa4dd2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Lupopedia Identity and Channel Architecture"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["backups", "filesystem_migration_20260131_133426", "channels", "5100", "identity-layer-architecturemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

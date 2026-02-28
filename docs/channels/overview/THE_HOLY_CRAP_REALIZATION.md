@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\THE_HOLY_CRAP_REALIZATION.md"
+  file_hash: "b4b065a97c5e8c5dbe10c066f9108a000211e4ea4e42b40a89c732122c1e3d3e"
+  file_path_from_root: "docs\channels\overview\THE_HOLY_CRAP_REALIZATION.md"
   file_hash: "3f849df05d4f90c341a3cdf9835f7576cf9da5da551ee147b3f33abb5c6e315f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "THE HOLY CRAP REALIZATION"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "overview", "the_holy_crap_realizationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

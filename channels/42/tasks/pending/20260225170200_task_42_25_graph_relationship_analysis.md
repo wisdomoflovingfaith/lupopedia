@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\tasks\pending\20260225170200_task_42_25_graph_relationship_analysis.md"
+  file_hash: "7e7c3a1efac58a0542b8c1c8ccfbe7e4bbf4c06ae6d0165117b098a024f58512"
+  file_path_from_root: "channels\42\tasks\pending\20260225170200_task_42_25_graph_relationship_analysis.md"
   file_hash: "4d06837165f9b747c3901e1e077c0142b0409f3a4e8b9c77a0e65ad6acfa7326"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225170200_task_42_25_graph_relationship_analysis.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "tasks", "pending", "20260225170200_task_42_25_graph_relationship_analysismd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

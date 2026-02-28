@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\VERSION_CONTROL_POLICY.md"
+  file_hash: "78cc0905cd50b488f887af93abb394981bd77d2c5361196739d033b3e432697f"
+  file_path_from_root: "docs\channels\doctrine\VERSION_CONTROL_POLICY.md"
   file_hash: "619d132a91e79ad2e8662b7852def7a98e4bc702459e3b57e1b4ebd8c0a4628b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for VERSION_CONTROL_POLICY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "version_control_policymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -181,4 +187,3 @@ All developers and contributors should respect this policy until version 3.1.0.
 ---
 
 *This policy ensures clean, FTP-compatible file structures during initial development and first public release.*
-

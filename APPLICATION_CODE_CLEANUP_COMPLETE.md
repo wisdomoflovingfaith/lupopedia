@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "APPLICATION_CODE_CLEANUP_COMPLETE.md"
+  file_hash: "0c57573781637ed139b47aab3b1c827385817ba708970090738b6194c5d9ab81"
+  file_path_from_root: "APPLICATION_CODE_CLEANUP_COMPLETE.md"
   file_hash: "28de6afdef06740b74eefe9603b3a27a37facb139b8d9fc221d5bddbecce55f8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for APPLICATION_CODE_CLEANUP_COMPLETE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["application_code_cleanup_completemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

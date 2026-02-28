@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\PATHS_FIRSTS_REMOVAL_REPORT.md"
+  file_hash: "756bd6588d914013e8392e9463dc0d924281815845eff8a5bc9401c6adcebbe0"
+  file_path_from_root: "docs\PATHS_FIRSTS_REMOVAL_REPORT.md"
   file_hash: "8bf5db72277124f75de74d4a588647ded584a6dcd65581c94864ba9feb417c64"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "lupo_paths_firsts — Schema Removal Report (Steps 1–3)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "paths_firsts_removal_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

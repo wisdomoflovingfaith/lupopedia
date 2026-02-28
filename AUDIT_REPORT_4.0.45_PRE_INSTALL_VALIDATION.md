@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "AUDIT_REPORT_4.0.45_PRE_INSTALL_VALIDATION.md"
+  file_hash: "b0b76faf9f0e485a258cef36556412155bf17ef4b4fef021a6b9ea6fa1522853"
+  file_path_from_root: "AUDIT_REPORT_4.0.45_PRE_INSTALL_VALIDATION.md"
   file_hash: "ac03bbde68c3fae7d2a703a87480beacebde2029d0d752fedc98a80f4ac90337"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "CSV SNAPSHOTS VS 4.0.45 REGISTRY SEEDING AUDIT"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["audit_report_4045_pre_install_validationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

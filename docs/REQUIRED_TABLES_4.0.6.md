@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\REQUIRED_TABLES_4.0.6.md"
+  file_hash: "f6f319c7be39f92eb5f81f3a22fb5548571c18cba830e47dffeb252559de3f3d"
+  file_path_from_root: "docs\REQUIRED_TABLES_4.0.6.md"
   file_hash: "b2ee2dcdab61c0f67faa82f25bc09e4c2b8e8079222eb6c0b27820d644113367"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Required Tables for Lupopedia 4.0.6 (Patch-Only)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "required_tables_406md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

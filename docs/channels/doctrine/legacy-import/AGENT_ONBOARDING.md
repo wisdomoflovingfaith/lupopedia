@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\AGENT_ONBOARDING.md"
+  file_hash: "028a43eedb40d0e974e21b6b909cbb9bf26dbc3aa15c69866d3386c3bb622e27"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\AGENT_ONBOARDING.md"
   file_hash: "921cc103074b294ecae0430b77ffb265a3d8ae58aaac6072c93caa7046bc270f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AGENT_ONBOARDING.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "agent_onboardingmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -547,4 +553,3 @@ performance_metrics:
 **AUTHORITY:** This doctrine defines the mandatory onboarding process for all AI agents. No agent may operate without completing this onboarding successfully.
 
 **COMPLIANCE:** Required for all agent activation. System validation enforces onboarding completion before operational permissions are granted.
-

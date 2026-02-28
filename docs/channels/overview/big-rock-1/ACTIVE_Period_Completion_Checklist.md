@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\big-rock-1\ACTIVE_Period_Completion_Checklist.md"
+  file_hash: "16ca42f7097291272e7560fb9967b5dd9bd4cffb887bdb0d2d5a03a34d80bee3"
+  file_path_from_root: "docs\channels\overview\big-rock-1\ACTIVE_Period_Completion_Checklist.md"
   file_hash: "00f1d2a0f1a3f8d650229e18d869b654021cbfe4dd6c3c205e7ebb6d03852de5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ACTIVE_Period_Completion_Checklist.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "big-rock-1", "active_period_completion_checklistmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

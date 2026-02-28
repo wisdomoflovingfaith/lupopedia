@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\PACK_BEHAVIOR_DOCTRINE.md"
+  file_hash: "6ee4f679339fb29221af4b09267620cc3b70121da09f580f3fcfacc479942354"
+  file_path_from_root: "docs\channels\doctrine\PACK_BEHAVIOR_DOCTRINE.md"
   file_hash: "9053aafb9fb333903c34d7e39dcce6882225904e047a34825fe476ae97f43b1e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for PACK_BEHAVIOR_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "pack_behavior_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

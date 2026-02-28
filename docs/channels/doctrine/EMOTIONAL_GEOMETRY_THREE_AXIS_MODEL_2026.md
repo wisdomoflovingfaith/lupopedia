@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"
+  file_hash: "9a564a0a88949b713b9650b8cd5279356020f0da008523d912cec648f8c231b8"
+  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"
   file_hash: "c06406f5d4d3142ff3b0b9c20c7e39b1554b97981bc7a4626033a8ac49554dc3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "emotional_geometry_three_axis_model_2026md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

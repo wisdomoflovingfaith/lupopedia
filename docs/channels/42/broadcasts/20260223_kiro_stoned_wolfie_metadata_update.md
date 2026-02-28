@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260223_kiro_stoned_wolfie_metadata_update.md"
+  file_hash: "72ac46df73a02a38208775ad207f02653d55277e83572c2a86f31fe21afae2cb"
+  file_path_from_root: "docs\channels\42\broadcasts\20260223_kiro_stoned_wolfie_metadata_update.md"
   file_hash: "62318f3a5501d84320875426e3394a8893466d589b803118f04f07af788a3b12"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260223_kiro_stoned_wolfie_metadata_update.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "42", "broadcasts", "20260223_kiro_stoned_wolfie_metadata_updatemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\history-reconciliation\tasks.md"
+  file_hash: "f6427ca08aeff7a2898989d43cf7e41170063b759bdb011045b2b2d578c16839"
+  file_path_from_root: ".kiro\specs\history-reconciliation\tasks.md"
   file_hash: "bb6c51806367ee115b871263f2e124ce62455d0af460bd056088c244bd1b1fe4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Implementation Plan: History Reconciliation Pass"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "history-reconciliation", "tasksmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

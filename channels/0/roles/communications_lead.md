@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\roles\communications_lead.md"
+  file_hash: "825c8fa27586560ec75df4ee14e249520a12aeddb0cd0017d7897f3cdb796ea4"
+  file_path_from_root: "channels\0\roles\communications_lead.md"
   file_hash: "f175642d8e28aa6094e11ee300caa2f4289b6be97351ebf1b7ba4f9c103c13ed"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for communications_lead.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "roles", "communications_leadmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\brainstorm\FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
+  file_hash: "bb6e5e1f8c451d7462567919f90274a0ea9b851f473a3d486f8994b4d4ebc067"
+  file_path_from_root: "docs\brainstorm\FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
   file_hash: "64301f0a44963f7e014895084970f9706ec70f82e38e2f5e6ea7e0e1a1324457"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "brainstorm", "flip_header_footer_design_brainstormmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

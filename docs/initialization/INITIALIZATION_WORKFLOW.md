@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\initialization\INITIALIZATION_WORKFLOW.md"
+  file_hash: "e9df74ae1d45407214271944f1f607f61765c59cdb582f303840719d31cea68e"
+  file_path_from_root: "docs\initialization\INITIALIZATION_WORKFLOW.md"
   file_hash: "969882761910786efa1b8fe37dc11791ac93a2a7db8cb38ce9494e866ede1a9a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for INITIALIZATION_WORKFLOW.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "initialization", "initialization_workflowmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

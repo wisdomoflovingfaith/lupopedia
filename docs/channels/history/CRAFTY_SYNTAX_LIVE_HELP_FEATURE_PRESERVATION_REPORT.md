@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\history\CRAFTY_SYNTAX_LIVE_HELP_FEATURE_PRESERVATION_REPORT.md"
+  file_hash: "9bd6c42fa54fed3ae162647aa2574a9cc5873b2b43f8b771861a3add46b76c7a"
+  file_path_from_root: "docs\channels\history\CRAFTY_SYNTAX_LIVE_HELP_FEATURE_PRESERVATION_REPORT.md"
   file_hash: "5cce10439e4c1cee5e7cb30f9bc3c2cac6df697395980e96c85ed696f3927767"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CRAFTY_SYNTAX_LIVE_HELP_FEATURE_PRESERVATION_REPORT.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "history", "crafty_syntax_live_help_feature_preservation_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\HERMES_ROUTING_DOCTRINE.md"
+  file_hash: "bd60e8930c8b70992179154a341787016752b10f8dafe80a960efa3c48e37b12"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\HERMES_ROUTING_DOCTRINE.md"
   file_hash: "351083efc6924fd1cd2ebd06e9093b67b990d515686e435328d19fadb59b399a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HERMES_ROUTING_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "hermes_routing_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\MINIMAL_HOSTING_REQUIREMENTS.md"
+  file_hash: "7da5255a6b2e157f7dbb5c78eedf9f563e4849c82b1355761472209e16d6f699"
+  file_path_from_root: "docs\doctrine\MINIMAL_HOSTING_REQUIREMENTS.md"
   file_hash: "27806ad91b52ef3b81eb1b32e61ed7cdc3e49496eb466ac8242e50416781b8d9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MINIMAL_HOSTING_REQUIREMENTS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "minimal_hosting_requirementsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\appendix\VOCABULARY.md"
+  file_hash: "f7b1c410ec169402908c2d2a2341aacf570526481eebad2578d24ede308d4b73"
+  file_path_from_root: "docs\channels\appendix\appendix\VOCABULARY.md"
   file_hash: "4ef06c68deeb34ca638875477556fac9d4a157a0ad39703b4e4c45392e5aff15"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "VOCABULARY.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "vocabularymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

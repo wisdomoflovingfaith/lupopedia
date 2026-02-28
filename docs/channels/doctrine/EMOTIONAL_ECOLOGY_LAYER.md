@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\EMOTIONAL_ECOLOGY_LAYER.md"
+  file_hash: "8dc18c1e622459d664edc1ba20c9e57f76222ec19cbae56b06c212e1aedacd4f"
+  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_ECOLOGY_LAYER.md"
   file_hash: "bad83530cbea87407f810fa5be4edaea6fe98302cddf144286c60ceedcc75f00"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for EMOTIONAL_ECOLOGY_LAYER.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "emotional_ecology_layermd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

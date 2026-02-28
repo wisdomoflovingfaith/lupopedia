@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GOV-AD-PROHIBIT-001.md"
+  file_hash: "905c747e75ee44e857247162add48dc55784d3f37c9e4fd83d49cd0b7b5702d1"
+  file_path_from_root: "docs\channels\doctrine\GOV-AD-PROHIBIT-001.md"
   file_hash: "2fdaac765e450780424bea0d86f663cebe0ca073dc97b13533dc25c9561c42d1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GOV-AD-PROHIBIT-001 → GOV-PROHIBIT-001"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "gov-ad-prohibit-001md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

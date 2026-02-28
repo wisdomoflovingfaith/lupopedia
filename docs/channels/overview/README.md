@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\README.md"
+  file_hash: "aa482a219f25eeddba29a4f384f186a9498a611b524a6526d4cf605fff25b1c1"
+  file_path_from_root: "docs\channels\overview\README.md"
   file_hash: "54389609cb87251c3d9e953a006417f645c269e5f1bf1af544ab6bc4dfcae236"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for README.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -397,5 +403,3 @@ Related Channels:
 - [architecture](../architecture/README.md)
 - [doctrine](../doctrine/README.md)
 - [history](../history/README.md)
-
-

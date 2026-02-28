@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "status"
   flare.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260223_v4_0_33_agent_roles_and_status.md"
+  file_hash: "274e82ccc832e1e77960fbb6d2bbd70b6d3f80be34bd024897fa931356bfaf7f"
+  file_path_from_root: "docs\channels\42\broadcasts\20260223_v4_0_33_agent_roles_and_status.md"
   file_hash: "08ec8335fb2d3da3a3fbbbc0756e82d0764f4bb6a7f001b81aeae3cf6b8bb387"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260223_v4_0_33_agent_roles_and_status.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "42", "broadcasts", "20260223_v4_0_33_agent_roles_and_statusmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

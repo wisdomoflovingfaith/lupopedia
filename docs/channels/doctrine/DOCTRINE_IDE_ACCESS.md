@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\DOCTRINE_IDE_ACCESS.md"
+  file_hash: "1eb46f044c684175873316e958b7073011c1b58db44ae2eaad214ff9bb5abc05"
+  file_path_from_root: "docs\channels\doctrine\DOCTRINE_IDE_ACCESS.md"
   file_hash: "1d71c83fff17c766f40843cb6cde36ee0ca4e86369ff5a42637b4bfd66129182"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "IDE AGENT DATABASE ACCESS DOCTRINE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "doctrine_ide_accessmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

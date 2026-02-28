@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_layerinvites_migration.md",
-  system_version: "4.0.39",
+  file_hash: "56b297e20cf0be02c5b77a0de9fb79ecd29333a9568f92c68d7649390f1b6815"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_layerinvites → lupo_crafty_syntax_layer_invites",

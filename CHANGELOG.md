@@ -1,8 +1,9 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:
   file_path_from_root: "CHANGELOG.md"
-  system_version: "4.0.48"
+  file_hash: "5ff6442ed74acf7ee9a29885448a015ec356b33f6012fb0d62d0671250aaffbe"
+  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1007
   last_modified_utc: "20260227"
@@ -18,6 +19,7 @@ flare.headers:
   actor_ip: "127.0.0.1"
 
 flare.edges:
+  file_path_from_root: "CHANGELOG.md"
   outbound_edges:
     - { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.8 }
     - { to: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7 }
@@ -27,6 +29,9 @@ flare.edges:
     - { to: "CHANGELOG_ARCHIVE.md", type: "references", weight: 0.6, reason: "everything before version 4.0.46 of the changelog" }
   semantic_tags: ["changelog", "versions", "releases", "history", "flare", "migration"]
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified_utc: "20260227"
   last_verified_by: "antigravity"
@@ -454,12 +459,6 @@ Agents: Research existing entries first; consolidate duplicates logically.
 - Proceed to 4.0.48 for rolled-over tasks.
 
 ---
-
-
-
-
-
-
 
 
 

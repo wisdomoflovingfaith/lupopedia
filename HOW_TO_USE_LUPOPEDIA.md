@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "HOW_TO_USE_LUPOPEDIA.md"
+  file_hash: "3e381d40e55d37dc4764c1143759aee151f2d004d522169d821da8b3b6de8e6a"
+  file_path_from_root: "HOW_TO_USE_LUPOPEDIA.md"
   file_hash: "8bac94e542c38b6ac56f109764e7da63f70148d9c342bfa5ef5c8a486e2bb094"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HOW_TO_USE_LUPOPEDIA.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["how_to_use_lupopediamd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
@@ -1026,4 +1031,3 @@ Lupopedia is a **living system**. Every file you touch, every edge you create, e
 **Tested on:** 5 fresh workspaces, semantic flips < 80ms, zero validation errors.
 
 🐺 **Happy coding, Captain.**
-

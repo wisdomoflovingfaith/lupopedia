@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\MONDAY_WOLFIE_NOTICE.md"
+  file_hash: "fc797db0567deac3d441da2fa9b6c35914ee50e9146cc8adde80e254b73496a0"
+  file_path_from_root: "docs\channels\doctrine\MONDAY_WOLFIE_NOTICE.md"
   file_hash: "74c7d85f5f601f7f015d35937d9aee11deb1c3bbd6bfb0e2df042a7f007d10ae"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MONDAY_WOLFIE_NOTICE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "monday_wolfie_noticemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

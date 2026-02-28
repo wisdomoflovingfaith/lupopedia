@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\history\CSLH-Historical-Context.md"
+  file_hash: "6cb287635d54f7720cda236ef5d2e2b9816ee5ec796e6aa3d63835cedfd0a86b"
+  file_path_from_root: "docs\channels\history\CSLH-Historical-Context.md"
   file_hash: "7b34c40cf1196481b215b200c9491a499d7eda21528014a2b2dd86b31e0b68a7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CSLH-Historical-Context.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "history", "cslh-historical-contextmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

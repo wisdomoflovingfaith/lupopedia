@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_EXECUTION_SUMMARY.md"
+  file_hash: "4ff9dd363f3050996877fd30364c54502060cf0837be51c2cf58ce8653842a57"
+  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_EXECUTION_SUMMARY.md"
   file_hash: "3ff6e62e4238dffa833a610baa8d254e55954cac5d0093e173a5f278f6de92d6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Departments / Groups / Roles Unification — Execution Summary (SQL Phase)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "departments_groups_roles_execution_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\orchestrator_forensic_timeline.md"
+  file_hash: "a2b582a7dbdd6d357cdd2edfd45e4eef7c971870b8e9a907d1ce28450bda1dd9"
+  file_path_from_root: "docs\channels\schema\migrations\orchestrator_forensic_timeline.md"
   file_hash: "79c76b562304423345ad11da9d3699974243ebb074766f7b8278be32540ce12e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for orchestrator_forensic_timeline.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "orchestrator_forensic_timelinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

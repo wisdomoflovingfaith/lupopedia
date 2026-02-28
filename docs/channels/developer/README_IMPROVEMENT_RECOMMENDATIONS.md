@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\README_IMPROVEMENT_RECOMMENDATIONS.md"
+  file_hash: "48bec322f91873101ad45041efb8b32de8659421b0bd03be559c348671fbe5f2"
+  file_path_from_root: "docs\channels\developer\README_IMPROVEMENT_RECOMMENDATIONS.md"
   file_hash: "d9f14f5bea968062545afeb8b6910ce68ba4b1d47dd8ff6b6d17544554992fec"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for README_IMPROVEMENT_RECOMMENDATIONS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "developer", "readme_improvement_recommendationsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -323,4 +329,3 @@ All AI agents (Cursor, Copilot, DeepSeek, Claude, Gemini, Grok, Windsurf) **MUST
 ---
 
 **End of Recommendations**
-

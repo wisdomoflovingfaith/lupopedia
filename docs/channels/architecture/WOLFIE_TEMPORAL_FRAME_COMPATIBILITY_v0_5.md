@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\WOLFIE_TEMPORAL_FRAME_COMPATIBILITY_v0_5.md"
+  file_hash: "f6defba1d9ba66f85469c3286528454ae399b0734f74579429a35f2b51bca0a1"
+  file_path_from_root: "docs\channels\architecture\WOLFIE_TEMPORAL_FRAME_COMPATIBILITY_v0_5.md"
   file_hash: "22471ec9b0591bc4c4cef0f76e66118fa01eda7c3a752f909833ac90bac2ef26"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "WOLFIE Temporal Frame Compatibility Model v0.5"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "wolfie_temporal_frame_compatibility_v0_5md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

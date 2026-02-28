@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\kiro_header_completion_4_0_39.md"
+  file_hash: "743b291f6da645541ece6f63252fe01561bbea04a1e8140d77571e8edcba5504"
+  file_path_from_root: "docs\status\kiro_header_completion_4_0_39.md"
   file_hash: "25510b00027889d034ab4cedd27eeabd51fec8b6239c0287d99eb18fe0b24d0b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for kiro_header_completion_4_0_39.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "status", "kiro_header_completion_4_0_39md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

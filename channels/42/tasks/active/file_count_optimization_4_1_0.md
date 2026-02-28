@@ -2,7 +2,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 flare.headers:
   file_path_from_root: "channels/42/tasks/active/file_count_optimization_4_1_0.md"
-  system_version: "4.0.49"
+  file_hash: "92913547cbb88a1ff9f904a89ebe2d66b57e7831787756a9f59c5414d392ac3a"
+  system_version: "4.0.50"
   channel_id: 42
   actor_id: 10000
   last_modified_utc: "20260227"
@@ -15,6 +16,9 @@ flare.headers:
   tags: ["file_optimization", "deployment", "4.1.0_target", "cleanup"]
   lupo_agent: "windsurf"
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   outbound_edges:
     - { to: "channels/42/tasks/active/repository_cleanup_legacy_files_removal.md", type: "references", weight: 0.9 }

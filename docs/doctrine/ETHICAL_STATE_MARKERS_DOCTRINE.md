@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\ETHICAL_STATE_MARKERS_DOCTRINE.md"
+  file_hash: "65333a6c2b9a2da755a54387beb9c4f7f04f4b7cac2227633e7f175120d08f6e"
+  file_path_from_root: "docs\doctrine\ETHICAL_STATE_MARKERS_DOCTRINE.md"
   file_hash: "213ce38874c525b99b55686bad0a5995dea2f31706e69eb88fbfafcd03d69af7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ETHICAL_STATE_MARKERS_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "doctrine", "ethical_state_markers_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

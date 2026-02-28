@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "AGENT_SNAPSHOT_HANDLING_RULES.md"
+  file_hash: "d5408699e853045e66c0845a847b57518466677948ba30dfa511c57cda20b2a7"
+  file_path_from_root: "AGENT_SNAPSHOT_HANDLING_RULES.md"
   file_hash: "ac7648cf8767640423791f2eac0fe52e0ffd05666e3529386512611b55889629"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "AGENT_SNAPSHOT_HANDLING_RULES.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["agent_snapshot_handling_rulesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

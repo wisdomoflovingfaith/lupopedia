@@ -1,8 +1,9 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:  
   file_path_from_root: "prompts/windsurf/20260223_kiro_work_audit_prompt.md"
-  system_version: "4.0.33"
+  file_hash: "1e06badd5f35f1ef329e88fd9ce56d5887e39f1ce5fa00c4c57db604c47ea5d0"
+  system_version: "4.0.50"
   channel_id: 42
   mood_rgb: "0044FF"
   purpose: "Directive for Windsurf to audit KIRO's recent work and enhance semantic metadata across Lupopedia"

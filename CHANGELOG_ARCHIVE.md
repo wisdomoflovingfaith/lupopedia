@@ -2,7 +2,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 flare.headers:
   file_path_from_root: "CHANGELOG_ARCHIVE.md"
-  system_version: "4.0.48"
+  file_hash: "c4d1d6346617ce4c2ab0ba467d3bc966d4f63bc9104e932c7a5b4752233f0e55"
+  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1003
   last_modified_utc: "20260227"
@@ -17,6 +18,7 @@ flare.headers:
   actor_ip: "127.0.0.1"
 
 flare.edges:
+  file_path_from_root: "CHANGELOG_ARCHIVE.md"
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 0.9, reason: "Current active development changelog" }
     - { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.8 }
@@ -26,6 +28,9 @@ flare.edges:
     - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
   semantic_tags: ["changelog", "versions", "releases", "history", "archive", "flare"]
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified_utc: "20260227"
   last_verified_by: "antigravity"
@@ -8553,4 +8558,3 @@ All critical actors have:
 - ✅ **CHANGELOG Update**: This section
 
 **Result:** All required actors (Captain 10000, WOLFIE 1, LILITH 2, ANUBIS 19, VISHWAKARMA 25, IDE agents 1000-1005, core agents 0/3/4/5) verified in database seed SQL. System ready for human installation.
-

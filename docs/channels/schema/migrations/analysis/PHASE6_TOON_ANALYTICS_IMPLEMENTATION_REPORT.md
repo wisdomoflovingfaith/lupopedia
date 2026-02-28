@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE6_TOON_ANALYTICS_IMPLEMENTATION_REPORT.md"
+  file_hash: "187021710d284bbefb2655e12345f50867b82758c1bc00c7b8d79973fe1e83bc"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE6_TOON_ANALYTICS_IMPLEMENTATION_REPORT.md"
   file_hash: "4553bdb338f8c511c157d1224ae90099122458a50425e4146d1e9d48c0873526"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Phase 6: TOON Analytics Implementation Report**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "phase6_toon_analytics_implementation_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

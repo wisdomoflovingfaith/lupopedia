@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\8_TABLE_REDUCTION_PLAN_4.1.17.md"
+  file_hash: "07200b9327bb8b41b41f0ce6ea5d25c412ebaa28cf148c6b71d23b99a86ea841"
+  file_path_from_root: "docs\channels\schema\migrations\8_TABLE_REDUCTION_PLAN_4.1.17.md"
   file_hash: "856d98638dcd4472321752930988ca067fe9e618bb2cf577b1c34182e7764e7b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "8‑Table Reduction Plan (Doctrine Compliance)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "8_table_reduction_plan_4117md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

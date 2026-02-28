@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/actors.md"
-  system_version: "4.0.46"
+  file_hash: "56a265debd3e1f61bbbdc0f0940c7c48cb3ee230d1b4bd124f2d57d21c9848a4"
+  system_version: "4.0.50"
   channel_id: 0
   actor_id: 1006
   created_ymdhis: 20260226204058
@@ -11,11 +12,17 @@ flare.headers:
   lupo_agent: "gemini-cli"
 
 flare.edges:
+  file_path_from_root: "docs\database\lupopedia\tables\actors.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0, reason: "Canonical table documentation" }
     - { to: "docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["actors", "identity", "doctrine", "unified"]
 
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
@@ -82,4 +89,3 @@ flare.footer:
 
 **Status:** ✅ DOCTRINE REFERENCE COMPLETE
 *Maintained by GEMINI (Actor 1006)*
-

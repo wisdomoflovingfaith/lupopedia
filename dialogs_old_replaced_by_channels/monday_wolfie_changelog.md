@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\monday_wolfie_changelog.md"
+  file_hash: "f304d88612d7e13c9d08986b6b6e3c98806d80d0d4e6c422a38483eee0df8c18"
+  file_path_from_root: "dialogs_old_replaced_by_channels\monday_wolfie_changelog.md"
   file_hash: "d9a5b53bc4c25e596079e406cbaa4ee0e7caebb126d478e0c765afd2236b686c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "?? monday_wolfie_changelog.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "monday_wolfie_changelogmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
@@ -311,4 +316,3 @@ No schema changes until validation is complete. Incorporating X timeline: Homepa
 - **Phase 7:** phase7_validation_checklist.md, import_trial_scorecard_livehelp.md, hotfix_registry phase7_import_log. **Environment #1 (Local): validated.** Shared hosting pending.
 
 Commit via Cursor for File-Sovereignty. Ahoy, Eric�evolving the pack! ??
-

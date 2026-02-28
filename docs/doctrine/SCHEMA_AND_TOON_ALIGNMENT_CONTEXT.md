@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md"
+  file_hash: "329848452d3f7ed8b38069c547bea0b07ce0d2c37c4e2dcb376eed98669bd518"
+  file_path_from_root: "docs\doctrine\SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md"
   file_hash: "cb52aa96da839048e8c13f8b6d051bb818602180b14dbc0824dac7d124141b44"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "schema_and_toon_alignment_contextmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

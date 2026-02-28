@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\MigrationAtlas.md"
+  file_hash: "e2b6c78930ea93aa5b91a405ee76e74eb130511d9c24b3a894ce6dc2cf388675"
+  file_path_from_root: "docs\doctrine\MigrationAtlas.md"
   file_hash: "97f4adfd6298af2ebde0cdcd6fea8d1ea5904bb13e98b74f18c8466c26a50700"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MigrationAtlas.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "migrationatlasmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

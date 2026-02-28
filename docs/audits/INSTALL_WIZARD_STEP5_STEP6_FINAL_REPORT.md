@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\INSTALL_WIZARD_STEP5_STEP6_FINAL_REPORT.md"
+  file_hash: "bebcc0a8c6712dcbcc94468252d789b5c9aab435e655d3664f3b8e033ae61c5c"
+  file_path_from_root: "docs\audits\INSTALL_WIZARD_STEP5_STEP6_FINAL_REPORT.md"
   file_hash: "6121d918d92072996a8474c8b6471d07811cf7c22c33da2588f040e48b721b32"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Install Wizard — Step 5 (Class Conversion) + Step 6 (Final Cleanup) — Final Report"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "install_wizard_step5_step6_final_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

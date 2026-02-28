@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130001_10000_1000_42_acknowledgment_of_version_4_0_39_priorities_by_antigravity.md"
+  file_hash: "e28da1bf2575512c65455d8fea3280d7503c53c09b2b288387476809cdd4ffa9"
+  file_path_from_root: "channels\42\broadcasts\20260225130001_10000_1000_42_acknowledgment_of_version_4_0_39_priorities_by_antigravity.md"
   file_hash: "34c2aafba2fee475de3b850763889024f49c3364e2924b4770e13373c5429b2a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225130001_10000_1000_42_acknowledgment_of_version_4_0_39_priorities_by_antigravity.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "broadcasts", "20260225130001_10000_1000_42_acknowledgment_of_version_4_0_39_priorities_by_antigravitymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

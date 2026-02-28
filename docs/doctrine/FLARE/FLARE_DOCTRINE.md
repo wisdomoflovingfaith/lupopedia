@@ -69,7 +69,7 @@ FLARE defines three distinct components:
 Every FLARE-compliant file must start with the exact prologue line below, followed immediately by the YAML delimiter and `flare.headers`. This is required for all documentation and doctrine files.
 
 ```text
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:
 ```
@@ -317,6 +317,4 @@ flare.headers:
 ---
 
 *End of FLARE doctrine.*
-
-
 

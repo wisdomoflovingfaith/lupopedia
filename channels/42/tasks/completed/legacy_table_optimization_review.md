@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\tasks\completed\legacy_table_optimization_review.md"
+  file_hash: "38c8292d99a420bfc877726eea7a05b0adfde1968f8c1861ea8790146149c7cd"
+  file_path_from_root: "channels\42\tasks\completed\legacy_table_optimization_review.md"
   file_hash: "ea1725eb1eea5b6c784d41d31380ebf28f229ee583ebf88afc8295fc7c35227b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for legacy_table_optimization_review.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "tasks", "completed", "legacy_table_optimization_reviewmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

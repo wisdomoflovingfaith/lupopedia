@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\SUPPORTING_ACTOR_DOCTRINE.md"
+  file_hash: "2feda6562cee1a281e2e331ac5d6f1ca188e391ba43bb9451ff46bd97291ef74"
+  file_path_from_root: "docs\doctrine\SUPPORTING_ACTOR_DOCTRINE.md"
   file_hash: "9ef21877b08bd0b26a0c6d795eb54550743d1ef59ed73e5ca11d38581dc7919e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SUPPORTING_ACTOR_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "doctrine", "supporting_actor_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

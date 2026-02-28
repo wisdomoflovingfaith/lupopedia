@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\agents\agent-1\doctrine\WOLFIE_ROUTING_PRINCIPLES.md"
+  file_hash: "4c0f21f08365fb85f9f0440aa4d9fc8f7fb143a9b15da620386189f13d33d4e8"
+  file_path_from_root: "docs\channels\agents\agent-1\doctrine\WOLFIE_ROUTING_PRINCIPLES.md"
   file_hash: "dbcffce31d22396992e7caa4d1e69dc2c4ab7f20d29b987c920ed3152ac2c19d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for WOLFIE_ROUTING_PRINCIPLES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "agents", "agent-1", "doctrine", "wolfie_routing_principlesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\agents\agent-1\README.md"
+  file_hash: "c0df3f3ea122928859c388b4b002112e513a2fcc95a040ff4f87d8310c532cb2"
+  file_path_from_root: "docs\channels\agents\agent-1\README.md"
   file_hash: "66af19d9cf27bf06e024d00cfc2ea9e6df458d6ab886389413ea8b6369efcc5b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for README.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "agents", "agent-1", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -96,4 +102,3 @@ This directory structure is being initialized as part of Lupopedia 3.0.16. The c
 *Version: GLOBAL_CURRENT_LUPOPEDIA_VERSION*  
 *Status: Published*  
 *Author: GLOBAL_CURRENT_AUTHORS*
-

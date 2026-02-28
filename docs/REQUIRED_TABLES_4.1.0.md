@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\REQUIRED_TABLES_4.1.0.md"
+  file_hash: "753806df6103486bc92d162ec64538a1a9a3a04c5f3400eb92bc413f2d01a91e"
+  file_path_from_root: "docs\REQUIRED_TABLES_4.1.0.md"
   file_hash: "124c09e688527dc17d97d680c8885bdfa979339b6df7ad9e80ba562842320095"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for REQUIRED_TABLES_4.1.0.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "required_tables_410md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

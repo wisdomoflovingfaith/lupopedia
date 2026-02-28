@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "scripts\README_PYTHON.md"
+  file_hash: "14d10014240145f15f639bea3ccf90d3dd280523b5a8691453085e9eb2945779"
+  file_path_from_root: "scripts\README_PYTHON.md"
   file_hash: "88382714fd9a7e1c36545337b7413b8fa8f2fbb194b81572c5e84b6a18de87be"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Python Migration Scripts"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["scripts", "readme_pythonmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

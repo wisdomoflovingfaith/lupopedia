@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\SHADOW_COMMONS_SPECIFICATION.md"
+  file_hash: "fed17749391ea30d6fd3592c86bad154cd2e04e4ff1fcf0a8e2179940a98111e"
+  file_path_from_root: "docs\channels\doctrine\SHADOW_COMMONS_SPECIFICATION.md"
   file_hash: "d6b7f4597683cf09e170ccee3fa71ad8652807197b86440b2d50b925837366c4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SHADOW_COMMONS_SPECIFICATION.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "shadow_commons_specificationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

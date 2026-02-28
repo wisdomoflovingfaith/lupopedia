@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "CHATGPT_AUDIT_DIRECTIVE_COMPLETE_4_0_33.md"
+  file_hash: "4a642ff6ba5ef5161ba76aea3a35a7e3a1d54e4a054a204f8a24566ef960e79f"
+  file_path_from_root: "CHATGPT_AUDIT_DIRECTIVE_COMPLETE_4_0_33.md"
   file_hash: "4b28eef4edc6ca2df0d59f05536e71ffd6c5879fca4e3a52dcf4c22a0b37e06c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CHATGPT_AUDIT_DIRECTIVE_COMPLETE_4_0_33.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["chatgpt_audit_directive_complete_4_0_33md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

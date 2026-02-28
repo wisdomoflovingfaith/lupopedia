@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\report_dbdoc_threads_messages.md"
+  file_hash: "b2597c639d8d339298ef1104ed8272d68023dfcd4e6f84206ae1160a4c42bf86"
+  file_path_from_root: "docs\doctrine\report_dbdoc_threads_messages.md"
   file_hash: "9895300d5914052274202d318746cac7373c1ab9850d8e874c49c6b6f541eaa9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Dialog System Database Documentation"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "doctrine", "report_dbdoc_threads_messagesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

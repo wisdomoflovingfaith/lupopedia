@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GUARDRAILS.md"
+  file_hash: "551a551615a1b35baacfbbdf933156da3b38092a8de0ef3c9cd200c6c7e01ff3"
+  file_path_from_root: "docs\channels\doctrine\GUARDRAILS.md"
   file_hash: "9017e92105783289618800af29761d7a81ed2dae679d3d035357dda9a2ceebae"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GUARDRAILS.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "guardrailsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

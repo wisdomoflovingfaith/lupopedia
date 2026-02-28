@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\cascade_correction_entry.md"
+  file_hash: "000b183e611f056e3a166a4948bd3aa90445a903a9957efd3649de376a212b7d"
+  file_path_from_root: "dialogs_old_replaced_by_channels\cascade_correction_entry.md"
   file_hash: "aad5a28f95b16eb1622ddff991519edeb39c763c22614bcccb6caa9347da976c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "2026-01-17 16:20 — CASCADE: TECHNICAL DIFFICULTIES & OPERATIONAL STATUS UPDATE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "cascade_correction_entrymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

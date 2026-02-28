@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\versioning\CHANGELOG.md"
+  file_hash: "cfbde7c72fdfa79145e0b3121e34950624789d64f2c91d0a3c3d2ba3f9f37343"
+  file_path_from_root: "docs\channels\overview\versioning\CHANGELOG.md"
   file_hash: "87949ee54f1b0e5e413bd381ebefd95ecc555e9007736a0c7186833e04b9b69e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CHANGELOG.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "versioning", "changelogmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ~~---
@@ -4022,7 +4028,8 @@ Version 3.0.99 establishes the comprehensive JetBrains 3.1.x Branch Handling Doc
 - **Integration**: Designed to work with existing development workflows
 
 #### **Key Features**
-- **Branch Architecture**: main, dev, lpha, eature/[name] structure
+- **Branch Architecture**: main, dev, lpha, 
+eature/[name] structure
 - **Lupo-Flow Model**: Atomic commits with disciplined version control
 - **Safety Mechanisms**: Automated checks and manual review processes
 - **Federation Support**: Multi-universe coordination protocols

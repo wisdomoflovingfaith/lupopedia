@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\FLIP\FLP_LUPOPEDIA_COUNCIL_SEAT.md"
+  file_hash: "c473cbffbcf323c4eaf876063e57cc183f2088915f0ce7a67dc286f4d75a1c9b"
+  file_path_from_root: "docs\doctrine\FLIP\FLP_LUPOPEDIA_COUNCIL_SEAT.md"
   file_hash: "9dc462bb23e43e58825ff8b275a1b532a0f84de1b1bb40acc378d7a348118563"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FLP_LUPOPEDIA_COUNCIL_SEAT.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "flip", "flp_lupopedia_council_seatmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

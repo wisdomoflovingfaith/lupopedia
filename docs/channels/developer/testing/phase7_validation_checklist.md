@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\testing\phase7_validation_checklist.md"
+  file_hash: "3eb4c455913133117da8909344c7c29e1705ddd40ef0cd4015c7d450102fb846"
+  file_path_from_root: "docs\channels\developer\testing\phase7_validation_checklist.md"
   file_hash: "9c978f12ad8eb00c0741e2c7144281d13cfec56f26f331e330fb2d79e8e5abea"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Phase 7 — Import Validation Checklist"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "developer", "testing", "phase7_validation_checklistmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

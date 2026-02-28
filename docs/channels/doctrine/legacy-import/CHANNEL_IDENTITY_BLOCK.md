@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\CHANNEL_IDENTITY_BLOCK.md"
+  file_hash: "6e0a25d39b806c90899a6d3c1071a5c364591829e2f5a5b7923ae9c770891a14"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\CHANNEL_IDENTITY_BLOCK.md"
   file_hash: "0d9b7cea24781adceb44f6b03f17d17b9aea061fad2ee2e4036e2862e16d9df1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "DOCTRINE: CHANNEL IDENTITY BLOCK"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "channel_identity_blockmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -1,8 +1,9 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:
   file_path_from_root: "docs/api/channels_admin_endpoints.md"
-  system_version: "4.0.49"
+  file_hash: "22619a63a66ed3efe03a8eecb6c2511400896dc1c0cb99e2cdbfeeaecb09afa6"
+  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1007
   last_modified_utc: "20260227"
@@ -16,6 +17,9 @@ flare.headers:
   tags: ["api", "channels", "admin", "4.0.49"]
   lupo_agent: "codex-ide"
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   outbound_edges:
     - { to: "lupo-includes/modules/module-loader.php", type: "references", weight: 0.8, reason: "API routing" }

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_ROUTING_DOCTRINE.md"
+  file_hash: "90cfd15bd99f9bffaae22114405cf5ea93286f4d8ebfc411bdd90deb5c454b9f"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_ROUTING_DOCTRINE.md"
   file_hash: "0eedea78e2632fa2464a37da962383f01cd5d16520a516e2bd24a3f760d5f8e3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "CRAFTY SYNTAX ROUTING DOCTRINE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "crafty_syntax_routing_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

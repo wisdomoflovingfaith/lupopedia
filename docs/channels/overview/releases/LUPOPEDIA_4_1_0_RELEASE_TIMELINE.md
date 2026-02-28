@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\releases\LUPOPEDIA_4_1_0_RELEASE_TIMELINE.md"
+  file_hash: "17ec32b29278641783937ab3c3a66698b2564ef9422aaaf900a864f427b3ee80"
+  file_path_from_root: "docs\channels\overview\releases\LUPOPEDIA_4_1_0_RELEASE_TIMELINE.md"
   file_hash: "b981df5e897a1fad4677ff2f1246378c6be655f35e8213cb3f0bb2661d8bfc5d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LUPOPEDIA_4_1_0_RELEASE_TIMELINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "releases", "lupopedia_4_1_0_release_timelinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

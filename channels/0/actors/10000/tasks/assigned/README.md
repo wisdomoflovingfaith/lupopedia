@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\actors\10000\tasks\assigned\README.md"
+  file_hash: "c8ee527a11e3f42f3f20253817887b5860bce4237699f39937c5d11b6ca90cd0"
+  file_path_from_root: "channels\0\actors\10000\tasks\assigned\README.md"
   file_hash: "07bcbf31701d764a3e934df5ee46ae1450e49e0b5fe58b85f999145165eec7e2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Assigned Tasks for Captain (10000)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "actors", "10000", "tasks", "assigned"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

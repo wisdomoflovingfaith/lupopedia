@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\EXPERIMENTAL_AI_COSMIC_PURGE_SUMMARY.md"
+  file_hash: "3ff0fc63e55d52924fc16cf9037038ac1c863f97ad4bf005696cd46f9e861561"
+  file_path_from_root: "docs\audits\EXPERIMENTAL_AI_COSMIC_PURGE_SUMMARY.md"
   file_hash: "d884d11cca59c552df1efddf8c4c097c09d6ff1e211acfa14c9eba87e2a97607"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Experimental AI Cosmic / Psychedelic / Joke-Doctrine Purge Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "experimental_ai_cosmic_purge_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

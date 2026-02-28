@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "status"
   flare.edges: []
   file_path_from_root: "docs\status\vsx_extension_status.md"
+  file_hash: "c02875fb7ae653300ef52f9261be0fa7fab99ef07330a403cc28a524b13ef3a6"
+  file_path_from_root: "docs\status\vsx_extension_status.md"
   file_hash: "2cd635f9e78bf7e213609185a92c2befe0246a56cf88334d1149c30864f479a8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for vsx_extension_status.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "status", "vsx_extension_statusmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

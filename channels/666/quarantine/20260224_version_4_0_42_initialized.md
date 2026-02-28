@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\666\quarantine\20260224_version_4_0_42_initialized.md"
+  file_hash: "ecdf2cd0d18b9a3841fe3fd8c1e000bc6fc2f1346bc79be194660c4ea4f785fc"
+  file_path_from_root: "channels\666\quarantine\20260224_version_4_0_42_initialized.md"
   file_hash: "bc0ccdb1479fd3a4103d77feb6d3530a9853016c0ff031aad93ea5e10b4d3338"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "🚀 VERSION 4.0.42 DEVELOPMENT INITIALIZED"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "666", "quarantine", "20260224_version_4_0_42_initializedmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

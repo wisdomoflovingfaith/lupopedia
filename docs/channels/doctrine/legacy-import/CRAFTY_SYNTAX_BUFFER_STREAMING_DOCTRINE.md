@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_BUFFER_STREAMING_DOCTRINE.md"
+  file_hash: "c93e12c45e46e93b26282c9da126f0ff1788918445cff420efa9f03f0276170e"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_BUFFER_STREAMING_DOCTRINE.md"
   file_hash: "1313de98174c9f33cd81147920a05fbf6d6dcfb28e0297ec892bdfd4ba012458"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "CRAFTY SYNTAX BUFFER-STREAMING DOCTRINE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "crafty_syntax_buffer_streaming_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

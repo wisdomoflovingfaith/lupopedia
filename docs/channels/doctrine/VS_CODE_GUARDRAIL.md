@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\VS_CODE_GUARDRAIL.md"
+  file_hash: "83b21d5f16cc2b1277dcf1ac614d1745eeb1eac5f95ec91b072229070b0d5260"
+  file_path_from_root: "docs\channels\doctrine\VS_CODE_GUARDRAIL.md"
   file_hash: "def42b8851ae96be45db5558b55f2f11537427fb7ae37a19548e6be742cf5020"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for VS_CODE_GUARDRAIL.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "vs_code_guardrailmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

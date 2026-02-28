@@ -3,6 +3,7 @@
 ---
 flare.headers:
   file_path_from_root: "bin/lupo.php.md"
+  file_hash: "23c20529062b6b9f187f9369d28c5980ad4a895c9d15ea9b2626e5f978308c76"
   system_version: "4.0.50"
   channel_id: 42
   actor_id: 0
@@ -18,12 +19,15 @@ flare.headers:
   lupo_agent: "windsurf"
 
 flare.edges:
+  file_path_from_root: "bin\lupo.php.md"
   outbound_edges:
     - { to: "bin/lupo.php", type: "documents", weight: 1.0, reason: "CLI tool implementation" }
     - { to: "channels/42/actors/0/help.md", type: "references", weight: 0.9, reason: "System agent help" }
     - { to: "docs/guidelines/list_csv_documentation.md", type: "references", weight: 0.8, reason: "Related documentation" }
   semantic_tags: ["cli_documentation", "system_operations", "4.0.50"]
 
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified_utc: "20260228"
   last_verified_by: "windsurf"

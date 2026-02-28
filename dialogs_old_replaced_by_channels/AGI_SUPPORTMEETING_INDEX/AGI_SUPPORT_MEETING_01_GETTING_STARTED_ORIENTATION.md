@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\AGI_SUPPORTMEETING_INDEX\AGI_SUPPORT_MEETING_01_GETTING_STARTED_ORIENTATION.md"
+  file_hash: "2bb862ee2e2777a33f2ed4e22468231d80eb5269b87bcdf57d1450121a259a17"
+  file_path_from_root: "dialogs_old_replaced_by_channels\AGI_SUPPORTMEETING_INDEX\AGI_SUPPORT_MEETING_01_GETTING_STARTED_ORIENTATION.md"
   file_hash: "d8cbfc6ec9ac1dc79203716de49a688d4f32855c8b8fb2f76a62d65bee8fb879"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "AGI Support Meeting #1 — Getting Started: What You Should Know, What You Need to Do Now"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "agi_supportmeeting_index", "agi_support_meeting_01_getting_started_orientationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

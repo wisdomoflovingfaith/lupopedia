@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\flip_retrofit_actors_manifest_4_0_43.md"
+  file_hash: "b00caae1ea65c9603ba4e46ed6dec919688e873e762dd8bdb65a056f51b16e3c"
+  file_path_from_root: "docs\status\flip_retrofit_actors_manifest_4_0_43.md"
   file_hash: "d386df2026ef2408c1a5c198f0e3ee68a25fa23e27a96d2e3b580291ae938a68"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for flip_retrofit_actors_manifest_4_0_43.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "status", "flip_retrofit_actors_manifest_4_0_43md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

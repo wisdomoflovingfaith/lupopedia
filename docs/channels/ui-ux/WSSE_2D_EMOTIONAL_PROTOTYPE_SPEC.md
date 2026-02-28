@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\ui-ux\WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md"
+  file_hash: "56aa530331bc2fccb1971d2bc581befd8b8d622cd0947078771485ea9a7ab453"
+  file_path_from_root: "docs\channels\ui-ux\WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md"
   file_hash: "f16d7a80d2ff6dc43f969c1b7b355ae14ead4337dfa662b7141532447b5ee1d0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "ui-ux", "wsse_2d_emotional_prototype_specmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

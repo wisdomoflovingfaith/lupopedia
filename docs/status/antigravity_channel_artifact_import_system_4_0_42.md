@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\antigravity_channel_artifact_import_system_4_0_42.md"
+  file_hash: "58ab1d62d139e6a79293ee830d56bd92d1681283f1b08eeea67f69d14c1d91db"
+  file_path_from_root: "docs\status\antigravity_channel_artifact_import_system_4_0_42.md"
   file_hash: "fabb1dfd658b55c69f695eac917073d145ff399e6eff033c39b79a67a0fa70b1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Import Status: Channel & Artifact System 4.0.42"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "status", "antigravity_channel_artifact_import_system_4_0_42md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

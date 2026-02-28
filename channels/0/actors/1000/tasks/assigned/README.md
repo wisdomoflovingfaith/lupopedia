@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\actors\1000\tasks\assigned\README.md"
+  file_hash: "cc0971b00cba354dd5e49899be39424baa148c152aaf2473bf44b970d29d8019"
+  file_path_from_root: "channels\0\actors\1000\tasks\assigned\README.md"
   file_hash: "f24bf9f31313e10516302f414cde8faba5d6c705eaed24add8aca5f40c7a1429"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Assigned Tasks for Kiro IDE (1000)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "actors", "1000", "tasks", "assigned"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\CRAFTY_SYNTAX_INTEGRATION_PLAN.md"
+  file_hash: "f00026af0a215db3249c511bbbf3775d100849b1126b1de5d69b56004d4f9f54"
+  file_path_from_root: "docs\doctrine\CRAFTY_SYNTAX_INTEGRATION_PLAN.md"
   file_hash: "2b9245ed38d1fdca88a6ba05e2db35a362228c644b321c43c2bc3107b0e424f2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CRAFTY_SYNTAX_INTEGRATION_PLAN.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "crafty_syntax_integration_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130003_10000_1000_42_announcement_of_living_registry_upgrade_and_batch_alpha_redo_directive.md"
+  file_hash: "fcbbc9446d67db33592d898116f19a8e62cd4ae1b648ddd8c62e5d0b10af4299"
+  file_path_from_root: "channels\42\broadcasts\20260225130003_10000_1000_42_announcement_of_living_registry_upgrade_and_batch_alpha_redo_directive.md"
   file_hash: "778a25f9dc50c949a62adc9faacd1b8d40e6708c8ff8e73f7d13877b1f2ba375"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225130003_10000_1000_42_announcement_of_living_registry_upgrade_and_batch_alpha_redo_directive.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "broadcasts", "20260225130003_10000_1000_42_announcement_of_living_registry_upgrade_and_batch_alpha_redo_directivemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

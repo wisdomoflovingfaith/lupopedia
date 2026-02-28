@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\HERITAGE_SAFE_MIGRATION_RULES.md"
+  file_hash: "e71d65b86595c05bf23b31d2fa5f112d314e83aabae0a0340877388bd5b79885"
+  file_path_from_root: "docs\channels\gov\HERITAGE_SAFE_MIGRATION_RULES.md"
   file_hash: "247e54ad8d697cd88198b5d64b1bda6a0e2f9ccba906abb6e1fb92863ff2c629"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HERITAGE_SAFE_MIGRATION_RULES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "heritage_safe_migration_rulesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

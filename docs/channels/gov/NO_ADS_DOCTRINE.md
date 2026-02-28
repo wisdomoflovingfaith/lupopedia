@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\NO_ADS_DOCTRINE.md"
+  file_hash: "5e98359c90bf7a5dc7f49c83cb1810d12206c6d2290f6d3b521ee6033d77b25f"
+  file_path_from_root: "docs\channels\gov\NO_ADS_DOCTRINE.md"
   file_hash: "d0ea155c5da474bb8ac49dcd1fe39c198d7d390f1d6aa9e8238cc029c92b6a73"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for NO_ADS_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "no_ads_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

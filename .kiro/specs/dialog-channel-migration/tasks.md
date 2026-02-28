@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\dialog-channel-migration\tasks.md"
+  file_hash: "074475767a7a727a5104aaa30a59fcb39634f741d94be23155e5ca0bab93b5f6"
+  file_path_from_root: ".kiro\specs\dialog-channel-migration\tasks.md"
   file_hash: "526087e9c4f819926f2dd9f664ee4378b0130489093638ba10a35e07f6427ab0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Implementation Plan: Dialog Channel Migration"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "dialog-channel-migration", "tasksmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

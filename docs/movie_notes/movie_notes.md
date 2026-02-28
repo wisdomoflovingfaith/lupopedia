@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\movie_notes\movie_notes.md"
+  file_hash: "55e2bd8c905a47e7289dbd963ad7950b3cbf0ca5a95019926db08b189c9f55c2"
+  file_path_from_root: "docs\movie_notes\movie_notes.md"
   file_hash: "ad3b60a451788ccd9c0410b40254c62ce7360231a6761d3b0051ebe6215ae9e8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "🎬 MOVIE NOTES: *The Architect of Lupopedia*"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "movie_notes", "movie_notesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

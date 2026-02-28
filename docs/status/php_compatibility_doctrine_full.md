@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\php_compatibility_doctrine_full.md"
+  file_hash: "f6d238eea19357dc4a849f9d604b91502ab9543d20474e7923eb42296b1e8f08"
+  file_path_from_root: "docs\status\php_compatibility_doctrine_full.md"
   file_hash: "22248bfce79961ea4c44a7f4c667203616e3f8b31a4ac2e72ddaeb145a7c1a6c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for php_compatibility_doctrine_full.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "status", "php_compatibility_doctrine_fullmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

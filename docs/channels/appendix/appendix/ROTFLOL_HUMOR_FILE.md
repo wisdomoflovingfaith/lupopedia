@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\appendix\ROTFLOL_HUMOR_FILE.md"
+  file_hash: "def891765832e2fc6d3bfc758b04db3c6f00336e8ba27d8076b888128a09dd99"
+  file_path_from_root: "docs\channels\appendix\appendix\ROTFLOL_HUMOR_FILE.md"
   file_hash: "213e769a5dcba19b4ec71a2e76af065f34d84ca298576adca48cc99b49bbd660"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ROTFLOL_HUMOR_FILE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "rotflol_humor_filemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

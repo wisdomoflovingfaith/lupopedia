@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\lupopedia_v3_0_70_agent_awareness_layer.md"
+  file_hash: "1c1bb50d7b0237bae901e8a633c3bd2e45e0b6a7a5ad99aa206850012bf7505e"
+  file_path_from_root: "docs\channels\architecture\lupopedia_v3_0_70_agent_awareness_layer.md"
   file_hash: "a7bbfbf642db2647e108c9133669d264ce216f40e0e5a45ab78373a5e9c85ef0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Lupopedia v3.0.70 — Multi‑Agent Awareness & Reverse Shaka Protocol"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "lupopedia_v3_0_70_agent_awareness_layermd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

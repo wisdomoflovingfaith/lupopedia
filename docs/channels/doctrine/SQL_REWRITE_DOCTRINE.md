@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\SQL_REWRITE_DOCTRINE.md"
+  file_hash: "442768d4501d705b34072020291bab6e685a4a7fa3cc94b84948c45a457e4197"
+  file_path_from_root: "docs\channels\doctrine\SQL_REWRITE_DOCTRINE.md"
   file_hash: "975f29962c1af1b0d967ec102ea812acb23be83ffa2156e9490c473599e8e9d7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SQL_REWRITE_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "sql_rewrite_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -497,4 +503,3 @@ FROM {{prefix}}crafty_auto_invite
 *Last Updated: January 2026*  
 *Version: 3.0.0*  
 *Author: Captain Wolfie*
-

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\RELATION_REGISTRY.md"
+  file_hash: "6323a2c25d2b3f61cf9024f08df935e7d667b577148d0501cf20662c7c358a00"
+  file_path_from_root: "docs\doctrine\RELATION_REGISTRY.md"
   file_hash: "27642339a88d4a4add7fc9f5f657ab66d53d43e0a68c04bad8fde6192bcc99d2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for RELATION_REGISTRY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "relation_registrymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

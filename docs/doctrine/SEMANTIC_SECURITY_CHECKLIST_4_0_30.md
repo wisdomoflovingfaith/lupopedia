@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\SEMANTIC_SECURITY_CHECKLIST_4_0_30.md"
+  file_hash: "adc63878ac6e64e907e1b56c5de65ef4965933cca6793263588cf4392b75a9ac"
+  file_path_from_root: "docs\doctrine\SEMANTIC_SECURITY_CHECKLIST_4_0_30.md"
   file_hash: "e283b4ec52d3425e0ea615c9b624afa5d02918dc02ecd488b930979e7bb4f880"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SEMANTIC_SECURITY_CHECKLIST_4_0_30.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "semantic_security_checklist_4_0_30md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

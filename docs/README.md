@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\README.md"
+  file_hash: "c8ca5c4526f213a2a9416643ef57b6eff5ebdd9004f46e6fdb138e998ef7a566"
+  file_path_from_root: "docs\README.md"
   file_hash: "960a819d56051cfffbadc3747ea58feb8440553d7a3e85a770145aceeb67b2d9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for README.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

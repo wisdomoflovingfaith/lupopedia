@@ -3,6 +3,7 @@
 ---
 flare.headers:
   file_path_from_root: "channels/42/actors/0/help.md"
+  file_hash: "2cef59507c7f9250536538dfc23fb92e8358c1460d7b40bd652da67ec67eb2d0"
   system_version: "4.0.50"
   channel_id: 42
   actor_id: 0
@@ -18,6 +19,7 @@ flare.headers:
   lupo_agent: "windsurf"
 
 flare.edges:
+  file_path_from_root: "channels\42\actors\0\help.md"
   outbound_edges:
     - { to: "channels/42/actors/0/HELP.json", type: "references", weight: 1.0, reason: "JSON help data" }
     - { to: "channels/42/actors/0/history/list.csv", type: "references", weight: 0.9, reason: "Actor history" }
@@ -25,6 +27,8 @@ flare.edges:
     - { to: "docs/guidelines/list_csv_documentation.md", type: "references", weight: 0.8, reason: "CSV documentation" }
   semantic_tags: ["system_agent_help", "documentation", "4.0.50"]
 
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified_utc: "20260228"
   last_verified_by: "windsurf"

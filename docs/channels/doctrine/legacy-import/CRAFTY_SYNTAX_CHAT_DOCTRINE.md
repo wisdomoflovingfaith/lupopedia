@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_CHAT_DOCTRINE.md"
+  file_hash: "66bda736d24ccbc531acf770522a0f273de54029e16052767599773ad177f51c"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_CHAT_DOCTRINE.md"
   file_hash: "0c65ba28f751dc63055b61116451ba700aab92867b8f3dd3c6d0641c80fabe1f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "CRAFTY SYNTAX CHAT DOCTRINE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "crafty_syntax_chat_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\channels\filesystem_padding_layer.md"
+  file_hash: "84f8ad49f0f390b0c98958437334e0e36ee363ac063d340d22a632611754fa70"
+  file_path_from_root: "docs\doctrine\channels\filesystem_padding_layer.md"
   file_hash: "98c667c5db62c1dbdae197a7d72ab3889b9eba8e4d4d4b4358a529da2d7a4d3c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for filesystem_padding_layer.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "channels", "filesystem_padding_layermd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

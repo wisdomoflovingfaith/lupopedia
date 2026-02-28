@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_qa_migration.md",
-  system_version: "4.0.39",
+  file_hash: "e113ea44e0c33f564eb6e27da987532b7cf692201381417b30d946ae7a947d45"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_qa → lupo_truth_questions/answers/collections",

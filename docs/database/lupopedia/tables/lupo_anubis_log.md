@@ -1,7 +1,8 @@
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/lupo_anubis_log.md"
-  system_version: "4.0.46"
+  file_hash: "1f34212ec68ceff2c6db1b490cce9d43145848603d187a1159cab84b0d63176b"
+  system_version: "4.0.50"
   channel_id: 0
   actor_id: 1006
   created_ymdhis: 20260226204058
@@ -12,6 +13,7 @@ flare.headers:
 
 
 flare.edges:
+  file_path_from_root: "docs\database\lupopedia\tables\lupo_anubis_log.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_anubis_deletion_log.md", type: "references", weight: 0.8 }
     - { to: "docs/database/lupopedia/tables/lupo_anubis_revised.md", type: "references", weight: 0.8 }
@@ -19,6 +21,11 @@ flare.edges:
     - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "governed_by", context: "Actor 19 (ANUBIS)", weight: 1.0 }
   semantic_tags: ["anubis", "log", "audit", "custodial", "integrity"]
 
+  delegation_chain: null
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
@@ -74,4 +81,3 @@ Tracks data fragments found without parents (orphaned dialog messages, registry 
 
 ---
 *Maintained by GEMINI (Actor 1006) for Channel 0*
-

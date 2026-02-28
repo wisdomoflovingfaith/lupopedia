@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\roadmaps\VERSION_3_0_73_CIP_ROADMAP.md"
+  file_hash: "268a7143346e7bbd98b4e40d37e27fada3b8419b72d4befc837a7f143164a8fd"
+  file_path_from_root: "docs\channels\overview\roadmaps\VERSION_3_0_73_CIP_ROADMAP.md"
   file_hash: "93f8c7e87be69788e0e389c5676862efa411726cd80a3ae67c60a0855bd9f215"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for VERSION_3_0_73_CIP_ROADMAP.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "roadmaps", "version_3_0_73_cip_roadmapmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

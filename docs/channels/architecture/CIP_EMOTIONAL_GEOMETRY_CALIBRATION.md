@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\CIP_EMOTIONAL_GEOMETRY_CALIBRATION.md"
+  file_hash: "9b497d457c59849eec5a025b04d90c67334eb54c33563c69c3ae97d56fd946de"
+  file_path_from_root: "docs\channels\architecture\CIP_EMOTIONAL_GEOMETRY_CALIBRATION.md"
   file_hash: "2fbf0ee11c3c54cd777c8c44ca3bd6ec8c4e0d89fe4c01b73e51a231e38d38f9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CIP_EMOTIONAL_GEOMETRY_CALIBRATION.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "cip_emotional_geometry_calibrationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "GIT_COMMIT_MESSAGE_CLEAN.md"
+  file_hash: "4499d3d9554e55ea118166676bf18cbed52f8dab323c153c3f0d313740f71370"
+  file_path_from_root: "GIT_COMMIT_MESSAGE_CLEAN.md"
   file_hash: "e5a10431e9b1bbc21bbb789060b0cf15203118a790cd8ef105256194270a346a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GIT_COMMIT_MESSAGE_CLEAN.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["git_commit_message_cleanmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

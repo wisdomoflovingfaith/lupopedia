@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\LUPOPEDIA_GENESIS_DOCTRINE.md"
+  file_hash: "4c9dadb77851eb301415d6b1d591a0f3a4ae7534e452df7626467a8d234841f7"
+  file_path_from_root: "docs\channels\doctrine\LUPOPEDIA_GENESIS_DOCTRINE.md"
   file_hash: "3adacaa97b417dd96089c9985e02e0e70050cd17766990e6e03bff2ff65f0afc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LUPOPEDIA_GENESIS_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "lupopedia_genesis_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

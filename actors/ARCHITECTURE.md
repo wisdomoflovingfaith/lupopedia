@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "actors\ARCHITECTURE.md"
+  file_hash: "66cf769ef2e703c6c3ddbb905e01f929db24dc3b88930d410eedf741703bfc6e"
+  file_path_from_root: "actors\ARCHITECTURE.md"
   file_hash: "6c1e87761be916fb4e56668a2d68bb5ec35cc8efc252a21d3e9c7c260ae05c2e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Architecture Overview: Actor Directory Structure"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["actors", "architecturemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

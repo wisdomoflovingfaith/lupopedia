@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\architecture\layout-context-schema.md"
+  file_hash: "b1047749693aa77937afc57922dfb8dfe0f2000eb5e9723d8103af3faec9252d"
+  file_path_from_root: "docs\architecture\layout-context-schema.md"
   file_hash: "6c344c13dc874cc1150d788d32e88ce66c95918dd0dc508e923c5219318c3da5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Layout Context Schema"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "architecture", "layout-context-schemamd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

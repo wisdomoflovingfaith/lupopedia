@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\PRE_PUSH_4_0_1_INTEGRITY_SWEEP_SUMMARY.md"
+  file_hash: "83103f83559cfa41e3cdfce03c2efce48b4d68032388e99c076f041611ad73ce"
+  file_path_from_root: "docs\audits\PRE_PUSH_4_0_1_INTEGRITY_SWEEP_SUMMARY.md"
   file_hash: "7b1b0ca2619b0bcbf3f5df550deef0d9ff01c7e2d76d6d3a6c764332bc0b2daa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Pre-Push 4.0.1 Integrity Sweep Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "pre_push_4_0_1_integrity_sweep_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

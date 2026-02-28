@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-000.md"
+  file_hash: "21b639f834dbbc3350b1f72db46ae80d27f85c6a13bc8f1dd31ac78443888cac"
+  file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-000.md"
   file_hash: "6eb0dceb34764d3ea6e374281996063b5c8a64946786c2967baeb8308e9dd902"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GOV-PROHIBIT-000: FOUNDATION & INDEX DOCTRINE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "gov-prohibit-000md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-007.md"
+  file_hash: "5dde49a80db6556b53c0fb9a645514365d710fadb25bd64b8f62403372c8fb20"
+  file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-007.md"
   file_hash: "440615784e4ef523957c990e7da6b302284423956bca4e72017f81ce54da80e3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GOV-PROHIBIT-007: RESERVED FOR EMERGENCY PROTOCOL"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "gov-prohibit-007md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

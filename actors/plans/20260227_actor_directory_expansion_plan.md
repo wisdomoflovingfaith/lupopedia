@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "actors\plans\20260227_actor_directory_expansion_plan.md"
+  file_hash: "899da99727edb6b483b10436aebbe8830597e41d2a815e3db297479723bb5838"
+  file_path_from_root: "actors\plans\20260227_actor_directory_expansion_plan.md"
   file_hash: "af6aa460c0dcd0cad76bc563eb0685f8ed66ee0d0b72a836ad3263c016281f18"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Plan: Actor Directory Semantic Expansion (v4.0.47 -> v4.0.48)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["actors", "plans", "20260227_actor_directory_expansion_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

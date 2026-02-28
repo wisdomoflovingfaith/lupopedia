@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\antigravity_v4_0_40_initialization.md"
+  file_hash: "79ce667ef705fd0d452d4babf66ef28d12f626cf1d15b4c828c8c7e6def8f3bc"
+  file_path_from_root: "docs\status\antigravity_v4_0_40_initialization.md"
   file_hash: "3aaaf6a2eec473d7698336d00ceba9a43a2802bfe9833fee3e09befd963f4d0d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for antigravity_v4_0_40_initialization.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "status", "antigravity_v4_0_40_initializationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\CONSOLIDATION_VALIDATION_REQUIREMENTS.md"
+  file_hash: "9eb84b680242e7a398466c96cbde214e3ac448c8083f2bead72961b0a682400a"
+  file_path_from_root: "docs\doctrine\CONSOLIDATION_VALIDATION_REQUIREMENTS.md"
   file_hash: "2b10afbd1fbbc4244a21898f13690389f1f1fd0a5af7f3bb059b9fceb5f9ef41"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CONSOLIDATION_VALIDATION_REQUIREMENTS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "consolidation_validation_requirementsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

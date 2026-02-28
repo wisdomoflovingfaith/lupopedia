@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\specs\flip_headers\flip_headers_batch_2_of_4.md"
+  file_hash: "df7a66f79227e583c9c26a454e08b9277a9cd1b988f5150186a883c371a7d406"
+  file_path_from_root: "docs\specs\flip_headers\flip_headers_batch_2_of_4.md"
   file_hash: "b88356fc2594a014ab13839aaebb3320bfb864f29be160547e6fb40bb0d2d0b3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for flip_headers_batch_2_of_4.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "specs", "flip_headers", "flip_headers_batch_2_of_4md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

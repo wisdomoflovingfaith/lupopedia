@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\DOCTRINE_VERSIONING.md"
+  file_hash: "d63d6daad6b8b1fea813dd30bbf403bd3a07d2b00e18db66858c0c6ac4533b64"
+  file_path_from_root: "docs\channels\doctrine\DOCTRINE_VERSIONING.md"
   file_hash: "21e993a973d84eaabce487ff1e41a1831dbe2c8601d1a23207d9cdcf31f9397d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "LUPEDIA VERSIONING DOCTRINE"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "doctrine_versioningmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

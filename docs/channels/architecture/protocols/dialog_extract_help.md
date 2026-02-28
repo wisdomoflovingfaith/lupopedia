@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "help"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\protocols\dialog_extract_help.md"
+  file_hash: "698f95565d9ac31f65ff3dc38060ca279309eb10654658aa7c9e09791259609f"
+  file_path_from_root: "docs\channels\architecture\protocols\dialog_extract_help.md"
   file_hash: "8efdd44dab4304efd34ba65292965c4fe451b93abc17e8958d3ade09bfb8b4ce"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for dialog_extract_help.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "protocols", "dialog_extract_helpmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -359,4 +365,3 @@ The following file types are scanned for Inline Dialog blocks:
 - **[Agent Runtime](../../agents/AGENT_RUNTIME.md)** - Agent system that generates the dialogs being extracted
 
 ---
-

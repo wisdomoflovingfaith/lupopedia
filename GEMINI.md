@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "GEMINI.md"
+  file_hash: "2609764a84a449895f2e0f608661d8ae30069d0c394a6bbc3472535d471cb463"
+  file_path_from_root: "GEMINI.md"
   file_hash: "fbe9d2341761b42406dd4f894ebcc0c3dd13ccab0362b9d5c07f626d083273ec"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GEMINI.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["geminimd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

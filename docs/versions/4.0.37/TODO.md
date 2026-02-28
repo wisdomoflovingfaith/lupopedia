@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\versions\4.0.37\TODO.md"
+  file_hash: "00ccc5429d3621ce76f12338013dc9e91e59c4cbadccae51974792358685f33e"
+  file_path_from_root: "docs\versions\4.0.37\TODO.md"
   file_hash: "2439930b9f662ce293b49805bc4aff2457987ae1cca22027ea5eaa0824eba38b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for TODO.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "versions", "4037", "todomd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

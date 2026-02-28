@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\OAUTH_SETUP_GUIDE.md"
+  file_hash: "d555ccbe991ceb607d6d06636d95049e4dcecc25c0ca0b6dc99f8078c11e55d8"
+  file_path_from_root: "docs\OAUTH_SETUP_GUIDE.md"
   file_hash: "04cc625c241e05b6ef5903ccbbe736f351ca3c8ce2212f3fc96ca0aceb0cd972"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "OAuth Setup Guide - Quick Start"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "oauth_setup_guidemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

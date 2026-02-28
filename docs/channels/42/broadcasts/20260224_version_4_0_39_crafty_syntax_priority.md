@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260224_version_4_0_39_crafty_syntax_priority.md"
+  file_hash: "d585c33e6c1d87007e0380950e8575f6c56647b975f3f5684c23d1b874d35bc8"
+  file_path_from_root: "docs\channels\42\broadcasts\20260224_version_4_0_39_crafty_syntax_priority.md"
   file_hash: "d471518109d4c3f6ac3a49b364ddcbd30169156efdbd8e7d7f6090e7677ee685"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224_version_4_0_39_crafty_syntax_priority.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "42", "broadcasts", "20260224_version_4_0_39_crafty_syntax_prioritymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

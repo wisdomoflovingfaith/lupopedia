@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\TRUTH_AND_HONESTY_PROTOCOL.md"
+  file_hash: "5668981824fe854cff0c0dbf47a7c0e27c6cb31ef5a7ea1ea6445f3568313e2f"
+  file_path_from_root: "docs\channels\gov\TRUTH_AND_HONESTY_PROTOCOL.md"
   file_hash: "31fa519e9b0bf0bcb38f3d76ab02123169deaa9a4a3344010731be4a376778c1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for TRUTH_AND_HONESTY_PROTOCOL.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "truth_and_honesty_protocolmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

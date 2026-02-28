@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\antigravity_channels_admin_rewrite_4_0_42.md"
+  file_hash: "31dcb8ebe69a6561c0b6487ab6e6b99d03340b89f4057ac52d67565e2d58c1a1"
+  file_path_from_root: "docs\status\antigravity_channels_admin_rewrite_4_0_42.md"
   file_hash: "3f6b83b957e3e61a3f9e5f638b485f1ee11b90629b855e69556837402a80eae0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Channels Admin UI Rewrite & Ticket System Integration (Version 4.0.42)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "status", "antigravity_channels_admin_rewrite_4_0_42md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

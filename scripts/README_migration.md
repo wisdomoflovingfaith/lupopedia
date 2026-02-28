@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "scripts\README_migration.md"
+  file_hash: "fe4d5f5b27714dfcc323d804343b86feeef93e3f3c6b34566dae5733d6d97429"
+  file_path_from_root: "scripts\README_migration.md"
   file_hash: "0d9a7f9657b777cdeab852d3beb891a7aac08d804078e1900062a6fd84dcadf7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Wolfie Header v2.6 Database Migration"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["scripts", "readme_migrationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

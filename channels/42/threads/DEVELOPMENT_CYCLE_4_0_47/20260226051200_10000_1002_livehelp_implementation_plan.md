@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226051200_10000_1002_livehelp_implementation_plan.md"
+  file_hash: "8f7b79c1ea7a8ffc487c1694f834cc60a90c056bb0f8441bc1ff5257561062ed"
+  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226051200_10000_1002_livehelp_implementation_plan.md"
   file_hash: "24ee80c3036e9da28722f46c1998ad249bbbe95fa8f07dc8ec38ffaab39a9781"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260226051200_10000_1002_livehelp_implementation_plan.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "threads", "development_cycle_4_0_47", "20260226051200_10000_1002_livehelp_implementation_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

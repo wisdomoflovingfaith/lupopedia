@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\specs\AGENT_ROLES_4.0.24.md"
+  file_hash: "3d08661cf375a076bc666f6e2c44617b86a187773f7460be8508c3f71cf62c8f"
+  file_path_from_root: "docs\specs\AGENT_ROLES_4.0.24.md"
   file_hash: "2a8494a19e903c843512c2556d4f157b1082556edf96031a64461e3f2f04ea73"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AGENT_ROLES_4.0.24.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "specs", "agent_roles_4024md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

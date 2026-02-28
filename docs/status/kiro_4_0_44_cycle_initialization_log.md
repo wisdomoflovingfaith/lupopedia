@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\kiro_4_0_44_cycle_initialization_log.md"
+  file_hash: "5faee31bb827b48eadc51bfa890445074dde8e1ce40733f204dbfb29a55f846b"
+  file_path_from_root: "docs\status\kiro_4_0_44_cycle_initialization_log.md"
   file_hash: "f18b801f74297c08b58e694c2df61fd37aaa15f583341ac093155f1d4f4928fc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for kiro_4_0_44_cycle_initialization_log.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "status", "kiro_4_0_44_cycle_initialization_logmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

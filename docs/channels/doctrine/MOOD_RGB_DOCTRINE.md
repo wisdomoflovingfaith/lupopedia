@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\MOOD_RGB_DOCTRINE.md"
+  file_hash: "557b44b8852bb54e5105d8131ea061d04fe9de0c32684a94757bfefb07bb4755"
+  file_path_from_root: "docs\channels\doctrine\MOOD_RGB_DOCTRINE.md"
   file_hash: "436e51191fca743db9bac9a63b8a19f2f43305d67a91d8f85d39d4ea8d394ec3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MOOD_RGB_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "mood_rgb_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

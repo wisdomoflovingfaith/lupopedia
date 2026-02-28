@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\changelog_dialog_UTC_2026-01-20.md"
+  file_hash: "96d436cb601c7a4a39750f6d5c433b755b41f296f594466b3f19810d68c289f8"
+  file_path_from_root: "dialogs_old_replaced_by_channels\changelog_dialog_UTC_2026-01-20.md"
   file_hash: "cd8bd443b57ecc66dd1856193c23af5e331174ce5a9762dfe996830e90437fe5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for changelog_dialog_UTC_2026-01-20.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "changelog_dialog_utc_2026-01-20md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
@@ -10385,4 +10390,3 @@ Cross-Reference: CHANGELOG.md section 3.1.11
 - ✅ Generates new file with sovereign header
 
 **STATUS:** ✅ Clean chronological changelog created for Monday Wolfie review. All 249 entries sorted. Sovereign header applied. Ready for Monday Wolfie intervention.
-

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\appendix\wolfie.md"
+  file_hash: "360803abc2d0a1f43102a01ba0f3ad3cacc0cb7324b90997bf9ae609e462c3c3"
+  file_path_from_root: "docs\channels\appendix\appendix\wolfie.md"
   file_hash: "436e8ff9573b5f1de07a4dc6ef48a0be9d2f8e42244fac89b90a6c4919e8e913"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for wolfie.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "wolfiemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -82,4 +88,3 @@ Wolfie is:
 Lupopedia is not a religious project. It is the system Wolfie wishes he had when everything fell apart: something that can hold conflicting claims, evidence, and context without collapsing into dogma or nihilism.
 
 That is why the schema is strict, the table count is disciplined, and the agents are named with symbolic weight. This isn't just software; it's a way of refusing to lie to ourselves about how knowledge and experience actually work.
-

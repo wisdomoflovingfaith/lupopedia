@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\AUTH_COMPATIBILITY_AUDIT.md"
+  file_hash: "1602de453ae9cea9166f7ce4c8fe228c8dbda5375edcedc957badc6cf47db691"
+  file_path_from_root: "docs\audits\AUTH_COMPATIBILITY_AUDIT.md"
   file_hash: "b98303c61fbb4069a3b1692a550f82732f410c7732829c5cbdcaed888853281c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Authentication Subsystem — Doctrine Compliance & PHP 5.3→8.1 Compatibility Audit"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "auth_compatibility_auditmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

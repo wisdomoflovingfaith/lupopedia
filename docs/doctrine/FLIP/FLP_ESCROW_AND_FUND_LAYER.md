@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\FLIP\FLP_ESCROW_AND_FUND_LAYER.md"
+  file_hash: "e4add8dacaa3a53dd966c6ae3d6097371d056464e96440cab8a421c09aadfadc"
+  file_path_from_root: "docs\doctrine\FLIP\FLP_ESCROW_AND_FUND_LAYER.md"
   file_hash: "209ce63465e9cc00e77265ef0ea248ab57d73a6f9ebaa839fc20e7761c16e539"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FLP_ESCROW_AND_FUND_LAYER.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "flip", "flp_escrow_and_fund_layermd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

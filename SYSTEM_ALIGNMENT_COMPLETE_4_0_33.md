@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "SYSTEM_ALIGNMENT_COMPLETE_4_0_33.md"
+  file_hash: "7ea1ee837a75e0f9e9804f3b882e3bc1a03b10fa26cb93d34c08dce15299e0a6"
+  file_path_from_root: "SYSTEM_ALIGNMENT_COMPLETE_4_0_33.md"
   file_hash: "80963ed5f2773a3b4cf80693d4f3cd13692efd19679ebd92ac1754ecee77e81b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SYSTEM_ALIGNMENT_COMPLETE_4_0_33.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["system_alignment_complete_4_0_33md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

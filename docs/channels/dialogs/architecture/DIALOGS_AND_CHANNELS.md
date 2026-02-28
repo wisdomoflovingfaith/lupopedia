@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\dialogs\architecture\DIALOGS_AND_CHANNELS.md"
+  file_hash: "01a663ce1ef11756b360b7ca3588c3cc585b35e0024f733424c4cba24d6d91e7"
+  file_path_from_root: "docs\channels\dialogs\architecture\DIALOGS_AND_CHANNELS.md"
   file_hash: "396e3d20cabb37d648da33693470abb1306c3fbb8d96f7dfcddcdd45fbf447ab"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DIALOGS_AND_CHANNELS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "dialogs", "architecture", "dialogs_and_channelsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

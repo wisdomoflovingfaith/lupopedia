@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\NO_FOREIGN_KEYS_DOCTRINE.md"
+  file_hash: "8c211e4a0fcc58b74a34a60d68e934fe9d3561440e29997db108d72eefde5256"
+  file_path_from_root: "docs\channels\doctrine\NO_FOREIGN_KEYS_DOCTRINE.md"
   file_hash: "2bedd98e464c78ab4e3384de3dd3dd5cd1e49532a831f604ebec0bdba899e95e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for NO_FOREIGN_KEYS_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "no_foreign_keys_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -422,5 +428,3 @@ This is how Lupopedia stays alive, flexible, emotional, and selfâ€‘healing.
 - **[WOLFMIND Doctrine](WOLFMIND_DOCTRINE.md)** - Memory system that uses application-managed relationships instead of foreign keys
 
 ---
-
-

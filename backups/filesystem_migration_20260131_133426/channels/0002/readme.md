@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\0002\readme.md"
+  file_hash: "cc2a034df16190a394daa0d4a289cc3860929baaae6cfe60a0c696f6eefcce1c"
+  file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\0002\readme.md"
   file_hash: "0a750f6e72275d06c3100f00d77fee21e1a973056b9ccb6b8151fed163358eff"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GOV‑PROGRAMMERS‑001 (Channel 1003)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["backups", "filesystem_migration_20260131_133426", "channels", "0002", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

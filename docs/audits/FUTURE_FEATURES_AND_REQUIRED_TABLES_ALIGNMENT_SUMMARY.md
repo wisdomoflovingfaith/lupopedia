@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md"
+  file_hash: "6b92939a1f7b94983b49187ada9a3bd02c5b177926047ea0f06e735ca0bc3fd1"
+  file_path_from_root: "docs\audits\FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md"
   file_hash: "3d4811288d16541a82c5e52cce3ac14f971a7958db05f7538eb4a6f5e97f6be9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Future Features and Required Tables Alignment Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "future_features_and_required_tables_alignment_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

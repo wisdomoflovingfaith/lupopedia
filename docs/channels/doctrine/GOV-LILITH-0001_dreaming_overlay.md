@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GOV-LILITH-0001_dreaming_overlay.md"
+  file_hash: "8df3fce95426a4608b1492575e057323252e967f2a071ae431fa32c5da513c1a"
+  file_path_from_root: "docs\channels\doctrine\GOV-LILITH-0001_dreaming_overlay.md"
   file_hash: "0b1d8cf9d401aa967b98def116db314837911b0bc36eee822dc11fde9af9163d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GOV-LILITH-0001_dreaming_overlay.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "gov-lilith-0001_dreaming_overlaymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

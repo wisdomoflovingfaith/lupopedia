@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\IDENTITY_AUTHORITY_DOCTRINE.md"
+  file_hash: "15c1411e62b614511b36d92e3b44272f7e669661695b21ec30f62190ce423b0a"
+  file_path_from_root: "docs\doctrine\IDENTITY_AUTHORITY_DOCTRINE.md"
   file_hash: "e22aeb746afce5830adc67746543e10376b14512c0097202dc431287d2b0f28d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for IDENTITY_AUTHORITY_DOCTRINE.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "doctrine", "identity_authority_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

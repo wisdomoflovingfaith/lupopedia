@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "REGISTRY_CONSOLIDATION_COMPLETE_4_0_34.md"
+  file_hash: "8641a332620da0ae64ba4ef14b24180467d895ffc7b1027a5a8fc8982bd98294"
+  file_path_from_root: "REGISTRY_CONSOLIDATION_COMPLETE_4_0_34.md"
   file_hash: "f3bfb099b9833b805828df00b20a4276b776d34200726cdcf361b5c1df724dfa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for REGISTRY_CONSOLIDATION_COMPLETE_4_0_34.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["registry_consolidation_complete_4_0_34md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

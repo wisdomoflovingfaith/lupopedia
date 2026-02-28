@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\DATABASE_SCHEMA.md"
+  file_hash: "87f2ec5de17631d07e1dcaa69f9994cf5fcd863bc23166dca0f3d97f3be661bc"
+  file_path_from_root: "docs\channels\schema\DATABASE_SCHEMA.md"
   file_hash: "a5fa5dcf2b668b75689d4f536f308b96c29a83babe6fa8211952905a10bfb876"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DATABASE_SCHEMA.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "schema", "database_schemamd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

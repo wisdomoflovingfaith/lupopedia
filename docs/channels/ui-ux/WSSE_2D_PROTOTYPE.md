@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\ui-ux\WSSE_2D_PROTOTYPE.md"
+  file_hash: "e802170d503b2cf2b56425556fff88ec26e3c3dcc12aecee510312ff271b3fea"
+  file_path_from_root: "docs\channels\ui-ux\WSSE_2D_PROTOTYPE.md"
   file_hash: "957df64a94480c6f4f1845e55603c21a5173768b13dd44f4aef8f5231075a28c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "WSSE — 2D PROTOTYPE BLUEPRINT (IMPLEMENTATION VERSION)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "ui-ux", "wsse_2d_prototypemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "migrations\README.md"
+  file_hash: "f4a7be0b2d9cb85c7c38721db86cd97a7b2bf4a3814db269819875922e6a510a"
+  file_path_from_root: "migrations\README.md"
   file_hash: "84a8d4a23b91891fa46fab370d21bcd0f5ce5e3a20057af04e2d74e0a29148f4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Migrations"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["migrations", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

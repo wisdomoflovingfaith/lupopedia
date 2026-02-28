@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\modules\UPGRADE_PLAN_3.7.5_TO_3.0.0.md"
+  file_hash: "8cd9edc101338fcf6f64a9026ca09615ab204018d0442c01f1d7ba942771ddaa"
+  file_path_from_root: "docs\channels\developer\modules\UPGRADE_PLAN_3.7.5_TO_3.0.0.md"
   file_hash: "ddfe91e3bcc1361d5131459bd9528a282527fc5726c81b064a6fca7203622084"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for UPGRADE_PLAN_3.7.5_TO_3.0.0.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "developer", "modules", "upgrade_plan_375_to_300md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 Absolutely, Eric — here is the **full, final, production‑ready**  

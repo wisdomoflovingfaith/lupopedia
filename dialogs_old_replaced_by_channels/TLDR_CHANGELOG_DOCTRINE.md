@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\TLDR_CHANGELOG_DOCTRINE.md"
+  file_hash: "d6f85242e12bf5083c4be94c593fc80702194f272780f92ab3bbb32f21647bd6"
+  file_path_from_root: "dialogs_old_replaced_by_channels\TLDR_CHANGELOG_DOCTRINE.md"
   file_hash: "b9d42ace25978ac5842a41e6ab9f3cb6a8d7a3a1bbadd228dc7d9cfbd8bdebfd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for TLDR_CHANGELOG_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "tldr_changelog_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\kiro_p0_batch_progress_20260224.md"
+  file_hash: "1d67ce016b19e6720105dc3f29986d9698e374853a269d48f808cb5ed174ba9b"
+  file_path_from_root: "docs\status\kiro_p0_batch_progress_20260224.md"
   file_hash: "d568215cbdf30517283f493ed80c602b52fc8efd4c9003a53d9db6206dc7c3b3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for kiro_p0_batch_progress_20260224.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "status", "kiro_p0_batch_progress_20260224md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

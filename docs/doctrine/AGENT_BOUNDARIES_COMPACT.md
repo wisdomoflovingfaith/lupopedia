@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\AGENT_BOUNDARIES_COMPACT.md"
+  file_hash: "1526831a5fb828c1b1ca37d9f234eb014f6176debac9ccd3cedcb2dd02db61fb"
+  file_path_from_root: "docs\doctrine\AGENT_BOUNDARIES_COMPACT.md"
   file_hash: "b86cf88579062c2926d5cb45526ee77c86ef7e69aa84515694fa9b16b6113db0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AGENT_BOUNDARIES_COMPACT.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "agent_boundaries_compactmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

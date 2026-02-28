@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md"
+  file_hash: "47d44d0231e5701809c41ebf8a374866d0d0a7e3e29c30ff7e554be6a59a3979"
+  file_path_from_root: "docs\channels\doctrine\AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md"
   file_hash: "76e0b0794855b978b2bfac6ea7c1ebd623c3210d033eabb56191959477790de0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "ai_uncertainty_expression_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

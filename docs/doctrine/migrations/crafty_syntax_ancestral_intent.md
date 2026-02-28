@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\migrations\crafty_syntax_ancestral_intent.md"
+  file_hash: "93e3122e266cf1f4f0b2c55206b3a5547b0e73d871fd90d88cfd64aaeef3754d"
+  file_path_from_root: "docs\doctrine\migrations\crafty_syntax_ancestral_intent.md"
   file_hash: "7b45a710804ac64d6b2628614264c6c185ca0148f0b31447ae04ac474bc6e891"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for crafty_syntax_ancestral_intent.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "migrations", "crafty_syntax_ancestral_intentmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-005.md"
+  file_hash: "2881e22aafb10d748d9a1f4c07e990ebf872c82a5be0990ce7cf94b92a59e83b"
+  file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-005.md"
   file_hash: "fc94d3d720605a615fa6fe77e42208eae36db8e7fae1727bd61b33889cac742f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "GOV-PROHIBIT-005: AUTONOMY & CONSENT BOUNDARIES"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "gov-prohibit-005md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

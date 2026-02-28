@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "4a0f945b9044513a457428904def70cd4e845f57fc97319415fa6e91c92d90bb"
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
   file_hash: "16cf6ce87affac0f23a4f17881eb0e6d3abfb8cc248cfb421a71146895ae619b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["install_sql_tasks_integration_complete_4045md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

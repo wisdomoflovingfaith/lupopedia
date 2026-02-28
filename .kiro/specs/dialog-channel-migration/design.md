@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\dialog-channel-migration\design.md"
+  file_hash: "0fad7ed55e3e75ded4d124f946f03fc7e7669830023757deff3be950dce44d48"
+  file_path_from_root: ".kiro\specs\dialog-channel-migration\design.md"
   file_hash: "402df474fdc17012b83fa1ddee5c1a176ea4b819d9e58d99c1a910fc0da7e30b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Design Document"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "dialog-channel-migration", "designmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

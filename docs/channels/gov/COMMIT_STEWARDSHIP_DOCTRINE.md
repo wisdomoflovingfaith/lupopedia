@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\COMMIT_STEWARDSHIP_DOCTRINE.md"
+  file_hash: "f8ad429744ccf7a95e8aa724ddf842260a37d7c248fdbb74af61cdfbe332b59c"
+  file_path_from_root: "docs\channels\gov\COMMIT_STEWARDSHIP_DOCTRINE.md"
   file_hash: "124dd31d3ad64dbe8aec924666682e926b630f09fb9a40aa322ca74f6387ff83"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for COMMIT_STEWARDSHIP_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "commit_stewardship_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\agents\agent-1\workflows\channel_initialization.workflow.md"
+  file_hash: "f7de96e883d00b0dff7feba66ce0f596ead50cdd9678ac9f3f0ea4127989848a"
+  file_path_from_root: "docs\channels\agents\agent-1\workflows\channel_initialization.workflow.md"
   file_hash: "dcfcc8723313a61950fa36fe74f8838f24b31bb5b12949ced1ccb76d09a31a9c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for channel_initialization.workflow.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "agents", "agent-1", "workflows", "channel_initializationworkflowmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -385,4 +391,3 @@ This workflow provides the structural outline for channel initialization. Future
 *Version: GLOBAL_CURRENT_LUPOPEDIA_VERSION*  
 *Status: Published*  
 *Author: GLOBAL_CURRENT_AUTHORS*
-

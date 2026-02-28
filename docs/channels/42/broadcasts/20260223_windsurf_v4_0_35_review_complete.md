@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_v4_0_35_review_complete.md"
+  file_hash: "d24afdf92b65ae53dcb34e13995b41a8962538084af9e521e9e8bf2928f4bb2b"
+  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_v4_0_35_review_complete.md"
   file_hash: "1ff27ee436aaec1e4b6e01d18fca07dc959afd2b420d50faf0155d7319f47edb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260223_windsurf_v4_0_35_review_complete.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "42", "broadcasts", "20260223_windsurf_v4_0_35_review_completemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

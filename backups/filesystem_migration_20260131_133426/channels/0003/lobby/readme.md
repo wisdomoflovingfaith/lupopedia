@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\0003\lobby\readme.md"
+  file_hash: "12966d9657e0db3a865e8deeefad1bf46bbc193297ae51fba2d1bd31a355d9b5"
+  file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\0003\lobby\readme.md"
   file_hash: "553494481ae36b0a106d2bdf969c9f2f4603f1d0342e94f1c728ff3ec57d84ac"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "system/lobby (Channel 1)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["backups", "filesystem_migration_20260131_133426", "channels", "0003", "lobby", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

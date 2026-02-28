@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\AUTH_REFACTOR_REPORT.md"
+  file_hash: "ba1279bc15a2da67281cc81b404e45a79a071f8d43081bd273bca83e92d512ea"
+  file_path_from_root: "docs\AUTH_REFACTOR_REPORT.md"
   file_hash: "72f82a9cc5a08c0a34107cd5a0177b3c3ab8cd027acf0bdb855a47ce7851b336"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Auth Domain Refactor Report"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "auth_refactor_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

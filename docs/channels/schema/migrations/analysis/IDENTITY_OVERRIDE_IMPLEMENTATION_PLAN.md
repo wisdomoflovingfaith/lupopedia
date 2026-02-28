@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\IDENTITY_OVERRIDE_IMPLEMENTATION_PLAN.md"
+  file_hash: "102d29e2f2ea75f820115ac54eac2c91721a74a5f42ed4604d0c8c70311d81e8"
+  file_path_from_root: "docs\channels\schema\migrations\analysis\IDENTITY_OVERRIDE_IMPLEMENTATION_PLAN.md"
   file_hash: "fc39863074d0dcedc2028d979acf9b5015b4bb75ffe26bcf9a89352464db3480"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "📋 **Identity Override Implementation Plan**"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "schema", "migrations", "analysis", "identity_override_implementation_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

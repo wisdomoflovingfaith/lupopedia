@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\WOLFIE_SYNCHRONIZATION_PROTOCOL_CORRECTION_v0_5.md"
+  file_hash: "38f7d19a65f7a90e7abea65197a7240a67cc2c350098ca9543e4c99c40f683be"
+  file_path_from_root: "docs\channels\architecture\WOLFIE_SYNCHRONIZATION_PROTOCOL_CORRECTION_v0_5.md"
   file_hash: "095d84b2a231c7fa802301666adbd4fbc92583a83985c37f408597d85d8228eb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "WOLFIE Synchronization Protocol Correction v0.5"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "wolfie_synchronization_protocol_correction_v0_5md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

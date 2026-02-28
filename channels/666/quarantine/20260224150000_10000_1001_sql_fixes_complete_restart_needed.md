@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\666\quarantine\20260224150000_10000_1001_sql_fixes_complete_restart_needed.md"
+  file_hash: "60322a3fd36beb9256d669e80ff435be0f8919c691e880f7c71b2362d988eccf"
+  file_path_from_root: "channels\666\quarantine\20260224150000_10000_1001_sql_fixes_complete_restart_needed.md"
   file_hash: "d7aec5316dafc36b12b4e8b535b670ba965f5ef4464450ba3c7b33831442f740"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224150000_10000_1001_sql_fixes_complete_restart_needed.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "666", "quarantine", "20260224150000_10000_1001_sql_fixes_complete_restart_neededmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

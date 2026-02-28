@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\RS-UTC-2026_SPELL_GUIDE.md"
+  file_hash: "545212c07918de2037fa9218db7ed73b4c94557262ebd14e8f7d56c8c821a3c6"
+  file_path_from_root: "docs\channels\doctrine\RS-UTC-2026_SPELL_GUIDE.md"
   file_hash: "b3117ffd3ef9393632824cccf3eb9118bb2347e8bac754e07c5a56df7a3b3963"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "RS-UTC-2026 — The Ultimate Synchronization Spell"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "rs-utc-2026_spell_guidemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

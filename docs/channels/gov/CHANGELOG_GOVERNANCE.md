@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\CHANGELOG_GOVERNANCE.md"
+  file_hash: "311f8e3dc29e063206dc86501ed66fabed9fe0c1f9668f4e0fc82d4ecd2f9dd1"
+  file_path_from_root: "docs\channels\gov\CHANGELOG_GOVERNANCE.md"
   file_hash: "b85c6c0bbbadfd030c575fc0aefcb56af3fa0cb79779a4d3d8cfd799ac7d017a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CHANGELOG_GOVERNANCE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "changelog_governancemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

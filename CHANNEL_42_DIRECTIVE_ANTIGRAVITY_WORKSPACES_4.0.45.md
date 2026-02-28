@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
+  file_hash: "018481bc1278c1355736fe7c096de9a98733f2382995de006afc777458ef0010"
+  file_path_from_root: "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md"
   file_hash: "75d06e19bccc33ecc462285929ba1aa5f2f1492111ad4467a93d9dab12324422"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "CHANNEL 42 DIRECTIVE: ANTIGRAVITY + ACTOR WORKSPACES"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channel_42_directive_antigravity_workspaces_4045md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

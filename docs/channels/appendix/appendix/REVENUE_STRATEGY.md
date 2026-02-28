@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\appendix\appendix\REVENUE_STRATEGY.md"
+  file_hash: "12a07b506323568652e016ff6c0bd09f48fc13269c18dbce53894b35aef2d978"
+  file_path_from_root: "docs\channels\appendix\appendix\REVENUE_STRATEGY.md"
   file_hash: "9ee2554b76ddc0178335546d16e8025752a0dbaf7775cb02169ad094b47cf7f3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for REVENUE_STRATEGY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "revenue_strategymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

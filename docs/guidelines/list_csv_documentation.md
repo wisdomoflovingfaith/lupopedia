@@ -3,11 +3,12 @@
 ---
 flare.headers:
   file_path_from_root: "docs/guidelines/list_csv_documentation.md"
-  system_version: "4.0.49"
+  file_hash: "e08501bf772388793ced517efaccc54634f3b19a864ecb2e6863d23e867afc34"
+  system_version: "4.0.50"
   channel_id: 1
   actor_id: 10000
   last_modified_utc: "20260228"
-  delegation_chain: "10000:1007"
+  delegation_chain: null
   artifact_type: "documentation"
   purpose: "Comprehensive documentation for list.csv file usage, structure, and database generation"
   dialog_message: "Complete guide for list.csv files across channels, departments, and actors with database integration"
@@ -18,6 +19,7 @@ flare.headers:
   lupo_agent: "windsurf"
 
 flare.edges:
+  file_path_from_root: "docs\guidelines\list_csv_documentation.md"
   outbound_edges:
     - { to: "channels/list.csv", type: "examples", weight: 1.0, reason: "Channels list example" }
     - { to: "channels/departments/list.csv", type: "examples", weight: 0.9, reason: "Departments list example" }
@@ -26,6 +28,10 @@ flare.edges:
     - { to: "database/migrations/", type: "references", weight: 0.7, reason: "Database schema and migrations" }
   semantic_tags: ["list_csv_documentation", "database_integration", "file_structure"]
 
+  needs_review: ["delegation_chain"]
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

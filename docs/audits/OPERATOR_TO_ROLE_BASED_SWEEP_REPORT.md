@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md"
+  file_hash: "94ecf35c470465fca5664b1fdc4a748edfb5490ecc893e5dba34008b4b2c622f"
+  file_path_from_root: "docs\audits\OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md"
   file_hash: "1faccef980673fca226dd9c5dd73e74a14b5010e12f40b75274a265e7c21638e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Operator-to-Role-Based Sweep Report"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "operator_to_role_based_sweep_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

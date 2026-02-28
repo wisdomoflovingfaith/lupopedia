@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\tasks\active\20260225170000_task_0_10000_drop_tables_and_run_install.md"
+  file_hash: "7e38c3e8ee97366281b8d81a19f6668cf73aa0fbb92473fc13850d12c0151e5f"
+  file_path_from_root: "channels\0\tasks\active\20260225170000_task_0_10000_drop_tables_and_run_install.md"
   file_hash: "446704b5a3f6ab8e0f19c5a3071d5de0ff02d0774f609bab1d09378d82692a69"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225170000_task_0_10000_drop_tables_and_run_install.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "tasks", "active", "20260225170000_task_0_10000_drop_tables_and_run_installmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

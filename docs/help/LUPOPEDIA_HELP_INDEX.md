@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\help\LUPOPEDIA_HELP_INDEX.md"
+  file_hash: "7a55469a1a347aca91bd9026d1658a9cfe8435b9ec92aa130f87a2ff0cc8ced7"
+  file_path_from_root: "docs\help\LUPOPEDIA_HELP_INDEX.md"
   file_hash: "dde4c70eaf7fb8d28cabc9357926427fdfbcf7be86d08330f4ff4eaf076fe776"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Lupopedia Help Index"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "help", "lupopedia_help_indexmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

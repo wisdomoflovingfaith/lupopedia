@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\SQL_SCHEMA_FIXES_4_0_46.md"
+  file_hash: "2562a9cdd70887a9098e3585169d0c2b82b10a7ff10d853d5d128f15798d3349"
+  file_path_from_root: "docs\status\SQL_SCHEMA_FIXES_4_0_46.md"
   file_hash: "d4b869f0dd92024be974d7d47292b2ae67fbf8f60d76755ff667ae6473cc84af"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SQL_SCHEMA_FIXES_4_0_46.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "status", "sql_schema_fixes_4_0_46md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

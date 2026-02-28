@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\archive\doctrine_revisions\WOLFIE_HEADER_DOCTRINE_v2.9.md"
+  file_hash: "af95e439baba9fca4d35499041dd849d6141240c5ea76cde94dd1dd32c73ae1b"
+  file_path_from_root: "docs\archive\doctrine_revisions\WOLFIE_HEADER_DOCTRINE_v2.9.md"
   file_hash: "937a9956d8833e3d25af4c544c0887bc89c22aea788dfc5931b4ab2cac6cab7f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "⧉ WOLFIE HEADER DOCTRINE v2.9"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "archive", "doctrine_revisions", "wolfie_header_doctrine_v29md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

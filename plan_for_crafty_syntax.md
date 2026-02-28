@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "plan_for_crafty_syntax.md"
+  file_hash: "bfbd8877d0fe0514a766e4212fc05c8beedc337f114fdbbe9a1e651936bffb6e"
+  file_path_from_root: "plan_for_crafty_syntax.md"
   file_hash: "432799669a9e901dcdf994a3b5aaca1bbdc68f006d8be2c2190853749b0e2fb6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for plan_for_crafty_syntax.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["plan_for_crafty_syntaxmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

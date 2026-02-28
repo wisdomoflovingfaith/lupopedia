@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\PT_001_PATTERN_TRACKING_CHECKSUM.md"
+  file_hash: "5803e5b142b2fa151ed7ca06b6eaa0ff8dcfe79fcf154ef3ab4259f1ac4e6546"
+  file_path_from_root: "docs\channels\doctrine\PT_001_PATTERN_TRACKING_CHECKSUM.md"
   file_hash: "e230a09c0c50de0f8594a903387eecdf1cfa35631ae65bb3ee7a4a6302f02562"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "PT_001 — Pattern Tracking Checksum"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "pt_001_pattern_tracking_checksummd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

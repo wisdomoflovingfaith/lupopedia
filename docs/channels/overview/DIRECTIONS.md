@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\DIRECTIONS.md"
+  file_hash: "46e67f4975a580123dc3507be13a925a1f50756850a7a1fcbccf371af4f5604e"
+  file_path_from_root: "docs\channels\overview\DIRECTIONS.md"
   file_hash: "c922097744ac908dca2d8fd8af5e2561693d8da5a714e7b0fd95334111f4bee8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for DIRECTIONS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "directionsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -424,4 +430,3 @@ If you want, I can now generate:
 - boilerplate prompts  
 
 Just tell me what you want Cursor to generate first.
-

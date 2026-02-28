@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "lupo-agents\14\REFLECTIVE_HUMOR_GEOMETRY.md"
+  file_hash: "51ffdbb1ab644fdb31b42e9967c17b21fa467ec00f743139c3a01deb7365d852"
+  file_path_from_root: "lupo-agents\14\REFLECTIVE_HUMOR_GEOMETRY.md"
   file_hash: "e80eddf46c496eb3881e6855b4705065ed7b3d67fa1e9f472ffd9a26601fb110"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for REFLECTIVE_HUMOR_GEOMETRY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["lupo-agents", "14", "reflective_humor_geometrymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

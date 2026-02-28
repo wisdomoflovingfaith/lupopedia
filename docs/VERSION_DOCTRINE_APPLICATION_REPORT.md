@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\VERSION_DOCTRINE_APPLICATION_REPORT.md"
+  file_hash: "3964b8c30e3d063864a493678cbfea2c3f5514e02414b7da6b513d6d7a688a1d"
+  file_path_from_root: "docs\VERSION_DOCTRINE_APPLICATION_REPORT.md"
   file_hash: "f8c841ccada5338f9e0104ee98359b4b9f1c34752eb638b5cc8b9428c79d5281"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Version Doctrine Application Report"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "version_doctrine_application_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

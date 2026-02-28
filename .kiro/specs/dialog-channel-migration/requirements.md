@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: ".kiro\specs\dialog-channel-migration\requirements.md"
+  file_hash: "4ca34280ec95e3ff1578eb4760638cf3064ebf2c5ebcfb540fba91abc406741f"
+  file_path_from_root: ".kiro\specs\dialog-channel-migration\requirements.md"
   file_hash: "ab52d27f569a2906d0ee1d51460f6420120acbaf62b0f310c44f4ae62d33f343"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Requirements Document"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["kiro", "specs", "dialog-channel-migration", "requirementsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -28,7 +28,8 @@ flare.footer:
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_smilies_migration.md",
-  system_version: "4.0.39",
+  file_hash: "05dbd0b1fed4cd44b36f356568bbb4b37b1cca44e6db80dc4e470ca6a97b21bd"
+  system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
   purpose: "Migration doctrine for livehelp_smilies → dropped (emoji directory + inline tokens)",

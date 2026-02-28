@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\FEDERATION_OF_SOVEREIGN_PROTOCOLS.md"
+  file_hash: "1d8aee9f4ccf09808b4379cccb129010a2590bf8edbc4e2ceba6d8b4e40d1cbf"
+  file_path_from_root: "docs\channels\doctrine\FEDERATION_OF_SOVEREIGN_PROTOCOLS.md"
   file_hash: "a3c265d7417079c05cee4f594995bfe52d1520dbc83a2e87224e546b506dfa8c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FEDERATION_OF_SOVEREIGN_PROTOCOLS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "federation_of_sovereign_protocolsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

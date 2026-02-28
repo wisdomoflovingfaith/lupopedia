@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md"
+  file_hash: "7055ad5c2a44ec5e6e4087458a89d10ad40c0ada13bb1b085c80bbca262f06f5"
+  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md"
   file_hash: "576ea8b31e87ceb4835d58258db8f5d687793f921e34a24a5f9f95c6952d3581"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Departments / Groups / Roles Unification — Implementation Planning Phase"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "departments_groups_roles_implementation_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

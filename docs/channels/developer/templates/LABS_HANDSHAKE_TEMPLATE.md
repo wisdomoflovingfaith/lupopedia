@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\templates\LABS_HANDSHAKE_TEMPLATE.md"
+  file_hash: "3fa16d73c8ae026ad8270d3cc25a81e3fc6172e39651ce00e2b98fdd8e36e2a1"
+  file_path_from_root: "docs\channels\developer\templates\LABS_HANDSHAKE_TEMPLATE.md"
   file_hash: "75be16aa38959a394c59d4f38141f24bf52c0087d0fa3e6c2e687520fa9fb5ba"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LABS_HANDSHAKE_TEMPLATE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "developer", "templates", "labs_handshake_templatemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\threads\FLP_HEADERS_AUDIT_4_0_44\20260224171500_1001_10000_flp_headers_audit_initiated.md"
+  file_hash: "1c23dbe7898ec192f5f579e1b94985f9a9d7ce0bb3ee1ea5ab931ad20f139ac7"
+  file_path_from_root: "channels\42\threads\FLP_HEADERS_AUDIT_4_0_44\20260224171500_1001_10000_flp_headers_audit_initiated.md"
   file_hash: "a4196486f3c34eedc97ef73bad0305e2ea876f7252984b1f8a537cf937592442"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260224171500_1001_10000_flp_headers_audit_initiated.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["channels", "42", "threads", "flp_headers_audit_4_0_44", "20260224171500_1001_10000_flp_headers_audit_initiatedmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

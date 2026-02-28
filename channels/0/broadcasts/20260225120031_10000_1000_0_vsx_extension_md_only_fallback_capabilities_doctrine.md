@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\broadcasts\20260225120031_10000_1000_0_vsx_extension_md_only_fallback_capabilities_doctrine.md"
+  file_hash: "49173353cfa4fd7073631f9a894e1b122f8433088b33bb572948faad6db96f76"
+  file_path_from_root: "channels\0\broadcasts\20260225120031_10000_1000_0_vsx_extension_md_only_fallback_capabilities_doctrine.md"
   file_hash: "cf97984b4aea8e760555968e10aa0ea16aad8245f612ce34068ef8aea159214b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225120031_10000_1000_0_vsx_extension_md_only_fallback_capabilities_doctrine.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "broadcasts", "20260225120031_10000_1000_0_vsx_extension_md_only_fallback_capabilities_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

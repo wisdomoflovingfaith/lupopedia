@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\kernel\registries\MOOD_AXIS_REGISTRY.md"
+  file_hash: "cc6ca28aeab35d293ae823978a82dc2315206060b55b335eece2b5055e794327"
+  file_path_from_root: "docs\channels\kernel\registries\MOOD_AXIS_REGISTRY.md"
   file_hash: "ca5a8f99df12faa31a58cd24d218c0579da34c9d667a38712ba564893fa58290"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MOOD_AXIS_REGISTRY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "kernel", "registries", "mood_axis_registrymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

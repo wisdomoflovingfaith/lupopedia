@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\broadcasts\20260225120032_10000_1000_0_mandatory_minimum_flip_header_requirements.md"
+  file_hash: "f02c2b0446e7e0cfb35a491a2aa7718974c6289f8a1da16fb04dfd911583038f"
+  file_path_from_root: "channels\0\broadcasts\20260225120032_10000_1000_0_mandatory_minimum_flip_header_requirements.md"
   file_hash: "79707ba57f602d6debe3c0afeaa7e667cf8f59a22ecb4159535ac1bf305f1f17"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225120032_10000_1000_0_mandatory_minimum_flip_header_requirements.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["channels", "0", "broadcasts", "20260225120032_10000_1000_0_mandatory_minimum_flip_header_requirementsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

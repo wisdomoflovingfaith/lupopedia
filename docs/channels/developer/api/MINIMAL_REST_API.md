@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\api\MINIMAL_REST_API.md"
+  file_hash: "7360b81610a387af97fe74d363b745471b172b666d917fa585e092606230b386"
+  file_path_from_root: "docs\channels\developer\api\MINIMAL_REST_API.md"
   file_hash: "d79b031c5432ece919b5df5304a83cc2d8824b1290ebe1d48380bc657ffa44cb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Lupopedia Minimal REST API (Canonical Draft)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "developer", "api", "minimal_rest_apimd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

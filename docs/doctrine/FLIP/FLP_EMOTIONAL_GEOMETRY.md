@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\FLIP\FLP_EMOTIONAL_GEOMETRY.md"
+  file_hash: "80a148a53651f640ea5fa56b1722fc9ab2e51c8b7707060668533953b36a1f5e"
+  file_path_from_root: "docs\doctrine\FLIP\FLP_EMOTIONAL_GEOMETRY.md"
   file_hash: "6e0c479cec17e425d6752d57bba9069bdcec8d8d1a0e2542de0391f6a3ca5118"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FLP_EMOTIONAL_GEOMETRY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "flip", "flp_emotional_geometrymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

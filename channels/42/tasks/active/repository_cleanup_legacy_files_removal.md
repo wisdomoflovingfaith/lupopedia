@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\tasks\active\repository_cleanup_legacy_files_removal.md"
+  file_hash: "a51657c81750bd719566072bc3cf5e73e453695d05b755ce098832abed5d0442"
+  file_path_from_root: "channels\42\tasks\active\repository_cleanup_legacy_files_removal.md"
   file_hash: "55e1356e27ff73b9d84e47400729c06b660070408f4218e7581c6abb5ee62b11"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "🧹 Repository Cleanup - Legacy Files and Migration Removal"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "tasks", "active", "repository_cleanup_legacy_files_removalmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

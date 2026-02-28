@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "dialogs_old_replaced_by_channels\FRIDAY_SUNDAY_WORK_RULES_dialog.md"
+  file_hash: "283f8a2f7760320c46c9bfd11b381bc137771cf689287331dc1a0210e1169232"
+  file_path_from_root: "dialogs_old_replaced_by_channels\FRIDAY_SUNDAY_WORK_RULES_dialog.md"
   file_hash: "9e6fb922475d586e3ffe610b505c75b6dc13a31f6b20a582aa64365cff18698c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FRIDAY_SUNDAY_WORK_RULES_dialog.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["dialogs_old_replaced_by_channels", "friday_sunday_work_rules_dialogmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

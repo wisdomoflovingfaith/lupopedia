@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "prompts\5\README.md"
+  file_hash: "15037b4d9ba07b7610a312c3832c7e31dbabcf677984a9ed027458d2e4679fdf"
+  file_path_from_root: "prompts\5\README.md"
   file_hash: "94f76ef818f4263cc646e5de9fbf634fbf692f9af018bd41f45a7bd354cf696d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "METIS (Actor ID: 5, Agent ID: 5)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["prompts", "5", "readmemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

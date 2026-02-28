@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\emotional_topology_layer.md"
+  file_hash: "553450e93425222921b4719044b7728088949603af580de685f48fc754ff450f"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\emotional_topology_layer.md"
   file_hash: "e3f51f73e09a79ab157082f36b727fcd4338cbbb01b610a09522f3e9befba818"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for emotional_topology_layer.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "emotional_topology_layermd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

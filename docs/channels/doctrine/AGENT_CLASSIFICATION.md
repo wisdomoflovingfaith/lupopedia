@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\AGENT_CLASSIFICATION.md"
+  file_hash: "5969d38ef7b974d9a298b97df020c65f964ab5a1b1154eed3d0b7ee49508dfc3"
+  file_path_from_root: "docs\channels\doctrine\AGENT_CLASSIFICATION.md"
   file_hash: "8fe75f87640e16d2b288dddc3dd49233a13357dc7ee1144b043e582d4d5328b3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AGENT_CLASSIFICATION.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "agent_classificationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

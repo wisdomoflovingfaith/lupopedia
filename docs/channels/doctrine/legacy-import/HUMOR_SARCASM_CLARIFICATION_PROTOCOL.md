@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\HUMOR_SARCASM_CLARIFICATION_PROTOCOL.md"
+  file_hash: "3eece38425549911f634198f084b0d8e113020d9be5cb232cc488d3265cc315e"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\HUMOR_SARCASM_CLARIFICATION_PROTOCOL.md"
   file_hash: "5339d880274160fd1306a7b8fbb0b56b8021edd71b27efedad3c1ec874cdf82e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HUMOR_SARCASM_CLARIFICATION_PROTOCOL.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "legacy-import", "humor_sarcasm_clarification_protocolmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

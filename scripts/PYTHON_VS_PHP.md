@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "scripts\PYTHON_VS_PHP.md"
+  file_hash: "eb93fa13fbb3777d672eda030c23ca82888f5b67e8073a67c092ad07147f4b26"
+  file_path_from_root: "scripts\PYTHON_VS_PHP.md"
   file_hash: "57b59020c1041a646aa06de2456f593070ef087ba173a30e055e9e6cfebfcb80"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Python vs PHP Migration Scripts Comparison"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["scripts", "python_vs_phpmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

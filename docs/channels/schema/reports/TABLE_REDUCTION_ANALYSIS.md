@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\schema\reports\TABLE_REDUCTION_ANALYSIS.md"
+  file_hash: "8d81e74b2d654afad8d1673da01419f4c7e07ee799fe1ed6204408e14e3463c9"
+  file_path_from_root: "docs\channels\schema\reports\TABLE_REDUCTION_ANALYSIS.md"
   file_hash: "09ed9fcb599c010d07a01932c5f80c94cbd2edba2a94cbf77473acca0c6d2ff7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for TABLE_REDUCTION_ANALYSIS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "schema", "reports", "table_reduction_analysismd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

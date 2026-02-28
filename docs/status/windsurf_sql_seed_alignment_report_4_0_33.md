@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\windsurf_sql_seed_alignment_report_4_0_33.md"
+  file_hash: "fb297fb1ac6a9f4165b4e249c027f715f85765b424b4ff1273f34f2154ce69f3"
+  file_path_from_root: "docs\status\windsurf_sql_seed_alignment_report_4_0_33.md"
   file_hash: "6dd6f2e5c12058d311d85c6c52d50e9b3b525dee3bae102989099733da172711"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for windsurf_sql_seed_alignment_report_4_0_33.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "status", "windsurf_sql_seed_alignment_report_4_0_33md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

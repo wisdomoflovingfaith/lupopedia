@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "lupo-agents\3\COUNTING_IN_LIGHT.md"
+  file_hash: "d7a2dcb9c07de9dd04854c1f00f6bf6649d2af801841f0c60a98882e9ae519a2"
+  file_path_from_root: "lupo-agents\3\COUNTING_IN_LIGHT.md"
   file_hash: "29ff7ec18e23df96db07378919ff5bf195bd69c9925d5806c62e188925ea7b03"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for COUNTING_IN_LIGHT.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["lupo-agents", "3", "counting_in_lightmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

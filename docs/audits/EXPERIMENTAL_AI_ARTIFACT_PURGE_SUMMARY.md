@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\EXPERIMENTAL_AI_ARTIFACT_PURGE_SUMMARY.md"
+  file_hash: "5e6696835416c41bd4168336dc534e56523e3508d103db3cbee799ef004cc8cb"
+  file_path_from_root: "docs\audits\EXPERIMENTAL_AI_ARTIFACT_PURGE_SUMMARY.md"
   file_hash: "c46ed7162d8bd530cf13d289fd22ab623fd1e8cc389ee102bbe52875b95182c6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Experimental AI Artifact Purge Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "experimental_ai_artifact_purge_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

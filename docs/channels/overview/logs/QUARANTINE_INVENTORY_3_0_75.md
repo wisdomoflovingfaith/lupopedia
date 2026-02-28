@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\logs\QUARANTINE_INVENTORY_3_0_75.md"
+  file_hash: "b18ba6ba78b7e934c9b72ee6bc3f957a8c1d2f4c450e0c96af61d9a8558d89bd"
+  file_path_from_root: "docs\channels\overview\logs\QUARANTINE_INVENTORY_3_0_75.md"
   file_hash: "35832883d44f46011dde1b4ca8e86d56ecee690da0fb87cd4539c2ae1bee922b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for QUARANTINE_INVENTORY_3_0_75.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "logs", "quarantine_inventory_3_0_75md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

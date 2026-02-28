@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-ADS-001.md"
+  file_hash: "6d8dbeb2b9b42baa93ab718116ac6ef749e40278c1bbb2c3135630a3bbef4d1e"
+  file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-ADS-001.md"
   file_hash: "d8775dbbbe401e43ec5af96750c3ff5854f560e4a97da9e5bd61dba93047c2bd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GOV-PROHIBIT-ADS-001.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "gov-prohibit-ads-001md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

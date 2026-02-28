@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\ACTOR_AGENT_DOCTRINE.md"
+  file_hash: "1b6984c6a33a5ac1e9a0438b3f7457a875f546590f2e9d23e15b8b2768f3c97b"
+  file_path_from_root: "docs\channels\doctrine\ACTOR_AGENT_DOCTRINE.md"
   file_hash: "b9c4986ee49a8daca572cfd4f0c402167cf3a35cbc1db81000f469d54853b275"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Actor/Agent Doctrine (MANDATORY)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "actor_agent_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

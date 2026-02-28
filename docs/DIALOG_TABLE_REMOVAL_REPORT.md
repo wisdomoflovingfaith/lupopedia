@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\DIALOG_TABLE_REMOVAL_REPORT.md"
+  file_hash: "cd47f671f30b7d66c41e74a1a88093e1adaf57da0069b2256829c28d7ecdcc9e"
+  file_path_from_root: "docs\DIALOG_TABLE_REMOVAL_REPORT.md"
   file_hash: "877b6a0eb875f69c0788351acf9292334124bdbfa2e11c507ab728eac700de0a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "lupo_dialog_messages — Schema Removal Report (Steps 1–3)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "dialog_table_removal_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

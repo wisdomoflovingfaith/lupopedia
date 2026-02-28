@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\SQL_REFACTOR_MAPPING_DOCTRINE.md"
+  file_hash: "f4dde63292e8723d307d075868b52fae186c9d0e92058845d3ec9a2e060092af"
+  file_path_from_root: "docs\channels\doctrine\SQL_REFACTOR_MAPPING_DOCTRINE.md"
   file_hash: "5254b82ec7cfd64ae351f34ab7f9b5c65d208ad0cfdf8059c1a7c8812aa627ef"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for SQL_REFACTOR_MAPPING_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "sql_refactor_mapping_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -348,4 +354,3 @@ SELECT * FROM {{prefix}}crafty_auto_invite
 *Last Updated: January 2026*  
 *Version: 3.0.0*  
 *Author: Captain Wolfie*
-

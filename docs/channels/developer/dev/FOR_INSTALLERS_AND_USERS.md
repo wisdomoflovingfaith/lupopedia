@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\dev\FOR_INSTALLERS_AND_USERS.md"
+  file_hash: "2b5b59ce25441464df89c29467f5b324bc87f40d38eab9841785b3296c2370d7"
+  file_path_from_root: "docs\channels\developer\dev\FOR_INSTALLERS_AND_USERS.md"
   file_hash: "e4dba6404e95bb8d4bc017ed1e97a2296ae1f3d379198e51ad884c0c52abf2f0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for FOR_INSTALLERS_AND_USERS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "developer", "dev", "for_installers_and_usersmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -247,4 +253,3 @@ Nothing is forced on you.
 - **[Architecture](../../architecture/ARCHITECTURE.md)** - Complete system architecture for administrators who want technical details
 
 ---
-

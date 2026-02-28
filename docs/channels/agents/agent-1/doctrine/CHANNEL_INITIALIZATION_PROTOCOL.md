@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\agents\agent-1\doctrine\CHANNEL_INITIALIZATION_PROTOCOL.md"
+  file_hash: "20bfdd3c54094c1e1c99cf6fe892ef126fab682762e1339fa6eded584634b57e"
+  file_path_from_root: "docs\channels\agents\agent-1\doctrine\CHANNEL_INITIALIZATION_PROTOCOL.md"
   file_hash: "21996fa3ce066fa345e5ef8d784a002059eee0f9a4b2046aaf14f9c3943e5eb8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CHANNEL_INITIALIZATION_PROTOCOL.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "agents", "agent-1", "doctrine", "channel_initialization_protocolmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

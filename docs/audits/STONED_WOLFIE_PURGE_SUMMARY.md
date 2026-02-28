@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\audits\STONED_WOLFIE_PURGE_SUMMARY.md"
+  file_hash: "b13895c36dcc8c86d2f6f138acd51d0bda32dbce9f08ce456d4b7ba01c44f181"
+  file_path_from_root: "docs\audits\STONED_WOLFIE_PURGE_SUMMARY.md"
   file_hash: "ba92c7f9d14ca90d275caeedc340964aa414e2fc1989c915098956dec6d3d758"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "STONED WOLFIE Purge Summary"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "audits", "stoned_wolfie_purge_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

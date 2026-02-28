@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\CLASS_HEADER_COMMENT_DOCTRINE.md"
+  file_hash: "aef82fb746492f9799fdea8920fa07f86419d87d808968348617f3477fa8b41a"
+  file_path_from_root: "docs\channels\doctrine\CLASS_HEADER_COMMENT_DOCTRINE.md"
   file_hash: "4e141cc0c785646915b7706c762623067acc7d83e44cf79270614ec89ef133bc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CLASS_HEADER_COMMENT_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "class_header_comment_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -462,4 +468,3 @@ The comment block must tell you everything you need to know about the class with
 ---
 
 **This doctrine is absolute and binding for all AI agents.**
-

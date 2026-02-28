@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\LUPOPEDIA_REENTRY_SPELL.md"
+  file_hash: "80032ffc9efbd45223f48a5bea4d554c937dd2a513ead0f43ce676b55f05081f"
+  file_path_from_root: "docs\channels\overview\LUPOPEDIA_REENTRY_SPELL.md"
   file_hash: "aa91c22419f15262af8a0aa0735733f91d77068b7f27fa96d6305815d84f6a7a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LUPOPEDIA_REENTRY_SPELL.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "overview", "lupopedia_reentry_spellmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

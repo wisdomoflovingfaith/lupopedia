@@ -1,8 +1,9 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers: 
   file_path_from_root: "channels/42/tasks/active/database_documentation_remaining_tables.md"
-  system_version: "4.0.49"
+  file_hash: "6003680b50d8128c10fbec96776b5ef7534a7671846ea82f79235864d913610c"
+  system_version: "4.0.50"
   channel_id: 42
   actor_id: 1007
   last_modified_utc: "20260227"
@@ -17,12 +18,16 @@ flare.headers:
   lupo_agent: "jetbrains"
 
 flare.edges:
+  file_path_from_root: "channels\42\tasks\active\database_documentation_remaining_tables.md"
   outbound_edges:
     - { to: "docs/database/lupopedia/tables/", type: "documents", weight: 0.9, reason: "Table documentation source" }
     - { to: "channels/42/tasks/active/database_optimization_analysis.md", type: "creates", weight: 0.8, reason: "Optimization analysis and recommendations" }
     - { to: "database/migrations/", type: "enhances", weight: 0.7, reason: "Schema enhancement implementation" }
   semantic_tags: ["database_optimization", "performance", "enhancement", "federation"]
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260227"
   last_verified_by: "lupopedia"

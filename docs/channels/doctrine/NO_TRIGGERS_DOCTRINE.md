@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\NO_TRIGGERS_DOCTRINE.md"
+  file_hash: "36f533cff2e47ba9e3bab6e3d18f83a824c603e564a83ddf24ba0de7b7b1a75b"
+  file_path_from_root: "docs\channels\doctrine\NO_TRIGGERS_DOCTRINE.md"
   file_hash: "275edd59cffa2a6485f3257e06dc8f6a170548d62c183ee481995626a9cf10eb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for NO_TRIGGERS_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "no_triggers_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -559,4 +565,3 @@ This doctrine works in conjunction with:
 - [PHILOSOPHY.md](../../PHILOSOPHY.md) â€” Overall database philosophy
 
 ---
-

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\LEXA_GATEWAY_INTEGRATION.md"
+  file_hash: "82056d4fca2a109639b8667c839232d4101ad4207c3eee814604887eaca931da"
+  file_path_from_root: "docs\doctrine\LEXA_GATEWAY_INTEGRATION.md"
   file_hash: "7134bd626c469f0442eed08c30c39e150ae4b14690418346c9f61d27f462ee58"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for LEXA_GATEWAY_INTEGRATION.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "lexa_gateway_integrationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

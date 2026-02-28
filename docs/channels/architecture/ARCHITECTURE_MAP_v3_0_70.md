@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\architecture\ARCHITECTURE_MAP_v3_0_70.md"
+  file_hash: "35e156186465782b5e365fd7076a0a25381890642e47b9cc5d7d9d6ac44e4ee9"
+  file_path_from_root: "docs\channels\architecture\ARCHITECTURE_MAP_v3_0_70.md"
   file_hash: "cfda842ef80aa01d1408ae23b976902cd5324afc5d2b2a637d50a0ab67c54f7d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Lupopedia Architecture Map v4.4.1"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "architecture", "architecture_map_v3_0_70md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

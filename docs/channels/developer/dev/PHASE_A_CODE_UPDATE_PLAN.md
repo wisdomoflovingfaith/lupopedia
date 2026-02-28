@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\dev\PHASE_A_CODE_UPDATE_PLAN.md"
+  file_hash: "45e26cabee6eaee099e22f92218416b1e544d069be5ef66e03d10fa82db328fe"
+  file_path_from_root: "docs\channels\developer\dev\PHASE_A_CODE_UPDATE_PLAN.md"
   file_hash: "cfda2841f53753392e3dd8d0458c44b49c0b6c8fa93d442dbe7c089852ef5369"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for PHASE_A_CODE_UPDATE_PLAN.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "developer", "dev", "phase_a_code_update_planmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -547,4 +553,3 @@ If issues occur:
 *Last Updated: January 2026*  
 *Version: GLOBAL_CURRENT_LUPOPEDIA_VERSION*  
 *Author: Captain Wolfie*
-

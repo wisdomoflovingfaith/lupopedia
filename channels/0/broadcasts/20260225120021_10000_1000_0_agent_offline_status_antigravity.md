@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\broadcasts\20260225120021_10000_1000_0_agent_offline_status_antigravity.md"
+  file_hash: "fdf95fb7fddceec8bcef4f934db5a78964ae39685e9dcf9b0391d9eab420b956"
+  file_path_from_root: "channels\0\broadcasts\20260225120021_10000_1000_0_agent_offline_status_antigravity.md"
   file_hash: "dd54b3f26b5a6ebb7f6cdc7d00f9179b1adf97f6f78167ed2b2103d43581662c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260225120021_10000_1000_0_agent_offline_status_antigravity.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "broadcasts", "20260225120021_10000_1000_0_agent_offline_status_antigravitymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\registry\REGISTERED_IDS.md"
+  file_hash: "efdccda4287fe451eca6ef1b772432cbb9be7bb55540759c827bed2f9a8d87eb"
+  file_path_from_root: "docs\registry\REGISTERED_IDS.md"
   file_hash: "f28184f1c0bc0df6d64e9c36eb9678c9cfd77a59d729d7361f6d9f30e390521a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for REGISTERED_IDS.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "registry", "registered_idsmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

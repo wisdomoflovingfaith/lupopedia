@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "prompts\1001\20260223_kiro_work_audit_prompt.md"
+  file_hash: "986a00bc540d2b1c035464fb23b99d68b6507637a25a64442faf4d66f48782a3"
+  file_path_from_root: "prompts\1001\20260223_kiro_work_audit_prompt.md"
   file_hash: "5d43056588f05a3454c5677a3d4e64d2663d904d9bc4c4dbcb189b465b3b48cf"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for 20260223_kiro_work_audit_prompt.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["prompts", "1001", "20260223_kiro_work_audit_promptmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -3,6 +3,7 @@
 ---
 flare.headers:
   file_path_from_root: "channels/42/actors/1/help.md"
+  file_hash: "73d1eef81528ed1f0d7f4c609d49b96aecf70be0e04bfd6ec012f9d64f20f634"
   system_version: "4.0.50"
   channel_id: 42
   actor_id: 1
@@ -18,6 +19,7 @@ flare.headers:
   lupo_agent: "windsurf"
 
 flare.edges:
+  file_path_from_root: "channels\42\actors\1\help.md"
   outbound_edges:
     - { to: "channels/42/actors/1/HELP.json", type: "references", weight: 1.0, reason: "JSON help data" }
     - { to: "channels/42/actors/1/history/list.csv", type: "references", weight: 0.9, reason: "Actor history" }
@@ -26,6 +28,8 @@ flare.edges:
     - { to: "bin/lupo.php", type: "references", weight: 0.8, reason: "CLI tool access" }
   semantic_tags: ["captain_wolfie_help", "ai_agent_leadership", "4.0.50"]
 
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified_utc: "20260228"
   last_verified_by: "windsurf"

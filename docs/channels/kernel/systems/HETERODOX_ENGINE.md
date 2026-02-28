@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\kernel\systems\HETERODOX_ENGINE.md"
+  file_hash: "c3e6885273d14cb0e5e4a800a7ed0911de9b656c1e5e6e1eb56a2ebf566253e2"
+  file_path_from_root: "docs\channels\kernel\systems\HETERODOX_ENGINE.md"
   file_hash: "a50f7b1ddf606a376de31a3a8f7b99e0334da800a71776e407e674289b1f472f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for HETERODOX_ENGINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "kernel", "systems", "heterodox_enginemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

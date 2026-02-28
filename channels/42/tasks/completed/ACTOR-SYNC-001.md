@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\42\tasks\completed\ACTOR-SYNC-001.md"
+  file_hash: "32f32f7280ae79fb5c8f29109148769aa8ebff76b71e27cdb2d7e349d5528577"
+  file_path_from_root: "channels\42\tasks\completed\ACTOR-SYNC-001.md"
   file_hash: "d8e5ade87858daa2619bf0737bb8cad2074d2f0e43ddfb06e82a2a9b06482dad"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ACTOR-SYNC-001.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "42", "tasks", "completed", "actor-sync-001md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

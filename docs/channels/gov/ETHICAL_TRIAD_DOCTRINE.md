@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\ETHICAL_TRIAD_DOCTRINE.md"
+  file_hash: "3312b231dc4ca5fc5ebabaca95644017dd388152e83f2adf8966326be0dd7c6e"
+  file_path_from_root: "docs\channels\gov\ETHICAL_TRIAD_DOCTRINE.md"
   file_hash: "1e77f1f975bf83dcd5a5cd4b2613098e8f2b0bea4dfd262e1b910f894bda278b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ETHICAL_TRIAD_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "ethical_triad_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

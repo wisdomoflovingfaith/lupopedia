@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "RELEASE_NOTES_4.0.21.md"
+  file_hash: "09a96509bd50d1457f84fb76f5b23ecfeb8d3b51e77d52215e7fca29a8c89c31"
+  file_path_from_root: "RELEASE_NOTES_4.0.21.md"
   file_hash: "50fff602f79efba25bc0d332fff3ba3e31ccdf0975c9c067f3f47d7d091fd27d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Lupopedia 4.0.21 Release Notes"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["release_notes_4021md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

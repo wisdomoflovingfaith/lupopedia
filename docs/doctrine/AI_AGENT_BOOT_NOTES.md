@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\AI_AGENT_BOOT_NOTES.md"
+  file_hash: "3d0284211dd4099ff7ba0e920b6b9c0e30d3264d797ab9b4c01b7561f918595e"
+  file_path_from_root: "docs\doctrine\AI_AGENT_BOOT_NOTES.md"
   file_hash: "3a1d396fee78c0af13a23ac6d8b1878f2d230007019c17f971a3b1a55bb61276"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for AI_AGENT_BOOT_NOTES.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "ai_agent_boot_notesmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "channels\0\roles\installer.md"
+  file_hash: "498fb52a1b491681c9d48cbc2da4751e93cb74b210a0460c1764f9e91fd76be5"
+  file_path_from_root: "channels\0\roles\installer.md"
   file_hash: "c57052f6d328c525fa06fa073a3755bf8ed6c69882446bcbc9f4f413dfab6cb7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for installer.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["channels", "0", "roles", "installermd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

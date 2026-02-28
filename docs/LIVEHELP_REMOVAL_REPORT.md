@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\LIVEHELP_REMOVAL_REPORT.md"
+  file_hash: "0b54827b50a7e3d7010139b72a66c8636eac541f533fc126f9fa229a1c9a4d80"
+  file_path_from_root: "docs\LIVEHELP_REMOVAL_REPORT.md"
   file_hash: "ccee024238e69574efe63c2ad1121282af10ae50af3a5e13ab2b09acfdcbd794"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Livehelp Removal — Codebase Report"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "livehelp_removal_reportmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

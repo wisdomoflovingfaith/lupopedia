@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\specs\UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md"
+  file_hash: "062c687a05e1d5dceffee22e71579e914fd684ee0ec29687ec44635fed917fba"
+  file_path_from_root: "docs\specs\UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md"
   file_hash: "f6c7c3dde2c039c9ff2cade3c0a0bbc93000802b5e8de325c4c0554d138677fc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "specs", "universal_wolfie_header_specificationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

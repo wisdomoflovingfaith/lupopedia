@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md"
+  file_hash: "80babd3d21324c5d41f05b7e1b422f2d787aa2739bbd11044fb2a57cb71ed2c3"
+  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md"
   file_hash: "349e534223d8a1963b95064d8c01d2f298369c2473fe9fe3bc50db6681e89190"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "emotional_engine_specification_v2_0md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

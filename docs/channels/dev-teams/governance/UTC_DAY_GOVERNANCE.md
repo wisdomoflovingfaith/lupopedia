@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\dev-teams\governance\UTC_DAY_GOVERNANCE.md"
+  file_hash: "d1ab0537be614f459e6d0281a3e4af8dc9eb03a4cde9346a2486733422f1e3f9"
+  file_path_from_root: "docs\channels\dev-teams\governance\UTC_DAY_GOVERNANCE.md"
   file_hash: "bde584312021ccee10d7db1590d9213cfdcb451d825e47de4cf82f019ceee145"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "UTC DAY GOVERNANCE — DAYS 5, 6, AND 0"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "dev-teams", "governance", "utc_day_governancemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

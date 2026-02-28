@@ -101,7 +101,7 @@ When documenting database tables, include these additional fields that reference
 
 **For lupo_dialog_messages table:**
 ```yaml
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:
   # ... required fields ...
@@ -379,6 +379,4 @@ Check `docs/toons/` directory for available table schemas:
 **Complete Reference Guide** 🎯
 
 This document serves as the authoritative reference for all FLARE header and footer fields, including specialized table-specific attributes and TOON file references.
-
-
 

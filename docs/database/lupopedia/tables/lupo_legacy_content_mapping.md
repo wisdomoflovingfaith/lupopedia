@@ -1,8 +1,9 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/lupo_legacy_content_mapping.md"
-  system_version: "4.0.48"
+  file_hash: "949f2ae39e769cea9c79901b74059421b1fb503cf73dd9332f5e697bda05e8f8"
+  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1007
   last_modified_utc: "20260227"
@@ -34,6 +35,8 @@ flare.headers:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
 # python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
 flare.footer:
   outbound_edges:
     - { to: "docs/toons/lupo_legacy_content_mapping.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_legacy_content_mapping" }

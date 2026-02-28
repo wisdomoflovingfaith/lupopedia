@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\gov\CHANNEL_REGISTRY_GOVERNANCE.md"
+  file_hash: "f0e46587f7b4d6a804194f4025cc0f1f5a80adc1d8d4ec9328c83c43bdab075b"
+  file_path_from_root: "docs\channels\gov\CHANNEL_REGISTRY_GOVERNANCE.md"
   file_hash: "6d74f786342348745127afdde20e521fc51d7e8a1da4df97afd99231322b8f1d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CHANNEL_REGISTRY_GOVERNANCE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "gov", "channel_registry_governancemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

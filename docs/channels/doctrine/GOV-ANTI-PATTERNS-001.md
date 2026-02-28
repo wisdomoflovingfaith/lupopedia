@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\GOV-ANTI-PATTERNS-001.md"
+  file_hash: "39f1cb5a7a1a5cf065075955d0780b1618706f6b951ec42e79a15b04e86d4d22"
+  file_path_from_root: "docs\channels\doctrine\GOV-ANTI-PATTERNS-001.md"
   file_hash: "0bce6eed3d2c1ac1e9e308d29515b778511b166b53c13ce6d7d67066edf06033"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for GOV-ANTI-PATTERNS-001.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "gov-anti-patterns-001md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

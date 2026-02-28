@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\overview\4.1.0\MISSION_BRIEFING_4_1_0.md"
+  file_hash: "024b5ecf6555c3f56289846aecf3cc203666b9be2c2c5e99b0f246b294b7d343"
+  file_path_from_root: "docs\channels\overview\4.1.0\MISSION_BRIEFING_4_1_0.md"
   file_hash: "77cd9d7438c27fab0d46ed96cf5ac5a86d8e8f32903098287a94490c27dd2498"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for MISSION_BRIEFING_4_1_0.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "overview", "410", "mission_briefing_4_1_0md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\status\antigravity_artifact_chunk_migration_4_0_42.md"
+  file_hash: "ddd7fbda6352786bc2ad0db066d7ec5da6041133a9082f354fa73ef37abe2c27"
+  file_path_from_root: "docs\status\antigravity_artifact_chunk_migration_4_0_42.md"
   file_hash: "95a039f1468cfff93a75acf346c27a2f31107dcf6f10d5dfa972ab42234ffc0a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Antigravity Status: Artifact Chunk Migration (v4.0.42)"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "status", "antigravity_artifact_chunk_migration_4_0_42md"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

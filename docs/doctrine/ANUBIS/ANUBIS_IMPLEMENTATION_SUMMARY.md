@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\doctrine\ANUBIS\ANUBIS_IMPLEMENTATION_SUMMARY.md"
+  file_hash: "b0285d195ec78ee0b1f6108ee6bb56811efafff6eafc962130f0bd94f511a3fc"
+  file_path_from_root: "docs\doctrine\ANUBIS\ANUBIS_IMPLEMENTATION_SUMMARY.md"
   file_hash: "085cacfcdf63ed33ff5c9095394b3823da3042e64d196901b57a377b702f9b16"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for ANUBIS_IMPLEMENTATION_SUMMARY.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "doctrine", "anubis", "anubis_implementation_summarymd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---

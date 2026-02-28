@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\developer\dev\INSTALLER_FLOW.md"
+  file_hash: "00dababcc388d5445c20de38094081f5c616f9b73458c4669f5a95f169d7f1ae"
+  file_path_from_root: "docs\channels\developer\dev\INSTALLER_FLOW.md"
   file_hash: "64340041485265d9441bd76bf2fac4280d6d21490a0a28438d33da71c3777a07"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for INSTALLER_FLOW.md"
@@ -20,6 +22,9 @@ flare.headers:
   tags: ["docs", "channels", "developer", "dev", "installer_flowmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"

@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "docs\channels\doctrine\CURSOR_REFACTOR_DOCTRINE.md"
+  file_hash: "a230a59c6c18b9ab22bd8ab4dc320273c6aa3a261264034b5166779fd07b9646"
+  file_path_from_root: "docs\channels\doctrine\CURSOR_REFACTOR_DOCTRINE.md"
   file_hash: "76d4d8457bc862878c417a4b08fbf07341a1df40062b56052c94baf19c8e0d5f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for CURSOR_REFACTOR_DOCTRINE.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["docs", "channels", "doctrine", "cursor_refactor_doctrinemd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
@@ -428,4 +434,3 @@ COLLATE=utf8mb4_unicode_ci
 *Last Updated: January 2026*  
 *Version: 3.0.0*  
 *Author: Captain Wolfie*
-

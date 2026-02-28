@@ -6,12 +6,14 @@ flare.headers:
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  file_hash: "e135d732dff61c2e311781393a272500fe4c9142cae820c1b63fffab1eaa3baf"
+  file_path_from_root: "plan_for_toon_seed_regeneration.md"
   file_hash: "b9bec948caecd8c8a3bb408441fbd00fc6b3540a3c9fd0f65d7799961a2f883e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: "1002:10000"
+  delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Documentation for plan_for_toon_seed_regeneration.md"
@@ -20,9 +22,13 @@ flare.headers:
   tags: ["plan_for_toon_seed_regenerationmd"]
   lupo_agent: "windsurf"
 
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
 ---
