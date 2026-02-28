@@ -6092,3 +6092,7 @@ Validation complete: 543 errors, 1635 warnings
 [2026-02-28T13:10:50Z UTC] PHASE 4: Updating CHANGELOG.md...
 [2026-02-28T13:10:50Z UTC] Updated CHANGELOG.md with ANUBIS assignment
 [2026-02-28T13:10:50Z UTC] PHASE 5: Committing changes...
+[2026-02-28T13:10:50Z UTC] PHASE 5: Commit created (local only).
+[2026-02-28T13:10:50Z UTC] ANUBIS assignment complete
+[2026-02-28T13:10:50Z UTC] Summary: Assigned to 75 .md files, 0 DB inserts, 75 fallbacks
+[2026-02-28T13:10:50Z UTC] DONE.
