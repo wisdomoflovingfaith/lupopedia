@@ -26,9 +26,9 @@ flare.footer:
 
 # File Count Optimization Plan for Lupopedia 4.1.0
 
-**Generated**: 2026-02-28T16:30:31Z  
+**Generated**: 2026-02-28T16:32:59Z  
 **Target Version**: 4.1.0  
-**Current File Count**: 10587 files  
+**Current File Count**: 10589 files  
 **Timeline**: 2-3 weeks  
 
 ## Goals
@@ -46,8 +46,8 @@ flare.footer:
 - **docs\toons**: 216 files
 - **database\csv_data**: 189 files
 - **docs\channels\doctrine**: 175 files
+- **.**: 151 files
 - **legacy\craftysyntax\images**: 151 files
-- **.**: 150 files
 - **legacy\craftysyntax**: 131 files
 - **uploads\channels\2026\01**: 129 files
 

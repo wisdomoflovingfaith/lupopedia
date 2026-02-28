@@ -203,6 +203,9 @@ flare.footer:
 - ✅ **Repository Cleanup**: Removed legacy files (CLEANUP-2026-02-27-001 complete)
 - ✅ **File Optimization Planning**: Initial plan created for 4.1.0 (FILEOPT-2026-02-27-001 in progress)
 - ✅ **Database Migration**: Migrated ANUBIS inventory to database successfully
+- ✅ **Repository Cleanup**: Removed legacy files (CLEANUP-2026-02-27-001 complete)
+- ✅ **File Optimization Planning**: Initial plan created for 4.1.0 (FILEOPT-2026-02-27-001 in progress)
+- ✅ **Database Migration**: Migrated ANUBIS inventory to database successfully
 - ✅ **FLARE Application**: Applied FLARE headers to 1,649 markdown files system-wide
 - ✅ **File Indexing**: Created comprehensive index of 1,920 total files
 - ✅ **Meta Tracking**: Established meta/flare.json tracking in all directories
@@ -266,6 +269,10 @@ flare.footer:
 - **Actor Help Documentation Validation v2**: Created comprehensive validation task with LILITH review integration, corrected actor priorities (ANUBIS 2035→19), enhanced validation framework (YAML scoring, actor-type specific rules), automated validation tools (PHP + Bash), realistic 32-hour timeline, and enterprise-ready results with 100% coverage for priority actors
 
 ### Remaining Tasks for 4.0.50
+- 🔄 **File Count Optimization**: Begin FILEOPT-2026-02-27-001 planning for 4.1.0
+- 🔄 **Performance Validation**: Verify system performance after cleanup and optimization
+- 🔄 **Documentation Review**: Validate all actor help documentation completeness
+- 🔄 **CLI Testing**: Execute comprehensive CLI tool testing suite
 - 🔄 **File Count Optimization**: Begin FILEOPT-2026-02-27-001 planning for 4.1.0
 - 🔄 **Performance Validation**: Verify system performance after cleanup and optimization
 - 🔄 **Documentation Review**: Validate all actor help documentation completeness
