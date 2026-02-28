@@ -63,6 +63,79 @@ flare.footer:
 ---
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
+  assigned_custodian: "2035"
+  delegation_chain: "10000:2035"
+  purpose: "Documentation file. Assigned to ANUBIS for custodial intelligence."
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VERSION_4_0_46_LAUNCH_REPORT.md"
+  file_hash: "f17ddca7be6e59d3804ea3fa4bb7b3e8fc9bcfa083a3f8c26c84923c0f593395"
+  file_path_from_root: "VERSION_4_0_46_LAUNCH_REPORT.md"
+  file_hash: "3fc6170c1c4eeb05321b818540ead293c8e53f30f40aaef3faa56c466d1cfe62"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VERSION_4_0_46_LAUNCH_REPORT.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["version_4_0_46_launch_reportmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: {
+  file_path_from_root: "VERSION_4_0_46_LAUNCH_REPORT.md",
+  system_version: "4.0.46",
+  channel_id: 42,
+  actor_id: 1000,
+  created_ymdhis: 20260226000500,
+  updated_ymdhis: 20260226000500,
+  message_type: "version_launch",
+  visibility: "public",
+  priority: "critical"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "VERSION_4_0_45_CLOSURE_REPORT.md", type: "transitions_from", weight: 1.0 },
+    { to: "CHANGELOG.md", type: "updates", weight: 1.0 },
+    { to: "channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 },
+    { to: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 },
+    { to: "HUMAN_TASKS_CAPTAIN_10000.md", type: "updates", weight: 0.7 }
+  ],
+  semantic_tags: ["version_launch", "upgrade_program", "crafty_migration", "4.0.46"]
+}
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
 ---
 flare.headers:
   flare.version: "1.0"

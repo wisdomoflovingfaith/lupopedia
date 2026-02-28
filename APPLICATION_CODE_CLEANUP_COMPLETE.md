@@ -62,6 +62,78 @@ flare.footer:
 ---
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
+  assigned_custodian: "2035"
+  delegation_chain: "10000:2035"
+  purpose: "Documentation file. Assigned to ANUBIS for custodial intelligence."
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "APPLICATION_CODE_CLEANUP_COMPLETE.md"
+  file_hash: "0c57573781637ed139b47aab3b1c827385817ba708970090738b6194c5d9ab81"
+  file_path_from_root: "APPLICATION_CODE_CLEANUP_COMPLETE.md"
+  file_hash: "28de6afdef06740b74eefe9603b3a27a37facb139b8d9fc221d5bddbecce55f8"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for APPLICATION_CODE_CLEANUP_COMPLETE.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["application_code_cleanup_completemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: {
+  file_path_from_root: "APPLICATION_CODE_CLEANUP_COMPLETE.md",
+  system_version: "4.0.44",
+  channel_id: 42,
+  actor_id: 1002,
+  created_ymdhis: 20260224172500,
+  updated_ymdhis: 20260224172500,
+  message_type: "status_report",
+  visibility: "system",
+  priority: "medium",
+  purpose: "Code cleanup completion report for Python and TypeScript files"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "tools/md_flip_ingest.py", type: "documents", weight: 1.0 },
+    { to: "scripts/actor_agent_doctrine.py", type: "documents", weight: 1.0 },
+    { to: "tools/vsx-extension/src/lupopedia/flip.ts", type: "documents", weight: 0.9 }
+  ],
+  semantic_tags: ["code_cleanup", "python", "typescript", "registry_fix", "vsx_extension"]
+}
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
 ---
 flare.headers:
   flare.version: "1.0"

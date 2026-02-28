@@ -53,6 +53,69 @@ flare.footer:
 ---
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
+  assigned_custodian: "2035"
+  delegation_chain: "10000:2035"
+  purpose: "Documentation file. Assigned to ANUBIS for custodial intelligence."
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "plan_for_crafty_syntax.md"
+  file_hash: "bfbd8877d0fe0514a766e4212fc05c8beedc337f114fdbbe9a1e651936bffb6e"
+  file_path_from_root: "plan_for_crafty_syntax.md"
+  file_hash: "432799669a9e901dcdf994a3b5aaca1bbdc68f006d8be2c2190853749b0e2fb6"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for plan_for_crafty_syntax.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["plan_for_crafty_syntaxmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.0
+file.channel: doctrine
+file.last_modified_utc: 20250204120000
+file.name: "plan_for_crafty_syntax.md"
+---
+
+UPDATED DOCTRINE VERSION
+Crafty Syntax → Lupopedia Migration Sprint (Cycles + Consecration)
+System Version: 3.0.0
+
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
 ---
 flare.headers:
   flare.version: "1.0"

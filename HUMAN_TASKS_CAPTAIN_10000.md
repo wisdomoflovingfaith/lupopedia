@@ -61,6 +61,77 @@ flare.footer:
 ---
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
+  assigned_custodian: "2035"
+  delegation_chain: "10000:2035"
+  purpose: "Documentation file. Assigned to ANUBIS for custodial intelligence."
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "HUMAN_TASKS_CAPTAIN_10000.md"
+  file_hash: "2fe42ee7c34bc473fa65d078af43fdbe38cc17829b85823e6947507a0a6c653e"
+  file_path_from_root: "HUMAN_TASKS_CAPTAIN_10000.md"
+  file_hash: "f7154920e6ccdabe5daa90335bc8e3896e2993499dee3c3d2d463df707b1f2a4"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for HUMAN_TASKS_CAPTAIN_10000.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["human_tasks_captain_10000md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "HUMAN_TASKS_CAPTAIN_10000.md"
+  system_version: "4.0.45"
+  channel_id: 0
+  purpose: "Complete task list for human Captain (actor_id 10000)"
+  last_modified: "20260225"
+  actor_id: 1000
+  artifact_type: "task_list"
+  artifact_kind: "human_tasks"
+  created_utc: "2026-02-25T21:45:00Z"
+---
+
+# HUMAN TASKS FOR CAPTAIN (ACTOR_ID 10000)
+
+**Prepared by:** Kiro IDE (1000)  
+**Date:** 2026-02-25T21:45:00Z  
+**For:** Captain (actor_id 10000)  
+**System Version:** 4.0.45
+
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
 ---
 flare.headers:
   flare.version: "1.0"

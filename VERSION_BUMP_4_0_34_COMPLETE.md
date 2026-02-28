@@ -62,6 +62,78 @@ flip.footer:
   version: "4.0.34"
   last_verified_utc: "20260223"
   last_verified_by: "kiro"
+  assigned_custodian: "2035"
+  delegation_chain: "10000:2035"
+  purpose: "Documentation file. Assigned to ANUBIS for custodial intelligence."
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "VERSION_BUMP_4_0_34_COMPLETE.md"
+  file_hash: "dd3eba4c65baf265e163f1a6087d26aea17c81c2abb7751a3e7a3bc3473d0889"
+  file_path_from_root: "VERSION_BUMP_4_0_34_COMPLETE.md"
+  file_hash: "ce047940058f0227d2acb3dd34f10ffaf08857fe5e677156bb0515afbe227609"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VERSION_BUMP_4_0_34_COMPLETE.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["version_bump_4_0_34_completemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "VERSION_BUMP_4_0_34_COMPLETE.md"
+  system_version: "4.0.34"
+  channel_id: 42
+  mood_rgb: "00FF88"
+  purpose: "Version bump to 4.0.34 completion summary"
+  last_modified_utc: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "docs/versions/4.0.34/TODO.md"
+    - "docs/versions/4.0.34/ROADMAP.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "version_bump"
+    - "4_0_34_summary"
+  footnotes:
+    - "Version 4.0.34 development cycle initiated"
+    - "All version markers updated"
+  version: "4.0.34"
+  last_verified_utc: "20260223"
+  last_verified_by: "kiro"
 ---
 
 # VERSION BUMP TO 4.0.34 — COMPLETE

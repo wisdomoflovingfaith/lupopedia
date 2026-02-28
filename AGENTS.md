@@ -62,6 +62,78 @@ flare.footer:
 ---
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
+  assigned_custodian: "2035"
+  delegation_chain: "10000:2035"
+  purpose: "Documentation file. Assigned to ANUBIS for custodial intelligence."
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "AGENTS.md"
+  file_hash: "8c97e387f3c56d80398e2ddad886c04f4375e102edbbcf8c1d42a9514834e4bf"
+  file_path_from_root: "AGENTS.md"
+  file_hash: "b55d7af6f7eff0c38348a3449756cff92c59fe9d95c9831f630d1e3686f0b48c"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for AGENTS.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["agentsmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers: {
+  file_path_from_root: "AGENTS.md",
+  system_version: "4.0.44",
+  channel_id: 1,
+  actor_id: 1002,
+  created_ymdhis: 20260224171500,
+  updated_ymdhis: 20260224171500,
+  message_type: "documentation",
+  visibility: "public",
+  priority: "high"
+}
+flip.footer: {
+  outbound_edges: [
+    { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 1.0 },
+    { to: "actors/registry.json", type: "references", weight: 0.9 },
+    { to: "actors/", type: "references", weight: 0.8 },
+    { to: "lupo-agents/", type: "references", weight: 0.8 }
+  ],
+  semantic_tags: ["agents", "warp", "development_environment", "architecture", "doctrine"]
+}
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: []
+  artifact_type: "documentation"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
 ---
 flare.headers:
   flare.version: "1.0"

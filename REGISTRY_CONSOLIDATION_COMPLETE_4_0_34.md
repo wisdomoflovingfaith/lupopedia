@@ -62,6 +62,78 @@ flip.footer:
   version: "4.0.34"
   last_verified: "20260223"
   last_verified_by: "kiro"
+  assigned_custodian: "2035"
+  delegation_chain: "10000:2035"
+  purpose: "Documentation file. Assigned to ANUBIS for custodial intelligence."
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "REGISTRY_CONSOLIDATION_COMPLETE_4_0_34.md"
+  file_hash: "8641a332620da0ae64ba4ef14b24180467d895ffc7b1027a5a8fc8982bd98294"
+  file_path_from_root: "REGISTRY_CONSOLIDATION_COMPLETE_4_0_34.md"
+  file_hash: "f3bfb099b9833b805828df00b20a4276b776d34200726cdcf361b5c1df724dfa"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for REGISTRY_CONSOLIDATION_COMPLETE_4_0_34.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["registry_consolidation_complete_4_0_34md"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+---
+
+---
+wolfie.headers:
+  file_path_from_root: "REGISTRY_CONSOLIDATION_COMPLETE_4_0_34.md"
+  system_version: "4.0.34"
+  channel_id: 42
+  mood_rgb: "00FFAA"
+  purpose: "Executive summary - Phase 2 registry consolidation planning complete"
+  last_modified: "20260223"
+  x_lupo_forwarded: "1001:10000"
+  actor_id: 1001
+  lupo_agent: "kiro"
+
+flip.footer:
+  referenced_by_files:
+    - "CHANGELOG.md"
+    - "docs/status/registry_consolidation_plan_4_0_34.md"
+    - "channels/42/broadcasts/20260223_registry_consolidation_complete.md"
+  referenced_by_channels:
+    - 42
+  referenced_by_actors:
+    - 1001
+    - 10000
+  inbound_edges:
+    - "phase_2_summary"
+    - "registry_consolidation"
+  footnotes:
+    - "Executive summary for Captain Wolfie"
+    - "Phase 2 planning complete, database execution deferred"
+  version: "4.0.34"
+  last_verified: "20260223"
+  last_verified_by: "kiro"
 ---
 
 # REGISTRY CONSOLIDATION COMPLETE — VERSION 4.0.34
