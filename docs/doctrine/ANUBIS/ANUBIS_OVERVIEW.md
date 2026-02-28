@@ -1,48 +1,40 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-
 ---
 flare.headers:
   flare.version: "1.0"
   flare.schema: "documentation"
-  flare.edges: []
-  file_path_from_root: "docs\doctrine\ANUBIS\ANUBIS_OVERVIEW.md"
+  file_path_from_root: "docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md"
   file_hash: "c9495e781e291bbeeb69e8227fa21fcd17101f5324227f754ca6ed209f4de2db"
-  file_path_from_root: "docs\doctrine\ANUBIS\ANUBIS_OVERVIEW.md"
-  file_hash: "8837f356e0a49f8ace4b432454405d64aa231888cdc75531e4785dfe94bbe9b4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: null
+  delegation_chain: "1002:10000"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "Documentation for ANUBIS_OVERVIEW.md"
+  purpose: "Documentation for ANUBIS subsystem overview - custodial intelligence for dialogs, lineage, orphans, and redirects"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["docs", "doctrine", "anubis", "anubis_overviewmd"]
+  tags: ["docs", "doctrine", "anubis", "anubis_overview"]
   lupo_agent: "windsurf"
 
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
+flare.edges:
+  outbound_edges:
+    - { to: "docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md", type: "references", weight: 1.0 }
+    - { to: "docs/toons/lupo_dialog_messages.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "docs/toons/lupo_dialog_threads.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "database/migrations/seed_lupopedia.sql", type: "references", weight: 0.8 }
+  semantic_tags: ["anubis", "orphans", "adoption", "redirects", "doctrine"]
+
   last_updated_utc: "20260228"
+  system_version: "4.0.50"
 flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
 ---
 
----
-# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md
-file.last_modified_system_version: "4.0.16"
-file.last_modified_utc: "20260217235900"
-# channel_id unresolved — requires lupo_contents lookup by application.
-X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
-X-Lupo-Actor-ID: 2035
-X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md
----
 # ANUBIS — Custodial Intelligence for Dialogs, Lineage, Orphans, and Redirects
 
 **Status:** Permanent.  

@@ -1,12 +1,12 @@
 {
   "files": [
     {
-      "file": "channels\\42\\tasks\\active\\database_optimization_analysis.md",
+      "file": "channels\\42\\tasks\\active\\actor_help_documentation_validation_v2.md",
       "flare_applied": true,
       "timestamp": "20260228"
     },
     {
-      "file": "channels\\42\\tasks\\active\\repository_cleanup_legacy_files_removal.md",
+      "file": "channels\\42\\tasks\\active\\anubis_flare_ingestion_faucet.md",
       "flare_applied": true,
       "timestamp": "20260228"
     }

@@ -110,6 +110,27 @@ def infer_channel_actor(path):
         return int(m2.group(1)), None
     return None, None
 
+def detect_anubis_flare_ingestion(path, original_text):
+    """Detect if this is an ANUBIS FLARE ingestion request"""
+    # Check if path indicates ANUBIS (actor 19) and contains FLARE ingestion keywords
+    if "actors/19/" in path and ("flare_ingestion" in original_text.lower() or "ingestion" in original_text.lower()):
+        return True
+    return False
+
+def apply_anubis_flare_ingestion(path, original_text):
+    """Apply ANUBIS FLARE ingestion processing"""
+    if not detect_anubis_flare_ingestion(path, original_text):
+        return None
+    
+    # This would call the ANUBIS faucet for FLARE ingestion
+    # For now, return a marker that this should be processed by ANUBIS
+    return {
+        "processed_by": "anubis_flare_ingestion",
+        "actor_id": 19,
+        "file_path": path,
+        "status": "queued_for_processing"
+    }
+
 def infer_schema(path):
     p = path.lower()
     if p.endswith("help.md") or "/help/" in p:
@@ -238,6 +259,18 @@ for rel in paths:
         continue
     try:
         original = read_text(rel)
+        
+        # Check for ANUBIS FLARE ingestion request
+        anubis_result = apply_anubis_flare_ingestion(rel, original)
+        if anubis_result:
+            log(f"PHASE 2: DETECTED ANUBIS FLARE ingestion request: {rel}")
+            # Create a marker file for ANUBIS to process
+            marker_path = rel.replace(".md", "_anubis_processing.json")
+            write_atomic(marker_path, json.dumps(anubis_result, indent=2))
+            log(f"PHASE 2: Created ANUBIS processing marker: {marker_path}")
+            skipped_existing += 1
+            continue
+        
         if detect_existing_flare_header(original):
             issues = validate_flare_header(original)
             if issues:
