@@ -60,21 +60,75 @@ Agents: Research existing entries first; consolidate duplicates logically.
 
 ---
 
-## [4.0.49] — Continued stabilization and rollover from v4.0.48. (2026-02-28)
+## [4.0.50] — IN DEVELOPMENT (2026-02-28)
 
 **Status**: ?? ACTIVE DEVELOPMENT  
+**Theme**: Development cycle initialization  
+**Focus**: New development cycle continuation  
+**Lead Agent**: Codex (1007)  
+**UTC Date**: 20260228  
+**Phase**: Active Development
+
+### Mission Objectives
+**Primary Objective:** Continue development work from v4.0.49 rollover tasks.
+
+### Critical Path Tasks
+1. ?? **CLEANUP-2026-02-27-001**: Repository cleanup - legacy files removal (Windsurf - 6-8 hours) - READY
+2. ?? **FILEOPT-2026-02-27-001**: File count optimization - 4.1.0 deployment target (Windsurf - 2-3 weeks) - PLANNING
+
+### Completed Work in This Session
+
+#### CLI Tool Enhancement (bin/lupo.php)
+- ✅ **System Agent Commands**: Added `system-status`, `coordinate-task`, `health-check`, `update-config` commands
+- ✅ **Enhanced Audit Logging**: Implemented log level control with `LUPO_LOG_LEVEL` environment variable
+- ✅ **Transaction Safety**: Added database transactions with rollback for configuration updates
+- ✅ **Input Validation**: Enhanced validation for task IDs (1-999999 range) and configuration keys
+- ✅ **JSON Serialization**: Proper Unicode support and size limiting for audit logs
+- ✅ **Version Update**: Updated CLI tool to version 4.0.50
+
+#### CLI Documentation (bin/lupo.php.md)
+- ✅ **Comprehensive Documentation**: Created complete CLI tool documentation with examples
+- ✅ **Quick Reference Table**: Added command reference table with parameters and examples
+- ✅ **Integration Examples**: Docker, Ansible, and PHP API integration examples
+- ✅ **FAQ Section**: Expanded FAQ with troubleshooting and log rotation guidance
+- ✅ **Edge Case Examples**: Added failure scenarios and error handling examples
+- ✅ **Testing Framework**: Unit testing guidelines and manual testing checklist
+
+#### Actor Help Documentation
+- ✅ **System Agent Help**: Created `channels/42/actors/0/help.md` with comprehensive system operations guide
+- ✅ **Captain Wolfie Help**: Created `channels/42/actors/1/help.md` with leadership and coordination documentation
+- ✅ **ANUBIS Help**: Created `channels/42/actors/2035/help.md` for custodial intelligence subsystem
+- ✅ **Command References**: Updated all help files with actual CLI command implementations
+- ✅ **Integration Points**: Documented database, API, and CLI integration for each actor
+
+#### System Improvements
+- ✅ **Error Handling**: Enhanced error messages with "Unauthorized access - System Agent identity required"
+- ✅ **Health Check**: Added TABLE_ACCESS validation and PASS/FAIL status format
+- ✅ **Timestamp Consistency**: Added UTC timestamps to all command outputs
+- ✅ **Audit Trail**: Comprehensive logging for all System Agent operations
+- ✅ **Security**: Proper access control validation and configuration key format validation
+
+### Pending Tasks
+- Repository cleanup and legacy file removal
+- File count optimization preparation for v4.1.0
+
+---
+
+## [4.0.49] — Continued stabilization and rollover from v4.0.48. (2026-02-28)
+
+**Status**: ✅ RELEASED  
 **Theme**: Legacy optimization, interface modernization, documentation completion  
 **Focus**: Rolled-over tasks from 4.0.48  
 **Lead Agent**: Codex (1007)  
-**UTC Date**: 20260227  
-**Phase**: Active Development
+**UTC Date**: 20260228  
+**Phase**: Released
 
 ### Mission Objectives
 **Primary Objective:** Complete all tasks rolled over from v4.0.48 and prepare for v4.1.0.
 
 ### Critical Path Tasks
 1. ✅ **CH0-20260226-005**: Legacy table optimization review (Windsurf - 4 hours) - COMPLETE
-2. ?? **CH0-20260226-006**: Channels web admin interface modernization (Windsurf - 6 hours) - PENDING
+2. ✅ **CH0-20260226-006**: Channels web admin interface modernization (Windsurf - 6 hours) - COMPLETE
 3. ✅ **DBDOC-SCHEMA-2026-02-27-001**: DBDOC-recommended schema changes implementation (Windsurf - 2 hours) - COMPLETE
 4. ?? **CLEANUP-2026-02-27-001**: Repository cleanup - legacy files removal (Windsurf - 6-8 hours) - READY
 5. ?? **FILEOPT-2026-02-27-001**: File count optimization - 4.1.0 deployment target (Windsurf - 2-3 weeks) - PLANNING

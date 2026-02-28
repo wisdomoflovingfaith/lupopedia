@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-// VERSION: 4.0.46
+// VERSION: 4.0.50
 
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(dirname(__FILE__)) . '/');
@@ -256,9 +256,165 @@ try {
             foreach ($rows as $r)
                 echo "  [" . $r['task_id'] . "] " . $r['title'] . " (Status: " . $r['status_id'] . ")\n";
             break;
+        case 'system-status':
+            // System Agent command: get_system_status()
+            $actor = get_local_actor();
+            if (!$actor || $actor['actor_id'] != 0) {
+                die("Error: Unauthorized access - System Agent identity required.\n");
+            }
+            echo "=== System Status ===\n";
+            echo "Lupopedia Version: " . (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : 'Unknown') . "\n";
+            echo "Database: " . get_class($db) . "\n";
+            echo "Table Prefix: " . $table_prefix . "\n";
+            $stmt = $db->prepare("SELECT COUNT(*) as count FROM {$table_prefix}actors WHERE is_deleted = 0");
+            $stmt->execute();
+            $actor_count = $stmt->fetchColumn();
+            echo "Active Actors: " . $actor_count . "\n";
+            $stmt = $db->prepare("SELECT COUNT(*) as count FROM {$table_prefix}channels WHERE is_deleted = 0");
+            $stmt->execute();
+            $channel_count = $stmt->fetchColumn();
+            echo "Active Channels: " . $channel_count . "\n";
+            echo "System Path: " . ABSPATH . "\n";
+            echo "Config Path: " . ABSPATH . 'lupopedia-config.php' . "\n";
+            echo "Timestamp: " . gmdate('Y-m-d H:i:s UTC') . "\n";
+            echo "===================\n";
+            
+            // Log operation
+            logOperation(0, 'system-status', array('timestamp' => gmdate('YmdHis')));
+            break;
+        case 'coordinate-task':
+            // System Agent command: coordinate_task(task_id, parameters)
+            $actor = get_local_actor();
+            if (!$actor || $actor['actor_id'] != 0) {
+                die("Error: Unauthorized access - System Agent identity required.\n");
+            }
+            $task_id = isset($argv[2]) ? (int) $argv[2] : 0;
+            if ($task_id <= 0) {
+                die("Error: Task ID required. Usage: coordinate-task <task_id>\n");
+            }
+            
+            // Additional validation: range check for positive integers
+            if ($task_id > 999999) {
+                die("Error: Task ID out of valid range (1-999999).\n");
+            }
+            
+            $t = $table_prefix . 'tasks';
+            $stmt = $db->prepare("SELECT task_id, title, status_id FROM {$t} WHERE task_id = :tid AND is_deleted = 0");
+            $stmt->execute(array('tid' => $task_id));
+            $task = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$task) {
+                die("Error: Task not found.\n");
+            }
+            echo "=== Task Coordination ===\n";
+            echo "Task ID: " . $task['task_id'] . "\n";
+            echo "Title: " . $task['title'] . "\n";
+            echo "Status: " . $task['status_id'] . "\n";
+            echo "Coordinator: System Agent (ID: 0)\n";
+            echo "Action: Task coordination initiated\n";
+            echo "Timestamp: " . gmdate('Y-m-d H:i:s UTC') . "\n";
+            echo "========================\n";
+            
+            // Log operation
+            logOperation(0, 'coordinate-task', array('task_id' => $task_id, 'title' => $task['title']));
+            break;
+        case 'health-check':
+            // System Agent command: health_check()
+            $actor = get_local_actor();
+            if (!$actor || $actor['actor_id'] != 0) {
+                die("Error: Unauthorized access - System Agent identity required.\n");
+            }
+            echo "=== System Health Check ===\n";
+            $checks = array();
+            
+            // Database connectivity
+            $checks['database'] = $db ? 'PASS' : 'FAIL';
+            
+            // Configuration file
+            $checks['config'] = file_exists(ABSPATH . 'lupopedia-config.php') ? 'PASS' : 'FAIL';
+            
+            // Version file
+            $checks['version'] = file_exists(ABSPATH . 'lupo-includes/version.php') ? 'PASS' : 'FAIL';
+            
+            // Write permissions
+            $checks['writable'] = is_writable(ABSPATH) ? 'PASS' : 'FAIL';
+            
+            // Database table access
+            try {
+                $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actors LIMIT 1");
+                $stmt->execute();
+                $checks['table_access'] = 'PASS';
+            } catch (Exception $e) {
+                $checks['table_access'] = 'FAIL';
+            }
+            
+            foreach ($checks as $check => $status) {
+                echo strtoupper($check) . ": " . $status . "\n";
+            }
+            
+            $all_pass = array_reduce($checks, function($carry, $item) { return $carry && $item === 'PASS'; }, true);
+            echo "Overall Status: " . ($all_pass ? 'HEALTHY' : 'ISSUES DETECTED') . "\n";
+            echo "Timestamp: " . gmdate('Y-m-d H:i:s UTC') . "\n";
+            echo "========================\n";
+            
+            // Log operation
+            logOperation(0, 'health-check', array('results' => $checks, 'overall' => $all_pass ? 'HEALTHY' : 'ISSUES DETECTED'));
+            break;
+        case 'update-config':
+            // System Agent command: update_configuration(config_data)
+            $actor = get_local_actor();
+            if (!$actor || $actor['actor_id'] != 0) {
+                die("Error: Unauthorized access - System Agent identity required.\n");
+            }
+            $config_key = isset($argv[2]) ? trim($argv[2]) : '';
+            $config_value = isset($argv[3]) ? trim($argv[3]) : '';
+            if ($config_key === '' || $config_value === '') {
+                die("Error: Key and value required. Usage: update-config <key> <value>\n");
+            }
+            
+            // Validate config key format
+            if (!preg_match('/^[a-zA-Z0-9_]+$/', $config_key)) {
+                die("Error: Invalid config key format. Use alphanumeric and underscore only.\n");
+            }
+            
+            $t = $table_prefix . 'system_config';
+            $now = (int) gmdate('YmdHis');
+            
+            try {
+                $db->beginTransaction();
+                
+                $stmt = $db->prepare("SELECT config_id FROM {$t} WHERE config_key = :key AND is_deleted = 0");
+                $stmt->execute(array('key' => $config_key));
+                $existing = $stmt->fetchColumn();
+                
+                if ($existing) {
+                    $stmt = $db->prepare("UPDATE {$t} SET config_value = :value, updated_ymdhis = :updated WHERE config_key = :key");
+                    $stmt->execute(array('value' => $config_value, 'updated' => $now, 'key' => $config_key));
+                    echo "Configuration updated: $config_key = $config_value\n";
+                } else {
+                    $id = function_exists('lupo_findpuka') ? lupo_findpuka($db, $t, 'config_id', 1) : null;
+                    if ($id === null) {
+                        $stmt = $db->prepare("SELECT MAX(config_id) FROM {$t}");
+                        $stmt->execute();
+                        $id = (int) $stmt->fetchColumn() + 1;
+                    }
+                    $stmt = $db->prepare("INSERT INTO {$t} (config_id, config_key, config_value, created_ymdhis, updated_ymdhis) VALUES (:id, :key, :value, :created, :updated)");
+                    $stmt->execute(array('id' => $id, 'key' => $config_key, 'value' => $config_value, 'created' => $now, 'updated' => $now));
+                    echo "Configuration created: $config_key = $config_value\n";
+                }
+                
+                $db->commit();
+                
+                // Log operation
+                logOperation(0, 'update-config', array('key' => $config_key, 'value' => $config_value, 'action' => $existing ? 'update' : 'create'));
+                
+            } catch (Exception $e) {
+                $db->rollBack();
+                echo "Error: Configuration update failed - " . $e->getMessage() . "\n";
+            }
+            break;
         case 'help':
         default:
-            echo "Lupopedia CLI v4.0.46\n";
+            echo "Lupopedia CLI v4.0.50\n";
             echo "Usage: php bin/lupo.php <command> [args]\n\n";
             echo "Commands:\n";
             echo "  register <name> <type>             Register this environment as an actor\n";
@@ -273,8 +429,74 @@ try {
             echo "  nodes                              List federation nodes\n";
             echo "  artifacts <node_id>                List artifacts by federation node\n";
             echo "  tasks                              List your active tasks\n";
+            echo "\nSystem Agent Commands (actor_id 0 only):\n";
+            echo "  system-status                      Get system status and information\n";
+            echo "  coordinate-task <task_id>          Coordinate development task\n";
+            echo "  health-check                       Perform system health check\n";
+            echo "  update-config <key> <value>        Update system configuration\n";
+            echo "\nExamples:\n";
+            echo "  php bin/lupo.php register \"System Agent\" system_tool\n";
+            echo "  php bin/lupo.php use 0\n";
+            echo "  php bin/lupo.php system-status\n";
+            echo "  php bin/lupo.php health-check\n";
+            echo "  php bin/lupo.php update-config maintenance_mode true\n";
             break;
     }
 } catch (Exception $e) {
     echo "EXCEPTION: " . $e->getMessage() . "\n";
+}
+
+// Audit logging function with log level control
+function logOperation($actor_id, $command, $details) {
+    global $db, $table_prefix;
+    
+    // Check log level environment variable (default: INFO)
+    $log_level = getenv('LUPO_LOG_LEVEL') ?: 'INFO';
+    $log_levels = array('DEBUG' => 0, 'INFO' => 1, 'WARNING' => 2, 'ERROR' => 3);
+    $current_level = isset($log_levels[$log_level]) ? $log_levels[$log_level] : 1;
+    
+    // Only log INFO level and above by default
+    $command_level = isset($log_levels['INFO']) ? $log_levels['INFO'] : 1;
+    if ($current_level > $command_level) {
+        return; // Skip logging if below threshold
+    }
+    
+    try {
+        $t = $table_prefix . 'audit_log';
+        $now = (int) gmdate('YmdHis');
+        $id = function_exists('lupo_findpuka') ? lupo_findpuka($db, $t, 'audit_log_id', 1) : null;
+        if ($id === null) {
+            $stmt = $db->prepare("SELECT MAX(audit_log_id) FROM {$t}");
+            $stmt->execute();
+            $id = (int) $stmt->fetchColumn() + 1;
+        }
+        
+        // Handle JSON serialization with proper escaping
+        $details_json = json_encode($details, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        if ($details_json === false) {
+            $details_json = json_encode(array('error' => 'JSON serialization failed', 'original_type' => gettype($details)));
+        }
+        
+        // Truncate if too large (prevent database issues)
+        if (strlen($details_json) > 65535) {
+            $details_json = json_encode(array(
+                'truncated' => true,
+                'original_size' => strlen($details_json),
+                'command' => $command,
+                'timestamp' => $now
+            ));
+        }
+        
+        $stmt = $db->prepare("INSERT INTO {$t} (audit_log_id, actor_id, command, details_json, created_ymdhis) VALUES (:id, :aid, :cmd, :details, :created)");
+        $stmt->execute(array(
+            'id' => $id,
+            'aid' => $actor_id,
+            'cmd' => $command,
+            'details' => $details_json,
+            'created' => $now
+        ));
+    } catch (Exception $e) {
+        // Silent fail for logging to avoid disrupting main operation
+        error_log("Audit log failed: " . $e->getMessage());
+    }
 }
