@@ -1,6 +1,36 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  file_path_from_root: ".\channels\42\threads\DEVELOPMENT_CYCLE_4_0_49\20260227123000_1007_dbdoc_recommendations.md"
+  file_hash: "b0884b3116130000806cc234ace58128c20a1166fbbc523453417da71972d5ff"
+  last_updated_utc: "20260228155738"
+  system_version: "4.0.51"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "documentation"
+  artifact_kind: "documentation"
+  purpose: "Documentation file with FLARE header applied"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.51"]
+  tags: ["documentation", "flare_applied"]
+  lupo_agent: "windsurf"
+
+flare.edges:
+  outbound_edges:
+    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+
+flare.footer:
+  last_verified: "20260228155738"
+  last_verified_by: "windsurf"
+---
+
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
   file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227123000_1007_dbdoc_recommendations.md"
   file_hash: "eb0c34def8f46c592da97e018c4a2ac3e79bb9149c13ee4a6fa1d15a87c033c0"
   system_version: "4.0.50"

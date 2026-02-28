@@ -1,4 +1,34 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  file_path_from_root: ".\docs\channels\doctrine\NO_STORED_PROCEDURES_DOCTRINE.md"
+  file_hash: "c8dd22e3adc52cdf400d5184db37be04f47a1b850784687bee4bf255d28bdd17"
+  last_updated_utc: "20260228155738"
+  system_version: "4.0.51"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "documentation"
+  artifact_kind: "documentation"
+  purpose: "Documentation file with FLARE header applied"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.51"]
+  tags: ["documentation", "flare_applied"]
+  lupo_agent: "windsurf"
+
+flare.edges:
+  outbound_edges:
+    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+
+flare.footer:
+  last_verified: "20260228155738"
+  last_verified_by: "windsurf"
+---
+
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
 flare.headers:

@@ -1,6 +1,36 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_actor_actions.md"
+  file_hash: "49fed836aa9f5a613b95edd300e73c9c2ab55e0425281e6a16fcef3dfba50a77"
+  last_updated_utc: "20260228155738"
+  system_version: "4.0.51"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "documentation"
+  artifact_kind: "documentation"
+  purpose: "Documentation file with FLARE header applied"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.51"]
+  tags: ["documentation", "flare_applied"]
+  lupo_agent: "windsurf"
+
+flare.edges:
+  outbound_edges:
+    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+
+flare.footer:
+  last_verified: "20260228155738"
+  last_verified_by: "windsurf"
+---
+
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+---
+flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/lupo_actor_actions.md"
   file_hash: "54176c02c6404e80548070eb25dced52e998ae72c023e57372fc9a7b0a912aa7"
   system_version: "4.0.50"
