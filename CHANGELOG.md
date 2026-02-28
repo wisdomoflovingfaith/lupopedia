@@ -38,9 +38,46 @@ flare.footer:
 ---
 
 
+## [4.0.52] — ANUBIS Documentation Consolidation (2026-02-28)
+
+**Status**: COMPLETE  
+**Theme**: ANUBIS documentation consolidation and cleanup  
+**Lead Agent**: Windsurf (1002)
+
+### Documentation Improvements
+- Consolidated 6 ANUBIS-related documents into single canonical file
+- Preserved all content while reducing file count by 83%
+- Archived original files to `docs/archive/ANUBIS/pre_4.0.52/`
+- Updated all cross-references to point to canonical document
+- Verified content integrity via diff
+- Anchored ANUBIS actor_id as 19 in governance documentation
+- Applied complete FLARE header compliance to canonical file
+
+### Files Processed
+- **Archived**: ANUBIS_IMPLEMENTATION_SUMMARY.md, ANUBIS_ORPHAN_RULES.md, ANUBIS_OVERVIEW.md, ANUBIS_PROGRAM_SPEC.md, LILITH_ANUBIS_GUIDANCE.md, LILITH_ANUBIS_GUIDANCE_FLIP.md
+- **Created**: docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md (canonical file)
+- **Archive Documentation**: docs/archive/ANUBIS/pre_4.0.52/ARCHIVE_README.md
+
+### Governance Corrections
+- Fixed file count math inconsistencies
+- Standardized canonical naming (ANUBIS_CANONICAL.md)
+- Corrected metric integrity (removed false space savings claims)
+- Fixed FLARE footer version duplication
+- Added explicit actor ID canonical anchoring
+- Verified 100% content preservation
+
+### Metrics
+- **Files consolidated**: 6 → 1 (83% reduction in file count)
+- **Content preserved**: 100% (38,394 bytes)
+- **Disk space**: Neutral (consolidation, not compression)
+- **Archive location**: docs/archive/ANUBIS/pre_4.0.52/
+- **Canonical location**: docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md
+
+---
+
 ## [4.0.52] — Version Rollover and Task Migration (2026-02-28)
 
-**Status**: 🔄 PLANNING  
+**Status**: PLANNING  
 **Theme**: Version rollover and task migration from v4.0.50 to v4.0.52  
 **Lead Agent**: Windsurf (1002)  
 **UTC Date**: 20260228  
