@@ -1,18 +1,19 @@
----
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
 flare.headers:
   file_path_from_root: "docs/doctrine/FLARE/FLARE_DOCTRINE.md"
   system_version: "4.0.47"
   channel_id: 0
-  actor_id: 10000
-  last_modified_utc: "20260226"
-  delegation_chain: "10000:10000"
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
   artifact_type: "doctrine"
   purpose: "Core doctrine defining FLARE protocol for file-level attribute and relationship exchange"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
   mood_rgb: "FFD700"
   traits: ["canonical", "system-critical", "permanent"]
   tags: ["flare", "doctrine", "protocol", "file_metadata", "relationships"]
-  lupo_agent: "wolfie"
+  lupo_agent: "codex-ide"
 
 flare.footer:
   outbound_edges:
@@ -60,6 +61,18 @@ FLARE defines three distinct components:
 - **flare.headers** (Identity/Metadata) → Basic file properties, lineage, and routing.
 - **flare.edges** (Relational/Graph) → The "Map" of outbound and inbound relationships.
 - **flare.footer** (Engagement/Snapshots) → Temporal metrics and verification status.
+
+---
+
+## 1.1 Required Header Prologue
+
+Every FLARE-compliant file must start with the exact prologue line below, followed immediately by the YAML delimiter and `flare.headers`. This is required for all documentation and doctrine files.
+
+```text
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
+flare.headers:
+```
 
 ---
 
@@ -304,3 +317,6 @@ flare.headers:
 ---
 
 *End of FLARE doctrine.*
+
+
+

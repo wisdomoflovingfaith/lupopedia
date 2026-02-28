@@ -1,18 +1,19 @@
----
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
 flare.headers:
   file_path_from_root: "docs/FLARE_HEADERS_QUICK_REFERENCE.md"
   system_version: "4.0.47"
   channel_id: 1
-  actor_id: 1001
-  last_modified_utc: "20260226"
-  delegation_chain: "1001:10000"
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
   artifact_type: "guide"
   purpose: "Fast reference for implementing FLARE headers in .md files"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
   mood_rgb: "4B0082"
   traits: ["canonical", "comprehensive"]
   tags: ["flare_headers", "quick_reference", "implementation_guide"]
-  lupo_agent: "windsurf"
+  lupo_agent: "codex-ide"
 flare.edges:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
@@ -47,18 +48,21 @@ Together they form the File-Level Attribute and Relationship Exchange layer of L
 
 ## 🚀 **Standard Header Format**
 
-```yaml
----
+The header must begin with the prologue line below, followed immediately by the YAML delimiter and `flare.headers`.
+
+```text
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
 flare.headers:
   file_path_from_root: "path/from/root.md"
   system_version: "4.1.0"
   channel_id: 1
-  actor_id: 1001
+  actor_id: 1007
   last_modified_utc: "20260226"
-  delegation_chain: "1001:10000"
+  delegation_chain: "1007:10000"
   artifact_type: "guide"
   purpose: "Brief description of file purpose"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
   mood_rgb: "4B0082"
   actor_ip: "127.0.0.1"
 
@@ -151,9 +155,9 @@ flare.headers:
   file_path_from_root: "docs/guide/example.md"
   system_version: "4.1.0"
   channel_id: 1
-  actor_id: 1001
+  actor_id: 1007
   last_modified_utc: "20260226"
-  delegation_chain: "1001:10000"
+  delegation_chain: "1007:10000"
   artifact_type: "guide"
 
 flare.edges:
@@ -173,9 +177,9 @@ flare.headers:
   file_path_from_root: "channels/0/broadcasts/example_doctrine.md"
   system_version: "4.1.0"
   channel_id: 0
-  actor_id: 10000
+  actor_id: 1007
   last_modified_utc: "20260226"
-  delegation_chain: "10000:10000"
+  delegation_chain: "1007:10000"
   artifact_type: "doctrine"
 
 flare.edges:
@@ -253,3 +257,7 @@ $date = gmdate('Ymd'); // 20260226
 ---
 
 **Quick Reference Complete** 🎯
+
+
+
+

@@ -1,5 +1,6 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
-wolfie.headers:
+flare.headers:  
   file_path_from_root: "prompts/windsurf/20260223_kiro_work_audit_prompt.md"
   system_version: "4.0.33"
   channel_id: 42

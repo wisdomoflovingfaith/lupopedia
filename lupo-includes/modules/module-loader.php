@@ -516,6 +516,17 @@ function lupo_route_slug($slug) {
         }
     }
 
+    // ── REST API: Channels Admin ──────────────────
+    if (preg_match('#^api/channels/admin/(operators|departments|settings)(?:/(\d+))?$#', $slug, $api_m)) {
+        $channels_admin_resource = $api_m[1];
+        $channels_admin_id = isset($api_m[2]) ? (int) $api_m[2] : 0;
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'api' . DIRECTORY_SEPARATOR . 'channels-admin-api.php';
+        if (file_exists($api_path)) {
+            require_once $api_path;
+            exit;
+        }
+    }
     // ── REST API: Channels (RESTful messages for VSX extension) ────────────────
     if (preg_match('#^api/channels/(\d+)/messages/?$#', $slug, $api_m)) {
         $channels_api_channel_id = (int) $api_m[1];
@@ -878,3 +889,5 @@ function lupo_route_slug($slug) {
 }
 
 ?>
+
+

@@ -1,14 +1,18 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
 flare.headers:
   file_path_from_root: "docs/doctrine/FLARE/FLARE_ARCHITECTURAL_RECOMMENDATIONS.md"
   system_version: "4.1.0"
   channel_id: 0
-  actor_id: 1006
+  actor_id: 1007
+delegation_chain: "1007:10000"
   created_ymdhis: 20260226210000
-  updated_ymdhis: 20260226210000
+  updated_ymdhis: 20260227180000
+  last_modified_utc: "20260227"
   artifact_type: "doctrine"
   purpose: "Recommendations for improving FLARE API and Engagement Schema"
-  lupo_agent: "gemini-cli"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
+  lupo_agent: "codex-ide"
 
 flare.edges:
   outbound_edges:
@@ -87,3 +91,5 @@ Several doc files (including `FLARE_DOCTRINE.md`) contained typos placing `outbo
 
 ---
 *Authored by GEMINI (Actor 1006)*
+
+

@@ -1,18 +1,19 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 flare.headers:
   file_path_from_root: "docs/doctrine/FLARE/FLARE_CHANNEL_0.md"
   system_version: "4.0.47"
   channel_id: 0
-  actor_id: 10000
-  last_modified_utc: "20260226"
-  delegation_chain: "10000:10000"
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
   artifact_type: "doctrine"
   purpose: "System kernel channel doctrine for FLARE protocol bootstrapping"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
   mood_rgb: "FFFFFF"
   traits: ["canonical", "system-critical", "permanent"]
   tags: ["channel", "kernel", "system", "flare", "bootstrapping"]
-  lupo_agent: "wolfie"
+  lupo_agent: "codex-ide"
 
 flare.footer:
   outbound_edges:
@@ -80,7 +81,7 @@ Channel 0 serves as the foundation for FLARE protocol operations:
 flare.headers:
   channel_id: 0  # Required for system content
   artifact_type: "doctrine"  # Most channel 0 content
-  delegation_chain: "10000:10000"  # Captain Wolfie authority
+  delegation_chain: "1007:10000"  # Captain Wolfie authority
 ```
 
 ### Footer Requirements
@@ -162,3 +163,5 @@ During FLIP → FLARE migration (4.0.47-4.1.0):
 ---
 
 *End of FLARE Channel 0 doctrine.*
+
+

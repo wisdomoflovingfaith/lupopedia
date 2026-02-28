@@ -454,6 +454,7 @@ CREATE TABLE lupo_agents (
 );
 
 CREATE UNIQUE INDEX lupo_agents_unique_agent_key ON lupo_agents (agent_key);
+CREATE INDEX lupo_agents_idx_api_key_id ON lupo_agents (api_key_id);
 CREATE INDEX lupo_agents_idx_is_global_authority ON lupo_agents (is_global_authority);
 CREATE INDEX lupo_agents_idx_created_ymdhis ON lupo_agents (created_ymdhis);
 CREATE INDEX lupo_agents_idx_updated_ymdhis ON lupo_agents (updated_ymdhis);
@@ -608,6 +609,7 @@ CREATE TABLE lupo_agent_heartbeats (
   status varchar(32) NOT NULL DEFAULT 'unknown',
   last_heartbeat_ymdhis bigint NOT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (heartbeat_id)
@@ -641,10 +643,15 @@ CREATE TABLE lupo_agent_tool_calls (
   thread_id bigint DEFAULT NULL,
   message_id bigint DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
+  archived_ymdhis bigint DEFAULT 0,
   completed_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (agent_tool_call_id)
 );
 
+CREATE INDEX lupo_agent_tool_calls_idx_agent_created ON lupo_agent_tool_calls (agent_id, created_ymdhis);
 CREATE INDEX lupo_agent_tool_calls_idx_agent ON lupo_agent_tool_calls (agent_id);
 CREATE INDEX lupo_agent_tool_calls_idx_faucet ON lupo_agent_tool_calls (faucet_id);
 CREATE INDEX lupo_agent_tool_calls_idx_domain ON lupo_agent_tool_calls (domain_id);
@@ -733,7 +740,7 @@ CREATE TABLE lupo_analytics_visits (
   session_id varchar(100) NOT NULL,
   actor_id bigint NOT NULL DEFAULT '0',
   content_id bigint DEFAULT NULL,
-  federations_node_id bigint NOT NULL,
+  federation_node_id bigint NOT NULL,
   url_path varchar(500) NOT NULL DEFAULT '',
   referer_url varchar(500) DEFAULT NULL,
   referer_domain varchar(255) DEFAULT NULL,
@@ -761,6 +768,9 @@ CREATE TABLE lupo_analytics_visits (
   ip_address varchar(45) DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
+  archived_ymdhis bigint DEFAULT 0,
   PRIMARY KEY (analytics_visit_id)
 );
 
@@ -984,15 +994,19 @@ CREATE TABLE lupo_api_tokens (
   scopes text,
   is_active tinyint NOT NULL DEFAULT '1',
   created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
   expires_ymdhis bigint DEFAULT NULL,
   last_used_ymdhis bigint DEFAULT NULL,
   created_ip varchar(45) DEFAULT NULL,
   last_used_ip varchar(45) DEFAULT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
   notes text,
   PRIMARY KEY (api_token_id)
 );
 
 CREATE UNIQUE INDEX lupo_api_tokens_uq_token_key ON lupo_api_tokens (token_key);
+CREATE INDEX lupo_api_tokens_idx_actor_active ON lupo_api_tokens (actor_id, is_active);
 CREATE INDEX lupo_api_tokens_idx_domain ON lupo_api_tokens (domain_id);
 CREATE INDEX lupo_api_tokens_idx_actor ON lupo_api_tokens (actor_id);
 CREATE INDEX lupo_api_tokens_idx_active ON lupo_api_tokens (is_active);
@@ -1471,7 +1485,7 @@ CREATE INDEX lupo_cip_trends_idx_high_impact ON lupo_cip_trends (high_impact_eve
 
 CREATE TABLE lupo_collections (
   collection_id bigint NOT NULL,
-  federations_node_id bigint NOT NULL,
+  federation_node_id bigint NOT NULL,
   actor_id bigint DEFAULT NULL,
   department_id bigint DEFAULT NULL,
   name varchar(255) NOT NULL,
@@ -1489,9 +1503,9 @@ CREATE TABLE lupo_collections (
   PRIMARY KEY (collection_id)
 );
 
-CREATE UNIQUE INDEX lupo_collections_unique_collection_slug_domain ON lupo_collections (federations_node_id, slug);
+CREATE UNIQUE INDEX lupo_collections_unique_collection_slug_domain ON lupo_collections (federation_node_id, slug);
 CREATE INDEX lupo_collections_idx_name ON lupo_collections (name);
-CREATE INDEX lupo_collections_idx_domain ON lupo_collections (federations_node_id);
+CREATE INDEX lupo_collections_idx_domain ON lupo_collections (federation_node_id);
 CREATE INDEX lupo_collections_idx_department ON lupo_collections (department_id);
 CREATE INDEX lupo_collections_idx_created_ymdhis ON lupo_collections (created_ymdhis);
 CREATE INDEX lupo_collections_idx_updated_ymdhis ON lupo_collections (updated_ymdhis);
@@ -2081,6 +2095,7 @@ CREATE TABLE lupo_document_embeddings (
   embedding_model varchar(128) NOT NULL,
   embedding_version varchar(64) DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   PRIMARY KEY (document_embedding_id)

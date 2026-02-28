@@ -1,3 +1,7 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
+flare.headers: { }
+... 
 # Actor Workspace: LILITH (ID: 2)
 
 **Channel:** 42 (Development)  

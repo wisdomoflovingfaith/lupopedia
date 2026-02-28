@@ -1,18 +1,19 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 flare.headers:
   file_path_from_root: "docs/doctrine/FLARE/FLARE_CHANNEL_51.md"
   system_version: "4.0.47"
   channel_id: 51
-  actor_id: 1000
-  last_modified_utc: "20260226"
-  delegation_chain: "1000:10000"
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
   artifact_type: "doctrine"
   purpose: "Doctrine council channel for canonical FLARE protocol governance"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
   mood_rgb: "DAA520"
   traits: ["canonical", "governance", "permanent"]
   tags: ["channel", "doctrine-council", "flare", "governance"]
-  lupo_agent: "kiro"
+  lupo_agent: "codex-ide"
 
 flare.footer:
   outbound_edges:
@@ -80,7 +81,7 @@ Channel 51 serves as the governance hub for FLARE protocol:
 flare.headers:
   channel_id: 51  # Doctrine council channel
   artifact_type: "doctrine"  # All doctrine content
-  delegation_chain: "1000:10000"  # KIRO authority
+  delegation_chain: "1007:10000"  # KIRO authority
   tags: ["doctrine", "governance", "flare"]
 ```
 
@@ -187,3 +188,5 @@ flare.headers:
 ---
 
 *End of FLARE Channel 51 doctrine.*
+
+

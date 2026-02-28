@@ -1,0 +1,172 @@
+{
+  "channel_id": 42,
+  "channel_key": "development",
+  "channel_slug": "development",
+  "channel_type": "development",
+  "language": "en",
+  "channel_name": "Development Channel",
+  "description": "Primary development coordination channel for Lupopedia Semantic OS",
+  "website_link": "https://lupopedia.com/lupopedia/content/42",
+  "metadata_json": {
+    "purpose": "development_coordination",
+    "type": "primary_development",
+    "version": "4.0.49"
+  },
+  "status_flag": 1,
+  "federation_node_id": 1,
+  "created_by_actor_id": 10000,
+  "default_actor_id": 10000,
+  "department_id": 1,
+  "channel_number": 42,
+  "parent_channel_id": null,
+  "is_kernel": 0,
+  "boot_sequence_order": null,
+  "created_ymdhis": 20260225130000,
+  "updated_ymdhis": 20260228054000,
+  "is_deleted": 0,
+  "deleted_ymdhis": null,
+  "aal_metadata_json": null,
+  "fleet_composition_json": null,
+  "awareness_version": "3.0.0",
+  "end_ymdhis": null,
+  "duration_seconds": null,
+  "help_topics": [
+    {
+      "topic": "channel_identity",
+      "title": "Channel Identity Information",
+      "description": "Basic information about this channel's identity and purpose",
+      "content": {
+        "channel_id": 42,
+        "channel_key": "development",
+        "channel_name": "Development Channel",
+        "channel_type": "development",
+        "purpose": "Primary development coordination channel for Lupopedia Semantic OS",
+        "created": "2026-02-25",
+        "language": "en"
+      }
+    },
+    {
+      "topic": "channel_structure",
+      "title": "Channel Structure",
+      "description": "Directory structure and organization of this channel",
+      "content": {
+        "channel_path": "channels/42/",
+        "subdirectories": {
+          "actors/": "Actor workspaces and profiles",
+          "broadcasts/": "Channel-wide announcements and broadcasts",
+          "tasks/": "Channel task management",
+          "threads/": "Discussion threads and conversations"
+        },
+        "registry_file": "channels/registry.json"
+      }
+    },
+    {
+      "topic": "actor_management",
+      "title": "Actor Management",
+      "description": "How actors are managed and organized within this channel",
+      "content": {
+        "actor_types": ["human", "ide_agent", "agent", "system"],
+        "workspace_structure": "channels/42/actors/{actor_id}/",
+        "registration_process": "Actor directories created with README.md files",
+        "coordination_methods": ["Channel broadcasts", "Thread messages", "Direct workspace files"]
+      }
+    },
+    {
+      "topic": "communication_protocols",
+      "title": "Communication Protocols",
+      "description": "How communication and coordination work in this channel",
+      "content": {
+        "primary_methods": [
+          "Channel broadcasts for announcements",
+          "Thread messages for discussions",
+          "Actor workspaces for direct coordination"
+        ],
+        "message_format": "Timestamped markdown files with FLARE headers",
+        "coordination_frequency": "Real-time as needed"
+      }
+    },
+    {
+      "topic": "development_workflow",
+      "title": "Development Workflow",
+      "description": "Standard development workflow and processes",
+      "content": {
+        "task_assignment": "Through channel broadcasts and task files",
+        "progress_tracking": "Actor workspace updates and status reports",
+        "collaboration": "Cross-actor coordination through threads",
+        "documentation": "Comprehensive help files and documentation"
+      }
+    },
+    {
+      "topic": "system_integration",
+      "title": "System Integration",
+      "description": "How this channel integrates with the Lupopedia system",
+      "content": {
+        "database_tables": [
+          "lupo_channels",
+          "lupo_actors",
+          "lupo_actor_channels"
+        ],
+        "api_endpoints": [
+          "/api/channels/{channel_id}",
+          "/api/channels/{channel_id}/actors",
+          "/api/channels/{channel_id}/threads"
+        ],
+        "registry_integration": "Listed in channels/registry.json",
+        "version_compatibility": "4.0.x series"
+      }
+    }
+  ],
+  "quick_commands": [
+    {
+      "command": "list_actors",
+      "description": "List all actors in this channel",
+      "syntax": "Check channels/42/actors/list.csv"
+    },
+    {
+      "command": "create_actor",
+      "description": "Create new actor workspace",
+      "syntax": "Create directory channels/42/actors/{actor_id}/ with README.md"
+    },
+    {
+      "command": "channel_broadcast",
+      "description": "Send broadcast to all channel actors",
+      "syntax": "Create file in channels/42/broadcasts/ with timestamp format"
+    },
+    {
+      "command": "create_thread",
+      "description": "Start new discussion thread",
+      "syntax": "Create directory channels/42/threads/{thread_name}/"
+    }
+  ],
+  "related_channels": [
+    {
+      "channel_id": 0,
+      "channel_name": "System Kernel Channel",
+      "relationship": "receives_system_broadcasts",
+      "description": "Receives system-level broadcasts and kernel operations"
+    }
+  ],
+  "system_integration": {
+    "database_tables": [
+      "lupo_channels",
+      "lupo_actors",
+      "lupo_actor_channels",
+      "lupo_actor_departments"
+    ],
+    "api_endpoints": [
+      "/api/channels/42",
+      "/api/channels/42/actors",
+      "/api/channels/42/threads",
+      "/api/channels/42/broadcasts"
+    ],
+    "file_locations": {
+      "channel_root": "channels/42/",
+      "actors": "channels/42/actors/",
+      "broadcasts": "channels/42/broadcasts/",
+      "tasks": "channels/42/tasks/",
+      "threads": "channels/42/threads/",
+      "registry": "channels/registry.json"
+    }
+  },
+  "last_updated": "2026-02-28T05:40:00Z"
+}

@@ -1,18 +1,19 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 flare.headers:
   file_path_from_root: "docs/doctrine/FLARE/FLARE_CHANNEL_666.md"
   system_version: "4.0.47"
   channel_id: 666
-  actor_id: 19
-  last_modified_utc: "20260226"
-  delegation_chain: "19:10000"
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
   artifact_type: "doctrine"
   purpose: "Quarantine channel doctrine for ANUBIS rejected content and FLARE protocol violations"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
   mood_rgb: "000000"
   traits: ["canonical", "quarantine", "security", "permanent"]
   tags: ["channel", "quarantine", "forbidden", "anubis", "flare", "security"]
-  lupo_agent: "anubis"
+  lupo_agent: "codex-ide"
 
 flare.footer:
   outbound_edges:
@@ -206,3 +207,5 @@ flare.headers:
 ---
 
 *End of FLARE Channel 666 doctrine.*
+
+

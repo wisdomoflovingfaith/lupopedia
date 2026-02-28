@@ -1,0 +1,59 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
+flare.headers:
+  file_path_from_root: "docs/api/channels_admin_endpoints.md"
+  system_version: "4.0.49"
+  channel_id: 1
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
+  artifact_type: "api"
+  purpose: "Proposed channels admin API endpoints for operator, department, and settings management"
+  dialog_message: "Channels admin API module implemented with operator, department, and settings endpoints."
+  mood_rgb: "4169E1"
+  artifact_kind: "api_reference"
+  traits: ["api", "channels", "admin_interface"]
+  tags: ["api", "channels", "admin", "4.0.49"]
+  lupo_agent: "codex-ide"
+
+flare.footer:
+  outbound_edges:
+    - { to: "lupo-includes/modules/module-loader.php", type: "references", weight: 0.8, reason: "API routing" }
+    - { to: "channels/1/assets/js/channels_comm.js", type: "references", weight: 0.7, reason: "JS comm layer" }
+  semantic_tags: ["api", "channels", "admin"]
+  last_verified: "20260227"
+  last_verified_by: "codex-ide"
+---
+
+# Channels Admin API Endpoints (Implemented)
+
+**Status:** Implemented in `lupo-includes/modules/api/channels-admin-api.php` and routed via `lupo-includes/modules/module-loader.php`.
+
+## Base Path
+`/api/channels/admin/`
+
+## Operators
+- **GET** `/api/channels/admin/operators?channel_id=1&limit=25&offset=0`
+- **POST** `/api/channels/admin/operators`
+- **PUT** `/api/channels/admin/operators/{auth_user_id}`
+- **DELETE** `/api/channels/admin/operators/{auth_user_id}`
+
+## Departments
+- **GET** `/api/channels/admin/departments`
+- **POST** `/api/channels/admin/departments`
+- **PUT** `/api/channels/admin/departments/{department_id}`
+- **DELETE** `/api/channels/admin/departments/{department_id}`
+
+## Settings
+- **GET** `/api/channels/admin/settings/{channel_id}`
+- **PUT** `/api/channels/admin/settings/{channel_id}`
+
+## Security
+- Session-based auth via `lupo_sessions`
+- Actor role check in `lupo_actor_channels` or admin role
+- CSRF token required for write operations
+
+## Notes
+- All endpoints must respect `is_deleted = 0` filters by default.
+- Use `updated_ymdhis` for mutation timestamps.
+- No foreign keys, triggers, or stored procedures.

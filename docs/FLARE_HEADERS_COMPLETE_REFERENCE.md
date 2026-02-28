@@ -1,18 +1,19 @@
----
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
 flare.headers:
   file_path_from_root: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md"
   system_version: "4.0.47"
   channel_id: 1
-  actor_id: 1001
-  last_modified_utc: "20260226"
-  delegation_chain: "1001:10000"
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
   artifact_type: "guide"
   purpose: "Complete reference guide for all FLARE header and footer fields including table-specific attributes"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
   mood_rgb: "4B0082"
   traits: ["canonical", "comprehensive", "reference"]
   tags: ["flare", "headers", "footers", "complete_reference", "table_attributes", "api"]
-  lupo_agent: "windsurf"
+  lupo_agent: "codex-ide"
 
 flare.footer:
   view_count: 1250
@@ -46,7 +47,17 @@ FLARE defines three main components:
 - **flare.edges** → File-Level Relationships (graph edges)
 - **flare.footer** → Engagement Snapshot (dynamic metrics)
 
-## 🔥 **Complete flare.headers Field Reference**
+
+## Required Header Prologue
+
+All FLARE headers must start with the exact prologue line below, followed immediately by the YAML delimiter and `flare.headers`.
+
+```text
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
+flare.headers:
+```
+
 
 ### **🎯 Required Fields**
 
@@ -91,6 +102,7 @@ When documenting database tables, include these additional fields that reference
 **For lupo_dialog_messages table:**
 ```yaml
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
 flare.headers:
   # ... required fields ...
   artifact_kind: "table"
@@ -108,6 +120,8 @@ flare.headers:
 
 **For lupo_actors table:**
 ```yaml
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
 flare.headers:
   # ... required fields ...
   artifact_kind: "table"
@@ -365,3 +379,6 @@ Check `docs/toons/` directory for available table schemas:
 **Complete Reference Guide** 🎯
 
 This document serves as the authoritative reference for all FLARE header and footer fields, including specialized table-specific attributes and TOON file references.
+
+
+

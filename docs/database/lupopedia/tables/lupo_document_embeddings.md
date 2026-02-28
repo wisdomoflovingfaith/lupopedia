@@ -1,0 +1,121 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
+flare.headers:
+  file_path_from_root: "docs/database/lupopedia/tables/lupo_document_embeddings.md"
+  system_version: "4.0.49"
+  channel_id: 1
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
+  artifact_type: "table_documentation"
+  purpose: "Vector embedding store for document chunks"
+  dialog_message: "DBDOC batch 1: enriched documentation and optimization notes."
+  mood_rgb: "4B0082"
+  artifact_kind: "table"
+  traits: ["canonical", "database", "curated"]
+  tags: ["database", "table", "lupo_document_embeddings", "vector"]
+  lupo_agent: "codex-ide"
+  lupo_document_embeddings.document_embedding_id: "bigint NOT NULL"
+  lupo_document_embeddings.chunk_id: "bigint NOT NULL"
+  lupo_document_embeddings.embedding_json: "json NOT NULL"
+  lupo_document_embeddings.embedding_model: "varchar(128) NOT NULL"
+  lupo_document_embeddings.embedding_version: "varchar(64)"
+  lupo_document_embeddings.created_ymdhis: "bigint NOT NULL DEFAULT 0"
+  lupo_document_embeddings.updated_ymdhis: "bigint NOT NULL DEFAULT 0"
+  lupo_document_embeddings.is_deleted: "tinyint NOT NULL DEFAULT 0"
+  lupo_document_embeddings.deleted_ymdhis: "bigint DEFAULT 0"
+  table_primary_key: "document_embedding_id"
+  table_engine: "unknown"
+  table_charset: "unknown"
+  table_collation: "unknown"
+  table_indexes: ["lupo_document_embeddings_chunk_id", "lupo_document_embeddings_embedding_model"]
+  table_foreign_keys: []
+
+# FLARE Edge Automation Tip:
+# Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
+# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+
+flare.footer:
+  outbound_edges:
+    - { to: "docs/toons/lupo_document_embeddings.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_document_embeddings" }
+    - { to: "docs/database/lupopedia/tables/lupo_artifact_chunks.md", type: "references", weight: 0.8, reason: "chunk_id references artifact chunks" }
+    - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.7, reason: "embeddings derived from content" }
+    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.7, reason: "FLARE header reference" }
+  inbound_edges: []
+  semantic_tags: ["database", "table", "embeddings", "vector"]
+  version: "4.0.49"
+  last_verified: "20260227"
+  last_verified_by: "codex-ide"
+---
+
+# Table: lupo_document_embeddings
+
+Purpose: Stores vector embeddings per chunk for semantic search and retrieval.
+Type: database_table
+Status: production_ready
+Volume: medium_high
+
+## 1. Overview
+- Key responsibilities: store embeddings for chunk-level retrieval and semantic search.
+- System role: powers semantic query resolution and relevance scoring.
+- Importance: enables AI-driven search and content ranking.
+
+## 2. Schema Reference
+Primary Key: document_embedding_id
+Field Categories: identity, embedding payload, lifecycle, soft delete.
+
+### All Fields
+| Column | Type | Notes |
+|---|---|---|
+| document_embedding_id | bigint NOT NULL | Primary key. |
+| chunk_id | bigint NOT NULL | Links to chunk source. |
+| embedding_json | json NOT NULL | Serialized vector payload. |
+| embedding_model | varchar(128) NOT NULL | Embedding model identifier. |
+| embedding_version | varchar(64) | Model/version tag. |
+| created_ymdhis | bigint NOT NULL DEFAULT 0 | Created timestamp. |
+| updated_ymdhis | bigint NOT NULL DEFAULT 0 | Last update timestamp. |
+| is_deleted | tinyint NOT NULL DEFAULT 0 | Soft delete flag. |
+| deleted_ymdhis | bigint DEFAULT 0 | Soft delete timestamp. |
+
+## 3. Relationships and Dependencies
+- Primary relationships: chunk_id should align with chunk storage table.
+- Referencing tables: search index or semantic services.
+- Integration points: semantic search, embedding refresh pipelines.
+
+## 4. Indexes and Performance
+Primary Indexes:
+- document_embedding_id
+Performance Indexes:
+- lupo_document_embeddings_chunk_id
+- lupo_document_embeddings_embedding_model
+Index Strategy: optimize lookups by chunk and model.
+
+## 5. Usage Patterns
+Common Queries:
+```sql
+SELECT * FROM lupo_document_embeddings WHERE chunk_id = :chunk_id AND is_deleted = 0;
+SELECT * FROM lupo_document_embeddings WHERE embedding_model = :model AND is_deleted = 0;
+SELECT COUNT(*) AS total FROM lupo_document_embeddings WHERE is_deleted = 0;
+UPDATE lupo_document_embeddings SET updated_ymdhis = :ts WHERE document_embedding_id = :id;
+```
+Best Practices: update embeddings in batches and keep model/version consistent.
+Anti-Patterns: store multiple models without indexing or versioning strategy.
+
+## 6. Performance Considerations
+- High-volume operations: batch insert during re-embedding.
+- Optimization tips: add composite index on (chunk_id, embedding_model) if multi-model usage grows.
+- Scaling considerations: split by model or shard by chunk_id ranges.
+
+## 7. Data Integrity
+- Constraints: embedding_json must be valid JSON.
+- Validation rules: enforce model and version values in application logic.
+- Soft delete: required for bulk refreshes.
+
+## 8. Common Issues and Solutions
+- Performance issues: add composite index for chunk + model queries.
+- Data consistency: re-embed on content edits; store updated_ymdhis.
+- Troubleshooting: check for duplicate chunk_id across models.
+
+## 9. Future Enhancements
+- Add embedding_hash for deduplication.
+- Consider storing vector dimensionality for validation.

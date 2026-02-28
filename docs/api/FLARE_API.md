@@ -1,18 +1,19 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 flare.headers:
   file_path_from_root: "docs/api/FLARE_API.md"
   system_version: "4.0.47"
   channel_id: 1
-  actor_id: 1001
-  last_modified_utc: "20260226"
-  delegation_chain: "1001:10000"
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
   artifact_type: "api"
   purpose: "Web API specification for FLARE header retrieval and processing"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
   mood_rgb: "4B0082"
   traits: ["canonical", "api", "external_interface"]
   tags: ["flare", "api", "web", "headers", "external_agents"]
-  lupo_agent: "windsurf"
+  lupo_agent: "codex-ide"
 
 flare.footer:
   outbound_edges:
@@ -33,7 +34,18 @@ flare.footer:
 
 ---
 
-## ðŸ”„ Migration from FLIP API
+## Required Header Prologue
+
+All FLARE headers must start with the exact prologue line below, followed immediately by the YAML delimiter and `flare.headers`.
+
+```text
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
+flare.headers:
+```
+
+---
+## ðŸ„ Migration from FLIP API
 
 The FLARE API maintains backward compatibility with the FLIP API endpoint during migration:
 
@@ -164,7 +176,7 @@ Raw YAML FLARE Header block (no JSON wrapper). If `include_footer=true`, both he
         "valid": false,
         "errors": [
             "Missing required field: delegation_chain",
-            "Invalid actor_id: 9999 (not found in registry)"
+            "Invalid actor_id: 1007 (not found in registry)"
         ],
         "warnings": [
             "Using legacy flip.headers format",
@@ -281,7 +293,7 @@ flare.headers:
   # ... other required fields
 
 # Database Mapping Layer (Optional)
-X-LUPO-actors.actor_id: 2038
+X-LUPO-actors.actor_id: 1007
 X-LUPO-channels.channel_id: 42
 X-LUPO-dialog_messages.dialog_message_id: 2000
 ---
@@ -298,7 +310,7 @@ X-LUPO-dialog_messages.dialog_message_id: 2000
 ### Valid Examples
 
 ```
-X-LUPO-actors.actor_id: 2038
+X-LUPO-actors.actor_id: 1007
 X-LUPO-channels.channel_id: 42
 X-LUPO-dialog_messages.dialog_message_id: 2000
 X-LUPO-registry.registry_id: 9002031
@@ -311,7 +323,7 @@ X-LUPO-registry.registry_id: 9002031
 X-LUPO-actorid: 2038
 
 # Wrong prefix - not X-LUPO-
-X-FLARE-actors.actor_id: 2038
+X-FLARE-actors.actor_id: 1007
 
 # Overrides semantic field - not allowed
 X-LUPO-file_path: docs/example.md
@@ -342,8 +354,8 @@ Common validation errors and their fixes:
 
 | Error | Fix |
 |-------|-----|
-| "Missing required field: delegation_chain" | Add `delegation_chain: "actor_id:supervisor_id"` |
-| "Invalid actor_id: 9999" | Use valid actor ID from `actors/registry.json` |
+| "Missing required field: delegation_chain" | Add `delegation_chain: "1007:10000"` |
+| "Invalid actor_id: 1007" | Use valid actor ID from `actors/registry.json` |
 | "Invalid artifact_type: invalid" | Use one of: doctrine, guide, directive, broadcast, status, profile |
 | "Edge weight out of range: 1.5" | Use weight between 0.5 and 1.0 |
 
@@ -359,3 +371,7 @@ Common validation errors and their fixes:
 ---
 
 *End of FLARE API specification.*
+
+
+
+

@@ -1,7 +1,8 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
-wolfie.headers:
+flare.headers: 
+  system_version: "4.0.48"
   file_path_from_root: "prompts/windsurf/20260224_update_how_to_use_lupopedia.md"
-  system_version: "4.1.0"
   channel_id: 42
   mood_rgb: "00AACC"
   purpose: "Windsurf task prompt: Merge Lilith (DeepSeek + Grok) reviews into a v4.1 HOW_TO_USE_LUPOPEDIA.md with correct architecture, doctrine alignment, installer semantics, and FLIP v3-ready metadata"

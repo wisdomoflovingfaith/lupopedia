@@ -1,3 +1,9 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+---
+flare.headers: 
+  system_version: "4.0.48"
+
+---
 # Actor Workspace: Cursor IDE (ID: 1002)
 
 **Channel:** 42 (Development)  

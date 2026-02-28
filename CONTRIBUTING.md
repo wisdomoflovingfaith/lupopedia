@@ -1,22 +1,23 @@
 ---
 wolfie.headers: {
   file_path_from_root: "CONTRIBUTING.md",
-  system_version: "4.0.44",
+  system_version: "4.0.49",
   channel_id: 1,
-  actor_id: 1002,
+  actor_id: 1007,
   created_ymdhis: 20260224172000,
-  updated_ymdhis: 20260224172000,
+  updated_ymdhis: 20260227120000,
   message_type: "documentation",
   visibility: "public",
   priority: "high",
-  purpose: "Multi-agent contribution guidelines and development workflow"
+  purpose: "Multi-agent contribution guidelines and development workflow with version policy compliance"
 }
 flip.footer: {
   outbound_edges: [
     { to: "AGENTS.md", type: "references", weight: 1.0 },
-    { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.9 }
+    { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.9 },
+    { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0, reason: "Critical version policy compliance requirements" }
   ],
-  semantic_tags: ["contributing", "multi_agent", "development_workflow", "git_workflow"]
+  semantic_tags: ["contributing", "multi_agent", "development_workflow", "git_workflow", "version_policy"]
 }
 ---
 
@@ -138,13 +139,39 @@ Agents must never share identities.
 🏁 8. Final Authority
 JetBrains (WOLFIE) is the canonical steward of the repository.
 
-If an agent’s behavior becomes destructive, confusing, or misaligned with doctrine, WOLFIE may:
+If an agent's behavior becomes destructive, confusing, or misaligned with doctrine, WOLFIE may:
 
 revert commits
 
 rewrite history
 
 remove access
+
+🚨 9. Critical Version Policy Compliance
+
+**MANDATORY**: All contributors must comply with the [Version Policy Doctrine](docs/doctrine/VERSION_POLICY_DOCTRINE.md).
+
+**CRITICAL BLOCKER**: Lupopedia 4.0.x CANNOT advance to 4.1.0 until auto-installers accept 4.0.x as a Crafty Syntax 3.7.5 replacement.
+
+**Prohibited Activities**:
+- ❌ NO 4.1.0 development or planning
+- ❌ NO breaking changes to 4.0.x compatibility
+- ❌ NO version bumping beyond 4.0.x
+- ❌ NO 4.1.0-specific documentation
+
+**Required Compliance**:
+- ✅ Review version policy before any development
+- ✅ Verify auto-installer status before version changes
+- ✅ Report policy violations immediately
+- ✅ Focus on 4.0.x stabilization and auto-installer integration
+
+**Violation Consequences**:
+- Immediate commit rejection
+- Potential access revocation
+- Project risk escalation
+- Team accountability measures
+
+All agents must acknowledge and comply with this critical policy to maintain project integrity and successful auto-installer adoption.
 
 update this document
 

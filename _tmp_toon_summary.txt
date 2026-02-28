@@ -1,0 +1,17 @@
+
+table                    file                               pk                    has_created has_updated has_is_deleted index_count fields_count
+-----                    ----                               --                    ----------- ----------- -------------- ----------- ------------
+lupo_agent_heartbeats    lupo_agent_heartbeats.toon.json    heartbeat_id                 True       False           True           4            7
+lupo_agent_tool_calls    lupo_agent_tool_calls.toon.json    agent_tool_call_id           True       False          False           8           22
+lupo_agents              lupo_agents.toon.json              agent_id                     True        True           True           5           36
+lupo_analytics_visits    lupo_analytics_visits.toon.json    analytics_visit_id           True        True          False          14           33
+lupo_api_tokens          lupo_api_tokens.toon.json          api_token_id                 True       False          False           6           13
+lupo_auth_users          lupo_auth_users.toon.json          auth_user_id                 True        True           True           7           14
+lupo_collections         lupo_collections.toon.json         collection_id                True        True           True           9           16
+lupo_dialog_threads      lupo_dialog_threads.toon.json      dialog_thread_id             True        True           True          10           22
+lupo_document_embeddings lupo_document_embeddings.toon.json document_embedding_id        True       False           True           2            8
+lupo_federation_nodes    lupo_federation_nodes.toon.json    federation_node_id           True        True           True           4           19
+lupo_search_index        lupo_search_index.toon.json        search_index_id              True        True           True           6           13
+
+
+

@@ -1,156 +1,126 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
 flare.headers:
   file_path_from_root: "docs/database/lupopedia/tables/lupo_dialog_messages.md"
-  system_version: "4.0.48"
+  system_version: "4.0.49"
   channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260226"
-  delegation_chain: "1003:10000"
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
   artifact_type: "table_documentation"
-  purpose: "Complete documentation for lupo_dialog_messages table - individual conversation messages"
-  mood_rgb: "4169E1"
+  purpose: "Dialog message storage and delivery"
+  dialog_message: "DBDOC batch 2: enriched documentation and optimization notes."
+  mood_rgb: "4B0082"
   artifact_kind: "table"
-  traits: ["canonical", "dialog_system", "messaging"]
-  tags: ["database", "dialog", "messages", "communication"]
-  lupo_agent: "antigravity"
-  # Table-specific metadata from TOON
-  lupo_dialog_messages.dialog_message_id: "BIGINT PRIMARY KEY unique identifier"
-  lupo_dialog_messages.message_id: "BIGINT legacy or external reference identifier"
-  lupo_dialog_messages.dialog_thread_id: "BIGINT references lupo_dialog_threads.dialog_thread_id"
-  lupo_dialog_messages.channel_id: "BIGINT references lupo_channels.channel_id"
-  lupo_dialog_messages.from_actor_id: "BIGINT references lupo_actors.actor_id (Sender)"
-  lupo_dialog_messages.to_actor_id: "BIGINT references lupo_actors.actor_id (Recipient)"
-  lupo_dialog_messages.read_by_actor_id: "BIGINT references actor ID who last read this"
-  lupo_dialog_messages.read_by_actor_utc: "BIGINT YYYYMMDDHHIISS of read event"
-  lupo_dialog_messages.message_text: "VARCHAR(1000) primary message snippet or header"
-  lupo_dialog_messages.message_type: "VARCHAR(64) type of message (text, broadcast, task, doctrine)"
-  lupo_dialog_messages.metadata_json: "JSON extensible metadata"
-  lupo_dialog_messages.mood_rgb: "CHAR(6) hex color code representing actor mood during message"
-  lupo_dialog_messages.mood_framework: "VARCHAR(32) emotional framework used"
-  lupo_dialog_messages.created_ymdhis: "BIGINT YYYYMMDDHHIISS UTC creation"
-  lupo_dialog_messages.updated_ymdhis: "BIGINT YYYYMMDDHHIISS UTC last update"
-  lupo_dialog_messages.is_deleted: "TINYINT soft delete"
-  lupo_dialog_messages.deleted_ymdhis: "BIGINT YYYYMMDDHHIISS UTC deletion"
-  lupo_dialog_messages.message_body: "MEDIUMTEXT the full content of the message"
+  traits: ["canonical", "database", "curated"]
+  tags: ["database", "table", "lupo_dialog_messages"]
+  lupo_agent: "codex-ide"
+  lupo_dialog_messages.dialog_message_id: "bigint NOT NULL"
+  lupo_dialog_messages.dialog_thread_id: "bigint NOT NULL"
+  lupo_dialog_messages.channel_id: "bigint NOT NULL"
+  lupo_dialog_messages.from_actor_id: "bigint NOT NULL"
+  lupo_dialog_messages.to_actor_id: "bigint"
+  lupo_dialog_messages.message_type: "varchar(50) NOT NULL DEFAULT 'text'"
+  lupo_dialog_messages.message_text: "text"
+  lupo_dialog_messages.metadata_json: "text"
+  lupo_dialog_messages.created_ymdhis: "bigint NOT NULL DEFAULT 0"
+  lupo_dialog_messages.updated_ymdhis: "bigint NOT NULL DEFAULT 0"
+  lupo_dialog_messages.is_deleted: "tinyint NOT NULL DEFAULT 0"
+  lupo_dialog_messages.deleted_ymdhis: "bigint DEFAULT 0"
   table_primary_key: "dialog_message_id"
-  table_engine: "InnoDB"
-  table_charset: "utf8mb4"
-  table_collation: "utf8mb4_unicode_ci"
-  table_indexes: ["PRIMARY", "lupo_dialog_doctrine_idx_channel", "lupo_dialog_doctrine_idx_created", "lupo_dialog_doctrine_idx_deleted", "lupo_dialog_doctrine_idx_dialog_thread_id", "lupo_dialog_doctrine_idx_message_type", "lupo_dialog_doctrine_idx_read_by_actor", "lupo_dialog_doctrine_idx_read_utc", "lupo_dialog_doctrine_idx_to_actor_id", "lupo_dialog_doctrine_idx_updated"]
-  table_foreign_keys: ["dialog_thread_id", "channel_id", "from_actor_id", "to_actor_id", "read_by_actor_id"]
+  table_engine: "unknown"
+  table_charset: "unknown"
+  table_collation: "unknown"
+  table_indexes: ["idx_channel_id", "idx_dialog_thread_id", "idx_from_actor_id", "idx_to_actor_id", "idx_created_ymdhis"]
+  table_foreign_keys: []
 
-flare.edges:
+# FLARE Edge Automation Tip:
+# Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
+# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+
+flare.footer:
   outbound_edges:
-- { to: "docs/toons/lupo_dialog_messages.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition" }
-    - { to: "docs/database/lupopedia/tables/lupo_dialog_threads.md", type: "references", weight: 1.0, reason: "Messages belong to threads" }
-    - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9, reason: "Message senders and recipients" }
-    - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.8, reason: "Broad channel context" }
-  semantic_tags: ["messaging", "dialog", "collaboration", "mood_tracking"]
-  version: "4.0.48"
-  last_verified: "20260226"
-  last_verified_by: "antigravity"
+    - { to: "docs/toons/lupo_dialog_messages.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_dialog_messages" }
+    - { to: "docs/database/lupopedia/tables/lupo_dialog_threads.md", type: "references", weight: 0.8, reason: "thread linkage" }
+    - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.7, reason: "channel context" }
+  inbound_edges: []
+  semantic_tags: ["database", "table", "dialog"]
+  version: "4.0.49"
+  last_verified: "20260227"
+  last_verified_by: "codex-ide"
 ---
 
-# 💬 Table: lupo_dialog_messages
+# Table: lupo_dialog_messages
 
-**Purpose:** Individual conversation messages within the Lupopedia dialog system  
-**Type:** Communication System Table  
-**Status:** ✅ Production Ready  
-**Volume:** High (primary communication data)
+Purpose: Stores messages for dialog threads and channel conversations.
+Type: database_table
+Status: production_ready
+Volume: high
 
----
+## 1. Overview
+- Key responsibilities: message storage and retrieval.
+- System role: primary chat payload store.
+- Importance: core of live help and thread history.
 
-## 🎯 **Overview**
+## 2. Schema Reference
+Primary Key: dialog_message_id
+Field Categories: identity, routing, payload, lifecycle.
 
-The `lupo_dialog_messages` table stores every atomic communication event in the system, whether between AI agents, human users, or system broadcasts. It replaces the legacy `lupo_dialog_doctrine` table, adopting a more generic "message" nomenclature. 
+### All Fields
+| Column | Type | Notes |
+|---|---|---|
+| dialog_message_id | bigint NOT NULL | Primary key. |
+| dialog_thread_id | bigint NOT NULL | Thread reference. |
+| channel_id | bigint NOT NULL | Channel reference. |
+| from_actor_id | bigint NOT NULL | Sender. |
+| to_actor_id | bigint | Recipient. |
+| message_type | varchar(50) NOT NULL DEFAULT 'text' | Message type. |
+| message_text | text | Message body. |
+| metadata_json | text | Metadata JSON. |
+| created_ymdhis | bigint NOT NULL DEFAULT 0 | Created timestamp. |
+| updated_ymdhis | bigint NOT NULL DEFAULT 0 | Updated timestamp. |
+| is_deleted | tinyint NOT NULL DEFAULT 0 | Soft delete flag. |
+| deleted_ymdhis | bigint DEFAULT 0 | Soft delete timestamp. |
 
-### **Key Responsibilities**
-- **Communication Log:** Persistent storage of all dialog.
-- **Identity Attribution:** Tracking who sent the message to whom.
-- **Read State Tracking:** Managing read receipts via `read_by_actor_id`.
-- **Emotional Geometry:** Capturing actor mood at the time of messaging (`mood_rgb`).
-- **Data Scaling:** Using `message_text` for fast previews and `message_body` for large content.
+## 3. Relationships and Dependencies
+- Primary relationships: dialog_thread_id, channel_id, actor ids.
+- Referencing tables: channel views and search index.
+- Integration points: chat UI, moderation, exports.
 
----
+## 4. Indexes and Performance
+Primary Indexes:
+- dialog_message_id
+Performance Indexes:
+- idx_dialog_thread_id
+- idx_channel_id
+- idx_created_ymdhis
+Index Strategy: optimize thread + time retrieval.
 
-## 🗃️ **Schema Reference**
-
-### **Primary Key**
-- **`dialog_message_id`** (BIGINT) - Unique identifier for the message.
-
-### **Core Identity & Routing**
-| Field | Type | Reference | Description |
-|-------|------|-----------|-------------|
-| `dialog_thread_id` | BIGINT | `lupo_dialog_threads` | Parent thread |
-| `channel_id` | BIGINT | `lupo_channels` | Parent channel |
-| `from_actor_id` | BIGINT | `lupo_actors` | Sender ID |
-| `to_actor_id` | BIGINT | `lupo_actors` | Recipient ID |
-
-### **Content Fields**
-| Field | Type | Description |
-|-------|------|-------------|
-| `message_text` | VARCHAR(1000) | Primary text (used for previews/indexing) |
-| `message_body` | MEDIUMTEXT | Full message content (no character limit) |
-| `message_type` | VARCHAR(64) | e.g., 'text', 'task', 'broadcast', 'doctrine' |
-
-### **Metadata & Mood**
-| Field | Type | Description |
-|-------|------|-------------|
-| `mood_rgb` | CHAR(6) | Actor mood hex code |
-| `mood_framework` | VARCHAR(32) | Framework (default: 'western_analytical')|
-| `metadata_json` | JSON | Extended properties (e.g., UI hints) |
-
-### **Timestamp Fields**
-| Field | Type | Format | Description |
-|-------|------|--------|-------------|
-| `created_ymdhis` | BIGINT | YYYYMMDDHHIISS UTC | Creation time |
-| `updated_ymdhis` | BIGINT | YYYYMMDDHHIISS UTC | Last update |
-| `read_by_actor_utc`| BIGINT | YYYYMMDDHHIISS UTC | Time of first read |
-
----
-
-## 📊 **Indexes & Performance**
-
-### **Primary Indexes**
-- **PRIMARY:** `dialog_message_id`
-- **Thread:** `lupo_dialog_doctrine_idx_dialog_thread_id` (Crucial for conversation view)
-- **Recipient:** `lupo_dialog_doctrine_idx_to_actor_id` (Checking my inbox)
-
-### **Performance Considerations**
-1. **Index Names:** Current indexes are still prefixed with `lupo_dialog_doctrine_`. Future migrations should rename these to `lupo_dialog_messages_`.
-2. **Body Storage:** `message_body` is only fetched when viewing a single message or full thread to save bandwidth.
-
----
-
-## 🚀 **Usage Patterns**
-
-### **Common Queries**
-
-#### **Fetch Thread History**
+## 5. Usage Patterns
+Common Queries:
 ```sql
-SELECT from_actor_id, message_text, created_ymdhis 
-FROM lupo_dialog_messages 
-WHERE dialog_thread_id = :tid AND is_deleted = 0
-ORDER BY created_ymdhis ASC;
+SELECT * FROM lupo_dialog_messages WHERE dialog_thread_id = :thread_id AND is_deleted = 0 ORDER BY created_ymdhis ASC LIMIT 200;
+SELECT * FROM lupo_dialog_messages WHERE channel_id = :channel_id AND created_ymdhis > :since ORDER BY created_ymdhis ASC;
+UPDATE lupo_dialog_messages SET updated_ymdhis = :ts WHERE dialog_message_id = :id;
 ```
+Best Practices: use keyset pagination on created_ymdhis for large threads.
+Anti-Patterns: OFFSET pagination on large datasets.
 
-#### **Mark Thread as Read**
-```sql
-UPDATE lupo_dialog_messages 
-SET read_by_actor_id = :aid, 
-    read_by_actor_utc = :now_ymdhis
-WHERE dialog_thread_id = :tid 
-  AND read_by_actor_id = 0;
-```
+## 6. Performance Considerations
+- High-volume operations: continuous inserts in active chats.
+- Optimization tips: add composite index on (dialog_thread_id, created_ymdhis).
+- Scaling considerations: archive old messages using is_deleted.
 
----
+## 7. Data Integrity
+- Constraints: thread_id and channel_id required.
+- Validation rules: enforce message_type values.
+- Soft delete: archive and retain for audit.
 
-## 🔍 **FLARE Protocol Integration**
+## 8. Common Issues and Solutions
+- Slow thread loads: add composite index and use keyset pagination.
+- Message drift: ensure created_ymdhis monotonic.
+- Duplicate sends: enforce idempotency at application layer.
 
-Individual records in this table correspond to `.md` files in the `channels/[channel_id]/threads/[thread_name]/` directory.
-- `from_actor_id` and `to_actor_id` are included in the `YYYYMMDDHHMMSS_[from]_[to]_[slug].md` filename.
-- `message_body` becomes the markdown content of the file.
-- `metadata_json` provides fields for `flare.headers`.
-
----
-
+## 9. Future Enhancements
+- Add message_hash for deduplication.
+- Add indexed summary fields for moderation.

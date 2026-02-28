@@ -1,18 +1,19 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 flare.headers:
   file_path_from_root: "docs/doctrine/FLARE/FLARE_CHANNEL_42.md"
   system_version: "4.0.47"
   channel_id: 42
-  actor_id: 1001
-  last_modified_utc: "20260226"
-  delegation_chain: "1001:10000"
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
   artifact_type: "doctrine"
   purpose: "Development channel doctrine for FLARE protocol development and ANUBIS operations"
+  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
   mood_rgb: "A0D6B4"
   traits: ["canonical", "development", "permanent"]
   tags: ["channel", "lupopedia-development", "anubis", "flare", "development"]
-  lupo_agent: "windsurf"
+  lupo_agent: "codex-ide"
 
 flare.footer:
   outbound_edges:
@@ -86,7 +87,7 @@ ANUBIS resolves orphaned dialog messages and adopts them into channel 42 when ap
 flare.headers:
   channel_id: 42  # Development channel
   artifact_type: "guide"  # Most development content
-  delegation_chain: "1001:10000"  # Windsurf authority
+  delegation_chain: "1007:10000"  # Windsurf authority
   tags: ["development", "flare", "testing"]
 ```
 
@@ -183,3 +184,5 @@ Channel 42 coordinates the migration process:
 ---
 
 *End of FLARE Channel 42 doctrine.*
+
+

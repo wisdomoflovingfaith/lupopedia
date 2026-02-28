@@ -98,6 +98,12 @@
       "dir": "actors/1006"
     },
     {
+      "id": 1007,
+      "type": "agent",
+      "slug": "codex-ide",
+      "dir": "actors/1007"
+    },
+    {
       "id": 10000,
       "type": "human",
       "slug": "root-captain-10000",

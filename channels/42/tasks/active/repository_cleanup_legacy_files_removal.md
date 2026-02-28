@@ -2,7 +2,7 @@
 
 **Task ID:** CLEANUP-2026-02-27-001  
 **Channel:** 42 (FLARE Protocol Development)  
-**Assigned:** Windsurf (1002)  
+**Assigned:** JetBrains (1007)  
 **Priority:** High  
 **Status**: 📋 Ready for Implementation  
 **Created:** 2026-02-27  

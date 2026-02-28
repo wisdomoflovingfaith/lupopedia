@@ -1,0 +1,3 @@
+is_deleted,history_id,created_ymdhis,actor_id,action_type,action_description,metadata_json,updated_ymdhis,deleted_ymdhis
+0,1,20260228052200,0,actor_identity_update,Updated actor 0 from KIRO IDE to System Agent with corrected capabilities and coordination roles,"{""previous_name"":""KIRO IDE"",""new_name"":""System Agent"",""previous_type"":""ide_agent"",""new_type"":""system""}",20260228052200,
+0,2,20260228052500,0,help_file_created,Created comprehensive HELP.json file for actor 0 with identity, capabilities, workspace, communication, and system integration documentation,"{""file_path"":""channels/42/actors/0/HELP.json"",""topics"":[""actor_identity"",""capabilities"",""workspace"",""communication"",""system_version""]}",20260228052500,

@@ -1,113 +1,130 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
-wolfie.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/lupo_auth_users.md",
-  system_version: "4.0.48",
-  channel_id: 1,
-  actor_id: 1003,
-  created_ymdhis: 20260227000000,
-  updated_ymdhis: 20260227000000,
-  message_type: "table_documentation",
-  visibility: "public",
-  priority: "high",
-  mood_rgb: "4B0082",
-  artifact_kind: "table",
-  traits: ["canonical", "authentication", "credential_management"],
-  tags: ["database", "auth", "users", "google_auth", "security"]
-}
-flip.footer: {
-  outbound_edges: [
-    { to: "docs/toons/lupo_auth_users.toon.json", type: "schema_reference", weight: 1.0 },
-    { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9 }
-  ],
-  semantic_tags: ["identity_provider", "auth_credentials", "user_display_name"]
-}
----
+flare.headers:
+  file_path_from_root: "docs/database/lupopedia/tables/lupo_auth_users.md"
+  system_version: "4.0.49"
+  channel_id: 1
+  actor_id: 1007
+  last_modified_utc: "20260227"
+  delegation_chain: "1007:10000"
+  artifact_type: "table_documentation"
+  purpose: "Authentication accounts for human operators"
+  dialog_message: "DBDOC batch 2: enriched documentation and optimization notes."
+  mood_rgb: "4B0082"
+  artifact_kind: "table"
+  traits: ["canonical", "database", "curated"]
+  tags: ["database", "table", "lupo_auth_users"]
+  lupo_agent: "codex-ide"
+  lupo_auth_users.auth_user_id: "bigint NOT NULL"
+  lupo_auth_users.username: "varchar(255) NOT NULL"
+  lupo_auth_users.display_name: "varchar(42) NOT NULL"
+  lupo_auth_users.email: "varchar(100)"
+  lupo_auth_users.password_hash: "varchar(255)"
+  lupo_auth_users.auth_provider: "varchar(50)"
+  lupo_auth_users.provider_id: "varchar(255)"
+  lupo_auth_users.profile_image_url: "varchar(2000)"
+  lupo_auth_users.last_login_ymdhis: "bigint"
+  lupo_auth_users.created_ymdhis: "bigint NOT NULL DEFAULT 0"
+  lupo_auth_users.updated_ymdhis: "bigint NOT NULL"
+  lupo_auth_users.is_active: "tinyint NOT NULL DEFAULT 1"
+  lupo_auth_users.is_deleted: "tinyint NOT NULL DEFAULT 0"
+  lupo_auth_users.deleted_ymdhis: "bigint DEFAULT 0"
+  table_primary_key: "auth_user_id"
+  table_engine: "unknown"
+  table_charset: "unknown"
+  table_collation: "unknown"
+  table_indexes: ["lupo_auth_users_idx_created_ymdhis", "lupo_auth_users_idx_email", "lupo_auth_users_idx_is_active", "lupo_auth_users_idx_is_deleted", "lupo_auth_users_idx_updated_ymdhis", "lupo_auth_users_unique_provider_user", "lupo_auth_users_unique_username"]
+  table_foreign_keys: []
 
-# 👤 Table: lupo_auth_users
+# FLARE Edge Automation Tip:
+# Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
+# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 
-**Purpose:** Authentication, credentials, and identity provider mapping for human actors.  
-**Type:** Security & Credential Table  
-**Status:** ✅ Production Ready  
-**Volume:** Medium (one record per human user)
-
----
-
-## 🎯 **Overview**
-
-The `lupo_auth_users` table is the secure credential layer of the Lupopedia identity system. While `lupo_actors` handles the person/entity, this table handles the *login*. It supports local passwords as well as external identity providers (Google, OAuth).
-
-### **Key Responsibilities**
-- **Credential Storage:** Stores password hashes and provider-specific IDs.
-- **Provider Mapping:** Links external identities (e.g., Google account) to internal Lupopedia actors.
-- **Identity Synthesis:** Seeds the human-readable profile data (email, display name) for human actors.
-- **IP Tracking (Login):** Records the IP address of the most recent successful login within the `last_login_ymdhis` context.
-
----
-
-## 🗃️ **Schema Reference**
-
-### **Primary Key**
-- **`auth_user_id`** (BIGINT) - Must match the `actor_id` in `lupo_actors`.
-
-### **Core Identity Fields**
-| Field | Type | Description | Notes |
-|-------|------|-------------|-------|
-| `username` | VARCHAR(255) | Unique login name | |
-| `display_name` | VARCHAR(42) | Casual name displayed in UI | |
-| `email` | VARCHAR(100) | Primary contact email | |
-| `profile_image_url` | VARCHAR(2000) | External avatar link | |
-
-### **Authentication Fields**
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `password_hash` | VARCHAR(255) | NULL | Encrypted password |
-| `auth_provider` | VARCHAR(50) | 'local' | e.g., 'google', 'github' |
-| `provider_id` | VARCHAR(255) | NULL | Subject ID from provider |
-| `last_login_ymdhis` | BIGINT | NULL | YYYYMMDDHHIISS of last sign-in |
-
+flare.footer:
+  outbound_edges:
+    - { to: "docs/toons/lupo_auth_users.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_auth_users" }
+    - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.7, reason: "actor linkage" }
+    - { to: "docs/database/lupopedia/tables/lupo_sessions.md", type: "references", weight: 0.7, reason: "sessions" }
+  inbound_edges: []
+  semantic_tags: ["database", "table", "auth"]
+  version: "4.0.49"
+  last_verified: "20260227"
+  last_verified_by: "codex-ide"
 ---
 
-## 🔗 **Relationships & Dependencies**
+# Table: lupo_auth_users
 
-### **Primary Relationships**
-- **Unified Identity:** `auth_user_id` → `lupo_actors.actor_id` (1:1 relationship for humans).
-- **Sessions:** Authenticated sessions in `lupo_sessions` reference this ID.
+Purpose: Stores human authentication accounts for operators and admins.
+Type: database_table
+Status: production_ready
+Volume: low
 
----
+## 1. Overview
+- Key responsibilities: account identity, provider metadata, login timestamps.
+- System role: authentication backing store for sessions.
+- Importance: core security boundary for admin access.
 
-## 🚀 **Usage Patterns**
+## 2. Schema Reference
+Primary Key: auth_user_id
+Field Categories: identity, provider, security, lifecycle.
 
-### **Google Auth Integration**
-Seeding/Identifying a user via Google login.
+### All Fields
+| Column | Type | Notes |
+|---|---|---|
+| auth_user_id | bigint NOT NULL | Primary key. |
+| username | varchar(255) NOT NULL | Username. |
+| display_name | varchar(42) NOT NULL | Display name. |
+| email | varchar(100) | Email address. |
+| password_hash | varchar(255) | Password hash. |
+| auth_provider | varchar(50) | Provider name. |
+| provider_id | varchar(255) | Provider user id. |
+| profile_image_url | varchar(2000) | Profile image. |
+| last_login_ymdhis | bigint | Last login timestamp. |
+| created_ymdhis | bigint NOT NULL DEFAULT 0 | Created timestamp. |
+| updated_ymdhis | bigint NOT NULL | Updated timestamp. |
+| is_active | tinyint NOT NULL DEFAULT 1 | Active flag. |
+| is_deleted | tinyint NOT NULL DEFAULT 0 | Soft delete flag. |
+| deleted_ymdhis | bigint DEFAULT 0 | Soft delete timestamp. |
 
+## 3. Relationships and Dependencies
+- Primary relationships: actor mapping and sessions.
+- Referencing tables: lupo_sessions, admin tooling.
+- Integration points: login, password reset, OAuth.
+
+## 4. Indexes and Performance
+Primary Indexes:
+- auth_user_id
+Performance Indexes:
+- lupo_auth_users_unique_username
+- lupo_auth_users_idx_email
+- lupo_auth_users_unique_provider_user
+Index Strategy: optimize lookup by username/email/provider.
+
+## 5. Usage Patterns
+Common Queries:
 ```sql
-SELECT auth_user_id, display_name 
-FROM lupo_auth_users 
-WHERE auth_provider = 'google' 
-  AND provider_id = :google_sub 
-  AND is_deleted = 0;
+SELECT * FROM lupo_auth_users WHERE username = :username AND is_deleted = 0 LIMIT 1;
+SELECT * FROM lupo_auth_users WHERE email = :email AND is_deleted = 0 LIMIT 1;
+UPDATE lupo_auth_users SET last_login_ymdhis = :ts WHERE auth_user_id = :id;
 ```
+Best Practices: always filter by is_deleted and is_active.
+Anti-Patterns: storing plaintext passwords or email in logs.
 
-### **Root Admin Identification**
-Retrieving the root captain's contact info.
+## 6. Performance Considerations
+- High-volume operations: low.
+- Optimization tips: add composite index on (email, is_active) for auth lookup filtering.
+- Scaling considerations: cache auth_user_id per session.
 
-```sql
-SELECT email, display_name 
-FROM lupo_auth_users 
-WHERE auth_user_id = 10000;
-```
+## 7. Data Integrity
+- Constraints: username required and unique.
+- Validation rules: enforce provider_id uniqueness per provider.
+- Soft delete: keep audit trail of deleted_ymdhis.
 
----
+## 8. Common Issues and Solutions
+- Login failures: verify is_active and is_deleted flags.
+- Duplicate identities: rely on unique indexes.
+- Provider drift: update auth_provider mapping carefully.
 
-## 🛡️ **Security & Privacy**
-
-### **IP Address Tracking**
-- **Anomalous Login Detection**: The system compares the current login IP against the subnet of previous successful logins found in `lupo_actor_events` (matched by `session_id`).
-- **Anonymization**: Passwords are never stored in plain text. Provider IDs are treated as sensitive PII.
-
-### **Data Sovereignty**
-- Human actors can request a "Right to be Forgotten", which triggers soft-deletion in this table and anonymization of the linked `lupo_actors` record.
-
----
-
-*This documentation is part of the v4.0.48 Security & Identity framework.*
+## 9. Future Enhancements
+- Add password_updated_ymdhis for rotation policies.
+- Add locked_until_ymdhis for lockout workflows.
