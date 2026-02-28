@@ -1,34 +1,4 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
----
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  file_path_from_root: ".\docs\plans\file_opt_4.1.0.md"
-  file_hash: "dda460673d49e6dac657e170e9f8a5d14f237414f4dc5d4c11605e93ebda8c76"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
-
-flare.edges:
-  outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
-
-flare.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
----
-
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
 flare.headers:
@@ -56,9 +26,9 @@ flare.footer:
 
 # File Count Optimization Plan for Lupopedia 4.1.0
 
-**Generated**: 2026-02-28T13:13:31Z  
+**Generated**: 2026-02-28T16:28:12Z  
 **Target Version**: 4.1.0  
-**Current File Count**: 10553 files  
+**Current File Count**: 10585 files  
 **Timeline**: 2-3 weeks  
 
 ## Goals
@@ -77,7 +47,7 @@ flare.footer:
 - **database\csv_data**: 189 files
 - **docs\channels\doctrine**: 175 files
 - **legacy\craftysyntax\images**: 151 files
-- **.**: 148 files
+- **.**: 149 files
 - **legacy\craftysyntax**: 131 files
 - **uploads\channels\2026\01**: 129 files
 
@@ -110,6 +80,6 @@ flare.footer:
 
 ## Success Metrics
 
-- File count reduced by 1582-2110 files
+- File count reduced by 1587-2117 files
 - No broken internal links
 - Improved repository scan performance
