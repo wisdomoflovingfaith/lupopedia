@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "database\csv_data\README.md"
+  file_hash: "bcb73c9070fac40f43f99b5f5528ea6d1d3076ee001815dfe6c9ccd6949e9968"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Database Schema CSV Reference"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["database", "csv_data", "readmemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Database Schema CSV Reference
 
 This directory contains CSV representations of database tables for use with AI coding assistants. These files serve as a reliable reference for the database schema when direct database access is not available or practical.

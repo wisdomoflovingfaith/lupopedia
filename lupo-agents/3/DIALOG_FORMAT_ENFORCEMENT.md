@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "lupo-agents\3\DIALOG_FORMAT_ENFORCEMENT.md"
+  file_hash: "0193bf6fc72fdd9f7f1d813101c3f1db03a3ceabd4941a01a0b73273508d9172"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for DIALOG_FORMAT_ENFORCEMENT.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["lupo-agents", "3", "dialog_format_enforcementmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 3.0.15

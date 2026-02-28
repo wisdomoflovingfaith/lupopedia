@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\architecture\WOLFIE_TEMPORAL_FRAME_COMPATIBILITY_v0_5.md"
+  file_hash: "22471ec9b0591bc4c4cef0f76e66118fa01eda7c3a752f909833ac90bac2ef26"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "WOLFIE Temporal Frame Compatibility Model v0.5"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "architecture", "wolfie_temporal_frame_compatibility_v0_5md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # WOLFIE Temporal Frame Compatibility Model v0.5
 **Supersedes All Prior Versions**  
 **Implementation Date**: January 20, 2026  

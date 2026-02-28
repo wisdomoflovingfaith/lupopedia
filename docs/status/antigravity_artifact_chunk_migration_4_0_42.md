@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\status\antigravity_artifact_chunk_migration_4_0_42.md"
+  file_hash: "95a039f1468cfff93a75acf346c27a2f31107dcf6f10d5dfa972ab42234ffc0a"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Antigravity Status: Artifact Chunk Migration (v4.0.42)"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "status", "antigravity_artifact_chunk_migration_4_0_42md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Antigravity Status: Artifact Chunk Migration (v4.0.42)
 
 ## Overview

@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\0003\lobby\readme.md"
+  file_hash: "553494481ae36b0a106d2bdf969c9f2f4603f1d0342e94f1c728ff3ec57d84ac"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "system/lobby (Channel 1)"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["backups", "filesystem_migration_20260131_133426", "channels", "0003", "lobby", "readmemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # system/lobby (Channel 1)
 
 # ALL NEW ENTRIES AFTER THIS LINE

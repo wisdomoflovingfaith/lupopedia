@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\doctrine\UTC_CODING_CYCLE_DOCTRINE.md"
+  file_hash: "8ee5467c0d139d6b7ef01c904c66e869f4f4861042f354a8a8d6b8603b3effe9"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "UTC_CODING_CYCLE_DOCTRINE.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "utc_coding_cycle_doctrinemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # UTC_CODING_CYCLE_DOCTRINE.md
 Version: 1.0
 Status: Canonical Operational Governance

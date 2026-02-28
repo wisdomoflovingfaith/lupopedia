@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\overview\4.1.0\RELEASE_BANNER_4_1_0.md"
+  file_hash: "8f4971881edd088a642d675e983091e7e6379dcae1b5edc4836c7557d98a8df6"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for RELEASE_BANNER_4_1_0.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "overview", "410", "release_banner_4_1_0md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 3.1.0

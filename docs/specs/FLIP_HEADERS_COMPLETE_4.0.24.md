@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\specs\FLIP_HEADERS_COMPLETE_4.0.24.md"
+  file_hash: "d2a9f658a0ef53902490f3af44e7167c43826bb676ae75199b08cdcfb44936dd"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for FLIP_HEADERS_COMPLETE_4.0.24.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "specs", "flip_headers_complete_4024md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 X-Lupo-File-Path: docs/specs/FLIP_HEADERS_COMPLETE_4.0.24.md

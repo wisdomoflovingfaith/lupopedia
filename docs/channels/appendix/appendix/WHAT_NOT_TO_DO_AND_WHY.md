@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\appendix\appendix\WHAT_NOT_TO_DO_AND_WHY.md"
+  file_hash: "7bd96f72c49e7d7249081d7d550800380297e3daf79843bff5f3733e49e0875a"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for WHAT_NOT_TO_DO_AND_WHY.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "appendix", "what_not_to_do_and_whymd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.

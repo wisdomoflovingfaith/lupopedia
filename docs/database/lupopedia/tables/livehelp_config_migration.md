@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\database\lupopedia\tables\livehelp_config_migration.md"
+  file_hash: "56721f82d7f168c7caee0cbdfe4f61e360be23f666dacf705727aa5b45e672c7"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for livehelp_config_migration.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "database", "lupopedia", "tables", "livehelp_config_migrationmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/livehelp_config_migration.md",

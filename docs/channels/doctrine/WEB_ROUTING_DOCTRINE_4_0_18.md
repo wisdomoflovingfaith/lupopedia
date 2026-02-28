@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\doctrine\WEB_ROUTING_DOCTRINE_4_0_18.md"
+  file_hash: "629480bf11fe9881a99cbbce1b11663a89eefcf09a46d8fd0a864fef86c9a0bd"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for WEB_ROUTING_DOCTRINE_4_0_18.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "web_routing_doctrine_4_0_18md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 # FLIP Header
 wolfie.headers: explicit architecture with structured clarity for every file.

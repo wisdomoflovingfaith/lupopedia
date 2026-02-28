@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\schema\\AI_SCHEMA_GUIDE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\DATABASE_SCHEMA.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

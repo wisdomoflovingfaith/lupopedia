@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_DOMAINS_SEVEN_LOVES.md"
+  file_hash: "411b21f167bf09612679f997bfe54d7b31f09d911350c90e6e27f68fb1611a26"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for EMOTIONAL_DOMAINS_SEVEN_LOVES.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "emotional_domains_seven_lovesmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.

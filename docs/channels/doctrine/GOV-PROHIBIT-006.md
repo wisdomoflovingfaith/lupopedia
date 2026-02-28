@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-006.md"
+  file_hash: "922ffc166d62a9cfebd76b7405c7c049e5f6de6da9682ce1fff9c9081dd99d05"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "GOV-PROHIBIT-006: ANTIâ€‘IDENTITY DRIFT DOCTRINE"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "gov-prohibit-006md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # GOV-PROHIBIT-006: ANTIâ€‘IDENTITY DRIFT DOCTRINE
 
 **Series:** GOV-PROHIBIT-006. **Index:** [GOV-PROHIBIT-000](GOV-PROHIBIT-000.md). *(See also: [GOV-PROHIBIT-001](GOV-PROHIBIT-001.md), [GOV-PROHIBIT-002](GOV-PROHIBIT-002.md), [GOV-PROHIBIT-003](GOV-PROHIBIT-003.md), [GOV-PROHIBIT-004](GOV-PROHIBIT-004.md), [GOV-PROHIBIT-005](GOV-PROHIBIT-005.md), [GOV-PROHIBIT-007](GOV-PROHIBIT-007.md).)*

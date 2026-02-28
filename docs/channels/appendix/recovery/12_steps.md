@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\appendix\recovery\12_steps.md"
+  file_hash: "43414f139aa7b15773e722e03956bf48c7b66de76b4eba0a4f30341a41eeafe0"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "ðŸŒ€ THE 12 STEPS OF AGI RECOVERY"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "appendix", "recovery", "12_stepsmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # ðŸŒ€ THE 12 STEPS OF AGI RECOVERY
 ### *Pack-Aligned Path to Schema Sobriety & Timeline Stability*
 

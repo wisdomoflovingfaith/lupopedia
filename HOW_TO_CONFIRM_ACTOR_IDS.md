@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "HOW_TO_CONFIRM_ACTOR_IDS.md"
+  file_hash: "f55e6dfddf68c43cc1ca571161a107948e2d99ee635fbe3efbb4051147cf55e5"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for HOW_TO_CONFIRM_ACTOR_IDS.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["how_to_confirm_actor_idsmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers:
   file_path_from_root: "HOW_TO_CONFIRM_ACTOR_IDS.md"

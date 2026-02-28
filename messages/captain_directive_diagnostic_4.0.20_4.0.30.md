@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "messages\captain_directive_diagnostic_4.0.20_4.0.30.md"
+  file_hash: "8a5cad47b9775010170520eff5015644d48a9e391769440089c4d9ae83c0c208"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "CAPTAIN'S DIRECTIVE DIAGNOSTIC REPORT"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["messages", "captain_directive_diagnostic_4020_4030md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # CAPTAIN'S DIRECTIVE DIAGNOSTIC REPORT
 # Coverage: 4.0.20 → 4.0.30
 # Date: 2026-02-21

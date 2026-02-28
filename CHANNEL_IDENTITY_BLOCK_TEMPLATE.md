@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CHANNEL_IDENTITY_BLOCK_TEMPLATE.md"
+  file_hash: "274e406c5186279e82755cbe514b4f4baef7c357814c990a61c86b3b50234c35"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "CHANNEL_IDENTITY_BLOCK_TEMPLATE.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channel_identity_block_templatemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # CHANNEL_IDENTITY_BLOCK_TEMPLATE.md
 
 ## Canonical Template for All Channels in Lupopedia

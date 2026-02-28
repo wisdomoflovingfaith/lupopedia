@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\status\SQL_SCHEMA_FIXES_4_0_46.md"
+  file_hash: "d4b869f0dd92024be974d7d47292b2ae67fbf8f60d76755ff667ae6473cc84af"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for SQL_SCHEMA_FIXES_4_0_46.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "status", "sql_schema_fixes_4_0_46md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 file_path_from_root: "docs/status/SQL_SCHEMA_FIXES_4_0_46.md"
 system_version: "4.0.46"

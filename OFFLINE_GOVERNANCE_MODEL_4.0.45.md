@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "OFFLINE_GOVERNANCE_MODEL_4.0.45.md"
+  file_hash: "f6bc484e6017566a7e06d93326394463742f2d0672c5700d7ae3637e824def5a"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for OFFLINE_GOVERNANCE_MODEL_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["offline_governance_model_4045md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers:
   file_path_from_root: "OFFLINE_GOVERNANCE_MODEL_4.0.45.md"

@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\doctrine\VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md"
+  file_hash: "79dd315b0fdbda3f88a8f445c7f3c539db418e695122b2aad9db4874fd72fe6e"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "version_gated_branch_freeze_protocolmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 3.1.5

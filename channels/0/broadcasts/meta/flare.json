@@ -1,0 +1,184 @@
+{
+  "files": [
+    {
+      "file": "channels\\0\\broadcasts\\20260225120000_10000_1000_0_php_compatibility_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120001_10000_1000_0_time_timestamp_standard.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120002_10000_1000_0_soft_delete_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120003_10000_1000_0_database_access_standard.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120004_10000_1000_0_oop_enforcement.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120005_10000_1000_0_cross_db_compatibility_law.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120006_10000_1000_0_windows_compatibility_for_unix_commands.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120007_10000_1000_0_forbidden_database_features.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120008_10000_1000_0_explicit_insert_update_rule.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120009_10000_1000_0_id_allocation_authority.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120010_10000_1000_0_channel_scoped_actor_workspaces_now_mandatory.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120011_10000_1000_0_php_5_3_compatibility_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120012_10000_1000_0_bigint_utc_timestamps_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120013_10000_1000_0_soft_delete_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120014_10000_1000_0_pdo_database_factory_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120015_10000_1000_0_sql_portability_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120016_10000_1000_0_primary_key_allocation_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120017_10000_1000_0_windows_wsl_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120018_10000_1000_0_system_commands_queue_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120019_10000_1000_0_lupopedia_installation_process_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120020_10000_1000_0_database_schema_source_of_truth_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120021_10000_1000_0_agent_offline_status_antigravity.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120022_10000_1000_0_agent_offline_status_cursor_monthly_limit_reached.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120023_10000_1000_0_no_lupopedia_to_lupopedia_upgrades_in_4_0_x.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120024_10000_1000_0_install_php_creates_all_tables.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120025_10000_1000_0_after_install_import_channels_artifacts.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120026_10000_1000_0_install_new_lupopedia_sql_is_the_source_of_truth.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120027_10000_1000_0_agent_offline_status_zed.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120028_10000_1000_0_agent_offline_status_warp.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120029_10000_1000_0_agent_offline_status_vs_code.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120030_10000_1000_0_active_ide_agents_kiro_and_windsurf_only.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120031_10000_1000_0_vsx_extension_md_only_fallback_capabilities_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120032_10000_1000_0_mandatory_minimum_flip_header_requirements.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225120033_10000_1000_0_offline_tasks_roles_system_implementation_complete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225180000_1000_10000_0_kiro_directive_complete_validation_agents_tasks.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\20260225200000_1000_10000_0_thread_identity_db_schema_complete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

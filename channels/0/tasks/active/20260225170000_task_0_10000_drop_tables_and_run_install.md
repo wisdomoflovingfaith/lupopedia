@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "channels\0\tasks\active\20260225170000_task_0_10000_drop_tables_and_run_install.md"
+  file_hash: "446704b5a3f6ab8e0f19c5a3071d5de0ff02d0774f609bab1d09378d82692a69"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for 20260225170000_task_0_10000_drop_tables_and_run_install.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channels", "0", "tasks", "active", "20260225170000_task_0_10000_drop_tables_and_run_installmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 task_id: CH0-20260225-001
 channel_id: 0

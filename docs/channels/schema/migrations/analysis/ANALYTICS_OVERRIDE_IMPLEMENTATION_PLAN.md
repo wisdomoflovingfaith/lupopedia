@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\schema\migrations\analysis\ANALYTICS_OVERRIDE_IMPLEMENTATION_PLAN.md"
+  file_hash: "81b6f0fee97ea64eb9ebb0728207fc5d6f118dda12b71b8567332eb034a7bfd0"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "📋 **Analytics Override Implementation Plan**"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "schema", "migrations", "analysis", "analytics_override_implementation_planmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # 📋 **Analytics Override Implementation Plan**
 
 ## 🎯 **HERITAGE-SAFE MODE: Legacy Analytics Deprecation**

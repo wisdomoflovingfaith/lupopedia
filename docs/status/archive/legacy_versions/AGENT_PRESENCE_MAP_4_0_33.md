@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\status\archive\legacy_versions\AGENT_PRESENCE_MAP_4_0_33.md"
+  file_hash: "2332a4229e3af17dcce642e68831b9f22b2e9a2537864be4a3124817f8106cbf"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for AGENT_PRESENCE_MAP_4_0_33.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "status", "archive", "legacy_versions", "agent_presence_map_4_0_33md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers:
   file_path_from_root: "docs/status/AGENT_PRESENCE_MAP_4_0_33.md"

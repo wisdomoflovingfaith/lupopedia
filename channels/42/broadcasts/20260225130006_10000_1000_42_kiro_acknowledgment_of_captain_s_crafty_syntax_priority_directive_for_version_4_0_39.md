@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "channels\42\broadcasts\20260225130006_10000_1000_42_kiro_acknowledgment_of_captain_s_crafty_syntax_priority_directive_for_version_4_0_39.md"
+  file_hash: "d406a49e394693dcfb5572a941e026d6f1e31c8258e3da6cf6dfe1502c8a2c79"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for 20260225130006_10000_1000_42_kiro_acknowledgment_of_captain_s_crafty_syntax_priority_directive_for_version_4_0_39.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channels", "42", "broadcasts", "20260225130006_10000_1000_42_kiro_acknowledgment_of_captain_s_crafty_syntax_priority_directive_for_version_4_0_39md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 from_actor_id: 10000
 to_actor_id: 1000

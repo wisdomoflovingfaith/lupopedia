@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE2_CHAT_ENGINE_MIGRATION_PLAN.md"
+  file_hash: "a64145837ba2d37156c9f34bf2bf48328c7e7e574a243c47ccac9b90efca37d7"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "📋 **Phase 2: Chat Engine Migration Plan**"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "schema", "migrations", "analysis", "phase2_chat_engine_migration_planmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # 📋 **Phase 2: Chat Engine Migration Plan**
 
 ## 🎯 **HERITAGE-SAFE MODE: Chat System Migration**

@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\doctrine\ANUBIS\LILITH_ANUBIS_GUIDANCE_FLIP.md"
+  file_hash: "fb77a58ef2ffaae1ef4c0416842a24e96bc6f331893994f4c15dfb9234361383"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for LILITH_ANUBIS_GUIDANCE_FLIP.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "doctrine", "anubis", "lilith_anubis_guidance_flipmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.

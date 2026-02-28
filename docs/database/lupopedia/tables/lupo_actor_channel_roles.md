@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\database\lupopedia\tables\lupo_actor_channel_roles.md"
+  file_hash: "f93afe6d0c7e0bb5205d3cd3b3800f2aea31ea7a93da3ec71a046959c178ff0f"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for lupo_actor_channel_roles.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "database", "lupopedia", "tables", "lupo_actor_channel_rolesmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/lupo_actor_channel_roles.md",

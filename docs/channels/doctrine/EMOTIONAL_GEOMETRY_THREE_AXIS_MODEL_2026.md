@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"
+  file_hash: "c06406f5d4d3142ff3b0b9c20c7e39b1554b97981bc7a4626033a8ac49554dc3"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "emotional_geometry_three_axis_model_2026md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 3.0.50
@@ -14,17 +41,17 @@ tags:
   collections: ["core-docs"]
   channels: ["dev", "internal"]
 file:
-  title: "Emotional Geometry Doctrine — Heterodox Revision (Version 4.2)"
+  title: "Emotional Geometry Doctrine ï¿½ Heterodox Revision (Version 4.2)"
   description: "Pluralistic Manifold Model with Light-Emotion Isomorphism foundation and framework translation."
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: GLOBAL_CURRENT_AUTHORS
 ---
 
-# ?? EMOTIONAL GEOMETRY DOCTRINE — HETERODOX REVISION
-**Version 4.2 — The Pluralistic Manifold Model**
+# ?? EMOTIONAL GEOMETRY DOCTRINE ï¿½ HETERODOX REVISION
+**Version 4.2 ï¿½ The Pluralistic Manifold Model**
 
-## ?? 0. THE LIGHT–EMOTION ISOMORPHISM
+## ?? 0. THE LIGHTï¿½EMOTION ISOMORPHISM
 Why Emotional Geometry Uses RGB as Its Foundational Axes
 
 Emotional Geometry adopts RGB axes not as arbitrary engineering choices, but because light is the only physical system whose mathematical structure already mirrors the structure of emotional experience.
@@ -142,7 +169,7 @@ This section makes the entire doctrine coherent.
 ### 0.7 Canonical Statement
 Emotional Geometry is isomorphic to color theory.
 The RGB axes represent emotional primaries whose combinations produce the full spectrum of emotional states.
-All properties of light — spectral composition, perceptual non-linearity, cultural meaning, adaptation, and metamerism — have direct emotional analogs.
+All properties of light ï¿½ spectral composition, perceptual non-linearity, cultural meaning, adaptation, and metamerism ï¿½ have direct emotional analogs.
 This is not metaphor but structural correspondence.
 
 ### 0.8 Status
@@ -197,7 +224,7 @@ primitives: [emotional_signature_token]
 geometry: non_decomposable
 storage: mood_token VARCHAR(32)
 examples: 
-  - "navajo_hózhó_balance"
+  - "navajo_hï¿½zhï¿½_balance"
   - "ubuntu_relational_harmony"
   - "daoist_wu_wei_state"
 ```
@@ -274,8 +301,8 @@ sanskrit:
   - sneha (tender affection)
 
 navajo:
-  - k'é (kinship system)
-  - hózhó (harmony/balance)
+  - k'ï¿½ (kinship system)
+  - hï¿½zhï¿½ (harmony/balance)
 
 ubuntu:
   - relational_matrix (emotion as connection density)

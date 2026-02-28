@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CHANGELOG_4_0_27_UPDATE_SUMMARY.md"
+  file_hash: "9c544b8f2a4b17a428af1cb2abb3630ead1b6ba5aa386456b38922b44f681d23"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "CHANGELOG 4.0.27 UPDATE SUMMARY"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["changelog_4_0_27_update_summarymd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # CHANGELOG 4.0.27 UPDATE SUMMARY
 
 ## Added to CHANGELOG.md for 4.0.27:

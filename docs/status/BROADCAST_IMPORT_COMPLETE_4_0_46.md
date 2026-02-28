@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\status\BROADCAST_IMPORT_COMPLETE_4_0_46.md"
+  file_hash: "a4ce4ed38596adecae8443ae3126ca2f99fcd9417e10b819cfb44f5ca91ca6d8"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for BROADCAST_IMPORT_COMPLETE_4_0_46.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "status", "broadcast_import_complete_4_0_46md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers: {
   file_path_from_root: "docs/status/BROADCAST_IMPORT_COMPLETE_4_0_46.md",

@@ -1,0 +1,39 @@
+{
+  "files": [
+    {
+      "file": "channels\\0\\roles\\auditor.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\roles\\communications_lead.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\roles\\graph_intelligence_agent.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\roles\\installer.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\roles\\orphan_repair_agent.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\roles\\registry_steward.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\roles\\system_admin.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

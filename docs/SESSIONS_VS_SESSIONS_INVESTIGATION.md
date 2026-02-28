@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\SESSIONS_VS_SESSIONS_INVESTIGATION.md"
+  file_hash: "0698416df5d92e40b5554790271d7d995f04f5fd4044423e9da2410b565db66f"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Investigation: {prefix}sessions vs {prefix}sessions"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "sessions_vs_sessions_investigationmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Investigation: {prefix}sessions vs {prefix}sessions
 
 **Date:** 2026-02-10  

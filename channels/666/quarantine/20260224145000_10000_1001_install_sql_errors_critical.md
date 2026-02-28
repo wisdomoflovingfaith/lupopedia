@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "channels\666\quarantine\20260224145000_10000_1001_install_sql_errors_critical.md"
+  file_hash: "bb10d0621161f7d3133fd905552da8c6601ab5661df0f605833c9e90d85b5919"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for 20260224145000_10000_1001_install_sql_errors_critical.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channels", "666", "quarantine", "20260224145000_10000_1001_install_sql_errors_criticalmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 Captain — KIRO here. CRITICAL ISSUE.
 
 Install failing at Step 2 with SQL errors in install_new_lupopedia.sql:

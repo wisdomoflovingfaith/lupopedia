@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\audits\PDO_SESSION_COMPATIBILITY_AUDIT.md"
+  file_hash: "37a570e77c8ca67336c585125d08da9d21f886e78775eed5ace0c29f894c3cd6"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "PDO_DB and Session Classes — Doctrine Compliance and PHP 5.3→8.1 Compatibility Audit"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "audits", "pdo_session_compatibility_auditmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # PDO_DB and Session Classes — Doctrine Compliance and PHP 5.3→8.1 Compatibility Audit
 
 **Date:** 2026-02-04  

@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\database\lupopedia_worms\README.md"
+  file_hash: "b11abba057e7fc950548c1339c2909f0898eece2c2e61742e981e28ede08d2bd"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "🐛 Lupopedia_Worms Database - AI ORM Cleanup"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "database", "lupopedia_worms", "readmemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # 🐛 Lupopedia_Worms Database - AI ORM Cleanup
 
 **Database:** lupopedia_worms  

@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "channels\42\tasks\active\repository_cleanup_legacy_files_removal.md"
+  file_hash: "55e1356e27ff73b9d84e47400729c06b660070408f4218e7581c6abb5ee62b11"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "🧹 Repository Cleanup - Legacy Files and Migration Removal"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channels", "42", "tasks", "active", "repository_cleanup_legacy_files_removalmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # 🧹 Repository Cleanup - Legacy Files and Migration Removal
 
 **Task ID:** CLEANUP-2026-02-27-001  

@@ -1,0 +1,189 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\ANALYTICS_OVERRIDE_IMPLEMENTATION_PLAN.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\CRAFTY_SYNTAX_TO_LUPOPEDIA_ANALYSIS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\CRAFTY_SYNTAX_TO_LUPOPEDIA_STRUCTURED_MAPPING.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\CROSS_FRAME_COMMUNICATION_PRESERVATION_ANALYSIS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\DIALOGUE_GRAPH_SCHEMA.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\DIALOGUE_LAYER_QUERIES_GUIDE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\HERITAGE_SAFE_MODE_FILENAME_PRESERVATION_CORRECTION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\IDENTITY_OVERRIDE_IMPLEMENTATION_PLAN.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\lupo_agent_registry_range_expansion_summary.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PERSONA_AWARE_DIALOGUE_QUERY_LAYER.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE10_MULTI_ACTOR_DIALOGUE_LAYER_FINAL_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE10_MULTI_ACTOR_DIALOGUE_LAYER_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE11_WORLD_GRAPH_INTEGRATION_PLAN.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE11_WORLD_GRAPH_INTEGRATION_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE2_CHAT_ENGINE_MIGRATION_PLAN.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE2_CHAT_ENGINE_MIGRATION_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE3_OPERATOR_CONSOLE_DISCOVERY_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE3_OPERATOR_CONSOLE_MIGRATION_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE4_ANALYTICS_ROUTING_DISCOVERY_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE4_ANALYTICS_ROUTING_MIGRATION_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE5_FINAL_INTEGRATION_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE5_SYSTEM_WIDE_FILE_DISCOVERY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE6_TOON_ANALYTICS_IMPLEMENTATION_PLAN.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE6_TOON_ANALYTICS_IMPLEMENTATION_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE7_ACTOR_INTEGRATION_FINAL_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE7_ACTOR_INTEGRATION_PLAN.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE7_ACTOR_INTEGRATION_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE8_OPERATOR_CONSOLE_EVENT_INSTRUMENTATION_PLAN.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE8_OPERATOR_CONSOLE_EVENT_INSTRUMENTATION_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE9_THEATRICAL_UI_EVENT_MAPPING_PLAN.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE9_THEATRICAL_UI_EVENT_MAPPING_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\PHASE_A_README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\SCHEMA_SYNC_3_0_46_SUMMARY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\TABLE_STRUCTURE_ANALYSIS_LUPO_USERS_VS_LUPO_ACTORS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\schema\\migrations\\analysis\\TOON_DATA_ANALYSIS_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

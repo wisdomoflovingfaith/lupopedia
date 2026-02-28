@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\NO_LARAVEL_NO_MIDDLEWARE_REPORT.md"
+  file_hash: "8af78f9aac227e5bf5675e63c67b79e48627158781b8b25e48ff2cf5f9a1fa93"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "No Laravel, No Middleware — Refactor Report"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "no_laravel_no_middleware_reportmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # No Laravel, No Middleware — Refactor Report
 
 **Date:** 2026-02-04  

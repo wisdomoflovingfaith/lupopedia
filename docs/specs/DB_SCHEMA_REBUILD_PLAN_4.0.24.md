@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\specs\DB_SCHEMA_REBUILD_PLAN_4.0.24.md"
+  file_hash: "9ab24288df677378a151f0a14f9f60789375437ab8326499d0b9fba8a709b2eb"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for DB_SCHEMA_REBUILD_PLAN_4.0.24.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "specs", "db_schema_rebuild_plan_4024md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 X-Lupo-File-Path: docs/specs/DB_SCHEMA_REBUILD_PLAN_4.0.24.md

@@ -1,0 +1,174 @@
+{
+  "files": [
+    {
+      "file": "docs\\ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\ACTOR_REFACTOR_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\AGENT_INVENTORY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\AUTH_REFACTOR_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\DIALOG_MESSAGES_VS_ANALYSIS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\DIALOG_TABLE_REMOVAL_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\HELPER_TO_CLASS_MAPPING_ANALYSIS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\IMAGE_PHP_MIGRATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\INITIALIZATION_PROMPT_4_0_13.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\INITIALIZATION_PROMPT_4_0_14.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\INITIALIZATION_PROMPT_4_0_15.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\INITIALIZATION_PROMPT_4_0_17.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\INITIALIZATION_PROMPT_4_0_18.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\INITIALIZATION_PROMPT_4_0_19.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\INITIALIZATION_PROMPT_4_0_21.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\INITIALIZATION_WORKFLOW.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\LIVEHELP_REMOVAL_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\NO_LARAVEL_NO_MIDDLEWARE_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\notes_from_legacy_craftysyntax.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\oauth_authentication.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\OAUTH_SETUP_GUIDE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\OPERATOR_TABLES_REMOVAL_AND_ROLE_VERIFICATION_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\PATHS_FIRSTS_REMOVAL_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\PATHS_FIRSTS_VS_ANALYTICS_PATHS_ANALYSIS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\PDO_DB_DOCTRINE_REFACTOR_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\REMAINING_HELPERS_REFACTOR_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\REQUIRED_TABLES_4.0.21.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\REQUIRED_TABLES_4.0.6.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\REQUIRED_TABLES_4.1.0.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\SESSIONS_VS_SESSIONS_INVESTIGATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\TOON_SOURCE_OF_TRUTH_AUDIT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\VERSION_DOCTRINE_APPLICATION_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

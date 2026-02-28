@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\doctrine\FLIP_V2_DOCTRINE.md"
+  file_hash: "a5744e432ab87d23ee67c3bb950a66f8523f1002ebe903e54ccb6a907b411ca7"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "FLIP v2 DOCTRINE — VERSION 4.0.37"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "doctrine", "flip_v2_doctrinemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # FLIP v2 DOCTRINE — VERSION 4.0.37
 
 **Status:** ACTIVE  

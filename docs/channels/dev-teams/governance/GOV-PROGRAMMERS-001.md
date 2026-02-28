@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\dev-teams\governance\GOV-PROGRAMMERS-001.md"
+  file_hash: "21fcccbefde29e03d32f7d3fd554f9c53e8a0f146a14c848cf10148ad185106b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "GOV‑PROGRAMMERS‑001"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "dev-teams", "governance", "gov-programmers-001md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # GOV‑PROGRAMMERS‑001
 # Programmer Competency Doctrine for Lupopedia
 Channel 3 — PROGRAMMERS OF LUPOPEDIA

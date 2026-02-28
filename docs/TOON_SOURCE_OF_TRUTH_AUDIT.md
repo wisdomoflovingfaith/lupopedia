@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\TOON_SOURCE_OF_TRUTH_AUDIT.md"
+  file_hash: "265d0fff45fc4d888a330ea3ae6f38984da5bc7835d63114822843e021b6ff9b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "TOON Source of Truth — Audit and Mismatch Reporting"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "toon_source_of_truth_auditmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # TOON Source of Truth — Audit and Mismatch Reporting
 
 **Rule:** `.cursor/rules/toon-source-of-truth.mdc` — TOON files (`docs/toons/*.toon.json`) are the only source of truth for schema.

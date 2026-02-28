@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\doctrine\CRAFTY_SYNTAX_IMPORT_IMPLEMENTATION_CHECKLIST.md"
+  file_hash: "42c5a514fab2f7ef724d2498308eb4c4c67ecd4f26dc6a170b43c08b5a65a2a1"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for CRAFTY_SYNTAX_IMPORT_IMPLEMENTATION_CHECKLIST.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "doctrine", "crafty_syntax_import_implementation_checklistmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.

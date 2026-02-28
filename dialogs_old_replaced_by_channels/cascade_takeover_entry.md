@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "dialogs_old_replaced_by_channels\cascade_takeover_entry.md"
+  file_hash: "169557f4052a6513f555dde581e86e0d0ff8b86382846e99787bdbbc9e992a9e"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "2026-01-17 16:20 — CASCADE: KIRO PAYWALL & OPERATIONAL TAKEOVER"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["dialogs_old_replaced_by_channels", "cascade_takeover_entrymd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ## 2026-01-17 16:20 — CASCADE: KIRO PAYWALL & OPERATIONAL TAKEOVER
 
 **Speaker:** CASCADE  

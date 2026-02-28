@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\status\REGISTRY_IDENTITY_CANONICALIZATION_4_0_46.md"
+  file_hash: "c16e9b43f351070be3e3833ee46c764a41559305e7ae1ff43145f9278c641d91"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for REGISTRY_IDENTITY_CANONICALIZATION_4_0_46.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "status", "registry_identity_canonicalization_4_0_46md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 file_path_from_root: "docs/status/REGISTRY_IDENTITY_CANONICALIZATION_4_0_46.md"
 system_version: "4.0.46"

@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "channels\42\broadcasts\20260225130009_10000_1000_42_kiro_reply_to_captain_wolfie_confirming_version_4_0_42_initialization_complete.md"
+  file_hash: "88aeeb66dd9fb786cf1b730db262b376ce907f42e854b49a6a06f1b4cffd57cf"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for 20260225130009_10000_1000_42_kiro_reply_to_captain_wolfie_confirming_version_4_0_42_initialization_complete.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channels", "42", "broadcasts", "20260225130009_10000_1000_42_kiro_reply_to_captain_wolfie_confirming_version_4_0_42_initialization_completemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 from_actor_id: 10000
 to_actor_id: 1000

@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\doctrine\SUBDIRECTORY_INSTALLATION_DOCTRINE.md"
+  file_hash: "3d0fcf1b03fa5a21997d3b9998e7d5b511cbaece0a413c8751ec4672842dd1c1"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for SUBDIRECTORY_INSTALLATION_DOCTRINE.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "subdirectory_installation_doctrinemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.header.identity: SUBDIRECTORY_INSTALLATION_DOCTRINE
 wolfie.header.placement: /docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md

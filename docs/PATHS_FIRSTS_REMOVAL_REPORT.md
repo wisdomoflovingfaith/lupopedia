@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\PATHS_FIRSTS_REMOVAL_REPORT.md"
+  file_hash: "8bf5db72277124f75de74d4a588647ded584a6dcd65581c94864ba9feb417c64"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "lupo_paths_firsts — Schema Removal Report (Steps 1–3)"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "paths_firsts_removal_reportmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # lupo_paths_firsts — Schema Removal Report (Steps 1–3)
 
 **Date:** 2026-02-10  

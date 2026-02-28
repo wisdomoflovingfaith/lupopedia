@@ -1,0 +1,79 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\agents\\AGENT_GUIDELINES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\AGENT_PROMPT_TEMPLATING_STANDARD.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\AGENT_RUNTIME.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\ARA.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\CHRONOS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\HERMES_AND_CADUCEUS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\lilith.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\OHANA.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\thoth.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\wolfie.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\WOLFIE_HEADER_GLOBAL_ATOMS_GUIDE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\WOLFIE_HEADER_SECTIONS_GUIDE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\WOLFIE_HEADER_SPECIFICATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

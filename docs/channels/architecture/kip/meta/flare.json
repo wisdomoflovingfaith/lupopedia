@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\architecture\\kip\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\kip\\KIP_CIP_INTEROPERABILITY_GUIDELINES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\kip\\KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\kip\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

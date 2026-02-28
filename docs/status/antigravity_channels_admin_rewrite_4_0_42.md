@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\status\antigravity_channels_admin_rewrite_4_0_42.md"
+  file_hash: "3f6b83b957e3e61a3f9e5f638b485f1ee11b90629b855e69556837402a80eae0"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Channels Admin UI Rewrite & Ticket System Integration (Version 4.0.42)"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "status", "antigravity_channels_admin_rewrite_4_0_42md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Channels Admin UI Rewrite & Ticket System Integration (Version 4.0.42)
 ## Status: COMPLETED
 

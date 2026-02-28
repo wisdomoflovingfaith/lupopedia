@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  file_hash: "16cf6ce87affac0f23a4f17881eb0e6d3abfb8cc248cfb421a71146895ae619b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["install_sql_tasks_integration_complete_4045md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers:
   file_path_from_root: "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md"

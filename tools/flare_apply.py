@@ -149,7 +149,7 @@ def build_header(path, original_text):
     flare_version = "1.0"
     artifact_type = "guide"
     artifact_kind = "documentation"
-    mood_rgb = mood_rgb_default
+    mood_rgb = MOOD_RGB_DEFAULT
     delegation_chain = f"{actor_id if actor_id else ACTOR_ID_DEFAULT}:10000"
 
     tags = []

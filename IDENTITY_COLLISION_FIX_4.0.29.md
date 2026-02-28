@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "IDENTITY_COLLISION_FIX_4.0.29.md"
+  file_hash: "a5f4e42de5f304300f74f9670da9ab192a56285ec5299e62eebe7fb1ad4500da"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "🚨 IDENTITY COLLISION FIX — Lupopedia 4.0.29"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["identity_collision_fix_4029md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # 🚨 IDENTITY COLLISION FIX — Lupopedia 4.0.29
 
 ## CRITICAL ISSUE IDENTIFIED

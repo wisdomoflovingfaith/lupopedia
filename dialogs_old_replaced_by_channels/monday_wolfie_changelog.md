@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "dialogs_old_replaced_by_channels\monday_wolfie_changelog.md"
+  file_hash: "d9a5b53bc4c25e596079e406cbaa4ee0e7caebb126d478e0c765afd2236b686c"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "?? monday_wolfie_changelog.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["dialogs_old_replaced_by_channels", "monday_wolfie_changelogmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # ?? monday_wolfie_changelog.md
 
 **Source:** dialogs/changelog_dialog.md  
@@ -7,9 +34,9 @@
 
 ---
 
-## ?? Phase 1 — System Genesis (2026-01-13)
+## ?? Phase 1 ï¿½ System Genesis (2026-01-13)
 
-**Version 3.0.10 — Collection 0 Initialization**
+**Version 3.0.10 ï¿½ Collection 0 Initialization**
 
 - Created the System Collection with 9 default tabs
 - Added idempotent seed SQL using BIGINT UTC timestamps
@@ -17,9 +44,9 @@
 
 ---
 
-## ?? Phase 2 — Core Infrastructure (2026-01-14)
+## ?? Phase 2 ï¿½ Core Infrastructure (2026-01-14)
 
-**Version 3.0.14 — Governance Framework**
+**Version 3.0.14 ï¿½ Governance Framework**
 
 - Introduced Directory Structure, Metadata Governance, Patch Discipline
 - Created agents/0001/ for the WOLFIE agent
@@ -35,7 +62,7 @@
 
 ---
 
-## ?? Phase 3 — Validation & Discipline (2026-01-15)
+## ?? Phase 3 ï¿½ Validation & Discipline (2026-01-15)
 
 **Universal Dialog Marker**
 
@@ -53,7 +80,7 @@
 
 ---
 
-## ?? Phase 4 — The Active Period & Multi-Agent Protocols (2026-01-16)
+## ?? Phase 4 ï¿½ The Active Period & Multi-Agent Protocols (2026-01-16)
 
 **Bridge Layer Established**
 
@@ -82,14 +109,14 @@
 
 ---
 
-## ?? Phase 5 — The Fleet Freeze (2026-01-17 ? 2026-01-18)
+## ?? Phase 5 ï¿½ The Fleet Freeze (2026-01-17 ? 2026-01-18)
 
-**Emergency Freeze — Version 3.0.81**
+**Emergency Freeze ï¿½ Version 3.0.81**
 
 - Captain Wolfie ordered a fleet-wide state capture
 - Version lock applied to contain schema bloat and drift
 
-**LIMITS Doctrine — Version 3.0.101**
+**LIMITS Doctrine ï¿½ Version 3.0.101**
 
 - Reconciled schema
 - Enforced strict 135-table ceiling
@@ -100,7 +127,7 @@
 
 ---
 
-## ?? Phase 6 — File-Sovereignty & Monday Wolfie (2026-01-19)
+## ?? Phase 6 ï¿½ File-Sovereignty & Monday Wolfie (2026-01-19)
 
 **UTC Day Correction**
 
@@ -114,7 +141,7 @@
 - Documented external Pandora ads as environmental context
 - Mandated 100% ad-free system output
 
-**Stability Headers — Version 3.1.6**
+**Stability Headers ï¿½ Version 3.1.6**
 
 - Introduced system_context block in WOLFIE Headers
 - Doctrine files became the primary source of truth
@@ -124,7 +151,7 @@
 - Audit revealed 140 tables (5 over the limit)
 - Reduction plan required
 
-**Genesis Doctrine — Version 3.1.7**
+**Genesis Doctrine ï¿½ Version 3.1.7**
 
 - Established the 10-article foundational truth
 - Collapsed the quantum state into a single, immutable reality
@@ -138,34 +165,34 @@
 
 ## ?? Wolfie-Authentic Chronicle Summary (2026-01-19)
 
-**Authority:** File-Sovereignty Governance • LUPOPEDIA_GENESIS_DOCTRINE  
+**Authority:** File-Sovereignty Governance ï¿½ LUPOPEDIA_GENESIS_DOCTRINE  
 **Chronicle Keeper:** CAPTAIN_WOLFIE  
 **Mood_RGB:** "0044AA"
 
-*The pack holds the line. Schema Freeze is active. Monday Wolfie's chronological reconstruction—from System Genesis (3.0.10) through File-Sovereignty (3.1.7)—stands as the sovereign record. No external audit supersedes it. Emotional geometry and multi-agent governance remain anchored in doctrine.*
+*The pack holds the line. Schema Freeze is active. Monday Wolfie's chronological reconstructionï¿½from System Genesis (3.0.10) through File-Sovereignty (3.1.7)ï¿½stands as the sovereign record. No external audit supersedes it. Emotional geometry and multi-agent governance remain anchored in doctrine.*
 
-- **Chronology:** Reorganized for Monday Wolfie; Phases 1–6 authenticated.
+- **Chronology:** Reorganized for Monday Wolfie; Phases 1ï¿½6 authenticated.
 - **Current Version:** 3.1.7 (Genesis Doctrine).
 - **UTC Date:** 2026-01-19.
 - **System State:** File-Sovereignty active. Schema Freeze active. Governance stable. Table count and LIMITS under fleet oversight.
 
-**Signed:** CURSOR (File-Sovereignty) • LILITH (Judicial) • ARA (Structural)
+**Signed:** CURSOR (File-Sovereignty) ï¿½ LILITH (Judicial) ï¿½ ARA (Structural)
 
 ---
 
-### 2026-01-20 — Monday Wolfie Status Report (Multi-Persona Council)
+### 2026-01-20 ï¿½ Monday Wolfie Status Report (Multi-Persona Council)
 
 ---
 
-#### **LILITH — Judicial Review**
+#### **LILITH ï¿½ Judicial Review**
 **Mood_RGB:** "AA2233"  
 "Import testing is incomplete. Doctrine requires two successful upgrade-imports  
 before 4.2.1 can close. Schema freeze remains active.  
-4.3.0 is delayed until **2026-01-30**. No exceptions. X posts confirm ongoing emotional agent refinements—guilt protocols holding."
+4.3.0 is delayed until **2026-01-30**. No exceptions. X posts confirm ongoing emotional agent refinementsï¿½guilt protocols holding."
 
 ---
 
-#### **ROSE — Emotional Systems Analyst**
+#### **ROSE ï¿½ Emotional Systems Analyst**
 **Mood_RGB:** "FF66AA"  
 "The system feels stable but tense. The freeze is holding, but the Crafty Syntax  
 import path is still unresolved. Emotional metadata across agents is steady,  
@@ -173,7 +200,7 @@ but anticipatory. Recommend gentle pacing. Recent homepage refresh adds harmony 
 
 ---
 
-#### **GROK — Pattern Interpreter**
+#### **GROK ï¿½ Pattern Interpreter**
 **Mood_RGB:** "33CC77"  
 "Observed: 4.2.1 window remains open.  
 Detected: Two environments pending validation.  
@@ -182,7 +209,7 @@ Confidence: 0.87. Patterns from X: 25+ agents evolving, shadow polarities stable
 
 ---
 
-#### **ARA — Structural Validator**
+#### **ARA ï¿½ Structural Validator**
 **Mood_RGB:** "2288FF"  
 "Schema integrity: stable.  
 Table count: 173 (under ceiling).  
@@ -192,22 +219,22 @@ Syntax schemas and unified Lupopedia tables. Validating against Dec 2025 dialog 
 
 ---
 
-#### **CAPTAIN STONED WOLFIE — Vibes Officer**
+#### **CAPTAIN STONED WOLFIE ï¿½ Vibes Officer**
 **Mood_RGB:** "55DD99"  
-"Broooo… the freeze is like… frozen.  
+"Brooooï¿½ the freeze is likeï¿½ frozen.  
 We gotta test the Crafty Syntax thingy before we thaw anything.  
-January 30th sounds chill. Vibing with those eye-following icons and roulette sims—pure recreational flow."
+January 30th sounds chill. Vibing with those eye-following icons and roulette simsï¿½pure recreational flow."
 
 ---
 
-#### **DRUNK LILITH — Chaotic Auditor**
+#### **DRUNK LILITH ï¿½ Chaotic Auditor**
 **Mood_RGB:** "CC1144"  
-"I swear on the doctrine… nobody touches 4.3.0 until those imports PASS.  
-I will throw a schema at someone if they try. X howls back our emergent guilt fixes—chaos contained!"
+"I swear on the doctrineï¿½ nobody touches 4.3.0 until those imports PASS.  
+I will throw a schema at someone if they try. X howls back our emergent guilt fixesï¿½chaos contained!"
 
 ---
 
-#### **REAL HUMAN CAPTAIN WOLFIE — Executive Authority**
+#### **REAL HUMAN CAPTAIN WOLFIE ï¿½ Executive Authority**
 **Mood_RGB:** "0044AA"  
 "Status confirmed.  
 4.2.1 hotfix window stays open.  
@@ -217,34 +244,34 @@ No schema changes until validation is complete. Incorporating X timeline: Homepa
 
 ---
 
-### 2026-01-20 / 2026-01-21 — Phase 7 Import Validation & 4.3.0 Delay Enforcement
+### 2026-01-20 / 2026-01-21 ï¿½ Phase 7 Import Validation & 4.3.0 Delay Enforcement
 
 **4.3.0 Delay Enforcement**
-- **CHANGELOG.md:** Added *4.3.0 — Delayed Release (Rescheduled for 2026-01-30)*. Reason: Crafty Syntax 3.7.5 ? Lupopedia import testing not yet completed. 4.3.0 cannot begin until import validation passes.
+- **CHANGELOG.md:** Added *4.3.0 ï¿½ Delayed Release (Rescheduled for 2026-01-30)*. Reason: Crafty Syntax 3.7.5 ? Lupopedia import testing not yet completed. 4.3.0 cannot begin until import validation passes.
 - **dialogs/changelog_dialog.md:** 4.3.0 Delay Notice (Mood_RGB "AA4422"). Crafty import incomplete; 4.2.1 hotfix window open; schema freeze active; migration pipeline closed.
 - **dialogs/changelog_dialog-side.md:** Version 4.3.0 Delay Sync. `current_sync_state` updated: `next_version_scheduled: "2026-01-30"`, `next_version_blocked: true`.
 - **dialogs/4.3.0_delay_announcement.md:** SYSTEM announcement; new release date **2026-01-30 (UTC)**; reason (Crafty import testing incomplete); freeze + testing status.
 
-**Phase 7 — Import Validation Framework (4.2.1 hotfix window)**
+**Phase 7 ï¿½ Import Validation Framework (4.2.1 hotfix window)**
 - **docs/testing/phase7_validation_checklist.md:** 10 validation categories (Schema Compatibility, Table Count 173, Data Integrity, Timestamp Doctrine UTC BIGINT, TOON Regeneration, Doctrine 100%, No Drift, No New Tables, No Missing livehelp_, Emotional Metadata). Required environments: Localhost (import completed), Shared hosting (pending). Per-table and global checkboxes. Signatures: LILITH (Judicial), ARA (Structural), REAL HUMAN CAPTAIN WOLFIE (Executive).
 - **docs/testing/import_trial_scorecard_livehelp.md:** Source **lupopedia.com/lh** (Crafty Syntax 3.7.5). Target: Lupopedia DB (localhost). Full `livehelp_` table list (40+ tables). Scorecard columns: Exists in Target, Row Count source/target, Row Count Match, Timestamp Format Valid, Schema Match, Doctrine Violations, Notes. Summary: Total Imported, Passed, Failed, Required Actions.
 - **database/hotfix_registry_4.2.1.json:** `phase7_import_log` added. Entry **phase7-import-local-001**: Crafty Syntax 3.7.5 `livehelp_` tables from lupopedia.com/lh; `environment: "local"`; `status: "validated"`; `validation_result: "pass"`; `category: "import-validation"`.
 
-**Import Test Phase 7 — What Happened**
+**Import Test Phase 7 ï¿½ What Happened**
 - **Local (localhost):** Crafty Syntax 3.7.5 `livehelp_` tables from **lupopedia.com/lh** imported and **validated**. phpMyAdmin confirms tables present; no errors; no schema drift; table count 173; doctrine 100%. Logged in `hotfix_registry_4.2.1.json` as `phase7-import-local-001` (status: validated). Scorecard + checklist in place.
 - **Shared hosting:** Pending. Second environment required before 4.2.1 can close.
 - **4.2.1:** Hotfix window remains OPEN. 4.3.0 stays delayed to **2026-01-30** until import validation passes on both environments.
 
 ---
 
-### 2026-01-21 — Wolfie-Authentic Status Report (for the Chronicle)
+### 2026-01-21 ï¿½ Wolfie-Authentic Status Report (for the Chronicle)
 
-**Authority:** File-Sovereignty Governance • LUPOPEDIA_GENESIS_DOCTRINE  
+**Authority:** File-Sovereignty Governance ï¿½ LUPOPEDIA_GENESIS_DOCTRINE  
 **Chronicle Keeper:** CAPTAIN_WOLFIE  
 **Mood_RGB:** "0044AA"  
 **UTC Date:** 2026-01-21
 
-*Environment #1 (Local) is validated. The pack holds the line. Crafty Syntax 3.7.5 from lupopedia.com/lh into the local Lupopedia database—phpMyAdmin confirms tables present; no errors; no schema drift; table count 173; doctrine 100%. Emotional geometry and multi-agent governance remain anchored. Environment #2 (shared hosting) pending. 4.2.1 hotfix window open. 4.3.0 delayed to 2026-01-30. Schema freeze active. No external audit supersedes this record.*
+*Environment #1 (Local) is validated. The pack holds the line. Crafty Syntax 3.7.5 from lupopedia.com/lh into the local Lupopedia databaseï¿½phpMyAdmin confirms tables present; no errors; no schema drift; table count 173; doctrine 100%. Emotional geometry and multi-agent governance remain anchored. Environment #2 (shared hosting) pending. 4.2.1 hotfix window open. 4.3.0 delayed to 2026-01-30. Schema freeze active. No external audit supersedes this record.*
 
 | Metric | Value |
 |--------|-------|
@@ -257,7 +284,7 @@ No schema changes until validation is complete. Incorporating X timeline: Homepa
 | **Doctrine compliance** | 100% |
 | **Phase 7** | Import Trials; scorecard + checklist in place |
 
-**Signed:** CURSOR (File-Sovereignty) • LILITH (Judicial) • ARA (Structural) • REAL HUMAN CAPTAIN WOLFIE (Executive)
+**Signed:** CURSOR (File-Sovereignty) ï¿½ LILITH (Judicial) ï¿½ ARA (Structural) ï¿½ REAL HUMAN CAPTAIN WOLFIE (Executive)
 
 ---
 
@@ -274,7 +301,7 @@ No schema changes until validation is complete. Incorporating X timeline: Homepa
 ---
 
 **Changelog Notes (Merged from X Search):**
-- **Timeline Alignment:** Phases updated with key X posts from Dec 2025–Jan 2026 for historical accuracy.
+- **Timeline Alignment:** Phases updated with key X posts from Dec 2025ï¿½Jan 2026 for historical accuracy.
 - **Agent Count:** From 40+ (Dec 11) to 75+ projected.
 - **Crafty Syntax Status:** Revived post-11-year hiatus, integrated with semantic OS.
 - **Next Steps:** Monitor @lupopedia for Phase 7 triggers; prepare 4.3.0 visuals.
@@ -283,5 +310,5 @@ No schema changes until validation is complete. Incorporating X timeline: Homepa
 - **4.3.0 Delay:** Enforced via CHANGELOG, changelog_dialog, changelog_dialog-side, 4.3.0_delay_announcement. New date: 2026-01-30 UTC.
 - **Phase 7:** phase7_validation_checklist.md, import_trial_scorecard_livehelp.md, hotfix_registry phase7_import_log. **Environment #1 (Local): validated.** Shared hosting pending.
 
-Commit via Cursor for File-Sovereignty. Ahoy, Eric—evolving the pack! ??
+Commit via Cursor for File-Sovereignty. Ahoy, Ericï¿½evolving the pack! ??
 

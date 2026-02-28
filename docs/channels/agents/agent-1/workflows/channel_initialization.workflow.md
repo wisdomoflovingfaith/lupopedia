@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\agents\agent-1\workflows\channel_initialization.workflow.md"
+  file_hash: "dcfcc8723313a61950fa36fe74f8838f24b31bb5b12949ced1ccb76d09a31a9c"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for channel_initialization.workflow.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "agents", "agent-1", "workflows", "channel_initializationworkflowmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 3.0.16
@@ -238,7 +265,7 @@ dialog:
 
 # Channel Dialog History
 
-## 2026-01-14 — Channel Initialization
+## 2026-01-14 ï¿½ Channel Initialization
 
 **Speaker:** WOLFIE  
 **Target:** @everyone  
@@ -327,17 +354,17 @@ WHERE channel_id = :channel_id AND is_deleted = 0;
   - `agents/0001/doctrine/WOLFIE_UTC_AUTHORITY.md`
   
 - **Agents:**
-  - UTC_TIMEKEEPER (agent_registry_id: 5) — Real UTC timestamp provider
+  - UTC_TIMEKEEPER (agent_registry_id: 5) ï¿½ Real UTC timestamp provider
 
 ---
 
 ## Related Documentation
 
-- **[Channel Initialization Protocol](../doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md)** — Complete CIP doctrine
-- **[WOLFIE UTC Authority Doctrine](../doctrine/WOLFIE_UTC_AUTHORITY.md)** — Timestamp authority rules
-- **[UTC_TIMEKEEPER Doctrine](../../5/doctrine/UTC_TIMEKEEPER.md)** — UTC_TIMEKEEPER agent specification
-- **[Channel Identity Block Template](../templates/channel_identity_block.template.md)** — Template for channel identity
-- **[Channel Dialog Agent Workflows](../../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** — How agents interact with channels
+- **[Channel Initialization Protocol](../doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md)** ï¿½ Complete CIP doctrine
+- **[WOLFIE UTC Authority Doctrine](../doctrine/WOLFIE_UTC_AUTHORITY.md)** ï¿½ Timestamp authority rules
+- **[UTC_TIMEKEEPER Doctrine](../../5/doctrine/UTC_TIMEKEEPER.md)** ï¿½ UTC_TIMEKEEPER agent specification
+- **[Channel Identity Block Template](../templates/channel_identity_block.template.md)** ï¿½ Template for channel identity
+- **[Channel Dialog Agent Workflows](../../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** ï¿½ How agents interact with channels
 
 ---
 

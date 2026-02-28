@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_BUFFER_STREAMING_DOCTRINE.md"
+  file_hash: "1313de98174c9f33cd81147920a05fbf6d6dcfb28e0297ec892bdfd4ba012458"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "CRAFTY SYNTAX BUFFER-STREAMING DOCTRINE"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "legacy-import", "crafty_syntax_buffer_streaming_doctrinemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # CRAFTY SYNTAX BUFFER-STREAMING DOCTRINE
 
 ## 🎯 **Critical Discovery: The "Soft Refresh" Innovation**

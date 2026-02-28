@@ -1,0 +1,879 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\doctrine\\4.0.18_ROUTING_DIAGNOSTICS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\4.1.20_doctrine_audit.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\ACTOR_AGENT_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\AGENT_AWARENESS_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\AGENT_CLASSIFICATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\AGENT_FILESYSTEM_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\AGENT_LIFECYCLE_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\AGENT_PROMPT_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\AGENT_ROUTING_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\AGENT_RUNTIME.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\AI_INTEGRATION_SAFETY_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\ANIBUS_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\ARCHITECTURE_SYNC.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\as_above_so_below.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\ATOM_RESOLUTION_SPECIFICATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\ATOMIZATION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CANONICAL_TIME_RULE_UPDATE_SUMMARY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CARMEN_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CHANNEL_CONTENT_STORAGE_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CHANNEL_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CHANNEL_GOVERNANCE_LOG_TABLES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CHANNEL_JOIN_PROTOCOL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CHARSET_COLLATION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CLASS_HEADER_COMMENT_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CLASS_HEADER_COMMENT_DOCTRINE_SUMMARY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CONFIGURATION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CONTEXT_BRIDGE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CONTRIBUTOR_CORE_PRINCIPLES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CRAFTY_SYNTAX_MIGRATION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CRITIQUE_INTEGRATION_PROTOCOL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CSLH-URL-Semantics.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CURSOR_CONTEXT_METADATA.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CURSOR_REFACTOR_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\CURSOR_ROLE_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\DATABASE_SECURITY_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\DIALOG_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\DIALOG_FILE_ORDERING_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\DIRECTORY_STRUCTURE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\DOCTRINAL_COMPLEMENTARITY_SYSTEM.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\DOCTRINE_EMOTIONAL_LOGGING.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\DOCTRINE_IDE_ACCESS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\DOCTRINE_VERSIONING.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\DOCUMENTATION_AS_CODE_MANIFESTO.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\DOCUMENTATION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\DOCUMENTATION_REORGANIZATION_PROPOSAL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\EMO_AGENT_RULES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\emotional-agent-range.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\EMOTIONAL_CONSTITUTION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\EMOTIONAL_DOMAINS_SEVEN_LOVES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\EMOTIONAL_ECOLOGY_LAYER.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\EMOTIONAL_GEOMETRY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\ERIC_WOLFIE_TLDNR_2026.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\ETHICAL_FOUNDATIONS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\FAUCET_RULES_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\FEDERATION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\FEDERATION_OF_SOVEREIGN_PROTOCOLS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\FOLDER_NAMING_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GENESIS_DOCTRINE_IMPLEMENTATION_GUIDE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GLOBAL_ATOMS_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-AD-PROHIBIT-001.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-ANTI-PATTERNS-001.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-APPENDIX-A.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-FOUNDATIONS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-INTEGRATION-0001_witness_layer.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-LILITH-0001_dreaming_overlay.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-PROHIBIT-000.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-PROHIBIT-001.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-PROHIBIT-002.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-PROHIBIT-003.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-PROHIBIT-004.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-PROHIBIT-005.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-PROHIBIT-006.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-PROHIBIT-007.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-PROHIBIT-ADS-001.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV-PSYCHOLOGICAL-FRAMING-PROHIBIT-001.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GOV_AD_PROHIBIT_001.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\GUARDRAILS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\IDENTITY_BRIDGE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\INGESTION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\INSTALLATION_LIFECYCLE_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\INTEGRATION_TESTING_BLUEPRINT_v3_0_71.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\INTEGRATION_TESTING_DOCTRINE_v3_0_71.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\JETBRAINS_4_1_X_BRANCH_HANDLING_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\JETBRAINS_CONFIGURATION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\KERNEL_AGENTS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\KIP_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\LIMITS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\Lupopedia-Reference-Layer-Doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\LUPOPEDIA_GENESIS_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\LUPOPEDIA_HEADER_PROFILE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\LUPOPEDIA_REVERSE_SHAKA_TLDNR.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\MASTER_BRIDGE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\META_AGENTS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\METADATA_GOVERNANCE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\MIGRATION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\MIGRATION_ORCHESTRATOR_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\MODULE_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\MONDAY_WOLFIE_NOTICE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\MOOD_RGB_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\MYTHIC_NAMES_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\NAVIGATION_TAB_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\NO_FOREIGN_KEYS_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\NO_STORED_PROCEDURES_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\NO_TRIGGERS_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\NO_TRIGGERS_NO_PROCEDURES_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\non_religious_position.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\OPERATOR_LAYER_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\OPERATOR_REGISTRY_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\OPERATOR_UI_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\ORCHESTRATOR_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PACK_BEHAVIOR_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PACK_BEHAVIOR_MATRIX_v3_0_90.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PACK_IDENTITY_DRAFT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PACK_MEMORY_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PACK_ROLE_REGISTRY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PACK_SYNC_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PATCH_DISCIPLINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PATTERN_ETHICS_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PDO_CONVERSION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PRAYER_FOR_SOVEREIGNTY_AND_CLARITY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PT_001_PATTERN_TRACKING_CHECKSUM.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PTSD_ADVERTISING_HARM_BOUNDARY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\PURPOSE_BRIDGE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\REVERSE_SHAKA_PROTOCOL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\ROADMAP_4_0_18.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\RS-UTC-2026_SPELL_GUIDE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SCHEMA_FEDERATION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SEMANTIC_GRAPH_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SEMANTIC_LENSES_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SESSION_CONSENT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SHADOW_COMMONS_SPECIFICATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SINGLE_TASK_PATCH_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SQL_REFACTOR_MAPPING_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SQL_REWRITE_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SQL_TYPE_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SUBDIRECTORY_INSTALLATION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SYMBOL_OPERATOR_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SYSTEM_AGENT_SAFETY_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\SYSTEM_INTEGRATION_TESTING_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\TABLE_COUNT_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\TABLE_PREFIXING_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\TEMPORAL_BRIDGE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\TEMPORAL_TRUTH_MONITORING_GUIDE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\TERMINAL_AI_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\TIMESTAMP_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\TOON_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\TRIGGER_PROCEDURE_INVENTORY_3_0_75.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\UI_LIBRARY_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\URL_ROUTING_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\UTC_CODING_CYCLE_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\UTC_TIMEKEEPER_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\VERSION_CONTROL_POLICY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\VERSION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\VERSION_PLANS_3.0.82_3.0.88.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\VS_CODE_GUARDRAIL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\WEB_ROUTING_DOCTRINE_4_0_18.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\WHS_LHP_INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\WHY_NO_FRAMEWORKS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\WOLFIE_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\WOLFIE_HEADER_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\WOLFIE_RESURRECTION_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\WOLFMIND_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

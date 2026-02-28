@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "messages\version_4.0.24_release_prompt.md"
+  file_hash: "2e39cd817c5617362eb4cdf788263552e9d8519f419bd0204f148ebe22043d8a"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "VERSION 4.0.24 RELEASE PROMPT"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["messages", "version_4024_release_promptmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # VERSION 4.0.24 RELEASE PROMPT
 # Date: 2026-02-21
 # Purpose: Clean prompt to begin version 4.0.25 development cycle

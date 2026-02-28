@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\HELPER_TO_CLASS_MAPPING_ANALYSIS.md"
+  file_hash: "6ab670175d5e9ad97a1e96db668417b72fb4977d3c672ad2e6463bc05401d08d"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Helper-to-Class Mapping Plan (Analysis Only)"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "helper_to_class_mapping_analysismd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Helper-to-Class Mapping Plan (Analysis Only)
 
 **Purpose:** Map every procedural helper in `lupo-includes/functions/` to the correct OOP class based on **actual code behavior**. No refactoring in this step.

@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\developer\dev\WOLFIE_TIMESTAMP_DOCTRINE.md"
+  file_hash: "c6c7e469876774ba725ec315e12a28a3552aa4128ef6799b778357b1f8a5d1ca"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for WOLFIE_TIMESTAMP_DOCTRINE.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "developer", "dev", "wolfie_timestamp_doctrinemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 architect: Captain Wolfie
 wolfie.headers: explicit architecture with structured clarity for every file.

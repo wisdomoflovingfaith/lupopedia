@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\0002\PROGRAMMER_CERTIFICATION_CHECKLIST.md"
+  file_hash: "4c8f5b727a8cd98cbcd0486f080323f71821c2775f90b6c1d543217675bbfe20"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "PROGRAMMER CERTIFICATION CHECKLIST"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["backups", "filesystem_migration_20260131_133426", "channels", "0002", "programmer_certification_checklistmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # PROGRAMMER CERTIFICATION CHECKLIST
 Channel 3 — PROGRAMMERS OF LUPOPEDIA
 Version 2026.1.0.3

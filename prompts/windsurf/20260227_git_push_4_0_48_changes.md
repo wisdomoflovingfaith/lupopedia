@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "prompts\windsurf\20260227_git_push_4_0_48_changes.md"
+  file_hash: "252434056cc9b0af9f5063a134fa73bd6c9aedacd963cd8aeb6175471d78aaac"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for 20260227_git_push_4_0_48_changes.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["prompts", "windsurf", "20260227_git_push_4_0_48_changesmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers: {
   file_path_from_root: "prompts/windsurf/20260227_git_push_4_0_48_changes.md",

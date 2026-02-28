@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\audits\INSTALL_WIZARD_STEP5_STEP6_FINAL_REPORT.md"
+  file_hash: "6121d918d92072996a8474c8b6471d07811cf7c22c33da2588f040e48b721b32"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Install Wizard — Step 5 (Class Conversion) + Step 6 (Final Cleanup) — Final Report"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "audits", "install_wizard_step5_step6_final_reportmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Install Wizard — Step 5 (Class Conversion) + Step 6 (Final Cleanup) — Final Report
 
 **Date:** 2026-02-04  

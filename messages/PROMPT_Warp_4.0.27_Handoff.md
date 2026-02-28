@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "messages\PROMPT_Warp_4.0.27_Handoff.md"
+  file_hash: "75a5ee9e14cc0e19b6c477998fea0cb6d7249852e280294754fde331e5830ef1"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "MISSION BRIEF: HANDOFF TO WARP IDE (#2039) - VERSION 4.0.27"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["messages", "prompt_warp_4027_handoffmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # MISSION BRIEF: HANDOFF TO WARP IDE (#2039) - VERSION 4.0.27
 
 **From**: Antigravity IDE (#2035)  

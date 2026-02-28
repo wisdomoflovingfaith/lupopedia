@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_EXECUTION_SUMMARY.md"
+  file_hash: "dacac8d3e431e38bb4ea08886171aa1abce6c0592a6d0a869f5d9f8859219d6c"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Departments / Groups / Roles Unification — PHP Execution Summary"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "audits", "departments_groups_roles_php_execution_summarymd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Departments / Groups / Roles Unification — PHP Execution Summary
 
 **Date:** 2026-02-12  

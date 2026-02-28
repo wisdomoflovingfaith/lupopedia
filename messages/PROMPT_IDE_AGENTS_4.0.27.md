@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "messages\PROMPT_IDE_AGENTS_4.0.27.md"
+  file_hash: "0c2e82af96dbd059b026deae9cf1b9617574ffa294f5c3b34c239179701b515a"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "IDE AGENTS COORDINATION PROMPT - VERSION 4.0.27"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["messages", "prompt_ide_agents_4027md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # IDE AGENTS COORDINATION PROMPT - VERSION 4.0.27
 
 ## 🎯 MISSION BRIEF

@@ -1,0 +1,54 @@
+{
+  "files": [
+    {
+      "file": "docs\\specs\\AGENT_ROLES_4.0.24.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\specs\\COLLECTION_FLIP_HEADERS_USAGE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\specs\\DB_SCHEMA_DRIFT_4.0.24.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\specs\\DB_SCHEMA_REBUILD_PLAN_4.0.24.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\specs\\FLIP_DATABASE_MAPPING_LAYER_4.0.28.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\specs\\FLIP_HEADER_SPECIFICATION_4.0.23.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\specs\\FLIP_HEADERS_COMPLETE_4.0.24.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\specs\\FLIP_HEADERS_MASTER_INDEX_4.0.24.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\specs\\FLIP_HEADERS_VERBOSE_COMPLETE_4.0.27.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\specs\\UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

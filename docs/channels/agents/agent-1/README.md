@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\agents\agent-1\README.md"
+  file_hash: "66af19d9cf27bf06e024d00cfc2ea9e6df458d6ab886389413ea8b6369efcc5b"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for README.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "agents", "agent-1", "readmemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
 file.last_modified_system_version: 3.0.16
@@ -45,11 +72,11 @@ WOLFIE serves as:
 agents/0001/
 +-- README.md                          # This file
 +-- doctrine/                          # WOLFIE doctrine files
-¦   +-- CHANNEL_INITIALIZATION_PROTOCOL.md
+ï¿½   +-- CHANNEL_INITIALIZATION_PROTOCOL.md
 +-- templates/                         # WOLFIE templates
-¦   +-- channel_identity_block.template.md
+ï¿½   +-- channel_identity_block.template.md
 +-- workflows/                         # WOLFIE workflows
-¦   +-- channel_initialization.workflow.md
+ï¿½   +-- channel_initialization.workflow.md
 +-- config/                            # WOLFIE configuration
     +-- wolfie_manifest.json
 ```
@@ -60,8 +87,8 @@ This directory structure is being initialized as part of Lupopedia 3.0.16. The c
 
 ## Related Documentation
 
-- **[Channel and Dialog Agent Workflows](../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** — How IDE agents and php_ai_terminal agents interact with channels and dialogs
-- **[Channel Dialog Schema Review](../../docs/ARCHITECTURE/CHANNEL_DIALOG_SCHEMA_REVIEW.md)** — Database schema review for channel and dialog tables
+- **[Channel and Dialog Agent Workflows](../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** ï¿½ How IDE agents and php_ai_terminal agents interact with channels and dialogs
+- **[Channel Dialog Schema Review](../../docs/ARCHITECTURE/CHANNEL_DIALOG_SCHEMA_REVIEW.md)** ï¿½ Database schema review for channel and dialog tables
 
 ---
 

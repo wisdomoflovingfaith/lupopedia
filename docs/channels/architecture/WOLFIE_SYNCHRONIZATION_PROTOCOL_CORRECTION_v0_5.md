@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\architecture\WOLFIE_SYNCHRONIZATION_PROTOCOL_CORRECTION_v0_5.md"
+  file_hash: "095d84b2a231c7fa802301666adbd4fbc92583a83985c37f408597d85d8228eb"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "WOLFIE Synchronization Protocol Correction v0.5"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "architecture", "wolfie_synchronization_protocol_correction_v0_5md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # WOLFIE Synchronization Protocol Correction v0.5
 **URGENT CLARIFICATION** - Supersedes Previous Frame Selection Interpretation  
 **Correction Date**: January 20, 2026  

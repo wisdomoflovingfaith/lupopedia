@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "tools\vsx-extension\FLIP_INTEGRATION_README.md"
+  file_hash: "df0ece039e4ffd90a343ccd9bcb4614b2582d1d76a02ba57260f05f2d0a28c98"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "FLIP Header Integration — VSX Extension & Python Audit Tool"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["tools", "vsx-extension", "flip_integration_readmemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # FLIP Header Integration — VSX Extension & Python Audit Tool
 
 **Version**: 4.0.27  

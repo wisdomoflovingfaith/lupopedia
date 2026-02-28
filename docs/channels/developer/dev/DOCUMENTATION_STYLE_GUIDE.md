@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\developer\dev\DOCUMENTATION_STYLE_GUIDE.md"
+  file_hash: "70882b4d07b60e8a96c6d648e0355febe11af99dddb4b65fc93cdd5ba259dada"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "ðŸ“ Lupopedia Documentation Style Guide"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "developer", "dev", "documentation_style_guidemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # ðŸ“ Lupopedia Documentation Style Guide
 
 This guide establishes the writing and formatting standards for all Lupopedia documentation.

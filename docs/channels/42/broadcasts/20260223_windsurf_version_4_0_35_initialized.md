@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_version_4_0_35_initialized.md"
+  file_hash: "753ba6a81208e0b5c9848ef072d4659e265a2b3a495f5a385ed419fd1d112b0f"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for 20260223_windsurf_version_4_0_35_initialized.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "42", "broadcasts", "20260223_windsurf_version_4_0_35_initializedmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers:
   file_path_from_root: "channels/42/broadcasts/20260223_windsurf_version_4_0_35_initialized.md"

@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: ".kiro\specs\version-4-0-44-initialization\tasks.md"
+  file_hash: "096884a3d0877d5d8f8fe3372cd947f3c39bd10747d9aad564690f0f171b1bd0"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Implementation Plan: Version 4.0.44 Initialization Workflow"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["kiro", "specs", "version-4-0-44-initialization", "tasksmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Implementation Plan: Version 4.0.44 Initialization Workflow
 
 ## Overview

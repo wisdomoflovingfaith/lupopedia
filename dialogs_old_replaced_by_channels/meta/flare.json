@@ -1,0 +1,274 @@
+{
+  "files": [
+    {
+      "file": "dialogs_old_replaced_by_channels\\3.0.17-ui_change_integration_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\4.2.0_release_announcement.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\4.3.0_delay_announcement.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\CaptainsLog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\cascade_correction_entry.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\cascade_takeover_entry.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\castcade.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\changelog_dialog-side.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\changelog_dialog_backup.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\changelog_dialog_current.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\changelog_dialog_MONDAY_WOLFIE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\changelog_dialog_schema_sync_3_0_46.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\changelog_dialog_that_pertains_to_whatever_the_fuck_we_are_doing.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\changelog_dialog_UTC_2026-01-20.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\changelog_readme.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\changelog_todo.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\cip_execution_status_3_0_75.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\cursor.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\CURSOR_WINDSURF_HANDOFF_v3_0_70.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\everyone.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\final_state_entry.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\FRIDAY_SUNDAY_WORK_RULES_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\GOV-AD-PROHIBIT-001_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\GOV_dialog-side.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\GOV_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\HELP_changelog_dialog-side.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\HELP_changelog_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\humor_context_WOLFIE_LUPOPEDIA.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\IDE_COORDINATION_PROTOCOL_v3_0_70.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\integration_testing_coordination_3_0_71.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\jetbrains.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\migration_orchestrator_3_0_25_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\migration_orchestrator_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\monday_wolfie_changelog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\multi_agent_protocol_implementation_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\one_point_for_captainwolfie_dialogs.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\phase_a_completion_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\routing_changelog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\session_2026_01_16_version_3_0_46.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\SYSTEM_ARCHITECTURE_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\System_onboarding_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\SYSTEM_STATUS_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\table_budget_doctrine_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\table_classification_audit_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\THREAD_LEVEL_DIALOG_SPEC_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\TLDR_CHANGELOG_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\TLDR_entities_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\to_castcade.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\to_cursor.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\to_jetbrains.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\tuesday_agi_support_meeting.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\update_section.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\windsuf_recovery_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "dialogs_old_replaced_by_channels\\WOLFIE_HEADER_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

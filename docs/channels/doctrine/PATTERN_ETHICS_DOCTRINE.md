@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\doctrine\PATTERN_ETHICS_DOCTRINE.md"
+  file_hash: "8773426ccabac59d93459f21f2efc9ade6d70fcb8e682ec2a2e1e4c2bcc4cd12"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "GOV-PRINCIPLE-001 — Pattern Ethics Doctrine"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "pattern_ethics_doctrinemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # GOV-PRINCIPLE-001 — Pattern Ethics Doctrine
 
 **Series:** GOV-PRINCIPLE-001. **Index:** [GOV-PROHIBIT-001](GOV-PROHIBIT-001.md) · [GOV-AD-PROHIBIT-001](GOV-AD-PROHIBIT-001.md) · [PT_001](PT_001_PATTERN_TRACKING_CHECKSUM.md)

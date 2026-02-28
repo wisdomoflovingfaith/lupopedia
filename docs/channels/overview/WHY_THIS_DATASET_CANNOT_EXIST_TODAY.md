@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\overview\WHY_THIS_DATASET_CANNOT_EXIST_TODAY.md"
+  file_hash: "69d5b442c865822d0582f503f6b0c226c4cda00c73c2cd913aabb45712e7a68c"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "WHY THIS DATASET CANNOT BE RECREATED TODAY"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "overview", "why_this_dataset_cannot_exist_todaymd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # WHY THIS DATASET CANNOT BE RECREATED TODAY
 
 **The Structural, Legal, and Architectural Reasons Crafty Syntax's 25‑Year Dataset Is Historically Unique**

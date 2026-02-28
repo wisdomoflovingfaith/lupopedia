@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE4_ANALYTICS_ROUTING_DISCOVERY_REPORT.md"
+  file_hash: "60284c886a3c160531411b88fe586afd0f5513fa3e4b8d1da3199ede7d977cee"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "📋 **Phase 4: Analytics & Routing Discovery Report**"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "schema", "migrations", "analysis", "phase4_analytics_routing_discovery_reportmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # 📋 **Phase 4: Analytics & Routing Discovery Report**
 
 ## 🎯 **HERITAGE-SAFE MODE: Analytics & Routing Files Discovered**

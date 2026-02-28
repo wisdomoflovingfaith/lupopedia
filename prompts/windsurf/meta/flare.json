@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "file": "prompts\\windsurf\\20260227_actor_db_sync_v4_0_48.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "prompts\\windsurf\\20260227_git_push_4_0_48_changes.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "prompts\\windsurf\\20260227_ide_agent_guidelines_update.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "prompts\\windsurf\\20260227_version_rollover_to_4_0_49.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\CHANNEL_42_BROADCAST_OAUTH_FLIP_FOOTERS.md"
+  file_hash: "4dae926a895056f91e10578ec627ccfa06ec8b27d3f003b0e9d264e34f21b6ef"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for CHANNEL_42_BROADCAST_OAUTH_FLIP_FOOTERS.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "channel_42_broadcast_oauth_flip_footersmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.

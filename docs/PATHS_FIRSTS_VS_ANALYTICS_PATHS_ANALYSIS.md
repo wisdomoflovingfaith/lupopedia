@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\PATHS_FIRSTS_VS_ANALYTICS_PATHS_ANALYSIS.md"
+  file_hash: "9c8319e3114478da5713b33359c784e1ccbc931a91bdf817a6ac72a678d78f00"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Analysis: lupo_analytics_paths vs lupo_paths_firsts"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "paths_firsts_vs_analytics_paths_analysismd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Analysis: lupo_analytics_paths vs lupo_paths_firsts
 
 **Purpose:** Confirm whether **lupo_paths_firsts** is still used after analytics path tables were unified into **lupo_analytics_paths**. Determine if lupo_paths_firsts can be safely dropped.  

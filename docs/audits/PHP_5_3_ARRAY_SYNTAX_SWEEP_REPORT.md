@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\audits\PHP_5_3_ARRAY_SYNTAX_SWEEP_REPORT.md"
+  file_hash: "989162eb9d6ba0e4aee789beed93685dc0a960cbbd38a7b85d1c05edf6971ebb"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "PHP 5.3 Array Syntax Sweep Report"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "audits", "php_5_3_array_syntax_sweep_reportmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # PHP 5.3 Array Syntax Sweep Report
 
 ## 1. Files Where `[]` Was Replaced With `array()`

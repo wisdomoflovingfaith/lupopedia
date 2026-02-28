@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "CHATGPT_AUDIT_DIRECTIVE_COMPLETE_4_0_33.md"
+  file_hash: "4b28eef4edc6ca2df0d59f05536e71ffd6c5879fca4e3a52dcf4c22a0b37e06c"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for CHATGPT_AUDIT_DIRECTIVE_COMPLETE_4_0_33.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["chatgpt_audit_directive_complete_4_0_33md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers:
   file_path_from_root: "CHATGPT_AUDIT_DIRECTIVE_COMPLETE_4_0_33.md"

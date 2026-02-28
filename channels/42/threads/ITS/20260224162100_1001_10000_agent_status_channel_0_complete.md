@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "channels\42\threads\ITS\20260224162100_1001_10000_agent_status_channel_0_complete.md"
+  file_hash: "263e5c04e05da7df26e0b68859a20fa58df45ad4e758dd0f10689b4033ea05af"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for 20260224162100_1001_10000_agent_status_channel_0_complete.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channels", "42", "threads", "its", "20260224162100_1001_10000_agent_status_channel_0_completemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 thread_id: 20260224162100_1001_10000_agent_status_channel_0_complete
 from_actor_id: 1001

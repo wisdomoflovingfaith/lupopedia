@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "channels\0\actors\1\tasks\assigned\README.md"
+  file_hash: "6fec2e48f6c187dc41d94ca5701e9c81e97661b5f573604c75f16f4556fc287a"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Assigned Tasks for Captain WOLFIE (1)"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channels", "0", "actors", "1", "tasks", "assigned"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Assigned Tasks for Captain WOLFIE (1)
 
 This directory contains references to tasks assigned to Captain WOLFIE (1) in Channel 0.

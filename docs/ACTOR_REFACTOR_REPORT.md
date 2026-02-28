@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\ACTOR_REFACTOR_REPORT.md"
+  file_hash: "01f3641a147970e6335e54d6c80f887ff32ba2795e8e06fd17bc5108fefcb8f4"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Actor Domain Refactor Report"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "actor_refactor_reportmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Actor Domain Refactor Report
 
 **Phase:** Actor domain only (per `docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md`).  

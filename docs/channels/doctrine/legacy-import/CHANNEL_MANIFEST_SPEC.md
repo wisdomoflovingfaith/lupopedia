@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\doctrine\legacy-import\CHANNEL_MANIFEST_SPEC.md"
+  file_hash: "e2ef5a3fbe0d6e61a0ffe44704b49095a10aecb084ef6fbbf4aa1ec35b108275"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "DOCTRINE: CHANNEL MANIFEST SPECIFICATION"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "legacy-import", "channel_manifest_specmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # DOCTRINE: CHANNEL MANIFEST SPECIFICATION
 
 **Filename:** doctrine/CHANNEL_MANIFEST_SPEC.md  

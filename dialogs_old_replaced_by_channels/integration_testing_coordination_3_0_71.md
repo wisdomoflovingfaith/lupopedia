@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "dialogs_old_replaced_by_channels\integration_testing_coordination_3_0_71.md"
+  file_hash: "f6e9b2dd85b54951eec8d5667f9a22730ab53bb77a4a9b376a390e9d044ada32"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Integration Testing Coordination Dialog - Version 3.0.71"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["dialogs_old_replaced_by_channels", "integration_testing_coordination_3_0_71md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Integration Testing Coordination Dialog - Version 3.0.71
 # Participants: WOLFIE, KIRO, windsuf, CASCADE
 # Purpose: Coordinate System Integration Testing Phase execution

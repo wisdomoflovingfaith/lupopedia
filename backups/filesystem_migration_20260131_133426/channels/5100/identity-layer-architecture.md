@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "backups\filesystem_migration_20260131_133426\channels\5100\identity-layer-architecture.md"
+  file_hash: "8dc5a17088b0bd65419576a46fefdf8c749942e8b1afe2a5198b75dee1aa4dd2"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Lupopedia Identity and Channel Architecture"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["backups", "filesystem_migration_20260131_133426", "channels", "5100", "identity-layer-architecturemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Lupopedia Identity and Channel Architecture
 
 This document describes the Semantic OS identity layer built on three core tables:

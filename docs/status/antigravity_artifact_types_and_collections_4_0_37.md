@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\status\antigravity_artifact_types_and_collections_4_0_37.md"
+  file_hash: "693735808c3b24dd55a36feba63609825962616f1a00e91d207a83dee9e7b06e"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "STATUS REPORT — ANTIGRAVITY ARTIFACT TYPES & COLLECTION SYSTEM (4.0.37)"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "status", "antigravity_artifact_types_and_collections_4_0_37md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # STATUS REPORT — ANTIGRAVITY ARTIFACT TYPES & COLLECTION SYSTEM (4.0.37)
 
 **Date:** 20260224  

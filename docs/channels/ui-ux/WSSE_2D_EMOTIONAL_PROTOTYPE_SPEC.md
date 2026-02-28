@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\ui-ux\WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md"
+  file_hash: "f16d7a80d2ff6dc43f969c1b7b355ae14ead4337dfa662b7141532447b5ee1d0"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "ui-ux", "wsse_2d_emotional_prototype_specmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ----------------------------------------------------------------------
 # WSSE 2D EMOTIONAL PROTOTYPE — IMPLEMENTATION SPECIFICATION
 Version: 1.0

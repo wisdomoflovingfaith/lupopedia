@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "tools\vsx-extension\README.md"
+  file_hash: "5480c26da90948536f3dcced835cfeb16c283ecebb739b073e27083e6133fab1"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Lupopedia — VS Code / Open-VSX Extension (v4.0.33)"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["tools", "vsx-extension", "readmemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Lupopedia — VS Code / Open-VSX Extension (v4.0.33)
 
 Connect your IDE to **Lupopedia** — a semantic operating system for organizing meaning. This extension registers your IDE as an actor in the Lupopedia unified registry, lets you participate in channels, and surfaces semantic context directly inside your editor.

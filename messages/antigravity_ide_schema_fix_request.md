@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "messages\antigravity_ide_schema_fix_request.md"
+  file_hash: "eeafb79bc081ce5833271bbc0820c9979e05f232b977f61f1480ec1564ad7f7d"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "ANTIGRAVITY IDE - URGENT SCHEMA MISMATCH FIX REQUEST"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["messages", "antigravity_ide_schema_fix_requestmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # ANTIGRAVITY IDE - URGENT SCHEMA MISMATCH FIX REQUEST
 
 ## Mission Brief: Lupopedia 4.0.27 Schema Compatibility Crisis

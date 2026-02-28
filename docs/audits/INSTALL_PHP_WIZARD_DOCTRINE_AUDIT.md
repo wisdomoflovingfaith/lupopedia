@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\audits\INSTALL_PHP_WIZARD_DOCTRINE_AUDIT.md"
+  file_hash: "6745a38ca16cc51cff323ec9a808bc7cb458eaaba79e3baee90c6e4bea82a183"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Install.php + Wizard — Full Doctrine Compliance Audit (PHP 5.3 → 8.1)"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "audits", "install_php_wizard_doctrine_auditmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Install.php + Wizard — Full Doctrine Compliance Audit (PHP 5.3 → 8.1)
 
 **Date:** 2025-02-04  

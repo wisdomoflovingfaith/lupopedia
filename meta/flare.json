@@ -1,0 +1,359 @@
+{
+  "files": [
+    {
+      "file": "4.0.21_COMPLETION_SUMMARY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "420_SERIES_CLOSURE_4.0.29.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "ACTOR_SEED_VERIFICATION_COMPLETE_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "AGENT_DIALOG_PROTOCOL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "AGENT_SNAPSHOT_HANDLING_RULES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "AGENTS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "ANUBIS_VISHWAKARMA_VERIFICATION_REPORT_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "APPLICATION_CODE_CLEANUP_COMPLETE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "AUDIT_REPORT_4.0.45_PRE_INSTALL_VALIDATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "CHANGELOG_4_0_27_UPDATE_SUMMARY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "CHANGELOG_NEW.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "CHANNEL_IDENTITY_BLOCK_TEMPLATE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channel_summary.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "CHATGPT_AUDIT_DIRECTIVE_COMPLETE_4_0_33.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "DB_SNAPSHOT_PROTOCOL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "DEV_CYCLE_4.0.4.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "DIRECTORY_STRUCTURE_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "DIRECTORY_TREE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "DUAL_CHANNEL_BROADCAST_AUDIT_REPORT_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "GEMINI.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "GIT_COMMIT_MESSAGE_CLEAN.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "GLOBAL_AGENT_SYNC_4.0.27.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "HOW_TO_CONFIRM_ACTOR_IDS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "HOW_TO_USE_LUPOPEDIA.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "HUMAN_TASKS_CAPTAIN_10000.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "IDE_AGENT_CONTRIBUTIONS_SUMMARY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "IDE_AGENT_DETECTION_COMPLETE_4_0_34.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "IDENTITY_COLLISION_FIX_4.0.29.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_4.0.45_ANTIGRAVITY_WORKSPACES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_OFFLINE_GOVERNANCE_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "INSTALL_SQL_FIXED_READY_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "KIRO_ACTOR_VERIFICATION_SESSION_COMPLETE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "KIRO_COMPLETION_MESSAGE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "KIRO_DIRECTIVE_COMPLETION_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "KIRO_FINAL_VERIFICATION_COMPLETE_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "KIRO_TAKEOVER_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "MINIMAL_SEED_4.0.26_READY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "OFFLINE_GOVERNANCE_MODEL_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "plan_for_crafty_syntax.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "plan_for_toon_seed_regeneration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "QUICKSTART.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "READY_FOR_HUMAN_INSTALL_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "REGISTRY_CLEANUP_4.0.27.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "REGISTRY_CONSOLIDATION_COMPLETE_4_0_34.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "REGISTRY_FIX_COMPLETE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "REGISTRY_FIX_SUMMARY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "RELEASE_4_0_27_COMPLETE_4_0_28_INITIALIZED.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "RELEASE_4_0_29_FINAL_420_SERIES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "RELEASE_NOTES_4.0.21.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "RUNTIME_AGENT_RULES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "SEMANTIC_LAYER_MODEL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "STRUCTURAL_REALIGNMENT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "SYSTEM_ALIGNMENT_COMPLETE_4_0_33.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "UPGRADE_PLAN_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "VALIDATION_GATE_REPORT_4.0.45.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "VERSION_4_0_31_FINALIZATION_STATUS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "VERSION_4_0_32_COMPLETION_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "VERSION_4_0_35_KICKOFF_COMPLETE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "VERSION_4_0_45_CLOSURE_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "VERSION_4_0_46_LAUNCH_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "VERSION_BUMP_4_0_34_COMPLETE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "WHO_JSON_IMPLEMENTATION_SUMMARY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "X_LUPO_FORWARDED_IMPLEMENTATION_SUMMARY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

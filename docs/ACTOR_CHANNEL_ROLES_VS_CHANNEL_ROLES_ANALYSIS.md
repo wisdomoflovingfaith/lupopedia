@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md"
+  file_hash: "fedf7de8853c9d0a91e2c69ce231ee6b08f131e59fe37d4b7b261a72f14795d8"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Analysis: lupo_actor_channel_roles vs lupo_channel_roles"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "actor_channel_roles_vs_channel_roles_analysismd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Analysis: lupo_actor_channel_roles vs lupo_channel_roles
 
 **Purpose:** Determine which table is actually used by the codebase and which is the duplicate.  

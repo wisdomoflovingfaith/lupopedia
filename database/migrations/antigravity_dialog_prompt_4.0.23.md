@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "database\migrations\antigravity_dialog_prompt_4.0.23.md"
+  file_hash: "b28e73148516cc77a3b9bdda054cd060e19399d281f12831b4af38a12c4155ed"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Antigravity IDE Development Context Dialog Prompt"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["database", "migrations", "antigravity_dialog_prompt_4023md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Antigravity IDE Development Context Dialog Prompt
 
 **Purpose**: Provide Antigravity IDE with comprehensive context about current development work and actor relationships for database seeding.

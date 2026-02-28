@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "channels\42\tasks\completed\flare_validator_service_enhancement.md"
+  file_hash: "c34c5b163fd5a83a99571d52ee988876dd67ecc7ad039bf84bfd1eee8c572ba5"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "🔍 FlareValidatorService Enhancement - Database-Driven Validation"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channels", "42", "tasks", "completed", "flare_validator_service_enhancementmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # 🔍 FlareValidatorService Enhancement - Database-Driven Validation
 
 **Task ID:** FLAREVAL-2026-02-27-001  

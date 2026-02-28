@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "GLOBAL_AGENT_SYNC_4.0.27.md"
+  file_hash: "38c36ae653f65a836157c45051397292a598fb599d9a4c6e4b6aa7b0fc6e1174"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "GLOBAL AGENT SYNC - VERSION 4.0.27"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["global_agent_sync_4027md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # GLOBAL AGENT SYNC - VERSION 4.0.27
 
 **Timestamp**: 2026-02-22T15:45:00Z  

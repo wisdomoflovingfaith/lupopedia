@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\overview\\4.1.0\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\overview\\4.1.0\\LAUNCH_SEQUENCE_T0_4_1_0.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\overview\\4.1.0\\MISSION_BRIEFING_4_1_0.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\overview\\4.1.0\\PUBLIC_RELEASE_NOTES_4_1_0.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\overview\\4.1.0\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\overview\\4.1.0\\RELEASE_BANNER_4_1_0.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

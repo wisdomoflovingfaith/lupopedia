@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "420_SERIES_CLOSURE_4.0.29.md"
+  file_hash: "fea4127040c7ec44a8f168bbdd4840784819d5318760fb725e3e7140ec7de2a2"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "🔒 420-SERIES CLOSURE — Lupopedia 4.0.29 (2026-02-22)"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["420_series_closure_4029md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # 🔒 420-SERIES CLOSURE — Lupopedia 4.0.29 (2026-02-22)
 
 ## 🎯 FINAL 420-SERIES RELEASE

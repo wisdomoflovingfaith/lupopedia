@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "lupo-includes\modules\crafty_syntax\CRAFTY_SYNTAX_SQL_TOON_REPORT.md"
+  file_hash: "885aaacea8a82a66d3753c4f972893b153fb89c709e1c59689998bcb3e059ce3"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Crafty Syntax: SQL Column References vs TOON Schema"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["lupo-includes", "modules", "crafty_syntax", "crafty_syntax_sql_toon_reportmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Crafty Syntax: SQL Column References vs TOON Schema
 
 **Scope:** All PHP files under `lupo-includes/modules/crafty_syntax/`  

@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\audits\EXPERIMENTAL_AI_COSMIC_PURGE_SUMMARY.md"
+  file_hash: "d884d11cca59c552df1efddf8c4c097c09d6ff1e211acfa14c9eba87e2a97607"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Experimental AI Cosmic / Psychedelic / Joke-Doctrine Purge Summary"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "audits", "experimental_ai_cosmic_purge_summarymd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Experimental AI Cosmic / Psychedelic / Joke-Doctrine Purge Summary
 
 **Date:** 2026-02-11  

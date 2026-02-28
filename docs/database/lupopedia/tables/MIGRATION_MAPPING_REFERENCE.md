@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\database\lupopedia\tables\MIGRATION_MAPPING_REFERENCE.md"
+  file_hash: "9122bacd95ac2e33f4c69fc874747f9cbb6db8ee8889eab1cf4b03a543facdd5"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for MIGRATION_MAPPING_REFERENCE.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "database", "lupopedia", "tables", "migration_mapping_referencemd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 flare.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md",

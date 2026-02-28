@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\archive\doctrine_revisions\WOLFIE_HEADER_DOCTRINE_v3.3.md"
+  file_hash: "c54459fcb28d8ec8701a45ada42ef5947861f87f94a91457ac7b9c082d98a397"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "⧉ WOLFIE HEADER DOCTRINE v3.3"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "archive", "doctrine_revisions", "wolfie_header_doctrine_v33md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # ⧉ WOLFIE HEADER DOCTRINE v3.3
 ### Identity • Determinism • Boundary Enforcement • Master Doctrine Alignment • Channel & Thread Metadata
 

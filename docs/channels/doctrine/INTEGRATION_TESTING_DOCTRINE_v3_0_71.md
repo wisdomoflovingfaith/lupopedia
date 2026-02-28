@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\doctrine\INTEGRATION_TESTING_DOCTRINE_v3_0_71.md"
+  file_hash: "a2da575ae0d763d5f03ea44ff9c5c16c8d33f5c1affde3dd825190c7a61e3fc2"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "INTEGRATION TESTING DOCTRINE v3.0.71"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "integration_testing_doctrine_v3_0_71md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # INTEGRATION TESTING DOCTRINE v3.0.71
 ## System Integration Testing Plan
 

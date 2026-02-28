@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "X_LUPO_FORWARDED_IMPLEMENTATION_SUMMARY.md"
+  file_hash: "4f00e013ffedd96bbe2a850dc36926ec9540973562f1b32643f044897af982d0"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for X_LUPO_FORWARDED_IMPLEMENTATION_SUMMARY.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["x_lupo_forwarded_implementation_summarymd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 ---
 wolfie.headers:
   file_path_from_root: "X_LUPO_FORWARDED_IMPLEMENTATION_SUMMARY.md"

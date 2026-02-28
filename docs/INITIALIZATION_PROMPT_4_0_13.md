@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\INITIALIZATION_PROMPT_4_0_13.md"
+  file_hash: "3842738229def234cc9be016ceceb4c52112d465facd7ef87a61cd2f123d1723"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Initialization Prompt for New Cursor Thread — Lupopedia 4.0.13"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "initialization_prompt_4_0_13md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Initialization Prompt for New Cursor Thread — Lupopedia 4.0.13
 
 **Purpose:** Paste the content below (from "---" to "END OF PROMPT") into a **new** Cursor thread to begin development on Lupopedia 4.0.13. This prompt does NOT perform any version bump or file changes; it only equips the next thread with doctrine and instructions.

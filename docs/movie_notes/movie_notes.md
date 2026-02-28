@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\movie_notes\movie_notes.md"
+  file_hash: "ad3b60a451788ccd9c0410b40254c62ce7360231a6761d3b0051ebe6215ae9e8"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "🎬 MOVIE NOTES: *The Architect of Lupopedia*"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "movie_notes", "movie_notesmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # 🎬 MOVIE NOTES: *The Architect of Lupopedia*
 *A mythic-technical narrative based on true events*
 

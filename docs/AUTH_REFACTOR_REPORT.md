@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\AUTH_REFACTOR_REPORT.md"
+  file_hash: "72f82a9cc5a08c0a34107cd5a0177b3c3ab8cd027acf0bdb855a47ce7851b336"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Auth Domain Refactor Report"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "auth_refactor_reportmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Auth Domain Refactor Report
 
 **Phase:** Auth domain only (per `docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md`).  

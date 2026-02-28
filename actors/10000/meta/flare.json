@@ -1,56 +1,63 @@
 {
-  "schema_version": "4.0.47",
   "actor_id": "10000",
   "edges": [
     {
       "from": "10000",
+      "reason": "Captain supervises Kiro IDE operations",
       "to": "1000",
       "type": "supervises",
-      "weight": 1.0,
-      "reason": "Captain supervises Kiro IDE operations"
+      "weight": 1.0
     },
     {
       "from": "10000",
+      "reason": "Captain supervises Windsurf IDE operations",
       "to": "1001",
       "type": "supervises",
-      "weight": 1.0,
-      "reason": "Captain supervises Windsurf IDE operations"
+      "weight": 1.0
     },
     {
       "from": "10000",
+      "reason": "Captain supervises Cursor IDE operations",
       "to": "1002",
       "type": "supervises",
-      "weight": 1.0,
-      "reason": "Captain supervises Cursor IDE operations"
+      "weight": 1.0
     },
     {
       "from": "10000",
+      "reason": "Captain supervises Antigravity IDE operations",
       "to": "1003",
       "type": "supervises",
-      "weight": 1.0,
-      "reason": "Captain supervises Antigravity IDE operations"
+      "weight": 1.0
     },
     {
       "from": "10000",
+      "reason": "Captain supervises Warp IDE operations",
       "to": "1004",
       "type": "supervises",
-      "weight": 1.0,
-      "reason": "Captain supervises Warp IDE operations"
+      "weight": 1.0
     },
     {
       "from": "10000",
+      "reason": "Captain supervises Cascade IDE operations",
       "to": "1005",
       "type": "supervises",
-      "weight": 1.0,
-      "reason": "Captain supervises Cascade IDE operations"
+      "weight": 1.0
     },
     {
       "from": "10000",
+      "reason": "Captain supervises Gemini CLI operations",
       "to": "1006",
       "type": "supervises",
-      "weight": 1.0,
-      "reason": "Captain supervises Gemini CLI operations"
+      "weight": 1.0
     }
   ],
-  "last_updated_utc": "20260227"
+  "files": [
+    {
+      "file": "actors\\10000\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ],
+  "last_updated_utc": "20260227",
+  "schema_version": "4.0.47"
 }

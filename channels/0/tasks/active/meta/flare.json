@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "file": "channels\\0\\tasks\\active\\20260225170000_task_0_10000_drop_tables_and_run_install.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\tasks\\active\\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\tasks\\active\\broadcast_normalization.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\tasks\\active\\db_reset_and_install.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\tasks\\active\\installer_integration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\tasks\\active\\registry_lock.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

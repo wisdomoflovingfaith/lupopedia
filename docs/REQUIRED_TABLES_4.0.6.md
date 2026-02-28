@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\REQUIRED_TABLES_4.0.6.md"
+  file_hash: "b2ee2dcdab61c0f67faa82f25bc09e4c2b8e8079222eb6c0b27820d644113367"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Required Tables for Lupopedia 4.0.6 (Patch-Only)"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "required_tables_406md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Required Tables for Lupopedia 4.0.6 (Patch-Only)
 
 **Version:** 4.0.6 (patch-only; no 4.1.x in this document)  

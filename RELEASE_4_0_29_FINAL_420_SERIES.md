@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "RELEASE_4_0_29_FINAL_420_SERIES.md"
+  file_hash: "808211eada95e6ab250cba27441320b71299bb2bd0f018e9be94864dd4809032"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "🎯 LUPOPEDIA 4.0.29 — FINAL 420-SERIES RELEASE"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["release_4_0_29_final_420_seriesmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # 🎯 LUPOPEDIA 4.0.29 — FINAL 420-SERIES RELEASE
 
 **Release Date**: 2026-02-22 23:56:53 UTC  

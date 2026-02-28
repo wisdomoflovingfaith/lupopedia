@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\audits\PRE_PUSH_4_0_1_INTEGRITY_SWEEP_SUMMARY.md"
+  file_hash: "7b1b0ca2619b0bcbf3f5df550deef0d9ff01c7e2d76d6d3a6c764332bc0b2daa"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Pre-Push 4.0.1 Integrity Sweep Summary"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "audits", "pre_push_4_0_1_integrity_sweep_summarymd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Pre-Push 4.0.1 Integrity Sweep Summary
 
 **Date:** 2026-02-11  

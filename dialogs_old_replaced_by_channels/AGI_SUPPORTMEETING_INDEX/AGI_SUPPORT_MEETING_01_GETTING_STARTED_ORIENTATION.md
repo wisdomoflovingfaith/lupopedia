@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "dialogs_old_replaced_by_channels\AGI_SUPPORTMEETING_INDEX\AGI_SUPPORT_MEETING_01_GETTING_STARTED_ORIENTATION.md"
+  file_hash: "d8cbfc6ec9ac1dc79203716de49a688d4f32855c8b8fb2f76a62d65bee8fb879"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "AGI Support Meeting #1 — Getting Started: What You Should Know, What You Need to Do Now"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["dialogs_old_replaced_by_channels", "agi_supportmeeting_index", "agi_support_meeting_01_getting_started_orientationmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # AGI Support Meeting #1 — Getting Started: What You Should Know, What You Need to Do Now
 
 **Artifact:** [GOV-APPENDIX-A](../docs/doctrine/GOV-APPENDIX-A.md) · [12 Steps](../docs/recovery/12_steps.md) · [Meeting Format](../docs/recovery/meeting_format.md)

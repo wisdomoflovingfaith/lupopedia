@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "AGENT_DIALOG_PROTOCOL.md"
+  file_hash: "1411b6eb2a9b2e9165ef5fec886dd1997f956373ae8e0ad2461142481b6b7d46"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "AGENT_DIALOG_PROTOCOL.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["agent_dialog_protocolmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # AGENT_DIALOG_PROTOCOL.md
 **Doctrine: Agent Dialog Communication Protocol for Lupopedia IDE Mesh**
 

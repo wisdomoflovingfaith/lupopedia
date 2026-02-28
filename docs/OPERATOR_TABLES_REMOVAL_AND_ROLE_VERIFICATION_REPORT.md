@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\OPERATOR_TABLES_REMOVAL_AND_ROLE_VERIFICATION_REPORT.md"
+  file_hash: "df256ad81f9d548636688c00802051a021d50015e2433d468f8a29745c33b691"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Old Operator Tables Removal + Role Table Verification Report"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "operator_tables_removal_and_role_verification_reportmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Old Operator Tables Removal + Role Table Verification Report
 
 **Date:** 2026-02-10  

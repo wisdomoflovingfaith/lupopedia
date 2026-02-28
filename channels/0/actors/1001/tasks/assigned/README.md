@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "channels\0\actors\1001\tasks\assigned\README.md"
+  file_hash: "b71ab9553e6bef6ff602b9a974d1e452c155725364a784c89173f565bc511943"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Assigned Tasks for Windsurf IDE (1001)"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["channels", "0", "actors", "1001", "tasks", "assigned"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Assigned Tasks for Windsurf IDE (1001)
 
 This directory contains references to tasks assigned to Windsurf IDE (1001) in Channel 0.

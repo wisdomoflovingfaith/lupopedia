@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\doctrine\legacy-import\CHANNEL_IDENTITY_BLOCK.md"
+  file_hash: "0d9b7cea24781adceb44f6b03f17d17b9aea061fad2ee2e4036e2862e16d9df1"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "DOCTRINE: CHANNEL IDENTITY BLOCK"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "legacy-import", "channel_identity_blockmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # DOCTRINE: CHANNEL IDENTITY BLOCK
 
 **Filename:** doctrine/CHANNEL_IDENTITY_BLOCK.md  

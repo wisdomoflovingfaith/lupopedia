@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\channels\schema\migrations\analysis\DIALOGUE_GRAPH_SCHEMA.md"
+  file_hash: "ad8e6fb53d1e167e2d7ac712fb19b78df121649c919940944a02354f82f457e4"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "📋 **Dialogue Graph Schema**"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "schema", "migrations", "analysis", "dialogue_graph_schemamd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # 📋 **Dialogue Graph Schema**
 
 ## 🎯 **Multi-Actor Dialogue Layer Database Schema**

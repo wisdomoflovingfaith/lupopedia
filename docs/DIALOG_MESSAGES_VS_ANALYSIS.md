@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\DIALOG_MESSAGES_VS_ANALYSIS.md"
+  file_hash: "8a0b2800e0542bc9c0d0faa18049c921145ac35abf64b3a7d59f61fdc2222732"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Analysis: lupo_dialog_messages vs lupo_dialog_messages"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "dialog_messages_vs_analysismd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Analysis: lupo_dialog_messages vs lupo_dialog_messages
 
 **Purpose:** Determine which table is actually used by the codebase and whether **lupo_dialog_messages** can be safely dropped.  

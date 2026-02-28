@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "DUAL_CHANNEL_BROADCAST_DIRECTIVE_COMPLETE_4.0.45.md"
+  file_hash: "a3e2f61e930abbd3e9542c007cd8c4578f954d55a6f7dacea11d935e42628ca5"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["dual_channel_broadcast_directive_complete_4045md"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # DUAL-CHANNEL BROADCAST DIRECTIVE COMPLETE
 ## System Version 4.0.45 — Communications Stabilization Phase
 

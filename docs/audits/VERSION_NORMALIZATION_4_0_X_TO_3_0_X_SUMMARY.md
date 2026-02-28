@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\audits\VERSION_NORMALIZATION_4_0_X_TO_3_0_X_SUMMARY.md"
+  file_hash: "4c6c53da7db7e2e50fba15afdb673c2d242ada79cc8112375d4b63ae430c5c82"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Version Normalization Sweep: Historical 4.0.x → 3.0.x Summary"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "audits", "version_normalization_4_0_x_to_3_0_x_summarymd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Version Normalization Sweep: Historical 4.0.x → 3.0.x Summary
 
 **Date:** 2026-02-11  

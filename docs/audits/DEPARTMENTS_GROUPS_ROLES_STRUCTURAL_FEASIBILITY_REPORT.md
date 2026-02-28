@@ -1,3 +1,30 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  flare.edges: []
+  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md"
+  file_hash: "89b19c9885099e51e66547947c00cce21e2610ba1ff29ee7af270d9c29ecad37"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Departments, Groups, and Roles — Structural Simplification Feasibility Report"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "audits", "departments_groups_roles_structural_feasibility_reportmd"]
+  lupo_agent: "windsurf"
+
+flare.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
 # Departments, Groups, and Roles — Structural Simplification Feasibility Report
 
 **Date:** 2026-02-12  
