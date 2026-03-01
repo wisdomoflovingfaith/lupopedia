@@ -3,28 +3,28 @@
 flare.headers:
   flare.version: "1.0"
   flare.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\README.md"
-  file_hash: "498810a3b2f2fb04b9f159afd4742f2500ad045cfe384105b712c38d1cbc1d84"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
+  file_path_from_root: "docs/database/lupopedia/tables/README.md"
+  system_version: "4.0.52"
+  last_modified_utc: "20260301120000"
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation directory structure and TOON mapping for Lupopedia database tables"
+  dialog_message: "Clarified documentation structure - CHANNEL_SYSTEM_TLDR.md is reference guide, not table documentation"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
+  traits: ["documentation", "structure", "v4.0.52"]
+  tags: ["documentation", "database", "tables", "toon_mapping"]
   lupo_agent: "windsurf"
 
 flare.edges:
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "docs/toons/", type: "references", weight: 1.0 }
+    - { to: "docs/database/lupopedia/tables/", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 0.9 }
+  semantic_tags: ["documentation", "database", "tables", "toon_mapping"]
 
 flare.footer:
-  last_verified: "20260228155738"
+  version: "4.0.52"
+  last_verified: "20260301"
   last_verified_by: "windsurf"
 ---
 
@@ -88,54 +88,51 @@ flare.footer: {
 }
 ---
 
-# Lupopedia Database Tables (Doctrine)
+# Database Tables Documentation
 
-This folder contains **per-table doctrine** for Lupopedia tables that are migration targets or central to the Crafty Syntax 3.7.5 → Lupopedia 4.0.x upgrade path. Each file describes the table’s purpose, how it is used, and how it was mapped from legacy Crafty Syntax tables.
+## Directory Structure
 
-**Schema source of truth:** `docs/toons/*.toon.json` (TOON files). Column names, types, and keys must match the TOONs.
+This directory contains comprehensive documentation for all Lupopedia database tables. Each table has corresponding TOON schema files in `docs/toons/` that serve as the authoritative source of truth for table structure.
 
-> [!NOTE]
-> For historical context on why legacy tables are deprecated and the project's evolution from 2002, see the [Full Project History](../../../channels/appendix/HISTORY.md).
+## Documentation Types
 
----
+### 1. Table Documentation Files
+These files provide detailed documentation for specific database tables:
 
-## Migration Mapping Reference
+- **Format**: `lupo_{table_name}.md`
+- **Purpose**: Comprehensive table documentation with schema, usage patterns, and integration examples
+- **Authority**: References corresponding TOON schema files
+- **Examples**: SQL operations, PHP integration, and best practices
 
-Legacy mapping details were previously in `docs/doctrine/migrations/` but have been consolidated here for technical reference. The central index is **[MIGRATION_MAPPING_REFERENCE.md](MIGRATION_MAPPING_REFERENCE.md)**.
+### 2. Reference Documentation Files
+These files provide cross-cutting documentation and references:
 
----
+- **README.md**: This file - directory overview and structure guide
+- **CHANNEL_SYSTEM_TLDR.md**: Quick reference guide for channel system operations (NOT table documentation)
+- **MIGRATION_MAPPING_REFERENCE.md**: Legacy to modern table mapping
+- **actor_reply_templates.md**: Actor communication templates
 
-## 3-level permission model (no lupo_operators)
+### 3. TOON Schema Files
+Located in `docs/toons/` - these are the authoritative schema definitions:
 
-Lupopedia does **not** have a `lupo_operators` table. Permissions use a **3-level role system**:
+- **Format**: `{table_name}.toon.json`
+- **Purpose**: JSON schema definitions with field types, indexes, and constraints
+- **Authority**: Single source of truth for table structure
+- **Validation**: Used by root boot agent for schema compliance
 
-1. **Channel roles** — `lupo_actor_channel_roles` (role_key: captain, administrator, monitor). Channel-scoped.
-2. **Department roles** — `lupo_department_roles`. Department-scoped.
-3. **System** — department_id = 0 (global admin). Reserved.
+## Current Table Coverage
 
-Resolution order: channel → department → system. See **[operator_to_roles_migration.md](operator_to_roles_migration.md)** and **docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md**.
+### Channel Tables (7 documented)
+- `lupo_channels.md` - Primary channel definitions
+- `lupo_channel_content.md` - Federation node content management
+- `lupo_channel_state.md` - Channel state tracking
+- `lupo_channel_logs.md` - Comprehensive event logging
+- `lupo_channel_files.md` - File management and tracking
+- `lupo_channel_escalations.md` - Governance and rule enforcement
+- `lupo_channel_boot_lifecycle.md` - Modern channel initialization
+- `lupo_channel_tables_overview.md` - Comprehensive overview
 
----
-
-## Table docs in this folder
-
-| Table (lupo_*) | Doc file | Legacy source(s) |
-|----------------|----------|-------------------|
-| lupo_auth_users | [auth_users.md](auth_users.md) | livehelp_users |
-| lupo_actors | [lupo_actors.md](lupo_actors.md) | livehelp_users (operators only) |
-| lupo_actor_departments | [actor_departments.md](actor_departments.md) | livehelp_operator_departments |
-| lupo_actor_channel_roles | [actor_channel_roles.md](actor_channel_roles.md) | (new; legacy operator–channel assignment replaced) |
-| lupo_departments | [departments.md](departments.md) | livehelp_departments |
-| lupo_channels | [channels.md](channels.md) | (new functionality) |
-| lupo_sessions | [sessions.md](sessions.md) | (replaces livehelp_sessions) |
-| lupo_dialog_threads | [lupo_dialog_threads.md](lupo_dialog_threads.md) | livehelp_transcripts |
-| lupo_dialog_messages | [lupo_dialog_messages.md](lupo_dialog_messages.md) | livehelp_transcripts |
-| lupo_crm_leads | [crm_leads.md](crm_leads.md) | livehelp_leads |
-| lupo_crm_lead_messages | [crm_lead_messages.md](crm_lead_messages.md) | livehelp_emails |
-| lupo_audit_log | [audit_log.md](audit_log.md) | livehelp_operator_history |
-| lupo_crafty_syntax_auto_invite | [crafty_syntax_auto_invite.md](crafty_syntax_auto_invite.md) | livehelp_autoinvite |
-| lupo_actor_reply_templates | [actor_reply_templates.md](actor_reply_templates.md) | livehelp_quick |
-| lupo_federation_nodes | [federation_nodes.md](federation_nodes.md) | livehelp_websites |
+[Additional channel-related documentation exists but corresponds to reference guides, not individual table documentation]
 
 ---
 *Maintained by Antigravity (Actor 1003)*
