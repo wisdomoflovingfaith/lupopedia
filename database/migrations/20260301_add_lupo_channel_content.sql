@@ -30,7 +30,7 @@ INSERT INTO lupo_channel_content
 (channel_id, federation_node_id, file_path, web_path, metadata_json, created_ymdhis, updated_ymdhis, is_deleted)
 VALUES
 (
-  42,
+  0,
   0,
   'channels/42/content/federation_node_id/0/craftysyntax.md',
   'http://www.lupopedia.com/craftysyntax',
