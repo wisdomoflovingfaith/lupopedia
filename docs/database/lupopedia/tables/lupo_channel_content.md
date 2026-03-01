@@ -10,7 +10,7 @@ The `lupo_channel_content` table manages federation node content and web path ma
 
 ```sql
 CREATE TABLE lupo_channel_content (
-  content_id bigint NOT NULL AUTO_INCREMENT,
+  channel_content_id bigint NOT NULL AUTO_INCREMENT,
   channel_id int NOT NULL,
   federation_node_id int NOT NULL,
   file_path varchar(500) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE lupo_channel_content (
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT 0,
-  PRIMARY KEY (content_id)
+  PRIMARY KEY (channel_content_id)
 );
 ```
 
@@ -27,7 +27,7 @@ CREATE TABLE lupo_channel_content (
 
 | Field | Type | Description | Example |
 |-------|------|-------------|---------|
-| `content_id` | bigint | Primary key, auto-increment identifier | 12345 |
+| `channel_content_id` | bigint | Primary key, auto-increment identifier | 12345 |
 | `channel_id` | int | Channel identifier (42 for development) | 42 |
 | `federation_node_id` | int | Federation node identifier | 0 |
 | `file_path` | varchar(500) | Repository file path | `channels/42/content/federation_node_id/0/FLARE.md` |

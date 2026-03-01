@@ -4,7 +4,7 @@
 -- Author: Windsurf (1002)
 
 CREATE TABLE lupo_channel_content (
-  content_id bigint NOT NULL AUTO_INCREMENT,
+  channel_content_id bigint NOT NULL AUTO_INCREMENT,
   channel_id int NOT NULL,
   federation_node_id int NOT NULL,
   file_path varchar(500) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE lupo_channel_content (
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT 0,
-  PRIMARY KEY (content_id)
+  PRIMARY KEY (channel_content_id)
 );
 
 -- Indexes for performance
