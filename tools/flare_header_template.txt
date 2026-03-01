@@ -1,0 +1,36 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
+---
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  file_path_from_root: "{FILE_PATH_FROM_ROOT}"
+  file_hash: "{FILE_HASH}"
+  federation_node_id: "{FEDERATION_NODE_ID}"
+  web_path: "{WEB_PATH}"
+  last_updated_utc: "{LAST_UPDATED_UTC}"
+  system_version: "{SYSTEM_VERSION}"
+  channel_id: "{CHANNEL_ID}"
+  actor_id: "{ACTOR_ID}"
+  delegation_chain: "{DELEGATION_CHAIN}"
+  artifact_type: "{ARTIFACT_TYPE}"
+  purpose: "{PURPOSE}"
+  mood_rgb: "{MOOD_RGB}"
+  traits: ["{TRAITS}"]
+  tags: ["{TAGS}"]
+  lupo_agent: "{LUPO_AGENT}"
+
+flare.edges:
+  outbound_edges:
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
+    - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.9 }
+    - { to: "actors/registry.json", type: "references", weight: 0.8 }
+    - { to: "database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
+  semantic_tags: ["flare", "federation", "canonical", "protocol"]
+
+flare.footer:
+  last_verified: "{LAST_VERIFIED}"
+  last_verified_by: "{LAST_VERIFIED_BY}"
+---
+
+{CONTENT}
