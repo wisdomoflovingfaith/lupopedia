@@ -588,6 +588,8 @@ if ($step === 'run') {
             InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'anubis_queue_tables_4.0.53.sql', $log, $table_prefix);
             // Run ANUBIS Database Primacy Updates (v4.0.53)
             InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . '20260301_anubis_database_primacy_updates.sql', $log, $table_prefix);
+            // Run Default Sessions Seed (v4.0.53)
+            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_default_sessions.sql', $log, $table_prefix);
 
             // Activations Block
             require_once LUPOPEDIA_PATH . '/lupo-includes/functions/ai_activation.php';
@@ -1398,6 +1400,7 @@ if ($baseUrl === '') {
                 <ol>
                     <li>Run <code>install_new_lupopedia.sql</code></li>
                     <li>Run <code>seed_lupopedia.sql</code></li>
+                    <li>Run <code>seed_default_sessions.sql</code></li>
                     <li>Create reserved system channels (0, 1, 42, 51)</li>
                     <li>Write <code>lupopedia-config.php</code></li>
                     <li>Redirect to login</li>

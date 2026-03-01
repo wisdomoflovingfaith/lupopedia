@@ -13,6 +13,7 @@
 // Include required files
 require_once __DIR__ . '/../lupo-includes/bootstrap.php';
 require_once __DIR__ . '/channel_startup_lifecycle.php';
+require_once __DIR__ . '/../lupo-includes/functions/session_helpers.php';
 
 class SystemAgentInitialize
 {
@@ -66,7 +67,10 @@ class SystemAgentInitialize
             // Step 5: Verify federation node 0
             $this->verifyFederationNode0($lifecycleId);
 
-            // Step 6: Complete initialization
+            // Step 6: Initialize default sessions for key actors
+            $this->initializeDefaultSessions($lifecycleId);
+
+            // Step 7: Complete initialization
             $this->completeInitialize($lifecycleId);
 
             echo "🎉 System Agent initialization completed successfully!\n";
@@ -243,6 +247,65 @@ class SystemAgentInitialize
 
         echo "✅ Federation node 0 content: $contentCount items\n";
         echo "✅ Federation node 0 verification: COMPLETE\n\n";
+    }
+
+    /**
+     * Initialize default sessions for key actors
+     */
+    private function initializeDefaultSessions($lifecycleId)
+    {
+        echo "🔐 Initializing default sessions for key actors...\n";
+
+        $db = DatabaseFactory::getConnection();
+        if (!$db) {
+            throw new Exception("Database connection required for session initialization");
+        }
+
+        // Key actors that need default sessions
+        $keyActors = [0, 1, 2, 3, 4, 5, 19, 1000, 1001, 1002, 1003, 1004, 1005, 1007];
+        $successCount = 0;
+        $errorCount = 0;
+
+        foreach ($keyActors as $actorId) {
+            echo "  🔄 Processing actor $actorId... ";
+            
+            $sessionId = loadDefaultSessionIfMissing($db, $actorId);
+            
+            if ($sessionId) {
+                echo "✅ Session loaded/verified\n";
+                $successCount++;
+            } else {
+                echo "❌ Session load failed\n";
+                $errorCount++;
+                
+                // Log error to lifecycle
+                $this->startupLifecycle->addDetail($lifecycleId, 0, "session_init_failed", 
+                    "Failed to load default session for actor $actorId");
+            }
+        }
+
+        echo "\n📊 Session initialization summary:\n";
+        echo "  ✅ Successful: $successCount actors\n";
+        echo "  ❌ Failed: $errorCount actors\n";
+
+        if ($errorCount > 0) {
+            $this->warnings[] = "Session initialization failed for $errorCount actors";
+            echo "⚠️ Some session initializations failed - check logs for details\n";
+        } else {
+            echo "🎉 All default sessions initialized successfully!\n";
+        }
+
+        // Log session initialization event
+        $logSql = "INSERT INTO lupo_channel_logs 
+            (channel_id, actor_id, log_type_id, log_text, created_ymdhis) 
+            VALUES (0, 0, 1, :log_text, :created_ymdhis)";
+
+        $db->query($logSql, [
+            'log_text' => "Default session initialization completed: $successCount successful, $errorCount failed",
+            'created_ymdhis' => gmdate('YmdHis')
+        ]);
+
+        echo "✅ Session initialization event logged\n\n";
     }
 
     /**
