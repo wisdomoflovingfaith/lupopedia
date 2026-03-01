@@ -60,12 +60,10 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 ### Technical Improvements
 - **PDO_DB Compatibility**: Enhanced `PDO_DB` constructor to allow passing existing PDO instances, improving integration in `install.php`.
-- **Session Hardening**: Enforced `L<actor_id>` prefix for isolated agent sessions via `lupo-includes/functions/ai_activation.php`.
+- **Session Hardening**: Enforced `L-lupo-<actor_id>` prefix for isolated agent sessions via `lupo-includes/functions/ai_activation.php`.
 - **System Initialization**: Standardized boot terminology to startup/initialize across several core files.
 - **Installer Automation**: Automated database migration for ANUBIS tables and implemented a **Verification Gate** in `install.php` that halts installation if queue tables are not correctly created.
-- **Actor Directory Reorganization**: Moved `actors/` to `lupo-actors/` and established `LUPO_ACTORS_DIR` constant as the canonical reference.
-- **Bin Directory Reorganization**: Moved `bin/` to `lupo-bin/` and established `LUPO_BIN_DIR` constant as the canonical reference.
-- **Sessions Directory Reorganization**: Moved `sessions/` to `lupo-sessions/` and established `LUPO_SESSIONS_DIR` constant as the canonical reference.
+- **Directory Reorganization**: Moved `bin/`, `actors/`, `sessions/`, `logs/`, and `docs/` to `lupo-*` namespaces (`lupo-bin/`, `lupo-actors/`, `lupo-sessions/`, `lupo-logs/`, `lupo-docs/`) with updated global constants.
 - **PHP 5.3 Compatibility**: Refactored `LupoUploadHandler` and `ANUBIS_QueueProcessor` to remove short array syntax (`[]`) and modern PHP features, ensuring stability on legacy environments.
 - **Channel Directory Refactor**: Renamed the `channels` folder to `lupo-channels` and established `LUPO_CHANNEL_DIR` as the canonical reference across all system include paths.
 - **Overwrite Hierarchy Documentation**: Documented the resolution priority (Filesystem > Database > CSV/TOON) in `docs/doctrine/FLARE/FLARE_DOCTRINE.md` and created a dedicated [hierarchy.md](file:///C:/ServBay/www/servbay/lupopedia/docs/hierarchy.md) guide.
