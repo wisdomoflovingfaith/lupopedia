@@ -134,18 +134,19 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Documentation Structure**: Clarified CHANNEL_SYSTEM_TLDR.md as reference guide, not table documentation
 - **TOON Schema Authority**: Single source of truth for table structures maintained
 
-### � Directory Structure Standardization
+### 📁 Directory Structure Standardization
 
 **Complete lupo-prefix Implementation**: ✅ COMPLETED
-- **Directory Constants**: Added `LUPO_ROUTES_DIR`, `LUPO_TOOLS_DIR`, `LUPO_APPS_DIR` to configuration
-- **Directory Migration**: Moved `routes/` → `lupo-routes/` and `tools/` → `lupo-tools/`
-- **Apps Directory**: Created `lupo-apps/` for future application modules
+- **Directory Constants**: Added `LUPO_ROUTES_DIR`, `LUPO_TOOLS_DIR`, `LUPO_APP_DIR` to configuration
+- **Directory Migration**: Moved `routes/` → `lupo-routes/`, `tools/` → `lupo-tools/`, and `app/` → `lupo-app/`
+- **App Directory**: Moved existing `app/` folder with auth, Controllers, Http, middleware, Services to `lupo-app/`
 - **Path Patterns**: Updated `lupo-config.php` to use `/lupo-tools/` pattern for web routing
 - **Lead Agent**: Windsurf (1002) - Directory structure standardization
 
 #### Directory Migration Details
 - **Routes Migration**: 10 PHP route files moved to `lupo-routes/` (auth.php, auth_routes.php, emotion.php, pack.php, etc.)
 - **Tools Migration**: 70+ development tools moved to `lupo-tools/` (Python scripts, VSX extension, FLARE tools)
+- **App Migration**: Existing application folder moved to `lupo-app/` with auth, Controllers, Http, middleware, Services
 - **VSX Extension**: Complete TypeScript-based VSCode extension relocated with full file structure
 - **FLARE Tools**: Header processing and validation utilities properly organized
 - **Configuration Updates**: All path patterns updated for consistent web routing
@@ -154,7 +155,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 ```
 lupo-actors/     # Actor configurations and profiles
 lupo-agents/     # AI agent configuration files  
-lupo-apps/       # Application modules (NEW)
+lupo-app/        # Application modules (MOVED from app/)
 lupo-bin/        # System binaries and CLI utilities
 lupo-channels/   # Channel content and tasks
 lupo-docs/       # Documentation files
@@ -163,10 +164,10 @@ lupo-logs/       # System log files
 lupo-routes/     # Route definitions (MOVED)
 lupo-sessions/   # Session data
 lupo-tests/      # Test suites
-lupo-tools/       # Development tools (MOVED)
+lupo-tools/      # Development tools (MOVED)
 ```
 
-### � Version Finalization and Release Preparation
+### 📈 Version Finalization and Release Preparation
 
 **Version Bump**: ✅ COMPLETED
 - **Global Atoms**: Updated `config/global_atoms.yaml` to v4.0.53
