@@ -54,7 +54,7 @@ class FlareHeaderDeduper {
             
             if (is_dir($path)) {
                 $this->processDirectory($path);
-            } elseif (path.endsWith('.md')) {
+            } elseif (substr($path, -3) === '.md') {
                 $this->processMarkdownFile($path);
             }
         }
