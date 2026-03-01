@@ -14,6 +14,7 @@
 require_once __DIR__ . '/../lupo-includes/bootstrap.php';
 require_once __DIR__ . '/channel_startup_lifecycle.php';
 require_once __DIR__ . '/../lupo-includes/functions/session_helpers.php';
+require_once __DIR__ . '/../lupo-includes/functions/ai_agent_integration.php';
 
 class SystemAgentInitialize
 {
@@ -67,10 +68,13 @@ class SystemAgentInitialize
             // Step 5: Verify federation node 0
             $this->verifyFederationNode0($lifecycleId);
 
-            // Step 6: Initialize default sessions for key actors
+            // Step 6: Initialize AI agents (LILITH, SYSTEM, CAPTAIN WOLFIE)
+            $this->initializeAIAgents($lifecycleId);
+
+            // Step 7: Initialize default sessions for key actors
             $this->initializeDefaultSessions($lifecycleId);
 
-            // Step 7: Complete initialization
+            // Step 8: Complete initialization
             $this->completeInitialize($lifecycleId);
 
             echo "🎉 System Agent initialization completed successfully!\n";
@@ -247,6 +251,28 @@ class SystemAgentInitialize
 
         echo "✅ Federation node 0 content: $contentCount items\n";
         echo "✅ Federation node 0 verification: COMPLETE\n\n";
+    }
+
+    /**
+     * Initialize AI agents (LILITH, SYSTEM, CAPTAIN WOLFIE)
+     */
+    private function initializeAIAgents($lifecycleId)
+    {
+        echo "🤖 Initializing AI Agents (LILITH, SYSTEM, CAPTAIN WOLFIE)...\n";
+
+        $db = DatabaseFactory::getConnection();
+        if (!$db) {
+            throw new Exception("Database connection required for AI agent initialization");
+        }
+
+        // Use the integrated AI agent initialization function
+        $result = initializeCoreAIAgents($db, $lifecycleId);
+        
+        if ($result['errors'] > 0) {
+            $this->warnings[] = "AI agent initialization failed for {$result['errors']} agents";
+        }
+        
+        return $result['errors'] === 0;
     }
 
     /**

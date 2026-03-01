@@ -1,5 +1,0 @@
-# FLIP-HEADER 1.0
-X-Lupo-Task: verify-schema
-MESSAGE:
-List all tables in the lupopedia database and confirm whether the total count is 185. Output only the table names and the final count.
-End of message.
