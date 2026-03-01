@@ -13,263 +13,119 @@ flare.headers:
   actor_id: 1002
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
-  purpose: "Federation node 0 channel boot system documentation and TOON schema reference"
+  artifact_kind: "guide"
+  purpose: "Channel boot logging schema and usage summary for node 0"
   dialog_message: "Channel boot system documentation with TOON schema authority and federation integration"
   mood_rgb: "4169E1"
-  traits: ["canonical", "federation", "v4.0.52"]
-  tags: ["channel_boot", "toon_schema", "federation", "node_0", "canonical"]
+  traits: ["channel_boot", "schema", "node_0"]
+  tags: ["channel_boot", "boot_log", "boot_detail", "toons"]
+  lupo_agent: "windsurf"
 
 flare.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_channel_boot_log.toon.json", type: "references", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_boot_detail.toon.json", type: "references", weight: 1.0 }
-    - { to: "docs/toons/lupo_channels.toon.json", type: "references", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_state.toon.json", type: "references", weight: 0.9 }
-    - { to: "docs/toons/lupo_channel_logs.toon.json", type: "references", weight: 0.9 }
-    - { to: "docs/toons/lupo_channel_files.toon.json", type: "references", weight: 0.8 }
-    - { to: "docs/toons/lupo_channel_content.toon.json", type: "references", weight: 0.8 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/toons/lupo_channel_boot_log.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "docs/toons/lupo_channel_boot_detail.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "docs/toons/lupo_channel_logs.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "docs/toons/lupo_channel_files.toon.json", type: "schema_reference", weight: 0.8 }
+    - { to: "docs/toons/lupo_channel_content.toon.json", type: "schema_reference", weight: 0.8 }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9 }
-    - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.8 }
+    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "actors/registry.json", type: "references", weight: 0.8 }
     - { to: "database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
     - { to: "docs/database/lupopedia/tables/lupo_channel_content.md", type: "references", weight: 0.7 }
     - { to: "channels/42/content/federation_node_id/0/FLARE.md", type: "references", weight: 0.9 }
-  semantic_tags: ["channel_boot", "toon_schema", "federation", "canonical", "protocol"]
+  semantic_tags: ["channel_boot", "schema", "node_0", "canonical"]
 
 flare.footer:
+  version: "4.0.52"
   last_verified: "20260301"
   last_verified_by: "windsurf"
 ---
 
-# Channel Boot System Documentation
+# Channel Boot Tables (Node 0)
 
-## Overview
+## Scope
+This document summarizes the channel boot logging tables defined by TOON schema. It covers how `lupo_channel_boot_log` and `lupo_channel_boot_detail` are expected to be used during a boot cycle, without adding schema beyond what the TOONs declare.
 
-This document provides comprehensive documentation for the Lupopedia channel boot system, which manages channel initialization, content loading, and system startup procedures. The channel boot system is essential for federation node operations and system reliability.
+## Table: lupo_channel_boot_log
+Purpose: One row per boot run. Tracks who initiated the boot, timing, status, and summary metrics.
 
-## Channel Boot Architecture
+Primary key: `boot_id`
 
-### Core Components
+Fields:
 
-The channel boot system consists of several key tables and processes:
+| Column | Type | Notes |
+| --- | --- | --- |
+| `boot_id` | bigint | Primary key. |
+| `actor_id` | bigint | Actor that initiated the boot. |
+| `session_id` | varchar(64) | Session identifier. |
+| `boot_start_time` | bigint | UTC timestamp in `YYYYMMDDHHIISS`. |
+| `boot_end_time` | bigint | UTC timestamp in `YYYYMMDDHHIISS`. |
+| `boot_status` | varchar(64) | Status string, default `started`. |
+| `channels_loaded` | int | Count of channels loaded in this boot. |
+| `total_channels` | int | Total channels expected to load. |
+| `error_details` | json | Optional error payload. |
+| `performance_metrics` | json | Optional performance payload. |
+| `created_ymdhis` | bigint | Row creation time in `YYYYMMDDHHIISS`. |
 
-#### 1. Channel Boot Log (`lupo_channel_boot_log`)
-**Purpose**: Track channel boot operations and system startup events
-**TOON Schema**: `docs/toons/lupo_channel_boot_log.toon.json`
+Indexes:
 
-**Key Fields**:
-- `boot_id`: Primary key for boot operations
-- `actor_id`: Actor initiating the boot process
-- `session_id`: Session identifier for tracking
-- `boot_start_time` / `boot_end_time`: Boot operation timing
-- `boot_status`: Current status of boot operation
-- `channels_loaded` / `total_channels`: Progress tracking
-- `error_details`: JSON field for error information
-- `performance_metrics`: JSON field for performance data
+| Index | Columns | Notes |
+| --- | --- | --- |
+| `lupo_channel_boot_log_idx_actor_session` | `actor_id`, `session_id` | Lookup by actor and session. |
+| `lupo_channel_boot_log_idx_boot_status_time` | `boot_status`, `boot_start_time` | Status and time range queries. |
 
-#### 2. Channel Boot Detail (`lupo_channel_boot_detail`)
-**Purpose**: Detailed logging of individual channel loading operations
-**TOON Schema**: `docs/toons/lupo_channel_boot_detail.toon.json`
+## Table: lupo_channel_boot_detail
+Purpose: One row per channel within a boot run. Tracks per-channel progress and timing.
 
-**Key Fields**:
-- `detail_id`: Primary key for detail records
-- `boot_id`: Foreign key to boot log
-- `channel_id`: Specific channel being processed
-- `load_start_time` / `load_end_time`: Individual channel timing
-- `load_status`: Status of channel loading
-- `content_items_loaded` / `total_content_items`: Content loading progress
-- `load_duration_ms`: Performance timing in milliseconds
+Primary key: `detail_id`
 
-#### 3. Channel System Tables
-**Channel State**: `lupo_channel_state.toon.json` - Channel operational state
-**Channel Logs**: `lupo_channel_logs.toon.json` - System event logging
-**Channel Files**: `lupo_channel_files.toon.json` - File management tracking
-**Channel Content**: `lupo_channel_content.toon.json` - Content storage and federation
+Fields:
 
-## Boot Process Flow
+| Column | Type | Notes |
+| --- | --- | --- |
+| `detail_id` | bigint | Primary key. |
+| `boot_id` | bigint | Boot run identifier. |
+| `channel_id` | bigint | Channel being processed. |
+| `load_start_time` | bigint | UTC timestamp in `YYYYMMDDHHIISS`. |
+| `load_end_time` | bigint | UTC timestamp in `YYYYMMDDHHIISS`. |
+| `load_status` | varchar(64) | Status string, default `started`. |
+| `content_items_loaded` | int | Items loaded for the channel. |
+| `total_content_items` | int | Total items expected. |
+| `load_duration_ms` | int | Duration in milliseconds. |
+| `error_message` | text | Optional error message. |
+| `created_ymdhis` | bigint | Row creation time in `YYYYMMDDHHIISS`. |
 
-### 1. Initialization Phase
-```sql
--- Create boot log entry
-INSERT INTO lupo_channel_boot_log
-(actor_id, session_id, boot_start_time, boot_status, total_channels)
-VALUES
-(
-  1002,  -- System actor
-  'session_12345',
-  UNIX_TIMESTAMP(NOW()),
-  'started',
-  (SELECT COUNT(*) FROM lupo_channels WHERE is_deleted = 0)
-);
-```
+Indexes:
 
-### 2. Channel Loading Phase
-```sql
--- Process each channel
-FOR EACH channel IN active_channels DO
-  INSERT INTO lupo_channel_boot_detail
-  (boot_id, channel_id, load_start_time, load_status, total_content_items)
-  VALUES
-  (
-    @current_boot_id,
-    channel.channel_id,
-    UNIX_TIMESTAMP(NOW()),
-    'loading',
-    (SELECT COUNT(*) FROM lupo_contents WHERE channel_id = channel.channel_id AND is_deleted = 0)
-  );
-```
+| Index | Columns | Notes |
+| --- | --- | --- |
+| `lupo_channel_boot_detail_fk_boot_detail_channel` | `channel_id` | Channel lookup. |
+| `lupo_channel_boot_detail_idx_boot_channel` | `boot_id`, `channel_id` | Boot to channel correlation. |
+| `lupo_channel_boot_detail_idx_load_status_time` | `load_status`, `load_start_time` | Status and time range queries. |
 
-### 3. Completion Phase
-```sql
--- Update boot log with completion status
-UPDATE lupo_channel_boot_log
-SET boot_end_time = UNIX_TIMESTAMP(NOW()),
-    boot_status = 'completed',
-    channels_loaded = (SELECT COUNT(*) FROM lupo_channel_boot_detail WHERE boot_id = @current_boot_id AND load_status = 'completed'),
-    performance_metrics = JSON_OBJECT(
-      'total_duration_ms', boot_end_time - boot_start_time,
-      'channels_processed', channels_loaded,
-      'average_channel_load_time_ms', AVG(load_duration_ms)
-    )
-WHERE boot_id = @current_boot_id;
-```
+## Relationship Notes
+- `boot_id` links `lupo_channel_boot_detail` rows to `lupo_channel_boot_log`, but this is not enforced as a foreign key.
+- The TOONs explicitly declare `no_foreign_keys` and `no_triggers`.
 
-## Federation Integration
+## Timestamp Rules
+All time fields are BIGINT values in UTC `YYYYMMDDHHIISS` format. In PHP, use `gmdate('YmdHis')` for values like `boot_start_time`, `boot_end_time`, `load_start_time`, `load_end_time`, and `created_ymdhis`.
 
-### Channel 0 Boot Operations
-Federation node 0 uses the channel boot system for:
+## Suggested Boot Lifecycle (Schema-Aligned)
+1. Insert a `lupo_channel_boot_log` row with `boot_status = 'started'`, `boot_start_time`, and `total_channels`.
+2. For each channel, insert a `lupo_channel_boot_detail` row with `load_status = 'started'` and `load_start_time`.
+3. Update each detail row as content loads, including `content_items_loaded`, `total_content_items`, `load_end_time`, and `load_duration_ms`.
+4. Update the boot log with `channels_loaded`, `boot_end_time`, and a final `boot_status`.
 
-- **System Initialization**: Boot channel 0 for system-level operations
-- **Content Federation**: Load federation node content during boot
-- **Web Path Resolution**: Establish canonical URLs during boot
-- **Performance Monitoring**: Track federation boot performance
-
-### Boot Status Tracking
-| Status | Description | Next Action |
-|---------|-------------|-------------|
-| `started` | Boot process initiated | Begin channel loading |
-| `loading` | Channels being processed | Monitor progress |
-| `completed` | All channels loaded | System ready |
-| `failed` | Error occurred | Check error details |
-| `partial` | Some channels failed | Review failed channels |
-
-## Performance Metrics
-
-### Key Performance Indicators
-- **Boot Duration**: Total time for complete boot process
-- **Channel Load Time**: Average time per channel
-- **Success Rate**: Percentage of successful channel loads
-- **Error Rate**: Frequency and types of errors
-- **Memory Usage**: System resource consumption during boot
-
-### Monitoring and Debugging
-
-#### Boot Log Analysis
-```sql
--- Recent boot operations
-SELECT 
-  boot_id,
-  actor_id,
-  boot_start_time,
-  boot_end_time,
-  boot_status,
-  channels_loaded,
-  total_channels,
-  JSON_EXTRACT(performance_metrics, '$.total_duration_ms') as duration_ms
-FROM lupo_channel_boot_log
-ORDER BY boot_start_time DESC
-LIMIT 10;
-```
-
-#### Channel Loading Details
-```sql
--- Detailed channel loading information
-SELECT 
-  bd.boot_id,
-  bd.channel_id,
-  c.channel_name,
-  bd.load_start_time,
-  bd.load_end_time,
-  bd.load_status,
-  bd.content_items_loaded,
-  bd.total_content_items,
-  bd.load_duration_ms
-FROM lupo_channel_boot_detail bd
-JOIN lupo_channels c ON bd.channel_id = c.channel_id
-WHERE bd.boot_id = @specific_boot_id
-ORDER BY bd.load_start_time;
-```
-
-## Error Handling
-
-### Common Boot Errors
-- **Database Connection**: Failed to connect to database
-- **Channel Access**: Permission denied for channel access
-- **Content Loading**: Timeout or corruption during content load
-- **Memory Limits**: Insufficient system resources
-- **Configuration**: Invalid or missing configuration
-
-### Error Recovery Procedures
-1. **Log Error Details**: Capture full error context in JSON fields
-2. **Mark Failed Channels**: Identify specific channels that failed
-3. **Retry Logic**: Implement exponential backoff for retries
-4. **Fallback Mode**: System operation with limited functionality
-5. **Notification**: Alert system administrators
-
-## Integration Points
-
-### Federation Node 0
-- **Canonical Web Path**: `http://www.lupopedia.com/boot_readme`
-- **Repository Location**: `channels/0/boot_readme.md`
-- **TOON Authority**: `docs/toons/` directory
-- **Database Schema**: All channel boot tables follow TOON specifications
-
-### System Services
-- **Actor Registry**: Boot operations tracked by actor_id
-- **Channel Management**: Boot process manages channel lifecycle
-- **Content Federation**: Boot loads federation node content
-- **Performance Monitoring**: Comprehensive metrics collection
-
-## Best Practices
-
-### Boot Process Optimization
-- **Parallel Loading**: Load multiple channels concurrently where possible
-- **Progress Tracking**: Provide real-time progress updates
-- **Resource Management**: Monitor and limit resource usage
-- **Error Isolation**: Prevent one channel failure from affecting others
-
-### Federation Considerations
-- **Node 0 Priority**: System channel (0) boots before other channels
-- **Web Path Resolution**: Establish canonical URLs early in boot process
-- **Content Synchronization**: Ensure federation content is current
-- **Performance Baselines**: Establish federation node performance baselines
+## Status Fields
+`boot_status` and `load_status` are free-form strings with a default of `started`. The schema does not enforce an enum; any agreed status vocabulary is a system convention.
 
 ## References
-
-### TOON Schema Authority
-- **Channel Boot Log**: `docs/toons/lupo_channel_boot_log.toon.json`
-- **Channel Boot Detail**: `docs/toons/lupo_channel_boot_detail.toon.json`
-- **Channel System**: All `lupo_channel_*.toon.json` files
-- **TOON Index**: Complete `docs/toons/` directory listing
-
-### Federation Documentation
-- **FLARE Doctrine**: `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
-- **Federation Node 0**: `channels/42/content/federation_node_id/0/FLARE.md`
-- **Channel Content**: `docs/database/lupopedia/tables/lupo_channel_content.md`
-- **System Architecture**: `docs/architecture/FEDERATION_AND_REGISTRY.md`
-
-### Database Integration
-- **Migration Scripts**: `database/migrations/install_lupopedia.sql`
-- **Table Documentation**: `docs/database/lupopedia/tables/`
-- **Schema Validation**: TOON compliance checking tools
-- **Performance Analysis**: Boot operation analytics
-
----
-
-**Last Updated**: 20260301  
-**Lead Agent**: Windsurf (1002)  
-**Version**: 4.0.52  
-**Status**: ✅ CANONICAL  
-**Federation Node**: 0 (System)  
-**Web Path**: http://www.lupopedia.com/boot_readme
+- `docs/toons/lupo_channel_boot_log.toon.json`
+- `docs/toons/lupo_channel_boot_detail.toon.json`
+- `docs/FLARE_HEADERS_COMPLETE_REFERENCE.md`
+- `docs/FLARE_HEADERS_QUICK_REFERENCE.md`
+- `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
