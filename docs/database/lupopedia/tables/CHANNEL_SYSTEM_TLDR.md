@@ -1,7 +1,7 @@
 # Lupopedia Channel System TL;DR
 
 ## Overview
-The Lupopedia channel system is a comprehensive framework for managing communication, governance, and content federation across multiple channels. It uses FLARE headers for metadata and integrates with the federation node system.
+The Lupopedia channel system is a comprehensive framework for managing communication, governance, and content federation across multiple channels. It uses FLARE headers for metadata and integrates with the federation node system. Focus: System Channel 0 (federation node management) under root actor_id 0.
 
 ## Channel Architecture
 
@@ -14,6 +14,12 @@ The Lupopedia channel system is a comprehensive framework for managing communica
 6. **Escalation** (`lupo_channel_escalations`) - Governance and rule enforcement
 7. **Boot Lifecycle** (`lupo_channel_boot_lifecycle`) - Modern channel initialization system
 
+**Root Boot Agent Checklist (v4.0.52)**:
+- Verify all tables exist as `docs/toons/*.toon.json` (e.g., `lupo_channels.toon.json`).
+- Structure validation: Fields, types (e.g., BIGINT timestamps), indexes, no FKs/triggers per TOON schema.
+- Version lock: Align to 4.0.52—no additions beyond declared schema.
+- If missing: Generate TOONs via codex-ide or windsurf.
+
 ## FLARE Headers
 
 ### Header Structure
@@ -25,12 +31,12 @@ flare.headers:
   flare.schema: "documentation"
   file_path_from_root: "path/to/file.md"
   system_version: "4.0.52"
-  channel_id: 42  # or 0 for system
-  actor_id: 1002  # Actor ID
+  channel_id: 0  # System channel focus
+  actor_id: 0  # Root/system actor
   federation_node_id: 0  # For federation content
   web_path: "http://www.lupopedia.com/path"
   last_updated_utc: "20260301"  # gmdate('YmdHis')
-  delegation_chain: "1002:10000"
+  delegation_chain: "0:10000"
   artifact_type: "documentation"
   purpose: "Channel operation description"
   mood_rgb: "4169E1"
@@ -40,7 +46,13 @@ flare.headers:
 
 flare.edges:
   outbound_edges:
-    - { to: "lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "docs/toons/lupo_channel_content.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "docs/toons/lupo_channel_logs.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "docs/toons/lupo_channel_files.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "docs/toons/lupo_channel_escalations.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
 
 flare.footer:
@@ -54,23 +66,23 @@ flare.footer:
 - **flare.schema**: "documentation" - Document type
 - **file_path_from_root**: Repository path from root
 - **system_version**: "4.0.52" - Current system version
-- **channel_id**: Channel identifier (42 for development, 0 for system)
-- **actor_id**: Actor performing the operation
-- **federation_node_id**: Federation node (0 for lupopedia.com)
+- **channel_id**: 0 for system focus
+- **actor_id**: 0 for root/system operations
+- **federation_node_id**: 0 for lupopedia.com
 - **web_path**: Canonical URL for federation content
-- **last_updated_utc**: Timestamp using `gmdate('YmdHis')`
+- **last_updated_utc**: Timestamp using `gmdate('YmdHis')` 
 
 ## Database Integration
 
 ### Table Relationships
 ```
-lupo_channels (channel_id)
-    ├── lupo_channel_content (channel_id) - Federation content
-    ├── lupo_channel_state (channel_id) - State tracking
-    ├── lupo_channel_logs (channel_id) - Event logging
-    ├── lupo_channel_files (channel_id) - File management
-    ├── lupo_channel_escalations (channel_id) - Governance
-    └── lupo_channel_boot_lifecycle (channel_id) - Boot management
+lupo_channels (channel_id=0)
+    ├── lupo_channel_content (channel_id=0) - Federation content
+    ├── lupo_channel_state (channel_id=0) - State tracking
+    ├── lupo_channel_logs (channel_id=0) - Event logging
+    ├── lupo_channel_files (channel_id=0) - File management
+    ├── lupo_channel_escalations (channel_id=0) - Governance
+    └── lupo_channel_boot_lifecycle (channel_id=0) - Boot management
 ```
 
 ### Key Field Patterns
@@ -80,14 +92,14 @@ lupo_channels (channel_id)
 - **JSON Fields**: `json` for flexible metadata and metrics
 - **Soft Deletes**: `is_deleted TINYINT DEFAULT 0` pattern
 
-## Channel Operations
+## Channel Operations (Channel 0 Focus)
 
 ### 1. Channel Creation
 ```sql
 INSERT INTO lupo_channels
 (channel_id, channel_name, channel_type, created_by_actor_id, created_ymdhis)
 VALUES
-(42, 'new-channel', 'chat_room', 1002, 20260301120000);
+(0, 'system-channel', 'federation_node', 0, 20260301120000);
 ```
 
 ### 2. Content Federation
@@ -95,17 +107,17 @@ VALUES
 INSERT INTO lupo_channel_content
 (channel_id, federation_node_id, file_path, web_path, metadata_json, created_ymdhis)
 VALUES
-(42, 0, 'channels/42/content/federation_node_id/0/FLARE.md', 
- 'http://www.lupopedia.com/FLARE',
- '{"description": "Canonical FLARE definition"}', 20260301120000);
+(0, 0, 'channels/0/content/federation_node_id/0/FLARE.md', 
+'http://www.lupopedia.com/FLARE',
+'{"description": "Canonical FLARE definition"}', 20260301120000);
 ```
 
 ### 3. Boot Lifecycle
 ```php
 $lifecycle = new ChannelBootLifecycle();
-$lifecycleId = $lifecycle->startLifecycle(1002, 'session_123', 'full_boot', [42, 100]);
+$lifecycleId = $lifecycle->startLifecycle(0, 'system_session', 'full_boot', [0]);
 
-foreach ($channels as $channelId) {
+foreach ($channels as $channelId) {  // Focused on 0
     $lifecycle->updateChannelDetail($lifecycleId, $channelId, 'completed', 150, 150);
 }
 
@@ -115,8 +127,8 @@ $lifecycle->completeLifecycle($lifecycleId, ['duration_ms' => 45000]);
 ### 4. State Management
 ```sql
 UPDATE lupo_channel_state
-SET state_data = '{"active_users": 25, "last_activity": '20260301123000"}'
-WHERE channel_id = 42;
+SET state_data = '{"active_users": 0, "last_activity": '20260301123000"}'  -- System channel
+WHERE channel_id = 0;
 ```
 
 ### 5. Event Logging
@@ -124,21 +136,21 @@ WHERE channel_id = 42;
 INSERT INTO lupo_channel_logs
 (channel_id, actor_id, log_type_id, log_text, created_ymdhis)
 VALUES
-(42, 1002, 1, 'Channel state updated', 20260301123000);
+(0, 0, 1, 'System channel state updated', 20260301123000);
 ```
 
 ## Federation Integration
 
 ### Node 0 Content
-- **FLARE Definition**: `http://www.lupopedia.com/FLARE`
-- **Changelog**: `http://www.lupopedia.com/changelog`
-- **README**: `http://www.lupopedia.com/readme`
-- **Crafty Syntax**: `http://www.lupopedia.com/craftysyntax`
-- **Boot README**: `http://www.lupopedia.com/boot_readme`
+- **FLARE Definition**: `http://www.lupopedia.com/FLARE` 
+- **Changelog**: `http://www.lupopedia.com/changelog` 
+- **README**: `http://www.lupopedia.com/readme` 
+- **Crafty Syntax**: `http://www.lupopedia.com/craftysyntax` 
+- **Boot README**: `http://www.lupopedia.com/boot_readme` 
 
 ### Channel Types
-- **System Channel (0)**: Federation node management
-- **Development Channel (42)**: Regular channel operations
+- **System Channel (0)**: Federation node management (primary focus)
+- **Development Channel (42)**: Regular channel operations (secondary)
 - **Production Channels**: Live chat and user-facing channels
 
 ## Key Points
@@ -146,23 +158,24 @@ VALUES
 1. **FLARE Compliance**: All channel files must have proper FLARE headers
 2. **Timestamp Format**: Use `gmdate('YmdHis')` for UTC timestamps
 3. **Channel Authority**: `lupo_channels` table is the single source of truth
-4. **Federation Ready**: All content can be federated via `lupo_channel_content`
+4. **Federation Ready**: All content can be federated via `lupo_channel_content` 
 5. **Performance Focus**: Proper indexing on `channel_id` and timestamp fields
 6. **Soft Deletes**: Use `is_deleted` pattern instead of physical deletion
+7. **TOON Enforcement**: Root boot agent ensures all `docs/toons/*.toon.json` exist and match v4.0.52 structure
 
 ## Quick Reference
 
 | Operation | Table | Command | Example |
 |------------|--------|---------|---------|
-| Create Channel | `lupo_channels` | `INSERT INTO lupo_channels...` | `channel_id, channel_name` |
-| Add Content | `lupo_channel_content` | `INSERT INTO lupo_channel_content...` | `channel_id, file_path, web_path` |
-| Log Event | `lupo_channel_logs` | `INSERT INTO lupo_channel_logs...` | `channel_id, log_type_id, log_text` |
-| Start Boot | `lupo_channel_boot_lifecycle` | `INSERT INTO lupo_channel_boot_lifecycle...` | `lifecycle_id, channel_id, actor_id` |
-| Update State | `lupo_channel_state` | `UPDATE lupo_channel_state...` | `channel_id, state_data` |
+| Create Channel | `lupo_channels` | `INSERT INTO lupo_channels...` | `channel_id=0, channel_name` |
+| Add Content | `lupo_channel_content` | `INSERT INTO lupo_channel_content...` | `channel_id=0, file_path, web_path` |
+| Log Event | `lupo_channel_logs` | `INSERT INTO lupo_channel_logs...` | `channel_id=0, log_type_id, log_text` |
+| Start Boot | `lupo_channel_boot_lifecycle` | `INSERT INTO lupo_channel_boot_lifecycle...` | `lifecycle_id, channel_id=0, actor_id=0` |
+| Update State | `lupo_channel_state` | `UPDATE lupo_channel_state...` | `channel_id=0, state_data` |
 
 ---
 
 **TL;DR Created**: 20260301  
 **Lead Agent**: Windsurf (1002)  
 **Version**: 4.0.52  
-**Status**: ✅ CHANNEL SYSTEM QUICK REFERENCE
+**Status**: ✅ CHANNEL SYSTEM QUICK REFERENCE (Channel 0 Focus)
