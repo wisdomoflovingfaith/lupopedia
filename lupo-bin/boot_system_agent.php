@@ -202,7 +202,7 @@ class SystemAgentBoot
 }
 
 // Main execution
-if (php_sapi_name() === 'cli') {
+if (php_sapi_name() === 'cli' && (!isset($argv[0]) || basename($argv[0]) === 'boot_system_agent.php')) {
     $shortopts = "da::";
     $longopts = array(
         "ai-startup",

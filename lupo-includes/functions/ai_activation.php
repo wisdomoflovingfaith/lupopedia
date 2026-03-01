@@ -84,8 +84,8 @@ function ensureActorActive($actor_id, $db, $reason = 'system_request')
     $now = gmdate('YmdHis');
     $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
-    // 1. Verify actor exists and is an AI agent
-    $actor = $db->fetchRow("SELECT * FROM {$prefix}actors WHERE actor_id = :id AND is_deleted = 0", array('id' => $actor_id));
+    // 1. Verify actor exists and is an active AI agent
+    $actor = $db->fetchRow("SELECT * FROM {$prefix}actors WHERE actor_id = :id AND is_active = 1 AND is_deleted = 0", array('id' => $actor_id));
     if (!$actor) {
         return false;
     }

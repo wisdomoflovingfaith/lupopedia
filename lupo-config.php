@@ -22,7 +22,7 @@ if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
     $web_path_to_config = str_replace('\\', '/', str_replace(dirname($_SERVER['SCRIPT_FILENAME']), '', $script_dir));
     
     // Remove common subdirectory patterns
-    $patterns = ['/lupo-includes/', '/lupo-tests/', '/lupo-admin/', '/database/', '/lupo-docs/', '/scripts/', '/tools/', '/legacy/', '/lupo-channels/', '/uploads/'];
+    $patterns = ['/lupo-includes/', '/lupo-tests/', '/lupo-admin/', '/database/', '/lupo-docs/', '/scripts/', '/lupo-tools/', '/legacy/', '/lupo-channels/', '/uploads/'];
     $clean_path = $web_path_to_config;
     
     foreach ($patterns as $pattern) {

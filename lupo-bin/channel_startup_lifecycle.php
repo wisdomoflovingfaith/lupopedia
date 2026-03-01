@@ -86,6 +86,35 @@ class ChannelStartupLifecycle
     }
 
     /**
+     * Add a detail event to the lifecycle (e.g. for logging incidents during boot)
+     * 
+     * @param int $lifecycleId Lifecycle ID
+     * @param int $channelId Channel ID (0 for system)
+     * @param string $status Status or event type
+     * @param string $message Detailed message
+     * @return bool Success status
+     */
+    public function addDetail($lifecycleId, $channelId, $status, $message)
+    {
+        try {
+            $now = gmdate('YmdHis');
+            $params = array(
+                'lifecycle_id' => $lifecycleId,
+                'channel_id' => $channelId,
+                'detail_start_time' => $now,
+                'detail_end_time' => $now,
+                'detail_status' => $status,
+                'error_message' => $message,
+                'created_ymdhis' => $now
+            );
+            return $this->db->insert('lupo_channel_boot_detail_lifecycle', $params);
+        } catch (Exception $e) {
+            $this->errors[] = "Failed to add detail: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    /**
      * Insert a channel detail record for a lifecycle
      * 
      * @param int $lifecycleId Lifecycle ID
