@@ -1,0 +1,55 @@
+{
+  "table_name": "lupo_channel_boot_detail_lifecycle",
+  "fields": [
+    "`detail_lifecycle_id` bigint NOT NULL AUTO_INCREMENT",
+    "`lifecycle_id` bigint NOT NULL",
+    "`channel_id` bigint NOT NULL",
+    "`detail_start_time` bigint NOT NULL",
+    "`detail_end_time` bigint DEFAULT NULL",
+    "`detail_status` varchar(64) NOT NULL DEFAULT 'started'",
+    "`content_items_loaded` int NOT NULL DEFAULT 0",
+    "`total_content_items` int NOT NULL DEFAULT 0",
+    "`detail_duration_ms` int DEFAULT NULL",
+    "`error_message` text DEFAULT NULL",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_channel_boot_detail_lifecycle_fk_detail_lifecycle",
+      "columns": [
+        "lifecycle_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_boot_detail_lifecycle_fk_detail_channel",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_boot_detail_lifecycle_idx_status_time",
+      "columns": [
+        "detail_status",
+        "detail_start_time"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "detail_lifecycle_id",
+    "expected_name": "detail_lifecycle_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

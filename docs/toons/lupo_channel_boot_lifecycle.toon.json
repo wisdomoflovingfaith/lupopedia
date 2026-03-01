@@ -1,0 +1,70 @@
+{
+  "table_name": "lupo_channel_boot_lifecycle",
+  "fields": [
+    "`lifecycle_id` bigint NOT NULL AUTO_INCREMENT",
+    "`channel_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`session_id` varchar(64) NOT NULL",
+    "`lifecycle_start_time` bigint NOT NULL",
+    "`lifecycle_end_time` bigint DEFAULT NULL",
+    "`lifecycle_status` varchar(64) NOT NULL DEFAULT 'started'",
+    "`lifecycle_type` varchar(64) NOT NULL",
+    "`total_channels` int NOT NULL DEFAULT 0",
+    "`channels_processed` int NOT NULL DEFAULT 0",
+    "`channels_successful` int NOT NULL DEFAULT 0",
+    "`channels_failed` int NOT NULL DEFAULT 0",
+    "`lifecycle_duration_ms` int DEFAULT NULL",
+    "`error_details` json DEFAULT NULL",
+    "`performance_metrics` json DEFAULT NULL",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_channel_boot_lifecycle_fk_lifecycle_channel",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_boot_lifecycle_idx_actor_session",
+      "columns": [
+        "actor_id",
+        "session_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_boot_lifecycle_idx_status_time",
+      "columns": [
+        "lifecycle_status",
+        "lifecycle_start_time"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_boot_lifecycle_idx_type_time",
+      "columns": [
+        "lifecycle_type",
+        "lifecycle_start_time"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "lifecycle_id",
+    "expected_name": "lifecycle_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}
