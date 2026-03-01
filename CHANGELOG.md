@@ -43,56 +43,6 @@ flare.footer:
 
 This document tracks version history, focusing on key changes, task migrations, and optimizations. Entries are in reverse chronological order.
 
-## [4.0.53] — ANUBIS Activation & Queue Processing (2026-03-01)
-
-**Status**: COMPLETED  
-**Theme**: Custodial Intelligence activation and orphan file header recovery  
-**Lead Agent**: Gemini CLI (1006)  
-**Focus**: Activating ANUBIS (19), implementing database-primary queue management for orphaned files, and establishing recovery/quarantine protocols.
-
-### New Features
-- **ANUBIS Activation**: Actor ID 19 (Custodial Intelligence) is now part of the core activation set in `install.php`.
-- **ANUBIS Queue System**: New database tables established for managing orphans: `lupo_anubis_queue`, `lupo_anubis_processing_log`, `lupo_anubis_recovery_attempts`, and `lupo_anubis_quarantine`.
-- **Queue Processor Class**: Implemented `ANUBIS_QueueProcessor` in `lupo-includes/classes/ANUBIS/QueueProcessor.php` with high-level recovery and quarantine logic.
-- **Asynchronous Worker**: Dedicated CLI worker `bin/anubis_worker.php` for background processing (daemon or cron mode).
-- **Status Dashboard**: Monitoring interface at `admin/anubis_queue_status.php` for tracking queue health, statistics, and filesystem status (P0 Filesystem > P1 Database).
-- **Orphan File Detection**: Integrated hook into `LupoUploadHandler` and `bin/anubis_watcher_db_first.php` to automatically queue markdown/text files missing FLARE headers, storing content in DB for database primacy.
-
-### Technical Improvements
-- **PDO_DB Compatibility**: Enhanced `PDO_DB` constructor to allow passing existing PDO instances, improving integration in `install.php`.
-- **Session Hardening**: Enforced `L-lupo-<actor_id>` prefix for isolated agent sessions via `lupo-includes/functions/ai_activation.php`.
-- **System Initialization**: Standardized boot terminology to startup/initialize across several core files.
-- **Installer Automation**: Automated database migration for ANUBIS tables and implemented a **Verification Gate** in `install.php` that halts installation if queue tables are not correctly created.
-- **Directory Reorganization**: Moved `bin/`, `actors/`, `sessions/`, `logs/`, and `docs/` to `lupo-*` namespaces (`lupo-bin/`, `lupo-actors/`, `lupo-sessions/`, `lupo-logs/`, `lupo-docs/`) with updated global constants.
-- **PHP 5.3 Compatibility**: Refactored `LupoUploadHandler` and `ANUBIS_QueueProcessor` to remove short array syntax (`[]`) and modern PHP features, ensuring stability on legacy environments.
-- **Channel Directory Refactor**: Renamed the `channels` folder to `lupo-channels` and established `LUPO_CHANNEL_DIR` as the canonical reference across all system include paths.
-- **Overwrite Hierarchy Documentation**: Documented the resolution priority (Filesystem > Database > CSV/TOON) in `docs/doctrine/FLARE/FLARE_DOCTRINE.md` and created a dedicated [hierarchy.md](file:///C:/ServBay/www/servbay/lupopedia/docs/hierarchy.md) guide.
-- **Root Truth Adoption**: Implemented Filesystem-First resolution for actors via `ActorService::getActor()` and `lupo_get_actor()` helper.
-
-### Key Changes
-
-#### ANUBIS Custodial Intelligence Implementation
-- **Database Primacy**: Modified queue tables and logic to store full file content, enabling processing even if filesystem copies are deleted/lost.
-- **Queue Lifecycle**: Files detected as orphans are queued (P1 priority on upload), processed with multiple recovery attempts, and quarantined if headers cannot be generated.
-- **Header Recovery Strategy**: Implemented `generateMinimalHeader` to infer file purpose, channel_id, and metadata from file context.
-- **Migration Logic**: Deployed `database/migrations/20260301_anubis_database_primacy_updates.sql` for cross-database compatible schema updates.
-- **Audit Logging**: Comprehensive processing history recorded in `lupo_anubis_processing_log`.
-
-#### Terminology Standardization & AI Activation
-- **Standardized Semantics**: Migrated "Boot" terminology to "Initialize" (systems/channels) and "Activate" (AI agents) to eliminate ambiguity.
-- **Delegation-Activated Startup**: Implemented rule in `FLARE.md` that actors in `delegation_chain` must be auto-activated if not running.
-- **LILITH Technical Review**: Integrated LILITH's terminology critique (9.3/10 score) into core system doctrine.
-
-#### Session Management & Isolation
-- **Multi-Agent Session Anchors**: Implemented `session.json` across all 17 actor directories.
-- **Mandatory L-lupo Prefix**: Enforced `L-lupo-<actor_id>` prefix for all `session_id` generation.
-- **Isolation Documentation**: Created comprehensive [SESSION_MANAGEMENT_SYSTEM.md](file:///C:/ServBay/www/servbay/lupopedia/docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md).
-- **Agent Coverage**: Verified isolation for all IDE (Kiro, Windsurf, etc.) and AI (Gemini, Lilith, etc.) agents.
-
-#### Documentation & Governance
-- **Header Sanitization**: Removed redundant/duplicate headers from the database documentation index.
-- **Actor Registry Truth**: Established `lupo-actors/<id>/WHO.json` as the canonical source of truth for actor identities, with database as fallback secondary.
-- **Version Progression**: Canonical version bumped to 4.0.53 for the upgrade phase.
 
 ## [4.0.54] — Task Migration Focus (TBD)
 
@@ -285,6 +235,60 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Crafty Migration**: Add upgrade logic for Crafty Syntax 5.7.5 tables
 - **Error Handling**: Enhanced validation and escalation procedures
 - **Integration**: Full database and TOON schema compliance
+
+---
+
+
+## [4.0.53] — ANUBIS Activation & Queue Processing (2026-03-01)
+
+**Status**: COMPLETED  
+**Theme**: Custodial Intelligence activation and orphan file header recovery  
+**Lead Agent**: Gemini CLI (1006)  
+**Focus**: Activating ANUBIS (19), implementing database-primary queue management for orphaned files, and establishing recovery/quarantine protocols.
+
+### New Features
+- **ANUBIS Activation**: Actor ID 19 (Custodial Intelligence) is now part of the core activation set in `install.php`.
+- **ANUBIS Queue System**: New database tables established for managing orphans: `lupo_anubis_queue`, `lupo_anubis_processing_log`, `lupo_anubis_recovery_attempts`, and `lupo_anubis_quarantine`.
+- **Queue Processor Class**: Implemented `ANUBIS_QueueProcessor` in `lupo-includes/classes/ANUBIS/QueueProcessor.php` with high-level recovery and quarantine logic.
+- **Asynchronous Worker**: Dedicated CLI worker `bin/anubis_worker.php` for background processing (daemon or cron mode).
+- **Status Dashboard**: Monitoring interface at `admin/anubis_queue_status.php` for tracking queue health, statistics, and filesystem status (P0 Filesystem > P1 Database).
+- **Orphan File Detection**: Integrated hook into `LupoUploadHandler` and `bin/anubis_watcher_db_first.php` to automatically queue markdown/text files missing FLARE headers, storing content in DB for database primacy.
+
+### Technical Improvements
+- **PDO_DB Compatibility**: Enhanced `PDO_DB` constructor to allow passing existing PDO instances, improving integration in `install.php`.
+- **Session Hardening**: Enforced `L-lupo-<actor_id>` prefix for isolated agent sessions via `lupo-includes/functions/ai_activation.php`.
+- **System Initialization**: Standardized boot terminology to startup/initialize across several core files.
+- **Installer Automation**: Automated database migration for ANUBIS tables and implemented a **Verification Gate** in `install.php` that halts installation if queue tables are not correctly created.
+- **Directory Reorganization**: Moved `bin/`, `actors/`, `sessions/`, `logs/`, and `docs/` to `lupo-*` namespaces (`lupo-bin/`, `lupo-actors/`, `lupo-sessions/`, `lupo-logs/`, `lupo-docs/`) with updated global constants.
+- **PHP 5.3 Compatibility**: Refactored `LupoUploadHandler` and `ANUBIS_QueueProcessor` to remove short array syntax (`[]`) and modern PHP features, ensuring stability on legacy environments.
+- **Channel Directory Refactor**: Renamed the `channels` folder to `lupo-channels` and established `LUPO_CHANNEL_DIR` as the canonical reference across all system include paths.
+- **Overwrite Hierarchy Documentation**: Documented the resolution priority (Filesystem > Database > CSV/TOON) in `docs/doctrine/FLARE/FLARE_DOCTRINE.md` and created a dedicated [hierarchy.md](file:///C:/ServBay/www/servbay/lupopedia/docs/hierarchy.md) guide.
+- **Root Truth Adoption**: Implemented Filesystem-First resolution for actors via `ActorService::getActor()` and `lupo_get_actor()` helper.
+
+### Key Changes
+
+#### ANUBIS Custodial Intelligence Implementation
+- **Database Primacy**: Modified queue tables and logic to store full file content, enabling processing even if filesystem copies are deleted/lost.
+- **Queue Lifecycle**: Files detected as orphans are queued (P1 priority on upload), processed with multiple recovery attempts, and quarantined if headers cannot be generated.
+- **Header Recovery Strategy**: Implemented `generateMinimalHeader` to infer file purpose, channel_id, and metadata from file context.
+- **Migration Logic**: Deployed `database/migrations/20260301_anubis_database_primacy_updates.sql` for cross-database compatible schema updates.
+- **Audit Logging**: Comprehensive processing history recorded in `lupo_anubis_processing_log`.
+
+#### Terminology Standardization & AI Activation
+- **Standardized Semantics**: Migrated "Boot" terminology to "Initialize" (systems/channels) and "Activate" (AI agents) to eliminate ambiguity.
+- **Delegation-Activated Startup**: Implemented rule in `FLARE.md` that actors in `delegation_chain` must be auto-activated if not running.
+- **LILITH Technical Review**: Integrated LILITH's terminology critique (9.3/10 score) into core system doctrine.
+
+#### Session Management & Isolation
+- **Multi-Agent Session Anchors**: Implemented `session.json` across all 17 actor directories.
+- **Mandatory L-lupo Prefix**: Enforced `L-lupo-<actor_id>` prefix for all `session_id` generation.
+- **Isolation Documentation**: Created comprehensive [SESSION_MANAGEMENT_SYSTEM.md](file:///C:/ServBay/www/servbay/lupopedia/docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md).
+- **Agent Coverage**: Verified isolation for all IDE (Kiro, Windsurf, etc.) and AI (Gemini, Lilith, etc.) agents.
+
+#### Documentation & Governance
+- **Header Sanitization**: Removed redundant/duplicate headers from the database documentation index.
+- **Actor Registry Truth**: Established `lupo-actors/<id>/WHO.json` as the canonical source of truth for actor identities, with database as fallback secondary.
+- **Version Progression**: Canonical version bumped to 4.0.53 for the upgrade phase.
 
 ---
 
