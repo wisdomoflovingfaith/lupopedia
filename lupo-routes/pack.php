@@ -11,7 +11,7 @@
 
 // Pack warm-start route
 if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/warm-start') {
-    require_once __DIR__ . '/../app/Http/Controllers/PackWarmStartController.php';
+    require_once __DIR__ . '/../lupo-app/Http/Controllers/PackWarmStartController.php';
     $controller = new \App\Http\Controllers\PackWarmStartController();
     echo $controller->warmStart();
     exit;

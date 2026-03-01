@@ -11,7 +11,7 @@
 
 // Pack sync run route
 if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/sync/run') {
-    require_once __DIR__ . '/../app/Http/Controllers/PackSyncController.php';
+    require_once __DIR__ . '/../lupo-app/Http/Controllers/PackSyncController.php';
     $controller = new \App\Http\Controllers\PackSyncController();
     echo $controller->run();
     exit;
@@ -19,7 +19,7 @@ if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/sync/ru
 
 // Pack sync emotions route
 if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/sync/emotions') {
-    require_once __DIR__ . '/../app/Http/Controllers/PackSyncController.php';
+    require_once __DIR__ . '/../lupo-app/Http/Controllers/PackSyncController.php';
     $controller = new \App\Http\Controllers\PackSyncController();
     echo $controller->emotions();
     exit;
@@ -27,7 +27,7 @@ if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/sync/em
 
 // Pack sync behavior route
 if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/sync/behavior') {
-    require_once __DIR__ . '/../app/Http/Controllers/PackSyncController.php';
+    require_once __DIR__ . '/../lupo-app/Http/Controllers/PackSyncController.php';
     $controller = new \App\Http\Controllers\PackSyncController();
     echo $controller->behavior();
     exit;
@@ -35,7 +35,7 @@ if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/sync/be
 
 // Pack sync memory route
 if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/sync/memory') {
-    require_once __DIR__ . '/../app/Http/Controllers/PackSyncController.php';
+    require_once __DIR__ . '/../lupo-app/Http/Controllers/PackSyncController.php';
     $controller = new \App\Http\Controllers\PackSyncController();
     echo $controller->memory();
     exit;

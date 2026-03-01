@@ -11,7 +11,7 @@
 
 // Emotional geometry affinity route
 if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/emotion/affinity') {
-    require_once __DIR__ . '/../app/Http/Controllers/EmotionalGeometryController.php';
+    require_once __DIR__ . '/../lupo-app/Http/Controllers/EmotionalGeometryController.php';
     $controller = new \App\Http\Controllers\EmotionalGeometryController();
     echo $controller->affinity();
     exit;

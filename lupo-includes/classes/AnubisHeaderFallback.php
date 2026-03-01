@@ -300,12 +300,12 @@ class AnubisHeaderFallback
             $classification['artifact_type'] = 'prompt';
             $classification['artifact_kind'] = 'task_directive';
             $classification['hashtags'][] = '#prompt';
-        } elseif (strpos($file_path, 'app/Services/') !== false) {
+        } elseif (strpos($file_path, 'lupo-app/Services/') !== false) {
             $classification['artifact_type'] = 'service';
             $classification['artifact_kind'] = 'business_logic';
             $classification['traits'][] = 'core';
             $classification['hashtags'][] = '#service';
-        } elseif (strpos($file_path, 'app/auth/') !== false) {
+        } elseif (strpos($file_path, 'lupo-app/auth/') !== false) {
             $classification['artifact_type'] = 'service';
             $classification['artifact_kind'] = 'authentication';
             $classification['traits'][] = 'critical';

@@ -11,7 +11,7 @@
 
 // Pack memory episodic route
 if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/memory/episodic') {
-    require_once __DIR__ . '/../app/Http/Controllers/PackMemoryController.php';
+    require_once __DIR__ . '/../lupo-app/Http/Controllers/PackMemoryController.php';
     $controller = new \App\Http\Controllers\PackMemoryController();
     echo $controller->episodic();
     exit;
@@ -19,7 +19,7 @@ if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/memory/
 
 // Pack memory emotional route
 if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/memory/emotional') {
-    require_once __DIR__ . '/../app/Http/Controllers/PackMemoryController.php';
+    require_once __DIR__ . '/../lupo-app/Http/Controllers/PackMemoryController.php';
     $controller = new \App\Http\Controllers\PackMemoryController();
     echo $controller->emotional();
     exit;
@@ -27,7 +27,7 @@ if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/memory/
 
 // Pack memory behavioral route
 if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/memory/behavioral') {
-    require_once __DIR__ . '/../app/Http/Controllers/PackMemoryController.php';
+    require_once __DIR__ . '/../lupo-app/Http/Controllers/PackMemoryController.php';
     $controller = new \App\Http\Controllers\PackMemoryController();
     echo $controller->behavioral();
     exit;
@@ -35,7 +35,7 @@ if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/memory/
 
 // Pack memory handoffs route
 if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/pack/memory/handoffs') {
-    require_once __DIR__ . '/../app/Http/Controllers/PackMemoryController.php';
+    require_once __DIR__ . '/../lupo-app/Http/Controllers/PackMemoryController.php';
     $controller = new \App\Http\Controllers\PackMemoryController();
     echo $controller->handoffs();
     exit;
