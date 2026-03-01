@@ -94,14 +94,46 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Actor Registry Truth**: Established `lupo-actors/<id>/WHO.json` as the canonical source of truth for actor identities, with database as fallback secondary.
 - **Version Progression**: Canonical version bumped to 4.0.53 for the upgrade phase.
 
-## [4.0.52] — IDE Crash Recovery and Channel Boot System (2026-03-01)
+## [4.0.54] — Task Migration Focus (TBD)
 
-**Status**: COMPLETE  
-**Theme**: Session management system implementation, multi-agent isolation, and version finalization  
+**Status**: IN DEVELOPMENT  
+**Theme**: Task migration from channel files to changelog TODO  
 **Lead Agent**: Windsurf (1002)  
-**Focus**: Finalize v4.0.52, implement session prefix system, and prepare for v4.0.53 release.
+**Focus**: Migrate all active tasks from `lupo-channels/*/tasks/*` to changelog TODO for centralized tracking.
 
-### 🔄 Session Management System Implementation
+### TODO Tasks (Migrated from Channel Tasks)
+
+#### Channel 0 Active Tasks
+- **Task CH0-20260225-001**: Drop tables and run install (assigned: 10000, priority: critical, status: active)
+- **Task CH0-20260225-002**: Primary install upgrade 4.0.46 (assigned: 10000, priority: critical, status: active)
+- **Task broadcast_normalization**: Broadcast system normalization (assigned: 10000, priority: high, status: active)
+- **Task db_reset_and_install**: Database reset and installation (assigned: 10000, priority: high, status: active)
+- **Task installer_integration**: Installer system integration (assigned: 10000, priority: medium, status: active)
+- **Task registry_lock**: Registry system locking (assigned: 10000, priority: medium, status: active)
+
+#### Channel 42 Active Tasks
+- **Task actor_help_documentation_validation**: Actor help documentation validation (assigned: TBD, priority: high, status: active)
+- **Task actor_help_documentation_validation_v2**: Actor help documentation validation v2 (assigned: TBD, priority: high, status: active)
+- **Task anubis_flare_ingestion_faucet**: ANUBIS FLARE ingestion faucet (assigned: TBD, priority: medium, status: active)
+- **Task database_documentation_remaining_tables**: Database documentation for remaining tables (assigned: TBD, priority: medium, status: active)
+- **Task database_optimization_analysis**: Database optimization analysis (assigned: TBD, priority: medium, status: active)
+- **Task file_count_optimization_4_1_0**: File count optimization for 4.1.0 (assigned: TBD, priority: low, status: "Active Planning")
+- **Task repository_cleanup_legacy_files_removal**: Repository cleanup and legacy files removal (assigned: TBD, priority: low, status: active)
+
+#### Channel 666 Active Tasks
+- **Task actor_help_documentation_validation**: Actor help documentation validation (assigned: TBD, priority: high, status: active)
+- **Task actor_help_documentation_validation_v2**: Actor help documentation validation v2 (assigned: TBD, priority: high, status: active)
+- **Task anubis_flare_ingestion_faucet**: ANUBIS FLARE ingestion faucet (assigned: TBD, priority: medium, status: active)
+- **Task database_documentation_remaining_tables**: Database documentation for remaining tables (assigned: TBD, priority: medium, status: active)
+- **Task database_optimization_analysis**: Database optimization analysis (assigned: TBD, priority: medium, status: active)
+- **Task file_count_optimization_4_1_0**: File count optimization for 4.1.0 (assigned: TBD, priority: low, status: "Active Planning")
+- **Task repository_cleanup_legacy_files_removal**: Repository cleanup and legacy files removal (assigned: TBD, priority: low, status: active)
+
+### Migration Notes
+- **Total Tasks Migrated**: 20 active tasks from 3 channels (0, 42, 666)
+- **Priority Distribution**: 6 critical/high, 10 medium, 4 low
+- **Status**: All tasks currently active or in "Active Planning" state
+- **Next Steps**: Review and prioritize tasks for v4.0.54 development cycle
 
 **Session Prefix Update**: ✅ COMPLETED
 - **Prefix Format**: Implemented `L-lupo-actor_id` format for all sessions
