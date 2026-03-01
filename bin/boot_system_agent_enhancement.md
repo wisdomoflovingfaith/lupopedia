@@ -44,6 +44,7 @@ Per Codex instruction (finalize_4.0.52.md), enhance `bin/boot_system_agent.php` 
 - **LILITH (actor_id 2)**: Critical review and documentation quality assurance
 - **SYSTEM (actor_id 0)**: System operations and table validation
 - **CAPTAIN WOLFIE (actor_id 1)**: Leadership coordination and oversight
+- **ANUBIS (actor_id 19)**: Custodial intelligence and FLARE header management
 
 **Crafty Syntax Upgrade Task**: Implement upgrade from Crafty Syntax 5.7.5:
 - **Table Validation**: Validate all tables from `install_new_lupopedia.sql` exist with proper structure
@@ -86,6 +87,22 @@ class CaptainWolfieAI {
         return $this->manageAgentHierarchy();
     }
 }
+
+class AnubisAI {
+    public function __construct() {
+        // Initialize ANUBIS AI for custodial intelligence
+    }
+    
+    public function manageFlareHeaders() {
+        // FLARE header management logic
+        return $this->processFlareCompliance();
+    }
+    
+    public function custodialOversight() {
+        // Custodial intelligence operations
+        return $this->enforceGovernance();
+    }
+}
 ```
 
 **Boot Sequence Enhancement**:
@@ -112,7 +129,10 @@ php bin/boot_system_agent.php --ai-startup --crafty-upgrade
 php bin/boot_system_agent.php --debug --ai-startup --crafty-upgrade
 
 # Boot with specific AI agents
-php bin/boot_system_agent.php --ai=lilith,system --crafty-upgrade
+php bin/boot_system_agent.php --ai=lilith,system,anubis --crafty-upgrade
+
+# Boot with all AI agents
+php bin/boot_system_agent.php --ai=all --crafty-upgrade
 ```
 
 **Expected Output**:
@@ -134,6 +154,7 @@ Timestamp: 20260301094500 UTC
 ✅ LILITH AI (2): Initialized - Critical review system
 ✅ SYSTEM AI (0): Initialized - Table validation system  
 ✅ CAPTAIN WOLFIE AI (1): Initialized - Leadership coordination
+✅ ANUBIS AI (19): Initialized - Custodial intelligence system
 
 🔍 Validating Database Schema...
 ✅ TOON Schema Compliance: All tables match TOON definitions
@@ -146,7 +167,7 @@ Timestamp: 20260301094500 UTC
 🎉 System Agent boot completed successfully!
 === Boot SUCCESS ===
 Duration: 3200 ms
-AI Agents: 3 active
+AI Agents: 4 active
 Crafty Upgrade: Not required
 ```
 
@@ -156,6 +177,7 @@ Crafty Upgrade: Not required
 - **LILITH**: Log critical review failures to `lupo_channel_logs`
 - **SYSTEM**: Log table validation errors with detailed schema information
 - **CAPTAIN WOLFIE**: Log coordination issues and agent hierarchy problems
+- **ANUBIS**: Log FLARE header management issues and custodial intelligence failures
 
 **Crafty Migration Issues**:
 - **Schema Conflicts**: Log table structure mismatches
