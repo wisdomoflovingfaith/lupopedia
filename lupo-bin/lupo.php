@@ -278,7 +278,7 @@ try {
             echo "Config Path: " . ABSPATH . 'lupopedia-config.php' . "\n";
             echo "Timestamp: " . gmdate('Y-m-d H:i:s UTC') . "\n";
             echo "===================\n";
-            
+
             // Log operation
             logOperation(0, 'system-status', array('timestamp' => gmdate('YmdHis')));
             break;
@@ -292,12 +292,12 @@ try {
             if ($task_id <= 0) {
                 die("Error: Task ID required. Usage: coordinate-task <task_id>\n");
             }
-            
+
             // Additional validation: range check for positive integers
             if ($task_id > 999999) {
                 die("Error: Task ID out of valid range (1-999999).\n");
             }
-            
+
             $t = $table_prefix . 'tasks';
             $stmt = $db->prepare("SELECT task_id, title, status_id FROM {$t} WHERE task_id = :tid AND is_deleted = 0");
             $stmt->execute(array('tid' => $task_id));
@@ -313,7 +313,7 @@ try {
             echo "Action: Task coordination initiated\n";
             echo "Timestamp: " . gmdate('Y-m-d H:i:s UTC') . "\n";
             echo "========================\n";
-            
+
             // Log operation
             logOperation(0, 'coordinate-task', array('task_id' => $task_id, 'title' => $task['title']));
             break;
@@ -325,19 +325,19 @@ try {
             }
             echo "=== System Health Check ===\n";
             $checks = array();
-            
+
             // Database connectivity
             $checks['database'] = $db ? 'PASS' : 'FAIL';
-            
+
             // Configuration file
             $checks['config'] = file_exists(ABSPATH . 'lupopedia-config.php') ? 'PASS' : 'FAIL';
-            
+
             // Version file
             $checks['version'] = file_exists(ABSPATH . 'lupo-includes/version.php') ? 'PASS' : 'FAIL';
-            
+
             // Write permissions
             $checks['writable'] = is_writable(ABSPATH) ? 'PASS' : 'FAIL';
-            
+
             // Database table access
             try {
                 $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actors LIMIT 1");
@@ -346,16 +346,17 @@ try {
             } catch (Exception $e) {
                 $checks['table_access'] = 'FAIL';
             }
-            
+
             foreach ($checks as $check => $status) {
                 echo strtoupper($check) . ": " . $status . "\n";
             }
-            
-            $all_pass = array_reduce($checks, function($carry, $item) { return $carry && $item === 'PASS'; }, true);
+
+            $all_pass = array_reduce($checks, function ($carry, $item) {
+                return $carry && $item === 'PASS'; }, true);
             echo "Overall Status: " . ($all_pass ? 'HEALTHY' : 'ISSUES DETECTED') . "\n";
             echo "Timestamp: " . gmdate('Y-m-d H:i:s UTC') . "\n";
             echo "========================\n";
-            
+
             // Log operation
             logOperation(0, 'health-check', array('results' => $checks, 'overall' => $all_pass ? 'HEALTHY' : 'ISSUES DETECTED'));
             break;
@@ -370,22 +371,22 @@ try {
             if ($config_key === '' || $config_value === '') {
                 die("Error: Key and value required. Usage: update-config <key> <value>\n");
             }
-            
+
             // Validate config key format
             if (!preg_match('/^[a-zA-Z0-9_]+$/', $config_key)) {
                 die("Error: Invalid config key format. Use alphanumeric and underscore only.\n");
             }
-            
+
             $t = $table_prefix . 'system_config';
             $now = (int) gmdate('YmdHis');
-            
+
             try {
                 $db->beginTransaction();
-                
+
                 $stmt = $db->prepare("SELECT config_id FROM {$t} WHERE config_key = :key AND is_deleted = 0");
                 $stmt->execute(array('key' => $config_key));
                 $existing = $stmt->fetchColumn();
-                
+
                 if ($existing) {
                     $stmt = $db->prepare("UPDATE {$t} SET config_value = :value, updated_ymdhis = :updated WHERE config_key = :key");
                     $stmt->execute(array('value' => $config_value, 'updated' => $now, 'key' => $config_key));
@@ -401,12 +402,12 @@ try {
                     $stmt->execute(array('id' => $id, 'key' => $config_key, 'value' => $config_value, 'created' => $now, 'updated' => $now));
                     echo "Configuration created: $config_key = $config_value\n";
                 }
-                
+
                 $db->commit();
-                
+
                 // Log operation
                 logOperation(0, 'update-config', array('key' => $config_key, 'value' => $config_value, 'action' => $existing ? 'update' : 'create'));
-                
+
             } catch (Exception $e) {
                 $db->rollBack();
                 echo "Error: Configuration update failed - " . $e->getMessage() . "\n";
@@ -415,7 +416,7 @@ try {
         case 'help':
         default:
             echo "Lupopedia CLI v4.0.50\n";
-            echo "Usage: php bin/lupo.php <command> [args]\n\n";
+            echo "Usage: php lupo-bin/lupo.php <command> [args]\n\n";
             echo "Commands:\n";
             echo "  register <name> <type>             Register this environment as an actor\n";
             echo "  whoami                             Show current actor identity\n";
@@ -435,11 +436,11 @@ try {
             echo "  health-check                       Perform system health check\n";
             echo "  update-config <key> <value>        Update system configuration\n";
             echo "\nExamples:\n";
-            echo "  php bin/lupo.php register \"System Agent\" system_tool\n";
-            echo "  php bin/lupo.php use 0\n";
-            echo "  php bin/lupo.php system-status\n";
-            echo "  php bin/lupo.php health-check\n";
-            echo "  php bin/lupo.php update-config maintenance_mode true\n";
+            echo "  php lupo-bin/lupo.php register \"System Agent\" system_tool\n";
+            echo "  php lupo-bin/lupo.php use 0\n";
+            echo "  php lupo-bin/lupo.php system-status\n";
+            echo "  php lupo-bin/lupo.php health-check\n";
+            echo "  php lupo-bin/lupo.php update-config maintenance_mode true\n";
             break;
     }
 } catch (Exception $e) {
@@ -447,20 +448,21 @@ try {
 }
 
 // Audit logging function with log level control
-function logOperation($actor_id, $command, $details) {
+function logOperation($actor_id, $command, $details)
+{
     global $db, $table_prefix;
-    
+
     // Check log level environment variable (default: INFO)
     $log_level = getenv('LUPO_LOG_LEVEL') ?: 'INFO';
     $log_levels = array('DEBUG' => 0, 'INFO' => 1, 'WARNING' => 2, 'ERROR' => 3);
     $current_level = isset($log_levels[$log_level]) ? $log_levels[$log_level] : 1;
-    
+
     // Only log INFO level and above by default
     $command_level = isset($log_levels['INFO']) ? $log_levels['INFO'] : 1;
     if ($current_level > $command_level) {
         return; // Skip logging if below threshold
     }
-    
+
     try {
         $t = $table_prefix . 'audit_log';
         $now = (int) gmdate('YmdHis');
@@ -470,13 +472,13 @@ function logOperation($actor_id, $command, $details) {
             $stmt->execute();
             $id = (int) $stmt->fetchColumn() + 1;
         }
-        
+
         // Handle JSON serialization with proper escaping
         $details_json = json_encode($details, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         if ($details_json === false) {
             $details_json = json_encode(array('error' => 'JSON serialization failed', 'original_type' => gettype($details)));
         }
-        
+
         // Truncate if too large (prevent database issues)
         if (strlen($details_json) > 65535) {
             $details_json = json_encode(array(
@@ -486,7 +488,7 @@ function logOperation($actor_id, $command, $details) {
                 'timestamp' => $now
             ));
         }
-        
+
         $stmt = $db->prepare("INSERT INTO {$t} (audit_log_id, actor_id, command, details_json, created_ymdhis) VALUES (:id, :aid, :cmd, :details, :created)");
         $stmt->execute(array(
             'id' => $id,

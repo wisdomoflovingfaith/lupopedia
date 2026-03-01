@@ -4,7 +4,7 @@
  * PHP 5.3+ Compatible - Lupopedia v4.0.48
  * 
  * Syncs actor directory data with database tables for Identity Capsule system
- * Reads from actors/<id>/ directory and updates database accordingly
+ * Reads from lupo-actors/<id>/ directory and updates database accordingly
  */
 
 // Bootstrap Lupopedia (ensure we have database connection)
@@ -16,7 +16,8 @@ require_once(dirname(__DIR__) . '/lupo-includes/bootstrap.php');
  * @param int $actor_id Actor ID to sync
  * @return array Sync results
  */
-function sync_actor_to_db($actor_id) {
+function sync_actor_to_db($actor_id)
+{
     $results = array(
         'success' => false,
         'actor_id' => $actor_id,
@@ -24,17 +25,18 @@ function sync_actor_to_db($actor_id) {
         'errors' => array(),
         'timestamp' => gmdate('YmdHis')
     );
-    
+
     try {
         // Get database connection
         $db = DatabaseFactory::getConnection();
-        
+
         // Validate actor directory exists
-        $actor_dir = LUPOPEDIA_PATH . '/actors/' . $actor_id;
+        $lupo_actors_dir = defined('LUPO_ACTORS_DIR') ? LUPO_ACTORS_DIR : 'lupo-actors';
+        $actor_dir = LUPOPEDIA_PATH . '/' . $lupo_actors_dir . '/' . $actor_id;
         if (!is_dir($actor_dir)) {
             throw new Exception("Actor directory not found: {$actor_dir}");
         }
-        
+
         // Sync WHO.json to lupo_actors.metadata_json
         $who_file = $actor_dir . '/WHO.json';
         if (file_exists($who_file)) {
@@ -42,7 +44,7 @@ function sync_actor_to_db($actor_id) {
             if ($who_data === null) {
                 throw new Exception("Invalid JSON in WHO.json for actor {$actor_id}");
             }
-            
+
             // Update actor record
             $update_sql = "UPDATE lupo_actors SET 
                 metadata_json = :who_json,
@@ -50,17 +52,17 @@ function sync_actor_to_db($actor_id) {
                 last_sync_ymdhis = :sync_time,
                 updated_ymdhis = :sync_time
                 WHERE actor_id = :actor_id";
-                
+
             $stmt = $db->prepare($update_sql);
             $stmt->execute(array(
                 ':who_json' => json_encode($who_data),
                 ':sync_time' => $results['timestamp'],
                 ':actor_id' => $actor_id
             ));
-            
+
             $results['synced_files'][] = 'WHO.json';
         }
-        
+
         // Sync resume.json to lupo_actor_history
         $resume_file = $actor_dir . '/history/resume.json';
         if (file_exists($resume_file)) {
@@ -68,13 +70,13 @@ function sync_actor_to_db($actor_id) {
             if ($resume_data === null) {
                 throw new Exception("Invalid JSON in resume.json for actor {$actor_id}");
             }
-            
+
             // Process best_work entries
             if (isset($resume_data['best_work']) && is_array($resume_data['best_work'])) {
                 foreach ($resume_data['best_work'] as $achievement) {
                     // Generate history_id (simple increment)
                     $history_id = $actor_id * 1000 + count($results['synced_files']);
-                    
+
                     $insert_sql = "INSERT INTO lupo_actor_history (
                         history_id, actor_id, achievement_id, title, description, impact,
                         date_ymdhis, channel_id, tags, metrics, created_ymdhis, updated_ymdhis
@@ -82,7 +84,7 @@ function sync_actor_to_db($actor_id) {
                         :history_id, :actor_id, :achievement_id, :title, :description, :impact,
                         :date_ymdhis, :channel_id, :tags, :metrics, :created_ymdhis, :updated_ymdhis
                     )";
-                    
+
                     $stmt = $db->prepare($insert_sql);
                     $stmt->execute(array(
                         ':history_id' => $history_id,
@@ -102,7 +104,7 @@ function sync_actor_to_db($actor_id) {
                 $results['synced_files'][] = 'history/resume.json';
             }
         }
-        
+
         // Sync capabilities to lupo_capability_usage
         $who_file = $actor_dir . '/WHO.json';
         if (file_exists($who_file)) {
@@ -111,7 +113,7 @@ function sync_actor_to_db($actor_id) {
                 foreach ($who_data['whoami']['capabilities'] as $capability) {
                     // Generate usage_id
                     $usage_id = $actor_id * 1000 + array_search($capability, $who_data['whoami']['capabilities']);
-                    
+
                     $insert_sql = "INSERT INTO lupo_capability_usage (
                         usage_id, actor_id, capability, usage_count, success_rate,
                         avg_response_time_ms, last_used_ymdhis, created_ymdhis, updated_ymdhis
@@ -119,7 +121,7 @@ function sync_actor_to_db($actor_id) {
                         :usage_id, :actor_id, :capability, :usage_count, :success_rate,
                         :avg_response_time_ms, :last_used_ymdhis, :created_ymdhis, :updated_ymdhis
                     )";
-                    
+
                     $stmt = $db->prepare($insert_sql);
                     $stmt->execute(array(
                         ':usage_id' => $usage_id,
@@ -136,13 +138,13 @@ function sync_actor_to_db($actor_id) {
                 $results['synced_files'][] = 'capabilities (from WHO.json)';
             }
         }
-        
+
         $results['success'] = true;
-        
+
     } catch (Exception $e) {
         $results['errors'][] = $e->getMessage();
     }
-    
+
     return $results;
 }
 
@@ -151,7 +153,8 @@ function sync_actor_to_db($actor_id) {
  * 
  * @return array Overall sync results
  */
-function sync_all_actors() {
+function sync_all_actors()
+{
     $results = array(
         'success' => true,
         'total_actors' => 0,
@@ -160,22 +163,23 @@ function sync_all_actors() {
         'actor_results' => array(),
         'timestamp' => gmdate('YmdHis')
     );
-    
+
     // Get all actor directories
-    $actors_dir = LUPOPEDIA_PATH . '/actors';
+    $lupo_actors_dir = defined('LUPO_ACTORS_DIR') ? LUPO_ACTORS_DIR : 'lupo-actors';
+    $actors_dir = LUPOPEDIA_PATH . '/' . $lupo_actors_dir;
     $dirs = scandir($actors_dir);
-    
+
     foreach ($dirs as $dir) {
         if ($dir === '.' || $dir === '..') {
             continue;
         }
-        
+
         $actor_path = $actors_dir . '/' . $dir;
         if (is_dir($actor_path) && is_numeric($dir)) {
             $results['total_actors']++;
             $actor_result = sync_actor_to_db(intval($dir));
             $results['actor_results'][] = $actor_result;
-            
+
             if ($actor_result['success']) {
                 $results['synced_actors']++;
             } else {
@@ -184,7 +188,7 @@ function sync_all_actors() {
             }
         }
     }
-    
+
     return $results;
 }
 
@@ -194,7 +198,7 @@ function sync_all_actors() {
 if (php_sapi_name() === 'cli') {
     // Command line usage
     $options = getopt('a:h', array('actor:', 'help'));
-    
+
     if (isset($options['h']) || isset($options['help'])) {
         echo "Actor Directory to Database Sync Script\n";
         echo "Usage: php sync_actors_to_db.php [-a <actor_id>] [-h]\n";
@@ -203,12 +207,12 @@ if (php_sapi_name() === 'cli') {
         echo "\nIf no actor ID specified, syncs all actors.\n";
         exit(0);
     }
-    
+
     if (isset($options['a']) || isset($options['actor'])) {
         $actor_id = isset($options['a']) ? intval($options['a']) : intval($options['actor']);
         echo "Syncing actor {$actor_id}...\n";
         $result = sync_actor_to_db($actor_id);
-        
+
         if ($result['success']) {
             echo "✅ Actor {$actor_id} synced successfully\n";
             echo "   Synced files: " . implode(', ', $result['synced_files']) . "\n";
@@ -220,11 +224,11 @@ if (php_sapi_name() === 'cli') {
     } else {
         echo "Syncing all actors...\n";
         $result = sync_all_actors();
-        
+
         echo "Total actors: {$result['total_actors']}\n";
         echo "Synced: {$result['synced_actors']}\n";
         echo "Failed: {$result['failed_actors']}\n";
-        
+
         if ($result['failed_actors'] > 0) {
             echo "\nFailed actors:\n";
             foreach ($result['actor_results'] as $actor_result) {
@@ -240,14 +244,14 @@ if (php_sapi_name() === 'cli') {
 } else {
     // Web usage - return JSON
     header('Content-Type: application/json');
-    
+
     if (isset($_GET['actor_id'])) {
         $actor_id = intval($_GET['actor_id']);
         $result = sync_actor_to_db($actor_id);
     } else {
         $result = sync_all_actors();
     }
-    
+
     echo json_encode($result, JSON_PRETTY_PRINT);
 }
 ?>

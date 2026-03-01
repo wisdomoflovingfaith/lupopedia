@@ -104,7 +104,7 @@ python scripts/generate_toon_files.py
 python scripts/generate_directory_tree.py
 
 # Bump version
-php bin/bump-version.php
+php lupo-bin/bump-version.php
 
 # Validate schema against TOONs
 python scripts/verify_db_against_toons.py
@@ -136,6 +136,7 @@ Fresh install runs (A) then (B). Upgrade from Crafty runs (A), (B), then (C). Ne
 
 - `app/` — OOP services and auth: `app/auth/` (Session, AuthService, AuthRoleResolver), `app/Services/` (ActorService, CollectionZeroService, UploadService, CraftySyntax/, Pack/)
 - `lupo-includes/` — Core runtime: `class-pdo_db.php` (DB wrapper), `class-DatabaseFactory.php` (singleton connection), `modules/` (auth, content, truth, crafty_syntax, help, list, qa, channels, actors, operator), `classes/` (ColorProtocol, UrlResolver, TOONParser, DialogHistoryManager, etc.), `functions/` (legacy helpers — no new files here), `css/`, `js/`, `themes/`, `ui/`, `semantic/`, `agents/`, `rest-api/`
+- `lupo-bin/` — System binaries and CLI utilities (e.g., `bump-version.php`, `lupo.php`)
 - `lupo-agents/` — AI agent configuration files, one numbered folder per agent (`agent.json`, `capabilities.json`, `properties.json`, `system_prompt.txt`)
 - `database/` — Schema, migrations, seeds, CSV data, TOON schema backups
 - `docs/toons/` — `*.toon.json` files: generated from live DB, never hand-edited. These define the canonical column/type reference.

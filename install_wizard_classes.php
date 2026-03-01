@@ -13,9 +13,11 @@ if (!defined('LUPOPEDIA_PATH')) {
     return;
 }
 
-class InstallWizardSteps {
+class InstallWizardSteps
+{
 
-    public static function getWizardSteps() {
+    public static function getWizardSteps()
+    {
         $isUpgrade = ((isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade');
         if ($isUpgrade) {
             return array(
@@ -39,7 +41,8 @@ class InstallWizardSteps {
         );
     }
 
-    public static function getCurrentStepIndex($step) {
+    public static function getCurrentStepIndex($step)
+    {
         $steps = self::getWizardSteps();
         foreach ($steps as $i => $s) {
             if ($s['id'] === $step) {
@@ -49,21 +52,25 @@ class InstallWizardSteps {
         return 1;
     }
 
-    public static function getTotalSteps() {
+    public static function getTotalSteps()
+    {
         return count(self::getWizardSteps());
     }
 }
 
-class InstallWizardSecurity {
+class InstallWizardSecurity
+{
 
-    public static function getCsrfToken() {
+    public static function getCsrfToken()
+    {
         if (empty($_SESSION['lupo_csrf_token'])) {
             $_SESSION['lupo_csrf_token'] = bin2hex(lupo_random_bytes(32));
         }
         return $_SESSION['lupo_csrf_token'];
     }
 
-    public static function validateCsrf() {
+    public static function validateCsrf()
+    {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             return true;
         }
@@ -73,9 +80,11 @@ class InstallWizardSecurity {
     }
 }
 
-class InstallWizardLogger {
+class InstallWizardLogger
+{
 
-    public static function logEntry($type, $message) {
+    public static function logEntry($type, $message)
+    {
         $ts = date('c');
         $entry = array($type, $message, $ts);
         if (!isset($_SESSION['lupo_wizard_audit_log'])) {
@@ -85,30 +94,35 @@ class InstallWizardLogger {
         return $entry;
     }
 
-    public static function safeErrorMessage($context = 'operation') {
+    public static function safeErrorMessage($context = 'operation')
+    {
         return 'A database ' . $context . ' failed. Please check your data and try again, or download the log.';
     }
 }
 
-class InstallWizardCredentials {
+class InstallWizardCredentials
+{
 
     /**
      * Whether a Crafty Syntax config.php exists in any standard location.
      * If true, this is for sure an upgrade from Crafty Syntax (use for install_type).
      * @return bool
      */
-    public static function craftyConfigExists() {
-        $config_paths = [
+    public static function craftyConfigExists()
+    {
+        $config_paths = array(
             $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'config.php',
             dirname($_SERVER['DOCUMENT_ROOT']) . DIRECTORY_SEPARATOR . 'config.php',
             $_SERVER['DOCUMENT_ROOT'] . '/../config.php'
-        ];
-        
+        );
+
         foreach ($config_paths as $config) {
             if (file_exists($config) && is_readable($config)) {
                 $content = file_get_contents($config);
-                if ($content !== false && 
-                    (strpos($content, '$server') !== false || strpos($content, '$database') !== false)) {
+                if (
+                    $content !== false &&
+                    (strpos($content, '$server') !== false || strpos($content, '$database') !== false)
+                ) {
                     return true;
                 }
             }
@@ -120,13 +134,14 @@ class InstallWizardCredentials {
      * Detect Crafty Syntax 3.7.5 version from config file content.
      * @return string|null Version detected (e.g., '3.7.5', '3.6.0', null)
      */
-    public static function crafty3775VersionDetect() {
+    public static function crafty3775VersionDetect()
+    {
         $config_paths = [
             $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'config.php',
             dirname($_SERVER['DOCUMENT_ROOT']) . DIRECTORY_SEPARATOR . 'config.php',
             $_SERVER['DOCUMENT_ROOT'] . '/../config.php'
         ];
-        
+
         foreach ($config_paths as $config) {
             if (file_exists($config) && is_readable($config)) {
                 $content = file_get_contents($config);
@@ -136,7 +151,7 @@ class InstallWizardCredentials {
                         return '3.7.5';
                     }
                     // Look for version strings in common patterns
-                    if (preg_match('/\$livehelp_version\s*=\s*[\'"]([^\'"]+)[\'"]/', $content)) {
+                    if (preg_match('/\$livehelp_version\s*=\s*[\'"]([^\'"]+)[\'"]/', $content, $matches)) {
                         return $matches[1]; // Extract version
                     }
                 }
@@ -150,29 +165,36 @@ class InstallWizardCredentials {
      * Checks if required Crafty tables exist and are accessible.
      * @return array Validation result
      */
-    public static function validateCraftyPreMigration($pdo) {
-        $validation_results = [];
-        
+    public static function validateCraftyPreMigration($pdo)
+    {
+        $validation_results = array();
+
         try {
             // Check key Crafty tables that must exist for migration
-            $required_tables = [
-                'livehelp_users', 'livehelp_operator_departments', 'livehelp_departments',
-                'livehelp_operator_history', 'livehelp_requests', 'livehelp_visits',
-                'livehelp_messages', 'livehelp_chat_transcripts', 'livehelp_keywords'
-            ];
-            
+            $required_tables = array(
+                'livehelp_users',
+                'livehelp_operator_departments',
+                'livehelp_departments',
+                'livehelp_operator_history',
+                'livehelp_requests',
+                'livehelp_visits',
+                'livehelp_messages',
+                'livehelp_chat_transcripts',
+                'livehelp_keywords'
+            );
+
             foreach ($required_tables as $table) {
                 $result = $pdo->query("SHOW TABLES LIKE '$table'");
                 if ($result && $result->fetchColumn() === 0) {
-                    $validation_results[] = [
+                    $validation_results[] = array(
                         'test' => 'crafty_tables_exist',
                         'status' => 'FAIL',
                         'message' => "Required Crafty table '$table' not found"
-                    ];
-                    return false;
+                    );
+                    return $validation_results;
                 }
             }
-            
+
             // Check for data integrity (no orphaned users)
             $result = $pdo->query("
                 SELECT COUNT(*) as orphaned_count 
@@ -180,31 +202,32 @@ class InstallWizardCredentials {
                 LEFT JOIN lupo_actors a ON lu.username = a.slug 
                 WHERE a.actor_id IS NULL
             ");
-            
+
             $orphaned_count = $result->fetchColumn();
             if ($orphaned_count > 0) {
-                $validation_results[] = [
+                $validation_results[] = array(
                     'test' => 'crafty_data_integrity',
                     'status' => 'FAIL',
                     'message' => "Found {$orphaned_count} orphaned Crafty users"
-                ];
-                return false;
+                );
+                return $validation_results;
             }
-            
-            $validation_results[] = ['test' => 'crafty_pre_migration_check', 'status' => 'PASS'];
-            return true;
-            
+
+            $validation_results[] = array('test' => 'crafty_pre_migration_check', 'status' => 'PASS');
+            return $validation_results;
+
         } catch (Exception $e) {
-            $validation_results[] = [
+            $validation_results[] = array(
                 'test' => 'crafty_pre_migration_check',
                 'status' => 'ERROR',
                 'message' => $e->getMessage()
-            ];
-            return false;
+            );
+            return $validation_results;
         }
     }
 
-    public static function getDbCredentials() {
+    public static function getDbCredentials()
+    {
         if (!empty($_POST['db_host']) && !empty($_POST['db_name']) && !empty($_POST['db_user'])) {
             return array(
                 'host' => trim((string) $_POST['db_host']),
@@ -259,9 +282,11 @@ class InstallWizardCredentials {
     }
 }
 
-class InstallWizardDb {
+class InstallWizardDb
+{
 
-    public static function connectPdo($vars) {
+    public static function connectPdo($vars)
+    {
         $dsn = "mysql:host={$vars['host']};port={$vars['port']};dbname={$vars['name']};charset={$vars['charset']}";
         return new PDO($dsn, $vars['user'], $vars['password'], array(
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -269,7 +294,8 @@ class InstallWizardDb {
         ));
     }
 
-    public static function detectLivehelpTables($pdo) {
+    public static function detectLivehelpTables($pdo)
+    {
         $tables = array();
         $stmt = $pdo->query("SHOW TABLES LIKE 'livehelp_%'");
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -279,7 +305,8 @@ class InstallWizardDb {
     }
 }
 
-class InstallWizardRegistryValidator {
+class InstallWizardRegistryValidator
+{
 
     /**
      * Extract registry_id values from SQL that contains INSERT INTO ... registry ... VALUES.
@@ -288,7 +315,8 @@ class InstallWizardRegistryValidator {
      * @param string $sql Raw SQL content (will be split by ; for statement detection)
      * @return array List of integer IDs (may be empty)
      */
-    public static function extractRegistryIdsFromSql($sql) {
+    public static function extractRegistryIdsFromSql($sql)
+    {
         $ids = array();
         $statements = explode(';', $sql);
         foreach ($statements as $stmt) {
@@ -311,7 +339,8 @@ class InstallWizardRegistryValidator {
      * @param string|null $tableName Full table name (default: LUPO_TABLE_PREFIX . 'registry')
      * @return int|null First conflicting ID, or null if no conflict
      */
-    public static function checkRegistryIdConflict($pdo, $ids, $tableName = null) {
+    public static function checkRegistryIdConflict($pdo, $ids, $tableName = null)
+    {
         if ($tableName === null || $tableName === '') {
             $tableName = (defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_') . 'registry';
         }
@@ -337,7 +366,8 @@ class InstallWizardRegistryValidator {
     }
 }
 
-class InstallWizardSqlRunner {
+class InstallWizardSqlRunner
+{
 
     /**
      * Split SQL into statements by semicolon, respecting single-quoted strings so that
@@ -347,7 +377,8 @@ class InstallWizardSqlRunner {
      * @param string $sql
      * @return array Non-empty trimmed statements
      */
-    public static function splitSqlStatements($sql) {
+    public static function splitSqlStatements($sql)
+    {
         $len = strlen($sql);
         $statements = array();
         $current = '';
@@ -400,7 +431,8 @@ class InstallWizardSqlRunner {
      * @param string|null $table_prefix Table prefix (e.g. 'lupo_' or 'myprefix_'). If null or 'lupo_', no substitution.
      * @return bool
      */
-    public static function runSqlFile($pdo, $path, &$log, $table_prefix = null) {
+    public static function runSqlFile($pdo, $path, &$log, $table_prefix = null)
+    {
         $basename = basename($path);
         if (!is_file($path) || !is_readable($path)) {
             $log[] = InstallWizardLogger::logEntry('error', 'File not found or not readable: ' . $basename);
@@ -458,7 +490,8 @@ class InstallWizardSqlRunner {
         return $ok;
     }
 
-    public static function dropLivehelpTables($pdo, $tables, &$log) {
+    public static function dropLivehelpTables($pdo, $tables, &$log)
+    {
         foreach ($tables as $table) {
             try {
                 $pdo->exec("DROP TABLE IF EXISTS `" . str_replace('`', '``', $table) . "`");
@@ -471,9 +504,11 @@ class InstallWizardSqlRunner {
     }
 }
 
-class InstallWizardConfigWriter {
+class InstallWizardConfigWriter
+{
 
-    public static function writeConfig($db_vars, &$log, $options = array()) {
+    public static function writeConfig($db_vars, &$log, $options = array())
+    {
         $auth = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
         $keys = array('AUTH_KEY', 'SECURE_AUTH_KEY', 'LOGGED_IN_KEY', 'NONCE_KEY', 'AUTH_SALT', 'SECURE_AUTH_SALT', 'LOGGED_IN_SALT', 'NONCE_SALT');
         $keyValues = array();
@@ -528,13 +563,13 @@ if (!defined(\'LUPOPEDIA_PUBLIC_PATH\')) { define(\'LUPOPEDIA_PUBLIC_PATH\', \'/
 if (!defined(\'LUPOPEDIA_URL\')) { define(\'LUPOPEDIA_URL\', LUPOPEDIA_PUBLIC_PATH); }
 define(\'LUPOPEDIA_CONFIG_LOADED\', true);
 ' . (isset($options['site_name']) ? "define('LUPOPEDIA_SITE_NAME', '" . addslashes($options['site_name']) . "');\n" : '')
-. (isset($options['base_url']) ? "define('LUPOPEDIA_BASE_URL', '" . addslashes($options['base_url']) . "');\n" : '')
-. (isset($options['admin_email']) ? "define('LUPOPEDIA_ADMIN_EMAIL', '" . addslashes($options['admin_email']) . "');\n" : '')
-. (isset($options['timezone']) ? "define('LUPOPEDIA_TIMEZONE', '" . addslashes($options['timezone']) . "');\n" : '')
-. (isset($options['default_language']) ? "define('LUPOPEDIA_LANGUAGE', '" . addslashes($options['default_language']) . "');\n" : '')
-. (isset($options['support_email']) && $options['support_email'] !== '' ? "define('LUPOPEDIA_SUPPORT_EMAIL', '" . addslashes($options['support_email']) . "');\n" : '')
-. (isset($options['default_visitor_channel']) && $options['default_visitor_channel'] !== '' ? "define('LUPOPEDIA_DEFAULT_VISITOR_CHANNEL', '" . addslashes($options['default_visitor_channel']) . "');\n" : '')
-. (!empty($options['enable_ai_channels']) ? "define('LUPOPEDIA_ENABLE_AI_CHANNELS', true);\n" : '') . '
+            . (isset($options['base_url']) ? "define('LUPOPEDIA_BASE_URL', '" . addslashes($options['base_url']) . "');\n" : '')
+            . (isset($options['admin_email']) ? "define('LUPOPEDIA_ADMIN_EMAIL', '" . addslashes($options['admin_email']) . "');\n" : '')
+            . (isset($options['timezone']) ? "define('LUPOPEDIA_TIMEZONE', '" . addslashes($options['timezone']) . "');\n" : '')
+            . (isset($options['default_language']) ? "define('LUPOPEDIA_LANGUAGE', '" . addslashes($options['default_language']) . "');\n" : '')
+            . (isset($options['support_email']) && $options['support_email'] !== '' ? "define('LUPOPEDIA_SUPPORT_EMAIL', '" . addslashes($options['support_email']) . "');\n" : '')
+            . (isset($options['default_visitor_channel']) && $options['default_visitor_channel'] !== '' ? "define('LUPOPEDIA_DEFAULT_VISITOR_CHANNEL', '" . addslashes($options['default_visitor_channel']) . "');\n" : '')
+            . (!empty($options['enable_ai_channels']) ? "define('LUPOPEDIA_ENABLE_AI_CHANNELS', true);\n" : '') . '
 require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
 ';
 
@@ -582,7 +617,8 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
      * @param string $table_prefix Table prefix (e.g. 'lupo_')
      * @return void
      */
-    private static function enqueueBackgroundCommand($db_vars, &$log, $table_prefix) {
+    private static function enqueueBackgroundCommand($db_vars, &$log, $table_prefix)
+    {
         try {
             $pdo = new PDO(
                 $db_vars['type'] . ':host=' . $db_vars['host'] . ';port=' . $db_vars['port'] . ';dbname=' . $db_vars['name'] . ';charset=' . $db_vars['charset'],
@@ -610,7 +646,7 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
                 'script' => 'scripts/import_channels_and_artifacts.py',
                 'root' => LUPOPEDIA_PATH,
                 'mode' => 'initial_import',
-                'paths' => array('channels', 'artifacts'),
+                'paths' => array('lupo-channels', 'artifacts'),
                 'system_version' => '4.0.42'
             );
 
@@ -670,7 +706,8 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
  * Reserved ID doctrine: explicit ID; if row exists → UPDATE, else INSERT.
  * PHP 5.3 compatible: no ??, no [], no typed properties.
  */
-class InstallWizardMainAdmin {
+class InstallWizardMainAdmin
+{
 
     const MAIN_ADMIN_AUTH_USER_ID = 10000;
     const MAIN_ADMIN_ACTOR_ID = 10000;
@@ -682,7 +719,8 @@ class InstallWizardMainAdmin {
      * @param string $password
      * @return string|false
      */
-    public static function hashPassword($password) {
+    public static function hashPassword($password)
+    {
         if (!is_string($password) || $password === '') {
             return false;
         }
@@ -711,7 +749,8 @@ class InstallWizardMainAdmin {
      * @param array $log
      * @return bool
      */
-    public static function createMainAdmin($pdo, $table_prefix, $email, $password, &$log) {
+    public static function createMainAdmin($pdo, $table_prefix, $email, $password, &$log)
+    {
         $prefix = ($table_prefix !== null && $table_prefix !== '') ? $table_prefix : 'lupo_';
         $auth_t = $prefix . 'auth_users';
         $actors_t = $prefix . 'actors';
@@ -836,9 +875,11 @@ class InstallWizardMainAdmin {
     }
 }
 
-class InstallWizardNormalize {
+class InstallWizardNormalize
+{
 
-    public static function usernameToSlug($username) {
+    public static function usernameToSlug($username)
+    {
         $s = $username;
         $s = str_replace('@', '-at-', $s);
         $s = str_replace('.', '-dot-', $s);
@@ -848,22 +889,26 @@ class InstallWizardNormalize {
         return $s !== '' ? $s . '-at-lupopedia-com' : 'unknown-at-lupopedia-com';
     }
 
-    public static function isValidEmail($email) {
+    public static function isValidEmail($email)
+    {
         $email = trim($email);
         return $email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
     }
 
-    public static function isValidLupopediaSlug($s) {
+    public static function isValidLupopediaSlug($s)
+    {
         $s = trim($s);
         return $s !== '' && (bool) preg_match('/^[a-z0-9]+(-[a-z0-9]+)*-at-lupopedia-com$/', $s);
     }
 
-    public static function isAcceptableResolvedEmail($value) {
+    public static function isAcceptableResolvedEmail($value)
+    {
         $value = trim($value);
         return $value !== '' && (self::isValidEmail($value) || self::isValidLupopediaSlug($value));
     }
 
-    public static function loadCraftyUsers($pdo) {
+    public static function loadCraftyUsers($pdo)
+    {
         $stmt = $pdo->query("SELECT user_id, username, email, displayname, isoperator FROM livehelp_users ORDER BY isoperator DESC, user_id");
         return $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : array();
     }
@@ -872,7 +917,8 @@ class InstallWizardNormalize {
      * Proposes identity (email/username) changes for operators only.
      * Visitor sessions (isoperator != 'Y') are not normalized; their usernames are left unchanged.
      */
-    public static function computeProposedIdentities($users) {
+    public static function computeProposedIdentities($users)
+    {
         $out = array();
         foreach ($users as $u) {
             $isOp = (strtoupper((string) (isset($u['isoperator']) ? $u['isoperator'] : '')) === 'Y');
@@ -896,7 +942,8 @@ class InstallWizardNormalize {
         return $out;
     }
 
-    public static function findDuplicateEmailGroups($identities) {
+    public static function findDuplicateEmailGroups($identities)
+    {
         $byEmail = array();
         foreach ($identities as $i => $row) {
             $key = strtolower($row['proposed_email']);
@@ -905,10 +952,13 @@ class InstallWizardNormalize {
             }
             $byEmail[$key][] = $i;
         }
-        return array_filter($byEmail, function ($indices) { return count($indices) > 1; });
+        return array_filter($byEmail, function ($indices) {
+            return count($indices) > 1;
+        });
     }
 
-    public static function collectNormalizeWarnings($identities) {
+    public static function collectNormalizeWarnings($identities)
+    {
         $warnings = array();
         foreach ($identities as $i => $row) {
             $id = $row['user_id'];
@@ -927,7 +977,8 @@ class InstallWizardNormalize {
         return $warnings;
     }
 
-    public static function validateResolvedEmails($identities, $resolved) {
+    public static function validateResolvedEmails($identities, $resolved)
+    {
         $errors = array();
         $byId = array();
         foreach ($identities as $row) {
@@ -964,7 +1015,9 @@ class InstallWizardNormalize {
             }
             $lower[$key][] = $id;
         }
-        $dupes = array_filter($lower, function ($ids) { return count($ids) > 1; });
+        $dupes = array_filter($lower, function ($ids) {
+            return count($ids) > 1;
+        });
         if (!empty($dupes)) {
             $errors[] = 'Duplicate emails: each account must have a unique email.';
             foreach ($dupes as $emailKey => $ids) {
@@ -979,7 +1032,8 @@ class InstallWizardNormalize {
         return array('errors' => $errors, 'by_id' => $byId);
     }
 
-    public static function applyNormalizationToLivehelp($pdo, $identities, $resolvedEmails) {
+    public static function applyNormalizationToLivehelp($pdo, $identities, $resolvedEmails)
+    {
         // livehelp_users.username is varchar(30); proposed_username (slug) can exceed that.
         $maxUsernameLen = 30;
         $update = $pdo->prepare("UPDATE livehelp_users SET email = ?, username = ? WHERE user_id = ?");
@@ -997,12 +1051,14 @@ class InstallWizardNormalize {
  * System department (department_id = 0). Must exist before any other departments.
  * Reserved, not user-selectable. Department 0 cannot be edited or deleted by the wizard.
  */
-class InstallWizardDepartments {
+class InstallWizardDepartments
+{
 
     /** Reserved department_id for system/global roles. Must not be edited or deleted. */
     const SYSTEM_DEPARTMENT_ID = 0;
 
-    public static function ensureSystemDepartment($pdo, &$log) {
+    public static function ensureSystemDepartment($pdo, &$log)
+    {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $dept = $prefix . 'departments';
         $check = $pdo->prepare("SELECT 1 FROM " . $dept . " WHERE department_id = 0 LIMIT 1");
@@ -1027,7 +1083,8 @@ class InstallWizardDepartments {
     }
 
     /** Ensure department 1 (General) exists for channels. Required after import which may omit it. */
-    public static function ensureDefaultDepartment($pdo, &$log) {
+    public static function ensureDefaultDepartment($pdo, &$log)
+    {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $dept = $prefix . 'departments';
         $check = $pdo->prepare("SELECT 1 FROM " . $dept . " WHERE department_id = 1 LIMIT 1");
@@ -1050,7 +1107,8 @@ class InstallWizardDepartments {
     }
 
     /** Whether department_id is the reserved system department (not user-selectable, cannot edit/delete). */
-    public static function isSystemDepartment($departmentId) {
+    public static function isSystemDepartment($departmentId)
+    {
         return (int) $departmentId === self::SYSTEM_DEPARTMENT_ID;
     }
 }
@@ -1059,9 +1117,11 @@ class InstallWizardDepartments {
  * Channel creation for install/upgrade. Uses department_id only.
  * Group tables (lupo_groups, lupo_actor_group_membership) are removed; organizational scope is department only.
  */
-class InstallWizardChannels {
+class InstallWizardChannels
+{
 
-    public static function createReservedSystemChannels($pdo, &$log) {
+    public static function createReservedSystemChannels($pdo, &$log)
+    {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $ch = $prefix . 'channels';
         $acr = $prefix . 'actor_channel_roles';
@@ -1070,10 +1130,10 @@ class InstallWizardChannels {
         $now = (int) gmdate('YmdHis');
 
         $reserved = array(
-            0   => array('key' => 'system',       'slug' => 'system',     'type' => 'system', 'name' => 'System Kernel Channel',       'desc' => 'System channel (kernel/system operations).', 'is_kernel' => 1, 'captain' => false),
-            1   => array('key' => 'administration', 'slug' => 'administration', 'type' => 'public', 'name' => 'Administration', 'desc' => 'Global admin channel (channel_id = 1).', 'is_kernel' => 0, 'captain' => true),
-            42  => array('key' => 'crafty-dev',   'slug' => 'crafty-dev', 'type' => 'public', 'name' => 'Crafty Syntax Development',   'desc' => 'Crafty Syntax development channel.',         'is_kernel' => 0, 'captain' => true),
-            51   => array('key' => 'ai-dev',       'slug' => 'ai-dev',     'type' => 'public', 'name' => 'AI Agent Development',       'desc' => 'AI agent development channel.',              'is_kernel' => 0, 'captain' => true),
+            0 => array('key' => 'system', 'slug' => 'system', 'type' => 'system', 'name' => 'System Kernel Channel', 'desc' => 'System channel (kernel/system operations).', 'is_kernel' => 1, 'captain' => false),
+            1 => array('key' => 'administration', 'slug' => 'administration', 'type' => 'public', 'name' => 'Administration', 'desc' => 'Global admin channel (channel_id = 1).', 'is_kernel' => 0, 'captain' => true),
+            42 => array('key' => 'crafty-dev', 'slug' => 'crafty-dev', 'type' => 'public', 'name' => 'Crafty Syntax Development', 'desc' => 'Crafty Syntax development channel.', 'is_kernel' => 0, 'captain' => true),
+            51 => array('key' => 'ai-dev', 'slug' => 'ai-dev', 'type' => 'public', 'name' => 'AI Agent Development', 'desc' => 'AI agent development channel.', 'is_kernel' => 0, 'captain' => true),
         );
 
         $check = $pdo->prepare("SELECT 1 FROM " . $ch . " WHERE channel_id = ?");
@@ -1129,7 +1189,8 @@ class InstallWizardChannels {
      * and assign captain in lupo_actor_channel_roles. Then assign captain on channel_id = 1 (Administration)
      * for each livehelp_users row where isadmin = 'Y'. No lupo_operators; permissions = lupo_actor_channel_roles.
      */
-    public static function createOperatorChannels($pdo, &$log) {
+    public static function createOperatorChannels($pdo, &$log)
+    {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $actors_t = $prefix . 'actors';
         $ch = $prefix . 'channels';
@@ -1291,7 +1352,8 @@ class InstallWizardChannels {
         return $map;
     }
 
-    public static function ensureReservedChannels($pdo, &$log) {
+    public static function ensureReservedChannels($pdo, &$log)
+    {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $ch = $prefix . 'channels';
         $required = array(0, 1, 42, 51);
@@ -1320,7 +1382,8 @@ class InstallWizardChannels {
     /**
      * Ensure every actor (imported Crafty operator) has a personal channel with captain in lupo_actor_channel_roles.
      */
-    public static function ensureOperatorChannels($pdo, &$log) {
+    public static function ensureOperatorChannels($pdo, &$log)
+    {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $actors_t = $prefix . 'actors';
         $ch = $prefix . 'channels';
@@ -1400,7 +1463,8 @@ class InstallWizardChannels {
  * Populate lupo_registry_open with free IDs (gaps) in [0, max] for channels and actors
  * so allocation (findpuka) can reuse them FIFO. Caps the range so the table does not grow huge.
  */
-class InstallWizardUnregistry {
+class InstallWizardUnregistry
+{
 
     /** Default cap for max id range (0 to cap) so unregistry stays small. */
     const DEFAULT_MAX_CAP = 500;
@@ -1413,7 +1477,8 @@ class InstallWizardUnregistry {
      * @param array $log
      * @param int $maxCap Upper bound for the range to consider (default 500). Use to avoid huge unregistry.
      */
-    public static function seedUnregistryFromGaps($pdo, &$log, $maxCap = 500) {
+    public static function seedUnregistryFromGaps($pdo, &$log, $maxCap = 500)
+    {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $ch = $prefix . 'channels';
         $actors_t = $prefix . 'actors';
@@ -1513,7 +1578,8 @@ class InstallWizardUnregistry {
  * Human: next free actor_id >= 10000 (lupo_auth_users, lupo_actors, lupo_banned_actors).
  * Idempotent: skips if already present.
  */
-class InstallWizardBannedIdentities {
+class InstallWizardBannedIdentities
+{
 
     const STONED_WOLFIE_AI_ACTOR_ID = 420;
     const STONED_WOLFIE_HUMAN_EMAIL = 'stonedwolfie@lupopedia.com';
@@ -1525,7 +1591,8 @@ class InstallWizardBannedIdentities {
      * @param array $log
      * @param string $table_prefix e.g. lupo_
      */
-    public static function ensureStonedWolfieBannedIdentities($pdo, &$log, $table_prefix) {
+    public static function ensureStonedWolfieBannedIdentities($pdo, &$log, $table_prefix)
+    {
         $now = (int) gmdate('YmdHis');
         $actors_t = $table_prefix . 'actors';
         $agents_t = $table_prefix . 'agents';

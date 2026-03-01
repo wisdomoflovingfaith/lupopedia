@@ -90,7 +90,7 @@ if (!defined('LUPOPEDIA_PATH')) {
 }
 
 // Version for wizard UI - Direct parse from global_atoms.yaml (install.php runs standalone, no bootstrap)
-$lupo_wizard_version = '4.0.50'; // Fallback (updated to match current release)
+$lupo_wizard_version = '4.0.53'; // Fallback (updated to match current release)
 $atoms_file = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml';
 if (is_file($atoms_file)) {
     $atoms_content = file_get_contents($atoms_file);
@@ -113,7 +113,8 @@ if (defined('LUPOPEDIA_VERSION') && LUPOPEDIA_VERSION !== $lupo_wizard_version) 
 /**
  * PHP 5.3-safe random bytes. Uses random_bytes() when available (PHP 7+), else openssl_random_pseudo_bytes, else mt_rand fallback.
  */
-function lupo_random_bytes($length) {
+function lupo_random_bytes($length)
+{
     if (function_exists('random_bytes')) {
         return random_bytes($length);
     }
@@ -124,7 +125,8 @@ function lupo_random_bytes($length) {
     return lupo_random_bytes_fallback($length);
 }
 
-function lupo_random_bytes_fallback($length) {
+function lupo_random_bytes_fallback($length)
+{
     $bytes = '';
     for ($i = 0; $i < $length; $i++) {
         $bytes .= chr(mt_rand(0, 255));
@@ -135,7 +137,8 @@ function lupo_random_bytes_fallback($length) {
 /**
  * PHP 5.3-safe random int in range. Uses random_int() when available (PHP 7+), else mt_rand.
  */
-function lupo_random_int($min, $max) {
+function lupo_random_int($min, $max)
+{
     if (function_exists('random_int')) {
         return random_int($min, $max);
     }
@@ -145,7 +148,8 @@ function lupo_random_int($min, $max) {
 /**
  * PHP 5.3-safe timing-safe string comparison. Uses hash_equals() when available (PHP 5.6+), else constant-time loop.
  */
-function lupo_hash_equals($a, $b) {
+function lupo_hash_equals($a, $b)
+{
     if (function_exists('hash_equals')) {
         return hash_equals($a, $b);
     }
@@ -271,7 +275,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (!isset($_POST['action']) || $_POST
 // ----- Step: welcome
 if ($step === 'welcome') {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'continue' && empty($errors)) {
-        header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.'). '/install.php?step=credentials');
+        header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=credentials');
         exit;
     }
 }
@@ -500,90 +504,130 @@ if ($step === 'run') {
         // New install: run install → seed → reserved channels → config.
 
         try {
-        if ($install_type === 'upgrade' && !empty($_SESSION['lupo_bootstrap_log'])) {
-            $log = array_merge($log, $_SESSION['lupo_bootstrap_log']);
-            $log[] = InstallWizardLogger::logEntry('ok', '--- Run step: import → personal channels and captain roles → drop ---');
-            InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
-            InstallWizardChannels::ensureReservedChannels($pdo, $log);
-        }
+            if ($install_type === 'upgrade' && !empty($_SESSION['lupo_bootstrap_log'])) {
+                $log = array_merge($log, $_SESSION['lupo_bootstrap_log']);
+                $log[] = InstallWizardLogger::logEntry('ok', '--- Run step: import → personal channels and captain roles → drop ---');
+                InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
+                InstallWizardChannels::ensureReservedChannels($pdo, $log);
+            }
 
-        if ($install_type === 'new') {
-            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
-            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $log, $table_prefix);
-            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $log, $table_prefix);
-            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $log, $table_prefix);
-            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
-            InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
-            InstallWizardChannels::createReservedSystemChannels($pdo, $log);
-            
-            // Import MD files from channels/0/broadcasts/
-            InstallWizardMdImporter::importAllMdFiles($pdo, $log, $table_prefix);
-        }
+            if ($install_type === 'new') {
+                InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
+                InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
+                InstallWizardChannels::createReservedSystemChannels($pdo, $log);
 
-        if ($install_type === 'upgrade') {
-            // Import runs only after identity normalization has been applied to livehelp_users.
-            if (!empty($_SESSION['lupo_import_run'])) {
-                $log[] = InstallWizardLogger::logEntry('skip', 'Import already completed (idempotent skip).');
-            } else {
-                // RESERVED ID DOCTRINE: actor_id 0-9999 = system/AI only; human actors start at 10000.
-                // Ensure next lupo_actors.actor_id is at least 10000 so imported Crafty users get IDs >= 10000.
-                $actors_table = (defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_') . 'actors';
-                $actors_quoted = '`' . str_replace('`', '``', $actors_table) . '`';
-                try {
-                    $stmt = $pdo->query("SELECT COALESCE(MAX(actor_id), 0) AS mx FROM " . $actors_quoted . " LIMIT 1");
-                    $row = $stmt ? $stmt->fetch(PDO::FETCH_ASSOC) : null;
-                    $max = $row && isset($row['mx']) ? (int) $row['mx'] : 0;
-                    $nextId = $max >= 10000 ? $max + 1 : 10000;
-                    $pdo->exec("ALTER TABLE " . $actors_quoted . " AUTO_INCREMENT = " . (int) $nextId);
-                    $log[] = InstallWizardLogger::logEntry('ok', 'Set lupo_actors AUTO_INCREMENT to ' . $nextId . ' (human actors from 10000).');
-                } catch (PDOException $e) {
-                    $log[] = InstallWizardLogger::logEntry('error', 'Could not set actor_id minimum (see server log).');
-                    error_log('Lupopedia wizard AUTO_INCREMENT: ' . $e->getMessage());
-                }
-                $log[] = InstallWizardLogger::logEntry('ok', 'Running import_from_old_crafty_syntax.sql (converts livehelp_* to utf8mb4_unicode_ci, then migrates data).');
-                $importOk = InstallWizardSqlRunner::runSqlFile($pdo, $importSql, $log, $table_prefix);
-                if ($importOk) {
-                    $log[] = InstallWizardLogger::logEntry('ok', 'Import complete.');
+                // Import MD files from channels/0/broadcasts/
+                InstallWizardMdImporter::importAllMdFiles($pdo, $log, $table_prefix);
+            }
+
+            if ($install_type === 'upgrade') {
+                // Import runs only after identity normalization has been applied to livehelp_users.
+                if (!empty($_SESSION['lupo_import_run'])) {
+                    $log[] = InstallWizardLogger::logEntry('skip', 'Import already completed (idempotent skip).');
                 } else {
-                    $log[] = InstallWizardLogger::logEntry('error', 'Import reported failures. Check for "SQL failed" entries above. Legacy livehelp_* tables may not have been converted to utf8mb4_unicode_ci.');
+                    // RESERVED ID DOCTRINE: actor_id 0-9999 = system/AI only; human actors start at 10000.
+                    // Ensure next lupo_actors.actor_id is at least 10000 so imported Crafty users get IDs >= 10000.
+                    $actors_table = (defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_') . 'actors';
+                    $actors_quoted = '`' . str_replace('`', '``', $actors_table) . '`';
+                    try {
+                        $stmt = $pdo->query("SELECT COALESCE(MAX(actor_id), 0) AS mx FROM " . $actors_quoted . " LIMIT 1");
+                        $row = $stmt ? $stmt->fetch(PDO::FETCH_ASSOC) : null;
+                        $max = $row && isset($row['mx']) ? (int) $row['mx'] : 0;
+                        $nextId = $max >= 10000 ? $max + 1 : 10000;
+                        $pdo->exec("ALTER TABLE " . $actors_quoted . " AUTO_INCREMENT = " . (int) $nextId);
+                        $log[] = InstallWizardLogger::logEntry('ok', 'Set lupo_actors AUTO_INCREMENT to ' . $nextId . ' (human actors from 10000).');
+                    } catch (PDOException $e) {
+                        $log[] = InstallWizardLogger::logEntry('error', 'Could not set actor_id minimum (see server log).');
+                        error_log('Lupopedia wizard AUTO_INCREMENT: ' . $e->getMessage());
+                    }
+                    $log[] = InstallWizardLogger::logEntry('ok', 'Running import_from_old_crafty_syntax.sql (converts livehelp_* to utf8mb4_unicode_ci, then migrates data).');
+                    $importOk = InstallWizardSqlRunner::runSqlFile($pdo, $importSql, $log, $table_prefix);
+                    if ($importOk) {
+                        $log[] = InstallWizardLogger::logEntry('ok', 'Import complete.');
+                    } else {
+                        $log[] = InstallWizardLogger::logEntry('error', 'Import reported failures. Check for "SQL failed" entries above. Legacy livehelp_* tables may not have been converted to utf8mb4_unicode_ci.');
+                    }
+                    $_SESSION['lupo_import_run'] = true;
                 }
-                $_SESSION['lupo_import_run'] = true;
-            }
-            // Import TRUNCATEs lupo_departments; ensure system (0) and default (1) exist before channel creation.
-            InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
+                // Import TRUNCATEs lupo_departments; ensure system (0) and default (1) exist before channel creation.
+                InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
 
-            // Doctrine: every imported Crafty operator (actor) gets a personal channel and captain in lupo_actor_channel_roles; Crafty admins get captain on channel 1 (Administration).
-            // Must run after import so lupo_actors exist; before drop. Mapping stored for importer/wizard.
-            $operatorChannelMap = InstallWizardChannels::createOperatorChannels($pdo, $log);
-            $_SESSION['lupo_operator_channel_map'] = $operatorChannelMap;
-            InstallWizardChannels::ensureOperatorChannels($pdo, $log);
+                // Doctrine: every imported Crafty operator (actor) gets a personal channel and captain in lupo_actor_channel_roles; Crafty admins get captain on channel 1 (Administration).
+                // Must run after import so lupo_actors exist; before drop. Mapping stored for importer/wizard.
+                $operatorChannelMap = InstallWizardChannels::createOperatorChannels($pdo, $log);
+                $_SESSION['lupo_operator_channel_map'] = $operatorChannelMap;
+                InstallWizardChannels::ensureOperatorChannels($pdo, $log);
 
-            // Optional: drop legacy livehelp_* tables after import (user choice at credentials; default unchecked).
-            if (!empty($_SESSION['lupo_drop_livehelp_tables'])) {
-                $dropSql = $migrationsDir . DIRECTORY_SEPARATOR . 'drop_old_crafty_syntax_tables.sql';
-                InstallWizardSqlRunner::runSqlFile($pdo, $dropSql, $log);
-                $log[] = InstallWizardLogger::logEntry('ok', 'Legacy Crafty Syntax tables dropped.');
-                $remaining = InstallWizardDb::detectLivehelpTables($pdo);
-                if (!empty($remaining)) {
-                    InstallWizardSqlRunner::dropLivehelpTables($pdo, $remaining, $log);
-                    $log[] = InstallWizardLogger::logEntry('ok', 'Dropped remaining legacy tables: ' . implode(', ', $remaining));
+                // Optional: drop legacy livehelp_* tables after import (user choice at credentials; default unchecked).
+                if (!empty($_SESSION['lupo_drop_livehelp_tables'])) {
+                    $dropSql = $migrationsDir . DIRECTORY_SEPARATOR . 'drop_old_crafty_syntax_tables.sql';
+                    InstallWizardSqlRunner::runSqlFile($pdo, $dropSql, $log);
+                    $log[] = InstallWizardLogger::logEntry('ok', 'Legacy Crafty Syntax tables dropped.');
+                    $remaining = InstallWizardDb::detectLivehelpTables($pdo);
+                    if (!empty($remaining)) {
+                        InstallWizardSqlRunner::dropLivehelpTables($pdo, $remaining, $log);
+                        $log[] = InstallWizardLogger::logEntry('ok', 'Dropped remaining legacy tables: ' . implode(', ', $remaining));
+                    }
+                } else {
+                    $log[] = InstallWizardLogger::logEntry('skip', 'Skipped: drop deprecated livehelp_* tables (option unchecked at credentials).');
                 }
-            } else {
-                $log[] = InstallWizardLogger::logEntry('skip', 'Skipped: drop deprecated livehelp_* tables (option unchecked at credentials).');
             }
-        }
-        
-        // Import MD files from channels/0/broadcasts/ (for both new install and upgrade)
-        InstallWizardMdImporter::importAllMdFiles($pdo, $log, $table_prefix);
-        
-        // Populate registry_open with free IDs (gaps) for channels and actors, cap so table stays small.
-        InstallWizardUnregistry::seedUnregistryFromGaps($pdo, $log, InstallWizardUnregistry::DEFAULT_MAX_CAP);
-        // 4.0.20: Ensure Stoned Wolfie (AI + human) banned test identities exist after import/seed.
-        InstallWizardBannedIdentities::ensureStonedWolfieBannedIdentities($pdo, $log, $table_prefix);
-        $log[] = InstallWizardLogger::logEntry('ok', 'Run complete.');
-        $_SESSION['lupo_run_log'] = $log;
-        $_SESSION['lupo_run_done'] = true;
-        // Do not redirect; show run result with progress bar and log, then user clicks "Continue to Config"
+
+            // Import MD files from channels/0/broadcasts/ (for both new install and upgrade)
+            InstallWizardMdImporter::importAllMdFiles($pdo, $log, $table_prefix);
+
+            // Populate registry_open with free IDs (gaps) for channels and actors, cap so table stays small.
+            InstallWizardUnregistry::seedUnregistryFromGaps($pdo, $log, InstallWizardUnregistry::DEFAULT_MAX_CAP);
+            // 4.0.20: Ensure Stoned Wolfie (AI + human) banned test identities exist after import/seed.
+            InstallWizardBannedIdentities::ensureStonedWolfieBannedIdentities($pdo, $log, $table_prefix);
+            // Run ANUBIS Queue Tables migration (v4.0.53)
+            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'anubis_queue_tables_4.0.53.sql', $log, $table_prefix);
+            // Run ANUBIS Database Primacy Updates (v4.0.53)
+            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . '20260301_anubis_database_primacy_updates.sql', $log, $table_prefix);
+
+            // Activations Block
+            require_once LUPOPEDIA_PATH . '/lupo-includes/functions/ai_activation.php';
+            $core_actors = array(0, 1, 2, 19); // SYSTEM, CAPTAIN WOLFIE, LILITH, ANUBIS
+            $log[] = InstallWizardLogger::logEntry('ok', '--- Activating CORE AI Agents ---');
+            foreach ($core_actors as $actor_id) {
+                $actor_db = new PDO_DB($pdo); // Wrap PDO for our helper
+                if (ensureActorActive($actor_id, $actor_db, 'initial_install_activation')) {
+                    $log[] = InstallWizardLogger::logEntry('ok', "Activated Actor ID: $actor_id");
+                    
+                    // For ANUBIS, verify queue tables exist
+                    if ($actor_id === 19) {
+                        $required_tables = array(
+                            'anubis_queue',
+                            'anubis_processing_log',
+                            'anubis_recovery_attempts',
+                            'anubis_quarantine'
+                        );
+                        foreach ($required_tables as $table) {
+                            $full_table = $table_prefix . $table;
+                            $res = $pdo->query("SHOW TABLES LIKE '$full_table'")->fetch();
+                            if (!$res) {
+                                throw new RuntimeException("ANUBIS table $full_table missing - cannot proceed");
+                            }
+                        }
+                        $log[] = InstallWizardLogger::logEntry('ok', "ANUBIS queue tables verified.");
+                    }
+                } else {
+                    // ANUBIS is critical for orphan processing
+                    if ($actor_id === 19) {
+                        throw new RuntimeException("CRITICAL: Failed to activate ANUBIS (19). Installation halted.");
+                    }
+                    $log[] = InstallWizardLogger::logEntry('skip', "Warning: Could not activate Actor ID: $actor_id (non-critical)");
+                }
+            }
+
+            $log[] = InstallWizardLogger::logEntry('ok', 'Run complete.');
+            $_SESSION['lupo_run_log'] = $log;
+            $_SESSION['lupo_run_done'] = true;
+            // Do not redirect; show run result with progress bar and log, then user clicks "Continue to Config"
         } catch (RuntimeException $e) {
             $errors[] = $e->getMessage();
             $log[] = InstallWizardLogger::logEntry('error', $e->getMessage());
@@ -608,9 +652,9 @@ if ($step === 'config') {
     $defaultBaseUrl = ($basePathForUrl === '') ? '/' : '/' . $basePathForUrl . '/';
     $config_values = array(
         'site_name' => trim(strip_tags((string) (isset($_POST['site_name']) ? $_POST['site_name'] : (isset($_SESSION['lupo_config_site_name']) ? $_SESSION['lupo_config_site_name'] : 'Lupopedia')))),
-        'base_url'  => trim((string) (isset($_POST['base_url']) ? $_POST['base_url'] : (isset($_SESSION['lupo_config_base_url']) ? $_SESSION['lupo_config_base_url'] : $defaultBaseUrl))),
+        'base_url' => trim((string) (isset($_POST['base_url']) ? $_POST['base_url'] : (isset($_SESSION['lupo_config_base_url']) ? $_SESSION['lupo_config_base_url'] : $defaultBaseUrl))),
         'admin_email' => trim((string) (isset($_POST['admin_email']) ? $_POST['admin_email'] : (isset($_SESSION['lupo_config_admin_email']) ? $_SESSION['lupo_config_admin_email'] : 'captain@lupopedia.com'))),
-        'timezone'  => trim((string) (isset($_POST['timezone']) ? $_POST['timezone'] : (isset($_SESSION['lupo_config_timezone']) ? $_SESSION['lupo_config_timezone'] : 'UTC'))),
+        'timezone' => trim((string) (isset($_POST['timezone']) ? $_POST['timezone'] : (isset($_SESSION['lupo_config_timezone']) ? $_SESSION['lupo_config_timezone'] : 'UTC'))),
         'default_language' => trim((string) (isset($_POST['default_language']) ? $_POST['default_language'] : (isset($_SESSION['lupo_config_default_language']) ? $_SESSION['lupo_config_default_language'] : 'en'))),
         'support_email' => trim((string) (isset($_POST['support_email']) ? $_POST['support_email'] : (isset($_SESSION['lupo_config_support_email']) ? $_SESSION['lupo_config_support_email'] : ''))),
         'default_visitor_channel' => '1',
@@ -700,9 +744,9 @@ if ($step === 'config') {
                 if (empty($config_errors)) {
                     $options = array(
                         'site_name' => $config_values['site_name'],
-                        'base_url'  => $config_values['base_url'],
+                        'base_url' => $config_values['base_url'],
                         'admin_email' => $config_values['admin_email'],
-                        'timezone'  => $config_values['timezone'],
+                        'timezone' => $config_values['timezone'],
                         'default_language' => $config_values['default_language'],
                         'table_prefix' => $table_prefix,
                     );
@@ -761,74 +805,330 @@ if ($baseUrl === '') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lupopedia <?php echo htmlspecialchars($lupo_wizard_version); ?> — Install / Upgrade</title>
     <style>
-        body { font-family: system-ui, -apple-system, sans-serif; max-width: 680px; margin: 2rem auto; padding: 0 1.25rem; color: #1a1a1a; }
-        h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
-        .wizard-progress { font-size: 0.9rem; color: #666; margin-bottom: 1.5rem; }
-        .wizard-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-        .wizard-card h2 { font-size: 1.2rem; margin-top: 0; margin-bottom: 0.5rem; }
-        .wizard-card p { margin: 0.5rem 0; }
-        .step { background: #f8f9fa; border-left: 4px solid #0d6efd; padding: 1.25rem; margin: 1.25rem 0; }
-        .step.success { border-color: #198754; background: #d1e7dd; }
-        .step.error { border-color: #dc3545; background: #f8d7da; }
-        .step.warning { border-color: #ffc107; background: #fff3cd; }
-        ul { margin: 0.5rem 0 0 1.25rem; }
-        label { display: block; margin-top: 0.75rem; font-weight: 500; }
-        input[type=text], input[type=password], input[type=email], select { width: 100%; max-width: 22rem; padding: 0.4rem 0.5rem; margin-top: 0.25rem; border: 1px solid #ccc; border-radius: 4px; }
-        button, .btn { display: inline-block; padding: 0.5rem 1rem; background: #0d6efd; color: #fff; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 1rem; margin-right: 0.5rem; margin-top: 0.5rem; }
-        button:hover, .btn:hover { background: #0b5ed7; color: #fff; }
-        .btn-secondary { background: #6c757d; }
-        .btn-secondary:hover { background: #5a6268; }
-        .btn-danger { background: #dc3545; }
-        .btn-danger:hover { background: #bb2d3b; }
-        .btn-sm { padding: 0.25rem 0.5rem; font-size: 0.85rem; }
-        .log { font-family: monospace; font-size: 0.85rem; max-height: 20rem; overflow: auto; background: #1e1e1e; color: #d4d4d4; padding: 0.75rem; margin-top: 0.5rem; border-radius: 4px; }
-        .log .ok { color: #4ec9b0; }
-        .log .ok::before { content: "\2713 "; color: #198754; }
-        .log .skip { color: #dcdcaa; }
-        .log .skip::before { content: "\26A0 "; color: #ffc107; }
-        .log .error { color: #f48771; }
-        .log .error::before { content: "\2717 "; color: #dc3545; }
-        .log-section { margin-top: 1rem; }
-        .progress-bar { height: 10px; background: #e0e0e0; border-radius: 5px; overflow: hidden; margin: 1rem 0; }
-        .progress-fill { height: 100%; background: #198754; transition: width 0.3s; }
-        .run-steps { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; font-size: 0.9rem; }
-        .run-steps span { padding: 0.25rem 0.5rem; border-radius: 4px; background: #f0f0f0; }
-        .run-steps span.done { background: #d1e7dd; color: #0f5132; }
-        .run-steps span.skip { background: #fff3cd; color: #664d03; }
-        .run-steps span.fail { background: #f8d7da; color: #842029; }
-        .log-section h4 { font-size: 0.95rem; margin-bottom: 0.35rem; }
-        .err { color: #dc3545; margin-top: 0.5rem; }
-        .diag-ok { color: #198754; margin: 0.25rem 0; }
-        .diag-warn { color: #856404; background: #fff3cd; padding: 0.25rem 0.5rem; margin: 0.25rem 0; border-radius: 4px; }
-        .normalize-row-error { background: #f8d7da !important; }
-        .normalize-row-dup { background: #fff3cd !important; }
-        .normalize-warnings { background: #fff3cd; border-left: 4px solid #ffc107; padding: 0.75rem; margin: 0.75rem 0; font-size: 0.9rem; }
-        .normalize-row-err { font-size: 0.8rem; color: #dc3545; margin-top: 0.25rem; }
-        [title] { cursor: help; }
-        .slug-tip { font-size: 0.8rem; color: #666; margin-top: 0.25rem; }
-        .lupo-step-wrap { position: relative; }
-        .lupo-processing-overlay { display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.9); border-radius: 4px; align-items: center; justify-content: center; z-index: 10; }
-        .lupo-processing-overlay.visible { display: flex; }
-        .lupo-processing-overlay span { font-size: 1.1rem; color: #0d6efd; font-weight: 500; }
-        button:disabled { opacity: 0.6; cursor: not-allowed; }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 680px;
+            margin: 2rem auto;
+            padding: 0 1.25rem;
+            color: #1a1a1a;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .wizard-progress {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .wizard-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .wizard-card h2 {
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .wizard-card p {
+            margin: 0.5rem 0;
+        }
+
+        .step {
+            background: #f8f9fa;
+            border-left: 4px solid #0d6efd;
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+        }
+
+        .step.success {
+            border-color: #198754;
+            background: #d1e7dd;
+        }
+
+        .step.error {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+
+        .step.warning {
+            border-color: #ffc107;
+            background: #fff3cd;
+        }
+
+        ul {
+            margin: 0.5rem 0 0 1.25rem;
+        }
+
+        label {
+            display: block;
+            margin-top: 0.75rem;
+            font-weight: 500;
+        }
+
+        input[type=text],
+        input[type=password],
+        input[type=email],
+        select {
+            width: 100%;
+            max-width: 22rem;
+            padding: 0.4rem 0.5rem;
+            margin-top: 0.25rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button,
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #0d6efd;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        button:hover,
+        .btn:hover {
+            background: #0b5ed7;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #bb2d3b;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .log {
+            font-family: monospace;
+            font-size: 0.85rem;
+            max-height: 20rem;
+            overflow: auto;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .log .ok {
+            color: #4ec9b0;
+        }
+
+        .log .ok::before {
+            content: "\2713 ";
+            color: #198754;
+        }
+
+        .log .skip {
+            color: #dcdcaa;
+        }
+
+        .log .skip::before {
+            content: "\26A0 ";
+            color: #ffc107;
+        }
+
+        .log .error {
+            color: #f48771;
+        }
+
+        .log .error::before {
+            content: "\2717 ";
+            color: #dc3545;
+        }
+
+        .log-section {
+            margin-top: 1rem;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #198754;
+            transition: width 0.3s;
+        }
+
+        .run-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .run-steps span {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            background: #f0f0f0;
+        }
+
+        .run-steps span.done {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .run-steps span.skip {
+            background: #fff3cd;
+            color: #664d03;
+        }
+
+        .run-steps span.fail {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .log-section h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .err {
+            color: #dc3545;
+            margin-top: 0.5rem;
+        }
+
+        .diag-ok {
+            color: #198754;
+            margin: 0.25rem 0;
+        }
+
+        .diag-warn {
+            color: #856404;
+            background: #fff3cd;
+            padding: 0.25rem 0.5rem;
+            margin: 0.25rem 0;
+            border-radius: 4px;
+        }
+
+        .normalize-row-error {
+            background: #f8d7da !important;
+        }
+
+        .normalize-row-dup {
+            background: #fff3cd !important;
+        }
+
+        .normalize-warnings {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 0.75rem;
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+        }
+
+        .normalize-row-err {
+            font-size: 0.8rem;
+            color: #dc3545;
+            margin-top: 0.25rem;
+        }
+
+        [title] {
+            cursor: help;
+        }
+
+        .slug-tip {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .lupo-step-wrap {
+            position: relative;
+        }
+
+        .lupo-processing-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 4px;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .lupo-processing-overlay.visible {
+            display: flex;
+        }
+
+        .lupo-processing-overlay span {
+            font-size: 1.1rem;
+            color: #0d6efd;
+            font-weight: 500;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
     </style>
 </head>
+
 <body>
     <h1>Lupopedia <?php echo htmlspecialchars($lupo_wizard_version); ?> — Install / Upgrade Wizard</h1>
-    <p class="wizard-progress">Step <?php echo InstallWizardSteps::getCurrentStepIndex($step); ?> of <?php echo InstallWizardSteps::getTotalSteps(); ?></p>
+    <p class="wizard-progress">Step <?php echo InstallWizardSteps::getCurrentStepIndex($step); ?> of
+        <?php echo InstallWizardSteps::getTotalSteps(); ?>
+    </p>
 
     <?php if ($step === 'welcome'): ?>
         <div class="wizard-card">
             <h2>Welcome</h2>
-            <p>This wizard will install Lupopedia <?php echo htmlspecialchars($lupo_wizard_version); ?> or upgrade from Crafty Syntax 3.7.5. Two valid states only: <strong>New install</strong> or <strong>Upgrade</strong>. No Lupopedia→Lupopedia upgrade.</p>
-            <p><strong>Important:</strong> Lupopedia must be installed in a subdirectory of your web root (e.g., /lupopedia/). The project folder itself is the web-accessible directory. All URLs and paths will be relative to this subdirectory using LUPOPEDIA_PUBLIC_PATH.</p>
+            <p>This wizard will install Lupopedia <?php echo htmlspecialchars($lupo_wizard_version); ?> or upgrade from
+                Crafty Syntax 3.7.5. Two valid states only: <strong>New install</strong> or <strong>Upgrade</strong>. No
+                Lupopedia→Lupopedia upgrade.</p>
+            <p><strong>Important:</strong> Lupopedia must be installed in a subdirectory of your web root (e.g.,
+                /lupopedia/). The project folder itself is the web-accessible directory. All URLs and paths will be relative
+                to this subdirectory using LUPOPEDIA_PUBLIC_PATH.</p>
             <p><strong>Correct URL examples:</strong> https://example.com/lupopedia/ or https://localhost/lupopedia/</p>
-            <p><strong>Requirements:</strong> PHP 5.3+, PDO MySQL, JSON extension, writable project root, and a MySQL/MariaDB database. For upgrade: existing Crafty Syntax 3.7.5 data.</p>
+            <p><strong>Requirements:</strong> PHP 5.3+, PDO MySQL, JSON extension, writable project root, and a
+                MySQL/MariaDB database. For upgrade: existing Crafty Syntax 3.7.5 data.</p>
             <div class="log-section">
                 <h4>System diagnostics</h4>
                 <ul class="diagnostics-list" style="list-style:none; padding:0; margin:0.5rem 0;">
@@ -842,7 +1142,8 @@ if ($baseUrl === '') {
                 </ul>
             </div>
             <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=welcome'); ?>">
-                <input type="hidden" name="lupo_csrf" value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
+                <input type="hidden" name="lupo_csrf"
+                    value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
                 <input type="hidden" name="step" value="welcome">
                 <input type="hidden" name="action" value="continue">
                 <button type="submit">Continue</button>
@@ -851,44 +1152,71 @@ if ($baseUrl === '') {
 
     <?php elseif ($step === 'credentials'): ?>
         <div class="step lupo-step-wrap" id="lupo-credentials-step">
-            <div class="lupo-processing-overlay" id="lupo-processing-overlay" aria-live="polite"><span>Processing…</span></div>
+            <div class="lupo-processing-overlay" id="lupo-processing-overlay" aria-live="polite"><span>Processing…</span>
+            </div>
             <h2>Database credentials</h2>
-            <p>Enter connection details (or ensure Crafty Syntax <code>config.php</code> is in a standard location to auto-detect).</p>
-            <p class="slug-tip" style="margin-bottom:0.5rem;">If you have the legacy Crafty Syntax app in an <code>/lh/</code> folder and see a white screen or &quot;Access denied&quot; from <code>lh/config_cslh.php</code>, that app uses its own config: edit <code>lh/config_cslh.php</code> (or <code>lh/config.php</code>) so its MySQL user and password match this database, or temporarily rename the <code>lh</code> folder during install.</p>
+            <p>Enter connection details (or ensure Crafty Syntax <code>config.php</code> is in a standard location to
+                auto-detect).</p>
+            <p class="slug-tip" style="margin-bottom:0.5rem;">If you have the legacy Crafty Syntax app in an
+                <code>/lh/</code> folder and see a white screen or &quot;Access denied&quot; from
+                <code>lh/config_cslh.php</code>, that app uses its own config: edit <code>lh/config_cslh.php</code> (or
+                <code>lh/config.php</code>) so its MySQL user and password match this database, or temporarily rename the
+                <code>lh</code> folder during install.
+            </p>
             <?php foreach ($errors as $e): ?>
                 <p class="err"><?php echo htmlspecialchars($e); ?></p>
             <?php endforeach; ?>
             <?php if (!empty($errors)): ?>
-                <p><form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php'); ?>" style="display:inline;"><input type="hidden" name="action" value="start_over"><button type="submit" class="btn btn-secondary">Start over</button></form></p>
+                <p>
+                <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php'); ?>" style="display:inline;">
+                    <input type="hidden" name="action" value="start_over"><button type="submit" class="btn btn-secondary">Start
+                        over</button>
+                </form>
+                </p>
             <?php endif; ?>
-            <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>" id="lupo-credentials-form">
-                <input type="hidden" name="lupo_csrf" value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
+            <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>"
+                id="lupo-credentials-form">
+                <input type="hidden" name="lupo_csrf"
+                    value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
                 <input type="hidden" name="step" value="credentials">
-                <label>Host <input type="text" name="db_host" value="<?php echo htmlspecialchars(isset($_POST['db_host']) ? $_POST['db_host'] : 'localhost'); ?>" required></label>
-                <label>Port <input type="text" name="db_port" value="<?php echo htmlspecialchars(isset($_POST['db_port']) ? $_POST['db_port'] : '3306'); ?>"></label>
-                <label>Database <input type="text" name="db_name" value="<?php echo htmlspecialchars(isset($_POST['db_name']) ? $_POST['db_name'] : ''); ?>" required></label>
-                <label>User <input type="text" name="db_user" value="<?php echo htmlspecialchars(isset($_POST['db_user']) ? $_POST['db_user'] : ''); ?>" required></label>
+                <label>Host <input type="text" name="db_host"
+                        value="<?php echo htmlspecialchars(isset($_POST['db_host']) ? $_POST['db_host'] : 'localhost'); ?>"
+                        required></label>
+                <label>Port <input type="text" name="db_port"
+                        value="<?php echo htmlspecialchars(isset($_POST['db_port']) ? $_POST['db_port'] : '3306'); ?>"></label>
+                <label>Database <input type="text" name="db_name"
+                        value="<?php echo htmlspecialchars(isset($_POST['db_name']) ? $_POST['db_name'] : ''); ?>"
+                        required></label>
+                <label>User <input type="text" name="db_user"
+                        value="<?php echo htmlspecialchars(isset($_POST['db_user']) ? $_POST['db_user'] : ''); ?>"
+                        required></label>
                 <label>Password <input type="password" name="db_password" value=""></label>
-                <label>Table prefix <input type="text" name="table_prefix" value="<?php echo htmlspecialchars(isset($_POST['table_prefix']) ? $_POST['table_prefix'] : 'lupo_'); ?>" placeholder="lupo_" title="Lowercase letters, digits, underscores only. Default: lupo_"></label>
-                <label style="display:block; margin-top:0.75rem;"><input type="checkbox" name="drop_livehelp_tables" value="1"<?php echo (isset($_POST['drop_livehelp_tables']) && $_POST['drop_livehelp_tables'] === '1') ? ' checked' : ''; ?>> Drop deprecated Crafty (<code>livehelp_*</code>) tables after import</label>
-                <p class="slug-tip" style="margin-top:0.25rem;">Only applies to upgrades. Unchecked by default; leave unchecked to keep legacy tables for reference or re-import.</p>
-                <p style="margin-top:1rem;"><button type="submit" id="lupo-connect-btn">Connect and detect install type</button></p>
+                <label>Table prefix <input type="text" name="table_prefix"
+                        value="<?php echo htmlspecialchars(isset($_POST['table_prefix']) ? $_POST['table_prefix'] : 'lupo_'); ?>"
+                        placeholder="lupo_" title="Lowercase letters, digits, underscores only. Default: lupo_"></label>
+                <label style="display:block; margin-top:0.75rem;"><input type="checkbox" name="drop_livehelp_tables"
+                        value="1" <?php echo (isset($_POST['drop_livehelp_tables']) && $_POST['drop_livehelp_tables'] === '1') ? ' checked' : ''; ?>> Drop deprecated Crafty (<code>livehelp_*</code>) tables after import</label>
+                <p class="slug-tip" style="margin-top:0.25rem;">Only applies to upgrades. Unchecked by default; leave
+                    unchecked to keep legacy tables for reference or re-import.</p>
+                <p style="margin-top:1rem;"><button type="submit" id="lupo-connect-btn">Connect and detect install
+                        type</button></p>
             </form>
-            <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=welcome'); ?>" class="btn btn-secondary">Back</a></p>
+            <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=welcome'); ?>"
+                    class="btn btn-secondary">Back</a></p>
         </div>
         <script>
-        (function() {
-            var form = document.getElementById('lupo-credentials-form');
-            var btn = document.getElementById('lupo-connect-btn');
-            var overlay = document.getElementById('lupo-processing-overlay');
-            if (form && btn && overlay) {
-                form.onsubmit = function() {
-                    btn.disabled = true;
-                    overlay.className = 'lupo-processing-overlay visible';
-                    return true;
+                 (function () {
+                    var form = document.getElementById('lupo-credentials-form');
+                    var btn = document.getElementById('lupo-connect-btn');
+                    var overlay = document.getElementById('lupo-processing-overlay');
+                    if (form && btn && overlay) {
+                         form.onsubmit = function () {
+                            btn.disabled = true;
+                            overlay.className = 'lupo-processing-overlay visible';
+                            return true;
                 };
-            }
-        })();
+                    }
+                })();
         </script>
 
     <?php elseif ($step === 'bootstrap'): ?>
@@ -897,13 +1225,15 @@ if ($baseUrl === '') {
             <?php foreach ($errors as $e): ?>
                 <p class="err"><?php echo htmlspecialchars($e); ?></p>
             <?php endforeach; ?>
-            <p>Schema (install + seed) and reserved system channels (0, 1, 42, 51) have been created. Continue to identity normalization.</p>
+            <p>Schema (install + seed) and reserved system channels (0, 1, 42, 51) have been created. Continue to identity
+                normalization.</p>
             <?php if (!empty($_SESSION['lupo_bootstrap_log'])): ?>
                 <div class="log-section">
                     <h4>Bootstrap log</h4>
                     <pre class="log"><?php
                     foreach ($_SESSION['lupo_bootstrap_log'] as $entry) {
-                        $c = $entry[0]; $t = htmlspecialchars($entry[1]);
+                        $c = $entry[0];
+                        $t = htmlspecialchars($entry[1]);
                         $ts = isset($entry[2]) ? htmlspecialchars($entry[2]) . ' ' : '';
                         echo "<span class=\"{$c}\">[{$c}] {$ts}{$t}</span>\n";
                     }
@@ -911,7 +1241,8 @@ if ($baseUrl === '') {
                 </div>
             <?php endif; ?>
             <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=bootstrap'); ?>">
-                <input type="hidden" name="lupo_csrf" value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
+                <input type="hidden" name="lupo_csrf"
+                    value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
                 <input type="hidden" name="step" value="bootstrap">
                 <input type="hidden" name="action" value="continue">
                 <button type="submit">Continue to Identity Normalization</button>
@@ -921,7 +1252,15 @@ if ($baseUrl === '') {
     <?php elseif ($step === 'normalize'): ?>
         <div class="step warning">
             <h2>Identity normalization</h2>
-            <p><strong>Reserved system channels (0, 1, 42, 51) have been created.</strong> Department 0 is the global system department (not department 1). Channel 1 is the Administration channel. Next: resolve identities for <strong>Crafty operators only</strong> (isoperator = Y). Visitor sessions are not changed. Crafty Syntax uses username/password; Lupopedia uses email/password and requires a unique email per operator. <strong>Email</strong> is kept as the real email (e.g. <code>johndoe@domainname.com</code>). <strong>Username</strong> for operators becomes slug format (e.g. <code>johndoe</code> → <code>johndoe-at-domainname-com</code>). You can correct any proposed email below. All emails must be unique and valid before you can continue.</p>
+            <p><strong>Reserved system channels (0, 1, 42, 51) have been created.</strong> Department 0 is the global system
+                department (not department 1). Channel 1 is the Administration channel. Next: resolve identities for
+                <strong>Crafty operators only</strong> (isoperator = Y). Visitor sessions are not changed. Crafty Syntax
+                uses username/password; Lupopedia uses email/password and requires a unique email per operator.
+                <strong>Email</strong> is kept as the real email (e.g. <code>johndoe@domainname.com</code>).
+                <strong>Username</strong> for operators becomes slug format (e.g. <code>johndoe</code> →
+                <code>johndoe-at-domainname-com</code>). You can correct any proposed email below. All emails must be unique
+                and valid before you can continue.
+            </p>
             <?php if (!empty($normalize_warnings)): ?>
                 <div class="normalize-warnings">
                     <strong>Warnings</strong>
@@ -937,7 +1276,8 @@ if ($baseUrl === '') {
             <?php endforeach; ?>
             <?php if (!empty($normalize_identities)): ?>
                 <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=normalize'); ?>">
-                    <input type="hidden" name="lupo_csrf" value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
+                    <input type="hidden" name="lupo_csrf"
+                        value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
                     <input type="hidden" name="step" value="normalize">
                     <input type="hidden" name="action" value="apply_normalization">
                     <p><strong>Operators only — proposed slug and resolved email</strong></p>
@@ -964,66 +1304,94 @@ if ($baseUrl === '') {
                                 $isDup = isset($duplicate_indices[$i]);
                                 $rowErrors = isset($normalize_validation_by_id[$row['user_id']]) ? $normalize_validation_by_id[$row['user_id']] : array();
                                 $hasError = $isDup || !empty($rowErrors);
-                            ?>
-                            <tr style="border-bottom:1px solid #eee;" class="<?php echo !empty($rowErrors) ? 'normalize-row-error' : ($isDup ? 'normalize-row-dup' : ''); ?>">
-                                <td><?php echo (int) $row['user_id']; ?></td>
-                                <td><?php echo htmlspecialchars($row['username']); ?></td>
-                                <td><?php echo htmlspecialchars($row['email']); ?></td>
-                                <td><?php echo $row['isoperator'] ? 'Y' : 'N'; ?></td>
-                                <td><code style="font-size:0.8rem;" title="Slug rules: @ → -at-, . → -dot-, lowercase, a-z 0-9 and hyphen only; suffix -at-domainname-com"><?php echo htmlspecialchars($row['proposed_email']); ?></code><br><span class="slug-tip">Slug: @→-at- .→-dot-</span></td>
-                                <td>
-                                    <input type="text" id="email_<?php echo (int) $row['user_id']; ?>" name="email_<?php echo (int) $row['user_id']; ?>" value="<?php echo htmlspecialchars(isset($_POST['email_' . $row['user_id']]) ? $_POST['email_' . $row['user_id']] : $row['proposed_email']); ?>" style="width:100%; max-width:18rem;" required data-proposed="<?php echo htmlspecialchars($row['proposed_email']); ?>" data-id="<?php echo (int) $row['user_id']; ?>">
-                                    <div style="margin-top:0.25rem;">
-                                        <button type="button" class="btn btn-sm btn-secondary" onclick="var i=document.getElementById('email_<?php echo (int) $row['user_id']; ?>'); i.value=i.getAttribute('data-proposed');">Use slug</button>
-                                        <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('email_<?php echo (int) $row['user_id']; ?>').value='archived-<?php echo (int) $row['user_id']; ?>@removed.local';">Mark archived</button>
-                                    </div>
-                                    <?php if (!empty($rowErrors)): ?>
-                                        <div class="normalize-row-err"><?php echo htmlspecialchars(implode(' ', $rowErrors)); ?></div>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
+                                ?>
+                                <tr style="border-bottom:1px solid #eee;"
+                                    class="<?php echo !empty($rowErrors) ? 'normalize-row-error' : ($isDup ? 'normalize-row-dup' : ''); ?>">
+                                    <td><?php echo (int) $row['user_id']; ?></td>
+                                    <td><?php echo htmlspecialchars($row['username']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['email']); ?></td>
+                                    <td><?php echo $row['isoperator'] ? 'Y' : 'N'; ?></td>
+                                    <td><code style="font-size:0.8rem;"
+                                            title="Slug rules: @ → -at-, . → -dot-, lowercase, a-z 0-9 and hyphen only; suffix -at-domainname-com"><?php echo htmlspecialchars($row['proposed_email']); ?></code><br><span
+                                            class="slug-tip">Slug: @→-at- .→-dot-</span></td>
+                                    <td>
+                                        <input type="text" id="email_<?php echo (int) $row['user_id']; ?>"
+                                            name="email_<?php echo (int) $row['user_id']; ?>"
+                                            value="<?php echo htmlspecialchars(isset($_POST['email_' . $row['user_id']]) ? $_POST['email_' . $row['user_id']] : $row['proposed_email']); ?>"
+                                            style="width:100%; max-width:18rem;" required
+                                            data-proposed="<?php echo htmlspecialchars($row['proposed_email']); ?>"
+                                            data-id="<?php echo (int) $row['user_id']; ?>">
+                                        <div style="margin-top:0.25rem;">
+                                            <button type="button" class="btn btn-sm btn-secondary"
+                                                onclick="var i=document.getElementById('email_<?php echo (int) $row['user_id']; ?>'); i.value=i.getAttribute('data-proposed');">Use
+                                                slug</button>
+                                            <button type="button" class="btn btn-sm btn-secondary"
+                                                onclick="document.getElementById('email_<?php echo (int) $row['user_id']; ?>').value='archived-<?php echo (int) $row['user_id']; ?>@removed.local';">Mark
+                                                archived</button>
+                                        </div>
+                                        <?php if (!empty($rowErrors)): ?>
+                                            <div class="normalize-row-err"><?php echo htmlspecialchars(implode(' ', $rowErrors)); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                     <?php if (!empty($normalize_duplicates)): ?>
-                        <p class="err" style="margin-top:1rem;"><strong>Duplicate emails detected.</strong> Each account must have a unique email. Keep one as primary and assign new unique emails to the others, or use e.g. <code>archived-123@removed.local</code> for accounts to exclude.</p>
+                        <p class="err" style="margin-top:1rem;"><strong>Duplicate emails detected.</strong> Each account must have a
+                            unique email. Keep one as primary and assign new unique emails to the others, or use e.g.
+                            <code>archived-123@removed.local</code> for accounts to exclude.
+                        </p>
                     <?php endif; ?>
-                    <p style="margin-top:1rem;"><strong>livehelp_users is updated only when you click &quot;Apply normalization and continue&quot;.</strong> Fix any empty, invalid, or duplicate emails above first.</p>
+                    <p style="margin-top:1rem;"><strong>livehelp_users is updated only when you click &quot;Apply normalization
+                            and continue&quot;.</strong> Fix any empty, invalid, or duplicate emails above first.</p>
                     <p style="margin-top:1rem;"><button type="submit">Apply normalization and continue</button></p>
                 </form>
             <?php else: ?>
                 <p>No users found in <code>livehelp_users</code>. You can continue to the next step.</p>
-                <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=normalize'); ?>" style="display:inline;">
-                    <input type="hidden" name="lupo_csrf" value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
+                <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=normalize'); ?>"
+                    style="display:inline;">
+                    <input type="hidden" name="lupo_csrf"
+                        value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
                     <input type="hidden" name="step" value="normalize">
                     <input type="hidden" name="action" value="apply_normalization">
                     <button type="submit" class="btn">Continue to confirm</button>
                 </form>
             <?php endif; ?>
-            <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>" class="btn">Back to credentials</a></p>
+            <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>" class="btn">Back to
+                    credentials</a></p>
         </div>
 
     <?php elseif ($step === 'confirm'): ?>
-        <div class="step lupo-step-wrap <?php echo (isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade' ? 'warning' : ''; ?>" id="lupo-confirm-step">
-            <div class="lupo-processing-overlay" id="lupo-run-overlay" aria-live="polite"><span>Running installation… This may take a minute.</span></div>
+        <div class="step lupo-step-wrap <?php echo (isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade' ? 'warning' : ''; ?>"
+            id="lupo-confirm-step">
+            <div class="lupo-processing-overlay" id="lupo-run-overlay" aria-live="polite"><span>Running installation… This
+                    may take a minute.</span></div>
             <h2>Confirm</h2>
             <?php if ((isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade'): ?>
                 <p><strong>Upgrade from Crafty Syntax 3.7.5</strong></p>
-                <p>Reserved system channels (0, 1, 42, 51) and schema were created before normalization. Identity normalization applied. The wizard will now:</p>
+                <p>Reserved system channels (0, 1, 42, 51) and schema were created before normalization. Identity normalization
+                    applied. The wizard will now:</p>
                 <ol>
                     <li>Set <code>lupo_actors</code> so the next actor_id is at least 10000 (reserved ID doctrine)</li>
                     <li>Run <code>import_from_old_crafty_syntax.sql</code></li>
-                    <li>Create personal channels and assign captain roles (<code>lupo_channels</code>, <code>lupo_actor_channel_roles</code>)</li>
+                    <li>Create personal channels and assign captain roles (<code>lupo_channels</code>,
+                        <code>lupo_actor_channel_roles</code>)
+                    </li>
                     <?php if (!empty($_SESSION['lupo_drop_livehelp_tables'])): ?>
-                    <li>Run <code>drop_old_crafty_syntax_tables.sql</code> (drop deprecated <code>livehelp_*</code> tables)</li>
+                        <li>Run <code>drop_old_crafty_syntax_tables.sql</code> (drop deprecated <code>livehelp_*</code> tables)</li>
                     <?php else: ?>
-                    <li>Skip dropping legacy <code>livehelp_*</code> tables (option unchecked at credentials)</li>
+                        <li>Skip dropping legacy <code>livehelp_*</code> tables (option unchecked at credentials)</li>
                     <?php endif; ?>
                     <li>Write <code>lupopedia-config.php</code></li>
                     <li>Redirect to login</li>
                 </ol>
-                <p style="font-size:0.9rem; color:#666;"><strong>Doctrine:</strong> Crafty Syntax users are migrated into the Lupopedia actor system. Actor IDs 0–9999 are reserved for system and AI agents. Human actors begin at ID 10000.</p>
-                <p style="font-size:0.9rem; color:#666;">Already done: Create reserved system channels (0, 1, 42, 51) before normalization → Identity normalization.</p>
+                <p style="font-size:0.9rem; color:#666;"><strong>Doctrine:</strong> Crafty Syntax users are migrated into the
+                    Lupopedia actor system. Actor IDs 0–9999 are reserved for system and AI agents. Human actors begin at ID
+                    10000.</p>
+                <p style="font-size:0.9rem; color:#666;">Already done: Create reserved system channels (0, 1, 42, 51) before
+                    normalization → Identity normalization.</p>
             <?php else: ?>
                 <p><strong>New install</strong></p>
                 <p>No livehelp_* tables found. The wizard will:</p>
@@ -1035,32 +1403,41 @@ if ($baseUrl === '') {
                     <li>Redirect to login</li>
                 </ol>
             <?php endif; ?>
-            <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=confirm'); ?>" id="lupo-run-form">
-                <input type="hidden" name="lupo_csrf" value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
+            <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=confirm'); ?>"
+                id="lupo-run-form">
+                <input type="hidden" name="lupo_csrf"
+                    value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
                 <input type="hidden" name="step" value="confirm">
                 <input type="hidden" name="action" value="run">
                 <p style="margin-top:1rem;"><button type="submit" id="lupo-run-btn">Run installation</button></p>
             </form>
             <script>
-            (function() {
-                var form = document.getElementById('lupo-run-form');
-                var btn = document.getElementById('lupo-run-btn');
-                var overlay = document.getElementById('lupo-run-overlay');
-                if (form && btn && overlay) {
-                    form.onsubmit = function() {
-                        btn.disabled = true;
-                        overlay.className = 'lupo-processing-overlay visible';
-                        return true;
-                    };
-                }
-            })();
+                    (function () {
+                        var form = document.getElementById('lupo-run-form');
+                        var btn = document.getElementById('lupo-run-btn');
+                        var overlay = document.getElementById('lupo-run-overlay');
+                         if (form && btn && overlay) {
+                            form.onsubmit = function () {
+                                btn.disabled = true;
+                                overlay.className = 'lupo-processing-overlay visible';
+                    return true;
+                            };
+                        }
+                    })();
             </script>
-            <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>" class="btn">Back to credentials</a></p>
+            <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>" class="btn">Back to
+                    credentials</a></p>
             <?php if (!empty($errors)): ?>
-                <p><form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php'); ?>" style="display:inline;"><input type="hidden" name="action" value="start_over"><button type="submit" class="btn btn-danger">Start over</button></form></p>
+                <p>
+                <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php'); ?>" style="display:inline;">
+                    <input type="hidden" name="action" value="start_over"><button type="submit" class="btn btn-danger">Start
+                        over</button>
+                </form>
+                </p>
             <?php endif; ?>
             <?php if ((isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade'): ?>
-                <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=normalize'); ?>" class="btn">Back to identity normalization</a></p>
+                <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=normalize'); ?>" class="btn">Back to
+                        identity normalization</a></p>
             <?php endif; ?>
         </div>
 
@@ -1068,15 +1445,21 @@ if ($baseUrl === '') {
         <div class="wizard-card step <?php echo !empty($errors) ? 'error' : 'success'; ?>">
             <h2>Run result</h2>
             <?php if (!empty($log)): ?>
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" title="Run complete">
+                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                    title="Run complete">
                     <div class="progress-fill" style="width:100%;"></div>
                 </div>
                 <?php
                 $hasErr = false;
-                foreach ($log as $e) { if ((isset($e[0]) ? $e[0] : '') === 'error') { $hasErr = true; break; } }
+                foreach ($log as $e) {
+                    if ((isset($e[0]) ? $e[0] : '') === 'error') {
+                        $hasErr = true;
+                        break;
+                    }
+                }
                 $stepClass = $hasErr ? 'fail' : 'done';
                 $labels = (isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade'
-                    ? ['Install', 'Seed', 'Reserved', 'Import', 'Operator channels', 'Drop']
+                    ? array('Install', 'Seed', 'Reserved', 'Import', 'Operator lupo-channels', 'Drop')
                     : ['Install', 'Seed', 'Reserved'];
                 ?>
                 <div class="run-steps">
@@ -1091,11 +1474,12 @@ if ($baseUrl === '') {
                 <?php endforeach; ?>
                 <p>
                     <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=confirm'); ?>" class="btn">Retry step</a>
-                    <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=download_log&which=run'); ?>" class="btn btn-secondary" download>Download log</a>
-                    <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php'); ?>" style="display:inline;">
-                        <input type="hidden" name="action" value="start_over">
-                        <button type="submit" class="btn btn-secondary">Start over</button>
-                    </form>
+                    <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=download_log&which=run'); ?>"
+                        class="btn btn-secondary" download>Download log</a>
+                <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php'); ?>" style="display:inline;">
+                    <input type="hidden" name="action" value="start_over">
+                    <button type="submit" class="btn btn-secondary">Start over</button>
+                </form>
                 </p>
             <?php endif; ?>
             <?php if (!empty($log)): ?>
@@ -1106,33 +1490,52 @@ if ($baseUrl === '') {
                 $seen = false;
                 foreach ($log as $entry) {
                     $msg = isset($entry[1]) ? $entry[1] : '';
-                    if (strpos($msg, $runSep) === 0) { $seen = true; continue; }
-                    if ($seen) { $runPart[] = $entry; } else { $bootstrapPart[] = $entry; }
+                    if (strpos($msg, $runSep) === 0) {
+                        $seen = true;
+                        continue;
+                    }
+                    if ($seen) {
+                        $runPart[] = $entry;
+                    } else {
+                        $bootstrapPart[] = $entry;
+                    }
                 }
                 $logLine = function ($e) {
-                    $c = $e[0]; $t = htmlspecialchars($e[1]);
+                    $c = $e[0];
+                    $t = htmlspecialchars($e[1]);
                     $ts = isset($e[2]) ? htmlspecialchars($e[2]) . ' ' : '';
                     return "<span class=\"{$c}\">[{$c}] {$ts}{$t}</span>";
                 };
                 if (!empty($bootstrapPart)): ?>
-                <div class="log-section">
-                    <h4>Bootstrap (install + seed + reserved channels)</h4>
-                    <pre class="log"><?php foreach ($bootstrapPart as $e) { echo $logLine($e) . "\n"; } ?></pre>
-                </div>
-                <?php endif; if (!empty($runPart)): ?>
-                <div class="log-section">
-                    <h4>Import, personal channels and roles, drop legacy</h4>
-                    <pre class="log"><?php foreach ($runPart as $e) { echo $logLine($e) . "\n"; } ?></pre>
-                </div>
-                <?php endif; if (empty($bootstrapPart) && empty($runPart)): ?>
-                <pre class="log"><?php foreach ($log as $e) { echo $logLine($e) . "\n"; } ?></pre>
+                    <div class="log-section">
+                        <h4>Bootstrap (install + seed + reserved lupo-channels)</h4>
+                        <pre class="log"><?php foreach ($bootstrapPart as $e) {
+                            echo $logLine($e) . "\n";
+                        } ?></pre>
+                    </div>
+                <?php endif;
+                if (!empty($runPart)): ?>
+                    <div class="log-section">
+                        <h4>Import, personal channels and roles, drop legacy</h4>
+                        <pre class="log"><?php foreach ($runPart as $e) {
+                            echo $logLine($e) . "\n";
+                        } ?></pre>
+                    </div>
+                <?php endif;
+                if (empty($bootstrapPart) && empty($runPart)): ?>
+                    <pre class="log"><?php foreach ($log as $e) {
+                        echo $logLine($e) . "\n";
+                    } ?></pre>
                 <?php endif; ?>
             <?php endif; ?>
             <p><strong>Run complete.</strong> Continue to set site options and write config.</p>
             <p>
-                <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=config'); ?>" class="btn">Continue to Config</a>
-                <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=confirm'); ?>" class="btn btn-secondary">Back to confirm</a>
-                <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=download_log&which=run'); ?>" class="btn btn-secondary" download>Download run log</a>
+                <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=config'); ?>" class="btn">Continue to
+                    Config</a>
+                <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=confirm'); ?>"
+                    class="btn btn-secondary">Back to confirm</a>
+                <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=download_log&which=run'); ?>"
+                    class="btn btn-secondary" download>Download run log</a>
             </p>
         </div>
     <?php elseif ($step === 'config'): ?>
@@ -1143,32 +1546,43 @@ if ($baseUrl === '') {
                 <p class="err"><?php echo htmlspecialchars($e); ?></p>
             <?php endforeach; ?>
             <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=config'); ?>">
-                <input type="hidden" name="lupo_csrf" value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
+                <input type="hidden" name="lupo_csrf"
+                    value="<?php echo htmlspecialchars(InstallWizardSecurity::getCsrfToken()); ?>">
                 <input type="hidden" name="step" value="config">
                 <input type="hidden" name="action" value="write_config">
-                <label>Site name <input type="text" name="site_name" value="<?php echo htmlspecialchars($config_values['site_name']); ?>" required></label>
-                <label>Base URL (must end with /) <input type="text" name="base_url" value="<?php echo htmlspecialchars($config_values['base_url']); ?>" placeholder="/path/to/lupopedia/" required></label>
-                <label>Admin email <input type="email" name="admin_email" value="<?php echo htmlspecialchars($config_values['admin_email']); ?>" required></label>
+                <label>Site name <input type="text" name="site_name"
+                        value="<?php echo htmlspecialchars($config_values['site_name']); ?>" required></label>
+                <label>Base URL (must end with /) <input type="text" name="base_url"
+                        value="<?php echo htmlspecialchars($config_values['base_url']); ?>"
+                        placeholder="/path/to/lupopedia/" required></label>
+                <label>Admin email <input type="email" name="admin_email"
+                        value="<?php echo htmlspecialchars($config_values['admin_email']); ?>" required></label>
                 <?php $is_new_install = (isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'new'; ?>
-                <label>Admin password (user id 10000, captain on channels 0 &amp; 42, global admin) <input type="password" name="admin_password" value="" minlength="8" <?php echo $is_new_install ? 'required' : ''; ?> placeholder="At least 8 characters"></label>
+                <label>Admin password (user id 10000, captain on channels 0 &amp; 42, global admin) <input type="password"
+                        name="admin_password" value="" minlength="8" <?php echo $is_new_install ? 'required' : ''; ?>
+                        placeholder="At least 8 characters"></label>
                 <label>Confirm password <input type="password" name="admin_password_confirm" value="" minlength="8" <?php echo $is_new_install ? 'required' : ''; ?> placeholder="Same as above"></label>
                 <?php if (!$is_new_install): ?>
-                <p class="slug-tip">On upgrade, password is optional; if set, the main admin user (10000) will be created or updated with this email and password.</p>
+                    <p class="slug-tip">On upgrade, password is optional; if set, the main admin user (10000) will be created or
+                        updated with this email and password.</p>
                 <?php endif; ?>
                 <label>Timezone
                     <select name="timezone">
                         <?php
                         $tzs = array('UTC', 'America/New_York', 'America/Chicago', 'America/Denver', 'America/Los_Angeles', 'Europe/London', 'Europe/Paris', 'Europe/Berlin', 'Asia/Tokyo', 'Australia/Sydney');
                         foreach ($tzs as $tz):
-                        ?><option value="<?php echo htmlspecialchars($tz); ?>" <?php echo $config_values['timezone'] === $tz ? 'selected' : ''; ?>><?php echo htmlspecialchars($tz); ?></option><?php endforeach; ?>
+                            ?>
+                            <option value="<?php echo htmlspecialchars($tz); ?>" <?php echo $config_values['timezone'] === $tz ? 'selected' : ''; ?>><?php echo htmlspecialchars($tz); ?></option><?php endforeach; ?>
                     </select>
                 </label>
-                <label>Default language <input type="text" name="default_language" value="<?php echo htmlspecialchars($config_values['default_language']); ?>" required></label>
-                <label>Support email (optional) <input type="email" name="support_email" value="<?php echo htmlspecialchars($config_values['support_email']); ?>" placeholder=""></label>
+                <label>Default language <input type="text" name="default_language"
+                        value="<?php echo htmlspecialchars($config_values['default_language']); ?>" required></label>
+                <label>Support email (optional) <input type="email" name="support_email"
+                        value="<?php echo htmlspecialchars($config_values['support_email']); ?>" placeholder=""></label>
                 <input type="hidden" name="default_visitor_channel" value="1">
                 <p class="diag-ok">Default channel for new visitors: 1 (department 1).</p>
                 <input type="hidden" name="enable_ai_channels" value="1">
-                <p class="diag-ok">AI agent channels: enabled.</p>
+                <p class="diag-ok">AI agent lupo-channels: enabled.</p>
                 <p style="margin-top:1rem;"><button type="submit">Write config and finish</button></p>
             </form>
         </div>
@@ -1176,16 +1590,19 @@ if ($baseUrl === '') {
     <?php elseif ($step === 'complete'): ?>
         <div class="wizard-card step success">
             <h2>Installation complete</h2>
-            <p>Lupopedia has been installed successfully. <code>lupopedia-config.php</code> has been written to the project root.</p>
+            <p>Lupopedia has been installed successfully. <code>lupopedia-config.php</code> has been written to the project
+                root.</p>
             <div class="log-section">
                 <h4>Summary</h4>
                 <ul style="list-style:none; padding:0;">
                     <li><strong>Install type:</strong> <?php echo htmlspecialchars($complete_install_type); ?></li>
-                    <li class="diag-ok"><strong>Config:</strong> <code>lupopedia-config.php</code> is active; Crafty <code>config.php</code> has been removed so only one config remains.</li>
+                    <li class="diag-ok"><strong>Config:</strong> <code>lupopedia-config.php</code> is active; Crafty
+                        <code>config.php</code> has been removed so only one config remains.
+                    </li>
                     <?php if ($complete_install_type === 'upgrade'): ?>
-                    <li><strong>Users normalized:</strong> <?php echo (int) $complete_normalize_count; ?></li>
-                    <li><strong>Personal channels created:</strong> <?php echo (int) $complete_operator_channels; ?></li>
-                    <li><strong>Legacy tables dropped:</strong> <?php echo (int) $complete_legacy_dropped; ?></li>
+                        <li><strong>Users normalized:</strong> <?php echo (int) $complete_normalize_count; ?></li>
+                        <li><strong>Personal channels created:</strong> <?php echo (int) $complete_operator_channels; ?></li>
+                        <li><strong>Legacy tables dropped:</strong> <?php echo (int) $complete_legacy_dropped; ?></li>
                     <?php endif; ?>
                     <li><strong>Completed:</strong> <?php echo htmlspecialchars(date('c')); ?></li>
                 </ul>
@@ -1193,33 +1610,52 @@ if ($baseUrl === '') {
             <?php if (!empty($complete_log)): ?>
                 <div class="log-section">
                     <h4>Run log</h4>
-                    <pre class="log"><?php foreach ($complete_log as $e) { $c=$e[0]; $t=htmlspecialchars($e[1]); $ts=isset($e[2]) ? htmlspecialchars($e[2]) . ' ' : ''; echo "<span class=\"{$c}\">[{$c}] {$ts}{$t}</span>\n"; } ?></pre>
+                    <pre class="log"><?php foreach ($complete_log as $e) {
+                        $c = $e[0];
+                        $t = htmlspecialchars($e[1]);
+                        $ts = isset($e[2]) ? htmlspecialchars($e[2]) . ' ' : '';
+                        echo "<span class=\"{$c}\">[{$c}] {$ts}{$t}</span>\n";
+                    } ?></pre>
                 </div>
             <?php endif; ?>
             <?php if (!empty($complete_config_log)): ?>
                 <div class="log-section">
                     <h4>Config log</h4>
-                    <pre class="log"><?php foreach ($complete_config_log as $e) { $c=$e[0]; $t=htmlspecialchars($e[1]); $ts=isset($e[2]) ? htmlspecialchars($e[2]) . ' ' : ''; echo "<span class=\"{$c}\">[{$c}] {$ts}{$t}</span>\n"; } ?></pre>
+                    <pre class="log"><?php foreach ($complete_config_log as $e) {
+                        $c = $e[0];
+                        $t = htmlspecialchars($e[1]);
+                        $ts = isset($e[2]) ? htmlspecialchars($e[2]) . ' ' : '';
+                        echo "<span class=\"{$c}\">[{$c}] {$ts}{$t}</span>\n";
+                    } ?></pre>
                 </div>
             <?php endif; ?>
             <div class="step warning" style="margin-top:1.5rem;">
                 <h4>⚠️ Background Jobs Queued</h4>
-                <p>Post-install tasks have been queued in the system_commands table. Run the system command runner to process them:</p>
+                <p>Post-install tasks have been queued in the system_commands table. Run the system command runner to
+                    process them:</p>
                 <p><strong>Linux/macOS:</strong></p>
-                <pre style="background:#f5f5f5; padding:0.5rem; border-radius:4px; font-family:monospace; font-size:0.85rem;">python3 scripts/run_system_commands.py</pre>
+                <pre
+                    style="background:#f5f5f5; padding:0.5rem; border-radius:4px; font-family:monospace; font-size:0.85rem;">python3 scripts/run_system_commands.py</pre>
                 <p><strong>Windows (WSL):</strong></p>
-                <pre style="background:#f5f5f5; padding:0.5rem; border-radius:4px; font-family:monospace; font-size:0.85rem;">wsl python3 /mnt/c/ServBay/www/servbay/lupopedia/scripts/run_system_commands.py</pre>
-                <p style="font-size:0.85rem; color:#666;">The runner will import channels and artifacts. You can run it now or later.</p>
+                <pre
+                    style="background:#f5f5f5; padding:0.5rem; border-radius:4px; font-family:monospace; font-size:0.85rem;">wsl python3 /mnt/c/ServBay/www/servbay/lupopedia/scripts/run_system_commands.py</pre>
+                <p style="font-size:0.85rem; color:#666;">The runner will import channels and artifacts. You can run it now
+                    or later.</p>
             </div>
             <p>
                 <a href="<?php echo htmlspecialchars($baseUrl . $loginUrl); ?>" class="btn">Go to Login</a>
-                <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=download_log&which=bootstrap'); ?>" class="btn btn-secondary" download>Download bootstrap log</a>
-                <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=download_log&which=run'); ?>" class="btn btn-secondary" download>Download run log</a>
-                <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=download_log&which=config'); ?>" class="btn btn-secondary" download>Download config log</a>
+                <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=download_log&which=bootstrap'); ?>"
+                    class="btn btn-secondary" download>Download bootstrap log</a>
+                <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=download_log&which=run'); ?>"
+                    class="btn btn-secondary" download>Download run log</a>
+                <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=download_log&which=config'); ?>"
+                    class="btn btn-secondary" download>Download config log</a>
             </p>
         </div>
     <?php endif; ?>
 
-    <p style="margin-top:2rem; font-size:0.9rem; color:#666;">Project root is the webroot. No /public folder. Lupopedia is always installed in a subfolder of the server document root.</p>
+    <p style="margin-top:2rem; font-size:0.9rem; color:#666;">Project root is the webroot. No /public folder. Lupopedia
+        is always installed in a subfolder of the server document root.</p>
 </body>
+
 </html>

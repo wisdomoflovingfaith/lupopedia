@@ -23,7 +23,8 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
  * @param int|null $max_id  Maximum ID (inclusive) of allowed range; null = use COALESCE(MAX(pk),0)+1
  * @return int|null Next available ID, or null if range exhausted or db error
  */
-function lupo_findpuka($db, $table, $pk_column, $min_id = 1, $max_id = null) {
+function lupo_findpuka($db, $table, $pk_column, $min_id = 1, $max_id = null)
+{
     if (!$db || !$table || !$pk_column) {
         return null;
     }
@@ -51,10 +52,37 @@ function lupo_findpuka($db, $table, $pk_column, $min_id = 1, $max_id = null) {
             $used[(int) $row[$pk_column]] = true;
         }
     }
-    for ($id = $min_id; $id <= $max_id; $id++) {
+
+    // Root Truth: Check filesystem for used IDs (Doctrine: Filesystem > Database)
+    $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : (defined('ABSPATH') ? ABSPATH : '');
+    $fs_dir = '';
+
+    if (strpos($table, 'actors') !== false) {
+        $fs_dir = $app_root . DIRECTORY_SEPARATOR . (defined('LUPO_ACTORS_DIR') ? LUPO_ACTORS_DIR : 'lupo-actors');
+    } elseif (strpos($table, 'channels') !== false) {
+        $fs_dir = $app_root . DIRECTORY_SEPARATOR . (defined('LUPO_CHANNEL_DIR') ? LUPO_CHANNEL_DIR : 'lupo-channels');
+    }
+
+    if ($fs_dir !== '' && is_dir($fs_dir)) {
+        $files = scandir($fs_dir);
+        foreach ($files as $file) {
+            if ($file === '.' || $file === '..')
+                continue;
+            if (is_numeric($file)) {
+                $id = (int) $file;
+                if ($id >= $min_id && ($max_id === null || $id <= $max_id)) {
+                    $used[$id] = true;
+                }
+            }
+        }
+    }
+
+    for ($id = $min_id; $id <= ($max_id !== null ? $max_id : 999999); $id++) {
         if (!isset($used[$id])) {
             return $id;
         }
+        if ($max_id === null && $id >= 999999)
+            break; // sanity limit
     }
     return null;
 }

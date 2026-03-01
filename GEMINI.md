@@ -509,7 +509,7 @@ python scripts/verify_db_against_toons.py
 **Update Version**:
 ```bash
 # Bump version (updates all canonical sources)
-php bin/bump-version.php
+php lupo-bin/bump-version.php
 ```
 
 ### Code Review Checklist

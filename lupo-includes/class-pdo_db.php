@@ -96,7 +96,8 @@
 //
 //=====================***  PDO_DB   ***======================================
 
-class PDO_DB {
+class PDO_DB
+{
     private $pdo = null;
     private $lastError = '';
     private $lastQuery = '';
@@ -109,15 +110,20 @@ class PDO_DB {
 
     /**
      * Constructor
-     * @param string $host Database host
+     * @param string|PDO $host Database host or existing PDO instance
      * @param string $user Database username
      * @param string $pass Database password
      * @param string $dbname Database name
      * @param string $type Database type (mysql, pgsql)
      * @throws PDOException On connection failure
      */
-    public function __construct($host, $user, $pass, $dbname = '', $type = 'mysql') {
-        $this->connect($host, $user, $pass, $dbname, $type);
+    public function __construct($host, $user = null, $pass = null, $dbname = '', $type = 'mysql')
+    {
+        if ($host instanceof PDO) {
+            $this->pdo = $host;
+        } else {
+            $this->connect($host, $user, $pass, $dbname, $type);
+        }
     }
 
     /**
@@ -129,9 +135,10 @@ class PDO_DB {
      * @param string $type
      * @throws PDOException
      */
-    private function connect($host, $user, $pass, $dbname, $type) {
+    private function connect($host, $user, $pass, $dbname, $type)
+    {
         $dsn = $this->getDsn($host, $dbname, $type);
-        
+
         try {
             $this->pdo = new PDO($dsn, $user, $pass, $this->options);
             $this->pdo->exec("SET NAMES 'utf8'");
@@ -149,7 +156,8 @@ class PDO_DB {
      * @param string $type
      * @return string
      */
-    private function getDsn($host, $dbname, $type) {
+    private function getDsn($host, $dbname, $type)
+    {
         $type = strtolower($type);
         switch ($type) {
             case 'pgsql':
@@ -167,7 +175,8 @@ class PDO_DB {
      * @return PDOStatement
      * @throws PDOException
      */
-    public function query($sql, $params = array()) {
+    public function query($sql, $params = array())
+    {
         $this->lastQuery = $sql;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($this->prepareParams($params));
@@ -180,7 +189,8 @@ class PDO_DB {
      * @param array $params
      * @return array
      */
-    public function fetchAll($sql, $params = array()) {
+    public function fetchAll($sql, $params = array())
+    {
         $stmt = $this->query($sql, $params);
         return $stmt->fetchAll();
     }
@@ -191,7 +201,8 @@ class PDO_DB {
      * @param array $params
      * @return array|null
      */
-    public function fetchRow($sql, $params = array()) {
+    public function fetchRow($sql, $params = array())
+    {
         $stmt = $this->query($sql, $params);
         $result = $stmt->fetch();
         return $result ?: null;
@@ -203,7 +214,8 @@ class PDO_DB {
      * @param array $params
      * @return mixed
      */
-    public function fetchOne($sql, $params = array()) {
+    public function fetchOne($sql, $params = array())
+    {
         $stmt = $this->query($sql, $params);
         return $stmt->fetchColumn(0);
     }
@@ -214,19 +226,20 @@ class PDO_DB {
      * @param array $data
      * @return string|false Last insert ID or false on failure
      */
-    public function insert($table, $data) {
+    public function insert($table, $data)
+    {
         $columns = array_keys($data);
-        $placeholders = array_map(function($col) { 
-            return ':' . $col; 
+        $placeholders = array_map(function ($col) {
+            return ':' . $col;
         }, $columns);
-        
+
         $sql = sprintf(
             "INSERT INTO %s (%s) VALUES (%s)",
             $this->quoteIdentifier($table),
             implode(', ', $this->quoteIdentifiers($columns)),
             implode(', ', $placeholders)
         );
-        
+
         try {
             $this->query($sql, $data);
             return $this->pdo->lastInsertId();
@@ -244,21 +257,22 @@ class PDO_DB {
      * @param array $whereParams
      * @return int Number of affected rows
      */
-    public function update($table, $data, $where, $whereParams = array()) {
+    public function update($table, $data, $where, $whereParams = array())
+    {
         $set = array();
         foreach (array_keys($data) as $column) {
             $set[] = $this->quoteIdentifier($column) . " = :$column";
         }
-        
+
         $sql = sprintf(
             "UPDATE %s SET %s WHERE %s",
             $this->quoteIdentifier($table),
             implode(', ', $set),
             $where
         );
-        
+
         $params = array_merge($data, $whereParams);
-        
+
         try {
             $stmt = $this->query($sql, $params);
             return $stmt->rowCount();
@@ -275,13 +289,14 @@ class PDO_DB {
      * @param array $params
      * @return int Number of affected rows
      */
-    public function delete($table, $where, $params = array()) {
+    public function delete($table, $where, $params = array())
+    {
         $sql = sprintf(
             "DELETE FROM %s WHERE %s",
             $this->quoteIdentifier($table),
             $where
         );
-        
+
         try {
             $stmt = $this->query($sql, $params);
             return $stmt->rowCount();
@@ -295,7 +310,8 @@ class PDO_DB {
      * Begin a transaction
      * @return bool
      */
-    public function beginTransaction() {
+    public function beginTransaction()
+    {
         return $this->pdo->beginTransaction();
     }
 
@@ -303,7 +319,8 @@ class PDO_DB {
      * Commit a transaction
      * @return bool
      */
-    public function commit() {
+    public function commit()
+    {
         return $this->pdo->commit();
     }
 
@@ -311,7 +328,8 @@ class PDO_DB {
      * Rollback a transaction
      * @return bool
      */
-    public function rollBack() {
+    public function rollBack()
+    {
         return $this->pdo->rollBack();
     }
 
@@ -320,7 +338,8 @@ class PDO_DB {
      * @param string $value
      * @return string
      */
-    public function quote($value) {
+    public function quote($value)
+    {
         return $this->pdo->quote($value);
     }
 
@@ -329,9 +348,10 @@ class PDO_DB {
      * @param string $identifier
      * @return string
      */
-    public function quoteIdentifier($identifier) {
+    public function quoteIdentifier($identifier)
+    {
         $parts = explode('.', $identifier);
-        $quoted = array_map(function($part) {
+        $quoted = array_map(function ($part) {
             return '`' . str_replace('`', '``', $part) . '`';
         }, $parts);
         return implode('.', $quoted);
@@ -342,7 +362,8 @@ class PDO_DB {
      * @param array $identifiers
      * @return array
      */
-    public function quoteIdentifiers($identifiers) {
+    public function quoteIdentifiers($identifiers)
+    {
         return array_map([$this, 'quoteIdentifier'], $identifiers);
     }
 
@@ -350,7 +371,8 @@ class PDO_DB {
      * Get the last error message
      * @return string
      */
-    public function getLastError() {
+    public function getLastError()
+    {
         if ($this->lastError !== '') {
             return $this->lastError;
         }
@@ -362,7 +384,8 @@ class PDO_DB {
      * Get the last query executed
      * @return string
      */
-    public function getLastQuery() {
+    public function getLastQuery()
+    {
         return $this->lastQuery;
     }
 
@@ -371,7 +394,8 @@ class PDO_DB {
      * @param array $params
      * @return array
      */
-    private function prepareParams($params) {
+    private function prepareParams($params)
+    {
         $prepared = array();
         foreach ($params as $key => $value) {
             $prepared[is_int($key) ? $key + 1 : $key] = $value;
@@ -383,7 +407,8 @@ class PDO_DB {
      * Get the PDO instance
      * @return PDO
      */
-    public function getPdo() {
+    public function getPdo()
+    {
         return $this->pdo;
     }
 
@@ -393,7 +418,8 @@ class PDO_DB {
      * @param string $sql
      * @return PDOStatement
      */
-    public function prepare($sql) {
+    public function prepare($sql)
+    {
         return $this->pdo->prepare($sql);
     }
 
@@ -402,7 +428,8 @@ class PDO_DB {
      * @param string $sql
      * @return int|false
      */
-    public function exec($sql) {
+    public function exec($sql)
+    {
         return $this->pdo->exec($sql);
     }
 
@@ -410,7 +437,8 @@ class PDO_DB {
      * Get last insert ID (for compatibility with code using PDO::lastInsertId).
      * @return string|false
      */
-    public function lastInsertId($name = null) {
+    public function lastInsertId($name = null)
+    {
         return $name !== null ? $this->pdo->lastInsertId($name) : $this->pdo->lastInsertId();
     }
 }

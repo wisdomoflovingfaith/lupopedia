@@ -17,19 +17,22 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. upload-handler.php cannot be called directly.");
 }
 
-class LupoUploadHandler {
+class LupoUploadHandler
+{
     private $uploadsRoot;
     private $allowedTypes = [];
     private $maxFileSize = 10485760; // 10MB default
     private $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->uploadsRoot = LUPOPEDIA_PATH . '/uploads';
         $this->ensureUploadDirectories();
         $this->connectDatabase();
     }
 
-    private function connectDatabase() {
+    private function connectDatabase()
+    {
         global $wpdb;
         if (isset($wpdb)) {
             $this->db = $wpdb;
@@ -42,7 +45,8 @@ class LupoUploadHandler {
         }
     }
 
-    private function ensureUploadDirectories() {
+    private function ensureUploadDirectories()
+    {
         $dirs = ['agents', 'channels', 'content', 'temp'];
 
         foreach ($dirs as $dir) {
@@ -58,7 +62,8 @@ class LupoUploadHandler {
      *
      * @param array $types Array of allowed MIME types
      */
-    public function setAllowedTypes(array $types) {
+    public function setAllowedTypes(array $types)
+    {
         $this->allowedTypes = $types;
     }
 
@@ -67,7 +72,8 @@ class LupoUploadHandler {
      *
      * @param int $bytes Maximum file size
      */
-    public function setMaxFileSize($bytes) {
+    public function setMaxFileSize($bytes)
+    {
         $this->maxFileSize = $bytes;
     }
 
@@ -80,7 +86,8 @@ class LupoUploadHandler {
      * @param string $fileType Type classification (metadata, avatar, document, etc.)
      * @return array Upload result with file info
      */
-    public function upload($file, $entityType, $entityId, $fileType = 'document') {
+    public function upload($file, $entityType, $entityId, $fileType = 'document')
+    {
         // Validate input
         if (!isset($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
             throw new Exception("Invalid file upload");
@@ -156,6 +163,17 @@ class LupoUploadHandler {
             throw new Exception("Failed to move uploaded file");
         }
 
+        // ANUBIS Hook (4.0.53): Check for orphaned headers on documents
+        if (($fileType === 'document' || $fileType === 'metadata') && in_array(strtolower($extension), array('md', 'txt', 'php', 'sql'))) {
+            $check_content = file_get_contents($fullPath);
+            if ($check_content !== false && strpos($check_content, 'flare.headers:') === false) {
+                // Orphan detected! Add to ANUBIS queue with content storage for database primacy
+                require_once LUPOPEDIA_PATH . '/lupo-includes/classes/ANUBIS/QueueProcessor.php';
+                $anubis = new ANUBIS_QueueProcessor($this->db);
+                $anubis->addToQueue($fullPath, 'Missing FLARE header on upload', 1, null, $check_content);
+            }
+        }
+
         // Insert database record
         $fileId = $this->insertFileRecord(
             $entityType,
@@ -168,7 +186,7 @@ class LupoUploadHandler {
             $mimeType
         );
 
-        return [
+        return array(
             'success' => true,
             'duplicate' => false,
             'file_id' => $fileId,
@@ -177,13 +195,14 @@ class LupoUploadHandler {
             'file_size' => $file['size'],
             'mime_type' => $mimeType,
             'message' => 'File uploaded successfully'
-        ];
+        );
     }
 
     /**
      * Find file by hash to detect duplicates
      */
-    private function findFileByHash($hash, $entityType) {
+    private function findFileByHash($hash, $entityType)
+    {
         $table = $this->getFileTableName($entityType);
 
         if ($this->db instanceof PDO || $this->db instanceof PDO_DB) {
@@ -194,7 +213,7 @@ class LupoUploadHandler {
                 AND is_deleted = 0
                 LIMIT 1
             ");
-            $stmt->execute([':hash' => $hash]);
+            $stmt->execute(array(':hash' => $hash));
             return $stmt->fetch();
         } else {
             // WordPress wpdb
@@ -211,12 +230,13 @@ class LupoUploadHandler {
     /**
      * Insert file record into appropriate table
      */
-    private function insertFileRecord($entityType, $entityId, $fileType, $fileName, $filePath, $hash, $fileSize, $mimeType) {
+    private function insertFileRecord($entityType, $entityId, $fileType, $fileName, $filePath, $hash, $fileSize, $mimeType)
+    {
         $table = $this->getFileTableName($entityType);
         $entityIdColumn = $this->getEntityIdColumn($entityType);
         $now = gmdate('YmdHis');
 
-        $data = [
+        $data = array(
             $entityIdColumn => $entityId,
             'file_type' => $fileType,
             'file_name' => $fileName,
@@ -228,11 +248,13 @@ class LupoUploadHandler {
             'created_ymdhis' => $now,
             'updated_ymdhis' => $now,
             'is_deleted' => 0
-        ];
+        );
 
         if ($this->db instanceof PDO || $this->db instanceof PDO_DB) {
             $columns = array_keys($data);
-            $placeholders = array_map(function($col) { return ":$col"; }, $columns);
+            $placeholders = array_map(function ($col) {
+                return ":$col";
+            }, $columns);
 
             $sql = sprintf(
                 "INSERT INTO %s (%s) VALUES (%s)",
@@ -258,7 +280,8 @@ class LupoUploadHandler {
     /**
      * Get file table name for entity type
      */
-    private function getFileTableName($entityType) {
+    private function getFileTableName($entityType)
+    {
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
         $tableMap = [
@@ -273,7 +296,8 @@ class LupoUploadHandler {
     /**
      * Get entity ID column name
      */
-    private function getEntityIdColumn($entityType) {
+    private function getEntityIdColumn($entityType)
+    {
         $columnMap = [
             'agent' => 'agent_id',
             'channel' => 'channel_id',
@@ -286,7 +310,8 @@ class LupoUploadHandler {
     /**
      * Get upload error message
      */
-    private function getUploadErrorMessage($errorCode) {
+    private function getUploadErrorMessage($errorCode)
+    {
         $errors = [
             UPLOAD_ERR_INI_SIZE => 'File exceeds upload_max_filesize directive in php.ini',
             UPLOAD_ERR_FORM_SIZE => 'File exceeds MAX_FILE_SIZE directive in HTML form',
@@ -303,7 +328,8 @@ class LupoUploadHandler {
     /**
      * Format bytes to human-readable size
      */
-    private function formatBytes($bytes) {
+    private function formatBytes($bytes)
+    {
         $units = ['B', 'KB', 'MB', 'GB'];
         $i = 0;
         while ($bytes >= 1024 && $i < count($units) - 1) {
@@ -321,7 +347,8 @@ class LupoUploadHandler {
      * @param bool $removePhysical Whether to remove physical file
      * @return bool Success status
      */
-    public function delete($fileId, $entityType, $removePhysical = false) {
+    public function delete($fileId, $entityType, $removePhysical = false)
+    {
         $table = $this->getFileTableName($entityType);
         $now = gmdate('YmdHis');
 
@@ -379,7 +406,8 @@ class LupoUploadHandler {
      * @param string $entityType Entity type
      * @return array|null File information or null if not found
      */
-    public function getFileInfo($fileId, $entityType) {
+    public function getFileInfo($fileId, $entityType)
+    {
         $table = $this->getFileTableName($entityType);
 
         if ($this->db instanceof PDO || $this->db instanceof PDO_DB) {
@@ -402,7 +430,8 @@ class LupoUploadHandler {
      * @param string $entityType Entity type
      * @return array Array of file records
      */
-    public function getEntityFiles($entityId, $entityType) {
+    public function getEntityFiles($entityId, $entityType)
+    {
         $table = $this->getFileTableName($entityType);
         $entityIdColumn = $this->getEntityIdColumn($entityType);
 
@@ -429,7 +458,8 @@ class LupoUploadHandler {
  *
  * @return \LupoUploadHandler
  */
-function lupo_get_upload_handler() {
+function lupo_get_upload_handler()
+{
     $s = $GLOBALS['lupo_upload_service'] ?? null;
     if ($s instanceof \App\Services\UploadService) {
         return $s->getHandler();
@@ -450,7 +480,8 @@ function lupo_get_upload_handler() {
  * @param string $fileType File type classification
  * @return array Upload result
  */
-function lupo_upload_file($file, $entityType, $entityId, $fileType = 'document') {
+function lupo_upload_file($file, $entityType, $entityId, $fileType = 'document')
+{
     $s = $GLOBALS['lupo_upload_service'] ?? null;
     if ($s instanceof \App\Services\UploadService) {
         return $s->upload($file, $entityType, $entityId, $fileType);

@@ -15,6 +15,9 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. functions-core.php cannot be called directly.");
 }
 
-// Placeholder: core utility functions will go here.
-
+// Core utility functions
+$actor_helpers = __DIR__ . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'actor-helpers.php';
+if (file_exists($actor_helpers)) {
+    require_once $actor_helpers;
+}
 ?>

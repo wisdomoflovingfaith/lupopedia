@@ -15,11 +15,12 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
  *
  * @return string HTML (basic template with navigation)
  */
-function actors_handle_my_profile() {
+function actors_handle_my_profile()
+{
     // Enable error reporting for debugging
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    
+
     $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
     $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
@@ -78,9 +79,12 @@ function actors_handle_my_profile() {
     }
 
     $actor = null;
-    $stmt = $db->prepare("SELECT actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, avatar_hash, metadata FROM {$table_prefix}actors WHERE actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
-    $stmt->execute(array(':actor_id' => $actor_id));
-    $actor = $stmt->fetch(PDO::FETCH_ASSOC);
+    $actor = function_exists('lupo_get_actor') ? lupo_get_actor($actor_id) : null;
+    if (!$actor) {
+        $stmt = $db->prepare("SELECT actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, avatar_hash, metadata FROM {$table_prefix}actors WHERE actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
+        $stmt->execute(array(':actor_id' => $actor_id));
+        $actor = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     if (!$actor) {
         error_log("My Profile: Actor not found for actor_id: $actor_id");
         $content = array('title' => 'My Profile', 'hide_heading' => true);
@@ -120,13 +124,13 @@ function actors_handle_my_profile() {
 
     ob_start();
     extract(array(
-        'actor'             => $actor,
-        'actor_id'          => $actor_id,
-        'auth_user_id'      => $auth_user_id,
-        'current_email'     => $current_email,
-        'actor_properties'  => $actor_properties,
-        'avatar_public_path'=> $avatar_public_path,
-        'base'              => $base,
+        'actor' => $actor,
+        'actor_id' => $actor_id,
+        'auth_user_id' => $auth_user_id,
+        'current_email' => $current_email,
+        'actor_properties' => $actor_properties,
+        'avatar_public_path' => $avatar_public_path,
+        'base' => $base,
     ), EXTR_SKIP);
     include $view_path;
     $page_body = ob_get_clean();
@@ -147,7 +151,8 @@ function actors_handle_my_profile() {
  *
  * @return void Redirects to /my-profile
  */
-function actors_handle_my_profile_save() {
+function actors_handle_my_profile_save()
+{
     $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
     $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
@@ -194,7 +199,7 @@ function actors_handle_my_profile_save() {
     if ($email !== '') {
         // Normalize email
         $email = strtolower(trim($email));
-        
+
         // Basic email validation
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             // Set error in session to display on GET request
@@ -202,7 +207,7 @@ function actors_handle_my_profile_save() {
             header('Location: ' . $base . '/my-profile');
             exit;
         }
-        
+
         // Get current auth_user_id first
         $auth_users_table = $table_prefix . 'auth_users';
         $current_auth = $db->fetchRow(
@@ -211,20 +216,20 @@ function actors_handle_my_profile_save() {
             WHERE a.actor_id = :actor_id AND a.is_deleted = 0 AND au.is_deleted = 0 LIMIT 1",
             array('actor_id' => $actor_id)
         );
-        
+
         if ($current_auth && isset($current_auth['auth_user_id'])) {
             // Check email uniqueness (excluding current user)
             $existing = $db->fetchRow(
                 "SELECT auth_user_id FROM " . $db->quoteIdentifier($auth_users_table) . " WHERE email = :email AND is_deleted = 0 AND auth_user_id != :current_auth_user_id LIMIT 1",
                 array('email' => $email, 'current_auth_user_id' => $current_auth['auth_user_id'])
             );
-            
+
             if ($existing && isset($existing['auth_user_id'])) {
                 $_SESSION['profile_error'] = 'Email address is already in use by another user.';
                 header('Location: ' . $base . '/my-profile');
                 exit;
             }
-            
+
             // Update email
             $db->update($auth_users_table, array('email' => $email, 'updated_ymdhis' => $now), 'auth_user_id = :auth_user_id', array('auth_user_id' => $current_auth['auth_user_id']));
         } else {

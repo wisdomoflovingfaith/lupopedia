@@ -27,6 +27,69 @@ class ActorService
     }
 
     /**
+     * Get actor data, preferring filesystem WHO.json over database (Doctrine: Root Truth = Filesystem).
+     * 
+     * @param int $actor_id Actor ID
+     * @return array|false Actor data or false
+     */
+    public function getActor($actor_id)
+    {
+        $actor_id = (int) $actor_id;
+        if ($actor_id <= 0)
+            return false;
+
+        $actor_data = array();
+
+        // 1. Root Truth: Filesystem (lupo-actors/<id>/WHO.json)
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : (defined('ABSPATH') ? ABSPATH : '');
+        $lupo_actors_dir = defined('LUPO_ACTORS_DIR') ? LUPO_ACTORS_DIR : 'lupo-actors';
+        $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_id . DIRECTORY_SEPARATOR . 'WHO.json';
+
+        if ($who_file !== '' && file_exists($who_file)) {
+            $json = file_get_contents($who_file);
+            $fs_data = json_decode($json, true);
+            if ($fs_data && isset($fs_data['whoami'])) {
+                $whoami = $fs_data['whoami'];
+                $actor_data = array(
+                    'actor_id' => $actor_id,
+                    'name' => isset($whoami['name']) ? $whoami['name'] : (isset($whoami['displayName']) ? $whoami['displayName'] : ''),
+                    'actor_type' => isset($whoami['type']) ? $whoami['type'] : 'user',
+                    'slug' => isset($whoami['slug']) ? $whoami['slug'] : '',
+                    'metadata' => $json, // Source JSON
+                    'created_ymdhis' => isset($whoami['created_utc']) ? str_replace(array('-', ':', ' '), '', $whoami['created_utc']) : 0,
+                    'updated_ymdhis' => isset($whoami['updated_utc']) ? str_replace(array('-', ':', ' '), '', $whoami['updated_utc']) : 0,
+                    'is_active' => 1,
+                    'is_deleted' => 0,
+                    '_source' => 'filesystem'
+                );
+            }
+        }
+
+        // 2. Database Secondary
+        $t = $this->db->quoteIdentifier($this->prefix . 'actors');
+        $db_row = $this->db->fetchRow(
+            "SELECT * FROM {$t} WHERE actor_id = :actor_id AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            array(':actor_id' => $actor_id)
+        );
+
+        if ($db_row) {
+            if (empty($actor_data)) {
+                $actor_data = $db_row;
+                $actor_data['_source'] = 'database';
+            } else {
+                // Merge DB data if not in FS, but FS takes precedence
+                foreach ($db_row as $key => $val) {
+                    if (!isset($actor_data[$key]) || $actor_data[$key] === '' || $actor_data[$key] === 0) {
+                        $actor_data[$key] = $val;
+                    }
+                }
+            }
+        }
+
+        return !empty($actor_data) ? $actor_data : false;
+    }
+
+    /**
      * Get actor_id for a given auth_user_id (actor_source_type = 'user').
      *
      * @param int $authUserId Auth user ID
@@ -77,7 +140,7 @@ class ActorService
         if ($authUserId <= 0 || $email === '') {
             return false;
         }
-        $now = class_exists('timestamp_ymdhis') ? timestamp_ymdhis::now() : (int) gmdate('YmdHis');
+        $now = class_exists('\timestamp_ymdhis') ? \timestamp_ymdhis::now() : (int) gmdate('YmdHis');
         $emailNormalized = strtolower(trim($email));
         $slug = str_replace('@', '-at-', $emailNormalized);
         $slug = str_replace('.', '-', $slug);

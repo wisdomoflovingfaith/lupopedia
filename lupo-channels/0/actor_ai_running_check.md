@@ -46,25 +46,83 @@ This is a fundamental litmus test—integrate into boot/validation/session_manag
 
 #### Query for Active Check (PHP example)
 ```php
-function isActorAIRunning($actor_id, $db) {
+/**
+ * Check if an actor AI agent is running
+ * 
+ * An actor AI is considered running if:
+ * 1. It has an active session in lupo_sessions with last_seen within threshold
+ * 2. It exists in lupo_actors with is_active=1
+ * 3. It has active status in lupo_channel_state for channel 0
+ */
+function isActorAIRunning($actor_id, $db, $threshold_hours = 24) {
+    $threshold = gmdate('YmdHis', time() - ($threshold_hours * 3600));
+    
+    // Check active session
+    $session = $db->query(
+        "SELECT session_id FROM lupo_sessions
+         WHERE actor_id = :actor_id 
+           AND status = 'active' 
+           AND is_deleted = 0 
+           AND last_seen_ymdhis > :threshold",
+        ['actor_id' => $actor_id, 'threshold' => $threshold]
+    )->fetch();
+    
+    if (!$session) {
+        return false;
+    }
+    
     // Check registry existence (lupo_actors + channel_state for Channel 0)
-    $registry_check = $db->query(
-        "SELECT 1 FROM lupo_actors a
-           LEFT JOIN lupo_channel_state cs ON a.actor_id = cs.actor_id AND cs.channel_id = 0
-           WHERE a.actor_id = :actor_id AND a.status = 'active' AND a.is_deleted = 0
-           AND cs.state_data LIKE '%\"status\":\"active\"%'",
+    $registry = $db->query(
+        "SELECT a.actor_id, cs.state_data
+         FROM lupo_actors a
+         LEFT JOIN lupo_channel_state cs ON a.actor_id = cs.actor_id AND cs.channel_id = 0
+         WHERE a.actor_id = :actor_id 
+           AND a.is_active = 1 
+           AND a.is_deleted = 0",
         ['actor_id' => $actor_id]
     )->fetch();
 
-    // Check active session
-    $session_check = $db->query(
-        "SELECT 1 FROM lupo_sessions
-           WHERE actor_id = :actor_id AND status = 'active' AND is_deleted = 0
-           AND last_seen_ymdhis > :threshold",  // e.g., gmdate('YmdHis', time() - 86400) for 24h
-        ['actor_id' => $actor_id, 'threshold' => gmdate('YmdHis', time() - 86400)]
-    )->fetch();
+    if (!$registry) {
+        return false;
+    }
 
-    return $registry_check && $session_check;
+    // Parse channel state JSON
+    $state = json_decode($registry['state_data'], true);
+    return ($state && isset($state['status']) && $state['status'] === 'active');
+}
+```
+
+#### Session Cleanup & Escalation
+```php
+/**
+ * Cleanup expired sessions and log the action
+ */
+function cleanupExpiredSessions($db, $threshold_hours = 24) {
+    $threshold = gmdate('YmdHis', time() - ($threshold_hours * 3600));
+    
+    $db->execute(
+        "UPDATE lupo_sessions 
+         SET status = 'expired', updated_ymdhis = :now 
+         WHERE last_seen_ymdhis < :threshold AND status = 'active'",
+        ['now' => gmdate('YmdHis'), 'threshold' => $threshold]
+    );
+    
+    return $db->rowCount();
+}
+
+/**
+ * Escalate registry issues if an actor is missing or inactive
+ */
+function validateActorRegistryConsistency($actor_id, $db) {
+    if (!isActorAIRunning($actor_id, $db)) {
+        $db->execute(
+            "INSERT INTO lupo_channel_escalations (channel_id, actor_id, escalation_type, reason, created_ymdhis)
+             VALUES (0, :actor_id, 'registry_consistency_fail', 'Actor AI not running or registry mismatched', :created)",
+            ['actor_id' => $actor_id, 'created' => gmdate('YmdHis')]
+        );
+        return false;
+    }
+    return true;
 }
 ```
 
@@ -75,7 +133,7 @@ function isActorAIRunning($actor_id, $db) {
 - **Edge Cases**:
   - No session: Agent not running (even if registered)
   - Expired session: Flag as inactive; trigger cleanup/revoke
-  - Registry missing: Escalate to logs/escalations
+  - Registry missing: Escalate to logs/escalations (Action: `validateActorRegistryConsistency`)
 - **Doctrine Alignment**: No FKs; use JOINs for checks. Log all verifications to `lupo_channel_logs`
 
 ### Action Items
@@ -85,7 +143,7 @@ function isActorAIRunning($actor_id, $db) {
 3. **Test**: For actors 0,1,2 (SYSTEM, CAPTAIN WOLFIE, LILITH)—simulate active/inactive
 4. **Commit**: "FLARE: Added core running check for actor AI agents - active session + Channel 0 registry"
 5. **Update Docs**: SESSION_MANAGEMENT_SYSTEM.md, boot_readme.md with this definition
-6. **Generate lupo_actors.toon.json**: TOON for actor registry table, v4.0.53
+6. **Verify lupo_actors.toon.json**: Ensure TOON reflects `is_active` correctly for v4.0.53
 
 ### Example Queries
 
@@ -97,16 +155,7 @@ FROM lupo_sessions
 WHERE actor_id = 2 
   AND status = 'active' 
   AND is_deleted = 0 
-  AND last_seen_ymdhis > 20260228100000;
-
--- Check registry existence in Channel 0
-SELECT 1 as is_registered 
-FROM lupo_actors a
-LEFT JOIN lupo_channel_state cs ON a.actor_id = cs.actor_id AND cs.channel_id = 0
-WHERE a.actor_id = 2 
-  AND a.status = 'active' 
-  AND a.is_deleted = 0 
-  AND cs.state_data LIKE '%\"status\":\"active\"%';
+  AND last_seen_ymdhis > :threshold;
 ```
 
 #### Combined Running Check
@@ -114,24 +163,21 @@ WHERE a.actor_id = 2
 -- Comprehensive running check
 SELECT 
     a.actor_id,
-    a.actor_name,
+    a.name as actor_name,
     CASE 
-        WHEN s.session_id IS NOT NULL THEN 0
-        WHEN s.last_seen_ymdhis < 20260228100000 THEN 0
-        ELSE 1
+        WHEN s.session_id IS NOT NULL AND s.last_seen_ymdhis > :threshold THEN 1
+        ELSE 0
     END as is_running,
     CASE 
-        WHEN cs.actor_id IS NOT NULL THEN 0
-        WHEN cs.state_data LIKE '%\"status\":\"active\"%' THEN 1
+        WHEN cs.actor_id IS NOT NULL AND JSON_EXTRACT(cs.state_data, '$.status') = "active" THEN 1
         ELSE 0
     END as is_registered
 FROM lupo_actors a
 LEFT JOIN lupo_sessions s ON a.actor_id = s.actor_id 
     AND s.status = 'active' AND s.is_deleted = 0 
-    AND s.last_seen_ymdhis > 20260228100000
 LEFT JOIN lupo_channel_state cs ON a.actor_id = cs.actor_id AND cs.channel_id = 0
 WHERE a.actor_id IN (0,1,2) 
-  AND a.status = 'active' 
+  AND a.is_active = 1 
   AND a.is_deleted = 0;
 ```
 

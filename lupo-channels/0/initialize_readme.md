@@ -3,21 +3,21 @@
 flare.headers:
   flare.version: "1.0"
   flare.schema: "documentation"
-  file_path_from_root: "channels/0/boot_readme.md"
+  file_path_from_root: "lupo-channels/0/initialize_readme.md"
   federation_node_id: 0
-  web_path: "http://www.lupopedia.com/boot_readme"
+  web_path: "http://www.lupopedia.com/initialize_readme"
   last_updated_utc: "20260301121500"
-  system_version: "4.0.52"
+  system_version: "4.0.53"
   channel_id: 0
   actor_id: 1006
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "guide"
-  purpose: "Channel boot logging and lifecycle tracking schema summary"
-  dialog_message: "Updated to include modern lifecycle tracking tables (lupo_channel_boot_lifecycle and lupo_channel_boot_detail_lifecycle)"
+  purpose: "Channel startup logging and lifecycle tracking schema summary"
+  dialog_message: "Updated to include modern startup lifecycle tracking terminology"
   mood_rgb: "4169E1"
-  traits: ["channel_boot", "lifecycle", "schema", "node_0"]
-  tags: ["channel_boot", "boot_log", "boot_lifecycle", "boot_detail", "toons"]
+  traits: ["channel_startup", "lifecycle", "schema", "node_0"]
+  tags: ["channel_startup", "startup_log", "startup_lifecycle", "startup_detail", "toons"]
   lupo_agent: "gemini-cli"
 
 flare.edges:
@@ -30,23 +30,23 @@ flare.edges:
     - { to: "docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 0.9 }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9 }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-  semantic_tags: ["channel_boot", "lifecycle_tracking", "schema_documentation", "node_0"]
+  semantic_tags: ["channel_startup", "lifecycle_tracking", "schema_documentation", "node_0"]
 
 flare.footer:
-  version: "4.0.52"
+  version: "4.0.53"
   last_verified: "20260301"
   last_verified_by: "gemini-cli"
 ---
 
-# Channel Boot Tables (Node 0)
+# Channel Startup & Initialization Tables (Node 0)
 
 ## Scope
-This document summarizes the channel boot logging and lifecycle tracking tables defined by TOON schema. It covers both the standard boot logs and the modern lifecycle tracking system, ensuring all operations align with the TOON declarations.
+This document summarizes the channel startup logging and initialization tracking tables defined by TOON schema. It covers both the standard startup logs and the modern lifecycle tracking system, ensuring all operations align with the TOON declarations.
 
-## Standard Boot System
+## Standard Startup System
 
 ### Table: lupo_channel_boot_log
-Purpose: High-level tracking of a single boot session.
+Purpose: High-level tracking of a single startup session.
 
 Primary key: `boot_id`
 
@@ -56,8 +56,8 @@ Fields:
 | `boot_id` | bigint | Primary key. |
 | `actor_id` | bigint | Actor that initiated the boot. |
 | `session_id` | varchar(64) | Session identifier. |
-| `boot_start_time` | bigint | UTC timestamp (`YYYYMMDDHHIISS`). |
-| `boot_end_time` | bigint | UTC timestamp (`YYYYMMDDHHIISS`). |
+| `boot_start_time` | bigint | UTC timestamp (`YYYYMMDDHHIISS`). Start of initialization. |
+| `boot_end_time` | bigint | UTC timestamp (`YYYYMMDDHHIISS`). End of initialization. |
 | `boot_status` | varchar(64) | Status, default `started`. |
 | `channels_loaded` | int | Count of successfully loaded channels. |
 | `total_channels` | int | Total channels targeted. |
@@ -66,7 +66,7 @@ Fields:
 | `created_ymdhis` | bigint | Row creation timestamp. |
 
 ### Table: lupo_channel_boot_detail
-Purpose: Granular tracking of individual channel loading within a boot session.
+Purpose: Granular tracking of individual channel loading within a startup session.
 
 Primary key: `detail_id`
 
@@ -74,7 +74,7 @@ Fields:
 | Column | Type | Notes |
 | --- | --- | --- |
 | `detail_id` | bigint | Primary key. |
-| `boot_id` | bigint | Link to `lupo_channel_boot_log`. |
+| `boot_id` | bigint | Link to `lupo_channel_boot_log`. (Startup Session ID) |
 | `channel_id` | bigint | Targeted channel ID. |
 | `load_start_time` | bigint | UTC timestamp (`YYYYMMDDHHIISS`). |
 | `load_end_time` | bigint | UTC timestamp (`YYYYMMDDHHIISS`). |
@@ -90,7 +90,7 @@ Fields:
 ## Modern Lifecycle Tracking System
 
 ### Table: lupo_channel_boot_lifecycle
-Purpose: Robust tracking of channel lifecycle events, supporting multiple types of boots (partial, full, recovery).
+Purpose: Robust tracking of channel lifecycle events, supporting multiple types of startup (partial, full, recovery).
 
 Primary key: `lifecycle_id` (AUTO_INCREMENT)
 
@@ -137,8 +137,8 @@ Fields:
 ---
 
 ## Key Differences and Integration
-- **Boot vs. Lifecycle**: The standard boot system (`lupo_channel_boot_log`) is general-purpose for whole-node initialization. The Lifecycle system (`lupo_channel_boot_lifecycle`) provides more robust state management and type-specific handlers (full vs. partial boots).
-- **Primary Keys**: Note that the lifecycle tables utilize `AUTO_INCREMENT` keys in their schema, while the standard boot logs use explicitly managed `bigint` IDs.
+- **Startup vs. Lifecycle**: The standard startup system (`lupo_channel_boot_log`) is general-purpose for whole-node initialization. The Lifecycle system (`lupo_channel_boot_lifecycle`) provides more robust state management and type-specific handlers (full vs. partial startup).
+- **Primary Keys**: Note that the lifecycle tables utilize `AUTO_INCREMENT` keys in their schema, while the standard startup logs use explicitly managed `bigint` IDs.
 - **JSON Fields**: Lifecycle tables rely heavily on JSON fields for extensible error reporting and performance monitoring.
 
 ## Timestamp Doctrine

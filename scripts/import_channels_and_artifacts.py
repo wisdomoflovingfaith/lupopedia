@@ -144,7 +144,7 @@ def import_broadcast(cursor, table_prefix, filepath, dry_run=False, verbose=Fals
     
     # Extract channel_id from directory structure
     parts = Path(filepath).parts
-    channel_idx = parts.index('channels') if 'channels' in parts else -1
+    channel_idx = parts.index('lupo-channels') if 'lupo-channels' in parts else -1
     if channel_idx == -1 or channel_idx + 1 >= len(parts):
         if verbose:
             print(f"  SKIP: {filepath} (not in channels directory)")
@@ -286,7 +286,7 @@ def main():
     # Find all broadcast files
     print("Scanning for broadcast files...")
     broadcast_files = []
-    channels_dir = 'channels'
+    channels_dir = 'lupo-channels'
     if os.path.exists(channels_dir):
         for root, dirs, files in os.walk(channels_dir):
             if 'broadcasts' in root:

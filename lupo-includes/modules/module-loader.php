@@ -32,19 +32,19 @@ if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
     // Calculate public path for web access
     $script_name = basename($_SERVER['SCRIPT_NAME'], '.php');
     $script_dir = dirname($_SERVER['SCRIPT_NAME']);
-    
+
     $web_path_to_config = str_replace('\\', '/', str_replace(dirname($_SERVER['SCRIPT_FILENAME']), '', $script_dir));
-    
+
     // Remove common subdirectory patterns
-    $patterns = ['/lupo-includes/', '/lupo-tests/', '/lupo-admin/', '/database/', '/docs/', '/scripts/', '/tools/', '/legacy/', '/channels/', '/uploads/'];
+    $patterns = array('/lupo-includes/', '/lupo-tests/', '/lupo-admin/', '/database/', '/docs/', '/scripts/', '/tools/', '/legacy/', '/lupo-channels/', '/uploads/');
     $clean_path = $web_path_to_config;
-    
+
     foreach ($patterns as $pattern) {
         if (strpos($clean_path, $pattern) !== false) {
             $clean_path = substr($clean_path, 0, strpos($clean_path, $pattern) + strlen($pattern));
         }
     }
-    
+
     define('LUPOPEDIA_PUBLIC_PATH', '/' . trim($clean_path, '/') . '/');
 }
 
@@ -167,7 +167,8 @@ if (file_exists($leads_module)) {
  * @param string $slug The URL slug to route
  * @return string The response from the routed module
  */
-function lupo_route_slug($slug) {
+function lupo_route_slug($slug)
+{
     $slug = ltrim(trim($slug), '/');
     if ($slug === '') {
         return '';
@@ -298,12 +299,14 @@ function lupo_route_slug($slug) {
     // 7. LEGACY COLLECTION ROUTE: /collection/<id>/content/<slug> (redirect only)
     // 8. CRAFTY_SYNTAX (legacy system)
     // 9. CONTENT (default)
-    
+
     // Check for AUTH routes first (highest priority)
     $normalized_slug = preg_replace('/\.php$/', '', $slug);
-    if ($normalized_slug === 'login' || $normalized_slug === 'logout' || 
+    if (
+        $normalized_slug === 'login' || $normalized_slug === 'logout' ||
         $normalized_slug === 'change-password' || $normalized_slug === 'change_password' ||
-        strpos($normalized_slug, 'admin') === 0) {
+        strpos($normalized_slug, 'admin') === 0
+    ) {
         if (function_exists('auth_handle_slug')) {
             $result = auth_handle_slug($slug);
             if (!empty($result)) {
@@ -366,7 +369,7 @@ function lupo_route_slug($slug) {
     }
 
     // Crafty Syntax visitor: image.php (getstate, getcredit, userstat)
-    if ($normalized_slug === 'image' && (empty($_GET['what']) || in_array((string)$_GET['what'], ['getstate', 'getcredit', 'userstat'], true))) {
+    if ($normalized_slug === 'image' && (empty($_GET['what']) || in_array((string) $_GET['what'], ['getstate', 'getcredit', 'userstat'], true))) {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $visitor_image_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'crafty_syntax' . DIRECTORY_SEPARATOR . 'visitor-image.php';
         if (file_exists($visitor_image_path)) {
@@ -408,11 +411,11 @@ function lupo_route_slug($slug) {
     // CANONICAL CONTENT ROUTE: /content/<slug>
     if (preg_match('#^content/(.+)$#', $slug, $matches)) {
         $content_slug = $matches[1];
-        
+
         $content_controller = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/content-controller.php';
         if (file_exists($content_controller)) {
             require_once $content_controller;
-            
+
             try {
                 if (function_exists('content_show_by_slug')) {
                     $result = content_show_by_slug($content_slug);
@@ -427,7 +430,7 @@ function lupo_route_slug($slug) {
             }
         }
     }
-    
+
     // CHANNEL SIGN-ON ROUTE: /operator/signon (channel-based; actor must have role in channel)
     if ($slug === 'operator/signon') {
         // Load render_main_layout function
@@ -438,7 +441,7 @@ function lupo_route_slug($slug) {
 
         // Handle POST request (channel selection)
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['channel_id'])) {
-            $channel_id = (int)$_POST['channel_id'];
+            $channel_id = (int) $_POST['channel_id'];
 
             $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
             if ($db && $channel_id > 0) {
@@ -454,7 +457,7 @@ function lupo_route_slug($slug) {
                     $stmt->execute(array(':channel_id' => $channel_id, ':actor_id' => $actor_id));
                     if ($stmt->fetch()) {
                         $channel_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
-                        $channel_url .= '/channels/' . $channel_id;
+                        $channel_url .= '/lupo-channels/' . $channel_id;
                         header('Location: ' . $channel_url);
                         exit;
                     }
@@ -517,7 +520,7 @@ function lupo_route_slug($slug) {
     }
 
     // ── REST API: Channels Admin ──────────────────
-    if (preg_match('#^api/channels/admin/(operators|departments|settings)(?:/(\d+))?$#', $slug, $api_m)) {
+    if (preg_match('#^api/lupo-channels/admin/(operators|departments|settings)(?:/(\d+))?$#', $slug, $api_m)) {
         $channels_admin_resource = $api_m[1];
         $channels_admin_id = isset($api_m[2]) ? (int) $api_m[2] : 0;
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
@@ -528,7 +531,7 @@ function lupo_route_slug($slug) {
         }
     }
     // ── REST API: Channels (RESTful messages for VSX extension) ────────────────
-    if (preg_match('#^api/channels/(\d+)/messages/?$#', $slug, $api_m)) {
+    if (preg_match('#^api/lupo-channels/(\d+)/messages/?$#', $slug, $api_m)) {
         $channels_api_channel_id = (int) $api_m[1];
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'api' . DIRECTORY_SEPARATOR . 'channels-api.php';
@@ -598,7 +601,7 @@ function lupo_route_slug($slug) {
         }
     }
 
-    // CHANNELS ROUTE: /channels/my-channels — list channels the current actor has a role in
+    // CHANNELS ROUTE: /lupo-channels/my-channels — list channels the current actor has a role in
     if ($slug === 'channels/my-channels') {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $channels_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channels-controller.php';
@@ -618,9 +621,9 @@ function lupo_route_slug($slug) {
         ));
     }
 
-    // CHANNELS ROUTE: /channels/{channel_id}/stream — iframe message stream (legacy livehelp pattern)
+    // CHANNELS ROUTE: /lupo-channels/{channel_id}/stream — iframe message stream (legacy livehelp pattern)
     if (preg_match('#^channels/(\d+)/stream/?$#', $slug, $matches)) {
-        $channel_id = (int)$matches[1];
+        $channel_id = (int) $matches[1];
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $channels_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channels-controller.php';
         if (file_exists($channels_controller_path)) {
@@ -631,9 +634,9 @@ function lupo_route_slug($slug) {
         }
     }
 
-    // CHANNELS ROUTE: /channels/{channel_id}/ or /channels/{channel_id}
+    // CHANNELS ROUTE: /lupo-channels/{channel_id}/ or /lupo-channels/{channel_id}
     if (preg_match('#^channels/(\d+)/?$#', $slug, $matches)) {
-        $channel_id = (int)$matches[1];
+        $channel_id = (int) $matches[1];
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $channels_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channels-controller.php';
         if (file_exists($channels_controller_path)) {
@@ -654,7 +657,7 @@ function lupo_route_slug($slug) {
 
     // EDGES ROUTE: /edges/{edge_id}
     if (preg_match('#^edges/(\d+)$#', $slug, $matches)) {
-        $edge_id = (int)$matches[1];
+        $edge_id = (int) $matches[1];
 
         // Load EdgesController
         $edges_controller_path = (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH) . '/app/Http/Controllers/EdgesController.php';
@@ -782,15 +785,15 @@ function lupo_route_slug($slug) {
         header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/qa/');
         exit;
     }
-    
+
     // EDGE TRAVERSAL ROUTE: /edge/<slug> or /edge/id/<content_id>
     if (preg_match('#^edge/(.+)$#', $slug, $matches)) {
         $edge_param = $matches[1];
-        
+
         $edge_controller = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/edge-controller.php';
         if (file_exists($edge_controller)) {
             require_once $edge_controller;
-            
+
             try {
                 if (function_exists('edge_traversal_slug')) {
                     $result = edge_traversal_slug($edge_param);
@@ -805,26 +808,26 @@ function lupo_route_slug($slug) {
             }
         }
     }
-    
+
     // LEGACY COLLECTION ROUTE: /collection/<id>/content/<slug> (301 redirect only)
     if (preg_match('#^collection/(\d+)/content/(.+)$#', $slug, $matches)) {
-        $collection_id = (int)$matches[1];
+        $collection_id = (int) $matches[1];
         $content_slug = $matches[2];
-        
+
         // Perform 301 redirect to canonical URL
         $canonical_url = LUPOPEDIA_PUBLIC_PATH . '/content/' . $content_slug;
-        
+
         // Log redirect for analytics
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
             error_log("Legacy redirect: /collection/$collection_id/content/$content_slug -> /content/$content_slug");
         }
-        
+
         // Perform 301 redirect
         header('HTTP/1.1 301 Moved Permanently');
         header('Location: ' . $canonical_url);
         exit;
     }
-    
+
     // Check for HELP routes
     if (strpos($slug, 'help') === 0) {
         if (function_exists('help_handle_slug')) {
@@ -834,7 +837,7 @@ function lupo_route_slug($slug) {
             }
         }
     }
-    
+
     // Check for LIST routes
     if (strpos($slug, 'list') === 0) {
         if (function_exists('list_handle_slug')) {
@@ -844,7 +847,7 @@ function lupo_route_slug($slug) {
             }
         }
     }
-    
+
     // Question prefixes for TRUTH routing
     $question_prefixes = array(
         'what/',
@@ -854,7 +857,7 @@ function lupo_route_slug($slug) {
         'why/',
         'how/'
     );
-    
+
     // Redirect old question prefix routes to /qa/
     foreach ($question_prefixes as $prefix) {
         if (strpos($slug, $prefix) === 0) {
@@ -883,11 +886,9 @@ function lupo_route_slug($slug) {
             }
         }
     }
-    
+
     // Default: return empty if no route matched
     return '';
 }
 
 ?>
-
-

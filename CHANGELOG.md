@@ -10,8 +10,9 @@ flare.headers:
   actor_id: 1006
   last_modified_utc: "20260301"
   delegation_chain: "1002:10000"
+  arity: "high"
   artifact_type: "changelog"
-  purpose: "Canonical version history for Lupopedia with FLARE protocol migration documentation"
+  purpose: "Canonical version history for Lupopedia with FLARE protocol migration documentation and ANUBIS database primacy"
   dialog_message: "Version 4.0.53 initialized with Crafty Syntax upgrade boot enhancements and multi-agent session isolation."
   mood_rgb: "4169E1"
   traits: ["canonical", "comprehensive", "v4.0.53"]
@@ -62,9 +63,13 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Session Hardening**: Enforced `L<actor_id>` prefix for isolated agent sessions via `lupo-includes/functions/ai_activation.php`.
 - **System Initialization**: Standardized boot terminology to startup/initialize across several core files.
 - **Installer Automation**: Automated database migration for ANUBIS tables and implemented a **Verification Gate** in `install.php` that halts installation if queue tables are not correctly created.
+- **Actor Directory Reorganization**: Moved `actors/` to `lupo-actors/` and established `LUPO_ACTORS_DIR` constant as the canonical reference.
+- **Bin Directory Reorganization**: Moved `bin/` to `lupo-bin/` and established `LUPO_BIN_DIR` constant as the canonical reference.
+- **Sessions Directory Reorganization**: Moved `sessions/` to `lupo-sessions/` and established `LUPO_SESSIONS_DIR` constant as the canonical reference.
 - **PHP 5.3 Compatibility**: Refactored `LupoUploadHandler` and `ANUBIS_QueueProcessor` to remove short array syntax (`[]`) and modern PHP features, ensuring stability on legacy environments.
 - **Channel Directory Refactor**: Renamed the `channels` folder to `lupo-channels` and established `LUPO_CHANNEL_DIR` as the canonical reference across all system include paths.
 - **Overwrite Hierarchy Documentation**: Documented the resolution priority (Filesystem > Database > CSV/TOON) in `docs/doctrine/FLARE/FLARE_DOCTRINE.md` and created a dedicated [hierarchy.md](file:///C:/ServBay/www/servbay/lupopedia/docs/hierarchy.md) guide.
+- **Root Truth Adoption**: Implemented Filesystem-First resolution for actors via `ActorService::getActor()` and `lupo_get_actor()` helper.
 
 ### Key Changes
 
@@ -88,6 +93,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 #### Documentation & Governance
 - **Header Sanitization**: Removed redundant/duplicate headers from the database documentation index.
+- **Actor Registry Truth**: Established `lupo-actors/<id>/WHO.json` as the canonical source of truth for actor identities, with database as fallback secondary.
 - **Version Progression**: Canonical version bumped to 4.0.53 for the upgrade phase.
 
 ## [4.0.52] — IDE Crash Recovery and Channel Boot System (2026-03-01)
@@ -188,6 +194,10 @@ This document tracks version history, focusing on key changes, task migrations, 
 14. `31b24510` - FLARE: Applied LILITH review corrections to boot enhancements - lupo_tasks TOON, channel state, timestamp fixes, rollback capability
 15. `852773b9` - FLARE: Added core running check for actor AI agents - active session + Channel 0 registry validation
 16. `1f8b5f73` - FLARE: Added ANUBIS queue tables to install_new_lupopedia.sql - 4 new tables for orphaned file processing and header recovery
+17. `anubis_primacy` - gemini: Implemented database primacy for ANUBIS queue with file content storage and recovery logic
+18. `actor_reorg` - gemini: Renamed actors/ to lupo-actors/ and established Filesystem-First "Root Truth" doctrine
+19. `findpuka_fs` - gemini: Enhanced reserved ID allocation to check filesystem directories, preventing ID collisions
+20. `controller_truth` - gemini: Updated My Profile and ActorService to prioritize WHO.json over database records
 
 **Windsurf Thread Accomplishments**:
 - **Session Management**: Complete L-lupo-actor_id prefix implementation across 17 agents
@@ -197,6 +207,14 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Repository Hygiene**: FLARE header deduplication and documentation structure fixes
 - **Quality Assurance**: Applied LILITH review corrections for 9.9/10 production readiness
 - **Documentation**: Comprehensive changelog entries and implementation guides
+
+**Antigravity Thread Accomplishments**:
+- **ANUBIS Activation**: Full deployment of Custodial Intelligence (AI 19) with a database-primary queue system.
+- **Database Primacy**: Modified ANUBIS to store full file content in DB, ensuring recovery even if disk files are moved/deleted.
+- **Root Directory Reorganization**: Moved `bin/`, `actors/`, and `sessions/` to `lupo-prefix` namespaces (`lupo-bin/`, `lupo-actors/`, `lupo-sessions/`), updating global constants accordingly.
+- **Code Integrity**: Patched `session_manager.php` and `ActorService.php` to use the new prefixed path constants instead of hardcoded strings.
+- **ID Integrity**: Updated `lupo_findpuka()` to scan filesystem directories, sealing the gate against ID collisions in the registry.
+- **Legacy Stability**: Resolved PHP 5.3 compatibility issues (short array syntax) and namespace lints in core service classes.
 
 ### 📈 Metrics
 
@@ -217,6 +235,12 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Documentation**: ✅ COMPLETE - Comprehensive changelog entry
 - **Git Staging**: ✅ COMPLETE - All changes committed and staged
 - **Quality Assurance**: ✅ COMPLETE - All components validated
+
+**ANUBIS Custodial Health**:
+- **Queue Tables**: 4 tables verified by installer gate (lupo_anubis_*)
+- **Data Integrity**: LONGTEXT content storage implemented for orphans
+- **Detection Coverage**: Upload Hook + Proactive File Watcher engaged
+- **FS Status**: Real-time "On Disk" tracking in admin dashboard
 
 ### 🎯 Next Steps
 
