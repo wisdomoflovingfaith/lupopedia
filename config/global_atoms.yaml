@@ -14,12 +14,12 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.0.50"
-last_updated: 20260228
-# VERSION 4.0.50 - Development cycle initialized
+version: "4.0.53"
+last_updated: 20260301
+# VERSION 4.0.53 - Session management and channel boot system finalized
 
 # Global Version Atoms
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: 4.0.51
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: 4.0.53
 GLOBAL_FLIP_SCHEMA_VERSION: "2.0"
 
 # System Configuration Atoms

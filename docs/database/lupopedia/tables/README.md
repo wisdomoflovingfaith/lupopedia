@@ -8,85 +8,29 @@ flare.headers:
   last_modified_utc: "20260301120000"
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
-  purpose: "Documentation directory structure and TOON mapping for Lupopedia database tables"
-  dialog_message: "Clarified documentation structure - CHANNEL_SYSTEM_TLDR.md is reference guide, not table documentation"
+  purpose: "Index and overview for Lupopedia database table documentation"
+  dialog_message: "Consolidated redundant headers and merged outbound edges for canonical documentation index."
   mood_rgb: "4169E1"
-  traits: ["documentation", "structure", "v4.0.52"]
-  tags: ["documentation", "database", "tables", "toon_mapping"]
-  lupo_agent: "windsurf"
+  traits: ["canonical", "documentation", "index", "structure", "v4.0.52"]
+  tags: ["database", "schema", "documentation", "index", "tables", "toon_mapping"]
+  lupo_agent: "gemini-cli"
+  actor_id: 1006
 
 flare.edges:
   outbound_edges:
     - { to: "docs/toons/", type: "references", weight: 1.0 }
     - { to: "docs/database/lupopedia/tables/", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 0.9 }
-  semantic_tags: ["documentation", "database", "tables", "toon_mapping"]
+    - { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 0.8 }
+    - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+  semantic_tags: ["database_index", "schema_documentation", "toon_mapping"]
 
 flare.footer:
   version: "4.0.52"
   last_verified: "20260301"
-  last_verified_by: "windsurf"
+  last_verified_by: "gemini-cli"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-
----
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\README.md"
-  file_hash: "6efa3c090319077177df11150127dd8fe7e6ba7bd69023e66dc3154ba386cc2b"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Documentation for README.md"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["docs", "database", "lupopedia", "tables", "readmemd"]
-  lupo_agent: "windsurf"
-
-flare.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
----
-
----
-flare.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/README.md",
-  file_hash: "8f1fb34e808280430e8ccb0e137529dba20fa82194647b131cda1a0e41b692a5"
-  system_version: "4.0.50"
-  channel_id: 42,
-  actor_id: 1003,
-  last_modified_utc: "20260227",
-  delegation_chain: "10000:1003",
-  artifact_type: "documentation",
-  purpose: "Index and overview for Lupopedia database table documentation",
-  mood_rgb: "00FF00",
-  traits: ["canonical", "documentation", "index", "v4.0.48", "history-update"],
-  tags: ["database", "schema", "documentation", "index", "history-update"],
-  lupo_agent: "antigravity"
-}
-flare.edges: {
-  file_path_from_root: "docs\database\lupopedia\tables\README.md"
-  outbound_edges: [
-    { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 },
-    { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 1.0 }
-  ],
-  semantic_tags: ["database_index", "schema_documentation"]
-}
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-flare.footer: {
-  last_verified_utc: "20260227",
-  last_verified_by: "antigravity"
-}
----
 
 # Database Tables Documentation
 
@@ -110,6 +54,7 @@ These files provide cross-cutting documentation and references:
 - **README.md**: This file - directory overview and structure guide
 - **CHANNEL_SYSTEM_TLDR.md**: Quick reference guide for channel system operations (NOT table documentation)
 - **MIGRATION_MAPPING_REFERENCE.md**: Legacy to modern table mapping
+- **SESSION_MANAGEMENT_SYSTEM.md**: Multi-agent isolation and sync guide
 - **actor_reply_templates.md**: Actor communication templates
 
 ### 3. TOON Schema Files

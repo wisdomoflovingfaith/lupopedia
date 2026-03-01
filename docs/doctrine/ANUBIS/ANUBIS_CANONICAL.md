@@ -10,8 +10,8 @@ flare.headers:
   last_modified_utc: "20260228"
   system_version: "4.0.52"
   channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
+  actor_id: 19
+  delegation_chain: "19:10000"
   artifact_type: "doctrine"
   purpose: "Canonical ANUBIS documentation - custodial intelligence"
   mood_rgb: "4169E1"

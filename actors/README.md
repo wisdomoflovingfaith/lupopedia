@@ -3,62 +3,32 @@
 flare.headers:
   flare.version: "1.0"
   flare.schema: "documentation"
-  file_path_from_root: ".\actors\README.md"
-  file_hash: "754de0c16678e0108d3c8f006f4379699ad4b49a8da383ca7332de248c5839f9"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
+  file_path_from_root: "actors/README.md"
+  system_version: "4.0.52"
+  last_updated_utc: "20260301151500"
   channel_id: 1
-  actor_id: 1002
+  actor_id: 1006
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Lupopedia Actors Directory Overview"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  traits: ["canonical", "documentation", "structure", "v4.0.52"]
+  tags: ["actors", "readme", "session_management"]
+  lupo_agent: "gemini-cli"
 
 flare.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "actors/registry.json", type: "references", weight: 1.0 }
 
 flare.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+  version: "4.0.52"
+  last_verified: "20260301"
+  last_verified_by: "gemini-cli"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-
----
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
-  file_path_from_root: "actors\README.md"
-  file_hash: "daa7ba007579bfed39d8d805a64deb5cb7aeb65113960e797ec9df54246e1539"
-  file_path_from_root: "actors\README.md"
-  file_hash: "d348397da924097e00f77aea08fb05a256da65ba3d78c51451b2f2526feff162"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: null
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Lupopedia Actors Directory"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["actors", "readmemd"]
-  lupo_agent: "windsurf"
-
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-flare.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
----
 
 # Lupopedia Actors Directory
 
@@ -68,6 +38,7 @@ This directory contains the semantic OS actor profiles for Lupopedia. Each actor
 ## Structure
 - `<actor_id>/`: Individual actor directory.
   - `profile.json`: Core identity.
+  - `session.json`: Active session state (prevents prompt/terminal cross-contamination).
   - `config/`: System and user preferences.
   - `logs/`: Activity and error logs (NDJSON).
   - `history/`: Events and contributions.
