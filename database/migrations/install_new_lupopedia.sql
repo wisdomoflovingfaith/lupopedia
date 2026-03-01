@@ -1261,20 +1261,45 @@ CREATE TABLE lupo_channel_boot_detail (
   detail_id bigint NOT NULL,
   boot_id bigint NOT NULL,
   channel_id bigint NOT NULL,
-  load_start_time bigint,
-  load_end_time bigint,
+  detail_start_time bigint,
+  detail_end_time bigint,
   load_status varchar(64) NOT NULL DEFAULT 'started',
-  content_items_loaded int NOT NULL DEFAULT '0',
-  total_content_items int NOT NULL DEFAULT '0',
-  load_duration_ms int DEFAULT NULL,
+  content_items_loaded int NOT NULL DEFAULT 0,
+  total_content_items int NOT NULL DEFAULT 0,
+  load_duration_ms int,
   error_message text,
-  created_ymdhis bigint NOT NULL DEFAULT '0',
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (detail_id)
 );
 
 CREATE INDEX lupo_channel_boot_detail_idx_boot_channel ON lupo_channel_boot_detail (boot_id, channel_id);
-CREATE INDEX lupo_channel_boot_detail_idx_load_status_time ON lupo_channel_boot_detail (load_status, load_start_time);
+CREATE INDEX lupo_channel_boot_detail_idx_load_status_time ON lupo_channel_boot_detail (load_status, detail_start_time);
 CREATE INDEX lupo_channel_boot_detail_fk_boot_detail_channel ON lupo_channel_boot_detail (channel_id);
+
+CREATE TABLE lupo_channel_boot_lifecycle (
+  lifecycle_id bigint NOT NULL AUTO_INCREMENT,
+  channel_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  session_id varchar(64) NOT NULL,
+  lifecycle_start_time bigint NOT NULL,
+  lifecycle_end_time bigint DEFAULT NULL,
+  lifecycle_status varchar(64) NOT NULL DEFAULT 'started',
+  lifecycle_type varchar(64) NOT NULL,
+  total_channels int NOT NULL DEFAULT 0,
+  channels_processed int NOT NULL DEFAULT 0,
+  channels_successful int NOT NULL DEFAULT 0,
+  channels_failed int NOT NULL DEFAULT 0,
+  lifecycle_duration_ms int DEFAULT NULL,
+  error_details json DEFAULT NULL,
+  performance_metrics json DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (lifecycle_id)
+);
+
+CREATE INDEX lupo_channel_boot_lifecycle_fk_lifecycle_channel ON lupo_channel_boot_lifecycle (channel_id);
+CREATE INDEX lupo_channel_boot_lifecycle_idx_actor_session ON lupo_channel_boot_lifecycle (actor_id, session_id);
+CREATE INDEX lupo_channel_boot_lifecycle_idx_status_time ON lupo_channel_boot_lifecycle (lifecycle_status, lifecycle_start_time);
+CREATE INDEX lupo_channel_boot_lifecycle_idx_type_time ON lupo_channel_boot_lifecycle (lifecycle_type, lifecycle_start_time);
 
 CREATE TABLE lupo_channel_boot_log (
   boot_id bigint NOT NULL,
@@ -1287,7 +1312,7 @@ CREATE TABLE lupo_channel_boot_log (
   total_channels int NOT NULL DEFAULT '0',
   error_details json DEFAULT NULL,
   performance_metrics json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT '0',
+  created_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (boot_id)
 );
 
@@ -4231,16 +4256,16 @@ CREATE INDEX lupo_session_recovery_idx_is_deleted ON lupo_session_recovery(is_de
 -- Table: lupo_channel_content
 -- Manages federation node content and web path mapping
 CREATE TABLE lupo_channel_content (
-  content_id bigint NOT NULL AUTO_INCREMENT,
-  channel_id int NOT NULL,
-  federation_node_id int NOT NULL,
+  channel_content_id bigint NOT NULL AUTO_INCREMENT,
+  channel_id bigint NOT NULL,
+  federation_node_id bigint NOT NULL,
   file_path varchar(500) NOT NULL,
   web_path varchar(500) NOT NULL,
   metadata_json json DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT 0,
-  PRIMARY KEY (content_id)
+  PRIMARY KEY (channel_content_id)
 );
 
 -- Indexes for performance
