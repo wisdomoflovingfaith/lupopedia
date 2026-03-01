@@ -58,6 +58,40 @@ class SessionManager {
     }
     
     /**
+     * Generate prefixed session ID
+     * 
+     * @param int $actorId Actor ID
+     * @return string Prefixed session ID
+     */
+    private function generateSessionId($actorId) {
+        $prefix = "L-lupo-" . $actorId;
+        $uuid = $this->generateUUID();
+        return $prefix . "-" . $uuid;
+    }
+    
+    /**
+     * Generate UUID v4
+     * 
+     * @return string UUID
+     */
+    private function generateUUID() {
+        // PHP 5.3+ compatible UUID generation
+        if (function_exists('com_create_guid')) {
+            return trim(com_create_guid(), '{}');
+        }
+        
+        // Fallback for PHP without com_create_guid
+        return sprintf(
+            '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+            mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0x0fff) | 0x4000,
+            mt_rand(0, 0x3fff) | 0x8000,
+            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+        );
+    }
+    
+    /**
      * Sync individual actor session to database
      * 
      * @param int $actorId Actor ID
@@ -80,10 +114,21 @@ class SessionManager {
                 }
             }
             
+            // Ensure session ID has proper prefix
+            $sessionId = $sessionData['current_session_id'];
+            if (strpos($sessionId, 'L-lupo-') !== 0) {
+                // Migrate existing session to prefixed format
+                $sessionId = $this->generateSessionId($sessionData['actor_id']);
+                
+                // Update local session.json file
+                $sessionData['current_session_id'] = $sessionId;
+                file_put_contents($sessionFile, json_encode($sessionData, JSON_PRETTY_PRINT));
+            }
+            
             // Map session.json to lupo_sessions structure
             $now = gmdate('YmdHis');
             $params = [
-                'session_id' => $sessionData['current_session_id'],
+                'session_id' => $sessionId, // Use prefixed session ID
                 'federation_node_id' => (int)$sessionData['node_id'],
                 'actor_id' => (int)$sessionData['actor_id'],
                 'channel_id' => 0, // System channel for IDE agents
@@ -102,16 +147,18 @@ class SessionManager {
                 'is_revoked' => 0,
                 'session_data' => json_encode([
                     'actor_slug' => $sessionData['actor_slug'] ?? '',
-                    'current_session_id' => $sessionData['current_session_id'],
+                    'current_session_id' => $sessionId, // Use prefixed session ID
                     'last_active_ymdhis' => $sessionData['last_active_ymdhis'],
                     'node_id' => $sessionData['node_id'],
-                    'system_version' => $sessionData['system_version']
+                    'system_version' => $sessionData['system_version'],
+                    'session_prefix' => 'L-lupo-' . $sessionData['actor_id']
                 ]),
                 'system_context' => 'ide_agent',
                 'metadata' => json_encode([
                     'system_version' => $sessionData['system_version'],
                     'actor_type' => 'ide_agent',
-                    'sync_source' => 'session_json'
+                    'sync_source' => 'session_json',
+                    'session_prefix' => 'L-lupo-' . $sessionData['actor_id']
                 ]),
                 'login_ymdhis' => $sessionData['last_active_ymdhis'],
                 'last_seen_ymdhis' => (int)$sessionData['last_active_ymdhis'],
@@ -128,6 +175,36 @@ class SessionManager {
         } catch (Exception $e) {
             return ['success' => false, 'error' => $e->getMessage()];
         }
+    }
+    
+    /**
+     * Migrate existing sessions to prefixed format
+     * 
+     * @return int Number of sessions migrated
+     */
+    public function migrateExistingSessions() {
+        $sql = "UPDATE lupo_sessions 
+                 SET session_id = CONCAT('L-lupo-', actor_id, '-', session_id),
+                     metadata = JSON_SET(
+                         JSON_SET(metadata, '$.session_prefix', CONCAT('L-lupo-', actor_id)),
+                         '$.migrated', '20260301'
+                     )
+                 WHERE session_id NOT LIKE 'L-lupo-%' 
+                   AND is_deleted = 0";
+        
+        $this->db->execute($sql);
+        $migrated = $this->db->rowCount();
+        
+        // Log migration
+        if ($migrated > 0) {
+            $logSql = "INSERT INTO lupo_channel_logs 
+                (channel_id, actor_id, log_type_id, log_text, created_ymdhis) 
+                VALUES (0, 1002, 1, 'Migrated $migrated sessions to L-lupo- prefix format', :created_ymdhis)";
+            
+            $this->db->execute($logSql, ['created_ymdhis' => gmdate('YmdHis')]);
+        }
+        
+        return $migrated;
     }
     
     /**
@@ -346,6 +423,12 @@ if (php_sapi_name() === 'cli') {
             }
             break;
             
+        case 'migrate':
+            echo "🔄 Migrating existing sessions to L-lupo- prefix format...\n";
+            $migrated = $sessionManager->migrateExistingSessions();
+            echo "✅ Migrated: $migrated sessions\n";
+            break;
+            
         case 'active':
             echo "📊 Active sessions:\n";
             $activeSessions = $sessionManager->getActiveSessions();
@@ -353,7 +436,9 @@ if (php_sapi_name() === 'cli') {
             foreach ($activeSessions as $session) {
                 $metadata = json_decode($session['metadata'], true) ?: [];
                 $actorType = $metadata['actor_type'] ?? 'unknown';
+                $prefix = $metadata['session_prefix'] ?? 'none';
                 echo "  Actor {$session['actor_id']} ({$actorType}): {$session['session_id']}\n";
+                echo "    Prefix: $prefix\n";
                 echo "    Last seen: {$session['last_seen_ymdhis']}\n";
                 echo "    Node: {$session['federation_node_id']}\n\n";
             }
@@ -404,6 +489,7 @@ if (php_sapi_name() === 'cli') {
         default:
             echo "Usage:\n";
             echo "  php session_manager.php sync      - Sync all actor sessions\n";
+            echo "  php session_manager.php migrate   - Migrate existing sessions to L-lupo- prefix\n";
             echo "  php session_manager.php active    - Show active sessions\n";
             echo "  php session_manager.php cleanup   - Clean up expired sessions\n";
             echo "  php session_manager.php stats     - Show session statistics\n";
