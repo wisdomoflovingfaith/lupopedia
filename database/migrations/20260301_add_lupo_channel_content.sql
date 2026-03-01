@@ -32,9 +32,9 @@ VALUES
 (
   42,
   0,
-  'channels/42/content/federation_node_id/0/flare/readme.md',
-  'http://www.lupopedia.com/flare/readme',
-  JSON_OBJECT('description', 'FLARE README for federation node 0'),
+  'channels/42/content/federation_node_id/0/readme.md',
+  'http://www.lupopedia.com/readme',
+  JSON_OBJECT('description', 'Federation node 0 README with comprehensive Lupopedia overview and FLARE integration'),
   20260301120000,
   20260301120000,
   0

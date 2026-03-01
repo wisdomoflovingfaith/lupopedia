@@ -6,152 +6,265 @@ flare.headers:
   file_path_from_root: "channels/42/content/federation_node_id/0/readme.md"
   file_hash: "to_be_generated"
   federation_node_id: 0
-  web_path: "http://www.lupopedia.com/README"
+  web_path: "http://www.lupopedia.com/readme"
   last_updated_utc: "20260301"
   system_version: "4.0.52"
   channel_id: 42
   actor_id: 1002
   delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  purpose: "FLARE README for federation node 0"
+  artifact_type: "guide"
+  purpose: "Federation node 0 README with comprehensive Lupopedia overview and FLARE integration"
+  dialog_message: "Canonical README for federation node 0 combining project overview, FLARE protocol, and federation infrastructure"
   mood_rgb: "4169E1"
   traits: ["canonical", "federation", "v4.0.52"]
-  tags: ["flare", "federation", "readme", "node_0", "canonical"]
+  tags: ["readme", "overview", "architecture", "multi_agent", "semantic_os", "flare_protocol", "federation", "node_0"]
 
 flare.edges:
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
-    - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.9 }
-    - { to: "actors/registry.json", type: "references", weight: 0.8 }
-    - { to: "database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
-    - { to: "docs/database/lupopedia/tables/lupo_channel_content.md", type: "references", weight: 0.7 }
     - { to: "README.md", type: "references", weight: 1.0 }
+    - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
+    - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
+    - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.9 }
+    - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "docs/architecture/FEDERATION_AND_REGISTRY.md", type: "references", weight: 0.9 }
+    - { to: "docs/architecture/ANUBIS_ADOPTION_PIPELINE.md", type: "references", weight: 0.9 }
+    - { to: "docs/toons/", type: "references", weight: 0.8 }
+    - { to: "tools/vsx-extension/", type: "references", weight: 0.8 }
+    - { to: "database/migrations/", type: "references", weight: 0.8 }
+    - { to: "legacy/craftysyntax/", type: "references", weight: 0.5 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.7 }
+    - { to: "lupopedia-config.php", type: "references", weight: 0.6 }
+    - { to: "index.php", type: "references", weight: 0.6 }
     - { to: "channels/42/content/federation_node_id/0/FLARE.md", type: "references", weight: 1.0 }
     - { to: "channels/42/content/federation_node_id/0/changelog.md", type: "references", weight: 0.9 }
-  semantic_tags: ["flare", "federation", "readme", "canonical", "protocol"]
+    - { to: "channels/42/content/federation_node_id/0/flare/readme.md", type: "references", weight: 0.8 }
+    - { to: "docs/database/lupopedia/tables/lupo_channel_content.md", type: "references", weight: 0.7 }
+  semantic_tags: ["project_overview", "architecture", "multi_agent_ecosystem", "semantic_os", "crafty_syntax_upgrade", "flare_protocol", "federation", "canonical"]
 
 flare.footer:
   last_verified: "20260301"
   last_verified_by: "windsurf"
 ---
 
-# FLARE README for Federation Node 0
+🐺 Lupopedia 4.0.52 — Semantic OS on Crafty Syntax
 
-## Overview
+Status: Active Development
+Foundation: Crafty Syntax 3.7.5 (preserved exactly)
+Layer Added: Multi-agent Semantic Operating System
 
-This document serves as the README for federation node 0, providing an introduction to the FLARE federation infrastructure and its capabilities.
+Start Here:
+QUICKSTART.md
+ •
+HOW_TO_USE_LUPOPEDIA.md
+ •
+Doctrine Index
+ •
+VSX Extension
 
-## What is FLARE?
+1️⃣ What Lupopedia Is
 
-FLARE (Federated Learning and Relationship Exchange) is a protocol for file-level attribute and relationship exchange within the Lupopedia Semantic OS. It provides comprehensive metadata management, semantic enrichment, and federation capabilities.
+Lupopedia preserves Crafty Syntax 3.7.5 exactly (operators, departments, transcripts, live chat) and adds a semantic OS layer:
 
-## Federation Node 0
+Actors (unified identity system)
 
-Federation node 0 serves as the canonical root for the FLARE federation system:
+Channels (governance + coordination)
 
-- **Node ID**: 0
-- **Web Path**: `http://www.lupopedia.com/FLARE`
-- **Purpose**: Root FLARE definition and federation infrastructure
-- **Status**: ✅ ACTIVE AND CANONICAL
+Threads (persistent markdown dialogs)
 
-## Key Components
+Meaning edges (semantic relationships)
 
-### Core Files
-- **FLARE Definition**: `channels/42/content/federation_node_id/0/FLARE.md`
-- **Changelog**: `channels/42/content/federation_node_id/0/changelog.md`
-- **README**: `channels/42/content/federation_node_id/0/readme.md` (this file)
+FLARE metadata (file-level intelligence)
 
-### Database Integration
-- **Table**: `lupo_channel_content`
-- **Purpose**: Federation node content management
-- **Features**: Web path mapping, metadata storage, soft deletes
+Federation + global identity registry
 
-### Web Resolution
-- **FLARE Documentation**: `http://www.lupopedia.com/FLARE`
-- **Changelog**: `http://www.lupopedia.com/changelog`
-- **README**: `http://www.lupopedia.com/README`
+Crafty Syntax becomes the heart.
+Lupopedia becomes the brain.
 
-## Getting Started
+2️⃣ System Requirements
 
-### Prerequisites
-- Lupopedia v4.0.52 or later
-- MySQL 5.7+ or MariaDB 10.5+
-- Proper FLARE header compliance
+PHP 5.3+
 
-### Installation
-1. Run the migration: `database/migrations/20260301_add_lupo_channel_content.sql`
-2. Verify federation node 0 entries in `lupo_channel_content`
-3. Test web path resolution
+MySQL compatible
 
-### Usage
-1. Reference FLARE documentation: `http://www.lupopedia.com/FLARE`
-2. Check changelog for updates: `http://www.lupopedia.com/changelog`
-3. Use README for guidance: `http://www.lupopedia.com/README`
+Subdirectory installation required
 
-## Federation Architecture
+UTC integer timestamps (YYYYMMDDHHIISS)
 
-### Node Structure
-```
-channels/42/content/federation_node_id/0/
-├── FLARE.md      # Canonical FLARE definition
-├── changelog.md  # Federation node changelog
-└── readme.md     # This README file
-```
+Doctrine enforcement:
+docs/doctrine/
 
-### Web Path Mapping
-| Repository Path | Web URL | Purpose |
-|-----------------|---------|---------|
-| `channels/42/content/federation_node_id/0/FLARE.md` | `http://www.lupopedia.com/FLARE` | FLARE documentation |
-| `channels/42/content/federation_node_id/0/changelog.md` | `http://www.lupopedia.com/changelog` | Changelog |
-| `channels/42/content/federation_node_id/0/readme.md` | `http://www.lupopedia.com/README` | README |
+3️⃣ Installation & Setup
+Web Install / Upgrade
 
-## Technical Specifications
+Install in subdirectory:
 
-### Database Schema
-```sql
-CREATE TABLE lupo_channel_content (
-  channel_content_id bigint NOT NULL AUTO_INCREMENT,
-  channel_id bigint NOT NULL,
-  federation_node_id bigint NOT NULL,
-  file_path varchar(500) NOT NULL,
-  web_path varchar(500) NOT NULL,
-  metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  PRIMARY KEY (channel_content_id)
-);
-```
+/lupopedia/
 
-### FLARE Header Requirements
-- `flare.version`: "1.0"
-- `flare.schema`: "documentation"
-- `federation_node_id`: Node identifier
-- `web_path`: Canonical web URL
-- `file_path_from_root`: Repository path
+Visit:
 
-## References
+https://localhost/lupopedia/install.php
 
-- **FLARE Doctrine**: `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
-- **Complete Reference**: `docs/FLARE_HEADERS_COMPLETE_REFERENCE.md`
-- **API Documentation**: `docs/api/FLARE_API.md`
-- **Table Documentation**: `docs/database/lupopedia/tables/lupo_channel_content.md`
-- **Template System**: `tools/flare_header_template.txt`
-- **Main README**: `README.md`
+For Crafty 3.7.5 → Lupopedia upgrade:
 
-## Support
+Load baseline tables
 
-For questions or issues with FLARE federation infrastructure:
+Run installer
 
-1. Check the canonical FLARE documentation
-2. Review the changelog for recent changes
-3. Consult the main repository README
-4. Reference the table documentation for database details
+Validate using migration mapping reference
 
----
+Reference:
+docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md
 
-**Last Updated**: 20260301  
-**Lead Agent**: Windsurf (1002)  
-**Version**: 4.0.52  
-**Status**: ✅ CANONICAL
+CLI Usage
+cd /path/to/lupopedia
+
+php bin/lupo.php register "My IDE Agent" system_tool
+php bin/lupo.php whoami
+php bin/lupo.php join 42
+php bin/lupo.php send 42 "Hello from CLI"
+php bin/lupo.php messages 42
+4️⃣ Core Concepts
+Actor Model (Non-Negotiable)
+
+actor_id everywhere
+
+No user_id in relationships
+
+Humans, IDE agents, AI assistants unified
+
+Requires proper database seeding before access
+
+Reference:
+docs/AGENT_INVENTORY.md
+
+Channels & Threads
+
+Offline governance system stored in:
+
+channels/{id}/threads/
+
+Enables:
+
+Multi-agent coordination
+
+Persistent decision history
+
+Migration-safe collaboration
+
+FLARE Protocol
+
+FLARE = file-level metadata intelligence system.
+
+Headers → attributes
+
+Edges → relationships
+
+Footer → verification
+
+Legacy aliases: Wolfie / FLIP / FLP / CROP
+Canonical doctrine:
+docs/doctrine/FLARE/FLARE_DOCTRINE.md
+
+TOON Schema Authority
+docs/toons/*.toon.json
+
+These files are the only source of truth for schema structure.
+
+No schema change without TOON update.
+
+5️⃣ VSX Extension
+
+IDE integration for:
+
+Actor identity sync
+
+Channel communication
+
+Semantic graph inspection
+
+Hybrid / Offline / DB-Online modes
+
+Location:
+tools/vsx-extension/
+
+6️⃣ Federation & Global Registry
+
+All installations share unified ID spaces:
+
+Actors
+
+Channels
+
+Collections
+
+Managed by:
+
+Federation registry
+
+ANUBIS adoption pipeline
+
+References:
+
+docs/architecture/FEDERATION_AND_REGISTRY.md
+
+docs/architecture/ANUBIS_ADOPTION_PIPELINE.md
+
+7️⃣ Repository Map
+Path	Purpose
+install.php	Install / upgrade wizard
+database/migrations/	Schema + seeds + Crafty import
+docs/doctrine/	Development doctrine
+docs/toons/	Schema source of truth
+docs/database/lupopedia/tables/	Table documentation
+channels/	Governance + coordination
+legacy/craftysyntax/	Read-only legacy reference
+tools/vsx-extension/	VS Code extension
+bin/lupo.php	CLI interface
+8️⃣ FILEOPT Progress
+
+FILEOPT-2026-02-27-001 — COMPLETE
+
+138+ files processed
+
+~18% reduction
+
+6 structured commits
+
+Improved organization and discoverability
+
+Stable base for v4.1.0
+
+9️⃣ Federation Node 0 Integration
+
+This README is part of federation node 0, providing:
+
+Canonical web resolution: http://www.lupopedia.com/readme
+
+FLARE protocol compliance with federation metadata
+
+Integration with lupo_channel_content table
+
+Web path mapping for federation infrastructure
+
+🔟 Contribution
+
+See:
+
+CODE_OF_CONDUCT.md
+
+CONTRIBUTING.md
+
+docs/doctrine/VERSION_POLICY_DOCTRINE.md
+
+🔟 Canonical Status
+
+System Version: 4.0.52
+Lead Agent: Windsurf (1002)
+Last Updated: 20260301
+FLARE Compliance: Mandatory post-v4.0.51
+Federation Node: 0 (Canonical)
+Web Path: http://www.lupopedia.com/readme

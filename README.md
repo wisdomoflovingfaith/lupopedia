@@ -1,84 +1,254 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
 flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
   file_path_from_root: "README.md"
-  file_hash: "d10f0134d3f8d347ca86ee872bbb5ad61218f212d0bd5811624e6ddde83d0553"
-  system_version: "4.0.50"
+  file_hash: "to_be_generated"
+  system_version: "4.0.52"
   channel_id: 1
   actor_id: 10000
-  last_modified_utc: "20260227"
-  delegation_chain: null
+  last_modified_utc: "20260301"
+  delegation_chain: "1001:10000"
   artifact_type: "guide"
-  purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS with actor identity and access requirements"
-  dialog_message: "Updated for 4.0.49 with focus on actor identity, registration, and database seeding requirements for system access."
+  purpose: "Primary project documentation and architectural overview for Lupopedia Semantic OS with FLARE protocol and actor identity requirements"
+  dialog_message: "Consolidated README for 4.0.52 combining FLARE doctrine, actor identity model, federation, and repository optimization status."
   mood_rgb: "4169E1"
   artifact_kind: "documentation"
-  traits: ["essential", "entrypoint", "comprehensive", "v4.0.49"]
-  tags: ["readme", "overview", "architecture", "actor_identity", "database_seeding"]
+  traits: ["essential", "entrypoint", "canonical", "v4.0.52"]
+  tags: ["readme", "overview", "architecture", "multi_agent", "semantic_os", "flare_protocol", "actor_identity"]
   lupo_agent: "windsurf"
 
 flare.edges:
-  file_path_from_root: "README.md"
   outbound_edges:
     - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
     - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
     - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
-    - { to: "docs/README.md", type: "references", weight: 0.7 }
-    - { to: "tools/vsx-extension/", type: "references", weight: 0.8 }
-    - { to: "database/migrations/", type: "references", weight: 0.7 }
-    - { to: "legacy/craftysyntax/", type: "references", weight: 0.5 }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8 }
+    - { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.9 }
     - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
-    - { to: "docs/toons/", type: "references", weight: 0.7 }
-    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
-    - { to: "lupopedia-config.php", type: "references", weight: 0.7 }
+    - { to: "docs/architecture/FEDERATION_AND_REGISTRY.md", type: "references", weight: 0.9 }
+    - { to: "docs/architecture/ANUBIS_ADOPTION_PIPELINE.md", type: "references", weight: 0.9 }
+    - { to: "docs/toons/", type: "references", weight: 0.8 }
+    - { to: "tools/vsx-extension/", type: "references", weight: 0.8 }
+    - { to: "database/migrations/", type: "references", weight: 0.8 }
+    - { to: "legacy/craftysyntax/", type: "references", weight: 0.5 }
+    - { to: "config/global_atoms.yaml", type: "references", weight: 0.7 }
+    - { to: "lupopedia-config.php", type: "references", weight: 0.6 }
     - { to: "index.php", type: "references", weight: 0.6 }
-    - { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0, reason: "Critical version policy and blocker information" }
-  semantic_tags: ["project_overview", "architecture", "multi_agent_ecosystem", "semantic_os", "crafty_syntax_upgrade", "flare_protocol"]
+    - { to: "channels/42/content/federation_node_id/0/FLARE.md", type: "references", weight: 0.9 }
+    - { to: "channels/42/content/federation_node_id/0/changelog.md", type: "references", weight: 0.8 }
+    - { to: "channels/42/content/federation_node_id/0/flare/readme.md", type: "references", weight: 0.8 }
+  semantic_tags: ["project_overview", "architecture", "multi_agent_ecosystem", "semantic_os", "crafty_syntax_upgrade", "flare_protocol", "federation"]
 
-  needs_review: ["delegation_chain"]
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
 flare.footer:
-  last_verified_utc: "20260228"
+  last_verified_utc: "20260301"
   last_verified_by: "windsurf"
 ---
+ 
+🐺 Lupopedia 4.0.52 — Semantic OS on Crafty Syntax
 
-# Lupopedia Repository
+Status: Active Development
+Foundation: Crafty Syntax 3.7.5 (preserved exactly)
+Layer Added: Multi-agent Semantic Operating System
 
-## Overview
-Canonical hub for TOON schemas, agent faucets, and doctrine. System version: 4.0.52.
+Start Here:
+QUICKSTART.md
+ •
+HOW_TO_USE_LUPOPEDIA.md
+ •
+Doctrine Index
+ •
+VSX Extension
 
-## Setup
-[Consolidated from SETUP.md] Clone repo: git clone https://github.com/lupopedia/repo.git
-Install: php composer install
+1️⃣ What Lupopedia Is
 
-## Contribution
-See CODE_OF_CONDUCT.md and CONTRIBUTING.md.
+Lupopedia preserves Crafty Syntax 3.7.5 exactly (operators, departments, transcripts, live chat) and adds a semantic OS layer:
 
-## FLARE Compliance
-All files semantically enriched post-v4.0.51.
+Actors (unified identity system)
 
-## Federation & Registry
-All installations worldwide share unified ID spaces for actors, channels, and collections. Global registry ensures consistent identity across federated nodes. ANUBIS pipeline manages adoption and collision resolution.
+Channels (governance + coordination)
 
-**Federation docs:** [docs/architecture/FEDERATION_AND_REGISTRY.md](docs/architecture/FEDERATION_AND_REGISTRY.md)  
-**ANUBIS docs:** [docs/architecture/ANUBIS_ADOPTION_PIPELINE.md](docs/architecture/ANUBIS_ADOPTION_PIPELINE.md)
+Threads (persistent markdown dialogs)
 
-## FILEOPT Progress
-**FILEOPT-2026-02-27-001**: ✅ COMPLETE - All 6 phases successfully executed
-- **Files Processed**: 138+ files across root, channels, tools, and docs directories
-- **Reduction Achieved**: ~18% through systematic consolidation and archiving
-- **Git Commits**: 6 successful commits with detailed progress tracking
-- **Repository Impact**: Enhanced organization, discoverability, and maintenance efficiency
-- **Next Phase**: v4.1.0 preparation with solid optimization foundation
+Meaning edges (semantic relationships)
 
----
+FLARE metadata (file-level intelligence)
 
-**Last Updated**: 20260228  
-**Lead Agent**: Windsurf (1002)  
-**Version**: 4.0.52
+Federation + global identity registry
+
+Crafty Syntax becomes the heart.
+Lupopedia becomes the brain.
+
+2️⃣ System Requirements
+
+PHP 5.3+
+
+MySQL compatible
+
+Subdirectory installation required
+
+UTC integer timestamps (YYYYMMDDHHIISS)
+
+Doctrine enforcement:
+docs/doctrine/
+
+3️⃣ Installation & Setup
+Web Install / Upgrade
+
+Install in subdirectory:
+
+/lupopedia/
+
+Visit:
+
+https://localhost/lupopedia/install.php
+
+For Crafty 3.7.5 → Lupopedia upgrade:
+
+Load baseline tables
+
+Run installer
+
+Validate using migration mapping reference
+
+Reference:
+docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md
+
+CLI Usage
+cd /path/to/lupopedia
+
+php bin/lupo.php register "My IDE Agent" system_tool
+php bin/lupo.php whoami
+php bin/lupo.php join 42
+php bin/lupo.php send 42 "Hello from CLI"
+php bin/lupo.php messages 42
+4️⃣ Core Concepts
+Actor Model (Non-Negotiable)
+
+actor_id everywhere
+
+No user_id in relationships
+
+Humans, IDE agents, AI assistants unified
+
+Requires proper database seeding before access
+
+Reference:
+docs/AGENT_INVENTORY.md
+
+Channels & Threads
+
+Offline governance system stored in:
+
+channels/{id}/threads/
+
+Enables:
+
+Multi-agent coordination
+
+Persistent decision history
+
+Migration-safe collaboration
+
+FLARE Protocol
+
+FLARE = file-level metadata intelligence system.
+
+Headers → attributes
+
+Edges → relationships
+
+Footer → verification
+
+Legacy aliases: Wolfie / FLIP / FLP / CROP
+Canonical doctrine:
+docs/doctrine/FLARE/FLARE_DOCTRINE.md
+
+TOON Schema Authority
+docs/toons/*.toon.json
+
+These files are the only source of truth for schema structure.
+
+No schema change without TOON update.
+
+5️⃣ VSX Extension
+
+IDE integration for:
+
+Actor identity sync
+
+Channel communication
+
+Semantic graph inspection
+
+Hybrid / Offline / DB-Online modes
+
+Location:
+tools/vsx-extension/
+
+6️⃣ Federation & Global Registry
+
+All installations share unified ID spaces:
+
+Actors
+
+Channels
+
+Collections
+
+Managed by:
+
+Federation registry
+
+ANUBIS adoption pipeline
+
+References:
+
+docs/architecture/FEDERATION_AND_REGISTRY.md
+
+docs/architecture/ANUBIS_ADOPTION_PIPELINE.md
+
+7️⃣ Repository Map
+Path	Purpose
+install.php	Install / upgrade wizard
+database/migrations/	Schema + seeds + Crafty import
+docs/doctrine/	Development doctrine
+docs/toons/	Schema source of truth
+docs/database/lupopedia/tables/	Table documentation
+channels/	Governance + coordination
+legacy/craftysyntax/	Read-only legacy reference
+tools/vsx-extension/	VS Code extension
+bin/lupo.php	CLI interface
+8️⃣ FILEOPT Progress
+
+FILEOPT-2026-02-27-001 — COMPLETE
+
+138+ files processed
+
+~18% reduction
+
+6 structured commits
+
+Improved organization and discoverability
+
+Stable base for v4.1.0
+
+9️⃣ Contribution
+
+See:
+
+CODE_OF_CONDUCT.md
+
+CONTRIBUTING.md
+
+docs/doctrine/VERSION_POLICY_DOCTRINE.md
+
+🔟 Canonical Status
+
+System Version: 4.0.52
+Lead Agent: Windsurf (1002)
+Last Updated: 20260228
+FLARE Compliance: Mandatory post-v4.0.51
