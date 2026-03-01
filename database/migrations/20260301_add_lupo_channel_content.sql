@@ -32,9 +32,9 @@ VALUES
 (
   42,
   0,
-  'channels/42/content/federation_node_id/0/FLARE.md',
-  'http://www.lupopedia.com/FLARE',
-  JSON_OBJECT('description', 'Root FLARE definition for federation node 0'),
+  'channels/42/content/federation_node_id/0/changelog.md',
+  'http://www.lupopedia.com/changelog',
+  JSON_OBJECT('description', 'FLARE changelog for federation node 0'),
   20260301120000,
   20260301120000,
   0
