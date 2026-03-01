@@ -131,7 +131,7 @@ require_once LUPOPEDIA_CONFIG_PATH;
  */
 $slug = '';
 
-// Method 0: 4.0.18 T5 — Server rewrite passed full path (doctrine/qa/docs/flp)
+// Method 0: 4.0.18 T5 — Server rewrite passed full path (doctrine/qa/lupo-docs/flp)
 if (isset($_GET['resolved_uri']) && $_GET['resolved_uri'] !== '') {
     $slug = is_string($_GET['resolved_uri']) ? trim($_GET['resolved_uri'], '/') : '';
 }

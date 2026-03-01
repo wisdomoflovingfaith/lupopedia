@@ -1,0 +1,27 @@
+{
+  "table_name": "lupo_emotional_stars",
+  "fields": [
+    "`star_id` char(26) NOT NULL",
+    "`experience_hash` char(64)",
+    "`experience_text` text NOT NULL",
+    "`cultural_context` json",
+    "`embodied_sensation` json",
+    "`created_by` bigint",
+    "`created_in_context` bigint",
+    "`first_observed_ymdhis` bigint",
+    "`observation_count` int NOT NULL DEFAULT 1"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "star_id",
+    "expected_name": "star_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

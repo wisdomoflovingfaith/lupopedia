@@ -1,0 +1,108 @@
+{
+  "table_name": "lupo_collections",
+  "fields": [
+    "`collection_id` bigint NOT NULL auto_increment",
+    "`federations_node_id` bigint NOT NULL",
+    "`actor_id` bigint",
+    "`department_id` bigint",
+    "`name` varchar(255) NOT NULL",
+    "`slug` varchar(100) NOT NULL",
+    "`color` char(6) DEFAULT '666666'",
+    "`description` text",
+    "`sort_order` int DEFAULT 0",
+    "`properties` text",
+    "`published_ymdhis` bigint",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`parent_id` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_collections_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_collections_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_collections_idx_department",
+      "columns": [
+        "department_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_collections_idx_domain",
+      "columns": [
+        "federations_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_collections_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_collections_idx_name",
+      "columns": [
+        "name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_collections_idx_sort_order",
+      "columns": [
+        "sort_order"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_collections_idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_collections_unique_collection_slug_domain",
+      "columns": [
+        "federations_node_id",
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "collection_id",
+    "expected_name": "collection_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

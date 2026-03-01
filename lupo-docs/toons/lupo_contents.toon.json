@@ -1,0 +1,218 @@
+{
+  "table_name": "lupo_contents",
+  "fields": [
+    "`content_id` bigint NOT NULL",
+    "`content_parent_id` bigint",
+    "`federation_node_id` bigint DEFAULT 1",
+    "`department_id` bigint",
+    "`actor_id` bigint",
+    "`title` varchar(255) NOT NULL",
+    "`slug` varchar(255) NOT NULL",
+    "`custom_path` varchar(255)",
+    "`description` text",
+    "`seo_keywords` varchar(500)",
+    "`body` text",
+    "`content` text",
+    "`content_type` varchar(50) DEFAULT 'article'",
+    "`format` varchar(20) DEFAULT 'markdown'",
+    "`content_url` varchar(2000)",
+    "`default_collection_id` bigint",
+    "`source_url` varchar(2000)",
+    "`source_title` varchar(500)",
+    "`is_template` tinyint NOT NULL DEFAULT 0",
+    "`status` varchar(64) DEFAULT 'draft'",
+    "`visibility` varchar(64) DEFAULT 'public'",
+    "`view_count` int DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`utc_cycle` varchar(64) NOT NULL",
+    "`triage_status` varchar(64) NOT NULL DEFAULT 'untriaged'",
+    "`triage_notes` text",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`deleted_ymdhis` bigint",
+    "`content_sections` json",
+    "`version_number` int NOT NULL DEFAULT 1",
+    "`file_path_from_root` varchar(500) COMMENT 'FLIP Header: path from repo root (4.0.13)'",
+    "`file_last_modified_system_version` varchar(20) COMMENT 'FLIP: system version at last file edit'",
+    "`file_last_modified_utc` bigint COMMENT 'FLIP: UTC last modified YYYYMMDDHHIISS'",
+    "`tags` json",
+    "`dialog_notes` text",
+    "`atom_mappings` json COMMENT 'Consolidated from lupo_content_atom_map'",
+    "`category_mappings` json COMMENT 'Consolidated from lupo_content_category_map'",
+    "`like_count` bigint NOT NULL DEFAULT 0",
+    "`share_count` bigint NOT NULL DEFAULT 0",
+    "`comment_count` bigint NOT NULL DEFAULT 0",
+    "`content_events` json COMMENT 'Consolidated from lupo_content_events'",
+    "`hashtags` json COMMENT 'Consolidated from lupo_content_hashtag'",
+    "`inbound_links` json COMMENT 'Consolidated from lupo_content_inbound_links'",
+    "`like_users` json COMMENT 'Consolidated from lupo_content_likes'",
+    "`media_attachments` json COMMENT 'Consolidated from lupo_content_media'",
+    "`question_mappings` json COMMENT 'Consolidated from lupo_content_question_map'",
+    "`content_references` json COMMENT 'Consolidated from lupo_content_references'",
+    "`revision_history` json COMMENT 'Consolidated from lupo_content_revisions'",
+    "`share_users` json COMMENT 'Consolidated from lupo_content_shares'",
+    "`tag_relationships` json COMMENT 'Consolidated from lupo_content_tag_relationships'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_contents_idx_content_parent",
+      "columns": [
+        "content_parent_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_content_type",
+      "columns": [
+        "content_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_custom_path",
+      "columns": [
+        "custom_path"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_department",
+      "columns": [
+        "department_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_domain",
+      "columns": [
+        "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_engagement_counts",
+      "columns": [
+        "like_count",
+        "share_count",
+        "comment_count"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_file_path_from_root",
+      "columns": [
+        "file_path_from_root"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_has_events",
+      "columns": [
+        null
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_has_hashtags",
+      "columns": [
+        null
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_has_media",
+      "columns": [
+        null
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_user",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_visibility",
+      "columns": [
+        "visibility"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_unique_content_slug_domain",
+      "columns": [
+        "federation_node_id",
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "content_id",
+    "expected_name": "content_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

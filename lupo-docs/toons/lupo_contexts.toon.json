@@ -1,0 +1,49 @@
+{
+  "table_name": "lupo_contexts",
+  "fields": [
+    "`context_id` int NOT NULL",
+    "`context_code` varchar(16) NOT NULL",
+    "`context_name` varchar(255) NOT NULL",
+    "`context_description` text",
+    "`parent_context_id` int",
+    "`is_system` tinyint NOT NULL DEFAULT 0",
+    "`is_fiction` tinyint NOT NULL DEFAULT 0",
+    "`is_installation_local` tinyint NOT NULL DEFAULT 0",
+    "`sort_order` int NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`weight_score` decimal(5,2) NOT NULL DEFAULT 0.00",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`metadata_json` json"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_contexts_idx_parent_context",
+      "columns": [
+        "parent_context_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contexts_uq_context_code",
+      "columns": [
+        "context_code"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "context_id",
+    "expected_name": "context_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,51 @@
+{
+  "table_name": "lupo_task_statuses",
+  "fields": [
+    "`status_id` bigint NOT NULL",
+    "`status_key` varchar(64) NOT NULL",
+    "`status_name` varchar(255) NOT NULL",
+    "`description` text",
+    "`is_terminal` tinyint NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_task_statuses_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_task_statuses_idx_is_terminal",
+      "columns": [
+        "is_terminal"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_task_statuses_uniq_status_key",
+      "columns": [
+        "status_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "status_id",
+    "expected_name": "status_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

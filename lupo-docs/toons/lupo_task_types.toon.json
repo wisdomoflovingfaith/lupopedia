@@ -1,0 +1,42 @@
+{
+  "table_name": "lupo_task_types",
+  "fields": [
+    "`type_id` bigint NOT NULL",
+    "`type_key` varchar(64) NOT NULL",
+    "`type_name` varchar(255) NOT NULL",
+    "`description` text",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_task_types_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_task_types_uniq_type_key",
+      "columns": [
+        "type_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "type_id",
+    "expected_name": "type_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

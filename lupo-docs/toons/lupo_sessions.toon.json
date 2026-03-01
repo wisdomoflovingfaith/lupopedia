@@ -1,0 +1,151 @@
+{
+  "table_name": "lupo_sessions",
+  "fields": [
+    "`session_id` varchar(255) NOT NULL",
+    "`federation_node_id` bigint NOT NULL DEFAULT 1",
+    "`actor_id` bigint NOT NULL DEFAULT 0",
+    "`channel_id` bigint NOT NULL DEFAULT 1",
+    "`ip_address` varchar(45) NOT NULL DEFAULT ''",
+    "`user_agent` varchar(255) NOT NULL DEFAULT ''",
+    "`device_id` varchar(100)",
+    "`device_type` varchar(64)",
+    "`auth_method` varchar(30)",
+    "`auth_provider` varchar(50)",
+    "`security_level` varchar(64) NOT NULL DEFAULT 'medium'",
+    "`name_key` varchar(100)",
+    "`is_named` tinyint NOT NULL DEFAULT 0",
+    "`is_authenticated` tinyint NOT NULL DEFAULT 0",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`is_expired` tinyint NOT NULL DEFAULT 0",
+    "`is_revoked` tinyint NOT NULL DEFAULT 0",
+    "`session_data` text",
+    "`system_context` varchar(50)",
+    "`metadata` json",
+    "`login_ymdhis` bigint",
+    "`last_seen_ymdhis` bigint NOT NULL",
+    "`expires_ymdhis` bigint",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [
+    {
+      "session_id": "eu7lv84vbaqkps7pr0k1qbid1l",
+      "federation_node_id": 1,
+      "actor_id": 10000,
+      "channel_id": 1,
+      "ip_address": "::1",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+      "device_id": null,
+      "device_type": "desktop",
+      "auth_method": "password",
+      "auth_provider": "local",
+      "security_level": "high",
+      "name_key": null,
+      "is_named": 0,
+      "is_authenticated": 0,
+      "is_active": 1,
+      "is_expired": 0,
+      "is_revoked": 0,
+      "session_data": null,
+      "system_context": null,
+      "metadata": null,
+      "login_ymdhis": 20260226114803,
+      "last_seen_ymdhis": 20260226123942,
+      "expires_ymdhis": 20260227114803,
+      "created_ymdhis": 20260226101741,
+      "updated_ymdhis": 20260226123942,
+      "is_deleted": 0,
+      "deleted_ymdhis": null
+    }
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_sessions_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_cleanup",
+      "columns": [
+        "is_deleted",
+        "last_seen_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_device",
+      "columns": [
+        "device_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_domain",
+      "columns": [
+        "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_expires",
+      "columns": [
+        "expires_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_last_seen",
+      "columns": [
+        "last_seen_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_security",
+      "columns": [
+        "security_level"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_status",
+      "columns": [
+        "is_active",
+        "is_expired",
+        "is_revoked"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "session_id",
+    "expected_name": "session_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

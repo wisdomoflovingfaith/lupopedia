@@ -1,0 +1,26 @@
+{
+  "table_name": "lupo_kapu_restoration_paths",
+  "fields": [
+    "`path_id` bigint NOT NULL",
+    "`agent_id` varchar(255)",
+    "`kapu_reason_code` varchar(100)",
+    "`learning_modules` json",
+    "`emotional_targets` json",
+    "`restoration_rituals` json",
+    "`kapu_companion_agent_id` varchar(255)",
+    "`completed_at` bigint"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "path_id",
+    "expected_name": "path_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}
