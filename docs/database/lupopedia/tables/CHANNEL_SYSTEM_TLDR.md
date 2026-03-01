@@ -31,11 +31,12 @@ flare.headers:
   flare.schema: "documentation"
   file_path_from_root: "path/to/file.md"
   system_version: "4.0.52"
+  file.last_modified_system_version: "4.0.52"  # Added for tracking
   channel_id: 0  # System channel focus
   actor_id: 0  # Root/system actor
   federation_node_id: 0  # For federation content
   web_path: "http://www.lupopedia.com/path"
-  last_updated_utc: "20260301"  # gmdate('YmdHis')
+  last_modified_utc: "20260301120000"  # Using YmdHis format
   delegation_chain: "0:10000"
   artifact_type: "documentation"
   purpose: "Channel operation description"
@@ -139,6 +140,14 @@ VALUES
 (0, 0, 1, 'System channel state updated', 20260301123000);
 ```
 
+### 6. Escalation Operations
+```sql
+INSERT INTO lupo_channel_escalations
+(channel_id, escalation_type, escalated_to_actor_id, escalation_reason, created_ymdhis)
+VALUES
+(0, 'governance_breach', 10000, 'Channel 0 policy violation', 20260301123000);
+```
+
 ## Federation Integration
 
 ### Node 0 Content
@@ -162,16 +171,18 @@ VALUES
 5. **Performance Focus**: Proper indexing on `channel_id` and timestamp fields
 6. **Soft Deletes**: Use `is_deleted` pattern instead of physical deletion
 7. **TOON Enforcement**: Root boot agent ensures all `docs/toons/*.toon.json` exist and match v4.0.52 structure
+8. **Actor ID 0**: Represents system agent, not human operator - all system-level operations use this ID
 
 ## Quick Reference
 
 | Operation | Table | Command | Example |
 |------------|--------|---------|---------|
 | Create Channel | `lupo_channels` | `INSERT INTO lupo_channels...` | `channel_id=0, channel_name` |
-| Add Content | `lupo_channel_content` | `INSERT INTO lupo_channel_content...` | `channel_id=0, file_path, web_path` |
+| Add Content | `lupo_channel_content` | `INSERT INTO lupo_channel_content...` | `channel_id=0, federation_node_id=0, file_path, web_path` |
 | Log Event | `lupo_channel_logs` | `INSERT INTO lupo_channel_logs...` | `channel_id=0, log_type_id, log_text` |
 | Start Boot | `lupo_channel_boot_lifecycle` | `INSERT INTO lupo_channel_boot_lifecycle...` | `lifecycle_id, channel_id=0, actor_id=0` |
 | Update State | `lupo_channel_state` | `UPDATE lupo_channel_state...` | `channel_id=0, state_data` |
+| Escalation | `lupo_channel_escalations` | `INSERT INTO lupo_channel_escalations...` | `channel_id=0, escalation_type, escalated_to_actor_id` |
 
 ---
 
