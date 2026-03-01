@@ -32,9 +32,9 @@ VALUES
 (
   0,
   0,
-  'channels/42/content/federation_node_id/0/craftysyntax.md',
-  'http://www.lupopedia.com/craftysyntax',
-  JSON_OBJECT('description', 'Federation node 0 Crafty Syntax documentation and legacy integration'),
+  'channels/0/boot_readme.md',
+  'http://www.lupopedia.com/boot_readme',
+  JSON_OBJECT('description', 'Federation node 0 channel boot system documentation and TOON schema reference'),
   20260301120000,
   20260301120000,
   0
