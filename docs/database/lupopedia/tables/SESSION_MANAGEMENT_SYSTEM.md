@@ -4,18 +4,18 @@ flare.headers:
   flare.version: "1.0"
   flare.schema: "documentation"
   file_path_from_root: "docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md"
-  system_version: "4.0.52"
-  last_modified_utc: "20260301152200"
+  system_version: "4.0.53"
+  last_modified_utc: "20260301134200"
   channel_id: 0
-  actor_id: 1006
+  actor_id: 1002
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "system_overview"
-  purpose: "Comprehensive documentation of the Lupopedia session management system for multi-agent isolation and sync"
+  purpose: "Comprehensive documentation of the Lupopedia session management system for multi-agent isolation and sync with default session templates"
   mood_rgb: "4169E1"
-  traits: ["session_management", "multi_agent", "isolation", "v4.0.52"]
-  tags: ["sessions", "lupo_sessions", "ide_agents", "ai_agents", "sync"]
-  lupo_agent: "gemini-cli"
+  traits: ["session_management", "multi_agent", "isolation", "v4.0.53"]
+  tags: ["sessions", "lupo_sessions", "ide_agents", "ai_agents", "sync", "default_sessions"]
+  lupo_agent: "windsurf"
 
 flare.edges:
   outbound_edges:
@@ -27,9 +27,9 @@ flare.edges:
   semantic_tags: ["session_management", "agent_isolation", "database_sync"]
 
 flare.footer:
-  version: "4.0.52"
+  version: "4.0.53"
   last_verified: "20260301"
-  last_verified_by: "gemini-cli"
+  last_verified_by: "windsurf"
 ---
 
 # Lupopedia Session Management System
@@ -151,6 +151,56 @@ Run from repo root: `php bin/session_manager.php <command> [args]`.
 
 All commands log to `lupo_channel_logs` (channel_id=0, actor_id=current).
 
+## Default Sessions
+Default session templates are stored in `lupo-sessions/actor_<id>_default.json` for key actors. These provide pre-configured sessions for init/boot, synced to DB if missing. All use L-lupo-<actor_id> prefix, 'active' status, and role-specific metadata.
+
+### Creation & Sync
+- On boot/install: Check DB; load default if absent, update timestamps/UUID, UPSERT.
+- Hierarchy: Files overwrite DB; DB overwrites TOONs via generate_toons.
+
+### Examples
+For actor 0 (System):
+```json
+{
+  "current_session_id": "L-lupo-0-00000000-0000-0000-0000-000000000000",
+  "actor_id": 0,
+  "federation_node_id": 0,
+  "last_active_ymdhis": "20260301134200",
+  "system_version": "4.0.53",
+  "status": "active",
+  "metadata": {
+    "session_type": "default",
+    "created_by": "system_init",
+    "actor_type": "system_agent",
+    "prefix_enforced": true
+  }
+}
+```
+
+For actor 1002 (Cursor, IDE):
+```json
+{
+  "current_session_id": "L-lupo-1002-00000000-0000-0000-0000-000000000000",
+  "actor_id": 1002,
+  "federation_node_id": 0,
+  "last_active_ymdhis": "20260301134200",
+  "system_version": "4.0.53",
+  "status": "active",
+  "metadata": {
+    "session_type": "default",
+    "created_by": "system_init",
+    "actor_type": "ide_agent",
+    "prefix_enforced": true
+  }
+}
+```
+
+### PHP Loading Function
+Use `loadDefaultSessionIfMissing()` from `lupo-includes/functions/session_helpers.php` to automatically load and sync defaults during boot/install.
+
+### SQL Seed
+Default sessions can be seeded via `database/migrations/seed_default_sessions.sql` during installation.
+
 ## Session Validation System
 Multi-layered checks:
 - **Existence**: DB query for `session_id`.
@@ -176,6 +226,6 @@ Results: JSON-like output with reason codes; logged for audit.
 ---
 
 **Document Created**: 20260301  
-**Lead Agent**: Gemini CLI (1006)  
-**Version**: 4.0.52  
-**Status**: ✅ SESSION MANAGEMENT SYSTEM DOCUMENTATION
+**Lead Agent**: Windsurf (1002)  
+**Version**: 4.0.53  
+**Status**: ✅ SESSION MANAGEMENT SYSTEM DOCUMENTATION WITH DEFAULT TEMPLATES
