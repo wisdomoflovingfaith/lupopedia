@@ -4,11 +4,11 @@
  *
  * @package lupopedia
  */
- 
- 
+
+
 // is config loaded
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
-   print "LUPOPEDIA_CONFIG_LOADED is not defined this file is loaded after the config is loaded it can not be called out of order ";
+    print "LUPOPEDIA_CONFIG_LOADED is not defined this file is loaded after the config is loaded it can not be called out of order ";
     exit;
 }
 
@@ -24,66 +24,66 @@ require_once($version_path);
 /*
  * The error_reporting() function can be disabled in php.ini it is wrapped in a function_exists() check.
  */
-if ( function_exists( 'error_reporting' ) ) {
-	/*
-	 * Initialize error reporting to a known set of levels.
-	 *
-	 * This will be adapted in wp_debug_mode() located in wp-includes/load.php based on WP_DEBUG.
-	 * @see https://www.php.net/manual/en/errorfunc.constants.php List of known error levels.
-	 */
-    if(LUPOPEDIA_DEBUG){
-	// Enable all error reporting and display for debugging
-	// Remove @ to ensure errors are actually set (not suppressed)
-	// Note: E_STRICT is deprecated in PHP 8+, so we use E_ALL only
-	error_reporting(E_ALL);
-	ini_set('display_errors', '1');
-	ini_set('display_startup_errors', '1');
-	ini_set('log_errors', '0'); // Don't log, just display
-	ini_set('html_errors', '1'); // Format errors as HTML
+if (function_exists('error_reporting')) {
+    /*
+     * Initialize error reporting to a known set of levels.
+     *
+     * This will be adapted in wp_debug_mode() located in wp-includes/load.php based on WP_DEBUG.
+     * @see https://www.php.net/manual/en/errorfunc.constants.php List of known error levels.
+     */
+    if (LUPOPEDIA_DEBUG) {
+        // Enable all error reporting and display for debugging
+        // Remove @ to ensure errors are actually set (not suppressed)
+        // Note: E_STRICT is deprecated in PHP 8+, so we use E_ALL only
+        error_reporting(E_ALL);
+        ini_set('display_errors', '1');
+        ini_set('display_startup_errors', '1');
+        ini_set('log_errors', '0'); // Don't log, just display
+        ini_set('html_errors', '1'); // Format errors as HTML
     } else {
-	// Production: show all errors except deprecated and strict (E_STRICT deprecated in PHP 8+)
-	error_reporting( E_ALL & ~E_DEPRECATED );
-	ini_set('display_errors', '0');
-	ini_set('log_errors', '1'); // Log errors in production
+        // Production: show all errors except deprecated and strict (E_STRICT deprecated in PHP 8+)
+        error_reporting(E_ALL & ~E_DEPRECATED);
+        ini_set('display_errors', '0');
+        ini_set('log_errors', '1'); // Log errors in production
     }
 }
- 
 
 
- // Include the database factory and PDO_DB wrapper (Doctrine: all DB access via DatabaseFactory + PDO_DB)
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . 'class-pdo_db.php');
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . 'class-DatabaseFactory.php');
-    
-    try {
-        $mydatabase = DatabaseFactory::getConnection();
-        $GLOBALS['mydatabase'] = $mydatabase;
-        $mydatabase->fetchRow('SELECT 1');
-    } catch (Exception $e) {
-        // Log the detailed error
-        error_log('Database connection error: ' . $e->getMessage());
-        
-        // Show a user-friendly error message with more details
-        $errorMsg = 'Database connection error: ' . $e->getMessage();
-        if (strpos($e->getMessage(), 'Access denied') !== false) {
-            $errorMsg .= "\n\nPlease check your database username and password in lupopedia-config.php";
-        } elseif (strpos($e->getMessage(), 'Unknown database') !== false) {
-            $errorMsg .= "\n\nThe database '" . (defined('DB_NAME') ? DB_NAME : '') . "' does not exist. Please create it first.";
-        } elseif (strpos($e->getMessage(), 'Connection refused') !== false) {
-            $errorMsg .= "\n\nCould not connect to the database server. Please check if MySQL is running.";
-        }
-        
-        if (!headers_sent()) {
-            header('HTTP/1.1 500 Internal Server Error');
-        }
-        die(nl2br(htmlspecialchars($errorMsg)));
+
+// Include the database factory and PDO_DB wrapper (Doctrine: all DB access via DatabaseFactory + PDO_DB)
+require_once(__DIR__ . DIRECTORY_SEPARATOR . 'class-pdo_db.php');
+require_once(__DIR__ . DIRECTORY_SEPARATOR . 'class-DatabaseFactory.php');
+
+try {
+    $mydatabase = DatabaseFactory::getConnection();
+    $GLOBALS['mydatabase'] = $mydatabase;
+    $mydatabase->fetchRow('SELECT 1');
+} catch (Exception $e) {
+    // Log the detailed error
+    error_log('Database connection error: ' . $e->getMessage());
+
+    // Show a user-friendly error message with more details
+    $errorMsg = 'Database connection error: ' . $e->getMessage();
+    if (strpos($e->getMessage(), 'Access denied') !== false) {
+        $errorMsg .= "\n\nPlease check your database username and password in lupopedia-config.php";
+    } elseif (strpos($e->getMessage(), 'Unknown database') !== false) {
+        $errorMsg .= "\n\nThe database '" . (defined('DB_NAME') ? DB_NAME : '') . "' does not exist. Please create it first.";
+    } elseif (strpos($e->getMessage(), 'Connection refused') !== false) {
+        $errorMsg .= "\n\nCould not connect to the database server. Please check if MySQL is running.";
     }
- 
+
+    if (!headers_sent()) {
+        header('HTTP/1.1 500 Internal Server Error');
+    }
+    die(nl2br(htmlspecialchars($errorMsg)));
+}
+
 // Security Headers
 if (!headers_sent()) {
     header('X-Content-Type-Options: nosniff');
     header('X-Frame-Options: SAMEORIGIN');
     header('X-XSS-Protection: 1; mode=block');
-    
+
     // Set secure session cookie parameters only before session is started (PHP 5.3: 5-arg form; no samesite)
     $session_not_started = function_exists('session_status') ? (session_status() === PHP_SESSION_NONE) : (session_id() === '');
     if ($session_not_started) {
@@ -104,7 +104,7 @@ if (function_exists('date_default_timezone_set')) {
  * ---------------------------------------------------------
  * Session class replaces procedural session helpers. One instance per request.
  */
-$app_auth = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'auth';
+$app_auth = LUPOPEDIA_ABSPATH . LUPO_APP_DIR . DIRECTORY_SEPARATOR . 'auth';
 if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'SessionHandler.php')) {
     require_once $app_auth . DIRECTORY_SEPARATOR . 'SessionHandler.php';
 }
@@ -133,7 +133,7 @@ if (file_exists($session_manager_class)) {
     require_once $session_manager_class;
 }
 
-$session_handler_class = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'auth' . DIRECTORY_SEPARATOR . 'UnifiedSessionHandler.php';
+$session_handler_class = LUPOPEDIA_ABSPATH . LUPO_APP_DIR . DIRECTORY_SEPARATOR . 'auth' . DIRECTORY_SEPARATOR . 'UnifiedSessionHandler.php';
 if (file_exists($session_handler_class)) {
     require_once $session_handler_class;
 }
@@ -188,8 +188,8 @@ if ($lupo_session !== null) {
 }
 
 // Actor domain: ActorService (replaces procedural actor/identity helpers)
-$app_services = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'Services';
-$app_support = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'Support';
+$app_services = LUPOPEDIA_ABSPATH . LUPO_APP_DIR . DIRECTORY_SEPARATOR . 'Services';
+$app_support = LUPOPEDIA_ABSPATH . LUPO_APP_DIR . DIRECTORY_SEPARATOR . 'Support';
 if (isset($GLOBALS['mydatabase'])) {
     if (file_exists($app_services . DIRECTORY_SEPARATOR . 'ActorService.php')) {
         require_once $app_services . DIRECTORY_SEPARATOR . 'ActorService.php';

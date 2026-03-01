@@ -660,7 +660,7 @@ function lupo_route_slug($slug)
         $edge_id = (int) $matches[1];
 
         // Load EdgesController
-        $edges_controller_path = (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH) . '/app/Http/Controllers/EdgesController.php';
+        $edges_controller_path = LUPOPEDIA_ABSPATH . LUPO_APP_DIR . '/Http/Controllers/EdgesController.php';
         if (file_exists($edges_controller_path)) {
             require_once $edges_controller_path;
             $controller = new EdgesController();
