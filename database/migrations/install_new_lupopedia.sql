@@ -1319,6 +1319,25 @@ CREATE TABLE lupo_channel_boot_log (
 CREATE INDEX lupo_channel_boot_log_idx_actor_session ON lupo_channel_boot_log (actor_id, session_id);
 CREATE INDEX lupo_channel_boot_log_idx_boot_status_time ON lupo_channel_boot_log (boot_status, boot_start_time);
 
+CREATE TABLE lupo_channel_boot_detail_lifecycle (
+  detail_lifecycle_id bigint NOT NULL AUTO_INCREMENT,
+  lifecycle_id bigint NOT NULL,
+  channel_id bigint NOT NULL,
+  detail_start_time bigint NOT NULL,
+  detail_end_time bigint DEFAULT NULL,
+  detail_status varchar(64) NOT NULL DEFAULT 'started',
+  content_items_loaded int NOT NULL DEFAULT 0,
+  total_content_items int NOT NULL DEFAULT 0,
+  detail_duration_ms int DEFAULT NULL,
+  error_message text,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (detail_lifecycle_id)
+);
+
+CREATE INDEX lupo_channel_boot_detail_lifecycle_fk_detail_lifecycle ON lupo_channel_boot_detail_lifecycle (lifecycle_id);
+CREATE INDEX lupo_channel_boot_detail_lifecycle_idx_channel ON lupo_channel_boot_detail_lifecycle (channel_id);
+CREATE INDEX lupo_channel_boot_detail_lifecycle_idx_status_time ON lupo_channel_boot_detail_lifecycle (detail_status, detail_start_time);
+
 CREATE TABLE lupo_channel_escalations (
   escalation_id bigint NOT NULL,
   channel_id bigint NOT NULL,
