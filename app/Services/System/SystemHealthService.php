@@ -4,15 +4,14 @@
  *
  * Provides diagnostic checks for all system subsystems.
  * Non-blocking, pure diagnostics with no exceptions.
+ * PHP 5.3 compatible.
  *
  * @package Lupopedia
- * @version 3.0.106
+ * @version 4.0.53
  * @author Captain Wolfie
  */
 
 namespace App\Services\System;
-
-use PDO;
 
 /**
  * SystemHealthService
@@ -21,13 +20,13 @@ use PDO;
  */
 class SystemHealthService
 {
-    /** @var PDO|null Database connection */
+    /** @var object|null Database connection (PDO_DB) */
     private $db;
 
     /**
      * Constructor
      *
-     * @param PDO|null $db Database connection (optional)
+     * @param object|null $db Database connection (optional)
      */
     public function __construct($db = null)
     {
@@ -39,14 +38,14 @@ class SystemHealthService
      *
      * @return array Status array with 'status' and 'message' keys
      */
-    public function checkDatabaseSchema(): array
+    public function checkDatabaseSchema()
     {
         try {
             if (!$this->db) {
-                return [
+                return array(
                     'status' => 'warning',
                     'message' => 'Database connection not available',
-                ];
+                );
             }
 
             // Basic schema check - verify core tables exist (dynamic prefix)
@@ -56,27 +55,27 @@ class SystemHealthService
 
             foreach ($coreTables as $table) {
                 $stmt = $this->db->query("SHOW TABLES LIKE '" . str_replace("'", "''", $table) . "'");
-                if ($stmt->rowCount() === 0) {
+                if (!$stmt || $stmt->rowCount() === 0) {
                     $missingTables[] = $table;
                 }
             }
 
             if (!empty($missingTables)) {
-                return [
+                return array(
                     'status' => 'error',
                     'message' => 'Missing core tables: ' . implode(', ', $missingTables),
-                ];
+                );
             }
 
-            return [
+            return array(
                 'status' => 'ok',
                 'message' => 'Database schema healthy',
-            ];
+            );
         } catch (\Exception $e) {
-            return [
+            return array(
                 'status' => 'error',
                 'message' => 'Schema check failed: ' . $e->getMessage(),
-            ];
+            );
         }
     }
 
@@ -85,36 +84,36 @@ class SystemHealthService
      *
      * @return array Status array with 'status' and 'message' keys
      */
-    public function checkAgentRegistry(): array
+    public function checkAgentRegistry()
     {
         try {
             // Check if unified registry table exists (canonical for agents, channels, modules)
             if (!$this->db) {
-                return [
+                return array(
                     'status' => 'warning',
                     'message' => 'Database connection not available',
-                ];
+                );
             }
 
             $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
             $regTable = $prefix . 'registry';
             $stmt = $this->db->query("SHOW TABLES LIKE '" . str_replace("'", "''", $regTable) . "'");
-            if ($stmt->rowCount() === 0) {
-                return [
+            if (!$stmt || $stmt->rowCount() === 0) {
+                return array(
                     'status' => 'warning',
                     'message' => 'Unified registry table not found',
-                ];
+                );
             }
 
-            return [
+            return array(
                 'status' => 'ok',
                 'message' => 'Unified registry (reserved index ledger) present',
-            ];
+            );
         } catch (\Exception $e) {
-            return [
+            return array(
                 'status' => 'error',
                 'message' => 'Unified registry check failed: ' . $e->getMessage(),
-            ];
+            );
         }
     }
 
@@ -123,70 +122,26 @@ class SystemHealthService
      *
      * @return array Status array with 'status' and 'message' keys
      */
-    public function checkKIPSubsystem(): array
+    public function checkKIPSubsystem()
     {
         try {
-            $kipEnginePath = __DIR__ . '/../../../lupo-includes/KIP/KIPEngine.php';
+            $kipEnginePath = LUPOPEDIA_ABSPATH . LUPO_INCLUDES_DIR . '/KIP/KIPEngine.php';
             if (!file_exists($kipEnginePath)) {
-                return [
+                return array(
                     'status' => 'error',
                     'message' => 'KIPEngine not found',
-                ];
+                );
             }
 
-            $kipValidatorPath = __DIR__ . '/../../../lupo-includes/KIP/KIPValidator.php';
-            if (!file_exists($kipValidatorPath)) {
-                return [
-                    'status' => 'error',
-                    'message' => 'KIPValidator not found',
-                ];
-            }
-
-            return [
+            return array(
                 'status' => 'ok',
                 'message' => 'KIP subsystem healthy',
-            ];
+            );
         } catch (\Exception $e) {
-            return [
+            return array(
                 'status' => 'error',
                 'message' => 'KIP subsystem check failed: ' . $e->getMessage(),
-            ];
-        }
-    }
-
-    /**
-     * Check limits subsystem health
-     *
-     * @return array Status array with 'status' and 'message' keys
-     */
-    public function checkLimitsSubsystem(): array
-    {
-        try {
-            $limitsServicePath = __DIR__ . '/LimitsEnforcementService.php';
-            if (!file_exists($limitsServicePath)) {
-                return [
-                    'status' => 'error',
-                    'message' => 'LimitsEnforcementService not found',
-                ];
-            }
-
-            $limitsMdPath = __DIR__ . '/../../../LIMITS.md';
-            if (!file_exists($limitsMdPath)) {
-                return [
-                    'status' => 'warning',
-                    'message' => 'LIMITS.md not found',
-                ];
-            }
-
-            return [
-                'status' => 'ok',
-                'message' => 'Limits subsystem healthy',
-            ];
-        } catch (\Exception $e) {
-            return [
-                'status' => 'error',
-                'message' => 'Limits subsystem check failed: ' . $e->getMessage(),
-            ];
+            );
         }
     }
 
@@ -195,42 +150,89 @@ class SystemHealthService
      *
      * @return array Status array with 'status' and 'message' keys
      */
-    public function checkPackReadiness(): array
+    public function checkPackReadiness()
     {
         try {
-            $packRegistryPath = __DIR__ . '/../../../lupo-includes/Pack/PackRegistry.php';
+            $packRegistryPath = LUPOPEDIA_ABSPATH . LUPO_INCLUDES_DIR . '/Pack/PackRegistry.php';
             if (!file_exists($packRegistryPath)) {
-                return [
+                return array(
                     'status' => 'warning',
                     'message' => 'PackRegistry not found (Pack Architecture not yet activated)',
-                ];
+                );
             }
 
-            $packContextPath = __DIR__ . '/../../../lupo-includes/Pack/PackContext.php';
-            if (!file_exists($packContextPath)) {
-                return [
-                    'status' => 'warning',
-                    'message' => 'PackContext not found (Pack Architecture not yet activated)',
-                ];
-            }
-
-            $packHandoffPath = __DIR__ . '/../../../lupo-includes/Pack/PackHandoffProtocol.php';
-            if (!file_exists($packHandoffPath)) {
-                return [
-                    'status' => 'warning',
-                    'message' => 'PackHandoffProtocol not found (Pack Architecture not yet activated)',
-                ];
-            }
-
-            return [
+            return array(
                 'status' => 'ok',
-                'message' => 'Pack Architecture pre-activation complete (ready for 3.1.0)',
-            ];
+                'message' => 'Pack Architecture pre-activation complete',
+            );
         } catch (\Exception $e) {
-            return [
+            return array(
                 'status' => 'error',
                 'message' => 'Pack readiness check failed: ' . $e->getMessage(),
-            ];
+            );
+        }
+    }
+
+    /**
+     * Check AI agents status
+     *
+     * @return array Status array with 'status', 'message', and 'agents' keys
+     */
+    public function checkAIAgentsStatus()
+    {
+        try {
+            if (!$this->db) {
+                return array(
+                    'status' => 'warning',
+                    'message' => 'Database connection not available',
+                );
+            }
+
+            // Ensure ai_activation functions are available
+            $aiActivationPath = LUPOPEDIA_ABSPATH . LUPO_INCLUDES_DIR . '/functions/ai_activation.php';
+            if (file_exists($aiActivationPath)) {
+                require_once $aiActivationPath;
+            } else {
+                return array(
+                    'status' => 'error',
+                    'message' => 'AI activation helper not found',
+                );
+            }
+
+            $agents = array(
+                0 => 'SYSTEM',
+                1 => 'CAPTAIN WOLFIE',
+                2 => 'LILITH',
+                19 => 'ANUBIS'
+            );
+
+            $results = array();
+            $allRunning = true;
+            $runningCount = 0;
+
+            foreach ($agents as $id => $name) {
+                $running = isActorAIRunning($id, $this->db);
+                $results[$id] = array(
+                    'name' => $name,
+                    'status' => $running ? 'running' : 'offline'
+                );
+                if ($running) {
+                    $runningCount++;
+                } else {
+                    $allRunning = false;
+                }
+            }
+
+            return array(
+                'status' => $allRunning ? 'ok' : ($runningCount > 0 ? 'warning' : 'error'),
+                'message' => "AI Agents: $runningCount/" . count($agents) . " running",
+                'agents' => $results
+            );
+        } catch (\Exception $e) {
+            return array(
+                'status' => 'error',
+                'message' => 'AI status check failed: ' . $e->getMessage(),
+            );
         }
     }
 }

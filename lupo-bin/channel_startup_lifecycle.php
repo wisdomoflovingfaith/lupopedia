@@ -4,6 +4,7 @@
  * 
  * Provides functions for managing channel startup lifecycle operations
  * Follows TOON schema: lupo_channel_boot_lifecycle and lupo_channel_boot_detail_lifecycle
+ * PHP 5.3 compatible.
  * 
  * @author Windsurf (1002)
  * @version 4.0.53
@@ -13,12 +14,12 @@
 class ChannelStartupLifecycle
 {
     private $db;
-    private $errors = [];
-    private $warnings = [];
+    private $errors = array();
+    private $warnings = array();
 
     public function __construct($db = null)
     {
-        $this->db = $db ?: DatabaseFactory::getConnection();
+        $this->db = $db ? $db : DatabaseFactory::getConnection();
     }
 
     /**
@@ -36,20 +37,22 @@ class ChannelStartupLifecycle
             $startTime = gmdate('YmdHis');
 
             // Insert main lifecycle record
-            $sql = "INSERT INTO lupo_channel_boot_lifecycle 
-                (actor_id, session_id, lifecycle_start_time, lifecycle_status, lifecycle_type, total_channels, created_ymdhis) 
-                VALUES (:actor_id, :session_id, :start_time, 'started', :lifecycle_type, :total_channels, :created_ymdhis)";
-
-            $params = [
+            $params = array(
                 'actor_id' => $actorId,
                 'session_id' => $sessionId,
-                'start_time' => $startTime,
+                'lifecycle_start_time' => $startTime,
+                'lifecycle_status' => 'started',
                 'lifecycle_type' => $lifecycleType,
                 'total_channels' => count($channelIds),
                 'created_ymdhis' => $startTime
-            ];
+            );
 
-            $this->db->insert('lupo_channel_boot_lifecycle', $params);
+            $success = $this->db->insert('lupo_channel_boot_lifecycle', $params);
+            if (!$success) {
+                $this->errors[] = "Failed to insert lifecycle record: " . $this->db->getLastError();
+                return false;
+            }
+
             $lifecycleId = $this->db->lastInsertId();
 
             // Insert detail records for each channel
@@ -75,7 +78,7 @@ class ChannelStartupLifecycle
     public function updateLifecycle($lifecycleId, $data)
     {
         try {
-            return $this->db->update('lupo_channel_boot_lifecycle', $data, 'lifecycle_id = :id', ['id' => $lifecycleId]);
+            return $this->db->update('lupo_channel_boot_lifecycle', $data, 'lifecycle_id = :id', array('id' => $lifecycleId));
         } catch (Exception $e) {
             $this->errors[] = "Failed to update lifecycle {$lifecycleId}: " . $e->getMessage();
             return false;
@@ -94,16 +97,13 @@ class ChannelStartupLifecycle
         try {
             $startTime = gmdate('YmdHis');
 
-            $sql = "INSERT INTO lupo_channel_boot_detail_lifecycle 
-                (lifecycle_id, channel_id, detail_start_time, detail_status, created_ymdhis) 
-                VALUES (:lifecycle_id, :channel_id, :start_time, 'started', :created_ymdhis)";
-
-            $params = [
+            $params = array(
                 'lifecycle_id' => $lifecycleId,
                 'channel_id' => $channelId,
-                'start_time' => $startTime,
+                'detail_start_time' => $startTime,
+                'detail_status' => 'started',
                 'created_ymdhis' => $startTime
-            ];
+            );
 
             $this->db->insert('lupo_channel_boot_detail_lifecycle', $params);
             return true;
@@ -134,11 +134,11 @@ class ChannelStartupLifecycle
             // Calculate duration if we have start time
             $detailSql = "SELECT detail_start_time FROM lupo_channel_boot_detail_lifecycle 
                           WHERE lifecycle_id = :lifecycle_id AND channel_id = :channel_id";
-            $detailParams = ['lifecycle_id' => $lifecycleId, 'channel_id' => $channelId];
+            $detailParams = array('lifecycle_id' => $lifecycleId, 'channel_id' => $channelId);
             $startTime = $this->db->fetchOne($detailSql, $detailParams);
 
             if ($startTime) {
-                $duration = ($endTime - $startTime) * 1000; // Convert to milliseconds
+                $duration = ($endTime - $startTime) * 1000; // Convert to milliseconds (crude)
             }
 
             $sql = "UPDATE lupo_channel_boot_detail_lifecycle 
@@ -146,13 +146,13 @@ class ChannelStartupLifecycle
                     content_items_loaded = :items_loaded, total_content_items = :total_items, 
                     detail_duration_ms = :duration";
 
-            $params = [
+            $params = array(
                 'end_time' => $endTime,
                 'status' => $status,
                 'items_loaded' => $itemsLoaded,
                 'total_items' => $totalItems,
                 'duration' => $duration
-            ];
+            );
 
             if ($errorMessage !== null) {
                 $sql .= ", error_message = :error_message";
@@ -178,7 +178,7 @@ class ChannelStartupLifecycle
      * @param array $performanceMetrics Optional performance metrics
      * @return bool Success status
      */
-    public function completeLifecycle($lifecycleId, $performanceMetrics = [])
+    public function completeLifecycle($lifecycleId, $performanceMetrics = array())
     {
         try {
             $endTime = gmdate('YmdHis');
@@ -192,7 +192,7 @@ class ChannelStartupLifecycle
                         FROM lupo_channel_boot_detail_lifecycle 
                         WHERE lifecycle_id = :lifecycle_id";
 
-            $stats = $this->db->fetchOne($statsSql, ['lifecycle_id' => $lifecycleId]);
+            $stats = $this->db->fetchRow($statsSql, array('lifecycle_id' => $lifecycleId));
 
             // Update lifecycle record
             $sql = "UPDATE lupo_channel_boot_lifecycle 
@@ -200,13 +200,13 @@ class ChannelStartupLifecycle
                     channels_processed = :processed, channels_successful = :successful, channels_failed = :failed,
                     lifecycle_duration_ms = :duration";
 
-            $params = [
+            $params = array(
                 'end_time' => $endTime,
-                'processed' => $stats['total_processed'],
-                'successful' => $stats['successful'],
-                'failed' => $stats['failed'],
-                'duration' => $stats['total_duration_ms']
-            ];
+                'processed' => isset($stats['total_processed']) ? $stats['total_processed'] : 0,
+                'successful' => isset($stats['successful']) ? $stats['successful'] : 0,
+                'failed' => isset($stats['failed']) ? $stats['failed'] : 0,
+                'duration' => isset($stats['total_duration_ms']) ? $stats['total_duration_ms'] : 0
+            );
 
             if (!empty($performanceMetrics)) {
                 $sql .= ", performance_metrics = :performance_metrics";
@@ -242,13 +242,13 @@ class ChannelStartupLifecycle
                     channels_processed = 0, channels_successful = 0, channels_failed = total_channels,
                     error_details = :error_details";
 
-            $params = [
+            $params = array(
                 'end_time' => $endTime,
-                'error_details' => $errorDetails
-            ];
+                'error_details' => $errorDetails,
+                'lifecycle_id' => $lifecycleId
+            );
 
             $sql .= " WHERE lifecycle_id = :lifecycle_id";
-            $params['lifecycle_id'] = $lifecycleId;
 
             return $this->db->query($sql, $params);
 
@@ -279,11 +279,11 @@ class ChannelStartupLifecycle
                         ORDER BY l.lifecycle_start_time DESC
                         LIMIT :limit";
 
-            return $this->db->fetchAll($sql, ['limit' => $limit]);
+            return $this->db->fetchAll($sql, array('limit' => $limit));
 
         } catch (Exception $e) {
             $this->errors[] = "Failed to get active lifecycles: " . $e->getMessage();
-            return [];
+            return array();
         }
     }
 
@@ -306,11 +306,11 @@ class ChannelStartupLifecycle
                         WHERE d.lifecycle_id = :lifecycle_id
                         ORDER BY d.detail_start_time";
 
-            return $this->db->fetchAll($sql, ['lifecycle_id' => $lifecycleId]);
+            return $this->db->fetchAll($sql, array('lifecycle_id' => $lifecycleId));
 
         } catch (Exception $e) {
             $this->errors[] = "Failed to get lifecycle details: " . $e->getMessage();
-            return [];
+            return array();
         }
     }
 
@@ -351,7 +351,7 @@ class ChannelStartupLifecycle
      */
     public function clearErrors()
     {
-        $this->errors = [];
-        $this->warnings = [];
+        $this->errors = array();
+        $this->warnings = array();
     }
 }

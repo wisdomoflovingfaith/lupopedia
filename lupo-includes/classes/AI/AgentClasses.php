@@ -13,18 +13,21 @@
 /**
  * LILITH AI - Critical review and alternative perspectives expert
  */
-class LilithAI {
-    public function __construct() {
+class LilithAI
+{
+    public function __construct()
+    {
         // Initialize LILITH AI for critical review
     }
-    
+
     /**
      * Validate documentation quality
      * 
      * @param string $content The content to review
      * @return array Analysis results
      */
-    public function validateDocumentation($content) {
+    public function validateDocumentation($content)
+    {
         $score = $this->analyzeQuality($content);
         return array(
             'score' => $score,
@@ -34,10 +37,13 @@ class LilithAI {
         );
     }
 
-    private function analyzeQuality($content) {
+    private function analyzeQuality($content)
+    {
         // Simplified analysis logic for initialization
-        if (empty($content)) return 0.0;
-        if (strpos($content, 'FLARE') !== false) return 9.5;
+        if (empty($content))
+            return 0.0;
+        if (strpos($content, 'FLARE') !== false)
+            return 9.5;
         return 8.5;
     }
 }
@@ -45,17 +51,20 @@ class LilithAI {
 /**
  * SYSTEM AI - System operations and table validation expert
  */
-class SystemAI {
-    public function __construct() {
+class SystemAI
+{
+    public function __construct()
+    {
         // Initialize System AI for operations
     }
-    
+
     /**
      * Validate database tables against TOON files
      * 
      * @return array Validation results
      */
-    public function validateTables() {
+    public function validateTables()
+    {
         $results = $this->checkSchemaCompliance();
         return array(
             'compliant' => $results['status'] === 'success',
@@ -65,11 +74,22 @@ class SystemAI {
         );
     }
 
-    private function checkSchemaCompliance() {
-        // In a real scenario, this would scan docs/toons/ and check DB
+    private function checkSchemaCompliance()
+    {
+        $toonDir = dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'lupo-docs' . DIRECTORY_SEPARATOR . 'toons';
+        $tableCount = 0;
+        if (is_dir($toonDir)) {
+            $files = scandir($toonDir);
+            foreach ($files as $file) {
+                if (substr($file, -10) === '.toon.json') {
+                    $tableCount++;
+                }
+            }
+        }
+
         return array(
             'status' => 'success',
-            'table_count' => 216,
+            'table_count' => $tableCount,
             'errors' => array()
         );
     }
@@ -78,17 +98,20 @@ class SystemAI {
 /**
  * CAPTAIN WOLFIE AI - Leadership coordination and oversight
  */
-class CaptainWolfieAI {
-    public function __construct() {
+class CaptainWolfieAI
+{
+    public function __construct()
+    {
         // Initialize Captain Wolfie for leadership
     }
-    
+
     /**
      * Coordinate agents and manage hierarchy
      * 
      * @return array Coordination status
      */
-    public function coordinateAgents() {
+    public function coordinateAgents()
+    {
         return array(
             'status' => 'optimized',
             'active_agents' => array('LILITH', 'SYSTEM', 'ANUBIS'),
@@ -101,17 +124,20 @@ class CaptainWolfieAI {
 /**
  * ANUBIS AI - Custodial intelligence and FLARE header management
  */
-class AnubisAI {
-    public function __construct() {
+class AnubisAI
+{
+    public function __construct()
+    {
         // Initialize ANUBIS AI for custodial intelligence
     }
-    
+
     /**
      * Manage FLARE headers system-wide
      * 
      * @return array Compliance status
      */
-    public function manageFlareHeaders() {
+    public function manageFlareHeaders()
+    {
         return array(
             'status' => 'active',
             'coverage_percent' => 100,
@@ -119,11 +145,12 @@ class AnubisAI {
             'agent' => 'ANUBIS'
         );
     }
-    
+
     /**
      * Enforce governance and custodial oversight
      */
-    public function custodialOversight() {
+    public function custodialOversight()
+    {
         return array(
             'governance' => 'enforced',
             'integrity' => 'verified',
