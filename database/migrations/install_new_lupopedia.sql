@@ -268,27 +268,7 @@ CREATE INDEX lupo_actor_edges_idx_is_deleted ON lupo_actor_edges (is_deleted);
 CREATE INDEX lupo_actor_edges_idx_edge_source_relationship ON lupo_actor_edges (source_actor_id, edge_type);
 CREATE INDEX lupo_actor_edges_idx_edge_target_relationship ON lupo_actor_edges (target_actor_id, edge_type);
 
-CREATE TABLE lupo_actor_events (
-  actor_event_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  session_id varchar(255) DEFAULT NULL,
-  tab_id varchar(255) DEFAULT NULL,
-  world_id bigint DEFAULT NULL,
-  world_key varchar(255) DEFAULT NULL,
-  world_type varchar(50) DEFAULT NULL,
-  event_type varchar(100) NOT NULL,
-  event_data json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (actor_event_id)
-);
-
-CREATE INDEX lupo_actor_events_idx_actor_id ON lupo_actor_events (actor_id);
-CREATE INDEX lupo_actor_events_idx_session_id ON lupo_actor_events (session_id);
-CREATE INDEX lupo_actor_events_idx_tab_id ON lupo_actor_events (tab_id);
-CREATE INDEX lupo_actor_events_idx_world_id ON lupo_actor_events (world_id);
-CREATE INDEX lupo_actor_events_idx_event_type ON lupo_actor_events (event_type);
-CREATE INDEX lupo_actor_events_idx_created_ymdhis ON lupo_actor_events (created_ymdhis);
-CREATE INDEX lupo_actor_events_idx_actor_event_type ON lupo_actor_events (actor_id, event_type);
+-- Old actor events table removed in v4.0.55 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_actor_handshakes (
   actor_handshake_id bigint NOT NULL,
@@ -1394,47 +1374,13 @@ CREATE TABLE lupo_channel_files (
 );
 
 CREATE INDEX lupo_channel_files_idx_channel_id ON lupo_channel_files (channel_id);
-CREATE INDEX lupo_channel_files_idx_file_type ON lupo_channel_files (file_type);
 CREATE INDEX lupo_channel_files_idx_file_hash ON lupo_channel_files (file_hash);
 CREATE INDEX lupo_channel_files_idx_is_deleted ON lupo_channel_files (is_deleted);
 CREATE INDEX lupo_channel_files_idx_upload_ymdhis ON lupo_channel_files (upload_ymdhis);
 
-CREATE TABLE lupo_channel_logs (
-  channel_log_id bigint NOT NULL,
-  channel_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  role_type varchar(64) NOT NULL,
-  log_type_id bigint NOT NULL,
-  log_text text NOT NULL,
-  metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  pinned tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (channel_log_id)
-);
+-- Old channel logs table removed in v4.0.55 - consolidated into lupo_unified_log
 
-CREATE INDEX lupo_channel_logs_idx_channel_id ON lupo_channel_logs (channel_id);
-CREATE INDEX lupo_channel_logs_idx_actor_id ON lupo_channel_logs (actor_id);
-CREATE INDEX lupo_channel_logs_idx_role_type ON lupo_channel_logs (role_type);
-CREATE INDEX lupo_channel_logs_idx_log_type_id ON lupo_channel_logs (log_type_id);
-CREATE INDEX lupo_channel_logs_idx_created_ymdhis ON lupo_channel_logs (created_ymdhis);
-
-CREATE TABLE lupo_channel_log_types (
-  log_type_id bigint NOT NULL,
-  type_key varchar(64) NOT NULL,
-  type_label varchar(255) NOT NULL,
-  description text,
-  is_system tinyint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (log_type_id)
-);
-
-CREATE UNIQUE INDEX lupo_channel_log_types_uniq_type_key ON lupo_channel_log_types (type_key);
+-- Old channel log types table removed in v4.0.55 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_channel_state (
   channel_state_id bigint NOT NULL,
@@ -2299,16 +2245,7 @@ CREATE INDEX lupo_entity_properties_idx_created ON lupo_entity_properties (creat
 CREATE INDEX lupo_entity_properties_idx_updated ON lupo_entity_properties (updated_ymdhis);
 CREATE INDEX lupo_entity_properties_idx_is_deleted ON lupo_entity_properties (is_deleted);
 
-CREATE TABLE lupo_event_log (
-  event_id bigint NOT NULL,
-  event_type varchar(100) NOT NULL,
-  event_data json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (event_id)
-);
-
-CREATE INDEX lupo_event_log_idx_event_type ON lupo_event_log (event_type);
-CREATE INDEX lupo_event_log_idx_created_ymdhis ON lupo_event_log (created_ymdhis);
+-- Old event log table removed in v4.0.55 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_event_metadata (
   metadata_id bigint NOT NULL,
@@ -2806,21 +2743,7 @@ CREATE INDEX lupo_legacy_content_mapping_idx_is_active ON lupo_legacy_content_ma
 CREATE INDEX lupo_legacy_content_mapping_idx_created ON lupo_legacy_content_mapping (created_ymdhis);
 CREATE INDEX lupo_legacy_content_mapping_idx_created_ymdhis ON lupo_legacy_content_mapping (created_ymdhis, is_active);
 
-CREATE TABLE lupo_memory_events (
-  memory_event_id bigint NOT NULL,
-  actor_id int NOT NULL,
-  event_type varchar(64) NOT NULL,
-  content text NOT NULL,
-  metadata json DEFAULT NULL,
-  token_count int DEFAULT NULL,
-  importance tinyint DEFAULT '0',
-  embedding_status varchar(64) DEFAULT 'none',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (memory_event_id)
-);
-
-CREATE INDEX lupo_memory_events_idx_actor_created ON lupo_memory_events (actor_id, created_ymdhis);
-CREATE INDEX lupo_memory_events_idx_actor_type ON lupo_memory_events (actor_id, event_type);
+-- Old memory events table removed in v4.0.55 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_memory_rollups (
   memory_rollup_id bigint NOT NULL,
@@ -2833,21 +2756,7 @@ CREATE TABLE lupo_memory_rollups (
 
 CREATE INDEX lupo_memory_rollups_idx_actor_created ON lupo_memory_rollups (actor_id, created_ymdhis);
 
-CREATE TABLE lupo_meta_log_events (
-  event_id bigint NOT NULL,
-  depth tinyint NOT NULL,
-  event_type varchar(64) NOT NULL DEFAULT 'recursion',
-  actor_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (event_id)
-);
-
-CREATE INDEX lupo_meta_log_events_idx_created_ymdhis ON lupo_meta_log_events (created_ymdhis);
-CREATE INDEX lupo_meta_log_events_idx_depth ON lupo_meta_log_events (depth);
-CREATE INDEX lupo_meta_log_events_idx_actor_id ON lupo_meta_log_events (actor_id);
-CREATE INDEX lupo_meta_log_events_idx_is_deleted ON lupo_meta_log_events (is_deleted);
+-- Old meta log events table removed in v4.0.55 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_metrics_archive_legacy (
   metric_id int NOT NULL,
@@ -3225,8 +3134,10 @@ CREATE TABLE lupo_sessions (
   expires_ymdhis bigint DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
+  recovery_attempts int DEFAULT 0,
+  recovery_data json,
   PRIMARY KEY (session_id)
 );
 
@@ -3240,27 +3151,7 @@ CREATE INDEX lupo_sessions_idx_status ON lupo_sessions (is_active, is_expired, i
 CREATE INDEX lupo_sessions_idx_cleanup ON lupo_sessions (is_deleted, last_seen_ymdhis);
 CREATE INDEX lupo_sessions_idx_created ON lupo_sessions (created_ymdhis);
 
-CREATE TABLE lupo_session_events (
-  session_event_id bigint NOT NULL,
-  session_id varchar(255) NOT NULL,
-  actor_id bigint DEFAULT NULL,
-  tab_id varchar(255) DEFAULT NULL,
-  world_id bigint DEFAULT NULL,
-  world_key varchar(255) DEFAULT NULL,
-  world_type varchar(50) DEFAULT NULL,
-  event_type varchar(100) NOT NULL,
-  event_data json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (session_event_id)
-);
-
-CREATE INDEX lupo_session_events_idx_session_id ON lupo_session_events (session_id);
-CREATE INDEX lupo_session_events_idx_actor_id ON lupo_session_events (actor_id);
-CREATE INDEX lupo_session_events_idx_tab_id ON lupo_session_events (tab_id);
-CREATE INDEX lupo_session_events_idx_world_id ON lupo_session_events (world_id);
-CREATE INDEX lupo_session_events_idx_event_type ON lupo_session_events (event_type);
-CREATE INDEX lupo_session_events_idx_created_ymdhis ON lupo_session_events (created_ymdhis);
-CREATE INDEX lupo_session_events_idx_session_event_type ON lupo_session_events (session_id, event_type);
+-- Old session events table removed in v4.0.55 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_system_config (
   system_config_id bigint NOT NULL,
@@ -3274,19 +3165,7 @@ CREATE TABLE lupo_system_config (
 
 CREATE UNIQUE INDEX lupo_system_config_config_key ON lupo_system_config (config_key);
 
-CREATE TABLE lupo_system_events (
-  system_event_id bigint NOT NULL,
-  event_id bigint NOT NULL DEFAULT 0,
-  event_type varchar(100) NOT NULL,
-  event_message text NOT NULL,
-  event_context text,
-  actor_id bigint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (system_event_id)
-);
-
-CREATE INDEX lupo_system_events_event_type ON lupo_system_events (event_type);
-CREATE INDEX lupo_system_events_actor_id ON lupo_system_events (actor_id);
+-- Old system events table removed in v4.0.55 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_system_health_snapshots (
   health_id bigint NOT NULL,
@@ -3308,27 +3187,36 @@ CREATE INDEX lupo_system_health_snapshots_idx_created_ymdhis ON lupo_system_heal
 CREATE INDEX lupo_system_health_snapshots_idx_table_count ON lupo_system_health_snapshots (table_count);
 CREATE INDEX lupo_system_health_snapshots_idx_is_deleted ON lupo_system_health_snapshots (is_deleted);
 
-CREATE TABLE lupo_system_logs (
-  log_id bigint NOT NULL,
-  event_type varchar(64) NOT NULL,
-  severity varchar(16) NOT NULL DEFAULT 'info',
-  actor_slug varchar(64) DEFAULT NULL,
-  message text NOT NULL,
-  context_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  recursion_depth tinyint DEFAULT '1',
-  observation_latency_ms int DEFAULT NULL,
-  temporal_anomaly_score decimal(3,2) DEFAULT NULL,
+-- Old logging tables removed in v4.0.55 - consolidated into lupo_unified_log
+
+-- Unified Log Table (v4.0.55)
+CREATE TABLE lupo_unified_log (
+  log_id bigint NOT NULL AUTO_INCREMENT,
+  log_type enum('anubis_deletion','anubis_general','anubis_processing','audit','auth_audit','bans','channel_boot','event','interpretation','search_rebuild') NOT NULL,
+  log_level enum('debug','info','warning','error','critical') DEFAULT 'info',
+  log_message text NOT NULL,
+  log_context json,
+  actor_id int,
+  channel_id int,
+  session_id varchar(128),
+  ip_address varchar(45),
+  user_agent text,
+  created_ymdhis bigint NOT NULL,
   PRIMARY KEY (log_id)
 );
 
-CREATE INDEX lupo_system_logs_idx_event_type ON lupo_system_logs (event_type);
-CREATE INDEX lupo_system_logs_idx_severity ON lupo_system_logs (severity);
-CREATE INDEX lupo_system_logs_idx_actor_slug ON lupo_system_logs (actor_slug);
-CREATE INDEX lupo_system_logs_idx_created_ymdhis ON lupo_system_logs (created_ymdhis);
-CREATE INDEX lupo_system_logs_idx_is_deleted ON lupo_system_logs (is_deleted);
+-- Indexes for unified log (matching TOON exactly)
+CREATE INDEX idx_actor_log ON lupo_unified_log (actor_id, log_type);
+CREATE INDEX idx_channel_log ON lupo_unified_log (channel_id, log_type);
+CREATE INDEX idx_created_ymdhis ON lupo_unified_log (created_ymdhis);
+CREATE INDEX idx_log_type_created ON lupo_unified_log (log_type, created_ymdhis);
+CREATE INDEX idx_session_log ON lupo_unified_log (session_id, log_type);
+CREATE INDEX lupo_unified_log_idx_actor_id ON lupo_unified_log (actor_id);
+CREATE INDEX lupo_unified_log_idx_channel_id ON lupo_unified_log (channel_id);
+CREATE INDEX lupo_unified_log_idx_created_ymdhis ON lupo_unified_log (created_ymdhis);
+CREATE INDEX lupo_unified_log_idx_log_level ON lupo_unified_log (log_level);
+CREATE INDEX lupo_unified_log_idx_log_type ON lupo_unified_log (log_type);
+CREATE INDEX lupo_unified_log_idx_session_id ON lupo_unified_log (session_id);
 
 CREATE TABLE lupo_system_commands (
   command_id bigint NOT NULL,
@@ -3361,27 +3249,7 @@ CREATE INDEX lupo_system_commands_idx_status_heartbeat ON lupo_system_commands (
 CREATE INDEX lupo_system_commands_idx_created_ymdhis ON lupo_system_commands (created_ymdhis);
 CREATE INDEX lupo_system_commands_idx_is_deleted ON lupo_system_commands (is_deleted);
 
-CREATE TABLE lupo_tab_events (
-  tab_event_id bigint NOT NULL,
-  tab_id varchar(255) NOT NULL,
-  session_id varchar(255) DEFAULT NULL,
-  actor_id bigint DEFAULT NULL,
-  world_id bigint DEFAULT NULL,
-  world_key varchar(255) DEFAULT NULL,
-  world_type varchar(50) DEFAULT NULL,
-  event_type varchar(100) NOT NULL,
-  event_data json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (tab_event_id)
-);
-
-CREATE INDEX lupo_tab_events_idx_tab_id ON lupo_tab_events (tab_id);
-CREATE INDEX lupo_tab_events_idx_session_id ON lupo_tab_events (session_id);
-CREATE INDEX lupo_tab_events_idx_actor_id ON lupo_tab_events (actor_id);
-CREATE INDEX lupo_tab_events_idx_world_id ON lupo_tab_events (world_id);
-CREATE INDEX lupo_tab_events_idx_event_type ON lupo_tab_events (event_type);
-CREATE INDEX lupo_tab_events_idx_created_ymdhis ON lupo_tab_events (created_ymdhis);
-CREATE INDEX lupo_tab_events_idx_tab_event_type ON lupo_tab_events (tab_id, event_type);
+-- Old tab events table removed in v4.0.55 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_temporal_coherence_snapshots (
   snapshot_id bigint NOT NULL,
@@ -3694,20 +3562,7 @@ CREATE INDEX lupo_comments_idx_ip_hash ON lupo_comments (ip_hash);
 CREATE INDEX lupo_comments_idx_created_ymdhis ON lupo_comments (created_ymdhis);
 CREATE INDEX lupo_comments_idx_updated_ymdhis ON lupo_comments (updated_ymdhis);
 
-CREATE TABLE lupo_world_events (
-  world_event_id bigint NOT NULL,
-  world_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  event_type varchar(100) NOT NULL,
-  event_data json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (world_event_id)
-);
-
-CREATE INDEX lupo_world_events_idx_world_id ON lupo_world_events (world_id);
-CREATE INDEX lupo_world_events_idx_actor_id ON lupo_world_events (actor_id);
-CREATE INDEX lupo_world_events_idx_event_type ON lupo_world_events (event_type);
-CREATE INDEX lupo_world_events_idx_created_ymdhis ON lupo_world_events (created_ymdhis);
+-- Old world events table removed in v4.0.55 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_world_registry (
   world_id bigint NOT NULL,
@@ -3980,56 +3835,7 @@ ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUE
 -- Tables for task management and offline task import support
 -- Supports MD file task import and database-driven task tracking
 -- Added: 2026-02-25 by Kiro (1000)
--- ============================================================
-
--- Task Types Registry
-CREATE TABLE lupo_task_types (
-  type_id bigint NOT NULL,
-  type_key varchar(64) NOT NULL,
-  type_name varchar(255) NOT NULL,
-  description text,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  PRIMARY KEY (type_id)
-);
-
-CREATE UNIQUE INDEX lupo_task_types_uniq_type_key ON lupo_task_types (type_key);
-CREATE INDEX lupo_task_types_idx_is_deleted ON lupo_task_types (is_deleted);
-
--- Task Statuses Registry
-CREATE TABLE lupo_task_statuses (
-  status_id bigint NOT NULL,
-  status_key varchar(64) NOT NULL,
-  status_name varchar(255) NOT NULL,
-  description text,
-  is_terminal tinyint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  PRIMARY KEY (status_id)
-);
-
-CREATE UNIQUE INDEX lupo_task_statuses_uniq_status_key ON lupo_task_statuses (status_key);
-CREATE INDEX lupo_task_statuses_idx_is_terminal ON lupo_task_statuses (is_terminal);
-CREATE INDEX lupo_task_statuses_idx_is_deleted ON lupo_task_statuses (is_deleted);
-
--- Task Priorities Registry
-CREATE TABLE lupo_task_priorities (
-  priority_id bigint NOT NULL,
-  priority_key varchar(64) NOT NULL,
-  priority_name varchar(255) NOT NULL,
-  priority_level int NOT NULL,
-  description text,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  PRIMARY KEY (priority_id)
-);
-
-CREATE UNIQUE INDEX lupo_task_priorities_uniq_priority_key ON lupo_task_priorities (priority_key);
-CREATE INDEX lupo_task_priorities_idx_priority_level ON lupo_task_priorities (priority_level);
-CREATE INDEX lupo_task_priorities_idx_is_deleted ON lupo_task_priorities (is_deleted);
+-- Task lookup tables removed in v4.0.55 - consolidated into lupo_tasks VARCHAR columns
 
 -- Core Tasks Table
 CREATE TABLE lupo_tasks (
@@ -4037,9 +3843,6 @@ CREATE TABLE lupo_tasks (
   task_key varchar(64) NOT NULL,
   channel_id bigint NOT NULL,
   owner_actor_id bigint NOT NULL,
-  task_type_id bigint NOT NULL,
-  status_id bigint NOT NULL,
-  priority_id bigint NOT NULL,
   title varchar(255) NOT NULL,
   description text,
   prompt_path varchar(512) DEFAULT NULL,
@@ -4053,14 +3856,18 @@ CREATE TABLE lupo_tasks (
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   metadata_json text,
+  task_type varchar(64),
+  task_status varchar(64),
+  task_priority varchar(64),
   PRIMARY KEY (task_id)
 );
 
 CREATE UNIQUE INDEX lupo_tasks_uniq_task_key_per_channel ON lupo_tasks (task_key, channel_id);
 CREATE INDEX lupo_tasks_idx_channel_id ON lupo_tasks (channel_id);
 CREATE INDEX lupo_tasks_idx_owner_actor_id ON lupo_tasks (owner_actor_id);
-CREATE INDEX lupo_tasks_idx_status_id ON lupo_tasks (status_id);
-CREATE INDEX lupo_tasks_idx_priority_id ON lupo_tasks (priority_id);
+CREATE INDEX lupo_tasks_idx_task_type ON lupo_tasks (task_type);
+CREATE INDEX lupo_tasks_idx_task_status ON lupo_tasks (task_status);
+CREATE INDEX lupo_tasks_idx_task_priority ON lupo_tasks (task_priority);
 CREATE INDEX lupo_tasks_idx_created_ymdhis ON lupo_tasks (created_ymdhis);
 CREATE INDEX lupo_tasks_idx_acting_as_actor_id ON lupo_tasks (acting_as_actor_id);
 CREATE INDEX lupo_tasks_idx_is_deleted ON lupo_tasks (is_deleted);
@@ -4103,23 +3910,7 @@ CREATE INDEX lupo_task_dependencies_idx_depends_on_task_id ON lupo_task_dependen
 CREATE INDEX lupo_task_dependencies_idx_dependency_type ON lupo_task_dependencies (dependency_type);
 CREATE INDEX lupo_task_dependencies_idx_is_deleted ON lupo_task_dependencies (is_deleted);
 
--- Task Events (Audit Log)
-CREATE TABLE lupo_task_events (
-  event_id bigint NOT NULL,
-  task_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  event_type varchar(64) NOT NULL,
-  old_value text,
-  new_value text,
-  notes text,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (event_id)
-);
-
-CREATE INDEX lupo_task_events_idx_task_id ON lupo_task_events (task_id);
-CREATE INDEX lupo_task_events_idx_actor_id ON lupo_task_events (actor_id);
-CREATE INDEX lupo_task_events_idx_event_type ON lupo_task_events (event_type);
-CREATE INDEX lupo_task_events_idx_created_ymdhis ON lupo_task_events (created_ymdhis);
+-- Old task events table removed in v4.0.55 - consolidated into lupo_unified_log
 
 -- ============================================================
 -- END OF TASK MANAGEMENT SYSTEM
