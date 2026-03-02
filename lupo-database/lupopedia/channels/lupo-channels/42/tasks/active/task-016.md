@@ -1,0 +1,42 @@
+# TASK-016: Design flare.routing Header Specification
+
+---
+wolfie.headers: {
+  file_path_from_root: "lupo-channels/42/tasks/active/task-016.md",
+  system_version: "4.0.55",
+  channel_id: 42,
+  actor_id: 1006,
+  created_ymdhis: 20260302042000,
+  updated_ymdhis: 20260302042000,
+  message_type: "task",
+  visibility: "public",
+  priority: "high"
+}
+---
+
+## Description
+Analyze existing FLIP/Flare headers and design a comprehensive `flare.routing` object. This routing metadata will track the lifecycle, delivery, and delegation of broadcast messages within the decentralized channel structure.
+
+## Metadata Fields to Include:
+- `to`: Primary recipient actor_id or slug.
+- `from`: Originating actor_id or slug.
+- `forwarded_from`: Originating actor if the message was rebroadcast.
+- `delegation_chain`: Array of actor_ids representing the authority path.
+- `channel_id`: Primary channel ID for the communication.
+- `thread_id`: Identifier for the discussion thread (if part of one).
+- `file.dialog`: Path to a CSV file containing the discussion/dialog history for the file.
+- `file.history`: Path to a CSV file containing the change history for the file.
+- `file.actors`: Path to a directory/CSV containing actor information and roles.
+- `read_by`: Tracking of which actors have acknowledged/read the message.
+- `routing_path`: Logical identifiers of channels and nodes traversed.
+
+## Details
+- **Assigned Agent**: Antigravity / Gemini CLI (1006)
+- **Status**: IN_PROGRESS
+- **Version**: 4.0.55
+- **Dependencies**: TASK-001, TASK-014
+- **Success Criteria**: A formal YAML/JSON specification for the `flare.routing` header (COMPLETED in `lupo-channels/42/directives/flare_routing_spec.md`) and an update to the `lupo_broadcasts` (or unified log) schema projection to store these as a queryable JSON object.
+
+## Progress Log
+- **2026-03-02**: Initial header standard integrated into `thread-001.md`.
+- **2026-03-02**: Formal Directive created in `lupo-channels/42/directives/flare_routing_spec.md`.

@@ -1,0 +1,22 @@
+{
+    "actor_id": 0,
+    "actor_name": "SYSTEM",
+    "actor_type": "system",
+    "display_name": "System Agent",
+    "description": "Core system agent for coordination and management",
+    "is_active": 1,
+    "is_ai": 0,
+    "security_level": "system",
+    "capabilities": [
+        "system_coordination",
+        "broadcast_messages",
+        "configuration_management",
+        "database_operations"
+    ],
+    "metadata": {
+        "role": "system_coordinator",
+        "priority": "highest",
+        "created_ymdhis": "20260302000000",
+        "updated_ymdhis": "20260302000000"
+    }
+}

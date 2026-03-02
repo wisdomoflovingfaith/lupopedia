@@ -73,6 +73,31 @@ flare.headers:
   table_indexes: ["PRIMARY", "uniq_slug", "idx_kind"]
 ```
 
+## 🗺️ **flare.routing Header Reference**
+
+The `flare.routing` object tracks the lifecycle, delivery, and delegation of artifacts across the multi-agent ecosystem.
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `to` | array | Primary recipients (actor_ids or slugs) | `["all", "captain"]` |
+| `from` | integer/string | Originating actor_id or slug | `1006` |
+| `forwarded_from` | integer/string | Original sender if rebroadcast | `1004` |
+| `delegation_chain` | array | sequence of authority (Root -> Higher -> Executor) | `[1, 10000, 1006]` |
+| `channel_id` | integer | Target channel ID | `42` |
+| `thread_id` | mixed | Discussion thread ID | `"DEVELOPMENT_CYCLE_4_0_55"` |
+| `read_by` | array | Actors who have acknowledged the message | `[1006, 10000]` |
+| `routing_path` | array | logical or physical directories traversed | `["lupo-channels/42/threads/"]` |
+
+## 🗺️ **flare.lists Reference**
+
+The `flare.lists` object links to external CSV-based history and discussion records.
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `file.dialog` | string | Path to discussion CSV | `"thread_dialog.csv"` |
+| `file.history` | string | Path to change history CSV | `"thread_history.csv"` |
+| `file.actors` | string | Path to actors list CSV | `"thread_actors.csv"` |
+
 ### **🎨 UI/Component Specific Fields**
 
 | Field | Type | Description | Example |
