@@ -144,3 +144,16 @@ There are two valid patterns (use whichever matches the channel's organization):
 That's the canonical structure going forward, aligned with the existing TOON schema and current repository organization.
 
 ---
+
+## ID-Scoped Faucet Directories (4.0.56)
+
+As of 4.0.56, a **global faucet store** by `agent_faucet_id` is supported:
+
+- **Path:** `lupo-database/lupopedia/actors/faucets/<agent_faucet_id>/faucet.json`
+- **Manifest:** `lupo-database/lupopedia/actors/faucets/by_actor.json` maps `(actor_id, domain_id)` → `agent_faucet_id` for resolution when loading by (channel_id, actor_id).
+- **Precedence:** (1) Per-actor channel file (override), (2) Channel-wide file (override), (3) ID-scoped file (base). Channel-scoped files take precedence over ID-scoped.
+- **Loader:** `lupo-bin/faucet_loader.php` uses `LUPOPEDIA_PATH` or `LUPO_DATABASE_DIR` as base; resolves `agent_faucet_id` via `by_actor.json` or DB (`SELECT agent_faucet_id FROM lupo_agent_faucets WHERE actor_id = ? AND domain_id = ?`), then loads `actors/faucets/<id>/faucet.json`.
+- **Validation:** `validate_faucets.php` and `faucet_integrity_audit.php` scan `lupo-database/lupopedia/actors/faucets/*/faucet.json` and validate against the TOON schema.
+- **Pilot:** `lupo-database/lupopedia/actors/faucets/6/faucet.json` (ANUBIS FLARE Ingestion, actor_id 19, domain_id 42).
+
+---

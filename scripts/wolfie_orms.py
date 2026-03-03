@@ -358,15 +358,32 @@ def select_one_from_lupo_agent_faucet_credentials(db):
     return db.query(sql)
 
 def select_one_from_lupo_agent_faucets(db):
+    # Schema aligned with install_new_lupopedia.sql / lupo_agent_faucets TOON (4.0.56).
+    # Legacy columns agent_id, faucet_type, faucet_data, is_deleted were removed; use actor_id, name, slug, etc.
     sql = """
         SELECT
             agent_faucet_id,
-            agent_id,
-            faucet_type,
-            faucet_data,
+            actor_id,
+            name,
+            alias_name,
+            slug,
+            description,
+            style_preset,
+            model_name,
+            provider,
+            temperature,
+            top_p,
+            max_tokens,
+            presence_penalty,
+            frequency_penalty,
+            system_prompt,
+            safety_json,
+            response_format,
+            capabilities_json,
+            is_default,
+            domain_id,
             created_ymdhis,
             updated_ymdhis,
-            is_deleted,
             deleted_ymdhis
         FROM lupo_agent_faucets
         LIMIT 1;

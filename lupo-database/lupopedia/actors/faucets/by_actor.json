@@ -1,0 +1,11 @@
+{
+  "schema_version": "4.0.56",
+  "purpose": "Map (actor_id, channel_id/domain_id) to agent_faucet_id for file-based faucet resolution",
+  "entries": [
+    {
+      "actor_id": 19,
+      "domain_id": 42,
+      "agent_faucet_id": 6
+    }
+  ]
+}

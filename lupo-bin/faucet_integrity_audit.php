@@ -35,46 +35,80 @@ flare.footer:
 
 /**
  * Faucet Integrity Audit - Cross-Channel Integrity Checker
- * 
- * Checks cross-channel integrity:
- * - Duplicate slugs across channels (if disallowed)
- * - Orphan faucet files
- * - Actor directories without faucets in active channels
- * 
- * @author Windsurf (1002)
- * @version 4.0.50
+ *
+ * Checks cross-channel integrity: duplicate slugs, orphan files, missing actor faucets.
+ * Includes id-scoped faucets: lupo-database/lupopedia/actors/faucets/<id>/faucet.json
+ *
+ * @author Windsurf (1002), Cursor (1003)
+ * @version 4.0.56
  */
 
-require_once 'lupo-includes/bootstrap.php';
+if (!defined('LUPOPEDIA_PATH')) {
+    define('LUPOPEDIA_PATH', dirname(__DIR__));
+}
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
 class FaucetIntegrityAuditor {
-    private $all_faucets = [];
-    private $channels = [];
-    private $issues = [];
-    
+    private $all_faucets = array();
+    private $channels = array();
+    private $issues = array();
+    private $base_path = null;
+
     public function __construct() {
+        $this->resolveBasePath();
         $this->loadAllFaucets();
     }
-    
+
+    private function resolveBasePath() {
+        if (defined('LUPO_DATABASE_DIR') && LUPO_DATABASE_DIR) {
+            $this->base_path = rtrim(LUPO_DATABASE_DIR, DIRECTORY_SEPARATOR . '/\\') . DIRECTORY_SEPARATOR . 'lupopedia';
+        } else {
+            $root = defined('LUPOPEDIA_PATH') && LUPOPEDIA_PATH ? rtrim(LUPOPEDIA_PATH, DIRECTORY_SEPARATOR . '/\\') : dirname(__DIR__);
+            $this->base_path = $root . DIRECTORY_SEPARATOR . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia';
+        }
+    }
+
     /**
-     * Load all faucet files from all channels
+     * Load all faucet files (channels + id-scoped)
      */
     private function loadAllFaucets() {
-        $channels_dir = 'channels';
-        
-        if (!is_dir($channels_dir)) {
-            throw new Exception("Channels directory not found");
-        }
-        
-        $items = scandir($channels_dir);
-        foreach ($items as $item) {
-            if ($item === '.' || $item === '..') {
-                continue;
+        $sep = DIRECTORY_SEPARATOR;
+        $channels_dir = (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : dirname(__DIR__)) . $sep . 'channels';
+        if (is_dir($channels_dir)) {
+            $items = scandir($channels_dir);
+            foreach ($items as $item) {
+                if ($item === '.' || $item === '..') {
+                    continue;
+                }
+                $channel_path = $channels_dir . $sep . $item;
+                if (is_dir($channel_path) && is_numeric($item)) {
+                    $this->loadChannelFaucets($item, $channel_path);
+                }
             }
-            
-            $channel_path = $channels_dir . '/' . $item;
-            if (is_dir($channel_path) && is_numeric($item)) {
-                $this->loadChannelFaucets($item, $channel_path);
+        }
+        $id_scoped_dir = $this->base_path . $sep . 'actors' . $sep . 'faucets';
+        if (is_dir($id_scoped_dir)) {
+            $items = scandir($id_scoped_dir);
+            foreach ($items as $item) {
+                if ($item === '.' || $item === '..') {
+                    continue;
+                }
+                $path = $id_scoped_dir . $sep . $item;
+                if (is_dir($path)) {
+                    $faucet_file = $path . $sep . 'faucet.json';
+                    if (file_exists($faucet_file)) {
+                        $content = file_get_contents($faucet_file);
+                        $faucet = json_decode($content, true);
+                        if (json_last_error() === JSON_ERROR_NONE && isset($faucet['agent_faucet_id'])) {
+                            $this->all_faucets[] = array(
+                                'channel_id' => isset($faucet['domain_id']) ? $faucet['domain_id'] : null,
+                                'type' => 'id_scoped',
+                                'faucet' => $faucet,
+                                'file' => $faucet_file
+                            );
+                        }
+                    }
+                }
             }
         }
     }

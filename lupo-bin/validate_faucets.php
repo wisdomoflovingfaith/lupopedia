@@ -35,58 +35,102 @@ flare.footer:
 
 /**
  * Faucet Validator - Validation CLI Tool for Agent Faucets
- * 
- * Recursively scans and validates all faucet files against TOON schema
- * 
- * @author Windsurf (1002)
- * @version 4.0.50
+ *
+ * Recursively scans and validates all faucet files against TOON schema.
+ * Scans: (1) channels/ (legacy), (2) lupo-database/lupopedia/actors/faucets/<id>/faucet.json (id-scoped).
+ *
+ * @author Windsurf (1002), Cursor (1003)
+ * @version 4.0.56
  */
 
-require_once 'lupo-includes/bootstrap.php';
+if (!defined('LUPOPEDIA_PATH')) {
+    define('LUPOPEDIA_PATH', dirname(__DIR__));
+}
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
 class FaucetValidator {
     private $toon_schema = null;
-    private $errors = [];
-    private $warnings = [];
-    private $stats = [
+    private $errors = array();
+    private $warnings = array();
+    private $stats = array(
         'total_files' => 0,
         'valid_files' => 0,
         'invalid_files' => 0,
         'total_faucets' => 0,
-        'channels' => [],
-        'default_faucets' => [], // Track is_default = 1 per actor per channel
-        'slug_duplicates' => [], // Track duplicate slugs across channels
-        'actor_mismatches' => [] // Track directory/JSON actor_id mismatches
-    ];
-    
+        'channels' => array(),
+        'default_faucets' => array(),
+        'slug_duplicates' => array(),
+        'actor_mismatches' => array(),
+        'id_scoped_faucets' => 0
+    );
+    private $base_path = null;
+
     public function __construct() {
+        $this->resolveBasePath();
         $this->loadToonSchema();
     }
-    
+
+    private function resolveBasePath() {
+        if (defined('LUPO_DATABASE_DIR') && LUPO_DATABASE_DIR) {
+            $this->base_path = rtrim(LUPO_DATABASE_DIR, DIRECTORY_SEPARATOR . '/\\') . DIRECTORY_SEPARATOR . 'lupopedia';
+        } else {
+            $root = defined('LUPOPEDIA_PATH') && LUPOPEDIA_PATH ? rtrim(LUPOPEDIA_PATH, DIRECTORY_SEPARATOR . '/\\') : dirname(__DIR__);
+            $this->base_path = $root . DIRECTORY_SEPARATOR . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia';
+        }
+    }
+
     /**
-     * Load TOON schema for validation
+     * Load TOON schema (canonical path first, then legacy)
      */
     private function loadToonSchema() {
-        $toon_file = 'docs/toons/lupo_agent_faucets.toon.json';
-        
+        $toon_file = $this->base_path . DIRECTORY_SEPARATOR . 'toon' . DIRECTORY_SEPARATOR . 'lupo_agent_faucets.toon.json';
         if (!file_exists($toon_file)) {
-            throw new Exception("TOON schema file not found: {$toon_file}");
+            $toon_file = (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'lupo-docs' . DIRECTORY_SEPARATOR . 'toons' . DIRECTORY_SEPARATOR . 'lupo_agent_faucets.toon.json';
         }
-        
+        if (!file_exists($toon_file)) {
+            $toon_file = (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'docs' . DIRECTORY_SEPARATOR . 'toons' . DIRECTORY_SEPARATOR . 'lupo_agent_faucets.toon.json';
+        }
+        if (!file_exists($toon_file)) {
+            throw new Exception("TOON schema file not found");
+        }
         $toon_content = file_get_contents($toon_file);
         $this->toon_schema = json_decode($toon_content, true);
-        
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new Exception("Invalid JSON in TOON schema: " . json_last_error_msg());
         }
     }
-    
+
     /**
-     * Recursively scan and validate all faucet files
+     * Recursively scan and validate all faucet files (channels + id-scoped)
      */
     public function validateAll() {
         $this->scanDirectory('channels');
+        $this->scanIdScopedFaucets();
         $this->outputResults();
+    }
+
+    /**
+     * Scan lupo-database/lupopedia/actors/faucets/<id>/faucet.json
+     */
+    private function scanIdScopedFaucets() {
+        $faucets_dir = $this->base_path . DIRECTORY_SEPARATOR . 'actors' . DIRECTORY_SEPARATOR . 'faucets';
+        if (!is_dir($faucets_dir)) {
+            return;
+        }
+        $items = scandir($faucets_dir);
+        foreach ($items as $item) {
+            if ($item === '.' || $item === '..') {
+                continue;
+            }
+            $path = $faucets_dir . DIRECTORY_SEPARATOR . $item;
+            if (is_dir($path)) {
+                $faucet_file = $path . DIRECTORY_SEPARATOR . 'faucet.json';
+                if (file_exists($faucet_file)) {
+                    $this->validateFile($faucet_file, 'id-scoped', $item, null);
+                    $this->stats['id_scoped_faucets']++;
+                }
+            }
+        }
     }
     
     /**
@@ -180,25 +224,26 @@ class FaucetValidator {
      */
     private function validateFile($file_path, $type, $channel_id, $actor_id = null) {
         $this->stats['total_files']++;
-        
         try {
             $content = file_get_contents($file_path);
             $faucets = json_decode($content, true);
-            
             if (json_last_error() !== JSON_ERROR_NONE) {
                 $this->addError($file_path, "Invalid JSON: " . json_last_error_msg());
                 $this->stats['invalid_files']++;
                 return;
             }
-            
             if ($type === 'channel-wide') {
                 $this->validateChannelWideFaucets($faucets, $file_path, $channel_id);
+            } elseif ($type === 'id-scoped') {
+                $this->stats['total_faucets']++;
+                $this->validateSingleFaucet($faucets, $file_path, "root");
             } else {
+                if (isset($faucets['faucets']) && is_array($faucets['faucets']) && count($faucets['faucets']) > 0) {
+                    $faucets = $faucets['faucets'][0];
+                }
                 $this->validatePerActorFaucets($faucets, $file_path, $channel_id, $actor_id);
             }
-            
             $this->stats['valid_files']++;
-            
         } catch (Exception $e) {
             $this->addError($file_path, $e->getMessage());
             $this->stats['invalid_files']++;

@@ -1,5 +1,4 @@
 <?php
-<?php
 /**
  * FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
  */
@@ -36,100 +35,195 @@ flare.footer:
 
 /**
  * Faucet Loader - Runtime Integration for Agent Faucets
- * 
+ *
  * Loads agent faucets with proper override hierarchy:
- * 1. Per-actor: channels/<channel_id>/actors/<actor_id>/faucets.json
- * 2. Channel-wide: channels/<channel_id>/faucets.json
- * 
- * @author Windsurf (1002)
- * @version 4.0.50
+ * 1. Per-actor (override): lupopedia/channels/lupo-channels/<channel_id>/actors/<actor_id>/faucets.json
+ * 2. Channel-wide (override): lupopedia/channels/lupo-channels/<channel_id>/faucets.json
+ * 3. ID-scoped (base): lupopedia/actors/faucets/<agent_faucet_id>/faucet.json (via by_actor.json or DB)
+ *
+ * Uses LUPOPEDIA_PATH or LUPO_DATABASE_DIR for base path so paths are not CWD-dependent.
+ *
+ * @author Windsurf (1002), Cursor (1003)
+ * @version 4.0.56
  */
 
-require_once 'lupo-includes/bootstrap.php';
+if (!defined('LUPOPEDIA_PATH')) {
+    define('LUPOPEDIA_PATH', dirname(__DIR__));
+}
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
 class FaucetLoader {
     private $toon_schema = null;
-    private $cache = [];
-    
+    private $cache = array();
+    private $base_path = null;
+
     public function __construct() {
+        $this->resolveBasePath();
         $this->loadToonSchema();
     }
-    
+
     /**
-     * Load TOON schema for validation
+     * Resolve base path for lupopedia file-based data (lupo-database/lupopedia or equivalent)
+     */
+    private function resolveBasePath() {
+        if ($this->base_path !== null) {
+            return;
+        }
+        if (defined('LUPO_DATABASE_DIR') && LUPO_DATABASE_DIR) {
+            $db_dir = rtrim(LUPO_DATABASE_DIR, DIRECTORY_SEPARATOR . '/\\');
+            $this->base_path = $db_dir . DIRECTORY_SEPARATOR . 'lupopedia';
+        } else {
+            $root = defined('LUPOPEDIA_PATH') && LUPOPEDIA_PATH ? rtrim(LUPOPEDIA_PATH, DIRECTORY_SEPARATOR . '/\\') : dirname(__DIR__);
+            $this->base_path = $root . DIRECTORY_SEPARATOR . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia';
+        }
+    }
+
+    /**
+     * Load TOON schema for validation (canonical path under base)
      */
     private function loadToonSchema() {
-        $toon_file = 'lupo-database/lupopedia/toon/lupo_agent_faucets.toon.json';
-        
+        $toon_file = $this->base_path . DIRECTORY_SEPARATOR . 'toon' . DIRECTORY_SEPARATOR . 'lupo_agent_faucets.toon.json';
         if (!file_exists($toon_file)) {
-            throw new Exception("TOON schema file not found: {$toon_file}");
+            $legacy = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lupo-docs' . DIRECTORY_SEPARATOR . 'toons' . DIRECTORY_SEPARATOR . 'lupo_agent_faucets.toon.json';
+            if (file_exists($legacy)) {
+                $toon_file = $legacy;
+            }
         }
-        
+        if (!file_exists($toon_file)) {
+            throw new Exception("TOON schema file not found: " . $toon_file);
+        }
         $toon_content = file_get_contents($toon_file);
         $this->toon_schema = json_decode($toon_content, true);
-        
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new Exception("Invalid JSON in TOON schema: " . json_last_error_msg());
         }
     }
-    
+
+    /**
+     * Resolve agent_faucet_id for (channel_id, actor_id) from by_actor.json or DB
+     */
+    private function resolveAgentFaucetId($channel_id, $actor_id) {
+        $manifest = $this->base_path . DIRECTORY_SEPARATOR . 'actors' . DIRECTORY_SEPARATOR . 'faucets' . DIRECTORY_SEPARATOR . 'by_actor.json';
+        if (file_exists($manifest)) {
+            $json = json_decode(file_get_contents($manifest), true);
+            if (json_last_error() === JSON_ERROR_NONE && isset($json['entries']) && is_array($json['entries'])) {
+                foreach ($json['entries'] as $entry) {
+                    $aid = isset($entry['actor_id']) ? (int) $entry['actor_id'] : null;
+                    $domain = isset($entry['domain_id']) ? (int) $entry['domain_id'] : null;
+                    if ($aid === (int) $actor_id && $domain === (int) $channel_id) {
+                        return isset($entry['agent_faucet_id']) ? (int) $entry['agent_faucet_id'] : null;
+                    }
+                }
+            }
+        }
+        if (isset($GLOBALS['mydatabase'])) {
+            $db = $GLOBALS['mydatabase'];
+            $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+            $t = $table_prefix . 'agent_faucets';
+            $sql = "SELECT agent_faucet_id FROM " . $t . " WHERE actor_id = :actor_id AND domain_id = :domain_id AND (deleted_ymdhis IS NULL OR deleted_ymdhis = 0) LIMIT 1";
+            $row = $db->fetch($sql, array('actor_id' => $actor_id, 'domain_id' => $channel_id));
+            if ($row && isset($row['agent_faucet_id'])) {
+                return (int) $row['agent_faucet_id'];
+            }
+        }
+        return null;
+    }
+
     /**
      * Load faucet for specific actor in channel
      */
     public function loadFaucet($channel_id, $actor_id) {
-        $cache_key = "{$channel_id}_{$actor_id}";
-        
+        $cache_key = $channel_id . '_' . $actor_id;
         if (isset($this->cache[$cache_key])) {
             return $this->cache[$cache_key];
         }
-        
-        // Try per-actor override first
-        $per_actor_file = "channels/{$channel_id}/actors/{$actor_id}/faucets.json";
-        
+        $sep = DIRECTORY_SEPARATOR;
+        $ch = (string) $channel_id;
+        $ac = (string) $actor_id;
+
+        // 1. Per-actor override (canonical path under base)
+        $per_actor_file = $this->base_path . $sep . 'channels' . $sep . 'lupo-channels' . $sep . $ch . $sep . 'actors' . $sep . $ac . $sep . 'faucets.json';
         if (file_exists($per_actor_file)) {
-            $faucet = $this->loadAndValidate($per_actor_file);
+            $faucet = $this->loadAndValidate($per_actor_file, $actor_id);
             $this->cache[$cache_key] = $faucet;
             return $faucet;
         }
-        
-        // Fall back to channel-wide faucets
-        $channel_wide_file = "channels/{$channel_id}/faucets.json";
-        
-        if (!file_exists($channel_wide_file)) {
-            throw new Exception("Missing faucet for actor {$actor_id} in channel {$channel_id}. No per-actor or channel-wide faucets found.");
-        }
-        
-        $channel_faucets = $this->loadAndValidate($channel_wide_file);
-        
-        // Find actor's faucet in channel-wide file
-        foreach ($channel_faucets['faucets'] as $faucet) {
-            if ($faucet['actor_id'] == $actor_id) {
+
+        // 2. Channel-wide override
+        $channel_wide_file = $this->base_path . $sep . 'channels' . $sep . 'lupo-channels' . $sep . $ch . $sep . 'faucets.json';
+        if (file_exists($channel_wide_file)) {
+            $faucet = $this->loadChannelWideAndGetActor($channel_wide_file, $actor_id);
+            if ($faucet !== null) {
                 $this->cache[$cache_key] = $faucet;
                 return $faucet;
             }
         }
-        
-        throw new Exception("Faucet not found for actor {$actor_id} in channel {$channel_id}");
+
+        // 3. ID-scoped base: actors/faucets/<agent_faucet_id>/faucet.json
+        $agent_faucet_id = $this->resolveAgentFaucetId($channel_id, $actor_id);
+        if ($agent_faucet_id !== null) {
+            $id_scoped_file = $this->base_path . $sep . 'actors' . $sep . 'faucets' . $sep . $agent_faucet_id . $sep . 'faucet.json';
+            if (file_exists($id_scoped_file)) {
+                $faucet = $this->loadAndValidate($id_scoped_file, null);
+                $this->cache[$cache_key] = $faucet;
+                return $faucet;
+            }
+        }
+
+        throw new Exception("Missing faucet for actor " . $actor_id . " in channel " . $channel_id . ". No per-actor, channel-wide, or ID-scoped faucet found.");
     }
     
     /**
-     * Load and validate faucet file against TOON schema
+     * Load channel-wide faucets file and return single faucet for actor_id, or null
      */
-    private function loadAndValidate($file_path) {
+    private function loadChannelWideAndGetActor($file_path, $actor_id) {
         if (!file_exists($file_path)) {
-            throw new Exception("Faucet file not found: {$file_path}");
+            return null;
         }
-        
         $content = file_get_contents($file_path);
-        $faucet = json_decode($content, true);
-        
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new Exception("Invalid JSON in faucet file {$file_path}: " . json_last_error_msg());
+        $data = json_decode($content, true);
+        if (json_last_error() !== JSON_ERROR_NONE || !isset($data['faucets']) || !is_array($data['faucets'])) {
+            return null;
         }
-        
-        $this->validateSchema($faucet, $file_path);
-        
-        return $faucet;
+        foreach ($data['faucets'] as $faucet) {
+            if (isset($faucet['actor_id']) && (int) $faucet['actor_id'] === (int) $actor_id) {
+                $this->validateSchema($faucet, $file_path);
+                return $faucet;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Load and validate faucet file against TOON schema.
+     * If $actor_id is set and root has "faucets" array, extract first matching by actor_id; else treat root as single faucet.
+     */
+    private function loadAndValidate($file_path, $actor_id = null) {
+        if (!file_exists($file_path)) {
+            throw new Exception("Faucet file not found: " . $file_path);
+        }
+        $content = file_get_contents($file_path);
+        $data = json_decode($content, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new Exception("Invalid JSON in faucet file " . $file_path . ": " . json_last_error_msg());
+        }
+        if (isset($data['faucets']) && is_array($data['faucets'])) {
+            $found = null;
+            if ($actor_id !== null) {
+                foreach ($data['faucets'] as $f) {
+                    if (isset($f['actor_id']) && (int) $f['actor_id'] === (int) $actor_id) {
+                        $found = $f;
+                        break;
+                    }
+                }
+            }
+            if ($found === null && count($data['faucets']) > 0) {
+                $found = $data['faucets'][0];
+            }
+            $data = $found !== null ? $found : $data;
+        }
+        $this->validateSchema($data, $file_path);
+        return $data;
     }
     
     /**
