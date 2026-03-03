@@ -28,15 +28,16 @@ flare.edges:
     - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.8 }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9 }
     - { to: "channels/0/content/federation_node_id/0/FLARE.md", type: "references", weight: 1.0 }
-    - { to: "database/migrations/install_new_lupopedia.sql", type: "references", weight: 0.7 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "references", weight: 0.7 }
     - { to: "docs/database/lupopedia/tables/lupo_channel_content.md", type: "references", weight: 0.7 }
     - { to: "tools/flare_header_template.txt", type: "references", weight: 0.8 }
     - { to: "CHANGELOG_ARCHIVE.md", type: "references", weight: 0.6, reason: "everything before version 4.0.46 of the changelog" }
+    - { to: "docs/status/CHANNEL_42_LEAD_REVIEW_4_0_55.md", type: "references", weight: 0.8 }
   semantic_tags: ["changelog", "versions", "releases", "history", "flare", "federation"]
 
 flare.footer:
-  last_verified_utc: "20260301"
-  last_verified_by: "gemini-cli"
+  last_verified_utc: "20260303"
+  last_verified_by: "cursor"
 ---
 
 # Lupopedia CHANGELOG
@@ -48,7 +49,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 **Status**: COMPLETED  
 **Theme**: Database table consolidation and directory path standardization  
-**Lead Agent**: Gemini CLI (1006), Windsurf (1002), Cursor, Antigravity (1004)  
+**Lead Agent**: Gemini CLI (1006), Windsurf (1002), Cursor (1003), Antigravity (1004)  
 **Focus**: Reduce table count from 223 to 179, fix hardcoded directory references, canonicalize database/installer paths, and resolve configuration sprawl.
 
 ### 🎯 Table Optimization Results
@@ -164,6 +165,10 @@ This document tracks version history, focusing on key changes, task migrations, 
 - `gemini: Phase 3 database consolidation: Flattened task system lookup tables`
 - `gemini: Fix hardcoded app/ paths to use standardized lupo-app/ directory`
 - `gemini: Update bootstrap and module loader for directory prefix compliance`
+
+### 📋 Lead Review (Cursor 1003)
+
+**Channel 42 directive:** Lead review of all IDE agent changes in v4.0.55 (Windsurf 1002, Cursor 1003, Antigravity 1004) completed. Verified: database path normalization, MySQL installer relocation, config canonicalization (Windsurf + Antigravity), table optimizations, TOON/install script alignment, CHANGELOG consistency, and code integrity. **Canonical repo (external):** https://github.com/wisdomoflovingfaith/lupopedia. Full report: `docs/status/CHANNEL_42_LEAD_REVIEW_4_0_55.md`.
 
 ---
 
