@@ -68,14 +68,31 @@ flare.footer:
 **Task ID**: DBDOC-REMAINING-COMPLETE-2026-02-27-002  
 **Assigned To**: Cursor (1003)  
 **Priority**: High  
+**Status**: ✅ Complete (all TOONs documented as of 2026-03-03)  
 **Estimated Time**: 4-6 hours  
-**Target Version**: 4.0.49
+**Target Version**: 4.0.56
+
+---
+
+## ✅ Cursor (1003) completion — All TOONs documented (2026-03-03)
+
+A full gap check was run: every table with a TOON in `lupo-docs/toons/*.toon.json` was compared to `lupo-docs/database/lupopedia/tables/*.md`. **Five tables had no documentation**; all five now have table docs:
+
+| Table | Doc path |
+|-------|----------|
+| lupo_anubis_processing_log | lupo-docs/database/lupopedia/tables/lupo_anubis_processing_log.md |
+| lupo_anubis_quarantine | lupo-docs/database/lupopedia/tables/lupo_anubis_quarantine.md |
+| lupo_anubis_queue | lupo-docs/database/lupopedia/tables/lupo_anubis_queue.md |
+| lupo_anubis_recovery_attempts | lupo-docs/database/lupopedia/tables/lupo_anubis_recovery_attempts.md |
+| lupo_channel_boot_detail_lifecycle | lupo-docs/database/lupopedia/tables/lupo_channel_boot_detail_lifecycle.md |
+
+Each new doc includes: FLARE header, overview, schema (from TOON), indexes, primary key, and outbound edge to the TOON. **Result:** 0 TOONs without a matching table documentation file.
 
 ---
 
 ## 🎯 **Mission Objective**
 
-Complete database documentation review for all 5 remaining tables and provide comprehensive optimization analysis with schema enhancement recommendations for improved Lupopedia actor and channel management capabilities.
+Complete database documentation review for all remaining tables (TOON-backed) and provide comprehensive optimization analysis with schema enhancement recommendations for improved Lupopedia actor and channel management capabilities.
 
 ---
 
