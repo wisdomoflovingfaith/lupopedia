@@ -118,14 +118,18 @@ This document tracks version history, focusing on key changes, task migrations, 
 ### 📂 Database Path Normalization & MySQL Installer Relocation (Cursor)
 
 **Database path normalization**: ✅ COMPLETED
-- All documentation, doctrine, and prompts now use canonical paths: `lupo-database/lupopedia/csv/`, `lupo-database/lupopedia/toon/`, `lupo-database/lupopedia/mysql/`, `lupo-database/lupopedia/postgres/`.
-- Replaced references to `database/toon_data/`, `database/csv_data/`, and `docs/toons/` (where denoting asset location) across doctrine, AGENTS.md, GEMINI.md, table docs, scripts, and PHP. Report: `docs/status/DATABASE_PATH_NORMALIZATION_REPORT.md`.
+- **Canonical paths:** All docs, doctrine, and code now use `lupo-database/lupopedia/csv/`, `lupo-database/lupopedia/toon/`, `lupo-database/lupopedia/mysql/`, `lupo-database/lupopedia/postgres/`. Config root: `$lupo_database_root = 'lupo-database/lupopedia/'` (subdirs: csv/, toon/, mysql/, postgres/).
+- **Replaced:** `database/toon_data/`, `database/csv_data/`, and `docs/toons/` (where meaning asset location) across: lupo-docs doctrine (TOON_DOCTRINE, CURSOR_REFACTOR_DOCTRINE, PDO_CONVERSION_DOCTRINE, DIRECTORY_STRUCTURE, AI_SCHEMA_GUIDE, FLARE_DOCTRINE, LUPOPEDIA_DOCTRINE, DB_SCHEMA_REBUILD_PLAN, DOCTRINE, AUTH_SQL_VERIFICATION, EMOTIONAL_GEOMETRY_DOCTRINE, CHANNEL_DIALOG_SCHEMA_REVIEW, MOOD_SERVICES_INTEGRATION, 4.4.1.md, flip_headers_batch_1, KIRO_REGISTRY, ANUBIS_VISHWAKARMA), GEMINI.md, AGENTS.md, DB_SNAPSHOT_PROTOCOL.md, AGENT_SNAPSHOT_HANDLING_RULES.md, .gitignore, lupo-bin/faucet_loader.php, lupo-includes/classes/AdminCsvExportHandler.php, scripts (verify_architecture_files.php, generate_clean_migration.py, cleanup_livehelp_toons.py), and all lupo-docs/database/lupopedia/tables/*.md outbound_edges.
+- **Installer/migration docs** now reference `lupo-database/lupopedia/mysql/` and `lupo-database/lupopedia/postgres/` where applicable. Full list: `docs/status/DATABASE_PATH_NORMALIZATION_REPORT.md`.
 
 **MySQL installer SQL relocation**: ✅ COMPLETED
-- Installer-critical SQL moved from `database/migrations/` to `lupo-database/lupopedia/mysql/` with subdirs: `install/`, `seed/`, `import/`, `migrations/`, `manifest/`.
-- **install.php** uses `LUPO_DATABASE_DIR` (from config if set; else default `LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-database'`) and derives `LUPO_MYSQL_DIR` from it. Policy: do not load installer SQL from `database/migrations/`.
-- Runtime guard: if `LUPO_MYSQL_DIR` is not a directory, installer fails with "MySQL installer directory not found at LUPO_MYSQL_DIR".
-- INSTALLER SQL SOURCE OF TRUTH comment block added at top of install.php. Report: `docs/status/MYSQL_INSTALL_SQL_RELOCATION_REPORT.md`.
+- **Layout:** Installer-critical SQL moved from `database/migrations/` to `lupo-database/lupopedia/mysql/` with subdirs: `install/`, `seed/`, `import/`, `migrations/`, `manifest/`. **11 files moved:** 1 schema (`install_new_lupopedia.sql`), 5 seed (registry + default_sessions), 3 import (import_from_old_crafty_syntax, drop_old_crafty_syntax_tables, old_crafty_syntax_3_7_5_start), 2 post-install migrations (anubis_queue_tables_4.0.53, 20260301_anubis_database_primacy_updates).
+- **Manifests:** `install_manifest.txt`, `seed_manifest.txt`, `migrations_manifest.txt` define explicit execution order (no globbing).
+- **install.php:** `LUPO_DATABASE_DIR` from config if set, else default `LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-database'`. `LUPO_MYSQL_DIR` always derived: `LUPO_DATABASE_DIR . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'mysql'`. No trailing slash in constants; paths built with `DIRECTORY_SEPARATOR`. All `runSqlFile` paths updated to use `LUPO_MYSQL_DIR` and segment strings. **Policy:** `install.php` must not load installer SQL from `database/migrations/`; only `lupo-database/lupopedia/mysql/` is canonical.
+- **Guard:** If `LUPO_MYSQL_DIR` is not a directory, installer dies with "MySQL installer directory not found at LUPO_MYSQL_DIR".
+- **Comment block:** "INSTALLER SQL SOURCE OF TRUTH" added at top of install.php — all installer-critical SQL under `lupo-database/lupopedia/mysql/`; do not load from `database/migrations/`.
+- **AGENTS.md:** Three SQL entrypoints and Schema Source of Truth updated to `lupo-database/lupopedia/mysql/...`; dev workflow references `mysql/import/old_crafty_syntax_3_7_5_start.sql`.
+- Full record: `docs/status/MYSQL_INSTALL_SQL_RELOCATION_REPORT.md`.
 
 ### 🔄 Git Commits (2026-03-02)
 

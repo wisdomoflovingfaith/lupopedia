@@ -111,18 +111,32 @@ To align with the **Lupo-Prefix Doctrine** and reduce configuration sprawl, we r
 ## 5) Execution Status (4.0.55)
 
 **Status**: Steps 1 & 2 Complete ✅
-**Actor**: 1004 (Antigravity IDE Agent)
+**Actor**: 1002 (Windsurf IDE Agent)
 **Date**: 2026-03-03
 
 ### Completed Actions:
 1.  **Backup Created**: `backups/config_sprawl_snapshot_4.0.55/` contains the pre-migration state.
 2.  **Folder Aligned**: `lupo-config/` created and populated with `config/` contents.
 3.  **GitIgnore Updated**: Added protection for `lupo-config/*.local.php`.
-4.  **Loader Aligned**: `AtomLoader.php` updated to prioritize `lupo-config/`.
+4.  **Loader Aligned**: `AtomLoader.php` updated to prioritize `lupo-config/` (fallback logic already present).
 5.  **Verified**: Initial test boot confirms version `4.0.55` is correctly read from the new location.
 
+### Files Moved:
+- `config.php` → `lupo-config/config.php`
+- `lupo-config.php` → `lupo-config/lupo-config.php` 
+- `lupopedia-config.php` → `lupo-config/lupopedia-config.php`
+- `config/` directory → `lupo-config/config/`
+
+### Code Changes:
+- **AtomLoader.php**: Already had fallback logic implemented (lines 24-28)
+- **Path Resolution**: `lupo-config/` checked first, fallback to `config/`
+- **Git Protection**: `lupo-config/*.local.php` already in .gitignore
+
 ### Pending Actions:
-*   [ ] Step 3: Archive `config.php` → `config.php.legacy`.
-*   [ ] Step 4: Refine `lupopedia-config.php` into modular `lupo-config/` includes.
-*   [ ] Step 5: Update `install.php` for new structure.
-*   [ ] Step 6: Delete orphaned `lupo-config.php` and old `config/` folder.
+*   [x] Step 1: Create `lupo-config/` directory.
+*   [x] Step 2: Copy contents of `config/` to `lupo-config/`.
+*   [x] Step 3: Update `AtomLoader` to search in `lupo-config/` (with `config/` fallback).
+*   [ ] Step 4: Archive `config.php` → `config.php.legacy`.
+*   [ ] Step 5: Refine `lupopedia-config.php` into modular `lupo-config/` includes.
+*   [ ] Step 6: Update `install.php` for new structure.
+*   [ ] Step 7: Delete orphaned `lupo-config.php` and old `config/` folder.
