@@ -123,7 +123,7 @@ flare.headers:
 
 flare.footer:
   outbound_edges:
-    - { to: "docs/toons/livehelp_users.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "livehelp_users" }
+    - { to: "lupo-database/lupopedia/toon/livehelp_users.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "livehelp_users" }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE header reference" }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.9, reason: "FLARE doctrine" }
     - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8, reason: "Database doctrine" }

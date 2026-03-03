@@ -197,12 +197,12 @@ $row = $db->fetch($sql, ['id' => $id]);
 
 - table names must be rewritten using the refactor TOON file (see [TOON_DOCTRINE.md](TOON_DOCTRINE.md))
 - column names must be rewritten using the refactor TOON file
-- **all column names must be verified against toon files** (`database/toon_data/{new_table_name}.toon` - TOON format)
+- **all column names must be verified against toon files** (`lupo-database/lupopedia/toon/{new_table_name}.toon` - TOON format)
 - transforms must be applied
 - dropped columns must be removed
 - added columns must be included only on INSERT
 
-**All 145 tables have toon files in `database/toon_data/`.**
+**All 145 tables have toon files in `lupo-database/lupopedia/toon/`.**
 
 **Cursor must not rewrite SQL based on assumptions.**
 

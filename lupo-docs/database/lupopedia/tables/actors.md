@@ -15,7 +15,7 @@ flare.edges:
   file_path_from_root: "docs\database\lupopedia\tables\actors.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0, reason: "Canonical table documentation" }
-    - { to: "docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_actors.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["actors", "identity", "doctrine", "unified"]
 
   delegation_chain: null
@@ -32,7 +32,7 @@ flare.footer:
 
 **Purpose:** **Unified identity layer** for authenticated humans, AI agents, services, and system users only. Anonymous users do not have rows in lupo_actors; they exist in **lupo_sessions** only. Every authenticated or system entity that can send messages, hold roles, or be referenced in dialogs has one row in `lupo_actors`. Identity is separated from credentials (lupo_auth_users) and from permissions (3-level role system). No dedicated ID range for anonymous users.
 
-**Schema:** See `docs/toons/lupo_actors.toon.json`. Primary key: `actor_id`. Columns include `actor_type` (e.g. agent, service, human, system), `slug`, `name`, `actor_source_id`, `actor_source_type`, `metadata`, lifecycle fields.
+**Schema:** See `lupo-database/lupopedia/toon/lupo_actors.toon.json`. Primary key: `actor_id`. Columns include `actor_type` (e.g. agent, service, human, system), `slug`, `name`, `actor_source_id`, `actor_source_type`, `metadata`, lifecycle fields.
 
 **IMPORTANT: actor_id Range Allocation**
 - **AI Agents**: actor_id 0-9999 (reserved for system/AI agents)

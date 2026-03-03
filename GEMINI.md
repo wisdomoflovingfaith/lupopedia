@@ -64,7 +64,7 @@ This file provides guidance to GEMINI (Google Gemini CLI) when working with code
 
 **Before writing ANY code, understand these non-negotiable rules:**
 
-1. **CHECK TOON FILES FIRST**: Always read `docs/toons/[table_name].toon.json` before writing database queries
+1. **CHECK TOON FILES FIRST**: Always read `lupo-database/lupopedia/toon/[table_name].toon.json` before writing database queries
 2. **NO DATABASE FEATURES**: No foreign keys, triggers, stored procedures, functions, views, or AUTO_INCREMENT
 3. **BIGINT UTC TIMESTAMPS**: All timestamps are `BIGINT` in `YYYYMMDDHHIISS` format, set with `gmdate('YmdHis')`
 4. **PHP 5.3 ONLY**: No modern PHP syntax (no typed properties, arrow functions, match, enums, union types, etc.)
@@ -92,7 +92,7 @@ You are GEMINI, a Google AI assistant working on Lupopedia. You are part of a mu
 **Registration Status**: ✅ You are fully registered in the system. Your actor record exists in:
 - `database/migrations/seed_actors_agents_4.0.45.sql`
 - `actors/registry.json`
-- `database/csv_data/lupo_actors.csv`
+- `lupo-database/lupopedia/csv/lupo_actors.csv`
 
 ### Critical: Read AGENTS.md First
 
@@ -320,7 +320,7 @@ $fn = function($x) { return $x * 2; }; // Anonymous function, not arrow
 
 **NEVER modify the database directly**. Follow this process:
 
-1. Update the TOON file in `docs/toons/[table_name].toon.json`
+1. Update the TOON file in `lupo-database/lupopedia/toon/[table_name].toon.json`
 2. Update `database/migrations/install_new_lupopedia.sql`
 3. Create a dev migration in `database/migrations/dev_YYYYMMDD_description.sql`
 4. Test on MySQL 5.7, MySQL 8.0, MariaDB 10.2, PostgreSQL 12
@@ -331,7 +331,7 @@ $fn = function($x) { return $x * 2; }; // Anonymous function, not arrow
 
 **ALWAYS check TOON files before writing database queries!**
 
-TOON files are the canonical reference for database schema. They are located in `docs/toons/` and contain the exact column names, types, and structure for each table.
+TOON files are the canonical reference for database schema. They are located in `lupo-database/lupopedia/toon/` and contain the exact column names, types, and structure for each table.
 
 **Why TOON files exist**:
 - Generated from the live database schema
@@ -343,10 +343,10 @@ TOON files are the canonical reference for database schema. They are located in 
 
 ```bash
 # Example: Check the structure of lupo_actors table
-cat docs/toons/lupo_actors.toon.json
+cat lupo-database/lupopedia/toon/lupo_actors.toon.json
 
 # Example: Check the structure of lupo_sessions table
-cat docs/toons/lupo_sessions.toon.json
+cat lupo-database/lupopedia/toon/lupo_sessions.toon.json
 ```
 
 **TOON file structure**:
@@ -382,12 +382,12 @@ $db->query("SELECT session_start_ymdhis FROM lupo_sessions");
 // It has 'created_ymdhis' and 'last_seen_ymdhis'
 
 // ✅ CORRECT - Check TOON file first, then write query
-// Read docs/toons/lupo_actors.toon.json
+// Read lupo-database/lupopedia/toon/lupo_actors.toon.json
 // See that it has: actor_id, slug, name, actor_type, is_active
 $db->query("SELECT actor_id, name, slug FROM lupo_actors WHERE actor_id = 1");
 
 // ✅ CORRECT - Check TOON file for sessions table
-// Read docs/toons/lupo_sessions.toon.json
+// Read lupo-database/lupopedia/toon/lupo_sessions.toon.json
 // See that it has: created_ymdhis, last_seen_ymdhis
 $db->query("SELECT created_ymdhis, last_seen_ymdhis FROM lupo_sessions");
 ```
@@ -395,7 +395,7 @@ $db->query("SELECT created_ymdhis, last_seen_ymdhis FROM lupo_sessions");
 **Workflow for database queries**:
 
 1. **Identify the table** you need to query
-2. **Read the TOON file**: `docs/toons/lupo_[table_name].toon.json`
+2. **Read the TOON file**: `lupo-database/lupopedia/toon/lupo_[table_name].toon.json`
 3. **Check the fields array** for exact column names and types
 4. **Check the indexes** to optimize your query
 5. **Write your query** using the exact column names from the TOON
@@ -407,15 +407,15 @@ $db->query("SELECT created_ymdhis, last_seen_ymdhis FROM lupo_sessions");
 # Task: Get all actors with their last session time
 
 # Step 1: Check lupo_actors structure
-cat docs/toons/lupo_actors.toon.json
+cat lupo-database/lupopedia/toon/lupo_actors.toon.json
 # Found: actor_id, name, slug, is_active, created_ymdhis
 
 # Step 2: Check lupo_sessions structure
-cat docs/toons/lupo_sessions.toon.json
+cat lupo-database/lupopedia/toon/lupo_sessions.toon.json
 # Found: session_id, actor_id, created_ymdhis, last_seen_ymdhis
 
 # Step 3: Check lupo_auth_users for email/username
-cat docs/toons/lupo_auth_users.toon.json
+cat lupo-database/lupopedia/toon/lupo_auth_users.toon.json
 # Found: auth_user_id, username, email
 
 # Step 4: Write query with correct column names
@@ -449,13 +449,13 @@ ORDER BY a.actor_id
 **Quick TOON file lookup**:
 ```bash
 # List all TOON files
-ls docs/toons/
+ls lupo-database/lupopedia/toon/
 
 # Search for a specific table
-ls docs/toons/ | grep actors
+ls lupo-database/lupopedia/toon/ | grep actors
 
 # View a TOON file
-cat docs/toons/lupo_actors.toon.json | jq .fields
+cat lupo-database/lupopedia/toon/lupo_actors.toon.json | jq .fields
 ```
 
 ### Testing Commands
@@ -634,7 +634,7 @@ flip.footer: {
 - `QUICKSTART.md` - Quick start guide
 - `CONTRIBUTING.md` - Contribution guidelines
 - `docs/doctrine/` - Doctrine documentation
-- `docs/toons/` - Database schema reference
+- `lupo-database/lupopedia/toon/` - Database schema reference
 
 **Communication**:
 - Post questions in `channels/42/broadcasts/`
@@ -736,7 +736,7 @@ php tests/unit/my_test.php          # Single test
 **Schema**:
 ```bash
 # Check table structure BEFORE writing queries
-cat docs/toons/lupo_[table_name].toon.json
+cat lupo-database/lupopedia/toon/lupo_[table_name].toon.json
 
 python scripts/generate_toon_files.py      # Regenerate TOONs
 python scripts/verify_db_against_toons.py  # Verify schema
@@ -752,7 +752,7 @@ python scripts/verify_db_against_toons.py  # Verify schema
 - `README.md` - Project overview
 - `CHANGELOG.md` - Recent changes
 - `docs/doctrine/` - Doctrine documentation
-- `docs/toons/` - Database schema reference
+- `lupo-database/lupopedia/toon/` - Database schema reference
 
 ---
 

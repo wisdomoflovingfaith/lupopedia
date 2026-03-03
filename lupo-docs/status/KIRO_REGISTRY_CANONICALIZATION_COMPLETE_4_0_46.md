@@ -101,7 +101,7 @@ status: "complete"
 **A.3 Reconcile lupo_actors.csv**
 - ✅ Added actor_id 1 entry for Captain WOLFIE
 - ✅ Aligned metadata with seed SQL
-- ✅ File: `database/csv_data/lupo_actors.csv`
+- ✅ File: `lupo-database/lupopedia/csv/lupo_actors.csv`
 
 **A.4 Create Authority Report**
 - ✅ Created comprehensive canonicalization report
@@ -142,7 +142,7 @@ status: "complete"
 
 ### Modified Files (3)
 1. `actors/registry.json` - Regenerated from seed SQL
-2. `database/csv_data/lupo_actors.csv` - Added actor_id 1 entry
+2. `lupo-database/lupopedia/csv/lupo_actors.csv` - Added actor_id 1 entry
 3. `CHANGELOG.md` - Added v4.0.46 canonicalization entry
 
 ## Authority Chain Confirmed
@@ -150,7 +150,7 @@ status: "complete"
 **Canonical Source Hierarchy** (now enforced):
 
 1. **Primary**: `database/migrations/seed_actors_agents_4.0.45.sql` (CANONICAL)
-2. **Secondary**: `database/csv_data/lupo_actors.csv` (AUTHORITATIVE when aligned)
+2. **Secondary**: `lupo-database/lupopedia/csv/lupo_actors.csv` (AUTHORITATIVE when aligned)
 3. **Reference**: `actors/registry.json` (NON-AUTHORITATIVE, synchronized)
 
 ## Immutable Identity Locks

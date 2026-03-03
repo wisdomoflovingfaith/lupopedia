@@ -45,8 +45,8 @@ class AdminCsvExportHandler
      */
     private static function handleExport($db, $prefix, $base)
     {
-        $toonDir = LUPOPEDIA_PATH . '/docs/toons';
-        $csvDir = LUPOPEDIA_PATH . '/database/csv_data';
+        $toonDir = LUPOPEDIA_PATH . '/lupo-database/lupopedia/toon';
+        $csvDir = LUPOPEDIA_PATH . '/lupo-database/lupopedia/csv';
         
         // Create CSV directory if it doesn't exist
         if (!is_dir($csvDir)) {
@@ -151,7 +151,7 @@ class AdminCsvExportHandler
         
         return array(
             'status' => 'success',
-            'file_path' => 'database/csv_data/' . $tableName . '.csv',
+            'file_path' => 'lupo-database/lupopedia/csv/' . $tableName . '.csv',
             'row_count' => $rowCount
         );
     }
@@ -273,7 +273,7 @@ class AdminCsvExportHandler
                     
                     <div class="form-group">
                         <h3>Export Settings</h3>
-                        <p><strong>Output Directory:</strong> database/csv_data/</p>
+                        <p><strong>Output Directory:</strong> lupo-database/lupopedia/csv/</p>
                         <p><strong>Format:</strong></p>
                         <ul>
                             <li>Row 1: Column names (from TOON schema)</li>

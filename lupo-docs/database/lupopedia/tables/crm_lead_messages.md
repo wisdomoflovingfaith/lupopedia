@@ -15,7 +15,7 @@ flare.edges:
   file_path_from_root: "docs\database\lupopedia\tables\crm_lead_messages.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/crm_leads.md", type: "references", weight: 1.0 }
-    - { to: "docs/toons/lupo_crm_lead_messages.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_crm_lead_messages.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["crm", "messages", "email", "history"]
 
   delegation_chain: null
@@ -35,7 +35,7 @@ flare.footer:
 ### 1. Overview
 Purpose: **Messages associated with leads**: e.g. emails sent to a lead, or other contact history. Links to lupo_crm_leads via lead_id. lead_id = 1 is used for “broadcast” emails (legacy livehelp_emails behavior).
 
-**Schema:** See `docs/toons/lupo_crm_lead_messages.toon.json`. Primary key and columns as in TOON; references to lead_id are application-managed (no FK per doctrine).
+**Schema:** See `lupo-database/lupopedia/toon/lupo_crm_lead_messages.toon.json`. Primary key and columns as in TOON; references to lead_id are application-managed (no FK per doctrine).
 
 ### 2. Core Workflows
 

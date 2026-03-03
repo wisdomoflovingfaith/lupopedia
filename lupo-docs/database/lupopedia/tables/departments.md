@@ -16,7 +16,7 @@ flare.edges:
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/actor_departments.md", type: "references", weight: 0.9 }
     - { to: "docs/database/lupopedia/tables/federation_nodes.md", type: "references", weight: 0.7 }
-    - { to: "docs/toons/lupo_departments.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_departments.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["departments", "organization", "structure", "routing"]
 
   delegation_chain: null
@@ -36,7 +36,7 @@ flare.footer:
 ### 1. Overview
 Purpose: **Department identity**: core fields for each department (id, name, description, type, default_actor_id, federation_node_id, settings). Department_id 0 is reserved for “system”; department_id 1 is the general default. UI, branding, and behavior settings that were in legacy department tables live in **lupo_department_metadata** (JSON).
 
-**Schema:** See `docs/toons/lupo_departments.toon.json`. Primary key: `department_id`. No AUTO_INCREMENT for reserved IDs (0, 1); installer/seed set them explicitly.
+**Schema:** See `lupo-database/lupopedia/toon/lupo_departments.toon.json`. Primary key: `department_id`. No AUTO_INCREMENT for reserved IDs (0, 1); installer/seed set them explicitly.
 
 ### 2. Core Workflows
 

@@ -77,7 +77,7 @@ flare.headers:
 
 flare.footer:
   outbound_edges:
-    - { to: "docs/toons/lupo_federation_nodes.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_federation_nodes" }
+    - { to: "lupo-database/lupopedia/toon/lupo_federation_nodes.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_federation_nodes" }
     - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.7, reason: "channels share federation scope" }
     - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.7, reason: "actor registry per node" }
   inbound_edges: []

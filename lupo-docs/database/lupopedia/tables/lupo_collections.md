@@ -74,7 +74,7 @@ flare.headers:
 
 flare.footer:
   outbound_edges:
-    - { to: "docs/toons/lupo_collections.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_collections" }
+    - { to: "lupo-database/lupopedia/toon/lupo_collections.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_collections" }
     - { to: "docs/database/lupopedia/tables/lupo_collection_tabs.md", type: "references", weight: 0.8, reason: "collection tab structure" }
     - { to: "docs/database/lupopedia/tables/lupo_collection_tab_map.md", type: "references", weight: 0.8, reason: "collection tab mapping" }
     - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.7, reason: "content grouping" }

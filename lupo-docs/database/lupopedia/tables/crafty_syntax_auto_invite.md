@@ -15,7 +15,7 @@ flare.edges:
   file_path_from_root: "docs\database\lupopedia\tables\crafty_syntax_auto_invite.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/departments.md", type: "references", weight: 0.7 }
-    - { to: "docs/toons/lupo_crafty_syntax_auto_invite.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_crafty_syntax_auto_invite.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["crafty_syntax", "auto_invite", "compatibility", "marketing"]
 
   delegation_chain: null
@@ -35,7 +35,7 @@ flare.footer:
 ### 1. Overview
 Purpose: **Crafty compatibility table** for auto-invite rules: when to show an invite (e.g. after N seconds, on a page URL), department, message text, and options (offline, mobile, social pane, etc.). Preserves legacy livehelp_autoinvite behavior during and after migration. Column names may retain legacy-style suffixes (e.g. operator_user_id) for compatibility.
 
-**Schema:** See `docs/toons/lupo_crafty_syntax_auto_invite.toon.json`. Primary key: `crafty_syntax_auto_invite_id`. All columns must match TOON.
+**Schema:** See `lupo-database/lupopedia/toon/lupo_crafty_syntax_auto_invite.toon.json`. Primary key: `crafty_syntax_auto_invite_id`. All columns must match TOON.
 
 ### 2. Core Workflows
 

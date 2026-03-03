@@ -79,7 +79,7 @@ To ensure predictable content resolution and synchronization across environments
 
 1.  **FILESYSTEM (`lupo-channels/`)**: Highest priority. If a file exists in the `lupo-channels` directory, its content and metadata are treated as the system source of truth, overwriting any values in the database.
 2.  **DATABASE**: Medium priority. If content is updated via the web interface or API, it is stored in the database. These values are overridden by filesystem changes if they exist, but are used if the filesystem is empty or out-of-sync.
-3.  **CSV/TOON FILES**: Lowest priority. These files (e.g., in `database/csv_data/` or `docs/toons/`) are used as seed data or schema reference. They are overwriten by the database once imported, and by the filesystem via `scripts/generate_toon_files.py`.
+3.  **CSV/TOON FILES**: Lowest priority. These files (e.g., in `lupo-database/lupopedia/csv/` or `lupo-database/lupopedia/toon/`) are used as seed data or schema reference. They are overwriten by the database once imported, and by the filesystem via `scripts/generate_toon_files.py`.
 
 **Synchronization Protocol:**
 

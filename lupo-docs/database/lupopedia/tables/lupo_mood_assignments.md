@@ -67,7 +67,7 @@ flare.headers:
   last_updated_utc: "20260228"
 flare.footer:
   outbound_edges:
-    - { to: "docs/toons/lupo_mood_assignments.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_mood_assignments" }
+    - { to: "lupo-database/lupopedia/toon/lupo_mood_assignments.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_mood_assignments" }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE header reference" }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.9, reason: "FLARE doctrine" }
     - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8, reason: "Database doctrine" }

@@ -94,7 +94,7 @@ flare.headers:
 
 flare.footer:
   outbound_edges:
-    - { to: "docs/toons/lupo_analytics_visits.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_analytics_visits" }
+    - { to: "lupo-database/lupopedia/toon/lupo_analytics_visits.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_analytics_visits" }
     - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.7, reason: "content analytics" }
     - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.6, reason: "department/channel scope" }
   inbound_edges: []

@@ -22,7 +22,7 @@ flare.headers:
 flare.edges:
   file_path_from_root: "bin/faucet_loader.php"
   outbound_edges:
-    - { to: "docs/toons/lupo_agent_faucets.toon.json", type: "references", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_agent_faucets.toon.json", type: "references", weight: 1.0 }
     - { to: "channels/42/faucets.json", type: "references", weight: 0.9 }
     - { to: "bin/validate_faucets.php", type: "references", weight: 0.8 }
   semantic_tags: ["faucets", "loader", "runtime", "validation"]
@@ -59,7 +59,7 @@ class FaucetLoader {
      * Load TOON schema for validation
      */
     private function loadToonSchema() {
-        $toon_file = 'docs/toons/lupo_agent_faucets.toon.json';
+        $toon_file = 'lupo-database/lupopedia/toon/lupo_agent_faucets.toon.json';
         
         if (!file_exists($toon_file)) {
             throw new Exception("TOON schema file not found: {$toon_file}");

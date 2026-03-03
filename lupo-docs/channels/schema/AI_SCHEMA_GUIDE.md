@@ -61,7 +61,7 @@ flare.footer:
 ---
 
 # ðŸº Wolfie's Schema Reference Guide  
-### *Why `database/csv_data/` and `database/toon_data/` exist and why AI tools must use them*
+### *Why `lupo-database/lupopedia/csv/` and `lupo-database/lupopedia/toon/` exist and why AI tools must use them*
 
 Modern AI coding assistants (Cursor, Windsurf, Copilot, DeepSeek, Gemini, etc.) are powerful â€” but they all share the same blind spot:
 
@@ -72,8 +72,8 @@ That's far beyond what current LLMs can safely ingest without hallucinating.
 
 To keep development consistent across multiple AI tools, Lupopedia uses **two complementary schema reference systems** that force models to rely on explicit structure instead of guessing:
 
-1. **CSV Schema Snapshots** (`database/csv_data/*.csv`) - Lightweight, AI-friendly format
-2. **Toon Files** (`database/toon_data/*.json`) - Complete table structures with column definitions
+1. **CSV Schema Snapshots** (`lupo-database/lupopedia/csv/*.csv`) - Lightweight, AI-friendly format
+2. **Toon Files** (`lupo-database/lupopedia/toon/*.json`) - Complete table structures with column definitions
 
 This document explains why.
 
@@ -136,7 +136,7 @@ This makes real development impossible.
 
 To force AI tools to use the **real** schema, Lupopedia provides two complementary reference formats:
 
-## 1. CSV Schema Snapshots (`database/csv_data/`)
+## 1. CSV Schema Snapshots (`lupo-database/lupopedia/csv/`)
 
 Lightweight CSV files optimized for AI consumption:
 
@@ -163,7 +163,7 @@ And most importantly:
 
 > **CSV forces the model to use the exact structure you give it â€” nothing more, nothing less.**
 
-## 2. Toon Files (`database/toon_data/`)
+## 2. Toon Files (`lupo-database/lupopedia/toon/`)
 
 Complete TOON format files (with `.toon` or `.json` extensions) containing full table structures:
 
@@ -251,8 +251,8 @@ This prevents the model from:
 Instead, the model must rely on:
 
 ```
-database/csv_data/*.csv    (lightweight, AI-optimized)
-database/toon_data/*.json  (complete structures with definitions)
+lupo-database/lupopedia/csv/*.csv    (lightweight, AI-optimized)
+lupo-database/lupopedia/toon/*.json  (complete structures with definitions)
 ```
 
 as the **authoritative schema references**.

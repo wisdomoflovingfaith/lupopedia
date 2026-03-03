@@ -15,7 +15,7 @@ flare.edges:
   file_path_from_root: "docs\database\lupopedia\tables\audit_log.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.8, reason: "Actor identity attribution" }
-    - { to: "docs/toons/lupo_audit_log.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_audit_log.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["audit", "log", "security", "history"]
 
   delegation_chain: null
@@ -35,7 +35,7 @@ flare.footer:
 ### 1. Overview
 Purpose: **Audit trail** for actor and system actions: entity_type, entity_id, event_type, optional payload_json, and timestamps. Used for operator history, login events, and other auditable actions. No foreign keys; entity references are application-managed.
 
-**Schema:** See `docs/toons/lupo_audit_log.toon.json`. Column names (e.g. entity_type, entity_id, event_type, payload_json, created_ymdhis) must match the TOON.
+**Schema:** See `lupo-database/lupopedia/toon/lupo_audit_log.toon.json`. Column names (e.g. entity_type, entity_id, event_type, payload_json, created_ymdhis) must match the TOON.
 
 ### 2. Core Workflows
 

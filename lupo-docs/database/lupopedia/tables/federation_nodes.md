@@ -15,7 +15,7 @@ flare.edges:
   file_path_from_root: "docs\database\lupopedia\tables\federation_nodes.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/departments.md", type: "references", weight: 0.6 }
-    - { to: "docs/toons/lupo_federation_nodes.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_federation_nodes.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["federation", "multi-site", "nodes", "registry"]
 
   delegation_chain: null
@@ -35,7 +35,7 @@ flare.footer:
 ### 1. Overview
 Purpose: **Multi-site / federation registry**: each row represents a node (e.g. a website or instance) in a federation. Used for multi-site routing and discovery. Legacy livehelp_websites was the “websites” list in Crafty; it maps here.
 
-**Schema:** See `docs/toons/lupo_federation_nodes.toon.json`. Primary key and columns as in TOON (e.g. federation_node_id, name, base_url, settings). No foreign keys; references are application-managed.
+**Schema:** See `lupo-database/lupopedia/toon/lupo_federation_nodes.toon.json`. Primary key and columns as in TOON (e.g. federation_node_id, name, base_url, settings). No foreign keys; references are application-managed.
 
 ### 2. Core Workflows
 

@@ -71,7 +71,7 @@ flare.headers:
 
 flare.footer:
   outbound_edges:
-    - { to: "docs/toons/lupo_search_index.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_search_index" }
+    - { to: "lupo-database/lupopedia/toon/lupo_search_index.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_search_index" }
     - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.8, reason: "content index targets" }
     - { to: "docs/database/lupopedia/tables/lupo_edges.md", type: "references", weight: 0.7, reason: "semantic edges" }
   inbound_edges: []

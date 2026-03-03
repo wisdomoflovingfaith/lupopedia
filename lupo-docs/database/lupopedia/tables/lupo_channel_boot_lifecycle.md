@@ -304,10 +304,10 @@ foreach ($activeLifecycles as $lifecycle) {
 ## References
 
 ### TOON Schema Authority
-- **Main Table**: `docs/toons/lupo_channel_boot_lifecycle.toon.json`
-- **Detail Table**: `docs/toons/lupo_channel_boot_detail_lifecycle.toon.json`
+- **Main Table**: `lupo-database/lupopedia/toon/lupo_channel_boot_lifecycle.toon.json`
+- **Detail Table**: `lupo-database/lupopedia/toon/lupo_channel_boot_detail_lifecycle.toon.json`
 - **Related Tables**: All `lupo_channel_*.toon.json` files
-- **TOON Index**: Complete `docs/toons/` directory listing
+- **TOON Index**: Complete `lupo-database/lupopedia/toon/` directory listing
 
 ### Integration Documentation
 - **PHP Helpers**: `bin/channel_boot_lifecycle.php`

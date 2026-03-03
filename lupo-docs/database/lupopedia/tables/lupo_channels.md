@@ -56,7 +56,7 @@ flare.headers:
 
 flare.edges:
   outbound_edges:
-- { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_channels" }
+- { to: "lupo-database/lupopedia/toon/lupo_channels.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_channels" }
     - { to: "channels/registry.json", type: "references", weight: 1.0, reason: "Channel registry and configuration", db_source: "lupo_channels" }
     - { to: "docs/database/lupopedia/tables/lupo_dialog_messages.md", type: "references", weight: 0.9, reason: "Dialog message routing and storage", db_source: "lupo_channels" }
     - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9, reason: "Channel ownership and participation", db_source: "lupo_channels" }

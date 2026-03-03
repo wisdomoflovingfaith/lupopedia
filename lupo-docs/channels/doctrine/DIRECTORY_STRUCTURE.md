@@ -155,8 +155,8 @@ lupopedia-config.php            # Main configuration (OUTSIDE web root)
 ### 2.3 Writable Directories
 **Locations:**
 - `lupo-content/` - User uploads, generated files
-- `database/csv_data/` - CSV data files (if enabled)
-- `database/toon_data/` - TOON data files
+- `lupo-database/lupopedia/csv/` - CSV data files (if enabled)
+- `lupo-database/lupopedia/toon/` - TOON data files
 
 **Security:** Write permissions required, proper upload validation
 

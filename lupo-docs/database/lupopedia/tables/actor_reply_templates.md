@@ -15,7 +15,7 @@ flare.edges:
   file_path_from_root: "docs\database\lupopedia\tables\actor_reply_templates.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0 }
-    - { to: "docs/toons/lupo_actor_reply_templates.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_actor_reply_templates.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["templates", "replies", "composer", "efficiency"]
 
   delegation_chain: null
@@ -35,7 +35,7 @@ flare.footer:
 ### 1. Overview
 Purpose: **Quick reply / canned response** templates per actor: template_key, template_text, usage_context, and actor_id. Used in the channel composer so staff can insert predefined messages. Replaces Crafty’s livehelp_quick (per-user “quick notes”).
 
-**Schema:** See `docs/toons/lupo_actor_reply_templates.toon.json`. Primary key: `actor_reply_template_id`. Columns include actor_id, template_key, template_text, usage_context, and lifecycle fields.
+**Schema:** See `lupo-database/lupopedia/toon/lupo_actor_reply_templates.toon.json`. Primary key: `actor_reply_template_id`. Columns include actor_id, template_key, template_text, usage_context, and lifecycle fields.
 
 ### 2. Core Workflows
 

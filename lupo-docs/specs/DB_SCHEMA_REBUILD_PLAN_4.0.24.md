@@ -87,7 +87,7 @@ web:
 # Database Schema Rebuild Plan 4.0.24
 
 Generated: 2026-02-21T03:08:58.783486Z
-TOON Directory: docs/toons
+TOON Directory: lupo-database/lupopedia/toon
 Output Directory: docs/specs/sql
 
 ## Crisis Assessment

@@ -39,7 +39,7 @@ flare.headers:
 
 flare.edges:
   outbound_edges:
-- { to: "docs/toons/lupo_artifact_chunks.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_artifact_chunks" }
+- { to: "lupo-database/lupopedia/toon/lupo_artifact_chunks.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_artifact_chunks" }
     - { to: "docs/database/lupopedia/tables/lupo_artifacts.md", type: "references", weight: 1.0, reason: "Parent artifact relationship", db_source: "lupo_artifact_chunks" }
     - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.8, reason: "Content chunking relationships", db_source: "lupo_artifact_chunks" }
     - { to: "docs/database/lupopedia/tables/lupo_document_embeddings.md", type: "references", weight: 0.9, reason: "Vector embeddings for chunks", db_source: "lupo_artifact_chunks" }

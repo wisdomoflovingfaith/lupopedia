@@ -70,7 +70,7 @@ flare.headers:
   system_version: "4.0.50"
 flare.footer:
   outbound_edges:
-    - { to: "docs/toons/lupo_document_embeddings.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_document_embeddings" }
+    - { to: "lupo-database/lupopedia/toon/lupo_document_embeddings.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_document_embeddings" }
     - { to: "docs/database/lupopedia/tables/lupo_artifact_chunks.md", type: "references", weight: 0.8, reason: "chunk_id references artifact chunks" }
     - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.7, reason: "embeddings derived from content" }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.7, reason: "FLARE header reference" }

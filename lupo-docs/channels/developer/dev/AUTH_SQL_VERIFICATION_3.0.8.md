@@ -86,7 +86,7 @@ file:
 
 **Purpose:** This document verifies all SQL queries in the authentication system against TOON files to ensure correct table and column names.
 
-**Source:** TOON files in `database/toon_data/` (authoritative schema)
+**Source:** TOON files in `lupo-database/lupopedia/toon/` (authoritative schema)
 
 **Status:** Verified and corrected
 
@@ -96,7 +96,7 @@ file:
 
 ### ✅ lupo_auth_users Table
 
-**TOON File:** `database/toon_data/lupo_auth_users.toon`
+**TOON File:** `lupo-database/lupopedia/toon/lupo_auth_users.toon`
 
 **Columns Used in Code:**
 - `auth_user_id` ✓ (PK, BIGINT)
@@ -118,7 +118,7 @@ file:
 
 ### ✅ lupo_actors Table
 
-**TOON File:** `database/toon_data/lupo_actors.toon`
+**TOON File:** `lupo-database/lupopedia/toon/lupo_actors.toon`
 
 **Columns Used in Code:**
 - `actor_id` ✓ (PK, BIGINT)
@@ -144,7 +144,7 @@ file:
 
 ### ✅ lupo_sessions Table
 
-**TOON File:** `database/toon_data/lupo_sessions.toon`
+**TOON File:** `lupo-database/lupopedia/toon/lupo_sessions.toon`
 
 **Columns Used in Code:**
 - `session_id` ✓ (PK, VARCHAR(100))
@@ -183,7 +183,7 @@ Table is **DROPPED**. Roles are channel-scoped only. Use **lupo_channel_roles** 
 
 ### ✅ lupo_permissions Table
 
-**TOON File:** `database/toon_data/lupo_permissions.toon`
+**TOON File:** `lupo-database/lupopedia/toon/lupo_permissions.toon`
 
 **Columns Used in Code:**
 - `permission_id` ✓ (PK, BIGINT)
@@ -202,7 +202,7 @@ Table is **DROPPED**. Roles are channel-scoped only. Use **lupo_channel_roles** 
 
 ### ✅ lupo_modules Table
 
-**TOON File:** `database/toon_data/lupo_modules.toon`
+**TOON File:** `lupo-database/lupopedia/toon/lupo_modules.toon`
 
 **Columns Used in Code:**
 - `module_id` ✓ (PK, BIGINT)
@@ -221,7 +221,7 @@ Table is **DROPPED**. Roles are channel-scoped only. Use **lupo_channel_roles** 
 
 ### ⚠️ lupo_actor_group_membership Table
 
-**TOON File:** `database/toon_data/lupo_actor_group_membership.toon`
+**TOON File:** `lupo-database/lupopedia/toon/lupo_actor_group_membership.toon`
 
 **Schema Issue Identified:**
 - `actor_group_membership_id` is PRIMARY KEY (auto_increment)

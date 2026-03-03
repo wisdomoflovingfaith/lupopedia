@@ -38,7 +38,7 @@ flare.headers:
 
 flare.edges:
   outbound_edges:
-- { to: "docs/toons/lupo_atoms.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_atoms" }
+- { to: "lupo-database/lupopedia/toon/lupo_atoms.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_atoms" }
     - { to: "config/global_atoms.yaml", type: "references", weight: 1.0, reason: "Global atoms configuration file", db_source: "lupo_atoms" }
     - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.8, reason: "Content atom mappings and references", db_source: "lupo_atoms" }
     - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.7, reason: "Channel configuration atoms", db_source: "lupo_atoms" }

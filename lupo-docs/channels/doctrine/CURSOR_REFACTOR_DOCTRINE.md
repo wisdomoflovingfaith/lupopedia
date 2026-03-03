@@ -164,14 +164,14 @@ This doctrine is **non-negotiable**. Cursor must follow it for every refactor.
 
 - use the new table name from refactor TOON file (see [TOON_DOCTRINE.md](TOON_DOCTRINE.md))
 - use the new column names from refactor TOON file
-- **verify all column names exist in the toon file** (`database/toon_data/{new_table_name}.toon` - TOON format)
+- **verify all column names exist in the toon file** (`lupo-database/lupopedia/toon/{new_table_name}.toon` - TOON format)
 - apply all transforms
 - apply all boolean conversions
 - apply all prefix rules
 - drop all removed columns
 - add all required columns
 
-**All 145 tables have toon files in `database/toon_data/`.**
+**All 145 tables have toon files in `lupo-database/lupopedia/toon/`.**
 
 **Cursor must never rewrite SQL based on assumptions.**
 
@@ -179,7 +179,7 @@ This doctrine is **non-negotiable**. Cursor must follow it for every refactor.
 
 **Critical Rule:**
 - All SQL rewrites must reference the refactor TOON files in `refactors/` (see [TOON_DOCTRINE.md](TOON_DOCTRINE.md))
-- **All column names must be verified against toon files in `database/toon_data/` (TOON format)**
+- **All column names must be verified against toon files in `lupo-database/lupopedia/toon/` (TOON format)**
 - **Never guess column names â€” all 145 tables have toon files**
 - **Never "correct" column name typos** â€” Legacy code from 25 years ago may have typos (e.g., "visiblity" instead of "visibility"). These typos are preserved in the database and must be preserved in refactored code.
 - **Never convert TOON to JSON â€” work with TOON directly**
@@ -452,7 +452,7 @@ COLLATE=utf8mb4_unicode_ci
 **Key Principles:**
 1. **Preserve behavior exactly** â€” Modernize syntax, not logic
 2. **No frameworks** â€” Procedural, portable, dependency-free PHP
-3. **Follow refactor TOON files and toon data files** â€” Never guess table/column mappings; all 149 tables have toon files in `database/toon_data/` (TOON format) for exact column names; never convert TOON to JSON (see [TOON_DOCTRINE.md](TOON_DOCTRINE.md))
+3. **Follow refactor TOON files and toon data files** â€” Never guess table/column mappings; all 149 tables have toon files in `lupo-database/lupopedia/toon/` (TOON format) for exact column names; never convert TOON to JSON (see [TOON_DOCTRINE.md](TOON_DOCTRINE.md))
 4. **Respect Lupopedia doctrine** â€” Timestamps, naming, no FKs, etc.
 5. **One thing at a time** â€” Focus on the specific request
 6. **Ask, don't guess** â€” When in doubt, ask for clarification

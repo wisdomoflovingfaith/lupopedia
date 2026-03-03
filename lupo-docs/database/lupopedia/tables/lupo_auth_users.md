@@ -72,7 +72,7 @@ flare.headers:
 
 flare.footer:
   outbound_edges:
-    - { to: "docs/toons/lupo_auth_users.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_auth_users" }
+    - { to: "lupo-database/lupopedia/toon/lupo_auth_users.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_auth_users" }
     - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.7, reason: "actor linkage" }
     - { to: "docs/database/lupopedia/tables/lupo_sessions.md", type: "references", weight: 0.7, reason: "sessions" }
   inbound_edges: []

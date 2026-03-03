@@ -11,7 +11,7 @@ Usage:
 
 This script:
 1. Identifies all livehelp_ TOON files
-2. Removes them from the database/toon_data directory
+2. Removes them from the lupo-database/lupopedia/toon directory
 3. Recalculates the true table count (TOON files vs existing schema)
 4. Updates documentation with correct numbers
 """

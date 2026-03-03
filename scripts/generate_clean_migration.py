@@ -7,7 +7,7 @@ Usage:
     python generate_clean_migration.py
 
 This script:
-1. Reads all TOON files in database/toon_data/
+1. Reads all TOON files in lupo-database/lupopedia/toon/
 2. Cleans field definitions to remove foreign keys and constraints
 3. Ensures doctrine compliance (no FK, BIGINT timestamps, proper PKs)
 4. Generates clean migration files for missing tables

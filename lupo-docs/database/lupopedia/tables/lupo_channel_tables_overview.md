@@ -205,7 +205,7 @@ lupo_channels (channel_id)
 ## References
 
 ### TOON Schema Authority
-- **Complete TOON Listing**: All `lupo_channel_*.toon.json` files in `docs/toons/`
+- **Complete TOON Listing**: All `lupo_channel_*.toon.json` files in `lupo-database/lupopedia/toon/`
 - **Schema Documentation**: Individual table documentation files
 - **Migration Scripts**: Database migration and upgrade procedures
 - **Integration Examples**: PHP code examples and usage patterns

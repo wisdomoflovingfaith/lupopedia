@@ -101,7 +101,7 @@ This doctrine is **mandatory**. All IDEs (Cursor, Windsurf, DeepSeek, etc.) and 
 
 ## **ðŸ”´ 1. TOON Files Are READ-ONLY for IDEs and Agents**
 
-**CRITICAL:** TOON files in `database/toon_data/` are **READ-ONLY** for all IDEs and agents.
+**CRITICAL:** TOON files in `lupo-database/lupopedia/toon/` are **READ-ONLY** for all IDEs and agents.
 
 **Only the Python cron job writes TOON files.**
 
@@ -173,7 +173,7 @@ During this phase, agents must:
 **The Python script:**
 - Connects to the live database
 - Reads table structures from INFORMATION_SCHEMA
-- Generates TOON files in `database/toon_data/`
+- Generates TOON files in `lupo-database/lupopedia/toon/`
 - Runs automatically via cron job
 
 **Any changes made to TOON files will be overwritten by the Python cron job.**
@@ -263,13 +263,13 @@ During this phase, agents must:
 - Used for refactor mappings, agent configurations, and schema definitions
 
 **TOON files are located in:**
-- `database/toon_data/` â€” Table structure definitions (READ-ONLY, generated from database)
+- `lupo-database/lupopedia/toon/` â€” Table structure definitions (READ-ONLY, generated from database)
 - `database/refactors/` â€” Table and column mapping files (EDITABLE - migration mappings)
 - `lupo-agents/` â€” Agent configuration files (READ-ONLY unless explicitly instructed)
 - Other schema mapping locations
 
 **Critical Rule:**
-- TOON files in `database/toon_data/` are READ-ONLY (generated from database)
+- TOON files in `lupo-database/lupopedia/toon/` are READ-ONLY (generated from database)
 - Files in `database/refactors/` (whether `.toon` or `.json`) are EDITABLE (migration mappings)
 - TOON is a semantic format, not a data serialization format
 - TOON preserves meaning, not just syntax
@@ -345,14 +345,14 @@ During this phase, agents must:
 
 ## **ðŸ”µ 7. TOON Files Are Read-Only Reference Materials**
 
-**Agents must use TOON files in `database/toon_data/` as READ-ONLY references for table structure and column names.**
+**Agents must use TOON files in `lupo-database/lupopedia/toon/` as READ-ONLY references for table structure and column names.**
 
 **Critical Rules:**
-- TOON files in `database/toon_data/` are authoritative **references** (read-only)
+- TOON files in `lupo-database/lupopedia/toon/` are authoritative **references** (read-only)
 - Never guess mappings when TOON files exist
 - Always reference TOON files for schema information
 - TOON files reflect the database structure (read from database, not written by agents)
-- Do NOT modify TOON files in `database/toon_data/` â€” they are regenerated automatically
+- Do NOT modify TOON files in `lupo-database/lupopedia/toon/` â€” they are regenerated automatically
 
 ---
 
@@ -392,7 +392,7 @@ These files are the "living documentation" and "migration brain" that track:
 - âœ… **MAKE NOTES** â€” Add migration notes, edge cases, Crafty Syntax quirks
 - âœ… **EVOLVE** â€” These files evolve as migration work continues
 - âŒ **DO NOT** modify the live database schema â€” only update the refactor files
-- âŒ **DO NOT** modify files in `database/toon_data/` â€” those are read-only
+- âŒ **DO NOT** modify files in `lupo-database/lupopedia/toon/` â€” those are read-only
 - âŒ **DO NOT** modify other JSON/TOON files outside this directory
 
 **When rewriting legacy code, Cursor must use `database/refactors/` files as the source of truth for:**
@@ -426,7 +426,7 @@ These files are the "living documentation" and "migration brain" that track:
 **TOON files are used for:**
 - Table name mappings (`database/refactors/{legacy_table}.json`)
 - Column name mappings (`database/refactors/{legacy_table}.json`)
-- Table structure definitions (`database/toon_data/{table_name}.json`)
+- Table structure definitions (`lupo-database/lupopedia/toon/{table_name}.json`)
 - Agent configurations (`lupo-agents/{agent_name}/`)
 - Schema mappings and transforms
 
@@ -439,7 +439,7 @@ These files are the "living documentation" and "migration brain" that track:
 
 ## **ðŸ”µ 10. Cursor's Responsibility with TOON**
 
-**When Cursor encounters a TOON file in `database/toon_data/`:**
+**When Cursor encounters a TOON file in `lupo-database/lupopedia/toon/`:**
 
 1. **Recognize it as TOON** â€” Not JSON, not YAML, not any other format
 2. **Read it as TOON** â€” Extract meaning and mappings
@@ -448,7 +448,7 @@ These files are the "living documentation" and "migration brain" that track:
 5. **Respect it as TOON** â€” Don't enforce JSON rules
 
 **Critical Rule:**
-- TOON files in `database/toon_data/` are READ-ONLY
+- TOON files in `lupo-database/lupopedia/toon/` are READ-ONLY
 - Work with TOON as TOON
 - Never convert TOON to anything else
 - Never modify TOON files â€” they are regenerated automatically
@@ -470,7 +470,7 @@ These files are the "living documentation" and "migration brain" that track:
 - âœ… **USE** â€” Reference when rewriting legacy Crafty Syntax code
 - âœ… **MAKE NOTES** â€” Document migration discoveries and quirks
 - âŒ **DO NOT** modify live database schema â€” only update refactor files
-- âŒ **DO NOT** modify files in `database/toon_data/` â€” those are read-only
+- âŒ **DO NOT** modify files in `lupo-database/lupopedia/toon/` â€” those are read-only
 - âŒ **DO NOT** modify other JSON/TOON files outside this directory
 
 ---
@@ -482,7 +482,7 @@ These files are the "living documentation" and "migration brain" that track:
 **Key Principles:**
 
 ### **READ-ONLY Files (Do NOT Modify):**
-1. **TOON files in `database/toon_data/`** â€” READ-ONLY, regenerated by Python cron job
+1. **TOON files in `lupo-database/lupopedia/toon/`** â€” READ-ONLY, regenerated by Python cron job
 2. **Database schema** â€” phpMyAdmin is authoritative, Cursor must not modify
 3. **All other JSON/TOON files** â€” Read-only unless explicitly instructed
 

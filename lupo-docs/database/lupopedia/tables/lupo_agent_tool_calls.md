@@ -84,7 +84,7 @@ flare.headers:
 
 flare.footer:
   outbound_edges:
-    - { to: "docs/toons/lupo_agent_tool_calls.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_agent_tool_calls" }
+    - { to: "lupo-database/lupopedia/toon/lupo_agent_tool_calls.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_agent_tool_calls" }
     - { to: "docs/database/lupopedia/tables/lupo_agents.md", type: "references", weight: 0.8, reason: "agent reference" }
     - { to: "docs/database/lupopedia/tables/lupo_dialog_threads.md", type: "references", weight: 0.7, reason: "thread linkage" }
   inbound_edges: []

@@ -15,7 +15,7 @@ The Lupopedia channel system is a comprehensive framework for managing communica
 7. **Boot Lifecycle** (`lupo_channel_boot_lifecycle`) - Modern channel initialization system
 
 **Root Boot Agent Checklist (v4.0.52)**:
-- Verify all tables exist as `docs/toons/*.toon.json` (e.g., `lupo_channels.toon.json`).
+- Verify all tables exist as `lupo-database/lupopedia/toon/*.toon.json` (e.g., `lupo_channels.toon.json`).
 - Structure validation: Fields, types (e.g., BIGINT timestamps), indexes, no FKs/triggers per TOON schema.
 - Version lock: Align to 4.0.52—no additions beyond declared schema.
 - If missing: Generate TOONs via codex-ide or windsurf.
@@ -47,13 +47,13 @@ flare.headers:
 
 flare.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_content.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_logs.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_files.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_escalations.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_channel_content.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_channel_state.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_channel_logs.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_channel_files.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_channel_escalations.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
 
 flare.footer:
@@ -170,7 +170,7 @@ VALUES
 4. **Federation Ready**: All content can be federated via `lupo_channel_content` 
 5. **Performance Focus**: Proper indexing on `channel_id` and timestamp fields
 6. **Soft Deletes**: Use `is_deleted` pattern instead of physical deletion
-7. **TOON Enforcement**: Root boot agent ensures all `docs/toons/*.toon.json` exist and match v4.0.52 structure
+7. **TOON Enforcement**: Root boot agent ensures all `lupo-database/lupopedia/toon/*.toon.json` exist and match v4.0.52 structure
 8. **Actor ID 0**: Represents system agent, not human operator - all system-level operations use this ID
 
 ## Quick Reference

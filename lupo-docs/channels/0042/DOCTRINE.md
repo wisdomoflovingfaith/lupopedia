@@ -88,7 +88,7 @@ Subsystem notes added for conceptual replacements
 
 Replacement tables alphabetized where applicable
 
-TOONs relocated to /lupopedia/docs/toons/ and used as authoritative schema
+TOONs relocated to lupo-database/lupopedia/toon/ and used as authoritative schema
 
 Schema fully doctrine-aligned (no FKs, no display widths, no unsigned ints)
 

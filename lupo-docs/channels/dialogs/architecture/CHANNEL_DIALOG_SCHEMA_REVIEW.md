@@ -64,7 +64,7 @@ flare.footer:
 
 **Review Date:** 2026-01-14  
 **Version:** 3.0.16  
-**Source:** Toon files from `database/toon_data/`
+**Source:** Toon files from `lupo-database/lupopedia/toon/`
 
 This document provides a comprehensive schema review of all channel and dialog-related tables extracted from toon files.
 

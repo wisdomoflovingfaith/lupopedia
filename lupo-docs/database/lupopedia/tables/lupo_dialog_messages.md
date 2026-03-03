@@ -71,7 +71,7 @@ flare.headers:
   last_updated_utc: "20260228"
 flare.footer:
   outbound_edges:
-    - { to: "docs/toons/lupo_dialog_messages.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_dialog_messages" }
+    - { to: "lupo-database/lupopedia/toon/lupo_dialog_messages.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_dialog_messages" }
     - { to: "docs/database/lupopedia/tables/lupo_dialog_threads.md", type: "references", weight: 0.8, reason: "thread linkage" }
     - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.7, reason: "channel context" }
   inbound_edges: []

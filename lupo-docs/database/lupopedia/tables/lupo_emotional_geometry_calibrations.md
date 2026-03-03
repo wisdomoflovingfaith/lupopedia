@@ -73,7 +73,7 @@ flare.headers:
 
 flare.footer:
   outbound_edges:
-    - { to: "docs/toons/lupo_emotional_geometry_calibrations.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_emotional_geometry_calibrations" }
+    - { to: "lupo-database/lupopedia/toon/lupo_emotional_geometry_calibrations.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_emotional_geometry_calibrations" }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE header reference" }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.9, reason: "FLARE doctrine" }
     - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8, reason: "Database doctrine" }

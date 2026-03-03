@@ -42,7 +42,7 @@ flare.headers:
 flare.edges:
   file_path_from_root: "docs\database\lupopedia\tables\lupo_dialog_channels.md"
   outbound_edges:
-- { to: "docs/toons/lupo_dialog_channels.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition" }
+- { to: "lupo-database/lupopedia/toon/lupo_dialog_channels.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition" }
     - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.9, reason: "Maps to core channel identity" }
   semantic_tags: ["channel_metadata", "configuration", "dialog_system"]
   version: "4.0.48"

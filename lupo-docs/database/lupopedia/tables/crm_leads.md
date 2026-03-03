@@ -15,7 +15,7 @@ flare.edges:
   file_path_from_root: "docs\database\lupopedia\tables\crm_leads.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/crm_lead_messages.md", type: "references", weight: 0.8 }
-    - { to: "docs/toons/lupo_crm_leads.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_crm_leads.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["crm", "leads", "marketing", "contact"]
 
   delegation_chain: null
@@ -35,7 +35,7 @@ flare.footer:
 ### 1. Overview
 Purpose: **Lead capture**: contact/lead records for CRM (e.g. pre-chat, leave-message, or marketing). Structure is defined in the TOON; typically includes identity/contact fields and lifecycle. Lead_id = 1 is often used as “broadcast” lead for bulk emails in lupo_crm_lead_messages.
 
-**Schema:** See `docs/toons/lupo_crm_leads.toon.json`. Primary key: `lead_id` (or as in TOON). All column names and types must match the TOON.
+**Schema:** See `lupo-database/lupopedia/toon/lupo_crm_leads.toon.json`. Primary key: `lead_id` (or as in TOON). All column names and types must match the TOON.
 
 ### 2. Core Workflows
 

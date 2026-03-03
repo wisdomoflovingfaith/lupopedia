@@ -59,7 +59,7 @@ flare.headers:
 
 flare.edges:
   outbound_edges:
-- { to: "docs/toons/lupo_edges.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_edges" }
+- { to: "lupo-database/lupopedia/toon/lupo_edges.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_edges" }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0, reason: "FLARE protocol core documentation", db_source: "lupo_edges" }
     - { to: "docs/api/FLARE_API.md", type: "api_reference", weight: 1.0, reason: "FLARE API endpoints for edge management", db_source: "lupo_edges" }
     - { to: "scripts/flare_edge_suggester.py", type: "implements", weight: 1.0, reason: "Edge discovery and automation", db_source: "lupo_edges" }

@@ -55,7 +55,7 @@ flare.headers:
 
 flare.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_actors" }
+    - { to: "lupo-database/lupopedia/toon/lupo_actors.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_actors" }
     - { to: "actors/registry.json", type: "references", weight: 1.0, reason: "Actor registry and configuration", db_source: "lupo_actors" }
     - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.9, reason: "Content author relationships", db_source: "lupo_actors" }
     - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.9, reason: "Channel ownership and participation", db_source: "lupo_actors" }

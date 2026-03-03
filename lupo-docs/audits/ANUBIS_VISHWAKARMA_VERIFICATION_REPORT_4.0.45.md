@@ -468,7 +468,7 @@ Both agents are ready for database seeding and will be operational immediately a
     "lupo-agents/25/agent.json",
     "database/migrations/seed_anubis_vishwakarma_4.0.45.sql",
     "database/migrations/seed_registry_comprehensive_4.0.45.sql",
-    "database/csv_data/lupo_registry.csv",
+    "lupo-database/lupopedia/csv/lupo_registry.csv",
     "channels/0/tasks/pending/20260225170100_task_0_19_validate_channel_666_quarantine.md",
     "channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md",
     "channels/0/roles/orphan_repair_agent.md",

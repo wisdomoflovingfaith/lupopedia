@@ -650,7 +650,7 @@ try {
 - `doctrine/deprecated/DEPRECATED_EMOTIONAL_GEOMETRY.md` - Legacy models
 
 ### 9.3 Database Schema
-- `database/toon_data/actor_moods.toon` - TOON definition
+- `lupo-database/lupopedia/toon/actor_moods.toon` - TOON definition
 - `database/migrations/4.4.1_create_actor_moods_table.sql` - Migration script
 
 ---

@@ -79,7 +79,7 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "docs/toons/lupo_actor_edges.toon.json", type: "schema_reference", weight: 1.0 },
+    { to: "lupo-database/lupopedia/toon/lupo_actor_edges.toon.json", type: "schema_reference", weight: 1.0 },
     { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9 },
     { to: "docs/database/lupopedia/tables/lupo_actor_relationship_rules.md", type: "references", weight: 0.8 }
   ],

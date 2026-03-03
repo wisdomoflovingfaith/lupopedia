@@ -408,7 +408,7 @@ Provides coherence calculation and threshold detection:
 ### 9.2 Database Table
 
 **Table**: `emotional_vectors`  
-**Location**: `database/toon_data/emotional_vectors.toon`
+**Location**: `lupo-database/lupopedia/toon/emotional_vectors.toon`
 
 ```sql
 CREATE TABLE emotional_vectors (

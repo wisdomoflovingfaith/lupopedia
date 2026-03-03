@@ -80,7 +80,7 @@ flare.headers:
 
 flare.footer:
   outbound_edges:
-    - { to: "docs/toons/lupo_dialog_threads.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_dialog_threads" }
+    - { to: "lupo-database/lupopedia/toon/lupo_dialog_threads.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_dialog_threads" }
     - { to: "docs/database/lupopedia/tables/lupo_dialog_messages.md", type: "references", weight: 0.8, reason: "message linkage" }
     - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.7, reason: "channel context" }
   inbound_edges: []

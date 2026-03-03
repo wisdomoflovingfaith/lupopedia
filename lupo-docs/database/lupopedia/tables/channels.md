@@ -16,7 +16,7 @@ flare.edges:
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_dialog_threads.md", type: "references", weight: 0.9, reason: "Threads are scoped to channels" }
     - { to: "docs/database/lupopedia/tables/actor_channel_roles.md", type: "references", weight: 0.9, reason: "Access control per channel" }
-    - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["channels", "communication", "dialog", "structure"]
 
   delegation_chain: null
@@ -36,7 +36,7 @@ flare.footer:
 ### 1. Overview
 Purpose: **Channel identity**: each channel has an id, name, key/slug, description, optional department linkage, and lifecycle fields. Channels are the scope for dialog threads, messages, and **channel-scoped roles** (lupo_actor_channel_roles). Reserved channel IDs (0, 1, 42, 51) are created by the installer; channel 1 is “Administration” (global admin).
 
-**Schema:** See `docs/toons/lupo_channels.toon.json`. Primary key: `channel_id`. Reserved IDs are not AUTO_INCREMENT; they are inserted by seed/wizard.
+**Schema:** See `lupo-database/lupopedia/toon/lupo_channels.toon.json`. Primary key: `channel_id`. Reserved IDs are not AUTO_INCREMENT; they are inserted by seed/wizard.
 
 ### 2. Core Workflows
 

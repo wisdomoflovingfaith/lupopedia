@@ -139,7 +139,7 @@ Fresh install runs (A) then (B). Upgrade from Crafty runs (A), (B), then (C). Ne
 - `lupo-bin/` — System binaries and CLI utilities (e.g., `bump-version.php`, `lupo.php`)
 - `lupo-agents/` — AI agent configuration files, one numbered folder per agent (`agent.json`, `capabilities.json`, `properties.json`, `system_prompt.txt`)
 - `database/` — Schema, migrations, seeds, CSV data, TOON schema backups
-- `docs/toons/` — `*.toon.json` files: generated from live DB, never hand-edited. These define the canonical column/type reference.
+- `lupo-database/lupopedia/toon/` — `*.toon.json` files: generated from live DB, never hand-edited. These define the canonical column/type reference.
 - `legacy/craftysyntax/` — Original Crafty Syntax 3.7.5 codebase. **Read-only reference.** Never execute, modify, or depend on it.
 - `scripts/` — Python and shell utilities for schema generation, validation, migration. All Python must live here.
 - `config/global_atoms.yaml` — System-wide atom definitions including `GLOBAL_CURRENT_LUPOPEDIA_VERSION`
@@ -212,7 +212,7 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 ## Schema Source of Truth Hierarchy
 
 1. `database/migrations/install_new_lupopedia.sql` — canonical DDL
-2. `docs/toons/*.toon.json` — generated column/type reference (do not hand-edit)
+2. `lupo-database/lupopedia/toon/*.toon.json` — generated column/type reference (do not hand-edit)
 3. `docs/doctrine/database/` — per-table documentation and legacy migration mapping
 4. `docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md` — Crafty→Lupopedia table mapping
 

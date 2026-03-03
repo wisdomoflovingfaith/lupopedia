@@ -75,7 +75,7 @@ echo "\n";
 
 // Check 2: TOON Schema Files
 echo "✓ TOON Schema Files:\n";
-$toon_dir = $base_dir . '/database/toon_data';
+$toon_dir = $base_dir . '/lupo-database/lupopedia/toon';
 $required_toons = [
     'lupo_actors.toon',
     'lupo_agents.toon',

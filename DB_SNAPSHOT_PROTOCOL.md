@@ -80,8 +80,8 @@ Schema changes must be reflected in doctrine and changelog before they are snaps
 
 **Volatile artifacts (ignored by default):**
 
-- `database/toon_data/*.toon`  
-- `database/toon_data/*.txt`  
+- `lupo-database/lupopedia/toon/*.toon`  
+- `lupo-database/lupopedia/toon/*.txt`  
 
 **Rules:**
 
@@ -229,7 +229,7 @@ When a snapshot is requested and approved:
   - delete or revert DB export files.
 
 **Shared rule:**  
-If an agent detects new `.toon` / `.txt` exports under `database/toon_data/` or `database/snapshots/`, it should:
+If an agent detects new `.toon` / `.txt` exports under `lupo-database/lupopedia/toon/` or `database/snapshots/`, it should:
 
 - treat them as **expected drift** unless explicitly told:  
   - "This is a snapshot event; promote these files and commit them."

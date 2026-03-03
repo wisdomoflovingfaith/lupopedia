@@ -15,7 +15,7 @@ flare.edges:
   file_path_from_root: "docs\database\lupopedia\tables\sessions.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9, reason: "Binding session to identity" }
-    - { to: "docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["sessions", "auth", "state", "anonymous"]
 
   delegation_chain: null
@@ -35,7 +35,7 @@ flare.footer:
 ### 1. Overview
 Purpose: **Session storage** for authenticated and anonymous users: session_id, actor_id (nullable or sentinel for anonymous), payload (session data), optional system_context, and expiry. Anonymous users exist only here—they do not have rows in lupo_actors. Authenticated users have both a session and an actor row. Replaces Crafty’s livehelp_sessions with a deterministic, actor-aware model. Single session table for the app; no separate “sessions” in current install.
 
-**Schema:** See `docs/toons/lupo_sessions.toon.json`. Primary key: `session_id`. Timestamps BIGINT UTC (e.g. expires_ymdhis). Session data is stored in the payload/lifecycle columns as defined in the TOON.
+**Schema:** See `lupo-database/lupopedia/toon/lupo_sessions.toon.json`. Primary key: `session_id`. Timestamps BIGINT UTC (e.g. expires_ymdhis). Session data is stored in the payload/lifecycle columns as defined in the TOON.
 
 ### 2. Core Workflows
 

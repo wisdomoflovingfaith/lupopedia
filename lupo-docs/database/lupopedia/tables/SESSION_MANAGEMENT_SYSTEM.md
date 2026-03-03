@@ -19,11 +19,11 @@ flare.headers:
 
 flare.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "bin/session_manager.php", type: "implementation_reference", weight: 0.9 }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_logs.toon.json", type: "related_schema", weight: 0.8 }
-    - { to: "docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "integration_reference", weight: 0.8 }
+    - { to: "lupo-database/lupopedia/toon/lupo_channel_logs.toon.json", type: "related_schema", weight: 0.8 }
+    - { to: "lupo-database/lupopedia/toon/lupo_channel_boot_lifecycle.toon.json", type: "integration_reference", weight: 0.8 }
   semantic_tags: ["session_management", "agent_isolation", "database_sync"]
 
 flare.footer:
@@ -218,10 +218,10 @@ Results: JSON-like output with reason codes; logged for audit.
 - **Git**: Changes committed with FLARE messages.
 
 ## References
-- `docs/toons/lupo_sessions.toon.json`
+- `lupo-database/lupopedia/toon/lupo_sessions.toon.json`
 - `bin/session_manager.php`
 - `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
-- `docs/toons/lupo_channel_logs.toon.json`
+- `lupo-database/lupopedia/toon/lupo_channel_logs.toon.json`
 
 ---
 

@@ -18,7 +18,7 @@ flare.headers:
 
 flare.edges:
   outbound_edges:
-    - { to: "docs/toons/", type: "references", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/", type: "references", weight: 1.0 }
     - { to: "docs/database/lupopedia/tables/", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 0.9 }
     - { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 0.8 }
@@ -36,7 +36,7 @@ flare.footer:
 
 ## Directory Structure
 
-This directory contains comprehensive documentation for all Lupopedia database tables. Each table has corresponding TOON schema files in `docs/toons/` that serve as the authoritative source of truth for table structure.
+This directory contains comprehensive documentation for all Lupopedia database tables. Each table has corresponding TOON schema files in `lupo-database/lupopedia/toon/` that serve as the authoritative source of truth for table structure.
 
 ## Documentation Types
 
@@ -58,7 +58,7 @@ These files provide cross-cutting documentation and references:
 - **actor_reply_templates.md**: Actor communication templates
 
 ### 3. TOON Schema Files
-Located in `docs/toons/` - these are the authoritative schema definitions:
+Located in `lupo-database/lupopedia/toon/` - these are the authoritative schema definitions:
 
 - **Format**: `{table_name}.toon.json`
 - **Purpose**: JSON schema definitions with field types, indexes, and constraints

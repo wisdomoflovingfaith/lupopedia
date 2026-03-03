@@ -80,8 +80,8 @@ sessions/
 # ---------------------------------------------------------
 # DB export artifacts (phpMyAdmin / TOON exports)
 # ---------------------------------------------------------
-database/toon_data/*.toon
-database/toon_data/*.txt
+lupo-database/lupopedia/toon/*.toon
+lupo-database/lupopedia/toon/*.txt
 
 # ---------------------------------------------------------
 # Generated TOON files (never track)

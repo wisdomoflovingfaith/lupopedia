@@ -102,7 +102,7 @@ Headers in this batch: 25
 | `X-Lupo-Registry-Mode` | ID allocation mode | `unregistry-first` | registry_doctrine |
 | `X-Lupo-Registry-Source` | Data source for registry | `csv` | registry_doctrine |
 | `X-Lupo-TOON-Path` | Path to TOON schema files | `docs/toons/` | registry_doctrine |
-| `X-Lupo-CSV-Path` | Path to CSV snapshots | `database/csv_data/` | registry_doctrine |
+| `X-Lupo-CSV-Path` | Path to CSV snapshots | `lupo-database/lupopedia/csv/` | registry_doctrine |
 | `X-Lupo-Doctrine` | Enforced rules | `no-id-guessing; no-max-plus-one; use-unregistry` | registry_doctrine |
 | `X-Lupo-Survivor-Protocol` | Survivor mode activation | `active` | survivor_protocol |
 | `X-Lupo-Forwarded-For` | Origin actor ID | `420` | survivor_protocol |

@@ -65,8 +65,8 @@ Agents must treat them as high‑risk, high‑discipline operations.
 
 Agents must treat the following as volatile artifacts:
 
-- `database/toon_data/*.toon`
-- `database/toon_data/*.txt`
+- `lupo-database/lupopedia/toon/*.toon`
+- `lupo-database/lupopedia/toon/*.txt`
 - `database/snapshots/*.sql`
 - any phpMyAdmin export
 
