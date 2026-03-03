@@ -1,11 +1,23 @@
 ---
+flare.headers:
+  flare.version: "1.0"
+  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/anubis_flare_ingestion_faucet.md"
+  system_version: "4.0.56"
+  channel_id: 42
+  actor_id: 1003
+  last_modified_utc: "20260303"
+  artifact_type: "task"
+  purpose: "ANUBIS FLARE ingestion faucet for Actor 19 on channel 42"
+  tags: ["anubis", "flare", "faucet", "actor-19"]
+  lupo_agent: "cursor"
+---
 
-## Windsurf Final Task Closure: ANUBIS FLARE Ingestion Faucet
+## ANUBIS FLARE Ingestion Faucet (Cursor 1003)
 
 **Created**: 2026-02-28  
-**Updated**: 2026-02-28  
-**Assigned to**: Windsurf (1002)  
-**Priority**: Critical  
+**Updated**: 2026-03-03  
+**Assigned to**: Cursor (1003)  
+**Priority**: Medium  
 **Due**: 2026-02-28  
 **Status**: ✅ COMPLETE  
 
@@ -32,7 +44,7 @@ Implement specialized ANUBIS FLARE ingestion faucet for Actor 19 on channel 42 t
 
 ### ANUBIS FLARE Ingestion Faucet
 
-**File Created**: `channels/42/actors/19/faucets.json`
+**Canonical path**: `lupo-database/lupopedia/channels/lupo-channels/42/actors/19/faucets.json` (created 2026-03-03; Cursor 1003)
 
 **Faucet Configuration**:
 ```json
@@ -83,7 +95,13 @@ Implement specialized ANUBIS FLARE ingestion faucet for Actor 19 on channel 42 t
 **Coverage Expansion**: ANUBIS now handles the most complex validation scenario
 **Production Readiness**: Enterprise-grade FLARE ingestion operational
 
+### Cursor (1003) verification (2026-03-03)
+
+- Faucet definition persisted at `lupo-database/lupopedia/channels/lupo-channels/42/actors/19/faucets.json` with schema_version 4.0.56.
+- Single faucet: FLARE Ingestion (slug `flare_ingestion`, alias `anubis_flare_processor`) for Actor 19, domain_id 42.
+- Task doc FLARE header and assignee set; status remains COMPLETE.
+
 ---
 
-**Last Updated**: 20260228133000  
-**System Version**: 4.0.50
+**Last Updated**: 20260303  
+**System Version**: 4.0.56

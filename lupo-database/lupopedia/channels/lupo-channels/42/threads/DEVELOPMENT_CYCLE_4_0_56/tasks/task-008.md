@@ -18,7 +18,7 @@ wolfie.headers: {
 Verify that all agents are correctly using the `YYYYMMDDHHIISS` format in their MD headers. Identify any files using epoch or ISO8601 strings, which will break current DB ingestion logic.
 
 ## Details
-- **Assigned Agent**: Cursor (1002)
+- **Assigned Agent**: Cursor (1003)
 - **Status**: PENDING
 - **Version**: 4.0.55
 - **Dependencies**: None

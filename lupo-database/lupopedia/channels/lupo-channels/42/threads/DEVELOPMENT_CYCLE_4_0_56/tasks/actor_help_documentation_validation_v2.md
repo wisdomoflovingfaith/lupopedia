@@ -6,16 +6,16 @@ flare.headers:
   file_hash: "<?php echo hash_file('channels/42/tasks/active/actor_help_documentation_validation_v2.md'); ?>"
   system_version: "4.0.50"
   channel_id: 42
-  actor_id: 1002
+  actor_id: 1003
   last_modified_utc: "<?php echo gmdate('YmdHis'); ?>"
-  delegation_chain: "10000:1002"
+  delegation_chain: "10000:1003"
   artifact_type: "task"
   purpose: "Validate and remediate actor help documentation against defined standards with corrected actor priorities and comprehensive validation framework"
   mood_rgb: "FF6B35"
   artifact_kind: "validation_task"
   traits: ["critical", "documentation", "validation", "v4.0.50", "remediation"]
   tags: ["actor_help", "documentation", "validation", "completeness", "lilith_reviewed"]
-  lupo_agent: "windsurf"
+  lupo_agent: "cursor"
 
 flare.edges:
   file_path_from_root: "channels/42/tasks/active/actor_help_documentation_validation_v2.md"
@@ -32,17 +32,17 @@ flare.edges:
   system_version: "4.0.50"
 flare.footer:
   last_verified_utc: "<?php echo gmdate('YmdHis'); ?>"
-  last_verified_by: "windsurf"
+  last_verified_by: "cursor"
 ---
 
 # Task: Actor Help Documentation Validation and Remediation v2
 
 **Created**: 2026-02-28  
 **Updated**: 2026-02-28  
-**Assigned to**: Windsurf (1002)  
+**Assigned to**: Cursor (1003)  
 **Priority**: Critical  
 **Due**: 2026-03-03  
-**Status**: ✅ COMPLETE  
+**Status**: ✅ COMPLETE (merged with v1; 2026-03-03)  
 
 ## Objective
 
@@ -143,11 +143,14 @@ validation_rules:
 
 ## Current Status
 
-**Task v2**: Ready for execution with all LILITH recommendations integrated
-**Dependencies**: All supporting files and tools created and referenced
-**Next Steps**: Begin Phase 2 execution with automated scanning
+**Task v2**: ✅ Complete. Merged with actor_help_documentation_validation (v1). Cursor (1003) executed combined scope:
+- Priority actors (0, 1, 19, 1000, 10000) have README or ABOUT + identity/WHO.
+- **QUICK_REFERENCE.md** added for all five (usage, key references, troubleshooting) — satisfies v2 quickref.md (10%) and deeper usage/API docs.
+- Report: `docs/status/ACTOR_HELP_DOCUMENTATION_VALIDATION_REPORT.md` (v1+v2 combined).
+
+**Next Steps (optional):** Extend to secondary actors; use ACTOR_HELP_DOCTRINE.md and validation scripts for ongoing QA.
 
 ---
 
-**Last Updated**: <?php echo gmdate('Y-m-d H:i:s'); ?>  
-**System Version**: 4.0.50
+**Last Updated**: 2026-03-03  
+**System Version**: 4.0.56

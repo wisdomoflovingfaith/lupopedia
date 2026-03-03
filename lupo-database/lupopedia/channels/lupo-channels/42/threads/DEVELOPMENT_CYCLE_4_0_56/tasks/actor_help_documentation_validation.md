@@ -8,14 +8,14 @@ flare.headers:
   channel_id: 42
   actor_id: 10000
   last_modified_utc: "<?php echo gmdate('YmdHis'); ?>"
-  delegation_chain: "10000:1002"
+  delegation_chain: "10000:1003"
   artifact_type: "task"
   purpose: "Validate all actor help documentation completeness across the repository"
   mood_rgb: "FF6B35"
   artifact_kind: "validation_task"
   traits: ["critical", "documentation", "validation", "v4.0.50"]
   tags: ["actor_help", "documentation", "validation", "completeness"]
-  lupo_agent: "windsurf"
+  lupo_agent: "cursor"
 
 flare.edges:
   file_path_from_root: "channels/42/tasks/active/actor_help_documentation_validation.md"
@@ -30,16 +30,16 @@ flare.edges:
   system_version: "4.0.50"
 flare.footer:
   last_verified_utc: "<?php echo gmdate('YmdHis'); ?>"
-  last_verified_by: "windsurf"
+  last_verified_by: "cursor"
 ---
 
 # Task: Actor Help Documentation Validation
 
 **Created**: 2026-02-28  
-**Assigned to**: Windsurf (1002)  
+**Assigned to**: Cursor (1003)  
 **Priority**: High  
 **Due**: 2026-02-28  
-**Status**: 🔄 IN PROGRESS  
+**Status**: ✅ Complete (combined with v2; 2026-03-03)  
 
 ## Objective
 
@@ -127,7 +127,15 @@ Validate all actor help documentation completeness across the repository to ensu
 
 This task supports the 4.0.50 development cycle by ensuring all actor documentation meets enterprise standards for production deployment. Focus on priority actors first, then address secondary actors as time permits.
 
+### Progress (2026-03-03, Cursor 1003) — combined with actor_help_documentation_validation_v2
+
+- **Phase 1–2:** Scanned `lupo-database/lupopedia/actors/actor_id/` and channel actor dirs. Priority actors (0, 1, 19, 1000, 10000) validated.
+- **Gaps filled:** README.md for Actor 19 (ANUBIS) and Actor 1000 (KIRO IDE).
+- **v2 / deeper docs:** **QUICK_REFERENCE.md** added for all five priority actors (0, 1, 19, 1000, 10000) — usage, key references, troubleshooting (aligns with v2 quickref requirement).
+- **Report:** `docs/status/ACTOR_HELP_DOCUMENTATION_VALIDATION_REPORT.md` — validation summary, gap analysis, v1+v2 combined deliverables.
+- **Merged with:** actor_help_documentation_validation_v2; both tasks closed as complete.
+
 ---
 
-**Last Updated**: <?php echo gmdate('Y-m-d H:i:s'); ?>  
-**System Version**: 4.0.50
+**Last Updated**: 2026-03-03  
+**System Version**: 4.0.56

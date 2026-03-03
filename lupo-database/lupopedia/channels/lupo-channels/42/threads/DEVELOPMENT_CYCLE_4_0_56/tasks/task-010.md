@@ -18,7 +18,7 @@ wolfie.headers: {
 Analyze how tasks reference each other in MD files (e.g., "Dependencies: TASK-001"). Design an optimized way to store these edges in the database without adding complex graph-table overhead.
 
 ## Details
-- **Assigned Agent**: Windsurf (1001)
+- **Assigned Agent**: Cursor (1003)
 - **Status**: PENDING
 - **Version**: 4.0.55
 - **Dependencies**: None

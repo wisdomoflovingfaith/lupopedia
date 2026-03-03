@@ -8,15 +8,15 @@ flare.headers:
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
   channel_id: 42
-  actor_id: 1002
-  delegation_chain: "1002:10000"
+  actor_id: 1003
+  delegation_chain: "10000:1003"
   artifact_type: "documentation"
   artifact_kind: "documentation"
   purpose: "Documentation file with FLARE header applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  lupo_agent: "cursor"
 
 flare.edges:
   outbound_edges:
@@ -42,7 +42,7 @@ flare.headers:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   channel_id: 42
-  actor_id: 1002
+  actor_id: 1003
   delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
@@ -50,7 +50,7 @@ flare.headers:
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.50"]
   tags: ["channels", "0", "tasks", "active", "installer_integrationmd"]
-  lupo_agent: "windsurf"
+  lupo_agent: "cursor"
 
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"

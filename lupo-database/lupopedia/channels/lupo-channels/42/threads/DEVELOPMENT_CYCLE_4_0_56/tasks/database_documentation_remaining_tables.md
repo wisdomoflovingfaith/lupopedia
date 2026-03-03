@@ -8,7 +8,7 @@ flare.headers:
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
   channel_id: 42
-  actor_id: 1002
+  actor_id: 1003
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
@@ -66,7 +66,7 @@ flare.footer:
 # JetBrains IDE Task: Database Documentation Completion & Optimization Analysis
 
 **Task ID**: DBDOC-REMAINING-COMPLETE-2026-02-27-002  
-**Assigned To**: JetBrains (1007)  
+**Assigned To**: Cursor (1003)  
 **Priority**: High  
 **Estimated Time**: 4-6 hours  
 **Target Version**: 4.0.49

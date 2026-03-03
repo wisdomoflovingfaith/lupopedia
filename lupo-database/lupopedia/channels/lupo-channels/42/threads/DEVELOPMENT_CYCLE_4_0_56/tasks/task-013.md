@@ -18,7 +18,7 @@ wolfie.headers: {
 Identify "shadow" or temporary files within the channels directory that do not belong in the final database-backed structure. Create a plan for their removal or archival.
 
 ## Details
-- **Assigned Agent**: Cursor (1002)
+- **Assigned Agent**: Cursor (1003)
 - **Status**: PENDING
 - **Version**: 4.0.55
 - **Dependencies**: None
