@@ -48,8 +48,8 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 **Status**: COMPLETED  
 **Theme**: Database table consolidation and directory path standardization  
-**Lead Agent**: Gemini CLI (1006), Windsurf (1002), Cursor  
-**Focus**: Reduce table count from 223 to 179, fix hardcoded directory references, and canonicalize database/installer paths.
+**Lead Agent**: Gemini CLI (1006), Windsurf (1002), Cursor, Antigravity (1004)  
+**Focus**: Reduce table count from 223 to 179, fix hardcoded directory references, canonicalize database/installer paths, and resolve configuration sprawl.
 
 ### 🎯 Table Optimization Results
 
@@ -106,6 +106,15 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Tasks Flattening**: Removed lookup columns, added VARCHAR columns for flattened structure
 - **Production Ready**: Installation script ready for fresh deployments with optimized schema
 
+### ⚙️ Configuration Canonicalization (Antigravity)
+
+**Folder Alignment & Modularization**: ✅ STEPS 1 & 2 COMPLETED
+- **lupo-config/ Folder**: Created `lupo-config/` directory and migrated all modular configuration (atoms, identity, bridges) from the old `config/` directory.
+- **Atom Loader Migration**: Updated `AtomLoader.php` to prioritize the new `lupo-config/` path with a fallback mechanism to `config/` for backward compatibility.
+- **Version System Alignment**: Verified that `lupo-includes/version.php` correctly reads the system version from the new location.
+- **Snapshot Backup**: Created a pre-migration snapshot in `backups/config_sprawl_snapshot_4.0.55/` containing all original config files and folders.
+- **Security Hardening**: Updated `.gitignore` to protect local/generated configuration files within `lupo-config/*.local.php`.
+
 ### 📂 Database Path Normalization & MySQL Installer Relocation (Cursor)
 
 **Database path normalization**: ✅ COMPLETED
@@ -128,6 +137,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 - `523cb748` - windsurf: Implement file-based DB fallback with lupo-database dir and config updates
 - cursor: Database path normalization — documentation and doctrine to canonical lupo-database/lupopedia paths
 - cursor: MySQL installer SQL relocation — install/seed/migrations under lupo-database/lupopedia/mysql, installer references updated
+- `antigravity`: Config Canonicalization — Created lupo-config/ folder, migrated contents, and updated AtomLoader.php and version.php for path alignment
 
 **Table Optimization Implementation**:
 - `gemini: Phase 1 database consolidation: Merged logging tables into lupo_unified_log`
