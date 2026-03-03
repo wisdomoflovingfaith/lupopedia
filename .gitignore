@@ -132,3 +132,6 @@ legacy/*
 tests/
 docs/dev/
 sandbox/
+
+# Generated/Local Config
+lupo-config/*.local.php

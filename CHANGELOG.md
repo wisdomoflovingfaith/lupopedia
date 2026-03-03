@@ -1,4 +1,4 @@
-﻿# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
 flare.headers:
   flare.version: "1.0"
@@ -44,12 +44,12 @@ flare.footer:
 This document tracks version history, focusing on key changes, task migrations, and optimizations. Entries are in reverse chronological order.
 
 
-## [4.0.55] — Table Optimization & Directory Fixes (2026-03-02)
+## [4.0.55] — Table Optimization & Directory Fixes (2026-03-03)
 
 **Status**: COMPLETED  
 **Theme**: Database table consolidation and directory path standardization  
-**Lead Agent**: Gemini CLI (1006) & Windsurf (1002)  
-**Focus**: Reduce table count from 223 to 179 and fix hardcoded directory references.
+**Lead Agent**: Gemini CLI (1006), Windsurf (1002), Cursor  
+**Focus**: Reduce table count from 223 to 179, fix hardcoded directory references, and canonicalize database/installer paths.
 
 ### 🎯 Table Optimization Results
 
@@ -106,6 +106,18 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Tasks Flattening**: Removed lookup columns, added VARCHAR columns for flattened structure
 - **Production Ready**: Installation script ready for fresh deployments with optimized schema
 
+### 📂 Database Path Normalization & MySQL Installer Relocation (Cursor)
+
+**Database path normalization**: ✅ COMPLETED
+- All documentation, doctrine, and prompts now use canonical paths: `lupo-database/lupopedia/csv/`, `lupo-database/lupopedia/toon/`, `lupo-database/lupopedia/mysql/`, `lupo-database/lupopedia/postgres/`.
+- Replaced references to `database/toon_data/`, `database/csv_data/`, and `docs/toons/` (where denoting asset location) across doctrine, AGENTS.md, GEMINI.md, table docs, scripts, and PHP. Report: `docs/status/DATABASE_PATH_NORMALIZATION_REPORT.md`.
+
+**MySQL installer SQL relocation**: ✅ COMPLETED
+- Installer-critical SQL moved from `database/migrations/` to `lupo-database/lupopedia/mysql/` with subdirs: `install/`, `seed/`, `import/`, `migrations/`, `manifest/`.
+- **install.php** uses `LUPO_DATABASE_DIR` (from config if set; else default `LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-database'`) and derives `LUPO_MYSQL_DIR` from it. Policy: do not load installer SQL from `database/migrations/`.
+- Runtime guard: if `LUPO_MYSQL_DIR` is not a directory, installer fails with "MySQL installer directory not found at LUPO_MYSQL_DIR".
+- INSTALLER SQL SOURCE OF TRUTH comment block added at top of install.php. Report: `docs/status/MYSQL_INSTALL_SQL_RELOCATION_REPORT.md`.
+
 ### 🔄 Git Commits (2026-03-02)
 
 **v4.0.55 Development Cycle**:
@@ -114,6 +126,8 @@ This document tracks version history, focusing on key changes, task migrations, 
 - `08487c2f` - windsurf: Create table optimization changes for install_new_lupopedia.sql
 - `42e53975` - windsurf: Update CHANGELOG.md v4.0.55 entry to 2026-03-02 with complete file-based DB fallback implementation
 - `523cb748` - windsurf: Implement file-based DB fallback with lupo-database dir and config updates
+- cursor: Database path normalization — documentation and doctrine to canonical lupo-database/lupopedia paths
+- cursor: MySQL installer SQL relocation — install/seed/migrations under lupo-database/lupopedia/mysql, installer references updated
 
 **Table Optimization Implementation**:
 - `gemini: Phase 1 database consolidation: Merged logging tables into lupo_unified_log`

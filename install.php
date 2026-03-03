@@ -84,13 +84,27 @@
  * @see docs/doctrine/migrations/ Installation SQL Rule
  */
 
+/**
+ * INSTALLER SQL SOURCE OF TRUTH
+ * All installer-critical SQL must reside under:
+ *   lupo-database/lupopedia/mysql/
+ * Do not load SQL from database/migrations/.
+ */
+
 // Project root is webroot for the app (subfolder-install doctrine)
 if (!defined('LUPOPEDIA_PATH')) {
     define('LUPOPEDIA_PATH', __DIR__);
 }
-// Canonical MySQL install/seed/import SQL root (installer only)
+// LUPO_DATABASE_DIR: from config if available; only if missing, default to repo-local lupo-database/
+if (!defined('LUPO_DATABASE_DIR')) {
+    define('LUPO_DATABASE_DIR', LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-database');
+}
+// LUPO_MYSQL_DIR: always derived from LUPO_DATABASE_DIR (no trailing slash; paths built with DIRECTORY_SEPARATOR)
 if (!defined('LUPO_MYSQL_DIR')) {
-    define('LUPO_MYSQL_DIR', LUPOPEDIA_PATH . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'mysql' . DIRECTORY_SEPARATOR);
+    define('LUPO_MYSQL_DIR', LUPO_DATABASE_DIR . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'mysql');
+}
+if (!is_dir(LUPO_MYSQL_DIR)) {
+    die('MySQL installer directory not found at LUPO_MYSQL_DIR: ' . LUPO_MYSQL_DIR);
 }
 
 // Version for wizard UI - Direct parse from global_atoms.yaml (install.php runs standalone, no bootstrap)
@@ -323,11 +337,11 @@ if ($step === 'credentials') {
                 $bootstrapLog = array();
                 $table_prefix = isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_';
                 try {
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $bootstrapLog, $table_prefix);
                     InstallWizardChannels::createReservedSystemChannels($pdo, $bootstrapLog);
                     $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
                     header('Location: ' . $base . '/install.php?step=bootstrap');
@@ -503,7 +517,7 @@ if ($step === 'run') {
         }
         $table_prefix = isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_';
         $mysqlDir = LUPO_MYSQL_DIR;
-        $importSql = $mysqlDir . 'import' . DIRECTORY_SEPARATOR . 'import_from_old_crafty_syntax.sql';
+        $importSql = $mysqlDir . DIRECTORY_SEPARATOR . 'import' . DIRECTORY_SEPARATOR . 'import_from_old_crafty_syntax.sql';
         // Upgrade: install/seed/reserved were already run after detect upgrade (before normalize). Only import → personal channels/roles → drop → config.
         // New install: run install → seed → reserved channels → config.
 
@@ -516,11 +530,11 @@ if ($step === 'run') {
             }
 
             if ($install_type === 'new') {
-                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
-                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $log, $table_prefix);
-                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $log, $table_prefix);
-                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $log, $table_prefix);
-                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
                 InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
                 InstallWizardChannels::createReservedSystemChannels($pdo, $log);
 
@@ -568,7 +582,7 @@ if ($step === 'run') {
 
                 // Optional: drop legacy livehelp_* tables after import (user choice at credentials; default unchecked).
                 if (!empty($_SESSION['lupo_drop_livehelp_tables'])) {
-                    $dropSql = $mysqlDir . 'import' . DIRECTORY_SEPARATOR . 'drop_old_crafty_syntax_tables.sql';
+                    $dropSql = $mysqlDir . DIRECTORY_SEPARATOR . 'import' . DIRECTORY_SEPARATOR . 'drop_old_crafty_syntax_tables.sql';
                     InstallWizardSqlRunner::runSqlFile($pdo, $dropSql, $log);
                     $log[] = InstallWizardLogger::logEntry('ok', 'Legacy Crafty Syntax tables dropped.');
                     $remaining = InstallWizardDb::detectLivehelpTables($pdo);
@@ -589,11 +603,11 @@ if ($step === 'run') {
             // 4.0.20: Ensure Stoned Wolfie (AI + human) banned test identities exist after import/seed.
             InstallWizardBannedIdentities::ensureStonedWolfieBannedIdentities($pdo, $log, $table_prefix);
             // Run ANUBIS Queue Tables migration (v4.0.53)
-            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'migrations' . DIRECTORY_SEPARATOR . 'anubis_queue_tables_4.0.53.sql', $log, $table_prefix);
+            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'migrations' . DIRECTORY_SEPARATOR . 'anubis_queue_tables_4.0.53.sql', $log, $table_prefix);
             // Run ANUBIS Database Primacy Updates (v4.0.53)
-            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'migrations' . DIRECTORY_SEPARATOR . '20260301_anubis_database_primacy_updates.sql', $log, $table_prefix);
+            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'migrations' . DIRECTORY_SEPARATOR . '20260301_anubis_database_primacy_updates.sql', $log, $table_prefix);
             // Run Default Sessions Seed (v4.0.53)
-            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_default_sessions.sql', $log, $table_prefix);
+            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_default_sessions.sql', $log, $table_prefix);
 
             // Activations Block
             require_once LUPOPEDIA_PATH . '/lupo-includes/functions/ai_activation.php';

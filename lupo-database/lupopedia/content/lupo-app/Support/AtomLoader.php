@@ -17,9 +17,18 @@ class AtomLoader
     /** @var array|null */
     private static $cmbCache = null;
 
-    public function __construct(?string $configDir = null)
+    public function __construct($configDir = null)
     {
-        $this->configDir = $configDir ?? (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH . '/config' : __DIR__ . '/../../config');
+        if ($configDir === null) {
+            $base = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : dirname(dirname(dirname(dirname(__DIR__))));
+            if (is_dir($base . '/lupo-config')) {
+                $this->configDir = $base . '/lupo-config';
+            } else {
+                $this->configDir = $base . '/config';
+            }
+        } else {
+            $this->configDir = $configDir;
+        }
     }
 
     /**

@@ -57,6 +57,8 @@ Where `$migrationsDir = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'database' . DIRE
 
 All other `.sql` files in `database/migrations/` (e.g. table_consolidation_phase1–3, dev_*, 4.0.29_*, etc.) are **not** loaded by install.php; they are one-off dev migrations, run manually or by other scripts. Left in place. Same for `database/install/*.sql`, `database/schema/*.sql`, `lupo-docs/specs/sql/*.sql`, and root-level/test SQL files.
 
+**Policy:** `install.php` must not load installer SQL from `database/migrations/` going forward; only `lupo-database/lupopedia/mysql/` is canonical for installer execution.
+
 ---
 
 ## 3) Move plan (old → new)
@@ -83,10 +85,10 @@ All other `.sql` files in `database/migrations/` (e.g. table_consolidation_phase
 
 | File | What changed |
 |------|----------------|
-| install.php | Defined `LUPO_MYSQL_DIR` (lupo-database/lupopedia/mysql/). Replaced `$migrationsDir` with `$mysqlDir = LUPO_MYSQL_DIR` and all runSqlFile paths to use install/, seed/, import/, migrations/ under it. Updated @flip header paths and UI bullet list. |
+| install.php | **`LUPO_DATABASE_DIR`** from config if available; only if missing, default to `LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-database'`. **`LUPO_MYSQL_DIR`** always derived from it: `LUPO_MYSQL_DIR = LUPO_DATABASE_DIR . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'mysql';` Replaced `$migrationsDir` with `$mysqlDir = LUPO_MYSQL_DIR` and built all `runSqlFile(...)` paths using `DIRECTORY_SEPARATOR` (no hardcoded full paths with `/`). Updated @flip header and UI to `lupo-database/lupopedia/mysql/...`. |
 | install_wizard_classes.php | No change (still accepts full path to .sql). |
 | lupo-database/lupopedia/mysql/manifest/install_manifest.txt | Created: install/install_new_lupopedia.sql |
-| lupo-database/lupopedia/mysql/manifest/seed_manifest.txt | Created: 5 seed paths |
+| lupo-database/lupopedia/mysql/manifest/seed_manifest.txt | Created: seed execution order (1 per line) |
 | lupo-database/lupopedia/mysql/manifest/migrations_manifest.txt | Created: 2 migration paths |
 | AGENTS.md | Three SQL Entrypoints and Schema Source of Truth now point to lupo-database/lupopedia/mysql/...; dev workflow references mysql/import/old_crafty_syntax_3_7_5_start.sql. |
 | docs/status/DATABASE_PATH_NORMALIZATION_REPORT.md | Note added: installer SQL lives under lupo-database/lupopedia/mysql/ and MYSQL_INSTALL_SQL_RELOCATION_REPORT.md. |
@@ -105,6 +107,15 @@ All other `.sql` files in `database/migrations/` (e.g. table_consolidation_phase
 - **migrations_manifest.txt:**  
   `migrations/anubis_queue_tables_4.0.53.sql`  
   `migrations/20260301_anubis_database_primacy_updates.sql`
+
+---
+
+## Implementation note (doctrine)
+
+- **`LUPO_DATABASE_DIR`** is the file-based fallback root selector: set in config (or environment) when available; **only if missing**, the installer defaults to `LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-database'`. Do not silently anchor the database root to the app directory when config could supply it.
+- **`LUPO_MYSQL_DIR`** is always derived from `LUPO_DATABASE_DIR`, never from `LUPOPEDIA_PATH` alone.
+- **Trailing separator:** Constants may or may not include a trailing `DIRECTORY_SEPARATOR`; the installer must normalize (or always append with `DIRECTORY_SEPARATOR` consistently). **Convention used:** no trailing slash in constants; paths are built by appending `DIRECTORY_SEPARATOR . 'install'`, etc.
+- **Paths:** Do not hardcode full paths with `/`; use segment strings and `DIRECTORY_SEPARATOR` when building paths.
 
 ---
 
