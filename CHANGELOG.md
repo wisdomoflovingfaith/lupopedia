@@ -115,6 +115,19 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Snapshot Backup**: Created a pre-migration snapshot in `backups/config_sprawl_snapshot_4.0.55/` containing all original config files and folders.
 - **Security Hardening**: Updated `.gitignore` to protect local/generated configuration files within `lupo-config/*.local.php`.
 
+### ⚙️ Configuration Canonicalization (Windsurf)
+
+**Folder Alignment & Modularization**: ✅ STEPS 1 & 2 COMPLETED
+- **lupo-config/ Folder**: Created canonical config directory and migrated all files from `config/` to `lupo-config/`
+- **Atom Loader Path Updates**: Updated `AtomLoader.php` to prioritize `lupo-config/` with fallback to `config/` (fallback logic already implemented)
+- **Pre-Execution Backup**: Created `backups/config_sprawl_snapshot_4.0.55/` with complete pre-migration state
+- **Version System Alignment**: Verified that version detection works correctly with new path structure
+- **Git Protection**: `.gitignore` already contains `lupo-config/*.local.php` exclusion
+- **Files Moved**: `config.php`, `lupo-config.php`, `lupopedia-config.php`, and entire `config/` directory to `lupo-config/`
+- **Documentation**: Updated `CONFIG_MIGRATION_LOG.md` and `CONFIG_CANONICALIZATION_REPORT.md` with execution details
+- **Actor**: 1002 (Windsurf IDE Agent)
+- **Status**: Ready for legacy archiving (Steps 3-6 awaiting confirmation)
+
 ### 📂 Database Path Normalization & MySQL Installer Relocation (Cursor)
 
 **Database path normalization**: ✅ COMPLETED
@@ -142,6 +155,8 @@ This document tracks version history, focusing on key changes, task migrations, 
 - cursor: Database path normalization — documentation and doctrine to canonical lupo-database/lupopedia paths
 - cursor: MySQL installer SQL relocation — install/seed/migrations under lupo-database/lupopedia/mysql, installer references updated
 - `antigravity`: Config Canonicalization — Created lupo-config/ folder, migrated contents, and updated AtomLoader.php and version.php for path alignment
+
+- `39c0e70f` - windsurf: Config Canonicalization — Created lupo-config/ folder and updated AtomLoader.php for path alignment
 
 **Table Optimization Implementation**:
 - `gemini: Phase 1 database consolidation: Merged logging tables into lupo_unified_log`
