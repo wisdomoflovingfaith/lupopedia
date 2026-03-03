@@ -112,13 +112,13 @@ python scripts/verify_db_against_toons.py
 
 ### Development Workflow (Drop → Upgrade → Test)
 
-The canonical dev cycle is: drop all tables → load 34 legacy Crafty Syntax tables from `database/migrations/old_crafty_syntax_3_7_5_start.sql` → load old Crafty config → run the Lupopedia install wizard (`install.php`) → verify upgrade → test → make changes → repeat.
+The canonical dev cycle is: drop all tables → load 34 legacy Crafty Syntax tables from `lupo-database/lupopedia/mysql/import/old_crafty_syntax_3_7_5_start.sql` → load old Crafty config → run the Lupopedia install wizard (`install.php`) → verify upgrade → test → make changes → repeat.
 
-### Three SQL Entrypoints
+### Three SQL Entrypoints (installer uses lupo-database/lupopedia/mysql/)
 
-- **`database/migrations/install_new_lupopedia.sql`** — Schema only (canonical single source of truth)
-- **`database/migrations/seed_lupopedia.sql`** — Seed data for fresh install
-- **`database/migrations/import_from_old_crafty_syntax.sql`** — Crafty 3.7.5 upgrade mapping
+- **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`** — Schema only (canonical single source of truth)
+- **`lupo-database/lupopedia/mysql/seed/`** — Seed data for fresh install (registry, actors, default sessions)
+- **`lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql`** — Crafty 3.7.5 upgrade mapping
 
 Fresh install runs (A) then (B). Upgrade from Crafty runs (A), (B), then (C). Never mix them.
 
@@ -211,7 +211,7 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 
 ## Schema Source of Truth Hierarchy
 
-1. `database/migrations/install_new_lupopedia.sql` — canonical DDL
+1. `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` — canonical DDL
 2. `lupo-database/lupopedia/toon/*.toon.json` — generated column/type reference (do not hand-edit)
 3. `docs/doctrine/database/` — per-table documentation and legacy migration mapping
 4. `docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md` — Crafty→Lupopedia table mapping

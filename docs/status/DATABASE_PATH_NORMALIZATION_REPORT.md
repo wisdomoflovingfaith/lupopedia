@@ -89,7 +89,7 @@ All documentation, doctrine, and code references to database-related paths have 
 ## Notes
 
 - **database/refactors/:** Left unchanged; directive did not require moving or renaming refactor mapping paths.
-- **database/migrations/:** Install and migration SQL file paths (e.g. `install_new_lupopedia.sql`, `seed_lupopedia.sql`) remain under `database/migrations/` for runtime; documentation that describes *where to find* MySQL/Postgres assets for tools or fallback now points to `lupo-database/lupopedia/mysql/` and `lupo-database/lupopedia/postgres/`.
+- **Installer SQL:** As of the MySQL Install SQL Relocation (see `docs/status/MYSQL_INSTALL_SQL_RELOCATION_REPORT.md`), all SQL files that `install.php` loads or references (install schema, seed, import, post-install migrations) now live under `lupo-database/lupopedia/mysql/` (install/, seed/, import/, migrations/). The installer uses `LUPO_MYSQL_DIR`; docs reference the canonical paths.
 - **docs/toons/:** Retained only where a sentence explicitly describes "the documentation about TOONs" (e.g. historical or doc-index context). All references that mean "the path where TOON schema files live" now use `lupo-database/lupopedia/toon/`.
 
 ---

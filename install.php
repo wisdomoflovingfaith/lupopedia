@@ -22,20 +22,20 @@
  *   inbound_edges: [
  *     { from: "README.md", type: "references", weight: 1.0, hashtag: "#installation" },
  *     { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "implements", weight: 1.0, hashtag: "#migration" },
- *     { from: "database/migrations/install_new_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#schema" },
- *     { from: "database/migrations/seed_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#seed" },
- *     { from: "database/migrations/import_from_old_crafty_syntax.sql", type: "executes", weight: 1.0, hashtag: "#import" },
- *     { from: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "detects", weight: 0.9, hashtag: "#legacy" },
+ *     { from: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#schema" },
+ *     { from: "lupo-database/lupopedia/mysql/seed/", type: "executes", weight: 1.0, hashtag: "#seed" },
+ *     { from: "lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql", type: "executes", weight: 1.0, hashtag: "#import" },
+ *     { from: "lupo-database/lupopedia/mysql/import/old_crafty_syntax_3_7_5_start.sql", type: "detects", weight: 0.9, hashtag: "#legacy" },
  *     { from: "install/index.php", type: "includes", weight: 0.9, hashtag: "#ui" },
  *     { from: "install/wizard.php", type: "includes", weight: 0.9, hashtag: "#wizard" }
  *   ],
  *   outbound_edges: [
  *     { to: "lupopedia-config.php", type: "generates", weight: 1.0, hashtag: "#config" },
  *     { to: "lupo-includes/version.php", type: "requires", weight: 1.0, hashtag: "#version" },
- *     { to: "database/migrations/install_new_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#schema" },
- *     { to: "database/migrations/seed_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#seed" },
- *     { to: "database/migrations/import_from_old_crafty_syntax.sql", type: "executes", weight: 1.0, hashtag: "#import" },
- *     { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "detects", weight: 0.9, hashtag: "#legacy" },
+ *     { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#schema" },
+ *     { to: "lupo-database/lupopedia/mysql/seed/", type: "executes", weight: 1.0, hashtag: "#seed" },
+ *     { to: "lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql", type: "executes", weight: 1.0, hashtag: "#import" },
+ *     { to: "lupo-database/lupopedia/mysql/import/old_crafty_syntax_3_7_5_start.sql", type: "detects", weight: 0.9, hashtag: "#legacy" },
  *     { to: "app/Services/CraftyMigrationService.php", type: "uses", weight: 0.8, hashtag: "#migration" },
  *     { to: "app/Services/CraftyConfigTransformer.php", type: "uses", weight: 0.8, hashtag: "#config" },
  *     { to: "install/index.php", type: "includes", weight: 0.9, hashtag: "#ui" },
@@ -45,7 +45,7 @@
  *   ],
  *   referenced_by_actors: [1001, 1002, 10000],
  *   references: {
- *     by_files: ["README.md", "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", "database/migrations/install_new_lupopedia.sql"],
+ *     by_files: ["README.md", "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql"],
  *     by_actors: [1001, 10000]
  *   },
  *   semantic_tags: ["installer", "upgrade_wizard", "crafty_syntax_3_7_5", "identity_normalization", "reserved_channels"],
@@ -87,6 +87,10 @@
 // Project root is webroot for the app (subfolder-install doctrine)
 if (!defined('LUPOPEDIA_PATH')) {
     define('LUPOPEDIA_PATH', __DIR__);
+}
+// Canonical MySQL install/seed/import SQL root (installer only)
+if (!defined('LUPO_MYSQL_DIR')) {
+    define('LUPO_MYSQL_DIR', LUPOPEDIA_PATH . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'mysql' . DIRECTORY_SEPARATOR);
 }
 
 // Version for wizard UI - Direct parse from global_atoms.yaml (install.php runs standalone, no bootstrap)
@@ -315,15 +319,15 @@ if ($step === 'credentials') {
                 if (!defined('LUPO_TABLE_PREFIX') && isset($_SESSION['lupo_table_prefix'])) {
                     define('LUPO_TABLE_PREFIX', $_SESSION['lupo_table_prefix']);
                 }
-                $migrationsDir = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'migrations';
+                $mysqlDir = LUPO_MYSQL_DIR;
                 $bootstrapLog = array();
                 $table_prefix = isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_';
                 try {
-                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $bootstrapLog, $table_prefix);
                     InstallWizardChannels::createReservedSystemChannels($pdo, $bootstrapLog);
                     $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
                     header('Location: ' . $base . '/install.php?step=bootstrap');
@@ -498,8 +502,8 @@ if ($step === 'run') {
             define('LUPO_TABLE_PREFIX', $_SESSION['lupo_table_prefix']);
         }
         $table_prefix = isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_';
-        $migrationsDir = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'migrations';
-        $importSql = $migrationsDir . DIRECTORY_SEPARATOR . 'import_from_old_crafty_syntax.sql';
+        $mysqlDir = LUPO_MYSQL_DIR;
+        $importSql = $mysqlDir . 'import' . DIRECTORY_SEPARATOR . 'import_from_old_crafty_syntax.sql';
         // Upgrade: install/seed/reserved were already run after detect upgrade (before normalize). Only import → personal channels/roles → drop → config.
         // New install: run install → seed → reserved channels → config.
 
@@ -512,11 +516,11 @@ if ($step === 'run') {
             }
 
             if ($install_type === 'new') {
-                InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
-                InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $log, $table_prefix);
-                InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $log, $table_prefix);
-                InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $log, $table_prefix);
-                InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $log, $table_prefix);
+                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
                 InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
                 InstallWizardChannels::createReservedSystemChannels($pdo, $log);
 
@@ -564,7 +568,7 @@ if ($step === 'run') {
 
                 // Optional: drop legacy livehelp_* tables after import (user choice at credentials; default unchecked).
                 if (!empty($_SESSION['lupo_drop_livehelp_tables'])) {
-                    $dropSql = $migrationsDir . DIRECTORY_SEPARATOR . 'drop_old_crafty_syntax_tables.sql';
+                    $dropSql = $mysqlDir . 'import' . DIRECTORY_SEPARATOR . 'drop_old_crafty_syntax_tables.sql';
                     InstallWizardSqlRunner::runSqlFile($pdo, $dropSql, $log);
                     $log[] = InstallWizardLogger::logEntry('ok', 'Legacy Crafty Syntax tables dropped.');
                     $remaining = InstallWizardDb::detectLivehelpTables($pdo);
@@ -585,11 +589,11 @@ if ($step === 'run') {
             // 4.0.20: Ensure Stoned Wolfie (AI + human) banned test identities exist after import/seed.
             InstallWizardBannedIdentities::ensureStonedWolfieBannedIdentities($pdo, $log, $table_prefix);
             // Run ANUBIS Queue Tables migration (v4.0.53)
-            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'anubis_queue_tables_4.0.53.sql', $log, $table_prefix);
+            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'migrations' . DIRECTORY_SEPARATOR . 'anubis_queue_tables_4.0.53.sql', $log, $table_prefix);
             // Run ANUBIS Database Primacy Updates (v4.0.53)
-            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . '20260301_anubis_database_primacy_updates.sql', $log, $table_prefix);
+            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'migrations' . DIRECTORY_SEPARATOR . '20260301_anubis_database_primacy_updates.sql', $log, $table_prefix);
             // Run Default Sessions Seed (v4.0.53)
-            InstallWizardSqlRunner::runSqlFile($pdo, $migrationsDir . DIRECTORY_SEPARATOR . 'seed_default_sessions.sql', $log, $table_prefix);
+            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . 'seed' . DIRECTORY_SEPARATOR . 'seed_default_sessions.sql', $log, $table_prefix);
 
             // Activations Block
             require_once LUPOPEDIA_PATH . '/lupo-includes/functions/ai_activation.php';
@@ -1398,9 +1402,8 @@ if ($baseUrl === '') {
                 <p><strong>New install</strong></p>
                 <p>No livehelp_* tables found. The wizard will:</p>
                 <ol>
-                    <li>Run <code>install_new_lupopedia.sql</code></li>
-                    <li>Run <code>seed_lupopedia.sql</code></li>
-                    <li>Run <code>seed_default_sessions.sql</code></li>
+                    <li>Run <code>lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql</code></li>
+                    <li>Run seed SQL from <code>lupo-database/lupopedia/mysql/seed/</code> (including seed_default_sessions.sql)</li>
                     <li>Create reserved system channels (0, 1, 42, 51)</li>
                     <li>Write <code>lupopedia-config.php</code></li>
                     <li>Redirect to login</li>
