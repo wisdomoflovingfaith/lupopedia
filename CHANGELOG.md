@@ -64,9 +64,9 @@ flare.headers:
   file_hash: "to_be_generated"
   system_version: "4.0.57"
   channel_id: 1
-  actor_id: 1004
-  last_modified_utc: "20260304"
-  delegation_chain: "1004:10000"
+  actor_id: 1003
+  last_modified_utc: "20260305"
+  delegation_chain: "1003:10000"
   arity: "high"
   artifact_type: "changelog"
   artifact_kind: "history"
@@ -75,7 +75,7 @@ flare.headers:
   mood_rgb: "4169E1"
   traits: ["canonical", "comprehensive", "v4.0.57"]
   tags: ["changelog", "versions", "releases", "history", "flare", "federation"]
-  lupo_agent: "antigravity"
+  lupo_agent: "cursor"
 
 flare.edges:
   outbound_edges:
@@ -94,8 +94,8 @@ flare.edges:
   semantic_tags: ["changelog", "versions", "releases", "history", "flare", "federation"]
 
 flare.footer:
-  last_verified: "20260304"
-  last_verified_by: "antigravity"
+  last_verified: "20260305"
+  last_verified_by: "cursor"
 
 flame.see:
   mappings:
@@ -154,7 +154,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Actor help validation:** Combined v1+v2; README and QUICK_REFERENCE for priority actors (0, 1, 19, 1000, 10000); validation report.
 - **ANUBIS FLARE ingestion faucet:** Faucet definition at `lupo-database/.../channels/lupo-channels/42/actors/19/faucets.json`; task doc updated; status complete.
 - **Human-only tasks:** CH0-20260225-001, CH0-20260225-002, and **db_reset_and_install** are human manual only (assigned to **actor_id 10000** Captain).
-- **Reports:** PUSH_LOG_4.0.55, VERSION_BUMP_4.0.56_REPORT, TASK_MIGRATION_4.0.56_REPORT, ACTOR_HELP_DOCUMENTATION_VALIDATION_REPORT, TASK_HANDOVER_CURSOR_4.0.56_REPORT, FAUCET_DIRECTORY_IMPLEMENTATION_REPORT, LUPO_AGENT_FAUCETS_RESEARCH_REPORT, CRAFTY_3.7.5_INSTALL_LOG, UPGRADE_4.0.56_LOG, WEB_ADMIN_TEST_4.0.56, UPGRADE_REPORT_4.0.56, RESEARCH_ANUBIS_WOLFIE_FLARE_LUPOPEDIA, DATABASE_DOCUMENTATION_REMAINING_TABLES_REPORT, FLAME_HEADER_REPORT_4.0.56.
+- **Reports:** PUSH_LOG_4.0.55, VERSION_BUMP_4.0.56_REPORT, TASK_MIGRATION_4.0.56_REPORT, ACTOR_HELP_DOCUMENTATION_VALIDATION_REPORT, TASK_HANDOVER_CURSOR_4.0.56_REPORT, FAUCET_DIRECTORY_IMPLEMENTATION_REPORT, LUPO_AGENT_FAUCETS_RESEARCH_REPORT, CRAFTY_3.7.5_INSTALL_LOG, UPGRADE_4.0.56_LOG, WEB_ADMIN_TEST_4.0.56, UPGRADE_REPORT_4.0.56, RESEARCH_ANUBIS_WOLFIE_FLARE_LUPOPEDIA, DATABASE_DOCUMENTATION_REMAINING_TABLES_REPORT, FLAME_HEADER_REPORT_4.0.56, LILITH_FLAME_FAUCET_REPORT, LILITH_REVIEW_REFINEMENTS_REPORT, FLAME_REFINEMENTS_FINAL_REPORT, PUSH_LOG_4.0.56_FINAL_REFINEMENTS.
 - **Faucet directory implementation:** Research report on `lupo_agent_faucets`; new ID-scoped layout `lupo-database/lupopedia/actors/faucets/<agent_faucet_id>/faucet.json` with pilot (6 = ANUBIS).
 - **Completed tasks moved:** `actor_help_documentation_validation`, `actor_help_documentation_validation_v2`, `anubis_flare_ingestion_faucet`, and `database_documentation_remaining_tables` moved from `lupo-database/.../channels/lupo-channels/42/tasks/active` to `.../42/tasks/completed`.
 - **Upgrade test (Crafty → 4.0.56):** Install/upgrade procedure documented: `CRAFTY_3.7.5_INSTALL_LOG.md`, `UPGRADE_4.0.56_LOG.md`, `WEB_ADMIN_TEST_4.0.56.md`, `UPGRADE_REPORT_4.0.56.md` (logs and report in `docs/status/`).
@@ -167,6 +167,8 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Validation Refactoring**: Re-engineered `lupo-tools/flare_validate.py` to enforce ordering and targeted mandatory rules for active artifact types (`prompt`, `task`, etc.).
 - **Doctrine Synchronization**: Updated `FLARE_DOCTRINE.md` with Sections 14, 15, and 16; created comprehensive Implementation Plan and Report for 4.0.56.
 - **Flame Header Analysis Report**: Comprehensive report created detailing enhancements, schema, CLI usage, and database integration strategies.
+- **Lilith Flame Header Expert Faucet (Cursor 1003):** Faucet for Lilith (actor_id 2) at `lupo_agent_faucets` agent_faucet_id 7; file-based `actors/faucets/7/faucet.json`, by_actor.json manifest, migration `dev_20260303_lilith_flame_faucet.sql` (idempotent). FLARE_DOCTRINE Section 19; LILITH_FLAME_FAUCET_REPORT, LILITH_REVIEW_REFINEMENTS_REPORT in docs/status/.
+- **Flame header refinements (Lilith meta-review):** Lilith (actor 2) reviewed the Lilith Flame Faucet Report; Cursor applied all suggestions. Report header fixed (`last_modified_utc`, `mood_rgb`, `flame.see` mapping); Section 19 content and by_actor example added; test output examples and faucet ID rationale added; migration made idempotent (ON DUPLICATE KEY UPDATE). Refinements report created; meta-review loop closed. Reports: `docs/status/LILITH_REVIEW_REFINEMENTS_REPORT.md`, `docs/status/FLAME_REFINEMENTS_FINAL_REPORT.md`, `docs/status/PUSH_LOG_4.0.56_FINAL_REFINEMENTS.md`.
 
 Additional task files (task-001 through task-016, etc.) in `lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/` — lead: Cursor (1003).
 
@@ -247,12 +249,12 @@ Additional task files (task-001 through task-016, etc.) in `lupo-database/lupope
 - Database documentation: all TOONs documented; 5 missing table docs added (anubis_processing_log, quarantine, queue, recovery_attempts, channel_boot_detail_lifecycle); task complete.
 - **Antigravity task takeover (Cursor 1003):** Antigravity (1004) token limit reached; Cursor took over all Antigravity tasks. Actor ID resolution implemented: actor_id must reflect logged-in IDE user (resolution order: .lupo_actor session → stored identity → fallback 10000). VSX extension updated to use `resolveEffectiveActorId()` for locks, repair, FLIP editor, getStatus. FLARE_DOCTRINE.md Section 18 added (Actor ID Resolution for IDE Agents). Reports: `docs/status/ANTIGRAVITY_TASK_TAKEOVER_REPORT.md`, `docs/status/FLARE_ENHANCEMENTS_IMPLEMENTATION_4.0.56.md`; FLARE_ENHANCEMENTS_REPORT_4.0.56 Section 5 updated.
 - CH0-20260225-001, CH0-20260225-002, and **db_reset_and_install**: human manual only (actor_id 10000).
+- **Flame refinements finalized:** Lilith review suggestions applied; CHANGELOG updated; v4.0.56 push to GitHub completed. Outstanding items (database_optimization_analysis, repository_cleanup_legacy_files_removal, phase 2 tasks) remain in v4.0.57 TODOs.
 
 ### Next Steps
 
 - **Human (10000):** Run db_reset_and_install, CH0-20260225-001, and CH0-20260225-002 when ready (manual only).
-- Cursor (1003) leads execution of Channel 42 thread tasks.
-- Plan resolutions for database_optimization_analysis, repository_cleanup_legacy_files_removal, and other active tasks.
+- v4.0.57: Resolve migrated tasks (database_optimization_analysis, repository_cleanup_legacy_files_removal, task-001–016); Cursor (1003) leads where assigned.
 - Optional: run upgrade test locally (fill install/upgrade/admin logs); extend actor help (README + QUICK_REFERENCE) to secondary actors.
 
 ---
