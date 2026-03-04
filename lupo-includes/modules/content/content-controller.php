@@ -330,6 +330,32 @@ function content_render_canonical($content, $related_edges) {
  * @return array{body:string,rendered_body:string}|null
  */
 function content_resolve_body_from_file($content) {
+    // 4.0.57: If file_path_from_root is set, load from that path first (e.g. docs/doctrine/FLARE/FLARE_APPLY.md).
+    if (!empty($content['file_path_from_root'])) {
+        $abs_path = rtrim(LUPOPEDIA_ABSPATH, '/\\') . '/' . str_replace('\\', '/', $content['file_path_from_root']);
+        if (file_exists($abs_path) && is_readable($abs_path)) {
+            $body = file_get_contents($abs_path);
+            $lines = preg_split('/\r\n|\r|\n/', $body);
+            if (!empty($lines) && trim($lines[0]) === '---') {
+                for ($i = 1; $i < count($lines); $i++) {
+                    if (trim($lines[$i]) === '---') {
+                        $lines = array_slice($lines, $i + 1);
+                        $body = implode("\n", $lines);
+                        break;
+                    }
+                }
+            }
+            $rendered_body = $body;
+            if (function_exists('content_render_body')) {
+                $rendered_body = content_render_body($body, 'markdown', 'markdown');
+            }
+            return array(
+                'body' => $body,
+                'rendered_body' => $rendered_body,
+            );
+        }
+    }
+
     $doc_root = rtrim(LUPOPEDIA_ABSPATH, '/\\') . '/docs';
     $directories = [
         $doc_root . '/channels/overview',

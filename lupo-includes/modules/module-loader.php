@@ -174,8 +174,8 @@ function lupo_route_slug($slug)
         return '';
     }
 
-    // 4.0.18 T3 — Web path resolution (doctrine/qa/docs/flp). Check before lowercasing (paths are case-sensitive).
-    if (preg_match('#^(doctrine|qa|docs|flp)/#i', $slug) && function_exists('lupo_resolve_web_path')) {
+    // 4.0.18 T3 — Web path resolution (doctrine/qa/docs/flp, or canonical slug flare_apply). Check before lowercasing (paths are case-sensitive).
+    if ((preg_match('#^(doctrine|qa|docs|flp)/#i', $slug) || $slug === 'flare_apply') && function_exists('lupo_resolve_web_path')) {
         $resolved = lupo_resolve_web_path($slug);
         if ($resolved && is_array($resolved)) {
             $canonical = isset($resolved['canonical']) ? trim($resolved['canonical'], '/') : '';

@@ -1,155 +1,8 @@
 {
-  "generated_utc": "20260304143008",
-  "total_errors": 1997,
-  "total_warnings": 14,
+  "generated_utc": "20260304144043",
+  "total_errors": 1857,
+  "total_warnings": 28,
   "files": [
-    {
-      "path": ".kiro\\specs\\changelog-update-4-0-36\\design.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\changelog-update- ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\changelog-update-4-0 ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\changelog-update-4-0-36\\requirements.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\changelog-update- ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\changelog-update-4-0 ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\changelog-update-4-0-36\\tasks.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\changelog-update- ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\changelog-update-4-0 ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\color-protocol-integration\\design.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\color-protocol-in ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\color-protocol-integ ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\color-protocol-integration\\requirements.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\color-protocol-in ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\color-protocol-integ ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\color-protocol-integration\\tasks.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\color-protocol-in ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\color-protocol-integ ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\dialog-channel-migration\\design.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\dialog-channel-mi ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\dialog-channel-migra ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\dialog-channel-migration\\requirements.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\dialog-channel-mi ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\dialog-channel-migra ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\dialog-channel-migration\\tasks.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\dialog-channel-mi ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\dialog-channel-migra ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\flip-v2-implementation\\design.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\flip-v2-implement ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\flip-v2-implementati ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\flip-v2-implementation\\requirements.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\flip-v2-implement ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\flip-v2-implementati ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\flip-v2-implementation\\tasks.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\flip-v2-implement ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\flip-v2-implementati ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\history-reconciliation\\design.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\history-reconcili ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\history-reconciliati ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\history-reconciliation\\requirements.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\history-reconcili ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\history-reconciliati ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\history-reconciliation\\tasks.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\history-reconcili ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\history-reconciliati ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\v4-1-0-ascent-master-plan\\design.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\v4-1-0-ascent-mas ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\v4-1-0-ascent-master ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\v4-1-0-ascent-master-plan\\requirements.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\v4-1-0-ascent-mas ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\v4-1-0-ascent-master ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\v4-1-0-ascent-master-plan\\tasks.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\v4-1-0-ascent-mas ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\v4-1-0-ascent-master ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\version-4-0-44-initialization\\design.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\version-4-0-44-in ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\version-4-0-44-initi ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\version-4-0-44-initialization\\requirements.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\version-4-0-44-in ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\version-4-0-44-initi ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": ".kiro\\specs\\version-4-0-44-initialization\\tasks.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\.kiro\\specs\\version-4-0-44-in ... \n                           ^\nfound unknown escape character '.'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\.kiro\\specs\\version-4-0-44-initi ... \n                              ^"
-      ],
-      "warnings": []
-    },
     {
       "path": "ACTOR_SEED_VERIFICATION_COMPLETE_4.0.45.md",
       "errors": [
@@ -528,6 +381,20 @@
       ]
     },
     {
+      "path": "docs\\status\\AGENT_REGISTRY_REFINEMENT_4.0.57.md",
+      "errors": [
+        "Header order mismatch. Expected: flare.headers, flare.edges, flare.footer, flame.see"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "docs\\status\\ANTIGRAVITY_TASK_TAKEOVER_REPORT.md",
+      "errors": [],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
       "path": "docs\\status\\CHANNEL_42_LEAD_REVIEW_4_0_55.md",
       "errors": [],
       "warnings": [
@@ -549,7 +416,81 @@
       "warnings": []
     },
     {
+      "path": "docs\\status\\DATABASE_OPTIMIZATION_ANALYSIS_4.0.57.md",
+      "errors": [],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
+      "path": "docs\\status\\DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md",
+      "errors": [
+        "Header order mismatch. Expected: flame.init, flare.headers, flare.edges, flare.footer, flame.see, flame.close"
+      ],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
       "path": "docs\\status\\DATABASE_PATH_NORMALIZATION_REPORT.md",
+      "errors": [],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
+      "path": "docs\\status\\DATABASE_PATH_NORMALIZATION_REPORT_CURSOR.md",
+      "errors": [
+        "No FLARE header found"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "docs\\status\\FLAME_REFINEMENTS_FINAL_REPORT.md",
+      "errors": [],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
+      "path": "docs\\status\\FLARE_FEDERATION_MAPPING_POLICY_4.0.57.md",
+      "errors": [
+        "Header order mismatch. Expected: flare.headers, flare.edges, flare.footer, flame.see"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "docs\\status\\FLARE_FEDERATION_REFINEMENT_4.0.57.md",
+      "errors": [
+        "Header order mismatch. Expected: flare.headers, flare.edges, flare.footer, flame.see"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "docs\\status\\FLARE_HEADER_REFINEMENT_4.0.57.md",
+      "errors": [
+        "Header order mismatch. Expected: flare.headers, flare.edges, flare.footer, flame.see"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "docs\\status\\IS_DELETED_AUDIT_4.0.57.md",
+      "errors": [],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
+      "path": "docs\\status\\LILITH_FLAME_FAUCET_REPORT.md",
+      "errors": [
+        "Header order mismatch. Expected: flare.headers, flare.footer, flame.see"
+      ],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
+      "path": "docs\\status\\LILITH_REVIEW_REFINEMENTS_REPORT.md",
       "errors": [],
       "warnings": [
         "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
@@ -577,6 +518,20 @@
       "warnings": []
     },
     {
+      "path": "docs\\status\\PUSH_LOG_4.0.56.md",
+      "errors": [
+        "No FLARE header found"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "docs\\status\\PUSH_LOG_4.0.56_FINAL_REFINEMENTS.md",
+      "errors": [],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
       "path": "docs\\status\\TASK_MIGRATION_4.0.56_REPORT.md",
       "errors": [],
       "warnings": [
@@ -584,7 +539,42 @@
       ]
     },
     {
+      "path": "docs\\status\\TASK_MIGRATION_4.0.57_REPORT.md",
+      "errors": [],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
+      "path": "docs\\status\\V4.0.57_TASK_PLAN.md",
+      "errors": [],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
       "path": "docs\\status\\VERSION_BUMP_4.0.56_REPORT.md",
+      "errors": [],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
+      "path": "docs\\status\\VERSION_BUMP_4.0.57_REPORT.md",
+      "errors": [
+        "No FLARE header found"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "docs\\status\\VERSION_START_4.0.57_REPORT.md",
+      "errors": [],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
+      "path": "docs\\status\\WINDSURF_AUDIT_CURSOR_4.0.57.md",
       "errors": [],
       "warnings": [
         "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
@@ -1902,279 +1892,6 @@
       "warnings": []
     },
     {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\database_documentation_remaining_tables.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\data ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\databas ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\database_optimization_analysis.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\data ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\databas ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\file_count_optimization_4_1_0.md",
-      "errors": [
-        "Path mismatch: channels/42/tasks/active/file_count_optimization_4_1_0.md != lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/file_count_optimization_4_1_0.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\repository_cleanup_legacy_files_removal.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\repo ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\reposit ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-002.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-003.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-004.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-005.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-006.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-007.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-008.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-009.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-010-fallback-database.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-010.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-011-config-constants.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-011.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-012-directory-migration.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-012.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-013-fallback-logic-stubs.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-013.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-014-channels-full-migration.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-014.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-015.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-016.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\ACTOR-CAPSULE-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\A ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\ACTO ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\ACTOR-PORT-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\A ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\ACTO ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\ACTOR-SYNC-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\A ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\ACTO ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\actor_help_documentation_validation.md",
-      "errors": [
-        "Path mismatch: channels/42/tasks/active/actor_help_documentation_validation.md != lupo-database/lupopedia/channels/lupo-channels/42/tasks/completed/actor_help_documentation_validation.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\actor_help_documentation_validation_v2.md",
-      "errors": [
-        "Path mismatch: channels/42/tasks/active/actor_help_documentation_validation_v2.md != lupo-database/lupopedia/channels/lupo-channels/42/tasks/completed/actor_help_documentation_validation_v2.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\anubis_flare_ingestion_faucet.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\channels_admin_interface_modernization.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\c ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\chan ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\database_documentation_remaining_tables.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\d ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\data ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\DB-MIGRATION-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\D ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\DB-M ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\DBDOC-ACTOR-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\D ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\DBDO ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\flare_validator_service_enhancement.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\f ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\flar ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\legacy_table_optimization_review.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\l ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\lega ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\TOON-GENERATION-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\T ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\TOON ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\pending\\20260225170200_task_42_25_graph_relationship_analysis.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\pending\\202 ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\pending\\202602 ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
       "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_43\\20260224162500_10000_1001_cycle_4_0_43_initialization.md",
       "errors": [
         "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\threads\\DEVELOPME ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\threads\\DEVELOPMENT_ ... \n                              ^"
@@ -2660,235 +2377,11 @@
       ]
     },
     {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\20260225170000_task_0_10000_drop_tables_and_run_install.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\0\\tasks\\active\\20260 ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\0\\tasks\\active\\20260225 ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\0\\tasks\\active\\20260 ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\0\\tasks\\active\\20260226 ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\actor_help_documentation_validation.md",
-      "errors": [
-        "Path mismatch: channels/42/tasks/active/actor_help_documentation_validation.md != lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/actor_help_documentation_validation.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\actor_help_documentation_validation_v2.md",
-      "errors": [
-        "Path mismatch: channels/42/tasks/active/actor_help_documentation_validation_v2.md != lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/actor_help_documentation_validation_v2.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\broadcast_normalization.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\0\\tasks\\active\\broad ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\0\\tasks\\active\\broadcas ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\database_documentation_remaining_tables.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\data ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\databas ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\database_optimization_analysis.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\data ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\databas ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\db_reset_and_install.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\0\\tasks\\active\\db_re ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\0\\tasks\\active\\db_reset ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\file_count_optimization_4_1_0.md",
-      "errors": [
-        "Path mismatch: channels/42/tasks/active/file_count_optimization_4_1_0.md != lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/file_count_optimization_4_1_0.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\installer_integration.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\0\\tasks\\active\\insta ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\0\\tasks\\active\\installe ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\registry_lock.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\0\\tasks\\active\\regis ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\0\\tasks\\active\\registry ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\repository_cleanup_legacy_files_removal.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\repo ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\reposit ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-002.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-003.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-004.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-005.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-006.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-007.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-008.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-009.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-010-fallback-database.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-010.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-011-config-constants.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-011.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-012-directory-migration.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-012.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-013-fallback-logic-stubs.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-013.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-014-channels-full-migration.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-014.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-015.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-016.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_57.md",
+      "errors": [],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
     },
     {
       "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\FLP_HEADERS_AUDIT_4_0_44\\20260224171500_1001_10000_flp_headers_audit_initiated.md",
@@ -3052,132 +2545,6 @@
       "warnings": []
     },
     {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\active\\actor_help_documentation_validation.md",
-      "errors": [
-        "Path mismatch: channels/42/tasks/active/actor_help_documentation_validation.md != lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/actor_help_documentation_validation.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\active\\actor_help_documentation_validation_v2.md",
-      "errors": [
-        "Path mismatch: channels/42/tasks/active/actor_help_documentation_validation_v2.md != lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/actor_help_documentation_validation_v2.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\active\\anubis_flare_ingestion_faucet.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\active\\database_documentation_remaining_tables.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\data ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\databas ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\active\\database_optimization_analysis.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\data ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\databas ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\active\\file_count_optimization_4_1_0.md",
-      "errors": [
-        "Path mismatch: channels/42/tasks/active/file_count_optimization_4_1_0.md != lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/file_count_optimization_4_1_0.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\active\\repository_cleanup_legacy_files_removal.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\repo ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\reposit ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\completed\\ACTOR-CAPSULE-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\A ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\ACTO ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\completed\\ACTOR-PORT-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\A ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\ACTO ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\completed\\ACTOR-SYNC-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\A ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\ACTO ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\completed\\channels_admin_interface_modernization.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\c ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\chan ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\completed\\database_documentation_remaining_tables.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\d ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\data ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\completed\\DB-MIGRATION-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\D ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\DB-M ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\completed\\DBDOC-ACTOR-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\D ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\DBDO ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\completed\\flare_validator_service_enhancement.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\f ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\flar ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\completed\\legacy_table_optimization_review.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\l ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\lega ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\completed\\TOON-GENERATION-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\T ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\TOON ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\pending\\20260225170200_task_42_25_graph_relationship_analysis.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\pending\\202 ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\pending\\202602 ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
       "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\quarantine\\105955_README.md",
       "errors": [
         "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\666\\quarantine\\10595 ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\666\\quarantine\\105955_R ... \n                              ^"
@@ -3265,132 +2632,6 @@
       "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\quarantine\\README.md",
       "errors": [
         "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\666\\quarantine\\READM ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\666\\quarantine\\README.md\"\n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\active\\actor_help_documentation_validation.md",
-      "errors": [
-        "Path mismatch: channels/42/tasks/active/actor_help_documentation_validation.md != lupo-database/lupopedia/channels/lupo-channels/66/tasks/active/actor_help_documentation_validation.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\active\\actor_help_documentation_validation_v2.md",
-      "errors": [
-        "Path mismatch: channels/42/tasks/active/actor_help_documentation_validation_v2.md != lupo-database/lupopedia/channels/lupo-channels/66/tasks/active/actor_help_documentation_validation_v2.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\active\\anubis_flare_ingestion_faucet.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 33, column 20:\n          repo_paths: [\"lupo-database\\lupopedia\\channel ... \n                       ^\nfound unknown escape character 'l'\n  in \"<unicode string>\", line 33, column 35:\n          repo_paths: [\"lupo-database\\lupopedia\\channels\\lupo-channels ... \n                                      ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\active\\database_documentation_remaining_tables.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\data ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\databas ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\active\\database_optimization_analysis.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\data ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\databas ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\active\\file_count_optimization_4_1_0.md",
-      "errors": [
-        "Path mismatch: channels/42/tasks/active/file_count_optimization_4_1_0.md != lupo-database/lupopedia/channels/lupo-channels/66/tasks/active/file_count_optimization_4_1_0.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\active\\repository_cleanup_legacy_files_removal.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\repo ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\active\\reposit ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\completed\\ACTOR-CAPSULE-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\A ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\ACTO ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\completed\\ACTOR-PORT-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\A ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\ACTO ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\completed\\ACTOR-SYNC-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\A ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\ACTO ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\completed\\channels_admin_interface_modernization.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\c ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\chan ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\completed\\database_documentation_remaining_tables.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\d ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\data ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\completed\\DB-MIGRATION-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\D ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\DB-M ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\completed\\DBDOC-ACTOR-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\D ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\DBDO ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\completed\\flare_validator_service_enhancement.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\f ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\flar ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\completed\\legacy_table_optimization_review.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\l ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\lega ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\completed\\TOON-GENERATION-001.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\T ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\completed\\TOON ... \n                              ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\pending\\20260225170200_task_42_25_graph_relationship_analysis.md",
-      "errors": [
-        "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\channels\\42\\tasks\\pending\\202 ... \n                           ^\nfound unknown escape character 'c'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\channels\\42\\tasks\\pending\\202602 ... \n                              ^"
       ],
       "warnings": []
     },
@@ -11561,6 +10802,13 @@
       "warnings": []
     },
     {
+      "path": "lupo-docs\\doctrine\\DATABASE_DOCTRINE.md",
+      "errors": [],
+      "warnings": [
+        "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"
+      ]
+    },
+    {
       "path": "lupo-docs\\doctrine\\DEVELOPMENT_WORKFLOW_DOCTRINE.md",
       "errors": [
         "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\docs\\doctrine\\DEVELOPMENT_WOR ... \n                           ^\nfound unknown escape character 'd'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\docs\\doctrine\\DEVELOPMENT_WORKFL ... \n                              ^"
@@ -12912,6 +12160,13 @@
       "warnings": []
     },
     {
+      "path": "lupo-docs\\status\\report_on_flame_header_to_url_alias_and_database.md",
+      "errors": [
+        "No FLARE header found"
+      ],
+      "warnings": []
+    },
+    {
       "path": "lupo-docs\\status\\SQL_SCHEMA_FIXES_4_0_46.md",
       "errors": [
         "YAML Syntax Error: while scanning a double-quoted scalar\n  in \"<unicode string>\", line 4, column 24:\n      file_path_from_root: \".\\docs\\status\\SQL_SCHEMA_FIXES_ ... \n                           ^\nfound unknown escape character 'd'\n  in \"<unicode string>\", line 4, column 27:\n      file_path_from_root: \".\\docs\\status\\SQL_SCHEMA_FIXES_4_0 ... \n                              ^"
@@ -13521,6 +12776,13 @@
       "warnings": []
     },
     {
+      "path": "prompts\\cursor\\20260306_agent_registry_implementation.md",
+      "errors": [
+        "Header order mismatch. Expected: flame.init, flare.headers, flare.edges, flare.footer, flame.see"
+      ],
+      "warnings": []
+    },
+    {
       "path": "README_OLD.md",
       "errors": [
         "Path mismatch: README.md != README_OLD.md"
@@ -13881,160 +13143,6 @@
       "path": "X_LUPO_FORWARDED_IMPLEMENTATION_SUMMARY.md",
       "errors": [
         "YAML Syntax Error: while parsing a block mapping\n  in \"<unicode string>\", line 26, column 3:\n      last_verified: \"20260228\"\n      ^\nexpected <block end>, but found '<block mapping start>'\n  in \"<unicode string>\", line 28, column 5:\n        deprecation_notes: [\"Legacy Wolf ... \n        ^"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-001' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-001.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-001.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-002' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-002.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-002.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-003' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-003.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-003.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-004' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-004.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-004.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-005' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-005.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-005.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-006' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-006.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-006.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-007' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-007.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-007.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-008' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-008.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-008.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-009' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-009.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-009.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-010-fallback-database' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-010-fallback-database.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-010-fallback-database.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-010' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-010.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-010.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-011-config-constants' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-011-config-constants.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-011-config-constants.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-011' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-011.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-011.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-012-directory-migration' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-012-directory-migration.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-012-directory-migration.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-012' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-012.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-012.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-013-fallback-logic-stubs' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-013-fallback-logic-stubs.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-013-fallback-logic-stubs.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-013' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-013.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-013.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-014-channels-full-migration' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-014-channels-full-migration.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-014-channels-full-migration.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-014' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-014.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-014.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-015' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-015.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-015.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/task-016' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-016.md, lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-016.md"
-      ],
-      "warnings": []
-    },
-    {
-      "path": "(url_collision)",
-      "errors": [
-        "URL 'http://www.lupopedia.com/anubis_flare_ingestion_faucet' claimed by: lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\anubis_flare_ingestion_faucet.md, lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\active\\anubis_flare_ingestion_faucet.md, lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\active\\anubis_flare_ingestion_faucet.md"
       ],
       "warnings": []
     }

@@ -11,7 +11,27 @@
       "timestamp": "20260304"
     },
     {
+      "file": "docs\\status\\CURSOR_FLARE_APPLY_LINK_CHECK_4.0.57.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "docs\\status\\DATABASE_PATH_NORMALIZATION_REPORT_CURSOR.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
       "file": "docs\\status\\PUSH_LOG_4.0.55_FINAL.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "docs\\status\\PUSH_LOG_4.0.56.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "docs\\status\\VERSION_BUMP_4.0.57_REPORT.md",
       "flare_applied": true,
       "timestamp": "20260304"
     }
