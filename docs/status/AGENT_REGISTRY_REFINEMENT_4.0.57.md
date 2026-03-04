@@ -23,6 +23,8 @@ flare.edges:
     - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md", type: "references", weight: 0.9 }
     - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 0.9 }
+    - { to: "docs/status/LILITH_FLAME_FAUCET_REPORT.md", type: "references", weight: 0.8 }
+    - { to: "docs/status/FLARE_FEDERATION_REFINEMENT_4.0.57.md", type: "references", weight: 0.7 }
 flame.see:
   mappings:
     - ["docs/status/AGENT_REGISTRY_REFINEMENT_4.0.57.md", "http://www.lupopedia.com/status/AGENT_REGISTRY_REFINEMENT_4.0.57"]
@@ -41,7 +43,8 @@ The **actor registry** (e.g. `lupo-database/lupopedia/actors/actor_id/registry.j
 
 ### 2.1 Registry
 
-- **lupo-database/lupopedia/actors/actor_id/registry.json:** Contains `actors[]` with `id`, `type`, `slug`, `dir`. IDs and slugs are authoritative for resolution; docs and tooling must not maintain separate inline ID lists.
+- **Canonical path:** `lupo-database/lupopedia/actors/actor_id/registry.json`. Contains `actors[]` with `id`, `type`, `slug`, `dir`. IDs and slugs are authoritative for resolution; docs and tooling must not maintain separate inline ID lists.
+- **Path consistency:** The same registry is sometimes referred to as `actors/registry.json` in docs (e.g. AGENTS.md) when the database root is implied; tooling should use the canonical path above.
 - **FLARE_DOCTRINE Section 18:** States that actor IDs are defined in the project’s actor registry; tooling MUST read the registry; section gives examples only.
 - **LILITH_FLAME_FAUCET_REPORT / Section 19:** Canonical Lilith ID is 2; 2038 is legacy. Faucet 7 “Lilith Flame Expert” aligns with a possible `agent_name_identity` value.
 
@@ -57,9 +60,11 @@ The **actor registry** (e.g. `lupo-database/lupopedia/actors/actor_id/registry.j
 
 Section 18 mandated registry as canonical for IDs and gave examples. There was no standard field for “how the agent identifies” in headers.
 
-### 3.2 After (excerpt)
+### 3.2 After — Section 24 content (from FLARE_DOCTRINE.md)
 
 **Section 24. Agent Identity Fields (v4.0.57+)**
+
+The **actor registry** is the **canonical source** for all actor and agent IDs. Tooling MUST: Resolve `actor_id` from the registry, not from hardcoded values; use `agent_name_identity` (optional) for human-readable display only; never rely on inline ID lists. **Registry locations:** Canonical: `lupo-database/lupopedia/actors/actor_id/registry.json`. Per-actor: `lupo-database/lupopedia/actors/actor_id/<id>/`. Shorthand: `actors/registry.json` when database root is implied. Section 12 now documents optional agent_name_identity with pointer to Section 24; Section 18 has a one-line pointer to Section 24.
 
 - Registry is the canonical source for actor/agent IDs; Section 18 referenced.
 - **Optional agent_name_identity:** String in `flare.headers` (e.g. “Cursor IDE Agent”, “Lilith Flame Expert”). Format: single string; use for human-readable identification and audit trails; does not replace `actor_id` or registry lookup.
@@ -79,12 +84,55 @@ Section 18 now includes a one-line pointer: “For an optional human-readable ag
 
 ## 5. Examples Table
 
-| Actor ID (example) | agent_name_identity (example) | Registry path (example) |
-|--------------------|-------------------------------|-------------------------|
-| 10000 | Captain Wolfie | registry / actors/10000 |
-| 1003 | Cursor IDE Agent | registry / actors/1003 |
-| 2 | Lilith Flame Expert | registry / actors/2; faucet 7 |
-| 19 | ANUBIS | registry / actors/19 |
+| Agent | actor_id | agent_name_identity |
+|-------|----------|---------------------|
+| Captain Wolfie | 10000 | Captain Wolfie |
+| Cursor | 1003 | Cursor IDE Agent |
+| Lilith | 2 | Lilith Flame Expert |
+| ANUBIS | 19 | ANUBIS |
+
+*Note: These values are examples only. Always resolve from the registry.*
+
+---
+
+## 5b. Tooling example (registry lookup)
+
+Registry structure uses an `actors` array with `id`, `type`, `slug`, `dir`. Resolve by `id` or `slug` from the canonical path; use error handling in production.
+
+```python
+# Example: Resolve actor from registry (canonical path)
+import json
+import os
+
+REGISTRY_PATH = "lupo-database/lupopedia/actors/actor_id/registry.json"
+
+def get_actor_by_id(actor_id):
+    """Resolve actor by ID from registry."""
+    if not os.path.exists(REGISTRY_PATH):
+        raise FileNotFoundError("Registry not found at " + REGISTRY_PATH)
+    with open(REGISTRY_PATH) as f:
+        data = json.load(f)
+    for actor in data.get("actors", []):
+        if actor.get("id") == actor_id:
+            return actor
+    return None
+
+def get_actor_by_slug(slug):
+    """Resolve actor by slug from registry."""
+    if not os.path.exists(REGISTRY_PATH):
+        raise FileNotFoundError("Registry not found at " + REGISTRY_PATH)
+    with open(REGISTRY_PATH) as f:
+        data = json.load(f)
+    for actor in data.get("actors", []):
+        if actor.get("slug") == slug:
+            return actor
+    return None
+
+# Example usage
+actor = get_actor_by_id(1003)
+if actor:
+    print("Found: ID %s, slug %s, dir %s" % (actor["id"], actor["slug"], actor["dir"]))
+```
 
 ---
 

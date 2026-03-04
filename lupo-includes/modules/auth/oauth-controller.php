@@ -21,7 +21,10 @@ if (!defined('LUPOPEDIA_ABSPATH')) {
     define('LUPOPEDIA_ABSPATH', str_replace('\\', '/', dirname(__FILE__)));
 }
 
-require_once LUPOPEDIA_ABSPATH . LUPO_APP_DIR . '/Services/OAuthService.php';
+$oauth_service_path = LUPOPEDIA_ABSPATH . (defined('LUPO_APP_DIR') ? LUPO_APP_DIR : 'lupo-database/lupopedia/content/lupo-app') . '/Services/OAuthService.php';
+if (file_exists($oauth_service_path)) {
+    require_once $oauth_service_path;
+}
 
 /**
  * Initiate OAuth login flow
@@ -31,6 +34,11 @@ require_once LUPOPEDIA_ABSPATH . LUPO_APP_DIR . '/Services/OAuthService.php';
  */
 function oauth_login_initiate($provider)
 {
+    if (!class_exists('App\\Services\\OAuthService')) {
+        $_SESSION['login_error'] = 'OAuth is not available.';
+        header('Location: ' . (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login');
+        exit;
+    }
     $db = lupo_get_db();
     $oauthService = new \App\Services\OAuthService($db);
 
@@ -78,6 +86,11 @@ function oauth_login_initiate($provider)
  */
 function oauth_callback_handle($provider)
 {
+    if (!class_exists('App\\Services\\OAuthService')) {
+        $_SESSION['login_error'] = 'OAuth is not available.';
+        header('Location: ' . (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login');
+        exit;
+    }
     $db = lupo_get_db();
     $oauthService = new \App\Services\OAuthService($db);
 

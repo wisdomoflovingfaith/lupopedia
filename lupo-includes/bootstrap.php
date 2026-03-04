@@ -102,6 +102,9 @@ if (function_exists('date_default_timezone_set')) {
  * ---------------------------------------------------------
  * Session class replaces procedural session helpers. One instance per request.
  */
+if (!defined('LUPO_APP_DIR')) {
+    define('LUPO_APP_DIR', 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'lupo-app');
+}
 $app_auth = LUPOPEDIA_ABSPATH . LUPO_APP_DIR . DIRECTORY_SEPARATOR . 'auth';
 if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'SessionHandler.php')) {
     require_once $app_auth . DIRECTORY_SEPARATOR . 'SessionHandler.php';

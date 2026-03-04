@@ -6,11 +6,19 @@ import json
 import hashlib
 import tempfile
 import re
+import yaml
 from datetime import datetime, timedelta
 
 # =========================
 # FLARE SYSTEM-WIDE APPLY
 # =========================
+
+REFRESH_MODE = "--refresh" in sys.argv
+BATCH_DIR = None
+for i, arg in enumerate(sys.argv):
+    if arg == "--batch" and i + 1 < len(sys.argv):
+        BATCH_DIR = sys.argv[i + 1].replace("\\", "/").rstrip("/")
+        break
 
 ROOT = os.getcwd()
 TOOLS_DIR = "tools"
@@ -53,9 +61,13 @@ def find_markdown_files():
     return sorted(paths, key=lambda x: x.lower())
 
 paths = find_markdown_files()
+all_paths_for_index = paths
+if BATCH_DIR:
+    paths = [p for p in paths if p.replace("\\", "/").startswith(BATCH_DIR + "/") or p.replace("\\", "/") == BATCH_DIR]
+    log(f"PHASE 1: Batch filter: {len(paths)} files under {BATCH_DIR}")
 
 with open(INDEX, "w", encoding="utf-8", newline="\n") as f:
-    for path in paths:
+    for path in all_paths_for_index:
         f.write(path + "\n")
 
 log(f"PHASE 1: Index written to {INDEX}")
@@ -162,8 +174,34 @@ def infer_purpose(path, body_text):
 def compute_hash_excluding_new_header(original_text):
     return hashlib.sha256(original_text.encode("utf-8", "replace")).hexdigest()
 
+def replace_existing_flare_block(content, new_header):
+    """Replace the first --- ... --- FLARE block (and optional # FLARE Header line) with new_header. Returns new_content or None if not found."""
+    lines = content.splitlines()
+    start = -1
+    end = -1
+    for i, line in enumerate(lines):
+        if line.strip() == "---":
+            if start == -1:
+                start = i
+            else:
+                end = i
+                break
+    if start == -1 or end == -1:
+        return None
+    # Include # FLARE Header line in block if it immediately precedes first ---
+    block_start = start
+    if start > 0:
+        prev = lines[start - 1].strip()
+        if prev.startswith("#") and "FLARE" in prev:
+            block_start = start - 1
+    before = "\n".join(lines[:block_start]) + "\n" if block_start > 0 else ""
+    after_lines = lines[end + 1:]
+    after = "\n".join(after_lines) if after_lines else ""
+    return before + new_header.rstrip() + "\n\n" + after
+
 def web_path_for_comment(path):
-    """Derive web_path from file path for FLARE header comment (strip .md, normalize)."""
+    """Derive web_path from file path for FLARE header comment (strip .md, normalize).
+    Always include full directory context so URLs are unique (e.g. tasks/active/task-001 vs tasks/completed/task-001)."""
     p = path.replace("\\", "/")
     if p.endswith(".md"):
         p = p[:-3]
@@ -183,6 +221,8 @@ def base_url_for_node(federation_node_id=None):
     return custom if custom else default
 
 def build_header(path, original_text):
+    # Normalize to forward slashes so file_path_from_root and flame.see are YAML-safe and URLs are consistent
+    path = path.replace("\\", "/")
     schema = infer_schema(path)
     channel_id, actor_id = infer_channel_actor(path)
     purpose = infer_purpose(path, original_text)
@@ -290,6 +330,16 @@ f"      channel_id: 0\n"
 f"  actor_id: {current_actor}\n"
 f"---\n\n"
     )
+    # Safe parse: validate YAML block to fail loudly on invalid output
+    try:
+        parts = header.split("---")
+        if len(parts) >= 2:
+            yaml_block = parts[1].strip()
+            if yaml_block:
+                yaml.safe_load(yaml_block)
+    except yaml.YAMLError as e:
+        log(f"PHASE 2: YAML invalid after build_header for {path}: {e}")
+        raise
     return header
 
 def update_meta_flare_json(md_path):
@@ -347,13 +397,29 @@ for rel in paths:
             continue
         
         if detect_existing_flare_header(original):
-            issues = validate_flare_header(original)
-            if issues:
-                log(f"PHASE 2: WARN existing FLARE header issues in {rel}: {', '.join(issues)}")
-                existing_with_issues += 1
+            if REFRESH_MODE:
+                try:
+                    header = build_header(rel, original)
+                    new_content = replace_existing_flare_block(original, header)
+                    if new_content is None:
+                        log(f"PHASE 2: WARN could not find FLARE block to replace in {rel}")
+                        skipped_existing += 1
+                        continue
+                    write_atomic(rel, new_content)
+                    update_meta_flare_json(rel)
+                    log(f"PHASE 2: REFRESHED FLARE header: {rel}")
+                    added += 1
+                except Exception as e:
+                    log(f"PHASE 2: ERROR refresh {rel}: {e}")
+                    errors += 1
             else:
-                log(f"PHASE 2: SKIP (existing FLARE header OK): {rel}")
-            skipped_existing += 1
+                issues = validate_flare_header(original)
+                if issues:
+                    log(f"PHASE 2: WARN existing FLARE header issues in {rel}: {', '.join(issues)}")
+                    existing_with_issues += 1
+                else:
+                    log(f"PHASE 2: SKIP (existing FLARE header OK): {rel}")
+                skipped_existing += 1
             continue
 
         header = build_header(rel, original)

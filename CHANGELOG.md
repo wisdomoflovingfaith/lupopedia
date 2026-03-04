@@ -136,6 +136,17 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **FLARE header refinement:** Standard first-line comment updated: aliases **Wolfie, FLIP, FLP, FLPH, CROP** and dynamic **see** URL `— see <base_url>/<relative_path>` from `file_path_from_root`. Updated: `V4.0.57_TASK_PLAN.md`, `DATABASE_OPTIMIZATION_ANALYSIS_4.0.57.md`, `DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md`, `IS_DELETED_AUDIT_4.0.57.md`, `lupo-docs/doctrine/DATABASE_DOCTRINE.md`. Template `lupo-tools/flare_header_template.txt` and `lupo-tools/flare_apply.py` (`web_path_for_comment()`). FLARE_DOCTRINE Section 21 (Header Comment Refinements). Report: `docs/status/FLARE_HEADER_REFINEMENT_4.0.57.md`.
 - **Repository cleanup (safe list):** `docs/status/REPOSITORY_CLEANUP_SAFE_LIST_4.0.57.md` — list of `database/migrations/` SQL files to **move** to `database/migrations_legacy/` (no deletion); canonical SQL under `lupo-database/lupopedia/mysql/`. Captain confirmation pending before moves; `generate_directory_tree.py` to run first.
 - **FLARE federation refinement:** See URL **domain** derives from **federation_node_id**: node 0 → `http://www.lupopedia.com`; other nodes → `lupo_federation_nodes.node_base_url` (env `LUPO_NODE_BASE_URL` for tooling). FLARE_DOCTRINE Section 22 (Federation Node Integration); Section 12 `web_path` updated. `lupo-tools/flare_apply.py`: `base_url_for_node()`. File path: node 0 = repo root; other nodes optional `lupo-database/files/<node_id>/`. Report: `docs/status/FLARE_FEDERATION_REFINEMENT_4.0.57.md` (research, code snippet, federation example table node 0 vs node 1, validation capture). Lilith/Grok meta-review: snippets, example table, validation tee; final verification (Lilith). Validation output: `docs/status/flare_validate_federation_4.0.57.txt`.
+- **Database path normalization (Windsurf 1002):** Channel 42 directive execution — loaded 4.0.55 context from DEVELOPMENT_CYCLE_4_0_55 threads, researched legacy database paths, and began canonicalization. Updated 3 critical files: uploads/channels/2026/01/de5e1f5a8a65f0780e517d43046d9f6bcc3aec908c4087840a32e62b51334cf5.md, lupo-docs/channels/schema/reports/TABLE_REDUCTION_ANALYSIS.md, lupo-docs/channels/schema/DATABASE_SCHEMA.md. Replaced `database/toon_data/` with `lupo-database/lupopedia/toon/`. Created comprehensive report `docs/status/DATABASE_PATH_NORMALIZATION_REPORT_CURSOR.md` with 25+ files identified for completion. Commit: 49b28f3b.
+- **Install wizard and app-path fixes (Cursor 1003):** Install flow and post-install bootstrap hardened so new installs complete and the app loads without fatals.  
+  - **Confirm step error display:** `install.php` — when Step 3 (Confirm) "Run installation" fails (e.g. CSRF, run-step exception), the confirm template now shows "Something went wrong" with the actual error message(s) and a link back to credentials, instead of silently re-showing the same page.  
+  - **ANUBIS actor seed:** `lupo-database/lupopedia/mysql/seed/seed_actors_agents_4.0.45.sql` — added INSERT for actor_id 19 (ANUBIS) so `ensureActorActive(19, …)` finds the actor and install no longer halts with "CRITICAL: Failed to activate ANUBIS (19)."  
+  - **Default sessions seed schema:** `lupo-database/lupopedia/mysql/seed/seed_default_sessions.sql` — removed non-existent column `status`; INSERT and ON DUPLICATE KEY UPDATE now use `lupo_sessions` columns only: `updated_ymdhis`, `is_active`, `is_expired`, `is_revoked`, `is_deleted`. Fixes "Unknown column 'status' in 'field list'" during install.  
+  - **createOperatorChannels and livehelp_users:** `install_wizard_classes.php` — admin-channel assignment (captain on channel 1 from `livehelp_users.isadmin`) now runs only when table `livehelp_users` exists (upgrade path). New installs skip that block and log "No livehelp_users table (new install); skipping admin channel assignment." Prevents "Table 'lupopedia.livehelp_users' doesn't exist" on fresh install.  
+  - **LUPO_APP_DIR:** App code lives under `lupo-database/lupopedia/content/lupo-app/`, not `app/`.  
+    - `lupo-includes/bootstrap.php` — if `LUPO_APP_DIR` is not defined, define it as `lupo-database/lupopedia/content/lupo-app` so auth/Services load correctly even with an old config.  
+    - `lupopedia-config.php` and wizard-generated config — `LUPO_APP_DIR` set to `lupo-database/lupopedia/content/lupo-app`; `install_wizard_classes.php` (InstallWizardConfigWriter::writeConfig) now emits this define so new installs get the correct path.  
+  - **OAuth controller:** `lupo-includes/modules/auth/oauth-controller.php` — require of `OAuthService.php` is conditional on file existence (using same app path); `oauth_login_initiate` and `oauth_callback_handle` check for `App\Services\OAuthService` and redirect to login with "OAuth is not available." when the class is missing, avoiding fatals.  
+  - **TOON regeneration:** Install completed successfully; `generate_toon_files.py` run to refresh TOONs from the live database.
 
 ### TODO Tasks (Migrated)
 
@@ -164,11 +175,13 @@ This document tracks version history, focusing on key changes, task migrations, 
 - `docs/status/REPOSITORY_CLEANUP_SAFE_LIST_4.0.57.md`
 - `docs/status/FLARE_FEDERATION_REFINEMENT_4.0.57.md`
 - `docs/status/flare_validate_federation_4.0.57.txt` (validation capture)
+- `docs/status/DATABASE_PATH_NORMALIZATION_REPORT_CURSOR.md` (database path canonicalization)
 - `lupo-docs/doctrine/DATABASE_DOCTRINE.md` (new)
 - `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md` (Sections 21, 22; Section 12 updated)
 - `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (R2, R3, R5)
 - `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql` (R5)
 - `lupo-database/lupopedia/mysql/migrations/dev_20260306_db_optimization_indexes.sql` (R2, R3)
+- Install wizard / app-path fixes: `install.php`, `install_wizard_classes.php`, `lupopedia-config.php`, `lupo-includes/bootstrap.php`, `lupo-includes/modules/auth/oauth-controller.php`, `lupo-database/lupopedia/mysql/seed/seed_default_sessions.sql`, `lupo-database/lupopedia/mysql/seed/seed_actors_agents_4.0.45.sql`
 
 ### Next steps
 

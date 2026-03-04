@@ -1,5 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-010
+
 ---
 flame.init:
   requirements:
@@ -31,15 +33,15 @@ flare.conditional:
       audience: ["agents"]
     what:
       artifact_type: "guide"
-      objective: "TASK-010: Analyze Task Dependency Chains in MD for DB Representation"
+      objective: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
     where:
-      repo_paths: ["lupo-database\lupopedia\channels\lupo-channels\42\tasks\active\task-010.md"]
+      repo_paths: ["lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-010.md"]
       runtime_scope: "cli"
       channels:
         primary_channel_id: 1
     when:
       urgency: "standard"
-      effective_utc: "2026-03-04T10:08:32Z"
+      effective_utc: "2026-03-04T14:39:11Z"
     why:
       rationale: "Standard artifact generation"
     how:
@@ -48,9 +50,9 @@ flare.conditional:
 
 flare.headers:
   flare.version: "1.0"
-  flare.schema: "documentation"
-  file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\42\tasks\active\task-010.md"
-  file_hash: "ad42a9857f5b305b69a99d7c40ac301d0cd838cb35999e6c117bf5a6d90598e0"
+  flare.schema: "task"
+  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-010.md"
+  file_hash: "645ee5a82da00d4cf942421af2a7b083fd915b1cb4f62182bc41af6b250f1174"
   last_updated_utc: "20260304"
   system_version: "4.0.56"
   channel_id: 1
@@ -58,7 +60,7 @@ flare.headers:
   delegation_chain: "1004:10000"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "TASK-010: Analyze Task Dependency Chains in MD for DB Representation"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.56"]
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "42", "tasks"]
@@ -73,7 +75,7 @@ flare.footer:
 
 flame.see:
   mappings:
-    - ["lupo-database\lupopedia\channels\lupo-channels\42\tasks\active\task-010.md", "http://www.lupopedia.com/TASK-010"]
+    - ["lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-010.md", "http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-010"]
 
 flame.close:
   post_actions:
@@ -81,6 +83,7 @@ flame.close:
       channel_id: 0
   actor_id: 1004
 ---
+
 
 # TASK-010: Analyze Task Dependency Chains in MD for DB Representation
 

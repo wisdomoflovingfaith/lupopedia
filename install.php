@@ -108,13 +108,21 @@ if (!is_dir(LUPO_MYSQL_DIR)) {
 }
 
 // Version for wizard UI - Direct parse from global_atoms.yaml (install.php runs standalone, no bootstrap)
-$lupo_wizard_version = '4.0.53'; // Fallback (updated to match current release)
-$atoms_file = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml';
-if (is_file($atoms_file)) {
-    $atoms_content = file_get_contents($atoms_file);
-    if (preg_match('/^GLOBAL_CURRENT_LUPOPEDIA_VERSION:\s*["\']?([0-9.]+)["\']?/m', $atoms_content, $matches)) {
-        $lupo_wizard_version = $matches[1];
+$lupo_wizard_version = '4.0.57'; // Fallback when no atoms file found
+$atoms_candidates = array(
+    LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
+    LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
+    LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
+);
+$atoms_content = null;
+foreach ($atoms_candidates as $atoms_file) {
+    if (is_file($atoms_file)) {
+        $atoms_content = file_get_contents($atoms_file);
+        break;
     }
+}
+if ($atoms_content !== null && preg_match('/^GLOBAL_CURRENT_LUPOPEDIA_VERSION:\s*["\']?([0-9.]+)["\']?/m', $atoms_content, $matches)) {
+    $lupo_wizard_version = $matches[1];
 }
 
 // Also load version.php for constants (but wizard version already set from atoms)
@@ -184,6 +192,7 @@ function lupo_hash_equals($a, $b)
 
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install_wizard_classes.php';
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'InstallWizardMdImporter.php';
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'class-pdo_db.php';
 
 // ----- Pre-flight checks (PHP 5.3+ compatible; minimal and fallback-friendly)
 $preflight_blocking = array();
@@ -1389,6 +1398,17 @@ if ($baseUrl === '') {
             <div class="lupo-processing-overlay" id="lupo-run-overlay" aria-live="polite"><span>Running installation… This
                     may take a minute.</span></div>
             <h2>Confirm</h2>
+            <?php if (!empty($errors)): ?>
+                <div class="step error" style="margin-bottom:1rem;">
+                    <p><strong>Something went wrong:</strong></p>
+                    <ul class="err" style="list-style:disc; margin-left:1.5rem;">
+                        <?php foreach ($errors as $e): ?>
+                            <li><?php echo htmlspecialchars($e); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <p>Fix the issue and click &ldquo;Run installation&rdquo; again, or <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>">go back to credentials</a>.</p>
+                </div>
+            <?php endif; ?>
             <?php if ((isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade'): ?>
                 <p><strong>Upgrade from Crafty Syntax 3.7.5</strong></p>
                 <p>Reserved system channels (0, 1, 42, 51) and schema were created before normalization. Identity normalization

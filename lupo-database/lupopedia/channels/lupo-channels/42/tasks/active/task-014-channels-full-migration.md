@@ -1,5 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-014-channels-full-migration
+
 ---
 flame.init:
   requirements:
@@ -31,15 +33,15 @@ flare.conditional:
       audience: ["agents"]
     what:
       artifact_type: "guide"
-      objective: "TASK-014: Full Channels Recursive Migration"
+      objective: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
     where:
-      repo_paths: ["lupo-database\lupopedia\channels\lupo-channels\42\tasks\active\task-014-channels-full-migration.md"]
+      repo_paths: ["lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-014-channels-full-migration.md"]
       runtime_scope: "cli"
       channels:
         primary_channel_id: 1
     when:
       urgency: "standard"
-      effective_utc: "2026-03-04T10:08:32Z"
+      effective_utc: "2026-03-04T14:39:11Z"
     why:
       rationale: "Standard artifact generation"
     how:
@@ -48,9 +50,9 @@ flare.conditional:
 
 flare.headers:
   flare.version: "1.0"
-  flare.schema: "documentation"
-  file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\42\tasks\active\task-014-channels-full-migration.md"
-  file_hash: "14a8c6284eb4148835efb9f25d9eba7600aa2e96322875f61d8cc670562e5045"
+  flare.schema: "task"
+  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-014-channels-full-migration.md"
+  file_hash: "ae16030752852bac79fab92f814ab1507ce214630283ed8891339718ab2c2b78"
   last_updated_utc: "20260304"
   system_version: "4.0.56"
   channel_id: 1
@@ -58,7 +60,7 @@ flare.headers:
   delegation_chain: "1004:10000"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "TASK-014: Full Channels Recursive Migration"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.56"]
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "42", "tasks"]
@@ -73,7 +75,7 @@ flare.footer:
 
 flame.see:
   mappings:
-    - ["lupo-database\lupopedia\channels\lupo-channels\42\tasks\active\task-014-channels-full-migration.md", "http://www.lupopedia.com/TASK-014-CHANNELS-FULL-MIGRATION"]
+    - ["lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-014-channels-full-migration.md", "http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-014-channels-full-migration"]
 
 flame.close:
   post_actions:
@@ -81,6 +83,7 @@ flame.close:
       channel_id: 0
   actor_id: 1004
 ---
+
 
 # TASK-014: Full Channels Recursive Migration
 Version: 4.0.55

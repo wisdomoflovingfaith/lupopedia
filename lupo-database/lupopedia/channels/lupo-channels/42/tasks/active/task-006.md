@@ -1,5 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-006
+
 ---
 flame.init:
   requirements:
@@ -31,15 +33,15 @@ flare.conditional:
       audience: ["agents"]
     what:
       artifact_type: "guide"
-      objective: "TASK-006: Pseudocode for Optimized Log Ingestion from MD"
+      objective: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
     where:
-      repo_paths: ["lupo-database\lupopedia\channels\lupo-channels\42\tasks\active\task-006.md"]
+      repo_paths: ["lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-006.md"]
       runtime_scope: "cli"
       channels:
         primary_channel_id: 1
     when:
       urgency: "standard"
-      effective_utc: "2026-03-04T10:08:32Z"
+      effective_utc: "2026-03-04T14:39:11Z"
     why:
       rationale: "Standard artifact generation"
     how:
@@ -48,9 +50,9 @@ flare.conditional:
 
 flare.headers:
   flare.version: "1.0"
-  flare.schema: "documentation"
-  file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\42\tasks\active\task-006.md"
-  file_hash: "ae3cbfd4371898dc2b4c425a51fa9c9ef49757d302d66ac7b287c329df9b5916"
+  flare.schema: "task"
+  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-006.md"
+  file_hash: "0569deea00fa340d9d2751ffe4c3043518f9d5b106599f9715c07087928c155c"
   last_updated_utc: "20260304"
   system_version: "4.0.56"
   channel_id: 1
@@ -58,7 +60,7 @@ flare.headers:
   delegation_chain: "1004:10000"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "TASK-006: Pseudocode for Optimized Log Ingestion from MD"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.56"]
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "42", "tasks"]
@@ -73,7 +75,7 @@ flare.footer:
 
 flame.see:
   mappings:
-    - ["lupo-database\lupopedia\channels\lupo-channels\42\tasks\active\task-006.md", "http://www.lupopedia.com/TASK-006"]
+    - ["lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-006.md", "http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-006"]
 
 flame.close:
   post_actions:
@@ -81,6 +83,7 @@ flame.close:
       channel_id: 0
   actor_id: 1004
 ---
+
 
 # TASK-006: Pseudocode for Optimized Log Ingestion from MD
 

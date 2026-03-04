@@ -82,6 +82,10 @@ flare.headers:
 
 **Relationship to flame.see:** `web_path` defines the **canonical public URL** for the artifact. The `flame.see` block provides **reverse-lookup mappings** used by CLI tools (e.g. `lupo see <URL>`). Both should align so that the same URL appears in `web_path` and in a `flame.see` mapping for consistent resolution.
 
+### Optional: agent_name_identity (v4.0.57+)
+
+`flare.headers` MAY include **agent_name_identity** — a string for how the agent identifies (e.g. “You are ___” from system prompt). Use for human-readable display only; always resolve `actor_id` from the registry. See **Section 24**.
+
 ## 13. Content Overwrite Hierarchy (v4.0.53+)
 
 To ensure predictable content resolution and synchronization across environments (IDE filesystem, database, and TOON exports), Lupopedia enforces a strict overwrite hierarchy.
@@ -341,11 +345,27 @@ Section 17’s `flame.see` index may store per-node mappings when multiple nodes
 
 ## 24. Agent Identity Fields (v4.0.57+)
 
-The **actor registry** (e.g. `lupo-database/lupopedia/actors/actor_id/registry.json` or project equivalent) is the **canonical source** for actor and agent IDs. Tooling MUST read the registry for audit trails, delegation chains, and faucet ownership; see Section 18.
+### 24.1 Registry as canonical source
 
-### **Optional: agent_name_identity**
+The **agent identity registry** (`lupo-database/lupopedia/actors/actor_id/registry.json`) is the canonical source of truth for all actor and agent IDs. Tooling MUST:
 
-In addition to `actor_id` and `lupo_agent`, `flare.headers` MAY include **agent_name_identity** — a string representing how the agent identifies (e.g. the “You are ___” from their system prompt or the answer to “who are you?”). This field aids human-readable identification, audit trails, and prompt consistency without hardcoding IDs in prose.
+- Resolve `actor_id` from the registry, never from hardcoded values
+- Use registry data for audit trails, delegation chains, and faucet assignments
+- Never maintain separate inline ID lists in documentation or code
+
+**Registry paths:** The master registry file contains the index of all actors. Per-actor directories hold actor-specific data (faucets, configs, logs).
+
+| Path | Purpose |
+|------|---------|
+| `lupo-database/lupopedia/actors/actor_id/registry.json` | Master registry (all actors) |
+| `lupo-database/lupopedia/actors/actor_id/<id>/` | Per-actor directories (faucets, configs, logs) |
+
+Docs may refer to `actors/registry.json` when the database root is implied; resolve to the canonical path in tooling. See Section 18 for resolution order.
+
+
+### 24.2 Optional agent_name_identity header field
+
+FLARE headers MAY include **agent_name_identity** — a string representing how the agent identifies (e.g. the “You are ___” from their system prompt or the answer to “who are you?”). This field aids human-readable identification, audit trails, and prompt consistency without hardcoding IDs in prose.
 
 - **Format:** A single string (e.g. `"Cursor IDE Agent"`, `"Lilith Flame Expert"`). No prescribed length; keep it concise for headers.
 - **Use:** When present, tools and humans can display this name in logs, delegation chains, and UI. It does not replace `actor_id` or registry lookup; it supplements them for readability.
@@ -361,14 +381,27 @@ flare.headers:
   # ...
 ```
 
-**Examples (for illustration only; resolve IDs from registry):**
+### 24.3 Example table (illustrative only)
 
-| Actor ID (example) | agent_name_identity (example) | Registry path (example) |
-|--------------------|-------------------------------|-------------------------|
-| 10000 | Captain Wolfie | registry / actors/10000 |
-| 1003 | Cursor IDE Agent | registry / actors/1003 |
-| 2 | Lilith Flame Expert | registry / actors/2; faucet 7 |
-| 19 | ANUBIS | registry / actors/19 |
+| Agent | actor_id | agent_name_identity |
+|-------|----------|---------------------|
+| Captain Wolfie | 10000 | Captain Wolfie |
+| Cursor | 1003 | Cursor IDE Agent |
+| Lilith | 2 | Lilith Flame Expert |
+| ANUBIS | 19 | ANUBIS |
+
+*Note: These values are examples only. Always resolve from the registry.*
+
+### 24.4 Registry structure
+
+The registry JSON uses `schema_version` and an `actors` array; each entry has `id`, `type`, `slug`, `dir` (and optionally other fields). Resolve by `id` or `slug`; use `dir` for per-actor paths. A future `name` or `agent_name_identity` field in the registry could align with the FLARE header field.
+
+### 24.5 Tooling integration
+
+- **flare_validate.py:** May include a check for hardcoded `actor_id` in headers (future enhancement).
+- **faucet_loader.php:** Should use the registry for actor resolution when resolving (channel_id, actor_id) to agent_faucet_id.
+- **lupo see / flame.see:** Registry can provide display names (e.g. from slug or optional name) for URL resolution.
+- **check_hardcoded_ids.py:** Optional script to flag potential hardcoded actor IDs in docs and code for review; see `lupo-tools/check_hardcoded_ids.py`.
 
 ---
 

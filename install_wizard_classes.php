@@ -555,6 +555,7 @@ define(\'LUPO_CONTENT_DIR\', LUPO_PREFIX . \'content\');
 define(\'LUPO_UPLOADS_DIR\', LUPO_CONTENT_DIR . \'/uploads\');
 define(\'LUPO_PLUGINS_DIR\', LUPO_CONTENT_DIR . \'/plugins\');
 define(\'LUPO_THEMES_DIR\', LUPO_CONTENT_DIR . \'/themes\');
+define(\'LUPO_APP_DIR\', \'lupo-database/lupopedia/content/lupo-app\');
 $table_prefix = \'' . (isset($options['table_prefix']) && preg_match('/^[a-z0-9_]+$/', $options['table_prefix']) ? addslashes($options['table_prefix']) : 'lupo_') . '\';
 if (!preg_match(\'/^[a-z0-9_]+$/\', $table_prefix)) { die("Invalid table prefix"); }
 define(\'LUPO_TABLE_PREFIX\', $table_prefix);
@@ -1284,7 +1285,15 @@ class InstallWizardChannels
         }
 
         // Global admin: Crafty livehelp_users.isadmin = 'Y' => Lupopedia global admin (captain on channel 1, department 0 administrator, owner on admin module).
-        // Resolve actor_id via JOIN so we use canonical lupo_actors.actor_id; grant all roles so they have "admin * access to everything".
+        // Only run when upgrading: livehelp_users exists. New install has no livehelp_* tables.
+        $livehelpUsersExists = false;
+        try {
+            $checkTbl = $pdo->query("SHOW TABLES LIKE 'livehelp_users'");
+            $livehelpUsersExists = ($checkTbl && $checkTbl->rowCount() > 0);
+        } catch (PDOException $e) {
+            // ignore
+        }
+        if ($livehelpUsersExists) {
         try {
             $adminStmt = $pdo->query("
                 SELECT a.actor_id, au.auth_user_id, u.username
@@ -1347,6 +1356,9 @@ class InstallWizardChannels
         } catch (PDOException $e) {
             $log[] = InstallWizardLogger::logEntry('error', 'Admin channel captain assignment failed (see server log).');
             error_log('Lupopedia createOperatorChannels admin channel: ' . $e->getMessage());
+        }
+        } else {
+            $log[] = InstallWizardLogger::logEntry('ok', 'No livehelp_users table (new install); skipping admin channel assignment.');
         }
 
         return $map;

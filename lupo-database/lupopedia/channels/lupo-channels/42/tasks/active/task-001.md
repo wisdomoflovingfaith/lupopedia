@@ -1,5 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-001
+
 ---
 flame.init:
   requirements:
@@ -31,15 +33,15 @@ flare.conditional:
       audience: ["agents"]
     what:
       artifact_type: "guide"
-      objective: "TASK-001: Audit Channel 42 Broadcasts for Metadata Consistency"
+      objective: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
     where:
-      repo_paths: ["lupo-database\lupopedia\channels\lupo-channels\42\tasks\active\task-001.md"]
+      repo_paths: ["lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-001.md"]
       runtime_scope: "cli"
       channels:
         primary_channel_id: 1
     when:
       urgency: "standard"
-      effective_utc: "2026-03-04T10:08:32Z"
+      effective_utc: "2026-03-04T14:39:10Z"
     why:
       rationale: "Standard artifact generation"
     how:
@@ -48,9 +50,9 @@ flare.conditional:
 
 flare.headers:
   flare.version: "1.0"
-  flare.schema: "documentation"
-  file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\42\tasks\active\task-001.md"
-  file_hash: "04d71ea748836dfb431797e3db8bd2c4374ce032c2b65d68537df179b0e6272f"
+  flare.schema: "task"
+  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-001.md"
+  file_hash: "e9305ea52ef1c2b2a43ead894bc7094f6e8ac043babb7210242daba36d8e9f27"
   last_updated_utc: "20260304"
   system_version: "4.0.56"
   channel_id: 1
@@ -58,7 +60,7 @@ flare.headers:
   delegation_chain: "1004:10000"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "TASK-001: Audit Channel 42 Broadcasts for Metadata Consistency"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.56"]
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "42", "tasks"]
@@ -73,7 +75,7 @@ flare.footer:
 
 flame.see:
   mappings:
-    - ["lupo-database\lupopedia\channels\lupo-channels\42\tasks\active\task-001.md", "http://www.lupopedia.com/TASK-001"]
+    - ["lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-001.md", "http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-001"]
 
 flame.close:
   post_actions:
@@ -81,6 +83,7 @@ flame.close:
       channel_id: 0
   actor_id: 1004
 ---
+
 
 # TASK-001: Audit Channel 42 Broadcasts for Metadata Consistency
 

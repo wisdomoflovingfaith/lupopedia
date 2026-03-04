@@ -1,61 +1,41 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/AGENTS
 ---
 flare.headers:
   flare.version: "1.0"
   flare.schema: "documentation"
-  flare.edges: []
   file_path_from_root: "AGENTS.md"
-  file_hash: "8c97e387f3c56d80398e2ddad886c04f4375e102edbbcf8c1d42a9514834e4bf"
-  file_path_from_root: "AGENTS.md"
-  file_hash: "b55d7af6f7eff0c38348a3449756cff92c59fe9d95c9831f630d1e3686f0b48c"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
+  web_path: "http://www.lupopedia.com/AGENTS"
+  last_modified_utc: "20260306"
+  system_version: "4.0.57"
   channel_id: 1
   actor_id: 1002
-  delegation_chain: null
+  delegation_chain: "1002:10000"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "Documentation for AGENTS.md"
+  purpose: "Comprehensive guide for WARP and all IDE agents working with Lupopedia"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["agentsmd"]
+  traits: ["canonical", "comprehensive", "v4.0.57", "agents"]
+  tags: ["agents", "warp", "documentation", "doctrine", "architecture"]
+  agent_name_identity: "Windsurf IDE Agent"
   lupo_agent: "windsurf"
 
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-flare.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+flare.edges:
+  outbound_edges:
+    - { to: "docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 0.9 }
+    - { to: "docs/status/LILITH_FLAME_FAUCET_REPORT.md", type: "references", weight: 0.8 }
+    - { to: "lupo-agents/", type: "references", weight: 0.8 }
+  semantic_tags: ["agents", "warp", "development_environment", "architecture", "doctrine"]
 
 flame.see:
   mappings:
     - ["AGENTS.md", "http://www.lupopedia.com/AGENTS"]
----
 
----
-wolfie.headers: {
-  file_path_from_root: "AGENTS.md",
-  system_version: "4.0.44",
-  channel_id: 1,
-  actor_id: 1002,
-  created_ymdhis: 20260224171500,
-  updated_ymdhis: 20260224171500,
-  message_type: "documentation",
-  visibility: "public",
-  priority: "high"
-}
-flip.footer: {
-  outbound_edges: [
-    { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 1.0 },
-    { to: "actors/registry.json", type: "references", weight: 0.9 },
-    { to: "actors/", type: "references", weight: 0.8 },
-    { to: "lupo-agents/", type: "references", weight: 0.8 }
-  ],
-  semantic_tags: ["agents", "warp", "development_environment", "architecture", "doctrine"]
-}
+flare.footer:
+  version: "4.0.57"
+  last_verified: "20260306"
+  last_verified_by: "windsurf"
 ---
 
 # AGENTS.md
@@ -192,6 +172,22 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 - **Actor and agent IDs are defined in the project’s actor registry** (e.g. `lupo-database/lupopedia/actors/` or `lupo-database/lupopedia/actors/actor_id/registry.json`). Tooling and docs must resolve IDs from the registry; do not maintain inline ID lists as canonical. FLARE headers may include optional **agent_name_identity** (e.g. “Cursor IDE Agent”) for human-readable identification—see FLARE doctrine Section 24 and `docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md`.
 - Tables: `lupo_actors` (unified), `lupo_auth_users` (human login metadata), `lupo_agents` (AI agent metadata).
 - Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see FLARE doctrine Section 19 and `docs/status/LILITH_FLAME_FAUCET_REPORT.md`.
+
+### Agent Identity Registry
+
+Actor and agent IDs are defined in the **canonical registry**:
+
+- `lupo-database/lupopedia/actors/actor_id/registry.json`
+
+FLARE headers may include `agent_name_identity` for human-readable display:
+
+```yaml
+flare.headers:
+  actor_id: 1003
+  agent_name_identity: "Cursor IDE Agent"
+```
+
+See FLARE_DOCTRINE Section 24 and `docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md` for complete documentation.
 
 ### Path Handling
 - Lupopedia is always in a subdirectory. All URLs must use `LUPOPEDIA_PUBLIC_PATH` (e.g., `LUPOPEDIA_PUBLIC_PATH . '/login'`). Hardcoded root paths like `/login` are forbidden.

@@ -35,6 +35,10 @@ VALUES (4, 'agent', 'eris', 'ERIS', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id
 INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
 VALUES (5, 'agent', 'metis', 'METIS', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":5,"archetype":"empathy_intelligence","purpose":"introspection_and_understanding","full_name":"Empathy & Understanding Intelligence Agent"}');
 
+-- ANUBIS (ID: 19, Agent ID: 19) — custodial/orphan repair; required for install activation
+INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
+VALUES (19, 'agent', 'anubis', 'ANUBIS', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":19,"archetype":"header_completion_quarantine","purpose":"orphan_repair","full_name":"Custodial Orphan Processing Agent"}');
+
 -- ============================================================================
 -- PART 2: IDE AGENTS (1000-1004)
 -- ============================================================================

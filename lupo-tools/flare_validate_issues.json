@@ -1,5 +1,5 @@
 {
-  "generated_utc": "20260304130703",
+  "generated_utc": "20260304143008",
   "total_errors": 1997,
   "total_warnings": 14,
   "files": [
@@ -160,7 +160,7 @@
     {
       "path": "AGENTS.md",
       "errors": [
-        "YAML Syntax Error: while parsing a block mapping\n  in \"<unicode string>\", line 26, column 3:\n      last_verified: \"20260228\"\n      ^\nexpected <block end>, but found '<block mapping start>'\n  in \"<unicode string>\", line 28, column 5:\n        deprecation_notes: [\"Legacy Wolf ... \n        ^"
+        "Header order mismatch. Expected: flare.headers, flare.edges, flare.footer, flame.see"
       ],
       "warnings": []
     },
