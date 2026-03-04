@@ -245,6 +245,7 @@ Additional task files (task-001 through task-016, etc.) in `lupo-database/lupope
 - Upgrade test: Crafty 3.7.5 install/upgrade logs and web admin test checklist; UPGRADE_REPORT_4.0.56 in docs/status/.
 - Research: ANUBIS, Wolfie, FLARE, Lupopedia report; upgrade test thread prompt and thread file UPGRADE_TEST_CRAFTY_TO_4_0_56.
 - Database documentation: all TOONs documented; 5 missing table docs added (anubis_processing_log, quarantine, queue, recovery_attempts, channel_boot_detail_lifecycle); task complete.
+- **Antigravity task takeover (Cursor 1003):** Antigravity (1004) token limit reached; Cursor took over all Antigravity tasks. Actor ID resolution implemented: actor_id must reflect logged-in IDE user (resolution order: .lupo_actor session → stored identity → fallback 10000). VSX extension updated to use `resolveEffectiveActorId()` for locks, repair, FLIP editor, getStatus. FLARE_DOCTRINE.md Section 18 added (Actor ID Resolution for IDE Agents). Reports: `docs/status/ANTIGRAVITY_TASK_TAKEOVER_REPORT.md`, `docs/status/FLARE_ENHANCEMENTS_IMPLEMENTATION_4.0.56.md`; FLARE_ENHANCEMENTS_REPORT_4.0.56 Section 5 updated.
 - CH0-20260225-001, CH0-20260225-002, and **db_reset_and_install**: human manual only (actor_id 10000).
 
 ### Next Steps

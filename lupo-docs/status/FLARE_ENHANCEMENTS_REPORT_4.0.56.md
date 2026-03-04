@@ -136,7 +136,16 @@ Applied refined header to `CHANGELOG.md` for v4.0.56 testing.
 | Safety Rule | Active ✅ |
 | Actor Responsibility | Correctly mapped ✅ |
 
+## 5. Actor ID Resolution (Cursor Takeover — 4.0.56)
+
+Per Captain Wolfie directive, actor_id must reflect the logged-in IDE user. Implemented and documented:
+
+- **Resolution order**: (1) Logged-in Lupopedia user session (e.g. `.lupo_actor`), (2) IDE auth token / stored identity, (3) fallback 10000 (Captain Wolfie).
+- **VSX extension** (`lupo-tools/vsx-extension`): `resolveEffectiveActorId()` in `identity.ts` already enforced this order; all message/artifact/lock/repair/status and FLIP editor call sites now use `resolveEffectiveActorId()` instead of `loadIdentity()` where attribution to the current user is required.
+- **Delegation chain**: Set to `"<actor_id>:10000"` for all created messages and headers. Never hardcode actor_id in the extension.
+- **Doctrine**: FLARE_DOCTRINE.md Section 18 documents Actor ID Resolution for IDE Agents. Antigravity (1004) tasks taken over by Cursor (1003); report: `docs/status/ANTIGRAVITY_TASK_TAKEOVER_REPORT.md`.
+
 ---
-**Lead Actor**: Antigravity (1004)
+**Lead Actor**: Antigravity (1004); takeover and actor_id completion: Cursor (1003)
 **Date**: 2026-03-04
 **Final Verdict**: 9.5/10 (High Fidelity Implementation)

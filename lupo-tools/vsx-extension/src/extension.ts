@@ -68,11 +68,15 @@ function getConfig(): {
     };
 }
 
-function requireIdentity(
+async function requireIdentity(
     statusBar: vscode.StatusBarItem
-): ActorIdentity | null {
-    const identity = loadIdentity();
+): Promise<ActorIdentity | null> {
+    const identity = await resolveEffectiveActorId();
     if (!identity) {
+        // Fallback to internal lookup if resolution fails (rare)
+        const stored = loadIdentity();
+        if (stored) return stored;
+
         vscode.window
             .showWarningMessage(
                 'Lupopedia: This IDE is not registered. Run "Lupopedia: Register IDE" first.',
@@ -85,6 +89,8 @@ function requireIdentity(
             });
         return null;
     }
+    // Update status bar with resolved identity
+    updateStatusBar(statusBar, identity);
     return identity;
 }
 
@@ -151,7 +157,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             const editor = vscode.window.activeTextEditor;
             if (!editor) return;
 
-            const id = loadIdentity();
+            const id = await resolveEffectiveActorId();
             if (!id) return;
 
             const success = await lockManager.acquireLock(
@@ -175,7 +181,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             const editor = vscode.window.activeTextEditor;
             if (!editor) return;
 
-            const id = loadIdentity();
+            const id = await resolveEffectiveActorId();
             if (!id) return;
 
             const success = await lockManager.releaseLock(editor.document.uri.fsPath, id.actor_id);
@@ -303,7 +309,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
         vscode.commands.registerCommand('lupopedia.repairDelegationChain', async () => {
             const editor = vscode.window.activeTextEditor;
             if (!editor) return;
-            const identity = loadIdentity();
+            const identity = await resolveEffectiveActorId();
             if (!identity) return;
             const success = await repairService.repairDelegationChain(editor.document, identity.actor_id);
             if (success) vscode.window.showInformationMessage('Lupopedia: Delegation chain repaired.');
@@ -452,7 +458,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
     // ── Command: Log Agent Action ───────────────────────────────────────────
     ctx.subscriptions.push(
         vscode.commands.registerCommand('lupopedia.logAction', async () => {
-            const identity = requireIdentity(statusBar);
+            const identity = await requireIdentity(statusBar);
             if (!identity) { return; }
 
             const action = await vscode.window.showInputBox({
@@ -739,7 +745,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
     // ── Command: Join Channel ─────────────────────────────────────────────────
     ctx.subscriptions.push(
         vscode.commands.registerCommand('lupopedia.joinChannel', async () => {
-            const id = requireIdentity(statusBar);
+            const id = await requireIdentity(statusBar);
             if (!id) {
                 return;
             }
@@ -771,7 +777,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
     // ── Command: Send Message ─────────────────────────────────────────────────
     ctx.subscriptions.push(
         vscode.commands.registerCommand('lupopedia.sendMessage', async () => {
-            const id = requireIdentity(statusBar);
+            const id = await requireIdentity(statusBar);
             if (!id) {
                 return;
             }
@@ -927,12 +933,13 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
 
             if (result.valid && result.header) {
                 const formatted = formatFlipHeader(result.header);
-                // Show the FLIP editor for valid headers
+                // Show the FLIP editor for valid headers (identity = effective logged-in user)
+                const identity = await resolveEffectiveActorId();
                 FlipEditorPanel.createOrShow(
                     ctx.extensionUri,
                     result.header,
                     getConfig().baseUrl,
-                    loadIdentity()
+                    identity
                 );
                 vscode.window.showInformationMessage(
                     `Lupopedia: FLIP header is valid! Channel: ${result.header.channel_id ?? 'unresolved'}`
@@ -950,11 +957,11 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
     ctx.subscriptions.push(
         vscode.commands.registerCommand('lupopedia.getStatus', async () => {
             const { communicationMode } = getConfig();
-            const identity = loadIdentity();
+            const identity = await resolveEffectiveActorId();
             const status = {
                 vsx_extension_status: communicationMode === 'offline' ? 'md_only' : 'hybrid',
-                actor_id: identity?.actor_id || 0,
-                lupo_agent: 'antigravity',
+                actor_id: identity.actor_id,
+                lupo_agent: 'cursor',
                 timestamp: new Date().toISOString().replace(/[-:T]/g, '').slice(0, 8),
                 capabilities: [
                     'md_registry_loading',

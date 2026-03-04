@@ -178,6 +178,30 @@ When multiple files claim the same URL:
 - **--json**: Returns the full mapping object including hash and metadata.
 - **--open**: Resolves the path and opens the file in the active editor.
 
+## 18. Actor ID Resolution for IDE Agents (v4.0.56+)
+
+When IDE agents (e.g., Cursor 1003, Antigravity 1004, Windsurf 1002) create channel messages, artifacts, prompts, FLARE headers, tasks, or commits, the **actor_id MUST represent the currently logged-in user** of the IDE. This value must never be hardcoded in the extension or tooling.
+
+### **Resolution Order**
+1. **Logged-in Lupopedia user session** — e.g. `.lupo_actor` in workspace root (actor_id, name).
+2. **IDE authentication token or stored identity** — registry lookup or stored record from extension context.
+3. **Default fallback** → `10000` (Captain Wolfie, canonical human root).
+
+### **Human and Agent IDs**
+- **Captain Wolfie (human)**: `actor_id: 10000`. When the logged-in user is Captain Wolfie, use 10000.
+- **Agent IDs** (Windsurf 1002, Cursor 1003, Antigravity 1004, KIRO 1001, etc.) are fixed for system agents. Authorship of messages/artifacts is attributed to the effective logged-in actor; agents posting on behalf of the human use delegation_chain.
+
+### **Message and Header Metadata**
+All messages and FLARE headers created from the IDE must include:
+- `actor_id`: &lt;resolved logged-in actor_id&gt;
+- `delegation_chain`: `"<actor_id>:10000"` (authority 10000 unless otherwise specified).
+
+Example when Captain Wolfie is logged in: `actor_id: 10000`, `delegation_chain: "10000:10000"`.  
+Example when an agent posts on behalf of the human: `actor_id: 1002`, `delegation_chain: "1002:10000"`.
+
+### **Rationale**
+Accurate authorship tracking, proper multi-agent delegation chains, correct attribution in Lupopedia channels, and consistent FLARE metadata all depend on resolving actor_id from the current user context. Hardcoding actor_id breaks provenance tracking.
+
 ---
 
 *End of FLARE doctrine.*
