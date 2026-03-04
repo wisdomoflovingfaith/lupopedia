@@ -239,14 +239,14 @@ Cursor must follow these rules:
 
 When building Lupopedia, you can reference table and column structures using:
 
-1. **Toon Files** (`database/toon_data/*.toon` and `database/toon_data/*.json`)
+1. **Toon Files** (`lupo-database/lupopedia/toon/*.toon` and `lupo-database/lupopedia/toon/*.json`)
    - TOON format files containing complete table structures (READ-ONLY for agents and IDEs)
    - Each file includes: `table_name`, `fields` (full column definitions from INFORMATION_SCHEMA), and `data` (sample rows)
    - **Generated automatically by Python script** from the live database schema
    - **READ-ONLY** â€” Only the Python cron job writes TOON files
    - **The database (phpMyAdmin) is the authoritative source of truth**
    - TOON files are reflections of the database, not editable artifacts
-   - Example: `database/toon_data/actors.toon` shows the complete structure of the `actors` table
+   - Example: `lupo-database/lupopedia/toon/actors.toon` shows the complete structure of the `actors` table
    - Use these files to understand exact column names, types, and constraints when writing code
    - **Do NOT modify TOON files** â€” any changes will be overwritten by the Python cron job
    - See [TOON Doctrine](../doctrine/TOON_DOCTRINE.md) for complete rules

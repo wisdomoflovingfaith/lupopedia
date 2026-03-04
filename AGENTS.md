@@ -189,6 +189,7 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 ### Actor Model
 - `actor_id` is the universal identity key. There is no `user_id` in relationships.
 - Actor IDs 0–9999 are reserved for AI agents; human actors start at 10000.
+- **Actor and agent IDs are defined in the project’s actor registry** (e.g. `lupo-database/lupopedia/actors/` or `lupo-database/lupopedia/actors/actor_id/registry.json`). Tooling and docs must resolve IDs from the registry; do not maintain inline ID lists as canonical. FLARE headers may include optional **agent_name_identity** (e.g. “Cursor IDE Agent”) for human-readable identification—see FLARE doctrine Section 24 and `docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md`.
 - Tables: `lupo_actors` (unified), `lupo_auth_users` (human login metadata), `lupo_agents` (AI agent metadata).
 - Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see FLARE doctrine Section 19 and `docs/status/LILITH_FLAME_FAUCET_REPORT.md`.
 

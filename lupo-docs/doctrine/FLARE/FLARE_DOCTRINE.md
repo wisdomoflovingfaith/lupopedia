@@ -1,59 +1,41 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/doctrine/FLARE/FLARE_DOCTRINE
 ---
 flare.headers:
   flare.version: "1.0"
-  flare.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLARE\FLARE_DOCTRINE.md"
-  file_hash: "19033383ad2d953cc1db20c04d51c42ae3a87578bc0624d4ab36644d3397f423"
-  last_updated_utc: "20260304"
-  system_version: "4.0.56"
-  channel_id: 42
-  actor_id: 1004
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
-
-flare.edges:
-  outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
-
-flare.footer:
-  last_verified: "20260304"
-  last_verified_by: "antigravity"
----
-
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
----
-flare.headers:
-  file_path_from_root: "docs/doctrine/FLARE/FLARE_DOCTRINE.md"
-  system_version: "4.0.47"
+  flare.schema: "doctrine"
+  file_path_from_root: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md"
+  web_path: "http://www.lupopedia.com/doctrine/FLARE/FLARE_DOCTRINE"
+  last_modified_utc: "20260306"
+  system_version: "4.0.57"
   channel_id: 0
   actor_id: 1007
-  last_modified_utc: "20260227"
   delegation_chain: "1007:10000"
   artifact_type: "doctrine"
+  artifact_kind: "canonical"
   purpose: "Core doctrine defining FLARE protocol for file-level attribute and relationship exchange"
-  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
   mood_rgb: "FFD700"
-  traits: ["canonical", "system-critical", "permanent"]
-  tags: ["flare", "doctrine", "protocol", "file_metadata", "relationships"]
+  traits: ["canonical", "system-critical", "permanent", "v4.0.57"]
+  tags: ["flare", "doctrine", "protocol", "file_metadata", "relationships", "federation"]
   lupo_agent: "codex-ide"
 
-flare.footer:
+flare.edges:
   outbound_edges:
     - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 1.0 }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
     - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.9 }
     - { to: "docs/doctrine/FLIP/FLIP_DOCTRINE.md", type: "supersedes", weight: 0.8 }
     - { to: "actors/registry.json", type: "references", weight: 0.8 }
+
+flare.footer:
+  last_verified: "20260306"
+  last_verified_by: "cursor"
   semantic_tags: ["flare", "doctrine", "protocol", "canonical", "system"]
 ---
+
+## 0. Terminology and Aliases
+
+- **FLARE** — Canonical name for this protocol (file-level attribute and relationship exchange).
+- **Wolfie, FLIP, FLP, FLPH, CROP** — Historical aliases for the same protocol. When used in header comments, alias order SHOULD remain fixed (Wolfie, FLIP, FLP, FLPH, CROP) to avoid diff churn across tools and agents.
 
 ## 12. Mandated Header Comments (v4.0.48+)
 
@@ -75,7 +57,9 @@ flare.headers:
   ...
 ```
 - **Aliases:** Wolfie, FLIP, FLP, FLPH, CROP (all canonical).
-- **&lt;web_path&gt;:** Omit file extension; use the same path as in `web_path` (e.g. `status/EXAMPLE_REPORT`). Enables flame.see and external linking; see Section 21.
+- **&lt;web_path&gt;:** Omit file extension; use the same path as in `web_path` (e.g. `status/EXAMPLE_REPORT`). Enables flame.see and external linking; see Section 21 for the refined comment format (v4.0.57+).
+
+**Note:** `<web_path>` is typically derived from `file_path_from_root` by: stripping a leading `docs/` (optional), removing the `.md` extension, and using a URL-friendly path (e.g. `docs/status/EXAMPLE_REPORT.md` → `status/EXAMPLE_REPORT`). See Section 21 for tooling behaviour.
 
 **Reasoning:**
 - **Accessibility**: Direct links for external agents and researchers.
@@ -96,6 +80,8 @@ flare.headers:
 - **Format:** `web_path: "<base_url>/<relative_path>"` — `<base_url>` SHOULD derive from **federation_node_id** (see Section 22): node 0 → `http://www.lupopedia.com`; other nodes → that node’s `node_base_url`. Use the same logical path as the repo file, with slashes and no leading slash. Omit file extension in the URL if desired for pretty routing.
 - **Use:** Future docs and minimal FLARE templates should include `web_path` when the artifact has a canonical web location. Enables flame.see and external linking.
 
+**Relationship to flame.see:** `web_path` defines the **canonical public URL** for the artifact. The `flame.see` block provides **reverse-lookup mappings** used by CLI tools (e.g. `lupo see <URL>`). Both should align so that the same URL appears in `web_path` and in a `flame.see` mapping for consistent resolution.
+
 ## 13. Content Overwrite Hierarchy (v4.0.53+)
 
 To ensure predictable content resolution and synchronization across environments (IDE filesystem, database, and TOON exports), Lupopedia enforces a strict overwrite hierarchy.
@@ -104,7 +90,7 @@ To ensure predictable content resolution and synchronization across environments
 
 1.  **FILESYSTEM (`lupo-channels/`)**: Highest priority. If a file exists in the `lupo-channels` directory, its content and metadata are treated as the system source of truth, overwriting any values in the database.
 2.  **DATABASE**: Medium priority. If content is updated via the web interface or API, it is stored in the database. These values are overridden by filesystem changes if they exist, but are used if the filesystem is empty or out-of-sync.
-3.  **CSV/TOON FILES**: Lowest priority. These files (e.g., in `lupo-database/lupopedia/csv/` or `lupo-database/lupopedia/toon/`) are used as seed data or schema reference. They are overwriten by the database once imported, and by the filesystem via `scripts/generate_toon_files.py`.
+3.  **CSV/TOON FILES**: Lowest priority. These files (e.g., in `lupo-database/lupopedia/csv/` or `lupo-database/lupopedia/toon/`) act as **seed or export layers**, not authoritative runtime state. They are overwritten by the database once imported, and by the filesystem via `scripts/generate_toon_files.py`.
 
 **Synchronization Protocol:**
 
@@ -133,7 +119,7 @@ Declares results routing and post-execution cleanup.
 
 ## 15. Structural Integrity & Canonical Ordering
 
-To ensure multi-agent parser stability, headers MUST follow the canonical order. Validators will reject artifacts with shuffled prologue blocks.
+If present, blocks **MUST** follow the canonical order. **Missing optional blocks are permitted** (e.g. a minimal doctrine file may contain only `flare.headers`, `flare.edges`, `flare.footer`). Validators reject artifacts that contain blocks in the wrong order; they do not require every block to be present.
 
 **Canonical Block Order:**
 1.  `flame.init`
@@ -165,14 +151,16 @@ Provides a standardized concise briefing of the artifact.
 
 ## 17. flame.see — URL Discovery (v4.0.56+)
 
-The `flame.see` block provides a mapping between canonical web URLs and local repository paths. This enables the CLI to resolve a link (e.g., `http://www.lupopedia.com/FLAME`) to its corresponding `.md` file.
+The `flame.see` block provides **reverse-lookup mappings** (URL → path) used by CLI tools. It complements `flare.headers.web_path`, which defines the **canonical public URL** for the artifact; both should align so resolution is consistent.
+
+The `flame.see` block enables the CLI to resolve a link (e.g., `http://www.lupopedia.com/FLAME`) to its corresponding `.md` file.
 
 ### **Schema & Configuration**
 - **mappings**: A YAML list of `[path, url]` pairs.
 - **Normalization**: URLs are normalized (lowercase host, stripped trailing slash, https equivalence) for robust matching.
 
 ### **Discovery Workflow**
-1. **Indexing**: The `lupo-tools/flare_see.py` script scans the repository for `flame.see` blocks and builds a JSON index in `artifacts/index/flame_see_index.json`.
+1. **Indexing**: The `lupo-tools/flare_see.py` script scans the repository for `flame.see` blocks and builds a JSON index. Default output path: `artifacts/index/flame_see_index.json` (tooling may use an alternate path such as `lupo-database/lupopedia/artifacts/index/`; ensure index path is consistent with the CLI and docs).
 2. **Resolution via CLI**: The `lupo see <URL>` command queries the index to find the corresponding file path.
 
 ### **Index Schema (`flame_see_index.json`)**
@@ -205,16 +193,18 @@ When multiple files claim the same URL:
 
 ## 18. Actor ID Resolution for IDE Agents (v4.0.56+)
 
-When IDE agents (e.g., Cursor 1003, Antigravity 1004, Windsurf 1002) create channel messages, artifacts, prompts, FLARE headers, tasks, or commits, the **actor_id MUST represent the currently logged-in user** of the IDE. This value must never be hardcoded in the extension or tooling.
+When IDE agents create channel messages, artifacts, prompts, FLARE headers, tasks, or commits, the **actor_id MUST represent the currently logged-in user** of the IDE. This value must never be hardcoded in the extension or tooling.
+
+**Authoritative source:** Actor IDs (human and agents) are defined in the project’s **actor registry** (e.g. `lupo-database/lupopedia/actors/` or `actors/registry.json`). **Tooling MUST read the registry** for audit trails, delegation chains, and faucet ownership. This section gives examples only; do not rely on inline ID lists as canonical.
 
 ### **Resolution Order**
 1. **Logged-in Lupopedia user session** — e.g. `.lupo_actor` in workspace root (actor_id, name).
 2. **IDE authentication token or stored identity** — registry lookup or stored record from extension context.
 3. **Default fallback** → `10000` (Captain Wolfie, canonical human root).
 
-### **Human and Agent IDs**
+### **Human and Agent IDs (examples)**
 - **Captain Wolfie (human)**: `actor_id: 10000`. When the logged-in user is Captain Wolfie, use 10000.
-- **Agent IDs** (Windsurf 1002, Cursor 1003, Antigravity 1004, KIRO 1001, etc.) are fixed for system agents. Authorship of messages/artifacts is attributed to the effective logged-in actor; agents posting on behalf of the human use delegation_chain.
+- **Agent IDs** (e.g. Windsurf 1002, Cursor 1003, Antigravity 1004, KIRO 1001, Lilith 2) are defined in the registry. Authorship of messages/artifacts is attributed to the effective logged-in actor; agents posting on behalf of the human use delegation_chain. Resolve IDs from the registry to avoid drift (e.g. legacy 2038 vs canonical 2 for Lilith).
 
 ### **Message and Header Metadata**
 All messages and FLARE headers created from the IDE must include:
@@ -224,8 +214,23 @@ All messages and FLARE headers created from the IDE must include:
 Example when Captain Wolfie is logged in: `actor_id: 10000`, `delegation_chain: "10000:10000"`.  
 Example when an agent posts on behalf of the human: `actor_id: 1002`, `delegation_chain: "1002:10000"`.
 
+**Full header example (agent posting on behalf of Captain):**
+```yaml
+flare.headers:
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  purpose: "Message posted by Windsurf on behalf of Captain"
+  file_path_from_root: "path/to/artifact.md"
+  last_modified_utc: "20260306"
+  system_version: "4.0.57"
+  channel_id: 42
+  # ... other fields (web_path, artifact_type, tags, lupo_agent, etc.)
+```
+
 ### **Rationale**
 Accurate authorship tracking, proper multi-agent delegation chains, correct attribution in Lupopedia channels, and consistent FLARE metadata all depend on resolving actor_id from the current user context. Hardcoding actor_id breaks provenance tracking.
+
+For an optional human-readable agent identity string in headers, see **Section 24** (agent_name_identity).
 
 ## 19. Lilith Flame Header Expert Faucet (v4.0.56+)
 
@@ -259,7 +264,7 @@ This section documents planned integration points between FLARE/flame and other 
 
 The mandated first comment line (Section 12) is refined for v4.0.57+:
 
-- **Aliases:** Use the full set: **Wolfie, FLIP, FLP, FLPH, CROP** (all canonical).
+- **Aliases:** Use the full set in fixed order: **Wolfie, FLIP, FLP, FLPH, CROP** (see Section 0). Alias order SHOULD remain fixed to avoid diff churn.
 - **Dynamic see URL:** Use `— see http://www.lupopedia.com/<web_path>` where `<web_path>` is derived from the file’s `file_path_from_root`: strip the `.md` extension and use the path as the URL segment (e.g. `docs/status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md` → `status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57` if the site serves `status/` under the domain). This aligns the comment with `flare.headers.web_path` and with `flame.see` mappings for URL-to-path resolution.
 - **Templates/tooling:** `lupo-tools/flare_header_template.txt` and `lupo-tools/flare_apply.py` generate the new comment format; `web_path` is derived from the file path (strip extension, optionally strip a `docs/` prefix) so that each document’s first line points at its own canonical URL.
 
@@ -283,7 +288,16 @@ Where `<base_url>` = domain for the file’s federation_node_id (e.g. `http://ww
 ### **File path handling**
 
 - **Node 0:** Files live in the **project root** (current behaviour). `file_path_from_root` is relative to repo root.
-- **Other nodes:** For federated sites, files may be written under **lupo-database/files/&lt;federation_node_id&gt;/** or a configurable path so that node-specific content does not overwrite node 0. Tooling (e.g. `flare_apply.py`, `generate_toon_files.py`) may accept an optional `--node-id` or config to choose the path prefix. **flame.see** mappings in a multi-node index may include a node prefix (e.g. `node_id` in the index entry) for collision-free resolution.
+- **Other nodes:** For federated sites, files may be written under **lupo-database/files/&lt;federation_node_id&gt;/** or a configurable path so that node-specific content does not overwrite node 0. **`file_path_from_root` is always relative to the repository root** (e.g. `lupo-database/files/1/status/REPORT.md`), even when the file physically resides under a node-specific directory—so agents and tooling generate consistent paths. Tooling (e.g. `flare_apply.py`, `generate_toon_files.py`) may accept an optional `--node-id` or config to choose the path prefix. **flame.see** mappings in a multi-node index may include a node prefix (e.g. `node_id` in the index entry) for collision-free resolution.
+
+**Concrete example for node 1:**
+```yaml
+# Example for federation_node_id 1 (node_base_url e.g. https://node1.example.com)
+flare.headers:
+  file_path_from_root: "lupo-database/files/1/status/REPORT.md"
+  web_path: "https://node1.example.com/status/REPORT"
+  # ...
+```
 
 ### **Examples**
 
@@ -303,6 +317,7 @@ Section 17’s `flame.see` index may store per-node mappings when multiple nodes
 ### **Node 0 (primary node, base http://www.lupopedia.com)**
 
 - **Policy:** **Complete mappings.** Every `.md` file in the repository that is part of node 0’s scope (repo root and node-0 paths) **SHOULD** have a **flame.see** block (or equivalent) so that it has at least one URL-to-path entry. This ensures full web resolution: any document served under the node 0 base URL can be resolved by `lupo see &lt;URL&gt;` and the index (`artifacts/index/flame_see_index.json`) provides complete coverage for the primary site.
+- **Note:** This is a **best practice** for node 0, not enforced by the validator. Tools such as `flare_see.py --check-coverage` (or a future script) can report gaps (e.g. `.md` files without any flame.see entry); adoption can be incremental.
 - **Rationale:** Single source of truth for the canonical Lupopedia instance; CLI and resolvers can resolve every doc; aligns with Safety Rule (canonical artifacts are discoverable).
 - **Implementation:** Add **flame.see** (with a `[path, url]` pair derived from `file_path_from_root` and `web_path`) to every FLARE-headed `.md`; ensure `flare_see.py` is run so the index is up to date. Gaps can be closed incrementally (e.g. batch add flame.see to docs that lack it).
 
@@ -323,6 +338,37 @@ Section 17’s `flame.see` index may store per-node mappings when multiple nodes
 
 - **Node 0:** `flare_see.py` already scans all `.md` files and indexes those with **flame.see** blocks. A future **completeness check** (e.g. compare total `.md` count under repo root vs. number of path entries in the index for node 0) could report gaps. Not implemented in v4.0.57; document as desired enhancement.
 - **Node &gt; 0:** If multi-node indexing is adopted, the index could be node-scoped (e.g. `flame_see_index_node_1.json`) or include a `node_id` field per mapping; indexing could be selective (e.g. only paths under `lupo-database/files/&lt;node_id&gt;/`). Deferred; see Section 22.
+
+## 24. Agent Identity Fields (v4.0.57+)
+
+The **actor registry** (e.g. `lupo-database/lupopedia/actors/actor_id/registry.json` or project equivalent) is the **canonical source** for actor and agent IDs. Tooling MUST read the registry for audit trails, delegation chains, and faucet ownership; see Section 18.
+
+### **Optional: agent_name_identity**
+
+In addition to `actor_id` and `lupo_agent`, `flare.headers` MAY include **agent_name_identity** — a string representing how the agent identifies (e.g. the “You are ___” from their system prompt or the answer to “who are you?”). This field aids human-readable identification, audit trails, and prompt consistency without hardcoding IDs in prose.
+
+- **Format:** A single string (e.g. `"Cursor IDE Agent"`, `"Lilith Flame Expert"`). No prescribed length; keep it concise for headers.
+- **Use:** When present, tools and humans can display this name in logs, delegation chains, and UI. It does not replace `actor_id` or registry lookup; it supplements them for readability.
+- **Rationale:** Avoids drift between “who the agent says it is” and registry; aligns with system prompts and faucet names (e.g. Lilith’s faucet “Lilith Flame Expert” can match `agent_name_identity` in artifacts she produces).
+
+**Example (flare.headers excerpt):**
+```yaml
+flare.headers:
+  actor_id: 1003
+  delegation_chain: "1003:10000"
+  agent_name_identity: "Cursor IDE Agent"
+  lupo_agent: "cursor"
+  # ...
+```
+
+**Examples (for illustration only; resolve IDs from registry):**
+
+| Actor ID (example) | agent_name_identity (example) | Registry path (example) |
+|--------------------|-------------------------------|-------------------------|
+| 10000 | Captain Wolfie | registry / actors/10000 |
+| 1003 | Cursor IDE Agent | registry / actors/1003 |
+| 2 | Lilith Flame Expert | registry / actors/2; faucet 7 |
+| 19 | ANUBIS | registry / actors/19 |
 
 ---
 

@@ -116,10 +116,26 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 ## [4.0.57] — Migration and Optimization (2026-03-05)
 
-**Status**: INITIALIZED  
-**Theme**: Resolution of outstanding tasks and system optimization  
+**Status**: IN PROGRESS  
+**Theme**: Database optimization, FLARE refinements, federation node handling, repository cleanup planning  
 **Lead Agent**: Cursor (1003)  
-**Focus**: Resolve outstanding directory migration, database optimization, and repository cleanup tasks migrated from v4.0.56.
+**Focus**: Database optimization (R1–R5), FLARE header/federation refinements, safe list for legacy migrations; Channel 0 tasks remain human-only.
+
+### Summary — work completed in 4.0.57
+
+- **Version start:** v4.0.57 initialized (`version.php`, `global_atoms.yaml`); report `docs/status/VERSION_START_4.0.57_REPORT.md`.
+- **Task plan:** `docs/status/V4.0.57_TASK_PLAN.md` — prioritization, effort/dependencies, validation (faucet_loader, validate_faucets exit 0), delegation (Lilith, Captain).
+- **Database optimization analysis:** `docs/status/DATABASE_OPTIMIZATION_ANALYSIS_4.0.57.md` — scope, findings, recommendations R1–R5 (doctrine-compliant). Task **database_optimization_analysis** ✅ complete.
+- **Database optimization implementation (R1–R5):**  
+  - **R1:** `lupo-docs/doctrine/DATABASE_DOCTRINE.md` — index/schema conventions; portability note for expression indexes (`lupo_contents`).  
+  - **R2:** Index on `lupo_sessions(channel_id)` in `install_new_lupopedia.sql` and idempotent migration `lupo-database/lupopedia/mysql/migrations/dev_20260306_db_optimization_indexes.sql`.  
+  - **R3:** Duplicate index on `lupo_unified_log` removed (install + migration).  
+  - **R4:** `docs/status/IS_DELETED_AUDIT_4.0.57.md` — audit of `is_deleted` filters in `lupo-includes/`; no gaps.  
+  - **R5:** `lupo_aliases`, `lupo_anubis_orphaned`, `lupo_tldnr` moved from install to `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql`; `REQUIRED_TABLES_4.0.21.md` updated. Backward compatibility: existing DBs keep tables; new installs omit unless future_features applied.  
+  - Report: `docs/status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md` (FLARE headers, flame.init/close, delegation to Lilith).
+- **FLARE header refinement:** Standard first-line comment updated: aliases **Wolfie, FLIP, FLP, FLPH, CROP** and dynamic **see** URL `— see <base_url>/<relative_path>` from `file_path_from_root`. Updated: `V4.0.57_TASK_PLAN.md`, `DATABASE_OPTIMIZATION_ANALYSIS_4.0.57.md`, `DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md`, `IS_DELETED_AUDIT_4.0.57.md`, `lupo-docs/doctrine/DATABASE_DOCTRINE.md`. Template `lupo-tools/flare_header_template.txt` and `lupo-tools/flare_apply.py` (`web_path_for_comment()`). FLARE_DOCTRINE Section 21 (Header Comment Refinements). Report: `docs/status/FLARE_HEADER_REFINEMENT_4.0.57.md`.
+- **Repository cleanup (safe list):** `docs/status/REPOSITORY_CLEANUP_SAFE_LIST_4.0.57.md` — list of `database/migrations/` SQL files to **move** to `database/migrations_legacy/` (no deletion); canonical SQL under `lupo-database/lupopedia/mysql/`. Captain confirmation pending before moves; `generate_directory_tree.py` to run first.
+- **FLARE federation refinement:** See URL **domain** derives from **federation_node_id**: node 0 → `http://www.lupopedia.com`; other nodes → `lupo_federation_nodes.node_base_url` (env `LUPO_NODE_BASE_URL` for tooling). FLARE_DOCTRINE Section 22 (Federation Node Integration); Section 12 `web_path` updated. `lupo-tools/flare_apply.py`: `base_url_for_node()`. File path: node 0 = repo root; other nodes optional `lupo-database/files/<node_id>/`. Report: `docs/status/FLARE_FEDERATION_REFINEMENT_4.0.57.md` (research, code snippet, federation example table node 0 vs node 1, validation capture). Lilith/Grok meta-review: snippets, example table, validation tee; final verification (Lilith). Validation output: `docs/status/flare_validate_federation_4.0.57.txt`.
 
 ### TODO Tasks (Migrated)
 
@@ -132,10 +148,33 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Task registry_lock**: Registry system locking (assigned: 10000, priority: medium, status: active)
 
 #### From Channel 42
-- **Task database_optimization_analysis**: Database optimization analysis (assigned: 1003 Cursor, priority: medium, status: active)
+- **Task database_optimization_analysis**: ✅ **Complete** (Cursor 1003); report and implementation done.
+- **Task repository_cleanup_legacy_files_removal**: Safe list report complete; **moves pending** Captain confirmation, then `generate_directory_tree.py` and move SQL per list.
 - **Task file_count_optimization_4_1_0**: File count optimization for 4.1.0 (assigned: 1003 Cursor, priority: low, status: Active Planning)
-- **Task repository_cleanup_legacy_files_removal**: Repository cleanup and legacy files removal (assigned: 1003 Cursor, priority: low, status: active)
 - **Phase 2 Migration Tasks**: task-001 through task-016 (Lead: 1003 Cursor; files in `DEVELOPMENT_CYCLE_4_0_57/tasks/`).
+
+### Reports and key files (4.0.57)
+
+- `docs/status/VERSION_START_4.0.57_REPORT.md`
+- `docs/status/V4.0.57_TASK_PLAN.md`
+- `docs/status/DATABASE_OPTIMIZATION_ANALYSIS_4.0.57.md`
+- `docs/status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md`
+- `docs/status/IS_DELETED_AUDIT_4.0.57.md`
+- `docs/status/FLARE_HEADER_REFINEMENT_4.0.57.md`
+- `docs/status/REPOSITORY_CLEANUP_SAFE_LIST_4.0.57.md`
+- `docs/status/FLARE_FEDERATION_REFINEMENT_4.0.57.md`
+- `docs/status/flare_validate_federation_4.0.57.txt` (validation capture)
+- `lupo-docs/doctrine/DATABASE_DOCTRINE.md` (new)
+- `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md` (Sections 21, 22; Section 12 updated)
+- `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (R2, R3, R5)
+- `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql` (R5)
+- `lupo-database/lupopedia/mysql/migrations/dev_20260306_db_optimization_indexes.sql` (R2, R3)
+
+### Next steps
+
+- **Captain (10000):** Confirm safe list before moving `database/migrations/` files to `database/migrations_legacy/`.
+- **Cursor (1003):** After confirmation, run `python scripts/generate_directory_tree.py`, then move listed SQL files per `REPOSITORY_CLEANUP_SAFE_LIST_4.0.57.md`.
+- Continue Phase 2 tasks (task-001–016) and file_count_optimization as prioritized in task plan.
 
 ---
 
