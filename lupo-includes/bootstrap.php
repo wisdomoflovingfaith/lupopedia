@@ -1,8 +1,6 @@
 <?php
 /**
  * Bootstrap file for loading the lupopedia . sets the constants and connection to the database 
- *
- * @package lupopedia
  */
 
 
@@ -183,6 +181,8 @@ if ($lupo_session !== null) {
                 exit;
             }
         }
+        throw $e;
+    } catch (Exception $e) {
         throw $e;
     }
 }

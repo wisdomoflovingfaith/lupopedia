@@ -36,12 +36,18 @@ def build_index():
     index = {}
     md_files = []
     
-    # Use flare_md_index.txt if it exists for speed, otherwise scan
-    md_index_file = "lupo-tools/flare_md_index.txt"
-    if os.path.exists(md_index_file):
-        with open(md_index_file, "r", encoding="utf-8") as f:
-            md_files = [line.strip() for line in f if line.strip()]
-    else:
+    # Try multiple common index locations
+    md_index_files = ["tools/flare_md_index.txt", "lupo-tools/flare_md_index.txt"]
+    index_found = False
+    for md_index_file in md_index_files:
+        if os.path.exists(md_index_file):
+            with open(md_index_file, "r", encoding="utf-8") as f:
+                md_files = [line.strip() for line in f if line.strip()]
+            index_found = True
+            break
+            
+    if not index_found:
+        print("No index file found, performing manual scan...")
         for root, dirs, files in os.walk("."):
             if any(x in root for x in [".git", "vendor", "node_modules", "build"]):
                 continue
@@ -50,30 +56,58 @@ def build_index():
                     md_files.append(os.path.relpath(os.path.join(root, file), "."))
 
     for path in md_files:
+        # Standardize path for current OS
+        path = path.replace("\\", os.sep).replace("/", os.sep)
+        if not os.path.exists(path):
+            continue
+            
+        # print(f"Processing {path}...")
         try:
             with open(path, "r", encoding="utf-8", errors="replace") as f:
                 content = f.read()
             
             # Extract YAML frontmatter
-            if content.startswith("---"):
-                parts = content.split("---", 2)
-                if len(parts) >= 3:
-                    data = yaml.safe_load(parts[1])
-                    if data and "flame.see" in data:
-                        see_block = data["flame.see"]
-                        if see_block and "mappings" in see_block:
-                            for mapping in see_block["mappings"]:
-                                if isinstance(mapping, list) and len(mapping) >= 2:
-                                    md_path, url = mapping
-                                    norm_url = normalize_url(url)
-                                    if norm_url not in index:
-                                        index[norm_url] = []
-                                    index[norm_url].append({
-                                        "path": md_path,
-                                        "declared_url": url,
-                                        "file_hash": get_file_hash(path),
-                                        "mtime": int(os.path.getmtime(path))
-                                    })
+            start_marker = content.find("---")
+            if start_marker != -1:
+                end_marker = content.find("---", start_marker + 3)
+                if end_marker != -1:
+                    yaml_raw = content[start_marker+3:end_marker].strip()
+                    if "flame.see:" in yaml_raw:
+                        print(f"Detected flame.see in {path}")
+                    
+                    mappings = []
+                    
+                    # 1. Try formal YAML parse
+                    try:
+                        data = yaml.safe_load(yaml_raw)
+                        if data and "flame.see" in data:
+                            see_block = data["flame.see"]
+                            if see_block and "mappings" in see_block:
+                                mappings = see_block["mappings"]
+                    except:
+                        # 2. Fallback to Regex for flame.see specifically
+                        # Look for: flame.see:\s+mappings:\s+(?:\s+-\s+\["([^"]+)",\s+"([^"]+)"\])+
+                        match = re.search(r"flame\.see:\s*\n\s*mappings:\s*\n((?:\s*-\s*\[.*\]\s*\n?)+)", yaml_raw)
+                        if match:
+                            mapping_lines = match.group(1).strip().splitlines()
+                            for line in mapping_lines:
+                                line_match = re.search(r'-\s*\["([^"]+)",\s*"([^"]+)"\]', line)
+                                if line_match:
+                                    mappings.append([line_match.group(1), line_match.group(2)])
+
+                    for mapping in mappings:
+                        print(f"  Found mapping: {mapping}")
+                        if isinstance(mapping, list) and len(mapping) >= 2:
+                            md_path, url = mapping
+                            norm_url = normalize_url(url)
+                            if norm_url not in index:
+                                index[norm_url] = []
+                            index[norm_url].append({
+                                "path": md_path,
+                                "declared_url": url,
+                                "file_hash": get_file_hash(path),
+                                "mtime": int(os.path.getmtime(path))
+                            })
         except Exception as e:
             print(f"Error parsing {path}: {e}")
 

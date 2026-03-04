@@ -38,6 +38,7 @@ function save_local_actor($actor_id, $name)
 $argv = isset($GLOBALS['argv']) ? $GLOBALS['argv'] : array();
 $command = isset($argv[1]) ? $argv[1] : 'help';
 
+
 try {
     switch ($command) {
         case 'register':
@@ -423,7 +424,8 @@ try {
             for ($i = 3; $i < count($argv); $i++) {
                 $flags .= " " . escapeshellarg($argv[$i]);
             }
-            $python = (PHP_OS_FAMILY === 'Windows') ? 'python' : 'python3';
+            $is_windows = (DIRECTORY_SEPARATOR === '\\');
+            $python = $is_windows ? 'python' : 'python3';
             $script = escapeshellarg(ABSPATH . 'lupo-tools/flare_see.py');
             $command = "$python $script " . escapeshellarg($url) . $flags;
             passthru($command, $return_var);

@@ -1,0 +1,668 @@
+{
+  "http://www.lupopedia.com/agents": [
+    {
+      "path": "AGENTS.md",
+      "declared_url": "http://www.lupopedia.com/AGENTS",
+      "file_hash": "965e2cb8290ec7518e848de2b191ab0558b2cb23",
+      "mtime": 1772619183
+    }
+  ],
+  "http://www.lupopedia.com/changelog": [
+    {
+      "path": "CHANGELOG.md",
+      "declared_url": "http://www.lupopedia.com/CHANGELOG",
+      "file_hash": "1e8ab23f6f3d812f9b71916dd525abe02fbe92c8",
+      "mtime": 1772618919
+    }
+  ],
+  "http://www.lupopedia.com/config_canonicalization_report": [
+    {
+      "path": "docs\\status\\CONFIG_CANONICALIZATION_REPORT.md",
+      "declared_url": "http://www.lupopedia.com/CONFIG_CANONICALIZATION_REPORT",
+      "file_hash": "2d09671c7e6358d8de72a34f913166c36067cbf5",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/config_migration_log": [
+    {
+      "path": "docs\\status\\CONFIG_MIGRATION_LOG.md",
+      "declared_url": "http://www.lupopedia.com/CONFIG_MIGRATION_LOG",
+      "file_hash": "e70e38190371b181a8175788e12f485514ce28f0",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/push_log_4.0.55_final": [
+    {
+      "path": "docs\\status\\PUSH_LOG_4.0.55_FINAL.md",
+      "declared_url": "http://www.lupopedia.com/PUSH_LOG_4.0.55_FINAL",
+      "file_hash": "aa5f6a1a69f178376cf56c4f022c6508067e4a8e",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/table_optimization_plan": [
+    {
+      "path": "docs\table_optimization_plan.md",
+      "declared_url": "http://www.lupopedia.com/TABLE_OPTIMIZATION_PLAN",
+      "file_hash": "2d513387691950c174f40247c9b4e748068190cd",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/fileopt_v4.0.52_phase3_plan": [
+    {
+      "path": "FILEOPT_v4.0.52_phase3_plan.md",
+      "declared_url": "http://www.lupopedia.com/FILEOPT_V4.0.52_PHASE3_PLAN",
+      "file_hash": "214f9c7e9b454f374e3ffc7c9d409e860b10199a",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/fileopt_v4.0.52_phase4_plan": [
+    {
+      "path": "FILEOPT_v4.0.52_phase4_plan.md",
+      "declared_url": "http://www.lupopedia.com/FILEOPT_V4.0.52_PHASE4_PLAN",
+      "file_hash": "7e0c29494923e1544201a7ff642daf77cef50e42",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/fileopt_v4.0.52_phase5_plan": [
+    {
+      "path": "FILEOPT_v4.0.52_phase5_plan.md",
+      "declared_url": "http://www.lupopedia.com/FILEOPT_V4.0.52_PHASE5_PLAN",
+      "file_hash": "037d2f41695d9f934fbfcaffb164f4921d2d3579",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/fileopt_v4.0.52_phase6_plan": [
+    {
+      "path": "FILEOPT_v4.0.52_phase6_plan.md",
+      "declared_url": "http://www.lupopedia.com/FILEOPT_V4.0.52_PHASE6_PLAN",
+      "file_hash": "a97b6df154dea66f9c5f90f985ff60be74707544",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/channel_0": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\channel_0.md",
+      "declared_url": "http://www.lupopedia.com/CHANNEL_0",
+      "file_hash": "cf0802b605675a3b62463f394462b249867ca613",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/cascade_faucet_acknowledgment": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\cascade_faucet_acknowledgment.md",
+      "declared_url": "http://www.lupopedia.com/CASCADE_FAUCET_ACKNOWLEDGMENT",
+      "file_hash": "84008e77f54d32c655e9a61c0ad9c4fb25dde8f2",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/cascade_faucet_consolidated_acknowledgment": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\cascade_faucet_consolidated_acknowledgment.md",
+      "declared_url": "http://www.lupopedia.com/CASCADE_FAUCET_CONSOLIDATED_ACKNOWLEDGMENT",
+      "file_hash": "e4bb9a54d2ba250bf1ac930a3e7c39cbc5a464ec",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/cascade_faucet_final_acknowledgment": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\cascade_faucet_final_acknowledgment.md",
+      "declared_url": "http://www.lupopedia.com/CASCADE_FAUCET_FINAL_ACKNOWLEDGMENT",
+      "file_hash": "5328c9a445d374e9ef07fe3718ef5b0e386d6bc4",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/actors-collection": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\collections\\actors-collection.md",
+      "declared_url": "http://www.lupopedia.com/ACTORS-COLLECTION",
+      "file_hash": "34cfb540668bec58f31a75fb5e6ab81eed91d1c7",
+      "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/atoms-collection": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\collections\\atoms-collection.md",
+      "declared_url": "http://www.lupopedia.com/ATOMS-COLLECTION",
+      "file_hash": "7f003dafde95bfb6fe197b7695c0b4fd6a6a0461",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/channels-collection": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\collections\\channels-collection.md",
+      "declared_url": "http://www.lupopedia.com/CHANNELS-COLLECTION",
+      "file_hash": "dc98a9e75fadcb5af09c7e406eb7e383a3d77de8",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/collections-collection": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\collections\\collections-collection.md",
+      "declared_url": "http://www.lupopedia.com/COLLECTIONS-COLLECTION",
+      "file_hash": "2ba50769ff962aa281e3d78159ee70bd376e8b59",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/content-collection": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\collections\\content-collection.md",
+      "declared_url": "http://www.lupopedia.com/CONTENT-COLLECTION",
+      "file_hash": "f02f41e260bc15d99206e0d223b3499ca590d862",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/database-fallback-collection": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\collections\\database-fallback-collection.md",
+      "declared_url": "http://www.lupopedia.com/DATABASE-FALLBACK-COLLECTION",
+      "file_hash": "d841f8e348c6f73eee733baa4af4ea813283e83e",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/identity-collection": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\collections\\identity-collection.md",
+      "declared_url": "http://www.lupopedia.com/IDENTITY-COLLECTION",
+      "file_hash": "66b78d5fcc0ee5b42b8640f26fc3dc17e234b232",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/livehelp-collection": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\collections\\livehelp-collection.md",
+      "declared_url": "http://www.lupopedia.com/LIVEHELP-COLLECTION",
+      "file_hash": "b16d649532d7e9e44572b0779ea241c9e5c19327",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/logging-collection": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\collections\\logging-collection.md",
+      "declared_url": "http://www.lupopedia.com/LOGGING-COLLECTION",
+      "file_hash": "62126d5f777bdba4be73605aea1de9066a576b7f",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/meta-collection": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\collections\\meta-collection.md",
+      "declared_url": "http://www.lupopedia.com/META-COLLECTION",
+      "file_hash": "1cdd1c6c7373d158a8f0808f7c94f206b2b79f2f",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/sessions-collection": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\collections\\sessions-collection.md",
+      "declared_url": "http://www.lupopedia.com/SESSIONS-COLLECTION",
+      "file_hash": "493c4400ff4065af02e6f6f1c5ba0d6828edc635",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/tasks-collection": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\collections\\tasks-collection.md",
+      "declared_url": "http://www.lupopedia.com/TASKS-COLLECTION",
+      "file_hash": "bac6d5fb2e70b16962c3769edbff12552a5d961f",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/plan-4.0.55": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\plans\\plan-4.0.55.md",
+      "declared_url": "http://www.lupopedia.com/PLAN-4.0.55",
+      "file_hash": "ad71889f138e5d542ac6f132cc00ab9cb5ac6379",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-001": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-001.md",
+      "declared_url": "http://www.lupopedia.com/TASK-001",
+      "file_hash": "5dafa7d02617d7bafc72367d27b81fdf42baa6ed",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-001.md",
+      "declared_url": "http://www.lupopedia.com/TASK-001",
+      "file_hash": "4deda97fa0967dd5b7732e8571ea7b03c2a859e5",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-002": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-002.md",
+      "declared_url": "http://www.lupopedia.com/TASK-002",
+      "file_hash": "b23843e5db2233ae09bfb009783ed51aa8d7c3f6",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-002.md",
+      "declared_url": "http://www.lupopedia.com/TASK-002",
+      "file_hash": "79836c2fae13e489318cfb420c0d4871090009dd",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-003": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-003.md",
+      "declared_url": "http://www.lupopedia.com/TASK-003",
+      "file_hash": "e755dc1cd45b82d66a1d5ccad6917f35dcce06a3",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-003.md",
+      "declared_url": "http://www.lupopedia.com/TASK-003",
+      "file_hash": "492aed724853dce6ae0da5e7527c8b6aa82f788b",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-004": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-004.md",
+      "declared_url": "http://www.lupopedia.com/TASK-004",
+      "file_hash": "4224f2ea7a5f6abc215e95579c47ee7735a3ba74",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-004.md",
+      "declared_url": "http://www.lupopedia.com/TASK-004",
+      "file_hash": "9ac93447d7a788c1785d652687d69bad2c82f3c5",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-005": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-005.md",
+      "declared_url": "http://www.lupopedia.com/TASK-005",
+      "file_hash": "4fd89e2f0ec59f5b65cd041dd22de7d7ba2f2956",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-005.md",
+      "declared_url": "http://www.lupopedia.com/TASK-005",
+      "file_hash": "f88016fbe7e3e07674d1e6aff6b361f1694059b2",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-006": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-006.md",
+      "declared_url": "http://www.lupopedia.com/TASK-006",
+      "file_hash": "d9067ea57c86db4310a30dacfccdda503782b3c0",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-006.md",
+      "declared_url": "http://www.lupopedia.com/TASK-006",
+      "file_hash": "b8aed9c66a30640b7b749d9478012769ec6a9673",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-007": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-007.md",
+      "declared_url": "http://www.lupopedia.com/TASK-007",
+      "file_hash": "b5ec90b204cad90540a23974ccb715cc310f137e",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-007.md",
+      "declared_url": "http://www.lupopedia.com/TASK-007",
+      "file_hash": "a5a5b0eb7c8aae4f976bc8c2d85af153926b020c",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-008": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-008.md",
+      "declared_url": "http://www.lupopedia.com/TASK-008",
+      "file_hash": "0c9de2e12ca2cb02bd7e0f267f9c80f969ade132",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-008.md",
+      "declared_url": "http://www.lupopedia.com/TASK-008",
+      "file_hash": "69a72725bce623c518da0c09a40c29976586b978",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-009": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-009.md",
+      "declared_url": "http://www.lupopedia.com/TASK-009",
+      "file_hash": "d8e3a710d6dd35b95203b09234ae62e3d153d10c",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-009.md",
+      "declared_url": "http://www.lupopedia.com/TASK-009",
+      "file_hash": "182b2be48fc10380fd6d4811f6fc4c98ee661f91",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-010-fallback-database": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-010-fallback-database.md",
+      "declared_url": "http://www.lupopedia.com/TASK-010-FALLBACK-DATABASE",
+      "file_hash": "1623f95dc4228462c4303b1aa8a389f540ccb646",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-010-fallback-database.md",
+      "declared_url": "http://www.lupopedia.com/TASK-010-FALLBACK-DATABASE",
+      "file_hash": "1010ff84550ccff9aa55a2f53c6a0c8ef6337638",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-010": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-010.md",
+      "declared_url": "http://www.lupopedia.com/TASK-010",
+      "file_hash": "438983da3791bc0238a46aaf046df77d82c3be44",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-010.md",
+      "declared_url": "http://www.lupopedia.com/TASK-010",
+      "file_hash": "ec7b3de15484b0b66606dbcef512e2293fef89f2",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-011-config-constants": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-011-config-constants.md",
+      "declared_url": "http://www.lupopedia.com/TASK-011-CONFIG-CONSTANTS",
+      "file_hash": "9cba36ad17e4bf80374f598c498c63468fa343cb",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-011-config-constants.md",
+      "declared_url": "http://www.lupopedia.com/TASK-011-CONFIG-CONSTANTS",
+      "file_hash": "e768e2036227f2013b1b96064c9a3c0e82cddbb9",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-011": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-011.md",
+      "declared_url": "http://www.lupopedia.com/TASK-011",
+      "file_hash": "d87e27d5e7ae45e1ad324bc146c9914a051350f0",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-011.md",
+      "declared_url": "http://www.lupopedia.com/TASK-011",
+      "file_hash": "d8dc96485235e3248bcb1e00f5344aed331a0404",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-012-directory-migration": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-012-directory-migration.md",
+      "declared_url": "http://www.lupopedia.com/TASK-012-DIRECTORY-MIGRATION",
+      "file_hash": "dea8490124724370501b9c2821de8467a77a54f6",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-012-directory-migration.md",
+      "declared_url": "http://www.lupopedia.com/TASK-012-DIRECTORY-MIGRATION",
+      "file_hash": "62af10b2ef994cb3fb848477b39081148432667a",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-012": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-012.md",
+      "declared_url": "http://www.lupopedia.com/TASK-012",
+      "file_hash": "ee32e9823701dae6cddc9106ce8792f813366130",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-012.md",
+      "declared_url": "http://www.lupopedia.com/TASK-012",
+      "file_hash": "e61c18ad42d8c2a5319e0675a5d8d9749ce986ec",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-013-fallback-logic-stubs": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-013-fallback-logic-stubs.md",
+      "declared_url": "http://www.lupopedia.com/TASK-013-FALLBACK-LOGIC-STUBS",
+      "file_hash": "58f62e6f98d2db8398220384271d5c85cd533a91",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-013-fallback-logic-stubs.md",
+      "declared_url": "http://www.lupopedia.com/TASK-013-FALLBACK-LOGIC-STUBS",
+      "file_hash": "af81e185ff3cbdec6c18c07775da88224edad80a",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-013": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-013.md",
+      "declared_url": "http://www.lupopedia.com/TASK-013",
+      "file_hash": "b6e8e6e792d0b7a586daea6a8b18ad40f967ef98",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-013.md",
+      "declared_url": "http://www.lupopedia.com/TASK-013",
+      "file_hash": "f16e96ed01a7a3b9e372647b4784a0b95ca5964c",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-014-channels-full-migration": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-014-channels-full-migration.md",
+      "declared_url": "http://www.lupopedia.com/TASK-014-CHANNELS-FULL-MIGRATION",
+      "file_hash": "a4e4b4ae0f5e8cbcfd8f3b78a56f375bde91209e",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-014-channels-full-migration.md",
+      "declared_url": "http://www.lupopedia.com/TASK-014-CHANNELS-FULL-MIGRATION",
+      "file_hash": "0f16fe0a9b2dc8c38a13f4f5ec84a01789389784",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-014": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-014.md",
+      "declared_url": "http://www.lupopedia.com/TASK-014",
+      "file_hash": "63663da56c33f377015bb3d3d600c13b59897a20",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-014.md",
+      "declared_url": "http://www.lupopedia.com/TASK-014",
+      "file_hash": "1dfadd230ee638ad2e0473f0afe111b2761b16f7",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-015": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-015.md",
+      "declared_url": "http://www.lupopedia.com/TASK-015",
+      "file_hash": "5c9909a4288699938b56596f4e40a768554c6d6f",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-015.md",
+      "declared_url": "http://www.lupopedia.com/TASK-015",
+      "file_hash": "ecfdb7d49068d79aab33e913d515a947a910b804",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/task-016": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\active\\task-016.md",
+      "declared_url": "http://www.lupopedia.com/TASK-016",
+      "file_hash": "7ef6df6f671c727fb300ed6200a6a950fe300d17",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_56\\tasks\\task-016.md",
+      "declared_url": "http://www.lupopedia.com/TASK-016",
+      "file_hash": "9e027296929b6dfca6ead03015be5e884fb86b3e",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/anubis_flare_ingestion_faucet": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\tasks\\completed\\anubis_flare_ingestion_faucet.md",
+      "declared_url": "http://www.lupopedia.com/ANUBIS_FLARE_INGESTION_FAUCET",
+      "file_hash": "2ee512f31b3fbda2f163f2339a58427b2fbc3d94",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\666\\tasks\\active\\anubis_flare_ingestion_faucet.md",
+      "declared_url": "http://www.lupopedia.com/ANUBIS_FLARE_INGESTION_FAUCET",
+      "file_hash": "43f2bc52ed35094b0995e737d81b735e0f81ece4",
+      "mtime": 1772618912
+    },
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\66\\tasks\\active\\anubis_flare_ingestion_faucet.md",
+      "declared_url": "http://www.lupopedia.com/ANUBIS_FLARE_INGESTION_FAUCET",
+      "file_hash": "e9d9b1d0adb883d32037ccf6ea9cdf6e60bcfeb2",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/thread-002": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_55\\thread-002.md",
+      "declared_url": "http://www.lupopedia.com/THREAD-002",
+      "file_hash": "007f9b4519c75f48fb2376a09319b902b9a932ab",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/thread-005-database-fallback-planning": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_55\\thread-005-database-fallback-planning.md",
+      "declared_url": "http://www.lupopedia.com/THREAD-005-DATABASE-FALLBACK-PLANNING",
+      "file_hash": "cf696c87c9c79aba5c1f886fda949632e3867888",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/thread-006-channels-migration-directive": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\threads\\DEVELOPMENT_CYCLE_4_0_55\\thread-006-channels-migration-directive.md",
+      "declared_url": "http://www.lupopedia.com/THREAD-006-CHANNELS-MIGRATION-DIRECTIVE",
+      "file_hash": "fbbf02ec33caf95e3dab8f390c814fb89979a238",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/windsurf_reports_consolidated": [
+    {
+      "path": "lupo-database\\lupopedia\\channels\\lupo-channels\\42\\windsurf_reports_consolidated.md",
+      "declared_url": "http://www.lupopedia.com/WINDSURF_REPORTS_CONSOLIDATED",
+      "file_hash": "9305321ec6a28c92c155af65738bcddb0b2fd78c",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/federation_and_registry": [
+    {
+      "path": "lupo-docs\\architecture\\FEDERATION_AND_REGISTRY.md",
+      "declared_url": "http://www.lupopedia.com/FEDERATION_AND_REGISTRY",
+      "file_hash": "b73b5a6473814044a5a86847117cdddd573c49ee",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/archive_readme": [
+    {
+      "path": "lupo-docs\\archive\\ANUBIS\\pre_4.0.52\\ARCHIVE_README.md",
+      "declared_url": "http://www.lupopedia.com/ARCHIVE_README",
+      "file_hash": "2d2e3b5b43bf37907b69489e81329dceeb8456b8",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/windsurf_agent_faucets_explanation": [
+    {
+      "path": "lupo-docs\\archive\\v4.0.52_windsurf_reports\\windsurf_agent_faucets_explanation.md",
+      "declared_url": "http://www.lupopedia.com/WINDSURF_AGENT_FAUCETS_EXPLANATION",
+      "file_hash": "c152120307c00b4181686210a17362fee0f4d1d1",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/windsurf_execution_complete": [
+    {
+      "path": "lupo-docs\\archive\\v4.0.52_windsurf_reports\\windsurf_execution_complete.md",
+      "declared_url": "http://www.lupopedia.com/WINDSURF_EXECUTION_COMPLETE",
+      "file_hash": "e830dd94705be7d8bd8700b668e1b490184f3d22",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/windsurf_hardening_complete": [
+    {
+      "path": "lupo-docs\\archive\\v4.0.52_windsurf_reports\\windsurf_hardening_complete.md",
+      "declared_url": "http://www.lupopedia.com/WINDSURF_HARDENING_COMPLETE",
+      "file_hash": "c7020340c82c970567a033933db720ab23df14b5",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/fileopt_v4.0.52_final_report": [
+    {
+      "path": "lupo-docs\\audits\\FILEOPT_v4.0.52_FINAL_REPORT.md",
+      "declared_url": "http://www.lupopedia.com/FILEOPT_V4.0.52_FINAL_REPORT",
+      "file_hash": "9b282d73188250125326b7f9940927071e825167",
+      "mtime": 1772618912
+    }
+  ],
+  "http://www.lupopedia.com/lupo_channel_boot_lifecycle": [
+    {
+      "path": "lupo-docs\\database\\lupopedia\\tables\\lupo_channel_boot_lifecycle.md",
+      "declared_url": "http://www.lupopedia.com/LUPO_CHANNEL_BOOT_LIFECYCLE",
+      "file_hash": "e4c48630719257add2df89c2be951de2a5884b3f",
+      "mtime": 1772618913
+    }
+  ],
+  "http://www.lupopedia.com/lupo_channel_content": [
+    {
+      "path": "lupo-docs\\database\\lupopedia\\tables\\lupo_channel_content.md",
+      "declared_url": "http://www.lupopedia.com/LUPO_CHANNEL_CONTENT",
+      "file_hash": "35502119bfa40c1aed2bae737d09e9b4ff020358",
+      "mtime": 1772618913
+    }
+  ],
+  "http://www.lupopedia.com/lupo_channel_tables_overview": [
+    {
+      "path": "lupo-docs\\database\\lupopedia\\tables\\lupo_channel_tables_overview.md",
+      "declared_url": "http://www.lupopedia.com/LUPO_CHANNEL_TABLES_OVERVIEW",
+      "file_hash": "098a14dc4e8e6e4239ffa4442da1260dd581a40e",
+      "mtime": 1772618913
+    }
+  ],
+  "http://www.lupopedia.com/legacy_file_guard": [
+    {
+      "path": "lupo-docs\\doctrine\\ANUBIS\\LEGACY_FILE_GUARD.md",
+      "declared_url": "http://www.lupopedia.com/LEGACY_FILE_GUARD",
+      "file_hash": "59fe0f8f3a6e630cd4fcb65effa9ab8adb5a59f3",
+      "mtime": 1772618913
+    }
+  ],
+  "http://www.lupopedia.com/flare_enhancements_report_4.0.56": [
+    {
+      "path": "lupo-docs\\status\\FLARE_ENHANCEMENTS_REPORT_4.0.56.md",
+      "declared_url": "http://www.lupopedia.com/FLARE_ENHANCEMENTS_REPORT_4.0.56",
+      "file_hash": "2b9bc63c058d8a76eaaecad9f2ac3821f0fab7a6",
+      "mtime": 1772618913
+    }
+  ],
+  "http://www.lupopedia.com/issues_ledger_phase4": [
+    {
+      "path": "lupo-docs\\status\\ISSUES_LEDGER_PHASE4.md",
+      "declared_url": "http://www.lupopedia.com/ISSUES_LEDGER_PHASE4",
+      "file_hash": "54318f9f1466050f99bd9dc9096181affa9ac24f",
+      "mtime": 1772618913
+    }
+  ],
+  "http://www.lupopedia.com/fileopt_tools_consolidated": [
+    {
+      "path": "lupo-tools\fileopt_tools_consolidated.md",
+      "declared_url": "http://www.lupopedia.com/FILEOPT_TOOLS_CONSOLIDATED",
+      "file_hash": "70a38402b95a423a9fac4146c919b92b78f33483",
+      "mtime": 1772618913
+    }
+  ]
+}

@@ -42,6 +42,19 @@ def validate_flare_file(path, **kwargs):
             data = yaml.safe_load(raw_yaml)
         except Exception as e:
             errors.append(f"YAML Syntax Error: {e}")
+            # Regex Fallback for flame.see even if YAML fails
+            match = re.search(r"flame\.see:\s*\n\s*mappings:\s*\n((?:\s*-\s*\[.*\]\s*\n?)+)", raw_yaml)
+            if match and "url_tracker" in kwargs:
+                mapping_lines = match.group(1).strip().splitlines()
+                for line in mapping_lines:
+                    line_match = re.search(r'-\s*\["([^"]+)",\s*"([^"]+)"\]', line)
+                    if line_match:
+                        url_entry = line_match.group(2)
+                        norm_url = url_entry.lower().rstrip("/")
+                        if norm_url in kwargs["url_tracker"]:
+                            kwargs["url_tracker"][norm_url].append(path)
+                        else:
+                            kwargs["url_tracker"][norm_url] = [path]
             return errors, warnings
 
         # 1. ENFORCE CANONICAL ORDER

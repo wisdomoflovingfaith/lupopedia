@@ -29,6 +29,10 @@ flare.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
     deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+
+flame.see:
+  mappings:
+    - ["AGENTS.md", "http://www.lupopedia.com/AGENTS"]
 ---
 
 ---
