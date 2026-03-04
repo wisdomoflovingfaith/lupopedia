@@ -81,6 +81,47 @@ Existing v4.0.57 docs (e.g. `docs/status/IS_DELETED_AUDIT_4.0.57.md`) already us
 | **lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md** | **Section 12 (web_path):** Format now states base_url derives from federation_node_id (Section 22). **Section 22 (new):** Federation Node Integration — domain resolution (node 0 vs node_base_url), file path (root vs lupo-database/files/&lt;id&gt;/), examples table, alignment with flame.see. |
 | **lupo-tools/flare_apply.py** | **base_url_for_node():** New helper; returns `LUPO_NODE_BASE_URL` if set, else `http://www.lupopedia.com`. **build_header():** Uses `base_url_for_node()` for the see URL so env overrides domain for non-zero nodes. |
 
+### 5.1 base_url_for_node() implementation (snippet)
+
+From `lupo-tools/flare_apply.py` (v4.0.57+):
+
+```python
+def base_url_for_node(federation_node_id=None):
+    """
+    Resolve base URL for FLARE see URL from federation_node_id (v4.0.57+).
+    Node 0 (default) => http://www.lupopedia.com unless LUPO_NODE_BASE_URL is set.
+    Other nodes => set LUPO_NODE_BASE_URL to that node's domain (from lupo_federation_nodes.node_base_url);
+    LUPO_FEDERATION_NODE_ID can be set for future path-prefix use (e.g. lupo-database/files/<id>/).
+    """
+    default = "http://www.lupopedia.com"
+    custom = os.environ.get("LUPO_NODE_BASE_URL", "").strip()
+    return custom if custom else default
+```
+
+Usage in `build_header()`:
+
+```python
+# Generate canonical URL for flame.see and header comment (node-aware, v4.0.57+)
+base_url = base_url_for_node()
+web_path = web_path_for_comment(path)
+# ...
+header = (
+    f"# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see {base_url}/{web_path}\n\n"
+    # ...
+)
+```
+
+---
+
+## 5.2 Federation example table (node 0 vs node 1)
+
+| federation_node_id | Base URL | File path (example) | Env / config | Example see URL |
+|--------------------|----------|----------------------|--------------|------------------|
+| **0** | `http://www.lupopedia.com` | `docs/status/REPORT.md` (repo root) | (none) or `LUPO_NODE_BASE_URL` override | `http://www.lupopedia.com/status/REPORT` |
+| **1** | From `lupo_federation_nodes.node_base_url` (e.g. `https://node1.example.com`) | Optional: `lupo-database/files/1/status/REPORT.md` | `LUPO_NODE_BASE_URL=https://node1.example.com` (and optionally `LUPO_FEDERATION_NODE_ID=1`) | `https://node1.example.com/status/REPORT` |
+
+See URL format per Section 22: `— see <base_url>/<relative_path>`; no trailing slash; extension omitted in path. This report’s own header comment (`— see http://www.lupopedia.com/status/FLARE_FEDERATION_REFINEMENT_4.0.57`) conforms: node 0 base URL + relative path.
+
 ---
 
 ## 6. Validation
@@ -88,11 +129,21 @@ Existing v4.0.57 docs (e.g. `docs/status/IS_DELETED_AUDIT_4.0.57.md`) already us
 - **flare_validate.py:** Run on this report and on `FLARE_DOCTRINE.md`; exit code **0**. No new structural errors; canonical order preserved.
 - **lupo see &lt;URL&gt;:** Dynamic URL resolution unchanged; index still maps URL → path. Node-specific indexing (e.g. node_id in index) deferred to future work.
 
+### 6.1 Capture command and sample output
+
+To persist validation output for audit (Lilith/Grok review):
+
+```bash
+python lupo-tools/flare_validate.py docs/status/FLARE_FEDERATION_REFINEMENT_4.0.57.md 2>&1 | tee docs/status/flare_validate_federation_4.0.57.txt
+```
+
+**Observed (2026-03-06):** Exit code **0**. Validator scans the repo; errors reported (if any) are in other paths (e.g. `.kiro/specs/`); this report and FLARE_DOCTRINE.md introduce no new errors. Canonical block order and header structure preserved. Full output captured in **docs/status/flare_validate_federation_4.0.57.txt** (Lilith final verification 2026-03-06).
+
 ---
 
 ## 7. Delegation
 
-- **Lilith (actor 2):** Requested for meta-review of this refinement and of flame-aligned Safety Rule / canonical order for federation-aware headers.
+- **Lilith (actor 2):** Requested for meta-review of this refinement and of flame-aligned Safety Rule / canonical order for federation-aware headers. Lilith’s meta-review of Grok’s review (2026-03-06) synthesized immediate actions: add code snippets, validation capture, federation example table, and see-URL consistency — implemented in this update.
 
 ---
 
