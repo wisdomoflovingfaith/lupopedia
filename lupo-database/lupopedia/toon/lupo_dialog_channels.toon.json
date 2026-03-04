@@ -1,0 +1,102 @@
+{
+  "table_name": "lupo_dialog_channels",
+  "fields": [
+    "`channel_id` bigint NOT NULL",
+    "`channel_name` varchar(255) NOT NULL",
+    "`file_source` varchar(255) NOT NULL",
+    "`title` varchar(500)",
+    "`description` text",
+    "`speaker` varchar(100)",
+    "`target` varchar(100)",
+    "`categories` json",
+    "`collections` json",
+    "`channels` json",
+    "`tags` json",
+    "`version` varchar(20)",
+    "`status` varchar(64) DEFAULT 'published'",
+    "`author` varchar(100)",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`message_count` int DEFAULT 0",
+    "`metadata_json` json"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_dialog_channels_idx_channel_name",
+      "columns": [
+        "channel_name"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_channels_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_channels_idx_dialog_channels_composite",
+      "columns": [
+        "status",
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_channels_idx_file_source",
+      "columns": [
+        "file_source"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_channels_idx_speaker",
+      "columns": [
+        "speaker"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_channels_idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_channels_idx_target",
+      "columns": [
+        "target"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_channels_idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "channel_id",
+    "expected_name": "channel_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

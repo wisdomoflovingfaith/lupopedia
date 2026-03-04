@@ -1,0 +1,73 @@
+{
+  "table_name": "lupo_gov_valuations",
+  "fields": [
+    "`valuation_id` bigint NOT NULL",
+    "`gov_event_id` bigint NOT NULL",
+    "`valuation_type` varchar(100) NOT NULL",
+    "`valuation_metric` varchar(255) NOT NULL",
+    "`valuation_value` decimal(20,8)",
+    "`valuation_text` text",
+    "`valuation_currency` varchar(10)",
+    "`valuation_unit` varchar(50)",
+    "`confidence_score` decimal(5,4)",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_gov_valuations_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_gov_valuations_idx_gov_event",
+      "columns": [
+        "gov_event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_gov_valuations_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_gov_valuations_idx_valuation_metric",
+      "columns": [
+        "valuation_metric"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_gov_valuations_idx_valuation_type",
+      "columns": [
+        "valuation_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "valuation_id",
+    "expected_name": "valuation_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,99 @@
+{
+  "table_name": "lupo_permissions",
+  "fields": [
+    "`permission_id` bigint NOT NULL",
+    "`target_type` varchar(64) NOT NULL",
+    "`target_id` bigint NOT NULL",
+    "`user_id` bigint",
+    "`department_id` bigint",
+    "`permission` varchar(64) NOT NULL DEFAULT 'read'",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_permissions_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_permissions_idx_deleted",
+      "columns": [
+        "is_deleted",
+        "deleted_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_permissions_idx_department",
+      "columns": [
+        "department_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_permissions_idx_permission",
+      "columns": [
+        "permission"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_permissions_idx_target",
+      "columns": [
+        "target_type",
+        "target_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_permissions_idx_user",
+      "columns": [
+        "user_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_permissions_uniq_target_department",
+      "columns": [
+        "target_type",
+        "target_id",
+        "department_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_permissions_uniq_target_user",
+      "columns": [
+        "target_type",
+        "target_id",
+        "user_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "permission_id",
+    "expected_name": "permission_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

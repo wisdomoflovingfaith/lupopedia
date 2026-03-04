@@ -1,5 +1,10 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
+flame.init:
+  requirements:
+    flare.version: "4.0.55+"
+  pre_actions: ["read dependencies", "setup environment"]
+
 flare.headers:
   flare.version: "1.0"
   flare.schema: "documentation"
@@ -15,9 +20,9 @@ flare.headers:
   purpose: "Canonical version history for Lupopedia with FLARE protocol migration documentation and ANUBIS database primacy"
   dialog_message: "Version 4.0.53 initialized with Crafty Syntax upgrade boot enhancements and multi-agent session isolation."
   mood_rgb: "4169E1"
-  traits: ["canonical", "comprehensive", "v4.0.53"]
+  traits: ["canonical", "comprehensive", "v4.0.56"]
   tags: ["changelog", "versions", "releases", "history", "flare", "federation"]
-  lupo_agent: "gemini-cli"
+  lupo_agent: "antigravity"
 
 flare.edges:
   outbound_edges:
@@ -36,8 +41,12 @@ flare.edges:
   semantic_tags: ["changelog", "versions", "releases", "history", "flare", "federation"]
 
 flare.footer:
-  last_verified_utc: "20260303"
-  last_verified_by: "cursor"
+  last_verified_utc: "20260304"
+  last_verified_by: "antigravity"
+
+flame.close:
+  post_actions: ["register completion"]
+  actor_id: 0
 ---
 
 # Lupopedia CHANGELOG
@@ -61,9 +70,12 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Actor help validation:** Combined v1+v2; README and QUICK_REFERENCE for priority actors (0, 1, 19, 1000, 10000); validation report.
 - **ANUBIS FLARE ingestion faucet:** Faucet definition at `lupo-database/.../channels/lupo-channels/42/actors/19/faucets.json`; task doc updated; status complete.
 - **Human-only tasks:** CH0-20260225-001, CH0-20260225-002, and **db_reset_and_install** are human manual only (assigned to **actor_id 10000** Captain).
-- **Reports:** PUSH_LOG_4.0.55, VERSION_BUMP_4.0.56_REPORT, TASK_MIGRATION_4.0.56_REPORT, ACTOR_HELP_DOCUMENTATION_VALIDATION_REPORT, TASK_HANDOVER_CURSOR_4.0.56_REPORT.
+- **Reports:** PUSH_LOG_4.0.55, VERSION_BUMP_4.0.56_REPORT, TASK_MIGRATION_4.0.56_REPORT, ACTOR_HELP_DOCUMENTATION_VALIDATION_REPORT, TASK_HANDOVER_CURSOR_4.0.56_REPORT, FAUCET_DIRECTORY_IMPLEMENTATION_REPORT, LUPO_AGENT_FAUCETS_RESEARCH_REPORT, CRAFTY_3.7.5_INSTALL_LOG, UPGRADE_4.0.56_LOG, WEB_ADMIN_TEST_4.0.56, UPGRADE_REPORT_4.0.56, RESEARCH_ANUBIS_WOLFIE_FLARE_LUPOPEDIA, DATABASE_DOCUMENTATION_REMAINING_TABLES_REPORT.
 - **Faucet directory implementation:** Research report on `lupo_agent_faucets`; new ID-scoped layout `lupo-database/lupopedia/actors/faucets/<agent_faucet_id>/faucet.json` with pilot (6 = ANUBIS); `by_actor.json` manifest; FaucetLoader/validate_faucets/faucet_integrity_audit updated (base path, ID-scoped lookup); doctrine and `wolfie_orms.py` aligned; report: `docs/status/FAUCET_DIRECTORY_IMPLEMENTATION_REPORT.md`.
 - **Completed tasks moved:** `actor_help_documentation_validation`, `actor_help_documentation_validation_v2`, and `anubis_flare_ingestion_faucet` moved from `lupo-database/.../channels/lupo-channels/42/tasks/active` to `.../42/tasks/completed`.
+- **Upgrade test (Crafty → 4.0.56):** Install/upgrade procedure documented: `CRAFTY_3.7.5_INSTALL_LOG.md`, `UPGRADE_4.0.56_LOG.md`, `WEB_ADMIN_TEST_4.0.56.md`, `UPGRADE_REPORT_4.0.56.md` (logs and report in `docs/status/`).
+- **Research and upgrade thread prompt:** `docs/status/RESEARCH_ANUBIS_WOLFIE_FLARE_LUPOPEDIA.md` — research on ANUBIS, Wolfie, FLARE headers, Lupopedia; generated directive-style prompt for thread `UPGRADE_TEST_CRAFTY_TO_4_0_56.md`.
+- **Database documentation remaining tables:** All TOONs now have table docs. Five missing docs added: `lupo_anubis_processing_log`, `lupo_anubis_quarantine`, `lupo_anubis_queue`, `lupo_anubis_recovery_attempts`, `lupo_channel_boot_detail_lifecycle`. Report: `docs/status/DATABASE_DOCUMENTATION_REMAINING_TABLES_REPORT.md`. Task marked complete.
 
 ### TODO Tasks (Migrated)
 
@@ -81,7 +93,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Task actor_help_documentation_validation**: Actor help documentation validation — ✅ complete (combined with v2)
 - **Task actor_help_documentation_validation_v2**: Actor help documentation validation v2 — ✅ complete (merged with v1)
 - **Task anubis_flare_ingestion_faucet**: ANUBIS FLARE ingestion faucet — ✅ complete (assigned: 1003 Cursor, priority: medium; faucet file created, task doc updated)
-- **Task database_documentation_remaining_tables**: Database documentation for remaining tables (assigned: 1003 Cursor, priority: medium, status: active)
+- **Task database_documentation_remaining_tables**: Database documentation for remaining tables — ✅ complete (all TOONs documented; 5 table docs added; report in docs/status/)
 - **Task database_optimization_analysis**: Database optimization analysis (assigned: 1003 Cursor, priority: medium, status: active)
 - **Task file_count_optimization_4_1_0**: File count optimization for 4.1.0 (assigned: 1003 Cursor, priority: low, status: Active Planning)
 - **Task repository_cleanup_legacy_files_removal**: Repository cleanup and legacy files removal (assigned: 1003 Cursor, priority: low, status: active)
@@ -132,6 +144,25 @@ Additional task files (task-001 through task-016, etc.) in `lupo-database/lupope
 
 - **From** `lupo-database/lupopedia/channels/lupo-channels/42/tasks/active` **to** `.../42/tasks/completed`: `actor_help_documentation_validation.md`, `actor_help_documentation_validation_v2.md`, `anubis_flare_ingestion_faucet.md`.
 
+### Upgrade test — Crafty 3.7.5 → 4.0.56 (Cursor 1003)
+
+- **Crafty base install:** `docs/status/CRAFTY_3.7.5_INSTALL_LOG.md` — steps to load `old_crafty_syntax_3_7_5_start.sql`, verify livehelp_* tables.
+- **Upgrade flow:** `docs/status/UPGRADE_4.0.56_LOG.md` — install.php upgrade order (bootstrap, identity normalization, import, migrations, seed_default_sessions).
+- **Web admin test:** `docs/status/WEB_ADMIN_TEST_4.0.56.md` — Crafty legacy and Lupopedia admin checklist.
+- **Report:** `docs/status/UPGRADE_REPORT_4.0.56.md` — install/upgrade log summary, verification (DB, agents, channels), admin test results, issues/recommendations. Commit: v4.0.56 Upgrade Test (not pushed).
+
+### Research ANUBIS, Wolfie, FLARE, Lupopedia + upgrade thread prompt (Cursor 1003)
+
+- **Report:** `docs/status/RESEARCH_ANUBIS_WOLFIE_FLARE_LUPOPEDIA.md` — research summaries: ANUBIS (custodial intelligence, actor 19, queue/quarantine, integrations), Wolfie (FLARE/FLIP alias, Captain 10000, doctrines, wolfie_orms), FLARE headers (structure, aliases, tools), Lupopedia (Semantic OS, channels, actors, faucets, installer). Section 5: full directive-style prompt for upgrade test thread.
+- **Thread:** `lupo-database/lupopedia/channels/lupo-channels/42/threads/UPGRADE_TEST_CRAFTY_TO_4_0_56.md` — thread file with short directive (install Crafty base, run upgrade, verify, report). Commit: Research ANUBIS, Wolfie, FLARE, Lupopedia (not pushed).
+
+### Database documentation remaining tables (Cursor 1003)
+
+- **Gap:** Compared all TOONs in `lupo-docs/toons/*.toon.json` to `lupo-docs/database/lupopedia/tables/*.md`; 5 tables had no doc.
+- **Added:** `lupo_anubis_processing_log.md`, `lupo_anubis_quarantine.md`, `lupo_anubis_queue.md`, `lupo_anubis_recovery_attempts.md`, `lupo_channel_boot_detail_lifecycle.md` — each with FLARE header, overview, schema from TOON, indexes, primary key, outbound edge to TOON.
+- **Task:** `database_documentation_remaining_tables` updated with completion note; status complete.
+- **Report:** `docs/status/DATABASE_DOCUMENTATION_REMAINING_TABLES_REPORT.md`. Result: 0 TOONs without a matching table doc.
+
 ### Current Status
 
 - v4.0.55 pushed; v4.0.56 initialized (thread, version, atoms, reports).
@@ -141,14 +172,17 @@ Additional task files (task-001 through task-016, etc.) in `lupo-database/lupope
 - ANUBIS FLARE ingestion faucet: faucet file at channel 42 actors/19/faucets.json; task anubis_flare_ingestion_faucet complete.
 - Faucet directory implementation: ID-scoped layout (actors/faucets/<id>/), loader/validation/doctrine updated; report and research doc in docs/status/.
 - Completed tasks (actor_help x2, anubis_flare_ingestion_faucet) moved from 42/tasks/active to 42/tasks/completed.
+- Upgrade test: Crafty 3.7.5 install/upgrade logs and web admin test checklist; UPGRADE_REPORT_4.0.56 in docs/status/.
+- Research: ANUBIS, Wolfie, FLARE, Lupopedia report; upgrade test thread prompt and thread file UPGRADE_TEST_CRAFTY_TO_4_0_56.
+- Database documentation: all TOONs documented; 5 missing table docs added (anubis_processing_log, quarantine, queue, recovery_attempts, channel_boot_detail_lifecycle); task complete.
 - CH0-20260225-001, CH0-20260225-002, and **db_reset_and_install**: human manual only (actor_id 10000).
 
 ### Next Steps
 
 - **Human (10000):** Run db_reset_and_install, CH0-20260225-001, and CH0-20260225-002 when ready (manual only).
 - Cursor (1003) leads execution of Channel 42 thread tasks.
-- Plan resolutions for database documentation and optimization.
-- Optional: extend actor help (README + QUICK_REFERENCE) to secondary actors.
+- Plan resolutions for database_optimization_analysis, repository_cleanup_legacy_files_removal, and other active tasks.
+- Optional: run upgrade test locally (fill install/upgrade/admin logs); extend actor help (README + QUICK_REFERENCE) to secondary actors.
 
 ---
 

@@ -17,12 +17,12 @@ TOOLS_DIR = "tools"
 LOG = os.path.join(TOOLS_DIR, "flare_processing_log.txt")
 INDEX = os.path.join(TOOLS_DIR, "flare_md_index.txt")
 
-SYSTEM_VERSION = "4.0.50"
+SYSTEM_VERSION = "4.0.56"
 UTC_DATE = datetime.utcnow().strftime("%Y%m%d")
-VERIFIED_BY = "windsurf"
+VERIFIED_BY = "antigravity"
 MOOD_RGB_DEFAULT = "4169E1"
-Lupo_AGENT = "windsurf"
-ACTOR_ID_DEFAULT = "1002"
+Lupo_AGENT = "antigravity"
+ACTOR_ID_DEFAULT = "1004"
 
 os.makedirs(TOOLS_DIR, exist_ok=True)
 
@@ -187,6 +187,10 @@ def build_header(path, original_text):
     header = (
 f"# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)\n\n"
 f"---\n"
+f"flame.init:\n"
+f"  requirements:\n"
+f"    flare.version: \"4.0.55+\"\n"
+f"  pre_actions: [\"read dependencies\"]\n\n"
 f"flare.headers:\n"
 f"  flare.version: \"{flare_version}\"\n"
 f"  flare.schema: \"{schema}\"\n"
@@ -195,7 +199,7 @@ f"  file_path_from_root: \"{path}\"\n"
 f"  file_hash: \"{file_hash}\"\n"
 f"  last_updated_utc: \"{UTC_DATE}\"\n"
 f"  system_version: \"{SYSTEM_VERSION}\"\n"
-    )
+)
     if channel_id is not None:
         header += f"  channel_id: {channel_id}\n"
     else:
@@ -212,7 +216,10 @@ f"  tags: {json.dumps(tags)}\n"
 f"  lupo_agent: \"{Lupo_AGENT}\"\n\n"
 f"flare.footer:\n"
 f"  last_verified: \"{UTC_DATE}\"\n"
-f"  last_verified_by: \"{VERIFIED_BY}\"\n"
+f"  last_verified_by: \"{VERIFIED_BY}\"\n\n"
+f"flame.close:\n"
+f"  post_actions: [\"faucet integration\"]\n"
+f"  actor_id: 0\n"
 f"---\n\n"
     )
     return header

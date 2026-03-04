@@ -1,0 +1,79 @@
+{
+  "table_name": "lupo_auth_audit_log",
+  "fields": [
+    "`auth_audit_log_id` bigint NOT NULL",
+    "`user_id` bigint",
+    "`crafty_operator_id` int",
+    "`event_type` varchar(50) NOT NULL",
+    "`system_context` varchar(50) NOT NULL",
+    "`ip_address` varchar(45)",
+    "`user_agent` text",
+    "`event_data` json",
+    "`success` tinyint NOT NULL DEFAULT 1",
+    "`error_message` text",
+    "`created_at` bigint",
+    "`updated_at` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_auth_audit_log_idx_crafty_operator_id",
+      "columns": [
+        "crafty_operator_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_auth_audit_log_idx_created_at",
+      "columns": [
+        "created_at"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_auth_audit_log_idx_event_type",
+      "columns": [
+        "event_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_auth_audit_log_idx_success",
+      "columns": [
+        "success"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_auth_audit_log_idx_system_context",
+      "columns": [
+        "system_context"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_auth_audit_log_idx_user_id",
+      "columns": [
+        "user_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "auth_audit_log_id",
+    "expected_name": "auth_audit_log_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

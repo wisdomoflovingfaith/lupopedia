@@ -1,0 +1,81 @@
+{
+  "table_name": "lupo_flip_artifacts",
+  "fields": [
+    "`flip_artifact_id` bigint NOT NULL",
+    "`file_path_from_root` varchar(500) NOT NULL",
+    "`artifact_kind` varchar(50) NOT NULL",
+    "`channel_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`agent_slug` varchar(255) NOT NULL",
+    "`agent_type` varchar(64) NOT NULL",
+    "`system_version` varchar(20) NOT NULL",
+    "`last_modified_ymd` bigint NOT NULL",
+    "`x_forward_from_actor_id` bigint",
+    "`x_forward_to_actor_id` bigint",
+    "`x_lupo_forwarded` varchar(64)",
+    "`header_json` text",
+    "`footer_json` text",
+    "`file_hash` varchar(64)",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_flip_actor_date",
+      "columns": [
+        "actor_id",
+        "last_modified_ymd"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_flip_channel_date",
+      "columns": [
+        "channel_id",
+        "last_modified_ymd"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_flip_forward_chain",
+      "columns": [
+        "x_forward_from_actor_id",
+        "x_forward_to_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_flip_kind_date",
+      "columns": [
+        "artifact_kind",
+        "last_modified_ymd"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_flip_path",
+      "columns": [
+        "file_path_from_root"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "flip_artifact_id",
+    "expected_name": "flip_artifact_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

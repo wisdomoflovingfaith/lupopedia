@@ -1,0 +1,44 @@
+{
+  "table_name": "lupo_gov_event_conflicts",
+  "fields": [
+    "`gov_event_conflict_id` bigint NOT NULL",
+    "`gov_event_id` bigint NOT NULL",
+    "`conflicts_with_event_id` bigint NOT NULL",
+    "`conflict_type` varchar(50) NOT NULL",
+    "`severity` varchar(20) NOT NULL",
+    "`notes` text",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_gov_event_conflicts_idx_conflicts_with_event_id",
+      "columns": [
+        "conflicts_with_event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_gov_event_conflicts_idx_gov_event_id",
+      "columns": [
+        "gov_event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "gov_event_conflict_id",
+    "expected_name": "gov_event_conflict_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

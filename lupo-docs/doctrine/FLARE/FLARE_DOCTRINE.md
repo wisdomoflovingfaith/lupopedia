@@ -86,6 +86,20 @@ To ensure predictable content resolution and synchronization across environments
 *   **DB → CSV/TOON**: The database state overwrites CSV and TOON files when running `scripts/generate_toon_files.py`.
 *   **FILESYSTEM → DB**: Files in `lupo-channels/` overwrite the database state when booting or explicitly running an import command.
 
+## 14. Lifecycle Hooks (v4.0.56+)
+
+Starting with version 4.0.56, FLARE headers support lifecycle hooks via `flame.init` and `flame.close` blocks. These blocks allow for automated pre-processing and post-processing and are mandatory for files with `system_version` 4.0.55+.
+
+### **flame.init**
+Defines prerequisites and pre-reading actions.
+- **Fields**: `requirements` (version checks), `pre_actions` (setup tasks).
+- **Aliases**: `flame.on`, `flame.open`, `flame.requirements`.
+
+### **flame.close**
+Defines post-reading actions and results distribution.
+- **Fields**: `post_actions` (cleanup/registration tasks), `actor_id` (default: 0), `faucet_id`.
+- **Aliases**: `flame.off`.
+
 ---
 
 *End of FLARE doctrine.*

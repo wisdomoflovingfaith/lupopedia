@@ -1,0 +1,43 @@
+{
+  "table_name": "lupo_gov_event_dependencies",
+  "fields": [
+    "`gov_event_dependency_id` bigint NOT NULL",
+    "`gov_event_id` bigint NOT NULL",
+    "`depends_on_event_id` bigint NOT NULL",
+    "`dependency_type` varchar(50) NOT NULL",
+    "`notes` text",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_gov_event_dependencies_idx_depends_on_event_id",
+      "columns": [
+        "depends_on_event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_gov_event_dependencies_idx_gov_event_id",
+      "columns": [
+        "gov_event_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "gov_event_dependency_id",
+    "expected_name": "gov_event_dependency_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

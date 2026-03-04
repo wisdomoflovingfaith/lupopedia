@@ -1,0 +1,59 @@
+{
+  "table_name": "lupo_actor_history",
+  "fields": [
+    "`history_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`achievement_id` varchar(100)",
+    "`title` varchar(255) NOT NULL",
+    "`description` text",
+    "`impact` text",
+    "`date_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`channel_id` bigint",
+    "`tags` json",
+    "`metrics` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_history_idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_history_idx_channel_id",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_history_idx_date_ymdhis",
+      "columns": [
+        "date_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_history_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

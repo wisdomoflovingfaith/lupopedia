@@ -1,5 +1,10 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
+flame.init:
+  requirements:
+    flare.version: "4.0.55+"
+  pre_actions: ["{PRE_ACTIONS}"]
+
 flare.headers:
   flare.version: "1.0"
   flare.schema: "documentation"
@@ -31,6 +36,10 @@ flare.edges:
 flare.footer:
   last_verified: "{LAST_VERIFIED}"
   last_verified_by: "{LAST_VERIFIED_BY}"
+
+flame.close:
+  post_actions: ["{POST_ACTIONS}"]
+  actor_id: 0
 ---
 
 {CONTENT}

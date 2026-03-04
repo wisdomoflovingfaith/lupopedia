@@ -1,0 +1,125 @@
+{
+  "table_name": "lupo_channels",
+  "fields": [
+    "`channel_id` bigint NOT NULL",
+    "`federation_node_id` bigint NOT NULL",
+    "`created_by_actor_id` bigint NOT NULL",
+    "`default_actor_id` bigint NOT NULL DEFAULT 1",
+    "`department_id` bigint NOT NULL DEFAULT 1",
+    "`channel_key` varchar(64) NOT NULL",
+    "`channel_slug` varchar(32) NOT NULL DEFAULT 'channel_key'",
+    "`channel_type` varchar(32) NOT NULL DEFAULT 'chat_room'",
+    "`language` varchar(16) NOT NULL DEFAULT 'en'",
+    "`channel_name` varchar(255) NOT NULL",
+    "`description` text",
+    "`website_link` varchar(512)",
+    "`metadata_json` text",
+    "`status_flag` tinyint NOT NULL DEFAULT 1",
+    "`end_ymdhis` bigint",
+    "`duration_seconds` int",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`aal_metadata_json` json",
+    "`fleet_composition_json` json",
+    "`awareness_version` varchar(20) DEFAULT '3.0.0'",
+    "`channel_number` int",
+    "`parent_channel_id` bigint",
+    "`is_kernel` tinyint NOT NULL DEFAULT 0",
+    "`boot_sequence_order` int"
+  ],
+  "data": [
+    {
+      "channel_id": 0,
+      "federation_node_id": 1,
+      "created_by_actor_id": 0,
+      "default_actor_id": 0,
+      "department_id": 1,
+      "channel_key": "system",
+      "channel_slug": "system",
+      "channel_type": "system",
+      "language": "en",
+      "channel_name": "System Kernel Channel",
+      "description": "System channel (kernel/system operations).",
+      "website_link": null,
+      "metadata_json": null,
+      "status_flag": 1,
+      "end_ymdhis": null,
+      "duration_seconds": null,
+      "created_ymdhis": 20260225162516,
+      "updated_ymdhis": 20260225162516,
+      "is_deleted": 0,
+      "deleted_ymdhis": null,
+      "aal_metadata_json": null,
+      "fleet_composition_json": null,
+      "awareness_version": "3.0.0",
+      "channel_number": null,
+      "parent_channel_id": null,
+      "is_kernel": 1,
+      "boot_sequence_order": null
+    }
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_channels_idx_awareness_version",
+      "columns": [
+        "awareness_version"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channels_idx_channel_key",
+      "columns": [
+        "channel_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channels_idx_dates",
+      "columns": [
+        "end_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channels_idx_domain",
+      "columns": [
+        "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channels_idx_status",
+      "columns": [
+        "status_flag"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channels_unq_channel_key_per_node",
+      "columns": [
+        "channel_key",
+        "federation_node_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "channel_id",
+    "expected_name": "channel_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

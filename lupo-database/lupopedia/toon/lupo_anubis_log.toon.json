@@ -1,0 +1,90 @@
+{
+  "table_name": "lupo_anubis_log",
+  "fields": [
+    "`anubis_log_id` bigint NOT NULL",
+    "`event_type` varchar(64) NOT NULL",
+    "`severity` varchar(20) NOT NULL DEFAULT 'normal'",
+    "`source_table` varchar(64)",
+    "`source_id` bigint",
+    "`file_path_from_root` varchar(255)",
+    "`context_json` json",
+    "`status` varchar(64) NOT NULL DEFAULT 'Pending'",
+    "`assigned_to_actor_id` bigint NOT NULL DEFAULT 19",
+    "`resolution_ymdhis` bigint",
+    "`resolution_summary` text",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_anubis_log_idx_assigned_actor",
+      "columns": [
+        "assigned_to_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_anubis_log_idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_anubis_log_idx_event_type",
+      "columns": [
+        "event_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_anubis_log_idx_file_path",
+      "columns": [
+        "file_path_from_root"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_anubis_log_idx_source_id",
+      "columns": [
+        "source_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_anubis_log_idx_source_table",
+      "columns": [
+        "source_table"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_anubis_log_idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "anubis_log_id",
+    "expected_name": "anubis_log_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

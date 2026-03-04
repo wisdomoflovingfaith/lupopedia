@@ -1,0 +1,72 @@
+{
+  "table_name": "lupo_governance_overrides",
+  "fields": [
+    "`governance_overrid_id` bigint NOT NULL",
+    "`agent_id` bigint",
+    "`applied_by_agent` bigint",
+    "`override_type` varchar(100) NOT NULL",
+    "`target_key` varchar(150)",
+    "`old_value` text",
+    "`new_value` text",
+    "`reason_text` text",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`expires_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_governance_overrides_idx_agent",
+      "columns": [
+        "agent_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_governance_overrides_idx_applied_by",
+      "columns": [
+        "applied_by_agent"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_governance_overrides_idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_governance_overrides_idx_target",
+      "columns": [
+        "target_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_governance_overrides_idx_type",
+      "columns": [
+        "override_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "governance_overrid_id",
+    "expected_name": "governance_overrid_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

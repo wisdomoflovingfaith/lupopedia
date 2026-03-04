@@ -1,0 +1,40 @@
+{
+  "table_name": "lupo_aliases",
+  "fields": [
+    "`alias_id` int NOT NULL",
+    "`slug` varchar(255) NOT NULL",
+    "`alias` varchar(255) NOT NULL",
+    "`alias_type` varchar(50) DEFAULT 'semantic'",
+    "`created_at` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_aliases_idx_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_aliases_uniq_alias",
+      "columns": [
+        "alias"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "alias_id",
+    "expected_name": "alias_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

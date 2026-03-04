@@ -1,0 +1,70 @@
+{
+  "table_name": "lupo_anubis_queue",
+  "fields": [
+    "`queue_id` bigint NOT NULL auto_increment",
+    "`file_path` varchar(512) NOT NULL",
+    "`file_hash` varchar(64)",
+    "`file_content` longtext",
+    "`detected_utc` bigint NOT NULL COMMENT 'YYYYMMDDHHIISS'",
+    "`priority` tinyint DEFAULT 5 COMMENT '1-10, lower = higher priority'",
+    "`status` varchar(32) DEFAULT 'pending' COMMENT 'pending, processing, recovered, failed, quarantined'",
+    "`detection_method` varchar(64) COMMENT 'missing_header, malformed_header, invalid_actor, etc.'",
+    "`header_snapshot` text COMMENT 'Partial header if any'",
+    "`error_message` text",
+    "`attempts` tinyint DEFAULT 0",
+    "`last_attempt_utc` bigint",
+    "`assigned_to_actor_id` bigint COMMENT 'ANUBIS instance processing this'",
+    "`filesystem_copy_exists` tinyint DEFAULT 1",
+    "`filesystem_backup_path` varchar(512)",
+    "`created_utc` bigint NOT NULL",
+    "`updated_utc` bigint NOT NULL",
+    "`is_deleted` tinyint DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_detected",
+      "columns": [
+        "detected_utc"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_file_path",
+      "columns": [
+        "file_path"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_status_priority",
+      "columns": [
+        "status",
+        "priority"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "uniq_file_hash",
+      "columns": [
+        "file_hash"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "queue_id",
+    "expected_name": "queue_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

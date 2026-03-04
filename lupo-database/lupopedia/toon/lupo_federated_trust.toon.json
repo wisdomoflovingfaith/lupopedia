@@ -1,0 +1,59 @@
+{
+  "table_name": "lupo_federated_trust",
+  "fields": [
+    "`trust_id` bigint NOT NULL",
+    "`source_node_id` bigint NOT NULL",
+    "`target_node_id` bigint NOT NULL",
+    "`trust_level` float DEFAULT 0.5",
+    "`trust_type` varchar(50) NOT NULL",
+    "`capabilities` json",
+    "`restrictions` json",
+    "`last_verified_ymdhis` bigint DEFAULT 0",
+    "`verification_method` varchar(100)",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_federated_trust_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_federated_trust_idx_last_verified",
+      "columns": [
+        "last_verified_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_federated_trust_idx_source_target",
+      "columns": [
+        "source_node_id",
+        "target_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_federated_trust_idx_trust_type",
+      "columns": [
+        "trust_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

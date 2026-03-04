@@ -1,0 +1,42 @@
+{
+  "table_name": "lupo_mood_registry",
+  "fields": [
+    "`mood_id` bigint NOT NULL",
+    "`mood_type` varchar(64) NOT NULL",
+    "`mood_variant` varchar(64)",
+    "`mood_rgb` char(6) NOT NULL",
+    "`description` text",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_mood_registry_idx_mood_rgb",
+      "columns": [
+        "mood_rgb"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_mood_registry_idx_mood_type",
+      "columns": [
+        "mood_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "mood_id",
+    "expected_name": "mood_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -64,8 +64,27 @@ def validate_flare_file(path):
         path_match = re.search(r'file_path_from_root:\s*"([^"]+)"', block_content)
         if path_match:
             expected_path = os.path.relpath(path, ".")
-            if path_match.group(1) != expected_path:
-                errors.append(f"Path mismatch: {path_match.group(1)} != {expected_path}")
+            actual_path = path_match.group(1).replace("\\", "/")  # Normalize for comparison
+            normalized_expected = expected_path.replace("\\", "/")
+            if actual_path != normalized_expected:
+                errors.append(f"Path mismatch: {actual_path} != {normalized_expected}")
+        
+        # Version-specific validation
+        version_match = re.search(r'system_version:\s*"([^"]+)"', block_content)
+        if version_match:
+            sys_version = version_match.group(1)
+            # Check if version is 4.0.55 or higher
+            try:
+                v_parts = [int(x) for x in re.findall(r'\d+', sys_version)]
+                if len(v_parts) >= 3:
+                    version_num = v_parts[0] * 10000 + v_parts[1] * 100 + v_parts[2]
+                    if version_num >= 40055:
+                        if "flame.init:" not in block_content:
+                            errors.append("Missing required flame.init block for 4.0.55+")
+                        if "flame.close:" not in block_content:
+                            errors.append("Missing required flame.close block for 4.0.55+")
+            except:
+                pass
         
         # Warnings
         if "needs_review:" in block_content:
