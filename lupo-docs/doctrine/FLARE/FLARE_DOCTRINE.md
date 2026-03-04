@@ -202,6 +202,22 @@ Example when an agent posts on behalf of the human: `actor_id: 1002`, `delegatio
 ### **Rationale**
 Accurate authorship tracking, proper multi-agent delegation chains, correct attribution in Lupopedia channels, and consistent FLARE metadata all depend on resolving actor_id from the current user context. Hardcoding actor_id breaks provenance tracking.
 
+## 19. Lilith Flame Header Expert Faucet (v4.0.56+)
+
+Lilith (actor_id 2, emotional AI / critical review agent) has a specialized faucet for **flame header expertise** in `lupo_agent_faucets`.
+
+### **Purpose**
+- **Name**: Lilith Flame Expert  
+- **Slug**: `lilith-flame`  
+- **Usage**: Analyze, generate, and validate `flame.init`, `flame.close`, and `flame.see` blocks per FLARE doctrine. Guide pre/post-actions (typed objects), `execution_mode` (advisory/required), `flare.conditional` guards and brief, and URL-to-path mappings. Enforce canonical block order and the Safety Rule (mandatory flame blocks only for prompt, documentation_task, agent_instruction, artifact, thread).
+
+### **Location**
+- **DB**: Row in `lupo_agent_faucets` with `agent_faucet_id` 7, `actor_id` 2, `domain_id` 42.  
+- **File-based**: `lupo-database/lupopedia/actors/faucets/7/faucet.json`. Manifest: `lupo-database/lupopedia/actors/faucets/by_actor.json` maps (actor_id 2, domain_id 42) → 7.
+
+### **Loading**
+- `php lupo-bin/faucet_loader.php --channel=42 --actor=2` loads the Lilith Flame Expert faucet (ID-scoped or per-actor override). Validate with `php lupo-bin/validate_faucets.php`.
+
 ---
 
 *End of FLARE doctrine.*

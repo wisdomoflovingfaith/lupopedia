@@ -190,6 +190,7 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 - `actor_id` is the universal identity key. There is no `user_id` in relationships.
 - Actor IDs 0–9999 are reserved for AI agents; human actors start at 10000.
 - Tables: `lupo_actors` (unified), `lupo_auth_users` (human login metadata), `lupo_agents` (AI agent metadata).
+- Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see FLARE doctrine Section 19 and `docs/status/LILITH_FLAME_FAUCET_REPORT.md`.
 
 ### Path Handling
 - Lupopedia is always in a subdirectory. All URLs must use `LUPOPEDIA_PUBLIC_PATH` (e.g., `LUPOPEDIA_PUBLIC_PATH . '/login'`). Hardcoded root paths like `/login` are forbidden.

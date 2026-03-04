@@ -6,6 +6,11 @@
       "actor_id": 19,
       "domain_id": 42,
       "agent_faucet_id": 6
+    },
+    {
+      "actor_id": 2,
+      "domain_id": 42,
+      "agent_faucet_id": 7
     }
   ]
 }
