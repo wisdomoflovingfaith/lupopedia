@@ -112,10 +112,30 @@ To ensure multi-agent parser stability, headers MUST follow the canonical order.
 
 **Canonical Block Order:**
 1.  `flame.init`
-2.  `flare.headers`
-3.  `flare.edges`
-4.  `flare.footer`
-5.  `flame.close`
+2.  `flare.conditional`
+3.  `flare.headers`
+4.  `flare.edges`
+5.  `flare.footer`
+6.  `flame.close`
+
+## 16. Conditional Guards & High-Fidelity Briefing (v4.0.56+)
+
+The `flare.conditional` block extends the FLARE protocol with dynamic execution control and rich artifact metadata.
+
+### **guards**
+Defines the boundary conditions for artifact processing.
+- **allow/deny**: Whitelist/blacklist for `actor_ids` or `agent_names`.
+- **time_window**: Temporal constraints (`not_before_utc`, `not_after_utc`).
+- **conditions**: Environmental or feature flag checks.
+
+### **brief (5W1H)**
+Provides a standardized concise briefing of the artifact.
+- **Who**: Owner, intended actors, and audience.
+- **What**: Artifact type and primary objective.
+- **Where**: Repository paths and runtime scope.
+- **When**: Urgency and lifecycle timestamps.
+- **Why**: Rationale and assessed risks.
+- **How**: Methodology and success criteria.
 
 ---
 

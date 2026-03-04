@@ -2,10 +2,46 @@
 ---
 flame.init:
   requirements:
-    flare.version: "{FLARE_VERSION_REQ}"
+    flare:
+      version: "{FLARE_VERSION_REQ}"
   execution_mode: "{EXECUTION_MODE}"
   pre_actions:
     - {PRE_ACTIONS_OBJECT}
+
+flare.conditional:
+  guards:
+    execution_mode: "{GUARD_MODE}"
+    allow:
+      actor_ids: [{ALLOW_ACTOR_IDS}]
+      agent_names: [{ALLOW_AGENT_NAMES}]
+    deny:
+      actor_ids: [{DENY_ACTOR_IDS}]
+    time_window:
+      not_before_utc: "{NOT_BEFORE_UTC}"
+      not_after_utc: "{NOT_AFTER_UTC}"
+    conditions:
+      - {CONDITIONS_LIST}
+  brief:
+    who:
+      owner_actor_id: {OWNER_ACTOR_ID}
+      intended_actors: [{INTENDED_ACTORS}]
+      audience: [{AUDIENCE}]
+    what:
+      artifact_type: "{ARTIFACT_TYPE}"
+      objective: "{OBJECTIVE}"
+    where:
+      repo_paths: [{REPO_PATHS}]
+      runtime_scope: "{RUNTIME_SCOPE}"
+      channels:
+        primary_channel_id: {PRIMARY_CHANNEL_ID}
+    when:
+      urgency: "{URGENCY}"
+      effective_utc: "{EFFECTIVE_UTC}"
+    why:
+      rationale: "{RATIONALE}"
+    how:
+      method: "{METHOD}"
+      success_criteria: [{SUCCESS_CRITERIA}]
 
 flare.headers:
   flare.version: "1.0"

@@ -16,11 +16,21 @@ The `flame.init` block defines prerequisites that must be met before an agent pr
   - Example: `dependency_check: "path/to/file"`
   - Example: `service_check: "DatabaseFactory"`
 
-### 2.2 flame.close (Finalization/Post-Actions)
+### 2.2 flare.conditional (Guards & Briefing)
+The `flare.conditional` block provides granular execution control and a "5W1H" briefing for the artifact.
+- **guards**: Defines who can execute (`allow`/`deny`), when (`time_window`), and under what environmental conditions (`conditions`).
+- **brief**: A human and machine readable summary of the artifact's purpose, scope, urgency, and success criteria (Who, What, Where, When, Why, How).
+
+### 2.3 flare.headers (Standard Metadata)
+Standard metadata for indexing and attribution.
+- **Canonical Key**: `flare.headers`
+- Includes: `file_path_from_root`, `system_version`, `actor_id`, `channel_id`, `artifact_kind`, etc.
+
+### 2.4 flame.close (Finalization/Post-Actions)
 The `flame.close` block defines actions to be performed after the file has been processed.
 - **Canonical Key**: `flame.close`
-- **Actor Routing**: `actor_id` defaults to the file's `flare.headers.actor_id` to maintain local responsibility, rather than flooding the system actor (0).
-- **Typed Actions**:
+- **Actor Responsibility**: `actor_id` defaults to the file's `flare.headers.actor_id` to maintain local responsibility.
+- **Typed Actions**: Actions must be objects.
   - Example: `type: register_completion`
 
 ## 3. Targeted Enforcement (The "Safety Rule")
@@ -39,10 +49,11 @@ They are **OPTIONAL** for:
 ## 4. Canonical Order
 Headers MUST follow this exact order to ensure parser stability:
 1. `flame.init`
-2. `flare.headers`
-3. `flare.edges`
-4. `flare.footer`
-5. `flame.close`
+2. `flare.conditional`
+3. `flare.headers`
+4. `flare.edges`
+5. `flare.footer`
+6. `flame.close`
 
 ## 5. YAML Structure Example
 
@@ -51,10 +62,51 @@ Headers MUST follow this exact order to ensure parser stability:
 ---
 flame.init:
   requirements:
-    flare.version: ">=4.0.55"
-  execution_mode: "required"
+    flare:
+      version: ">=4.0.55"
+  execution_mode: "advisory"
   pre_actions:
-    - dependency_check: "lupo-includes/bootstrap.php"
+    - type: dependency_check
+      path: "lupo-includes/bootstrap.php"
+
+flare.conditional:
+  guards:
+    execution_mode: "required"
+    allow:
+      actor_ids: [0]
+      agent_names: ["system"]
+    deny:
+      actor_ids: []
+    time_window:
+      not_before_utc: "2026-03-04T00:00:00Z"
+      not_after_utc: "2026-03-10T00:00:00Z"
+    conditions:
+      - type: env_var_equals
+        key: "LUPO_ENV"
+        value: "prod"
+      - type: feature_flag_enabled
+        flag: "FLAME_V1"
+  brief:
+    who:
+      owner_actor_id: 1004
+      intended_actors: [0, 1004]
+      audience: ["agents", "maintainers"]
+    what:
+      artifact_type: "prompt"
+      objective: "Example objective"
+    where:
+      repo_paths: ["path/to/file"]
+      runtime_scope: "cli"
+      channels:
+        primary_channel_id: 42
+    when:
+      urgency: "high"
+      effective_utc: "2026-03-04T06:00:00Z"
+    why:
+      rationale: "Why this artifact exists"
+    how:
+      method: "How it works"
+      success_criteria: ["Criteria 1"]
 
 flare.headers:
   flare.version: "1.0"
@@ -81,8 +133,8 @@ flame.close:
 
 ## 6. Implementation Steps
 
-1.  **Template Update**: Modify `lupo-tools/flare_header_template.txt` to include typed placeholders and canonical order.
+1.  **Template Update**: Modify `lupo-tools/flare_header_template.txt` to include `flare.conditional`.
 2.  **Tooling Support**:
-    *   Update `lupo-tools/flare_apply.py` to support object-based actions and execution modes.
-    *   Update `lupo-tools/flare_validate.py` to enforce ordering and targeted mandatory rules based on `artifact_kind`.
-3.  **Governance**: Update `FLARE_DOCTRINE.md` to reflect Section 15: Structural Integrity & Typed Actions.
+    *   Update `lupo-tools/flare_apply.py` to support `flare.conditional`.
+    *   Update `lupo-tools/flare_validate.py` to enforce `flare.conditional` constraints.
+3.  **Governance**: Update `FLARE_DOCTRINE.md` to reflect Section 16: Conditional Guards & Briefing.

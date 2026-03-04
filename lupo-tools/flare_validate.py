@@ -46,7 +46,7 @@ def validate_flare_file(path):
 
         # 1. ENFORCE CANONICAL ORDER
         keys = list(data.keys())
-        expected_order = ["flame.init", "flare.headers", "flare.edges", "flare.footer", "flame.close"]
+        expected_order = ["flame.init", "flare.conditional", "flare.headers", "flare.edges", "flare.footer", "flame.close"]
         
         # We only check order for keys that ARE present
         present_expected = [k for k in expected_order if k in keys]
@@ -69,10 +69,25 @@ def validate_flare_file(path):
             if version_num >= 40055 and is_active_artifact:
                 if "flame.init" not in data:
                     errors.append(f"Missing mandatory flame.init for active artifact_kind '{artifact_kind}' (v{sys_version})")
+                if "flare.conditional" not in data:
+                    # Optional for now to avoid breaking existing development artifacts immediately, 
+                    # but highly recommended.
+                    warnings.append(f"Active artifact_kind '{artifact_kind}' (v{sys_version}) lacks flare.conditional block.")
                 if "flame.close" not in data:
                     errors.append(f"Missing mandatory flame.close for active artifact_kind '{artifact_kind}' (v{sys_version})")
         except:
             pass
+
+        # 2.1 FLARE.CONDITIONAL VALIDATION
+        if "flare.conditional" in data:
+            cond = data["flare.conditional"]
+            if not isinstance(cond, dict):
+                errors.append("flare.conditional must be an object")
+            else:
+                if "guards" not in cond:
+                    errors.append("Missing 'guards' in flare.conditional")
+                if "brief" not in cond:
+                    errors.append("Missing 'brief' in flare.conditional")
 
         # 3. TYPED ACTIONS VALIDATION
         if "flame.init" in data:

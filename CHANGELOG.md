@@ -2,10 +2,60 @@
 ---
 flame.init:
   requirements:
-    flare.version: ">=4.0.55"
+    flare:
+      version: ">=4.0.55"
   execution_mode: "advisory"
   pre_actions:
-    - dependency_check: "lupo-includes/bootstrap.php"
+    - type: dependency_check
+      path: "lupo-includes/bootstrap.php"
+
+flare.conditional:
+  guards:
+    execution_mode: "required"
+    allow:
+      actor_ids: [0]
+      agent_names: ["system"]
+    deny:
+      actor_ids: []
+    time_window:
+      not_before_utc: "2026-03-04T00:00:00Z"
+      not_after_utc: "2026-03-10T00:00:00Z"
+    conditions:
+      - type: env_var_equals
+        key: "LUPO_ENV"
+        value: "prod"
+      - type: feature_flag_enabled
+        flag: "FLAME_V1"
+  brief:
+    who:
+      owner_actor_id: 1004
+      intended_actors: [0, 1004]
+      audience: ["agents", "maintainers"]
+    what:
+      artifact_type: "prompt"
+      objective: "Patch flare_validate to enforce flame blocks for targeted artifact_kind"
+    where:
+      repo_paths:
+        - "lupo-tools/flare_validate.py"
+        - "lupo-tools/flare_apply.py"
+      runtime_scope: "cli"
+      channels:
+        primary_channel_id: 42
+        report_channel_id: 0
+    when:
+      urgency: "high"
+      effective_utc: "2026-03-04T06:00:00Z"
+      expires_utc: "2026-03-11T06:00:00Z"
+    why:
+      rationale: "Prevent unsafe agent execution and avoid legacy migration overhead"
+      risks:
+        - "Validator drift across agents"
+        - "Channel 0 flooding if actor routing defaults wrong"
+    how:
+      method: "Implement schema + validator enforcement + template update"
+      success_criteria:
+        - "flare_validate enforces canonical order and targeted mandatory rule"
+        - "flare_apply emits typed action envelopes"
 
 flare.headers:
   flare.version: "1.0"
