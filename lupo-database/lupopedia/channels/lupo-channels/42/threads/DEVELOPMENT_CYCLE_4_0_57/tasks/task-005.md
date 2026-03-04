@@ -1,5 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-005
+
 ---
 flame.init:
   requirements:
@@ -31,7 +33,7 @@ flare.conditional:
       audience: ["agents"]
     what:
       artifact_type: "guide"
-      objective: "TASK-005: Map MD File Fields to DB Schema for Syncing Logic"
+      objective: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
     where:
       repo_paths: ["lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-005.md"]
       runtime_scope: "cli"
@@ -39,7 +41,7 @@ flare.conditional:
         primary_channel_id: 1
     when:
       urgency: "standard"
-      effective_utc: "2026-03-04T10:08:32Z"
+      effective_utc: "2026-03-04T14:39:37Z"
     why:
       rationale: "Standard artifact generation"
     how:
@@ -48,20 +50,20 @@ flare.conditional:
 
 flare.headers:
   flare.version: "1.0"
-  flare.schema: "documentation"
+  flare.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-005.md"
-  file_hash: "6926727d54fdd270ca5045b93cc0142dd70d016940d0ba6d816effccc110a7d1"
+  file_hash: "696951dabab0abff8d8c2607b285ed2c37ef43ed2d6dc23a32f1f5aeb0361621"
   last_updated_utc: "20260304"
-  system_version: "4.0.57"
+  system_version: "4.0.56"
   channel_id: 1
   actor_id: 1004
   delegation_chain: "1004:10000"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "TASK-005: Map MD File Fields to DB Schema for Syncing Logic"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.57"]
-  tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "42", "tasks"]
+  traits: ["flare", "indexed", "v4.0.56"]
+  tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "42", "threads"]
   lupo_agent: "antigravity"
 
 flare.edges:
@@ -73,7 +75,7 @@ flare.footer:
 
 flame.see:
   mappings:
-    - ["lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-005.md", "http://www.lupopedia.com/TASK-005"]
+    - ["lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-005.md", "http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-005"]
 
 flame.close:
   post_actions:
@@ -81,6 +83,7 @@ flame.close:
       channel_id: 0
   actor_id: 1004
 ---
+
 
 # TASK-005: Map MD File Fields to DB Schema for Syncing Logic
 
