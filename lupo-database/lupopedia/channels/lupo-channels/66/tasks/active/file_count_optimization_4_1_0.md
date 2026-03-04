@@ -1,31 +1,87 @@
----
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-flare.headers:
-  file_path_from_root: "channels/42/tasks/active/file_count_optimization_4_1_0.md"
-  file_hash: "92913547cbb88a1ff9f904a89ebe2d66b57e7831787756a9f59c5414d392ac3a"
-  system_version: "4.0.50"
-  channel_id: 42
-  actor_id: 10000
-  last_modified_utc: "20260227"
-  delegation_chain: "10000:10000"
-  artifact_type: "task"
-  purpose: "Optimize repository file count from 9,994 to under 5,000 for version 4.1.0 deployment"
-  mood_rgb: "FF6B35"
-  artifact_kind: "optimization_task"
-  traits: ["critical", "deployment_target", "v4.0.48"]
-  tags: ["file_optimization", "deployment", "4.1.0_target", "cleanup"]
-  lupo_agent: "windsurf"
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/66/tasks/active/file_count_optimization_4_1_0
 
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-flare.footer:
-  outbound_edges:
-    - { to: "channels/42/tasks/active/repository_cleanup_legacy_files_removal.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/DIRECTORY_STRUCTURE_DOCTRINE.md", type: "references", weight: 0.8 }
-    - { to: "config/global_atoms.yaml", type: "references", weight: 0.7 }
-  semantic_tags: ["file_optimization", "deployment_target", "cleanup", "4.1.0_planning"]
 ---
+flame.init:
+  requirements:
+    flare:
+      version: ">=4.0.55"
+  execution_mode: "advisory"
+  pre_actions:
+    - type: dependency_check
+      path: "lupo-includes/bootstrap.php"
+
+flare.conditional:
+  guards:
+    execution_mode: "advisory"
+    allow:
+      actor_ids: [0, 1004]
+      agent_names: ["system", "antigravity"]
+    deny:
+      actor_ids: []
+    time_window:
+      not_before_utc: "2026-03-04T00:00:00Z"
+      not_after_utc: "2026-03-11T00:00:00Z"
+    conditions:
+      - type: feature_flag_enabled
+        flag: "FLAME_V1"
+  brief:
+    who:
+      owner_actor_id: 1004
+      intended_actors: [0, 1004]
+      audience: ["agents"]
+    what:
+      artifact_type: "guide"
+      objective: "Documentation for file_count_optimization_4_1_0.md"
+    where:
+      repo_paths: ["lupo-database/lupopedia/channels/lupo-channels/66/tasks/active/file_count_optimization_4_1_0.md"]
+      runtime_scope: "cli"
+      channels:
+        primary_channel_id: 1
+    when:
+      urgency: "standard"
+      effective_utc: "2026-03-04T14:39:55Z"
+    why:
+      rationale: "Standard artifact generation"
+    how:
+      method: "FLARE automated application"
+      success_criteria: ["header applied correctly"]
+
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "task"
+  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/66/tasks/active/file_count_optimization_4_1_0.md"
+  file_hash: "cc9ddca010dffc4defcf130d8d4fce77d46c883e42703a926a066e44aa963fef"
+  last_updated_utc: "20260304"
+  system_version: "4.0.56"
+  channel_id: 1
+  actor_id: 1004
+  delegation_chain: "1004:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for file_count_optimization_4_1_0.md"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.56"]
+  tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "66", "tasks"]
+  lupo_agent: "antigravity"
+
+flare.edges:
+  outbound_edges: []
+
+flare.footer:
+  last_verified: "20260304"
+  last_verified_by: "antigravity"
+
+flame.see:
+  mappings:
+    - ["lupo-database/lupopedia/channels/lupo-channels/66/tasks/active/file_count_optimization_4_1_0.md", "http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/66/tasks/active/file_count_optimization_4_1_0"]
+
+flame.close:
+  post_actions:
+    - type: register_completion
+      channel_id: 0
+  actor_id: 1004
+---
+
 
 # Task: File Count Optimization for 4.1.0 Deployment
 
