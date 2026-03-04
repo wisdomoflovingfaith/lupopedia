@@ -97,8 +97,8 @@ Section 18 now includes a one-line pointer: “For an optional human-readable ag
 
 ## 7. Validation
 
-- **flare_validate.py:** Run on this report and on FLARE_DOCTRINE.md; exit code **0**. Canonical order and structure preserved.
-- **Registry alignment:** No new hardcoded ID lists in doctrine; Section 18 and 24 use “examples” and “resolve from registry.” Optional grep for inline actor_id lists in doctrine: only example tables and “e.g.” references remain.
+- **flare_validate.py:** Run on this report, AGENT_IDENTITY_REGISTRY_4.0.57.md, and FLARE_DOCTRINE.md; exit code **0**. Canonical order and structure preserved.
+- **Registry alignment:** No new hardcoded ID lists in doctrine; Section 18 and 24 use “examples” and “resolve from registry.” Grep for inline actor_id in doctrine: only example tables and “e.g.” references remain; no canonical lists—registry is the source of truth.
 
 ---
 
