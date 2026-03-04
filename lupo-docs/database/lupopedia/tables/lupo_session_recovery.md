@@ -98,7 +98,7 @@ flip.footer: {
 
 ## 🎯 **Overview**
 
-The `lupo_session_recovery` table implements "Session Continuity Across Restarts" as requested in Lilith's (2038) review. It allows an IDE agent or a human user to resume exactly where they left off by storing periodic snapshots of their environment, current files, and task context.
+The `lupo_session_recovery` table implements "Session Continuity Across Restarts" as requested in Lilith's (actor_id 2; 2038 is legacy external variant) review. It allows an IDE agent or a human user to resume exactly where they left off by storing periodic snapshots of their environment, current files, and task context.
 
 ### **Key Responsibilities**
 - **State Snapping:** Periodically saves the actor's working memory and task state.

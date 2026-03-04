@@ -204,7 +204,7 @@ Accurate authorship tracking, proper multi-agent delegation chains, correct attr
 
 ## 19. Lilith Flame Header Expert Faucet (v4.0.56+)
 
-Lilith (actor_id 2, emotional AI / critical review agent) has a specialized faucet for **flame header expertise** in `lupo_agent_faucets`.
+Lilith (**actor_id 2**, emotional AI / critical review agent) has a specialized faucet for **flame header expertise** in `lupo_agent_faucets`. **Canonical Lilith ID is 2** (seeds/registry); 2038 is a legacy or external-variant identifier and should not be used for new faucets or registry.
 
 ### **Purpose**
 - **Name**: Lilith Flame Expert  
@@ -217,6 +217,18 @@ Lilith (actor_id 2, emotional AI / critical review agent) has a specialized fauc
 
 ### **Loading**
 - `php lupo-bin/faucet_loader.php --channel=42 --actor=2` loads the Lilith Flame Expert faucet (ID-scoped or per-actor override). Validate with `php lupo-bin/validate_faucets.php`.
+
+## 20. Integration with ANUBIS and Wolfie Aliases (Future)
+
+This section documents planned integration points between FLARE/flame and other system agents.
+
+### **ANUBIS (actor_id 19)**
+- **Orphan ingestion**: When ANUBIS processes files lacking FLARE headers and ingests them into `lupo_contents`, it should assign a **canonical URL** from `flame.see` mappings (when present or when generating flame.see) to `lupo_contents.content_url` so that URL resolvers and the CLI `lupo see` can resolve URLs to ingested content. This ties flame.see URL-to-path mappings to stored content.
+- **Flare ingestion faucet**: The ANUBIS FLARE Ingestion faucet (agent_faucet_id 6) system_prompt and allowed_operations include assigning canonical URL from flame.see to content rows during ingestion.
+
+### **Wolfie aliases**
+- **FLARE / FLIP / Wolfie headers**: All refer to the same file-level metadata protocol. Tooling and doctrine use "FLARE" as the canonical term; "Wolfie" and "FLIP" are aliases. Captain Wolfie (actor_id 10000) is the human authority; agent-generated headers should set `delegation_chain` to `"<actor_id>:10000"` per Section 18.
+- **Future**: Centralized alias resolution (e.g. Wolfie → FLARE, FLIP → FLARE) in validators and CLIs for consistent messaging and docs.
 
 ---
 
