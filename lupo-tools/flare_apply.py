@@ -171,7 +171,9 @@ def build_header(path, original_text):
     artifact_type = "guide"
     artifact_kind = "documentation"
     mood_rgb = MOOD_RGB_DEFAULT
-    delegation_chain = f"{actor_id if actor_id else ACTOR_ID_DEFAULT}:10000"
+    
+    current_actor = actor_id if actor_id is not None else int(ACTOR_ID_DEFAULT)
+    delegation_chain = f"{current_actor}:10000"
 
     tags = []
     parts = [p for p in re.split(r"[\\/]+", path) if p]
@@ -189,23 +191,19 @@ f"# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)\n\n"
 f"---\n"
 f"flame.init:\n"
 f"  requirements:\n"
-f"    flare.version: \"4.0.55+\"\n"
-f"  pre_actions: [\"read dependencies\"]\n\n"
+f"    flare.version: \">=4.0.55\"\n"
+f"  execution_mode: \"advisory\"\n"
+f"  pre_actions:\n"
+f"    - dependency_check: \"lupo-includes/bootstrap.php\"\n\n"
 f"flare.headers:\n"
 f"  flare.version: \"{flare_version}\"\n"
 f"  flare.schema: \"{schema}\"\n"
-f"  flare.edges: []\n"
 f"  file_path_from_root: \"{path}\"\n"
 f"  file_hash: \"{file_hash}\"\n"
 f"  last_updated_utc: \"{UTC_DATE}\"\n"
 f"  system_version: \"{SYSTEM_VERSION}\"\n"
-)
-    if channel_id is not None:
-        header += f"  channel_id: {channel_id}\n"
-    else:
-        header += f"  channel_id: 1\n"
-    header += f"  actor_id: {actor_id if actor_id is not None else ACTOR_ID_DEFAULT}\n"
-    header += (
+f"  channel_id: {channel_id if channel_id is not None else 1}\n"
+f"  actor_id: {current_actor}\n"
 f"  delegation_chain: \"{delegation_chain}\"\n"
 f"  artifact_type: \"{artifact_type}\"\n"
 f"  artifact_kind: \"{artifact_kind}\"\n"
@@ -214,12 +212,16 @@ f"  mood_rgb: \"{mood_rgb}\"\n"
 f"  traits: [\"flare\", \"indexed\", \"v{SYSTEM_VERSION}\"]\n"
 f"  tags: {json.dumps(tags)}\n"
 f"  lupo_agent: \"{Lupo_AGENT}\"\n\n"
+f"flare.edges:\n"
+f"  outbound_edges: []\n\n"
 f"flare.footer:\n"
 f"  last_verified: \"{UTC_DATE}\"\n"
 f"  last_verified_by: \"{VERIFIED_BY}\"\n\n"
 f"flame.close:\n"
-f"  post_actions: [\"faucet integration\"]\n"
-f"  actor_id: 0\n"
+f"  post_actions:\n"
+f"    - type: register_completion\n"
+f"      channel_id: 0\n"
+f"  actor_id: {current_actor}\n"
 f"---\n\n"
     )
     return header

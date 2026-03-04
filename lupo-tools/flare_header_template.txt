@@ -2,12 +2,14 @@
 ---
 flame.init:
   requirements:
-    flare.version: "4.0.55+"
-  pre_actions: ["{PRE_ACTIONS}"]
+    flare.version: "{FLARE_VERSION_REQ}"
+  execution_mode: "{EXECUTION_MODE}"
+  pre_actions:
+    - {PRE_ACTIONS_OBJECT}
 
 flare.headers:
   flare.version: "1.0"
-  flare.schema: "documentation"
+  flare.schema: "{SCHEMA}"
   file_path_from_root: "{FILE_PATH_FROM_ROOT}"
   file_hash: "{FILE_HASH}"
   federation_node_id: "{FEDERATION_NODE_ID}"
@@ -18,6 +20,7 @@ flare.headers:
   actor_id: "{ACTOR_ID}"
   delegation_chain: "{DELEGATION_CHAIN}"
   artifact_type: "{ARTIFACT_TYPE}"
+  artifact_kind: "{ARTIFACT_KIND}"
   purpose: "{PURPOSE}"
   mood_rgb: "{MOOD_RGB}"
   traits: ["{TRAITS}"]
@@ -28,9 +31,6 @@ flare.edges:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
-    - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.9 }
-    - { to: "actors/registry.json", type: "references", weight: 0.8 }
-    - { to: "database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
   semantic_tags: ["flare", "federation", "canonical", "protocol"]
 
 flare.footer:
@@ -38,8 +38,9 @@ flare.footer:
   last_verified_by: "{LAST_VERIFIED_BY}"
 
 flame.close:
-  post_actions: ["{POST_ACTIONS}"]
-  actor_id: 0
+  post_actions:
+    - {POST_ACTIONS_OBJECT}
+  actor_id: {ACTOR_ID}
 ---
 
 {CONTENT}

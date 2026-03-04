@@ -2,8 +2,10 @@
 ---
 flame.init:
   requirements:
-    flare.version: "4.0.55+"
-  pre_actions: ["read dependencies", "setup environment"]
+    flare.version: ">=4.0.55"
+  execution_mode: "advisory"
+  pre_actions:
+    - dependency_check: "lupo-includes/bootstrap.php"
 
 flare.headers:
   flare.version: "1.0"
@@ -17,6 +19,7 @@ flare.headers:
   delegation_chain: "1002:10000"
   arity: "high"
   artifact_type: "changelog"
+  artifact_kind: "history"
   purpose: "Canonical version history for Lupopedia with FLARE protocol migration documentation and ANUBIS database primacy"
   dialog_message: "Version 4.0.53 initialized with Crafty Syntax upgrade boot enhancements and multi-agent session isolation."
   mood_rgb: "4169E1"
@@ -41,12 +44,14 @@ flare.edges:
   semantic_tags: ["changelog", "versions", "releases", "history", "flare", "federation"]
 
 flare.footer:
-  last_verified_utc: "20260304"
+  last_verified: "20260304"
   last_verified_by: "antigravity"
 
 flame.close:
-  post_actions: ["register completion"]
-  actor_id: 0
+  post_actions:
+    - type: register_completion
+      channel_id: 0
+  actor_id: 1006
 ---
 
 # Lupopedia CHANGELOG

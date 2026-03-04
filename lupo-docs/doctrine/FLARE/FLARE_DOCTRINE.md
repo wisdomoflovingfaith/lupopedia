@@ -88,17 +88,34 @@ To ensure predictable content resolution and synchronization across environments
 
 ## 14. Lifecycle Hooks (v4.0.56+)
 
-Starting with version 4.0.56, FLARE headers support lifecycle hooks via `flame.init` and `flame.close` blocks. These blocks allow for automated pre-processing and post-processing and are mandatory for files with `system_version` 4.0.55+.
+Starting with version 4.0.56, FLARE headers support lifecycle hooks via `flame.init` and `flame.close` blocks. These blocks enable automated pre-processing and post-processing for active artifacts.
 
-### **flame.init**
-Defines prerequisites and pre-reading actions.
-- **Fields**: `requirements` (version checks), `pre_actions` (setup tasks).
-- **Aliases**: `flame.on`, `flame.open`, `flame.requirements`.
+### **Usage Policy (The Safety Rule)**
+To ensure system stability without creating legacy overhead, `flame` blocks are **MANDATORY** only for the following `artifact_kind` types (v4.0.55+):
+- `prompt`, `documentation_task`, `agent_instruction`, `artifact`, `thread`.
 
-### **flame.close**
-Defines post-reading actions and results distribution.
-- **Fields**: `post_actions` (cleanup/registration tasks), `actor_id` (default: 0), `faucet_id`.
-- **Aliases**: `flame.off`.
+### **flame.init (Prologue Hook)**
+Declares requirements and pre-execution setup.
+- **Execution Mode**: `execution_mode` determines if actions are `advisory` (optional) or `required` (fail if action fails).
+- **Typed Actions**: Actions must be defined as JSON/YAML objects to prevent ambiguity.
+  - Example: `- dependency_check: "bootstrap.php"`
+
+### **flame.close (Epilogue Hook)**
+Declares results routing and post-execution cleanup.
+- **Actor Responsibility**: `actor_id` MUST default to the initiating `flare.headers.actor_id` to maintain a local audit trail.
+- **Typed Actions**:
+  - Example: `- type: register_completion`
+
+## 15. Structural Integrity & Canonical Ordering
+
+To ensure multi-agent parser stability, headers MUST follow the canonical order. Validators will reject artifacts with shuffled prologue blocks.
+
+**Canonical Block Order:**
+1.  `flame.init`
+2.  `flare.headers`
+3.  `flare.edges`
+4.  `flare.footer`
+5.  `flame.close`
 
 ---
 

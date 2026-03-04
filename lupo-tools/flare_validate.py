@@ -7,7 +7,7 @@ import re
 from datetime import datetime
 
 def validate_flare_file(path):
-    """Validate a single FLARE file"""
+    """Validate a single FLARE file with v4.0.56 high-fidelity rules"""
     errors = []
     warnings = []
     
@@ -22,7 +22,7 @@ def validate_flare_file(path):
         
         for i, line in enumerate(lines):
             if line.strip() == "---" and i < 120:
-                for j in range(i+1, min(i+50, len(lines))):
+                for j in range(i+1, min(i+100, len(lines))):
                     if lines[j].strip() == "---":
                         block_content = "\n".join(lines[i:j+1])
                         if "flare.headers:" in block_content:
@@ -35,95 +35,105 @@ def validate_flare_file(path):
             errors.append("No FLARE header found")
             return errors, warnings
         
-        block_lines = lines[flare_start:flare_end+1]
-        block_content = "\n".join(block_lines)
+        header_lines = lines[flare_start:flare_end+1]
+        raw_yaml = "\n".join(header_lines).strip("---").strip()
         
-        # Required fields
-        required_fields = [
-            "flare.version",
-            "flare.schema", 
-            "flare.edges",
-            "file_path_from_root",
-            "file_hash",
-            "last_updated_utc",
-            "system_version"
-        ]
+        try:
+            data = yaml.safe_load(raw_yaml)
+        except Exception as e:
+            errors.append(f"YAML Syntax Error: {e}")
+            return errors, warnings
+
+        # 1. ENFORCE CANONICAL ORDER
+        keys = list(data.keys())
+        expected_order = ["flame.init", "flare.headers", "flare.edges", "flare.footer", "flame.close"]
         
-        for field in required_fields:
-            if field not in block_content:
-                errors.append(f"Missing required field: {field}")
+        # We only check order for keys that ARE present
+        present_expected = [k for k in expected_order if k in keys]
+        actual_order = [k for k in keys if k in expected_order]
         
-        # Date format validation
-        date_match = re.search(r'last_updated_utc:\s*"(\d{8})"', block_content)
-        if date_match:
-            date_str = date_match.group(1)
-            if len(date_str) != 8:
-                errors.append("Invalid date format (must be YYYYMMDD)")
+        if present_expected != actual_order:
+            errors.append(f"Header order mismatch. Expected: {', '.join(present_expected)}")
+
+        # 2. TARGETED MANDATORY RULES (Safety Rule)
+        headers = data.get("flare.headers", {})
+        artifact_kind = headers.get("artifact_kind", "unknown")
+        sys_version = str(headers.get("system_version", "0.0.0"))
         
-        # Path validation
-        path_match = re.search(r'file_path_from_root:\s*"([^"]+)"', block_content)
-        if path_match:
-            expected_path = os.path.relpath(path, ".")
-            actual_path = path_match.group(1).replace("\\", "/")  # Normalize for comparison
-            normalized_expected = expected_path.replace("\\", "/")
-            if actual_path != normalized_expected:
-                errors.append(f"Path mismatch: {actual_path} != {normalized_expected}")
+        is_active_artifact = artifact_kind in ["prompt", "documentation_task", "agent_instruction", "artifact", "thread"]
         
-        # Version-specific validation
-        version_match = re.search(r'system_version:\s*"([^"]+)"', block_content)
-        if version_match:
-            sys_version = version_match.group(1)
-            # Check if version is 4.0.55 or higher
-            try:
-                v_parts = [int(x) for x in re.findall(r'\d+', sys_version)]
-                if len(v_parts) >= 3:
-                    version_num = v_parts[0] * 10000 + v_parts[1] * 100 + v_parts[2]
-                    if version_num >= 40055:
-                        if "flame.init:" not in block_content:
-                            errors.append("Missing required flame.init block for 4.0.55+")
-                        if "flame.close:" not in block_content:
-                            errors.append("Missing required flame.close block for 4.0.55+")
-            except:
-                pass
-        
-        # Warnings
-        if "needs_review:" in block_content:
-            warnings.append("Has needs_review fields")
-        
-        if any(key in block_content for key in ["wolfie.headers:", "flip.headers:", "flp.headers:", "flph.headers:", "crop.headers:"]):
-            warnings.append("Has legacy blocks")
-        
+        try:
+            v_parts = [int(x) for x in re.findall(r'\d+', sys_version)]
+            version_num = v_parts[0] * 10000 + v_parts[1] * 100 + (v_parts[2] if len(v_parts) > 2 else 0)
+            
+            if version_num >= 40055 and is_active_artifact:
+                if "flame.init" not in data:
+                    errors.append(f"Missing mandatory flame.init for active artifact_kind '{artifact_kind}' (v{sys_version})")
+                if "flame.close" not in data:
+                    errors.append(f"Missing mandatory flame.close for active artifact_kind '{artifact_kind}' (v{sys_version})")
+        except:
+            pass
+
+        # 3. TYPED ACTIONS VALIDATION
+        if "flame.init" in data:
+            init = data["flame.init"]
+            if not isinstance(init, dict):
+                errors.append("flame.init must be an object")
+            else:
+                pre_actions = init.get("pre_actions", [])
+                if not isinstance(pre_actions, list):
+                    errors.append("flame.init.pre_actions must be a list")
+                else:
+                    for action in pre_actions:
+                        if not isinstance(action, dict):
+                            errors.append(f"Untyped action in flame.init: {action}. Actions must be objects.")
+
+        if "flame.close" in data:
+            close = data["flame.close"]
+            if not isinstance(close, dict):
+                errors.append("flame.close must be an object")
+            else:
+                post_actions = close.get("post_actions", [])
+                if not isinstance(post_actions, list):
+                    errors.append("flame.close.post_actions must be a list")
+                else:
+                    for action in post_actions:
+                        if not isinstance(action, dict):
+                            errors.append(f"Untyped action in flame.close: {action}. Actions must be objects.")
+
+        # 4. PATH VALIDATION
+        expected_path = os.path.relpath(path, ".").replace("\\", "/")
+        actual_path = str(headers.get("file_path_from_root", "")).replace("\\", "/")
+        if actual_path and actual_path != expected_path:
+            errors.append(f"Path mismatch: {actual_path} != {expected_path}")
+
     except Exception as e:
-        errors.append(f"Validation error: {e}")
+        errors.append(f"Unexpected validation error: {e}")
     
     return errors, warnings
 
 def main():
-    if len(sys.argv) > 1 and sys.argv[1] == "--ci":
-        ci_mode = True
-    else:
-        ci_mode = False
+    ci_mode = "--ci" in sys.argv
     
-    # Read index
-    index_file = "tools/flare_file_index.txt"
+    # Use flare_md_index.txt generated by flare_apply.py
+    index_file = "tools/flare_md_index.txt"
     if not os.path.exists(index_file):
-        print("ERROR: tools/flare_file_index.txt not found")
-        if ci_mode:
-            sys.exit(1)
-        return
-    
-    with open(index_file, "r", encoding="utf-8") as f:
-        paths = [line.strip() for line in f if line.strip()]
+        # Fallback to manual scan if index doesn't exist
+        paths = []
+        for root, dirs, files in os.walk("."):
+            if ".git" in dirs: dirs.remove(".git")
+            for file in files:
+                if file.endswith(".md"):
+                    paths.append(os.path.join(root, file))
+    else:
+        with open(index_file, "r", encoding="utf-8") as f:
+            paths = [line.strip() for line in f if line.strip()]
     
     total_errors = 0
     total_warnings = 0
     
     for path in paths:
-        if not path.endswith(".md"):
-            continue
-        
-        if not os.path.exists(path):
-            continue
+        if not os.path.exists(path): continue
         
         errors, warnings = validate_flare_file(path)
         
