@@ -662,17 +662,7 @@ CREATE INDEX lupo_agent_versions_agent_id ON lupo_agent_versions (agent_id);
 CREATE INDEX lupo_agent_versions_version_label ON lupo_agent_versions (version_label);
 CREATE INDEX lupo_agent_versions_semver_major ON lupo_agent_versions (semver_major, semver_minor, semver_patch);
 
-CREATE TABLE lupo_aliases (
-  alias_id int NOT NULL,
-  slug varchar(255) NOT NULL,
-  alias varchar(255) NOT NULL,
-  alias_type varchar(50) DEFAULT 'semantic',
-  created_at bigint,
-  PRIMARY KEY (alias_id)
-);
-
-CREATE UNIQUE INDEX lupo_aliases_uniq_alias ON lupo_aliases (alias);
-CREATE INDEX lupo_aliases_idx_slug ON lupo_aliases (slug);
+-- lupo_aliases moved to future_features_lupopedia.sql (v4.0.57)
 
 CREATE TABLE lupo_analytics_campaign_vars (
   campaign_var_id bigint NOT NULL,
@@ -887,18 +877,7 @@ CREATE TABLE lupo_anubis_mirrored (
 );
 
 
-CREATE TABLE lupo_anubis_orphaned (
-  anubis_orphaned_id bigint NOT NULL,
-  table_name varchar(255) NOT NULL,
-  orphan_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
-  updated_ymdhis bigint NOT NULL,
-  reason varchar(255) NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (anubis_orphaned_id)
-);
-
+-- lupo_anubis_orphaned moved to future_features_lupopedia.sql (v4.0.57)
 
 CREATE TABLE lupo_anubis_redirects (
   anubis_redirect_id bigint NOT NULL,
@@ -3150,6 +3129,7 @@ CREATE INDEX lupo_sessions_idx_security ON lupo_sessions (security_level);
 CREATE INDEX lupo_sessions_idx_status ON lupo_sessions (is_active, is_expired, is_revoked);
 CREATE INDEX lupo_sessions_idx_cleanup ON lupo_sessions (is_deleted, last_seen_ymdhis);
 CREATE INDEX lupo_sessions_idx_created ON lupo_sessions (created_ymdhis);
+CREATE INDEX lupo_sessions_idx_channel_id ON lupo_sessions (channel_id);
 
 -- Old session events table removed in v4.0.55 - consolidated into lupo_unified_log
 
@@ -3205,10 +3185,9 @@ CREATE TABLE lupo_unified_log (
   PRIMARY KEY (log_id)
 );
 
--- Indexes for unified log (matching TOON exactly)
+-- Indexes for unified log (matching TOON exactly; idx_created_ymdhis removed as duplicate of lupo_unified_log_idx_created_ymdhis)
 CREATE INDEX idx_actor_log ON lupo_unified_log (actor_id, log_type);
 CREATE INDEX idx_channel_log ON lupo_unified_log (channel_id, log_type);
-CREATE INDEX idx_created_ymdhis ON lupo_unified_log (created_ymdhis);
 CREATE INDEX idx_log_type_created ON lupo_unified_log (log_type, created_ymdhis);
 CREATE INDEX idx_session_log ON lupo_unified_log (session_id, log_type);
 CREATE INDEX lupo_unified_log_idx_actor_id ON lupo_unified_log (actor_id);
@@ -3268,29 +3247,7 @@ CREATE INDEX lupo_temporal_coherence_snapshots_idx_created_ymdhis ON lupo_tempor
 CREATE INDEX lupo_temporal_coherence_snapshots_idx_utc_anchor ON lupo_temporal_coherence_snapshots (utc_anchor);
 CREATE INDEX lupo_temporal_coherence_snapshots_idx_is_deleted ON lupo_temporal_coherence_snapshots (is_deleted);
 
-CREATE TABLE lupo_tldnr (
-  tldnr_id bigint NOT NULL,
-  slug varchar(255) NOT NULL,
-  title varchar(255) NOT NULL,
-  content_text text NOT NULL,
-  topic_type varchar(100) DEFAULT NULL,
-  topic_reference varchar(255) DEFAULT NULL,
-  system_version varchar(20) DEFAULT NULL,
-  category varchar(100) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (tldnr_id)
-);
-
-CREATE UNIQUE INDEX lupo_tldnr_uniq_slug ON lupo_tldnr (slug);
-CREATE INDEX lupo_tldnr_idx_topic_type ON lupo_tldnr (topic_type);
-CREATE INDEX lupo_tldnr_idx_topic_reference ON lupo_tldnr (topic_reference);
-CREATE INDEX lupo_tldnr_idx_category ON lupo_tldnr (category);
-CREATE INDEX lupo_tldnr_idx_system_version ON lupo_tldnr (system_version);
-CREATE INDEX lupo_tldnr_idx_is_deleted ON lupo_tldnr (is_deleted);
-CREATE INDEX lupo_tldnr_idx_created ON lupo_tldnr (created_ymdhis);
+-- lupo_tldnr moved to future_features_lupopedia.sql (v4.0.57)
 
 -- Consolidated truth knowledge table replacing 6 truth tables
 CREATE TABLE lupo_truth_knowledge (

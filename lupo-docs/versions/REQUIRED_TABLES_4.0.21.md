@@ -137,7 +137,7 @@ All tables in this section are in `install_new_lupopedia.sql` and have TOON file
 
 ## Future Features Tables (in future_features_lupopedia.sql only)
 
-These tables are **not** created by `install_new_lupopedia.sql`. Their definitions live in `database/migrations/future_features_lupopedia.sql` only.
+These tables are **not** created by `install_new_lupopedia.sql`. Their definitions live in `database/migrations/future_features_lupopedia.sql` and/or `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql` (v4.0.57+).
 
 | Table | Classification |
 |-------|----------------|
@@ -145,6 +145,9 @@ These tables are **not** created by `install_new_lupopedia.sql`. Their definitio
 | lupo_memory_debug_log | future-features |
 | lupo_narrative_fragments | future-features |
 | lupo_test_performance_metrics | future-features |
+| lupo_aliases | future-features (moved from install 4.0.57) |
+| lupo_anubis_orphaned | future-features (moved from install 4.0.57) |
+| lupo_tldnr | future-features (moved from install 4.0.57) |
 
 ---
 
@@ -152,11 +155,9 @@ These tables are **not** created by `install_new_lupopedia.sql`. Their definitio
 
 These tables remain in `install_new_lupopedia.sql` but are optional (not required by importer or core runtime). They may be considered for a later move to `future_features_lupopedia.sql` if desired. (lupo_analytics_visits_daily and lupo_analytics_visits_monthly are importer targets and are required.)
 
-- lupo_aliases
 - lupo_analytics_referers_periods
 - lupo_analytics_visits_periods
 - lupo_anubis_mirrored
-- lupo_anubis_orphaned
 - lupo_anubis_redirects
 - lupo_anubis_revised
 - lupo_gov_event_actor_edges
@@ -173,7 +174,6 @@ These tables remain in `install_new_lupopedia.sql` but are optional (not require
 - lupo_pack_role_registry
 - lupo_persona_dialogue_patterns
 - lupo_persona_profiles
-- lupo_tldnr
 
 ---
 
