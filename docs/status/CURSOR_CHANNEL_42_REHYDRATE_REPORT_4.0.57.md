@@ -88,13 +88,14 @@ flare.footer:
 
 ### 2.3 lupo-docs/channels
 
-- **Path**: `lupo-docs/channels/` — 824 files (doctrine, schema, agents, 42/, 0042/, overview, etc.). Channel 42–related: `lupo-docs/channels/42/`, `lupo-docs/channels/0042/`.
+- **Path**: `lupo-docs/channels/` — 858 files (all file types; doctrine, schema, agents, 42/, 0042/, overview, etc.). Channel 42–related: `lupo-docs/channels/42/`, `lupo-docs/channels/0042/`. *Counts updated after Windsurf completion review (was 824; +34 files since initial report).*
 
 ### 2.4 docs/status (Channel 42 work products)
 
 - **Path**: `docs/status/`
-- **Count**: 53 .md files (exact count from filesystem). Key 4.0.57 artifacts (FLARE header summary):
+- **Count**: 55 .md files (exact count from filesystem as of reconciliation). Counts changed after initial report due to additional files added (e.g. `WINDSURF_REVIEW_4.0.57_COMPLETION.md`). Key 4.0.57 artifacts (FLARE header summary):
   - `WINDSURF_REVIEW_CURSOR_WEB_DOC_FIXES_4.0.57.md` — system_version 4.0.57, channel_id 42, actor_id 1002, artifact_type audit.
+  - `WINDSURF_REVIEW_4.0.57_COMPLETION.md` — Windsurf completion verification; PASS; count deltas noted (54/858).
   - `CURSOR_FLARE_ROUTING_AUDIT_4.0.57.md` — routing/federation audit.
   - `CURSOR_WEB_DOC_RESOLUTION_FIXES_4.0.57.md` — problem/solution.
   - `CURSOR_INSTALL_SQL_PIPELINE_MAP_4.0.57.md` — install execution order.
@@ -174,7 +175,7 @@ Files that **describe 4.0.57 work** but had `system_version: "4.0.56"` (and trai
 
 - **Windsurf audit**: All verified items (seeds, install pipeline, router gate, target files) confirmed from repo; only issue was doc header version inconsistencies — addressed for the three files above.
 - **CHANGELOG**: 4.0.57 narrative for web doc resolution, FLARE routing, seeds, install pipeline, federation_node_id semantics, and docs/status rendering is backed by the listed files and install.php.
-- **Channel 42**: Inventory covers channel folder 42 (282 files), docs/status (53 status docs), DEVELOPMENT_CYCLE_4_0_57 thread and tasks; docs/channels empty; lupo-docs/channels (824 files) populated.
+- **Channel 42**: Inventory covers channel folder 42 (282 files), docs/status (55 status docs; counts reconciled per Windsurf completion review), DEVELOPMENT_CYCLE_4_0_57 thread and tasks; docs/channels empty; lupo-docs/channels (858 files) populated.
 - **Seeds**: All three seed files exist, use federation_node_id = 0, and use non–no-op ON DUPLICATE KEY UPDATE.
 - **Install**: install.php lines 619–625 run the three doc seeds after seed_default_sessions for both new and upgrade paths.
 - **Doc headers**: Three status files that described 4.0.57 work now have system_version 4.0.57 and traits v4.0.57.
