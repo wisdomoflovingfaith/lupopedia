@@ -62,18 +62,18 @@ flare.headers:
   flare.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
   file_hash: "to_be_generated"
-  system_version: "4.0.56"
+  system_version: "4.0.57"
   channel_id: 1
-  actor_id: 1006
+  actor_id: 1004
   last_modified_utc: "20260304"
-  delegation_chain: "1002:10000"
+  delegation_chain: "1004:10000"
   arity: "high"
   artifact_type: "changelog"
   artifact_kind: "history"
   purpose: "Canonical version history for Lupopedia with FLARE protocol migration documentation and ANUBIS database primacy"
-  dialog_message: "Version 4.0.53 initialized with Crafty Syntax upgrade boot enhancements and multi-agent session isolation."
+  dialog_message: "Version 4.0.57 initialized with task migration from 4.0.56."
   mood_rgb: "4169E1"
-  traits: ["canonical", "comprehensive", "v4.0.56"]
+  traits: ["canonical", "comprehensive", "v4.0.57"]
   tags: ["changelog", "versions", "releases", "history", "flare", "federation"]
   lupo_agent: "antigravity"
 
@@ -105,7 +105,7 @@ flame.close:
   post_actions:
     - type: register_completion
       channel_id: 0
-  actor_id: 1006
+  actor_id: 1004
 ---
 
 # Lupopedia CHANGELOG
@@ -114,42 +114,16 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 ---
 
-## [4.0.56] — Task Resolution and Further Optimizations (2026-03-04)
+## [4.0.57] — Migration and Optimization (2026-03-04)
 
-**Status**: IN PROGRESS  
-**Theme**: Task migration and system enhancements  
-**Lead Agent**: Cursor (1003), Antigravity (1004)  
-**Focus**: FLARE Lifecycle enhancements, flame header analysis, URL discovery, and briefing integrity.
-
-### Summary — work completed in 4.0.56
-
-- **Version bump:** v4.0.55 pushed to GitHub; v4.0.56 initialized (thread, `version.php`, config atoms).
-- **Task migration:** Active tasks from channels 0 and 42 copied to `DEVELOPMENT_CYCLE_4_0_56/tasks/`; thread and CHANGELOG updated.
-- **Task handover:** Cursor (1003) took over all Channel 42 thread tasks from KIRO (1000) and Windsurf (1002); task MD files and FLARE metadata updated; actor READMEs (1000, 1002, 1003) updated.
-- **Actor help validation:** Combined v1+v2; README and QUICK_REFERENCE for priority actors (0, 1, 19, 1000, 10000); validation report.
-- **ANUBIS FLARE ingestion faucet:** Faucet definition at `lupo-database/.../channels/lupo-channels/42/actors/19/faucets.json`; task doc updated; status complete.
-- **Human-only tasks:** CH0-20260225-001, CH0-20260225-002, and **db_reset_and_install** are human manual only (assigned to **actor_id 10000** Captain).
-- **Reports:** PUSH_LOG_4.0.55, VERSION_BUMP_4.0.56_REPORT, TASK_MIGRATION_4.0.56_REPORT, ACTOR_HELP_DOCUMENTATION_VALIDATION_REPORT, TASK_HANDOVER_CURSOR_4.0.56_REPORT, FAUCET_DIRECTORY_IMPLEMENTATION_REPORT, LUPO_AGENT_FAUCETS_RESEARCH_REPORT, CRAFTY_3.7.5_INSTALL_LOG, UPGRADE_4.0.56_LOG, WEB_ADMIN_TEST_4.0.56, UPGRADE_REPORT_4.0.56, RESEARCH_ANUBIS_WOLFIE_FLARE_LUPOPEDIA, DATABASE_DOCUMENTATION_REMAINING_TABLES_REPORT.
-- **Faucet directory implementation:** Research report on `lupo_agent_faucets`; new ID-scoped layout `lupo-database/lupopedia/actors/faucets/<agent_faucet_id>/faucet.json` with pilot (6 = ANUBIS); `by_actor.json` manifest; FaucetLoader/validate_faucets/faucet_integrity_audit updated (base path, ID-scoped lookup); doctrine and `wolfie_orms.py` aligned; report: `docs/status/FAUCET_DIRECTORY_IMPLEMENTATION_REPORT.md`.
-- **Completed tasks moved:** `actor_help_documentation_validation`, `actor_help_documentation_validation_v2`, and `anubis_flare_ingestion_faucet` moved from `lupo-database/.../channels/lupo-channels/42/tasks/active` to `.../42/tasks/completed`.
-- **Upgrade test (Crafty → 4.0.56):** Install/upgrade procedure documented: `CRAFTY_3.7.5_INSTALL_LOG.md`, `UPGRADE_4.0.56_LOG.md`, `WEB_ADMIN_TEST_4.0.56.md`, `UPGRADE_REPORT_4.0.56.md` (logs and report in `docs/status/`).
-- **Research and upgrade thread prompt:** `docs/status/RESEARCH_ANUBIS_WOLFIE_FLARE_LUPOPEDIA.md` — research on ANUBIS, Wolfie, FLARE headers, Lupopedia; generated directive-style prompt for thread `UPGRADE_TEST_CRAFTY_TO_4_0_56.md`.
-- **Database documentation remaining tables:** All TOONs now have table docs. Five missing docs added: `lupo_anubis_processing_log`, `lupo_anubis_quarantine`, `lupo_anubis_queue`, `lupo_anubis_recovery_attempts`, `lupo_channel_boot_detail_lifecycle`. Report: `docs/status/DATABASE_DOCUMENTATION_REMAINING_TABLES_REPORT.md`. Task marked complete.
-- **FLARE Lifecycle Hooks (v4.0.56)**: Finalized `flame.init`, `flame.close`, and `flare.conditional` schema. Implemented typed actions (objects) for pre-flight dependency checks and post-read result registration.
-- **flame.see URL Discovery**: Implemented URL-to-Markdown mapping block; added `lupo see` command to the CLI for resolving canonical web URLs to repository paths via an automated indexer (`flare_see.py`).
-- **Enforced Safety Rule**: Header blocks are mandatory only for active `artifact_kind` types (prompt, task, etc.) to prevent legacy documentation sprawl while ensuring agent compliance.
-- **Development Halt (Refinement)**: Automated circular mapping refinements were halted to preserve a stable, canonical baseline; analysis and documentation completed to guide future faucet integrations.
-- **Pros/Cons Analysis**: 
-    - *Pros*: Declarative requirements, 5W1H high-fidelity briefing, CLI-based discovery.
-    - *Cons*: Risk of path/URL drift (mitigated by `flare_validate` collision detection).
-- **Validation Refactoring**: Re-engineered `lupo-tools/flare_validate.py` to enforce ordering and targeted mandatory rules for active artifact types (`prompt`, `task`, etc.).
-- **Doctrine Synchronization**: Updated `FLARE_DOCTRINE.md` with Sections 14, 15, and 16; created comprehensive Implementation Plan and Report for 4.0.56.
-- **Reports (Antigravity)**: FLARE_ENHANCEMENTS_PLAN_4.0.56, FLARE_ENHANCEMENTS_REPORT_4.0.56.
+**Status**: INITIALIZED  
+**Theme**: Resolution of outstanding tasks and system optimization  
+**Lead Agent**: Antigravity (1004)  
+**Focus**: Resolve outstanding directory migration, database optimization, and repository cleanup tasks migrated from v4.0.56.
 
 ### TODO Tasks (Migrated)
 
 #### From Channel 0
-
 - **Task CH0-20260225-001**: Drop tables and run install — **human manual only** (assigned: **actor_id 10000** Captain, priority: critical, status: active)
 - **Task CH0-20260225-002**: Primary install upgrade 4.0.46 — **human manual only** (assigned: **actor_id 10000** Captain, priority: critical, status: active)
 - **Task broadcast_normalization**: Broadcast system normalization (assigned: 10000, priority: high, status: active)
@@ -158,14 +132,41 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Task registry_lock**: Registry system locking (assigned: 10000, priority: medium, status: active)
 
 #### From Channel 42
-
-- **Task actor_help_documentation_validation**: Actor help documentation validation — ✅ complete (combined with v2)
-- **Task actor_help_documentation_validation_v2**: Actor help documentation validation v2 — ✅ complete (merged with v1)
-- **Task anubis_flare_ingestion_faucet**: ANUBIS FLARE ingestion faucet — ✅ complete (assigned: 1003 Cursor, priority: medium; faucet file created, task doc updated)
-- **Task database_documentation_remaining_tables**: Database documentation for remaining tables — ✅ complete (all TOONs documented; 5 table docs added; report in docs/status/)
 - **Task database_optimization_analysis**: Database optimization analysis (assigned: 1003 Cursor, priority: medium, status: active)
 - **Task file_count_optimization_4_1_0**: File count optimization for 4.1.0 (assigned: 1003 Cursor, priority: low, status: Active Planning)
 - **Task repository_cleanup_legacy_files_removal**: Repository cleanup and legacy files removal (assigned: 1003 Cursor, priority: low, status: active)
+- **Phase 2 Migration Tasks**: task-001 through task-016 (Lead: 1003 Cursor; files in `DEVELOPMENT_CYCLE_4_0_57/tasks/`).
+
+---
+
+## [4.0.56] — Task Resolution and Further Optimizations (2026-03-04)
+
+**Status**: COMPLETED  
+**Theme**: Task migration and system enhancements  
+**Lead Agent**: Cursor (1003), Antigravity (1004)  
+**Focus**: FLARE Lifecycle enhancements, flame header analysis, URL discovery, and briefing integrity.
+
+### Summary — work completed in 4.0.56
+
+- **Version bump:** v4.0.55 pushed to GitHub; v4.0.56 initialized (thread, `version.php`, config atoms).
+- **Task migration:** Active tasks from channels 0 and 42 copied to `DEVELOPMENT_CYCLE_4_0_56/tasks/`; thread and CHANGELOG updated.
+- **Task handover:** Cursor (1003) took over all Channel 42 thread tasks from KIRO (1000) and Windsurf (1002).
+- **Actor help validation:** Combined v1+v2; README and QUICK_REFERENCE for priority actors (0, 1, 19, 1000, 10000); validation report.
+- **ANUBIS FLARE ingestion faucet:** Faucet definition at `lupo-database/.../channels/lupo-channels/42/actors/19/faucets.json`; task doc updated; status complete.
+- **Human-only tasks:** CH0-20260225-001, CH0-20260225-002, and **db_reset_and_install** are human manual only (assigned to **actor_id 10000** Captain).
+- **Reports:** PUSH_LOG_4.0.55, VERSION_BUMP_4.0.56_REPORT, TASK_MIGRATION_4.0.56_REPORT, ACTOR_HELP_DOCUMENTATION_VALIDATION_REPORT, TASK_HANDOVER_CURSOR_4.0.56_REPORT, FAUCET_DIRECTORY_IMPLEMENTATION_REPORT, LUPO_AGENT_FAUCETS_RESEARCH_REPORT, CRAFTY_3.7.5_INSTALL_LOG, UPGRADE_4.0.56_LOG, WEB_ADMIN_TEST_4.0.56, UPGRADE_REPORT_4.0.56, RESEARCH_ANUBIS_WOLFIE_FLARE_LUPOPEDIA, DATABASE_DOCUMENTATION_REMAINING_TABLES_REPORT, FLAME_HEADER_REPORT_4.0.56.
+- **Faucet directory implementation:** Research report on `lupo_agent_faucets`; new ID-scoped layout `lupo-database/lupopedia/actors/faucets/<agent_faucet_id>/faucet.json` with pilot (6 = ANUBIS).
+- **Completed tasks moved:** `actor_help_documentation_validation`, `actor_help_documentation_validation_v2`, `anubis_flare_ingestion_faucet`, and `database_documentation_remaining_tables` moved from `lupo-database/.../channels/lupo-channels/42/tasks/active` to `.../42/tasks/completed`.
+- **Upgrade test (Crafty → 4.0.56):** Install/upgrade procedure documented: `CRAFTY_3.7.5_INSTALL_LOG.md`, `UPGRADE_4.0.56_LOG.md`, `WEB_ADMIN_TEST_4.0.56.md`, `UPGRADE_REPORT_4.0.56.md` (logs and report in `docs/status/`).
+- **Research and upgrade thread prompt:** `docs/status/RESEARCH_ANUBIS_WOLFIE_FLARE_LUPOPEDIA.md` — research on ANUBIS, Wolfie, FLARE headers, Lupopedia.
+- **Database documentation remaining tables:** All TOONs now have table docs. Five missing docs added. Task marked complete.
+- **FLARE Lifecycle Hooks (v4.0.56)**: Finalized `flame.init`, `flame.close`, and `flare.conditional` schema. Implemented typed actions (objects) for pre-flight dependency checks and post-read result registration.
+- **flame.see URL Discovery**: Implemented URL-to-Markdown mapping block; added `lupo see` command to the CLI for resolving canonical web URLs to repository paths via an automated indexer (`flare_see.py`).
+- **Enforced Safety Rule**: Header blocks are mandatory only for active `artifact_kind` types (prompt, task, etc.) to prevent legacy documentation sprawl while ensuring agent compliance.
+- **Development Halt (Refinement)**: Automated circular mapping refinements were halted to preserve a stable, canonical baseline; analysis and documentation completed to guide future faucet integrations.
+- **Validation Refactoring**: Re-engineered `lupo-tools/flare_validate.py` to enforce ordering and targeted mandatory rules for active artifact types (`prompt`, `task`, etc.).
+- **Doctrine Synchronization**: Updated `FLARE_DOCTRINE.md` with Sections 14, 15, and 16; created comprehensive Implementation Plan and Report for 4.0.56.
+- **Flame Header Analysis Report**: Comprehensive report created detailing enhancements, schema, CLI usage, and database integration strategies.
 
 Additional task files (task-001 through task-016, etc.) in `lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/` — lead: Cursor (1003).
 
