@@ -296,6 +296,34 @@ Where `<base_url>` = domain for the file’s federation_node_id (e.g. `http://ww
 
 Section 17’s `flame.see` index may store per-node mappings when multiple nodes contribute artifacts. The CLI `lupo see &lt;URL&gt;` resolves the URL to a path; when the URL host differs from the local node’s base URL, the index can still map it to a local path or a node-prefixed path for cross-node resolution.
 
+## 23. Federation Mapping Policies (v4.0.57+)
+
+**flame.see** (Section 17) and **web_path** (Section 12) support full web resolution when every Markdown file in the repo has a URL-to-path mapping. To balance full coverage on the primary node with scalability on federated nodes, the following **mapping policy** applies:
+
+### **Node 0 (primary node, base http://www.lupopedia.com)**
+
+- **Policy:** **Complete mappings.** Every `.md` file in the repository that is part of node 0’s scope (repo root and node-0 paths) **SHOULD** have a **flame.see** block (or equivalent) so that it has at least one URL-to-path entry. This ensures full web resolution: any document served under the node 0 base URL can be resolved by `lupo see &lt;URL&gt;` and the index (`artifacts/index/flame_see_index.json`) provides complete coverage for the primary site.
+- **Rationale:** Single source of truth for the canonical Lupopedia instance; CLI and resolvers can resolve every doc; aligns with Safety Rule (canonical artifacts are discoverable).
+- **Implementation:** Add **flame.see** (with a `[path, url]` pair derived from `file_path_from_root` and `web_path`) to every FLARE-headed `.md`; ensure `flare_see.py` is run so the index is up to date. Gaps can be closed incrementally (e.g. batch add flame.see to docs that lack it).
+
+### **Node &gt; 0 (federated nodes)**
+
+- **Policy:** **Partial or as-needed mappings.** Mappings are **NOT** required to be complete. Only **key artifacts** (e.g. canonical doctrine, status reports, channel-critical files) need **flame.see** entries. This avoids overhead in multi-node setups and keeps indexing/validation lightweight per node.
+- **Rationale:** Scalability; federated nodes may have large or dynamic content; full coverage would create legacy overhead and slow index builds (Safety Rule: mandatory flame blocks only for certain artifact_kind types; partial mappings align with “as-needed”).
+- **Criteria for “key artifacts”:** Doctrine files, thread/task files for the node’s channel, status reports referenced by the task plan, and any document that must be resolvable via `lupo see` on that node. All other `.md` files may omit **flame.see** on node &gt; 0.
+
+### **Summary table**
+
+| federation_node_id | Base URL (example) | Mapping policy | Example |
+|--------------------|--------------------|----------------|---------|
+| **0** | `http://www.lupopedia.com` | **Complete** — every repo `.md` should have flame.see for full web resolution | `docs/status/REPORT.md` → `flame.see: mappings: [["docs/status/REPORT.md", "http://www.lupopedia.com/status/REPORT"]]` |
+| **&gt; 0** | From `lupo_federation_nodes.node_base_url` | **Partial** — only key artifacts (doctrine, status, channel-critical) need flame.see | Key docs only; other `.md` may omit flame.see |
+
+### **Tooling (future)**
+
+- **Node 0:** `flare_see.py` already scans all `.md` files and indexes those with **flame.see** blocks. A future **completeness check** (e.g. compare total `.md` count under repo root vs. number of path entries in the index for node 0) could report gaps. Not implemented in v4.0.57; document as desired enhancement.
+- **Node &gt; 0:** If multi-node indexing is adopted, the index could be node-scoped (e.g. `flame_see_index_node_1.json`) or include a `node_id` field per mapping; indexing could be selective (e.g. only paths under `lupo-database/files/&lt;node_id&gt;/`). Deferred; see Section 22.
+
 ---
 
 *End of FLARE doctrine.*
