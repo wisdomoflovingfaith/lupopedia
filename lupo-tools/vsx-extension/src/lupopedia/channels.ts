@@ -32,6 +32,7 @@ export interface SendMessageRequest {
     actor_name: string;
     actor_type: string;
     body: string;
+    delegation_chain: string;
     meta?: Record<string, unknown>;
 }
 
@@ -111,6 +112,7 @@ async function sendMessageApi(
         actor_name: identity.actor_name,
         actor_type: identity.actor_type,
         body,
+        delegation_chain: identity.delegation_chain || `${identity.actor_id}:10000`,
         ...(meta ? { meta } : {}),
     };
 
@@ -299,8 +301,9 @@ async function sendMessageLocal(
     const iso = new Date().toISOString();
     const human = iso.replace('T', ' ').replace(/\.\d+Z$/, ' UTC');
 
+    const delegation = identity.delegation_chain || `${identity.actor_id}:10000`;
     const block = [
-        `<!-- message_id: ${ts} | actor_id: ${identity.actor_id} | created_at: ${iso} -->`,
+        `<!-- message_id: ${ts} | actor_id: ${identity.actor_id} | delegation_chain: ${delegation} | created_at: ${iso} -->`,
         `### ${identity.actor_name} (#${identity.actor_id}) - ${human}`,
         body,
         '',

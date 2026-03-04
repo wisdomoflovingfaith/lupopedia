@@ -36,6 +36,8 @@ export interface FlipHeader {
     lupo_actor_identity: string | null;
     /** Canonical: From or from */
     from: string | null;
+    /** Canonical: X-Lupo-Delegation-Chain or delegation_chain */
+    delegation_chain?: string | null;
 
     // Core Routing
     lupo_actor_to?: number;
@@ -170,6 +172,8 @@ const CANONICAL_MAP: Record<string, keyof FlipHeader | string> = {
     'actor_identity': 'lupo_actor_identity',
     'from': 'from',
     'x-lupo-from': 'from',
+    'delegation_chain': 'delegation_chain',
+    'x-lupo-delegation-chain': 'delegation_chain',
     'x-lupo-actor-to': 'lupo_actor_to',
 
     // Status & Doctrine
@@ -488,6 +492,7 @@ export function formatFlipHeader(header: FlipHeader): string {
     if (header.actor_id !== null) lines.push(`X-Lupo-Actor-From: ${header.actor_id}`);
     if (header.lupo_actor_identity) lines.push(`X-Lupo-Actor-Identity: "${header.lupo_actor_identity}"`);
     if (header.from) lines.push(`From: "${header.from}"`);
+    if (header.delegation_chain) lines.push(`X-Lupo-Delegation-Chain: "${header.delegation_chain}"`);
     if (header.lupo_actor_to) lines.push(`X-Lupo-Actor-To: ${header.lupo_actor_to}`);
     if (header.status) lines.push(`X-Lupo-Status: ${header.status}`);
     if (header.thread_id) lines.push(`X-Lupo-Thread: ${header.thread_id}`);

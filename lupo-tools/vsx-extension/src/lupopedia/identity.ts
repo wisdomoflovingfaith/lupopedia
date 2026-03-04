@@ -29,6 +29,14 @@ export interface ActorIdentity {
     actor_id: number;
     actor_name: string;
     actor_type: string;
+    delegation_chain?: string;
+    faucet?: {
+        name: string;
+        slug: string;
+        model_name: string;
+        provider: string;
+        [key: string]: any;
+    };
 }
 
 /** All external actors whose ids the extension tracks alongside itself */
@@ -82,6 +90,8 @@ export function loadIdentity(): ActorIdentity | null {
  * 3. Default fallback -> 10000 (Captain Wolfie)
  */
 export async function resolveEffectiveActorId(): Promise<ActorIdentity> {
+    let identity: ActorIdentity | undefined;
+
     // 1. Logged-in Lupopedia user session (.lupo_actor)
     const folders = vscode.workspace.workspaceFolders;
     if (folders && folders.length > 0) {
@@ -93,31 +103,71 @@ export async function resolveEffectiveActorId(): Promise<ActorIdentity> {
                 const raw = fs.readFileSync(stateFile, 'utf-8');
                 const data = JSON.parse(raw);
                 if (data.actor_id) {
-                    return {
+                    identity = {
                         actor_id: Number(data.actor_id),
                         actor_name: data.name || 'Lupopedia User',
-                        actor_type: data.actor_type || 'human'
+                        actor_type: 'human'
                     };
                 }
-            } catch (err) {
-                // Ignore parse errors, fallback
-            }
+            } catch (err) { }
         }
     }
 
-    // 2. IDE authentication token (if present in globalState or config)
-    // For now, check if we have a stored identity from a previous registration
-    const stored = loadIdentity();
-    if (stored) {
-        return stored;
+    // 2. IDE authentication token or stored record
+    if (!identity) {
+        const stored = loadIdentity();
+        if (stored) {
+            identity = stored;
+        }
     }
 
     // 3. Default fallback -> 10000
-    return {
-        actor_id: 10000,
-        actor_name: 'Captain Wolfie',
-        actor_type: 'human'
-    };
+    if (!identity) {
+        identity = {
+            actor_id: 10000,
+            actor_name: 'Captain Wolfie',
+            actor_type: 'human'
+        };
+    }
+
+    // Delegation chain enforcement (actor:10000)
+    if (!identity.delegation_chain) {
+        identity.delegation_chain = `${identity.actor_id}:10000`;
+    }
+
+    return identity;
+}
+
+/**
+ * Look up a faucet for the given actor from the local/offline structure.
+ */
+export async function findActorFaucet(actorId: number, channelId: number = 42): Promise<any | null> {
+    const folders = vscode.workspace.workspaceFolders;
+    if (!folders || folders.length === 0) { return null; }
+    const root = folders[0].uri.fsPath;
+    const fs = require('fs');
+    const path = require('path');
+
+    const possiblePaths = [
+        path.join(root, 'lupo-database', 'lupopedia', 'channels', 'lupo-channels', String(channelId), 'actors', String(actorId), 'faucets.json'),
+        path.join(root, 'lupo-database', 'lupopedia', 'actors', 'faucets', 'by_actor.json') // Manifest
+    ];
+
+    for (const p of possiblePaths) {
+        if (fs.existsSync(p)) {
+            try {
+                const raw = fs.readFileSync(p, 'utf-8');
+                const data = JSON.parse(raw);
+                if (p.endsWith('by_actor.json')) {
+                    const entry = data.entries?.find((e: any) => e.actor_id === actorId);
+                    if (entry) return entry;
+                } else {
+                    return data.faucets ? data.faucets[0] : data;
+                }
+            } catch { }
+        }
+    }
+    return null;
 }
 
 /**

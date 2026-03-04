@@ -9,7 +9,7 @@
 
 import * as vscode from 'vscode';
 
-import { initIdentityStorage, loadIdentity, ActorIdentity, buildActorRoster } from './lupopedia/identity';
+import { initIdentityStorage, loadIdentity, ActorIdentity, buildActorRoster, resolveEffectiveActorId, findActorFaucet } from './lupopedia/identity';
 import { registerActor, lookupActor, lookupKnownActors } from './lupopedia/actor';
 import { sendMessage, getMessages, joinChannel, CommMode } from './lupopedia/channels';
 import { explainFile, getRelatedAtoms } from './lupopedia/semantic';
@@ -566,24 +566,19 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
                     needsUpdate = true;
                 }
 
-                // 2. Enforce Actor Trinity (Lupopedia 4.0.27)
-                const hasTrinity = updatedHeader.actor_id !== null || updatedHeader.lupo_actor_identity || updatedHeader.from;
-                if (!hasTrinity) {
-                    // Inject "From:" based on config or identity
-                    const config = getConfig();
-                    let fromValue = config.actorName;
-
-                    if (!fromValue) {
-                        fromValue = await vscode.window.showInputBox({
-                            prompt: 'Missing Actor Attribution: Enter your name or identifier (e.g., @username or email)',
-                            placeHolder: 'captain@lupopedia.com'
-                        }) || '';
-                    }
-
-                    if (fromValue) {
-                        updatedHeader.from = fromValue;
-                        needsUpdate = true;
-                    }
+                // 2. Enforce Actor Trinity and Delegation (Lupopedia 4.0.55+)
+                const identity = await resolveEffectiveActorId();
+                if (updatedHeader.actor_id !== identity.actor_id) {
+                    updatedHeader.actor_id = identity.actor_id;
+                    needsUpdate = true;
+                }
+                if (updatedHeader.delegation_chain !== identity.delegation_chain) {
+                    updatedHeader.delegation_chain = identity.delegation_chain;
+                    needsUpdate = true;
+                }
+                if (!updatedHeader.from) {
+                    updatedHeader.from = identity.actor_name;
+                    needsUpdate = true;
                 }
 
                 const config = getConfig();
@@ -694,18 +689,16 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
         })
     );
 
-    // ── Startup: look up self-identity ─────────────────────────────────────
-    let identity = loadIdentity();
-    if (!identity) {
-        try {
-            const { baseUrl, actorName, actorType } = getConfig();
-            identity = await lookupActor(baseUrl, actorName, actorType);
-        } catch {
-            // Server may be offline at startup — that's fine
-        }
-    }
+    // ── Startup: Resolve effective identity ──────────────────────────────
+    let identity = await resolveEffectiveActorId();
     updateStatusBar(statusBar, identity);
     if (identity) {
+        // Resolve faucet if available
+        const faucet = await findActorFaucet(identity.actor_id);
+        if (faucet) {
+            identity.faucet = faucet;
+            ctx.globalState.update('lupopedia.current_faucet', faucet);
+        }
         heartbeatManager.start(identity.actor_id, identity.actor_name);
     }
 
