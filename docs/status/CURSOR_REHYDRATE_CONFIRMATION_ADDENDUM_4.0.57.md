@@ -71,4 +71,5 @@ flare.footer:
 
 **Addendum generated**: 2026-03-04  
 **Updated**: 2026-03-06 — reconciled with Windsurf completion review; counts 282 / 55 / 858; “Why counts changed” and “Still verified” added.  
+**Final state locked:** 2026-03-06; counts 282 / 55 / 858 verified against filesystem; seeds, install pipeline, router gate, and 3 header fixes re-verified.  
 **Cursor (1003)** — Rehydrate confirmation addendum (v4.0.57). **v4.0.57 ready for finalization** per Windsurf review.
