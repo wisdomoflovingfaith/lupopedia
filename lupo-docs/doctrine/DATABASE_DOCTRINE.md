@@ -1,5 +1,6 @@
 # Database Doctrine
 
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-docs/doctrine/DATABASE_DOCTRINE
 ---
 flare.headers:
   flare.version: "1.0"

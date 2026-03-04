@@ -1,5 +1,6 @@
 # is_deleted Filter Audit (v4.0.57)
 
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/status/IS_DELETED_AUDIT_4.0.57
 ---
 flare.headers:
   flare.version: "1.0"

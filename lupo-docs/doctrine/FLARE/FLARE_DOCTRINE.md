@@ -59,17 +59,42 @@ flare.footer:
 
 Starting with version 4.0.48, every FLARE header MUST begin with a specific comment line linking to the authoritative web resolution. This enables human and machine consumers to quickly access the interactive documentation and Q&A for the protocol.
 
-**Format:**
+**Format (v4.0.48–4.0.56):**
 ```yaml
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 flare.headers:
   ...
 ```
 
+**Format (v4.0.57+):** The first comment line MAY use a **dynamic see URL** derived from the file’s `file_path_from_root` (or `web_path`) so that the comment points at the document’s canonical web location:
+```yaml
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/<web_path>
+flare.headers:
+  file_path_from_root: "docs/status/EXAMPLE_REPORT.md"
+  web_path: "http://www.lupopedia.com/status/EXAMPLE_REPORT"
+  ...
+```
+- **Aliases:** Wolfie, FLIP, FLP, FLPH, CROP (all canonical).
+- **&lt;web_path&gt;:** Omit file extension; use the same path as in `web_path` (e.g. `status/EXAMPLE_REPORT`). Enables flame.see and external linking; see Section 21.
+
 **Reasoning:**
 - **Accessibility**: Direct links for external agents and researchers.
 - **Authority**: Verifies that the file follows the canonical Lupopedia protocol.
 - **Portability**: Ensures the protocol remains self-documenting even outside the repository environment.
+
+### Optional: web_path (v4.0.57+)
+
+In addition to `file_path_from_root`, `flare.headers` MAY include **web_path** for canonical web URL resolution:
+
+```yaml
+flare.headers:
+  file_path_from_root: "docs/status/EXAMPLE_REPORT.md"
+  web_path: "http://www.lupopedia.com/status/EXAMPLE_REPORT"
+  ...
+```
+
+- **Format:** `web_path: "http://www.lupopedia.com/<relative_path>"` — use the same logical path as the repo file, with slashes and no leading slash. Omit file extension in the URL if desired for pretty routing.
+- **Use:** Future docs and minimal FLARE templates should include `web_path` when the artifact has a canonical web location. Enables flame.see and external linking.
 
 ## 13. Content Overwrite Hierarchy (v4.0.53+)
 
@@ -229,6 +254,14 @@ This section documents planned integration points between FLARE/flame and other 
 ### **Wolfie aliases**
 - **FLARE / FLIP / Wolfie headers**: All refer to the same file-level metadata protocol. Tooling and doctrine use "FLARE" as the canonical term; "Wolfie" and "FLIP" are aliases. Captain Wolfie (actor_id 10000) is the human authority; agent-generated headers should set `delegation_chain` to `"<actor_id>:10000"` per Section 18.
 - **Future**: Centralized alias resolution (e.g. Wolfie → FLARE, FLIP → FLARE) in validators and CLIs for consistent messaging and docs.
+
+## 21. FLARE Header Comment Refinements (v4.0.57+)
+
+The mandated first comment line (Section 12) is refined for v4.0.57+:
+
+- **Aliases:** Use the full set: **Wolfie, FLIP, FLP, FLPH, CROP** (all canonical).
+- **Dynamic see URL:** Use `— see http://www.lupopedia.com/<web_path>` where `<web_path>` is derived from the file’s `file_path_from_root`: strip the `.md` extension and use the path as the URL segment (e.g. `docs/status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md` → `status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57` if the site serves `status/` under the domain). This aligns the comment with `flare.headers.web_path` and with `flame.see` mappings for URL-to-path resolution.
+- **Templates/tooling:** `lupo-tools/flare_header_template.txt` and `lupo-tools/flare_apply.py` generate the new comment format; `web_path` is derived from the file path (strip extension, optionally strip a `docs/` prefix) so that each document’s first line points at its own canonical URL.
 
 ---
 

@@ -162,6 +162,15 @@ def infer_purpose(path, body_text):
 def compute_hash_excluding_new_header(original_text):
     return hashlib.sha256(original_text.encode("utf-8", "replace")).hexdigest()
 
+def web_path_for_comment(path):
+    """Derive web_path from file path for FLARE header comment (strip .md, normalize)."""
+    p = path.replace("\\", "/")
+    if p.endswith(".md"):
+        p = p[:-3]
+    if p.startswith("docs/"):
+        p = p[5:]
+    return p
+
 def build_header(path, original_text):
     schema = infer_schema(path)
     channel_id, actor_id = infer_channel_actor(path)
@@ -186,13 +195,14 @@ def build_header(path, original_text):
 
     file_hash = compute_hash_excluding_new_header(original_text)
 
-    # Generate canonical URL for flame.see
+    # Generate canonical URL for flame.see and header comment
     base_url = "http://www.lupopedia.com"
+    web_path = web_path_for_comment(path)
     clean_name = os.path.splitext(os.path.basename(path))[0].upper()
-    canonical_url = f"{base_url}/{clean_name}"
+    canonical_url = f"{base_url}/{web_path}" if web_path else f"{base_url}/{clean_name}"
 
     header = (
-f"# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)\n\n"
+f"# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see {base_url}/{web_path}\n\n"
 f"---\n"
 f"flame.init:\n"
 f"  requirements:\n"

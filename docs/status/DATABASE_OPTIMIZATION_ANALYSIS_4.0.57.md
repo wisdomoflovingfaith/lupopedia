@@ -1,7 +1,7 @@
 # v4.0.57 Database Optimization Analysis and Recommendations
 
 ---
-# FLARE Header (aliases: Wolfie, FLIP) — see http://www.lupopedia.com/FLARE
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/status/DATABASE_OPTIMIZATION_ANALYSIS_4.0.57
 flare.headers:
   flare.version: "1.0"
   flare.schema: "report"
