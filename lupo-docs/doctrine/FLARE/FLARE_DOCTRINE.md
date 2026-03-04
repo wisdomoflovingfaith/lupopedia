@@ -93,7 +93,7 @@ flare.headers:
   ...
 ```
 
-- **Format:** `web_path: "http://www.lupopedia.com/<relative_path>"` — use the same logical path as the repo file, with slashes and no leading slash. Omit file extension in the URL if desired for pretty routing.
+- **Format:** `web_path: "<base_url>/<relative_path>"` — `<base_url>` SHOULD derive from **federation_node_id** (see Section 22): node 0 → `http://www.lupopedia.com`; other nodes → that node’s `node_base_url`. Use the same logical path as the repo file, with slashes and no leading slash. Omit file extension in the URL if desired for pretty routing.
 - **Use:** Future docs and minimal FLARE templates should include `web_path` when the artifact has a canonical web location. Enables flame.see and external linking.
 
 ## 13. Content Overwrite Hierarchy (v4.0.53+)
@@ -262,6 +262,39 @@ The mandated first comment line (Section 12) is refined for v4.0.57+:
 - **Aliases:** Use the full set: **Wolfie, FLIP, FLP, FLPH, CROP** (all canonical).
 - **Dynamic see URL:** Use `— see http://www.lupopedia.com/<web_path>` where `<web_path>` is derived from the file’s `file_path_from_root`: strip the `.md` extension and use the path as the URL segment (e.g. `docs/status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md` → `status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57` if the site serves `status/` under the domain). This aligns the comment with `flare.headers.web_path` and with `flame.see` mappings for URL-to-path resolution.
 - **Templates/tooling:** `lupo-tools/flare_header_template.txt` and `lupo-tools/flare_apply.py` generate the new comment format; `web_path` is derived from the file path (strip extension, optionally strip a `docs/` prefix) so that each document’s first line points at its own canonical URL.
+
+## 22. Federation Node Integration (v4.0.57+)
+
+The **see URL** in the FLARE header comment (and `flare.headers.web_path`) should derive its **domain** from **federation_node_id** so that multi-node deployments resolve to the correct site.
+
+### **Domain resolution**
+
+- **federation_node_id 0** (or when absent): Treated as the primary/local node. Use **`http://www.lupopedia.com`** as the base URL. Current work and repo-root files belong to node 0.
+- **federation_node_id &gt; 0**: Use the node’s **node_base_url** from **lupo_federation_nodes** (column `node_base_url`). Example: node 1 might be `https://node1.example.com` or `http://node1.lupopedia.com`. Tooling may resolve this via config (e.g. `LUPO_NODE_BASE_URL`), a small JSON map, or a future DB lookup.
+
+**Header comment format (node-aware):**
+
+```yaml
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see <base_url>/<relative_path>
+```
+
+Where `<base_url>` = domain for the file’s federation_node_id (e.g. `http://www.lupopedia.com` for node 0), and `<relative_path>` = same as `<web_path>` (extension stripped). This aligns with `flare.headers.web_path` (full URL) and `flame.see` mappings.
+
+### **File path handling**
+
+- **Node 0:** Files live in the **project root** (current behaviour). `file_path_from_root` is relative to repo root.
+- **Other nodes:** For federated sites, files may be written under **lupo-database/files/&lt;federation_node_id&gt;/** or a configurable path so that node-specific content does not overwrite node 0. Tooling (e.g. `flare_apply.py`, `generate_toon_files.py`) may accept an optional `--node-id` or config to choose the path prefix. **flame.see** mappings in a multi-node index may include a node prefix (e.g. `node_id` in the index entry) for collision-free resolution.
+
+### **Examples**
+
+| federation_node_id | Base URL (example) | File path (example) |
+|--------------------|--------------------|----------------------|
+| 0 | `http://www.lupopedia.com` | `docs/status/REPORT.md` (repo root) |
+| 1 | From `lupo_federation_nodes.node_base_url` | `lupo-database/files/1/status/REPORT.md` (optional) |
+
+### **Alignment with flame.see**
+
+Section 17’s `flame.see` index may store per-node mappings when multiple nodes contribute artifacts. The CLI `lupo see &lt;URL&gt;` resolves the URL to a path; when the URL host differs from the local node’s base URL, the index can still map it to a local path or a node-prefixed path for cross-node resolution.
 
 ---
 

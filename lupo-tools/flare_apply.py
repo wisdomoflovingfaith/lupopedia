@@ -171,6 +171,17 @@ def web_path_for_comment(path):
         p = p[5:]
     return p
 
+def base_url_for_node(federation_node_id=None):
+    """
+    Resolve base URL for FLARE see URL from federation_node_id (v4.0.57+).
+    Node 0 (default) => http://www.lupopedia.com unless LUPO_NODE_BASE_URL is set.
+    Other nodes => set LUPO_NODE_BASE_URL to that node's domain (from lupo_federation_nodes.node_base_url);
+    LUPO_FEDERATION_NODE_ID can be set for future path-prefix use (e.g. lupo-database/files/<id>/).
+    """
+    default = "http://www.lupopedia.com"
+    custom = os.environ.get("LUPO_NODE_BASE_URL", "").strip()
+    return custom if custom else default
+
 def build_header(path, original_text):
     schema = infer_schema(path)
     channel_id, actor_id = infer_channel_actor(path)
@@ -195,8 +206,8 @@ def build_header(path, original_text):
 
     file_hash = compute_hash_excluding_new_header(original_text)
 
-    # Generate canonical URL for flame.see and header comment
-    base_url = "http://www.lupopedia.com"
+    # Generate canonical URL for flame.see and header comment (node-aware, v4.0.57+)
+    base_url = base_url_for_node()
     web_path = web_path_for_comment(path)
     clean_name = os.path.splitext(os.path.basename(path))[0].upper()
     canonical_url = f"{base_url}/{web_path}" if web_path else f"{base_url}/{clean_name}"
