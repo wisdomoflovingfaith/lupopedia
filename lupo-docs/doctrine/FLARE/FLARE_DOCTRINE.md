@@ -5,10 +5,10 @@ flare.headers:
   flare.schema: "documentation"
   file_path_from_root: ".\docs\doctrine\FLARE\FLARE_DOCTRINE.md"
   file_hash: "19033383ad2d953cc1db20c04d51c42ae3a87578bc0624d4ab36644d3397f423"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
+  last_updated_utc: "20260304"
+  system_version: "4.0.56"
+  channel_id: 42
+  actor_id: 1004
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
@@ -24,8 +24,8 @@ flare.edges:
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
 flare.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+  last_verified: "20260304"
+  last_verified_by: "antigravity"
 ---
 
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
@@ -142,8 +142,41 @@ Provides a standardized concise briefing of the artifact.
 
 The `flame.see` block provides a mapping between canonical web URLs and local repository paths. This enables the CLI to resolve a link (e.g., `http://www.lupopedia.com/FLAME`) to its corresponding `.md` file.
 
+### **Schema & Configuration**
 - **mappings**: A YAML list of `[path, url]` pairs.
 - **Normalization**: URLs are normalized (lowercase host, stripped trailing slash, https equivalence) for robust matching.
+
+### **Discovery Workflow**
+1. **Indexing**: The `lupo-tools/flare_see.py` script scans the repository for `flame.see` blocks and builds a JSON index in `artifacts/index/flame_see_index.json`.
+2. **Resolution via CLI**: The `lupo see <URL>` command queries the index to find the corresponding file path.
+
+### **Index Schema (`flame_see_index.json`)**
+```json
+{
+  "version": "4.0.56",
+  "generated_utc": "YYYYMMDDHHIISS",
+  "mappings": [
+    {
+      "path": "relative/path/to/file.md",
+      "url": "http://www.lupopedia.com/ALIAS",
+      "file_hash": "sha256_hash",
+      "last_verified": "YYYYMMDD"
+    }
+  ],
+  "stats": { "total_mappings": N, "unique_urls": N, "unique_paths": N }
+}
+```
+
+### **Collision Resolution**
+When multiple files claim the same URL:
+1. **First Seen Wins**: The file first encountered in the index alphabetical sweep is treated as the primary resolution.
+2. **Conflict Logging**: Collisions are logged to `lupo_channel_logs` and flagged as **ERRORS** in `flare_validate.py`.
+3. **Manual Review**: High-priority collisions require manual intervention to prevent URL hijacking.
+
+### **CLI Usage Modes**
+- **Default**: Returns the relative file path.
+- **--json**: Returns the full mapping object including hash and metadata.
+- **--open**: Resolves the path and opens the file in the active editor.
 
 ---
 
