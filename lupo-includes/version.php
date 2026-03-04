@@ -37,7 +37,7 @@ if (function_exists('get_lupopedia_version')) {
 }
 
 // Fallback to hard-coded version if atom loader fails (backward compatibility)
-$current_version = $version_from_atom !== null ? $version_from_atom : '4.0.56';
+$current_version = $version_from_atom !== null ? $version_from_atom : '4.0.57';
 
 // LIMITS enforcement (dry-run mode in 3.0.103)
 // Check version bump before applying (non-blocking, logs warnings only)

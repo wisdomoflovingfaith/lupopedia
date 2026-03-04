@@ -65,7 +65,7 @@ flare.headers:
   system_version: "4.0.57"
   channel_id: 1
   actor_id: 1003
-  last_modified_utc: "20260305"
+  last_modified_utc: "20260306"
   delegation_chain: "1003:10000"
   arity: "high"
   artifact_type: "changelog"
@@ -94,7 +94,7 @@ flare.edges:
   semantic_tags: ["changelog", "versions", "releases", "history", "flare", "federation"]
 
 flare.footer:
-  last_verified: "20260305"
+  last_verified: "20260306"
   last_verified_by: "cursor"
 
 flame.see:
@@ -114,11 +114,11 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 ---
 
-## [4.0.57] — Migration and Optimization (2026-03-04)
+## [4.0.57] — Migration and Optimization (2026-03-05)
 
 **Status**: INITIALIZED  
 **Theme**: Resolution of outstanding tasks and system optimization  
-**Lead Agent**: Antigravity (1004)  
+**Lead Agent**: Cursor (1003)  
 **Focus**: Resolve outstanding directory migration, database optimization, and repository cleanup tasks migrated from v4.0.56.
 
 ### TODO Tasks (Migrated)
@@ -249,7 +249,7 @@ Additional task files (task-001 through task-016, etc.) in `lupo-database/lupope
 - Database documentation: all TOONs documented; 5 missing table docs added (anubis_processing_log, quarantine, queue, recovery_attempts, channel_boot_detail_lifecycle); task complete.
 - **Antigravity task takeover (Cursor 1003):** Antigravity (1004) token limit reached; Cursor took over all Antigravity tasks. Actor ID resolution implemented: actor_id must reflect logged-in IDE user (resolution order: .lupo_actor session → stored identity → fallback 10000). VSX extension updated to use `resolveEffectiveActorId()` for locks, repair, FLIP editor, getStatus. FLARE_DOCTRINE.md Section 18 added (Actor ID Resolution for IDE Agents). Reports: `docs/status/ANTIGRAVITY_TASK_TAKEOVER_REPORT.md`, `docs/status/FLARE_ENHANCEMENTS_IMPLEMENTATION_4.0.56.md`; FLARE_ENHANCEMENTS_REPORT_4.0.56 Section 5 updated.
 - CH0-20260225-001, CH0-20260225-002, and **db_reset_and_install**: human manual only (actor_id 10000).
-- **Flame refinements finalized:** Lilith review suggestions applied; CHANGELOG updated; v4.0.56 push to GitHub completed. Outstanding items (database_optimization_analysis, repository_cleanup_legacy_files_removal, phase 2 tasks) remain in v4.0.57 TODOs.
+- **Flame refinements finalized:** Lilith review suggestions applied; CHANGELOG updated; v4.0.56 push to GitHub completed (a10427ad..29f23516, then 29f23516..8a49eade). Push log: `docs/status/PUSH_LOG_4.0.56_FINAL_REFINEMENTS.md`; final report: `docs/status/FLAME_REFINEMENTS_FINAL_REPORT.md`. v4.0.56 section closed; outstanding items (database_optimization_analysis, repository_cleanup_legacy_files_removal, phase 2 tasks) remain in v4.0.57 TODOs.
 
 ### Next Steps
 
