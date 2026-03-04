@@ -18,6 +18,7 @@ import * as vscode from 'vscode';
 const KEY_ACTOR_ID = 'lupopedia.actor_id';
 const KEY_ACTOR_NAME = 'lupopedia.actor_name';
 const KEY_ACTOR_TYPE = 'lupopedia.actor_type';
+const KEY_AUTH_TOKEN = 'lupopedia.auth_token';
 
 /** globalState key for the JSON-serialised external-actor cache Map */
 const KEY_ACTOR_CACHE = 'lupopedia.actor_cache';
@@ -72,6 +73,51 @@ export function loadIdentity(): ActorIdentity | null {
     const type = _ctx.globalState.get<string>(KEY_ACTOR_TYPE);
     if (!id || !name || !type) { return null; }
     return { actor_id: id, actor_name: name, actor_type: type };
+}
+
+/**
+ * Resolve the effective actor_id in the priority order:
+ * 1. Logged-in Lupopedia user session (.lupo_actor)
+ * 2. IDE authentication token (config)
+ * 3. Default fallback -> 10000 (Captain Wolfie)
+ */
+export async function resolveEffectiveActorId(): Promise<ActorIdentity> {
+    // 1. Logged-in Lupopedia user session (.lupo_actor)
+    const folders = vscode.workspace.workspaceFolders;
+    if (folders && folders.length > 0) {
+        const root = folders[0].uri.fsPath;
+        const stateFile = require('path').join(root, '.lupo_actor');
+        const fs = require('fs');
+        if (fs.existsSync(stateFile)) {
+            try {
+                const raw = fs.readFileSync(stateFile, 'utf-8');
+                const data = JSON.parse(raw);
+                if (data.actor_id) {
+                    return {
+                        actor_id: Number(data.actor_id),
+                        actor_name: data.name || 'Lupopedia User',
+                        actor_type: data.actor_type || 'human'
+                    };
+                }
+            } catch (err) {
+                // Ignore parse errors, fallback
+            }
+        }
+    }
+
+    // 2. IDE authentication token (if present in globalState or config)
+    // For now, check if we have a stored identity from a previous registration
+    const stored = loadIdentity();
+    if (stored) {
+        return stored;
+    }
+
+    // 3. Default fallback -> 10000
+    return {
+        actor_id: 10000,
+        actor_name: 'Captain Wolfie',
+        actor_type: 'human'
+    };
 }
 
 /**
