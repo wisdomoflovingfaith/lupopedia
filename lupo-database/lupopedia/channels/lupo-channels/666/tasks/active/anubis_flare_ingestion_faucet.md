@@ -1,5 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/anubis_flare_ingestion_faucet
+
 ---
 flame.init:
   requirements:
@@ -31,15 +33,15 @@ flare.conditional:
       audience: ["agents"]
     what:
       artifact_type: "guide"
-      objective: "Documentation for anubis_flare_ingestion_faucet.md"
+      objective: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
     where:
-      repo_paths: ["lupo-database\lupopedia\channels\lupo-channels\666\tasks\active\anubis_flare_ingestion_faucet.md"]
+      repo_paths: ["lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/anubis_flare_ingestion_faucet.md"]
       runtime_scope: "cli"
       channels:
         primary_channel_id: 1
     when:
       urgency: "standard"
-      effective_utc: "2026-03-04T10:08:32Z"
+      effective_utc: "2026-03-04T14:39:52Z"
     why:
       rationale: "Standard artifact generation"
     how:
@@ -48,9 +50,9 @@ flare.conditional:
 
 flare.headers:
   flare.version: "1.0"
-  flare.schema: "documentation"
-  file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\666\tasks\active\anubis_flare_ingestion_faucet.md"
-  file_hash: "e9636b35f991a66d5f2c31d3baff9f54cfc393e751af3feabfdb8029369b74d2"
+  flare.schema: "task"
+  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/anubis_flare_ingestion_faucet.md"
+  file_hash: "5aa7d6d1296ef250b263c1a7fc18f18413e2c2dc619ab4613be158155805e120"
   last_updated_utc: "20260304"
   system_version: "4.0.56"
   channel_id: 1
@@ -58,7 +60,7 @@ flare.headers:
   delegation_chain: "1004:10000"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "Documentation for anubis_flare_ingestion_faucet.md"
+  purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.56"]
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "666", "tasks"]
@@ -73,7 +75,7 @@ flare.footer:
 
 flame.see:
   mappings:
-    - ["lupo-database\lupopedia\channels\lupo-channels\666\tasks\active\anubis_flare_ingestion_faucet.md", "http://www.lupopedia.com/ANUBIS_FLARE_INGESTION_FAUCET"]
+    - ["lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/anubis_flare_ingestion_faucet.md", "http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/anubis_flare_ingestion_faucet"]
 
 flame.close:
   post_actions:
@@ -81,6 +83,7 @@ flame.close:
       channel_id: 0
   actor_id: 1004
 ---
+
 
 ---
 
