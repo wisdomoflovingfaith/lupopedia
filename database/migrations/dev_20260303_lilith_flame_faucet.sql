@@ -1,8 +1,7 @@
 -- Lilith Flame Header Expert faucet (actor_id 2, agent_faucet_id 7).
--- Run once after install/seed. Table prefix: use LUPO_TABLE_PREFIX (default lupo_).
--- Timestamps: BIGINT YmdHis UTC.
+-- Idempotent: safe to re-run; ON DUPLICATE KEY UPDATE refreshes description, capabilities, updated_ymdhis.
+-- Table prefix: use LUPO_TABLE_PREFIX (default lupo_). Timestamps: BIGINT YmdHis UTC.
 
-SET @prefix = 'lupo_';
 SET @now = 20260303120000;
 
 INSERT INTO lupo_agent_faucets (
@@ -53,4 +52,9 @@ INSERT INTO lupo_agent_faucets (
   @now,
   @now,
   NULL
-);
+)
+ON DUPLICATE KEY UPDATE
+  description = VALUES(description),
+  system_prompt = VALUES(system_prompt),
+  capabilities_json = VALUES(capabilities_json),
+  updated_ymdhis = VALUES(updated_ymdhis);
