@@ -114,8 +114,8 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 **Status**: IN PROGRESS  
 **Theme**: Task migration and system enhancements  
-**Lead Agent**: Cursor (1003)  
-**Focus**: Migrate active tasks from channels 0/42, resolve high-priority items, prepare for next features.
+**Lead Agent**: Cursor (1003), Antigravity (1004)  
+**Focus**: FLARE Lifecycle enhancements, task migration from channels 0/42, system robustness, and briefing integrity.
 
 ### Summary — work completed in 4.0.56
 
@@ -131,6 +131,12 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Upgrade test (Crafty → 4.0.56):** Install/upgrade procedure documented: `CRAFTY_3.7.5_INSTALL_LOG.md`, `UPGRADE_4.0.56_LOG.md`, `WEB_ADMIN_TEST_4.0.56.md`, `UPGRADE_REPORT_4.0.56.md` (logs and report in `docs/status/`).
 - **Research and upgrade thread prompt:** `docs/status/RESEARCH_ANUBIS_WOLFIE_FLARE_LUPOPEDIA.md` — research on ANUBIS, Wolfie, FLARE headers, Lupopedia; generated directive-style prompt for thread `UPGRADE_TEST_CRAFTY_TO_4_0_56.md`.
 - **Database documentation remaining tables:** All TOONs now have table docs. Five missing docs added: `lupo_anubis_processing_log`, `lupo_anubis_quarantine`, `lupo_anubis_queue`, `lupo_anubis_recovery_attempts`, `lupo_channel_boot_detail_lifecycle`. Report: `docs/status/DATABASE_DOCUMENTATION_REMAINING_TABLES_REPORT.md`. Task marked complete.
+- **FLARE Lifecycle Hooks (v4.0.56)**: Introduced `flame.init` and `flame.close` for declarative pre-actions (typed dependency checks) and post-actions (registration/faucets).
+- **Conditional Integrity Guards**: Introduced `flare.conditional` block featuring `guards` (allow/deny, time windows, environment conditions) and `brief` (5W1H high-fidelity briefing for artifacts).
+- **Semantic Workflow Engine**: Enhanced protocol to support `execution_mode` (advisory, required, system) and enforced canonical prologue ordering for parser stability.
+- **Validation Refactoring**: Re-engineered `lupo-tools/flare_validate.py` to enforce ordering and targeted mandatory rules for active artifact types (`prompt`, `task`, etc.).
+- **Doctrine Synchronization**: Updated `FLARE_DOCTRINE.md` with Sections 14, 15, and 16; created comprehensive Implementation Plan and Report for 4.0.56.
+- **Reports (Antigravity)**: FLARE_ENHANCEMENTS_PLAN_4.0.56, FLARE_ENHANCEMENTS_REPORT_4.0.56.
 
 ### TODO Tasks (Migrated)
 
