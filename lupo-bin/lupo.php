@@ -352,7 +352,8 @@ try {
             }
 
             $all_pass = array_reduce($checks, function ($carry, $item) {
-                return $carry && $item === 'PASS'; }, true);
+                return $carry && $item === 'PASS';
+            }, true);
             echo "Overall Status: " . ($all_pass ? 'HEALTHY' : 'ISSUES DETECTED') . "\n";
             echo "Timestamp: " . gmdate('Y-m-d H:i:s UTC') . "\n";
             echo "========================\n";
@@ -413,6 +414,21 @@ try {
                 echo "Error: Configuration update failed - " . $e->getMessage() . "\n";
             }
             break;
+        case 'see':
+            $url = isset($argv[2]) ? $argv[2] : '';
+            if (!$url) {
+                die("Error: URL or path required. Usage: see <url_or_path> [--cat|--open|--json|--reindex]\n");
+            }
+            $flags = "";
+            for ($i = 3; $i < count($argv); $i++) {
+                $flags .= " " . escapeshellarg($argv[$i]);
+            }
+            $python = (PHP_OS_FAMILY === 'Windows') ? 'python' : 'python3';
+            $script = escapeshellarg(ABSPATH . 'lupo-tools/flare_see.py');
+            $command = "$python $script " . escapeshellarg($url) . $flags;
+            passthru($command, $return_var);
+            exit($return_var);
+            break;
         case 'help':
         default:
             echo "Lupopedia CLI v4.0.50\n";
@@ -430,6 +446,7 @@ try {
             echo "  nodes                              List federation nodes\n";
             echo "  artifacts <node_id>                List artifacts by federation node\n";
             echo "  tasks                              List your active tasks\n";
+            echo "  see <url>                          Resolve canonical URL to repo .md file\n";
             echo "\nSystem Agent Commands (actor_id 0 only):\n";
             echo "  system-status                      Get system status and information\n";
             echo "  coordinate-task <task_id>          Coordinate development task\n";

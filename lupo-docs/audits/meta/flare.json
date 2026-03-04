@@ -139,6 +139,11 @@
       "file": "docs\\audits\\WHEELER_REVERSE20_PURGE_SUMMARY.md",
       "flare_applied": true,
       "timestamp": "20260228"
+    },
+    {
+      "file": "lupo-docs\\audits\\FILEOPT_v4.0.52_FINAL_REPORT.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
     }
   ]
 }

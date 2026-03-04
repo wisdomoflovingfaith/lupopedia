@@ -116,7 +116,8 @@ To ensure multi-agent parser stability, headers MUST follow the canonical order.
 3.  `flare.headers`
 4.  `flare.edges`
 5.  `flare.footer`
-6.  `flame.close`
+6.  `flame.see`
+7.  `flame.close`
 
 ## 16. Conditional Guards & High-Fidelity Briefing (v4.0.56+)
 
@@ -136,6 +137,13 @@ Provides a standardized concise briefing of the artifact.
 - **When**: Urgency and lifecycle timestamps.
 - **Why**: Rationale and assessed risks.
 - **How**: Methodology and success criteria.
+
+## 17. flame.see — URL Discovery (v4.0.56+)
+
+The `flame.see` block provides a mapping between canonical web URLs and local repository paths. This enables the CLI to resolve a link (e.g., `http://www.lupopedia.com/FLAME`) to its corresponding `.md` file.
+
+- **mappings**: A YAML list of `[path, url]` pairs.
+- **Normalization**: URLs are normalized (lowercase host, stripped trailing slash, https equivalence) for robust matching.
 
 ---
 

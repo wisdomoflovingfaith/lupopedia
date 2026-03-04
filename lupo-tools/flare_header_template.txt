@@ -73,6 +73,10 @@ flare.footer:
   last_verified: "{LAST_VERIFIED}"
   last_verified_by: "{LAST_VERIFIED_BY}"
 
+flame.see:
+  mappings:
+    - ["{FILE_PATH_FROM_ROOT}", "{CANONICAL_URL}"]
+
 flame.close:
   post_actions:
     - {POST_ACTIONS_OBJECT}

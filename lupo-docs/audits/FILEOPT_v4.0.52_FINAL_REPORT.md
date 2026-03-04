@@ -1,3 +1,87 @@
+# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+
+---
+flame.init:
+  requirements:
+    flare:
+      version: ">=4.0.55"
+  execution_mode: "advisory"
+  pre_actions:
+    - type: dependency_check
+      path: "lupo-includes/bootstrap.php"
+
+flare.conditional:
+  guards:
+    execution_mode: "advisory"
+    allow:
+      actor_ids: [0, 1004]
+      agent_names: ["system", "antigravity"]
+    deny:
+      actor_ids: []
+    time_window:
+      not_before_utc: "2026-03-04T00:00:00Z"
+      not_after_utc: "2026-03-11T00:00:00Z"
+    conditions:
+      - type: feature_flag_enabled
+        flag: "FLAME_V1"
+  brief:
+    who:
+      owner_actor_id: 1004
+      intended_actors: [0, 1004]
+      audience: ["agents"]
+    what:
+      artifact_type: "guide"
+      objective: "FILEOPT v4.0.52 Final Report"
+    where:
+      repo_paths: ["lupo-docs\audits\FILEOPT_v4.0.52_FINAL_REPORT.md"]
+      runtime_scope: "cli"
+      channels:
+        primary_channel_id: 1
+    when:
+      urgency: "standard"
+      effective_utc: "2026-03-04T10:08:32Z"
+    why:
+      rationale: "Standard artifact generation"
+    how:
+      method: "FLARE automated application"
+      success_criteria: ["header applied correctly"]
+
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "documentation"
+  file_path_from_root: "lupo-docs\audits\FILEOPT_v4.0.52_FINAL_REPORT.md"
+  file_hash: "4a458e1c1f0a34a78baf5622f7493f85f05c9a2c2059da005f858c593f1f7409"
+  last_updated_utc: "20260304"
+  system_version: "4.0.56"
+  channel_id: 1
+  actor_id: 1004
+  delegation_chain: "1004:10000"
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "FILEOPT v4.0.52 Final Report"
+  mood_rgb: "4169E1"
+  traits: ["flare", "indexed", "v4.0.56"]
+  tags: ["lupo-docs", "audits", "fileopt_v4052_final_reportmd"]
+  lupo_agent: "antigravity"
+
+flare.edges:
+  outbound_edges: []
+
+flare.footer:
+  last_verified: "20260304"
+  last_verified_by: "antigravity"
+
+flame.see:
+  mappings:
+    - ["lupo-docs\audits\FILEOPT_v4.0.52_FINAL_REPORT.md", "http://www.lupopedia.com/FILEOPT_V4.0.52_FINAL_REPORT"]
+
+flame.close:
+  post_actions:
+    - type: register_completion
+      channel_id: 0
+  actor_id: 1004
+---
+
 # FILEOPT v4.0.52 Final Report
 
 ## Executive Summary

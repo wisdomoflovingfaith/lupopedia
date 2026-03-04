@@ -204,6 +204,21 @@
       "file": "docs\\database\\lupopedia\\tables\\README.md",
       "flare_applied": true,
       "timestamp": "20260228"
+    },
+    {
+      "file": "lupo-docs\\database\\lupopedia\\tables\\lupo_channel_boot_lifecycle.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "lupo-docs\\database\\lupopedia\\tables\\lupo_channel_content.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "lupo-docs\\database\\lupopedia\\tables\\lupo_channel_tables_overview.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
     }
   ]
 }

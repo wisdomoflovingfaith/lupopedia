@@ -6,7 +6,7 @@ import yaml
 import re
 from datetime import datetime
 
-def validate_flare_file(path):
+def validate_flare_file(path, **kwargs):
     """Validate a single FLARE file with v4.0.56 high-fidelity rules"""
     errors = []
     warnings = []
@@ -46,7 +46,7 @@ def validate_flare_file(path):
 
         # 1. ENFORCE CANONICAL ORDER
         keys = list(data.keys())
-        expected_order = ["flame.init", "flare.conditional", "flare.headers", "flare.edges", "flare.footer", "flame.close"]
+        expected_order = ["flame.init", "flare.conditional", "flare.headers", "flare.edges", "flare.footer", "flame.see", "flame.close"]
         
         # We only check order for keys that ARE present
         present_expected = [k for k in expected_order if k in keys]
@@ -54,6 +54,30 @@ def validate_flare_file(path):
         
         if present_expected != actual_order:
             errors.append(f"Header order mismatch. Expected: {', '.join(present_expected)}")
+
+        # 1.1 FLAME.SEE VALIDATION (Basic)
+        if "flame.see" in data:
+            see = data["flame.see"]
+            if not isinstance(see, dict) or "mappings" not in see:
+                errors.append("flame.see must be an object with 'mappings' list")
+            else:
+                for mapping in see.get("mappings", []):
+                    if not isinstance(mapping, list) or len(mapping) < 2:
+                        errors.append(f"Invalid mapping in flame.see: {mapping}")
+                    else:
+                        path_entry, url_entry = mapping[0], mapping[1]
+                        # Check Path match
+                        if path_entry != actual_path:
+                            warnings.append(f"flame.see mapping path '{path_entry}' does not match file_path_from_root '{actual_path}'")
+                        
+                        # Add to global URL tracker (passed in via extra arg or handled in main)
+                        if "url_tracker" in kwargs:
+                            from urllib.parse import urlparse
+                            norm_url = url_entry.lower().rstrip("/")
+                            if norm_url in kwargs["url_tracker"]:
+                                kwargs["url_tracker"][norm_url].append(path)
+                            else:
+                                kwargs["url_tracker"][norm_url] = [path]
 
         # 2. TARGETED MANDATORY RULES (Safety Rule)
         headers = data.get("flare.headers", {})
@@ -146,11 +170,12 @@ def main():
     
     total_errors = 0
     total_warnings = 0
+    url_tracker = {}
     
     for path in paths:
         if not os.path.exists(path): continue
         
-        errors, warnings = validate_flare_file(path)
+        errors, warnings = validate_flare_file(path, url_tracker=url_tracker)
         
         if errors:
             print(f"ERRORS in {path}:")
@@ -163,6 +188,14 @@ def main():
             for warning in warnings:
                 print(f"  - {warning}")
             total_warnings += len(warnings)
+    
+    # Report URL collisions
+    for url, owners in url_tracker.items():
+        if len(owners) > 1:
+            print(f"COLLISION: URL '{url}' claimed by multiple files:")
+            for owner in owners:
+                print(f"  - {owner}")
+            total_errors += 1 # Collision is an error
     
     print(f"\nValidation complete: {total_errors} errors, {total_warnings} warnings")
     

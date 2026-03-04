@@ -186,6 +186,11 @@ def build_header(path, original_text):
 
     file_hash = compute_hash_excluding_new_header(original_text)
 
+    # Generate canonical URL for flame.see
+    base_url = "http://www.lupopedia.com"
+    clean_name = os.path.splitext(os.path.basename(path))[0].upper()
+    canonical_url = f"{base_url}/{clean_name}"
+
     header = (
 f"# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)\n\n"
 f"---\n"
@@ -254,6 +259,9 @@ f"  outbound_edges: []\n\n"
 f"flare.footer:\n"
 f"  last_verified: \"{UTC_DATE}\"\n"
 f"  last_verified_by: \"{VERIFIED_BY}\"\n\n"
+f"flame.see:\n"
+f"  mappings:\n"
+f"    - [\"{path}\", \"{canonical_url}\"]\n\n"
 f"flame.close:\n"
 f"  post_actions:\n"
 f"    - type: register_completion\n"

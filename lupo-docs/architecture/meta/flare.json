@@ -4,6 +4,11 @@
       "file": "docs\\architecture\\layout-context-schema.md",
       "flare_applied": true,
       "timestamp": "20260228"
+    },
+    {
+      "file": "lupo-docs\\architecture\\FEDERATION_AND_REGISTRY.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
     }
   ]
 }

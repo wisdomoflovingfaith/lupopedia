@@ -21,12 +21,18 @@ The `flare.conditional` block provides granular execution control and a "5W1H" b
 - **guards**: Defines who can execute (`allow`/`deny`), when (`time_window`), and under what environmental conditions (`conditions`).
 - **brief**: A human and machine readable summary of the artifact's purpose, scope, urgency, and success criteria (Who, What, Where, When, Why, How).
 
-### 2.3 flare.headers (Standard Metadata)
+### 2.3 flame.see (URL Resolver)
+The `flame.see` block provides mappings between canonical web URLs and repository markdown paths.
+- **Canonical Key**: `flame.see`
+- **mappings**: A list of `[path, url]` pairs.
+- **Purpose**: Enables the CLI to resolve a URL (e.g., `http://www.lupopedia.com/FLAME`) to a local `.md` file.
+
+### 2.4 flare.headers (Standard Metadata)
 Standard metadata for indexing and attribution.
 - **Canonical Key**: `flare.headers`
 - Includes: `file_path_from_root`, `system_version`, `actor_id`, `channel_id`, `artifact_kind`, etc.
 
-### 2.4 flame.close (Finalization/Post-Actions)
+### 2.5 flame.close (Finalization/Post-Actions)
 The `flame.close` block defines actions to be performed after the file has been processed.
 - **Canonical Key**: `flame.close`
 - **Actor Responsibility**: `actor_id` defaults to the file's `flare.headers.actor_id` to maintain local responsibility.
@@ -53,7 +59,8 @@ Headers MUST follow this exact order to ensure parser stability:
 3. `flare.headers`
 4. `flare.edges`
 5. `flare.footer`
-6. `flame.close`
+6. `flame.see`
+7. `flame.close`
 
 ## 5. YAML Structure Example
 
