@@ -1,5 +1,5 @@
--- Seed: /flare_apply URL route → docs/doctrine/FLARE/FLARE_APPLY.md (4.0.57)
--- Ensures http://www.lupopedia.com/flare_apply resolves to FLARE Apply tool documentation.
+-- Seed: /FLARE → content row so content_handle_slug('flare') serves FLARE doc (4.0.57)
+-- URL http://www.lupopedia.com/FLARE → slug lowercased to 'flare' → content by slug (no resolver).
 -- Run after install_new_lupopedia.sql; idempotent via ON DUPLICATE KEY UPDATE.
 -- federation_node_id = 0 (www.lupopedia.com = main site).
 
@@ -28,13 +28,13 @@ INSERT INTO lupo_contents (
     file_path_from_root,
     file_last_modified_system_version
 ) VALUES (
-    2999,
+    2998,
     NULL,
     0,
-    1003,
-    'FLARE Apply Tool Documentation',
-    'flare_apply',
-    'flare_apply',
+    1002,
+    'FLARE',
+    'flare',
+    'FLARE',
     'see file',
     'article',
     'markdown',
@@ -47,7 +47,7 @@ INSERT INTO lupo_contents (
     0,
     1,
     1,
-    'docs/doctrine/FLARE/FLARE_APPLY.md',
+    'lupo-database/lupopedia/channels/lupo-channels/42/content/federation_node_id/0/FLARE.md',
     '4.0.57'
 )
 ON DUPLICATE KEY UPDATE

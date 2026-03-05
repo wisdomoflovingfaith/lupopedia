@@ -4382,3 +4382,5 @@
 [2026-03-04T14:56:13Z UTC] PHASE 2: COMPLETE processed=2095 added=5 skipped_existing=2090 existing_with_issues=98 errors=0
 [2026-03-04T14:56:13Z UTC] SUMMARY processed=2095 added=5 skipped=2090 issues=98 errors=0
 [2026-03-04T14:56:13Z UTC] PHASE 3: Staging and committing changes...
+[2026-03-04T14:56:13Z UTC] PHASE 3: Commit created (local only).
+[2026-03-04T14:56:13Z UTC] DONE.

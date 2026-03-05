@@ -52,7 +52,7 @@ flare.headers:
   file_path_from_root: "docs/status/CURSOR_FLARE_APPLY_LINK_CHECK_4.0.57.md"
   file_hash: "3c94a1466003e1177be5dcbc951329ac04ae3a9ec1d10588ac63dbfd62c93de1"
   last_updated_utc: "20260304"
-  system_version: "4.0.56"
+  system_version: "4.0.57"
   channel_id: 1
   actor_id: 1004
   delegation_chain: "1004:10000"
@@ -60,7 +60,7 @@ flare.headers:
   artifact_kind: "documentation"
   purpose: "FLARE_APPLY URL mapping existence check (4.0.57)"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.56"]
+  traits: ["flare", "indexed", "v4.0.57"]
   tags: ["docs", "status", "cursor_flare_apply_link_check_4057md"]
   lupo_agent: "antigravity"
 

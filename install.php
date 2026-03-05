@@ -617,8 +617,12 @@ if ($step === 'run') {
             InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'migrations' . DIRECTORY_SEPARATOR . '20260301_anubis_database_primacy_updates.sql', $log, $table_prefix);
             // Run Default Sessions Seed (v4.0.53)
             InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_default_sessions.sql', $log, $table_prefix);
+            // Run FLARE content seed (v4.0.57) — /FLARE → slug 'flare' → lupo_contents row
+            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_flare_content_4.0.57.sql', $log, $table_prefix);
             // Run FLARE Apply content seed (v4.0.57) — /flare_apply → docs/doctrine/FLARE/FLARE_APPLY.md
             InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_flare_apply_content_4.0.57.sql', $log, $table_prefix);
+            // Run docs/status (and doctrine) web content seed (v4.0.57) — Option A: DB-seeded web docs
+            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_docs_web_content_4.0.57.sql', $log, $table_prefix);
 
             // Activations Block
             require_once LUPOPEDIA_PATH . '/lupo-includes/functions/ai_activation.php';

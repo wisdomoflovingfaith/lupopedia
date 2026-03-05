@@ -1631,6 +1631,31 @@ CREATE INDEX lupo_contents_idx_has_media ON lupo_contents ((JSON_LENGTH(media_at
 CREATE INDEX lupo_contents_idx_has_events ON lupo_contents ((JSON_LENGTH(content_events) > 0));
 CREATE INDEX lupo_contents_idx_has_hashtags ON lupo_contents ((JSON_LENGTH(hashtags) > 0));
 
+CREATE TABLE lupo_flare_headers (
+  content_id bigint NOT NULL,
+  flare_version varchar(20) DEFAULT NULL,
+  flare_schema varchar(50) DEFAULT NULL,
+  file_path_from_root text,
+  web_path text,
+  last_modified_utc varchar(14) DEFAULT NULL,
+  system_version varchar(20) DEFAULT NULL,
+  channel_id bigint DEFAULT NULL,
+  actor_id bigint DEFAULT NULL,
+  delegation_chain varchar(255) DEFAULT NULL,
+  artifact_type varchar(50) DEFAULT NULL,
+  artifact_kind varchar(50) DEFAULT NULL,
+  purpose text,
+  mood_rgb varchar(6) DEFAULT NULL,
+  traits json DEFAULT NULL,
+  tags json DEFAULT NULL,
+  lupo_agent varchar(50) DEFAULT NULL,
+  agent_name_identity varchar(255) DEFAULT NULL,
+  PRIMARY KEY (content_id)
+);
+
+CREATE INDEX lupo_flare_headers_idx_channel_id ON lupo_flare_headers (channel_id);
+CREATE INDEX lupo_flare_headers_idx_actor_id ON lupo_flare_headers (actor_id);
+
 CREATE TABLE lupo_crafty_user_mapping (
   crafty_user_mapping_id bigint NOT NULL auto_increment,
   lupo_user_id bigint DEFAULT NULL,

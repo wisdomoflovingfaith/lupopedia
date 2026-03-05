@@ -52,7 +52,7 @@ flare.headers:
   file_path_from_root: "docs/status/DATABASE_PATH_NORMALIZATION_REPORT_CURSOR.md"
   file_hash: "34edaa7609a90d7fe2be33adc1beffcd1756add98055023b2b61561ec4a3d13c"
   last_updated_utc: "20260304"
-  system_version: "4.0.56"
+  system_version: "4.0.57"
   channel_id: 1
   actor_id: 1004
   delegation_chain: "1004:10000"
@@ -60,7 +60,7 @@ flare.headers:
   artifact_kind: "documentation"
   purpose: "Database Path Normalization Report - Cursor Implementation"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.56"]
+  traits: ["flare", "indexed", "v4.0.57"]
   tags: ["docs", "status", "database_path_normalization_report_cursormd"]
   lupo_agent: "antigravity"
 

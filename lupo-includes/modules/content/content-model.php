@@ -358,6 +358,120 @@ function content_fetch_remote($url)
 }
 
 /**
+ * Attach flare header row to a content row (merge flare columns into content array).
+ * Used internally by content_get_with_flare_*.
+ *
+ * @param array $content Content row from lupo_contents
+ * @param object $db PDO_DB instance
+ * @param string $prefix Table prefix (e.g. lupo_)
+ * @return array Content row with flare_* keys merged (or unchanged if no flare row)
+ */
+function _content_attach_flare_headers($content, $db, $prefix)
+{
+    if (!is_array($content) || empty($content['content_id'])) {
+        return $content;
+    }
+    $flare_table = $prefix . 'flare_headers';
+    try {
+        $flare = $db->fetchRow(
+            "SELECT flare_version, flare_schema, file_path_from_root, web_path, last_modified_utc, system_version, channel_id, actor_id, delegation_chain, artifact_type, artifact_kind, purpose, mood_rgb, traits, tags, lupo_agent, agent_name_identity FROM {$flare_table} WHERE content_id = :cid",
+            array('cid' => $content['content_id'])
+        );
+    } catch (Exception $e) {
+        return $content;
+    }
+    if (!is_array($flare)) {
+        return $content;
+    }
+    foreach ($flare as $key => $value) {
+        $content[$key] = $value;
+    }
+    return $content;
+}
+
+/**
+ * Get content by content_id with flare header data attached.
+ *
+ * @param int $content_id Content ID
+ * @return array|null Content row with flare columns merged, or null if not found
+ */
+function content_get_with_flare_by_id($content_id)
+{
+    global $table_prefix;
+
+    if (empty($GLOBALS['mydatabase'])) {
+        return null;
+    }
+    $content_id = (int) $content_id;
+    if ($content_id <= 0) {
+        return null;
+    }
+    $db = $GLOBALS['mydatabase'];
+    $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : $table_prefix;
+    $contents_table = $prefix . 'contents';
+    $content = $db->fetchRow(
+        "SELECT * FROM {$contents_table} WHERE content_id = :cid AND is_deleted = 0 AND (is_active = 1 OR is_active IS NULL) LIMIT 1",
+        array('cid' => $content_id)
+    );
+    if (!$content) {
+        return null;
+    }
+    return _content_attach_flare_headers($content, $db, $prefix);
+}
+
+/**
+ * Get content by slug with flare header data attached.
+ *
+ * @param string $slug Content slug
+ * @return array|null Content row with flare columns merged, or null if not found
+ */
+function content_get_with_flare_by_slug($slug)
+{
+    global $table_prefix;
+
+    if (empty($GLOBALS['mydatabase']) || trim((string) $slug) === '') {
+        return null;
+    }
+    $db = $GLOBALS['mydatabase'];
+    $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : $table_prefix;
+    $contents_table = $prefix . 'contents';
+    $content = $db->fetchRow(
+        "SELECT * FROM {$contents_table} WHERE slug = :slug AND is_deleted = 0 AND (is_active = 1 OR is_active IS NULL) LIMIT 1",
+        array('slug' => $slug)
+    );
+    if (!$content) {
+        return null;
+    }
+    return _content_attach_flare_headers($content, $db, $prefix);
+}
+
+/**
+ * Get content by path (file_path_from_root or custom_path) with flare header data attached.
+ *
+ * @param string $path File path from root or custom path
+ * @return array|null Content row with flare columns merged, or null if not found
+ */
+function content_get_with_flare_by_path($path)
+{
+    global $table_prefix;
+
+    if (empty($GLOBALS['mydatabase']) || trim((string) $path) === '') {
+        return null;
+    }
+    $db = $GLOBALS['mydatabase'];
+    $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : $table_prefix;
+    $contents_table = $prefix . 'contents';
+    $content = $db->fetchRow(
+        "SELECT * FROM {$contents_table} WHERE (file_path_from_root = :path OR custom_path = :path) AND is_deleted = 0 AND (is_active = 1 OR is_active IS NULL) LIMIT 1",
+        array('path' => $path)
+    );
+    if (!$content) {
+        return null;
+    }
+    return _content_attach_flare_headers($content, $db, $prefix);
+}
+
+/**
  * Get featured content
  * 
  * @param int $limit Max items to return

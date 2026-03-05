@@ -52,7 +52,7 @@ flare.headers:
   file_path_from_root: "docs/status/VERSION_BUMP_4.0.57_REPORT.md"
   file_hash: "26f1ae7a347686f30665dcab9904c1d9a95c624be8cc993f42b620eb454ae2af"
   last_updated_utc: "20260304"
-  system_version: "4.0.56"
+  system_version: "4.0.57"
   channel_id: 1
   actor_id: 1004
   delegation_chain: "1004:10000"
@@ -60,7 +60,7 @@ flare.headers:
   artifact_kind: "documentation"
   purpose: "Version Bump Report - v4.0.57"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.56"]
+  traits: ["flare", "indexed", "v4.0.57"]
   tags: ["docs", "status", "version_bump_4057_reportmd"]
   lupo_agent: "antigravity"
 

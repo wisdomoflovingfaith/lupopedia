@@ -183,6 +183,20 @@
       "mtime": 1772634033
     }
   ],
+  "http://www.lupopedia.com/flare_apply": [
+    {
+      "path": "docs/doctrine/FLARE/FLARE_APPLY.md",
+      "declared_url": "http://www.lupopedia.com/flare_apply",
+      "file_hash": "afcf788e5c897d6aad613c77149c687712a7c229",
+      "mtime": 1772635900
+    },
+    {
+      "path": "docs/doctrine/FLARE/FLARE_APPLY.md",
+      "declared_url": "https://www.lupopedia.com/flare_apply",
+      "file_hash": "afcf788e5c897d6aad613c77149c687712a7c229",
+      "mtime": 1772635900
+    }
+  ],
   "http://www.lupopedia.com/status/agent_registry_refinement_4.0.57": [
     {
       "path": "docs/status/AGENT_REGISTRY_REFINEMENT_4.0.57.md",
@@ -207,12 +221,28 @@
       "mtime": 1772618911
     }
   ],
+  "http://www.lupopedia.com/status/cursor_flare_apply_link_check_4.0.57": [
+    {
+      "path": "docs/status/CURSOR_FLARE_APPLY_LINK_CHECK_4.0.57.md",
+      "declared_url": "http://www.lupopedia.com/status/CURSOR_FLARE_APPLY_LINK_CHECK_4.0.57",
+      "file_hash": "21bcc3ad07f8cba0318ca55b12708224b53b0cac",
+      "mtime": 1772636172
+    }
+  ],
   "http://www.lupopedia.com/status/db_opt_4.0.57": [
     {
       "path": "docs/status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md",
       "declared_url": "http://www.lupopedia.com/status/DB_OPT_4.0.57",
       "file_hash": "97d6486eb8c5f627757add055147072e673b43d9",
       "mtime": 1772626182
+    }
+  ],
+  "http://www.lupopedia.com/status/database_path_normalization_report_cursor": [
+    {
+      "path": "docs/status/DATABASE_PATH_NORMALIZATION_REPORT_CURSOR.md",
+      "declared_url": "http://www.lupopedia.com/status/DATABASE_PATH_NORMALIZATION_REPORT_CURSOR",
+      "file_hash": "d7f819563002da6697d320b8796d5dcb1ede2837",
+      "mtime": 1772636172
     }
   ],
   "http://www.lupopedia.com/status/flare_federation_mapping_policy_4.0.57": [
@@ -253,6 +283,22 @@
       "declared_url": "http://www.lupopedia.com/PUSH_LOG_4.0.55_FINAL",
       "file_hash": "aa5f6a1a69f178376cf56c4f022c6508067e4a8e",
       "mtime": 1772618911
+    }
+  ],
+  "http://www.lupopedia.com/status/push_log_4.0.56": [
+    {
+      "path": "docs/status/PUSH_LOG_4.0.56.md",
+      "declared_url": "http://www.lupopedia.com/status/PUSH_LOG_4.0.56",
+      "file_hash": "b120547848f89f182857f8b6ab8b99823569c1be",
+      "mtime": 1772636172
+    }
+  ],
+  "http://www.lupopedia.com/status/version_bump_4.0.57_report": [
+    {
+      "path": "docs/status/VERSION_BUMP_4.0.57_REPORT.md",
+      "declared_url": "http://www.lupopedia.com/status/VERSION_BUMP_4.0.57_REPORT",
+      "file_hash": "b5c4138781b555aead7a510852b1bdef19face7b",
+      "mtime": 1772636172
     }
   ],
   "http://www.lupopedia.com/table_optimization_plan": [
@@ -1623,12 +1669,12 @@
       "mtime": 1772618913
     }
   ],
-  "http://www.lupopedia.com/alias": [
+  "http://www.lupopedia.com/lupo-docs/status/report_on_flame_header_to_url_alias_and_database": [
     {
-      "path": "relative/path/to/file.md",
-      "declared_url": "http://www.lupopedia.com/ALIAS",
-      "file_hash": "e0f63a0e45069a689b77584dacc8fa268921ced2",
-      "mtime": 1772619942
+      "path": "lupo-docs/status/report_on_flame_header_to_url_alias_and_database.md",
+      "declared_url": "http://www.lupopedia.com/lupo-docs/status/report_on_flame_header_to_url_alias_and_database",
+      "file_hash": "883c6e82f99a08721813e302a6cf9c9a0bb1a0ba",
+      "mtime": 1772636173
     }
   ],
   "http://www.lupopedia.com/fileopt_tools_consolidated": [
