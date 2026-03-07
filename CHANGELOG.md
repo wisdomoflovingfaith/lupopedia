@@ -1,4 +1,4 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
+# file: Lupopedia CHANGELOG — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/CHANGELOG
 ---
 flame.init:
   requirements:
@@ -62,20 +62,20 @@ flare.headers:
   flare.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
   file_hash: "to_be_generated"
-  system_version: "4.0.62"
+  system_version: "4.0.64"
   channel_id: 1
   actor_id: 1003
-  last_modified_utc: "20260306"
-  delegation_chain: "1003:10000"
+  last_modified_utc: "20260307"
+  delegation_chain: "antigravity:cursor:captain"
   arity: "high"
   artifact_type: "changelog"
   artifact_kind: "history"
-  purpose: "Canonical version history for Lupopedia with FLARE protocol migration documentation and ANUBIS database primacy"
-  dialog_message: "Version 4.0.57 initialized with task migration from 4.0.56."
+  purpose: "Canonical version history for Lupopedia with FLARE protocol documentation and actor refactor."
+  dialog_message: "Version 4.0.64: Actor Directory Refactor and WWW Content implementation finalized."
   mood_rgb: "4169E1"
-  traits: ["canonical", "comprehensive", "v4.0.57"]
+  traits: ["canonical", "comprehensive", "v4.0.64"]
   tags: ["changelog", "versions", "releases", "history", "flare", "federation"]
-  lupo_agent: "cursor"
+  lupo_agent: "antigravity"
 
 flare.edges:
   outbound_edges:
@@ -111,6 +111,58 @@ flame.close:
 # Lupopedia CHANGELOG
 
 This document tracks version history, focusing on key changes, task migrations, and optimizations. Entries are in reverse chronological order.
+
+## [4.0.65] — 2026-03-07
+### Antigravity Implementation and Context Alignment
+- **Identity Alignment**: Synchronized `AntigravityContext` with `ContextKernel` for unified actor/auth resolution.
+- **Doctrine Compliance**: Refactored `ActorService.php` for PHP 5.3 compatibility (removed PHP 7+ syntax).
+- **Directory Refactoring**: Transitioned to name-based actor workspaces (e.g., `lupo-actors/antigravity/`).
+- **FLARE Headers**: Implemented v4.0.64+ unified header formats across all Edited Artifacts.
+- **Reporting**: Generated `ANTIGRAVITY_IMPLEMENTATION_REPORT_2026_03_07.md`.
+
+## [4.0.64] — Actor Directory Refactor & Unified Headers (2026-03-07)
+**Status**: COMPLETED  
+**Summary**: Unified FLARE headers, transitioned to name-based actor workspaces, and implemented agent-web content serving.
+
+### Key Changes
+- 🚀 **Actor Directory Refactor**: Transitioned from ID-based (e.g., `lupo-actors/1/`) to name-based (e.g., `lupo-actors/wolfie/`) workspaces for improved readability and dev experience.
+    - Updated `ActorService.php`, `actor-helpers.php`, and `lupopedia-config.php` to prioritize name-based paths while maintaining ID-based fallback support.
+    - Modified `lupo_actors` table to use `actor_name` as the primary key.
+- 🌐 **Agent WWW Content**: Implemented `agent-www-controller.php` to serve web-accessible content from actor `www/` directories via `/agent/<name>/` routes.
+    - **Rendering Priority:** `readme.md` (Markdown) > `index.htm`/`index.html` (HTML) > `index.php` (PHP).
+    - **Security:** Implemented `realpath` containment checks to prevent directory traversal.
+- 🛠️ **Unified FLARE Headers**: Mandated a new first-line comment format: `# file: <title> — session: <session> — delegation: <chain> — web_path: <url>`.
+- 🧩 **Modular Skills**: Added a standardized `skills/` subdirectory to each actor's directory for modular agent capability management via `SkillService.php`.
+- ⚙️ **System Configuration**: Updated `lupopedia-config.php` with new directory constants and paths (e.g., `LUPO_ACTORS_DIR`, `LUPO_WWW_DIR`).
+- 🔄 **initialization & Migration**: Provided `init_actor_dirs.php` to seed new subdirectories and updated `bootstrap.php` for name-based resolution.
+
+### Technical Debt Addressed
+- ✅ **ID Ambiguity**: Removed reliance on rigid numeric IDs for workspace paths.
+- ✅ **Header Inconsistency**: Standardized FLARE header first-line comments for auditability.
+- ✅ **Routing Logic**: Unified `/agent/` routing for actor-hosted content.
+
+### Documentation Created
+- 📖 **`docs/DIRECTORY_STRUCTURE.md`**: Canonical guide to Lupopedia's `lupo-` prefix and actor workspace organization.
+- 📖 **`lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md`**: Updated with v4.0.64 header formatting mandate.
+- 📖 **`README.md`** & **`version.md`**: Synchronized to v4.0.64.
+
+---
+
+## [4.0.63] - 2026-03-07
+- **Version Transition:** Transitioned system to version 4.0.63 (Development Branch).
+- **Dialog System Persistence (Channel 42):** Created canonical thread `[4263] Lupopedia 4.0.63 Development` and persistent filesystem directory `lupo-channels/0/threads/VERSION_4.0.63/` for version tracking.
+- **Task Management (Channel 42):** Analyzed active tasks on Channel 42. Moved legacy tasks to `completed` directory: `task-010-fallback-database.md`, `task-011-config-constants.md`, `task-012-directory-migration.md`, `task-014-channels-full-migration.md`.
+- **New Canonical Tasks (v4.0.62-4.0.63):** Documented core system achievements as completed tasks: `task-016-actor-workspace-namespace.md`, `task-017-doctor-system-health.md`, `task-018-version-synchronization.md`.
+
+## [4.0.64] — Web Authentication and Actor Selection (2026-03-07)
+
+**Theme:** Implement dual-identity web flow and actor selector in admin interface with enhanced documentation scaling.
+
+### Summary
+
+- **Web Authentication and Actor Selection (Trae IDE 1008 doc, Cursor implementation):** Implemented dual-identity web flow and actor selector in admin. **AuthService** (app/auth/AuthService.php): `getActiveActorId()`, `setActiveActorId()`, `getPreferredActorId()`, `setPreferredActorId()` for session-stored active and preferred actor. **ActorService** (Services/ActorService.php): `getActorsUserCanActAs($authUserId, $isAdmin)` returns list of actors user may act as (own actor + paired agents, or all for admin). **switch-actor.php**: POST handler with CSRF; validates actor in allowed list; sets active (and optional preferred) actor; writes `session.md` for CLI sync; redirects back. **admin.php**: Computes `$admin_actor_list` and `$admin_active_actor_id`; passes to layout. **admin_layout.php**: Actor selector dropdown in nav ("Act as: [select]") when logged in; form POSTs to switch-actor.php. **admin.php section=actors**: Added to section_titles; already wired to AdminActorsHandler. **Documentation**: `docs/auth/WEB_AUTHENTICATION_AND_ACTOR_SELECTION.md` (Trae IDE v1.0 summary).
+- **Documentation Scaling:** Enhanced HELP.md, CLI.md, and DOCTOR_HEALTH_CHECK.md with comprehensive coverage of new authentication features.
+- **Version Management:** Updated all version files and global atoms for consistent version tracking across the system.
 
 ---
 
@@ -148,6 +200,8 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **QUICKSTART.md enhancements (Cursor):** Completely restructured Getting Started section with 5-minute onboarding flow. Added clear prerequisites (PHP 5.3+, MySQL 8.0+, web server, Git), critical requirements warnings (subdirectory installation, UTC timestamps, no foreign keys), time-boxed Quick Install (3 minutes) with clone/setup/installer steps, First Commands validation (2 minutes) with expected output descriptions, and optional VSX Extension setup. Updated FLARE headers to v4.0.62 with comprehensive CLI command coverage including whoami, context, doctor, and doctor-context commands.
 - **Post-4.0.61 implementation (Cursor):** Directive `prompts/cursor/20260307_post_4.0.61_implementation.md` executed. ContextResolver now sets `context['conflicts']` (array of field/file_value/db_value/resolution) when session.md and DB session mismatch. CLI.md: exit codes table, switch/use alias, doctor-context backup filename note (session.md.bak.YmdHis). HELP.md: UTC_TIMEKEEPER (1212) in Identity section and "Querying UTC_TIMEKEEPER" subsection (CLI, PHP, SQL, one-liner; YmdHis convention).
 - **ContextResolver Conflict Detection (Cursor):** Enhanced ContextResolver to detect and report conflicts between session.md file and database session state. When mismatches occur, `context['conflicts']` array populated with field name, file value, database value, and suggested resolution for comprehensive identity drift diagnostics.
+- **Web authentication and actor selection (Trae IDE 1008 doc, Cursor implementation):** Implemented dual-identity web flow and actor selector in admin. **AuthService** (app/auth/AuthService.php): `getActiveActorId()`, `setActiveActorId()`, `getPreferredActorId()`, `setPreferredActorId()` for session-stored active and preferred actor. **ActorService** (Services/ActorService.php): `getActorsUserCanActAs($authUserId, $isAdmin)` returns list of actors user may act as (own actor + paired agents, or all for admin). **switch-actor.php**: POST handler with CSRF; validates actor in allowed list; sets active (and optional preferred) actor; writes `session.md` for CLI sync; redirects back. **admin.php**: Computes `$admin_actor_list` and `$admin_active_actor_id`; passes to layout. **admin_layout.php**: Actor selector dropdown in nav ("Act as: [select]") when logged in; form POSTs to switch-actor.php. **admin.php section=actors**: Added to section_titles; already wired to AdminActorsHandler. **Documentation**: `docs/auth/WEB_AUTHENTICATION_AND_ACTOR_SELECTION.md` (Trae IDE v1.0 summary).
+- **Dialog System Persistence (Channel 42):** Created canonical thread `[4262] Lupopedia 4.0.62 Development` and persistent filesystem directory `lupo-channels/0/threads/VERSION_4.0.62/` for version tracking and multi-agent coordination.
 
 ---
 
@@ -840,7 +894,6 @@ lupo-tools/      # Development tools (MOVED)
 
 ---
 
-
 ## [4.0.53] — ANUBIS Activation & Queue Processing (2026-03-01)
 
 **Status**: COMPLETED  
@@ -1161,9 +1214,6 @@ lupo-tools/      # Development tools (MOVED)
 - ✅ **Repository Cleanup**: Removed legacy files (CLEANUP-2026-02-27-001 complete)
 - ✅ **File Optimization Planning**: Initial plan created for 4.1.0 (FILEOPT-2026-02-27-001 in progress)
 - ✅ **Database Migration**: Migrated ANUBIS inventory to database successfully
-- ✅ **Repository Cleanup**: Removed legacy files (CLEANUP-2026-02-27-001 complete)
-- ✅ **File Optimization Planning**: Initial plan created for 4.1.0 (FILEOPT-2026-02-27-001 in progress)
-- ✅ **Database Migration**: Migrated ANUBIS inventory to database successfully
 - ✅ **FLARE Application**: Applied FLARE headers to 1,649 markdown files system-wide
 - ✅ **File Indexing**: Created comprehensive index of 1,920 total files
 - ✅ **Meta Tracking**: Established meta/flare.json tracking in all directories
@@ -1175,7 +1225,7 @@ lupo-tools/      # Development tools (MOVED)
 #### FLARE Standardization and Issues Resolution
 - ✅ **Header Standardization**: Migrated all legacy headers to canonical FLARE format
 - ✅ **Delegation Chain Fixing**: Properly handled delegation_chain for 1,648 files
-- ✅ **System Version Updates**: Updated 199 files to system_version 4.0.50
+- ✅ **System Version Updates**: Updated 199 file.last_modified_system_version: 4.0.65
 - ✅ **Issues Ledger Generation**: Created comprehensive issues report for 1,799 files
 - ✅ **Correction Pass**: Fixed 869 issues across high/medium/low severity levels
 - ✅ **Duplicate Header Cleanup**: Removed 1,432 duplicates from 89 files, then fixed script issues that caused content loss
@@ -1227,10 +1277,6 @@ lupo-tools/      # Development tools (MOVED)
 - **Actor Help Documentation Validation v2**: Created comprehensive validation task with LILITH review integration, corrected actor priorities (ANUBIS 2035→19), enhanced validation framework (YAML scoring, actor-type specific rules), automated validation tools (PHP + Bash), realistic 32-hour timeline, and enterprise-ready results with 100% coverage for priority actors
 
 ### Remaining Tasks for 4.0.50
-- 🔄 **File Count Optimization**: Begin FILEOPT-2026-02-27-001 planning for 4.1.0
-- 🔄 **Performance Validation**: Verify system performance after cleanup and optimization
-- 🔄 **Documentation Review**: Validate all actor help documentation completeness
-- 🔄 **CLI Testing**: Execute comprehensive CLI tool testing suite
 - 🔄 **File Count Optimization**: Begin FILEOPT-2026-02-27-001 planning for 4.1.0
 - 🔄 **Performance Validation**: Verify system performance after cleanup and optimization
 - 🔄 **Documentation Review**: Validate all actor help documentation completeness
@@ -1593,7 +1639,7 @@ lupo-tools/      # Development tools (MOVED)
 
 **Technical Challenges Identified:**
 - **Slug System Integration:** Current livehelp.php uses direct file access which conflicts with slug-based routing.
-- **Session Management Complexity:** Livehelp requires session-to-actor mapping that differs from standard web sessions.
+- **Session Management Complexity:** Livehelp requires session-to-actor-mapping that differs from standard web sessions.
 
 **IDE Agent Responsibilities:**
 - **Windsurf (1002):** Development cycle coordination, schema migration, livehelp analysis.
@@ -1608,7 +1654,7 @@ lupo-tools/      # Development tools (MOVED)
 - ? `channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226044100_10000_1002_dialog_doctrine_table_renamed.md` - Table rename documentation.
 - ? Updated CHANGELOG.md with 4.0.47 development progress.
 
-### ?? Next Steps
+### 🔜 Next Steps
 
 - Proceed to 4.0.48 for rolled-over tasks.
 

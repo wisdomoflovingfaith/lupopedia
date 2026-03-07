@@ -1,10 +1,22 @@
 <?php
+# file: Antigravity Context — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain — web_path: http://www.lupopedia.com/docs/api/AntigravityContext
+# ---
+# flare.headers:
+#   flare.version: "1.0"
+#   flare.schema: "documentation"
+#   file_path_from_root: "lupo-includes/classes/AntigravityContext.php"
+#   last_updated_utc: "20260307"
+#   system_version: "4.0.65"
+#   actor_name: "antigravity"
+#   artifact_type: "code"
+#   purpose: "Exposes auth user and actor context via ContextKernel (v4.0.65 update)."
+# ---
 /**
- * AntigravityContext — Exposes auth user and actor context for Antigravity (conflict resolution, context awareness).
- * Uses ContextResolver for base context and optional AuthService for current/paired user.
+ * AntigravityContext — Exposes auth user and actor context for Antigravity.
+ * Uses ContextKernel for single-source resolution.
  *
  * @package Lupopedia
- * @version 4.0.61
+ * @version 4.0.65
  */
 
 class AntigravityContext
@@ -123,7 +135,7 @@ class AntigravityContext
     {
         return array(
             'timestamp' => gmdate('Y-m-d H:i:s'),
-            'version' => function_exists('get_lupo_version') ? get_lupo_version() : '4.0.61',
+            'version' => function_exists('get_lupo_version') ? get_lupo_version() : '4.0.65',
             'session_mode' => isset($this->context['session_mode']) ? $this->context['session_mode'] : 'unknown',
             'actor_name' => isset($this->actorData['name']) ? $this->actorData['name'] : null,
             'auth_username' => $this->auth && isset($this->auth['username']) ? $this->auth['username'] : null,

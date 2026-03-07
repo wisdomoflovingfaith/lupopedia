@@ -1,4 +1,4 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/{WEB_PATH}
+# file: {FILE_TITLE} — session: {SESSION_NAME} — delegation: {DELEGATION_CHAIN}  — web_path: {CANONICAL_URL}
 ---
 flame.init:
   requirements:

@@ -17,7 +17,7 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
 
 // Define essential constants BEFORE loading modules
 if (!defined('LUPOPEDIA_PATH')) {
-    define('LUPOPEDIA_PATH', dirname(__FILE__) . '/');
+    define('LUPOPEDIA_PATH', defined('ABSPATH') ? ABSPATH : dirname(dirname(dirname(__FILE__))) . '/');
 }
 
 if (!defined('LUPOPEDIA_ABSPATH')) {
@@ -321,6 +321,20 @@ function lupo_route_slug($slug)
             oauth_route_request($slug);
             // OAuth controller handles redirects and exits
             return '';
+        }
+    }
+
+    // ── AGENT WWW ROUTE: /agent/<actor_name>/[path] ─────────────────────────
+    if (preg_match('#^agent/([^/]+)(?:/(.*))?$#', $normalized_slug, $matches)) {
+        $actor_name = $matches[1];
+        $sub_path = isset($matches[2]) ? $matches[2] : '';
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'actors' . DIRECTORY_SEPARATOR . 'agent-www-controller.php';
+        if (file_exists($controller_path)) {
+            require_once $controller_path;
+            if (function_exists('agent_www_handle_request')) {
+                return agent_www_handle_request($actor_name, $sub_path);
+            }
         }
     }
 

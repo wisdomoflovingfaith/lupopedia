@@ -1,3 +1,4 @@
+# file: Lupopedia Required FLARE Headers — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/doctrine/required_flare_headers
 ---
 flare.headers:
   flare.version: "1.0"

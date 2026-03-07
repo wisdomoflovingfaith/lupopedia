@@ -193,6 +193,15 @@ Context is resolved in this order:
 
 Reported as: `session.md`, `session.md + registry`, `lupo_sessions`, or `default`.
 
+## Identity Sources
+
+- **CLI:** Identity is determined by local files, primarily `session.md` or `.lupo_actor`.
+- **Web:** Identity is established through a user login and is managed by a session. The web interface also allows users to switch between different actors.
+
+While the sources are different, both methods ultimately resolve to an actor in the `lupo_actors` table and are recorded in the `lupo_sessions` table, ensuring a consistent identity across the system.
+
+For more details on the web authentication flow, see [WEB_AUTH_AND_ACTOR_SELECTION.md](WEB_AUTH_AND_ACTOR_SELECTION.md).
+
 ## Exit codes
 
 | Code | Meaning |

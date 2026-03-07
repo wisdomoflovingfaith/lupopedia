@@ -30,7 +30,32 @@ function lupo_get_actor($actor_id)
     $actor_data = array();
     $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : (defined('ABSPATH') ? ABSPATH : '');
     $lupo_actors_dir = defined('LUPO_ACTORS_DIR') ? LUPO_ACTORS_DIR : 'lupo-actors';
-    $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . (int) $actor_id . DIRECTORY_SEPARATOR . 'WHO.json';
+    $actor_id = (int) $actor_id;
+
+    $actor_name = null;
+    $reg_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'actors' . DIRECTORY_SEPARATOR . 'registry.json';
+    if (file_exists($reg_path)) {
+        $reg_raw = file_get_contents($reg_path);
+        $reg_data = json_decode($reg_raw, true);
+        if (is_array($reg_data) && isset($reg_data['actors'])) {
+            foreach ($reg_data['actors'] as $nameKey => $a) {
+                if (isset($a['actor_id']) && (int) $a['actor_id'] === $actor_id) {
+                    $actor_name = $nameKey;
+                    break;
+                }
+            }
+        }
+    }
+
+    $who_file = '';
+    if ($actor_name !== null) {
+        $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_name . DIRECTORY_SEPARATOR . 'WHO.json';
+    }
+
+    // Fallback to legacy ID-based if name-based not found
+    if ($who_file === '' || !file_exists($who_file)) {
+        $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_id . DIRECTORY_SEPARATOR . 'WHO.json';
+    }
 
     if ($who_file !== '' && file_exists($who_file)) {
         $json = file_get_contents($who_file);

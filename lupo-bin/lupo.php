@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-// VERSION: 4.0.62
+// VERSION: 4.0.63
 
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(dirname(__FILE__)) . '/');
@@ -54,7 +54,7 @@ try {
             $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
             $kernel->bootstrap($db, $table_prefix, $state_file, ABSPATH, $authService);
             $ctx = $kernel->getContext();
-            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.62');
+            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.63');
             lupo_validate_flare_headers($ctx, $system_version);
             DialogHeaderValidator::validate($ctx);
             $verbose = isset($whoami_verbose) ? $whoami_verbose : false;
@@ -132,7 +132,7 @@ try {
                 }
                 $now = (int) gmdate('YmdHis');
                 $slug = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $name));
-                $stmt = $db->prepare("INSERT INTO {$t} (actor_id, name, actor_type, slug, is_active, is_deleted, created_ymdhis, updated_ymdhis) VALUES (:id, :name, :type, :slug, 1, 0, :created, :updated)");
+                $stmt = $db->prepare("INSERT INTO {$t} (actor_id, actor_name, name, actor_type, slug, is_active, is_deleted, created_ymdhis, updated_ymdhis) VALUES (:id, :name, :name, :type, :slug, 1, 0, :created, :updated)");
                 $stmt->execute(array('id' => $actor_id, 'name' => $name, 'type' => $type, 'slug' => $slug, 'created' => $now, 'updated' => $now));
                 echo "Registered new actor: $name (ID: $actor_id)\n";
             }
@@ -142,7 +142,7 @@ try {
         case 'actors':
             $type = isset($argv[2]) ? trim($argv[2]) : '';
             $t = $table_prefix . 'actors';
-            $sql = "SELECT actor_id, name, actor_type FROM {$t} WHERE is_deleted = 0";
+            $sql = "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE is_deleted = 0";
             $params = array();
             if ($type !== '') {
                 $sql .= " AND actor_type = :type";
@@ -154,7 +154,8 @@ try {
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo "Registered Actors:\n";
             foreach ($rows as $r) {
-                echo "  [" . $r['actor_id'] . "] " . $r['name'] . " (" . $r['actor_type'] . ")\n";
+                $disp = isset($r['actor_name']) ? $r['actor_name'] : $r['name'];
+                echo "  [" . $r['actor_id'] . "] " . $disp . " (" . $r['actor_type'] . ")\n";
             }
             break;
         case 'switch':
@@ -494,7 +495,7 @@ try {
             exit($return_var);
             break;
         case 'version':
-            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.62';
+            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.63';
             echo "Lupopedia version " . $ver . "\n";
             echo "Documentation: docs/version.md\n";
             break;

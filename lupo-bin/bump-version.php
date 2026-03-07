@@ -34,27 +34,28 @@ if (!preg_match('/^\d+\.\d+\.\d+$/', $new_version)) {
 
 // Get project root (assuming script is in bin/)
 $project_root = dirname(__DIR__);
-$atoms_file = $project_root . '/config/global_atoms.yaml';
+$atoms_file = $project_root . '/lupo-config/global_atoms.yaml';
 $version_file = $project_root . '/lupo-includes/version.php';
 $changelog_file = $project_root . '/CHANGELOG.md';
 $dialog_file = $project_root . '/dialogs/changelog_dialog.md';
 
 // Load current version from atoms
-function load_current_version($atoms_file) {
+function load_current_version($atoms_file)
+{
     if (!file_exists($atoms_file)) {
         return null;
     }
-    
+
     $content = file_get_contents($atoms_file);
     if (preg_match('/^version:\s*["\']?([^"\'\n]+)["\']?/m', $content, $matches)) {
         return trim($matches[1], '"\'');
     }
-    
+
     // Try GLOBAL_CURRENT_LUPOPEDIA_VERSION atom
     if (preg_match('/^GLOBAL_CURRENT_LUPOPEDIA_VERSION:\s*["\']?([^"\'\n]+)["\']?/m', $content, $matches)) {
         return trim($matches[1], '"\'');
     }
-    
+
     return null;
 }
 
@@ -71,7 +72,7 @@ echo "\n";
 
 // Confirm
 echo "This will update:\n";
-echo "  - config/global_atoms.yaml (atom and version fields)\n";
+echo "  - lupo-config/global_atoms.yaml (atom and version fields)\n";
 echo "  - lupo-includes/version.php (constants - now loads from atom)\n";
 echo "  - CHANGELOG.md (add entry and update summary)\n";
 echo "  - dialogs/changelog_dialog.md (add dialog entry)\n";
@@ -91,7 +92,7 @@ if ($confirmation !== 'yes' && $confirmation !== 'y') {
 echo "\nStarting version bump...\n\n";
 
 // Step 1: Update global_atoms.yaml
-echo "Step 1: Updating config/global_atoms.yaml...\n";
+echo "Step 1: Updating lupo-config/global_atoms.yaml...\n";
 $atoms_content = file_get_contents($atoms_file);
 
 // Update version field
@@ -239,7 +240,7 @@ echo "  ✓ Added CHANGELOG entry and updated summary\n";
 echo "Step 4: Updating dialogs/changelog_dialog.md...\n";
 if (file_exists($dialog_file)) {
     $dialog_content = file_get_contents($dialog_file);
-    
+
     $dialog_entry = <<<DIALOG
 ## {$today_formatted} — Version {$new_version}: (Describe changes)
 
@@ -255,7 +256,7 @@ if (file_exists($dialog_file)) {
 - Updated all version references to {$new_version}
 
 DIALOG;
-    
+
     // Prepend to file
     $dialog_content = $dialog_entry . "\n\n" . $dialog_content;
     file_put_contents($dialog_file, $dialog_content);
@@ -270,9 +271,9 @@ echo "\nStep 5: Validating version consistency...\n";
 // Check atoms file
 $atoms_check = load_current_version($atoms_file);
 if ($atoms_check === $new_version) {
-    echo "  ✓ config/global_atoms.yaml version correct\n";
+    echo "  ✓ lupo-config/global_atoms.yaml version correct\n";
 } else {
-    echo "  ✗ ERROR: config/global_atoms.yaml version mismatch (found: {$atoms_check}, expected: {$new_version})\n";
+    echo "  ✗ ERROR: lupo-config/global_atoms.yaml version mismatch (found: {$atoms_check}, expected: {$new_version})\n";
     exit(1);
 }
 

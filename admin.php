@@ -85,6 +85,18 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
 $admin_page_title = 'Dashboard';
 $admin_active_key = 'Dashboard';
 
+// Actor selector: list of actors user can act as, and current active actor (Trae IDE doc: Web Authentication and Actor Selection)
+$admin_actor_list = array();
+$admin_active_actor_id = 0;
+if ($isUserLoggedIn && isset($GLOBALS['lupo_actor_service']) && isset($GLOBALS['lupo_auth_service'])) {
+    $actorService = $GLOBALS['lupo_actor_service'];
+    $admin_actor_list = $actorService->getActorsUserCanActAs($user['auth_user_id'], $isAdmin);
+    $admin_active_actor_id = $GLOBALS['lupo_auth_service']->getActiveActorId();
+    if ($admin_active_actor_id <= 0 && !empty($user['actor_id'])) {
+        $admin_active_actor_id = (int) $user['actor_id'];
+    }
+}
+
 // Admin menu: grouped sections matching legacy Crafty nav (legacy/craftysyntax/navigation.php), rewritten for Lupopedia.
 // All sections and items are present as placeholders; content will be implemented per section.
 $admin_menu_sections = array(
@@ -273,6 +285,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         'proactive-leads' => array('Proactive Leads', 'Proactive Leads'),
         'import-leads' => array('Import Leads', 'Import Leads'),
         'agents' => array('Agents', 'Agents'),
+        'actors' => array('Actors', 'Actors'),
         'channels' => array('Channels', 'Channels'),
         'registry' => array('Registry', 'Registry'),
         'live' => array('Live', 'Live'),

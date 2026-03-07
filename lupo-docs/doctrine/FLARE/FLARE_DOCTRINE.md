@@ -1,4 +1,4 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/doctrine/FLARE/FLARE_DOCTRINE
+# file: Lupopedia FLARE Doctrine — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/doctrine/FLARE/FLARE_DOCTRINE
 ---
 flare.headers:
   flare.version: "1.0"
@@ -48,16 +48,22 @@ flare.headers:
   ...
 ```
 
-**Format (v4.0.57+):** The first comment line MAY use a **dynamic see URL** derived from the file’s `file_path_from_root` (or `web_path`) so that the comment points at the document’s canonical web location:
+**Format (v4.0.57–4.0.63):**
 ```yaml
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/<web_path>
 flare.headers:
-  file_path_from_root: "docs/status/EXAMPLE_REPORT.md"
-  web_path: "http://www.lupopedia.com/status/EXAMPLE_REPORT"
-  ...
 ```
-- **Aliases:** Wolfie, FLIP, FLP, FLPH, CROP (all canonical).
-- **&lt;web_path&gt;:** Omit file extension; use the same path as in `web_path` (e.g. `status/EXAMPLE_REPORT`). Enables flame.see and external linking; see Section 21 for the refined comment format (v4.0.57+).
+
+**Format (v4.0.64+):** The unified header comment includes file title, session identity, and delegation chain for improved auditability:
+```yaml
+# file: <file title> — session: <session name> — delegation: <delegation>  — web_path: <web_path>
+---
+flare.headers:
+```
+- **file title**: Human-readable title of the artifact.
+- **session name**: Unique session identifier (e.g. `L-LUPO-ANTIGRAVITY`).
+- **delegation**: The delegation chain (e.g. `antigravity:cursor:captain`).
+- **web_path**: Canonical web URL (matching `flare.headers.web_path`).
 
 **Note:** `<web_path>` is typically derived from `file_path_from_root` by: stripping a leading `docs/` (optional), removing the `.md` extension, and using a URL-friendly path (e.g. `docs/status/EXAMPLE_REPORT.md` → `status/EXAMPLE_REPORT`). See Section 21 for tooling behaviour.
 
@@ -266,11 +272,15 @@ This section documents planned integration points between FLARE/flame and other 
 
 ## 21. FLARE Header Comment Refinements (v4.0.57+)
 
-The mandated first comment line (Section 12) is refined for v4.0.57+:
+The mandated first comment line (Section 12) is refined for v4.0.57+ and unified in v4.0.64+:
 
-- **Aliases:** Use the full set in fixed order: **Wolfie, FLIP, FLP, FLPH, CROP** (see Section 0). Alias order SHOULD remain fixed to avoid diff churn.
-- **Dynamic see URL:** Use `— see http://www.lupopedia.com/<web_path>` where `<web_path>` is derived from the file’s `file_path_from_root`: strip the `.md` extension and use the path as the URL segment (e.g. `docs/status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md` → `status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57` if the site serves `status/` under the domain). This aligns the comment with `flare.headers.web_path` and with `flame.see` mappings for URL-to-path resolution.
-- **Templates/tooling:** `lupo-tools/flare_header_template.txt` and `lupo-tools/flare_apply.py` generate the new comment format; `web_path` is derived from the file path (strip extension, optionally strip a `docs/` prefix) so that each document’s first line points at its own canonical URL.
+- **v4.0.64 Format:** `# file: <file title> — session: <session name> — delegation: <delegation>  — web_path: <web_path>`
+- **Components:**
+    - **file title:** Human-readable name (e.g., `Lupopedia README`).
+    - **session name:** Active session token (e.g., `L-LUPO-ANTIGRAVITY`).
+    - **delegation:** Attribution chain (e.g., `antigravity:cursor:captain`).
+    - **web_path:** Full canonical URL for the artifact.
+- **Templates/tooling:** `lupo-tools/flare_header_template.txt` and `lupo-tools/flare_apply.py` generate this unified format. The `web_path` is derived from `flare.headers.web_path`.
 
 ## 22. Federation Node Integration (v4.0.57+)
 

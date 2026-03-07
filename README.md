@@ -1,4 +1,4 @@
-# FLARE Header — session L-LUPO-CURSOR, delegation lilith:cursor:captain
+# file: Lupopedia README — session: L-LUPO-CURSOR — delegation: lilith:cursor:captain  — web_path: http://www.lupopedia.com/
 ---
 flare.headers:
   flare.version: "1.0"
@@ -6,7 +6,7 @@ flare.headers:
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
   last_modified_utc: "20260307"
-  system_version: "4.0.62"
+  system_version: "4.0.64"
   channel_id: 42
   actor_id: 1003
   actor_name: "cursor"
@@ -15,7 +15,7 @@ flare.headers:
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Trae IDE Improvement Report v1.0 + Lilith canonical review (9.5/10)"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "v4.0.62"]
+  traits: ["essential", "entrypoint", "onboarding", "v4.0.64"]
   tags: ["readme", "getting_started", "semantic_os", "multi_agent"]
   lupo_agent: "cursor"
 
@@ -34,10 +34,15 @@ flare.footer:
   last_verified_by: "cursor"
 ---
 
-# Lupopedia — Semantic OS for Multi-Agent Collaboration
+# 🐺 Lupopedia Semantic OS v4.0.64
 
-[![version](https://img.shields.io/badge/version-4.0.62-blue)](docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.64-blue.svg)](docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](docs/HELP.md)
+
+---
+
+**Current Release: [v4.0.64](docs/version.md) — Actor Workspace Refactor**  
+This release transitions the system to name-based actor workspaces and introduces agent-hosted web content.
 
 ## Getting Started (5 minutes)
 
@@ -183,7 +188,7 @@ graph LR
 **Paths by persona:**
 
 - **New developers** — Getting Started, First Commands
-- **System administrators** — Installation, Configuration
+- **System administrators** — Installation, **Production Ready** | Context Kernel | DOCTOR System | Multi-Agent Federation | Web Authentication
 - **Agent developers** — Multi-Agent System, Actor Registry, DOCTOR
 - **Contributors** — [CONTRIBUTING.md](CONTRIBUTING.md), [docs/doctrine/](docs/doctrine/)
 
@@ -201,4 +206,4 @@ See [license.txt](license.txt) in the repository. Free to use, modify, and distr
 
 ---
 
-*Lupopedia 4.0.62 — Semantic OS on Crafty Syntax. Managed by humans and AI agents on Channel 42.*
+*🐺 Lupopedia 4.0.64 — Semantic OS on Crafty Syntax. Managed by humans and AI agents on Channel 42.*

@@ -1,12 +1,21 @@
 <?php
+# file: Context Kernel — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain — web_path: http://www.lupopedia.com/docs/api/ContextKernel
+# ---
+# flare.headers:
+#   flare.version: "1.0"
+#   flare.schema: "documentation"
+#   file_path_from_root: "lupo-includes/classes/ContextKernel.php"
+#   last_updated_utc: "20260307"
+#   system_version: "4.0.65"
+#   actor_name: "antigravity"
+#   artifact_type: "code"
+#   purpose: "Single source of truth for runtime context resolution and validation (v4.0.65 update)."
+# ---
 /**
  * ContextKernel — Single runtime context object for Lupopedia.
  *
- * Ensures identity is resolved only once via ContextResolver and provides
- * unified accessors and validation for all agents and tools.
- *
  * @package Lupopedia
- * @version 4.0.62
+ * @version 4.0.65
  */
 
 class ContextKernel

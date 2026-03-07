@@ -1,11 +1,22 @@
 <?php
+# file: Actor Service — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain — web_path: http://www.lupopedia.com/docs/api/ActorService
+# ---
+# flare.headers:
+#   flare.version: "1.0"
+#   flare.schema: "documentation"
+#   file_path_from_root: "lupo-database/lupopedia/content/lupo-app/Services/ActorService.php"
+#   last_updated_utc: "20260307"
+#   system_version: "4.0.65"
+#   actor_name: "antigravity"
+#   artifact_type: "code"
+#   purpose: "Actor domain service with PHP 5.3 compatibility and name-based workspace support (v4.0.65 update)."
+# ---
 
 namespace App\Services;
 
 /**
  * Actor domain service — actor–auth_user linkage, actor creation, slug checks,
- * anonymous allocation, JSRN, and merge. Uses PDO_DB and LUPO_TABLE_PREFIX only.
- * No actor_roles, no sessions, no operator tables. Doctrine: all logic in app.
+ * anonymous allocation, JSRN, and merge.
  */
 
 if (!defined('LUPO_TABLE_PREFIX')) {
@@ -221,6 +232,68 @@ class ActorService
     }
 
     /**
+     * Get list of actors the given user is permitted to act as (for web actor selector).
+     * Non-admin: user's own actor plus any actors paired to that user (paired_actor_id = user's actor_id).
+     * Admin: all non-deleted actors.
+     *
+     * @param int  $authUserId auth_user_id of the logged-in user
+     * @param bool $isAdmin    whether the user has admin role
+     * @return array List of arrays with keys actor_id, actor_name, name, actor_type
+     */
+    public function getActorsUserCanActAs($authUserId, $isAdmin = false)
+    {
+        $authUserId = (int) $authUserId;
+        if ($authUserId <= 0 || !$this->db) {
+            return array();
+        }
+        $t = $this->db->quoteIdentifier($this->prefix . 'actors');
+        $userActorId = 0;
+        $userRow = $this->db->fetchRow(
+            "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE actor_source_type = 'user' AND actor_source_id = :aid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            array('aid' => $authUserId)
+        );
+        if ($userRow) {
+            $userActorId = (int) $userRow['actor_id'];
+        }
+        $list = array();
+        if ($isAdmin) {
+            $rows = $this->db->fetchAll(
+                "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE (is_deleted = 0 OR is_deleted IS NULL) ORDER BY actor_id ASC"
+            );
+            foreach ($rows as $r) {
+                $list[] = array(
+                    'actor_id' => (int) $r['actor_id'],
+                    'actor_name' => isset($r['actor_name']) ? $r['actor_name'] : (isset($r['name']) ? $r['name'] : ''),
+                    'name' => isset($r['name']) ? $r['name'] : (isset($r['actor_name']) ? $r['actor_name'] : ''),
+                    'actor_type' => isset($r['actor_type']) ? $r['actor_type'] : 'user',
+                );
+            }
+            return $list;
+        }
+        if ($userActorId > 0) {
+            $list[] = array(
+                'actor_id' => $userActorId,
+                'actor_name' => isset($userRow['actor_name']) ? $userRow['actor_name'] : (isset($userRow['name']) ? $userRow['name'] : ''),
+                'name' => isset($userRow['name']) ? $userRow['name'] : (isset($userRow['actor_name']) ? $userRow['actor_name'] : ''),
+                'actor_type' => isset($userRow['actor_type']) ? $userRow['actor_type'] : 'user',
+            );
+            $paired = $this->db->fetchAll(
+                "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE paired_actor_id = :uid AND (is_deleted = 0 OR is_deleted IS NULL) ORDER BY actor_id ASC",
+                array('uid' => $userActorId)
+            );
+            foreach ($paired as $r) {
+                $list[] = array(
+                    'actor_id' => (int) $r['actor_id'],
+                    'actor_name' => isset($r['actor_name']) ? $r['actor_name'] : (isset($r['name']) ? $r['name'] : ''),
+                    'name' => isset($r['name']) ? $r['name'] : (isset($r['actor_name']) ? $r['actor_name'] : ''),
+                    'actor_type' => isset($r['actor_type']) ? $r['actor_type'] : 'agent',
+                );
+            }
+        }
+        return $list;
+    }
+
+    /**
      * Get actor data, preferring filesystem WHO.json over database (Doctrine: Root Truth = Filesystem).
      * 
      * @param int $actor_id Actor ID
@@ -234,10 +307,28 @@ class ActorService
 
         $actor_data = array();
 
-        // 1. Root Truth: Filesystem (lupo-actors/<id>/WHO.json)
+        // 1. Root Truth: Filesystem (Prefer Name-Based per ACTOR_PRIMARY_KEY_DOCTRINE)
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : (defined('ABSPATH') ? ABSPATH : '');
         $lupo_actors_dir = defined('LUPO_ACTORS_DIR') ? LUPO_ACTORS_DIR : 'lupo-actors';
-        $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_id . DIRECTORY_SEPARATOR . 'WHO.json';
+
+        $actor_name = null;
+        $registry = $this->loadRegistry();
+        foreach ($registry as $nameKey => $a) {
+            if (isset($a['actor_id']) && (int) $a['actor_id'] === $actor_id) {
+                $actor_name = $nameKey;
+                break;
+            }
+        }
+
+        $who_file = '';
+        if ($actor_name !== null) {
+            $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_name . DIRECTORY_SEPARATOR . 'WHO.json';
+        }
+
+        // Fallback to legacy ID-based if name-based not found
+        if ($who_file === '' || !file_exists($who_file)) {
+            $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_id . DIRECTORY_SEPARATOR . 'WHO.json';
+        }
 
         if ($who_file !== '' && file_exists($who_file)) {
             $json = file_get_contents($who_file);
@@ -354,15 +445,16 @@ class ActorService
      * @param int $authUserId Auth user ID
      * @return int|false Actor ID or false
      */
-    public function getActorIdFromAuthUserId(int $authUserId)
+    public function getActorIdFromAuthUserId($authUserId)
     {
+        $authUserId = (int) $authUserId;
         if ($authUserId <= 0) {
             return false;
         }
         $t = $this->db->quoteIdentifier($this->prefix . 'actors');
         $row = $this->db->fetchRow(
             "SELECT actor_id FROM {$t} WHERE actor_source_type = 'user' AND actor_source_id = :auth_user_id AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            ['auth_user_id' => $authUserId]
+            array('auth_user_id' => $authUserId)
         );
         return $row ? (int) $row['actor_id'] : false;
     }
@@ -373,15 +465,16 @@ class ActorService
      * @param int $actorId Actor ID
      * @return int|false Auth user ID or false
      */
-    public function getAuthUserIdFromActorId(int $actorId)
+    public function getAuthUserIdFromActorId($actorId)
     {
+        $actorId = (int) $actorId;
         if ($actorId <= 0) {
             return false;
         }
         $t = $this->db->quoteIdentifier($this->prefix . 'actors');
         $row = $this->db->fetchRow(
             "SELECT actor_source_id as auth_user_id FROM {$t} WHERE actor_id = :actor_id AND actor_source_type = 'user' AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            ['actor_id' => $actorId]
+            array('actor_id' => $actorId)
         );
         return $row ? (int) $row['auth_user_id'] : false;
     }
@@ -394,8 +487,9 @@ class ActorService
      * @param string $displayName Display name (used for name)
      * @return int|false New actor_id or false
      */
-    public function createActorForAuthUser(int $authUserId, string $email, string $displayName)
+    public function createActorForAuthUser($authUserId, $email, $displayName)
     {
+        $authUserId = (int) $authUserId;
         if ($authUserId <= 0 || $email === '') {
             return false;
         }
@@ -421,6 +515,7 @@ class ActorService
             }
             $ok = $this->db->insert($this->prefix . 'actors', array(
                 'actor_id' => $actor_id,
+                'actor_name' => $slug, // actor_name is primary key
                 'actor_type' => 'user',
                 'slug' => $slug,
                 'name' => $name,
@@ -446,7 +541,7 @@ class ActorService
      * @param string $slug Slug to check
      * @return bool
      */
-    public function actorSlugExists(string $slug): bool
+    public function actorSlugExists($slug)
     {
         if ($slug === '') {
             return false;
@@ -454,7 +549,7 @@ class ActorService
         $t = $this->db->quoteIdentifier($this->prefix . 'actors');
         $row = $this->db->fetchRow(
             "SELECT 1 FROM {$t} WHERE slug = :slug AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            ['slug' => $slug]
+            array('slug' => $slug)
         );
         return $row !== null;
     }
@@ -464,7 +559,7 @@ class ActorService
      *
      * @return int|null Allocated actor_id or null if exhausted
      */
-    public function allocateAnonymousActorId(): ?int
+    public function allocateAnonymousActorId()
     {
         $t = $this->db->quoteIdentifier($this->prefix . 'actors');
         $rows = $this->db->fetchAll(
@@ -494,12 +589,13 @@ class ActorService
      * @param int $actorId Actor ID
      * @return int Assigned jsrn
      */
-    public function getOrAllocateJsrnForActor(int $actorId): int
+    public function getOrAllocateJsrnForActor($actorId)
     {
+        $actorId = (int) $actorId;
         $t = $this->db->quoteIdentifier($this->prefix . 'actors');
         $row = $this->db->fetchRow(
             "SELECT JSON_UNQUOTE(JSON_EXTRACT(metadata, '$.jsrn')) AS jsrn FROM {$t} WHERE actor_id = :actor_id LIMIT 1",
-            ['actor_id' => $actorId]
+            array('actor_id' => $actorId)
         );
         if ($row && isset($row['jsrn']) && $row['jsrn'] !== null && $row['jsrn'] !== '') {
             return (int) $row['jsrn'];
@@ -510,7 +606,7 @@ class ActorService
         );
         $expected = 1;
         foreach ($all as $r) {
-            $jsrn = (int) ($r['jsrn'] ?? 0);
+            $jsrn = (int) (isset($r['jsrn']) ? $r['jsrn'] : 0);
             if ($jsrn > $expected) {
                 break;
             }
@@ -520,7 +616,7 @@ class ActorService
         }
         $this->db->query(
             "UPDATE {$t} SET metadata = JSON_SET(COALESCE(metadata, JSON_OBJECT()), '$.jsrn', :jsrn) WHERE actor_id = :actor_id",
-            ['jsrn' => $expected, 'actor_id' => $actorId]
+            array('jsrn' => $expected, 'actor_id' => $actorId)
         );
         return $expected;
     }
@@ -532,14 +628,16 @@ class ActorService
      * @param int $tempActorId Anonymous actor (1000–9999)
      * @param int $realActorId Real actor (e.g. >= 10000)
      * @return void
-     * @throws \Exception On DB error
+     * @throws Exception On DB error
      */
-    public function mergeAnonymousActorIntoRealActor(int $tempActorId, int $realActorId): void
+    public function mergeAnonymousActorIntoRealActor($tempActorId, $realActorId)
     {
+        $tempActorId = (int) $tempActorId;
+        $realActorId = (int) $realActorId;
         $p = $this->prefix;
         $this->db->beginTransaction();
         try {
-            $updateTables = [
+            $updateTables = array(
                 $p . 'sessions' => 'actor_id',
                 $p . 'actor_events' => 'actor_id',
                 $p . 'session_events' => 'actor_id',
@@ -547,23 +645,23 @@ class ActorService
                 $p . 'content_events' => 'actor_id',
                 $p . 'world_events' => 'actor_id',
                 $p . 'dialog_messages' => 'from_actor_id',
-            ];
+            );
             foreach ($updateTables as $table => $column) {
                 $t = $this->db->quoteIdentifier($table);
                 $col = $this->db->quoteIdentifier($column);
                 $this->db->query(
                     "UPDATE {$t} SET {$col} = :real_actor_id WHERE {$col} = :temp_actor_id",
-                    ['real_actor_id' => $realActorId, 'temp_actor_id' => $tempActorId]
+                    array('real_actor_id' => $realActorId, 'temp_actor_id' => $tempActorId)
                 );
             }
             $actorsT = $this->db->quoteIdentifier($p . 'actors');
-            $tempRow = $this->db->fetchRow("SELECT metadata FROM {$actorsT} WHERE actor_id = :actor_id LIMIT 1", ['actor_id' => $tempActorId]);
+            $tempRow = $this->db->fetchRow("SELECT metadata FROM {$actorsT} WHERE actor_id = :actor_id LIMIT 1", array('actor_id' => $tempActorId));
             $tempMeta = array();
             if ($tempRow && !empty($tempRow['metadata'])) {
                 $decoded = json_decode($tempRow['metadata'], true);
                 $tempMeta = is_array($decoded) ? $decoded : array();
             }
-            $realRow = $this->db->fetchRow("SELECT metadata FROM {$actorsT} WHERE actor_id = :actor_id LIMIT 1", ['actor_id' => $realActorId]);
+            $realRow = $this->db->fetchRow("SELECT metadata FROM {$actorsT} WHERE actor_id = :actor_id LIMIT 1", array('actor_id' => $realActorId));
             $realMeta = array();
             if ($realRow && !empty($realRow['metadata'])) {
                 $decoded = json_decode($realRow['metadata'], true);
@@ -572,11 +670,11 @@ class ActorService
             $mergedMeta = array_merge($tempMeta, $realMeta);
             $this->db->query(
                 "UPDATE {$actorsT} SET metadata = :metadata WHERE actor_id = :real_actor_id",
-                ['metadata' => json_encode($mergedMeta), 'real_actor_id' => $realActorId]
+                array('metadata' => json_encode($mergedMeta), 'real_actor_id' => $realActorId)
             );
             $this->db->query(
                 "UPDATE {$actorsT} SET metadata = JSON_SET(COALESCE(metadata, JSON_OBJECT()), '$.merged_into', :real_actor_id), is_deleted = 1 WHERE actor_id = :temp_actor_id",
-                ['real_actor_id' => $realActorId, 'temp_actor_id' => $tempActorId]
+                array('real_actor_id' => $realActorId, 'temp_actor_id' => $tempActorId)
             );
             $this->db->commit();
         } catch (\Exception $e) {

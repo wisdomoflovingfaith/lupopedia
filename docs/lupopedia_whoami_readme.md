@@ -1,3 +1,4 @@
+# file: Lupopedia Whoami — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/lupopedia_whoami_readme
 ---
 flare.headers:
   flare.version: "1.0"

@@ -227,6 +227,61 @@ class AuthService
     }
 
     /**
+     * Get the active actor ID for the current web session (selected via actor selector).
+     * Priority: session-stored active_actor_id, then preferred_actor_id, then current user's actor_id, else 0.
+     *
+     * @return int
+     */
+    public function getActiveActorId()
+    {
+        $user = $this->getCurrentUser();
+        if ($user === false) {
+            return 0;
+        }
+        $this->session->start();
+        if (isset($_SESSION['active_actor_id']) && (int) $_SESSION['active_actor_id'] > 0) {
+            return (int) $_SESSION['active_actor_id'];
+        }
+        if (isset($_SESSION['preferred_actor_id']) && (int) $_SESSION['preferred_actor_id'] > 0) {
+            return (int) $_SESSION['preferred_actor_id'];
+        }
+        return (int) $user['actor_id'];
+    }
+
+    /**
+     * Set the active actor ID for the current session (actor selector). Does not validate; caller must ensure user can act as this actor.
+     *
+     * @param int $actorId
+     */
+    public function setActiveActorId($actorId)
+    {
+        $this->session->start();
+        $_SESSION['active_actor_id'] = (int) $actorId;
+    }
+
+    /**
+     * Get user's preferred actor ID from session (stored when user sets a default "act as" actor).
+     *
+     * @return int 0 if none
+     */
+    public function getPreferredActorId()
+    {
+        $this->session->start();
+        return isset($_SESSION['preferred_actor_id']) ? (int) $_SESSION['preferred_actor_id'] : 0;
+    }
+
+    /**
+     * Set user's preferred actor ID in session.
+     *
+     * @param int $actorId
+     */
+    public function setPreferredActorId($actorId)
+    {
+        $this->session->start();
+        $_SESSION['preferred_actor_id'] = (int) $actorId;
+    }
+
+    /**
      * Require user to be logged in; redirect to login with redirect param if not.
      * Exits on redirect. Also redirects if password_change_required in session.
      */

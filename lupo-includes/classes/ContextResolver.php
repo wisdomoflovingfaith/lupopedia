@@ -1,11 +1,22 @@
 <?php
+# file: Context Resolver — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain — web_path: http://www.lupopedia.com/docs/api/ContextResolver
+# ---
+# flare.headers:
+#   flare.version: "1.0"
+#   flare.schema: "documentation"
+#   file_path_from_root: "lupo-includes/classes/ContextResolver.php"
+#   last_updated_utc: "20260307"
+#   system_version: "4.0.65"
+#   actor_name: "antigravity"
+#   artifact_type: "code"
+#   purpose: "Resolves full Lupopedia context (CLI/agents) with registry and session-file primacy (v4.0.65 update)."
+# ---
 /**
  * ContextResolver — Resolves full Lupopedia execution context for CLI/agents.
  * Priority: session.md (first-class) → enrich from lupo_sessions (DB) → enrich from registry/actor service → defaults.
- * Session file is read first; then DB and registry enrich missing fields. Human identity from lupo_actors.paired_actor_id.
  *
  * @package Lupopedia
- * @version 4.0.61
+ * @version 4.0.65
  */
 
 class ContextResolver

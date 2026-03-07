@@ -1,12 +1,12 @@
+# file: Lupopedia HELP HUB — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/help
 ---
-# FLARE Header — see http://www.lupopedia.com/help
 flare.headers:
   flare.version: "1.0"
   flare.schema: "help"
   file_path_from_root: "docs/HELP.md"
   web_path: "http://www.lupopedia.com/help"
   last_modified_utc: "20260306"
-  system_version: "4.0.62"
+  system_version: "4.0.63"
   channel_id: 42
   actor_name: "cursor"
   delegation_chain: "cursor:captain"
@@ -14,7 +14,7 @@ flare.headers:
   artifact_kind: "documentation"
   purpose: "User-friendly help hub for Lupopedia"
   mood_rgb: "4169E1"
-  traits: ["help", "documentation", "hub", "v4.0.62"]
+  traits: ["help", "documentation", "hub", "v4.0.63"]
   tags: ["help", "documentation", "user_friendly", "cli", "web"]
   lupo_agent: "cursor"
 ---
@@ -115,6 +115,12 @@ All timestamps in Lupopedia are UTC in `YmdHis` format (e.g. `20260307143045`). 
 | Doctrine | DB rules | [docs/doctrine/](doctrine/) |
 | TOON files | Table definitions | [docs/toons/](toons/) (if present) |
 | Migrations | Schema changes | database/migrations/ |
+
+### Web Interface
+
+| Resource | Description | Link |
+|----------|-------------|------|
+| Web Auth & Actor Selection | How the web UI handles logins and actor switching | [WEB_AUTH_AND_ACTOR_SELECTION.md](WEB_AUTH_AND_ACTOR_SELECTION.md) |
 
 ### FLARE protocol
 

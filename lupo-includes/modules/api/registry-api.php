@@ -64,13 +64,13 @@ if ($action === 'lookup' && $method === 'GET') {
 
         echo json_encode([
             'success' => true,
-            'actors'  => array_map(function ($r) {
+            'actors' => array_map(function ($r) {
                 return [
-                    'actor_id'   => (int) $r['actor_id'],
+                    'actor_id' => (int) $r['actor_id'],
                     'actor_name' => $r['actor_name'],
                     'actor_type' => $r['actor_type'],
-                    'slug'       => isset($r['slug']) ? $r['slug'] : null,
-                    'is_active'  => isset($r['is_active']) ? (bool) $r['is_active'] : true,
+                    'slug' => isset($r['slug']) ? $r['slug'] : null,
+                    'is_active' => isset($r['is_active']) ? (bool) $r['is_active'] : true,
                     'created_ymdhis' => isset($r['created_ymdhis']) ? $r['created_ymdhis'] : null,
                 ];
             }, $rows),
@@ -109,11 +109,11 @@ if ($action === 'register' && $method === 'POST') {
 
         if ($existing) {
             echo json_encode([
-                'success'    => true,
-                'actor_id'   => (int) $existing['actor_id'],
+                'success' => true,
+                'actor_id' => (int) $existing['actor_id'],
                 'actor_name' => $existing['actor_name'],
                 'actor_type' => $existing['actor_type'],
-                'message'    => 'Actor already registered.',
+                'message' => 'Actor already registered.',
             ]);
             exit;
         }
@@ -142,25 +142,26 @@ if ($action === 'register' && $method === 'POST') {
 
         $meta = isset($input['meta']) ? json_encode($input['meta']) : null;
 
-        $stmt = $db->prepare("INSERT INTO {$t} (actor_id, name, actor_type, slug, is_active, is_deleted, created_ymdhis, updated_ymdhis, metadata) VALUES (:actor_id, :name, :actor_type, :slug, 1, 0, :created, :updated, :meta)");
+        $stmt = $db->prepare("INSERT INTO {$t} (actor_id, actor_name, name, actor_type, slug, is_active, is_deleted, created_ymdhis, updated_ymdhis, metadata) VALUES (:actor_id, :actor_name, :name, :actor_type, :slug, 1, 0, :created, :updated, :meta)");
         $stmt->execute([
-            'actor_id'   => $actor_id,
-            'name'       => $actor_name,
+            'actor_id' => $actor_id,
+            'actor_name' => $actor_name,
+            'name' => $actor_name,
             'actor_type' => $actor_type,
-            'slug'       => $slug,
-            'created'    => $now,
-            'updated'    => $now,
-            'meta'       => $meta,
+            'slug' => $slug,
+            'created' => $now,
+            'updated' => $now,
+            'meta' => $meta,
         ]);
 
         http_response_code(201);
         echo json_encode([
-            'success'       => true,
-            'actor_id'      => $actor_id,
-            'actor_name'    => $actor_name,
-            'actor_type'    => $actor_type,
+            'success' => true,
+            'actor_id' => $actor_id,
+            'actor_name' => $actor_name,
+            'actor_type' => $actor_type,
             'registered_at' => gmdate('c'),
-            'message'       => 'Actor registered successfully.',
+            'message' => 'Actor registered successfully.',
         ]);
     } catch (Exception $e) {
         http_response_code(500);

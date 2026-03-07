@@ -1,4 +1,4 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/AGENTS
+# file: Lupopedia Actor Model — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/actors
 ---
 flare.headers:
   flare.version: "1.0"
@@ -68,7 +68,10 @@ Each installed actor has a **name-based** subdirectory under `lupo-actors/` (e.g
 | **db-changes/**| Database migration scripts, schema changes, or data seeding files related to the actor. |
 | **api/**       | API definitions, endpoints, or integration code for the actor's external interfaces. |
 | **needs/**     | Additional dependencies, requirements, or configuration (e.g. env vars, YAML configs) needed for the actor to operate. |
-| **prompts/**   | Prompt files (e.g. `.md` or `.txt`) that define behavioral instructions or tasks for the actor. For example, in actor 0, `flare-header-scan.md` provides a prompt for scanning and queuing files without FLARE headers. |
+| **prompts/**   | Prompt files (e.g. `.md` or `.txt`) that define behavioral instructions or tasks for the actor. |
+| **skills/**    | Agent skills: reusable modular capabilities, specialized knowledge, or tool definitions (e.g. `lupo-actors/wolfie/skills/web_search`). |
+| **www/**       | Web-accessible content rendered at `/agent/<actor_name>/`. Priority: `readme.md` > `index.htm` > `index.php`. |
+| **logs/**      | Actor-specific logs (optional, e.g. `lupo-actors/system/logs/`). |
 
 The path to an actor's prompts directory can be built as: `$actor['dir'] . '/' . LUPO_PROMPTS_SUBDIR` (with `dir` from registry or `ActorService::getActorDir($actor_name)`).
 
@@ -141,13 +144,13 @@ IDs 0–9999 are reserved for system and AI agents; human actors start at 10000.
 
 To add a new actor and give it a resource directory under `lupo-actors`:
 
-1. **Allocate or choose an actor ID**  
-   Ensure the ID is registered in the actor registry and consistent with doctrine (e.g. reserved ranges for system/agents vs humans).
+1. **Allocate or choose an actor name (slug)**  
+   Ensure the name is registered in the actor registry (`registry.json`) and follows the [ACTOR_PRIMARY_KEY_DOCTRINE](doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md).
 
 2. **Create the actor directory**  
-   Add a subdirectory named by the numeric ID, for example:
+   Add a subdirectory named by the actor name, for example:
    ```text
-   lupo-actors/2/
+   lupo-actors/my-new-agent/
    ```
 
 3. **Create the standard subdirectories**  
@@ -158,19 +161,22 @@ To add a new actor and give it a resource directory under `lupo-actors`:
    - `db-changes/`
    - `api/`
    - `needs/`
-   - `prompts/` (and optionally `logs/` for actor 0 or others that need logging)
+   - `prompts/`
+   - `skills/`
+   - `www/`
+   - `logs/` (optional)
 
 4. **Add content as needed**  
-   Place actor-specific applications in `apps/`, scripts/binaries in `tools/`, documentation in `docs/`, migration or seed files in `db-changes/`, API definitions in `api/`, dependency/config files in `needs/`, and prompt files (e.g. task instructions for the actor) in `prompts/`.
+   Place actor-specific applications in `apps/`, scripts/binaries in `tools/`, documentation in `docs/`, migration or seed files in `db-changes/`, API definitions in `api/`, dependency/config files in `needs/`, prompt files in `prompts/`, and modular capabilities in `skills/`.
 
 5. **Optional: ensure directory exists at runtime**  
-   If your code assumes the directory exists, ensure your setup or config loader creates `lupo-actors/{id}/` and the six subdirs when the actor is installed (e.g. via install wizard or a setup script). The constant `LUPO_ACTORS_DIR` in `lupopedia-config.php` defines the base path.
+   If your code assumes the directory exists, ensure your setup or config loader creates `lupo-actors/{name}/` and the standard subdirs. Use `ActorService::getActorDir($actor_name)` to resolve the correct path.
 
 ### Example: Creating `lupo-actors/2/` for a Hypothetical Actor
 
 ```bash
 # From project root
-mkdir -p lupo-actors/2/apps lupo-actors/2/tools lupo-actors/2/docs lupo-actors/2/db-changes lupo-actors/2/api lupo-actors/2/needs lupo-actors/2/prompts
+mkdir -p lupo-actors/my-agent/apps lupo-actors/my-agent/tools lupo-actors/my-agent/docs lupo-actors/my-agent/db-changes lupo-actors/my-agent/api lupo-actors/my-agent/needs lupo-actors/my-agent/prompts lupo-actors/my-agent/skills lupo-actors/my-agent/www lupo-actors/my-agent/logs
 ```
 
 Then add a `README.md` or `.gitkeep` in each subdirectory if you want to track empty directories in version control.

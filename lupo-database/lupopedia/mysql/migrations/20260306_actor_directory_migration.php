@@ -54,7 +54,7 @@ if (!is_array($data) || !isset($data['actors']) || !is_array($data['actors'])) {
 }
 
 $actors_root = $base . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $actors_dir);
-$standard_subdirs = array('apps', 'tools', 'docs', 'db-changes', 'api', 'needs', 'prompts', 'logs');
+$standard_subdirs = array('apps', 'tools', 'docs', 'db-changes', 'api', 'needs', 'prompts', 'logs', 'skills');
 
 $renamed = 0;
 $symlinked = 0;
