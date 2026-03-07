@@ -6,7 +6,7 @@
  * version-related constants and helper functions.
  * 
  * @package Lupopedia
- * @version 4.0.64
+ * @version 4.0.65
  * 
  * @note VERSION DOCTRINE: This file now loads version from GLOBAL_CURRENT_LUPOPEDIA_VERSION
  *       atom in config/global_atoms.yaml (Phase 2 implementation). Constants are defined
@@ -37,7 +37,7 @@ if (function_exists('get_lupopedia_version')) {
 }
 
 // Fallback to hard-coded version if atom loader fails (backward compatibility)
-$current_version = $version_from_atom !== null ? $version_from_atom : '4.0.64';
+$current_version = $version_from_atom !== null ? $version_from_atom : '4.0.65';
 
 // LIMITS enforcement (dry-run mode in 3.0.103)
 // Check version bump before applying (non-blocking, logs warnings only)
@@ -108,7 +108,7 @@ if (!defined('LUPOPEDIA_VERSION_NUM')) {
  * @var int
  */
 if (!defined('LUPOPEDIA_VERSION_DATE')) {
-    define('LUPOPEDIA_VERSION_DATE', 20260307040000);
+    define('LUPOPEDIA_VERSION_DATE', 20260307050000);
 }
 
 /**
@@ -128,7 +128,7 @@ function lupopedia_get_version()
         }
     }
     // Fallback to constant
-    return defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.64';
+    return defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.65';
 }
 
 /**
@@ -138,7 +138,7 @@ function lupopedia_get_version()
  */
 function get_lupo_version()
 {
-    return function_exists('lupopedia_get_version') ? lupopedia_get_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.64');
+    return function_exists('lupopedia_get_version') ? lupopedia_get_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.65');
 }
 
 /**

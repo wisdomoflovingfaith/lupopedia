@@ -34,15 +34,15 @@ flare.footer:
   last_verified_by: "cursor"
 ---
 
-# 🐺 Lupopedia Semantic OS v4.0.64
+# 🐺 Lupopedia Semantic OS v4.0.65
 
-[![Version](https://img.shields.io/badge/version-4.0.64-blue.svg)](docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.65-blue.svg)](docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](docs/HELP.md)
 
 ---
 
-**Current Release: [v4.0.64](docs/version.md) — Actor Workspace Refactor**  
-This release transitions the system to name-based actor workspaces and introduces agent-hosted web content.
+**Current Release: [v4.0.65](docs/version.md) — Development Phase**  
+This version is in active development with ongoing feature enhancements building upon the web authentication foundation.
 
 ## Getting Started (5 minutes)
 

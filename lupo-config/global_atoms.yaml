@@ -14,12 +14,12 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.0.64"
+version: "4.0.65"
 last_updated: 20260307
-# VERSION 4.0.64 - Web Authentication and Actor Selection
+# VERSION 4.0.65 - Development Phase
 
 # Global Version Atoms
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.64"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: 4.0.65
 GLOBAL_FLIP_SCHEMA_VERSION: "2.0"
 
 # System Configuration Atoms

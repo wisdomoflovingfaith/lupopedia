@@ -5,7 +5,7 @@ flare.headers:
   flare.schema: "documentation"
   file_path_from_root: "docs/version.md"
   last_modified_utc: "20260307"
-  system_version: "4.0.64"
+  system_version: "4.0.65"
   purpose: "Version history and upgrade notes for Lupopedia"
   traits: ["versioning", "v4.0.64", "context", "cli"]
   tags: ["version", "changelog", "upgrade"]
@@ -13,8 +13,13 @@ flare.headers:
 
 # Lupopedia version history
 
-Current version: **4.0.64**  
+Current version: **4.0.65**  
 Date: 2026-03-07
+
+## Summary of changes (4.0.65)
+
+- **Development Phase:** Transitioned to development version 4.0.65 for ongoing feature development and system enhancements.
+- **Web Authentication Foundation:** Building upon the web authentication and actor selection features from 4.0.64.
 
 ## Summary of changes (4.0.64)
 
@@ -33,6 +38,7 @@ Date: 2026-03-07
 
 | Version | Date       | Summary |
 |--------|------------|--------|
+| **4.0.65** | 2026-03-07 | Development phase - ongoing feature development. |
 | **4.0.64** | 2026-03-07 | Web authentication, actor selection, documentation scaling, version management. |
 | **4.0.62** | 2026-03-06 | Context Kernel, DOCTOR actor (1009), Task system documentation, and version synchronization. |
 | **4.0.61** | 2026-03-06 | Session-file-first context; version tracking (version.php, version.md, config); help integration. |
