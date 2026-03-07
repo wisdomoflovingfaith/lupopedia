@@ -1,15 +1,17 @@
 -- No Crafty Syntax logic, no migration, no DROP TABLE.
 SET @now = 20260224000000;
 
+-- ACTOR PRIMARY KEY DOCTRINE (v4.0.58): actor_name is primary; actor_id is unique secondary.
 CREATE TABLE lupo_actors (
-  actor_id bigint NOT NULL,
+  actor_name varchar(64) NOT NULL,
+  actor_id bigint DEFAULT NULL,
   actor_type varchar(64) NOT NULL,
   slug varchar(255) NOT NULL,
   name varchar(255) NOT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
-  is_active tinyint NOT NULL DEFAULT '1',
-  is_deleted tinyint NOT NULL DEFAULT '0',
+  is_active tinyint NOT NULL DEFAULT 1,
+  is_deleted tinyint NOT NULL DEFAULT 0,
   deleted_ymdhis bigint DEFAULT NULL,
   actor_source_id bigint DEFAULT NULL,
   actor_source_type varchar(64) DEFAULT NULL,
@@ -19,27 +21,34 @@ CREATE TABLE lupo_actors (
   avatar_hash varchar(64) DEFAULT NULL,
   primary_federation_node_id bigint NOT NULL DEFAULT 1,
   department_id bigint DEFAULT NULL,
-  is_kernel tinyint NOT NULL DEFAULT '0',
-  can_login tinyint NOT NULL DEFAULT '0',
+  is_kernel tinyint NOT NULL DEFAULT 0,
+  can_login tinyint NOT NULL DEFAULT 0,
   metadata_json json DEFAULT NULL,
   identity_provider_config json DEFAULT NULL,
   paired_actor_id bigint NOT NULL DEFAULT 0,
   is_agent tinyint NOT NULL DEFAULT 0,
   actor_root_path varchar(512) DEFAULT 'actors/{actor_id}',
+  workspace_path varchar(255) NULL DEFAULT NULL,
+  php_namespace varchar(120) NULL DEFAULT NULL,
   who_json_sync_status varchar(64) DEFAULT 'pending',
   last_sync_ymdhis bigint DEFAULT 0,
-  PRIMARY KEY (actor_id)
+  PRIMARY KEY (actor_name)
 );
 
+CREATE UNIQUE INDEX lupo_actors_unique_actor_id ON lupo_actors (actor_id);
 CREATE UNIQUE INDEX lupo_actors_unique_slug ON lupo_actors (slug);
 CREATE INDEX lupo_actors_idx_actor_type ON lupo_actors (actor_type);
 CREATE INDEX lupo_actors_idx_is_active ON lupo_actors (is_active);
 CREATE INDEX lupo_actors_idx_created_ymdhis ON lupo_actors (created_ymdhis);
+CREATE INDEX lupo_actors_idx_workspace_path ON lupo_actors (workspace_path);
+CREATE INDEX lupo_actors_idx_php_namespace ON lupo_actors (php_namespace);
 -- RESERVED ID DOCTRINE: actor_id is NOT AUTO_INCREMENT; application must supply explicit ID.
+-- ACTOR PRIMARY KEY DOCTRINE: actor_name is canonical; use ActorService::getActorByName / resolveActor.
 
 CREATE TABLE lupo_banned_actors (
   banned_actor_id bigint NOT NULL,
   actor_id bigint NOT NULL,
+  actor_name varchar(64) DEFAULT NULL,
   ip_address varchar(45) DEFAULT NULL,
   reason varchar(500) NOT NULL,
   banned_ymdhis bigint NOT NULL,
@@ -52,6 +61,7 @@ CREATE TABLE lupo_banned_actors (
 );
 
 CREATE INDEX lupo_banned_actors_idx_actor_id ON lupo_banned_actors (actor_id);
+CREATE INDEX lupo_banned_actors_idx_actor_name ON lupo_banned_actors (actor_name);
 CREATE INDEX lupo_banned_actors_idx_ip_address ON lupo_banned_actors (ip_address);
 CREATE INDEX lupo_banned_actors_idx_is_deleted ON lupo_banned_actors (is_deleted);
 -- Banned actors: ANUBIS does not adopt orphans from these actor_ids. Single source of truth for bans.
@@ -117,6 +127,7 @@ CREATE INDEX lupo_actor_capabilities_idx_is_deleted ON lupo_actor_capabilities (
 CREATE TABLE lupo_actor_channels (
   actor_channel_id bigint NOT NULL,
   actor_id bigint NOT NULL,
+  actor_name varchar(64) DEFAULT NULL,
   created_by_actor_id bigint NOT NULL DEFAULT 0,
   channel_id bigint NOT NULL,
   status char(1) NOT NULL DEFAULT 'A',
@@ -135,6 +146,7 @@ CREATE TABLE lupo_actor_channels (
 
 CREATE UNIQUE INDEX lupo_actor_channels_unq_actor_channel ON lupo_actor_channels (actor_id, channel_id);
 CREATE INDEX lupo_actor_channels_idx_actor ON lupo_actor_channels (actor_id);
+CREATE INDEX lupo_actor_channels_idx_actor_name ON lupo_actor_channels (actor_name);
 CREATE INDEX lupo_actor_channels_idx_channel ON lupo_actor_channels (channel_id);
 CREATE INDEX lupo_actor_channels_idx_status ON lupo_actor_channels (status);
 CREATE INDEX lupo_actor_channels_idx_created ON lupo_actor_channels (created_ymdhis);
@@ -144,6 +156,7 @@ CREATE INDEX lupo_actor_channels_idx_deleted ON lupo_actor_channels (is_deleted)
 CREATE TABLE lupo_actor_channel_roles (
   actor_channel_role_id bigint NOT NULL,
   actor_id bigint NOT NULL,
+  actor_name varchar(64) DEFAULT NULL,
   channel_id bigint NOT NULL,
   role_key varchar(64) NOT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
@@ -162,6 +175,7 @@ CREATE TABLE lupo_actor_channel_roles (
 );
 
 CREATE INDEX lupo_actor_channel_roles_idx_actor_id ON lupo_actor_channel_roles (actor_id);
+CREATE INDEX lupo_actor_channel_roles_idx_actor_name ON lupo_actor_channel_roles (actor_name);
 CREATE INDEX lupo_actor_channel_roles_idx_channel_id ON lupo_actor_channel_roles (channel_id);
 CREATE INDEX lupo_actor_channel_roles_idx_role_key ON lupo_actor_channel_roles (role_key);
 CREATE INDEX lupo_actor_channel_roles_idx_protocol_completion_status ON lupo_actor_channel_roles (protocol_completion_status);
@@ -3116,6 +3130,7 @@ CREATE TABLE lupo_sessions (
   session_id varchar(255) NOT NULL,
   federation_node_id bigint NOT NULL DEFAULT 1,
   actor_id bigint NOT NULL DEFAULT 0,
+  actor_name varchar(64) DEFAULT NULL,
   channel_id bigint NOT NULL DEFAULT 1,
   ip_address varchar(45) NOT NULL DEFAULT '',
   user_agent varchar(255) NOT NULL DEFAULT '',
@@ -3147,6 +3162,7 @@ CREATE TABLE lupo_sessions (
 
 CREATE INDEX lupo_sessions_idx_domain ON lupo_sessions (federation_node_id);
 CREATE INDEX lupo_sessions_idx_actor ON lupo_sessions (actor_id);
+CREATE INDEX lupo_sessions_idx_actor_name ON lupo_sessions (actor_name);
 CREATE INDEX lupo_sessions_idx_last_seen ON lupo_sessions (last_seen_ymdhis);
 CREATE INDEX lupo_sessions_idx_expires ON lupo_sessions (expires_ymdhis);
 CREATE INDEX lupo_sessions_idx_device ON lupo_sessions (device_id);

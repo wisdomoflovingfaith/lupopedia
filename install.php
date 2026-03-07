@@ -2,11 +2,11 @@
 /**
  * @wolfie.headers {
  *   file_path_from_root: "install.php",
- *   system_version: "4.0.50",
+ *   system_version: "4.0.62",
  *   channel_id: 42,
  *   mood_rgb: "FF6347",
  *   purpose: "Main installer and upgrade wizard for Lupopedia - handles fresh install and Crafty Syntax 3.7.5 upgrade",
- *   last_modified_utc: "20260228",
+ *   last_modified_utc: "20260306",
  *   delegation_chain: "1001:10000",
  *   actor_id: 1001,
  *   lupo_agent: "kiro",
@@ -50,8 +50,8 @@
  *   },
  *   semantic_tags: ["installer", "upgrade_wizard", "crafty_syntax_3_7_5", "identity_normalization", "reserved_channels"],
  *   enrichment: { llm_inferred_edges: [], federated_metrics: {} },
- *   version: "4.0.50",
- *   last_verified_utc: "20260228",
+ *   version: "4.0.62",
+ *   last_verified_utc: "20260306",
  *   last_verified_by: "kiro"
  * }
  */
@@ -108,7 +108,7 @@ if (!is_dir(LUPO_MYSQL_DIR)) {
 }
 
 // Version for wizard UI - Direct parse from global_atoms.yaml (install.php runs standalone, no bootstrap)
-$lupo_wizard_version = '4.0.57'; // Fallback when no atoms file found
+$lupo_wizard_version = '4.0.62'; // Fallback when no atoms file found
 $atoms_candidates = array(
     LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
     LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
@@ -632,7 +632,7 @@ if ($step === 'run') {
                 $actor_db = new PDO_DB($pdo); // Wrap PDO for our helper
                 if (ensureActorActive($actor_id, $actor_db, 'initial_install_activation')) {
                     $log[] = InstallWizardLogger::logEntry('ok', "Activated Actor ID: $actor_id");
-                    
+
                     // For ANUBIS, verify queue tables exist
                     if ($actor_id === 19) {
                         $required_tables = array(
@@ -1240,18 +1240,18 @@ if ($baseUrl === '') {
                     class="btn btn-secondary">Back</a></p>
         </div>
         <script>
-                 (function () {
-                    var form = document.getElementById('lupo-credentials-form');
-                    var btn = document.getElementById('lupo-connect-btn');
-                    var overlay = document.getElementById('lupo-processing-overlay');
-                    if (form && btn && overlay) {
-                         form.onsubmit = function () {
-                            btn.disabled = true;
-                            overlay.className = 'lupo-processing-overlay visible';
-                            return true;
-                };
-                    }
-                })();
+            (function () {
+                var form = document.getElementById('lupo-credentials-form');
+                var btn = document.getElementById('lupo-connect-btn');
+                var overlay = document.getElementById('lupo-processing-overlay');
+                if (form && btn && overlay) {
+                    form.onsubmit = function () {
+                        btn.disabled = true;
+                        overlay.className = 'lupo-processing-overlay visible';
+                        return true;
+                    };
+                }
+            })();
         </script>
 
     <?php elseif ($step === 'bootstrap'): ?>
@@ -1412,7 +1412,9 @@ if ($baseUrl === '') {
                             <li><?php echo htmlspecialchars($e); ?></li>
                         <?php endforeach; ?>
                     </ul>
-                    <p>Fix the issue and click &ldquo;Run installation&rdquo; again, or <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>">go back to credentials</a>.</p>
+                    <p>Fix the issue and click &ldquo;Run installation&rdquo; again, or <a
+                            href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>">go back to
+                            credentials</a>.</p>
                 </div>
             <?php endif; ?>
             <?php if ((isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade'): ?>
@@ -1443,7 +1445,8 @@ if ($baseUrl === '') {
                 <p>No livehelp_* tables found. The wizard will:</p>
                 <ol>
                     <li>Run <code>lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql</code></li>
-                    <li>Run seed SQL from <code>lupo-database/lupopedia/mysql/seed/</code> (including seed_default_sessions.sql)</li>
+                    <li>Run seed SQL from <code>lupo-database/lupopedia/mysql/seed/</code> (including seed_default_sessions.sql)
+                    </li>
                     <li>Create reserved system channels (0, 1, 42, 51)</li>
                     <li>Write <code>lupopedia-config.php</code></li>
                     <li>Redirect to login</li>
@@ -1458,18 +1461,18 @@ if ($baseUrl === '') {
                 <p style="margin-top:1rem;"><button type="submit" id="lupo-run-btn">Run installation</button></p>
             </form>
             <script>
-                    (function () {
-                        var form = document.getElementById('lupo-run-form');
-                        var btn = document.getElementById('lupo-run-btn');
-                        var overlay = document.getElementById('lupo-run-overlay');
-                         if (form && btn && overlay) {
-                            form.onsubmit = function () {
-                                btn.disabled = true;
-                                overlay.className = 'lupo-processing-overlay visible';
-                    return true;
-                            };
-                        }
-                    })();
+                (function () {
+                    var form = document.getElementById('lupo-run-form');
+                    var btn = document.getElementById('lupo-run-btn');
+                    var overlay = document.getElementById('lupo-run-overlay');
+                    if (form && btn && overlay) {
+                        form.onsubmit = function () {
+                            btn.disabled = true;
+                            overlay.className = 'lupo-processing-overlay visible';
+                            return true;
+                        };
+                    }
+                })();
             </script>
             <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=credentials'); ?>" class="btn">Back to
                     credentials</a></p>

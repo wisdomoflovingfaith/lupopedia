@@ -93,6 +93,74 @@ class AuthService
     }
 
     /**
+     * Get auth user row by auth_user_id (for use by ActorService / Antigravity context).
+     *
+     * @param int $authUserId
+     * @return array|null Row from lupo_auth_users or null
+     */
+    public function getUserByAuthUserId($authUserId)
+    {
+        $authUserId = (int) $authUserId;
+        if ($authUserId <= 0) {
+            return null;
+        }
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $au = $this->db->quoteIdentifier($prefix . 'auth_users');
+        $row = $this->db->fetchRow(
+            "SELECT * FROM {$au} WHERE auth_user_id = :id AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            array('id' => $authUserId)
+        );
+        return is_array($row) ? $row : null;
+    }
+
+    /**
+     * Get auth user row by actor_id (join lupo_actors where actor_source_type = 'user').
+     *
+     * @param int $actorId
+     * @return array|null Row from lupo_auth_users or null
+     */
+    public function getUserByActorId($actorId)
+    {
+        $actorId = (int) $actorId;
+        if ($actorId <= 0) {
+            return null;
+        }
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $a = $this->db->quoteIdentifier($prefix . 'actors');
+        $au = $this->db->quoteIdentifier($prefix . 'auth_users');
+        $row = $this->db->fetchRow(
+            "SELECT au.* FROM {$au} au
+             INNER JOIN {$a} a ON a.actor_source_id = au.auth_user_id AND (a.actor_source_type = 'user' OR a.actor_source_type = 'lupo_auth_users')
+             WHERE a.actor_id = :actor_id AND (a.is_deleted = 0 OR a.is_deleted IS NULL) AND (au.is_deleted = 0 OR au.is_deleted IS NULL) LIMIT 1",
+            array('actor_id' => $actorId)
+        );
+        return is_array($row) ? $row : null;
+    }
+
+    /**
+     * Get auth user row by actor_name.
+     *
+     * @param string $actorName
+     * @return array|null Row from lupo_auth_users or null
+     */
+    public function getUserByActorName($actorName)
+    {
+        if (!is_string($actorName) || trim($actorName) === '') {
+            return null;
+        }
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $a = $this->db->quoteIdentifier($prefix . 'actors');
+        $au = $this->db->quoteIdentifier($prefix . 'auth_users');
+        $row = $this->db->fetchRow(
+            "SELECT au.* FROM {$au} au
+             INNER JOIN {$a} a ON a.actor_source_id = au.auth_user_id AND (a.actor_source_type = 'user' OR a.actor_source_type = 'lupo_auth_users')
+             WHERE a.actor_name = :actor_name AND (a.is_deleted = 0 OR a.is_deleted IS NULL) AND (au.is_deleted = 0 OR au.is_deleted IS NULL) LIMIT 1",
+            array('actor_name' => trim($actorName))
+        );
+        return is_array($row) ? $row : null;
+    }
+
+    /**
      * Whether the current session has a logged-in user.
      *
      * @return bool

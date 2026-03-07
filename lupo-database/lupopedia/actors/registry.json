@@ -1,0 +1,182 @@
+{
+  "schema_version": "4.0.58",
+  "schema": "actor_name_primary",
+  "last_updated": "20260306",
+  "actors": {
+    "system": {
+      "actor_name": "system",
+      "actor_id": 0,
+      "display_name": "System Actor",
+      "type": "system",
+      "slug": "system",
+      "dir": "lupo-actors/system"
+    },
+    "wolfie": {
+      "actor_name": "wolfie",
+      "actor_id": 1,
+      "display_name": "Captain WOLFIE",
+      "type": "agent",
+      "slug": "captain-wolfie",
+      "dir": "lupo-actors/wolfie"
+    },
+    "lilith": {
+      "actor_name": "lilith",
+      "actor_id": 2038,
+      "display_name": "LILITH — Heterodox Reviewer",
+      "type": "agent",
+      "slug": "lilith",
+      "dir": "lupo-actors/lilith"
+    },
+    "lilith-legacy": {
+      "actor_name": "lilith-legacy",
+      "actor_id": 2,
+      "display_name": "LILITH (legacy)",
+      "type": "agent",
+      "slug": "lilith",
+      "dir": "lupo-actors/lilith-legacy"
+    },
+    "rose": {
+      "actor_name": "rose",
+      "actor_id": 3,
+      "display_name": "ROSE",
+      "type": "agent",
+      "slug": "rose-dialog",
+      "dir": "lupo-actors/rose"
+    },
+    "eris": {
+      "actor_name": "eris",
+      "actor_id": 4,
+      "display_name": "ERIS",
+      "type": "agent",
+      "slug": "eris",
+      "dir": "lupo-actors/eris"
+    },
+    "metis": {
+      "actor_name": "metis",
+      "actor_id": 5,
+      "display_name": "METIS",
+      "type": "agent",
+      "slug": "metis",
+      "dir": "lupo-actors/metis"
+    },
+    "anubis": {
+      "actor_name": "anubis",
+      "actor_id": 19,
+      "display_name": "ANUBIS",
+      "type": "agent",
+      "slug": "anubis",
+      "dir": "lupo-actors/anubis"
+    },
+    "vishwakarma": {
+      "actor_name": "vishwakarma",
+      "actor_id": 25,
+      "display_name": "VISHWAKARMA",
+      "type": "agent",
+      "slug": "vishwakarma",
+      "dir": "lupo-actors/vishwakarma"
+    },
+    "antigravity": {
+      "actor_name": "antigravity",
+      "actor_id": 42,
+      "display_name": "Antigravity",
+      "type": "agent",
+      "slug": "antigravity",
+      "dir": "lupo-actors/antigravity"
+    },
+    "cursor": {
+      "actor_name": "cursor",
+      "actor_id": 1003,
+      "display_name": "Cursor IDE Agent",
+      "type": "agent",
+      "slug": "cursor",
+      "dir": "lupo-actors/cursor"
+    },
+    "cursor-ide": {
+      "actor_name": "cursor-ide",
+      "actor_id": 1002,
+      "display_name": "Cursor IDE",
+      "type": "agent",
+      "slug": "cursor-ide",
+      "dir": "lupo-actors/cursor-ide"
+    },
+    "captain": {
+      "actor_name": "captain",
+      "actor_id": 10000,
+      "display_name": "Captain",
+      "type": "human",
+      "slug": "root-captain-10000",
+      "dir": "lupo-actors/captain"
+    },
+    "kiro": {
+      "actor_name": "kiro",
+      "actor_id": 1000,
+      "display_name": "Kiro IDE",
+      "type": "agent",
+      "slug": "kiro-ide",
+      "dir": "lupo-actors/kiro"
+    },
+    "windsurf": {
+      "actor_name": "windsurf",
+      "actor_id": 1001,
+      "display_name": "Windsurf IDE",
+      "type": "agent",
+      "slug": "windsurf-ide",
+      "dir": "lupo-actors/windsurf"
+    },
+    "warp": {
+      "actor_name": "warp",
+      "actor_id": 1004,
+      "display_name": "Warp IDE",
+      "type": "agent",
+      "slug": "warp-ide",
+      "dir": "lupo-actors/warp"
+    },
+    "cascade": {
+      "actor_name": "cascade",
+      "actor_id": 1005,
+      "display_name": "Cascade IDE",
+      "type": "agent",
+      "slug": "cascade-ide",
+      "dir": "lupo-actors/cascade"
+    },
+    "gemini-cli": {
+      "actor_name": "gemini-cli",
+      "actor_id": 1006,
+      "display_name": "Gemini CLI",
+      "type": "agent",
+      "slug": "gemini-cli",
+      "dir": "lupo-actors/gemini-cli"
+    },
+    "codex": {
+      "actor_name": "codex",
+      "actor_id": 1007,
+      "display_name": "Codex IDE",
+      "type": "agent",
+      "slug": "codex-ide",
+      "dir": "lupo-actors/codex"
+    },
+    "trae": {
+      "actor_name": "trae",
+      "actor_id": 1008,
+      "display_name": "Trae IDE",
+      "type": "agent",
+      "slug": "trae-ide",
+      "dir": "lupo-actors/trae"
+    },
+    "doctor": {
+      "actor_name": "doctor",
+      "actor_id": 1009,
+      "display_name": "Doctor",
+      "type": "system_agent",
+      "slug": "doctor",
+      "dir": "lupo-actors/doctor",
+      "created": "20260306",
+      "capabilities": [
+        "health_check",
+        "context_validation",
+        "repair",
+        "diagnostics"
+      ]
+    }
+  }
+}

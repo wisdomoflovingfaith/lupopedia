@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-// VERSION: 4.0.50
+// VERSION: 4.0.62
 
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(dirname(__FILE__)) . '/');
@@ -11,10 +11,18 @@ if (!defined('LUPOPEDIA_PATH')) {
 require_once ABSPATH . 'lupopedia-config.php';
 
 $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
-if (!$db) {
-    $db = DatabaseFactory::getConnection();
+if (!$db && class_exists('DatabaseFactory')) {
+    try {
+        $db = DatabaseFactory::getConnection();
+    } catch (Exception $e) {
+        $db = null;
+    }
 }
-if (!$db) {
+
+$argv = isset($GLOBALS['argv']) ? $GLOBALS['argv'] : array();
+$command = isset($argv[1]) ? $argv[1] : 'help';
+$need_db = ($command !== 'whoami' && $command !== 'context' && $command !== 'help' && $command !== 'docs' && $command !== 'version' && $command !== 'doctor' && $command !== 'doctor-context' && $command !== 'auth' && $command !== 'who' && $command !== 'actor-context');
+if (!$db && $need_db) {
     die("Error: Database connection failed.\n");
 }
 
@@ -35,12 +43,72 @@ function save_local_actor($actor_id, $name)
     file_put_contents($state_file, json_encode(array('actor_id' => $actor_id, 'name' => $name)));
 }
 
-$argv = isset($GLOBALS['argv']) ? $GLOBALS['argv'] : array();
-$command = isset($argv[1]) ? $argv[1] : 'help';
-
-
 try {
     switch ($command) {
+        case 'context':
+            $whoami_verbose = true;
+        case 'whoami':
+            require_once ABSPATH . 'lupo-includes/classes/ContextKernel.php';
+            require_once ABSPATH . 'lupo-includes/classes/DialogHeaderValidator.php';
+            $kernel = ContextKernel::getInstance();
+            $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+            $kernel->bootstrap($db, $table_prefix, $state_file, ABSPATH, $authService);
+            $ctx = $kernel->getContext();
+            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.62');
+            lupo_validate_flare_headers($ctx, $system_version);
+            DialogHeaderValidator::validate($ctx);
+            $verbose = isset($whoami_verbose) ? $whoami_verbose : false;
+            if (!$verbose && isset($argv[2]) && $argv[2] === '--verbose') {
+                $verbose = true;
+            }
+            if ($verbose) {
+                $json = array(
+                    'actor_name' => $ctx['actor_name'],
+                    'actor_id' => isset($ctx['actor_id']) ? (int) $ctx['actor_id'] : 0,
+                    'actor_type' => isset($ctx['actor_type']) ? $ctx['actor_type'] : 'system',
+                    'actor_nature' => isset($ctx['actor_nature']) ? $ctx['actor_nature'] : 'system',
+                    'agent_name' => isset($ctx['agent_name']) ? $ctx['agent_name'] : 'none',
+                    'human_actor_name' => isset($ctx['human_actor_name']) ? $ctx['human_actor_name'] : 'none',
+                    'human_actor_id' => isset($ctx['human_actor_id']) ? (int) $ctx['human_actor_id'] : 0,
+                    'paired_actor_id' => isset($ctx['paired_actor_id']) ? (int) $ctx['paired_actor_id'] : 0,
+                    'paired_actor_name' => isset($ctx['paired_actor_name']) && $ctx['paired_actor_name'] !== '' ? $ctx['paired_actor_name'] : '',
+                    'session_mode' => isset($ctx['session_mode']) ? $ctx['session_mode'] : 'system',
+                    'department_id' => isset($ctx['department_id']) ? (int) $ctx['department_id'] : 0,
+                    'channel_id' => (int) $ctx['channel_id'],
+                    'thread_id' => isset($ctx['thread_id']) ? (int) $ctx['thread_id'] : 0,
+                    'federation_node_id' => (int) $ctx['federation_node_id'],
+                    'workspace' => $ctx['workspace'],
+                    'session_id' => $ctx['session_id'],
+                    'context_source' => isset($ctx['context_source']) ? $ctx['context_source'] : $ctx['source']
+                );
+                echo json_encode($json, JSON_UNESCAPED_SLASHES) . "\n";
+            } else {
+                $human_id = isset($ctx['human_actor_name']) ? $ctx['human_actor_name'] : 'none';
+                $human_actor_id = isset($ctx['human_actor_id']) ? (int) $ctx['human_actor_id'] : 0;
+                $agent_name = isset($ctx['agent_name']) ? $ctx['agent_name'] : 'none';
+                $agent_id = ($agent_name !== 'none') ? (int) $ctx['actor_id'] : 0;
+                echo "Human Identity: " . $human_id . ($human_actor_id > 0 ? " (" . $human_actor_id . ")" : "") . "\n";
+                echo "Active Agent: " . $agent_name . ($agent_id > 0 ? " (" . $agent_id . ")" : "") . "\n\n";
+                echo "Session Mode: " . (isset($ctx['session_mode']) ? $ctx['session_mode'] : 'system') . "\n";
+                echo "Actor Type: " . (isset($ctx['actor_type']) ? $ctx['actor_type'] : 'system') . "\n\n";
+                echo "Department: " . (isset($ctx['department_id']) ? (int) $ctx['department_id'] : 0) . "\n";
+                echo "Channel: " . (int) $ctx['channel_id'] . "\n";
+                echo "Thread: " . (isset($ctx['thread_id']) ? (int) $ctx['thread_id'] : 0) . "\n";
+                echo "Federation Node: " . (int) $ctx['federation_node_id'] . "\n\n";
+                echo "Workspace:\n" . $ctx['workspace'] . "\n\n";
+                echo "Session:\n" . ($ctx['session_id'] !== '' ? $ctx['session_id'] : '(none)') . "\n\n";
+                echo "Context Source:\n" . (isset($ctx['context_source']) ? $ctx['context_source'] : $ctx['source']) . "\n";
+            }
+            $session_md_path = ABSPATH . (defined('LUPO_DATABASE_DIR') ? LUPO_DATABASE_DIR : 'lupo-database') . '/session.md';
+            $issues = $kernel->validate($db, $table_prefix, $session_md_path);
+            if (!empty($issues)) {
+                echo "\nKERNEL ISSUE:\n";
+                foreach ($issues as $issue) {
+                    echo "  * " . $issue . "\n";
+                }
+                echo "  Run: php lupo-bin/lupo.php doctor-context [--repair]\n";
+            }
+            break;
         case 'register':
             $name = isset($argv[2]) ? trim($argv[2]) : '';
             $type = isset($argv[3]) ? trim($argv[3]) : 'system_tool';
@@ -71,13 +139,6 @@ try {
             save_local_actor($actor_id, $name);
             echo "Local identity saved to .lupo_actor\n";
             break;
-        case 'whoami':
-            $actor = get_local_actor();
-            if (!$actor)
-                echo "Not registered.\n";
-            else
-                echo "Current Actor: " . $actor['name'] . " (ID: " . $actor['actor_id'] . ")\n";
-            break;
         case 'actors':
             $type = isset($argv[2]) ? trim($argv[2]) : '';
             $t = $table_prefix . 'actors';
@@ -96,6 +157,7 @@ try {
                 echo "  [" . $r['actor_id'] . "] " . $r['name'] . " (" . $r['actor_type'] . ")\n";
             }
             break;
+        case 'switch':
         case 'use':
             $actor_id = isset($argv[2]) ? (int) $argv[2] : 0;
             if ($actor_id <= 0)
@@ -431,39 +493,447 @@ try {
             passthru($command, $return_var);
             exit($return_var);
             break;
+        case 'version':
+            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.62';
+            echo "Lupopedia version " . $ver . "\n";
+            echo "Documentation: docs/version.md\n";
+            break;
+        case 'auth':
+        case 'who':
+            lupo_show_auth_info($db, $table_prefix, $state_file, ABSPATH);
+            break;
+        case 'actor-context':
+            lupo_show_actor_context($db, $table_prefix, $state_file, ABSPATH);
+            break;
+        case 'doctor':
+            $doctor_script = ABSPATH . 'lupo-agents/doctor/doctor.php';
+            if (file_exists($doctor_script)) {
+                include $doctor_script;
+            } else {
+                lupo_doctor_health_check(ABSPATH, $db, $table_prefix, $state_file);
+            }
+            break;
+        case 'doctor-context':
+            $doctor_context_script = ABSPATH . 'lupo-agents/doctor/doctor-context.php';
+            if (file_exists($doctor_context_script)) {
+                include $doctor_context_script;
+            } else {
+                require_once ABSPATH . 'lupo-includes/classes/ContextKernel.php';
+                $argv_doc = isset($GLOBALS['argv']) ? $GLOBALS['argv'] : array();
+                lupo_doctor_context(ABSPATH, $db, $table_prefix, $state_file, $argv_doc);
+            }
+            break;
+        case 'docs':
+            $topic = isset($argv[2]) ? trim($argv[2]) : '';
+            $base = ABSPATH . 'docs/';
+            if ($topic !== '') {
+                $path = $base . $topic . '.md';
+                if (file_exists($path)) {
+                    echo $path . "\n";
+                } else {
+                    echo "Documentation not found for: " . $topic . "\n";
+                    echo "Hub: " . $base . "HELP.md\n";
+                }
+            } else {
+                echo $base . "HELP.md\n";
+            }
+            break;
         case 'help':
         default:
-            echo "Lupopedia CLI v4.0.50\n";
-            echo "Usage: php lupo-bin/lupo.php <command> [args]\n\n";
-            echo "Commands:\n";
-            echo "  register <name> <type>             Register this environment as an actor\n";
-            echo "  whoami                             Show current actor identity\n";
-            echo "  actors [type]                      List registered actors\n";
-            echo "  use <actor_id>                     Switch local identity to an existing actor\n";
-            echo "  channels                           List available channels\n";
-            echo "  threads <channel_id>               List threads in a channel\n";
-            echo "  join <channel_id>                  Join a channel\n";
-            echo "  messages <channel_id> [thread_id]  List last 20 messages in a channel/thread\n";
-            echo "  send <channel_id> <msg> [thread_id] Send a message to a channel/thread\n";
-            echo "  nodes                              List federation nodes\n";
-            echo "  artifacts <node_id>                List artifacts by federation node\n";
-            echo "  tasks                              List your active tasks\n";
-            echo "  see <url>                          Resolve canonical URL to repo .md file\n";
-            echo "\nSystem Agent Commands (actor_id 0 only):\n";
-            echo "  system-status                      Get system status and information\n";
-            echo "  coordinate-task <task_id>          Coordinate development task\n";
-            echo "  health-check                       Perform system health check\n";
-            echo "  update-config <key> <value>        Update system configuration\n";
-            echo "\nExamples:\n";
-            echo "  php lupo-bin/lupo.php register \"System Agent\" system_tool\n";
-            echo "  php lupo-bin/lupo.php use 0\n";
-            echo "  php lupo-bin/lupo.php system-status\n";
-            echo "  php lupo-bin/lupo.php health-check\n";
-            echo "  php lupo-bin/lupo.php update-config maintenance_mode true\n";
+            $help_arg = isset($argv[2]) ? trim($argv[2]) : '';
+            require_once ABSPATH . 'lupo-includes/classes/HelpRenderer.php';
+            $ctx = null;
+            if (file_exists(ABSPATH . 'lupo-includes/classes/ContextKernel.php')) {
+                require_once ABSPATH . 'lupo-includes/classes/ContextKernel.php';
+                $kernel = ContextKernel::getInstance();
+                $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+                $ctx = $kernel->bootstrap($db, $table_prefix, $state_file, ABSPATH, $authService);
+            }
+            $help = new HelpRenderer($ctx);
+            if ($help_arg === '--quick') {
+                $help->showQuickRef();
+            } elseif ($help_arg === '--web') {
+                $help->openWebHelp();
+            } elseif ($help_arg !== '') {
+                if ($help_arg === 'whoami') {
+                    lupo_help_whoami();
+                } elseif ($help_arg === 'context') {
+                    lupo_help_context();
+                } else {
+                    $help->showTopicHelp($help_arg);
+                }
+            } else {
+                $help->showMainHelp();
+            }
             break;
     }
 } catch (Exception $e) {
     echo "EXCEPTION: " . $e->getMessage() . "\n";
+}
+
+/**
+ * Show current authenticated user (for Antigravity / conflict resolution).
+ */
+function lupo_show_auth_info($db, $table_prefix, $state_file, $abspath)
+{
+    require_once $abspath . 'lupo-includes/classes/ContextKernel.php';
+    require_once $abspath . 'lupo-includes/classes/AntigravityContext.php';
+
+    $kernel = ContextKernel::getInstance();
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+    $kernel->bootstrap($db, $table_prefix, $state_file, $abspath, $authService);
+
+    $ag = new AntigravityContext(null, $authService);
+    $auth = $ag->getAuthUser();
+    if ($auth && isset($auth['username'])) {
+        echo "Authenticated User:\n";
+        echo "  Username: " . (isset($auth['username']) ? $auth['username'] : '') . "\n";
+        echo "  Display Name: " . (isset($auth['display_name']) ? $auth['display_name'] : '') . "\n";
+        echo "  User ID: " . (isset($auth['user_id']) ? $auth['user_id'] : '') . "\n";
+        echo "  Email: " . (isset($auth['email']) ? $auth['email'] : '') . "\n";
+        echo "  Role: " . (isset($auth['role']) ? $auth['role'] : 'user') . "\n";
+    } else {
+        echo "Not authenticated.\n";
+    }
+}
+
+/**
+ * Show full actor context with auth (for Antigravity).
+ */
+function lupo_show_actor_context($db, $table_prefix, $state_file, $abspath)
+{
+    require_once $abspath . 'lupo-includes/classes/ContextKernel.php';
+    require_once $abspath . 'lupo-includes/classes/AntigravityContext.php';
+
+    $kernel = ContextKernel::getInstance();
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+    $kernel->bootstrap($db, $table_prefix, $state_file, $abspath, $authService);
+
+    $ag = new AntigravityContext(null, $authService);
+    $actor = $ag->getActor();
+    $auth = $ag->getAuthUser();
+    echo "Actor Context:\n";
+    echo "  Name: " . (isset($actor['name']) ? $actor['name'] : 'none') . "\n";
+    echo "  ID: " . (isset($actor['id']) ? $actor['id'] : 'none') . "\n";
+    echo "  Type: " . (isset($actor['type']) ? $actor['type'] : 'none') . "\n";
+    echo "  Paired: " . (isset($actor['paired_actor_id']) && $actor['paired_actor_id'] > 0 ? $actor['paired_actor_id'] : 'none') . "\n";
+    echo "\n";
+    echo "Auth Status: " . ($auth ? 'authenticated' : 'not authenticated') . "\n";
+    if ($auth && isset($auth['username'])) {
+        echo "  As: " . $auth['username'] . "\n";
+    }
+}
+
+/**
+ * System health check: database, registry file, session file, and kernel context validation.
+ *
+ * @param string $abspath Project root
+ * @param object|null $db PDO_DB or null
+ * @param string $table_prefix Table prefix (e.g. lupo_)
+ * @param string $state_file Path to .lupo_actor
+ */
+function lupo_doctor_health_check($abspath, $db, $table_prefix = '', $state_file = '')
+{
+    $db_dir = defined('LUPO_DATABASE_DIR') ? LUPO_DATABASE_DIR : 'lupo-database';
+    $registry_path = $abspath . $db_dir . '/lupopedia/actors/registry.json';
+    $session_md = $abspath . $db_dir . '/session.md';
+    if ($table_prefix === '' && defined('LUPO_TABLE_PREFIX')) {
+        $table_prefix = LUPO_TABLE_PREFIX;
+    }
+    if ($table_prefix === '') {
+        $table_prefix = 'lupo_';
+    }
+    if ($state_file === '') {
+        $state_file = $abspath . '.lupo_actor';
+    }
+    $args = isset($GLOBALS['argv']) ? $GLOBALS['argv'] : array();
+    $check_actors = in_array('--check-actors', $args);
+    echo "Lupopedia doctor — health check\n";
+    echo str_repeat("-", 50) . "\n";
+    $ok = 0;
+    $fail = 0;
+    if ($db) {
+        try {
+            $db->fetchRow('SELECT 1');
+            echo "  [OK] Database connection\n";
+            $ok++;
+        } catch (Exception $e) {
+            echo "  [FAIL] Database: " . $e->getMessage() . "\n";
+            $fail++;
+        }
+    } else {
+        echo "  [SKIP] Database not connected (whoami/context still work via session.md)\n";
+    }
+    if (file_exists($registry_path) && is_readable($registry_path)) {
+        echo "  [OK] Registry: " . $registry_path . "\n";
+        $ok++;
+    } else {
+        echo "  [WARN] Registry missing or unreadable: " . $registry_path . "\n";
+        $fail++;
+    }
+    if (file_exists($session_md) && is_readable($session_md)) {
+        echo "  [OK] Session file: " . $session_md . "\n";
+        $ok++;
+    } else {
+        echo "  [WARN] Session file missing (optional for CLI fallback): " . $session_md . "\n";
+    }
+    if (file_exists($abspath . 'lupo-includes/classes/ContextKernel.php')) {
+        require_once $abspath . 'lupo-includes/classes/ContextKernel.php';
+        $kernel = ContextKernel::getInstance();
+        $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+        $kernel->bootstrap($db, $table_prefix, $state_file, $abspath, $authService);
+        $issues = $kernel->validate($db, $table_prefix, $session_md);
+        if (empty($issues)) {
+            echo "  [OK] Context kernel: no identity drift\n";
+            $ok++;
+        } else {
+            echo "  [WARN] Context kernel: " . count($issues) . " issue(s)\n";
+            foreach ($issues as $issue) {
+                echo "    * " . $issue . "\n";
+            }
+            echo "  Run: php lupo-bin/lupo.php doctor-context [--repair]\n";
+            $fail++;
+        }
+    }
+    if ($check_actors) {
+        require_once $abspath . 'lupo-includes/classes/DoctorService.php';
+        $kernel = ContextKernel::getInstance();
+        $doctor = new DoctorService($kernel, $db, $table_prefix, $state_file, $abspath);
+        echo "  [INFO] Checking actors (workspace/namespace consistency)...\n";
+        $actor_issues = $doctor->checkActors();
+        if (empty($actor_issues)) {
+            echo "  [OK] Actors: all passed consistency checks.\n";
+            $ok++;
+        } else {
+            foreach ($actor_issues as $iss) {
+                echo "  [FAIL] Actor: " . $iss . "\n";
+                $fail++;
+            }
+        }
+    }
+
+    echo str_repeat("-", 50) . "\n";
+    echo "Summary: " . $ok . " system(s) OK";
+    if ($fail > 0) {
+        echo ", " . $fail . " issue(s)";
+    }
+    echo ".\n";
+}
+
+/**
+ * Context doctor: validate identity stack via ContextKernel and optionally repair session.md drift.
+ * Outputs human-readable OK/WARN/FAIL. See prompts/cursor/20260306_context_doctor.md.
+ *
+ * @param string $abspath Project root
+ * @param object|null $db PDO_DB or null
+ * @param string $table_prefix Table prefix (e.g. lupo_)
+ * @param string $state_file Path to .lupo_actor
+ * @param array $argv CLI argv (for --repair)
+ */
+function lupo_doctor_context($abspath, $db, $table_prefix, $state_file, $argv = array())
+{
+    $db_dir = defined('LUPO_DATABASE_DIR') ? LUPO_DATABASE_DIR : 'lupo-database';
+    $session_md = $abspath . $db_dir . '/session.md';
+    $registry_path = $abspath . $db_dir . '/lupopedia/actors/registry.json';
+    $do_repair = in_array('--repair', $argv);
+
+    echo "Lupopedia doctor-context — identity stack check\n";
+    if ($do_repair) {
+        echo "  (--repair: will sync session.md to kernel/DB when drift detected)\n";
+    }
+    echo str_repeat("-", 50) . "\n";
+
+    $ok = 0;
+    $warn = 0;
+    $fail = 0;
+
+    $kernel = ContextKernel::getInstance();
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+    $kernel->bootstrap($db, $table_prefix, $state_file, $abspath, $authService);
+    $ctx = $kernel->getContext();
+
+    $effective = isset($ctx['actor_name']) ? $ctx['actor_name'] : 'system';
+    $human = isset($ctx['human_actor_name']) ? $ctx['human_actor_name'] : 'none';
+    $agent = isset($ctx['agent_name']) ? $ctx['agent_name'] : 'none';
+    $mode = isset($ctx['session_mode']) ? $ctx['session_mode'] : 'system';
+    $src = isset($ctx['context_source']) ? $ctx['context_source'] : (isset($ctx['source']) ? $ctx['source'] : 'default');
+
+    // 1. Session file
+    if (file_exists($session_md) && is_readable($session_md)) {
+        echo "  [OK] Session file: " . $session_md . "\n";
+        $ok++;
+    } else {
+        echo "  [WARN] Session file missing or unreadable: " . $session_md . "\n";
+        $warn++;
+    }
+
+    // 2. DB session (if DB available)
+    if ($db && $table_prefix !== '') {
+        echo "  [OK] DB session: actor_name=" . $effective . ", actor_id=" . (isset($ctx['actor_id']) ? (int) $ctx['actor_id'] : 0) . "\n";
+        $ok++;
+    } else {
+        echo "  [SKIP] Database not connected; DB session check skipped\n";
+    }
+
+    // 3. Registry
+    if (file_exists($registry_path) && is_readable($registry_path)) {
+        $reg_json = json_decode(file_get_contents($registry_path), true);
+        if (is_array($reg_json) && isset($reg_json['actors'])) {
+            echo "  [OK] Registry: " . $registry_path . " (" . count($reg_json['actors']) . " actors)\n";
+            $ok++;
+        } else {
+            echo "  [WARN] Registry file invalid or empty\n";
+            $warn++;
+        }
+    } else {
+        echo "  [WARN] Registry missing or unreadable: " . $registry_path . "\n";
+        $warn++;
+    }
+
+    // 4. Resolved context (from kernel)
+    echo "  [OK] Resolved context: effective=" . $effective . ", human=" . $human . ", agent=" . $agent . ", session_mode=" . $mode . ", source=" . $src . "\n";
+    $ok++;
+
+    $issues = $kernel->validate($db, $table_prefix, $session_md);
+    if (!empty($issues)) {
+        foreach ($issues as $issue) {
+            echo "  [WARN] " . $issue . "\n";
+            $warn++;
+        }
+    }
+    if (strpos($src, 'conflict') !== false) {
+        echo "  [WARN] Session file and DB conflict detected; DB used as canonical\n";
+        $warn++;
+    }
+    if (!empty($ctx['conflicts'])) {
+        foreach ($ctx['conflicts'] as $c) {
+            $f = isset($c['field']) ? $c['field'] : '?';
+            $fv = isset($c['file_value']) ? $c['file_value'] : '?';
+            $dv = isset($c['db_value']) ? $c['db_value'] : '?';
+            echo "  [CONFLICT] {$f}: session.md={$fv} vs DB={$dv} (" . (isset($c['resolution']) ? $c['resolution'] : 'database_wins') . ")\n";
+        }
+    }
+
+    $repaired = false;
+    if ($do_repair && ($src === 'lupo_sessions (session.md ignored due to conflict)' || strpos($src, 'conflict') !== false || !empty($issues))) {
+        $content = "actor_name: " . $effective . "\n";
+        $content .= "actor_id: " . (isset($ctx['actor_id']) ? (int) $ctx['actor_id'] : 0) . "\n";
+        $content .= "session_id: " . (isset($ctx['session_id']) && $ctx['session_id'] !== '' ? $ctx['session_id'] : '') . "\n";
+        $content .= "channel_id: " . (isset($ctx['channel_id']) ? (int) $ctx['channel_id'] : 0) . "\n";
+        $content .= "federation_node_id: " . (isset($ctx['federation_node_id']) ? (int) $ctx['federation_node_id'] : 0) . "\n";
+        $content .= "context_source: lupo_sessions\n";
+        $dir = dirname($session_md);
+        if (!is_dir($dir)) {
+            @mkdir($dir, 0755, true);
+        }
+        if (file_put_contents($session_md, $content) !== false) {
+            echo "  [REPAIR] session.md updated to match kernel/DB (" . $session_md . ")\n";
+            $repaired = true;
+        } else {
+            echo "  [FAIL] Could not write session.md for repair\n";
+            $fail++;
+        }
+    }
+
+    echo str_repeat("-", 50) . "\n";
+    echo "Done. " . $ok . " check(s) passed";
+    if ($warn > 0) {
+        echo ", " . $warn . " warning(s)";
+    }
+    if ($fail > 0) {
+        echo ", " . $fail . " failure(s)";
+    }
+    if ($repaired) {
+        echo "; session.md repaired";
+    }
+    echo ".\n";
+}
+
+/**
+ * Detailed help for whoami (dual-identity context). See docs/lupopedia_whoami_readme.md Section 4.
+ */
+function lupo_help_whoami()
+{
+    $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.61';
+    echo "Lupopedia CLI v" . $ver . " — whoami (dual-identity context)\n";
+    echo str_repeat("=", 60) . "\n\n";
+    echo "WHOAMI displays the current execution context with three identity layers:\n\n";
+    echo "  1. Effective Actor — The actor that owns the session (from lupo_sessions.actor_name or session.md).\n";
+    echo "  2. Human Identity — Derived from lupo_actors.paired_actor_id when the effective actor is an agent.\n";
+    echo "     If the effective actor is human, human identity = that actor. Never stored in the session table.\n";
+    echo "  3. Active Agent — The active agent persona; = effective actor when actor_type is agent/ide_agent, else 'none'.\n\n";
+    echo "Session Mode (derived):\n";
+    echo "  actor_type = human       -> human_direct\n";
+    echo "  actor_type = agent and paired_actor_id = 0 -> autonomous_agent\n";
+    echo "  actor_type = agent and paired_actor_id > 0 -> hybrid\n";
+    echo "  actor_type = system      -> system\n\n";
+    echo "Examples:\n";
+    echo "  Hybrid (e.g. Cursor):     Human Identity: captain (10000), Active Agent: cursor (1003), Session Mode: hybrid\n";
+    echo "  Human direct (Captain):  Human Identity: captain (10000), Active Agent: none, Session Mode: human_direct\n";
+    echo "  Autonomous (e.g. Lilith): Human Identity: none, Active Agent: lilith (2038), Session Mode: autonomous_agent\n";
+    echo "  System:                   Human Identity: none, Active Agent: none, Session Mode: system\n\n";
+    echo "Full reference: docs/lupopedia_whoami_readme.md (Section 4 – Dual-Identity Context)\n";
+}
+
+/**
+ * Detailed help for context (JSON output). See docs/lupopedia_whoami_readme.md.
+ */
+function lupo_help_context()
+{
+    $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.61';
+    echo "Lupopedia CLI v" . $ver . " — context (JSON runtime context)\n";
+    echo str_repeat("=", 60) . "\n\n";
+    echo "CONTEXT outputs a flat JSON object of the full runtime context (same data as whoami --verbose).\n\n";
+    echo "Resolution order (ContextResolver):\n";
+    echo "  1. session.md (first-class) — lupo-database/session.md when present; then enrich from DB/registry.\n";
+    echo "  2. lupo_sessions (when session.md absent) — actor_name, actor_id, channel_id, federation_node_id, session_id; actor_type and paired_actor_id from lupo_actors.\n";
+    echo "  3. Defaults — actor_name: system, agent_name: none, human_actor_name: none, session_mode: system.\n\n";
+    echo "Sample JSON:\n";
+    echo "{\n";
+    echo "  \"actor_name\": \"cursor\",\n";
+    echo "  \"actor_id\": 1003,\n";
+    echo "  \"human_actor_name\": \"captain\",\n";
+    echo "  \"human_actor_id\": 10000,\n";
+    echo "  \"agent_name\": \"cursor\",\n";
+    echo "  \"actor_type\": \"ide_agent\",\n";
+    echo "  \"paired_actor_id\": 10000,\n";
+    echo "  \"session_mode\": \"hybrid\",\n";
+    echo "  \"channel_id\": 42,\n";
+    echo "  \"federation_node_id\": 0,\n";
+    echo "  \"workspace\": \"/lupo-actors/cursor/\",\n";
+    echo "  \"session_id\": \"sess_a82f9c1b\",\n";
+    echo "  \"context_source\": \"lupo_sessions\"\n";
+    echo "}\n\n";
+    echo "Full reference: docs/lupopedia_whoami_readme.md\n";
+}
+
+/**
+ * Validate required FLARE headers for context; print WARNING for missing. Does not crash.
+ * @param array $ctx Resolved context (actor_name, channel_id, federation_node_id, etc.)
+ * @param string $system_version Lupopedia version string
+ */
+function lupo_validate_flare_headers($ctx, $system_version)
+{
+    $required = array('flare.version', 'flare.schema', 'actor_name', 'channel_id', 'federation_node_id', 'system_version', 'last_modified_utc');
+    $have = array(
+        'actor_name' => isset($ctx['actor_name']) && $ctx['actor_name'] !== '',
+        'channel_id' => isset($ctx['channel_id']),
+        'federation_node_id' => isset($ctx['federation_node_id']),
+        'system_version' => $system_version !== '',
+        'last_modified_utc' => true
+    );
+    if (!$have['actor_name']) {
+        echo "WARNING: Missing required FLARE header: actor_name\n";
+    }
+    if (!$have['channel_id']) {
+        echo "WARNING: Missing required FLARE header: channel_id\n";
+    }
+    if (!$have['federation_node_id']) {
+        echo "WARNING: Missing required FLARE header: federation_node_id\n";
+    }
+    if (!$have['system_version']) {
+        echo "WARNING: Missing required FLARE header: system_version\n";
+    }
 }
 
 // Audit logging function with log level control

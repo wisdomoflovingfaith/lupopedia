@@ -1,0 +1,43 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Lupopedia CLI wrapper.
+ * PHP 5.3 Compatible.
+ * @package Lupopedia
+ */
+
+if (php_sapi_name() !== 'cli') {
+    die("This script is for CLI only.\n");
+}
+
+$base_dir = dirname(__DIR__) . '/';
+if (file_exists($base_dir . 'lupopedia-config.php')) {
+    require_once $base_dir . 'lupopedia-config.php';
+} else {
+    die("Configuration (lupopedia-config.php) not found in " . $base_dir . ".\n");
+}
+
+$cmd = isset($argv[1]) ? strtolower($argv[1]) : 'help';
+
+switch ($cmd) {
+    case 'help':
+        if (defined('LUPO_HELP_SCRIPT') && file_exists(ABSPATH . LUPO_HELP_SCRIPT)) {
+            require_once ABSPATH . LUPO_HELP_SCRIPT;
+            $topic = isset($argv[2]) ? $argv[2] : null;
+            lupo_show_help($topic);
+        } else {
+            echo "Help script not found: " . (defined('LUPO_HELP_SCRIPT') ? LUPO_HELP_SCRIPT : 'undefined') . "\n";
+        }
+        break;
+        
+    case 'init':
+    case 'scan':
+    case 'actor':
+    case 'sync':
+        echo "Command '" . $cmd . "' is not yet fully implemented in this CLI. See help for details.\n";
+        break;
+        
+    default:
+        echo "Unknown command: '" . $cmd . "'. Use 'help' for usage.\n";
+        break;
+}

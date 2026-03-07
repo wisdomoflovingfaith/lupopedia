@@ -6,7 +6,7 @@
  * version-related constants and helper functions.
  * 
  * @package Lupopedia
- * @version 4.0.57
+ * @version 4.0.62
  * 
  * @note VERSION DOCTRINE: This file now loads version from GLOBAL_CURRENT_LUPOPEDIA_VERSION
  *       atom in config/global_atoms.yaml (Phase 2 implementation). Constants are defined
@@ -37,7 +37,7 @@ if (function_exists('get_lupopedia_version')) {
 }
 
 // Fallback to hard-coded version if atom loader fails (backward compatibility)
-$current_version = $version_from_atom !== null ? $version_from_atom : '4.0.57';
+$current_version = $version_from_atom !== null ? $version_from_atom : '4.0.62';
 
 // LIMITS enforcement (dry-run mode in 3.0.103)
 // Check version bump before applying (non-blocking, logs warnings only)
@@ -108,7 +108,7 @@ if (!defined('LUPOPEDIA_VERSION_NUM')) {
  * @var int
  */
 if (!defined('LUPOPEDIA_VERSION_DATE')) {
-    define('LUPOPEDIA_VERSION_DATE', 20260228040000);
+    define('LUPOPEDIA_VERSION_DATE', 20260306040000);
 }
 
 /**
@@ -128,7 +128,29 @@ function lupopedia_get_version()
         }
     }
     // Fallback to constant
-    return defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.56';
+    return defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.62';
+}
+
+/**
+ * Get Lupopedia version (alias for CLI/help). Prefer get_lupo_version() in new code.
+ *
+ * @return string Version string (e.g. "4.0.61")
+ */
+function get_lupo_version()
+{
+    return function_exists('lupopedia_get_version') ? lupopedia_get_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.62');
+}
+
+/**
+ * Check if current version is at least the given minimum. PHP 5.3 safe.
+ *
+ * @param string $min_version Minimum version (e.g. "4.0.59")
+ * @return bool
+ */
+function is_version_at_least($min_version)
+{
+    $current = get_lupo_version();
+    return version_compare($current, $min_version, '>=');
 }
 
 /**

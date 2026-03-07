@@ -59,21 +59,23 @@ try {
 } catch (Exception $e) {
     // Log the detailed error
     error_log('Database connection error: ' . $e->getMessage());
-
-    // Show a user-friendly error message with more details
-    $errorMsg = 'Database connection error: ' . $e->getMessage();
-    if (strpos($e->getMessage(), 'Access denied') !== false) {
-        $errorMsg .= "\n\nPlease check your database username and password in lupopedia-config.php";
-    } elseif (strpos($e->getMessage(), 'Unknown database') !== false) {
-        $errorMsg .= "\n\nThe database '" . (defined('DB_NAME') ? DB_NAME : '') . "' does not exist. Please create it first.";
-    } elseif (strpos($e->getMessage(), 'Connection refused') !== false) {
-        $errorMsg .= "\n\nCould not connect to the database server. Please check if MySQL is running.";
+    $mydatabase = null;
+    $GLOBALS['mydatabase'] = null;
+    // CLI whoami/context can continue without DB; web and other CLI commands will fail later with a clear message
+    if (php_sapi_name() !== 'cli') {
+        $errorMsg = 'Database connection error: ' . $e->getMessage();
+        if (strpos($e->getMessage(), 'Access denied') !== false) {
+            $errorMsg .= "\n\nPlease check your database username and password in lupopedia-config.php";
+        } elseif (strpos($e->getMessage(), 'Unknown database') !== false) {
+            $errorMsg .= "\n\nThe database '" . (defined('DB_NAME') ? DB_NAME : '') . "' does not exist. Please create it first.";
+        } elseif (strpos($e->getMessage(), 'Connection refused') !== false) {
+            $errorMsg .= "\n\nCould not connect to the database server. Please check if MySQL is running.";
+        }
+        if (!headers_sent()) {
+            header('HTTP/1.1 500 Internal Server Error');
+        }
+        die(nl2br(htmlspecialchars($errorMsg)));
     }
-
-    if (!headers_sent()) {
-        header('HTTP/1.1 500 Internal Server Error');
-    }
-    die(nl2br(htmlspecialchars($errorMsg)));
 }
 
 // Security Headers
@@ -81,6 +83,13 @@ if (!headers_sent()) {
     header('X-Content-Type-Options: nosniff');
     header('X-Frame-Options: SAMEORIGIN');
     header('X-XSS-Protection: 1; mode=block');
+
+    // Cloudflare request handling: extract CF-Connecting-IP, CF-IPCountry, CF-Ray; optional validation and geo/threat rules
+    $cloudflare_handler = __DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'CloudflareRequestHandler.php';
+    if (file_exists($cloudflare_handler)) {
+        require_once $cloudflare_handler;
+        CloudflareRequestHandler::process();
+    }
 
     // Set secure session cookie parameters only before session is started (PHP 5.3: 5-arg form; no samesite)
     $session_not_started = function_exists('session_status') ? (session_status() === PHP_SESSION_NONE) : (session_id() === '');
@@ -104,6 +113,15 @@ if (function_exists('date_default_timezone_set')) {
  */
 if (!defined('LUPO_APP_DIR')) {
     define('LUPO_APP_DIR', 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'lupo-app');
+}
+if (!defined('LUPO_ACTORS_DIR')) {
+    define('LUPO_ACTORS_DIR', 'lupo-actors');
+}
+if (!defined('LUPO_CHANNELS_DIR')) {
+    define('LUPO_CHANNELS_DIR', 'lupo-channels');
+}
+if (!defined('LUPO_PROMPTS_SUBDIR')) {
+    define('LUPO_PROMPTS_SUBDIR', 'prompts');
 }
 $app_auth = LUPOPEDIA_ABSPATH . LUPO_APP_DIR . DIRECTORY_SEPARATOR . 'auth';
 if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'SessionHandler.php')) {

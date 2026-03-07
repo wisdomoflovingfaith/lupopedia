@@ -44,6 +44,12 @@
       "dir": "actors/19"
     },
     {
+      "id": 42,
+      "type": "agent",
+      "slug": "antigravity",
+      "dir": "actors/42"
+    },
+    {
       "id": 25,
       "type": "agent",
       "slug": "vishwakarma",
@@ -108,6 +114,12 @@
       "type": "agent",
       "slug": "trae-ide",
       "dir": "actors/1008"
+    },
+    {
+      "id": 1009,
+      "type": "agent",
+      "slug": "doctor",
+      "dir": "actors/1009"
     },
     {
       "id": 10000,

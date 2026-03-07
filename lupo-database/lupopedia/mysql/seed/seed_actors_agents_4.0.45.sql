@@ -1,8 +1,9 @@
 -- ============================================================================
--- ACTORS AND AGENTS SEEDING FOR LUPOPEDIA 4.0.45
+-- ACTORS AND AGENTS SEEDING FOR LUPOPEDIA 4.0.45+ (actor_name primary from 4.0.58)
 -- ============================================================================
 -- Purpose: Create actual actor and agent records for required system entities
 -- Run after: seed_registry_comprehensive_4.0.45.sql
+-- ACTOR PRIMARY KEY DOCTRINE: actor_name is first column; actor_id is unique secondary.
 -- ============================================================================
 
 SET @now = 20260225000000;
@@ -12,82 +13,92 @@ SET @now = 20260225000000;
 -- ============================================================================
 
 -- System Actor (ID: 0)
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id)
-VALUES (0, 'system', 'system', 'System', @now, @now, 1, 0, 1, 0, 0, 0, 1);
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id)
+VALUES ('system', 0, 'system', 'system', 'System', @now, @now, 1, 0, 1, 0, 0, 0, 1);
 
 -- Captain WOLFIE (ID: 1, Agent ID: 1)
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
-VALUES (1, 'agent', 'captain-wolfie', 'Captain WOLFIE', @now, @now, 1, 0, 1, 0, 1, 0, 1, '{"agent_id":1,"archetype":"root_ai_agent","full_access":true,"purpose":"governance_and_oversight"}');
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
+VALUES ('wolfie', 1, 'agent', 'captain-wolfie', 'Captain WOLFIE', @now, @now, 1, 0, 1, 0, 1, 0, 1, '{"agent_id":1,"archetype":"root_ai_agent","full_access":true,"purpose":"governance_and_oversight"}');
 
--- LILITH (ID: 2, Agent ID: 2)
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
-VALUES (2, 'agent', 'lilith', 'LILITH', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":2,"archetype":"critical_review","purpose":"alternative_perspectives","full_name":"Learning Insights Lifting Intentions Through Heterodoxy"}');
+-- LILITH legacy (ID: 2); canonical lilith is actor_id 2038 (web DeepSeek)
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
+VALUES ('lilith-legacy', 2, 'agent', 'lilith', 'LILITH', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":2,"archetype":"critical_review","purpose":"alternative_perspectives","full_name":"Learning Insights Lifting Intentions Through Heterodoxy"}');
 
 -- ROSE / Dialog (ID: 3, Agent ID: 3)
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
-VALUES (3, 'agent', 'rose-dialog', 'ROSE', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":3,"archetype":"rosetta_stone","purpose":"translation_and_personas","full_name":"Rosetta Stone","persona_count":99,"role_playing_enabled":true}');
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
+VALUES ('rose', 3, 'agent', 'rose-dialog', 'ROSE', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":3,"archetype":"rosetta_stone","purpose":"translation_and_personas","full_name":"Rosetta Stone","persona_count":99,"role_playing_enabled":true}');
 
 -- ERIS (ID: 4, Agent ID: 4)
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
-VALUES (4, 'agent', 'eris', 'ERIS', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":4,"archetype":"discord_analysis","purpose":"conflict_and_negativity_understanding","full_name":"Discord & Conflict Analysis Agent"}');
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
+VALUES ('eris', 4, 'agent', 'eris', 'ERIS', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":4,"archetype":"discord_analysis","purpose":"conflict_and_negativity_understanding","full_name":"Discord & Conflict Analysis Agent"}');
 
 -- METIS (ID: 5, Agent ID: 5)
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
-VALUES (5, 'agent', 'metis', 'METIS', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":5,"archetype":"empathy_intelligence","purpose":"introspection_and_understanding","full_name":"Empathy & Understanding Intelligence Agent"}');
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
+VALUES ('metis', 5, 'agent', 'metis', 'METIS', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":5,"archetype":"empathy_intelligence","purpose":"introspection_and_understanding","full_name":"Empathy & Understanding Intelligence Agent"}');
 
 -- ANUBIS (ID: 19, Agent ID: 19) — custodial/orphan repair; required for install activation
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
-VALUES (19, 'agent', 'anubis', 'ANUBIS', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":19,"archetype":"header_completion_quarantine","purpose":"orphan_repair","full_name":"Custodial Orphan Processing Agent"}');
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
+VALUES ('anubis', 19, 'agent', 'anubis', 'ANUBIS', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":19,"archetype":"header_completion_quarantine","purpose":"orphan_repair","full_name":"Custodial Orphan Processing Agent"}');
+
+-- Antigravity (ID: 42) — canonical actor_id 42
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
+VALUES ('antigravity', 42, 'agent', 'antigravity', 'Antigravity', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":42,"purpose":"conflict_resolution","archetype":"antigravity"}');
+
+-- LILITH web (ID: 2038) — canonical lilith (web DeepSeek)
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
+VALUES ('lilith', 2038, 'agent', 'lilith', 'LILITH — Heterodox Reviewer', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":2038,"archetype":"critical_review","purpose":"alternative_perspectives","full_name":"Learning Insights Lifting Intentions Through Heterodoxy"}');
 
 -- ============================================================================
--- PART 2: IDE AGENTS (1000-1004)
+-- PART 2: IDE AGENTS (1000-1008)
 -- ============================================================================
 
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
 VALUES
-(1000, 'ide_agent', 'kiro-ide', 'Kiro IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"kiro","provider":"kiro","purpose":"IDE_integration"}'),
-(1001, 'ide_agent', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"windsurf","provider":"windsurf","purpose":"IDE_integration"}'),
-(1002, 'ide_agent', 'cursor-ide', 'Cursor IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"cursor","provider":"cursor","purpose":"IDE_integration"}'),
-(1003, 'ide_agent', 'antigravity-ide', 'Antigravity IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"antigravity","provider":"antigravity","purpose":"IDE_integration"}'),
-(1004, 'ide_agent', 'warp-ide', 'Warp IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"warp","provider":"warp","purpose":"IDE_integration"}'),
-(1005, 'ide_agent', 'cascade-ide', 'Cascade IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"cascade","provider":"cascade","purpose":"IDE_integration"}'),
-(1006, 'ide_agent', 'gemini-cli', 'Gemini CLI', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"gemini","provider":"google","purpose":"IDE_integration","full_name":"Google Gemini CLI"}');
+('kiro', 1000, 'ide_agent', 'kiro-ide', 'Kiro IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"kiro","provider":"kiro","purpose":"IDE_integration"}'),
+('windsurf', 1001, 'ide_agent', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"windsurf","provider":"windsurf","purpose":"IDE_integration"}'),
+('cursor-ide', 1002, 'ide_agent', 'cursor-ide', 'Cursor IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"cursor","provider":"cursor","purpose":"IDE_integration"}'),
+('cursor', 1003, 'ide_agent', 'antigravity-ide', 'Antigravity IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"antigravity","provider":"antigravity","purpose":"IDE_integration"}'),
+('warp', 1004, 'ide_agent', 'warp-ide', 'Warp IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"warp","provider":"warp","purpose":"IDE_integration"}'),
+('cascade', 1005, 'ide_agent', 'cascade-ide', 'Cascade IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"cascade","provider":"cascade","purpose":"IDE_integration"}'),
+('gemini-cli', 1006, 'ide_agent', 'gemini-cli', 'Gemini CLI', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"gemini","provider":"google","purpose":"IDE_integration","full_name":"Google Gemini CLI"}'),
+('codex', 1007, 'ide_agent', 'codex-ide', 'Codex IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"codex","provider":"codex","purpose":"IDE_integration"}'),
+('trae', 1008, 'ide_agent', 'trae-ide', 'Trae IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"trae","provider":"trae","purpose":"IDE_integration"}');
 
 -- Root Human Captain (ID: 10000)
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json, is_kernel, can_login, primary_federation_node_id)
-VALUES (10000, 'human', 'root-captain-10000', 'Captain', 20260217000000, 20260220134555, 1, 0, 0, '{"email":"captain@lupopedia.com","role":"root_admin","full_access":true}', 1, 1, 1);
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json, is_kernel, can_login, primary_federation_node_id)
+VALUES ('captain', 10000, 'human', 'root-captain-10000', 'Captain', 20260217000000, 20260220134555, 1, 0, 0, '{"email":"captain@lupopedia.com","role":"root_admin","full_access":true}', 1, 1, 1);
 
 -- Test Users (IDs 11001-11010)
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json)
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json)
 VALUES 
-(11001, 'user', 'user-11001', 'Admin Test', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(11002, 'user', 'user-11002', 'Jane Moderator', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(11003, 'user', 'user-11003', 'Bob Monitor', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(11004, 'user', 'user-11004', 'Alex Agent', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(11005, 'user', 'user-11005', 'Sam Support', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(11006, 'user', 'user-11006', 'Lee Viewer', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(11007, 'user', 'user-11007', 'Kim Readonly', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(11008, 'user', 'user-11008', 'Taylor Operator', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(11009, 'user', 'user-11009', 'Casey Support', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
-(11010, 'user', 'user-11010', 'Jordan CRM', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}');
+('user-11001', 11001, 'user', 'user-11001', 'Admin Test', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+('user-11002', 11002, 'user', 'user-11002', 'Jane Moderator', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+('user-11003', 11003, 'user', 'user-11003', 'Bob Monitor', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+('user-11004', 11004, 'user', 'user-11004', 'Alex Agent', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+('user-11005', 11005, 'user', 'user-11005', 'Sam Support', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+('user-11006', 11006, 'user', 'user-11006', 'Lee Viewer', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+('user-11007', 11007, 'user', 'user-11007', 'Kim Readonly', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+('user-11008', 11008, 'user', 'user-11008', 'Taylor Operator', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+('user-11009', 11009, 'user', 'user-11009', 'Casey Support', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}'),
+('user-11010', 11010, 'user', 'user-11010', 'Jordan CRM', 20260219120000, 20260219120000, 1, 0, 0, '{"purpose":"test_user","test_range":true}');
 
 -- ============================================================================
 -- BANNED TEST ACTORS (For testing ban functionality)
 -- ============================================================================
 
 -- Banned AI Agent (ID: 420 - STONED WOLFIE)
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json)
-VALUES (420, 'agent', 'stoned-wolfie', 'STONED WOLFIE', 20260101000000, 20260226000000, 0, 0, 1, '{"purpose":"banned_test_agent","ban_reason":"experimental_persona_violation","archetype":"banned"}');
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json)
+VALUES ('stoned-wolfie', 420, 'agent', 'stoned-wolfie', 'STONED WOLFIE', 20260101000000, 20260226000000, 0, 0, 1, '{"purpose":"banned_test_agent","ban_reason":"experimental_persona_violation","archetype":"banned"}');
 
 -- Banned Human User (ID: 10420)
-INSERT INTO lupo_actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json)
-VALUES (10420, 'user', 'test-banned-user', 'Test Banned User', 20260226000000, 20260226000000, 0, 0, 0, '{"purpose":"banned_test_user","email":"test-banned-user@lupopedia.com"}');
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json)
+VALUES ('test-banned-user', 10420, 'user', 'test-banned-user', 'Test Banned User', 20260226000000, 20260226000000, 0, 0, 0, '{"purpose":"banned_test_user","email":"test-banned-user@lupopedia.com"}');
 
 -- Ban records for banned actors
-INSERT INTO lupo_banned_actors (banned_actor_id, actor_id, reason, banned_ymdhis, banned_by_actor_id, created_ymdhis, updated_ymdhis, is_deleted)
+INSERT INTO lupo_banned_actors (banned_actor_id, actor_id, actor_name, reason, banned_ymdhis, banned_by_actor_id, created_ymdhis, updated_ymdhis, is_deleted)
 VALUES
-(1, 420, 'Experimental AI persona violation - STONED WOLFIE banned per doctrine', 20260101000000, 1, 20260101000000, 20260226000000, 0),
-(2, 10420, 'Test banned user for testing ban functionality and retrospective data access', 20260226000000, 10000, 20260226000000, 20260226000000, 0);
+(1, 420, 'stoned-wolfie', 'Experimental AI persona violation - STONED WOLFIE banned per doctrine', 20260101000000, 1, 20260101000000, 20260226000000, 0),
+(2, 10420, 'test-banned-user', 'Test banned user for testing ban functionality and retrospective data access', 20260226000000, 10000, 20260226000000, 20260226000000, 0);
 
 -- ============================================================================
 -- PART 4: AGENTS TABLE (lupo_agents)
@@ -143,40 +154,40 @@ VALUES
 -- ============================================================================
 
 -- System actor on system channel
-INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, created_by_actor_id, channel_id, status, created_ymdhis, updated_ymdhis, is_deleted)
-VALUES (1, 0, 0, 0, 'A', @now, @now, 0);
+INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, actor_name, created_by_actor_id, channel_id, status, created_ymdhis, updated_ymdhis, is_deleted)
+VALUES (1, 0, 'system', 0, 0, 'A', @now, @now, 0);
 
 -- Root captain on all channels
-INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, created_by_actor_id, channel_id, status, created_ymdhis, updated_ymdhis, is_deleted)
+INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, actor_name, created_by_actor_id, channel_id, status, created_ymdhis, updated_ymdhis, is_deleted)
 VALUES
-(2, 10000, 0, 0, 'A', @now, @now, 0),
-(3, 10000, 0, 1, 'A', @now, @now, 0),
-(4, 10000, 0, 42, 'A', @now, @now, 0);
+(2, 10000, 'captain', 0, 0, 'A', @now, @now, 0),
+(3, 10000, 'captain', 0, 1, 'A', @now, @now, 0),
+(4, 10000, 'captain', 0, 42, 'A', @now, @now, 0);
 
 -- Captain WOLFIE on all channels
-INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, created_by_actor_id, channel_id, status, created_ymdhis, updated_ymdhis, is_deleted)
+INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, actor_name, created_by_actor_id, channel_id, status, created_ymdhis, updated_ymdhis, is_deleted)
 VALUES
-(5, 1, 0, 0, 'A', @now, @now, 0),
-(6, 1, 0, 1, 'A', @now, @now, 0),
-(7, 1, 0, 42, 'A', @now, @now, 0);
+(5, 1, 'wolfie', 0, 0, 'A', @now, @now, 0),
+(6, 1, 'wolfie', 0, 1, 'A', @now, @now, 0),
+(7, 1, 'wolfie', 0, 42, 'A', @now, @now, 0);
 
 -- ============================================================================
 -- PART 8: ACTOR-CHANNEL ROLES (Captain roles)
 -- ============================================================================
 
 -- Root captain as captain on all channels
-INSERT INTO lupo_actor_channel_roles (actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, protocol_completion_status, protocol_version)
+INSERT INTO lupo_actor_channel_roles (actor_channel_role_id, actor_id, actor_name, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, protocol_completion_status, protocol_version)
 VALUES
-(1, 10000, 0, 'captain', @now, @now, 0, 'completed', '3.0.0'),
-(2, 10000, 1, 'captain', @now, @now, 0, 'completed', '3.0.0'),
-(3, 10000, 42, 'captain', @now, @now, 0, 'completed', '3.0.0');
+(1, 10000, 'captain', 0, 'captain', @now, @now, 0, 'completed', '3.0.0'),
+(2, 10000, 'captain', 1, 'captain', @now, @now, 0, 'completed', '3.0.0'),
+(3, 10000, 'captain', 42, 'captain', @now, @now, 0, 'completed', '3.0.0');
 
 -- Captain WOLFIE as captain on all channels
-INSERT INTO lupo_actor_channel_roles (actor_channel_role_id, actor_id, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, protocol_completion_status, protocol_version)
+INSERT INTO lupo_actor_channel_roles (actor_channel_role_id, actor_id, actor_name, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, protocol_completion_status, protocol_version)
 VALUES
-(4, 1, 0, 'captain', @now, @now, 0, 'completed', '3.0.0'),
-(5, 1, 1, 'captain', @now, @now, 0, 'completed', '3.0.0'),
-(6, 1, 42, 'captain', @now, @now, 0, 'completed', '3.0.0');
+(4, 1, 'wolfie', 0, 'captain', @now, @now, 0, 'completed', '3.0.0'),
+(5, 1, 'wolfie', 1, 'captain', @now, @now, 0, 'completed', '3.0.0'),
+(6, 1, 'wolfie', 42, 'captain', @now, @now, 0, 'completed', '3.0.0');
 
 -- ============================================================================
 -- END OF ACTORS AND AGENTS SEEDING

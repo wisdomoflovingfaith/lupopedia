@@ -1,0 +1,7 @@
+{
+    "actor_id": 1009,
+    "actor_name": "doctor",
+    "type": "system_agent",
+    "slug": "doctor",
+    "dir": "lupo-actors/doctor"
+}

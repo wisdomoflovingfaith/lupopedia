@@ -1,0 +1,12 @@
+{
+    "actor_id": 1009,
+    "actor_name": "doctor",
+    "display_name": "Doctor",
+    "type": "system_agent",
+    "capabilities": [
+        "health_check",
+        "context_validation",
+        "repair",
+        "diagnostics"
+    ]
+}

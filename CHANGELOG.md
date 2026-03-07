@@ -62,7 +62,7 @@ flare.headers:
   flare.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
   file_hash: "to_be_generated"
-  system_version: "4.0.57"
+  system_version: "4.0.62"
   channel_id: 1
   actor_id: 1003
   last_modified_utc: "20260306"
@@ -111,6 +111,93 @@ flame.close:
 # Lupopedia CHANGELOG
 
 This document tracks version history, focusing on key changes, task migrations, and optimizations. Entries are in reverse chronological order.
+
+---
+
+## [4.0.62] — Context Kernel, DOCTOR actor, and Task System (2026-03-06)
+
+**Theme:** Centralize identity resolution in a single Context Kernel, introduce the DOCTOR system agent for environment maintenance, and formalize the task status documentation system.
+
+### Summary
+
+- **ContextKernel Implementation (lupo-includes/classes/ContextKernel.php):** Singleton-based runtime context object centralizing `ContextResolver::resolve()`. Provides `validate()` to detect Split-Brain session conflicts (session.md vs DB) and agent-pairing failures.
+- **CLI & Agent Integration:**
+    - **lupo-bin/lupo.php:** Migrated `whoami`, `context`, `auth`, `actor-context`, `help`, `doctor`, and `doctor-context` to use **ContextKernel**. Surves **KERNEL ISSUE** warnings for identity drift.
+    - **Antigravity Migration:** `AntigravityContext.php` and `lupo-agents/antigravity/context.php` now consume the kernel for single-source resolution.
+- **DOCTOR Actor AI Agent (actor_id 1009):** Registered in `lupo-database/lupopedia/actors/actor_id/registry.json`.
+    - **DoctorService (lupo-includes/classes/DoctorService.php):** Core logic for system-wide health checks and automated `session.md` repair.
+    - **Actor Workspace:** Created `lupo-actors/doctor/` and specialized CLI handlers in `lupo-agents/doctor/` (`doctor.php`, `doctor-context.php`).
+- **PHP 5.3 Compatibility:** Maintained procedural-friendly singleton and accessor patterns across the kernel and services.
+- **Version Synchronization and Memory Repair (Windsurf 1001):** Validated v4.0.57-4.0.62 audit trail. Pushed all 6 missing version tags to GitHub. Verified system memory consistency via `doctor-context --repair`.
+- **Validation Loop Closure (LILITH 2):** Ultimate meta-validation confirming alignment across Windsurf report, GitHub verification, and LILITH sign-off. System state declared PRODUCTION READY.
+- **Strategic Package Sealed:** Created `prompts/lilith/20260306_strategic_package_sealed.md` (LILITH ultimate sign-off) and updated strategic docs.
+- **Task and Channel Documentation:** Created `docs/CHANNEL_0_ACTOR_0_TASKS.md` (index for channel_id 0 and actor_id 0) and `prompts/lilith/20260306_agent_task_execution.md`.
+- **Task Status System:** Created `docs/TASK_STATUS_REFERENCE.md` formalizing six statuses: pending, active, completed, blocked, failed, archived. HELP.md and TLDR updated with task paths and query methods.
+- **Status Reporting:** Published `docs/status/CHANNEL_42_CONTEXT_KERNEL_4.0.62.md` and `docs/status/CHANNEL_42_CONTEXT_INTROSPECTION_4.0.59.md`.
+- **Windsurf Completion Review (4.0.57):** Generated `docs/status/WINDSURF_REVIEW_4.0.57_COMPLETION.md` with comprehensive verification of Cursor's web documentation fixes, confirming accuracy of claims and proper seed execution.
+- **Version Sync Verification Report:** Created `docs/status/VERSION_SYNC_REPORT_4.0.62.md` documenting complete audit trail of version synchronization, GitHub verification, and system health status.
+- **System Task Processing (Antigravity as actor 0):** Enforced system actor context (node 0/channel 0) to process pending tasks; resolved status discrepancy in `docs/CHANNEL_0_ACTOR_0_TASKS.md` to reflect 0 pending status.
+- **Actor Workspace Enhancement:** Added `workspace_path` and `php_namespace` columns to `lupo_actors` table for improved actor organization and PHP namespace support. Created migration `20260306_add_actor_workspace_namespace.sql` with backfill data for IDE agents and system actors.
+- **Registry Synchronization (scripts/registry_sync.php):** New tool to sync `registry.json` with `lupo_actors` table, ensuring offline fallback consistency for persistent workspace and namespace metadata.
+- **DOCTOR Actor Enhancements:**
+    - **DoctorService (checkActors):** Implemented new health check validation to verify on-disk actor workspace existence and PSR-4 namespace coverage.
+    - **CLI Integration:** Added `--check-actors` flag to `php lupo-bin/lupo.php doctor` for deep system integration diagnostics.
+- **Documentation Scaling:** Created `docs/DOCTOR_HEALTH_CHECK.md` (canonical reference for built-in health checks) and updated `CLI.md` and `HELP.md` to reflect new actor audit capabilities.
+- **lupo_doctor_health_check documentation (Cursor):** Expanded doctor health-check docs: `docs/DOCTOR_HEALTH_CHECK.md` full reference (invocation, checks table, paths, output format, relation to doctor-context, when to use, troubleshooting); `docs/CLI.md` doctor section with all checks and `--check-actors`; `HelpRenderer::getDoctorHelp()` updated with context-kernel and `--check-actors` and link to DOCTOR_HEALTH_CHECK.md; `docs/HELP.md` doctor command and new Reports row linking to DOCTOR_HEALTH_CHECK.md.
+- **README.md enhancements (Cursor, session L-LUPO-CURSOR):** Restructured README per Trae IDE Improvement Report v1.0 and Lilith canonical review (9.5/10). New flow: Getting Started (5 min), Why Lupopedia?, Core Concepts (Mermaid Actor model), Installation (new + Crafty upgrade), Usage/CLI table, Multi-Agent, Advanced, Documentation hub, Contributing, License. Badges (version 4.0.62, docs→HELP.md); first commands (doctor, whoami, help); target paths by persona. FLARE header delegation_chain lilith:cursor:captain. Channel 42 broadcast: `lupo-database/lupopedia/channels/channel_id/42/broadcasts/20260307115400_1003_10000_42_readme_updated.md`.
+- **QUICKSTART.md enhancements (Cursor):** Completely restructured Getting Started section with 5-minute onboarding flow. Added clear prerequisites (PHP 5.3+, MySQL 8.0+, web server, Git), critical requirements warnings (subdirectory installation, UTC timestamps, no foreign keys), time-boxed Quick Install (3 minutes) with clone/setup/installer steps, First Commands validation (2 minutes) with expected output descriptions, and optional VSX Extension setup. Updated FLARE headers to v4.0.62 with comprehensive CLI command coverage including whoami, context, doctor, and doctor-context commands.
+- **Post-4.0.61 implementation (Cursor):** Directive `prompts/cursor/20260307_post_4.0.61_implementation.md` executed. ContextResolver now sets `context['conflicts']` (array of field/file_value/db_value/resolution) when session.md and DB session mismatch. CLI.md: exit codes table, switch/use alias, doctor-context backup filename note (session.md.bak.YmdHis). HELP.md: UTC_TIMEKEEPER (1212) in Identity section and "Querying UTC_TIMEKEEPER" subsection (CLI, PHP, SQL, one-liner; YmdHis convention).
+- **ContextResolver Conflict Detection (Cursor):** Enhanced ContextResolver to detect and report conflicts between session.md file and database session state. When mismatches occur, `context['conflicts']` array populated with field name, file value, database value, and suggested resolution for comprehensive identity drift diagnostics.
+
+---
+
+## [4.0.61] — Dual-identity help integration (2026-03-06)
+
+**Theme:** Integrate dual-identity whoami and context into the Lupopedia CLI help system so users can discover and understand runtime context commands.
+
+### Summary
+
+- **CLI help (lupo-bin/lupo.php):** Version set to v4.0.61. Main `help` lists whoami and context with full descriptions. New subtopic commands: `help whoami` (dual-identity layers, session modes, examples from docs) and `help context` (flat JSON format, ContextResolver resolution order, sample JSON). Basic Usage in help documents: **whoami** — Human Identity, Active Agent, Session Mode, Actor Type, Channel, Federation Node, Workspace, Session, Context Source; **context** — flat JSON with actor_name, actor_id, human_actor_name, human_actor_id, agent_name, actor_type, paired_actor_id, session_mode, channel_id, federation_node_id, workspace, session_id, context_source (and optional department_id/thread_id).
+- **Documentation:** README.md "Getting Started (CLI)" updated with examples of `php lupo-bin/lupo.php whoami` and `php lupo-bin/lupo.php context`; system-mode example (Human Identity: none, Active Agent: none, Session Mode: system). docs/lupopedia_whoami_readme.md — new Section 8 (CLI Integration) describing command usage and human-readable vs JSON output. docs/actors.md — link to dual-identity (docs/lupopedia_whoami_readme.md Section 4), note on name-based actor dirs and paired_actor_id (hybrid mode: human + agent dirs).
+- **FLARE/version:** Affected files (lupo.php, whoami readme, README, actors.md, CHANGELOG) reference v4.0.61; traits include dual_identity, cli where applicable.
+
+---
+
+## [4.0.60] — Dual-identity runtime context (2026-03-06)
+
+**Theme:** Expose Effective Actor, Human Identity, Active Agent, and session_mode so whoami/context answer WHO is the human, WHICH agent is active, WHAT actor controls permissions, and WHAT mode the session is in.
+
+### Summary
+
+- **ContextResolver:** Human identity derived from `lupo_actors.paired_actor_id` (never stored in session). Added _getActorTypeAndPairedFromDb(), _getActorNameById(). session_mode: human_direct | hybrid | autonomous_agent | system. Agent/human resolution: human → human_actor = actor, agent_name = none; agent + paired_actor_id > 0 → hybrid, human from paired; agent + paired_actor_id = 0 → autonomous_agent, human = none.
+- **CLI whoami/context:** Human Identity and Active Agent show name and ID or "none". Session Mode and Actor Type in output. JSON: flat structure with paired_actor_id, session_mode. Works with DB, session.md fallback, and defaults.
+- **Docs:** docs/lupopedia_whoami_readme.md Section 4 expanded (identity layers, session mode table, paired_actor_id semantics, hybrid/human_direct/autonomous examples, JSON sample).
+
+---
+
+## [4.0.59] — Required dialog headers and context resolver (2026-03-06)
+
+**Theme:** Required dialog headers (department_id, channel_id, thread_id, agent_name, actor_name) and full execution context for CLI/agents.
+
+### Summary
+
+- **ContextResolver (lupo-includes/classes/ContextResolver.php):** Resolves context in order: lupo_sessions → session.md → defaults. Returns actor_name, actor_id, actor_type, actor_nature, agent_name, human_actor_name, department_id, channel_id, thread_id, federation_node_id, workspace, session_id, source. Enrichment from registry (and DB for actor_type/paired_actor_id in 4.0.60) for actor_type, actor_nature, human_actor_name.
+- **DialogHeaderValidator:** Validates required dialog headers; prints non-fatal WARNING for missing. Required: department_id, channel_id, thread_id, agent_name, actor_name.
+- **CLI whoami/context:** whoami shows Human Identity, Active Agent, Actor Type/Nature, Department, Channel, Thread, Federation Node, Workspace, Session, Context Source. context (and whoami --verbose) output flat JSON with all fields. Bootstrap allows CLI to continue when DB unavailable so whoami/context use session.md or defaults.
+- **session.md (lupo-database/session.md):** Fallback file with YAML frontmatter for actor_name, channel_id, federation_node_id, session_id, department_id, thread_id, agent_name, actor_type, human_actor_name when DB is offline.
+- **Docs:** docs/doctrine/required_flare_headers.md; docs/lupopedia_whoami_readme.md updated (context resolution, Required Dialog Headers subsection, examples).
+
+---
+
+## [4.0.58] — Whoami and actor_name primary identity (2026-03-06)
+
+**Theme:** actor_name as canonical identity for sessions and CLI; whoami documentation and session binding.
+
+### Summary
+
+- **Whoami documentation (docs/lupopedia_whoami_readme.md):** Defines whoami/actor_name as primary identifier; session binding (lupo_sessions.actor_name, actor_id); identity resolution order; migration note for pre-4.0.58 sessions; PHP 5.3-compatible examples; registry and workspace path (/lupo-actors/{actor_name}/). Cross-reference to ACTOR_PRIMARY_KEY_DOCTRINE and lupo-docs database sessions table.
+- **Session table:** Sessions use actor_name as primary binding (v4.0.58+); actor_id retained for legacy. Resolution: actor_name preferred; if missing, resolve via registry and write back.
+- **CLI whoami (initial):** lupo-bin/lupo.php whoami showed current actor from .lupo_actor; extended in 4.0.59/4.0.60 to full context and dual-identity.
 
 ---
 
@@ -177,13 +264,28 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **lupo_flare_headers table (Cursor 1003):** Added `lupo_flare_headers` to `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`: content_id (PK), flare_version, flare_schema, file_path_from_root, web_path, last_modified_utc, system_version, channel_id, actor_id, delegation_chain, artifact_type, artifact_kind, purpose, mood_rgb, traits, tags, lupo_agent, agent_name_identity. No foreign key (per Database Logic Prohibition doctrine); indexes on channel_id and actor_id. Join with lupo_contents done in application code, not via DB view.
 - **Content-with-flare helpers (Cursor 1003):** In `lupo-includes/modules/content/content-model.php`: added `_content_attach_flare_headers()` (merge flare row into content row), `content_get_with_flare_by_id()`, `content_get_with_flare_by_slug()`, `content_get_with_flare_by_path()`. Single place for content + lupo_flare_headers join/merge; callers get unified content+flare row without a DB view.
 
+- **Actor system, lupo-actors, FLARE parser, Cloudflare, and agents.php (Cursor 1003, 4.0.57):**  
+  - **lupo-actors directory:** Centralized hub for actor-specific resources under `LUPO_ACTORS_DIR` (lupo-actors/). Each actor has subdirs: apps/, tools/, docs/, db-changes/, api/, needs/, prompts/. Documentation: `docs/actors.md`; config: `LUPO_ACTORS_DIR`, `LUPO_PROMPTS_SUBDIR` in lupopedia-config.php and install wizard; bootstrap fallback. README and AGENTS.md updated with lupo-actors reference.  
+  - **Anubis (actor 19):** Added lupo-actors/19/ with same subdirs and docs/README.md.  
+  - **LUPO_DATABASE_DIR:** Added `define('LUPO_DATABASE_DIR', LUPO_PREFIX . 'database')` to lupopedia-config.php and install wizard template.  
+  - **prompts/ and FLARE header scan:** Added prompts/ subdir to actor structure (0, 1, 19). Created lupo-actors/0/prompts/flare-header-scan.md (system agent prompt to scan for files lacking FLARE headers and queue to anubis-queue.json). Created lupo-actors/0/logs/ for scan logs; LUPO_PROMPTS_SUBDIR in config/wizard/bootstrap; install wizard ensureActorZeroDirs() creates prompts/ and logs/ for actor 0. CLI script lupo-actors/0/tools/flare_header_scan.php scans LUPO_DATABASE_DIR, LUPO_CONTENT_DIR, LUPO_ACTORS_DIR for .md files without FLARE frontmatter and appends to lupo-actors/0/anubis-queue.json; logs to lupo-actors/0/logs/flare-scan.log.  
+  - **Cloudflare integration:** docs/doctrine/CLOUDFLARE_VS_FLARE.md (FLARE = file-level metadata vs Cloudflare = CDN headers). lupo-includes/classes/CloudflareRequestHandler.php: reads CF-Connecting-IP, CF-IPCountry, CF-Ray, optional CF-Threat-Score; optional proxy IP validation via Cloudflare IP list; sets REMOTE_ADDR and defines LUPO_CLIENT_IP, LUPO_CLIENT_COUNTRY, LUPO_CF_RAY, LUPO_CF_THREAT_SCORE, LUPO_REQUEST_VIA_CLOUDFLARE. Bootstrap runs CloudflareRequestHandler::process() after security headers. Optional defines in lupopedia-config.php (LUPO_CLOUDFLARE_ENABLED, LUPO_CLOUDFLARE_TRUST_PROXY, LUPO_CLOUDFLARE_VALIDATE_IP, LUPO_CLOUDFLARE_IPS_FILE, LUPO_CLOUDFLARE_THREAT_MAX, LUPO_CLOUDFLARE_BLOCKED_COUNTRIES). docs/CLOUDFLARE_INTEGRATION.md.  
+  - **Canonical identity Antigravity = 42:** docs/ACTOR_IDENTITIES.md; actor_id 42 (slug antigravity) added to lupo-database/lupopedia/actors/actor_id/registry.json. lupo-actors/42/ created with apps, tools, docs, db-changes, api, needs, prompts, logs; docs/example.md with FLARE sample (actor_id 42, flare.edges, flare.hooks.init). All code and FLARE headers use actor_id 42 for Antigravity; ?actor=antigravity resolves to 42 via ActorLookup.  
+  - **LUPO_CHANNELS_DIR:** Added to lupopedia-config.php, install wizard template, bootstrap fallback (lupo-channels). Channel artifacts under lupo-channels/{node_id}/{channel_id}/; actor workspaces under lupo-actors/{actor_id}/. Install wizard ensureChannelsDir() creates lupo-channels/.  
+  - **FLARE parser:** lupo-includes/classes/FlareParser.php — depth-2 nesting, indentation-sensitive sections (/^[a-z._]+:/), inline objects ({ to: "...", type: "...", weight: 0.9 }), arrays of objects (- { ... }). Parse errors logged to lupo-actors/0/logs/parser_errors.log; parseSafe() returns empty headers + full body on exception. Consuming code must use isset()/array_key_exists() for keys.  
+  - **agents.php modularization:** Resolver (actorPath, channelPath, underRoot, fileUnderActor with realpath containment), GuardEvaluator (flare.conditional.guards_allow), DriftDetector (FS vs DB last_modified_utc; conflict flag to queue/log), SyncService (policy: fs_wins or flag conflict; no three-way merge), HookExecutor (flare.hooks.init/close; type log/script; recursion limit 3; guards_allow), Renderer (markdown/json), ActorLookup (slug→id, antigravity→42). agents.php: Resolve → Parse → Guards → Drift → Sync → Hooks → Render; supports ?actor_id= or ?actor=antigravity; realpath containment for all file access.  
+  - **docs/actors.md:** Identities (42=Antigravity), LUPO_CHANNELS_DIR, ASCII tree (lupo-actors 0/1/19/42, lupo-channels/{node_id}/{channel_id}/), FLARE parser limits, drift/conflict policy, hook contract (init/close, script|api|log, guards_allow, recursion limit).  
+  - **Unit tests:** tests/unit/flare_parser_test.php (structure, actor_id 42, nested edges, body), tests/unit/drift_detector_test.php (fs_wins, conflict), tests/unit/hook_executor_test.php (init/close, recursion limit, empty headers).
+
 ### Cursor thread (4.0.57) — files created or updated
 
 **Code and seeds:**  
-`install.php` (run step: seed_flare_content, seed_flare_apply_content, seed_docs_web_content at 619–625) · `lupo-includes/modules/module-loader.php` (slug `flare_apply` triggers resolver) · `lupo-includes/modules/content/content-controller.php` (body from `file_path_from_root`) · `lupo-includes/modules/content/content-model.php` (content_get_with_flare_by_id, content_get_with_flare_by_slug, content_get_with_flare_by_path, _content_attach_flare_headers) · `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (lupo_flare_headers table) · `lupo-database/lupopedia/mysql/seed/seed_flare_content_4.0.57.sql` (new, 2998) · `lupo-database/lupopedia/mysql/seed/seed_flare_apply_content_4.0.57.sql` (updated: `federation_node_id = 0`, ON DUPLICATE) · `lupo-database/lupopedia/mysql/seed/seed_docs_web_content_4.0.57.sql` (new, 2996 + 2997).
+`install.php` (run step: seed_flare_content, seed_flare_apply_content, seed_docs_web_content at 619–625) · `lupo-includes/modules/module-loader.php` (slug `flare_apply` triggers resolver) · `lupo-includes/modules/content/content-controller.php` (body from `file_path_from_root`) · `lupo-includes/modules/content/content-model.php` (content_get_with_flare_by_id, content_get_with_flare_by_slug, content_get_with_flare_by_path, _content_attach_flare_headers) · `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (lupo_flare_headers table) · `lupo-database/lupopedia/mysql/seed/seed_flare_content_4.0.57.sql` (new, 2998) · `lupo-database/lupopedia/mysql/seed/seed_flare_apply_content_4.0.57.sql` (updated: `federation_node_id = 0`, ON DUPLICATE) · `lupo-database/lupopedia/mysql/seed/seed_docs_web_content_4.0.57.sql` (new, 2996 + 2997).  
+**Actor system (4.0.57):** `lupopedia-config.php` (LUPO_ACTORS_DIR, LUPO_CHANNELS_DIR, LUPO_DATABASE_DIR, LUPO_PROMPTS_SUBDIR; optional Cloudflare defines) · `lupo-includes/bootstrap.php` (CloudflareRequestHandler::process, LUPO_CHANNELS_DIR/LUPO_PROMPTS_SUBDIR fallbacks) · `install_wizard_classes.php` (LUPO_CHANNELS_DIR, LUPO_PROMPTS_SUBDIR, ensureActorZeroDirs, ensureChannelsDir) · `agents.php` (refactored: ActorLookup, Resolver, FlareParser, GuardEvaluator, DriftDetector, SyncService, HookExecutor, Renderer) · `lupo-includes/classes/CloudflareRequestHandler.php` · `lupo-includes/classes/FlareParser.php` · `lupo-includes/classes/Resolver.php` · `lupo-includes/classes/GuardEvaluator.php` · `lupo-includes/classes/DriftDetector.php` · `lupo-includes/classes/SyncService.php` · `lupo-includes/classes/HookExecutor.php` · `lupo-includes/classes/Renderer.php` · `lupo-includes/classes/ActorLookup.php` · `lupo-actors/0/tools/flare_header_scan.php` · `lupo-actors/0/prompts/flare-header-scan.md` · `lupo-actors/19/` (subdirs) · `lupo-actors/42/` (subdirs, docs/example.md) · `lupo-database/lupopedia/actors/actor_id/registry.json` (actor 42 antigravity).
 
 **Docs and reports:**  
-`docs/doctrine/FLARE/FLARE_APPLY.md` (new) · `docs/status/CURSOR_FLARE_APPLY_LINK_CHECK_4.0.57.md` · `docs/status/CURSOR_FLARE_APPLY_LINK_SEED_REPORT_4.0.57.md` (updated: pipeline, node 0) · `docs/status/CURSOR_FLARE_ROUTING_AUDIT_4.0.57.md` · `docs/status/CURSOR_WEB_DOC_RESOLUTION_FIXES_4.0.57.md` · `docs/status/CURSOR_INSTALL_SQL_PIPELINE_MAP_4.0.57.md` · `docs/status/CURSOR_INSTALL_DOC_SEED_REPORT_4.0.57.md` · `docs/status/CURSOR_URL_TO_NODE_TRACE_4.0.57.md` (terminology `federation_node_id`) · `docs/status/CURSOR_DOCS_LOCATION_MAP_4.0.57.md` · `docs/status/CURSOR_INSTALL_SEED_EXECUTION_PROOF_4.0.57.md` · `docs/status/CURSOR_INSTALL_SEED_VERIFICATION_REPORT_4.0.57.md`.
+`docs/doctrine/FLARE/FLARE_APPLY.md` (new) · `docs/status/CURSOR_FLARE_APPLY_LINK_CHECK_4.0.57.md` · `docs/status/CURSOR_FLARE_APPLY_LINK_SEED_REPORT_4.0.57.md` (updated: pipeline, node 0) · `docs/status/CURSOR_FLARE_ROUTING_AUDIT_4.0.57.md` · `docs/status/CURSOR_WEB_DOC_RESOLUTION_FIXES_4.0.57.md` · `docs/status/CURSOR_INSTALL_SQL_PIPELINE_MAP_4.0.57.md` · `docs/status/CURSOR_INSTALL_DOC_SEED_REPORT_4.0.57.md` · `docs/status/CURSOR_URL_TO_NODE_TRACE_4.0.57.md` (terminology `federation_node_id`) · `docs/status/CURSOR_DOCS_LOCATION_MAP_4.0.57.md` · `docs/status/CURSOR_INSTALL_SEED_EXECUTION_PROOF_4.0.57.md` · `docs/status/CURSOR_INSTALL_SEED_VERIFICATION_REPORT_4.0.57.md`.  
+**Actor system docs (4.0.57):** `docs/actors.md` (lupo-actors, LUPO_CHANNELS_DIR, identities, parser, drift, hooks) · `docs/ACTOR_IDENTITIES.md` (Antigravity=42, root 10000) · `docs/doctrine/CLOUDFLARE_VS_FLARE.md` · `docs/CLOUDFLARE_INTEGRATION.md` · `lupo-actors/README.md` (actor 42) · `lupo-actors/19/docs/README.md` · `tests/unit/flare_parser_test.php` · `tests/unit/drift_detector_test.php` · `tests/unit/hook_executor_test.php`.
 
 **Cursor thread (4.0.57) — summary of changes:** Router: `module-loader.php` allows slug `flare_apply` to trigger resolver (no other bare slugs). Content: `content-controller.php` loads body from `file_path_from_root` when set. Seeds: `seed_flare_content_4.0.57.sql` (2998, /FLARE via content-by-slug), `seed_flare_apply_content_4.0.57.sql` (2999, node 0), `seed_docs_web_content_4.0.57.sql` (2996, 2997); all idempotent with ON DUPLICATE KEY UPDATE including `slug`; all `federation_node_id = 0`. Install: `install.php` runs the three doc seeds after `seed_default_sessions.sql` (619–625) for new install and upgrade. Verification: schema constraints (PK + UNIQUE custom_path, UNIQUE (federation_node_id, slug)), content_id 2996–2999 reserved, slug lowercased before content_handle_slug, four file paths exist and readable, resolver Tier 1 uses file_path_from_root/custom_path only, pipeline order stable. Reports: pipeline map, execution proof, verification report, install doc seed report (with schema, slug normalization, file existence, final integrity verification).
 
@@ -221,6 +323,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 - `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql` (R5)
 - `lupo-database/lupopedia/mysql/migrations/dev_20260306_db_optimization_indexes.sql` (R2, R3)
 - Install wizard / app-path fixes: `install.php`, `install_wizard_classes.php`, `lupopedia-config.php`, `lupo-includes/bootstrap.php`, `lupo-includes/modules/auth/oauth-controller.php`, `lupo-database/lupopedia/mysql/seed/seed_default_sessions.sql`, `lupo-database/lupopedia/mysql/seed/seed_actors_agents_4.0.45.sql`
+- Actor system (4.0.57): `docs/actors.md`, `docs/ACTOR_IDENTITIES.md`, `docs/doctrine/CLOUDFLARE_VS_FLARE.md`, `docs/CLOUDFLARE_INTEGRATION.md`, `agents.php`, `lupo-includes/classes/FlareParser.php`, `Resolver.php`, `GuardEvaluator.php`, `DriftDetector.php`, `SyncService.php`, `HookExecutor.php`, `Renderer.php`, `ActorLookup.php`, `CloudflareRequestHandler.php`, `lupo-actors/0/tools/flare_header_scan.php`, `lupo-actors/42/docs/example.md`, `tests/unit/flare_parser_test.php`, `drift_detector_test.php`, `hook_executor_test.php`
 - Web doc seeds (4.0.57): `lupo-database/lupopedia/mysql/seed/seed_flare_content_4.0.57.sql`, `seed_flare_apply_content_4.0.57.sql`, `seed_docs_web_content_4.0.57.sql` (run in install run step after seed_default_sessions)
 - `docs/status/CURSOR_FLARE_ROUTING_AUDIT_4.0.57.md` (routing/federation audit)
 - `docs/status/CURSOR_WEB_DOC_RESOLUTION_FIXES_4.0.57.md` (what was broken, what changed, before/after)

@@ -20,10 +20,204 @@ class ActorService
     /** @var string */
     private $prefix;
 
+    /** @var array|null actor_name => actor data from registry.json */
+    private static $registryCache = null;
+
     public function __construct($db)
     {
         $this->db = $db;
         $this->prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    }
+
+    /**
+     * Path to actor registry (actor_name primary). Prefer lupo-database/lupopedia/actors/registry.json.
+     *
+     * @return string
+     */
+    protected function getRegistryPath()
+    {
+        $base = defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : '');
+        if ($base === '' && function_exists('getcwd')) {
+            $base = getcwd();
+        }
+        $base = rtrim(str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $base), DIRECTORY_SEPARATOR);
+        $reg = $base . DIRECTORY_SEPARATOR . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'actors' . DIRECTORY_SEPARATOR . 'registry.json';
+        if (defined('LUPO_DATABASE_DIR') && LUPO_DATABASE_DIR !== '') {
+            $d = rtrim(str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, LUPO_DATABASE_DIR), DIRECTORY_SEPARATOR);
+            $reg = $base . DIRECTORY_SEPARATOR . $d . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'actors' . DIRECTORY_SEPARATOR . 'registry.json';
+        }
+        return $reg;
+    }
+
+    /**
+     * Load registry (actor_name keyed). Returns array of actors keyed by actor_name.
+     *
+     * @return array
+     */
+    protected function loadRegistry()
+    {
+        if (self::$registryCache !== null) {
+            return self::$registryCache;
+        }
+        $path = $this->getRegistryPath();
+        if (!is_file($path) || !is_readable($path)) {
+            self::$registryCache = array();
+            return self::$registryCache;
+        }
+        $raw = @file_get_contents($path);
+        $data = $raw !== false ? json_decode($raw, true) : null;
+        if (!is_array($data) || !isset($data['actors']) || !is_array($data['actors'])) {
+            self::$registryCache = array();
+            return self::$registryCache;
+        }
+        self::$registryCache = $data['actors'];
+        return self::$registryCache;
+    }
+
+    /**
+     * Get actor by actor_name (primary). Registry first, then DB.
+     *
+     * @param string $actor_name
+     * @return array|null Actor data or null
+     */
+    public function getActorByName($actor_name)
+    {
+        if ($actor_name === '' || !is_string($actor_name)) {
+            return null;
+        }
+        $actor_name = trim($actor_name);
+        $registry = $this->loadRegistry();
+        if (isset($registry[$actor_name])) {
+            $a = $registry[$actor_name];
+            if (!isset($a['actor_name'])) {
+                $a['actor_name'] = $actor_name;
+            }
+            return $a;
+        }
+        if ($this->db) {
+            $t = $this->db->quoteIdentifier($this->prefix . 'actors');
+            $row = $this->db->fetchRow(
+                "SELECT * FROM {$t} WHERE actor_name = :actor_name AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+                array('actor_name' => $actor_name)
+            );
+            return is_array($row) ? $row : null;
+        }
+        return null;
+    }
+
+    /**
+     * Get actor by actor_id (secondary, backward compatibility).
+     *
+     * @param int $actor_id
+     * @return array|null Actor data or null
+     */
+    public function getActorById($actor_id)
+    {
+        $actor_id = (int) $actor_id;
+        $registry = $this->loadRegistry();
+        foreach ($registry as $nameKey => $a) {
+            if (isset($a['actor_id']) && (int) $a['actor_id'] === $actor_id) {
+                if (!isset($a['actor_name'])) {
+                    $a['actor_name'] = $nameKey;
+                }
+                return $a;
+            }
+        }
+        if ($this->db) {
+            $t = $this->db->quoteIdentifier($this->prefix . 'actors');
+            $row = $this->db->fetchRow(
+                "SELECT * FROM {$t} WHERE actor_id = :actor_id AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+                array('actor_id' => $actor_id)
+            );
+            return is_array($row) ? $row : null;
+        }
+        return null;
+    }
+
+    /**
+     * Resolve identifier (actor_name, actor_id, or slug) to actor data.
+     *
+     * @param string|int $identifier
+     * @return array|null Actor data or null
+     */
+    public function resolveActor($identifier)
+    {
+        if (is_numeric($identifier)) {
+            return $this->getActorById((int) $identifier);
+        }
+        if (is_string($identifier)) {
+            $name = trim($identifier);
+            $actor = $this->getActorByName($name);
+            if ($actor !== null) {
+                return $actor;
+            }
+            $registry = $this->loadRegistry();
+            foreach ($registry as $a) {
+                if (isset($a['slug']) && $a['slug'] === $name) {
+                    return $a;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Get canonical actor_name from any identifier.
+     *
+     * @param string|int $identifier
+     * @return string|null actor_name or null
+     */
+    public function getActorName($identifier)
+    {
+        $actor = $this->resolveActor($identifier);
+        if ($actor === null) {
+            return null;
+        }
+        return isset($actor['actor_name']) ? $actor['actor_name'] : null;
+    }
+
+    /**
+     * Validate delegation chain (colon-separated actor names).
+     *
+     * @param string $chain e.g. "lilith:cursor:captain"
+     * @return bool True if all names resolve
+     */
+    public function validateDelegationChain($chain)
+    {
+        if (!is_string($chain) || trim($chain) === '') {
+            return false;
+        }
+        $names = explode(':', $chain);
+        foreach ($names as $name) {
+            $name = trim($name);
+            if ($name === '') {
+                return false;
+            }
+            if ($this->getActorByName($name) === null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Get actor directory path (relative to project root). Name-based per ACTOR_PRIMARY_KEY_DOCTRINE.
+     * Returns registry dir (e.g. lupo-actors/system) or fallback lupo-actors/{actor_name}.
+     *
+     * @param string $actor_name
+     * @return string
+     */
+    public function getActorDir($actor_name)
+    {
+        $actor = $this->getActorByName($actor_name);
+        $dir = 'lupo-actors';
+        if (defined('LUPO_ACTORS_DIR') && LUPO_ACTORS_DIR !== '') {
+            $dir = LUPO_ACTORS_DIR;
+        }
+        if ($actor !== null && isset($actor['dir']) && $actor['dir'] !== '') {
+            return $actor['dir'];
+        }
+        return $dir . '/' . trim($actor_name);
     }
 
     /**
@@ -87,6 +281,71 @@ class ActorService
         }
 
         return !empty($actor_data) ? $actor_data : false;
+    }
+
+    /**
+     * Get auth_user_id for an actor (when actor is human or paired human).
+     * For human: actor_source_type = 'user' -> actor_source_id.
+     * For agent with paired_actor_id: recurse to paired human.
+     *
+     * @param int|string|array $actor actor_id, actor_name, or actor row
+     * @return int|null auth_user_id or null
+     */
+    public function getAuthUserIdForActor($actor)
+    {
+        $data = null;
+        if (is_array($actor)) {
+            $data = $actor;
+        } elseif (is_numeric($actor)) {
+            $data = $this->getActorById((int) $actor);
+        } elseif (is_string($actor)) {
+            $data = $this->getActorByName(trim($actor));
+        }
+        if (!$data || !is_array($data)) {
+            return null;
+        }
+        $srcType = isset($data['actor_source_type']) ? $data['actor_source_type'] : '';
+        if (($srcType === 'user' || $srcType === 'lupo_auth_users') && isset($data['actor_source_id']) && (int) $data['actor_source_id'] > 0) {
+            return (int) $data['actor_source_id'];
+        }
+        $type = isset($data['actor_type']) ? $data['actor_type'] : '';
+        $paired = isset($data['paired_actor_id']) ? (int) $data['paired_actor_id'] : 0;
+        if ($paired > 0 && ($type === 'agent' || $type === 'ide_agent')) {
+            return $this->getAuthUserIdForActor($paired);
+        }
+        return null;
+    }
+
+    /**
+     * Get full actor context including auth user (when available).
+     *
+     * @param int|string|array $actor actor_id, actor_name, or actor row
+     * @param object|null $authService App\Auth\AuthService instance (optional; for auth_user row)
+     * @return array|null array('actor' => row, 'auth_user' => row|null, 'auth_user_id' => int|null) or null
+     */
+    public function getActorContext($actor, $authService = null)
+    {
+        $data = null;
+        if (is_array($actor)) {
+            $data = $actor;
+        } elseif (is_numeric($actor)) {
+            $data = $this->getActorById((int) $actor);
+        } elseif (is_string($actor)) {
+            $data = $this->getActorByName(trim($actor));
+        }
+        if (!$data || !is_array($data)) {
+            return null;
+        }
+        $authUserId = $this->getAuthUserIdForActor($data);
+        $authUser = null;
+        if ($authUserId && $authService && method_exists($authService, 'getUserByAuthUserId')) {
+            $authUser = $authService->getUserByAuthUserId($authUserId);
+        }
+        return array(
+            'actor' => $data,
+            'auth_user' => $authUser,
+            'auth_user_id' => $authUserId,
+        );
     }
 
     /**

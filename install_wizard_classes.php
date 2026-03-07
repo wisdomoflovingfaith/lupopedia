@@ -552,9 +552,13 @@ define(\'LUPO_PREFIX\', $lupo_prefix);
 define(\'LUPO_ADMIN_DIR\', LUPO_PREFIX . \'admin\');
 define(\'LUPO_INCLUDES_DIR\', LUPO_PREFIX . \'includes\');
 define(\'LUPO_CONTENT_DIR\', LUPO_PREFIX . \'content\');
+define(\'LUPO_ACTORS_DIR\', LUPO_PREFIX . \'actors\');
+define(\'LUPO_CHANNELS_DIR\', LUPO_PREFIX . \'channels\');
+define(\'LUPO_PROMPTS_SUBDIR\', \'prompts\');
 define(\'LUPO_UPLOADS_DIR\', LUPO_CONTENT_DIR . \'/uploads\');
 define(\'LUPO_PLUGINS_DIR\', LUPO_CONTENT_DIR . \'/plugins\');
 define(\'LUPO_THEMES_DIR\', LUPO_CONTENT_DIR . \'/themes\');
+define(\'LUPO_DATABASE_DIR\', LUPO_PREFIX . \'database\');
 define(\'LUPO_APP_DIR\', \'lupo-database/lupopedia/content/lupo-app\');
 $table_prefix = \'' . (isset($options['table_prefix']) && preg_match('/^[a-z0-9_]+$/', $options['table_prefix']) ? addslashes($options['table_prefix']) : 'lupo_') . '\';
 if (!preg_match(\'/^[a-z0-9_]+$/\', $table_prefix)) { die("Invalid table prefix"); }
@@ -571,6 +575,7 @@ define(\'LUPOPEDIA_CONFIG_LOADED\', true);
             . (isset($options['support_email']) && $options['support_email'] !== '' ? "define('LUPOPEDIA_SUPPORT_EMAIL', '" . addslashes($options['support_email']) . "');\n" : '')
             . (isset($options['default_visitor_channel']) && $options['default_visitor_channel'] !== '' ? "define('LUPOPEDIA_DEFAULT_VISITOR_CHANNEL', '" . addslashes($options['default_visitor_channel']) . "');\n" : '')
             . (!empty($options['enable_ai_channels']) ? "define('LUPOPEDIA_ENABLE_AI_CHANNELS', true);\n" : '') . '
+// Optional: Cloudflare integration (define LUPO_CLOUDFLARE_ENABLED, LUPO_CLOUDFLARE_TRUST_PROXY, etc. when behind Cloudflare)
 require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
 ';
 
@@ -584,6 +589,9 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
         }
         @chmod($configPath, 0644);
         $log[] = InstallWizardLogger::logEntry('ok', 'Wrote lupopedia-config.php');
+
+        self::ensureActorZeroDirs($configDir, $log);
+        self::ensureChannelsDir($configDir, $log);
 
         // Enqueue background command for channel/artifact import (Doctrine #8: System Commands Queue)
         self::enqueueBackgroundCommand($db_vars, $log, isset($options['table_prefix']) ? $options['table_prefix'] : 'lupo_');
@@ -607,6 +615,50 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
         }
 
         return $configPath;
+    }
+
+    /**
+     * Ensure actor 0 (system) directories exist: prompts/ and logs/ under lupo-actors/0/.
+     * Uses mkdir(..., 0755, true). Safe to call multiple times.
+     *
+     * @param string $configDir Project root (e.g. LUPOPEDIA_PATH)
+     * @param array  $log       Log array (by reference)
+     * @return void
+     */
+    public static function ensureActorZeroDirs($configDir, &$log)
+    {
+        $actors_dir = 'lupo-actors';
+        $base = rtrim($configDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $actors_dir . DIRECTORY_SEPARATOR . '0';
+        $dirs = array('prompts', 'logs');
+        foreach ($dirs as $sub) {
+            $path = $base . DIRECTORY_SEPARATOR . $sub;
+            if (!is_dir($path)) {
+                if (@mkdir($path, 0755, true)) {
+                    $log[] = InstallWizardLogger::logEntry('ok', 'Created ' . $actors_dir . '/0/' . $sub . '/');
+                } else {
+                    $log[] = InstallWizardLogger::logEntry('skip', 'Could not create ' . $actors_dir . '/0/' . $sub . '/ (check permissions)');
+                }
+            }
+        }
+    }
+
+    /**
+     * Ensure lupo-channels/ exists (for channel artifacts: {node_id}/{channel_id}/).
+     *
+     * @param string $configDir Project root
+     * @param array  $log       Log array (by reference)
+     */
+    public static function ensureChannelsDir($configDir, &$log)
+    {
+        $channels_dir = 'lupo-channels';
+        $path = rtrim($configDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $channels_dir;
+        if (!is_dir($path)) {
+            if (@mkdir($path, 0755, true)) {
+                $log[] = InstallWizardLogger::logEntry('ok', 'Created ' . $channels_dir . '/');
+            } else {
+                $log[] = InstallWizardLogger::logEntry('skip', 'Could not create ' . $channels_dir . '/ (check permissions)');
+            }
+        }
     }
 
     /**

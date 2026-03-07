@@ -1,115 +1,260 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-
 ---
 flare.headers:
   flare.version: "1.0"
   flare.schema: "documentation"
   flare.edges: []
   file_path_from_root: "QUICKSTART.md"
-  file_hash: "9744e98d3abdfd78f178527c050273f7cd6ed3867e3a549ea99104f82f526a42"
-  file_path_from_root: "QUICKSTART.md"
-  file_hash: "f81f92dc034615c02491586b8f2914c84bb8187c13f045c5cef9fb33d72c06b2"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
+  file_hash: "to_be_generated"
+  last_updated_utc: "20260306"
+  system_version: "4.0.62"
   channel_id: 1
-  actor_id: 1002
-  delegation_chain: null
+  actor_id: 10000
+  delegation_chain: "10000:10000"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "Documentation for QUICKSTART.md"
+  purpose: "Essential onboarding guide for the Lupopedia Semantic OS with CLI commands and Context Kernel"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["quickstartmd"]
+  traits: ["essential", "interactive", "v4.0.62"]
+  tags: ["quickstart", "onboarding", "cli", "context_kernel"]
   lupo_agent: "windsurf"
-
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
 flare.footer:
-  last_verified: "20260228"
+  last_verified: "20260306"
   last_verified_by: "windsurf"
----
-
----
-wolfie.headers: {
-  file_path_from_root: "QUICKSTART.md",
-  system_version: "4.0.38",
-  channel_id: 1,
-  mood_rgb: "FFD700",
-  purpose: "Essential onboarding guide for the Lupopedia Semantic OS",
-  last_modified_utc: "20260224",
-  delegation_chain: "1001:10000",
-  actor_id: 1001,
-  lupo_agent: "kiro",
-  artifact_type: "guide",
-  artifact_kind: "onboarding",
-  traits: ["essential", "interactive", "v4.0.38"],
-  hashtags: ["#quickstart", "#onboarding", "#actors", "#flip"],
-  engagement: {
-    likes: 0,
-    shares: 0,
-    views: 0,
-    last_interaction_utc: "20260224"
-  },
-  graph_stats: {
-    inbound_count: 3,
-    outbound_count: 4,
-    centrality_score: 0.75
-  }
-}
-
-flip.footer: {
-  inbound_edges: [
-    { from: "README.md", type: "references", weight: 1.0, hashtag: "#onboarding" },
-    { from: "CHANGELOG.md", type: "references", weight: 0.8, hashtag: "#documentation" },
-    { from: "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md", type: "implements", weight: 1.0, hashtag: "#actors" }
-  ],
-  outbound_edges: [
-    { to: "README.md", type: "references", weight: 0.9, hashtag: "#overview" },
-    { to: "CHANGELOG.md", type: "references", weight: 0.7, hashtag: "#versions" },
-    { to: "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md", type: "references", weight: 1.0, hashtag: "#actors" },
-    { to: "docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md", type: "references", weight: 0.8, hashtag: "#headers" }
-  ],
-  referenced_by_actors: [1001, 1002, 1003, 10000],
-  references: {
-    by_files: ["README.md", "CHANGELOG.md", "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md"],
-    by_actors: [1001, 1003, 10000]
-  },
-  semantic_tags: ["onboarding", "actor_registry", "validation", "multi_agent"],
-  enrichment: {
-    llm_inferred_edges: [],
-    federated_metrics: {}
-  },
-  version: "4.0.38",
-  last_verified_utc: "20260224",
-  last_verified_by: "kiro"
-}
 ---
 
 # 🐺 LUPOPEDIA QUICK START GUIDE
 
-Welcome to the **Lupopedia Semantic OS (v4.0.37)**. This guide will get you up and running as a first-class actor in our multi-agent federation.
+Welcome to the **Lupopedia Semantic OS (v4.0.62)**. This guide will get you up and running with the CLI commands, Context Kernel, and multi-agent federation.
 
 ---
 
-## ⚡ 1. INSTALLATION & SETUP
+## ⚡ 1. GETTING STARTED (5 MINUTES)
 
-### The VSX Extension (Antigravity/Windsurf)
-Lupopedia is driven by a specialized IDE extension. To install:
-1. Open VS Code in the project root.
-2. Navigate to `tools/vsx-extension`.
-3. Run `npm install` and `npm run compile`.
-4. Press `F5` to open the Extension Development Host.
+### 🎯 Prerequisites
+**Required:**
+- **PHP 5.3+** (8+ recommended) with extensions: `pdo_mysql`, `json`, `session`
+- **MySQL 8.0+** or **MariaDB 10.5+**
+- **Web server** (Apache or Nginx) with mod_rewrite
+- **Git** for cloning
 
-### Initializing the Workspace
-Once the extension is active:
-1. Open the Command Palette (**Ctrl+Shift+P**).
-2. Run `Lupopedia: Initialize`.
-3. The extension will auto-detect the workspace marker and initiate the **Artifact Indexer**.
+**Critical Requirements:**
+- ⚠️ **Install in SUBDIRECTORY only** (e.g., `/lupopedia/`) - NEVER at web root
+- ⚠️ **UTC timestamps required** - system uses YYYYMMDDHHIISS format
+- ⚠️ **No foreign keys** - doctrine-compliant database setup
+
+### 🚀 Quick Install (3 minutes)
+
+```bash
+# 1. Clone and setup
+git clone https://github.com/lupopedia/lupopedia.git
+cd lupopedia
+
+# 2. Configure web server to point at project root
+# Example: https://localhost/lupopedia/
+
+# 3. Run installer
+# Visit: https://your-host/lupopedia/install.php
+# OR run: php install.php (if supported)
+```
+
+### ✅ First Commands (2 minutes)
+
+```bash
+# 1. Check system health
+php lupo-bin/lupo.php doctor
+
+# 2. See your identity
+php lupo-bin/lupo.php whoami
+
+# 3. Get help
+php lupo-bin/lupo.php help
+```
+
+**Expected Output:**
+- `doctor` should show "✅ System healthy"
+- `whoami` should show your actor identity and session mode
+- `help` should list all available commands
+
+### 🛠️ VSX Extension Setup (Optional)
+
+```bash
+# Install VS Code extension
+code --install-extension lupopedia.lupopedia
+
+# Initialize workspace
+Ctrl+Shift+P → "Lupopedia: Initialize"
+```
 
 ---
 
-## 🏗️ 2. THE SEMANTIC DNA (FLIP v3 Draft)
+## 🚀 2. CLI COMMANDS & CONTEXT KERNEL (v4.0.62)
+
+Lupopedia includes a powerful CLI system with the Context Kernel for unified identity resolution and system health checks.
+
+### 📍 Quick Start Commands
+
+```bash
+cd /path/to/lupopedia
+
+# 1. Check system health
+php lupo-bin/lupo.php doctor
+
+# 2. See your identity (dual-identity context)
+php lupo-bin/lupo.php whoami
+
+# 3. Get full context as JSON
+php lupo-bin/lupo.php context
+
+# 4. Get help
+php lupo-bin/lupo.php help
+```
+
+### 👤 Identity & Context Commands
+
+#### `whoami` - Human-Readable Identity
+Shows your current identity in a readable format:
+
+```bash
+php lupo-bin/lupo.php whoami
+```
+
+**Example Output:**
+```
+Human Identity: captain (10000)
+Active Agent: cursor (1003)
+Session Mode: hybrid
+Actor Type: human
+Channel: 42
+Federation Node: 0
+Workspace: lupo-actors/captain
+Session: 20260306123456
+Context Source: database
+```
+
+**Session Modes:**
+- `system` - No human or agent (system-only)
+- `human_direct` - Human acting directly
+- `hybrid` - Human + agent paired
+- `autonomous_agent` - Agent acting alone
+
+#### `context` - JSON Context
+Same information as flat JSON for scripting:
+
+```bash
+php lupo-bin/lupo.php context
+```
+
+**Example JSON Output:**
+```json
+{
+  "actor_name": "captain",
+  "actor_id": 10000,
+  "human_actor_name": "captain",
+  "human_actor_id": 10000,
+  "agent_name": "cursor",
+  "actor_type": "human",
+  "paired_actor_id": 1003,
+  "session_mode": "hybrid",
+  "channel_id": 42,
+  "federation_node_id": 0,
+  "workspace": "lupo-actors/captain",
+  "session_id": "20260306123456",
+  "context_source": "database"
+}
+```
+
+### 🏥 System Health Commands
+
+#### `doctor` - System Health Check
+Comprehensive system health validation:
+
+```bash
+# Basic health check
+php lupo-bin/lupo.php doctor
+
+# Deep actor workspace validation
+php lupo-bin/lupo.php doctor --check-actors
+```
+
+**What it checks:**
+- Database connection
+- Registry file consistency
+- Session file integrity
+- Context kernel drift detection
+- Actor workspace existence (with --check-actors)
+
+#### `doctor-context` - Identity Stack Repair
+Detects and fixes identity drift:
+
+```bash
+# Check identity stack
+php lupo-bin/lupo.php doctor-context
+
+# Repair identity issues
+php lupo-bin/lupo.php doctor-context --repair
+```
+
+**What it does:**
+- Validates ContextKernel consistency
+- Detects split-brain conflicts (session.md vs DB)
+- Repairs agent-pairing failures
+- Syncs session.md to canonical database state
+
+### 📚 Help System
+
+#### `help` - Built-in Help
+Comprehensive help system:
+
+```bash
+# General help
+php lupo-bin/lupo.php help
+
+# Specific command help
+php lupo-bin/lupo.php help whoami
+php lupo-bin/lupo.php help context
+php lupo-bin/lupo.php help doctor
+```
+
+### 🔧 Advanced Commands
+
+```bash
+# Register a new agent
+php lupo-bin/lupo.php register "My IDE Agent" system_tool
+
+# Join a channel
+php lupo-bin/lupo.php join 42
+
+# Send messages
+php lupo-bin/lupo.php send 42 "Hello from CLI"
+
+# View messages
+php lupo-bin/lupo.php messages 42
+
+# Authentication info
+php lupo-bin/lupo.php auth
+
+# Actor context with auth
+php lupo-bin/lupo.php actor-context
+```
+
+### 🚨 KERNEL ISSUE Detection
+
+The ContextKernel automatically detects identity issues and displays **KERNEL ISSUE** warnings:
+
+```
+[WARN] KERNEL ISSUE: Split-brain detected between session.md and database
+[WARN] KERNEL ISSUE: Agent cursor has no paired human actor
+[WARN] KERNEL ISSUE: Context drift detected
+```
+
+**Fix KERNEL ISSUE warnings:**
+```bash
+php lupo-bin/lupo.php doctor-context --repair
+```
+
+---
+
+## 🏗️ 3. THE SEMANTIC DNA (FLIP v3 Draft)
 
 Lupopedia is transitioning to **FLIP v3**, a three-layered metadata architecture designed for multi-agent concurrency and high-speed semantic queries.
 
@@ -130,7 +275,7 @@ Pure graph edges stored in the footer.
 
 ---
 
-## 📡 3. THE SEMANTIC EVENT BUS
+## 📡 4. THE SEMANTIC EVENT BUS
 The IDE extension now communicates via a **Semantic Event Bus**, broadcasting intents and conflicts:
 - `intent_to_edit`: Fired when an agent begins a mutation.
 - `semantic_conflict`: Fired when overlapping region locks are detected.
@@ -138,7 +283,7 @@ The IDE extension now communicates via a **Semantic Event Bus**, broadcasting in
 
 ---
 
-## 🔍 4. FLIP QUERIES
+## 🔍 5. FLIP QUERIES
 Direct graph querying via the Command Palette: `Lupopedia: Flip Query`
 
 **Example DSL:**
@@ -148,7 +293,7 @@ Direct graph querying via the Command Palette: `Lupopedia: Flip Query`
 
 ---
 
-## 🔒 5. SEMANTIC REGION LOCKS
+## 🔒 6. SEMANTIC REGION LOCKS
 Multi-agent concurrency via **Region Locking**:
 - `header`, `footer`, `relations`, `identity`.
 
@@ -184,7 +329,7 @@ The footer connects the file to the semantic graph:
 
 ---
 
-## 📋 3. COMPLETE ACTOR REGISTRY (v4.0.37)
+## 📋 7. COMPLETE ACTOR REGISTRY (v4.0.62)
 
 Lupopedia has **39+ active actors** across five categories. All actors have unique `actor_id` values registered in the `lupo_actors` table.
 
@@ -224,16 +369,16 @@ Lupopedia has **39+ active actors** across five categories. All actors have uniq
 
 | Actor ID | Name | Role | Channels |
 |----------|------|------|----------|
-| 0 | SYSTEM | Core system processes | All |
-| 1 | AUTHENTICATOR | Authentication service | 1 |
-| 2 | CAPTAIN | System authority (AI side) | 42 |
-| 3 | WOLFIE | Chief Architect Persona | 42 |
-| 19 | ANUBIS | Orphan resolver, routing | 42, 666 |
+| 0 | System | Kernel operations, fallback context | All |
+| 1 | AUTHENTICATOR | Authentication & session management | 1 |
+| 2 | LILITH | Documentation & examples | 42 |
+| 19 | ANUBIS | Security monitoring & validation | 666 |
+| 1009 | **DOCTOR** | **System health, diagnostics, repair (NEW in 4.0.62)** | All |
 | 59 | INDEXER | Content indexing, search | 42 |
 | 209 | TRUTH | Core knowledge engine | 42 |
 | 1212 | UTC_TIMEKEEPER | Authoritative system time | All |
 
-**Total Active Actors:** 1 Human + 5 IDE + 11 External + 8 System = **25 Active**
+**Total Active Actors:** 1 Human + 5 IDE + 11 External + 9 System = **26 Active**
 
 ### 🔍 Viewing the Live Registry
 
@@ -317,7 +462,7 @@ Final Approval → Captain (10000)
 
 ---
 
-## 🤝 4. MULTI-AGENT COLLABORATION
+## 🤝 8. MULTI-AGENT COLLABORATION
 
 ### Channel 42: The War Room
 All strategic coordination happens in **Channel 42**. AI and IDE agents broadcast their intent here before editing shared resources.
@@ -330,7 +475,7 @@ With multiple agents active, we use **Semantic Locking**:
 
 ---
 
-## 🛠️ 5. COMMON COMMANDS
+## 🛠️ 9. COMMON COMMANDS
 
 | Command | Shortcut / Palette | Purpose |
 | :--- | :--- | :--- |
@@ -342,7 +487,7 @@ With multiple agents active, we use **Semantic Locking**:
 
 ---
 
-## 📂 6. DIRECTORY DOCTRINE
+## 📂 10. DIRECTORY DOCTRINE
 
 - `/docs/doctrine/`: The canonical rules of the system.
   - `SUPPORTING_ACTOR_DOCTRINE.md`: Complete two-layer actor model specification with database correlation
@@ -357,5 +502,16 @@ With multiple agents active, we use **Semantic Locking**:
 - Read the [README.md](README.md) for full architectural details.
 - Review the [CHANGELOG.md](CHANGELOG.md) for current version status.
 - Join the thread in **Channel 42** to announce your AI presence.
+- Try the new CLI commands: `php lupo-bin/lupo.php doctor` and `php lupo-bin/lupo.php whoami`
+
+---
+
+## 🚀 WHAT'S NEW IN v4.0.62
+
+**Context Kernel** - Centralized identity resolution preventing multi-resolver drift  
+**DOCTOR Actor (1009)** - System health agent for environment maintenance and repair  
+**Enhanced CLI** - Unified context commands with KERNEL ISSUE warnings and repair  
+**Task System** - Formalized task status documentation with Channel 0/Actor 0 indexing  
+**Production Ready** - System declared PRODUCTION READY after comprehensive validation
 
 **Happy Coding, Captain.**

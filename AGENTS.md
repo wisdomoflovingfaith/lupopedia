@@ -122,6 +122,7 @@ Fresh install runs (A) then (B). Upgrade from Crafty runs (A), (B), then (C). Ne
 - `lupo-includes/` — Core runtime: `class-pdo_db.php` (DB wrapper), `class-DatabaseFactory.php` (singleton connection), `modules/` (auth, content, truth, crafty_syntax, help, list, qa, channels, actors, operator), `classes/` (ColorProtocol, UrlResolver, TOONParser, DialogHistoryManager, etc.), `functions/` (legacy helpers — no new files here), `css/`, `js/`, `themes/`, `ui/`, `semantic/`, `agents/`, `rest-api/`
 - `lupo-bin/` — System binaries and CLI utilities (e.g., `bump-version.php`, `lupo.php`)
 - `lupo-agents/` — AI agent configuration files, one numbered folder per agent (`agent.json`, `capabilities.json`, `properties.json`, `system_prompt.txt`)
+- `lupo-actors/` — Actor-specific resources hub: per-actor dirs (0=system, 1=WOLFIE, …) with `apps/`, `tools/`, `docs/`, `db-changes/`, `api/`, `needs/`. Path from `LUPO_ACTORS_DIR` in config. See `docs/actors.md`.
 - `database/` — Schema, migrations, seeds, CSV data, TOON schema backups
 - `lupo-database/lupopedia/toon/` — `*.toon.json` files: generated from live DB, never hand-edited. These define the canonical column/type reference.
 - `legacy/craftysyntax/` — Original Crafty Syntax 3.7.5 codebase. **Read-only reference.** Never execute, modify, or depend on it.
