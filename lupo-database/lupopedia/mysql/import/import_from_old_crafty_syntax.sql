@@ -1179,253 +1179,189 @@ FROM livehelp_referers_monthly r;
 
 
 -- ======================================================================
--- livehelp_visit_track               → lupo_visits
- -- See: /docs/doctrine/migrations/livehelp_visit_track_migration.md 
+-- livehelp_visit_track / livehelp_visits_daily / livehelp_visits_monthly  → lupo_visits (4.0.68 raw-events schema)
+-- livehelp_paths_firsts / livehelp_paths_monthly                         → lupo_paths (4.0.68 aggregated flows)
+-- lupo_visits: session_id, actor_id, path_url, entercontentid, created_ymdhis, is_processed. Legacy daily/monthly imported as synthetic rows (is_processed=1).
+-- lupo_paths: entercontentid, exitcontentid, year_num, month_num, day_num, count_num, transition_type.
+-- ======================================================================
 
 ALTER TABLE livehelp_visit_track
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
 ALTER TABLE livehelp_visit_track
-  COMMENT = 'DEPRECATED: Ephemeral session tracking table. Not imported into unified analytics. Safe to delete after migration.';
- 
+  COMMENT = 'DEPRECATED: Ephemeral session tracking. Not imported into lupo_visits. Safe to delete after migration.';
+
 ALTER TABLE livehelp_visits_daily
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
 ALTER TABLE livehelp_visits_daily
-  COMMENT = 'DEPRECATED: Imported into lupo_visits. Safe to delete after migration.';
+  COMMENT = 'DEPRECATED: Imported into lupo_visits (synthetic rows). Safe to delete after migration.';
 
 ALTER TABLE livehelp_visits_monthly
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_visits_monthly
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
-
+  COMMENT = 'DEPRECATED: Imported into lupo_visits (synthetic rows). Safe to delete after migration.';
 
 TRUNCATE lupo_visits;
+-- Synthetic visits from daily: one row per (livehelp_id, dateof), path_url=pageurl, entercontentid=livehelp_id, created_ymdhis=dateof+noon, is_processed=1.
 INSERT INTO lupo_visits (
-    content_id,
+    session_id,
     actor_id,
-    page_url,
-    page_domain,
-    page_path,
-    date_ymd,
-    visits,
-    depth,
-    metadata_json
+    instance_id,
+    path_url,
+    entercontentid,
+    enter_table,
+    transition_type,
+    transition_metadata,
+    created_ymdhis,
+    is_processed,
+    is_deleted,
+    deleted_ymdhis
 )
 SELECT
-    1 AS content_id, -- ophaned we will look them up later 
-    1 AS actor_id, -- ophaned we will look them up later 
-    r.pageurl AS page_url,
-
-    SUBSTRING_INDEX(SUBSTRING_INDEX(r.pageurl, '/', 3), '/', -1) AS page_domain,
-
-    SUBSTRING(r.pageurl, LENGTH(SUBSTRING_INDEX(r.pageurl, '/', 3)) + 1) AS page_path,
-
-    r.dateof AS date_ymd,
-    (r.levelvisits + r.directvisits) AS visits,
-    r.level AS depth,
-
-    JSON_OBJECT(
+    0 AS session_id,
+    COALESCE(r.livehelp_id, 0) AS actor_id,
+    0 AS instance_id,
+    SUBSTRING(COALESCE(r.pageurl, ''), 1, 2048) AS path_url,
+    r.livehelp_id AS entercontentid,
+    'content' AS enter_table,
+    'pageview' AS transition_type,
+    CAST(JSON_OBJECT(
         'legacy_pageurl', r.pageurl,
         'legacy_parentrec', r.parentrec,
         'legacy_department', r.department,
-        'legacy_livehelp_id', r.livehelp_id,
         'legacy_levelvisits', r.levelvisits,
-        'legacy_directvisits', r.directvisits
-    ) AS metadata_json
-
+        'legacy_directvisits', r.directvisits,
+        'source', 'livehelp_visits_daily'
+    ) AS CHAR) AS transition_metadata,
+    CONCAT(CAST(r.dateof AS CHAR), '120000') AS created_ymdhis,
+    1 AS is_processed,
+    0 AS is_deleted,
+    NULL AS deleted_ymdhis
 FROM livehelp_visits_daily r;
 
 INSERT INTO lupo_visits (
-    content_id,
+    session_id,
     actor_id,
-    page_url,
-    page_domain,
-    page_path,
-    date_ymd,
-    visits,
-    depth,
-    metadata_json
+    instance_id,
+    path_url,
+    entercontentid,
+    enter_table,
+    transition_type,
+    transition_metadata,
+    created_ymdhis,
+    is_processed,
+    is_deleted,
+    deleted_ymdhis
 )
 SELECT
-    1 AS content_id,
-    1 AS actor_id,
-    r.pageurl AS page_url,
-
-    SUBSTRING_INDEX(SUBSTRING_INDEX(r.pageurl, '/', 3), '/', -1) AS page_domain,
-
-    SUBSTRING(r.pageurl, LENGTH(SUBSTRING_INDEX(r.pageurl, '/', 3)) + 1) AS page_path,
-
-    r.dateof AS date_ymd,
-    (r.levelvisits + r.directvisits) AS visits,
-    r.level AS depth,
-
-    JSON_OBJECT(
+    0 AS session_id,
+    0 AS actor_id,
+    0 AS instance_id,
+    SUBSTRING(COALESCE(r.pageurl, ''), 1, 2048) AS path_url,
+    0 AS entercontentid,
+    'content' AS enter_table,
+    'pageview' AS transition_type,
+    CAST(JSON_OBJECT(
         'legacy_pageurl', r.pageurl,
         'legacy_parentrec', r.parentrec,
         'legacy_department', r.department,
         'legacy_levelvisits', r.levelvisits,
-        'legacy_directvisits', r.directvisits
-    ) AS metadata_json
-
+        'legacy_directvisits', r.directvisits,
+        'source', 'livehelp_visits_monthly'
+    ) AS CHAR) AS transition_metadata,
+    CONCAT(CAST(r.dateof AS CHAR), '01120000') AS created_ymdhis,
+    1 AS is_processed,
+    0 AS is_deleted,
+    NULL AS deleted_ymdhis
 FROM livehelp_visits_monthly r;
 
 -- ======================================================================
--- livehelp_visits_daily                → lupo_analytics_visits_daily
--- livehelp_visits_monthly              → lupo_analytics_visits_monthly
--- Aggregated by (content_id, date_ymd) / (content_id, date_ym) to match
--- TOON unique keys. Crafty levelvisits+directvisits → visits; directvisits → direct_visits.
+-- livehelp_paths_firsts / livehelp_paths_monthly  → lupo_paths (4.0.68 aggregated flows)
+-- entercontentid=visit_recno, exitcontentid=exit_recno, year_num/month_num/day_num from dateof (int 8=YYYYMMDD or 6=YYYYMM), count_num=visits.
 -- ======================================================================
-TRUNCATE lupo_analytics_visits_daily;
-INSERT INTO lupo_analytics_visits_daily (
-    analytics_visits_daily_id,
-    content_id,
-    url_path,
-    department_id,
-    date_ymd,
-    visit_type,
-    total_visits,
-    unique_sessions,
+ALTER TABLE livehelp_paths_firsts
+    ENGINE=InnoDB,
+    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE livehelp_paths_firsts
+  COMMENT = 'DEPRECATED: Imported into lupo_paths. Safe to delete after migration.';
+
+ALTER TABLE livehelp_paths_monthly
+    ENGINE=InnoDB,
+    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE livehelp_paths_monthly
+  COMMENT = 'DEPRECATED: Imported into lupo_paths. Safe to delete after migration.';
+
+TRUNCATE lupo_paths;
+
+-- paths_firsts: dateof is YYYYMMDD (8 digits). If 6 digits (YYYYMM), day_num=1.
+INSERT INTO lupo_paths (
+    entercontentid,
+    exitcontentid,
+    enter_table,
+    exit_table,
+    year_num,
+    month_num,
+    day_num,
+    count_num,
+    transition_type,
+    transition_metadata,
     created_ymdhis,
     updated_ymdhis,
     is_deleted,
     deleted_ymdhis
 )
 SELECT
-    @rn := @rn + 1,
-    t.content_id,
-    t.url_path,
-    t.department_id,
-    t.date_ymd,
-    'pageview',
-    t.visits,
-    0,
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
-    0,
-    NULL
-FROM (SELECT @rn := 0) r,
-(
-    SELECT
-        r.livehelp_id AS content_id,
-        SUBSTRING(MAX(r.pageurl), 1, 500) AS url_path,
-        MAX(r.department) AS department_id,
-        r.dateof AS date_ymd,
-        SUM(r.levelvisits + r.directvisits) AS visits
-    FROM livehelp_visits_daily r
-    GROUP BY r.livehelp_id, r.dateof
-) t;
+    p.visit_recno AS entercontentid,
+    p.exit_recno AS exitcontentid,
+    'content' AS enter_table,
+    'content' AS exit_table,
+    IF(p.dateof >= 1000000, FLOOR(p.dateof / 10000), FLOOR(p.dateof / 100)) AS year_num,
+    IF(p.dateof >= 1000000, FLOOR((p.dateof % 10000) / 100), p.dateof % 100) AS month_num,
+    IF(p.dateof >= 1000000, p.dateof % 100, 1) AS day_num,
+    p.visits AS count_num,
+    'first' AS transition_type,
+    CAST(JSON_OBJECT('legacy_livehelp_id', COALESCE(p.livehelp_id, 0)) AS CHAR) AS transition_metadata,
+    IF(p.dateof >= 1000000, CONCAT(CAST(p.dateof AS CHAR), '120000'), CONCAT(CAST(p.dateof AS CHAR), '01120000')) AS created_ymdhis,
+    IF(p.dateof >= 1000000, CONCAT(CAST(p.dateof AS CHAR), '120000'), CONCAT(CAST(p.dateof AS CHAR), '01120000')) AS updated_ymdhis,
+    0 AS is_deleted,
+    NULL AS deleted_ymdhis
+FROM livehelp_paths_firsts p;
 
-TRUNCATE lupo_analytics_visits_monthly;
-INSERT INTO lupo_analytics_visits_monthly (
-    analytics_visits_monthly_id,
-    content_id,
-    url_path,
-    department_id,
-    date_ym,
-    visit_type,
-    total_visits,
-    unique_sessions,
+-- paths_monthly: dateof may be YYYYMM (6 digits). year_num=FLOOR(dateof/100), month_num=dateof%100, day_num=1.
+INSERT INTO lupo_paths (
+    entercontentid,
+    exitcontentid,
+    enter_table,
+    exit_table,
+    year_num,
+    month_num,
+    day_num,
+    count_num,
+    transition_type,
+    transition_metadata,
     created_ymdhis,
     updated_ymdhis,
     is_deleted,
     deleted_ymdhis
 )
 SELECT
-    @rn := @rn + 1,
-    t.content_id,
-    t.url_path,
-    t.department_id,
-    t.date_ym,
-    'pageview',
-    t.visits,
-    0,
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
-    0,
-    NULL
-FROM (SELECT @rn := 0) r,
-(
-    SELECT
-        0 AS content_id,
-        SUBSTRING(MAX(r.pageurl), 1, 500) AS url_path,
-        MAX(r.department) AS department_id,
-        r.dateof AS date_ym,
-        SUM(r.levelvisits + r.directvisits) AS visits
-    FROM livehelp_visits_monthly r
-    GROUP BY r.dateof
-) t;
-
--- ======================================================================
--- livehelp_paths_firsts               → lupo_analytics_paths
- -- See: /docs/doctrine/migrations/livehelp_paths_firsts_migration.md
-ALTER TABLE livehelp_paths_firsts
-    ENGINE=InnoDB,
-    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE livehelp_paths_firsts
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
-
-ALTER TABLE livehelp_paths_monthly
-    ENGINE=InnoDB,
-    CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE livehelp_paths_monthly
-  COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
-
-
-TRUNCATE lupo_analytics_paths;
-
-INSERT INTO `lupo_analytics_paths` (
-    `from_page_id`,
-    `to_page_id`,
-    `year_month_yyyymm`,
-    `transition_type`,
-    `transition_count`,
-    `metadata_json`,
-    `created_ymdhis`,
-    `updated_ymdhis`,
-    `is_deleted`,
-    `deleted_ymdhis`
-)
-SELECT
-    `visit_recno` AS `from_page_id`,
-    `exit_recno` AS `to_page_id`,
-    LEFT(`dateof`, 6) AS `year_month_yyyymm`,
-    'first' AS `transition_type`,
-    `visits` AS `transition_count`,
-    NULL AS `metadata_json`,
-    CONCAT(`dateof`, '000000') AS `created_ymdhis`,
-    CONCAT(`dateof`, '000000') AS `updated_ymdhis`,
-    0 AS `is_deleted`,
-    NULL AS `deleted_ymdhis`
-FROM `livehelp_paths_firsts`;
- 
-INSERT INTO `lupo_analytics_paths` (
-    `from_page_id`,
-    `to_page_id`,
-    `year_month_yyyymm`,
-    `transition_type`,
-    `transition_count`,
-    `metadata_json`,
-    `created_ymdhis`,
-    `updated_ymdhis`,
-    `is_deleted`,
-    `deleted_ymdhis`
-)
-SELECT
-    `visit_recno` AS `from_page_id`,
-    `exit_recno` AS `to_page_id`,
-    `dateof` AS `year_month_yyyymm`,
-    'all' AS `transition_type`,
-    `visits` AS `transition_count`,
-    NULL AS `metadata_json`,
-    CONCAT(`dateof`, '01000000') AS `created_ymdhis`,
-    CONCAT(`dateof`, '01000000') AS `updated_ymdhis`,
-    0 AS `is_deleted`,
-    NULL AS `deleted_ymdhis`
-FROM `livehelp_paths_monthly`;
+    p.visit_recno AS entercontentid,
+    p.exit_recno AS exitcontentid,
+    'content' AS enter_table,
+    'content' AS exit_table,
+    FLOOR(p.dateof / 100) AS year_num,
+    p.dateof % 100 AS month_num,
+    1 AS day_num,
+    p.visits AS count_num,
+    'all' AS transition_type,
+    NULL AS transition_metadata,
+    CONCAT(CAST(p.dateof AS CHAR), '01120000') AS created_ymdhis,
+    CONCAT(CAST(p.dateof AS CHAR), '01120000') AS updated_ymdhis,
+    0 AS is_deleted,
+    NULL AS deleted_ymdhis
+FROM livehelp_paths_monthly p;
 
  
 -- ======================================================================

@@ -371,6 +371,14 @@ if ($step === 'credentials') {
                     InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $bootstrapLog, $table_prefix);
                     InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $bootstrapLog, $table_prefix);
                     InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    // 4.0.68 seeds: rules, skills, changelog metadata, actor 1 cursor rules (idempotent)
+                    $seed_4_0_68 = array('seed_rules_doctrine_4.0.68.sql', 'seed_skills_4.0.68.sql', 'seed_lupo_metadata_changelog_headers_4.0.68.sql', 'seed_actor_1_cursor_rules_4.0.68.sql');
+                    foreach ($seed_4_0_68 as $seedFile) {
+                        $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                        if (is_file($path)) {
+                            InstallWizardSqlRunner::runSqlFile($pdo, $path, $bootstrapLog, $table_prefix);
+                        }
+                    }
                     InstallWizardChannels::createReservedSystemChannels($pdo, $bootstrapLog);
                     $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
                     header('Location: ' . $base . '/install.php?step=bootstrap');
@@ -571,6 +579,14 @@ if ($step === 'run') {
                 InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
                 InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
                 InstallWizardChannels::createReservedSystemChannels($pdo, $log);
+                // 4.0.68 seeds (new install): rules, skills, changelog metadata, actor 1 cursor rules (idempotent)
+                $seed_4_0_68 = array('seed_rules_doctrine_4.0.68.sql', 'seed_skills_4.0.68.sql', 'seed_lupo_metadata_changelog_headers_4.0.68.sql', 'seed_actor_1_cursor_rules_4.0.68.sql');
+                foreach ($seed_4_0_68 as $seedFile) {
+                    $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                    if (is_file($path)) {
+                        InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                    }
+                }
 
                 // Import MD files from channels/0/broadcasts/
                 InstallWizardMdImporter::importAllMdFiles($pdo, $log, $table_prefix);
@@ -654,6 +670,14 @@ if ($step === 'run') {
             InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_flare_apply_content_4.0.57.sql', $log, $table_prefix);
             // Run docs/status (and doctrine) web content seed (v4.0.57) — Option A: DB-seeded web docs
             InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_docs_web_content_4.0.57.sql', $log, $table_prefix);
+            // 4.0.68 seeds: rules, skills, changelog metadata, actor 1 cursor rules (idempotent; run after content seeds)
+            $seed_4_0_68 = array('seed_rules_doctrine_4.0.68.sql', 'seed_skills_4.0.68.sql', 'seed_lupo_metadata_changelog_headers_4.0.68.sql', 'seed_actor_1_cursor_rules_4.0.68.sql');
+            foreach ($seed_4_0_68 as $seedFile) {
+                $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                if (is_file($path)) {
+                    InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                }
+            }
 
             // Activations Block
             require_once LUPOPEDIA_PATH . '/lupo-includes/functions/ai_activation.php';

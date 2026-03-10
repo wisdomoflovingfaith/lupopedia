@@ -317,6 +317,7 @@ CREATE INDEX lupo_actor_handshakes_idx_is_deleted ON lupo_actor_handshakes (is_d
 CREATE INDEX lupo_actor_handshakes_idx_utc_timestamp ON lupo_actor_handshakes (`utc_timestamp`);
 
 -- Consolidated metadata table replacing lupo_actor_meta, lupo_actor_properties, lupo_agent_properties
+-- 4.0.68: LUPOPEDIA HEADERS — added channel_id, parent_metadata_id, class_name for channel-scoped and hierarchical metadata
 CREATE TABLE lupo_metadata (
   metadata_id bigint NOT NULL,
   entity_type varchar(32) NOT NULL,
@@ -329,6 +330,9 @@ CREATE TABLE lupo_metadata (
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
+  channel_id bigint DEFAULT NULL,
+  parent_metadata_id bigint DEFAULT NULL,
+  class_name varchar(128) DEFAULT NULL,
   PRIMARY KEY (metadata_id)
 );
 
@@ -340,6 +344,14 @@ CREATE INDEX lupo_metadata_idx_property_key ON lupo_metadata (property_key);
 CREATE INDEX lupo_metadata_idx_created_ymdhis ON lupo_metadata (created_ymdhis);
 CREATE INDEX lupo_metadata_idx_updated_ymdhis ON lupo_metadata (updated_ymdhis);
 CREATE INDEX lupo_metadata_idx_is_deleted ON lupo_metadata (is_deleted);
+CREATE INDEX lupo_metadata_idx_channel_id ON lupo_metadata (channel_id);
+CREATE INDEX lupo_metadata_idx_parent_metadata_id ON lupo_metadata (parent_metadata_id);
+CREATE INDEX lupo_metadata_idx_class_name ON lupo_metadata (class_name);
+CREATE INDEX lupo_metadata_idx_entity_deleted ON lupo_metadata (entity_type, entity_id, is_deleted);
+CREATE INDEX lupo_metadata_idx_channel_deleted ON lupo_metadata (channel_id, is_deleted);
+CREATE INDEX lupo_metadata_idx_parent_deleted ON lupo_metadata (parent_metadata_id, is_deleted);
+CREATE INDEX lupo_metadata_idx_meta_type_deleted ON lupo_metadata (meta_type, is_deleted);
+CREATE INDEX lupo_metadata_idx_class_deleted ON lupo_metadata (class_name, is_deleted);
 
 CREATE TABLE lupo_actor_moods (
   actor_id bigint NOT NULL,
@@ -656,102 +668,32 @@ CREATE TABLE lupo_analytics_campaign_vars (
 );
 
 
--- Consolidated analytics visits table replacing 4 analytics tables
-CREATE TABLE lupo_analytics_visits (
-  analytics_visit_id bigint NOT NULL,
-  visit_type varchar(20) NOT NULL DEFAULT 'realtime',
-  session_id varchar(100) NOT NULL,
-  actor_id bigint NOT NULL DEFAULT '0',
-  content_id bigint DEFAULT NULL,
-  federation_node_id bigint NOT NULL,
-  url_path varchar(500) NOT NULL DEFAULT '',
-  referer_url varchar(500) DEFAULT NULL,
-  referer_domain varchar(255) DEFAULT NULL,
-  referer_path varchar(500) DEFAULT NULL,
-  came_from varchar(500) DEFAULT NULL,
-  department_id bigint NOT NULL DEFAULT '1',
-  period_type varchar(64) DEFAULT NULL,
-  period_date bigint DEFAULT NULL,
-  date_ymd bigint DEFAULT NULL,
-  date_ym bigint DEFAULT NULL,
-  first_seen_ymdhis bigint NOT NULL,
-  last_seen_ymdhis bigint NOT NULL,
-  view_count int NOT NULL DEFAULT '1',
-  visits int NOT NULL DEFAULT '0',
-  unique_sessions int NOT NULL DEFAULT '0',
-  unique_actors int NOT NULL DEFAULT '0',
-  direct_visits int NOT NULL DEFAULT '0',
-  internal_visits int NOT NULL DEFAULT '0',
-  entry_count int NOT NULL DEFAULT '0',
-  exit_count int NOT NULL DEFAULT '0',
-  seconds_active int NOT NULL DEFAULT '0',
-  total_seconds int NOT NULL DEFAULT '0',
-  avg_seconds int NOT NULL DEFAULT '0',
-  user_agent varchar(255) DEFAULT NULL,
-  ip_address varchar(45) DEFAULT NULL,
+-- PATHS/VISITS doctrine (4.0.68): visits = raw events; paths = aggregated flows. gc.php aggregates visits -> paths.
+-- lupo_visits: raw per-event navigation logs (high-volume, append-only). is_processed set by gc.php when aggregated.
+CREATE TABLE lupo_visits (
+  visit_id bigint NOT NULL AUTO_INCREMENT,
+  session_id bigint DEFAULT NULL,
+  actor_id bigint DEFAULT NULL,
+  instance_id bigint DEFAULT NULL,
+  path_url text,
+  entercontentid bigint DEFAULT NULL,
+  exitcontentid bigint DEFAULT NULL,
+  enter_table varchar(255) DEFAULT NULL,
+  exit_table varchar(255) DEFAULT NULL,
+  transition_type varchar(64) DEFAULT NULL,
+  transition_metadata text,
   created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  archived_ymdhis bigint DEFAULT 0,
-  PRIMARY KEY (analytics_visit_id)
-);
-
--- Note: Partial indexes (WHERE clause) require MySQL 8.0.13+ or MariaDB 10.2+
--- For compatibility with MySQL 5.7, we use regular indexes instead
-CREATE UNIQUE INDEX lupo_analytics_visits_uq_realtime ON lupo_analytics_visits (session_id, url_path, visit_type);
-CREATE UNIQUE INDEX lupo_analytics_visits_uq_daily ON lupo_analytics_visits (content_id, date_ymd, visit_type);
-CREATE UNIQUE INDEX lupo_analytics_visits_uq_monthly ON lupo_analytics_visits (content_id, date_ym, visit_type);
-CREATE UNIQUE INDEX lupo_analytics_visits_uq_period ON lupo_analytics_visits (content_id, period_type, period_date, visit_type);
-CREATE INDEX lupo_analytics_visits_idx_session ON lupo_analytics_visits (session_id);
-CREATE INDEX lupo_analytics_visits_idx_actor ON lupo_analytics_visits (actor_id);
-CREATE INDEX lupo_analytics_visits_idx_content ON lupo_analytics_visits (content_id);
-CREATE INDEX lupo_analytics_visits_idx_department ON lupo_analytics_visits (department_id);
-CREATE INDEX lupo_analytics_visits_idx_period_date ON lupo_analytics_visits (period_date);
-CREATE INDEX lupo_analytics_visits_idx_date_ymd ON lupo_analytics_visits (date_ymd);
-CREATE INDEX lupo_analytics_visits_idx_date_ym ON lupo_analytics_visits (date_ym);
-CREATE INDEX lupo_analytics_visits_idx_visit_type ON lupo_analytics_visits (visit_type);
-CREATE INDEX lupo_analytics_visits_idx_created ON lupo_analytics_visits (created_ymdhis);
-CREATE INDEX lupo_analytics_visits_idx_updated ON lupo_analytics_visits (updated_ymdhis);
-
--- Analytics summary tables for daily and monthly aggregations
-CREATE TABLE lupo_analytics_visits_daily (
-  analytics_visits_daily_id bigint NOT NULL AUTO_INCREMENT,
-  content_id bigint NOT NULL,
-  url_path varchar(500) DEFAULT NULL,
-  department_id bigint DEFAULT NULL,
-  date_ymd bigint NOT NULL,
-  visit_type varchar(32) NOT NULL DEFAULT 'pageview',
-  total_visits int NOT NULL DEFAULT 0,
-  unique_sessions int NOT NULL DEFAULT 0,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
+  is_processed tinyint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT 0,
   deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (analytics_visits_daily_id),
-  UNIQUE KEY lupo_analytics_visits_daily_uq_content_date_type (content_id, date_ymd, visit_type),
-  KEY lupo_analytics_visits_daily_idx_date (date_ymd),
-  KEY lupo_analytics_visits_daily_idx_content (content_id)
+  PRIMARY KEY (visit_id)
 );
-
-CREATE TABLE lupo_analytics_visits_monthly (
-  analytics_visits_monthly_id bigint NOT NULL AUTO_INCREMENT,
-  content_id bigint NOT NULL,
-  url_path varchar(500) DEFAULT NULL,
-  department_id bigint DEFAULT NULL,
-  date_ym bigint NOT NULL,
-  visit_type varchar(32) NOT NULL DEFAULT 'pageview',
-  total_visits int NOT NULL DEFAULT 0,
-  unique_sessions int NOT NULL DEFAULT 0,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (analytics_visits_monthly_id),
-  UNIQUE KEY lupo_analytics_visits_monthly_uq_content_date_type (content_id, date_ym, visit_type),
-  KEY lupo_analytics_visits_monthly_idx_date (date_ym),
-  KEY lupo_analytics_visits_monthly_idx_content (content_id)
-);
+CREATE INDEX lupo_visits_idx_session ON lupo_visits (session_id);
+CREATE INDEX lupo_visits_idx_actor ON lupo_visits (actor_id);
+CREATE INDEX lupo_visits_idx_created ON lupo_visits (created_ymdhis);
+CREATE INDEX lupo_visits_idx_is_processed ON lupo_visits (is_processed);
+CREATE INDEX lupo_visits_idx_is_deleted ON lupo_visits (is_deleted);
+CREATE INDEX lupo_visits_idx_enter_exit ON lupo_visits (entercontentid, exitcontentid);
 
 
 
@@ -2676,21 +2618,30 @@ CREATE TABLE lupo_truth_answers (
   KEY lupo_truth_answers_idx_created (created_ymdhis)
 );
 
-CREATE TABLE lupo_analytics_paths (
-  analytics_path_id bigint NOT NULL,
-  from_page_id bigint DEFAULT NULL,
-  to_page_id bigint DEFAULT NULL,
-  year_month_yyyymm char(6) NOT NULL,
-  transition_type varchar(64) NOT NULL,
-  transition_count int NOT NULL DEFAULT '0',
-  metadata_json json DEFAULT NULL,
+-- lupo_paths: aggregated navigation flows (low-volume). Populated by gc.php from lupo_visits. year_num/month_num/day_num for partitioning.
+CREATE TABLE lupo_paths (
+  path_id bigint NOT NULL AUTO_INCREMENT,
+  entercontentid bigint DEFAULT NULL,
+  exitcontentid bigint DEFAULT NULL,
+  enter_table varchar(255) DEFAULT NULL,
+  exit_table varchar(255) DEFAULT NULL,
+  year_num int DEFAULT NULL,
+  month_num int DEFAULT NULL,
+  day_num int DEFAULT NULL,
+  count_num int NOT NULL DEFAULT 0,
+  transition_type varchar(64) DEFAULT NULL,
+  transition_metadata text,
   created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
   deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (analytics_path_id)
+  PRIMARY KEY (path_id)
 );
-ALTER TABLE lupo_analytics_paths CHANGE analytics_path_id analytics_path_id bigint NOT NULL AUTO_INCREMENT;
+CREATE INDEX lupo_paths_idx_enter_exit ON lupo_paths (entercontentid, exitcontentid);
+CREATE INDEX lupo_paths_idx_ymd ON lupo_paths (year_num, month_num, day_num);
+CREATE INDEX lupo_paths_idx_transition ON lupo_paths (transition_type);
+CREATE INDEX lupo_paths_idx_created ON lupo_paths (created_ymdhis);
+CREATE INDEX lupo_paths_idx_is_deleted ON lupo_paths (is_deleted);
 
 CREATE TABLE lupo_referers (
   referer_id bigint NOT NULL,
@@ -2755,27 +2706,6 @@ CREATE INDEX idx_registry_open_entity_type ON lupo_registry_open (entity_type);
 
 -- Unified import registry for collision resolution during federation imports.
 
-
-CREATE TABLE lupo_visits (
-  visit_id bigint NOT NULL,
-  content_id bigint NOT NULL DEFAULT '0',
-  actor_id bigint NOT NULL DEFAULT '0',
-  page_url varchar(500) NOT NULL,
-  page_domain varchar(255) NOT NULL,
-  page_path varchar(500) NOT NULL,
-  date_ymd int NOT NULL,
-  visits int NOT NULL DEFAULT '0',
-  depth int NOT NULL DEFAULT '0',
-  metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT '0',
-  updated_ymdhis bigint NOT NULL DEFAULT '0',
-  PRIMARY KEY (visit_id)
-);
-
-CREATE INDEX lupo_visits_page_domain ON lupo_visits (page_domain);
-CREATE INDEX lupo_visits_date_ymd ON lupo_visits (date_ymd);
-CREATE INDEX lupo_visits_content_id ON lupo_visits (content_id);
-ALTER TABLE lupo_visits CHANGE visit_id visit_id bigint NOT NULL AUTO_INCREMENT;
 
 CREATE TABLE lupo_uploads (
   upload_id bigint NOT NULL,
@@ -3182,6 +3112,61 @@ VALUES
   20260301120000,
   0
 );
+
+-- ============================================================
+-- RULES SYSTEM (4.0.68)
+-- ============================================================
+-- lupo_rules: canonical registry of rules (rule_id explicit; no AUTO_INCREMENT per registry doctrine)
+CREATE TABLE lupo_rules (
+  rule_id bigint NOT NULL,
+  rule_name varchar(255) NOT NULL,
+  rule_description text,
+  rule_type varchar(64) NOT NULL,
+  rule_script text NOT NULL,
+  rule_version bigint NOT NULL DEFAULT 1,
+  created_ymdhis bigint NOT NULL,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (rule_id)
+);
+CREATE INDEX lupo_rules_idx_rule_type ON lupo_rules (rule_type);
+CREATE INDEX lupo_rules_idx_rule_name ON lupo_rules (rule_name);
+CREATE INDEX lupo_rules_idx_is_deleted ON lupo_rules (is_deleted);
+
+CREATE TABLE lupo_rule_targets (
+  rule_target_id bigint NOT NULL AUTO_INCREMENT,
+  rule_id bigint NOT NULL,
+  target_table varchar(255) NOT NULL,
+  target_id bigint NOT NULL,
+  applied_by_actor_id bigint DEFAULT NULL,
+  priority int NOT NULL DEFAULT 100,
+  created_ymdhis bigint NOT NULL,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (rule_target_id)
+);
+CREATE INDEX lupo_rule_targets_idx_rule_target ON lupo_rule_targets (rule_id, target_table, target_id);
+CREATE INDEX lupo_rule_targets_idx_target ON lupo_rule_targets (target_table, target_id);
+CREATE INDEX lupo_rule_targets_idx_is_deleted ON lupo_rule_targets (is_deleted);
+
+CREATE TABLE lupo_rule_logs (
+  rule_log_id bigint NOT NULL AUTO_INCREMENT,
+  rule_id bigint NOT NULL,
+  target_table varchar(255) NOT NULL,
+  target_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  instance_id bigint DEFAULT 0,
+  event_type varchar(64) NOT NULL,
+  event_details text,
+  created_ymdhis bigint NOT NULL,
+  PRIMARY KEY (rule_log_id)
+);
+CREATE INDEX lupo_rule_logs_idx_rule_id ON lupo_rule_logs (rule_id);
+CREATE INDEX lupo_rule_logs_idx_target ON lupo_rule_logs (target_table, target_id);
+CREATE INDEX lupo_rule_logs_idx_actor_id ON lupo_rule_logs (actor_id);
+CREATE INDEX lupo_rule_logs_idx_created_ymdhis ON lupo_rule_logs (created_ymdhis);
 
 -- ============================================================
 -- END OF ACTOR IDENTITY CAPSULE SYSTEM

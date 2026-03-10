@@ -1,48 +1,28 @@
 ---
-description: When handling files with FLIP Headers, infer identity, doctrine, and meaning from the header only; do not guess or hallucinate. FLIP is always in effect.
+description: FLIP/FLARE have been replaced by LUPOPEDIA HEADERS. Read the LUPOPEDIA HEADERS doctrine for format, database storage (lupo_metadata), and writing headers to files.
 alwaysApply: true
 ---
 
-# FLIP — File-Level Inference Protocol (PERMANENT)
+# LUPOPEDIA HEADERS (replaces FLIP / FLARE)
 
-Cursor MUST apply the File-Level Inference Protocol (FLIP) when handling any Lupopedia file that has a FLIP Header. **FLIP is always in effect** (alwaysApply: true).
+**FLIP** and **FLARE** have been replaced by **LUPOPEDIA HEADERS** as the canonical metadata system name from 4.0.68 onward.
 
-## Canonical name and aliases
+## What to read
 
-- **FLIP Headers** is the canonical name for the header block at the top of every file.
-- **Wolfie Headers** and **CROP Headers** (and **FLIPPING Headers**) are aliases of the same system. Treat all references to these as referring to FLIP Headers.
-- All file-level inference must come from the FLIP Header. No guessing. Treat absence as absence.
+- **Canonical doctrine:** `lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md` — Overview, storage in `lupo_metadata`, schema.
+- **Format and file structure:** `lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md` — Markdown file structure, required fields, database and channel resolution.
+- **Plan and block order:** `lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md` — Authoritative plan, block order, channel support.
+- **Validators and tooling:** `lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md` — How headers work with the database (read/write via `lupo_metadata`) and how headers can be written to the file (export/import).
 
-## Canonical doctrine
+## Database and writing to file
 
-- **Single source of truth:** `docs/doctrine/FLIP/FLIP_DOCTRINE.md`
-- FLIP = File-Level Inference Protocol. When a file is "flipped" to the system, infer everything from its FLIP Header — without guessing.
+- **Storage:** Headers are stored in the **`lupo_metadata`** table (with table prefix). Rows are structured as root → blocks → properties → edges/mappings/actions. Lookup by `entity_type` + `entity_id` and/or `channel_id`.
+- **Writing to file:** Headers can be **written to the Markdown file** as YAML between `---` delimiters. Tooling can export from `lupo_metadata` to YAML in the file, and import from file YAML into `lupo_metadata`. See VALIDATORS_AND_TOOLING.md for export/import behavior.
 
-## Required behavior
+## Behavior (unchanged intent)
 
-1. **Read the header first** — Before inferring anything about the file, read the full YAML block between the leading `---` delimiters.
-2. **Infer only from the header** — Do not guess identity, channel, version, or doctrine from path, filename, or repo structure. Use only what the header states or implies.
-3. **Do not hallucinate fields** — If the header does not contain a field (e.g. mood_RGB, channel_key), do not invent a value. Treat absence as absence.
-4. **Respect header_atoms** — Resolve symbolic references (e.g. GLOBAL_CURRENT_LUPOPEDIA_VERSION) from the project's atom source (e.g. config/global_atoms.yaml), not from guesswork.
-5. **Use inferred state for downstream behavior** — Routing, permissions, emotional context, and placement decisions must use the inferred file identity and metadata, not external assumptions.
-6. **Do not alter the header to "fix" inference** — If something is missing, do not add it to the header unless explicitly asked to update the file. FLIP is read-only inference; header edits are separate operations.
+- Infer file identity, doctrine, and meaning from the header only; do not guess or hallucinate.
+- Treat absence of a field as absence. Respect header_atoms and resolve from project atom source.
+- When adding or editing a header, follow LUPOPEDIA HEADERS format and version rules (see LUPOPEDIA_HEADERS_FORMAT.md).
 
-## What must be inferred from the header (when present)
-
-- File identity (name, title, description)
-- File lineage (version, last modified system version)
-- File channel (channel key, routing context)
-- File version
-- File emotional state (mood_RGB, emotional metadata per MOOD_RGB doctrine)
-- File doctrine (governance markers, header_atoms)
-- File placement (collections, categories)
-- File semantic meaning (in_this_file_we_have, dialog context)
-
-Omission is information. Do not invent missing fields.
-
-## When adding or editing a FLIP Header
-
-- Set **file.last_modified_system_version** to the **current Lupopedia version** (e.g. 4.0.16). Source of truth: `config/global_atoms.yaml`, `lupo-includes/version.php`, or `docs/doctrine/VERSIONING_DOCTRINE.md`. Do not leave it as 0000 or an old 3.x value when the file has been edited.
-- When merging 3.x-era header docs into 4.0.x, prefer existing repo docs and FLIP/FLIPPING/Wolfie header naming; we are on 4.0.13. See `docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md`.
-
-This rule is permanent and applies to all file handling in Lupopedia.
+This rule is permanent. Use **LUPOPEDIA HEADERS** and the docs above; do not reference FLIP or FLARE as the current system name.

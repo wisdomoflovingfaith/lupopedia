@@ -1,4 +1,28 @@
+---
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "cursor_rules"
+  file_path_from_root: ".cursorrules"
+  web_path: "http://www.lupopedia.com/rules/.cursorrules"
+  last_modified_utc: "20260310"
+  system_version: "4.0.68"
+  actor_id: 1
+  actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
+  artifact_type: "rules"
+  artifact_kind: "cursor_doctrine"
+  purpose: "Authoritative rules for the Lupopedia codebase for Cursor IDE"
+  tags: ["cursor", "rules", "doctrine", "manifest"]
+
+lupopedia.footer:
+  version: "4.0.68"
+  last_verified: "20260310"
+  last_verified_by: "wolfie"
+---
+# file: Cursor rules manifest — session: L-LUPO-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/rules/.cursorrules
+
 # Cursor Rules for Lupopedia
+
 
 Authoritative rules for the Lupopedia codebase. Read and apply these rules before making changes. Doctrine files in `docs/doctrine/` and `docs/channels/doctrine/` are mandatory references.
 

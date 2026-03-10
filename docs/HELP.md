@@ -93,6 +93,25 @@ All timestamps in Lupopedia are UTC in `YmdHis` format (e.g. `20260307143045`). 
 | `php lupo-bin/lupo.php doctor-context [--repair]` | Identity stack check; `--repair` syncs session.md to kernel | [CLI.md#doctor](CLI.md#doctor) |
 | `php lupo-bin/lupo.php auth` / `who` | Current authenticated user | [CLI.md#auth](CLI.md#auth) |
 | `php lupo-bin/lupo.php actor-context` | Actor context with auth | [CLI.md#actor-context](CLI.md#actor-context) |
+| `php lupo-bin/lupo.php rules --check [target_table] [target_id]` | List rules for a target (e.g. channels 42) | [lupo-docs/doctrine/RULES_DOCTRINE.md](../lupo-docs/doctrine/RULES_DOCTRINE.md) |
+| `php lupo-bin/lupo.php rules --evaluate [target_table] [target_id] [context_json]` | Evaluate rules for a target | [lupo-docs/doctrine/RULES_DOCTRINE.md](../lupo-docs/doctrine/RULES_DOCTRINE.md) |
+| `php lupo-bin/lupo.php skills --actor [actor_id]` | List skills for an actor (default actor 1) | [lupo-docs/doctrine/SKILLS_DOCTRINE.md](../lupo-docs/doctrine/SKILLS_DOCTRINE.md) |
+| `php lupo-bin/lupo.php skills --check [actor_id] <skill_name> [min_proficiency]` | Check if actor has a skill at or above proficiency | [lupo-docs/doctrine/SKILLS_DOCTRINE.md](../lupo-docs/doctrine/SKILLS_DOCTRINE.md) |
+
+### Rules system
+
+Lupopedia includes a doctrine-aligned rules system for governance, permissions, and constraints. Rules are stored in `lupo_rules` and attached to nodes (channels, actors, departments) via `lupo_rule_targets`; evaluation is logged in `lupo_rule_logs`.
+
+- **Documentation:** [lupo-docs/doctrine/RULES_DOCTRINE.md](../lupo-docs/doctrine/RULES_DOCTRINE.md)
+- **Channel 42 rules:** [lupo-channels/42/content/federation_node_id/0/RULES.md](../lupo-channels/42/content/federation_node_id/0/RULES.md)
+
+### Skills system
+
+Actors can possess skills documented in `lupo-skills/` and attached via the `lupopedia.skills` header (in profile or `skills/*.md`). SkillService resolves skills from the actor directory (numeric `lupo-actors/1/` or slug `lupo-actors/wolfie/`).
+
+- **Documentation:** [lupo-docs/doctrine/SKILLS_DOCTRINE.md](../lupo-docs/doctrine/SKILLS_DOCTRINE.md)
+- **Skills directory:** [lupo-skills/](../lupo-skills/)
+- **Example:** WOLFIE (actor 1) has the "lupopedia-headers" skill at master level; see [lupo-actors/wolfie/skills/lupopedia-headers.md](../lupo-actors/wolfie/skills/lupopedia-headers.md) and [lupo-actors/1/skills/lupopedia-headers.md](../lupo-actors/1/skills/lupopedia-headers.md).
 
 ### Workspace and files
 
@@ -124,12 +143,13 @@ All timestamps in Lupopedia are UTC in `YmdHis` format (e.g. `20260307143045`). 
 |----------|-------------|------|
 | Web Auth & Actor Selection | How the web UI handles logins and actor switching | [WEB_AUTH_AND_ACTOR_SELECTION.md](WEB_AUTH_AND_ACTOR_SELECTION.md) |
 
-### FLARE protocol
+### LUPOPEDIA HEADERS protocol
 
 | Resource | Description | Link |
 |----------|-------------|------|
-| Required headers | Minimum FLARE headers | [doctrine/required_flare_headers.md](doctrine/required_flare_headers.md) |
-| FLARE doctrine | Core protocol | [doctrine/FLARE/FLARE_DOCTRINE.md](doctrine/FLARE/FLARE_DOCTRINE.md) (if present) |
+| LUPOPEDIA HEADERS (overview) | Canonical metadata system; storage in `lupo_metadata`; headers can be written to the file | [lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md](../lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) |
+| Format and file structure | Markdown structure, required fields, database and channel resolution | [LUPOPEDIA_HEADERS_FORMAT.md](../lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md) |
+| Validators and tooling | How headers work with the database (read/write) and writing headers to files | [VALIDATORS_AND_TOOLING.md](../lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md) |
 
 ### Reports and status
 

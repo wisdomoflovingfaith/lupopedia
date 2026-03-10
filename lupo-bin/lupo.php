@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-// VERSION: 4.0.67
+// VERSION: 4.0.68
 
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(dirname(__FILE__)) . '/');
@@ -21,7 +21,7 @@ if (!$db && class_exists('DatabaseFactory')) {
 
 $argv = isset($GLOBALS['argv']) ? $GLOBALS['argv'] : array();
 $command = isset($argv[1]) ? $argv[1] : 'help';
-$need_db = ($command !== 'whoami' && $command !== 'context' && $command !== 'help' && $command !== 'docs' && $command !== 'version' && $command !== 'doctor' && $command !== 'doctor-context' && $command !== 'auth' && $command !== 'who' && $command !== 'actor-context');
+$need_db = ($command !== 'whoami' && $command !== 'context' && $command !== 'help' && $command !== 'docs' && $command !== 'version' && $command !== 'doctor' && $command !== 'doctor-context' && $command !== 'auth' && $command !== 'who' && $command !== 'actor-context' && $command !== 'skills');
 if (!$db && $need_db) {
     die("Error: Database connection failed.\n");
 }
@@ -54,7 +54,7 @@ try {
             $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
             $kernel->bootstrap($db, $table_prefix, $state_file, ABSPATH, $authService);
             $ctx = $kernel->getContext();
-            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.67');
+            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.68');
             lupo_validate_flare_headers($ctx, $system_version);
             DialogHeaderValidator::validate($ctx);
             $verbose = isset($whoami_verbose) ? $whoami_verbose : false;
@@ -425,6 +425,92 @@ try {
             // Log operation
             logOperation(0, 'health-check', array('results' => $checks, 'overall' => $all_pass ? 'HEALTHY' : 'ISSUES DETECTED'));
             break;
+        case 'rules':
+            require_once ABSPATH . 'lupo-includes/classes/RuleEvaluator.php';
+            $evaluator = new RuleEvaluator($db);
+            $sub = isset($argv[2]) ? $argv[2] : '';
+            $target_table = isset($argv[3]) ? $argv[3] : 'channels';
+            $target_id = isset($argv[4]) ? (int) $argv[4] : 42;
+            if ($sub === '--check') {
+                $rules = $evaluator->getRulesForTarget($target_table, $target_id);
+                echo "Rules for {$target_table}:{$target_id}\n";
+                if (empty($rules)) {
+                    echo "  (none)\n";
+                } else {
+                    foreach ($rules as $r) {
+                        $p = isset($r['priority']) ? $r['priority'] : 0;
+                        echo "  - " . (isset($r['rule_name']) ? $r['rule_name'] : $r['rule_id']) . " (priority {$p})\n";
+                    }
+                }
+            } elseif ($sub === '--evaluate') {
+                $context = array();
+                if (isset($argv[5]) && $argv[5] !== '') {
+                    $decoded = json_decode($argv[5], true);
+                    if (is_array($decoded)) {
+                        $context = $decoded;
+                    }
+                }
+                $results = $evaluator->evaluateRules($target_table, $target_id, $context);
+                echo "Evaluation results:\n";
+                foreach ($results as $i => $r) {
+                    if ($i === 'schema' || $i === 'information_schema') {
+                        continue;
+                    }
+                    $pass = isset($r['passed']) && $r['passed'] ? 'PASS' : 'FAIL';
+                    $note = isset($r['note']) ? $r['note'] : (isset($r['error']) ? $r['error'] : '');
+                    echo "  [{$i}] {$pass}" . ($note !== '' ? " - {$note}" : '') . "\n";
+                }
+                if (isset($results['schema'])) {
+                    $s = $results['schema'];
+                    echo "  [schema] foreign_keys: " . (isset($s['foreign_keys']['passed']) && $s['foreign_keys']['passed'] ? 'PASS' : 'FAIL') . (isset($s['foreign_keys']['violations']) && !empty($s['foreign_keys']['violations']) ? ' (' . implode(', ', array_slice($s['foreign_keys']['violations'], 0, 5)) . ')' : '') . "\n";
+                    echo "  [schema] triggers: " . (isset($s['triggers']['passed']) && $s['triggers']['passed'] ? 'PASS' : 'FAIL') . " (count=" . (isset($s['triggers']['count']) ? $s['triggers']['count'] : 0) . ")\n";
+                    echo "  [schema] timestamps: " . (isset($s['timestamps']['passed']) && $s['timestamps']['passed'] ? 'PASS' : 'FAIL') . "\n";
+                    echo "  [schema] auto_increment: " . (isset($s['auto_increment']['passed']) && $s['auto_increment']['passed'] ? 'PASS' : 'INFO (allowed)') . "\n";
+                }
+                if (isset($results['information_schema'])) {
+                    $is = $results['information_schema'];
+                    $pass = isset($is['passed']) && $is['passed'] ? 'PASS' : 'FAIL';
+                    echo "  [information_schema] {$pass}" . (isset($is['violations']) && !empty($is['violations']) ? ' - violations: ' . implode(', ', array_slice($is['violations'], 0, 10)) : '') . "\n";
+                }
+            } else {
+                echo "Usage: php lupo.php rules --check [target_table] [target_id]\n";
+                echo "       php lupo.php rules --evaluate [target_table] [target_id] [context_json]\n";
+                echo "Example: php lupo.php rules --check channels 42\n";
+            }
+            break;
+        case 'skills':
+            require_once ABSPATH . 'lupo-includes/classes/SkillService.php';
+            $skillService = new SkillService($db);
+            $sub = isset($argv[2]) ? $argv[2] : '';
+            if ($sub === '--actor') {
+                $actor_id = isset($argv[3]) ? (int) $argv[3] : 1;
+                $skills = $skillService->getActorSkills($actor_id);
+                echo "Skills for Actor {$actor_id}:\n";
+                if (empty($skills)) {
+                    echo "  (none)\n";
+                } else {
+                    foreach ($skills as $s) {
+                        $proficiency = isset($s['proficiency']) ? " (" . $s['proficiency'] . ")" : '';
+                        echo "  - " . (isset($s['name']) ? $s['name'] : '') . $proficiency . "\n";
+                    }
+                }
+            } elseif ($sub === '--check') {
+                $actor_id = isset($argv[3]) ? (int) $argv[3] : 1;
+                $skill_name = isset($argv[4]) ? $argv[4] : '';
+                $min_proficiency = isset($argv[5]) && $argv[5] !== '' ? $argv[5] : null;
+                if ($skill_name === '') {
+                    echo "Usage: php lupo.php skills --check [actor_id] <skill_name> [min_proficiency]\n";
+                    break;
+                }
+                $has = $skillService->hasSkill($actor_id, $skill_name, $min_proficiency);
+                echo $has ? "Actor has skill\n" : "Actor does not have skill\n";
+            } else {
+                echo "Usage: php lupo.php skills --actor [actor_id]\n";
+                echo "       php lupo.php skills --check [actor_id] <skill_name> [min_proficiency]\n";
+                echo "Example: php lupo.php skills --actor 1\n";
+                echo "         php lupo.php skills --check 1 lupopedia-headers expert\n";
+            }
+            break;
         case 'update-config':
             // System Agent command: update_configuration(config_data)
             $actor = get_local_actor();
@@ -495,7 +581,7 @@ try {
             exit($return_var);
             break;
         case 'version':
-            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.67';
+            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.68';
             echo "Lupopedia version " . $ver . "\n";
             echo "Documentation: docs/version.md\n";
             break;

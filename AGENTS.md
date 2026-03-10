@@ -1,4 +1,4 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/AGENTS
+# LUPOPEDIA HEADERS — see http://www.lupopedia.com/AGENTS
 ---
 flare.headers:
   flare.version: "1.0"
@@ -22,7 +22,7 @@ flare.headers:
 flare.edges:
   outbound_edges:
     - { to: "docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0 }
     - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 0.9 }
     - { to: "docs/status/LILITH_FLAME_FAUCET_REPORT.md", type: "references", weight: 0.8 }
     - { to: "lupo-agents/", type: "references", weight: 0.8 }
@@ -170,9 +170,9 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 ### Actor Model
 - `actor_id` is the universal identity key. There is no `user_id` in relationships.
 - Actor IDs 0–9999 are reserved for AI agents; human actors start at 10000.
-- **Actor and agent IDs are defined in the project’s actor registry** (e.g. `lupo-database/lupopedia/actors/` or `lupo-database/lupopedia/actors/actor_id/registry.json`). Tooling and docs must resolve IDs from the registry; do not maintain inline ID lists as canonical. FLARE headers may include optional **agent_name_identity** (e.g. “Cursor IDE Agent”) for human-readable identification—see FLARE doctrine Section 24 and `docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md`.
+- **Actor and agent IDs are defined in the project’s actor registry** (e.g. `lupo-database/lupopedia/actors/` or `lupo-database/lupopedia/actors/actor_id/registry.json`). Tooling and docs must resolve IDs from the registry; do not maintain inline ID lists as canonical. LUPOPEDIA HEADERS may include optional **agent_name_identity** (e.g. “Cursor IDE Agent”) for human-readable identification—see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and `docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md`.
 - Tables: `lupo_actors` (unified), `lupo_auth_users` (human login metadata), `lupo_agents` (AI agent metadata).
-- Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see FLARE doctrine Section 19 and `docs/status/LILITH_FLAME_FAUCET_REPORT.md`.
+- Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and `docs/status/LILITH_FLAME_FAUCET_REPORT.md`.
 
 ### Agent Identity Registry
 
@@ -180,7 +180,7 @@ Actor and agent IDs are defined in the **canonical registry**:
 
 - `lupo-database/lupopedia/actors/actor_id/registry.json`
 
-FLARE headers may include `agent_name_identity` for human-readable display:
+LUPOPEDIA HEADERS may include `agent_name_identity` for human-readable display (in the `flare.headers` block for compatibility):
 
 ```yaml
 flare.headers:
@@ -188,7 +188,7 @@ flare.headers:
   agent_name_identity: "Cursor IDE Agent"
 ```
 
-See FLARE_DOCTRINE Section 24 and `docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md` for complete documentation.
+See [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and `docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md` for complete documentation. Headers are stored in `lupo_metadata` and can also be written to the file as YAML.
 
 ### Path Handling
 - Lupopedia is always in a subdirectory. All URLs must use `LUPOPEDIA_PUBLIC_PATH` (e.g., `LUPOPEDIA_PUBLIC_PATH . '/login'`). Hardcoded root paths like `/login` are forbidden.
@@ -202,8 +202,8 @@ See FLARE_DOCTRINE Section 24 and `docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md
 - All new code must be in classes (`app/Services/`, `lupo-includes/classes/`). No new global helper functions. No new files under `lupo-includes/functions/`.
 - Existing helpers are migrated incrementally: old helper becomes a thin wrapper calling the new class method.
 
-### FLIP Headers
-- Every file should have a FLIP Header (YAML block at top) with at minimum `file_path_from_root`, `file.last_modified_system_version`, and `file.last_modified_utc`. These are the file's identity — infer everything from the header, never hallucinate missing fields.
+### LUPOPEDIA HEADERS
+- Every file should have a **LUPOPEDIA HEADERS** block (YAML between `---` delimiters) with at minimum `file_path_from_root`, `file.last_modified_system_version`, and `file.last_modified_utc`. These are the file's identity — infer everything from the header, never hallucinate missing fields. Headers are stored in the **`lupo_metadata`** table and can also be **written to the file** as YAML. See [lupo-docs/doctrine/LUPOPEDIA_HEADERS/](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) for format, database behavior, and validators/tooling.
 
 ### File Naming
 - Lowercase a–z, digits 0–9, underscore only. No uppercase, hyphens, spaces, or Unicode in new filenames.
