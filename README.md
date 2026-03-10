@@ -34,15 +34,15 @@ flare.footer:
   last_verified_by: "cursor"
 ---
 
-# 🐺 Lupopedia Semantic OS v4.0.67
+# 🐺 Lupopedia Semantic OS v4.0.68
 
-[![Version](https://img.shields.io/badge/version-4.0.67-blue.svg)](docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.68-blue.svg)](docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](docs/HELP.md)
 
 ---
 
-**Current Release: [v4.0.67](docs/version.md) — Install & Upgrade Validation**  
-This release validates the Crafty Syntax 3.7.5 → Lupopedia 4.0.x path: table ceiling set to **199 tables**, main admin user (actor 10000) named **root**, and database additions from ROOT doctrine (content channel placement, channel–department many-to-many, actor apps, schema migration tracking). Current table count is derived from TOON files — run `python scripts/generate_toon_files.py` and use the output count; do not hardcode in docs.
+**Current Release: [v4.0.68](docs/version.md) — Channels Web Interface Implementation**  
+This version focuses on implementing and hardening the web interface for channels management, accessible at `/channels/` with full doctrine compliance. Current table count is derived from TOON files — run `python scripts/generate_toon_files.py` and use the output count; do not hardcode in docs.
 
 ## Getting Started (5 minutes)
 

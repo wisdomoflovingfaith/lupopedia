@@ -112,7 +112,19 @@ flame.close:
 
 This document tracks version history, focusing on key changes, task migrations, and optimizations. Entries are in reverse chronological order.
 
-## [4.0.67] — Install & Upgrade Validation (2026-03-09)
+## [4.0.68] — Channels Web Interface Implementation (2026-03-09)
+
+**Theme:** Implement and harden the web interface for channels management with full doctrine compliance.
+
+### Summary
+
+- **Channels Web Interface Implementation:** Active development of the web interface for channels management. The relevant implementation is in the installed subdirectory and is accessed from `http://domainname.com/<lupopedia-sub-folder>/channels/`. This version cycle focuses on reviewing, completing, and hardening the channels web UI so it is fully operational and aligned with current doctrine/schema/runtime expectations.
+- **Development Phase:** Transitioned to development version 4.0.68 for ongoing channels web interface development.
+- **Version Management:** Updated all version files and global atoms to 4.0.68 for development tracking.
+
+---
+
+## [4.0.67] — Install & Upgrade Validation (2026-03-08)
 
 Version **4.0.67** is the **install and upgrade test cycle** release. It validates the Crafty Syntax 3.7.5 → Lupopedia 4.0.x path, fixes import and admin blockers, and restricts the admin "Act as" dropdown by supporting-actor and root user.
 

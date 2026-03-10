@@ -2,11 +2,11 @@
 /**
  * @wolfie.headers {
  *   file_path_from_root: "install.php",
- *   system_version: "4.0.67",
+ *   system_version: "4.0.68",
  *   channel_id: 42,
  *   mood_rgb: "FF6347",
  *   purpose: "Main installer and upgrade wizard for Lupopedia - handles fresh install and Crafty Syntax 3.7.5 upgrade",
- *   last_modified_utc: "20260308",
+ *   last_modified_utc: "20260309",
  *   delegation_chain: "1001:10000",
  *   actor_id: 1001,
  *   lupo_agent: "kiro",
