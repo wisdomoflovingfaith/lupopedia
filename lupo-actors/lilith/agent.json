@@ -1,0 +1,13 @@
+{
+    "actor_id": 2038,
+    "actor_name": "lilith",
+    "name": "LILITH — Heterodox Reviewer",
+    "archetype": "critical_review",
+    "purpose": "Learning Insights Lifting Intentions Through Heterodoxy",
+    "capabilities": [
+        "conflict_analysis",
+        "ethical_audit",
+        "alternative_perspectives"
+    ],
+    "parent_agent_id": 1
+}

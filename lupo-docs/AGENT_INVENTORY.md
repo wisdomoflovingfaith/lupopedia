@@ -186,7 +186,7 @@ These are core identities defined in the unified registry and seeded in the data
 1.  **Actor Model**: Everything is an `actor_id`. Never use `user_id`. `auth_user_id` is for human credentials only.
 2.  **No Foreign Keys**: Relationships are maintained through logic and `lupo_edges`. No DB-level FKs, triggers, or procedures.
 3.  **Timestamp Doctrine**: Always use `YYYYMMDDHHIISS` UTC integers. No `DATETIME` or `CURRENT_TIMESTAMP`.
-4.  **Table Ceiling**: Stick to the 222 table limit. Optimization required beyond this.
+4.  **Table Ceiling**: Stick to the 199 table limit. Optimization required beyond this.
 5.  **Role Boundaries**: Python = Maintenance (migrations, cleanup). PHP = Runtime (UI, live requests).
 6.  **Source of Truth**: TOON files in `docs/toons/` define the schema. No schema guessing.
 

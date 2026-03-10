@@ -20,7 +20,7 @@ SET `workspace_path` = CONCAT('lupo-actors/', LOWER(REPLACE(`name`, ' ', '-'));
 -- Ensure captain and system are correct
 UPDATE `lupo_actors` SET `workspace_path` = 'lupo-actors/system' WHERE `actor_id` = 0;
 UPDATE `lupo_actors` SET `workspace_path` = 'lupo-actors/wolfie' WHERE `actor_id` = 1;
-UPDATE `lupo_actors` SET `workspace_path` = 'lupo-actors/captain' WHERE `actor_id` = 10000;
+UPDATE `lupo_actors` SET `workspace_path` = 'lupo-actors/root' WHERE `actor_id` = 10000;
 
 -- Backfill php_namespace for IDE agents (example pattern)
 UPDATE `lupo_actors` SET `php_namespace` = 'Lupo\\Agents\\Cursor' WHERE `actor_name` = 'cursor';

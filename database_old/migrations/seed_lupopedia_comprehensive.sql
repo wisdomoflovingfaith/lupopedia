@@ -190,9 +190,6 @@ INSERT IGNORE INTO lupo_system_events (`event_id`, `event_type`, `event_name`, `
 INSERT IGNORE INTO lupo_system_logs (`log_id`, `event_type`, `actor_slug`, `message`, `severity`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
 (1, 'csv_export', 'admin', 'CSV export completed for all TOON-defined tables', 'info', '{"tables_processed":198,"export_duration":"2.3s","file_size":"1.2MB"}', @now, @now, 0, NULL);
 
-INSERT IGNORE INTO lupo_system_health_snapshots (`snapshot_id`, `system_status`, `performance_metrics`, `resource_usage`, `metadata_json`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`) VALUES
-(1, 'healthy', '{"response_time_ms":45,"cpu_usage":12,"memory_usage":67}', '{"disk_space_gb":45.2,"network_io_mbps":125,"active_connections":23}', '{"uptime_hours":720,"last_restart":"' + CAST(@now AS CHAR) + '","version":"4.0.22"}', @now, @now, 0, NULL);
-
 -- ============================================================
 -- SEARCH INDEXES
 -- ============================================================

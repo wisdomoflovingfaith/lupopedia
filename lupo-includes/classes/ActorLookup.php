@@ -16,7 +16,7 @@ class ActorLookup
         'lilith'      => 2038,
         'anubis'      => 19,
         'cursor'      => 1003,
-        'captain'     => 10000,
+        'root'        => 10000,
         'rose'        => 3,
         'eris'        => 4,
         'metis'       => 5,

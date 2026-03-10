@@ -1,0 +1,2 @@
+"path_id` bigint NOT NULL","agent_id` varchar(255)","kapu_reason_code` varchar(100)","learning_modules` json","emotional_targets` json","restoration_rituals` json","kapu_companion_agent_id` varchar(255)","completed_at` bigint"
+"path_id` bigint NOT NULL:BIGINT|NOT_NULL","agent_id` varchar(255):VARCHAR(255)|NULL","kapu_reason_code` varchar(100):VARCHAR(100)|NULL","learning_modules` json:JSON|NULL","emotional_targets` json:JSON|NULL","restoration_rituals` json:JSON|NULL","kapu_companion_agent_id` varchar(255):VARCHAR(255)|NULL","completed_at` bigint:BIGINT|NULL"

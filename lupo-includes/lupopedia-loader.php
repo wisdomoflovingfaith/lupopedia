@@ -63,6 +63,14 @@ if (file_exists($ban_gate_helper)) {
 }
 
 /**
+ * Load schema migration tracking (4.0.67) — check/record one-time migrations in lupo_schema_migrations
+ */
+$schema_migrations_helper = ABSPATH . LUPO_INCLUDES_DIR . '/functions/schema_migrations.php';
+if (file_exists($schema_migrations_helper)) {
+    require_once $schema_migrations_helper;
+}
+
+/**
  * ---------------------------------------------------------
  * 2. Load Module System
  * ---------------------------------------------------------

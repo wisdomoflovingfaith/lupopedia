@@ -1,0 +1,18 @@
+"collection_tab_id` bigint NOT NULL auto_increment","collection_tab_parent_id` bigint","collection_id` bigint NOT NULL","federations_node_id` bigint NOT NULL","department_id` bigint","user_id` bigint","sort_order` int DEFAULT 0","name` varchar(255) NOT NULL","slug` varchar(100) NOT NULL","color` char(6) DEFAULT '4caf50'","description` text","is_hidden` tinyint NOT NULL DEFAULT 0","created_ymdhis` bigint NOT NULL DEFAULT 0","updated_ymdhis` bigint NOT NULL","is_active` tinyint NOT NULL DEFAULT 1","is_deleted` tinyint NOT NULL DEFAULT 0","deleted_ymdhis` bigint"
+"collection_tab_id` bigint NOT NULL auto_increment:BIGINT|NOT_NULL","collection_tab_parent_id` bigint:BIGINT|NULL","collection_id` bigint NOT NULL:BIGINT|NOT_NULL","federations_node_id` bigint NOT NULL:BIGINT|NOT_NULL","department_id` bigint:BIGINT|NULL","user_id` bigint:BIGINT|NULL","sort_order` int DEFAULT 0:INT|NULL|DEFAULT:0","name` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","slug` varchar(100) NOT NULL:VARCHAR(100)|NOT_NULL","color` char(6) DEFAULT '4caf50':UNKNOWN|NULL|DEFAULT:'4caf50'","description` text:TEXT|NULL","is_hidden` tinyint NOT NULL DEFAULT 0:INT|NOT_NULL|DEFAULT:0","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0","updated_ymdhis` bigint NOT NULL:BIGINT|NOT_NULL","is_active` tinyint NOT NULL DEFAULT 1:INT|NOT_NULL|DEFAULT:1","is_deleted` tinyint NOT NULL DEFAULT 0:INT|NOT_NULL|DEFAULT:0","deleted_ymdhis` bigint:BIGINT|NULL"
+1,,0,1,,,1,Overview,overview,4caf50,,0,20260217230000,20260217230000,1,0,
+2,,0,1,,,2,Doctrine,doctrine,4caf50,,0,20260217230000,20260217230000,1,0,
+3,,0,1,,,3,Architecture,architecture,4caf50,,0,20260217230000,20260217230000,1,0,
+4,,0,1,,,4,Schema,schema,4caf50,,0,20260217230000,20260217230000,1,0,
+5,,0,1,,,5,Agents,agents,4caf50,,0,20260217230000,20260217230000,1,0,
+6,,0,1,,,6,UI-UX,ui-ux,4caf50,,0,20260217230000,20260217230000,1,0,
+7,,0,1,,,7,"Developer Guide",developer-guide,4caf50,,0,20260217230000,20260217230000,1,0,
+8,,0,1,,,8,History,history,4caf50,,0,20260217230000,20260217230000,1,0,
+9,,0,1,,,9,Appendix,appendix,4caf50,,0,20260217230000,20260217230000,1,0,
+10,,1,1,,,0,WHO,who,4caf50,,0,20250101000000,20250101000000,1,0,
+11,,1,1,,,0,WHAT,what,4caf50,,0,20250101000000,20250101000000,1,0,
+12,,1,1,,,0,WHERE,where,4caf50,,0,20250101000000,20250101000000,1,0,
+13,,1,1,,,0,WHEN,when,4caf50,,0,20250101000000,20250101000000,1,0,
+14,,1,1,,,0,WHY,why,4caf50,,0,20250101000000,20250101000000,1,0,
+15,,1,1,,,0,HOW,how,4caf50,,0,20250101000000,20250101000000,1,0,
+17,11,1,1,,,0,LUPOPEDIA,lupopedia,4caf50,,0,20250101000000,20250101000000,1,0,

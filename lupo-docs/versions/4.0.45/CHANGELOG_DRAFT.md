@@ -96,7 +96,7 @@ flip.footer: {
 - Stabilize 4.0.44 initialization workflow in production
 - Address any post-release issues discovered in 4.0.44
 - Implement new features based on production feedback
-- Continue Table Ceiling Doctrine compliance (max 222 tables)
+- Continue Table Ceiling Doctrine compliance (max 199 tables)
 
 **Planned Enhancements:**
 - Refine initialization workflow based on production usage

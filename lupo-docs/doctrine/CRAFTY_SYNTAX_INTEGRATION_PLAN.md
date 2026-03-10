@@ -431,7 +431,7 @@ This document defines the complete integration plan for porting Crafty Syntax Li
   - All 218 TOON files analyzed
   - Schema analysis script created
   - Database schema matches TOON canonical source
-  - Table count: **218/222 (safe, 4 slots remaining)**
+  - Table count: **155/199** (44 under ceiling)
 
 - ✅ **Migration SQLs Created & Applied**
   - Collections table: `user_id` → `actor_id` migration
@@ -589,7 +589,7 @@ Most teams let PHP or the ORM modify the schema.
 
 ---
 
-### 6. Table Limit of 222
+### 6. Table Limit of 199
 
 **Not common practice:**
 Most systems don't enforce a hard table cap.
@@ -665,7 +665,7 @@ The system is stable, the doctrine is sound, and the sprint is on schedule.
 ### System Health Metrics
 
 **Database:**
-- Table count: **218/222** (98.2% capacity, safe)
+- Table count: **155/199** (44 under ceiling)
 - Available slots: **4 tables**
 - Schema status: ✅ Aligned with TOON files
 - Migration pipeline: ✅ Stable
@@ -729,7 +729,7 @@ The system is stable, the doctrine is sound, and the sprint is on schedule.
   - TOON files are canonical source of truth
   - All schema changes via migration SQL only
   - Scoop MySQL access intentionally disabled
-  - Table limit enforced (218/222, 4 slots remaining)
+  - Table limit enforced (155/199, 44 under ceiling)
 
 #### ✅ Doctrine Enforcement: ACTIVE
 - **Risk:** AI agents violate architectural boundaries
@@ -767,7 +767,7 @@ The system is stable, the doctrine is sound, and the sprint is on schedule.
 - ✅ Deliverables are on track — Milestone 1 complete, Milestone 2 in progress
 - ✅ Sprint timeline intact — Feb 7 progress report, Feb 9 demo delivery
 - ✅ Doctrine enforcement active — no schema drift, no violations
-- ✅ System health excellent — 218/222 tables, schema aligned, auth stable
+- ✅ System health — 155/199 tables (44 under ceiling), schema aligned, auth stable
 
 **The foundation is solid. We are proceeding confidently toward the Feb 9 demo.**
 

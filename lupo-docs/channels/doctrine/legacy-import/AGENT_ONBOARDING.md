@@ -331,7 +331,7 @@ channel_3_validation:
 ```yaml
 structural_constraints:
   mandatory_understanding:
-    - table_limit_constraints (222 tables)
+    - table_limit_constraints (199 tables)
     - migration_overage_window
     - naming_conventions
     - column_constraints

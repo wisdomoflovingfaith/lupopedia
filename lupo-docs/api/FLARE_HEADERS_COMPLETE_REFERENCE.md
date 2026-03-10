@@ -296,7 +296,7 @@ Check `docs/toons/` directory for available table schemas:
 - `lupo_actors.toon.json`
 - `lupo_channels.toon.json`
 - `lupo_sessions.toon.json`
-- ... (all 222 tables)
+- ... (all 199 tables)
 
 ## 📝 **Field Value Guidelines**
 

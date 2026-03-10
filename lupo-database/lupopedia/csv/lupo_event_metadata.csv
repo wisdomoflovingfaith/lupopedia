@@ -1,0 +1,2 @@
+"metadata_id` bigint NOT NULL","event_id` bigint NOT NULL","metadata_key` varchar(100) NOT NULL","metadata_value` text","created_ymdhis` bigint NOT NULL DEFAULT 0"
+"metadata_id` bigint NOT NULL:BIGINT|NOT_NULL","event_id` bigint NOT NULL:BIGINT|NOT_NULL","metadata_key` varchar(100) NOT NULL:VARCHAR(100)|NOT_NULL","metadata_value` text:TEXT|NULL","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0"

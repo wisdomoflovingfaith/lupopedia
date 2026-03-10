@@ -104,7 +104,7 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 - **Consistency:** All version references now synchronized across codebase
 
 ### **Schema Documentation Updates**
-- **Table Count:** Updated to reflect 170 tables (52 under 222 limit)
+- **Table Count:** 155 tables (install + 34 original; 44 under 199 limit)
 - **System Context:** Updated to show schema optimization completion
 - **Doctrine Compliance:** Updated TABLE_COUNT_DOCTRINE with new limits
 - **Architecture Map:** Updated version and last modified date
@@ -137,7 +137,7 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 - **Tools Created:** Full suite of migration analysis utilities
 
 ### **Schema Optimization**
-- **Table Count:** Achieved 170 tables (52 under safety margin)
+- **Table Count:** 155 tables (44 under safety margin)
 - **Doctrine Compliance:** Full compliance with TABLE_COUNT_DOCTRINE
 - **Performance:** Optimized schema with no legacy cruft
 - **Migration Ready:** Transaction-safe migration with rollback capability
@@ -166,9 +166,9 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 
 ### **Current Configuration**
 - **Version:** 4.4.1
-- **Table Count:** 170 tables
-- **Table Ceiling:** 222 tables
-- **Safety Margin:** 52 tables
+- **Table Count:** 155 tables
+- **Table Ceiling:** 199 tables
+- **Safety Margin:** 44 tables (155 current)
 - **Doctrine Status:** Fully compliant
 - **Schema State:** Frozen (architecture freeze maintained)
 
@@ -219,4 +219,4 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 - Added operator-layer tables: lupo_operators, lupo_operator_status, lupo_operator_sessions, lupo_operator_skills, lupo_operator_chat_assignments, lupo_operator_escalation_rules
 - Added operator layer doctrine and updated doctrine index
 - Regenerated TOON files to sync with live schema
-- Confirmed schema remains within the 222 table budget (current: 196)
+- Confirmed schema remains within the 199 table budget (current: 196)

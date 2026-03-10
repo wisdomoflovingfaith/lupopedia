@@ -1,0 +1,9 @@
+"crafty_syntax_chat_question_id` bigint NOT NULL auto_increment","department_id` bigint NOT NULL DEFAULT 0","sort_order` int NOT NULL DEFAULT 0","headertext` mediumtext","field_type` varchar(60)","options` mediumtext","flags` varchar(255)","module_name` varchar(100)","is_required` tinyint NOT NULL DEFAULT 0","created_ymdhis` bigint NOT NULL DEFAULT 0","updated_ymdhis` bigint NOT NULL","is_deleted` tinyint NOT NULL DEFAULT 0","deleted_ymdhis` bigint"
+"crafty_syntax_chat_question_id` bigint NOT NULL auto_increment:BIGINT|NOT_NULL","department_id` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0","sort_order` int NOT NULL DEFAULT 0:INT|NOT_NULL|DEFAULT:0","headertext` mediumtext:TEXT|NULL","field_type` varchar(60):VARCHAR(60)|NULL","options` mediumtext:TEXT|NULL","flags` varchar(255):VARCHAR(255)|NULL","module_name` varchar(100):VARCHAR(100)|NULL","is_required` tinyint NOT NULL DEFAULT 0:INT|NOT_NULL|DEFAULT:0","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0","updated_ymdhis` bigint NOT NULL:BIGINT|NOT_NULL","is_deleted` tinyint NOT NULL DEFAULT 0:INT|NOT_NULL|DEFAULT:0","deleted_ymdhis` bigint:BIGINT|NULL"
+1,1,0,E-mail:,email,,,leavemessage,1,20250101000000,20250101000000,0,
+2,1,0,Question:,textarea,,,leavemessage,0,20250101000000,20250101000000,0,
+3,1,0,Name,username,,,livehelp,0,20250101000000,20250101000000,0,
+5,1,1,Question,textarea,,,livehelp,0,20250101000000,20250101000000,0,
+6,0,0,E-mail:,email,,,leavemessage,1,20250101000000,20250101000000,0,
+7,0,0,Question:,textarea,,,leavemessage,0,20250101000000,20250101000000,0,
+8,-1,0,Question:,textarea,,,leavemessage,0,20250101000000,20250101000000,0,

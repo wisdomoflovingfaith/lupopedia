@@ -233,11 +233,12 @@ class ActorService
 
     /**
      * Get list of actors the given user is permitted to act as (for web actor selector).
-     * Non-admin: user's own actor plus any actors paired to that user (paired_actor_id = user's actor_id).
-     * Admin: all non-deleted actors.
+     * Root user (auth_user_id 10000): all non-deleted actors.
+     * Others: only the user's own actor plus actors where the user is a supporting actor
+     * (lupo_actor_edges with source_actor_id = user's actor_id, target_actor_id = actor, edge_type = 'supports').
      *
      * @param int  $authUserId auth_user_id of the logged-in user
-     * @param bool $isAdmin    whether the user has admin role
+     * @param bool $isAdmin    unused; root user (10000) determines "act as anyone"
      * @return array List of arrays with keys actor_id, actor_name, name, actor_type
      */
     public function getActorsUserCanActAs($authUserId, $isAdmin = false)
@@ -247,16 +248,24 @@ class ActorService
             return array();
         }
         $t = $this->db->quoteIdentifier($this->prefix . 'actors');
+        $edgesT = $this->db->quoteIdentifier($this->prefix . 'actor_edges');
         $userActorId = 0;
         $userRow = $this->db->fetchRow(
-            "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE actor_source_type = 'user' AND actor_source_id = :aid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE actor_source_type = 'lupo_auth_users' AND actor_source_id = :aid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
             array('aid' => $authUserId)
         );
+        if (!$userRow) {
+            $userRow = $this->db->fetchRow(
+                "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE actor_source_type = 'user' AND actor_source_id = :aid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+                array('aid' => $authUserId)
+            );
+        }
         if ($userRow) {
             $userActorId = (int) $userRow['actor_id'];
         }
         $list = array();
-        if ($isAdmin) {
+        // Root user (10000): can act as anyone
+        if ($authUserId === 10000) {
             $rows = $this->db->fetchAll(
                 "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE (is_deleted = 0 OR is_deleted IS NULL) ORDER BY actor_id ASC"
             );
@@ -270,6 +279,7 @@ class ActorService
             }
             return $list;
         }
+        // Non-root: own actor + actors where this user is supporting_actor (edge source = user, target = actor, type = supports)
         if ($userActorId > 0) {
             $list[] = array(
                 'actor_id' => $userActorId,
@@ -277,13 +287,22 @@ class ActorService
                 'name' => isset($userRow['name']) ? $userRow['name'] : (isset($userRow['actor_name']) ? $userRow['actor_name'] : ''),
                 'actor_type' => isset($userRow['actor_type']) ? $userRow['actor_type'] : 'user',
             );
-            $paired = $this->db->fetchAll(
-                "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE paired_actor_id = :uid AND (is_deleted = 0 OR is_deleted IS NULL) ORDER BY actor_id ASC",
+            $supported = $this->db->fetchAll(
+                "SELECT a.actor_id, a.actor_name, a.name, a.actor_type FROM {$t} a
+                 INNER JOIN {$edgesT} e ON e.target_actor_id = a.actor_id AND e.source_actor_id = :uid AND e.edge_type = 'supports' AND (e.is_deleted = 0 OR e.is_deleted IS NULL)
+                 WHERE (a.is_deleted = 0 OR a.is_deleted IS NULL)
+                 ORDER BY a.actor_id ASC",
                 array('uid' => $userActorId)
             );
-            foreach ($paired as $r) {
+            $seen = array($userActorId => true);
+            foreach ($supported as $r) {
+                $aid = (int) $r['actor_id'];
+                if (isset($seen[$aid])) {
+                    continue;
+                }
+                $seen[$aid] = true;
                 $list[] = array(
-                    'actor_id' => (int) $r['actor_id'],
+                    'actor_id' => $aid,
                     'actor_name' => isset($r['actor_name']) ? $r['actor_name'] : (isset($r['name']) ? $r['name'] : ''),
                     'name' => isset($r['name']) ? $r['name'] : (isset($r['actor_name']) ? $r['actor_name'] : ''),
                     'actor_type' => isset($r['actor_type']) ? $r['actor_type'] : 'agent',

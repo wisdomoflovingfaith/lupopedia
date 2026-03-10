@@ -1,0 +1,8 @@
+{
+    "actor_id": 106,
+    "actor_name": "lupo",
+    "name": "LUPO — Database Architect",
+    "archetype": "architect",
+    "purpose": "Database Doctrine Enforcement",
+    "parent_agent_id": 1
+}

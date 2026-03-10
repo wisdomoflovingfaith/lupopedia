@@ -1,0 +1,8 @@
+{
+    "actor_id": 107,
+    "actor_name": "themis",
+    "name": "THEMIS — Ethical Auditor",
+    "archetype": "evaluator",
+    "purpose": "Consensus Integrity & Ethics",
+    "parent_agent_id": 1
+}

@@ -108,7 +108,7 @@ def detect_flare_block(text):
     return flare_start, flare_end, legacy_blocks
 
 def infer_channel_actor(path):
-    m = re.search(r"(?:^|/)channels/(\d+)/(?:actors)/(\d+)(?:/|$)", path)
+    m = re.search(r"(?:^|/)channels/(\d+)/actors/actor_id/(\d+)(?:/|$)", path)
     if m:
         return int(m.group(1)), int(m.group(2))
     m2 = re.search(r"(?:^|/)channels/(\d+)(?:/|$)", path)

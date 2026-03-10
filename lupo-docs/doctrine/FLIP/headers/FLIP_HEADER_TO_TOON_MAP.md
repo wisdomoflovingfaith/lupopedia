@@ -213,7 +213,6 @@ This document provides the canonical mapping from **FLIP Header Keys** (used in 
 | `gov_event_id` | `lupo_gov_events` | `gov_event_id` | Primary Key for gov event. |
 | `governance_overrid_id` | `lupo_governance_overrides` | `governance_overrid_id` | Primary Key for governance overrid. |
 | `hashtag_id` | `lupo_hashtags` | `hashtag_id` | Primary Key for hashtag. |
-| `health_id` | `lupo_system_health_snapshots` | `health_id` | Primary Key for health. |
 | `heartbeat_id` | `lupo_agent_heartbeats` | `heartbeat_id` | Primary Key for heartbeat. |
 | `help_topic_id` | `lupo_help_topics` | `help_topic_id` | Primary Key for help topic. |
 | `help_tree_id` | `lupo_help_tree` | `help_tree_id` | Primary Key for help tree. |

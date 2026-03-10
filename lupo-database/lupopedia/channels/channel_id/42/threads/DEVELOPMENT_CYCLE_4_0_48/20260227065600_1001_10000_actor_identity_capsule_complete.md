@@ -149,7 +149,7 @@ actors/10000/                    # Source of Truth
 ### Database Enhancement
 - **6 New Tables**: History, relationship rules, capability usage, LLM performance, federated trust, session recovery
 - **Sync Columns**: `actor_root_path`, `who_json_sync_status`, `last_sync_ymdhis`
-- **Table Ceiling**: 216/222 tables (6 slots remaining)
+- **Table Ceiling**: 155/199 tables (44 under ceiling)
 
 ### Portability Features
 - **Complete Export**: Directory + database validation records

@@ -24,7 +24,7 @@
  *     { from: "channels/0/broadcasts/", type: "imports", weight: 1.0, hashtag: "#md_files" }
  *   ],
  *   outbound_edges: [
- *     { to: "lupo_messages", type: "inserts", weight: 1.0, hashtag: "#database" },
+ *     { to: "lupo_dialog_messages", type: "inserts", weight: 1.0, hashtag: "#database" },
  *     { to: "lupo_actors", type: "creates", weight: 0.8, hashtag: "#actors" }
  *   ],
  *   referenced_by_actors: [1004, 10000],
@@ -72,14 +72,18 @@ class InstallWizardMdImporter
         );
 
         $files = array();
+        $pattern = '/^(\d{14})_(\d+)_(\d+)_(\d+)_(.+)$/';
         foreach ($iterator as $file) {
             if ($file->isFile() && $file->getExtension() === 'md') {
-                $files[] = $file->getPathname();
+                $base = basename($file->getPathname(), '.md');
+                if (preg_match($pattern, $base)) {
+                    $files[] = $file->getPathname();
+                }
             }
         }
 
         if (empty($files)) {
-            $log[] = InstallWizardLogger::logEntry('skip', 'No MD files found in channels directories');
+            $log[] = InstallWizardLogger::logEntry('skip', 'No MD files found in channels directories (format: YYYYMMDDHHIISS_from_to_channel_title.md)');
             return 0;
         }
 

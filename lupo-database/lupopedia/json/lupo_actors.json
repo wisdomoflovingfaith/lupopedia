@@ -1,0 +1,136 @@
+{
+  "table_name": "lupo_actors",
+  "fields": [
+    "`actor_name` varchar(64) NOT NULL",
+    "`actor_id` bigint",
+    "`actor_type` varchar(64) NOT NULL",
+    "`slug` varchar(255) NOT NULL",
+    "`name` varchar(255) NOT NULL",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`actor_source_id` bigint",
+    "`actor_source_type` varchar(64)",
+    "`metadata` text",
+    "`adversarial_role` varchar(64) DEFAULT 'none'",
+    "`adversarial_oversight_actor_id` bigint",
+    "`avatar_hash` varchar(64)",
+    "`primary_federation_node_id` bigint NOT NULL DEFAULT 1",
+    "`department_id` bigint",
+    "`is_kernel` tinyint NOT NULL DEFAULT 0",
+    "`can_login` tinyint NOT NULL DEFAULT 0",
+    "`metadata_json` json",
+    "`identity_provider_config` json",
+    "`paired_actor_id` bigint NOT NULL DEFAULT 0",
+    "`is_agent` tinyint NOT NULL DEFAULT 0",
+    "`actor_root_path` varchar(512) DEFAULT 'actors/{actor_id}'",
+    "`workspace_path` varchar(255)",
+    "`php_namespace` varchar(120)",
+    "`who_json_sync_status` varchar(64) DEFAULT 'pending'",
+    "`last_sync_ymdhis` bigint DEFAULT 0"
+  ],
+  "data": [
+    {
+      "actor_name": "",
+      "actor_id": 2031,
+      "actor_type": "system_tool",
+      "slug": "cursor-ide",
+      "name": "Windsurf IDE",
+      "created_ymdhis": 20260224000000,
+      "updated_ymdhis": 20260224000000,
+      "is_active": 1,
+      "is_deleted": 0,
+      "deleted_ymdhis": null,
+      "actor_source_id": 2031,
+      "actor_source_type": "system_tool",
+      "metadata": "{\"purpose\":\"IDE_integration\",\"capabilities\":[\"code_generation\",\"file_editing\",\"project_management\",\"git_integration\",\"vsx_extension_development\"],\"version\":\"1.0.0\",\"client_id\":\"windsurf\",\"provider\":\"windsurf\",\"integration_ready\":true,\"paired_actor_id\":10000,\"note\":\"Reassigned from actor_id 2 to avoid CAPTAIN conflict\"}",
+      "adversarial_role": "none",
+      "adversarial_oversight_actor_id": null,
+      "avatar_hash": null,
+      "primary_federation_node_id": 1,
+      "department_id": null,
+      "is_kernel": 0,
+      "can_login": 0,
+      "metadata_json": null,
+      "identity_provider_config": null,
+      "paired_actor_id": 10000,
+      "is_agent": 0,
+      "actor_root_path": "actors/{actor_id}",
+      "workspace_path": null,
+      "php_namespace": null,
+      "who_json_sync_status": "pending",
+      "last_sync_ymdhis": 0
+    }
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_actors_idx_actor_type",
+      "columns": [
+        "actor_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_idx_php_namespace",
+      "columns": [
+        "php_namespace"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_idx_workspace_path",
+      "columns": [
+        "workspace_path"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_unique_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_unique_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "actor_name",
+    "expected_name": "actor_name",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -10,3 +10,11 @@ Centralized hub for actor-specific resources. Each subdirectory is named by acto
 - **Actor 42** — Antigravity (canonical; IDE extensions, VSX)
 
 Each actor directory contains: `apps/`, `tools/`, `docs/`, `db-changes/`, `api/`, `needs/`, and `prompts/`. Actor 0 also has `logs/` for system scan and queue logs. The `prompts/` folder holds prompt files (e.g. `flare-header-scan.md` in actor 0) used to guide actor behavior.
+
+**Actor application folder (4.0.67, ROOT doctrine):** Every actor has an `apps/` directory with:
+- **skills/skills.md** — Canonical skill registry (SKILL INDEX, SKILL DEFINITIONS, FAUCET COMPATIBILITY, CHANGELOG)
+- **scripts/** — Shell, Python, or Lupopedia-native scripts
+- **assets/** — `icons/`, `images/`, `prompts/`, `templates/` (content-addressed)
+- **references/** — `schema.md` (how this actor uses skills and assets), `manifest.json` (machine-readable index)
+
+See ROOT doctrine emails and `_template_apps/` for the canonical structure. Regenerate or sync with `scripts/ensure_actor_apps_structure.ps1`.

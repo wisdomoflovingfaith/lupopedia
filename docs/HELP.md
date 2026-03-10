@@ -113,7 +113,9 @@ All timestamps in Lupopedia are UTC in `YmdHis` format (e.g. `20260307143045`). 
 | Resource | Description | Link |
 |----------|-------------|------|
 | Doctrine | DB rules | [docs/doctrine/](doctrine/) |
-| TOON files | Table definitions | [docs/toons/](toons/) (if present) |
+| **TOONs** | Database structure representation (tables, columns, indexes); where they are and how they are generated | [TOON_REFERENCE.md](TOON_REFERENCE.md) |
+| TOON files (JSON) | One JSON per table | [lupo-database/lupopedia/json/](../lupo-database/lupopedia/json/) (`.json`) |
+| TOON files (TOON) | Same content, TOON format | [lupo-database/lupopedia/toon/](../lupo-database/lupopedia/toon/) (`.toon`) |
 | Migrations | Schema changes | database/migrations/ |
 
 ### Web Interface

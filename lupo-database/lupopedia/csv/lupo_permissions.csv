@@ -1,0 +1,9 @@
+"permission_id` bigint NOT NULL","target_type` varchar(64) NOT NULL","target_id` bigint NOT NULL","user_id` bigint","department_id` bigint","permission` varchar(64) NOT NULL DEFAULT 'read'","created_ymdhis` bigint NOT NULL DEFAULT 0","updated_ymdhis` bigint","is_deleted` tinyint NOT NULL DEFAULT 0","deleted_ymdhis` bigint"
+"permission_id` bigint NOT NULL:BIGINT|NOT_NULL","target_type` varchar(64) NOT NULL:VARCHAR(64)|NOT_NULL","target_id` bigint NOT NULL:BIGINT|NOT_NULL","user_id` bigint:BIGINT|NULL","department_id` bigint:BIGINT|NULL","permission` varchar(64) NOT NULL DEFAULT 'read':VARCHAR(64)|NOT_NULL|DEFAULT:'read'","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0","updated_ymdhis` bigint:BIGINT|NULL","is_deleted` tinyint NOT NULL DEFAULT 0:INT|NOT_NULL|DEFAULT:0","deleted_ymdhis` bigint:BIGINT|NULL"
+10000,module,9,10000,,owner,20260217230000,20260217230000,0,
+20001,module,9,2001,,read,20260219120000,20260219120000,0,
+20002,module,9,2002,,read,20260219120000,20260219120000,0,
+20003,module,9,2003,,read,20260219120000,20260219120000,0,
+20004,module,9,2004,,read,20260219120000,20260219120000,0,
+20005,module,9,2005,,read,20260219120000,20260219120000,0,
+20006,module,9,12150,,owner,20260220133938,20260220133938,0,

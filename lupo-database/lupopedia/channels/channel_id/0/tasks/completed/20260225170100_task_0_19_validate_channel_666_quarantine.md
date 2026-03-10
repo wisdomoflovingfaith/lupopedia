@@ -7,7 +7,7 @@
 
 ## Completion summary
 
-- Channel 666 directory structure created under `lupo-database/lupopedia/channels/channel_id/666/`: `broadcasts/`, `quarantine/`, `actors/19/tasks/assigned`, `actors/19/tasks/watching`, `actors/19/tasks/completed`.
+- Channel 666 directory structure created under `lupo-database/lupopedia/channels/channel_id/666/`: `broadcasts/`, `quarantine/`, `actors/actor_id/19/tasks/assigned`, `actors/actor_id/19/tasks/watching`, `actors/actor_id/19/tasks/completed`.
 - README for Channel 666 created: `channel_id/666/README.md`.
 - Test quarantine file created: `channel_id/666/quarantine/20260225_test_quarantine.md`.
 - Database checks (channel 666, lupo_actor_channels for actor 19) are left to runtime; seed/migrations define channel 666 when present.

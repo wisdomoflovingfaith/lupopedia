@@ -228,7 +228,7 @@ def infer_artifact_type(path):
 
 def infer_channel_actor(path):
     """Infer channel and actor from path"""
-    m = re.search(r"(?:^|/)channels/(\d+)/(?:actors)/(\d+)(?:/|$)", path)
+    m = re.search(r"(?:^|/)channels/(\d+)/actors/actor_id/(\d+)(?:/|$)", path)
     if m:
         return int(m.group(1)), int(m.group(2))
     m2 = re.search(r"(?:^|/)channels/(\d+)(?:/|$)", path)

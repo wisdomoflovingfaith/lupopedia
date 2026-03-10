@@ -27,7 +27,7 @@ UPDATE `lupo_actors` SET `actor_name` = CASE `actor_id`
   WHEN 1006 THEN 'gemini-cli'
   WHEN 1007 THEN 'codex'
   WHEN 1008 THEN 'trae'
-  WHEN 10000 THEN 'captain'
+  WHEN 10000 THEN 'root'
   WHEN 10420 THEN 'test-banned-user'
   WHEN 11001 THEN 'user-11001'
   WHEN 11002 THEN 'user-11002'

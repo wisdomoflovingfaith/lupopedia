@@ -5,17 +5,17 @@ flare.headers:
   flare.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
-  last_modified_utc: "20260307"
-  system_version: "4.0.64"
+  last_modified_utc: "20260309"
+  system_version: "4.0.67"
   channel_id: 42
   actor_id: 1003
   actor_name: "cursor"
   delegation_chain: "lilith:cursor:captain"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "Primary project documentation and onboarding — Trae IDE Improvement Report v1.0 + Lilith canonical review (9.5/10)"
+  purpose: "Primary project documentation and onboarding — Install & upgrade validation, table ceiling 199, root admin, ROOT doctrine schema"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "v4.0.64"]
+  traits: ["essential", "entrypoint", "onboarding", "v4.0.67"]
   tags: ["readme", "getting_started", "semantic_os", "multi_agent"]
   lupo_agent: "cursor"
 
@@ -30,19 +30,19 @@ flare.edges:
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent"]
 
 flare.footer:
-  last_verified_utc: "20260307"
+  last_verified_utc: "20260309"
   last_verified_by: "cursor"
 ---
 
-# 🐺 Lupopedia Semantic OS v4.0.65
+# 🐺 Lupopedia Semantic OS v4.0.67
 
-[![Version](https://img.shields.io/badge/version-4.0.65-blue.svg)](docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.67-blue.svg)](docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](docs/HELP.md)
 
 ---
 
-**Current Release: [v4.0.65](docs/version.md) — Development Phase**  
-This version is in active development with ongoing feature enhancements building upon the web authentication foundation.
+**Current Release: [v4.0.67](docs/version.md) — Install & Upgrade Validation**  
+This release validates the Crafty Syntax 3.7.5 → Lupopedia 4.0.x path: table ceiling set to **199 tables**, main admin user (actor 10000) named **root**, and database additions from ROOT doctrine (content channel placement, channel–department many-to-many, actor apps, schema migration tracking). Current table count is derived from TOON files — run `python scripts/generate_toon_files.py` and use the output count; do not hardcode in docs.
 
 ## Getting Started (5 minutes)
 
@@ -174,6 +174,7 @@ graph LR
 - [Federation and registry](lupo-docs/architecture/FEDERATION_AND_REGISTRY.md) — Multi-node and global ID space (when present)
 - [DOCTOR health check](docs/DOCTOR_HEALTH_CHECK.md) — System health and `doctor-context --repair`
 - [Context Kernel](docs/status/CHANNEL_42_CONTEXT_KERNEL_4.0.62.md) — Unified identity resolution
+- [TOONs](docs/TOON_REFERENCE.md) — Database structure representation: what TOONs are, where they live (`lupo-database/lupopedia/json/` and `lupo-database/lupopedia/toon/`), and how to generate them (`python scripts/generate_toon_files.py`).
 - [Doctrine](docs/doctrine/) — Database, FLARE, timestamps, migrations
 
 ---
@@ -182,6 +183,7 @@ graph LR
 
 - [HELP.md](docs/HELP.md) — Documentation hub
 - [CLI.md](docs/CLI.md) — Command reference
+- [TOON_REFERENCE.md](docs/TOON_REFERENCE.md) — TOONs: database structure representation (locations: `lupo-database/lupopedia/json/`, `lupo-database/lupopedia/toon/`)
 - [version.md](docs/version.md) — Version history
 - [CHANGELOG.md](CHANGELOG.md) — Detailed change log
 
@@ -206,4 +208,4 @@ See [license.txt](license.txt) in the repository. Free to use, modify, and distr
 
 ---
 
-*🐺 Lupopedia 4.0.64 — Semantic OS on Crafty Syntax. Managed by humans and AI agents on Channel 42.*
+*🐺 Lupopedia 4.0.67 — Semantic OS on Crafty Syntax. Managed by humans and AI agents on Channel 42.*

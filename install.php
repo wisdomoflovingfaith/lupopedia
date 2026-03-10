@@ -2,11 +2,11 @@
 /**
  * @wolfie.headers {
  *   file_path_from_root: "install.php",
- *   system_version: "4.0.63",
+ *   system_version: "4.0.67",
  *   channel_id: 42,
  *   mood_rgb: "FF6347",
  *   purpose: "Main installer and upgrade wizard for Lupopedia - handles fresh install and Crafty Syntax 3.7.5 upgrade",
- *   last_modified_utc: "20260306",
+ *   last_modified_utc: "20260308",
  *   delegation_chain: "1001:10000",
  *   actor_id: 1001,
  *   lupo_agent: "kiro",
@@ -50,8 +50,8 @@
  *   },
  *   semantic_tags: ["installer", "upgrade_wizard", "crafty_syntax_3_7_5", "identity_normalization", "reserved_channels"],
  *   enrichment: { llm_inferred_edges: [], federated_metrics: {} },
- *   version: "4.0.63",
- *   last_verified_utc: "20260306",
+ *   version: "4.0.67",
+ *   last_verified_utc: "20260308",
  *   last_verified_by: "kiro"
  * }
  */
@@ -108,7 +108,7 @@ if (!is_dir(LUPO_MYSQL_DIR)) {
 }
 
 // Version for wizard UI - Direct parse from global_atoms.yaml (install.php runs standalone, no bootstrap)
-$lupo_wizard_version = '4.0.63'; // Fallback when no atoms file found
+$lupo_wizard_version = '4.0.67'; // Fallback when no atoms file found
 $atoms_candidates = array(
     LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
     LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
@@ -286,7 +286,7 @@ if ($step === 'download_log') {
 
 // Start over: clear wizard session and redirect to welcome
 if (isset($_POST['action']) && $_POST['action'] === 'start_over') {
-    foreach (array('lupo_install_db_vars', 'lupo_install_type', 'lupo_install_livehelp_tables', 'lupo_drop_livehelp_tables', 'lupo_normalize_applied', 'lupo_normalize_count', 'lupo_operator_channel_map', 'lupo_bootstrap_log', 'lupo_run_log', 'lupo_run_done', 'lupo_import_run', 'lupo_wizard_audit_log', 'lupo_config_log', 'lupo_config_site_name', 'lupo_config_base_url', 'lupo_config_admin_email', 'lupo_config_timezone', 'lupo_config_default_language', 'lupo_config_support_email', 'lupo_config_default_visitor_channel', 'lupo_config_enable_ai_channels', 'lupo_csrf_token') as $k) {
+    foreach (array('lupo_install_db_vars', 'lupo_install_type', 'lupo_install_mode_choice', 'lupo_install_mode_warning', 'lupo_install_livehelp_tables', 'lupo_drop_livehelp_tables', 'lupo_normalize_applied', 'lupo_normalize_count', 'lupo_operator_channel_map', 'lupo_bootstrap_log', 'lupo_run_log', 'lupo_run_done', 'lupo_import_run', 'lupo_wizard_audit_log', 'lupo_config_log', 'lupo_config_site_name', 'lupo_config_base_url', 'lupo_config_admin_email', 'lupo_config_timezone', 'lupo_config_default_language', 'lupo_config_support_email', 'lupo_config_default_visitor_channel', 'lupo_config_enable_ai_channels', 'lupo_csrf_token') as $k) {
         unset($_SESSION[$k]);
     }
     header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=welcome');
@@ -310,7 +310,14 @@ if ($step === 'welcome') {
 // ----- Step: credentials (form or detect)
 if ($step === 'credentials') {
     $db_vars = InstallWizardCredentials::getDbCredentials();
+    $selected_install_mode = isset($_POST['install_mode']) ? trim((string) $_POST['install_mode']) : (isset($_SESSION['lupo_install_mode_choice']) ? $_SESSION['lupo_install_mode_choice'] : 'new');
+    if ($selected_install_mode !== 'new' && $selected_install_mode !== 'upgrade') {
+        $selected_install_mode = 'new';
+    }
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $db_vars !== null && empty($errors)) {
+        if (!isset($_POST['install_mode']) || ($_POST['install_mode'] !== 'new' && $_POST['install_mode'] !== 'upgrade')) {
+            $errors[] = 'Please choose install mode: New install or Upgrade existing.';
+        }
         $raw_prefix = isset($_POST['table_prefix']) ? trim((string) $_POST['table_prefix']) : 'lupo_';
         if ($raw_prefix === '') {
             $raw_prefix = 'lupo_';
@@ -329,11 +336,24 @@ if ($step === 'credentials') {
             }
             $_SESSION['lupo_table_prefix'] = $table_prefix;
             $_SESSION['lupo_drop_livehelp_tables'] = isset($_POST['drop_livehelp_tables']) && $_POST['drop_livehelp_tables'] === '1';
+            $_SESSION['lupo_install_mode_choice'] = isset($_POST['install_mode']) ? trim((string) $_POST['install_mode']) : 'new';
+            unset($_SESSION['lupo_install_mode_warning']);
             // Detect livehelp_ tables using the connection from step 1 credentials (no earlier connection; no config file required).
             $livehelp_tables = InstallWizardDb::detectLivehelpTables($pdo);
-            // Upgrade if livehelp_ tables exist OR Crafty config.php exists (config.php = for sure upgrade from Crafty Syntax).
-            $is_upgrade = (count($livehelp_tables) > 0 || InstallWizardCredentials::craftyConfigExists());
-            $_SESSION['lupo_install_type'] = $is_upgrade ? 'upgrade' : 'new';
+            $detected_upgrade = (count($livehelp_tables) > 0 || InstallWizardCredentials::craftyConfigExists());
+            $selected_mode = isset($_SESSION['lupo_install_mode_choice']) ? $_SESSION['lupo_install_mode_choice'] : 'new';
+            if ($selected_mode === 'upgrade' && count($livehelp_tables) === 0) {
+                $errors[] = 'Upgrade existing was selected, but no livehelp_* tables were found in this database. Check DB credentials or choose New install.';
+            }
+            if (!empty($errors)) {
+                throw new RuntimeException(InstallWizardLogger::safeErrorMessage('validation'));
+            }
+            $_SESSION['lupo_install_type'] = $selected_mode;
+            if ($selected_mode === 'new' && $detected_upgrade) {
+                $_SESSION['lupo_install_mode_warning'] = 'New install was selected even though legacy Crafty markers were detected (livehelp_* tables and/or Crafty config.php). Import will be skipped by design.';
+            } elseif ($selected_mode === 'upgrade' && !$detected_upgrade) {
+                $_SESSION['lupo_install_mode_warning'] = 'Upgrade existing was selected, but no automatic Crafty markers were detected. Import may skip if no legacy data exists.';
+            }
             $_SESSION['lupo_install_livehelp_tables'] = $livehelp_tables;
             $base = (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.');
             if ($_SESSION['lupo_install_type'] === 'upgrade') {
@@ -363,6 +383,11 @@ if ($step === 'credentials') {
                 header('Location: ' . $base . '/install.php?step=confirm');
             }
             exit;
+        } catch (RuntimeException $e) {
+            if (empty($errors)) {
+                $errors[] = InstallWizardLogger::safeErrorMessage('validation');
+            }
+            error_log('Lupopedia install credentials validation: ' . $e->getMessage());
         } catch (PDOException $e) {
             $errors[] = 'Database connection failed. Check host, database name, user, and password.';
             error_log('Lupopedia install credentials: ' . $e->getMessage());
@@ -549,12 +574,18 @@ if ($step === 'run') {
 
                 // Import MD files from channels/0/broadcasts/
                 InstallWizardMdImporter::importAllMdFiles($pdo, $log, $table_prefix);
+                $log[] = InstallWizardLogger::logEntry('ok', 'New install: lupo_crafty_syntax_* tables are empty; import_from_old_crafty_syntax.sql runs only on upgrade from Crafty Syntax 3.7.5.');
             }
 
             if ($install_type === 'upgrade') {
                 // Import runs only after identity normalization has been applied to livehelp_users.
+                // Skip import when no legacy tables exist (e.g. upgrade detected via config but DB has no livehelp_*).
+                $livehelp_tables_for_import = isset($_SESSION['lupo_install_livehelp_tables']) ? $_SESSION['lupo_install_livehelp_tables'] : array();
                 if (!empty($_SESSION['lupo_import_run'])) {
                     $log[] = InstallWizardLogger::logEntry('skip', 'Import already completed (idempotent skip).');
+                } elseif (empty($livehelp_tables_for_import)) {
+                    $log[] = InstallWizardLogger::logEntry('skip', 'Skipped: no legacy livehelp_* tables in database; nothing to import. (Import only runs when upgrading from Crafty Syntax 3.7.5 with existing livehelp_* data.)');
+                    $_SESSION['lupo_import_run'] = true;
                 } else {
                     // RESERVED ID DOCTRINE: actor_id 0-9999 = system/AI only; human actors start at 10000.
                     // Ensure next lupo_actors.actor_id is at least 10000 so imported Crafty users get IDs >= 10000.
@@ -798,7 +829,7 @@ if ($step === 'config') {
                 }
                 if (empty($config_errors) && isset($configPath) && $configPath !== null) {
                     $_SESSION['lupo_config_log'] = $writeLog;
-                    unset($_SESSION['lupo_install_db_vars'], $_SESSION['lupo_install_type'], $_SESSION['lupo_install_livehelp_tables'], $_SESSION['lupo_normalize_applied'], $_SESSION['lupo_operator_channel_map'], $_SESSION['lupo_bootstrap_log'], $_SESSION['lupo_run_done']);
+                    unset($_SESSION['lupo_install_db_vars'], $_SESSION['lupo_install_type'], $_SESSION['lupo_install_mode_choice'], $_SESSION['lupo_install_mode_warning'], $_SESSION['lupo_install_livehelp_tables'], $_SESSION['lupo_normalize_applied'], $_SESSION['lupo_operator_channel_map'], $_SESSION['lupo_bootstrap_log'], $_SESSION['lupo_run_done']);
                     header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=complete');
                     exit;
                 }
@@ -819,7 +850,7 @@ if ($step === 'complete') {
     $complete_operator_channels = is_array($tmp_map) ? count($tmp_map) : 0;
     $tmp_tables = isset($_SESSION['lupo_install_livehelp_tables']) ? $_SESSION['lupo_install_livehelp_tables'] : null;
     $complete_legacy_dropped = is_array($tmp_tables) ? count($tmp_tables) : 0;
-    foreach (array('lupo_install_db_vars', 'lupo_install_type', 'lupo_install_livehelp_tables', 'lupo_normalize_applied', 'lupo_normalize_count', 'lupo_operator_channel_map', 'lupo_run_done', 'lupo_config_site_name', 'lupo_config_base_url', 'lupo_config_admin_email', 'lupo_config_timezone', 'lupo_config_default_language') as $k) {
+    foreach (array('lupo_install_db_vars', 'lupo_install_type', 'lupo_install_mode_choice', 'lupo_install_mode_warning', 'lupo_install_livehelp_tables', 'lupo_normalize_applied', 'lupo_normalize_count', 'lupo_operator_channel_map', 'lupo_run_done', 'lupo_config_site_name', 'lupo_config_base_url', 'lupo_config_admin_email', 'lupo_config_timezone', 'lupo_config_default_language') as $k) {
         unset($_SESSION[$k]);
     }
     if (empty($complete_log) && is_file(LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupopedia-config.php')) {
@@ -1226,6 +1257,18 @@ if ($baseUrl === '') {
                         value="<?php echo htmlspecialchars(isset($_POST['db_user']) ? $_POST['db_user'] : ''); ?>"
                         required></label>
                 <label>Password <input type="password" name="db_password" value=""></label>
+                <fieldset style="margin:0.75rem 0 0.5rem 0; padding:0.75rem; border:1px solid #ddd; border-radius:6px;">
+                    <legend style="padding:0 0.25rem;">Install mode</legend>
+                    <label style="display:block; margin-bottom:0.5rem;">
+                        <input type="radio" name="install_mode" value="new" <?php echo $selected_install_mode === 'new' ? 'checked' : ''; ?>>
+                        New install
+                    </label>
+                    <label style="display:block;">
+                        <input type="radio" name="install_mode" value="upgrade" <?php echo $selected_install_mode === 'upgrade' ? 'checked' : ''; ?>>
+                        Upgrade existing (Crafty Syntax 3.7.5 data)
+                    </label>
+                    <p class="slug-tip" style="margin:0.5rem 0 0 0;">This selection controls the installer path. Upgrade requires legacy <code>livehelp_*</code> tables in the selected database.</p>
+                </fieldset>
                 <label>Table prefix <input type="text" name="table_prefix"
                         value="<?php echo htmlspecialchars(isset($_POST['table_prefix']) ? $_POST['table_prefix'] : 'lupo_'); ?>"
                         placeholder="lupo_" title="Lowercase letters, digits, underscores only. Default: lupo_"></label>
@@ -1233,8 +1276,7 @@ if ($baseUrl === '') {
                         value="1" <?php echo (isset($_POST['drop_livehelp_tables']) && $_POST['drop_livehelp_tables'] === '1') ? ' checked' : ''; ?>> Drop deprecated Crafty (<code>livehelp_*</code>) tables after import</label>
                 <p class="slug-tip" style="margin-top:0.25rem;">Only applies to upgrades. Unchecked by default; leave
                     unchecked to keep legacy tables for reference or re-import.</p>
-                <p style="margin-top:1rem;"><button type="submit" id="lupo-connect-btn">Connect and detect install
-                        type</button></p>
+                <p style="margin-top:1rem;"><button type="submit" id="lupo-connect-btn">Connect and continue</button></p>
             </form>
             <p><a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=welcome'); ?>"
                     class="btn btn-secondary">Back</a></p>
@@ -1419,6 +1461,9 @@ if ($baseUrl === '') {
             <?php endif; ?>
             <?php if ((isset($_SESSION['lupo_install_type']) ? $_SESSION['lupo_install_type'] : '') === 'upgrade'): ?>
                 <p><strong>Upgrade from Crafty Syntax 3.7.5</strong></p>
+                <?php if (!empty($_SESSION['lupo_install_mode_warning'])): ?>
+                    <p class="slug-tip"><strong>Notice:</strong> <?php echo htmlspecialchars($_SESSION['lupo_install_mode_warning']); ?></p>
+                <?php endif; ?>
                 <p>Reserved system channels (0, 1, 42, 51) and schema were created before normalization. Identity normalization
                     applied. The wizard will now:</p>
                 <ol>
@@ -1442,7 +1487,10 @@ if ($baseUrl === '') {
                     normalization → Identity normalization.</p>
             <?php else: ?>
                 <p><strong>New install</strong></p>
-                <p>No livehelp_* tables found. The wizard will:</p>
+                <?php if (!empty($_SESSION['lupo_install_mode_warning'])): ?>
+                    <p class="slug-tip"><strong>Notice:</strong> <?php echo htmlspecialchars($_SESSION['lupo_install_mode_warning']); ?></p>
+                <?php endif; ?>
+                <p>You selected New install. The wizard will:</p>
                 <ol>
                     <li>Run <code>lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql</code></li>
                     <li>Run seed SQL from <code>lupo-database/lupopedia/mysql/seed/</code> (including seed_default_sessions.sql)

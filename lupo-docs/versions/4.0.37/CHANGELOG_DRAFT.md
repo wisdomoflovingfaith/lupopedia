@@ -357,7 +357,7 @@ database_sync:
 - **VSX Integration**: 🔄 **IN PROGRESS** (0%)
 
 ### **Blockers & Risks**
-- **Table Ceiling Doctrine**: At 222 tables - must optimize before adding new tables
+- **Table Ceiling Doctrine**: At 199 tables - must optimize before adding new tables
 - **Performance Impact**: Large repository scanning may affect performance
 - **Backward Compatibility**: Must ensure existing FLIP v1.0 files continue working
 - **Multi-Agent Coordination**: Complex workflows require careful testing

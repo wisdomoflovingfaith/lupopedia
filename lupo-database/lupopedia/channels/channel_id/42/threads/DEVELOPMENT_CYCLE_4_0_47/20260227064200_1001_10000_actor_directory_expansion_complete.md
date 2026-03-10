@@ -114,7 +114,7 @@ Successfully scaled the Actor Directory Structure across all **18 registered act
 
 #### 5. **Database Migration Ready**
 - **6 new tables** designed for v4.0.48 within table ceiling
-- **216/222 tables** total (6 slots remaining)
+- **155/199 tables** total (44 under ceiling)
 - **Full doctrine compliance** maintained
 
 ---
@@ -131,7 +131,7 @@ Successfully scaled the Actor Directory Structure across all **18 registered act
 6. **lupo_session_recovery** - Session state persistence
 
 ### Doctrine Compliance:
-- ✅ **Table ceiling respected**: 216/222 (6 slots remaining)
+- ✅ **Table ceiling respected**: 155/199 (44 under ceiling)
 - ✅ **No foreign keys**: Database remains dumb storage
 - ✅ **BIGINT timestamps**: All in YYYYMMDDHHIISS UTC
 - ✅ **Soft deletes**: is_deleted/deleted_ymdhis pattern

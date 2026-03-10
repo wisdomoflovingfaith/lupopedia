@@ -80,7 +80,7 @@ flip.footer: {
 
 # Database Optimization Recommendations for 4.0.43
 
-Current status: 188 lupo_ tables + ~33 legacy livehelp_ tables = ~221 total tables at the 222 table ceiling.
+Current status: 155 tables total (install + 34 original Crafty tables) at 199 table ceiling.
 
 **Immediate consolidation opportunities:**
 1. Merge lupo_actor_meta, lupo_actor_properties, lupo_agent_properties into unified lupo_metadata table
@@ -172,7 +172,7 @@ The following tables referenced in `import_from_old_crafty_syntax.sql` require u
 
 - **Tables saved:** 22 tables
 - **Headroom for 4.0.43:** 23 tables available
-- **Table ceiling compliance:** Under 222 table limit
+- **Table ceiling compliance:** Under 199 table limit
 
 ### Notes
 

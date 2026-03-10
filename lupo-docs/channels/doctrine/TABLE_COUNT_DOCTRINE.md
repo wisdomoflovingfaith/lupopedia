@@ -79,12 +79,12 @@ header_atoms:
 temporal_edges:
   actor_identity: "Eric (Captain Wolfie)"
   actor_location: "Sioux Falls, South Dakota"
-  system_context: "Schema Freeze Active / Table Count: 214 tables (8 under 222 limit) / File-Sovereignty"
+  system_context: "Schema Freeze Active / Table Count: run generate_toon_files.py (ceiling 199) / File-Sovereignty"
 dialog:
   speaker: CURSOR
   target: @everyone @CAPTAIN_WOLFIE @Monday_Wolfie
   mood_RGB: "00FF00"
-  message: "Updated TABLE_COUNT_DOCTRINE: 214 tables (8 under 222 limit). Legacy livehelp tables removed in 4.3.1. Table ceiling set to 222. File-Sovereignty active."
+  message: "TABLE_COUNT_DOCTRINE: current count = TOON file count after python scripts/generate_toon_files.py; do not hardcode. Ceiling 199."
 tags:
   categories: ["documentation", "doctrine", "database", "architecture"]
   collections: ["core-docs", "doctrine"]
@@ -98,11 +98,9 @@ file:
   author: GLOBAL_CURRENT_AUTHORS
 system_context:
   schema_state: "Frozen"
-  table_count: 214
-  toon_defined_tables: 204
-  missing_tables: 85
-  projected_total: 205
-  table_ceiling: 222
+  table_count: "run generate_toon_files.py; do not hardcode"
+  toon_defined_tables: "= table_count from script"
+  table_ceiling: 199
   table_count_violation: false
   table_count_overage: 0
   database_logic_prohibited: true
@@ -114,6 +112,14 @@ system_context:
 Effective Range: Versions 3.0.101 → 4.2.0
 Status: ACTIVE ARCHITECTURE LAW
 
+## How to obtain current table count (do not guess or hardcode)
+
+**The current number of tables is determined by counting the TOON files produced after running the TOON generator.** Do not write or maintain a fixed table count in documentation.
+
+1. Run: `python scripts/generate_toon_files.py` (from the project root).
+2. The script writes one TOON per table; the number of TOON files written (or the count printed by the script) is the **current table count**.
+3. Use that count when updating this doctrine or any doc that states "current table count". Do not guess or hardcode the value.
+
 ## Purpose
 This doctrine establishes the hard architectural limits for the Lupopedia
 database schema during the 3.0.x → 4.2.0 development cycle. It replaces
@@ -122,21 +128,19 @@ current system truth, TOON-layer requirements, and Pack-era architecture.
 
 ## Doctrine Statement
 **Until version 4.2.0, Lupopedia will maintain a total table count of no
-more than 222 tables.**
+more than 199 tables.**
 
-MAX_ALLOWED_TABLES: 222
-TARGET_TABLE_COUNT: 222
-TABLE_OPTIMIZATION_TRIGGER: 223
+MAX_ALLOWED_TABLES: 199
+TARGET_TABLE_COUNT: 199
+TABLE_OPTIMIZATION_TRIGGER: 200
 TABLE_OPTIMIZATION_REQUIRED: true
 
-- Current count: **214 tables** (in schema)
-- TOON-defined tables: **170 tables** (after livehelp cleanup)
-- Missing tables: **51 tables** (awaiting migration)  
-- Target after migration: **170 tables** ✅ **52 tables under limit**
-- Maximum allowed: **222 tables**
-- Target operational count: **222 tables**
+- Current count: **see above** — run `python scripts/generate_toon_files.py` and use the TOON file count (do not hardcode).
+- Maximum allowed: **199 tables**
+- Target operational count: **199 tables**
+- Tables under limit: **199 − (TOON count from script)**
 
-The system must operate at 222 tables or fewer. At 223+ tables, the Table Optimization Cycle is mandatory.
+The system must operate at 199 tables or fewer. At 200+ tables, the Table Optimization Cycle is mandatory.
 
 ## Allowed Database Constructs
 To preserve clarity, maintainability, and doctrine purity, the following
@@ -152,35 +156,33 @@ All logic must reside in PHP service classes, doctrine files, or
 application-level orchestration. The database remains a pure data store.
 
 ## Rationale
-1. System truth alignment — 222 tables is the ceiling; current schema count is 214 tables (8 under limit).
+1. System truth alignment — 199 tables is the ceiling; current schema count = TOON file count from `python scripts/generate_toon_files.py` (do not hardcode).
 2. Pack Architecture requirements — multi-agent coordination and emotional
    geometry require structural space.
 3. Historical doctrine preservation — the 111-table rule remains part of
    Lupopedia's lore but is no longer a practical constraint.
-4. Controlled growth — a 222-table ceiling provides flexibility without
+4. Controlled growth — a 199-table ceiling provides flexibility without
    allowing schema sprawl.
 5. Future-proofing — this ceiling remains in effect until 4.2.0.
-6. Table optimization trigger — 223+ tables mandates immediate consolidation.
-7. **NO VIOLATION**: Current projected total 205 tables (17 under limit).
+6. Table optimization trigger — 200+ tables mandates immediate consolidation.
+7. **NO VIOLATION**: Current total = TOON count from script; must remain under 199.
 
 ## Doctrine Notes
 - Legacy livehelp_ tables removed in version 3.1.17 (8 tables dropped)
-- Table ceiling set to 222 to support system stability
-- Target operational count: 222 tables
-- Current schema count: 214 tables
-- TOON-defined system: 204 tables
-- Missing tables: 85 tables
-- **NO VIOLATION**: Projected total 205 tables (17 under limit)
-- Required action: Monitor table growth and prepare optimization at 223+
+- Table ceiling set to 199 to support system stability
+- Target operational count: 199 tables
+- Current schema count: run `python scripts/generate_toon_files.py` and use TOON file count (do not hardcode)
+- TOON-defined system: same as table count from script
+- **NO VIOLATION**: Current total must remain &lt; 199
+- Required action: Monitor table growth and prepare optimization at 200+
 
 ## Enforcement
-- Any migration that would exceed 222 tables must be rejected.
-- Any migration that would exceed 222 tables requires immediate optimization cycle.
-- **CURRENT STATUS**: Migration allowed - projected total 205 tables (17 under limit)
+- Any migration that would exceed 199 tables must be rejected.
+- Any migration that would exceed 199 tables requires immediate optimization cycle.
+- **CURRENT STATUS**: Migration allowed while total &lt; 199; obtain current total from TOON count after running generate_toon_files.py
 - New tables require justification and a reduction plan.
 - All schema changes must be logged in dialogs/versions/ and CHANGELOG.md.
 - Violations trigger a Pack-level architectural warning.
-- **IMMEDIATE ACTION REQUIRED**: Reduce TOON table count by 5 before migration
 
 ## Version Applicability
 - Applies to all versions 3.0.101 → 4.2.0
@@ -195,8 +197,8 @@ application-level orchestration. The database remains a pure data store.
 1. No `CREATE TABLE` operations without removing existing tables
 2. No `DROP TABLE` of consolidated tables
 3. No `ALTER TABLE` that changes data types or removes columns
-4. Table count must remain ≤ 222
-5. Operational count must remain ≤ 222
+4. Table count must remain ≤ 199
+5. Operational count must remain ≤ 199
 
 ### Enforcement
 - Application-level: migrations and LILITH oversight; veto authority

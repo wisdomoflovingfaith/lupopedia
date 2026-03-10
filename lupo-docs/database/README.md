@@ -95,7 +95,7 @@ docs/database/
 ## 🎯 **Database Overview**
 
 ### **Lupopedia Database**
-- **Table Count:** 210+ tables (based on TOON files)
+- **Table Count:** Run `python scripts/generate_toon_files.py` and use the TOON file count — do not hardcode (see TABLE_COUNT_DOCTRINE).
 - **Purpose:** Main application database
 - **Status:** Production-ready
 - **Documentation:** Complete coverage planned

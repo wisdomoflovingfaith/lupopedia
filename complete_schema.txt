@@ -778,11 +778,6 @@ Primary Key: system_event_id
 Columns: `system_event_id` bigint NOT NULL auto_increment, `event_type` varchar(100) NOT NULL, `event_message` text NOT NULL, `event_context` text, `actor_id` bigint NOT NULL DEFAULT 0, `created_ymdhis` bigint NOT NULL
 Indexes: INDEX: actor_id (actor_id); INDEX: event_type (event_type)
 
-=== TABLE: lupo_system_health_snapshots ===
-Primary Key: health_id
-Columns: `health_id` bigint NOT NULL auto_increment, `table_count` int NOT NULL, `table_ceiling` int NOT NULL, `schema_state` varchar(64) NOT NULL DEFAULT 'unknown' COMMENT 'frozen|active|migrating', `sync_integrity` varchar(32) NOT NULL DEFAULT 'unknown' COMMENT 'clean|drift|unknown', `emotional_r` decimal(3,2) COMMENT 'strife -1..1', `emotional_g` decimal(3,2) COMMENT 'harmony -1..1', `emotional_b` decimal(3,2) COMMENT 'memory -1..1', `emotional_t` decimal(3,2) COMMENT 'temporal -1..1', `created_ymdhis` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS', `is_deleted` tinyint NOT NULL DEFAULT 0, `deleted_ymdhis` bigint
-Indexes: INDEX: idx_created_ymdhis (created_ymdhis); INDEX: idx_is_deleted (is_deleted); INDEX: idx_table_count (table_count)
-
 === TABLE: lupo_system_logs ===
 Primary Key: log_id
 Columns: `log_id` bigint NOT NULL auto_increment, `event_type` varchar(64) NOT NULL COMMENT 'system|agent|error|security|migration|doctrine|heartbeat|temporal', `severity` varchar(16) NOT NULL DEFAULT 'info' COMMENT 'info|warning|error|critical', `actor_slug` varchar(64) COMMENT 'SYSTEM|LILITH|CURSOR|CASCADE|CAPTAIN_WOLFIE|etc', `message` text NOT NULL COMMENT 'Human-readable event description', `context_json` json COMMENT 'Optional structured metadata', `created_ymdhis` bigint NOT NULL COMMENT 'YYYYMMDDHHMMSS', `is_deleted` tinyint NOT NULL DEFAULT 0, `deleted_ymdhis` bigint, `recursion_depth` tinyint DEFAULT 1, `observation_latency_ms` int, `temporal_anomaly_score` decimal(3,2)

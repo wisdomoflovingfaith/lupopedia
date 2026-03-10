@@ -1,0 +1,9 @@
+{
+    "code": "LUPO",
+    "name": "LUPO",
+    "layer": "kernel",
+    "is_required": true,
+    "is_kernel": true,
+    "dedicated_slot": 106,
+    "version": "1.0.0"
+}

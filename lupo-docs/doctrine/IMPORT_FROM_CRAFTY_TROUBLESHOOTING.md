@@ -81,6 +81,8 @@ X-Lupo-File-Path: docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md
 
 **Purpose:** When the install wizard runs `import_from_old_crafty_syntax.sql` and some Lupopedia tables are not populated, use this guide to find and fix the cause.
 
+**When is the import run?** The import runs **only on upgrade** from Crafty Syntax 3.7.5, and **only when the database has at least one `livehelp_*` table**. On a **new install** the wizard does not run the import, so `lupo_crafty_syntax_*` tables are created empty. If upgrade was detected (e.g. via Crafty config file) but the database has no `livehelp_*` tables, the wizard skips the import and logs: *"Skipped: no legacy livehelp_* tables in database; nothing to import."* To get data into those tables you must either run a true upgrade (database that still has the 34 legacy Crafty tables with data) or manually load data.
+
 **Runner behaviour:** The wizard splits the import file into statements by semicolon (`;`), but **only when the semicolon is outside single-quoted strings**. So `COMMENT = '...;...'` and other string literals that contain semicolons do not break the split; each full statement is executed as one piece.
 
 **Canonical import file:** `database/migrations/import_from_old_crafty_syntax.sql`  

@@ -136,9 +136,9 @@ All tables in `install_new_lupopedia.sql` follow 4.0.x doctrines:
 - ✅ All primary keys are BIGINT without AUTO_INCREMENT (except system tables)
 
 ### ✅ Table Count Verification
-- **Before optimization:** 188 lupo_ tables + ~33 legacy = ~221 total
+- **Before optimization:** (current install: 155 tables total, including 34 original Crafty tables)
 - **After optimization:** 166 lupo_ tables + ~33 legacy = ~199 total  
-- **Tables saved:** 22 tables (under the 222 table ceiling)
+- **Tables saved:** 22 tables (under the 199 table ceiling)
 - **Headroom for 4.0.43:** 23 tables available
 
 ## Importer Updates Required
@@ -169,7 +169,7 @@ All tables in `install_new_lupopedia.sql` follow 4.0.x doctrines:
 ✅ **All tables verified** - Every table referenced by importer exists in install schema  
 ⚠️ **Importer updates needed** - Truth and analytics statements require table name and column updates  
 ✅ **Schema alignment confirmed** - Install schema follows all 4.0.x doctrines  
-✅ **Table ceiling compliance** - Under 222 table limit with 23 table headroom  
+✅ **Table ceiling compliance** - Under 199 table limit (155 tables, 44 headroom)  
 
 ## Recommendation
 

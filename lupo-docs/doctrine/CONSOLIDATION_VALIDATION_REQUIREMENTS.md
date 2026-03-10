@@ -368,9 +368,10 @@ SELECT SQL_NO_CACHE COUNT(*) FROM lupo_entity_properties WHERE entity_id = 1 AND
 - ✅ **ONLY** optimization mode activities
 
 ### ALERT THRESHOLDS
-- **Current:** 220 tables
-- **LOCKDOWN TRIGGER:** 221 tables
-- **EMERGENCY PROTOCOL:** 222 tables
+- **Actual table count:** Run `python scripts/generate_toon_files.py` and count TOON files — do not hardcode.
+- **WARNING:** 197 tables
+- **LOCKDOWN TRIGGER:** 198 tables
+- **EMERGENCY PROTOCOL:** 199 tables
 
 ### SUBMISSION REQUIREMENTS
 1. **File Naming:** `[DELIVERABLE]_validation_YYYYMMDD_HHMMSS.ext`

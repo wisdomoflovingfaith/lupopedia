@@ -176,7 +176,7 @@ Federation/alias handlers.
 
 ### Scalability Framework
 - **10,000+ Agent Capacity**: System designed for massive scale
-- **222-Table Ceiling**: Hard limit prevents bloat (currently at 185)
+- **199-Table Ceiling**: Hard limit prevents bloat (currently at 185)
 - **Cluster-Based Organization**: Functional grouping scales with new agents
 - **Federation Model**: External actors can integrate without core disruption
 
@@ -208,7 +208,7 @@ Federation/alias handlers.
 - **No Max-Plus-One**: No automatic incrementation of IDs
 - **Unregistry-First**: CSV registry takes precedence over database
 - **Provenance Preservation**: All message origins must be trackable
-- **Table Ceiling**: System cannot exceed 222 tables
+- **Table Ceiling**: System cannot exceed 199 tables
 
 ### Enforcement Mechanisms
 - **LEXA (2037)**: Boundary enforcement and header limits

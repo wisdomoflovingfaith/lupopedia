@@ -114,7 +114,7 @@ flare.footer:
   - `idx_lupo_edges_flare_discovered` - Discovery method queries
 
 - ✅ **Table Ceiling Compliance**
-  - Current: 210/222 tables (12 slots remaining)
+  - Current: 155/199 tables (44 under ceiling)
   - Dynamic counting based on TOON files in `docs/toons/`
   - Extended existing table instead of creating new one
 

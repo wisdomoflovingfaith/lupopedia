@@ -158,27 +158,6 @@ CREATE TABLE `lupo_system_config` (
 
 UNIQUE INDEX `lupo_system_config_config_key` (`config_key`);
 
--- lupo_system_health_snapshots
-CREATE TABLE `lupo_system_health_snapshots` (
-  `health_id` bigint NOT NULL,
-  `table_count` int NOT NULL,
-  `table_ceiling` int NOT NULL,
-  `schema_state` varchar(64) NOT NULL DEFAULT 'unknown',
-  `sync_integrity` varchar(32) NOT NULL DEFAULT 'unknown',
-  `emotional_r` decimal(3,2),
-  `emotional_g` decimal(3,2),
-  `emotional_b` decimal(3,2),
-  `emotional_t` decimal(3,2),
-  `created_ymdhis` bigint NOT NULL DEFAULT 0,
-  `is_deleted` tinyint NOT NULL DEFAULT 0,
-  `deleted_ymdhis` bigint,
-  PRIMARY KEY (None)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INDEX `lupo_system_health_snapshots_idx_created_ymdhis` (`created_ymdhis`);
-INDEX `lupo_system_health_snapshots_idx_is_deleted` (`is_deleted`);
-INDEX `lupo_system_health_snapshots_idx_table_count` (`table_count`);
-
 -- lupo_system_logs
 CREATE TABLE `lupo_system_logs` (
   `log_id` bigint NOT NULL,

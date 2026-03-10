@@ -132,7 +132,7 @@ Lupopedia is a semantic OS with:
 - emotional frameworks
 - kernel
 - boot sequence
-- 222-table ceiling enforced
+- 199-table ceiling enforced
 - Migration path originates from Crafty Syntax 3.7.5
 - Kernel and boot sequence must remain intact
 

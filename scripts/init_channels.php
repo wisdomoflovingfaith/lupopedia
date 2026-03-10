@@ -1,0 +1,39 @@
+<?php
+/**
+ * Initializer for Lupopedia Channels Directory Structure
+ * Doctrine: PHP 5.3 Compatible, uses LUPO_PREFIX.
+ */
+require_once dirname(__FILE__) . '/../lupopedia-config.php';
+
+function init_lupo_channels() {
+    $base_dir = ABSPATH . LUPO_CHANNELS_DIR;
+    $channels = array(0, 1, 42, 666);
+    $subdirs = array('threads', 'rolls', 'tasks/active', 'tasks/pending', 'tasks/completed');
+    $version = '4.0.x';
+
+    if (!is_dir($base_dir)) {
+        mkdir($base_dir, 0755, true);
+        echo "Created base channels directory: $base_dir\n";
+    }
+
+    foreach ($channels as $channel_id) {
+        $channel_path = $base_dir . '/' . $channel_id;
+        foreach ($subdirs as $subdir) {
+            $path = $channel_path . '/' . $subdir;
+            if (!is_dir($path)) {
+                mkdir($path, 0755, true);
+                echo "Created directory: $path\n";
+            }
+        }
+        
+        // Create versioned thread container
+        $version_path = $channel_path . '/threads/' . $version;
+        if (!is_dir($version_path)) {
+            mkdir($version_path, 0755, true);
+            echo "Created versioned thread directory: $version_path\n";
+        }
+    }
+}
+
+init_lupo_channels();
+echo "Channel initialization complete.\n";

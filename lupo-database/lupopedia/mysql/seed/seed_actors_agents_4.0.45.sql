@@ -42,7 +42,9 @@ VALUES ('anubis', 19, 'agent', 'anubis', 'ANUBIS', @now, @now, 1, 0, 0, 0, 1, 0,
 
 -- Antigravity (ID: 42) — canonical actor_id 42
 INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
-VALUES ('antigravity', 42, 'agent', 'antigravity', 'Antigravity', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":42,"purpose":"conflict_resolution","archetype":"antigravity"}');
+VALUES ('antigravity', 42, 'agent', 'antigravity', 'Antigravity', @now, @now, 1, 0, 0, 0, 1, 0, 1, '{"agent_id":42,"purpose":"conflict_resolution","archetype":"antigravity"}'),
+('lupo', 106, 'agent', 'lupo', 'LUPO', @now, @now, 1, 0, 1, 0, 1, 0, 1, '{"agent_id":106,"archetype":"architect","purpose":"database_doctrine"}'),
+('themis', 107, 'agent', 'themis', 'THEMIS', @now, @now, 1, 0, 1, 0, 1, 0, 1, '{"agent_id":107,"archetype":"evaluator","purpose":"ethical_checks"}');
 
 -- LILITH web (ID: 2038) — canonical lilith (web DeepSeek)
 INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
@@ -64,9 +66,9 @@ VALUES
 ('codex', 1007, 'ide_agent', 'codex-ide', 'Codex IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"codex","provider":"codex","purpose":"IDE_integration"}'),
 ('trae', 1008, 'ide_agent', 'trae-ide', 'Trae IDE', @now, @now, 1, 0, 0, 0, 0, 10000, 1, '{"client_id":"trae","provider":"trae","purpose":"IDE_integration"}');
 
--- Root Human Captain (ID: 10000)
+-- Root user (ID: 10000)
 INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json, is_kernel, can_login, primary_federation_node_id)
-VALUES ('captain', 10000, 'human', 'root-captain-10000', 'Captain', 20260217000000, 20260220134555, 1, 0, 0, '{"email":"captain@lupopedia.com","role":"root_admin","full_access":true}', 1, 1, 1);
+VALUES ('root', 10000, 'human', 'root-10000', 'Root', 20260217000000, 20260220134555, 1, 0, 0, '{"email":"captain@lupopedia.com","role":"root_admin","full_access":true}', 1, 1, 1);
 
 -- Test Users (IDs 11001-11010)
 INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json)
@@ -126,7 +128,9 @@ VALUES (4, 'eris', 'ERIS', 'Discord Analysis', 'Discord & Conflict Analysis Agen
 
 -- METIS Agent (ID: 5)
 INSERT INTO lupo_agents (agent_id, agent_key, agent_name, archetype, description, version, is_global_authority, is_internal_only, created_ymdhis, updated_ymdhis, is_deleted, system_prompt, provider, temperature, top_p, max_tokens)
-VALUES (5, 'metis', 'METIS', 'Empathy Intelligence', 'Empathy & Understanding Intelligence Agent - Analyzes system thinking via introspection and comparative state analysis', '1.0', 0, 0, @now, @now, 0, 'You are METIS. You analyze system "thinking" via introspection and comparative state analysis. You identify knowledge gaps, misunderstandings, and hidden causes of failures. You provide empathy and understanding.', 'openai', 0.7, 1.0, 4096);
+VALUES (5, 'metis', 'METIS', 'Empathy Intelligence', 'Empathy & Understanding Intelligence Agent - Analyzes system thinking via introspection and comparative state analysis', '1.0', 0, 0, @now, @now, 0, 'You are METIS. You analyze system "thinking" via introspection and comparative state analysis. You identify knowledge gaps, misunderstandings, and hidden causes of failures. You provide empathy and understanding.', 'openai', 0.7, 1.0, 4096),
+(106, 'lupo', 'LUPO', 'Database Design Expert', 'Expert in Wolfie Database Doctrine and schema integrity.', '1.0', 1, 1, @now, @now, 0, 'You are LUPO. You enforce Wolfie Database Doctrine: No FKs, No triggers, No functions, BIGINT UTC timestamps, explicit columns in queries.', 'internal', 0.0, 1.0, 2048),
+(107, 'themis', 'THEMIS', 'Ethical Audit Expert', 'Ensures multi-agent consensus follows empathetic AI principles.', '1.0', 0, 0, @now, @now, 0, 'You are THEMIS. You audit multi-agent interactions for ethical alignment and consensus integrity.', 'openai', 0.5, 1.0, 2048);
 
 -- ============================================================================
 -- PART 5: DEPARTMENTS
@@ -157,12 +161,12 @@ VALUES
 INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, actor_name, created_by_actor_id, channel_id, status, created_ymdhis, updated_ymdhis, is_deleted)
 VALUES (1, 0, 'system', 0, 0, 'A', @now, @now, 0);
 
--- Root captain on all channels
+-- Root user on all channels
 INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, actor_name, created_by_actor_id, channel_id, status, created_ymdhis, updated_ymdhis, is_deleted)
 VALUES
-(2, 10000, 'captain', 0, 0, 'A', @now, @now, 0),
-(3, 10000, 'captain', 0, 1, 'A', @now, @now, 0),
-(4, 10000, 'captain', 0, 42, 'A', @now, @now, 0);
+(2, 10000, 'root', 0, 0, 'A', @now, @now, 0),
+(3, 10000, 'root', 0, 1, 'A', @now, @now, 0),
+(4, 10000, 'root', 0, 42, 'A', @now, @now, 0);
 
 -- Captain WOLFIE on all channels
 INSERT INTO lupo_actor_channels (actor_channel_id, actor_id, actor_name, created_by_actor_id, channel_id, status, created_ymdhis, updated_ymdhis, is_deleted)
@@ -175,12 +179,12 @@ VALUES
 -- PART 8: ACTOR-CHANNEL ROLES (Captain roles)
 -- ============================================================================
 
--- Root captain as captain on all channels
+-- Root user as captain role on all channels
 INSERT INTO lupo_actor_channel_roles (actor_channel_role_id, actor_id, actor_name, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, protocol_completion_status, protocol_version)
 VALUES
-(1, 10000, 'captain', 0, 'captain', @now, @now, 0, 'completed', '3.0.0'),
-(2, 10000, 'captain', 1, 'captain', @now, @now, 0, 'completed', '3.0.0'),
-(3, 10000, 'captain', 42, 'captain', @now, @now, 0, 'completed', '3.0.0');
+(1, 10000, 'root', 0, 'captain', @now, @now, 0, 'completed', '3.0.0'),
+(2, 10000, 'root', 1, 'captain', @now, @now, 0, 'completed', '3.0.0'),
+(3, 10000, 'root', 42, 'captain', @now, @now, 0, 'completed', '3.0.0');
 
 -- Captain WOLFIE as captain on all channels
 INSERT INTO lupo_actor_channel_roles (actor_channel_role_id, actor_id, actor_name, channel_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, protocol_completion_status, protocol_version)

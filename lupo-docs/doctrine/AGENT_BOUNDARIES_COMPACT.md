@@ -149,8 +149,8 @@ X-Lupo-File-Path: docs/doctrine/AGENT_BOUNDARIES_COMPACT.md
 
 ## 4. TABLE LIMIT SAFETY
 
-**Current:** 217 tables
-**Soft Ceiling:** 222 tables
+**Current:** 155 tables (install + 34 original tables)
+**Soft Ceiling:** 199 tables
 
 **Before creating new table:**
 ```sql
@@ -158,7 +158,7 @@ SELECT COUNT(*) FROM information_schema.tables
 WHERE table_schema = 'lupopedia';
 ```
 
-**If count ≥ 222:**
+**If count ≥ 199:**
 - STOP generation
 - Output: `TABLE LIMIT REACHED: Optimization required before adding new tables.`
 - Suggest: consolidation, JSON columns, archival strategy
@@ -266,7 +266,7 @@ lupopedia/uploads/
 **Creating migration:**
 1. Read TOON file: `/docs/toons/lupo_<table>.toon.json`
 2. Check table count: `SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'lupopedia'`
-3. If < 222 and differences exist: generate SQL in `database/migrations/`
+3. If < 199 and differences exist: generate SQL in `database/migrations/`
 4. Include header: version, date, purpose, doctrine compliance
 5. Do NOT execute
 
@@ -283,7 +283,7 @@ lupopedia/uploads/
 - Check migration is SQL only
 - Check no FK/triggers
 - Check YMDHIS timestamps
-- Check table count < 222
+- Check table count < 199
 - Check upload follows structure
 - Check Python/PHP boundaries respected
 
@@ -375,7 +375,7 @@ lupopedia/uploads/
 >         → `BOUNDARY VIOLATION: [Maintenance|Runtime] operations must be in [Python|PHP].`
 >      4. **File safety** - Uploads only to `uploads/{type}/YYYY/MM/`
 >         → `BOUNDARY VIOLATION: Invalid upload path.`
->      5. **Table limit** - Check if count ≥ 222 before creating tables
+>      5. **Table limit** - Check if count ≥ 199 before creating tables
 >         → `TABLE LIMIT REACHED: Optimization required.`
 >    - Returns: `[allowed => bool, message => string, severity => string]`
 >

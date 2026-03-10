@@ -78,19 +78,17 @@ X-Lupo-File-Path: docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md
 ---
 
 # 🐺 CASCADE TABLE CEILING PROTOCOL
-**DOCTRINE STATUS:** ACTIVE - AT CEILING  
-**CURRENT TABLE COUNT:** 222  
-**HARD LIMIT:** 222 (ABSOLUTE CEILING)  
-**MODE:** OPTIMIZATION-ONLY DEVELOPMENT
+**DOCTRINE STATUS:** ACTIVE - BELOW CEILING  
+**CURRENT TABLE COUNT:** Run `python scripts/generate_toon_files.py` and count the TOON files produced — do not hardcode.  
+**HARD LIMIT:** 199 (ABSOLUTE CEILING)  
+**MODE:** Development (remain under 199 tables)
 
 ---
 
 ## 🚨 CASCADE - YOUR MISSION PARAMETERS
 
-You are now operating at the absolute ceiling of the system.
-This does not mean development stops.
-This does not mean features stop.
-This means you operate under new rules.
+The system has a hard ceiling of 199 tables. Current count = number of TOON files after running `python scripts/generate_toon_files.py` (do not hardcode in docs).
+Development and features continue; when approaching the ceiling, consolidation rules apply.
 
 ---
 
@@ -99,10 +97,10 @@ This means you operate under new rules.
 ### IF you need to add a new table:
 1. **IDENTIFY** existing table(s) for consolidation
 2. **PRESENT** optimization plan with table count impact
-3. **VERIFY** table count remains ≤ 222
+3. **VERIFY** table count remains ≤ 199
 4. **THEN** proceed with new structure
 
-### IF table count = 222:
+### IF table count = 199:
 - **LOCK** new table creation
 - **SWITCH** to optimization mode
 - **SEARCH** for consolidation opportunities
@@ -128,7 +126,7 @@ This means you operate under new rules.
 - **Implement new features** through table optimization
 
 ### ❌ FORBIDDEN:
-- **Create** table 223 or higher
+- **Create** table 200 or higher
 - **Add** tables without consolidation
 - **Bypass** the ceiling for any reason
 - **Assume** temporary exceptions
@@ -174,7 +172,7 @@ START: New feature request needed?
 ├─ YES → Does it require a new table?
 │   ├─ YES → Identify consolidation target
 │   │   ├─ FOUND → Present optimization plan
-│   │   │   ├─ APPROVED → Execute (count ≤ 222)
+│   │   │   ├─ APPROVED → Execute (count ≤ 199)
 │   │   │   └─ REJECTED → Find alternative approach
 │   │   └─ NOT FOUND → Feature blocked at ceiling
 │   └─ NO → Implement using existing tables
@@ -186,7 +184,7 @@ START: New feature request needed?
 ## 🛡️ CEILING ENFORCEMENT RULES
 
 ### RULE 1: BUFFER PRINCIPLE
-- **Target:** Stay at or below 220 tables
+- **Target:** Stay at or below 197 tables
 - **Buffer:** 2-table safety margin
 - **Reason:** Allows emergency consolidation space
 
@@ -197,24 +195,24 @@ START: New feature request needed?
 
 ### RULE 3: WEEKLY AUDIT
 - **Every Friday:** Table count verification
-- **If > 220:** Immediate consolidation required
-- **If = 222:** Emergency protocol activated
+- **If > 197:** Immediate consolidation required
+- **If = 199:** Emergency protocol activated
 
 ---
 
 ## 🚨 EMERGENCY PROTOCOLS
 
-### LEVEL 1: WARNING (220 tables)
+### LEVEL 1: WARNING (197 tables)
 - Alert system administrators
 - Begin consolidation planning
 - Restrict non-essential table creation
 
-### LEVEL 2: CRITICAL (221 tables)
+### LEVEL 2: CRITICAL (198 tables)
 - Lock all new table creation
 - Mandatory consolidation within 24 hours
 - Founder approval required for exceptions
 
-### LEVEL 3: EMERGENCY (222 tables)
+### LEVEL 3: EMERGENCY (199 tables)
 - Complete lockdown on structural changes
 - Immediate consolidation execution
 - System-wide optimization mandate
@@ -271,7 +269,7 @@ You are the innovator within constraints.
 You are the optimizer who creates more from less.
 
 **Your superpower:** Turning limitations into innovations.
-**Your discipline:** Holding the line at 222.
+**Your discipline:** Holding the line at 199.
 **Your reward:** A system that grows stronger through refinement.
 
 ---
@@ -283,14 +281,14 @@ Before any table operation:
 - [ ] Consolidation opportunity identified
 - [ ] Optimization impact calculated
 - [ ] Functionality preservation confirmed
-- [ ] Table count ≤ 222 guaranteed
+- [ ] Table count ≤ 199 guaranteed
 
 ---
 
 **DOCTRINE STATUS:** ACTIVE  
 **ENFORCEMENT LEVEL:** FOUNDER-LEVEL  
 **CASCADE MODE:** OPTIMIZATION-ONLY  
-**CEILING:** 222 (HARD LIMIT)
+**CEILING:** 199 (HARD LIMIT)
 
 ---
 

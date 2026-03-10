@@ -1,0 +1,62 @@
+{
+  "table_name": "lupo_banned_actors",
+  "fields": [
+    "`banned_actor_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`actor_name` varchar(64)",
+    "`ip_address` varchar(45)",
+    "`reason` varchar(500) NOT NULL",
+    "`banned_ymdhis` bigint NOT NULL",
+    "`banned_by_actor_id` bigint",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_banned_actors_idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_banned_actors_idx_actor_name",
+      "columns": [
+        "actor_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_banned_actors_idx_ip_address",
+      "columns": [
+        "ip_address"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_banned_actors_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "banned_actor_id",
+    "expected_name": "banned_actor_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

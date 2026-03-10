@@ -119,7 +119,7 @@ Developer docs must teach, not merely instruct.
 The canonical description of the database schema.
 
 Rule:
-Schema docs must match the active schema lineage and the 222-table doctrine.
+Schema docs must match the active schema lineage and the 199-table doctrine.
 
 /docs/toons/
 The emotional and semantic OS.
@@ -148,7 +148,7 @@ After realignment:
 - legacy migrations removed
 - abandoned schema paths removed
 - Crafty Syntax -> Lupopedia path preserved
-- 222-table doctrine enforced
+- 199-table doctrine enforced
 
 Rule:
 Every migration must reflect the current doctrine.

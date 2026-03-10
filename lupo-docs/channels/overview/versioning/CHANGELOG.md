@@ -2403,14 +2403,12 @@ Added four new system-level observability tables and unified event ledger. Ran i
 ### Details
 - **New observability tables:**
   - lupo_temporal_coherence_snapshots
-  - lupo_system_health_snapshots
   - lupo_meta_log_events
   - lupo_agent_heartbeats
 - **Unified event ledger:**
   - lupo_system_logs
 - **Initial INSERT events recorded:**
   - temporal coherence snapshots
-  - system health snapshots
   - meta-log recursion events
   - agent heartbeats
   - unified system logs
@@ -2447,7 +2445,6 @@ Migration 3.1.12 adds four doctrine-aligned tables (176?180); table ceiling rais
 
 ### Schema (Migration 3.1.12)
 - **lupo_temporal_coherence_snapshots** � LILITH observer-paradox: observation_latency_ms, recursion_depth, self_awareness_score, timestamp_integrity, utc_anchor
-- **lupo_system_health_snapshots** � SYSTEM_STATUS-style: table_count, table_ceiling, schema_state, sync_integrity, emotional_r/g/b/t
 - **lupo_meta_log_events** � Meta-logging ceiling: depth (2 or 3), event_type, actor_id
 - **lupo_agent_heartbeats** � Agent heartbeat: agent_slug, status, last_heartbeat_ymdhis
 
@@ -6736,7 +6733,7 @@ This release consolidates all work completed between versions 3.0.46 and 3.0.50,
 ### Historical Correction (2014–2025 Gap) ✅ COMPLETED
 Updated `docs/history/1996-2025/2014.md` to accurately reflect the return and accomplishments during 2025–2026:
 
-- August 2025: Return to project with WOLFIE architecture (222‑table legacy base)
+- August 2025: Return to project with WOLFIE architecture (199‑table legacy base)
 - January 2026 (16‑day sprint):
   - 26 version increments (3.0.0 → 3.0.50)
   - 120 tables aligned across 3 schemas
@@ -11045,5 +11042,5 @@ details manually.
 ### Changed
 - Updated Emotional Geometry doctrine to v4.2 with Light-Emotion Isomorphism preface.
 - Updated `README.md` with Wolfie Header update requirements and channel provenance rules.
-- Raised table ceiling doctrine/config references to 222 and added optimization trigger at 223+.
+- Raised table ceiling doctrine/config references to 199 and added optimization trigger at 200+.
 - Updated schema and doctrine reports to reflect the new table limit.

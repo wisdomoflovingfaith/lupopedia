@@ -120,7 +120,7 @@ All AI agents must respect:
 - **No stored procedures**
 - **No cascading deletes**
 - All timestamps use `YYYYMMDDHHIISS` in UTC
-- Table limit: 222 (soft ceiling)
+- Table limit: 199 (soft ceiling)
 
 ### 3. Schema Source of Truth
 - All schema changes must come from **TOON files** in `/docs/toons/`
@@ -174,7 +174,7 @@ IMPORTANT — Lupopedia uses an ACTOR MODEL:
 - No foreign keys, triggers, or stored procedures
 - All timestamps use YYYYMMDDHHIISS in UTC
 - Schema changes must come from TOON files in /docs/toons/
-- Table limit is 222
+- Table limit is 199
 - Python = maintenance (scripts/python/, PyMySQL, explicit SQL)
 - PHP = runtime only (no schema changes)
 - Uploads use SHA256 hash filenames under uploads/{actors,agents,channels,operators}/YYYY/MM/
@@ -195,7 +195,7 @@ When working on Lupopedia, AI agents must **never**:
 - ❌ Introduce `user_id` anywhere
 - ❌ Add foreign keys, triggers, or stored procedures
 - ❌ Use non-UTC or non-YYYYMMDDHHIISS timestamps
-- ❌ Create tables beyond the 222 soft limit without explicit optimization
+- ❌ Create tables beyond the 199 soft limit without explicit optimization
 - ❌ Infer schema from runtime code
 - ❌ Let PHP perform migrations or schema changes
 - ❌ Let Python handle runtime HTTP requests

@@ -215,7 +215,6 @@ This document lists every column ending in `_id` across the entire **TOON Schema
 | `gov_event_id` | lupo_gov_event_actor_edges, lupo_gov_event_conflicts, lupo_gov_event_dependencies, lupo_gov_event_references, lupo_gov_events, lupo_gov_timeline_nodes, lupo_gov_valuations | |
 | `governance_overrid_id` | lupo_governance_overrides | |
 | `hashtag_id` | lupo_hashtags | |
-| `health_id` | lupo_system_health_snapshots | |
 | `heartbeat_id` | lupo_agent_heartbeats | |
 | `help_topic_id` | lupo_help_topics | |
 | `help_tree_id` | lupo_help_tree | |

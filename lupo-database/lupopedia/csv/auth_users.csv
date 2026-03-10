@@ -1,0 +1,5 @@
+user_id,username,display_name,email,email_verified,password,auth_provider,provider_id,verification_token,verification_token_expires,password_reset_token,password_reset_expires,login_token,login_token_expires,last_login_at,last_login_ip,login_count
+BIGINT UNSIGNED,VARCHAR(30),VARCHAR(42),VARCHAR(60),TINYINT(1),VARCHAR(255),VARCHAR(20),VARCHAR(255),VARCHAR(64),BIGINT,VARCHAR(64),BIGINT,VARCHAR(64),BIGINT,BIGINT,VARCHAR(45),INT
+1,admin,Administrator,admin@example.com,1,HASHED_PASSWORD_HERE,NULL,NULL,NULL,NULL,NULL,NULL,TOKEN_HERE,20250102000000,20250101000000,192.168.1.1,42
+2,johndoe,John Doe,john@example.com,1,NULL,google,1234567890,TOKEN_VERIFY,20250115000000,NULL,NULL,TOKEN_HERE,20250102000000,20250101120000,203.0.113.45,7
+3,janesmith,Jane Smith,jane@example.com,0,NULL,github,987654321,TOKEN_VERIFY,20250110000000,TOKEN_RESET,20250102000000,NULL,NULL,20241231115959,198.51.100.10,3

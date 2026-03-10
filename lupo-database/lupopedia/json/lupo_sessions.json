@@ -1,0 +1,173 @@
+{
+  "table_name": "lupo_sessions",
+  "fields": [
+    "`session_id` varchar(255) NOT NULL",
+    "`federation_node_id` bigint NOT NULL DEFAULT 1",
+    "`actor_id` bigint NOT NULL DEFAULT 0",
+    "`actor_name` varchar(64)",
+    "`channel_id` bigint NOT NULL DEFAULT 1",
+    "`ip_address` varchar(45) NOT NULL DEFAULT ''",
+    "`user_agent` varchar(255) NOT NULL DEFAULT ''",
+    "`device_id` varchar(100)",
+    "`device_type` varchar(64)",
+    "`auth_method` varchar(30)",
+    "`auth_provider` varchar(50)",
+    "`security_level` varchar(64) NOT NULL DEFAULT 'medium'",
+    "`name_key` varchar(100)",
+    "`is_named` tinyint NOT NULL DEFAULT 0",
+    "`is_authenticated` tinyint NOT NULL DEFAULT 0",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`is_expired` tinyint NOT NULL DEFAULT 0",
+    "`is_revoked` tinyint NOT NULL DEFAULT 0",
+    "`session_data` text",
+    "`system_context` varchar(50)",
+    "`metadata` json",
+    "`login_ymdhis` bigint",
+    "`last_seen_ymdhis` bigint NOT NULL",
+    "`expires_ymdhis` bigint",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`recovery_attempts` int DEFAULT 0",
+    "`recovery_data` json"
+  ],
+  "data": [
+    {
+      "session_id": "L-lupo-0-00000000-0000-0000-0000-000000000000",
+      "federation_node_id": 0,
+      "actor_id": 0,
+      "actor_name": null,
+      "channel_id": 1,
+      "ip_address": "",
+      "user_agent": "",
+      "device_id": null,
+      "device_type": null,
+      "auth_method": null,
+      "auth_provider": null,
+      "security_level": "medium",
+      "name_key": null,
+      "is_named": 0,
+      "is_authenticated": 0,
+      "is_active": 1,
+      "is_expired": 0,
+      "is_revoked": 0,
+      "session_data": null,
+      "system_context": null,
+      "metadata": "{\"actor_type\": \"system_agent\", \"created_by\": \"system_init\", \"session_type\": \"default\", \"prefix_enforced\": true}",
+      "login_ymdhis": null,
+      "last_seen_ymdhis": 20260301134200,
+      "expires_ymdhis": null,
+      "created_ymdhis": 20260301134200,
+      "updated_ymdhis": 20260301134200,
+      "is_deleted": 0,
+      "deleted_ymdhis": null,
+      "recovery_attempts": 0,
+      "recovery_data": null
+    }
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_sessions_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_actor_name",
+      "columns": [
+        "actor_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_channel_id",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_cleanup",
+      "columns": [
+        "is_deleted",
+        "last_seen_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_device",
+      "columns": [
+        "device_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_domain",
+      "columns": [
+        "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_expires",
+      "columns": [
+        "expires_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_last_seen",
+      "columns": [
+        "last_seen_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_security",
+      "columns": [
+        "security_level"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_sessions_idx_status",
+      "columns": [
+        "is_active",
+        "is_expired",
+        "is_revoked"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "session_id",
+    "expected_name": "session_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

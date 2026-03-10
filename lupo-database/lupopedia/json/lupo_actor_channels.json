@@ -1,0 +1,100 @@
+{
+  "table_name": "lupo_actor_channels",
+  "fields": [
+    "`actor_channel_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`actor_name` varchar(64)",
+    "`created_by_actor_id` bigint NOT NULL DEFAULT 0",
+    "`channel_id` bigint NOT NULL",
+    "`status` char(1) NOT NULL DEFAULT 'A'",
+    "`start_date` bigint",
+    "`channel_color` varchar(6) NOT NULL DEFAULT 'F7FAFF'",
+    "`last_read_ymdhis` bigint",
+    "`muted_until_ymdhis` bigint",
+    "`preferences_json` json",
+    "`dialog_output_file` varchar(500)",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_channels_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channels_idx_actor_name",
+      "columns": [
+        "actor_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channels_idx_channel",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channels_idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channels_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channels_idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channels_idx_updated",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channels_unq_actor_channel",
+      "columns": [
+        "actor_id",
+        "channel_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "actor_channel_id",
+    "expected_name": "actor_channel_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -100,7 +100,7 @@ Governs Semantic OS operations via non-negotiable architectural boundaries and e
 2.  **[FLARE Protocol Doctrine](FLARE/FLARE_DOCTRINE.md)** — File-level metadata and relationship standards.
 3.  **[Database Philosophy](../architecture/DATABASE_PHILOSOPHY.md)** — Why we use no foreign keys, triggers, or stored procedures.
 4.  **[Identity Authority](IDENTITY_AUTHORITY_DOCTRINE.md)** — Universal actor model and registry hierarchy.
-5.  **[Table Ceiling Protocol](CASCADE_TABLE_CEILING_PROTOCOL.md)** — Governance of the 222-table limit.
+5.  **[Table Ceiling Protocol](CASCADE_TABLE_CEILING_PROTOCOL.md)** — Governance of the 199-table limit.
 
 ## Context & History
 

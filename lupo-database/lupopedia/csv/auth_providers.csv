@@ -1,0 +1,5 @@
+id,provider_name,client_id,client_secret,redirect_uri,is_active,created_utc,updated_utc
+BIGINT UNSIGNED,VARCHAR(50),VARCHAR(255),VARCHAR(255),VARCHAR(255),BOOLEAN,BIGINT UNSIGNED,BIGINT UNSIGNED
+1,google,1234567890-abcdefghijklmnop.apps.googleusercontent.com,ENCRYPTED_VALUE,https://example.com/auth/google/callback,1,20250101000000,20250101000000
+2,github,abc123def456ghi789,ENCRYPTED_VALUE,https://example.com/auth/github/callback,1,20250101000000,20250101000000
+3,facebook,987654321012345,ENCRYPTED_VALUE,https://example.com/auth/facebook/callback,0,20250101000000,20250101000000

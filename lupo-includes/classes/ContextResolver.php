@@ -366,7 +366,7 @@ class ContextResolver
     }
 
     /**
-     * Resolve human actor name by actor_id (e.g. 10000 = captain).
+     * Resolve human actor name by actor_id (e.g. 10000 = root).
      *
      * @param array $reg Registry from _loadRegistry
      * @param int $human_actor_id Default human actor ID (e.g. 10000)

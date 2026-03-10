@@ -632,7 +632,7 @@ When the database is offline:
 ### 📜 Non-Negotiable Doctrine (Read Before Contributing)
 #### Critical Constraints
 - **No foreign keys, triggers, or stored procedures** (absolute prohibition)  
-- **Table ceiling doctrine:** Maximum 222 tables — optimization required beyond this  
+- **Table ceiling doctrine:** Maximum 199 tables — optimization required beyond this  
 - **Subdirectory installation required** — never at web root  
 - **PHP 5.3+ compatibility** — no modern PHP features  
 - **TOON-based schema** — all schema changes must come from TOON files  

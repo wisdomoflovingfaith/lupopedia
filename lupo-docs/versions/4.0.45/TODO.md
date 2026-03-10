@@ -143,7 +143,7 @@ flip.footer: {
 
 - [ ] **Implement New Features**
   - Develop prioritized functionality
-  - Follow Table Ceiling Doctrine (max 222 tables)
+  - Follow Table Ceiling Doctrine (max 199 tables)
   - Maintain PHP 5.3 compatibility
 
 - [ ] **Documentation Updates**

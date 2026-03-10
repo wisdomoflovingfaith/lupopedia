@@ -1,0 +1,92 @@
+{
+  "table_name": "lupo_actor_channel_roles",
+  "fields": [
+    "`actor_channel_role_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`actor_name` varchar(64)",
+    "`channel_id` bigint NOT NULL",
+    "`role_key` varchar(64) NOT NULL",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`handshake_metadata_json` json",
+    "`awareness_snapshot_json` json",
+    "`protocol_completion_status` varchar(64) DEFAULT 'pending'",
+    "`protocol_version` varchar(20) DEFAULT '3.0.0'",
+    "`join_sequence_step` tinyint DEFAULT 0",
+    "`handshake_completed_ymdhis` bigint",
+    "`awareness_completed_ymdhis` bigint",
+    "`cjp_completed_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_channel_roles_idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channel_roles_idx_actor_name",
+      "columns": [
+        "actor_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channel_roles_idx_channel_id",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channel_roles_idx_join_sequence_step",
+      "columns": [
+        "join_sequence_step"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channel_roles_idx_protocol_completion_status",
+      "columns": [
+        "protocol_completion_status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channel_roles_idx_protocol_version",
+      "columns": [
+        "protocol_version"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_channel_roles_idx_role_key",
+      "columns": [
+        "role_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "actor_channel_role_id",
+    "expected_name": "actor_channel_role_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

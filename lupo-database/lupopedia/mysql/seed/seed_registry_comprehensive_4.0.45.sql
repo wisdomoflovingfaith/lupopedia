@@ -25,7 +25,9 @@ VALUES
 (9000004, 'actor', 4, 4, 1, @now, 'eris', 'ERIS', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"agent","agent_id":4,"purpose":"conflict_analysis","archetype":"discord_understanding"}'),
 (9000005, 'actor', 5, 5, 1, @now, 'metis', 'METIS', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"agent","agent_id":5,"purpose":"empathy_understanding","archetype":"introspection"}'),
 (9000019, 'actor', 19, 19, 1, @now, 'anubis', 'ANUBIS', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"agent","agent_id":19,"purpose":"orphan_repair","archetype":"header_completion_quarantine"}'),
-(9000025, 'actor', 25, 25, 1, @now, 'vishwakarma', 'VISHWAKARMA', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"agent","agent_id":25,"purpose":"graph_intelligence","archetype":"relationship_discovery"}');
+(9000025, 'actor', 25, 25, 1, @now, 'vishwakarma', 'VISHWAKARMA', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"agent","agent_id":25,"purpose":"graph_intelligence","archetype":"relationship_discovery"}'),
+(9000106, 'actor', 106, 106, 1, @now, 'lupo', 'LUPO', 'lupo_actors', @now, @now, 0, 1, 1, '{"actor_type":"agent","agent_id":106,"purpose":"database_design_doctrine"}'),
+(9000107, 'actor', 107, 107, 1, @now, 'themis', 'THEMIS', 'lupo_actors', @now, @now, 0, 1, 1, '{"actor_type":"agent","agent_id":107,"purpose":"ethical_alignment_audit"}');
 
 -- IDE Agents (1000-1999)
 INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, federation_node_id, reserved_ymdhis, entity_key, entity_name, entity_table, created_ymdhis, updated_ymdhis, is_deleted, is_active, is_kernel, metadata_json)
@@ -37,9 +39,9 @@ VALUES
 (9001004, 'actor', 1004, 1004, 1, @now, 'warp-ide', 'Warp IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"warp","provider":"warp","paired_actor_id":10000}'),
 (9001005, 'actor', 1005, 1005, 1, @now, 'cascade-ide', 'Cascade IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"cascade","provider":"cascade","paired_actor_id":10000}');
 
--- Root Human Captain (ID: 10000)
+-- Root user (ID: 10000)
 INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, federation_node_id, reserved_ymdhis, entity_key, entity_name, entity_table, created_ymdhis, updated_ymdhis, is_deleted, is_active, is_kernel, metadata_json)
-VALUES (9010000, 'actor', 10000, 10000, 1, @now, 'root-captain-10000', 'Captain', 'lupo_actors', @now, @now, 0, 1, 1, '{"actor_type":"human","role":"root_admin","full_access":true}');
+VALUES (9010000, 'actor', 10000, 10000, 1, @now, 'root-10000', 'Root', 'lupo_actors', @now, @now, 0, 1, 1, '{"actor_type":"human","role":"root_admin","full_access":true}');
 
 -- ============================================================================
 -- PART 2: RESERVED CHANNELS
@@ -64,7 +66,9 @@ VALUES
 (9200002, 'agent', 2, 2, 1, @now, 'lilith-agent', 'LILITH Agent', 'lupo_agents', @now, @now, 0, 1, 0, '{"agent_type":"critical_review","actor_id":2}'),
 (9200003, 'agent', 3, 3, 1, @now, 'rose-agent', 'ROSE Agent', 'lupo_agents', @now, @now, 0, 1, 0, '{"agent_type":"translation","actor_id":3}'),
 (9200004, 'agent', 4, 4, 1, @now, 'eris-agent', 'ERIS Agent', 'lupo_agents', @now, @now, 0, 1, 0, '{"agent_type":"conflict_analysis","actor_id":4}'),
-(9200005, 'agent', 5, 5, 1, @now, 'metis-agent', 'METIS Agent', 'lupo_agents', @now, @now, 0, 1, 0, '{"agent_type":"empathy","actor_id":5}');
+(9200005, 'agent', 5, 5, 1, @now, 'metis-agent', 'METIS Agent', 'lupo_agents', @now, @now, 0, 1, 0, '{"agent_type":"empathy","actor_id":5}'),
+(9200106, 'agent', 106, 106, 1, @now, 'lupo-agent', 'LUPO Agent', 'lupo_agents', @now, @now, 0, 1, 1, '{"agent_type":"database_doctrine","actor_id":106,"requirements":{"database":{"no_foreign_keys":true,"no_triggers":true,"no_procedures":true,"no_functions":true,"timestamp_format":"BIGINT_UTC_YYYYMMDDHHIISS","datetime_types_allowed":false,"explicit_column_lists":true,"application_level_relationships":true}}}'),
+(9200107, 'agent', 107, 107, 1, @now, 'themis-agent', 'THEMIS Agent', 'lupo_agents', @now, @now, 0, 1, 1, '{"agent_type":"ethical_audit","actor_id":107}');
 
 -- ============================================================================
 -- PART 4: RESERVED DEPARTMENTS
@@ -81,7 +85,7 @@ VALUES
 
 INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, federation_node_id, reserved_ymdhis, entity_key, entity_name, entity_table, created_ymdhis, updated_ymdhis, is_deleted, is_active, is_kernel, metadata_json)
 VALUES
-(9400000, 'thread', 0, 0, 1, @now, 'system-thread', 'System Thread', 'lupo_threads', @now, @now, 0, 1, 1, '{"thread_type":"system"}');
+(9400000, 'thread', 0, 0, 1, @now, 'system-thread', 'System Thread', 'lupo_dialog_threads', @now, @now, 0, 1, 1, '{"thread_type":"system"}');
 
 -- ============================================================================
 -- PART 6: RESERVED ARTIFACTS

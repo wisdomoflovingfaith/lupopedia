@@ -287,7 +287,6 @@ The following tables will be created in dependency-aware batches:
 - **lupo_session_events**
 - **lupo_sessions**
 - **lupo_system_config**
-- **lupo_system_health_snapshots**
 - **lupo_system_logs**
 - **lupo_tab_events**
 - **lupo_temporal_coherence_snapshots**

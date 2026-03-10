@@ -67,17 +67,19 @@ file.last_modified_system_version: 3.0.0
 file.channel: doctrine
 ---
 
-# DOCTRINE: GLOBAL TABLE CEILING (222 TABLES)
+# DOCTRINE: GLOBAL TABLE CEILING (199 TABLES)
 
 **Filename:** doctrine/TABLE_LIMIT_CONSTRAINT.md  
 **Status:** Architectural Hard Limit  
 **Authority:** High (below Ethical Foundations, above AAL)  
 **Version:** 1.0
 
-## 1. HARD LIMIT: 222 TABLES PER DATABASE
+**Current table count:** Do not hardcode. Run `python scripts/generate_toon_files.py` and count the TOON files produced; use that number when referencing "current" count in any doc.
 
-### 1.1 MAX_TABLES_PER_DATABASE = 222  
-No database in the Lupopedia ecosystem may exceed 222 total tables at rest.
+## 1. HARD LIMIT: 199 TABLES PER DATABASE
+
+### 1.1 MAX_TABLES_PER_DATABASE = 199  
+No database in the Lupopedia ecosystem may exceed 199 total tables at rest.
 
 ### 1.2 This limit is absolute and applies to:
 
@@ -95,20 +97,20 @@ No database in the Lupopedia ecosystem may exceed 222 total tables at rest.
 
 ## 2. MIGRATION EXCEPTION (TEMPORARY OVERAGE ALLOWED)
 
-### 2.1 Migrations ARE allowed to temporarily exceed 222 tables only if:
+### 2.1 Migrations ARE allowed to temporarily exceed 199 tables only if:
 
 - The migration is actively running
 - The overage is temporary
 - Deprecated tables are dropped before the migration completes
-- The final post‑migration table count is ≤ 222
+- The final post‑migration table count is ≤ 199
 
 ### 2.2 This is called the "Migration Overage Window."
 
 ### 2.3 The window closes the moment the migration finishes.
-At that moment, the table count must be ≤ 222 or the migration is invalid.
+At that moment, the table count must be ≤ 199 or the migration is invalid.
 
 ### 2.4 Table Optimization Cycle Trigger
-If any database reaches 223 tables or more:
+If any database reaches 200 tables or more:
 
 - Review all tables for redundancy
 - Identify merge candidates
@@ -127,7 +129,7 @@ If any database reaches 223 tables or more:
 
 ### 3.2 The cleanup step is mandatory and must run before the migration is considered successful.
 
-### 3.3 A migration that ends with >222 tables is considered failed and must be rolled back.
+### 3.3 A migration that ends with >199 tables is considered failed and must be rolled back.
 
 ## 4. MULTI‑DATABASE ARCHITECTURE
 
@@ -143,7 +145,7 @@ If any database reaches 223 tables or more:
 - lupopedia_worms
 - AI sandbox
 - ORM experiments allowed
-- Still subject to the 222 table limit
+- Still subject to the 199 table limit
 
 ### 4.3 Additional DBs require explicit human directive.
 

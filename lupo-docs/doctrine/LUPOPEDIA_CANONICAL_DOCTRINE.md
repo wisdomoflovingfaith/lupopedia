@@ -147,13 +147,13 @@ Column naming convention:
 - `last_seen_ymdhis`
 
 ### Table limit:
-- Current table count: ~217
-- **Soft ceiling: 222 tables**
+- Current table count: 155 (install + 34 original tables)
+- **Soft ceiling: 199 tables**
 
 ### Table creation doctrine:
 If a migration or change would create a new table:
 1. Count tables first.
-2. If table count ≥ 222:
+2. If table count ≥ 199:
    - **Do not create the table.**
    - Emit:
      ```
@@ -382,7 +382,7 @@ lupo-agents/<agent_id>/versions/<version>/
   `BOUNDARY VIOLATION: Invalid upload path.`
 
 #### Table limit enforcement
-- If a request implies creating a new table and table count ≥ 222:
+- If a request implies creating a new table and table count ≥ 199:
   `TABLE LIMIT REACHED: Optimization required before adding new tables.`
 
 #### Identity doctrine
@@ -425,7 +425,7 @@ Lupopedia is operated as a **multi-agent ecosystem**.
 - Introduce `user_id` anywhere.
 - Add foreign keys, triggers, or stored procedures.
 - Use non-UTC or non-YYYYMMDDHHIISS timestamps.
-- Create tables beyond the 222 soft limit without explicit optimization.
+- Create tables beyond the 199 soft limit without explicit optimization.
 - Infer schema from runtime code.
 - Let PHP perform migrations or schema changes.
 - Let Python handle runtime HTTP requests.
@@ -440,7 +440,7 @@ Lupopedia is operated as a **multi-agent ecosystem**.
 - **Identity:** `actor_id`, not `user_id`.
 - **Timestamps:** `YYYYMMDDHHIISS` UTC.
 - **No FK, no triggers, no stored procedures.**
-- **Table limit:** 222.
+- **Table limit:** 199.
 - **Schema source:** `/docs/toons/`.
 - **Python = maintenance** (`scripts/python/`, PyMySQL, explicit SQL).
 - **PHP = runtime** (no schema changes).
@@ -464,7 +464,7 @@ IMPORTANT — Lupopedia uses an ACTOR MODEL:
 - No foreign keys, triggers, or stored procedures
 - All timestamps use YYYYMMDDHHIISS in UTC
 - Schema changes must come from TOON files in /docs/toons/
-- Table limit is 222
+- Table limit is 199
 - Python = maintenance (scripts/python/, PyMySQL, explicit SQL)
 - PHP = runtime only (no schema changes)
 - Uploads use SHA256 hash filenames under uploads/{actors,agents,channels,operators}/YYYY/MM/

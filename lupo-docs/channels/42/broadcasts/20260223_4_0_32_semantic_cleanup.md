@@ -169,7 +169,7 @@ flip.footer:
 - Finalize FLIP footer implementation
 - Establish stable multi-agent workflows
 - Ensure semantic security compliance
-- Maintain table ceiling doctrine (222 max)
+- Maintain table ceiling doctrine (199 max)
 
 ---
 

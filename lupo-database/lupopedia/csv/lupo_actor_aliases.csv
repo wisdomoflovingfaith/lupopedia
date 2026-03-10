@@ -1,0 +1,2 @@
+"alias_id` bigint NOT NULL auto_increment","actor_id` bigint NOT NULL","alias_name` varchar(255) NOT NULL","created_ymdhis` bigint NOT NULL","updated_ymdhis` bigint NOT NULL"
+"alias_id` bigint NOT NULL auto_increment:BIGINT|NOT_NULL","actor_id` bigint NOT NULL:BIGINT|NOT_NULL","alias_name` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","created_ymdhis` bigint NOT NULL:BIGINT|NOT_NULL","updated_ymdhis` bigint NOT NULL:BIGINT|NOT_NULL"

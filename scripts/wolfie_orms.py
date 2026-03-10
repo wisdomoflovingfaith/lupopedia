@@ -1208,26 +1208,6 @@ def select_one_from_lupo_system_events(db):
     """
     return db.query(sql)
 
-def select_one_from_lupo_system_health_snapshots(db):
-    sql = """
-        SELECT
-            health_id,
-            table_count,
-            table_ceiling,
-            schema_state,
-            sync_integrity,
-            emotional_r,
-            emotional_g,
-            emotional_b,
-            emotional_t,
-            created_ymdhis,
-            is_deleted,
-            deleted_ymdhis
-        FROM lupo_system_health_snapshots
-        LIMIT 1;
-    """
-    return db.query(sql)
-
 def select_one_from_lupo_system_logs(db):
     sql = """
         SELECT

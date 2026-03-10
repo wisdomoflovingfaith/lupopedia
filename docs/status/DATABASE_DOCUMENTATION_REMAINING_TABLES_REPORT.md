@@ -24,9 +24,11 @@ flare.headers:
 
 All tables that have a TOON file in `lupo-docs/toons/*.toon.json` now have a corresponding table documentation file in `lupo-docs/database/lupopedia/tables/*.md`.
 
+**Current table count:** Do not hardcode. Run `python scripts/generate_toon_files.py` and use the number of TOON files produced (or the count printed by the script) as the current table count. TOONs are the source of truth.
+
 ## Gap analysis
 
-- **TOONs:** 222 table TOONs (from `lupo-docs/toons/`).
+- **TOONs:** From the output of `scripts/generate_toon_files.py` (count = current table count).
 - **Existing table docs:** 217 tables already had a matching `.md` in `lupo-docs/database/lupopedia/tables/`.
 - **Missing:** 5 tables had no doc.
 

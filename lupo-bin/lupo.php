@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-// VERSION: 4.0.63
+// VERSION: 4.0.67
 
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(dirname(__FILE__)) . '/');
@@ -54,7 +54,7 @@ try {
             $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
             $kernel->bootstrap($db, $table_prefix, $state_file, ABSPATH, $authService);
             $ctx = $kernel->getContext();
-            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.63');
+            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.67');
             lupo_validate_flare_headers($ctx, $system_version);
             DialogHeaderValidator::validate($ctx);
             $verbose = isset($whoami_verbose) ? $whoami_verbose : false;
@@ -495,7 +495,7 @@ try {
             exit($return_var);
             break;
         case 'version':
-            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.63';
+            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.67';
             echo "Lupopedia version " . $ver . "\n";
             echo "Documentation: docs/version.md\n";
             break;
@@ -869,8 +869,8 @@ function lupo_help_whoami()
     echo "  actor_type = agent and paired_actor_id > 0 -> hybrid\n";
     echo "  actor_type = system      -> system\n\n";
     echo "Examples:\n";
-    echo "  Hybrid (e.g. Cursor):     Human Identity: captain (10000), Active Agent: cursor (1003), Session Mode: hybrid\n";
-    echo "  Human direct (Captain):  Human Identity: captain (10000), Active Agent: none, Session Mode: human_direct\n";
+    echo "  Hybrid (e.g. Cursor):     Human Identity: root (10000), Active Agent: cursor (1003), Session Mode: hybrid\n";
+    echo "  Human direct (root):    Human Identity: root (10000), Active Agent: none, Session Mode: human_direct\n";
     echo "  Autonomous (e.g. Lilith): Human Identity: none, Active Agent: lilith (2038), Session Mode: autonomous_agent\n";
     echo "  System:                   Human Identity: none, Active Agent: none, Session Mode: system\n\n";
     echo "Full reference: docs/lupopedia_whoami_readme.md (Section 4 – Dual-Identity Context)\n";
@@ -893,7 +893,7 @@ function lupo_help_context()
     echo "{\n";
     echo "  \"actor_name\": \"cursor\",\n";
     echo "  \"actor_id\": 1003,\n";
-    echo "  \"human_actor_name\": \"captain\",\n";
+    echo "  \"human_actor_name\": \"root\",\n";
     echo "  \"human_actor_id\": 10000,\n";
     echo "  \"agent_name\": \"cursor\",\n";
     echo "  \"actor_type\": \"ide_agent\",\n";

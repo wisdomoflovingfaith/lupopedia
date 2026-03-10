@@ -2,8 +2,9 @@
 """
 TOON Generator (schema + canonical data from live DB).
 
-Generates JSON TOON files for all tables using live MySQL schema introspection
-(SHOW TABLES / SHOW FULL COLUMNS / SHOW INDEX) and optionally canonical rows:
+Generates TOON representations of the database for all tables using live MySQL
+schema introspection (SHOW TABLES / SHOW FULL COLUMNS / SHOW INDEX) and optionally
+canonical rows:
 
 - PK=0 row: for any table with a primary key, include the row where pk = 0 if it exists.
 - lupo_registry: all rows from DB + active agents as actors (doctrine; no inactive agents).
@@ -11,7 +12,16 @@ Generates JSON TOON files for all tables using live MySQL schema introspection
 Actor/agent doctrine: active agents (lupo_agent_registry WHERE is_active=1) are included in
 lupo_registry TOON data as entity_type='actor', entity_table='lupo_agent_registry'.
 
-Output: docs/toons/<table_name>.toon.json
+Output:
+  - lupo-database/lupopedia/json/<table_name>.json  (JSON format)
+  - lupo-database/lupopedia/toon/<table_name>.toon  (TOON format: YAML)
+
+TOONs are the canonical representation of database structure; see docs/TOON_REFERENCE.md.
+
+Current table count: The number of TOON files written by this script is the canonical
+"current table count" for documentation. Do not hardcode table counts in docs; run this
+script and use the printed count (or count the .toon files in the output directory).
+
 DB config: read from lupopedia-config.php (project root). See scripts/db_config.py.
 If SKIP_DB=1, canonical data is skipped and "data" arrays are empty.
 """
@@ -30,6 +40,11 @@ try:
 except ImportError:
     pymysql = None
     DictCursor = None
+
+try:
+    import yaml
+except ImportError:
+    yaml = None
 
 from db_config import get_connection_params
 from actor_agent_doctrine import (
@@ -254,24 +269,48 @@ def fetch_canonical_data(
     return data
 
 
-def write_toon(output_dir: Path, table_name: str, payload: Dict[str, Any]) -> None:
-    output_dir.mkdir(parents=True, exist_ok=True)
-    path = output_dir / "{}.toon.json".format(table_name)
-    with path.open("w", encoding="utf-8") as f:
+def write_toon(
+    json_dir: Path,
+    toon_dir: Path,
+    table_name: str,
+    payload: Dict[str, Any],
+) -> None:
+    """Write payload: JSON format to json/<table>.json, TOON (YAML) format to toon/<table>.toon."""
+    json_dir.mkdir(parents=True, exist_ok=True)
+    toon_dir.mkdir(parents=True, exist_ok=True)
+    json_path = json_dir / "{}.json".format(table_name)
+    toon_path = toon_dir / "{}.toon".format(table_name)
+    with json_path.open("w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, ensure_ascii=False)
+    if yaml is not None:
+        with toon_path.open("w", encoding="utf-8") as f:
+            yaml.dump(
+                payload,
+                f,
+                default_flow_style=False,
+                allow_unicode=True,
+                sort_keys=False,
+            )
+    else:
+        with toon_path.open("w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=2, ensure_ascii=False)
 
 
-def clear_toon_files(output_dir: Path) -> None:
-    if not output_dir.is_dir():
-        output_dir.mkdir(parents=True, exist_ok=True)
-        return
-    for path in output_dir.glob("*.toon.json"):
-        path.unlink()
+def clear_toon_files(json_dir: Path, toon_dir: Path) -> None:
+    """Remove generated .json and .toon files from both output dirs."""
+    for dir_path in (json_dir, toon_dir):
+        if not dir_path.is_dir():
+            dir_path.mkdir(parents=True, exist_ok=True)
+            continue
+        for path in list(dir_path.glob("*.json")) + list(dir_path.glob("*.toon")):
+            path.unlink()
 
 
 def main() -> int:
     base = Path(__file__).resolve().parent
-    output_dir = base.parent / "docs" / "toons"
+    project_root = base.parent
+    json_dir = project_root / "lupo-database" / "lupopedia" / "json"
+    toon_dir = project_root / "lupo-database" / "lupopedia" / "toon"
     skip_db = os.getenv("SKIP_DB", "").lower() in ("1", "true", "yes")
 
     if pymysql is None or DictCursor is None:
@@ -289,7 +328,7 @@ def main() -> int:
 
     try:
         cursor = conn.cursor()
-        clear_toon_files(output_dir)
+        clear_toon_files(json_dir, toon_dir)
         tables = fetch_tables(cursor)
 
         if not tables:
@@ -319,9 +358,10 @@ def main() -> int:
                 }
             payload["relationships"] = []
 
-            write_toon(output_dir, table_name, payload)
+            write_toon(json_dir, toon_dir, table_name, payload)
 
-        print("Wrote {} TOONs to {}".format(len(tables), output_dir))
+        print("Wrote {} TOONs to {} (JSON) and {} (.toon)".format(
+            len(tables), json_dir, toon_dir))
         
         # Automatically trigger CSV export after TOON generation
         print("Triggering CSV export...")

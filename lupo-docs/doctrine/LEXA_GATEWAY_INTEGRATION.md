@@ -164,9 +164,9 @@ uploads/operators/YYYY/MM/<sha256>.<ext>
 **Message:** `BOUNDARY VIOLATION: Invalid upload path.`
 
 ### 5. Table Count Safety
-**Rule:** Maximum 222 tables before optimization required.
+**Rule:** Maximum 199 tables before optimization required.
 **Check:** `SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'lupopedia'`
-**Block if:** Creating new table when count ≥ 222.
+**Block if:** Creating new table when count ≥ 199.
 **Message:** `TABLE LIMIT REACHED: Optimization required before adding new tables.`
 
 ---
@@ -239,7 +239,7 @@ if (!$check['allowed']) {
 define('LEXA_ENABLED', true);
 define('LEXA_STRICT_MODE', true); // Block vs warn
 define('LEXA_LOG_ALL_CHECKS', false); // Performance
-define('LEXA_TABLE_LIMIT', 222);
+define('LEXA_TABLE_LIMIT', 199);
 ```
 
 ### Database Tables
@@ -323,8 +323,8 @@ No new tables required.
     "severity": "error",
     "rule_violated": "table_limit",
     "context": {
-        "current_tables": 222,
-        "limit": 222,
+        "current_tables": 155,
+        "limit": 199,
         "suggestion": "Consider consolidation, JSON columns, or archival strategy"
     }
 }

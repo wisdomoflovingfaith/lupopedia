@@ -78,8 +78,8 @@ X-Lupo-File-Path: docs/doctrine/TABLE_CONSOLIDATION_PLAN.md
 ---
 
 # 🔥 TABLE CONSOLIDATION PLAN - ACTUAL EXECUTION
-**CURRENT TABLES:** 220  
-**TARGET:** ≤ 222  
+**CURRENT TABLES:** 155 (install + 34 original tables)  
+**TARGET:** ≤ 199  
 **STATUS:** READY FOR EXECUTION
 
 ---
@@ -361,7 +361,7 @@ DROP TABLE livehelp_channels;
 **ADD:** 4 tables  
 **AFTER:** 184 tables
 
-**RESULT:** ✅ 184 tables (38 tables under the 222 ceiling)
+**RESULT:** ✅ 184 tables (15 tables under the 199 ceiling)
 
 ---
 

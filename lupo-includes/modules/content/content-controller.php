@@ -278,31 +278,31 @@ function content_get_related_edges($content_id) {
  * @return string Rendered HTML
  */
 function content_render_canonical($content, $related_edges) {
-    // Load content renderer
-    if (file_exists(LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/renderers/content-renderer.php')) {
+    // Resolve "see file" and empty body from actual files first (so renderer or fallback see resolved content).
+    $content_body = isset($content['content_body']) ? (string)$content['content_body'] : (isset($content['body']) ? (string)$content['body'] : '');
+    if ($content_body === '' || strcasecmp(trim($content_body), 'see file') === 0) {
+        $resolved = content_resolve_body_from_file($content);
+        if ($resolved !== null && isset($resolved['rendered_body']) && $resolved['rendered_body'] !== '') {
+            $content_body = isset($resolved['body']) ? $resolved['body'] : $content_body;
+            $content['content_body'] = $content_body;
+            $content['body'] = $content_body;
+            $content['_resolved_rendered_body'] = $resolved['rendered_body'];
+        }
+    }
+
+    // Use renderer only when we did not resolve from file (renderer does not know _resolved_rendered_body).
+    if (empty($content['_resolved_rendered_body']) && file_exists(LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/renderers/content-renderer.php')) {
         require_once LUPOPEDIA_ABSPATH . '/lupo-includes/modules/content/renderers/content-renderer.php';
-        
         if (function_exists('content_renderer_render_canonical')) {
             return content_renderer_render_canonical($content, $related_edges);
         }
     }
-    
+
     // Fallback rendering
     $content_name = isset($content['content_name'])
         ? (string)$content['content_name']
         : (isset($content['title']) ? (string)$content['title'] : '');
-    $content_body = isset($content['content_body'])
-        ? (string)$content['content_body']
-        : (isset($content['body']) ? (string)$content['body'] : '');
-    $rendered_body = $content_body;
-
-    if ($content_body === '' || strcasecmp(trim($content_body), 'see file') === 0) {
-        $resolved = content_resolve_body_from_file($content);
-        if (!empty($resolved['body'])) {
-            $content_body = $resolved['body'];
-            $rendered_body = $resolved['rendered_body'];
-        }
-    }
+    $rendered_body = isset($content['_resolved_rendered_body']) ? $content['_resolved_rendered_body'] : $content_body;
 
     $html = '<div class="lupopedia-content canonical-content">';
     $html .= '<h1>' . htmlspecialchars($content_name) . '</h1>';
@@ -324,6 +324,47 @@ function content_render_canonical($content, $related_edges) {
 }
 
 /**
+ * Parse file content that has a FLARE YAML front matter block; return body and rendered output with headers shown.
+ *
+ * @param string $raw Raw file content
+ * @param array $content Content record (for slug/title check)
+ * @return array{body:string,rendered_body:string}|null Null if no YAML block
+ */
+function _content_parse_flare_file($raw, $content) {
+    $lines = preg_split('/\r\n|\r|\n/', $raw);
+    if (empty($lines) || trim($lines[0]) !== '---') {
+        return null;
+    }
+    $yaml_lines = array();
+    $body_start = 0;
+    for ($i = 1; $i < count($lines); $i++) {
+        if (trim($lines[$i]) === '---') {
+            $body_start = $i + 1;
+            break;
+        }
+        $yaml_lines[] = $lines[$i];
+    }
+    if ($body_start === 0) {
+        return null;
+    }
+    $yaml_block = implode("\n", $yaml_lines);
+    $body = implode("\n", array_slice($lines, $body_start));
+    $rendered_body = '<div class="flare-headers-section" style="margin-bottom: 1.5rem; padding: 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px;">';
+    $rendered_body .= '<h2 style="margin-top: 0; font-size: 1.125rem; color: #334155;">FLARE Headers</h2>';
+    $rendered_body .= '<pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; font-size: 0.8125rem; color: #475569;">' . htmlspecialchars($yaml_block) . '</pre>';
+    $rendered_body .= '</div>';
+    if (trim($body) !== '' && function_exists('content_render_body')) {
+        $rendered_body .= content_render_body($body, 'markdown', 'markdown');
+    } elseif (trim($body) !== '') {
+        $rendered_body .= '<div class="content-body-markdown">' . nl2br(htmlspecialchars($body)) . '</div>';
+    }
+    return array(
+        'body' => $body,
+        'rendered_body' => $rendered_body,
+    );
+}
+
+/**
  * Resolve content body from documentation files when content says "see file".
  *
  * @param array $content
@@ -335,6 +376,10 @@ function content_resolve_body_from_file($content) {
         $abs_path = rtrim(LUPOPEDIA_ABSPATH, '/\\') . '/' . str_replace('\\', '/', $content['file_path_from_root']);
         if (file_exists($abs_path) && is_readable($abs_path)) {
             $body = file_get_contents($abs_path);
+            $result = _content_parse_flare_file($body, $content);
+            if ($result !== null) {
+                return $result;
+            }
             $lines = preg_split('/\r\n|\r|\n/', $body);
             if (!empty($lines) && trim($lines[0]) === '---') {
                 for ($i = 1; $i < count($lines); $i++) {
@@ -353,6 +398,29 @@ function content_resolve_body_from_file($content) {
                 'body' => $body,
                 'rendered_body' => $rendered_body,
             );
+        }
+    }
+
+    // 4.0.67: Slug "flare" — resolve to FLARE doctrine/apply doc and show FLARE headers block + body.
+    $slug = isset($content['slug']) ? trim($content['slug']) : '';
+    $title = isset($content['title']) ? trim($content['title']) : '';
+    if (strtolower($slug) === 'flare' || strtolower($title) === 'flare') {
+        $base = rtrim(LUPOPEDIA_ABSPATH, '/\\');
+        $flare_paths = array(
+            $base . '/lupo-database/lupopedia/channels/channel_id/0/content/federation_node_id/0/FLARE.md',
+            $base . '/docs/doctrine/FLARE/FLARE_APPLY.md',
+            $base . '/docs/doctrine/FLARE/FLARE_DOCTRINE.md',
+            $base . '/lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md',
+        );
+        foreach ($flare_paths as $abs_path) {
+            if (file_exists($abs_path) && is_readable($abs_path)) {
+                $body = file_get_contents($abs_path);
+                $result = _content_parse_flare_file($body, $content);
+                if ($result !== null) {
+                    return $result;
+                }
+                break;
+            }
         }
     }
 
@@ -556,13 +624,23 @@ function content_handle_slug($slug, $collection_id = null) {
             $content['body'] = $remote_body;
         }
     }
-    
-    // 4. Render body based on type + format
+
+    // 4. Render body based on type + format (resolve "see file" first)
     $content_type = isset($content['content_type']) ? $content['content_type'] : 'html';
     $format = isset($content['format']) ? $content['format'] : 'html';
-    $body = isset($content['body']) ? $content['body'] : '';
-    
-    $rendered_body = content_render_body($body, $content_type, $format);
+    $body = isset($content['body']) ? $content['body'] : (isset($content['content_body']) ? $content['content_body'] : '');
+    $rendered_body = '';
+
+    if ($body === '' || strcasecmp(trim($body), 'see file') === 0) {
+        $resolved = content_resolve_body_from_file($content);
+        if ($resolved !== null && isset($resolved['rendered_body']) && $resolved['rendered_body'] !== '') {
+            $rendered_body = $resolved['rendered_body'];
+            $body = isset($resolved['body']) ? $resolved['body'] : $body;
+        }
+    }
+    if ($rendered_body === '') {
+        $rendered_body = content_render_body($body, $content_type, $format);
+    }
     
     // 5. Extract section anchors (cached)
     if (empty($content['content_sections'])) {
@@ -587,7 +665,9 @@ function content_handle_slug($slug, $collection_id = null) {
         if (class_exists('ConnectionsService') && !empty($GLOBALS['mydatabase'])) {
             try {
                 $domainId = isset($GLOBALS['domain_id']) ? (int)$GLOBALS['domain_id'] : 0;
-                $connectionsService = new ConnectionsService($GLOBALS['mydatabase'], $domainId);
+                $db = $GLOBALS['mydatabase'];
+                $pdo = method_exists($db, 'getPdo') ? $db->getPdo() : $db;
+                $connectionsService = new ConnectionsService($pdo, $domainId);
                 $semanticContext = $connectionsService->getConnectionsForContent($content_id);
             } catch (Exception $e) {
                 error_log('ConnectionsService error: ' . $e->getMessage());

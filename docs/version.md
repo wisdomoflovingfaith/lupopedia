@@ -4,21 +4,30 @@ flare.headers:
   flare.version: "1.0"
   flare.schema: "documentation"
   file_path_from_root: "docs/version.md"
-  last_modified_utc: "20260307"
-  system_version: "4.0.65"
+  last_modified_utc: "20260308"
+  system_version: "4.0.67"
   purpose: "Version history and upgrade notes for Lupopedia"
-  traits: ["versioning", "v4.0.64", "context", "cli"]
+  traits: ["versioning", "v4.0.67", "multi-agent", "evolution"]
   tags: ["version", "changelog", "upgrade"]
 ---
 
 # Lupopedia version history
 
-Current version: **4.0.65**  
-Date: 2026-03-07
+Current version: **4.0.67**  
+Date: 2026-03-08
 
-## Summary of changes (4.0.65)
+## Summary of changes (4.0.67)
 
-- **Development Phase:** Transitioned to development version 4.0.65 for ongoing feature development and system enhancements.
+- **Install & Upgrade Validation:** Release for testing the Crafty Syntax 3.7.5 → Lupopedia upgrade path. Table ceiling **199 tables**; main admin (actor 10000) named **root**; ROOT doctrine schema: `lupo_contents.channel_id` and `federation_source_url`, `lupo_channel_departments`, `lupo_schema_migrations`, `lupo_actor_apps`. Current table count from TOON files: run `python scripts/generate_toon_files.py`.
+- **Actor application folders (doctrine):** Every actor has an `apps/` directory with `skills/skills.md` (skill registry), `scripts/`, `assets/` (icons, images, prompts, templates), and `references/` (schema.md, manifest.json). See lupo-actors and ROOT doctrine emails.
+
+## Summary of changes (4.0.66)
+
+- **Multi-Agent Evolution Phase:** Implemented hierarchical multi-agent coordination with new kernel agents **LUPO** (Database Architect) and **THEMIS** (Ethical Auditor).
+- **Consensus Workflow:** Established `Lilith -> THEMIS -> WOLFIE` consensus loop for task validation and structural reviews.
+- **Improved Persistence:** Enhanced the `lupo-channels/` structure with versioned threads, status-driven task subdirectories, and roll-based permissions.
+- **Database Schema (canonical):** Multi-agent services use existing canonical tables: `lupo_dialog_threads`, `lupo_dialog_messages`, `lupo_actor_channel_roles`, and `lupo_tasks`. No duplicate `lupo_threads`/`lupo_messages`/`lupo_rolls`; see 4.0.66 remediation.
+
 - **Web Authentication Foundation:** Building upon the web authentication and actor selection features from 4.0.64.
 
 ## Summary of changes (4.0.64)
@@ -36,8 +45,8 @@ Date: 2026-03-07
 
 ## Recent version history
 
-| Version | Date       | Summary |
-|--------|------------|--------|
+| **4.0.67** | 2026-03-08 | Install & upgrade validation cycle; Crafty 3.7.5 baseline verification. |
+| **4.0.66** | 2026-03-08 | Multi-agent evolution: LUPO, THEMIS, consensus loops, and schema enhancements. |
 | **4.0.65** | 2026-03-07 | Development phase - ongoing feature development. |
 | **4.0.64** | 2026-03-07 | Web authentication, actor selection, documentation scaling, version management. |
 | **4.0.62** | 2026-03-06 | Context Kernel, DOCTOR actor (1009), Task system documentation, and version synchronization. |

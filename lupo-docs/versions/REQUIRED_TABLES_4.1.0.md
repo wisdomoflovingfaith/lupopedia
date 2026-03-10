@@ -88,7 +88,7 @@ signature: cascade
 
 **Version:** 4.1.0  
 **Target Release Date:** 2026-02-22  
-**Table Ceiling:** 222 (hard limit)  
+**Table Ceiling:** 199 (hard limit)  
 **Current Status:** Requirements definition phase  
 
 **Required Crafty Syntax Compatibility Tables:** 21  
@@ -268,7 +268,6 @@ signature: cascade
 - lupo_sessions
 - lupo_system_config
 - lupo_system_events
-- lupo_system_health_snapshots
 - lupo_system_logs
 - lupo_tab_events
 - lupo_temporal_coherence_snapshots

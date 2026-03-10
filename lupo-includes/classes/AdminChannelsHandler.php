@@ -53,23 +53,17 @@ class AdminChannelsHandler
             foreach ($channels as $channel) {
                 $channel_id = (int) $channel['channel_id'];
                 
-                // Get tasks for this channel
+                // Get tasks for this channel (lupo_tasks uses task_status/task_priority varchar, no task_statuses/task_priorities tables)
                 $tasks_sql = "SELECT 
                                 t.task_id,
                                 t.task_key,
                                 t.title,
-                                t.status_id,
-                                t.priority_id,
-                                t.created_ymdhis,
-                                ts.status_name,
-                                ts.status_key,
-                                tp.priority_name,
-                                tp.priority_key
+                                t.task_status,
+                                t.task_priority,
+                                t.created_ymdhis
                             FROM {$prefix}tasks t
-                            LEFT JOIN {$prefix}task_statuses ts ON t.status_id = ts.status_id
-                            LEFT JOIN {$prefix}task_priorities tp ON t.priority_id = tp.priority_id
                             WHERE t.channel_id = :channel_id AND t.is_deleted = 0
-                            ORDER BY tp.priority_level ASC, t.created_ymdhis DESC
+                            ORDER BY t.created_ymdhis DESC
                             LIMIT 10";
                 
                 $tasks = $db->fetchAll($tasks_sql, array('channel_id' => $channel_id));
@@ -140,8 +134,8 @@ class AdminChannelsHandler
                     $html .= '<tbody>';
                     
                     foreach ($tasks as $task) {
-                        // Status color
-                        $status_key = isset($task['status_key']) ? $task['status_key'] : '';
+                        // Status color (task_status is varchar on lupo_tasks)
+                        $status_key = isset($task['task_status']) ? $task['task_status'] : '';
                         $status_colors = array(
                             'pending' => '#fbbf24',
                             'active' => '#10b981',
@@ -153,8 +147,8 @@ class AdminChannelsHandler
                         );
                         $status_color = isset($status_colors[$status_key]) ? $status_colors[$status_key] : '#6b7280';
                         
-                        // Priority color
-                        $priority_key = isset($task['priority_key']) ? $task['priority_key'] : '';
+                        // Priority color (task_priority is varchar on lupo_tasks)
+                        $priority_key = isset($task['task_priority']) ? $task['task_priority'] : '';
                         $priority_colors = array(
                             'critical' => '#dc2626',
                             'high' => '#f59e0b',
@@ -164,10 +158,12 @@ class AdminChannelsHandler
                         $priority_color = isset($priority_colors[$priority_key]) ? $priority_colors[$priority_key] : '#6b7280';
                         
                         $html .= '<tr style="border-bottom: 1px solid #f1f5f9;">';
-                        $html .= '<td style="padding: 8px;"><code style="font-size: 0.75rem; background: #f1f5f9; padding: 2px 6px; border-radius: 3px;">' . htmlspecialchars($task['task_key'] ?: $task['task_id']) . '</code></td>';
-                        $html .= '<td style="padding: 8px;">' . htmlspecialchars($task['title'] ?: '(No title)') . '</td>';
-                        $html .= '<td style="padding: 8px; text-align: center;"><span style="display: inline-block; padding: 2px 8px; background: ' . $status_color . '; color: white; border-radius: 4px; font-size: 0.75rem; font-weight: 500;">' . htmlspecialchars($task['status_name'] ?: 'Unknown') . '</span></td>';
-                        $html .= '<td style="padding: 8px; text-align: center;"><span style="display: inline-block; padding: 2px 8px; background: ' . $priority_color . '; color: white; border-radius: 4px; font-size: 0.75rem; font-weight: 500;">' . htmlspecialchars($task['priority_name'] ?: 'Unknown') . '</span></td>';
+                        $html .= '<td style="padding: 8px;"><code style="font-size: 0.75rem; background: #f1f5f9; padding: 2px 6px; border-radius: 3px;">' . htmlspecialchars(isset($task['task_key']) && $task['task_key'] !== '' ? $task['task_key'] : $task['task_id']) . '</code></td>';
+                        $html .= '<td style="padding: 8px;">' . htmlspecialchars(isset($task['title']) && $task['title'] !== '' ? $task['title'] : '(No title)') . '</td>';
+                        $status_label = (isset($task['task_status']) && $task['task_status'] !== '' && $task['task_status'] !== null) ? $task['task_status'] : '—';
+                        $priority_label = (isset($task['task_priority']) && $task['task_priority'] !== '' && $task['task_priority'] !== null) ? $task['task_priority'] : '—';
+                        $html .= '<td style="padding: 8px; text-align: center;"><span style="display: inline-block; padding: 2px 8px; background: ' . $status_color . '; color: white; border-radius: 4px; font-size: 0.75rem; font-weight: 500;">' . htmlspecialchars($status_label) . '</span></td>';
+                        $html .= '<td style="padding: 8px; text-align: center;"><span style="display: inline-block; padding: 2px 8px; background: ' . $priority_color . '; color: white; border-radius: 4px; font-size: 0.75rem; font-weight: 500;">' . htmlspecialchars($priority_label) . '</span></td>';
                         $html .= '<td style="padding: 8px;">' . htmlspecialchars(self::formatYmdhis($task['created_ymdhis'])) . '</td>';
                         $html .= '</tr>';
                     }

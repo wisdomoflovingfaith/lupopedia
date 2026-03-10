@@ -255,7 +255,6 @@ The following tables are defined in TOONs but missing from the database:
 - **lupo_session_events** - Defined in `lupo_session_events.toon.json`
 - **lupo_system_config** - Defined in `lupo_system_config.toon.json`
 - **lupo_system_events** - Defined in `lupo_system_events.toon.json`
-- **lupo_system_health_snapshots** - Defined in `lupo_system_health_snapshots.toon.json`
 - **lupo_system_logs** - Defined in `lupo_system_logs.toon.json`
 - **lupo_tab_events** - Defined in `lupo_tab_events.toon.json`
 - **lupo_temporal_coherence_snapshots** - Defined in `lupo_temporal_coherence_snapshots.toon.json`
@@ -826,9 +825,6 @@ The following SQL statements are suggested to bring the database in line with TO
 
 -- Add missing table: lupo_system_events
 -- TODO: Implement CREATE TABLE statement for lupo_system_events
-
--- Add missing table: lupo_system_health_snapshots
--- TODO: Implement CREATE TABLE statement for lupo_system_health_snapshots
 
 -- Add missing table: lupo_system_logs
 -- TODO: Implement CREATE TABLE statement for lupo_system_logs

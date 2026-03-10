@@ -77,11 +77,11 @@ X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
 X-Lupo-File-Path: docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md
 ---
 
-# 🐺 TABLE CONSOLIDATION REPORT — "THE 222 CEILING DEFENSE PLAN"
+# 🐺 TABLE CONSOLIDATION REPORT — "THE 199 CEILING DEFENSE PLAN"
 
 **DOCTRINE STATUS:** ACTIVE  
 **ENFORCEMENT LEVEL:** FOUNDER-LEVEL  
-**TABLE CEILING:** 222 (HARD LIMIT)  
+**TABLE CEILING:** 199 (HARD LIMIT)  
 **CURRENT COUNT:** 220  
 **STATUS:** 🟡 APPROACHING CEILING - OPTIMIZATION MODE ACTIVE
 
@@ -286,8 +286,8 @@ lupo_agent_context_snapshots + lupo_agent_heartbeats
 | Agent system merges | 2-3 | HIGH |
 | **Total** | **8-40** | - |
 
-**Resulting table count: 180-212 tables**
-**Status: ✅ Well under 222 hard ceiling**
+**Current table count: 155 tables** (install + 34 original; ceiling 199)
+**Status: ✅ Well under 199 hard ceiling**
 
 ---
 
@@ -503,7 +503,7 @@ IF table_count >= 220 THEN:
 | 215 tables | WARNING alert | System Admin | Immediate |
 | 218 tables | PREPARE contingency | Cascade | 1 hour |
 | 220 tables | LOCK & ESCALATE | WOLFIE | Immediate |
-| 222 tables | EMERGENCY PROTOCOL | WOLFIE | Immediate |
+| 199 tables | EMERGENCY PROTOCOL | WOLFIE | Immediate |
 
 #### Continue/Pause/Abort Criteria
 
@@ -551,7 +551,7 @@ DO
 - **215 tables:** Warning notification
 - **218 tables:** Preparation alert  
 - **220 tables:** Critical escalation
-- **222 tables:** Emergency lockdown
+- **199 tables:** Emergency lockdown
 
 ---
 

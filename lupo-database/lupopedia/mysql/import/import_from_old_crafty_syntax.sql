@@ -709,42 +709,47 @@ INSERT INTO lupo_truth_knowledge (
     created_ymdhis,
     updated_ymdhis,
     is_deleted,
-    deleted_ymdhis
+    deleted_ymdhis,
+    truth_question_parent_id
 )
 SELECT
     recno,
+    'question',
     NULLIF(parent, 0),
     0,
-    'question',
-    'active',
-    ordernum,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
     CONCAT('qa-', recno),
     question,
+    NULL,
+    question,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    'unknown',
+    'active',
+    NULL,
+    NULL,
+    NULL,
     'text',
     NULL,
-    0,
-    0,
-    0,
-    0,
-    0,
-    NULL,
-    0,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    0,
-    0,
-    0,
-    0,
+    0.00,
+    0.00,
+    0.00,
+    0.00,
+    0.00,
+    ordernum,
     0,
     0,
     0,
@@ -754,6 +759,10 @@ SELECT
     0,
     NULL,
     0,
+    20250101000000,
+    20250101000000,
+    0,
+    NULL,
     NULL
 FROM livehelp_qa
 WHERE typeof = 'question'
@@ -789,29 +798,33 @@ INSERT INTO lupo_truth_answers (
     truth_question_id,
     actor_id,
     answer_text,
-    confidence_score,
-    evidence_score,
-    contradiction_flag,
-    likes_count,
-    shares_count,
+    confidence,
+    evidence_count,
+    source_count,
+    status,
     created_ymdhis,
     updated_ymdhis,
     is_deleted,
-    deleted_ymdhis
+    deleted_ymdhis,
+    evidence_score,
+    contradiction_flag,
+    likes_count
 )
 SELECT
     parent,
     0,
     question,
     0.00,
+    0,
+    0,
+    'active',
+    20250101000000,
+    20250101000000,
+    0,
+    NULL,
     0.00,
     0,
-    0,
-    0,
-    20250101000000,
-    20250101000000,
-    0,
-    NULL
+    0
 FROM livehelp_qa
 WHERE typeof = 'answer'
 ON DUPLICATE KEY UPDATE
@@ -819,7 +832,8 @@ ON DUPLICATE KEY UPDATE
 
 
 INSERT INTO lupo_collections (
-    federations_node_id,
+    collection_id,
+    federation_node_id,
     actor_id,
     department_id,
     name,
@@ -832,9 +846,11 @@ INSERT INTO lupo_collections (
     created_ymdhis,
     updated_ymdhis,
     is_deleted,
-    deleted_ymdhis
+    deleted_ymdhis,
+    parent_id
 )
 VALUES (
+    1,
     1,
     NULL,
     NULL,
@@ -848,6 +864,7 @@ VALUES (
     20250101000000,
     20250101000000,
     0,
+    NULL,
     NULL
 )
 ON DUPLICATE KEY UPDATE
@@ -1269,17 +1286,13 @@ INSERT INTO lupo_analytics_visits_daily (
     url_path,
     department_id,
     date_ymd,
-    visits,
+    visit_type,
+    total_visits,
     unique_sessions,
-    unique_actors,
-    direct_visits,
-    internal_visits,
-    entry_count,
-    exit_count,
-    total_seconds,
-    avg_seconds,
     created_ymdhis,
-    updated_ymdhis
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
 )
 SELECT
     @rn := @rn + 1,
@@ -1287,17 +1300,13 @@ SELECT
     t.url_path,
     t.department_id,
     t.date_ymd,
+    'pageview',
     t.visits,
     0,
-    0,
-    t.direct_visits,
-    0,
-    0,
-    0,
-    0,
-    0,
     CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED)
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    0,
+    NULL
 FROM (SELECT @rn := 0) r,
 (
     SELECT
@@ -1305,8 +1314,7 @@ FROM (SELECT @rn := 0) r,
         SUBSTRING(MAX(r.pageurl), 1, 500) AS url_path,
         MAX(r.department) AS department_id,
         r.dateof AS date_ymd,
-        SUM(r.levelvisits + r.directvisits) AS visits,
-        SUM(r.directvisits) AS direct_visits
+        SUM(r.levelvisits + r.directvisits) AS visits
     FROM livehelp_visits_daily r
     GROUP BY r.livehelp_id, r.dateof
 ) t;
@@ -1318,17 +1326,13 @@ INSERT INTO lupo_analytics_visits_monthly (
     url_path,
     department_id,
     date_ym,
-    visits,
+    visit_type,
+    total_visits,
     unique_sessions,
-    unique_actors,
-    direct_visits,
-    internal_visits,
-    entry_count,
-    exit_count,
-    total_seconds,
-    avg_seconds,
     created_ymdhis,
-    updated_ymdhis
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
 )
 SELECT
     @rn := @rn + 1,
@@ -1336,17 +1340,13 @@ SELECT
     t.url_path,
     t.department_id,
     t.date_ym,
+    'pageview',
     t.visits,
     0,
-    0,
-    t.direct_visits,
-    0,
-    0,
-    0,
-    0,
-    0,
     CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
-    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED)
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    0,
+    NULL
 FROM (SELECT @rn := 0) r,
 (
     SELECT
@@ -1354,8 +1354,7 @@ FROM (SELECT @rn := 0) r,
         SUBSTRING(MAX(r.pageurl), 1, 500) AS url_path,
         MAX(r.department) AS department_id,
         r.dateof AS date_ym,
-        SUM(r.levelvisits + r.directvisits) AS visits,
-        SUM(r.directvisits) AS direct_visits
+        SUM(r.levelvisits + r.directvisits) AS visits
     FROM livehelp_visits_monthly r
     GROUP BY r.dateof
 ) t;
@@ -1439,9 +1438,13 @@ ALTER TABLE livehelp_transcripts
 ALTER TABLE livehelp_transcripts
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
+-- Dialog thread title: who + recno when who present; else first snippet of transcript (stripped); else safe fallback.
+-- last_message_ymdhis: endtime (last message time) when present, else starttime, else NULL.
 TRUNCATE lupo_dialog_threads;
 INSERT INTO `lupo_dialog_threads` (
     `dialog_thread_id`,
+    `title`,
+    `last_message_ymdhis`,
     `federation_node_id`,
     `channel_id`,
     `created_by_actor_id`,
@@ -1452,6 +1455,12 @@ INSERT INTO `lupo_dialog_threads` (
 )
 SELECT
     `recno`,
+    COALESCE(
+        NULLIF(TRIM(CONCAT(IFNULL(`who`, ''), ' – #', `recno`)), ''),
+        NULLIF(TRIM(LEFT(REPLACE(REPLACE(REPLACE(`transcript`, '<br>', ' '), '<b>', ''), '</b>', ''), 80)), ''),
+        CONCAT('Transcript ', `recno`)
+    ),
+    COALESCE(`endtime`, `starttime`),
     1,
     1,
     1,
@@ -1642,6 +1651,7 @@ WHERE NOT EXISTS (
 -- ======================================================================
 
 INSERT INTO lupo_actors (
+    actor_name,
     actor_id,
     actor_type,
     slug,
@@ -1659,10 +1669,11 @@ INSERT INTO lupo_actors (
     avatar_hash
 )
 SELECT
+    COALESCE(NULLIF(TRIM(au.username), ''), CONCAT('actor_', au.auth_user_id)),
     au.auth_user_id,
     'user',
     au.username,
-    au.display_name,
+    COALESCE(NULLIF(TRIM(au.display_name), ''), au.username),
     CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
     CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
     1,
