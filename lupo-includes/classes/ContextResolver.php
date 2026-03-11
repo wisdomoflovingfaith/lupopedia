@@ -204,8 +204,8 @@ class ContextResolver
         if ($actor_type === 'system' && $reg && isset($reg['actors'][$actor_name])) {
             $a = $reg['actors'][$actor_name];
             $actor_type = isset($a['type']) ? $a['type'] : 'system';
-            if ($actor_type === 'agent' && $actor_id >= 1000 && $actor_id <= 1010) {
-                $actor_type = 'ide_agent';
+            if (($actor_type === 'agent' || $actor_type === 'ide_faucet') && $actor_id >= 100 && $actor_id <= 199) {
+                $actor_type = 'ide_faucet';
             }
             if (!isset($row) && isset($a['paired_actor_id'])) {
                 $paired_actor_id = (int) $a['paired_actor_id'];
@@ -216,8 +216,8 @@ class ContextResolver
             if (!isset($ctx['php_namespace']) && isset($a['php_namespace'])) {
                 $ctx['php_namespace'] = $a['php_namespace'];
             }
-            if ($paired_actor_id === 0 && ($actor_type === 'ide_agent' || $actor_type === 'agent')) {
-                $paired_actor_id = 10000;
+            if ($paired_actor_id === 0 && ($actor_type === 'ide_faucet' || $actor_type === 'ide_agent' || $actor_type === 'agent')) {
+                $paired_actor_id = 1000;
             }
         }
         // Session file may set human_actor_name; resolve to paired_actor_id so hybrid mode works
@@ -369,10 +369,10 @@ class ContextResolver
      * Resolve human actor name by actor_id (e.g. 10000 = root).
      *
      * @param array $reg Registry from _loadRegistry
-     * @param int $human_actor_id Default human actor ID (e.g. 10000)
+     * @param int $human_actor_id Default human actor ID (e.g. 1000)
      * @return string Actor name or 'system'
      */
-    protected static function _getHumanActorNameFromRegistry($reg, $human_actor_id = 10000)
+    protected static function _getHumanActorNameFromRegistry($reg, $human_actor_id = 1000)
     {
         if (!is_array($reg) || !isset($reg['actors'])) {
             return 'system';

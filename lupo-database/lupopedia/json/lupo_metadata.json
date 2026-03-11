@@ -11,10 +11,47 @@
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
-    "`deleted_ymdhis` bigint"
+    "`deleted_ymdhis` bigint",
+    "`channel_id` bigint",
+    "`parent_metadata_id` bigint",
+    "`class_name` varchar(128)"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "lupo_metadata_idx_channel_deleted",
+      "columns": [
+        "channel_id",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_metadata_idx_channel_id",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_metadata_idx_class_deleted",
+      "columns": [
+        "class_name",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_metadata_idx_class_name",
+      "columns": [
+        "class_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "lupo_metadata_idx_created_ymdhis",
       "columns": [
@@ -41,6 +78,16 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "lupo_metadata_idx_entity_deleted",
+      "columns": [
+        "entity_type",
+        "entity_id",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "lupo_metadata_idx_is_deleted",
       "columns": [
         "is_deleted"
@@ -52,6 +99,32 @@
       "index_name": "lupo_metadata_idx_meta_type",
       "columns": [
         "meta_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_metadata_idx_meta_type_deleted",
+      "columns": [
+        "meta_type",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_metadata_idx_parent_deleted",
+      "columns": [
+        "parent_metadata_id",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_metadata_idx_parent_metadata_id",
+      "columns": [
+        "parent_metadata_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

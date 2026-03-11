@@ -3,6 +3,7 @@ description: No Lupopedia→Lupopedia upgrade until 4.1.0. All 4.0.x from Crafty
 alwaysApply: true
 ---
 
+
 # Single Install — No Lupopedia Upgrade Until 4.1.0 (PERMANENT)
 
 Cursor MUST follow this doctrine for all 4.0.x development. There is exactly one upgrade path and one schema source until 4.1.0.
@@ -16,8 +17,8 @@ Cursor MUST follow this doctrine for all 4.0.x development. There is exactly one
 ## Where database changes go (4.0.x)
 
 - **All database schema changes** for 4.0.x MUST be made in:
-  1. **Install SQL** — The canonical install file (e.g. `install_new_lupopedia.sql` or the project’s single install script). This file IS the full schema for the current 4.0.x codebase.
-  2. **Main seed file** — The canonical seed file (e.g. `seed_lupopedia.sql` or the project’s main seed). Seed data and structural seed content belong here.
+  1. **Install SQL** — The canonical install file (e.g. `install_new_lupopedia.sql` or the project's single install script). This file IS the full schema for the current 4.0.x codebase.
+  2. **Main seed file** — The canonical seed file (e.g. `seed_lupopedia.sql` or the project's main seed). Seed data and structural seed content belong here.
 - **Do NOT** rely on "run migration X after install" for 4.0.x. There is no migration chain for 4.0.x.
 
 ## Consolidate 4.0.x migrations into install

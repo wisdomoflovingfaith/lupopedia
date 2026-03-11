@@ -43,8 +43,8 @@ class AdminActorsHandler
         $html .= '<label style="display: block; margin-bottom: 5px; font-weight: 500; color: #334155; font-size: 0.875rem;">Actor Type</label>';
         $html .= '<select name="type" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.875rem;">';
         $html .= '<option value="all"' . ($filter_type === 'all' ? ' selected' : '') . '>All Types</option>';
-        $html .= '<option value="human"' . ($filter_type === 'human' ? ' selected' : '') . '>Humans (ID ≥ 10000)</option>';
-        $html .= '<option value="ai"' . ($filter_type === 'ai' ? ' selected' : '') . '>AI Agents (ID < 10000)</option>';
+        $html .= '<option value="human"' . ($filter_type === 'human' ? ' selected' : '') . '>Humans (ID ≥ 1000)</option>';
+        $html .= '<option value="ai"' . ($filter_type === 'ai' ? ' selected' : '') . '>AI Agents (ID < 1000)</option>';
         $html .= '</select>';
         $html .= '</div>';
         
@@ -102,7 +102,7 @@ class AdminActorsHandler
             $html .= '<tbody>';
             
             foreach ($actors as $actor) {
-                $is_ai = $actor['actor_id'] < 10000;
+                $is_ai = $actor['actor_id'] < 1000;
                 $is_active = $actor['is_active'] == 1;
                 $has_session = !empty($actor['last_session_start']);
                 
@@ -199,9 +199,9 @@ class AdminActorsHandler
         
         // Type filter
         if ($filter_type === 'human') {
-            $where_clauses[] = 'a.actor_id >= 10000';
+            $where_clauses[] = 'a.actor_id >= 1000';
         } elseif ($filter_type === 'ai') {
-            $where_clauses[] = 'a.actor_id < 10000';
+            $where_clauses[] = 'a.actor_id < 1000';
         }
         
         // Status filter

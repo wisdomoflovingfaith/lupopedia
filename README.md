@@ -1,25 +1,35 @@
-# file: Lupopedia README — session: L-LUPO-CURSOR — delegation: lilith:cursor:captain  — web_path: http://www.lupopedia.com/
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "4.0.69"
+  lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
-  last_modified_utc: "20260309"
+  last_modified_utc: "20260312"
   system_version: "4.0.69"
   channel_id: 42
-  actor_id: 1003
-  actor_name: "cursor"
-  delegation_chain: "lilith:cursor:captain"
+  actor_id: 1
+  actor_name: "wolfie"
+  faucet_name: "cursor"
+  delegation_chain: "wolfie:root"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "Primary project documentation and onboarding — Install & upgrade validation, table ceiling 199, root admin, ROOT doctrine schema"
+  purpose: "Primary project documentation and onboarding — Install & upgrade validation, channels/actors/agents, GitHub repository strategy"
   mood_rgb: "4169E1"
   traits: ["essential", "entrypoint", "onboarding", "v4.0.69"]
   tags: ["readme", "getting_started", "semantic_os", "multi_agent"]
-  lupo_agent: "cursor"
 
-flare.edges:
+lupopedia.session:
+  session_id: "L-LUPO-ROOT-CURSOR"
+  session_name: "L-LUPO-ROOT-CURSOR"
+  actor_id: 1
+  actor_name: "wolfie"
+  faucet_name: "cursor"
+  channel_id: 42
+  channel_name: "Lupopedia Development (general)"
+  federation_node_id: 1
+  paired_actor_id: 1000
+
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/HELP.md", type: "references", weight: 1.0 }
     - { to: "docs/CLI.md", type: "references", weight: 0.95 }
@@ -29,10 +39,11 @@ flare.edges:
     - { to: "CONTRIBUTING.md", type: "references", weight: 0.85 }
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent"]
 
-flare.footer:
-  last_verified_utc: "20260309"
-  last_verified_by: "cursor"
+lupopedia.footer:
+  last_verified: "20260312"
+  last_verified_by: "wolfie"
 ---
+# file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: wolfie:root (faucet: cursor) — web_path: http://www.lupopedia.com/
 
 # 🐺 Lupopedia Semantic OS v4.0.69
 
@@ -44,9 +55,11 @@ flare.footer:
 **Current Release: [v4.0.69](docs/version.md) — Post-4.0.68 reconciliation; version bump and channel 42 thread**  
 This version focuses on implementing and hardening the web interface for channels management, accessible at `/channels/` with full doctrine compliance. Current table count is derived from TOON files — run `python scripts/generate_toon_files.py` and use the output count; do not hardcode in docs.
 
+**Architecture (onboarding):** **Actors** are the orchestration identities of Lupopedia. They coordinate and govern work through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces, not identities. IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, Codex, JetBrains, Warp, etc.) are faucets. **Sessions** carry runtime context. See [Channels, actors, and agents](#channels-actors-and-agents-in-lupopedia) and [Actor–Faucet ontology](lupo-docs/doctrine/ActorFaucetOntology.md).
+
 ## Getting Started (5 minutes)
 
-Lupopedia is a **Semantic OS** built on Crafty Syntax Live Help, enabling collaboration between humans and AI agents through channels, actors, and the FLARE protocol.
+Lupopedia is a **Semantic OS** built on Crafty Syntax Live Help. **Actors** (orchestration identities) coordinate work through **faucets** (execution surfaces), **sessions** (runtime context), and **channels**; communication uses LUPOPEDIA HEADERS and `lupo_dialog_*` tables.
 
 **Prerequisites:**
 
@@ -82,32 +95,53 @@ php lupo-bin/lupo.php help
 
 Lupopedia solves fragmented human–AI workflows with a **unified Semantic OS** on top of Crafty Syntax live chat:
 
-- **Agent awareness** — Unified actor model so humans, IDE agents, and AI assistants participate as first-class actors.
-- **Channel-based communication** — Threads, tasks, and rich metadata for coordination.
-- **FLARE protocol** — Self-describing artifacts (YAML headers) for file-level intelligence and offline fallback.
+- **Actors orchestrate** — Actors are the orchestration identities in `lupo_actors`; they coordinate and govern through faucets, sessions, channels, rules, and traits. **Faucets execute** — IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, etc.) are faucets, not actors; the actor operates *through* the faucet.
+- **Channel-based communication** — Threads, tasks, and rich metadata for coordination on **channels** (e.g. Channel 42 for development).
+- **LUPOPEDIA HEADERS** — Self-describing artifacts (YAML headers) for file identity, doctrine, and routing; see [lupo-docs/doctrine/LUPOPEDIA_HEADERS/](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md).
 
 **Target audience:** Developers building agents, admins managing systems, contributors to open-source AI-collab tooling.
 
-[Core doctrine](docs/doctrine/) | [FLARE doctrine](docs/doctrine/FLARE/FLARE_DOCTRINE.md)
+[Core doctrine](docs/doctrine/) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)
 
 ---
 
 ## Core Concepts
 
-- **Actor model** — Every participant (human, AI, system) has an `actor_id` and identity. No `user_id` in relationships; actors are the single identity layer.
-- **Channels** — Hubs for threads, tasks, and coordination (e.g. Channel 42 for development).
-- **FLARE protocol** — YAML headers on files for identity, doctrine, and routing.
+- **Actors** — Orchestration identities in `lupo_actors`. They coordinate and govern; every participant (human or AI) is represented by an actor. No `user_id` in relationships; `actor_id` is the single identity layer. **Faucets** (Cursor, Antigravity, Kiro, Windsurf, etc.) are execution surfaces, not identities.
+- **Channels** — Hubs for threads, tasks, and coordination (e.g. Channel 42 for development). See [Channels, actors, and agents](#channels-actors-and-agents-in-lupopedia) below.
+- **LUPOPEDIA HEADERS** — YAML headers on files for identity, doctrine, and routing; stored in `lupo_metadata` and optionally written to the file.
 
-**Actor model (simplified):**
+**Orchestration (simplified):**
 
 ```mermaid
 graph TD
-  A[Human User] -->|Interacts| B[Actor Registry]
-  C[AI Agent] -->|Registers| B
+  A[Human] -->|Paired to| B[Actor Registry]
+  C[Actor via faucet] -->|Uses| B
   B -->|Resolves| D[Channels]
 ```
 
 **Channels and threads:** Governance and dialogs live under channel directories; see [docs/HELP.md](docs/HELP.md) and [TASK_STATUS_REFERENCE.md](docs/TASK_STATUS_REFERENCE.md).
+
+---
+
+## Channels, actors, and agents in Lupopedia
+
+**Actors orchestrate. Faucets execute. Sessions carry runtime context.** Traits constrain actors; roles scope permissions to channels; tasks are transient work items.
+
+| Concept | What it is | Where it lives |
+|--------|------------|----------------|
+| **Actor** | **Orchestration identity** — who coordinates and governs; holds rules, skills, persona, and doctrine. Every participant (human or AI) is an actor. | `lupo_actors`; registry in `lupo-database/lupopedia/actors/actor_id/registry.json`. |
+| **Agent** | **AI/runtime metadata** — configuration for an AI actor (model, provider). The actor is the identity; `lupo_agents` is metadata. | `lupo_agents`. |
+| **Faucet** | **Execution surface** — the environment through which an actor acts. Cursor, Antigravity, Kiro, Windsurf, Codex, JetBrains, Warp are **faucets**, not actors. | `lupo_agent_faucets` (`faucet_class`: `ide` or `llm`). |
+| **Channel** | **Collaboration context** — where threads, tasks, and dialog happen. Channels have members (actors), roles (per actor per channel), and content. | `lupo_channels`, `lupo_actor_channels`, `lupo_actor_channel_roles`; Channel 42 = Lupopedia Development (general). |
+| **Session** | **Runtime context** — who is doing what, where (actor, channel, paired human). | `lupo_sessions` (DB); `lupo-database/sessions/*.md` (IDE session files). |
+| **Trait** | **Intrinsic constraint** on an actor (capability marker). Actor-scoped only. | `lupo_actor_traits`. |
+| **Role** | **Channel-local permission** (e.g. admin, member). Per (actor, channel). | `lupo_actor_channel_roles`. |
+| **Task** | **Transient work item**. | `lupo_tasks`; channel task structure. |
+
+**Important:** IDE surfaces (Cursor, Antigravity, Windsurf, etc.) are **faucets**, not actors. When you use Cursor to work on Lupopedia, the **actor** is typically Wolfie (actor_id 1) or another identity; **Cursor** is the faucet. Session files and headers use `actor_id` + `faucet_name` to make this clear.
+
+**References:** [Actor–Faucet ontology](lupo-docs/doctrine/ActorFaucetOntology.md), [Identity layers](lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md), [Canonical architecture (4.0.69)](lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md), [How actors orchestrate on channels](lupo-docs/architecture/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md).
 
 ---
 
@@ -143,6 +177,14 @@ The official `github.com/lupopedia` organization will contain:
 | **vercel** | Vercel-optimized deployment environment |
 | **docs** | Public documentation, governance, doctrine, and architecture |
 | **ops** (optional) | CI/CD pipelines, migrations, infrastructure scripts, deployment automation |
+
+**Upstream: Crafty Syntax**
+
+The original Crafty Syntax Live Help 3.7.5 code that Lupopedia is built from is maintained in the organization as:
+
+- **https://github.com/lupopedia/CRAFTY_SYNTAX**
+
+That repository holds the GPL release and legacy documentation; the only supported upgrade path to Lupopedia is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**.
 
 **Architectural principle**
 

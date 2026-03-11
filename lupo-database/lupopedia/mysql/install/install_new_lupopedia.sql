@@ -1,3 +1,5 @@
+-- Install schema for Lupopedia 4.0.x. Single upgrade path: Crafty Syntax 3.7.5 -> Lupopedia 4.0.x only.
+-- No Lupopedia->Lupopedia upgrade until 4.1.0. All schema for 4.0.x is in this file.
 -- No Crafty Syntax logic, no migration, no DROP TABLE.
 SET @now = 20260224000000;
 
@@ -43,6 +45,7 @@ CREATE INDEX lupo_actors_idx_created_ymdhis ON lupo_actors (created_ymdhis);
 CREATE INDEX lupo_actors_idx_workspace_path ON lupo_actors (workspace_path);
 CREATE INDEX lupo_actors_idx_php_namespace ON lupo_actors (php_namespace);
 -- RESERVED ID DOCTRINE: actor_id is NOT AUTO_INCREMENT; application must supply explicit ID.
+-- HUMAN ACTOR ID DOCTRINE: human actors must have actor_id >= 1000 (see HumanActorIdDoctrine.md). Allocate from lupo_registry_open.
 -- ACTOR PRIMARY KEY DOCTRINE: actor_name is canonical; use ActorService::getActorByName / resolveActor.
 
 CREATE TABLE lupo_banned_actors (
@@ -294,6 +297,27 @@ CREATE INDEX lupo_actor_edges_idx_is_deleted ON lupo_actor_edges (is_deleted);
 CREATE INDEX lupo_actor_edges_idx_edge_source_relationship ON lupo_actor_edges (source_actor_id, edge_type);
 CREATE INDEX lupo_actor_edges_idx_edge_target_relationship ON lupo_actor_edges (target_actor_id, edge_type);
 
+CREATE TABLE lupo_actor_traits (
+  actor_trait_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  trait_key varchar(128) NOT NULL,
+  trait_value varchar(512) DEFAULT NULL,
+  federation_node_id bigint NOT NULL DEFAULT 1,
+  created_by_actor_id bigint DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint DEFAULT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  metadata text DEFAULT NULL,
+  PRIMARY KEY (actor_trait_id)
+);
+
+CREATE INDEX lupo_actor_traits_idx_actor ON lupo_actor_traits (actor_id);
+CREATE INDEX lupo_actor_traits_idx_actor_key ON lupo_actor_traits (actor_id, trait_key);
+CREATE INDEX lupo_actor_traits_idx_trait_key ON lupo_actor_traits (trait_key);
+CREATE INDEX lupo_actor_traits_idx_federation ON lupo_actor_traits (federation_node_id);
+CREATE INDEX lupo_actor_traits_idx_is_deleted ON lupo_actor_traits (is_deleted);
+
 -- Old actor events table removed in v4.0.55 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_actor_handshakes (
@@ -511,6 +535,7 @@ CREATE TABLE lupo_agent_faucets (
   name varchar(100) NOT NULL,
   alias_name varchar(100) DEFAULT NULL,
   slug varchar(100) NOT NULL,
+  faucet_class varchar(32) DEFAULT NULL,
   description text,
   style_preset varchar(100) DEFAULT NULL,
   model_name varchar(100) DEFAULT NULL,
@@ -534,6 +559,7 @@ CREATE TABLE lupo_agent_faucets (
 
 CREATE INDEX lupo_agent_faucets_idx_agent ON lupo_agent_faucets (actor_id);
 CREATE INDEX lupo_agent_faucets_idx_slug ON lupo_agent_faucets (slug);
+CREATE INDEX lupo_agent_faucets_idx_faucet_class ON lupo_agent_faucets (faucet_class);
 CREATE INDEX lupo_agent_faucets_idx_domain ON lupo_agent_faucets (domain_id);
 CREATE INDEX lupo_agent_faucets_idx_default ON lupo_agent_faucets (is_default);
 
@@ -1318,6 +1344,9 @@ CREATE TABLE lupo_collections (
   is_deleted tinyint NOT NULL DEFAULT '0',
   deleted_ymdhis bigint DEFAULT NULL,
   parent_id bigint DEFAULT NULL,
+  channel_id bigint DEFAULT NULL,
+  is_nav_menu tinyint NOT NULL DEFAULT 0,
+  nav_icon varchar(64) DEFAULT NULL,
   PRIMARY KEY (collection_id)
 );
 
@@ -1330,7 +1359,10 @@ CREATE INDEX lupo_collections_idx_updated_ymdhis ON lupo_collections (updated_ym
 CREATE INDEX lupo_collections_idx_is_deleted ON lupo_collections (is_deleted);
 CREATE INDEX lupo_collections_idx_sort_order ON lupo_collections (sort_order);
 CREATE INDEX lupo_collections_idx_actor ON lupo_collections (actor_id);
+CREATE INDEX lupo_collections_idx_channel_id ON lupo_collections (channel_id);
+CREATE INDEX lupo_collections_idx_is_nav_menu ON lupo_collections (is_nav_menu);
 ALTER TABLE lupo_collections CHANGE collection_id collection_id bigint NOT NULL AUTO_INCREMENT;
+-- Collections as channel-scoped resource bundles (4.0.69): channel_id, is_nav_menu, nav_icon for UI/navigation.
 
 CREATE TABLE lupo_collection_tabs (
   collection_tab_id bigint NOT NULL,
@@ -1338,13 +1370,15 @@ CREATE TABLE lupo_collection_tabs (
   collection_id bigint NOT NULL,
   federations_node_id bigint NOT NULL,
   department_id bigint DEFAULT NULL,
-  user_id bigint DEFAULT NULL,
+  actor_id bigint DEFAULT NULL,
   sort_order int DEFAULT '0',
   name varchar(255) NOT NULL,
   slug varchar(100) NOT NULL,
   color char(6) DEFAULT '4caf50',
   description text,
   is_hidden tinyint NOT NULL DEFAULT '0',
+  visibility_rule text DEFAULT NULL,
+  tab_type varchar(32) DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_active tinyint NOT NULL DEFAULT '1',
@@ -1356,9 +1390,11 @@ CREATE TABLE lupo_collection_tabs (
 CREATE INDEX lupo_collection_tabs_idx_collection_id ON lupo_collection_tabs (collection_id);
 CREATE INDEX lupo_collection_tabs_idx_parent_tab_id ON lupo_collection_tabs (collection_tab_parent_id);
 CREATE INDEX lupo_collection_tabs_idx_department ON lupo_collection_tabs (department_id);
+CREATE INDEX lupo_collection_tabs_idx_actor_id ON lupo_collection_tabs (actor_id);
 CREATE INDEX lupo_collection_tabs_idx_slug ON lupo_collection_tabs (slug);
 CREATE INDEX lupo_collection_tabs_idx_is_active ON lupo_collection_tabs (is_active);
 ALTER TABLE lupo_collection_tabs CHANGE collection_tab_id collection_tab_id bigint NOT NULL AUTO_INCREMENT;
+-- Tabs: actor_id (was user_id), visibility_rule, tab_type for channel/nav (4.0.69).
 
 CREATE TABLE lupo_collection_tab_map (
   collection_tab_map_id bigint NOT NULL,
@@ -1788,6 +1824,8 @@ CREATE TABLE lupo_dialog_messages (
   dialog_thread_id bigint DEFAULT NULL,
   channel_id bigint DEFAULT NULL,
   from_actor_id bigint DEFAULT NULL,
+  source_faucet_slug varchar(100) DEFAULT NULL,
+  source_faucet_instance_id varchar(100) DEFAULT NULL,
   to_actor_id bigint DEFAULT NULL,
   read_by_actor_id bigint NOT NULL DEFAULT 0,
   read_by_actor_utc bigint NOT NULL DEFAULT 0,
@@ -1813,6 +1851,7 @@ CREATE INDEX lupo_dialog_messages_idx_dialog_thread_id ON lupo_dialog_messages (
 CREATE INDEX lupo_dialog_messages_idx_to_actor_id ON lupo_dialog_messages (to_actor_id);
 CREATE INDEX lupo_dialog_messages_idx_read_by_actor ON lupo_dialog_messages (read_by_actor_id);
 CREATE INDEX lupo_dialog_messages_idx_read_utc ON lupo_dialog_messages (read_by_actor_utc);
+CREATE INDEX lupo_dialog_messages_idx_faucet ON lupo_dialog_messages (source_faucet_slug, source_faucet_instance_id);
 
 CREATE TABLE lupo_dialog_threads (
   dialog_thread_id bigint NOT NULL,
@@ -1974,6 +2013,38 @@ CREATE INDEX lupo_edges_idx_flare_weight ON lupo_edges (flare_weight, edge_type)
 CREATE INDEX lupo_edges_idx_flare_discovered ON lupo_edges (flare_discovered_via, flare_auto_generated);
 CREATE INDEX lupo_edges_idx_flare_files ON lupo_edges (left_object_type, left_object_id, edge_type, right_object_type, right_object_id);
 
+-- Edge type registry: canonical edge types and semantics (4.0.69 LILITH implementation prompt). No FK; IDs from application.
+CREATE TABLE lupo_edge_type_definitions (
+  edge_type_definition_id bigint NOT NULL,
+  edge_type varchar(100) NOT NULL,
+  domain varchar(100) NOT NULL,
+  description text NOT NULL,
+  allowed_left_object_types text NOT NULL,
+  allowed_right_object_types text NOT NULL,
+  is_bidirectional tinyint NOT NULL DEFAULT 0,
+  semantic_meaning text DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  created_by_actor_id bigint NOT NULL,
+  PRIMARY KEY (edge_type_definition_id),
+  UNIQUE KEY lupo_edge_type_definitions_unique_edge_type (edge_type)
+);
+CREATE INDEX lupo_edge_type_definitions_idx_domain ON lupo_edge_type_definitions (domain);
+
+-- Pre-action authorization: required traits/capabilities/roles per action (4.0.69 LILITH implementation prompt). No FK; IDs from application.
+CREATE TABLE lupo_action_authorization (
+  action_authorization_id bigint NOT NULL,
+  action_key varchar(100) NOT NULL,
+  description text NOT NULL,
+  required_trait_keys text DEFAULT NULL,
+  required_capabilities text DEFAULT NULL,
+  required_role_keys text DEFAULT NULL,
+  requires_all_conditions tinyint NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  created_by_actor_id bigint NOT NULL,
+  PRIMARY KEY (action_authorization_id),
+  UNIQUE KEY lupo_action_authorization_unique_action_key (action_key)
+);
+CREATE INDEX lupo_action_authorization_idx_action ON lupo_action_authorization (action_key);
 
 CREATE TABLE lupo_emotional_frameworks (
   framework_name varchar(32) NOT NULL,
@@ -2059,10 +2130,12 @@ CREATE INDEX lupo_federation_category_map_idx_is_deleted ON lupo_federation_cate
 
 CREATE TABLE lupo_federation_nodes (
   federation_node_id bigint NOT NULL,
+  node_type varchar(32) NOT NULL DEFAULT 'local',
   node_base_url varchar(500) NOT NULL,
   default_department_id bigint DEFAULT NULL,
   node_name varchar(255) DEFAULT NULL,
   node_description text,
+  allows_foreign_traits tinyint NOT NULL DEFAULT 1,
   node_contact varchar(255) DEFAULT NULL,
   meta_json json DEFAULT NULL,
   content_count bigint NOT NULL DEFAULT '0',
@@ -2421,6 +2494,8 @@ CREATE TABLE lupo_sessions (
   session_id varchar(255) NOT NULL,
   federation_node_id bigint NOT NULL DEFAULT 1,
   actor_id bigint NOT NULL DEFAULT 0,
+  faucet_slug varchar(100) DEFAULT NULL,
+  faucet_instance_id varchar(100) DEFAULT NULL,
   actor_name varchar(64) DEFAULT NULL,
   channel_id bigint NOT NULL DEFAULT 1,
   ip_address varchar(45) NOT NULL DEFAULT '',
@@ -2453,6 +2528,7 @@ CREATE TABLE lupo_sessions (
 
 CREATE INDEX lupo_sessions_idx_domain ON lupo_sessions (federation_node_id);
 CREATE INDEX lupo_sessions_idx_actor ON lupo_sessions (actor_id);
+CREATE INDEX lupo_sessions_idx_faucet ON lupo_sessions (faucet_slug, faucet_instance_id);
 CREATE INDEX lupo_sessions_idx_actor_name ON lupo_sessions (actor_name);
 CREATE INDEX lupo_sessions_idx_last_seen ON lupo_sessions (last_seen_ymdhis);
 CREATE INDEX lupo_sessions_idx_expires ON lupo_sessions (expires_ymdhis);
@@ -2990,6 +3066,10 @@ CREATE TABLE lupo_tasks (
   task_type varchar(64),
   task_status varchar(64),
   task_priority varchar(64),
+  parent_agent_id bigint DEFAULT NULL,
+  consensus_hash varchar(255) DEFAULT NULL,
+  approval_chain_json json DEFAULT NULL,
+  task_embeddings text DEFAULT NULL,
   PRIMARY KEY (task_id)
 );
 
@@ -3002,7 +3082,23 @@ CREATE INDEX lupo_tasks_idx_task_priority ON lupo_tasks (task_priority);
 CREATE INDEX lupo_tasks_idx_created_ymdhis ON lupo_tasks (created_ymdhis);
 CREATE INDEX lupo_tasks_idx_acting_as_actor_id ON lupo_tasks (acting_as_actor_id);
 CREATE INDEX lupo_tasks_idx_is_deleted ON lupo_tasks (is_deleted);
+CREATE INDEX lupo_tasks_idx_parent_agent_id ON lupo_tasks (parent_agent_id);
 -- RESERVED ID DOCTRINE: task_id is NOT AUTO_INCREMENT; application must supply explicit ID.
+
+-- lupo_rolls: actor roles in channels (multi-agent evolution)
+CREATE TABLE lupo_rolls (
+  roll_id bigint NOT NULL,
+  channel_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  role_slug varchar(100) NOT NULL,
+  permission_scope_json json DEFAULT NULL,
+  is_active tinyint NOT NULL DEFAULT 1,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  PRIMARY KEY (roll_id)
+);
+CREATE INDEX lupo_rolls_idx_channel_actor ON lupo_rolls (channel_id, actor_id);
+CREATE INDEX lupo_rolls_idx_role ON lupo_rolls (role_slug);
 
 -- Task Assignments
 -- Task Dependencies

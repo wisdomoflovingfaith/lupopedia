@@ -3,6 +3,7 @@ description: TOON files are derived from canonical schema; schema comes from ins
 alwaysApply: true
 ---
 
+
 # TOON Files and Canonical Schema (PERMANENT)
 
 Cursor MUST treat **install_new_lupopedia.sql** and **seed_lupopedia.sql** as the single source of truth for all table and column definitions. TOON files are regenerated from this canonical schema.

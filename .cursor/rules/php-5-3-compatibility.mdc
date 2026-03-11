@@ -3,6 +3,7 @@ description: All Lupopedia core code must run on PHP 5.3 through 8.1+; no modern
 alwaysApply: true
 ---
 
+
 # PHP 5.3+ Compatibility (MANDATORY)
 
 All code must run on **PHP 5.3 through PHP 8.1+**. Shared hosting and minimal hosting doctrine require it.

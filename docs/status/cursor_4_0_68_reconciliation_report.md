@@ -1,17 +1,17 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "status"
+lupopedia.headers:
+  lupopedia.version: "4.0.69"
+  lupopedia.schema: "status"
   file_path_from_root: "docs/status/cursor_4_0_68_reconciliation_report.md"
   last_modified_utc: "20260310"
-  system_version: "4.0.68"
+  system_version: "4.0.69"
   channel_id: 42
   actor_id: 1003
   artifact_type: "report"
   artifact_kind: "implementation"
   purpose: "Reconciliation of KIRO/LILITH reviews; installer, rules, validators, seeds, skill service, changelog."
 ---
-# file: Cursor 4.0.68 reconciliation report — session: L-LUPO-CURSOR — delegation: cursor:captain — web_path: http://www.lupopedia.com/status/cursor_4_0_68_reconciliation
+# file: Cursor 4.0.68 reconciliation report — session: L-LUPO-WOLFIE-CURSOR — delegation: cursor:captain — web_path: http://www.lupopedia.com/status/cursor_4_0_68_reconciliation
 
 # Cursor 4.0.68 reconciliation report
 

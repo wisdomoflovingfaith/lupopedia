@@ -91,7 +91,7 @@ class AdminAgentsHandler
     {
         $actorsTable = $db->quoteIdentifier($prefix . 'actors');
         $agentRegistryTable = $db->quoteIdentifier($prefix . 'agent_registry');
-        $dialogTable = $db->quoteIdentifier($prefix . 'dialog_doctrine');
+        $dialogTable = $db->quoteIdentifier($prefix . 'dialog_messages');
         $ticketMessagesTable = $db->quoteIdentifier($prefix . 'ticket_messages');
 
         // Calculate 24h ago timestamp
@@ -149,7 +149,7 @@ class AdminAgentsHandler
      */
     public static function getAgentMetrics($db, $prefix, $actorId)
     {
-        $dialogTable = $db->quoteIdentifier($prefix . 'dialog_doctrine');
+        $dialogTable = $db->quoteIdentifier($prefix . 'dialog_messages');
         $ticketMessagesTable = $db->quoteIdentifier($prefix . 'ticket_messages');
         $twentyFourHoursAgo = gmdate('YmdHis', time() - 86400);
 

@@ -12,7 +12,7 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "Comprehensive guide for WARP and all IDE agents working with Lupopedia"
+  purpose: "Comprehensive guide for WARP and all IDE surfaces (faucets) working with Lupopedia"
   mood_rgb: "4169E1"
   traits: ["canonical", "comprehensive", "v4.0.57", "agents"]
   tags: ["agents", "warp", "documentation", "doctrine", "architecture"]
@@ -44,7 +44,7 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 
 ## What This Project Is
 
-Lupopedia is the continuation of Crafty Syntax Live Help 3.7.5 — a PHP live-chat system rebuilt as a "Semantic OS." It adds a unified actor model, semantic content graph, AI agent ecosystem, and doctrine-driven architecture on top of the original live-chat features. The only supported upgrade path is Crafty Syntax 3.7.5 → Lupopedia 4.0.x. There are zero external installations; the sole instance is the developer's local environment on Windows/ServBay.
+Lupopedia is the continuation of Crafty Syntax Live Help 3.7.5 — a PHP live-chat system rebuilt as a "Semantic OS." **Actors** are the orchestration identities; they coordinate through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces (IDE surfaces such as Cursor, Windsurf, Warp are faucets, not actors). It adds a unified actor model, semantic content graph, and doctrine-driven architecture on top of the original live-chat features. The only supported upgrade path is Crafty Syntax 3.7.5 → Lupopedia 4.0.x. There are zero external installations; the sole instance is the developer's local environment on Windows/ServBay.
 
 ## Development Environment
 
@@ -168,8 +168,8 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 - Forbidden: `DATETIME`, `TIMESTAMP`, epoch seconds, ISO8601, `time()`.
 
 ### Actor Model
-- `actor_id` is the universal identity key. There is no `user_id` in relationships.
-- Actor IDs 0–9999 are reserved for AI agents; human actors start at 10000.
+- **Actors orchestrate; faucets execute.** `actor_id` is the universal identity key. There is no `user_id` in relationships.
+- Actor IDs 0–999 are reserved for non-human (orchestration) actors; human actors start at 1000. IDE surfaces (Cursor, Windsurf, Warp, etc.) are **faucets**, not actors.
 - **Actor and agent IDs are defined in the project’s actor registry** (e.g. `lupo-database/lupopedia/actors/` or `lupo-database/lupopedia/actors/actor_id/registry.json`). Tooling and docs must resolve IDs from the registry; do not maintain inline ID lists as canonical. LUPOPEDIA HEADERS may include optional **agent_name_identity** (e.g. “Cursor IDE Agent”) for human-readable identification—see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and `docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md`.
 - Tables: `lupo_actors` (unified), `lupo_auth_users` (human login metadata), `lupo_agents` (AI agent metadata).
 - Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and `docs/status/LILITH_FLAME_FAUCET_REPORT.md`.

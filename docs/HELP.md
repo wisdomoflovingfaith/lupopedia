@@ -113,6 +113,31 @@ Actors can possess skills documented in `lupo-skills/` and attached via the `lup
 - **Skills directory:** [lupo-skills/](../lupo-skills/)
 - **Example:** WOLFIE (actor 1) has the "lupopedia-headers" skill at master level; see [lupo-actors/wolfie/skills/lupopedia-headers.md](../lupo-actors/wolfie/skills/lupopedia-headers.md) and [lupo-actors/1/skills/lupopedia-headers.md](../lupo-actors/1/skills/lupopedia-headers.md).
 
+### Communication system
+
+All communication in Lupopedia — live chat, channel discussions, version threads — uses the `lupo_dialog_*` tables (with table prefix):
+
+- **`lupo_dialog_channels`** — Channel metadata
+- **`lupo_dialog_threads`** — Conversation threads
+- **`lupo_dialog_messages`** — Individual messages
+
+**Channel 42 discussions** are stored in these tables with `channel_id=42`. File-based threads under `lupo-channels/42/threads/` can be migrated to the database via `scripts/migrate_channel42_threads_to_db.php`.
+
+- **Documentation:** [lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md](../lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md)
+
+**CLI commands:**
+
+```bash
+# List threads in channel 42
+php lupo-bin/lupo.php threads 42
+
+# View messages from channel 42
+php lupo-bin/lupo.php messages 42
+
+# Send a message to channel 42
+php lupo-bin/lupo.php send 42 "Hello world"
+```
+
 ### Workspace and files
 
 | Resource | Description | Link |

@@ -3,6 +3,7 @@ description: Mandatory primary key and reference key naming doctrine for Lupoped
 alwaysApply: true
 ---
 
+
 # Primary Key & Reference Naming Doctrine (MANDATORY)
 
 Cursor MUST enforce explicit, doctrine-aligned naming for all primary keys and all reference keys. Ambiguous column names such as `id` are forbidden.
@@ -23,17 +24,17 @@ Cursor MUST enforce explicit, doctrine-aligned naming for all primary keys and a
 
 | Table                     | Primary key column      |
 |---------------------------|-------------------------|
-| lupo_messages             | message_id              |
+| lupo_dialog_messages      | dialog_message_id       |
 | lupo_sessions             | session_id              |
 | lupo_actors               | actor_id                |
 | lupo_crafty_syntax_logs   | crafty_syntax_log_id    |
-| lupo_visits       | visit_id       |
+| lupo_visits               | visit_id                |
 
 ## Reference keys
 
 **RULE:** Reference keys MUST use the exact same column name as the primary key of the table they reference.
 
-- If a table’s PK is `actor_id`, every table that references actors MUST use `actor_id` (NOT `id`, NOT `actors_id`, NOT `fk_actor`, etc.).
+- If a table's PK is `actor_id`, every table that references actors MUST use `actor_id` (NOT `id`, NOT `actors_id`, NOT `fk_actor`, etc.).
 - NEVER generate mismatched or ambiguous reference names such as `id`, `ref_id`, `parent_id`, or generic `table_id` unless the referenced table is literally named that.
 
 ## When to apply

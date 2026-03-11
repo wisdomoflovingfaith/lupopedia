@@ -50,7 +50,7 @@ class SystemHealthService
 
             // Basic schema check - verify core tables exist (dynamic prefix)
             $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-            $coreTables = array($prefix . 'actors', $prefix . 'dialog_channels', $prefix . 'dialog_doctrine');
+            $coreTables = array($prefix . 'actors', $prefix . 'dialog_channels', $prefix . 'dialog_messages');
             $missingTables = array();
 
             foreach ($coreTables as $table) {

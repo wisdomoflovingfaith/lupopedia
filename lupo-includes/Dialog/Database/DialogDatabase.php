@@ -85,56 +85,60 @@ class DialogDatabase
     }
     
     /**
-     * Create a new dialog message
+     * Create a new dialog message (canonical table: lupo_dialog_messages)
+     * Required keys: dialog_message_id, dialog_thread_id, channel_id, from_actor_id, message_text, created_ymdhis, updated_ymdhis
      */
     public function createMessage(array $data): int
     {
-        $sql = "INSERT INTO " . $this->getTableName('dialog_doctrine') . " (
-            thread_id,
-            message_key,
+        $sql = "INSERT INTO " . $this->getTableName('dialog_messages') . " (
+            dialog_message_id,
+            message_id,
+            dialog_thread_id,
+            channel_id,
             from_actor_id,
             to_actor_id,
+            read_by_actor_id,
+            read_by_actor_utc,
+            message_text,
             message_type,
-            message_body_id,
-            metadata_json,
-            status_flag,
             created_ymdhis,
             updated_ymdhis,
-            is_deleted,
-            deleted_ymdhis
+            is_deleted
         ) VALUES (
-            :thread_id,
-            :message_key,
+            :dialog_message_id,
+            :message_id,
+            :dialog_thread_id,
+            :channel_id,
             :from_actor_id,
             :to_actor_id,
+            :read_by_actor_id,
+            :read_by_actor_utc,
+            :message_text,
             :message_type,
-            :message_body_id,
-            :metadata_json,
-            :status_flag,
             :created_ymdhis,
             :updated_ymdhis,
-            :is_deleted,
-            :deleted_ymdhis
+            :is_deleted
         )";
         
         $stmt = $this->pdo->prepare($sql);
         
         $stmt->execute([
-            ':thread_id' => $data['thread_id'],
-            ':message_key' => $data['message_key'],
+            ':dialog_message_id' => $data['dialog_message_id'],
+            ':message_id' => isset($data['message_id']) ? $data['message_id'] : 0,
+            ':dialog_thread_id' => $data['dialog_thread_id'],
+            ':channel_id' => $data['channel_id'],
             ':from_actor_id' => $data['from_actor_id'],
-            ':to_actor_id' => $data['to_actor_id'] ?? null,
-            ':message_type' => $data['message_type'],
-            ':message_body_id' => $data['message_body_id'],
-            ':metadata_json' => $data['metadata_json'] ?? null,
-            ':status_flag' => $data['status_flag'] ?? 1,
+            ':to_actor_id' => isset($data['to_actor_id']) ? $data['to_actor_id'] : null,
+            ':read_by_actor_id' => isset($data['read_by_actor_id']) ? $data['read_by_actor_id'] : 0,
+            ':read_by_actor_utc' => isset($data['read_by_actor_utc']) ? $data['read_by_actor_utc'] : 0,
+            ':message_text' => $data['message_text'],
+            ':message_type' => isset($data['message_type']) ? $data['message_type'] : 'text',
             ':created_ymdhis' => $data['created_ymdhis'],
             ':updated_ymdhis' => $data['updated_ymdhis'],
-            ':is_deleted' => $data['is_deleted'] ?? 0,
-            ':deleted_ymdhis' => $data['deleted_ymdhis'] ?? null
+            ':is_deleted' => isset($data['is_deleted']) ? $data['is_deleted'] : 0
         ]);
         
-        return (int)$this->pdo->lastInsertId();
+        return (int)$data['dialog_message_id'];
     }
     
     /**
@@ -200,29 +204,22 @@ class DialogDatabase
     }
     
     /**
-     * Get messages for a thread
+     * Get messages for a thread (canonical table: lupo_dialog_messages)
      */
     public function getMessagesByThread(int $threadId, int $limit = 50, int $offset = 0): array
     {
-        $sql = "SELECT dm.*, mb.content_text, mb.content_json, 
+        $sql = "SELECT dm.dialog_message_id, dm.dialog_thread_id, dm.channel_id, dm.from_actor_id, dm.to_actor_id,
+                        dm.message_text, dm.message_type, dm.created_ymdhis, dm.updated_ymdhis,
                         fa.name as from_actor_name, ta.name as to_actor_name
-                 FROM " . $this->getTableName('dialog_doctrine') . " dm
-                 LEFT JOIN " . $this->getTableName('dialog_message_bodies') . " mb 
-                   ON dm.message_body_id = mb.message_body_id
-                 LEFT JOIN " . $this->getTableName('actors') . " fa 
-                   ON dm.from_actor_id = fa.actor_id
-                 LEFT JOIN " . $this->getTableName('actors') . " ta 
-                   ON dm.to_actor_id = ta.actor_id
-                 WHERE dm.thread_id = :thread_id AND dm.is_deleted = 0
+                 FROM " . $this->getTableName('dialog_messages') . " dm
+                 LEFT JOIN " . $this->getTableName('actors') . " fa ON dm.from_actor_id = fa.actor_id
+                 LEFT JOIN " . $this->getTableName('actors') . " ta ON dm.to_actor_id = ta.actor_id
+                 WHERE dm.dialog_thread_id = :dialog_thread_id AND dm.is_deleted = 0
                  ORDER BY dm.created_ymdhis ASC
-                 LIMIT :limit OFFSET :offset";
+                 LIMIT " . (int)$limit . " OFFSET " . (int)$offset;
         
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([
-            ':thread_id' => $threadId,
-            ':limit' => $limit,
-            ':offset' => $offset
-        ]);
+        $stmt->execute([':dialog_thread_id' => $threadId]);
         
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -258,21 +255,20 @@ class DialogDatabase
     }
     
     /**
-     * Update thread status
+     * Update thread status (canonical: status column in lupo_dialog_threads)
      */
     public function updateThreadStatus(int $threadId, string $status): bool
     {
         $sql = "UPDATE " . $this->getTableName('dialog_threads') . " 
-                 SET status_flag = :status_flag, 
-                     updated_ymdhis = :updated_ymdhis
-                 WHERE thread_id = :thread_id";
+                 SET status = :status, updated_ymdhis = :updated_ymdhis
+                 WHERE dialog_thread_id = :dialog_thread_id";
         
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([
-            ':thread_id' => $threadId,
-            ':status_flag' => $status,
-            ':updated_ymdhis' => date('YmdHis')
-        ]);
+        return $stmt->execute(array(
+            ':dialog_thread_id' => $threadId,
+            ':status' => $status,
+            ':updated_ymdhis' => gmdate('YmdHis')
+        ));
     }
     
     /**
@@ -281,36 +277,35 @@ class DialogDatabase
     public function softDeleteThread(int $threadId): bool
     {
         $sql = "UPDATE " . $this->getTableName('dialog_threads') . " 
-                 SET is_deleted = 1, 
-                     deleted_ymdhis = :deleted_ymdhis,
-                     updated_ymdhis = :updated_ymdhis
-                 WHERE thread_id = :thread_id";
+                 SET is_deleted = 1, deleted_ymdhis = :deleted_ymdhis, updated_ymdhis = :updated_ymdhis
+                 WHERE dialog_thread_id = :dialog_thread_id";
         
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([
-            ':thread_id' => $threadId,
-            ':deleted_ymdhis' => date('YmdHis'),
-            ':updated_ymdhis' => date('YmdHis')
-        ]);
+        return $stmt->execute(array(
+            ':dialog_thread_id' => $threadId,
+            ':deleted_ymdhis' => gmdate('YmdHis'),
+            ':updated_ymdhis' => gmdate('YmdHis')
+        ));
     }
     
     /**
-     * Get dialog statistics
+     * Get dialog statistics (canonical tables: lupo_dialog_threads, lupo_dialog_messages)
      */
     public function getDialogStatistics(): array
     {
         $sql = "SELECT 
-                    COUNT(DISTINCT dt.thread_id) as total_threads,
-                    COUNT(DISTINCT dm.message_id) as total_messages,
-                    COUNT(DISTINCT dt.channel_key) as total_channels,
+                    COUNT(DISTINCT dt.dialog_thread_id) as total_threads,
+                    COUNT(DISTINCT dm.dialog_message_id) as total_messages,
+                    COUNT(DISTINCT dt.channel_id) as total_channels,
                     COUNT(DISTINCT dm.from_actor_id) as active_participants
                  FROM " . $this->getTableName('dialog_threads') . " dt
-                 LEFT JOIN " . $this->getTableName('dialog_doctrine') . " dm 
-                   ON dt.thread_id = dm.thread_id
-                 WHERE dt.is_deleted = 0 AND dm.is_deleted = 0";
+                 LEFT JOIN " . $this->getTableName('dialog_messages') . " dm 
+                   ON dt.dialog_thread_id = dm.dialog_thread_id AND dm.is_deleted = 0
+                 WHERE dt.is_deleted = 0";
         
         $stmt = $this->pdo->query($sql);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row ?: array();
     }
     
     /**

@@ -1,137 +1,21 @@
 {
-  "schema_version": "4.0.47",
+  "schema_version": "4.0.69",
   "actors": [
-    {
-      "id": 0,
-      "type": "system",
-      "slug": "system-kernel",
-      "dir": "actors/0"
-    },
-    {
-      "id": 1,
-      "type": "agent",
-      "slug": "captain-wolfie",
-      "dir": "actors/1"
-    },
-    {
-      "id": 2,
-      "type": "agent",
-      "slug": "lilith",
-      "dir": "actors/2"
-    },
-    {
-      "id": 3,
-      "type": "agent",
-      "slug": "rose-dialog",
-      "dir": "actors/3"
-    },
-    {
-      "id": 4,
-      "type": "agent",
-      "slug": "eris",
-      "dir": "actors/4"
-    },
-    {
-      "id": 5,
-      "type": "agent",
-      "slug": "metis",
-      "dir": "actors/5"
-    },
-    {
-      "id": 19,
-      "type": "agent",
-      "slug": "anubis",
-      "dir": "actors/19"
-    },
-    {
-      "id": 42,
-      "type": "agent",
-      "slug": "antigravity",
-      "dir": "actors/42"
-    },
-    {
-      "id": 25,
-      "type": "agent",
-      "slug": "vishwakarma",
-      "dir": "actors/25"
-    },
-    {
-      "id": 420,
-      "type": "agent",
-      "slug": "stoned-wolfie",
-      "dir": "actors/420"
-    },
-    {
-      "id": 1000,
-      "type": "agent",
-      "slug": "kiro-ide",
-      "dir": "actors/1000"
-    },
-    {
-      "id": 1001,
-      "type": "agent",
-      "slug": "windsurf-ide",
-      "dir": "actors/1001"
-    },
-    {
-      "id": 1002,
-      "type": "agent",
-      "slug": "cursor-ide",
-      "dir": "actors/1002"
-    },
-    {
-      "id": 1003,
-      "type": "agent",
-      "slug": "antigravity-ide",
-      "dir": "actors/1003"
-    },
-    {
-      "id": 1004,
-      "type": "agent",
-      "slug": "warp-ide",
-      "dir": "actors/1004"
-    },
-    {
-      "id": 1005,
-      "type": "agent",
-      "slug": "cascade-ide",
-      "dir": "actors/1005"
-    },
-    {
-      "id": 1006,
-      "type": "agent",
-      "slug": "gemini-cli",
-      "dir": "actors/1006"
-    },
-    {
-      "id": 1007,
-      "type": "agent",
-      "slug": "codex-ide",
-      "dir": "actors/1007"
-    },
-    {
-      "id": 1008,
-      "type": "agent",
-      "slug": "trae-ide",
-      "dir": "actors/1008"
-    },
-    {
-      "id": 1009,
-      "type": "agent",
-      "slug": "doctor",
-      "dir": "actors/1009"
-    },
-    {
-      "id": 10000,
-      "type": "human",
-      "slug": "root-captain-10000",
-      "dir": "actors/10000"
-    },
-    {
-      "id": 10420,
-      "type": "human",
-      "slug": "test-banned-user",
-      "dir": "actors/10420"
-    }
+    { "id": 0, "type": "system", "slug": "system", "dir": "actors/0" },
+    { "id": 1, "type": "agent", "slug": "wolfie", "dir": "actors/1" },
+    { "id": 2, "type": "agent", "slug": "lilith", "dir": "actors/2" },
+    { "id": 3, "type": "agent", "slug": "rose", "dir": "actors/3" },
+    { "id": 4, "type": "agent", "slug": "eris", "dir": "actors/4" },
+    { "id": 5, "type": "agent", "slug": "uct-timekeeper", "dir": "actors/5" },
+    { "id": 6, "type": "agent", "slug": "metis", "dir": "actors/6" },
+    { "id": 19, "type": "agent", "slug": "anubis", "dir": "actors/19" },
+    { "id": 42, "type": "agent", "slug": "antigravity", "dir": "actors/42" },
+    { "id": 100, "type": "ide_faucet", "slug": "kiro", "dir": "actors/100" },
+    { "id": 101, "type": "ide_faucet", "slug": "windsurf", "dir": "actors/101" },
+    { "id": 102, "type": "ide_faucet", "slug": "cursor", "dir": "actors/102" },
+    { "id": 103, "type": "ide_faucet", "slug": "antigravity", "dir": "actors/103" },
+    { "id": 104, "type": "ide_faucet", "slug": "warp", "dir": "actors/104" },
+    { "id": 105, "type": "ide_faucet", "slug": "cascade", "dir": "actors/105" },
+    { "id": 1000, "type": "human", "slug": "root", "dir": "actors/1000" }
   ]
 }

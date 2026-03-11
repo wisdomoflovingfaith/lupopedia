@@ -1,0 +1,61 @@
+{
+  "table_name": "lupo_actor_traits",
+  "fields": [
+    "`actor_trait_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`trait_key` varchar(128) NOT NULL",
+    "`trait_value` varchar(512)",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`metadata` text"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_traits_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_traits_idx_actor_key",
+      "columns": [
+        "actor_id",
+        "trait_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_traits_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_traits_idx_trait_key",
+      "columns": [
+        "trait_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "actor_trait_id",
+    "expected_name": "actor_trait_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

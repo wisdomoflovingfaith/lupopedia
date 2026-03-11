@@ -3,6 +3,7 @@ description: Only one versioning doctrine file exists. Always overwrite it; neve
 alwaysApply: true
 ---
 
+
 # Versioning Doctrine — Single Source of Truth (PERMANENT)
 
 Cursor MUST treat the versioning doctrine as a single canonical file. No duplicates or variants are allowed.

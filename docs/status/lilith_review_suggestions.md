@@ -98,7 +98,7 @@ The v4.0.68 implementation by Cursor is a significant step forward in the Lupope
 "Canonical format: First line of file = `---`; then YAML blocks; then closing `---`; then `# file: ...` as the first content line."
 
 **Files reviewed:**
-- `lupo-rules/cursor/*.md`
+- `lupo-rules/root/*.md`
 - `lupo-rules/skills/*.md`
 - `lupo-channels/42/content/federation_node_id/0/*.md`
 
@@ -107,7 +107,7 @@ The v4.0.68 implementation by Cursor is a significant step forward in the Lupope
 - The project root atom `LUPOPEDIA_PROJECT_ROOT` is a necessary addition for cross-platform path stability.
 
 **Issues found:**
-- 🟠 HIGH: Multiple rule files (e.g., in `lupo-rules/cursor/`) were initially attributed to `actor_id: 1003` (Cursor) or lacked `actor_id` entirely, instead of being attributed to the authoritative `actor_id: 1` (WOLFIE).
+- 🟠 HIGH: Multiple rule files (e.g., in `lupo-rules/root/`) were initially attributed to `actor_id: 1003` (Cursor) or lacked `actor_id` entirely, instead of being attributed to the authoritative `actor_id: 1` (WOLFIE).
 - 🟠 HIGH: Several files still had `last_verified_by: "cursor"` in their footers.
 
 **Recommendations:**
@@ -160,7 +160,7 @@ The v4.0.68 implementation by Cursor is a significant step forward in the Lupope
 | Priority | Issue | Location | Suggested Action |
 |----------|-------|----------|------------------|
 | 🔴 CRITICAL | Reintroduction of AUTO_INCREMENT | `lupo_visits`, `lupo_paths`, `lupo_rule_logs` | Update doctrine to allow per-table exceptions or refactor to PHP IDs |
-| 🟠 HIGH | Incorrect author attribution in rules | `lupo-rules/cursor/*.md` | **ALREADY FIXED** by Antigravity (attribution to Actor 1) |
+| 🟠 HIGH | Incorrect author attribution in rules | `lupo-rules/root/*.md` | **ALREADY FIXED** by Antigravity (attribution to Actor 1) |
 | 🟡 MEDIUM | Brittle YAML parsing for skills | `SkillService.php` | Enhance regex parser or use safer line-by-line validation |
 | 🟢 LOW | Heuristic DB validation false positives | `ToonValidator.php` | Refine regex patterns for schema parsing |
 

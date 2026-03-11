@@ -4,6 +4,8 @@
     "`content_id` bigint NOT NULL",
     "`content_parent_id` bigint",
     "`federation_node_id` bigint DEFAULT 1",
+    "`federation_source_url` varchar(2000) COMMENT 'Canonical URL of content at source federation node'",
+    "`channel_id` bigint COMMENT 'Channel this content belongs to (doctrine: content placement)'",
     "`department_id` bigint",
     "`actor_id` bigint",
     "`title` varchar(255) NOT NULL",
@@ -56,6 +58,14 @@
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "lupo_contents_idx_channel_id",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "lupo_contents_idx_content_parent",
       "columns": [

@@ -3,6 +3,7 @@ description: Mandatory prohibition of database-side logic; all logic in applicat
 alwaysApply: true
 ---
 
+
 # Database Logic Prohibition Doctrine (MANDATORY)
 
 Cursor must NEVER suggest or generate any database-side logic. All logic belongs in application code, not in the database. This doctrine is absolute and non-negotiable.

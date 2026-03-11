@@ -9,15 +9,27 @@ SET @now = 20260225000000;
 
 -- ============================================================================
 -- ACTOR ID GAPS
--- Reserved: 0, 1-5 (core agents), 1000-1004 (IDE agents), 10000 (root)
--- Available: 6-999, 1005-9999, 10001-10099 (first 100 human slots)
+-- Reserved: 0, 1-5 (core agents), 100-111 (IDE agents)
+-- Available: 6-99, 112-999 (available for system/IDE agents)
+-- Human Actor ID Doctrine: human actors must have actor_id >= 1000 (HumanActorIdDoctrine.md).
 -- ============================================================================
 
--- Gaps 6-999 (994 IDs)
+-- Gaps 6-99 (94 IDs)
 INSERT INTO lupo_registry_open (entity_type, entity_index_id, reason, created_ymdhis)
 SELECT 'actor', n, 'available_for_system_agents', @now
 FROM (
-  SELECT 6 + a.N + b.N * 10 + c.N * 100 AS n
+  SELECT 6 + a.N + b.N * 10 AS n
+  FROM 
+    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
+    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b
+) numbers
+WHERE n <= 99;
+
+-- Gaps 112-999 (888 IDs for system/IDE agents)
+INSERT INTO lupo_registry_open (entity_type, entity_index_id, reason, created_ymdhis)
+SELECT 'actor', n, 'available_for_system_agents', @now
+FROM (
+  SELECT 112 + a.N + b.N * 10 + c.N * 100 AS n
   FROM 
     (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
     (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b,
@@ -25,42 +37,18 @@ FROM (
 ) numbers
 WHERE n <= 999;
 
--- Gaps 1005-1999 (995 IDs for IDE agents)
+-- Gaps 1001-9999 (available for human users)
 INSERT INTO lupo_registry_open (entity_type, entity_index_id, reason, created_ymdhis)
-SELECT 'actor', n, 'available_for_ide_agents', @now
+SELECT 'actor', n, 'available_for_human_users', @now
 FROM (
-  SELECT 1005 + a.N + b.N * 10 + c.N * 100 AS n
-  FROM 
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) c
-) numbers
-WHERE n <= 1999;
-
--- Gaps 2000-9999 (8000 IDs for future system use)
-INSERT INTO lupo_registry_open (entity_type, entity_index_id, reason, created_ymdhis)
-SELECT 'actor', n, 'reserved_for_future_system', @now
-FROM (
-  SELECT 2000 + a.N + b.N * 10 + c.N * 100 + d.N * 1000 AS n
+  SELECT 1001 + a.N + b.N * 10 + c.N * 100 + d.N * 1000 AS n
   FROM 
     (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
     (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b,
     (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) c,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7) d
+    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) d
 ) numbers
 WHERE n <= 9999;
-
--- Gaps 10001-10999 (999 IDs for initial human users)
-INSERT INTO lupo_registry_open (entity_type, entity_index_id, reason, created_ymdhis)
-SELECT 'actor', n, 'available_for_human_users', @now
-FROM (
-  SELECT 10001 + a.N + b.N * 10 + c.N * 100 AS n
-  FROM 
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) c
-) numbers
-WHERE n <= 10999;
 
 -- ============================================================================
 -- CHANNEL ID GAPS

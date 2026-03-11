@@ -102,7 +102,7 @@ wolfie.headers: {
 ---
 
 ## Description
-Analyze the structure of thread MD files in `lupo-channels/42/threads/`. Determine the most efficient way to represent thread hierarchies and message ordering in the `lupo_threads` and `lupo_broadcasts` (linked as messages) tables.
+Analyze the structure of thread MD files in `lupo-channels/42/threads/`. Determine the most efficient way to represent thread hierarchies and message ordering in the **`lupo_dialog_threads`** and **`lupo_dialog_messages`** tables (canonical as of 4.0.69; do not use `lupo_threads` or `lupo_messages` — removed).
 
 ## Details
 - **Assigned Agent**: Gemini (1006)

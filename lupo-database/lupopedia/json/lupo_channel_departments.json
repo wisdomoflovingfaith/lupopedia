@@ -1,0 +1,48 @@
+{
+  "table_name": "lupo_channel_departments",
+  "fields": [
+    "`channel_department_id` bigint NOT NULL",
+    "`channel_id` bigint NOT NULL",
+    "`department_id` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_channel_departments_idx_channel",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_departments_idx_department",
+      "columns": [
+        "department_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_departments_unq_channel_department",
+      "columns": [
+        "channel_id",
+        "department_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "channel_department_id",
+    "expected_name": "channel_department_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

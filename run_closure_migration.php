@@ -47,14 +47,14 @@ try {
 
 
     // Verify results
-    $stmt = $db->prepare('SELECT COUNT(*) FROM lupo_dialog_doctrine WHERE channel_id = 420');
+    $stmt = $db->prepare('SELECT COUNT(*) FROM lupo_dialog_messages WHERE channel_id = 420');
     $stmt->execute();
     $count = $stmt->fetchColumn();
 
     echo "Messages in Channel 420 after migration: " . $count . "\n\n";
 
     if ($count > 0) {
-        $stmt = $db->prepare('SELECT dialog_message_id, from_actor_id, message_text, created_ymdhis FROM lupo_dialog_doctrine WHERE channel_id = 420 ORDER BY dialog_message_id ASC');
+        $stmt = $db->prepare('SELECT dialog_message_id, from_actor_id, message_text, created_ymdhis FROM lupo_dialog_messages WHERE channel_id = 420 ORDER BY dialog_message_id ASC');
         $stmt->execute();
         $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

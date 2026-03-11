@@ -5,6 +5,8 @@
 **Review Scope**: All changes attributed to Antigravity through 4.0.66  
 **Status**: CRITICAL DEFECTS IDENTIFIED
 
+**Update (4.0.69):** The schema was not extended with `lupo_threads`/`lupo_messages`; instead they were **removed** where they had been added in dev migrations. All communication now uses **`lupo_dialog_threads`** and **`lupo_dialog_messages`** only. See [COMMUNICATION_DOCTRINE.md](../../lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md) and CHANGELOG 4.0.69.
+
 ---
 
 ## 1. Executive Verdict

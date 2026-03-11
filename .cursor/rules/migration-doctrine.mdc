@@ -1,7 +1,8 @@
 ---
-description: Migration doctrine — two-place schema changes, no direct DB, no scoop mysql, TOON source of truth.
+description: Two-place schema changes, no direct DB, no scoop mysql, TOON source of truth.
 alwaysApply: true
 ---
+
 
 # Migration Doctrine (MANDATORY)
 

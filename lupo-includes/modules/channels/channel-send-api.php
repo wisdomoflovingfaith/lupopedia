@@ -2,21 +2,21 @@
 /**
  * Channel send message API — POST only.
  * Legacy: admin_chat_bot.php whattodo=send. Insert dialog_message, clear all typing (writediv), timestamp uniqueness.
- * Schema: lupo_dialog_doctrine, file-based typing cache. All paths use LUPOPEDIA_PUBLIC_PATH.
+ * Schema: lupo_dialog_messages, file-based typing cache. All paths use LUPOPEDIA_PUBLIC_PATH.
  */
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     http_response_code(500);
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'Config not loaded']);
+    echo json_encode(array('error' => 'Config not loaded'));
     exit;
 }
 
-$method = $_SERVER['REQUEST_METHOD'] ?? '';
+$method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '';
 if ($method !== 'POST') {
     http_response_code(405);
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'Method not allowed']);
+    echo json_encode(array('error' => 'Method not allowed'));
     exit;
 }
 
@@ -37,7 +37,7 @@ if ($visitor_sid !== '') {
 }
 
 if (!$visitor_mode) {
-    $authService = $GLOBALS['lupo_auth_service'] ?? null;
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     if ($authService) {
         $user = $authService->getCurrentUser();
         if ($user && !empty($user['actor_id'])) {
@@ -49,22 +49,22 @@ if (!$visitor_mode) {
             $actor_id = (int) $user['actor_id'];
         }
     }
-if (!$actor_id && ($s = $GLOBALS['lupo_session'] ?? null)) {
+if (!$actor_id && ($s = (isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null))) {
     $actor_id = $s->validateSession();
 }
 }
 if ($actor_id === null) {
     http_response_code(401);
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'Not authenticated']);
+    echo json_encode(array('error' => 'Not authenticated'));
     exit;
 }
 
-$db = $GLOBALS['mydatabase'] ?? null;
+$db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
 if (!$db) {
     http_response_code(503);
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'Database unavailable']);
+    echo json_encode(array('error' => 'Database unavailable'));
     exit;
 }
 
@@ -76,38 +76,38 @@ $to_actor_id = isset($_POST['to_actor_id']) ? (int) $_POST['to_actor_id'] : null
 
 if ($dialog_thread_id <= 0) {
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'dialog_thread_id required']);
+    echo json_encode(array('error' => 'dialog_thread_id required'));
     exit;
 }
 if ($channel_id < 0) {
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'channel_id required']);
+    echo json_encode(array('error' => 'channel_id required'));
     exit;
 }
 if ($message_text === '') {
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'message_text required']);
+    echo json_encode(array('error' => 'message_text required'));
     exit;
 }
 
 if ($visitor_mode) {
     if ($channel_id === 0) {
         $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}dialog_threads WHERE dialog_thread_id = :tid AND channel_id IS NULL AND is_deleted = 0 LIMIT 1");
-        $stmt->execute([':tid' => $dialog_thread_id]);
+        $stmt->execute(array(':tid' => $dialog_thread_id));
     } else {
         $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}dialog_threads WHERE dialog_thread_id = :tid AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
-        $stmt->execute([':tid' => $dialog_thread_id, ':channel_id' => $channel_id]);
+        $stmt->execute(array(':tid' => $dialog_thread_id, ':channel_id' => $channel_id));
     }
     if ($stmt->fetch() === false) {
         http_response_code(403);
         header('Content-Type: application/json');
-        echo json_encode(['error' => 'Access denied to channel']);
+        echo json_encode(array('error' => 'Access denied to channel'));
         exit;
     }
 } else {
     $has_access = false;
     $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channels WHERE actor_id = :actor_id AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
-    $stmt->execute([':actor_id' => $actor_id, ':channel_id' => $channel_id]);
+    $stmt->execute(array(':actor_id' => $actor_id, ':channel_id' => $channel_id));
     if ($stmt->fetch() !== false) {
         $has_access = true;
     }
@@ -120,7 +120,25 @@ if ($visitor_mode) {
     if (!$has_access) {
         http_response_code(403);
         header('Content-Type: application/json');
-        echo json_encode(['error' => 'Access denied to channel']);
+        echo json_encode(array('error' => 'Access denied to channel'));
+        exit;
+    }
+}
+
+// Pre-action authorization: TraitEnforcer (4.0.69). Columns from install/TOON.
+if (!class_exists('TraitEnforcer')) {
+    $trait_enforcer_path = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : (defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : '');
+    $trait_enforcer_path = rtrim($trait_enforcer_path, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'TraitEnforcer.php';
+    if (is_file($trait_enforcer_path)) {
+        require_once $trait_enforcer_path;
+    }
+}
+if (class_exists('TraitEnforcer')) {
+    $enforcer = new TraitEnforcer($db);
+    if (!$enforcer->isActionAuthorized($actor_id, 'dialog.send_message', $channel_id > 0 ? $channel_id : null)) {
+        http_response_code(403);
+        header('Content-Type: application/json');
+        echo json_encode(array('error' => 'Not authorized to send messages'));
         exit;
     }
 }
@@ -169,7 +187,7 @@ if (!$original_sender_actor_id && isset($_SERVER['HTTP_X_FLIP_ORIGINAL_SENDER_AC
 // Validate forwarding actor IDs if provided
 if ($forwarded_by_actor_id && $forwarded_by_actor_id > 0) {
     $stmt_check_actor = $db->prepare("SELECT 1 FROM {$table_prefix}actors WHERE actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
-    $stmt_check_actor->execute([':actor_id' => $forwarded_by_actor_id]);
+    $stmt_check_actor->execute(array(':actor_id' => $forwarded_by_actor_id));
     if ($stmt_check_actor->fetch() === false) {
         $forwarded_by_actor_id = null; // Invalid actor ID, ignore
     }
@@ -177,24 +195,30 @@ if ($forwarded_by_actor_id && $forwarded_by_actor_id > 0) {
 
 if ($original_sender_actor_id && $original_sender_actor_id > 0) {
     $stmt_check_actor = $db->prepare("SELECT 1 FROM {$table_prefix}actors WHERE actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
-    $stmt_check_actor->execute([':actor_id' => $original_sender_actor_id]);
+    $stmt_check_actor->execute(array(':actor_id' => $original_sender_actor_id));
     if ($stmt_check_actor->fetch() === false) {
         $original_sender_actor_id = null; // Invalid actor ID, ignore
     }
 }
 
-$stmt_ins = $db->prepare("INSERT INTO {$table_prefix}dialog_messages (dialog_thread_id, channel_id, from_actor_id, to_actor_id, message_text, message_type, created_ymdhis, updated_ymdhis, is_deleted, forwarded_by_actor_id, original_sender_actor_id) VALUES (:dialog_thread_id, :channel_id, :from_actor_id, :to_actor_id, :message_text, 'text', :created_ymdhis, :updated_ymdhis, 0, :forwarded_by_actor_id, :original_sender_actor_id)");
-$stmt_ins->execute([
+// Faucet traceability: source_faucet_slug, source_faucet_instance_id (install/TOON: lupo_dialog_messages)
+$source_faucet_slug = defined('LUPO_FAUCET_SLUG') ? LUPO_FAUCET_SLUG : null;
+$source_faucet_instance_id = defined('LUPO_FAUCET_INSTANCE_ID') ? LUPO_FAUCET_INSTANCE_ID : null;
+
+$stmt_ins = $db->prepare("INSERT INTO {$table_prefix}dialog_messages (dialog_thread_id, channel_id, from_actor_id, source_faucet_slug, source_faucet_instance_id, to_actor_id, message_text, message_type, created_ymdhis, updated_ymdhis, is_deleted, forwarded_by_actor_id, original_sender_actor_id) VALUES (:dialog_thread_id, :channel_id, :from_actor_id, :source_faucet_slug, :source_faucet_instance_id, :to_actor_id, :message_text, 'text', :created_ymdhis, :updated_ymdhis, 0, :forwarded_by_actor_id, :original_sender_actor_id)");
+$stmt_ins->execute(array(
     ':dialog_thread_id' => $dialog_thread_id,
     ':channel_id'      => $ins_channel_id,
     ':from_actor_id'   => $actor_id,
-    ':to_actor_id'     => $to_actor_id ?: null,
+    ':source_faucet_slug' => $source_faucet_slug,
+    ':source_faucet_instance_id' => $source_faucet_instance_id,
+    ':to_actor_id'     => $to_actor_id ? $to_actor_id : null,
     ':message_text'    => $message_text,
     ':created_ymdhis'  => $now,
     ':updated_ymdhis'  => $now,
     ':forwarded_by_actor_id' => $forwarded_by_actor_id,
     ':original_sender_actor_id' => $original_sender_actor_id,
-]);
+));
 
 // Legacy: on send, clear typing for the channel (skip when pending/channel_id=0)
 if ($channel_id > 0) {
@@ -207,4 +231,4 @@ if ($channel_id > 0) {
 }
 
 header('Content-Type: application/json; charset=utf-8');
-echo json_encode(['ok' => true, 'created_ymdhis' => $now]);
+echo json_encode(array('ok' => true, 'created_ymdhis' => $now));

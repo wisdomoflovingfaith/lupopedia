@@ -1,15 +1,33 @@
-# file: LUPOPEDIA HEADERS Migration — session: L-LUPO-PLAN — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION
 ---
-flare.headers:
-  system_version: "4.0.68"
+lupopedia.headers:
+  lupopedia.version: "4.0.69"
+  lupopedia.schema: "doctrine"
+  system_version: "4.0.69"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md"
   web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION"
   title: "LUPOPEDIA HEADERS Migration"
-  session_name: "L-LUPO-PLAN"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
   artifact_kind: "reference"
+lupopedia.session:
+  session_id: "L-LUPO-ROOT-CURSOR"
+  session_name: "L-LUPO-ROOT-CURSOR"
+  actor_id: 1003
+  actor_name: "cursor"
+  channel_id: 42
+  channel_name: "Lupopedia Development (general)"
+  federation_node_id: 1
+  context_source: "default"
+  department_id: 0
+  thread_id: 0
+  agent_name: "cursor"
+  actor_type: "agent"
+  actor_nature: "ide"
+  human_actor_name: "root"
+  paired_actor_id: 10000
 ---
+# file: LUPOPEDIA HEADERS Migration — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION
+
 # LUPOPEDIA HEADERS — Incremental migration from FLARE
 
 **Version:** 4.0.68+
@@ -31,16 +49,16 @@ Migration from FLARE-headed artifacts to LUPOPEDIA HEADERS is **incremental**, n
 1. **Parse** existing FLARE YAML headers (from files or legacy content).
 2. **Normalize** into the row-based model: root row → block rows → property rows → repeating-structure rows (edges, mappings, actions).
 3. **Insert** into `lupo_metadata` with `channel_id`, `parent_metadata_id`, and `class_name` set appropriately.
-4. **Optionally** rewrite the file to the LUPOPEDIA format (identity line first, then `---`, YAML, `---`, body).
+4. **Optionally** rewrite the file to the LUPOPEDIA format: first line `---`, then YAML blocks, then `---`, then identity line `# file: ...`, then body.
 
 ---
 
 ## 3. Validator behavior
 
 - **Legacy FLARE:** Accept files that start with `---` and YAML then identity line, or identity line then `---` and YAML, per existing FLARE doctrine.
-- **LUPOPEDIA 4.0.68+:** Enforce identity line first, then `---`, then YAML in canonical block order, then `---`, then body.
-- **Block order:** When validating or exporting, enforce canonical order: flame.init → flare.conditional → flare.headers → flare.edges → flare.footer → flame.see → flame.close.
-- **Channel resolution:** Support loading headers by `channel_id` as well as by `entity_type` + `entity_id`.
+- **LUPOPEDIA 4.0.68+:** Enforce first line `---`, then YAML in canonical block order, then `---`, then identity line `# file: ...`, then body.
+- **Block order:** When validating or exporting, enforce canonical order: lupopedia.init → lupopedia.conditional → lupopedia.headers → lupopedia.session → lupopedia.edges → lupopedia.footer → lupopedia.see → lupopedia.close (or legacy flame.init, flare.*, flame.see, flame.close). Session fields (session_id, session_name, etc.) belong in lupopedia.session.
+- **Channel resolution:** Support loading headers by `channel_id` as well as by `entity_type` + `entity_id`. Optional **channel_name** (human-readable) and **thread_name** (when thread-scoped) may be stored as properties for display; resolution remains by channel_id (and thread_id when applicable).
 
 ---
 

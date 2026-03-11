@@ -55,7 +55,7 @@
       "can_login": 0,
       "metadata_json": null,
       "identity_provider_config": null,
-      "paired_actor_id": 10000,
+      "paired_actor_id": 1000,
       "is_agent": 0,
       "actor_root_path": "actors/{actor_id}",
       "workspace_path": null,

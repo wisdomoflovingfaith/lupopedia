@@ -2,7 +2,7 @@
 /**
  * @wolfie.headers {
  *   file_path_from_root: "install.php",
- *   system_version: "4.0.68",
+ *   system_version: "4.0.69",
  *   channel_id: 42,
  *   mood_rgb: "FF6347",
  *   purpose: "Main installer and upgrade wizard for Lupopedia - handles fresh install and Crafty Syntax 3.7.5 upgrade",
@@ -50,7 +50,7 @@
  *   },
  *   semantic_tags: ["installer", "upgrade_wizard", "crafty_syntax_3_7_5", "identity_normalization", "reserved_channels"],
  *   enrichment: { llm_inferred_edges: [], federated_metrics: {} },
- *   version: "4.0.67",
+ *   version: "4.0.69",
  *   last_verified_utc: "20260308",
  *   last_verified_by: "kiro"
  * }
@@ -108,7 +108,7 @@ if (!is_dir(LUPO_MYSQL_DIR)) {
 }
 
 // Version for wizard UI - Direct parse from global_atoms.yaml (install.php runs standalone, no bootstrap)
-$lupo_wizard_version = '4.0.67'; // Fallback when no atoms file found
+$lupo_wizard_version = '4.0.69'; // Fallback when no atoms file found
 $atoms_candidates = array(
     LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
     LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
@@ -379,6 +379,14 @@ if ($step === 'credentials') {
                             InstallWizardSqlRunner::runSqlFile($pdo, $path, $bootstrapLog, $table_prefix);
                         }
                     }
+                    // 4.0.69 seeds: fallback rule, traits / edge types / action authorization (idempotent)
+                    $seed_4_0_69 = array('seed_fallback_rule_4.0.69.sql', 'seed_traits_edge_types_action_auth_4.0.69.sql');
+                    foreach ($seed_4_0_69 as $seedFile) {
+                        $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                        if (is_file($path)) {
+                            InstallWizardSqlRunner::runSqlFile($pdo, $path, $bootstrapLog, $table_prefix);
+                        }
+                    }
                     InstallWizardChannels::createReservedSystemChannels($pdo, $bootstrapLog);
                     $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
                     header('Location: ' . $base . '/install.php?step=bootstrap');
@@ -587,6 +595,14 @@ if ($step === 'run') {
                         InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
                     }
                 }
+                // 4.0.69 seeds (new install): fallback rule, traits / edge types / action authorization (idempotent)
+                $seed_4_0_69 = array('seed_fallback_rule_4.0.69.sql', 'seed_traits_edge_types_action_auth_4.0.69.sql');
+                foreach ($seed_4_0_69 as $seedFile) {
+                    $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                    if (is_file($path)) {
+                        InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                    }
+                }
 
                 // Import MD files from channels/0/broadcasts/
                 InstallWizardMdImporter::importAllMdFiles($pdo, $log, $table_prefix);
@@ -673,6 +689,14 @@ if ($step === 'run') {
             // 4.0.68 seeds: rules, skills, changelog metadata, actor 1 cursor rules (idempotent; run after content seeds)
             $seed_4_0_68 = array('seed_rules_doctrine_4.0.68.sql', 'seed_skills_4.0.68.sql', 'seed_lupo_metadata_changelog_headers_4.0.68.sql', 'seed_actor_1_cursor_rules_4.0.68.sql');
             foreach ($seed_4_0_68 as $seedFile) {
+                $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                if (is_file($path)) {
+                    InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                }
+            }
+            // 4.0.69 seeds: fallback rule, traits / edge types / action authorization (idempotent; run after 4.0.68)
+            $seed_4_0_69 = array('seed_fallback_rule_4.0.69.sql', 'seed_traits_edge_types_action_auth_4.0.69.sql');
+            foreach ($seed_4_0_69 as $seedFile) {
                 $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
                 if (is_file($path)) {
                     InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);

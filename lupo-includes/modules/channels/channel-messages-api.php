@@ -2,7 +2,7 @@
 /**
  * Channel messages poll API — GET. Legacy: xmlhttp.php whattodo=messages.
  * Returns new dialog_messages for channel after after_ymdhis, ORDER BY created_ymdhis ASC.
- * Used for primary polling (XHR every ~2.1s). Schema: lupo_dialog_doctrine, lupo_dialog_threads, lupo_actors.
+ * Used for primary polling (XHR every ~2.1s). Schema: lupo_dialog_messages, lupo_dialog_threads, lupo_actors.
  * All paths use LUPOPEDIA_PUBLIC_PATH.
  */
 

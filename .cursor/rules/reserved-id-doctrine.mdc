@@ -3,6 +3,7 @@ description: Tables with reserved IDs must not use AUTO_INCREMENT; code must sup
 alwaysApply: true
 ---
 
+
 # RESERVED ID DOCTRINE (MANDATORY)
 
 Some tables in Lupopedia do **NOT** use AUTO_INCREMENT because certain IDs are **RESERVED** (global registry: actors, channels, users, system entities).
@@ -13,7 +14,7 @@ Some tables in Lupopedia do **NOT** use AUTO_INCREMENT because certain IDs are *
 - When inserting into these tables, the code **MUST** explicitly provide the ID (from registry or from an allocation step, e.g. `SELECT COALESCE(MAX(actor_id), 0) + 1` or a reserved constant).
 - The code must **NEVER** rely on `AUTO_INCREMENT` or `lastInsertId()` for these tables.
 - The code must **ALWAYS** check if a row with that ID exists before inserting: if exists → **UPDATE**; if not → **INSERT** with explicit ID.
-- The installer, importer, and seed logic **MUST** preserve reserved IDs exactly. Do not “fix” or “normalize” IDs.
+- The installer, importer, and seed logic **MUST** preserve reserved IDs exactly. Do not "fix" or "normalize" IDs.
 - Do **NOT** add AUTO_INCREMENT to these tables unless explicitly instructed.
 
 ## Insert pattern (required)
@@ -68,6 +69,6 @@ Tables that use explicit non-auto IDs (e.g. `lupo_actor_properties`, `lupo_uploa
 - The **importer** inserts Crafty Syntax users (and related rows) with their **original IDs**.
 - The **installer** inserts system actors/channels with **reserved IDs** from the registry.
 - The **seed** file inserts system channels and entities with **reserved IDs**.
-- Do **NOT** “fix” or “normalize” these IDs; preserve them exactly.
+- Do **NOT** "fix" or "normalize" these IDs; preserve them exactly.
 
 This rule is permanent.

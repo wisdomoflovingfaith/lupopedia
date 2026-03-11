@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-// VERSION: 4.0.68
+// VERSION: 4.0.69
 
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(dirname(__FILE__)) . '/');
@@ -54,7 +54,7 @@ try {
             $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
             $kernel->bootstrap($db, $table_prefix, $state_file, ABSPATH, $authService);
             $ctx = $kernel->getContext();
-            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.68');
+            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.69');
             lupo_validate_flare_headers($ctx, $system_version);
             DialogHeaderValidator::validate($ctx);
             $verbose = isset($whoami_verbose) ? $whoami_verbose : false;
@@ -122,7 +122,7 @@ try {
                 $actor_id = (int) $existing['actor_id'];
                 echo "Actor already exists with ID: $actor_id\n";
             } else {
-                $min_id = ($type === 'human' || $type === 'user') ? 10000 : 1000;
+                $min_id = ($type === 'human' || $type === 'user') ? 1000 : 100;
                 $actor_id = function_exists('lupo_findpuka') ? lupo_findpuka($db, $t, 'actor_id', $min_id) : null;
                 if ($actor_id === null) {
                     $stmt = $db->prepare("SELECT MAX(actor_id) as max_id FROM {$t}");
@@ -226,7 +226,7 @@ try {
             if ($channel_id < 0)
                 die("Error: Invalid channel_id.\n");
 
-            $t_msg = $table_prefix . 'dialog_doctrine';
+            $t_msg = $table_prefix . 'dialog_messages';
             $t_act = $table_prefix . 'actors';
             $sql = "SELECT m.message_text, m.created_ymdhis, a.name as actor_name, m.dialog_thread_id 
                     FROM {$t_msg} m 
@@ -271,7 +271,7 @@ try {
             if ($channel_id < 0 || $text === '')
                 die("Error: Invalid input. Usage: send <channel_id> <msg> [thread_id]\n");
 
-            $t_msg = $table_prefix . 'dialog_doctrine';
+            $t_msg = $table_prefix . 'dialog_messages';
             $now = (int) gmdate('YmdHis');
             $id = function_exists('lupo_findpuka') ? lupo_findpuka($db, $t_msg, 'dialog_message_id', 1) : null;
             if ($id === null) {
@@ -311,14 +311,14 @@ try {
             if (!$actor)
                 die("Error: Not registered.\n");
             $t = $table_prefix . 'tasks';
-            $stmt = $db->prepare("SELECT task_id, title, status_id FROM {$t} WHERE owner_actor_id = :aid AND is_deleted = 0 ORDER BY created_ymdhis DESC");
+            $stmt = $db->prepare("SELECT task_id, title, task_status FROM {$t} WHERE owner_actor_id = :aid AND is_deleted = 0 ORDER BY created_ymdhis DESC");
             $stmt->execute(array('aid' => $actor['actor_id']));
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo "Your Tasks:\n";
             if (empty($rows))
                 echo "  (None)\n";
             foreach ($rows as $r)
-                echo "  [" . $r['task_id'] . "] " . $r['title'] . " (Status: " . $r['status_id'] . ")\n";
+                echo "  [" . $r['task_id'] . "] " . $r['title'] . " (Status: " . (isset($r['task_status']) ? $r['task_status'] : '—') . ")\n";
             break;
         case 'system-status':
             // System Agent command: get_system_status()
@@ -581,7 +581,7 @@ try {
             exit($return_var);
             break;
         case 'version':
-            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.68';
+            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.69';
             echo "Lupopedia version " . $ver . "\n";
             echo "Documentation: docs/version.md\n";
             break;
@@ -955,9 +955,9 @@ function lupo_help_whoami()
     echo "  actor_type = agent and paired_actor_id > 0 -> hybrid\n";
     echo "  actor_type = system      -> system\n\n";
     echo "Examples:\n";
-    echo "  Hybrid (e.g. Cursor):     Human Identity: root (10000), Active Agent: cursor (1003), Session Mode: hybrid\n";
-    echo "  Human direct (root):    Human Identity: root (10000), Active Agent: none, Session Mode: human_direct\n";
-    echo "  Autonomous (e.g. Lilith): Human Identity: none, Active Agent: lilith (2038), Session Mode: autonomous_agent\n";
+    echo "  Hybrid (e.g. Cursor):     Human Identity: root (1000), Active Agent: cursor (102), Session Mode: hybrid\n";
+    echo "  Human direct (root):    Human Identity: root (1000), Active Agent: none, Session Mode: human_direct\n";
+    echo "  Autonomous (e.g. Lilith): Human Identity: none, Active Agent: lilith (2), Session Mode: autonomous_agent\n";
     echo "  System:                   Human Identity: none, Active Agent: none, Session Mode: system\n\n";
     echo "Full reference: docs/lupopedia_whoami_readme.md (Section 4 – Dual-Identity Context)\n";
 }
@@ -978,12 +978,12 @@ function lupo_help_context()
     echo "Sample JSON:\n";
     echo "{\n";
     echo "  \"actor_name\": \"cursor\",\n";
-    echo "  \"actor_id\": 1003,\n";
+    echo "  \"actor_id\": 102,\n";
     echo "  \"human_actor_name\": \"root\",\n";
-    echo "  \"human_actor_id\": 10000,\n";
+    echo "  \"human_actor_id\": 1000,\n";
     echo "  \"agent_name\": \"cursor\",\n";
-    echo "  \"actor_type\": \"ide_agent\",\n";
-    echo "  \"paired_actor_id\": 10000,\n";
+    echo "  \"actor_type\": \"ide_faucet\",\n";
+    echo "  \"paired_actor_id\": 1000,\n";
     echo "  \"session_mode\": \"hybrid\",\n";
     echo "  \"channel_id\": 42,\n";
     echo "  \"federation_node_id\": 0,\n";

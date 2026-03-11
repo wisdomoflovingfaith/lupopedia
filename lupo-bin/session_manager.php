@@ -137,11 +137,13 @@ class SessionManager
 
             // Map session.json to lupo_sessions structure
             $now = gmdate('YmdHis');
-            $params = [
-                'session_id' => $sessionId, // Use prefixed session ID
+            $params = array(
+                'session_id' => $sessionId,
                 'federation_node_id' => (int) $sessionData['node_id'],
                 'actor_id' => (int) $sessionData['actor_id'],
-                'channel_id' => 0, // System channel for IDE agents
+                'faucet_slug' => isset($sessionData['faucet_slug']) ? $sessionData['faucet_slug'] : null,
+                'faucet_instance_id' => isset($sessionData['faucet_instance_id']) ? $sessionData['faucet_instance_id'] : null,
+                'channel_id' => 0,
                 'ip_address' => '127.0.0.1', // Local development
                 'user_agent' => 'IDE-Agent-' . $sessionData['actor_id'],
                 'device_id' => null,
@@ -155,21 +157,21 @@ class SessionManager
                 'is_active' => 1,
                 'is_expired' => 0,
                 'is_revoked' => 0,
-                'session_data' => json_encode([
-                    'actor_slug' => $sessionData['actor_slug'] ?? '',
+                'session_data' => json_encode(array(
+                    'actor_slug' => isset($sessionData['actor_slug']) ? $sessionData['actor_slug'] : '',
                     'current_session_id' => $sessionId, // Use prefixed session ID
                     'last_active_ymdhis' => $sessionData['last_active_ymdhis'],
                     'node_id' => $sessionData['node_id'],
                     'system_version' => $sessionData['system_version'],
                     'session_prefix' => 'L-lupo-' . $sessionData['actor_id']
-                ]),
+                )),
                 'system_context' => 'ide_agent',
-                'metadata' => json_encode([
+                'metadata' => json_encode(array(
                     'system_version' => $sessionData['system_version'],
                     'actor_type' => 'ide_agent',
                     'sync_source' => 'session_json',
                     'session_prefix' => 'L-lupo-' . $sessionData['actor_id']
-                ]),
+                )),
                 'login_ymdhis' => $sessionData['last_active_ymdhis'],
                 'last_seen_ymdhis' => (int) $sessionData['last_active_ymdhis'],
                 'expires_ymdhis' => null, // No expiration for IDE agents
@@ -177,13 +179,13 @@ class SessionManager
                 'updated_ymdhis' => $now,
                 'is_deleted' => 0,
                 'deleted_ymdhis' => null
-            ];
+            );
 
             // Use UPSERT pattern (MySQL/MariaDB compatible)
             return $this->upsertSession($params);
 
         } catch (Exception $e) {
-            return ['success' => false, 'error' => $e->getMessage()];
+            return array('success' => false, 'error' => $e->getMessage());
         }
     }
 

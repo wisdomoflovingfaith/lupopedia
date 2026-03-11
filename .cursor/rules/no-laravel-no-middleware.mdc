@@ -3,6 +3,7 @@ description: This project does NOT use Laravel or any framework middleware. Plai
 alwaysApply: true
 ---
 
+
 # No Laravel, No Middleware (PERMANENT)
 
 This project does **not** use Laravel or any framework middleware. Enforce the following across the entire codebase.

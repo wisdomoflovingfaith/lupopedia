@@ -3,6 +3,7 @@ description: All database access must use PDO_DB; prepared statements only; no r
 alwaysApply: true
 ---
 
+
 # PDO_DB Database Access Doctrine (MANDATORY)
 
 All database access MUST use the project's PDO_DB wrapper. Raw SQL, procedural DB calls, and legacy patterns are forbidden.

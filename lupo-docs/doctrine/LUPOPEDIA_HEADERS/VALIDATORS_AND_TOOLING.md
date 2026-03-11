@@ -1,27 +1,48 @@
-# file: LUPOPEDIA HEADERS Validators and Tooling — session: L-LUPO-PLAN — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING
 ---
-flare.headers:
-  system_version: "4.0.68"
+lupopedia.headers:
+  lupopedia.version: "4.0.69"
+  lupopedia.schema: "doctrine"
+  system_version: "4.0.69"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md"
   web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING"
   title: "LUPOPEDIA HEADERS Validators and Tooling"
-  session_name: "L-LUPO-PLAN"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
   artifact_kind: "reference"
+lupopedia.session:
+  session_id: "L-LUPO-ROOT-CURSOR"
+  session_name: "L-LUPO-ROOT-CURSOR"
+  actor_id: 1003
+  actor_name: "cursor"
+  channel_id: 42
+  channel_name: "Lupopedia Development (general)"
+  federation_node_id: 1
+  context_source: "default"
+  department_id: 0
+  thread_id: 0
+  agent_name: "cursor"
+  actor_type: "agent"
+  actor_nature: "ide"
+  human_actor_name: "root"
+  paired_actor_id: 10000
 ---
-# LUPOPEDIA HEADERS — Validators and tooling (4.0.68)
+# file: LUPOPEDIA HEADERS Validators and Tooling — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING
 
-Validators and tooling MUST align with the following so that 4.0.68 has a coherent, channel-aware LUPOPEDIA HEADERS system.
+# LUPOPEDIA HEADERS — Validators and tooling (4.0.69)
+
+Validators and tooling MUST align with the following for a coherent, channel-aware LUPOPEDIA HEADERS system.
 
 ---
 
 ## 1. Validator acceptance
 
-- **Legacy FLARE artifacts:** Accept existing FLARE-headed files (e.g. format with `---` then YAML then identity line, or identity line then `---` then YAML, per FLARE doctrine). Do not reject them during transition.
-- **4.0.68+ LUPOPEDIA artifacts:** Accept files that follow the required format: identity line first, then `---`, then YAML in canonical block order, then `---`, then body.
-- **Canonical block order:** When validating or exporting, enforce order: flame.init → flare.conditional → flare.headers → flare.edges → flare.footer → flame.see → flame.close. Optional blocks may be absent; if present, order MUST be correct.
-- **Required fields:** Enforce minimum required header fields in flare.headers (e.g. flare.version, file_path_from_root, web_path, system_version, channel_id, actor_id, delegation_chain, artifact_type, artifact_kind, purpose) when validating 4.0.68+ artifacts.
+- **Legacy FLARE artifacts:** Accept existing FLARE-headed files (e.g. format with `---` then YAML then identity line, or identity line then `---` then YAML). Do not reject them during transition.
+- **4.0.68+ LUPOPEDIA artifacts:** Accept files that follow the required format: first line `---`, then YAML in canonical block order, then `---`, then identity line `# file: ...`, then body.
+- **Canonical block names (4.0.69+):** Prefer **lupopedia.*** in new files: lupopedia.init, lupopedia.conditional, lupopedia.headers, **lupopedia.session**, lupopedia.edges, lupopedia.footer, lupopedia.see, lupopedia.close. Validators MUST accept both **lupopedia.*** and legacy **flare.*** / **flame.*** block names.
+- **Canonical block order:** When validating or exporting, enforce order: lupopedia.init → lupopedia.conditional → lupopedia.headers → **lupopedia.session** → lupopedia.edges → lupopedia.footer → lupopedia.see → lupopedia.close (same order for legacy flame.init, flare.*, flame.see, flame.close). Optional blocks may be absent; if present, order MUST be correct. Session fields (session_id, session_name, etc.) belong in lupopedia.session, not in lupopedia.headers.
+- **Required fields:** Enforce minimum required header fields in lupopedia.headers (or legacy flare.headers): lupopedia.version, lupopedia.schema (or flare.version, flare.schema), file_path_from_root, web_path, system_version, channel_id, actor_id, delegation_chain, artifact_type, artifact_kind, purpose. Session-related fields (session_id, session_name, and other session-file fields) MUST be in lupopedia.session when the session block is present.
+- **Session semantics:** lupopedia.headers = artifact metadata; lupopedia.session = runtime execution context. Session block in a file is optional; by default agents read session from active runtime. When present in a file, it may indicate verbose output (embedded snapshot); optional property `embedded_session_snapshot: true` means the block was captured at artifact creation time.
+- **Optional channel/thread names:** Validators MAY accept and preserve **channel_name** (human-readable channel name, e.g. "Lupopedia Development (general)" for channel_id 42) and **thread_name** (human-readable thread name when the artifact is thread-scoped). These are optional; resolution remains by channel_id (and thread_id when applicable).
 - **Channel-aware lookup:** Header resolution MUST support loading metadata by `channel_id` as well as by `entity_type` + `entity_id`. Validators that resolve headers from the DB must use channel when applicable.
 
 ---
@@ -38,7 +59,7 @@ Validators and tooling MUST align with the following so that 4.0.68 has a cohere
 
 - Parse FLARE/LUPOPEDIA YAML into the row-based model.
 - Create root row (class_name = lupopedia_header_root, meta_type = lupopedia_header, property_key = __root__).
-- Create block rows (property_key = flare.headers, flare.edges, etc.) as children of root.
+- Create block rows (property_key = lupopedia.headers, lupopedia.edges, etc., or legacy flare.*/flame.*) as children of root.
 - Create property rows under each block; create child rows for edges, mappings, actions.
 - Set `channel_id` when the header is channel-scoped; set `entity_type` / `entity_id` when entity-scoped.
 
