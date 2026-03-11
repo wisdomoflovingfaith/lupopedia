@@ -6,7 +6,7 @@ flare.headers:
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
   last_modified_utc: "20260309"
-  system_version: "4.0.67"
+  system_version: "4.0.69"
   channel_id: 42
   actor_id: 1003
   actor_name: "cursor"
@@ -15,7 +15,7 @@ flare.headers:
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Install & upgrade validation, table ceiling 199, root admin, ROOT doctrine schema"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "v4.0.67"]
+  traits: ["essential", "entrypoint", "onboarding", "v4.0.69"]
   tags: ["readme", "getting_started", "semantic_os", "multi_agent"]
   lupo_agent: "cursor"
 
@@ -34,14 +34,14 @@ flare.footer:
   last_verified_by: "cursor"
 ---
 
-# 🐺 Lupopedia Semantic OS v4.0.68
+# 🐺 Lupopedia Semantic OS v4.0.69
 
-[![Version](https://img.shields.io/badge/version-4.0.68-blue.svg)](docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.69-blue.svg)](docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](docs/HELP.md)
 
 ---
 
-**Current Release: [v4.0.68](docs/version.md) — Channels Web Interface Implementation**  
+**Current Release: [v4.0.69](docs/version.md) — Post-4.0.68 reconciliation; version bump and channel 42 thread**  
 This version focuses on implementing and hardening the web interface for channels management, accessible at `/channels/` with full doctrine compliance. Current table count is derived from TOON files — run `python scripts/generate_toon_files.py` and use the output count; do not hardcode in docs.
 
 ## Getting Started (5 minutes)
@@ -108,6 +108,67 @@ graph TD
 ```
 
 **Channels and threads:** Governance and dialogs live under channel directories; see [docs/HELP.md](docs/HELP.md) and [TASK_STATUS_REFERENCE.md](docs/TASK_STATUS_REFERENCE.md).
+
+---
+
+## GitHub Repository Strategy
+
+Lupopedia is currently developed in a temporary repository while architecture and documentation stabilize.
+
+**Current development repository**
+
+Through version 4.1.0, the active repository is:
+
+- **https://github.com/wisdomoflovingfaith/lupopedia**
+
+This repo is used for rapid iteration while system architecture, doctrine, and documentation are finalized.
+
+**Future canonical organization**
+
+Once version 4.1.0 is complete and the project structure is stabilized, Lupopedia will move to the official organization:
+
+- **https://github.com/lupopedia**
+
+The project will then be reorganized into multiple repositories reflecting the system architecture.
+
+**Planned repository structure**
+
+The official `github.com/lupopedia` organization will contain:
+
+| Repository | Purpose |
+|------------|---------|
+| **core** | Canonical Lupopedia engine: semantic logic, allocators, doctrine, database adapters |
+| **web** | Web deployment package for shared hosting (Apache, Nginx, cPanel, etc.) |
+| **cli** | Command-line interface for local use and automation |
+| **vercel** | Vercel-optimized deployment environment |
+| **docs** | Public documentation, governance, doctrine, and architecture |
+| **ops** (optional) | CI/CD pipelines, migrations, infrastructure scripts, deployment automation |
+
+**Architectural principle**
+
+All Lupopedia functionality lives in the **core** repository. Other repositories act only as adapters or deployment surfaces.
+
+Dependency graph:
+
+- `web` → core  
+- `cli` → core  
+- `vercel` → core  
+
+This design ensures: no duplicated logic, deterministic architecture, clear system lineage, stable versioning, and clean governance boundaries. The core repository will be versioned independently; surfaces will depend on released versions.
+
+**Migration plan**
+
+When version 4.1.0 is reached:
+
+- The current repository will be reorganized.
+- Core engine code will move into **lupopedia/core**.
+- Surface-specific code will move into their respective repositories.
+- Documentation will move into **lupopedia/docs**.
+- The current repository will either become an archive or redirect.
+
+**Why this temporary structure exists**
+
+The current single-repository layout allows rapid development, doctrine stabilization, architectural experimentation, and documentation consolidation before splitting the project into multiple repositories.
 
 ---
 
