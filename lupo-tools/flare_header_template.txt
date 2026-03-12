@@ -72,6 +72,7 @@ flare.edges:
 flare.footer:
   last_verified: "{LAST_VERIFIED}"
   last_verified_by: "{LAST_VERIFIED_BY}"
+  orchestrator: "{ORCHESTRATOR}"
   next_action:
     - "{NEXT_ACTION_1}"
     - "{NEXT_ACTION_2}"

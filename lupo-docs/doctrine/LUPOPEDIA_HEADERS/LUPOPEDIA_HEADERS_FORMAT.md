@@ -26,13 +26,14 @@ lupopedia.session:
   human_actor_name: "root"
   paired_actor_id: 10000
 lupopedia.footer:
-  version: "4.0.71"
+  version: "4.0.72"
   last_verified: "20260312"
   last_verified_by: "cursor"
+  orchestrator: "cursor"
   next_action:
-    - "Apply next_action to all files with lupopedia.footer"
+    - "Apply next_action and orchestrator to all files with lupopedia.footer"
     - "Validate LUPOPEDIA HEADERS consistency across doctrine files"
-    - "Update FLARE_HEADERS_COMPLETE_REFERENCE footer example with next_action"
+    - "Update FLARE_HEADERS_COMPLETE_REFERENCE footer example with orchestrator"
 ---
 # file: LUPOPEDIA HEADERS Format — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT
 
@@ -215,28 +216,28 @@ Resolution and validators MUST support channel-aware lookup.
 
 ---
 
-## 5. lupopedia.footer and next_action (required when footer is present)
+## 5. lupopedia.footer and required metadata (required when footer is present)
 
-When a file includes a **`lupopedia.footer`** block, it MUST include the field **`next_action:`**. This field contains 1–3 suggested next actions based on the file’s purpose and the most recent work performed.
+When a file includes a **`lupopedia.footer`** block, it MUST include **`orchestrator:`**, **`last_verified_by:`**, and **`next_action:`**, plus at least one of `version:` or `last_verified:`. See required fields below.
 
-**Requirements:**
+**Required footer fields:**
 
-- **`next_action:`** — A YAML list of 1–3 strings.
-- Actions must be **contextual** (based on the file’s purpose).
-- Actions must be **forward-looking** (suggested next steps), not historical.
-- Do not imply version jumps or future versions beyond the current release (e.g. 4.0.71).
+- **`orchestrator:`** — Actor or delegation chain that orchestrated the last update (e.g. `"cursor"`, `"wolfie:root"`).
+- **`last_verified_by:`** — Actor or faucet that verified the artifact.
+- **`next_action:`** — YAML list of 1–3 contextual, forward-looking strings; no version jumps beyond current release (e.g. 4.0.72).
 
 **Example:**
 
 ```yaml
 lupopedia.footer:
-  version: "4.0.71"
+  version: "4.0.72"
   last_verified: "20260312"
   last_verified_by: "cursor"
+  orchestrator: "cursor"
   next_action:
     - "Review related TOON definitions for schema alignment"
     - "Validate LUPOPEDIA HEADERS consistency across sibling files"
     - "Update documentation to reflect new schema changes"
 ```
 
-**Other optional footer fields:** `view_count`, `like_count`, `share_count` (engagement). Required when footer is present: `next_action:` plus at least one of `last_verified`/`last_verified_by` or `version` for traceability.
+**Other optional footer fields:** `view_count`, `like_count`, `share_count` (engagement), `archive_note`. Required when footer is present: **`orchestrator:`**, **`last_verified_by:`**, **`next_action:`**, plus at least one of `last_verified` or `version`.

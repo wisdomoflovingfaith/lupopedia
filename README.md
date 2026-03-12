@@ -1,11 +1,11 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.69"
+  lupopedia.version: "4.0.72"
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
   last_modified_utc: "20260312"
-  system_version: "4.0.69"
+  system_version: "4.0.72"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -15,7 +15,7 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Install & upgrade validation, channels/actors/agents, GitHub repository strategy"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "v4.0.69"]
+  traits: ["essential", "entrypoint", "onboarding", "v4.0.72"]
   tags: ["readme", "getting_started", "semantic_os", "multi_agent"]
 
 lupopedia.session:
@@ -44,19 +44,19 @@ lupopedia.footer:
   last_verified_by: "wolfie"
   next_action:
     - "Point new contributors to Required Reading Before Using Lupopedia"
-    - "Keep Getting Started and install steps aligned with 4.0.71"
+    - "Keep Getting Started and install steps aligned with 4.0.72"
     - "Review actor/faucet links when doctrine paths change"
 ---
 # file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: wolfie:root (faucet: cursor) — web_path: http://www.lupopedia.com/
 
-# 🐺 Lupopedia Semantic OS v4.0.69
+# 🐺 Lupopedia Semantic OS v4.0.72
 
-[![Version](https://img.shields.io/badge/version-4.0.69-blue.svg)](docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.72-blue.svg)](docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](docs/HELP.md)
 
 ---
 
-**Current Release: [v4.0.69](docs/version.md) — Post-4.0.68 reconciliation; version bump and channel 42 thread**  
+**Current Release: [v4.0.72](docs/version.md) — Version bump after 4.0.71 (Windsurf audit remediation, TOONs, API, session docs).**  
 This version focuses on implementing and hardening the web interface for channels management, accessible at `/channels/` with full doctrine compliance. Current table count is derived from TOON files — run `python scripts/generate_toon_files.py` and use the output count; do not hardcode in docs.
 
 **Architecture (onboarding):** **Actors** are the orchestration identities of Lupopedia. They coordinate and govern work through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces, not identities. IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, Codex, JetBrains, Warp, etc.) are faucets. **Sessions** carry runtime context. See [Channels, actors, and agents](#channels-actors-and-agents-in-lupopedia) and [Actor–Faucet ontology](lupo-docs/doctrine/ActorFaucetOntology.md).

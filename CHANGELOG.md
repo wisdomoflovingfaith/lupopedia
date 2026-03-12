@@ -1,13 +1,13 @@
 ---
 lupopedia.init:
   document_type: "changelog"
-  system_version: "4.0.71"
+  system_version: "4.0.72"
 
 lupopedia.headers:
-  lupopedia.version: "4.0.71"
+  lupopedia.version: "4.0.72"
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
-  system_version: "4.0.71"
+  system_version: "4.0.72"
   last_modified_utc: "20260312"
   channel_id: 42
   actor_id: 1
@@ -19,10 +19,12 @@ lupopedia.headers:
 
 lupopedia.footer:
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
-  version: "4.0.71"
+  version: "4.0.72"
   last_verified: "20260312"
+  last_verified_by: "wolfie"
+  orchestrator: "cursor"
   next_action:
-    - "Add next_action to any new 4.0.71 subsection entries"
+    - "Add next_action to any new 4.0.72 subsection entries"
     - "Verify version and last_verified align with release"
     - "Keep required reading and doctrine links current"
 ---
@@ -35,6 +37,49 @@ This document tracks version history, focusing on key changes, task migrations, 
 ---
 
 ## Version History
+
+### [4.0.72] — Version bump (2026-03-12)
+
+- **Version bump:** Updated LUPEDIA_VERSION, version.php, install.php, lupo.php, lupo-config atoms (global_atoms.yaml, GLOBAL_IMPORTANT_ATOMS.yaml), CHANGELOG.md, and README.md to 4.0.72. No schema or behavioral changes; release follows 4.0.71 push to GitHub.
+- **lupopedia.footer — orchestrator required:** `orchestrator:` added as required metadata in `lupopedia.footer`. Doctrine updated in LUPOPEDIA_HEADERS_FORMAT.md (required fields: `orchestrator`, `last_verified_by`, `next_action`, plus version/last_verified). CHANGELOG and prompts/20260312_ide_agent_4.0.72_required_reading.md footers updated; lupo-tools flare_header_template.txt and flare_apply.py now include `orchestrator`; OPTIONAL_BLOCKS.md table updated.
+- **Windsurf audit prompt for gap check:** Added `prompts/20260312_windsurf_audit_4.0.69_4.0.71_gap_check.md`, instructing Windsurf to re-audit versions 4.0.69–4.0.71 (using CHANGELOG and Windsurf audit reports) and append any remaining gaps as tasks under the 4.0.72 “Still needing to be done” section.
+
+#### Still needing to be done (Channel 42 / Channel 0)
+
+The following active or pending work is drawn from Channel 42 and Channel 0 task indexes, the pending-tasks dialog fallback, Windsurf audit recommendations, and Antigravity reviews. No schema or code changes in 4.0.72; this list is for planning.
+
+**From CHANGELOG pending tasks (4.0.71):**
+- Run one-time migrations on existing 4.0.x DBs: `20260312_lilith_traits_authorization_faucet.sql`, `20260312_collections_tabs_navigation_4_0_69.sql`; record in `lupo_schema_migrations`. Fresh installs get full schema from install only.
+- **Faucet traceability:** Populate `source_faucet_slug` / `source_faucet_instance_id` and `faucet_slug` / `faucet_instance_id` on message and session creation from session/runtime.
+- **Collections UI:** Wire global nav and channel sidebar to `getCollectionsForNavMenu()` and `getCollectionsForChannel($channelId)`; tab activation and item rendering for artifact/content/url/path.
+- **SessionCustodian:** Optional run of `scripts/session_custodian.php` to audit/correct `lupo-database/sessions/*.md`.
+- **Doc–schema consistency:** Run `scripts/check_doc_schema_consistency.py` periodically; consider CI or pre-commit.
+- **TOON regeneration:** After applying migrations to a live DB, run `python scripts/generate_toon_files.py`.
+
+**From pending-tasks fallback (Channel 42, `lupo-database/lupopedia/pending_tasks_dialog_fallback_4.0.69.md`):**
+- **TraitEnforcer class** (`lupo-includes/classes/TraitEnforcer.php`): `actorHasTrait()`, `isActionAuthorized()`; PDO_DB only; PHP 5.6 compatible.
+- **Pre-action hooks:** Call TraitEnforcer before dialog send and other kernel operations; reject if not authorized.
+- **Session/message faucet tracking:** Set `faucet_slug` / `faucet_instance_id` on session create; set `source_faucet_slug` / `source_faucet_instance_id` when creating `lupo_dialog_messages`.
+- **Seed data:** Seed kernel actor traits (`lupo_actor_traits`), core edge types (`lupo_edge_type_definitions`), core actions (`lupo_action_authorization`). Use allocator/registry for IDs; timestamps in PHP.
+- **Documentation:** TRAITS_DOCTRINE, EDGE_TYPE_SEMANTICS_DOCTRINE, AUTHORIZATION_DOCTRINE, FAUCET_TRACEABILITY_DOCTRINE, FEDERATION_NODE_TYPES_DOCTRINE; update IDENTITY_LAYERS_DOCTRINE, ActorFaucetOntology, COMMUNICATION_DOCTRINE.
+- **TOONs:** Regenerate/update TOONs for `lupo_actor_traits`, `lupo_dialog_messages`, `lupo_sessions`, `lupo_federation_nodes`, `lupo_edge_type_definitions`, `lupo_action_authorization` after schema apply.
+
+**Channel 42 — active tasks** (see `lupo-database/lupopedia/channels/channel_id/42/tasks/active/`):
+- Multiple numbered tasks (task-001 through task-015) and named tasks: database_documentation_remaining_tables, file_count_optimization_4_1_0, repository_cleanup_legacy_files_removal (CLEANUP-2026-02-27-001). One pending task: graph relationship analysis (`tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md`). Full list in channel 42 task directory and in `lupo-docs/TASK_STATUS_REFERENCE.md` where maintained.
+
+**Channel 0 — active tasks** (see `lupo-docs/CHANNEL_0_ACTOR_0_TASKS.md`):
+- Six active tasks under `lupo-database/lupopedia/channels/channel_id/0/tasks/active/`: drop tables and run install, primary install/upgrade 4.0.46, broadcast normalization, db reset and install, installer integration, registry lock. Assignees in filenames (e.g. actor 10000, 19). No pending tasks listed; completed tasks in `tasks/completed/`.
+
+**Windsurf audit — remaining (medium/low):**
+- **Semantic navbar:** API response caching; client-side caching headers; query optimization.
+- **Session model:** Session cleanup routine; session analytics.
+- **Documentation:** Finish legacy `$_SESSION['actor_id']` references in testing docs; add semantic navbar and session model usage examples.
+
+**Antigravity (Channel 42) — recommendations pending implementation:**
+- **Collections/tabs:** Evolve collections into channel-scoped resource bundles; add `channel_id` to collections; formalize navigation flags so Channel 42 (and others) can provide tabbed interfaces for artifacts, internal docs, and external links. See `lupo-docs/status/ANTIGRAVITY_COLLECTIONS_TABS_NAVIGATION_REVIEW_4.0.69.md` (status: Recommendations Pending Implementation).
+
+**Doctrine transition (Channel 42):**
+- **Doctrine tables → contents:** Target moving doctrine blocks, refinement tracking, and evolution audit to `{prefix}contents` on channel 42 instead of dedicated doctrine tables. See `lupo-docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md`.
 
 ### [4.0.71] — Lupopedia Synthesized Documentation Framework (2026-03-12)
 
@@ -459,10 +504,12 @@ Introduced rules engine, skills system, and path/visit analytics doctrine. Major
 # LUPOPEDIA FOOTER STARTS HERE
 
 lupopedia.footer:
-  version: "4.0.71"
+  version: "4.0.72"
   last_verified: "20260312"
+  last_verified_by: "wolfie"
+  orchestrator: "cursor"
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
   next_action:
-    - "Add next_action to any new 4.0.71 subsection entries"
+    - "Add next_action to any new 4.0.72 subsection entries"
     - "Verify version and last_verified align with release"
     - "Keep required reading and doctrine links current"

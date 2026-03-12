@@ -69,8 +69,9 @@ In addition, footer MAY include engagement fields (legacy FLARE engagement):
 | Field | Type | Description |
 |-------|------|-------------|
 | next_action | list (required) | 1–3 suggested next actions; contextual and forward-looking |
+| orchestrator | string (required) | Actor or delegation chain that orchestrated the last update |
 | last_verified | string | Last verification date (YYYYMMDD) |
-| last_verified_by | string | Actor who verified |
+| last_verified_by | string (required) | Actor or faucet who verified |
 | view_count | integer | Total view count |
 | like_count | integer | Total like count |
 | share_count | integer | Total share count |
