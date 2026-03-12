@@ -54,7 +54,7 @@ function get_lupopedia_version()
         return $atom;
     }
     $a = load_atoms();
-    return (is_array($a) && isset($a['version'])) ? $a['version'] : '4.0.72';
+    return (is_array($a) && isset($a['version'])) ? $a['version'] : '4.0.73';
 }
 
 /**

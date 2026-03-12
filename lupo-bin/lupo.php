@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-// VERSION: 4.0.72
+// VERSION: 4.0.73
 
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(dirname(__FILE__)) . '/');
