@@ -41,6 +41,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 ### [4.0.72] — Version bump (2026-03-12)
 
 - **Version bump:** Updated LUPEDIA_VERSION, version.php, install.php, lupo.php, lupo-config atoms (global_atoms.yaml, GLOBAL_IMPORTANT_ATOMS.yaml), CHANGELOG.md, and README.md to 4.0.72. No schema or behavioral changes; release follows 4.0.71 push to GitHub.
+- **IDE agent required-reading prompt:** Added `prompts/20260312_ide_agent_4.0.72_required_reading.md`, a canonical ordered reading list (version context, core doctrine, changelog + pending tasks, channel 0/42 task indexes, schema/TOONs, audits, atoms, and rules) that every IDE agent must read before making changes in 4.0.72.
 - **lupopedia.footer — orchestrator required:** `orchestrator:` added as required metadata in `lupopedia.footer`. Doctrine updated in LUPOPEDIA_HEADERS_FORMAT.md (required fields: `orchestrator`, `last_verified_by`, `next_action`, plus version/last_verified). CHANGELOG and prompts/20260312_ide_agent_4.0.72_required_reading.md footers updated; lupo-tools flare_header_template.txt and flare_apply.py now include `orchestrator`; OPTIONAL_BLOCKS.md table updated.
 - **Windsurf audit prompt for gap check:** Added `prompts/20260312_windsurf_audit_4.0.69_4.0.71_gap_check.md`, instructing Windsurf to re-audit versions 4.0.69–4.0.71 (using CHANGELOG and Windsurf audit reports) and append any remaining gaps as tasks under the 4.0.72 “Still needing to be done” section.
 
