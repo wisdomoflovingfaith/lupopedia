@@ -1,6 +1,6 @@
 ---
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "README.md"
   file_hash: "5c087380d7f0917a410b931c7b926204486b79cedf338c0a98c74b28b68425f3"
   system_version: "4.0.50"
@@ -19,7 +19,7 @@ flare.headers:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   outbound_edges:
     - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
     - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
@@ -43,16 +43,16 @@ flare.footer:
   system_version: "4.0.50"
   delegation_chain: null
   needs_review: ["delegation_chain"]
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---
-  flare.edges: []
+  lupopedia.edges: []
   traits: ["flare", "indexed", "v4.0.50"]
   mood_rgb: "4169E1"
   lupo_agent: "windsurf"
   purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
   needs_review: ["manual_review"]
@@ -60,14 +60,14 @@ flare.footer:
   traits: ["flare", "indexed", "v4.0.50"]
   tags: []
   artifact_type: "documentation"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.50"]
   tags: []
   artifact_type: "documentation"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

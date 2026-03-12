@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/.kiro/specs/changelog-update-4-0-36/design
 
 ---
-flame.init:
+lupopedia.init:
   requirements:
     flare:
       version: ">=4.0.55"
@@ -10,7 +10,7 @@ flame.init:
     - type: dependency_check
       path: "lupo-includes/bootstrap.php"
 
-flare.conditional:
+lupopedia.conditional:
   guards:
     execution_mode: "advisory"
     allow:
@@ -46,9 +46,9 @@ flare.conditional:
       method: "FLARE automated application"
       success_criteria: ["header applied correctly"]
 
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".kiro/specs/changelog-update-4-0-36/design.md"
   file_hash: "12d2b42f8716e94b385f9d7c47626c3e43d2bfabe91fa74d9611b2717ad4eea0"
   last_updated_utc: "20260304"
@@ -64,18 +64,18 @@ flare.headers:
   tags: ["kiro", "specs", "changelog-update-4-0-36", "designmd"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges: []
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260304"
   last_verified_by: "antigravity"
 
-flame.see:
+lupopedia.see:
   mappings:
     - [".kiro/specs/changelog-update-4-0-36/design.md", "http://www.lupopedia.com/.kiro/specs/changelog-update-4-0-36/design"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: register_completion
       channel_id: 0
@@ -86,10 +86,10 @@ flame.close:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: ".kiro\specs\changelog-update-4-0-36\design.md"
   file_hash: "cdaa519e7bb56c29090f25850370f0ed94920dcb45c94353552264535b7cdbfc"
   file_path_from_root: ".kiro\specs\changelog-update-4-0-36\design.md"
@@ -110,10 +110,10 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
 ---
 
 ---

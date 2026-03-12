@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "doctrine"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/SKILLS_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/doctrine/SKILLS_DOCTRINE"
   last_modified_utc: "20260310"
@@ -18,12 +18,12 @@ flare.headers:
   tags: ["skills", "capabilities", "actors"]
   lupo_agent: "cursor"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/doctrine/RULES_DOCTRINE.md", type: "extends", weight: 1.0 }
     - { to: "lupo-skills/", type: "references", weight: 0.9 }
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.68"
   last_verified: "20260310"
   last_verified_by: "cursor"
@@ -63,10 +63,10 @@ lupo-skills/
 
 ## Skill MD file format (LUPOPEDIA header)
 
-The **first line** of the file must be `---`. Then the YAML header blocks (e.g. `flare.headers`, `flare.edges`, `flare.footer`), then a closing `---`. The first line of the **body** must be the formatted identity line: `# file: {title} — session: {session_name} — delegation: {delegation_chain} — web_path: {web_path}`. Then the rest of the content.
+The **first line** of the file must be `---`. Then the YAML header blocks (e.g. `lupopedia.headers`, `lupopedia.edges`, `lupopedia.footer`), then a closing `---`. The first line of the **body** must be the formatted identity line: `# file: {title} — session: {session_name} — delegation: {delegation_chain} — web_path: {web_path}`. Then the rest of the content.
 
 - Do **not** put the `# file: ...` line at the very top of the file; the top must be `---` and the YAML.
-- Include `flare.headers` (or `lupopedia.headers`) with `skill_name`, `skill_version`, `artifact_type: "skill"`, `artifact_kind: "documentation"`, `purpose`, `tags` as appropriate.
+- Include `lupopedia.headers` (or `lupopedia.headers`) with `skill_name`, `skill_version`, `artifact_type: "skill"`, `artifact_kind: "documentation"`, `purpose`, `tags` as appropriate.
 - Optional `lupopedia.skills` listing prerequisite or declared skills.
 
 ## Actor skills header

@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.69
+file.last_modified_system_version: 4.0.70
 file.channel: schema
 # Global Atoms Configuration
 # Single source of truth for ecosystem-wide metadata used in WOLFIE Headers
@@ -60,10 +60,10 @@ project:
 
 # Version Information
 versions:
-  lupopedia: "4.0.69"
-  crafty_syntax: "4.0.69"
-  wolfie_headers: "4.0.69"
-  schema: "4.0.69"
+  lupopedia: "4.0.70"
+  crafty_syntax: "4.0.70"
+  wolfie_headers: "4.0.70"
+  schema: "4.0.70"
 
 # Common Metadata
 metadata:

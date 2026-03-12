@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\42\broadcasts\20260225130008_10000_1000_42_announce_completion_of_v4_1_how_to_use_lupopedia_md.md"
   file_hash: "069822c5930b8538bf62955d64d00ca96b8381c54bfe805876c27a6f90dfe749"
   last_updated_utc: "20260228155738"
@@ -12,18 +12,18 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
@@ -31,10 +31,10 @@ flare.footer:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130008_10000_1000_42_announce_completion_of_v4_1_how_to_use_lupopedia_md.md"
   file_hash: "188c24a0be2212405db8afedea4783565c5e8f67328147f7040080accb2b2392"
   file_path_from_root: "channels\42\broadcasts\20260225130008_10000_1000_42_announce_completion_of_v4_1_how_to_use_lupopedia_md.md"
@@ -55,7 +55,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

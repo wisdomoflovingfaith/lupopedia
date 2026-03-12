@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\doctrine\FLARE\FLARE_CHANNEL_0.md"
   file_hash: "c5a70bd3aff43fb617b328279ee9322822a60cc5c991496cfdd560ba95083510"
   last_updated_utc: "20260228155738"
@@ -12,25 +12,25 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# LUPOPEDIA HEADERS (replaces FLARE) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "docs/doctrine/FLARE/FLARE_CHANNEL_0.md"
   system_version: "4.0.47"
   channel_id: 0
@@ -45,7 +45,7 @@ flare.headers:
   tags: ["channel", "kernel", "system", "flare", "bootstrapping"]
   lupo_agent: "codex-ide"
 
-flare.footer:
+lupopedia.footer:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/FLARE/FLARE_OVERVIEW.md", type: "references", weight: 0.9 }
@@ -59,7 +59,7 @@ flare.footer:
 ### Header Processing
 ```yaml
 # Channel 0 content must use this pattern
-flare.headers:
+lupopedia.headers:
   channel_id: 0  # Required for system content
   artifact_type: "doctrine"  # Most channel 0 content
   delegation_chain: "1007:10000"  # Captain Wolfie authority
@@ -72,7 +72,7 @@ flare.headers:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "related/doctrine/file.md", type: "implements", weight: 0.9 }

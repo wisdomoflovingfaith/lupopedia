@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\PT_001_PATTERN_TRACKING_CHECKSUM.md"
   file_hash: "398363bdb1734a23bdb3f885a5ebd803249265b43d017f38b95cafbfe13c8ab2"
   last_updated_utc: "20260228155738"
@@ -12,29 +12,29 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\PT_001_PATTERN_TRACKING_CHECKSUM.md"
   file_hash: "5803e5b142b2fa151ed7ca06b6eaa0ff8dcfe79fcf154ef3ab4259f1ac4e6546"
   file_path_from_root: "docs\channels\doctrine\PT_001_PATTERN_TRACKING_CHECKSUM.md"
@@ -55,7 +55,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

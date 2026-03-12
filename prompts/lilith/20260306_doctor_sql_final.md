@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "final_verification"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "final_verification"
   file_path_from_root: "prompts/lilith/20260306_doctor_sql_final.md"
   web_path: "http://www.lupopedia.com/verification/DOCTOR_SQL_FINAL"
   last_modified_utc: "20260306"
@@ -19,24 +19,24 @@ flare.headers:
   agent_name_identity: "LILITH — Heterodox Reviewer"
   lupo_agent: "lilith"
 
-flame.init:
+lupopedia.init:
   execution_mode: "required"
   pre_actions:
     - type: dependency_check
       target: "prompts/lilith/20260306_doctor_sql_queries.md"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "prompts/lilith/20260306_doctor_sql_queries.md", type: "verifies", weight: 1.0 }
     - { to: "docs/TASK_STATUS_REFERENCE.md", type: "references", weight: 0.9 }
     - { to: "docs/doctrine/", type: "references", weight: 0.8 }
   semantic_tags: ["flare", "doctor", "sql", "verification", "complete", "lilith"]
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["prompts/lilith/20260306_doctor_sql_final.md", "http://www.lupopedia.com/verification/DOCTOR_SQL_FINAL"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: mark_document_ready
       document: "doctor_sql_queries"
@@ -44,7 +44,7 @@ flame.close:
       status: "canonical"
   actor_id: 2
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.62"
   last_verified: "20260306"
   last_verified_by: "lilith"

@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/plans/antigravity_agent_integration
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "implementation_plan"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "implementation_plan"
   file_path_from_root: "plan.md"
   web_path: "http://www.lupopedia.com/plans/antigravity_agent_integration"
   last_modified_utc: "20260306154000"
@@ -17,13 +17,13 @@ flare.headers:
   tags: ["antigravity", "flare", "actors", "routing", "plan"]
   lupo_agent: "gemini-cli"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "GEMINI.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "enforces", weight: 1.0 }
     - { to: "agents.php", type: "modifies", weight: 0.8 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260306"
   last_verified_by: "gemini-cli"
 ---
@@ -34,7 +34,7 @@ flare.footer:
 This plan outlines the integration of a specialized AI agent, **Antigravity (Actor 42)**, designed to handle "weightless" conflict resolution and dynamic routing within the Lupopedia federated ecosystem. In a system without hard-coded foreign keys (FKs) or triggers, content "drifts" between nodes and the database. Antigravity serves as the corrective force to maintain synchronization through metadata inference.
 
 ## 2. Research Findings
-*   **FLARE Maturity**: The protocol is robust for identity and routing but requires deeper integration in the routing layer (`agents.php`) to handle lifecycle hooks (`flame.init/close`) reliably.
+*   **FLARE Maturity**: The protocol is robust for identity and routing but requires deeper integration in the routing layer (`agents.php`) to handle lifecycle hooks (`lupopedia.init/close`) reliably.
 *   **Actor Isolation**: Agents require a dedicated workspace under `lupo-channels/node/actor_id/` to prevent cross-actor interference.
 *   **PHP 5.3 Constraint**: Parsing complex YAML requires a lightweight, regex-based approach rather than modern Composer-based dependencies.
 
@@ -57,18 +57,18 @@ graph TD
     F -- No --> K[Standard Guard Validation]
     
     I --> L[Update Filesystem/DB]
-    J --> M[Execute flame.init Hooks]
+    J --> M[Execute lupopedia.init Hooks]
     K --> M
     
     M --> N[Render Markdown / JSON]
-    N --> O[Execute flame.close Hooks]
+    N --> O[Execute lupopedia.close Hooks]
     O --> P[Return Response]
 ```
 
 ## 4. Technical Implementation
 
 ### 4.1 Enhanced FlareParser (PHP 5.3)
-Extending the parser to support the nested structure required for `flare.conditional.guards_allow` and `flame.init` actions.
+Extending the parser to support the nested structure required for `lupopedia.conditional.guards_allow` and `lupopedia.init` actions.
 
 ```php
 class FlareParser {
@@ -126,7 +126,7 @@ if (file_exists($target_file)) {
     
     // Actor 42 Special Capability: Drift Detection
     if ($actor_id === 42) {
-        $last_utc = (int)$data['headers']['flare.headers']['last_modified_utc'];
+        $last_utc = (int)$data['headers']['lupopedia.headers']['last_modified_utc'];
         // Compare against lupo_contents for federation drift...
     }
     
@@ -144,7 +144,7 @@ Files:
 *   `routing.md`: URL-to-path override rules for "levitating" content.
 
 ## 6. Risks & Mitigations
-*   **Risk**: Recursive parsing of `flame.init` hooks leading to infinite loops.
+*   **Risk**: Recursive parsing of `lupopedia.init` hooks leading to infinite loops.
     *   **Mitigation**: Implement a depth counter in the execution engine.
 *   **Risk**: Directory traversal through manipulated `what` parameters.
     *   **Mitigation**: Strict `basename()` and `realpath()` validation on all file/path inputs.

@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\42\threads\DEVELOPMENT_CYCLE_4_0_49\20260227124500_10000_windsurf_db_changes_summary.md"
   file_hash: "3f9b77947a62698cfbdd8e9faab55e62848f35a05ac1796969a9ca426942d549"
   last_updated_utc: "20260228155738"
@@ -12,18 +12,18 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
@@ -31,7 +31,7 @@ flare.footer:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227124500_10000_windsurf_db_changes_summary.md"
   file_hash: "888107a088db01122666b35e4cf3fe5ee643334a44002cb57e0c32fc55440a8e"
   system_version: "4.0.50"
@@ -48,7 +48,7 @@ flare.headers:
   tags: ["dbdoc", "schema", "changes", "4.0.49", "windsurf", "completed"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_49\20260227124500_10000_windsurf_db_changes_summary.md"
   outbound_edges:
     - { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227123000_1007_dbdoc_recommendations.md", type: "implements", weight: 1.0, reason: "DBDOC recommendations source" }
@@ -60,7 +60,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260227"
   last_verified_by: "lupopedia"
 ---

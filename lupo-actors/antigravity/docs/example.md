@@ -1,10 +1,10 @@
 ---
 actor_id: 42
-flare.headers:
-  flare.version: "1.0"
+lupopedia.headers:
+  lupopedia.version: "1.0"
   file_path_from_root: "lupo-actors/42/docs/example.md"
   last_modified_utc: "20260306"
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "GEMINI.md", type: "references", weight: 0.9 }
 flare.hooks:

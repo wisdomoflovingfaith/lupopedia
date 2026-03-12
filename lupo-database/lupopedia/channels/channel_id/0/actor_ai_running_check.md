@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "instruction"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "instruction"
   file_path_from_root: "channels/0/actor_ai_running_check.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
@@ -17,7 +17,7 @@ flare.headers:
   tags: ["windsurf", "ai_agents", "lupo_sessions", "channel_0", "registry"]
   lupo_agent: "codex-ide"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 1.0 }  # Assuming lupo_actors for registry
@@ -26,7 +26,7 @@ flare.edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
   semantic_tags: ["actor_ai_check", "session_active", "registry_existence"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.53"
   last_verified: "20260301"
   last_verified_by: "codex-ide"

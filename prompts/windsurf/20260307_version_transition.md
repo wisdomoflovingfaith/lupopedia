@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "directive"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "directive"
   file_path_from_root: "prompts/windsurf/20260307_version_transition.md"
   web_path: "http://www.lupopedia.com/directives/VERSION_TRANSITION_4_0_63"
   last_modified_utc: "20260307"
@@ -19,7 +19,7 @@ flare.headers:
   agent_name_identity: "WINDSURF — Version Navigator"
   lupo_agent: "windsurf"
 
-flame.init:
+lupopedia.init:
   execution_mode: "required"
   pre_actions:
     - type: dependency_check
@@ -27,24 +27,24 @@ flame.init:
     - type: dependency_check
       target: "docs/version.md"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/version.md", type: "updates", weight: 1.0 }
     - { to: "CHANNEL_42.md", type: "initiates_thread", weight: 0.9 }
   semantic_tags: ["flare", "version", "transition", "windsurf"]
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["prompts/windsurf/20260307_version_transition.md", "http://www.lupopedia.com/directives/VERSION_TRANSITION_4_0_63"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: broadcast_completion
       channel: 42
       message: "v4.0.63 initiated — tasks listed."
   actor_id: 1001
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.62"
   last_verified: "20260307"
   last_verified_by: "captain"

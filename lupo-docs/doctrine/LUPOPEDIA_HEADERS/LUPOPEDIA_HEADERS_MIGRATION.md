@@ -57,7 +57,7 @@ Migration from FLARE-headed artifacts to LUPOPEDIA HEADERS is **incremental**, n
 
 - **Legacy FLARE:** Accept files that start with `---` and YAML then identity line, or identity line then `---` and YAML, per existing FLARE doctrine.
 - **LUPOPEDIA 4.0.68+:** Enforce first line `---`, then YAML in canonical block order, then `---`, then identity line `# file: ...`, then body.
-- **Block order:** When validating or exporting, enforce canonical order: lupopedia.init → lupopedia.conditional → lupopedia.headers → lupopedia.session → lupopedia.edges → lupopedia.footer → lupopedia.see → lupopedia.close (or legacy flame.init, flare.*, flame.see, flame.close). Session fields (session_id, session_name, etc.) belong in lupopedia.session.
+- **Block order:** When validating or exporting, enforce canonical order: lupopedia.init → lupopedia.conditional → lupopedia.headers → lupopedia.session → lupopedia.edges → lupopedia.footer → lupopedia.see → lupopedia.close (or legacy lupopedia.init, flare.*, lupopedia.see, lupopedia.close). Session fields (session_id, session_name, etc.) belong in lupopedia.session.
 - **Channel resolution:** Support loading headers by `channel_id` as well as by `entity_type` + `entity_id`. Optional **channel_name** (human-readable) and **thread_name** (when thread-scoped) may be stored as properties for display; resolution remains by channel_id (and thread_id when applicable).
 
 ---

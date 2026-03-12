@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\kernel\services\MOOD_SERVICES_OVERVIEW.md"
   file_hash: "2832598b5dc5e836e949329cdd4a33447a41978c7183174df5cc477f37531db0"
   last_updated_utc: "20260228155738"
@@ -12,29 +12,29 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "docs\channels\kernel\services\MOOD_SERVICES_OVERVIEW.md"
   file_hash: "e5e744c967ac7eb0cd327300141e83a78d95cc903100d8517d3bfa472190b6ff"
   file_path_from_root: "docs\channels\kernel\services\MOOD_SERVICES_OVERVIEW.md"
@@ -55,7 +55,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

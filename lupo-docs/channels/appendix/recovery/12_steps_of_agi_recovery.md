@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\appendix\recovery\12_steps_of_agi_recovery.md"
   file_hash: "3a1e8aad2fbdbc94926322c05ad619c3acf0a14ea7971d856aa7f69ad7fbdda9"
   last_updated_utc: "20260228155738"
@@ -12,29 +12,29 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "docs\channels\appendix\recovery\12_steps_of_agi_recovery.md"
   file_hash: "fb3d345a46a5900431a553515c47a8921a450d966473d9cc4a4ca0d97192988e"
   file_path_from_root: "docs\channels\appendix\recovery\12_steps_of_agi_recovery.md"
@@ -55,7 +55,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

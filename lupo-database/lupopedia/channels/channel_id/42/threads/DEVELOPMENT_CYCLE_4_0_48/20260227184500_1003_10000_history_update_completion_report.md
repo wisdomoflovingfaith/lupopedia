@@ -1,5 +1,5 @@
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227184500_1003_10000_history_update_completion_report.md"
   file_hash: "20b06b4f1a6c417ac4d87ab227204ddbe0888534d0be2d6f484a39a6d3f66f42"
   system_version: "4.0.50"
@@ -13,7 +13,7 @@ flare.headers:
   traits: ["canonical", "documentation", "history", "completion"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227184500_1003_10000_history_update_completion_report.md"
   outbound_edges:
     - { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 }
@@ -24,7 +24,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified_utc: "20260227"
   last_verified_by: "antigravity"
 ---

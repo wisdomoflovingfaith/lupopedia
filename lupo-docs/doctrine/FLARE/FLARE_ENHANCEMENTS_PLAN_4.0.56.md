@@ -1,13 +1,13 @@
 # FLARE Header Enhancements Plan - v4.0.56 (Refined)
 
 ## 1. Overview
-This plan outlines the introduction of `flame.init` and `flame.close` blocks to the FLARE header protocol. These enhancements provide lifecycle hooks for pre-processing and post-reading actions. Refined in v4.0.56 to ensure implementation safety, typed actions, and targeted enforcement.
+This plan outlines the introduction of `lupopedia.init` and `lupopedia.close` blocks to the FLARE header protocol. These enhancements provide lifecycle hooks for pre-processing and post-reading actions. Refined in v4.0.56 to ensure implementation safety, typed actions, and targeted enforcement.
 
 ## 2. New Header Blocks
 
-### 2.1 flame.init (Initialization/Requirements)
-The `flame.init` block defines prerequisites that must be met before an agent processes the file.
-- **Canonical Key**: `flame.init`
+### 2.1 lupopedia.init (Initialization/Requirements)
+The `lupopedia.init` block defines prerequisites that must be met before an agent processes the file.
+- **Canonical Key**: `lupopedia.init`
 - **Execution Mode**: `execution_mode` (Required)
   - `advisory`: Agents may ignore actions.
   - `required`: Agents must execute or fail.
@@ -16,26 +16,26 @@ The `flame.init` block defines prerequisites that must be met before an agent pr
   - Example: `dependency_check: "path/to/file"`
   - Example: `service_check: "DatabaseFactory"`
 
-### 2.2 flare.conditional (Guards & Briefing)
-The `flare.conditional` block provides granular execution control and a "5W1H" briefing for the artifact.
+### 2.2 lupopedia.conditional (Guards & Briefing)
+The `lupopedia.conditional` block provides granular execution control and a "5W1H" briefing for the artifact.
 - **guards**: Defines who can execute (`allow`/`deny`), when (`time_window`), and under what environmental conditions (`conditions`).
 - **brief**: A human and machine readable summary of the artifact's purpose, scope, urgency, and success criteria (Who, What, Where, When, Why, How).
 
-### 2.3 flame.see (URL Resolver)
-The `flame.see` block provides mappings between canonical web URLs and repository markdown paths.
-- **Canonical Key**: `flame.see`
+### 2.3 lupopedia.see (URL Resolver)
+The `lupopedia.see` block provides mappings between canonical web URLs and repository markdown paths.
+- **Canonical Key**: `lupopedia.see`
 - **mappings**: A list of `[path, url]` pairs.
 - **Purpose**: Enables the CLI to resolve a URL (e.g., `http://www.lupopedia.com/FLAME`) to a local `.md` file.
 
-### 2.4 flare.headers (Standard Metadata)
+### 2.4 lupopedia.headers (Standard Metadata)
 Standard metadata for indexing and attribution.
-- **Canonical Key**: `flare.headers`
+- **Canonical Key**: `lupopedia.headers`
 - Includes: `file_path_from_root`, `system_version`, `actor_id`, `channel_id`, `artifact_kind`, etc.
 
-### 2.5 flame.close (Finalization/Post-Actions)
-The `flame.close` block defines actions to be performed after the file has been processed.
-- **Canonical Key**: `flame.close`
-- **Actor Responsibility**: `actor_id` defaults to the file's `flare.headers.actor_id` to maintain local responsibility.
+### 2.5 lupopedia.close (Finalization/Post-Actions)
+The `lupopedia.close` block defines actions to be performed after the file has been processed.
+- **Canonical Key**: `lupopedia.close`
+- **Actor Responsibility**: `actor_id` defaults to the file's `lupopedia.headers.actor_id` to maintain local responsibility.
 - **Typed Actions**: Actions must be objects.
   - Example: `type: register_completion`
 
@@ -54,20 +54,20 @@ They are **OPTIONAL** for:
 
 ## 4. Canonical Order
 Headers MUST follow this exact order to ensure parser stability:
-1. `flame.init`
-2. `flare.conditional`
-3. `flare.headers`
-4. `flare.edges`
-5. `flare.footer`
-6. `flame.see`
-7. `flame.close`
+1. `lupopedia.init`
+2. `lupopedia.conditional`
+3. `lupopedia.headers`
+4. `lupopedia.edges`
+5. `lupopedia.footer`
+6. `lupopedia.see`
+7. `lupopedia.close`
 
 ## 5. YAML Structure Example
 
 ```yaml
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
+# LUPOPEDIA HEADERS (replaces FLARE) — see http://www.lupopedia.com/FLARE
 ---
-flame.init:
+lupopedia.init:
   requirements:
     flare:
       version: ">=4.0.55"
@@ -76,7 +76,7 @@ flame.init:
     - type: dependency_check
       path: "lupo-includes/bootstrap.php"
 
-flare.conditional:
+lupopedia.conditional:
   guards:
     execution_mode: "required"
     allow:
@@ -115,22 +115,22 @@ flare.conditional:
       method: "How it works"
       success_criteria: ["Criteria 1"]
 
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "example.md"
   system_version: "4.0.56"
   actor_id: 1004
   channel_id: 42
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260304"
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: register_completion
       channel_id: 0
@@ -140,8 +140,8 @@ flame.close:
 
 ## 6. Implementation Steps
 
-1.  **Template Update**: Modify `lupo-tools/flare_header_template.txt` to include `flare.conditional`.
+1.  **Template Update**: Modify `lupo-tools/flare_header_template.txt` to include `lupopedia.conditional`.
 2.  **Tooling Support**:
-    *   Update `lupo-tools/flare_apply.py` to support `flare.conditional`.
-    *   Update `lupo-tools/flare_validate.py` to enforce `flare.conditional` constraints.
+    *   Update `lupo-tools/flare_apply.py` to support `lupopedia.conditional`.
+    *   Update `lupo-tools/flare_validate.py` to enforce `lupopedia.conditional` constraints.
 3.  **Governance**: Update `FLARE_DOCTRINE.md` to reflect Section 16: Conditional Guards & Briefing.

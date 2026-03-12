@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/20260226000000_task_0_10000_primary_install_upgrade_4_0_46
 
 ---
-flame.init:
+lupopedia.init:
   requirements:
     flare:
       version: ">=4.0.55"
@@ -10,7 +10,7 @@ flame.init:
     - type: dependency_check
       path: "lupo-includes/bootstrap.php"
 
-flare.conditional:
+lupopedia.conditional:
   guards:
     execution_mode: "advisory"
     allow:
@@ -46,9 +46,9 @@ flare.conditional:
       method: "FLARE automated application"
       success_criteria: ["header applied correctly"]
 
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "task"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
   file_hash: "c6fed163d8e8691ad659d24c32420c848131ac580feab16eb4c4470b00f84a6b"
   last_updated_utc: "20260304"
@@ -64,18 +64,18 @@ flare.headers:
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "42", "threads"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges: []
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260304"
   last_verified_by: "antigravity"
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md", "http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/20260226000000_task_0_10000_primary_install_upgrade_4_0_46"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: register_completion
       channel_id: 0
@@ -86,10 +86,10 @@ flame.close:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "channels\0\tasks\active\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
   file_hash: "2248a9e303263defc841143a7560f7bf6d6a42eb31c8c6567c878424a2a39524"
   file_path_from_root: "channels\0\tasks\active\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
@@ -110,7 +110,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "cursor"
 ---

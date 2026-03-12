@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\42\broadcasts\20260225130012_10000_1000_42_announce_completion_of_lilith_semantic_header_footer_upgrades_for_v4_0_38.md"
   file_hash: "6b5c9463b48a673a81135dfa59d381fb608c116ef76723da851a888caa3c4be3"
   last_updated_utc: "20260228155738"
@@ -12,18 +12,18 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
@@ -31,10 +31,10 @@ flare.footer:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130012_10000_1000_42_announce_completion_of_lilith_semantic_header_footer_upgrades_for_v4_0_38.md"
   file_hash: "6c7e40147c7607167f16f53f1c0c72a0398d5ddccf84fa93396f4a23c75ac87d"
   file_path_from_root: "channels\42\broadcasts\20260225130012_10000_1000_42_announce_completion_of_lilith_semantic_header_footer_upgrades_for_v4_0_38.md"
@@ -55,7 +55,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

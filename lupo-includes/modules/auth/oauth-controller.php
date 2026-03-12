@@ -164,12 +164,11 @@ function oauth_callback_handle($provider)
         exit;
     }
 
-    // Create session
-    $_SESSION['user_id'] = $user['auth_user_id'];
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['email'] = $user['email'];
-    $_SESSION['display_name'] = $user['display_name'];
-    $_SESSION['auth_provider'] = $provider;
+    // Model A: create DB-backed session; do not store identity in $_SESSION.
+    $actor_id = isset($user['actor_id']) ? (int) $user['actor_id'] : (int) $user['auth_user_id'];
+    if (isset($GLOBALS['lupo_session']) && $GLOBALS['lupo_session'] && method_exists($GLOBALS['lupo_session'], 'createSession')) {
+        $GLOBALS['lupo_session']->createSession($actor_id, 'oauth', $provider);
+    }
 
     // Clean up OAuth session data
     unset($_SESSION['oauth_state']);

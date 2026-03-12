@@ -1,9 +1,9 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/reviews/REHYDRATE_ADDENDUM_VERIFICATION
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "final_verification"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "final_verification"
   file_path_from_root: "prompts/lilith/20260306_rehydrate_addendum_verification.md"
   web_path: "http://www.lupopedia.com/reviews/REHYDRATE_ADDENDUM_VERIFICATION"
   last_modified_utc: "20260306"
@@ -19,13 +19,13 @@ flare.headers:
   tags: ["flare", "addendum", "verification", "complete", "cursor"]
   lupo_agent: "lilith"
 
-flame.init:
+lupopedia.init:
   execution_mode: "required"
   pre_actions:
     - type: verify_addendum
       target: "docs/status/CURSOR_REHYDRATE_CONFIRMATION_ADDENDUM_4.0.57.md"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/status/CURSOR_REHYDRATE_CONFIRMATION_ADDENDUM_4.0.57.md", type: "verifies", weight: 1.0 }
     - { to: "docs/status/CURSOR_CHANNEL_42_REHYDRATE_REPORT_4.0.57.md", type: "references", weight: 0.9 }
@@ -33,19 +33,19 @@ flare.edges:
     - { to: "docs/status/REPOSITORY_CLEANUP_SAFE_LIST_4.0.57.md", type: "references", weight: 0.9 }
   semantic_tags: ["flare", "addendum", "verification", "complete", "cursor"]
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["docs/status/CURSOR_REHYDRATE_CONFIRMATION_ADDENDUM_4.0.57.md", "http://www.lupopedia.com/status/CURSOR_REHYDRATE_CONFIRMATION_ADDENDUM_4.0.57"]
     - ["prompts/lilith/20260306_rehydrate_addendum_verification.md", "http://www.lupopedia.com/reviews/REHYDRATE_ADDENDUM_VERIFICATION"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: mark_recovery_confirmed
       component: "cursor_recovery"
       status: "verified"
   actor_id: 2
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.57"
   last_verified: "20260306"
   last_verified_by: "lilith"

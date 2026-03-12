@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "lupo-channels/0/initialize_readme.md"
   federation_node_id: 0
   web_path: "http://www.lupopedia.com/initialize_readme"
@@ -20,7 +20,7 @@ flare.headers:
   tags: ["channel_startup", "startup_log", "startup_lifecycle", "startup_detail", "toons"]
   lupo_agent: "gemini-cli"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/toons/lupo_channel_boot_log.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "docs/toons/lupo_channel_boot_detail.toon.json", type: "schema_reference", weight: 1.0 }
@@ -32,7 +32,7 @@ flare.edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
   semantic_tags: ["channel_startup", "lifecycle_tracking", "schema_documentation", "node_0"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.53"
   last_verified: "20260301"
   last_verified_by: "gemini-cli"

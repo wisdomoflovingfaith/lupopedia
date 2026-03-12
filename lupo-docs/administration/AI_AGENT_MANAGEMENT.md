@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/administration/AI_AGENT_MANAGEMENT.md"
   system_version: "4.0.53"
   last_updated_utc: "20260301"
@@ -17,13 +17,13 @@ flare.headers:
   tags: ["gemini", "ai_agents", "administration", "maintenance"]
   lupo_agent: "gemini"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "QUICKSTART.md", type: "references", weight: 0.8 }
     - { to: "lupo-bin/boot_system_agent.php", type: "related_script", weight: 1.0 }
     - { to: "api/v1/health.php", type: "monitoring_endpoint", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260301"
   last_verified_by: "gemini"
 ---

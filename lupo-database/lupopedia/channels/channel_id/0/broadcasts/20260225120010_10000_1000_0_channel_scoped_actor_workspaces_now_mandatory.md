@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\0\broadcasts\20260225120010_10000_1000_0_channel_scoped_actor_workspaces_now_mandatory.md"
   file_hash: "6f1f92a92c92c94a55989fe41c574686fbce75c5e3ac2ee338c487df6f058a39"
   last_updated_utc: "20260228155738"
@@ -12,18 +12,18 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
@@ -31,10 +31,10 @@ flare.footer:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "channels\0\broadcasts\20260225120010_10000_1000_0_channel_scoped_actor_workspaces_now_mandatory.md"
   file_hash: "55ac87ac6f61f2337bdf0f1fe25886b95843cf896c72a93da673acd12d4d12ec"
   file_path_from_root: "channels\0\broadcasts\20260225120010_10000_1000_0_channel_scoped_actor_workspaces_now_mandatory.md"
@@ -55,7 +55,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

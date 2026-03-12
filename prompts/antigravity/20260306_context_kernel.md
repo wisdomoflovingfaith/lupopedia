@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "directive"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "directive"
   file_path_from_root: "prompts/antigravity/20260306_context_kernel.md"
   web_path: "http://www.lupopedia.com/directives/CONTEXT_KERNEL"
   last_modified_utc: "20260306"
@@ -18,7 +18,7 @@ flare.headers:
   tags: ["antigravity", "context", "kernel", "identity"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "prompts/lilith/20260306_version_4.0.61_strategy.md", type: "triggered_by", weight: 1.0 }
     - { to: "lupo-includes/classes/ContextResolver.php", type: "references", weight: 1.0 }

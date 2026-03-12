@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
+# LUPOPEDIA HEADERS (replaces FLARE) — see http://www.lupopedia.com/FLARE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301134200"
@@ -17,7 +17,7 @@ flare.headers:
   tags: ["sessions", "lupo_sessions", "ide_agents", "ai_agents", "sync", "default_sessions"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "bin/session_manager.php", type: "implementation_reference", weight: 0.9 }
@@ -26,7 +26,7 @@ flare.edges:
     - { to: "lupo-database/lupopedia/toon/lupo_channel_boot_lifecycle.toon.json", type: "integration_reference", weight: 0.8 }
   semantic_tags: ["session_management", "agent_isolation", "database_sync"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.53"
   last_verified: "20260301"
   last_verified_by: "windsurf"

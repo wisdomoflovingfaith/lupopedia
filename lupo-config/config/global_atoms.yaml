@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.69
+file.last_modified_system_version: 4.0.71
 file.channel: schema
 # Global Atoms Configuration
 # Single source of truth for ecosystem-wide metadata used in WOLFIE Headers
@@ -14,17 +14,17 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.0.69"
-last_updated: 20260310
-# VERSION 4.0.69
+version: "4.0.71"
+last_updated: 20260312
+# VERSION 4.0.71
 
 # Global Version Atoms
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.69"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.71"
 GLOBAL_FLIP_SCHEMA_VERSION: "2.0"
 
 # System Configuration Atoms
 SYSTEM_DATABASE_COMPATIBILITY: ["mysql", "postgresql", "mariadb"]
-SYSTEM_PHP_COMPATIBILITY: ["5.3", "5.4", "5.5", "5.6", "7.0", "7.1", "7.2", "7.3", "7.4", "8.0", "8.1", "8.2", "8.3"]
+SYSTEM_PHP_COMPATIBILITY: ["5.6", "7.0", "7.1", "7.2", "7.3", "7.4", "8.0", "8.1", "8.2", "8.3"]
 SYSTEM_TIMESTAMP_FORMAT: "YYYYMMDDHHIISS"
 SYSTEM_TABLE_LIMIT: 199
 

@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\bin\lupo.php.md"
   file_hash: "89395e72dcdb7303fdcc16dc134b93d26289360dddc13f9aabbb580810d8e8f1"
   last_updated_utc: "20260228155738"
@@ -12,18 +12,18 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
@@ -31,7 +31,7 @@ flare.footer:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "bin/lupo.php.md"
   file_hash: "23c20529062b6b9f187f9369d28c5980ad4a895c9d15ea9b2626e5f978308c76"
   system_version: "4.0.50"
@@ -48,7 +48,7 @@ flare.headers:
   tags: ["cli", "documentation", "system_agent", "4.0.50"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "bin\lupo.php.md"
   outbound_edges:
     - { to: "bin/lupo.php", type: "documents", weight: 1.0, reason: "CLI tool implementation" }
@@ -58,7 +58,7 @@ flare.edges:
 
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified_utc: "20260228"
   last_verified_by: "windsurf"
 ---

@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\guidelines\list_csv_documentation.md"
   file_hash: "449d12695d98d2585a405602de6641bd1fd7a77830eb99749ab04cd9b5e6e5ed"
   last_updated_utc: "20260228155738"
@@ -12,26 +12,26 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# LUPOPEDIA HEADERS (replaces FLARE) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "docs/guidelines/list_csv_documentation.md"
   file_hash: "e08501bf772388793ced517efaccc54634f3b19a864ecb2e6863d23e867afc34"
   system_version: "4.0.50"
@@ -48,7 +48,7 @@ flare.headers:
   tags: ["list_csv", "documentation", "database", "generation", "4.0.49"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "docs\guidelines\list_csv_documentation.md"
   outbound_edges:
     - { to: "channels/list.csv", type: "examples", weight: 1.0, reason: "Channels list example" }
@@ -62,7 +62,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

@@ -25,6 +25,14 @@ lupopedia.session:
   actor_nature: "ide"
   human_actor_name: "root"
   paired_actor_id: 10000
+lupopedia.footer:
+  version: "4.0.71"
+  last_verified: "20260312"
+  last_verified_by: "cursor"
+  next_action:
+    - "Apply next_action to all files with lupopedia.footer"
+    - "Validate LUPOPEDIA HEADERS consistency across doctrine files"
+    - "Update FLARE_HEADERS_COMPLETE_REFERENCE footer example with next_action"
 ---
 # file: LUPOPEDIA HEADERS Format — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT
 
@@ -43,16 +51,20 @@ The **first line** of the file MUST be:
 ---
 ```
 
+**DO NOT** put the identity line (`# file: ...`) or any heading on line 1. The identity line belongs **after** the closing `---` of the YAML block, as the first line of the body. Putting it before the opening `---` is invalid and will be rejected by validators.
+
+**DO NOT** duplicate the header. There must be **exactly one** YAML front matter block per file: one opening `---`, one set of blocks (lupopedia.headers, etc.), one closing `---`. Never add a second `---` … YAML … `---` block elsewhere in the file. When merging or updating headers, consolidate into a single block and remove any duplicate.
+
 Then the YAML header blocks in **canonical order** (see [LUPOPEDIA_HEADERS_PLAN.md](./LUPOPEDIA_HEADERS_PLAN.md) §4). Use **lupopedia.*** block names in new or modified files (4.0.69+); validators accept legacy flare.*/flame.*:
 
-- lupopedia.init (optional; legacy: flame.init)
-- lupopedia.conditional (optional; legacy: flare.conditional)
+- lupopedia.init (optional; legacy: lupopedia.init)
+- lupopedia.conditional (optional; legacy: lupopedia.conditional)
 - lupopedia.headers (required)
 - lupopedia.session (optional; session context: session_id, session_name, and other session-file fields — see §2.1)
-- lupopedia.edges (optional; legacy: flare.edges)
-- lupopedia.footer (optional; legacy: flare.footer)
-- lupopedia.see (optional; legacy: flame.see)
-- lupopedia.close (optional; legacy: flame.close)
+- lupopedia.edges (optional; legacy: lupopedia.edges)
+- lupopedia.footer (optional but when present must include `next_action:`; legacy: lupopedia.footer)
+- lupopedia.see (optional; legacy: lupopedia.see)
+- lupopedia.close (optional; legacy: lupopedia.close)
 
 Then the closing delimiter:
 
@@ -72,7 +84,7 @@ The `{session_name}` in the identity line MUST be taken from **`lupopedia.sessio
 
 ## 2. Required header fields (in lupopedia.headers)
 
-Stored as metadata properties (or in YAML when written to file). Use **lupopedia.*** keys in new files; validators accept legacy `flare.version` / `flare.schema`. Minimum: `lupopedia.version`, `lupopedia.schema`, `file_path_from_root`, `web_path`, `last_modified_utc`, `system_version`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`. Optional: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`. **Session-related fields** (e.g. `session_id`, `session_name`) belong in **`lupopedia.session`**, not in `lupopedia.headers`.
+Stored as metadata properties (or in YAML when written to file). Use **lupopedia.*** keys in new files; validators accept legacy `lupopedia.version` / `lupopedia.schema`. Minimum: `lupopedia.version`, `lupopedia.schema`, `file_path_from_root`, `web_path`, `last_modified_utc`, `system_version`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`. Optional: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`. **Session-related fields** (e.g. `session_id`, `session_name`) belong in **`lupopedia.session`**, not in `lupopedia.headers`.
 
 **Optional channel and thread (human-readable):** In addition to `channel_id`, headers MAY include **`channel_name`** — a human-readable name for the channel (e.g. `"Lupopedia Development (general)"` for channel_id 42). When the artifact is scoped to a specific thread, **`thread_name`** MAY be included (human-readable thread name) alongside `thread_id` (which may appear in `lupopedia.session`). These aid display and context without changing resolution logic.
 
@@ -200,3 +212,31 @@ Headers can be attached by:
 - Both when appropriate
 
 Resolution and validators MUST support channel-aware lookup.
+
+---
+
+## 5. lupopedia.footer and next_action (required when footer is present)
+
+When a file includes a **`lupopedia.footer`** block, it MUST include the field **`next_action:`**. This field contains 1–3 suggested next actions based on the file’s purpose and the most recent work performed.
+
+**Requirements:**
+
+- **`next_action:`** — A YAML list of 1–3 strings.
+- Actions must be **contextual** (based on the file’s purpose).
+- Actions must be **forward-looking** (suggested next steps), not historical.
+- Do not imply version jumps or future versions beyond the current release (e.g. 4.0.71).
+
+**Example:**
+
+```yaml
+lupopedia.footer:
+  version: "4.0.71"
+  last_verified: "20260312"
+  last_verified_by: "cursor"
+  next_action:
+    - "Review related TOON definitions for schema alignment"
+    - "Validate LUPOPEDIA HEADERS consistency across sibling files"
+    - "Update documentation to reflect new schema changes"
+```
+
+**Other optional footer fields:** `view_count`, `like_count`, `share_count` (engagement). Required when footer is present: `next_action:` plus at least one of `last_verified`/`last_verified_by` or `version` for traceability.

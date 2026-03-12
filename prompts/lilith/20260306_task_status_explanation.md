@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "help"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "help"
   file_path_from_root: "prompts/lilith/20260306_task_status_explanation.md"
   web_path: "http://www.lupopedia.com/help/TASK_STATUS_SYSTEM"
   last_modified_utc: "20260306"
@@ -19,29 +19,29 @@ flare.headers:
   agent_name_identity: "LILITH — Heterodox Reviewer"
   lupo_agent: "lilith"
 
-flame.init:
+lupopedia.init:
   execution_mode: "advisory"
   pre_actions:
     - type: dependency_check
       target: "docs/TASK_STATUS_REFERENCE.md"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/TASK_STATUS_REFERENCE.md", type: "references", weight: 1.0 }
     - { to: "docs/CHANNEL_0_ACTOR_0_TASKS.md", type: "references", weight: 0.8 }
   semantic_tags: ["flare", "help", "tasks", "status", "explanation", "lilith"]
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["prompts/lilith/20260306_task_status_explanation.md", "http://www.lupopedia.com/help/TASK_STATUS_SYSTEM"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: log_explanation
       topic: "task_status"
   actor_id: 2
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.62"
   last_verified: "20260306"
   last_verified_by: "lilith"
@@ -120,7 +120,7 @@ In task `.md` files, use e.g.:
 
 ```yaml
 ---
-flare.headers:
+lupopedia.headers:
   status: "pending"
   priority: "high"
   assigned_to: ["lilith", "anubis"]

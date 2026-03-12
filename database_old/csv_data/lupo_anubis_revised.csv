@@ -1,2 +1,0 @@
-"anubis_revised_id` bigint NOT NULL","table_name` varchar(255) NOT NULL","row_id` bigint NOT NULL","timestamp_utc` bigint NOT NULL","agent` varchar(255) NOT NULL","revision_json` text NOT NULL"
-"anubis_revised_id` bigint NOT NULL:BIGINT|NOT_NULL","table_name` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","row_id` bigint NOT NULL:BIGINT|NOT_NULL","timestamp_utc` bigint NOT NULL:BIGINT|NOT_NULL","agent` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","revision_json` text NOT NULL:TEXT|NOT_NULL"

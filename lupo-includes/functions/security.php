@@ -16,20 +16,14 @@ if (!defined('LUPOPEDIA_PATH')) {
  */
 function lupo_get_csrf_token()
 {
-    if (!isset($_SESSION['csrf_token']) || $_SESSION['csrf_token'] === '') {
-        $raw = '';
-        if (function_exists('openssl_random_pseudo_bytes')) {
-            $raw = openssl_random_pseudo_bytes(32);
-            if ($raw === false) {
-                $raw = (string) uniqid((string) mt_rand(), true) . (string) microtime(true);
-            }
-        } else {
-            $raw = (string) uniqid((string) mt_rand(), true) . (string) microtime(true);
+    // Model A: CSRF token from DB (lupo_sessions.csrf_token), not $_SESSION.
+    if (isset($GLOBALS['lupo_session']) && $GLOBALS['lupo_session'] && method_exists($GLOBALS['lupo_session'], 'getCsrfToken')) {
+        $token = $GLOBALS['lupo_session']->getCsrfToken();
+        if ($token !== null && $token !== '') {
+            return $token;
         }
-        $sid = session_id();
-        $_SESSION['csrf_token'] = sha1($raw . (is_string($sid) ? $sid : ''));
     }
-    return isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '';
+    return '';
 }
 
 /**
@@ -40,7 +34,7 @@ function lupo_get_csrf_token()
 function lupo_require_valid_csrf_token()
 {
     $submitted = isset($_POST['csrf_token']) ? (string) $_POST['csrf_token'] : (isset($_GET['csrf_token']) ? (string) $_GET['csrf_token'] : '');
-    $session_token = isset($_SESSION['csrf_token']) ? (string) $_SESSION['csrf_token'] : '';
+    $session_token = function_exists('lupo_get_csrf_token') ? (string) lupo_get_csrf_token() : '';
     $token_present = ($submitted !== '');
     $token_valid = ($submitted !== '' && $session_token !== '' && $submitted === $session_token);
     $actor_id = 0;

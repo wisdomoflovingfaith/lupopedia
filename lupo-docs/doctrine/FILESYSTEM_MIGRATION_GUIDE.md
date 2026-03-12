@@ -1,67 +1,32 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FILESYSTEM_MIGRATION_GUIDE.md"
-  file_hash: "fbb9e7e39f8b4a34f62cfcb28e7d2e157de5db88c1548903f12b128350aeb680"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  file_path_from_root: "lupo-docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md"
+  last_updated_utc: "20260312"
+  system_version: "4.0.71"
   channel_id: 1
   actor_id: 1002
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  traits: ["lupopedia_headers", "indexed", "v4.0.71"]
+  tags: ["documentation", "lupopedia_headers"]
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+lupopedia.footer:
+  last_verified: "20260312"
+  last_verified_by: "cursor"
+  version: "4.0.71"
 ---
+## Legacy FLIP header (historical reference)
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-
----
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
-  file_path_from_root: "docs\doctrine\FILESYSTEM_MIGRATION_GUIDE.md"
-  file_hash: "cc6d60a487be1529fa807d4fd505ef816155b7249861bedb3821f131a33b9637"
-  file_path_from_root: "docs\doctrine\FILESYSTEM_MIGRATION_GUIDE.md"
-  file_hash: "16c8a044069cd3fd34a465b18be2ec8127ef3d5fbb94b423fe3371ad6874f08b"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: null
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Documentation for FILESYSTEM_MIGRATION_GUIDE.md"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["docs", "doctrine", "filesystem_migration_guidemd"]
-  lupo_agent: "windsurf"
-
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-flare.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
----
-
----
+```yaml
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md
@@ -75,7 +40,7 @@ atoms:
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
 X-Lupo-File-Path: docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md
----
+```
 
 # Filesystem to Database Migration Guide
 

@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "channels/42/content/federation_node_id/0/changelog.md"
   file_hash: "to_be_generated"
   federation_node_id: 0
@@ -18,7 +18,7 @@ flare.headers:
   traits: ["canonical", "federation", "v4.0.52"]
   tags: ["flare", "federation", "changelog", "node_0", "canonical"]
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
@@ -29,7 +29,7 @@ flare.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
   semantic_tags: ["flare", "federation", "changelog", "canonical", "protocol"]
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260301"
   last_verified_by: "windsurf"
 ---

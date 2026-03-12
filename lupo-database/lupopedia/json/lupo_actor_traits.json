@@ -5,6 +5,8 @@
     "`actor_id` bigint NOT NULL",
     "`trait_key` varchar(128) NOT NULL",
     "`trait_value` varchar(512)",
+    "`federation_node_id` bigint NOT NULL DEFAULT 1",
+    "`created_by_actor_id` bigint",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
@@ -26,6 +28,14 @@
       "columns": [
         "actor_id",
         "trait_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_traits_idx_federation",
+      "columns": [
+        "federation_node_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

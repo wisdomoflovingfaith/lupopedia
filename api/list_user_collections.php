@@ -38,8 +38,12 @@ if (file_exists(LUPOPEDIA_PATH . '/lupo-includes/bootstrap.php')) {
     require_once LUPOPEDIA_PATH . '/lupo-includes/bootstrap.php';
 }
 
-// Get current user ID
-$userId = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : 0;
+// Model A: identity from DB.
+$userId = 0;
+if (isset($GLOBALS['lupo_session']) && $GLOBALS['lupo_session'] && method_exists($GLOBALS['lupo_session'], 'getActorId')) {
+    $aid = $GLOBALS['lupo_session']->getActorId();
+    $userId = $aid !== null ? (int) $aid : 0;
+}
 
 // Query collections
 global $table_prefix;

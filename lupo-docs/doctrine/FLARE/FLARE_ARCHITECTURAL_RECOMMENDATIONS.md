@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\doctrine\FLARE\FLARE_ARCHITECTURAL_RECOMMENDATIONS.md"
   file_hash: "0536c1c4245f1f4006f7e8e9d493aed9ba2b6da35c6717e6a8bf46ad226c43b3"
   last_updated_utc: "20260228155738"
@@ -12,25 +12,25 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "docs/doctrine/FLARE/FLARE_ARCHITECTURAL_RECOMMENDATIONS.md"
   file_hash: "de993c4d610ab8dce53f1afed72dc09327812dbdbe4d7360c46224fabadb079b"
   system_version: "4.0.50"
@@ -45,7 +45,7 @@ delegation_chain: "1007:10000"
   dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
   lupo_agent: "codex-ide"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "docs\doctrine\FLARE\FLARE_ARCHITECTURAL_RECOMMENDATIONS.md"
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
@@ -56,7 +56,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---
@@ -65,7 +65,7 @@ flare.footer:
 
 Following a comprehensive review of the FLARE protocol (Headers, Edges, Footer) against the current 4.1.0 database schema (TOONs), the following recommendations are proposed to enhance system integrity and semantic coherence.
 
-## 1. Engagement Schema Normalization (flare.footer)
+## 1. Engagement Schema Normalization (lupopedia.footer)
 
 Current `lupo_contents` table has redundant and mismatched engagement fields:
 - `share_count` (int) vs `shares_total` (int).
@@ -106,13 +106,13 @@ The API currently performs hardcoded logic for several fields.
 ## 4. Documentation Improvements
 
 ### Contradiction Cleanup
-Several doc files (including `FLARE_DOCTRINE.md`) contained typos placing `outbound_edges` in the `flare.footer`.
+Several doc files (including `FLARE_DOCTRINE.md`) contained typos placing `outbound_edges` in the `lupopedia.footer`.
 
 ### Recommendations:
 1. **Strict 3-Part Enforcement**: Ensure all auto-generated documentation follows the split:
-    - **flare.headers**: Identity & Metadata
-    - **flare.edges**: Relational & Graph structure
-    - **flare.footer**: Engagement & Verification
+    - **lupopedia.headers**: Identity & Metadata
+    - **lupopedia.edges**: Relational & Graph structure
+    - **lupopedia.footer**: Engagement & Verification
 2. **Validation Rules**: Update `FlareValidatorService` to explicitly check for cross-pollution between sections (e.g. no edges in footer).
 
 ## 5. Summary of Proposed Table Changes

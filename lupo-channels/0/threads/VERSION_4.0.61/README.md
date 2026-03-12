@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "thread"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "thread"
   file_path_from_root: "lupo-channels/0/threads/VERSION_4.0.61/README.md"
   web_path: "http://www.lupopedia.com/threads/VERSION_4.0.61"
   last_modified_utc: "20260306"

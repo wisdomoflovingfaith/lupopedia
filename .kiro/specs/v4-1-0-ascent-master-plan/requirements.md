@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/.kiro/specs/v4-1-0-ascent-master-plan/requirements
 
 ---
-flame.init:
+lupopedia.init:
   requirements:
     flare:
       version: ">=4.0.55"
@@ -10,7 +10,7 @@ flame.init:
     - type: dependency_check
       path: "lupo-includes/bootstrap.php"
 
-flare.conditional:
+lupopedia.conditional:
   guards:
     execution_mode: "advisory"
     allow:
@@ -46,9 +46,9 @@ flare.conditional:
       method: "FLARE automated application"
       success_criteria: ["header applied correctly"]
 
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".kiro/specs/v4-1-0-ascent-master-plan/requirements.md"
   file_hash: "581d97069b36c2bd6a4e072946ff191159f6f0b36962b4cf24ead5c67626864d"
   last_updated_utc: "20260304"
@@ -64,18 +64,18 @@ flare.headers:
   tags: ["kiro", "specs", "v4-1-0-ascent-master-plan", "requirementsmd"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges: []
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260304"
   last_verified_by: "antigravity"
 
-flame.see:
+lupopedia.see:
   mappings:
     - [".kiro/specs/v4-1-0-ascent-master-plan/requirements.md", "http://www.lupopedia.com/.kiro/specs/v4-1-0-ascent-master-plan/requirements"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: register_completion
       channel_id: 0
@@ -86,10 +86,10 @@ flame.close:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: ".kiro\specs\v4-1-0-ascent-master-plan\requirements.md"
   file_hash: "fd5189292b53b26a33d40505784d7b887100b45165f711be79a8fd6ea5aebfe5"
   file_path_from_root: ".kiro\specs\v4-1-0-ascent-master-plan\requirements.md"
@@ -110,7 +110,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

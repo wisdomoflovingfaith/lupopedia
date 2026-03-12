@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
+# LUPOPEDIA HEADERS (replaces FLARE) — see http://www.lupopedia.com/FLARE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "review"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "review"
   file_path_from_root: "prompts/lilith/20260301_channel_system_tldr_review.md"
   system_version: "4.0.52"
   channel_id: 42
@@ -17,7 +17,7 @@ flare.headers:
   tags: ["channels", "tldr", "review", "system_channel_0", "lilith"]
   lupo_agent: "lilith"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/database/lupopedia/tables/CHANNEL_SYSTEM_TLDR.md", type: "reviews", weight: 1.0 }
     - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
@@ -27,7 +27,7 @@ flare.edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
   semantic_tags: ["channels", "tldr", "review", "system_channel_0", "lilith"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.52"
   last_verified: "20260301"
   last_verified_by: "lilith"
@@ -38,9 +38,9 @@ flare.footer:
 ```markdown
 ---
 # FLARE Header
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "review"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "review"
   file_path_from_root: "prompts/lilith/20260301_channel_system_tldr_review.md"
   system_version: "4.0.52"
   channel_id: 42
@@ -55,7 +55,7 @@ flare.headers:
   tags: ["channels", "tldr", "review", "system_channel_0", "lilith"]
   lupo_agent: "lilith"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/database/lupopedia/tables/CHANNEL_SYSTEM_TLDR.md", type: "reviews", weight: 1.0 }
     - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
@@ -65,7 +65,7 @@ flare.edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
   semantic_tags: ["channels", "tldr", "review", "system_channel_0", "lilith"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.52"
   last_verified: "20260301"
   last_verified_by: "lilith"
@@ -188,11 +188,11 @@ VALUES
 ## ✅ CORRECTED FLARE HEADER EXAMPLE
 
 ```yaml
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
+# LUPOPEDIA HEADERS (replaces FLARE) — see http://www.lupopedia.com/FLARE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "path/to/file.md"
   system_version: "4.0.52"
   file.last_modified_system_version: "4.0.52"  # Added
@@ -209,7 +209,7 @@ flare.headers:
   tags: ["channels", "content", "federation"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "docs/toons/lupo_channel_content.toon.json", type: "schema_reference", weight: 1.0 }
@@ -220,7 +220,7 @@ flare.edges:
     - { to: "docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.52"
   last_verified: "20260301"
   last_verified_by: "windsurf"

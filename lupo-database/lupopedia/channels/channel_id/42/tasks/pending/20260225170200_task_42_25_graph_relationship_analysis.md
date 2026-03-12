@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis
 
 ---
-flame.init:
+lupopedia.init:
   requirements:
     flare:
       version: ">=4.0.55"
@@ -10,7 +10,7 @@ flame.init:
     - type: dependency_check
       path: "lupo-includes/bootstrap.php"
 
-flare.conditional:
+lupopedia.conditional:
   guards:
     execution_mode: "advisory"
     allow:
@@ -46,9 +46,9 @@ flare.conditional:
       method: "FLARE automated application"
       success_criteria: ["header applied correctly"]
 
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "task"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md"
   file_hash: "a646b498d70b6c1ba8feda00aa79a84f26929a655f9272fce98e4caa5b6f37d3"
   last_updated_utc: "20260304"
@@ -64,18 +64,18 @@ flare.headers:
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "42", "tasks"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges: []
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260304"
   last_verified_by: "antigravity"
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["lupo-database/lupopedia/channels/lupo-channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md", "http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: register_completion
       channel_id: 0
@@ -86,10 +86,10 @@ flame.close:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "channels\42\tasks\pending\20260225170200_task_42_25_graph_relationship_analysis.md"
   file_hash: "7e7c3a1efac58a0542b8c1c8ccfbe7e4bbf4c06ae6d0165117b098a024f58512"
   file_path_from_root: "channels\42\tasks\pending\20260225170200_task_42_25_graph_relationship_analysis.md"
@@ -110,7 +110,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

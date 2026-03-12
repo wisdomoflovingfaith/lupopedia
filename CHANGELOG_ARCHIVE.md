@@ -1,6 +1,6 @@
 ---
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "CHANGELOG_ARCHIVE.md"
   file_hash: "c4d1d6346617ce4c2ab0ba467d3bc966d4f63bc9104e932c7a5b4752233f0e55"
   system_version: "4.0.50"
@@ -17,7 +17,7 @@ flare.headers:
   lupo_agent: "antigravity"
   actor_ip: "127.0.0.1"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "CHANGELOG_ARCHIVE.md"
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 0.9, reason: "Current active development changelog" }
@@ -31,7 +31,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified_utc: "20260227"
   last_verified_by: "antigravity"
 ---
@@ -376,7 +376,7 @@ Version **4.0.67** is the **install and upgrade test cycle** release. It validat
   - **R3:** Duplicate index on `lupo_unified_log` removed (install + migration).  
   - **R4:** `docs/status/IS_DELETED_AUDIT_4.0.57.md` — audit of `is_deleted` filters in `lupo-includes/`; no gaps.  
   - **R5:** `lupo_aliases`, `lupo_anubis_orphaned`, `lupo_tldnr` moved from install to `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql`; `REQUIRED_TABLES_4.0.21.md` updated. Backward compatibility: existing DBs keep tables; new installs omit unless future_features applied.  
-  - Report: `docs/status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md` (FLARE headers, flame.init/close, delegation to Lilith).
+  - Report: `docs/status/DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md` (FLARE headers, lupopedia.init/close, delegation to Lilith).
 - **FLARE header refinement:** Standard first-line comment updated: aliases **Wolfie, FLIP, FLP, FLPH, CROP** and dynamic **see** URL `— see <base_url>/<relative_path>` from `file_path_from_root`. Updated: `V4.0.57_TASK_PLAN.md`, `DATABASE_OPTIMIZATION_ANALYSIS_4.0.57.md`, `DATABASE_OPTIMIZATION_IMPLEMENTATION_4.0.57.md`, `IS_DELETED_AUDIT_4.0.57.md`, `lupo-docs/doctrine/DATABASE_DOCTRINE.md`. Template `lupo-tools/flare_header_template.txt` and `lupo-tools/flare_apply.py` (`web_path_for_comment()`). FLARE_DOCTRINE Section 21 (Header Comment Refinements). Report: `docs/status/FLARE_HEADER_REFINEMENT_4.0.57.md`.
 - **Repository cleanup (safe list):** `docs/status/REPOSITORY_CLEANUP_SAFE_LIST_4.0.57.md` — list of `database/migrations/` SQL files to **move** to `database/migrations_legacy/` (no deletion); canonical SQL under `lupo-database/lupopedia/mysql/`. Captain confirmation pending before moves; `generate_directory_tree.py` to run first.
 - **FLARE federation refinement:** See URL **domain** derives from **federation_node_id**: node 0 → `http://www.lupopedia.com`; other nodes → `lupo_federation_nodes.node_base_url` (env `LUPO_NODE_BASE_URL` for tooling). FLARE_DOCTRINE Section 22 (Federation Node Integration); Section 12 `web_path` updated. `lupo-tools/flare_apply.py`: `base_url_for_node()`. File path: node 0 = repo root; other nodes optional `lupo-database/files/<node_id>/`. Report: `docs/status/FLARE_FEDERATION_REFINEMENT_4.0.57.md` (research, code snippet, federation example table node 0 vs node 1, validation capture). Lilith/Grok meta-review: snippets, example table, validation tee; final verification (Lilith). Validation output: `docs/status/flare_validate_federation_4.0.57.txt`.
@@ -424,10 +424,10 @@ Version **4.0.67** is the **install and upgrade test cycle** release. It validat
   - **LUPO_DATABASE_DIR:** Added `define('LUPO_DATABASE_DIR', LUPO_PREFIX . 'database')` to lupopedia-config.php and install wizard template.  
   - **prompts/ and FLARE header scan:** Added prompts/ subdir to actor structure (0, 1, 19). Created lupo-actors/0/prompts/flare-header-scan.md (system agent prompt to scan for files lacking FLARE headers and queue to anubis-queue.json). Created lupo-actors/0/logs/ for scan logs; LUPO_PROMPTS_SUBDIR in config/wizard/bootstrap; install wizard ensureActorZeroDirs() creates prompts/ and logs/ for actor 0. CLI script lupo-actors/0/tools/flare_header_scan.php scans LUPO_DATABASE_DIR, LUPO_CONTENT_DIR, LUPO_ACTORS_DIR for .md files without FLARE frontmatter and appends to lupo-actors/0/anubis-queue.json; logs to lupo-actors/0/logs/flare-scan.log.  
   - **Cloudflare integration:** docs/doctrine/CLOUDFLARE_VS_FLARE.md (FLARE = file-level metadata vs Cloudflare = CDN headers). lupo-includes/classes/CloudflareRequestHandler.php: reads CF-Connecting-IP, CF-IPCountry, CF-Ray, optional CF-Threat-Score; optional proxy IP validation via Cloudflare IP list; sets REMOTE_ADDR and defines LUPO_CLIENT_IP, LUPO_CLIENT_COUNTRY, LUPO_CF_RAY, LUPO_CF_THREAT_SCORE, LUPO_REQUEST_VIA_CLOUDFLARE. Bootstrap runs CloudflareRequestHandler::process() after security headers. Optional defines in lupopedia-config.php (LUPO_CLOUDFLARE_ENABLED, LUPO_CLOUDFLARE_TRUST_PROXY, LUPO_CLOUDFLARE_VALIDATE_IP, LUPO_CLOUDFLARE_IPS_FILE, LUPO_CLOUDFLARE_THREAT_MAX, LUPO_CLOUDFLARE_BLOCKED_COUNTRIES). docs/CLOUDFLARE_INTEGRATION.md.  
-  - **Canonical identity Antigravity = 42:** docs/ACTOR_IDENTITIES.md; actor_id 42 (slug antigravity) added to lupo-database/lupopedia/actors/actor_id/registry.json. lupo-actors/42/ created with apps, tools, docs, db-changes, api, needs, prompts, logs; docs/example.md with FLARE sample (actor_id 42, flare.edges, flare.hooks.init). All code and FLARE headers use actor_id 42 for Antigravity; ?actor=antigravity resolves to 42 via ActorLookup.  
+  - **Canonical identity Antigravity = 42:** docs/ACTOR_IDENTITIES.md; actor_id 42 (slug antigravity) added to lupo-database/lupopedia/actors/actor_id/registry.json. lupo-actors/42/ created with apps, tools, docs, db-changes, api, needs, prompts, logs; docs/example.md with FLARE sample (actor_id 42, lupopedia.edges, flare.hooks.init). All code and FLARE headers use actor_id 42 for Antigravity; ?actor=antigravity resolves to 42 via ActorLookup.  
   - **LUPO_CHANNELS_DIR:** Added to lupopedia-config.php, install wizard template, bootstrap fallback (lupo-channels). Channel artifacts under lupo-channels/{node_id}/{channel_id}/; actor workspaces under lupo-actors/{actor_id}/. Install wizard ensureChannelsDir() creates lupo-channels/.  
   - **FLARE parser:** lupo-includes/classes/FlareParser.php — depth-2 nesting, indentation-sensitive sections (/^[a-z._]+:/), inline objects ({ to: "...", type: "...", weight: 0.9 }), arrays of objects (- { ... }). Parse errors logged to lupo-actors/0/logs/parser_errors.log; parseSafe() returns empty headers + full body on exception. Consuming code must use isset()/array_key_exists() for keys.  
-  - **agents.php modularization:** Resolver (actorPath, channelPath, underRoot, fileUnderActor with realpath containment), GuardEvaluator (flare.conditional.guards_allow), DriftDetector (FS vs DB last_modified_utc; conflict flag to queue/log), SyncService (policy: fs_wins or flag conflict; no three-way merge), HookExecutor (flare.hooks.init/close; type log/script; recursion limit 3; guards_allow), Renderer (markdown/json), ActorLookup (slug→id, antigravity→42). agents.php: Resolve → Parse → Guards → Drift → Sync → Hooks → Render; supports ?actor_id= or ?actor=antigravity; realpath containment for all file access.  
+  - **agents.php modularization:** Resolver (actorPath, channelPath, underRoot, fileUnderActor with realpath containment), GuardEvaluator (lupopedia.conditional.guards_allow), DriftDetector (FS vs DB last_modified_utc; conflict flag to queue/log), SyncService (policy: fs_wins or flag conflict; no three-way merge), HookExecutor (flare.hooks.init/close; type log/script; recursion limit 3; guards_allow), Renderer (markdown/json), ActorLookup (slug→id, antigravity→42). agents.php: Resolve → Parse → Guards → Drift → Sync → Hooks → Render; supports ?actor_id= or ?actor=antigravity; realpath containment for all file access.  
   - **docs/actors.md:** Identities (42=Antigravity), LUPO_CHANNELS_DIR, ASCII tree (lupo-actors 0/1/19/42, lupo-channels/{node_id}/{channel_id}/), FLARE parser limits, drift/conflict policy, hook contract (init/close, script|api|log, guards_allow, recursion limit).  
   - **Unit tests:** tests/unit/flare_parser_test.php (structure, actor_id 42, nested edges, body), tests/unit/drift_detector_test.php (fs_wins, conflict), tests/unit/hook_executor_test.php (init/close, recursion limit, empty headers).
 
@@ -520,15 +520,15 @@ Version **4.0.67** is the **install and upgrade test cycle** release. It validat
 - **Upgrade test (Crafty → 4.0.56):** Install/upgrade procedure documented: `CRAFTY_3.7.5_INSTALL_LOG.md`, `UPGRADE_4.0.56_LOG.md`, `WEB_ADMIN_TEST_4.0.56.md`, `UPGRADE_REPORT_4.0.56.md` (logs and report in `docs/status/`).
 - **Research and upgrade thread prompt:** `docs/status/RESEARCH_ANUBIS_WOLFIE_FLARE_LUPOPEDIA.md` — research on ANUBIS, Wolfie, FLARE headers, Lupopedia.
 - **Database documentation remaining tables:** All TOONs now have table docs. Five missing docs added. Task marked complete.
-- **FLARE Lifecycle Hooks (v4.0.56)**: Finalized `flame.init`, `flame.close`, and `flare.conditional` schema. Implemented typed actions (objects) for pre-flight dependency checks and post-read result registration.
-- **flame.see URL Discovery**: Implemented URL-to-Markdown mapping block; added `lupo see` command to the CLI for resolving canonical web URLs to repository paths via an automated indexer (`flare_see.py`).
+- **FLARE Lifecycle Hooks (v4.0.56)**: Finalized `lupopedia.init`, `lupopedia.close`, and `lupopedia.conditional` schema. Implemented typed actions (objects) for pre-flight dependency checks and post-read result registration.
+- **lupopedia.see URL Discovery**: Implemented URL-to-Markdown mapping block; added `lupo see` command to the CLI for resolving canonical web URLs to repository paths via an automated indexer (`flare_see.py`).
 - **Enforced Safety Rule**: Header blocks are mandatory only for active `artifact_kind` types (prompt, task, etc.) to prevent legacy documentation sprawl while ensuring agent compliance.
 - **Development Halt (Refinement)**: Automated circular mapping refinements were halted to preserve a stable, canonical baseline; analysis and documentation completed to guide future faucet integrations.
 - **Validation Refactoring**: Re-engineered `lupo-tools/flare_validate.py` to enforce ordering and targeted mandatory rules for active artifact types (`prompt`, `task`, etc.).
 - **Doctrine Synchronization**: Updated `FLARE_DOCTRINE.md` with Sections 14, 15, and 16; created comprehensive Implementation Plan and Report for 4.0.56.
 - **Flame Header Analysis Report**: Comprehensive report created detailing enhancements, schema, CLI usage, and database integration strategies.
 - **Lilith Flame Header Expert Faucet (Cursor 1003):** Faucet for Lilith (actor_id 2) at `lupo_agent_faucets` agent_faucet_id 7; file-based `actors/faucets/7/faucet.json`, by_actor.json manifest, migration `dev_20260303_lilith_flame_faucet.sql` (idempotent). FLARE_DOCTRINE Section 19; LILITH_FLAME_FAUCET_REPORT, LILITH_REVIEW_REFINEMENTS_REPORT in docs/status/.
-- **Flame header refinements (Lilith meta-review):** Lilith (actor 2) reviewed the Lilith Flame Faucet Report; Cursor applied all suggestions. Report header fixed (`last_modified_utc`, `mood_rgb`, `flame.see` mapping); Section 19 content and by_actor example added; test output examples and faucet ID rationale added; migration made idempotent (ON DUPLICATE KEY UPDATE). Refinements report created; meta-review loop closed. Reports: `docs/status/LILITH_REVIEW_REFINEMENTS_REPORT.md`, `docs/status/FLAME_REFINEMENTS_FINAL_REPORT.md`, `docs/status/PUSH_LOG_4.0.56_FINAL_REFINEMENTS.md`.
+- **Flame header refinements (Lilith meta-review):** Lilith (actor 2) reviewed the Lilith Flame Faucet Report; Cursor applied all suggestions. Report header fixed (`last_modified_utc`, `mood_rgb`, `lupopedia.see` mapping); Section 19 content and by_actor example added; test output examples and faucet ID rationale added; migration made idempotent (ON DUPLICATE KEY UPDATE). Refinements report created; meta-review loop closed. Reports: `docs/status/LILITH_REVIEW_REFINEMENTS_REPORT.md`, `docs/status/FLAME_REFINEMENTS_FINAL_REPORT.md`, `docs/status/PUSH_LOG_4.0.56_FINAL_REFINEMENTS.md`.
 
 Additional task files (task-001 through task-016, etc.) in `lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/` — lead: Cursor (1003).
 
@@ -1544,7 +1544,7 @@ lupo-tools/      # Development tools (MOVED)
 - ? **DB Documentation**: Enhanced 13 actor-related table documents in `docs/database/lupopedia/tables/`, including IP tracking, privacy, and data sovereignty considerations with practical SQL patterns and filesystem-database integration examples.
 
 **FLARE Protocol Alignment (Antigravity - 2026-02-27):**
-- ? **Header Structural Split**: Enforced strict 3-part YAML structure (`flare.headers`, `flare.edges`, `flare.footer`).
+- ? **Header Structural Split**: Enforced strict 3-part YAML structure (`lupopedia.headers`, `lupopedia.edges`, `lupopedia.footer`).
 - ? **Relational Decoupling**: Migrated `outbound_edges` and `semantic_tags` into the relational edges block.
 - ? **Mandated Header Comments**: Codified the requirement for canonical URL comments in headers (`http://www.lupopedia.com/lupopedia/content/FLARE`).
 - ? **API Refactor**: `api/flip-header.php` updated to generate 3-part schema and live edge data.

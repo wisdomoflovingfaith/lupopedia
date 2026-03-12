@@ -1,5 +1,0 @@
-"banned_actor_id` bigint NOT NULL","actor_id` bigint NOT NULL","ip_address` varchar(45)","reason` varchar(500) NOT NULL","banned_ymdhis` bigint NOT NULL","banned_by_actor_id` bigint","created_ymdhis` bigint NOT NULL DEFAULT 0","updated_ymdhis` bigint NOT NULL","is_deleted` tinyint NOT NULL DEFAULT 0","deleted_ymdhis` bigint"
-"banned_actor_id` bigint NOT NULL:BIGINT|NOT_NULL","actor_id` bigint NOT NULL:BIGINT|NOT_NULL","ip_address` varchar(45):VARCHAR(45)|NULL","reason` varchar(500) NOT NULL:VARCHAR(500)|NOT_NULL","banned_ymdhis` bigint NOT NULL:BIGINT|NOT_NULL","banned_by_actor_id` bigint:BIGINT|NULL","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0","updated_ymdhis` bigint NOT NULL:BIGINT|NOT_NULL","is_deleted` tinyint NOT NULL DEFAULT 0:INT|NOT_NULL|DEFAULT:0","deleted_ymdhis` bigint:BIGINT|NULL"
-1,999,,deprecated_experimental_persona,20260217230000,1000,20260217230000,20260217230000,0,
-2,420,,banned_test_identity_ai,20260217230000,1000,20260217230000,20260217230000,0,
-3,10001,,banned_test_identity_human,20260217230000,1000,20260217230000,20260217230000,0,

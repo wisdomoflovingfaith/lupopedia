@@ -3,7 +3,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-005
 
 ---
-flame.init:
+lupopedia.init:
   requirements:
     flare:
       version: ">=4.0.55"
@@ -12,7 +12,7 @@ flame.init:
     - type: dependency_check
       path: "lupo-includes/bootstrap.php"
 
-flare.conditional:
+lupopedia.conditional:
   guards:
     execution_mode: "advisory"
     allow:
@@ -48,9 +48,9 @@ flare.conditional:
       method: "FLARE automated application"
       success_criteria: ["header applied correctly"]
 
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "task"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-005.md"
   file_hash: "696951dabab0abff8d8c2607b285ed2c37ef43ed2d6dc23a32f1f5aeb0361621"
   last_updated_utc: "20260304"
@@ -66,18 +66,18 @@ flare.headers:
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "42", "threads"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges: []
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260304"
   last_verified_by: "antigravity"
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-005.md", "http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-005"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: register_completion
       channel_id: 0

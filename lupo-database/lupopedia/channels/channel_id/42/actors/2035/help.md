@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\42\actors\2035\help.md"
   file_hash: "7716a102cf4bedcc6412ce85bd9ac71fb5eae5c9059845ddb3e706682f2c70e3"
   last_updated_utc: "20260228155738"
@@ -12,18 +12,18 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
@@ -31,7 +31,7 @@ flare.footer:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "channels/42/actors/2035/help.md"
   file_hash: "e48e1ff5e17388753d11d9a7b8d1c6cf6e66637456e130a638c6ace1bf72a245"
   system_version: "4.0.50"
@@ -48,7 +48,7 @@ flare.headers:
   tags: ["help", "anubis", "audit_tool", "orphan_detection", "4.0.50"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "channels\42\actors\2035\help.md"
   outbound_edges:
     - { to: "channels/42/actors/2035/HELP.json", type: "references", weight: 1.0, reason: "JSON help data" }
@@ -61,7 +61,7 @@ flare.edges:
 
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified_utc: "20260228"
   last_verified_by: "windsurf"
 ---

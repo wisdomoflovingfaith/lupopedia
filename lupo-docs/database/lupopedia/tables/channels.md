@@ -1,5 +1,5 @@
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "docs/database/lupopedia/tables/channels.md"
   file_hash: "8404fdb85aef81e30e0e21a57a52df62a8620934ef3a66fa3d17da7cc57a5eef"
   system_version: "4.0.50"
@@ -11,7 +11,7 @@ flare.headers:
   purpose: "Core identity and configuration for communication channels"
   lupo_agent: "gemini-cli"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "docs\database\lupopedia\tables\channels.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_dialog_threads.md", type: "references", weight: 0.9, reason: "Threads are scoped to channels" }
@@ -24,7 +24,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---

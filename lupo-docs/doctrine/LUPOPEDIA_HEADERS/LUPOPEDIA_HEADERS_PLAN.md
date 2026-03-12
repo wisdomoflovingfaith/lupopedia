@@ -31,9 +31,10 @@ lupopedia.session:
 # LUPOPEDIA HEADERS — Plan (4.0.69)
 
 **Status:** Authoritative design for 4.0.68  
-**Canonical name:** LUPOPEDIA HEADERS (replaces FLARE as the system name)  
+**Canonical name:** LUPOPEDIA HEADERS (replaces FLARE, FLIP, FLP — all **deprecated** as of 4.0.71)  
 **Logical structure:** Preserved from FLARE (block model and canonical order)  
-**Storage:** `lupo_metadata` table "metadata" (with table prefix of "lupo_"), structured as rows, not a single YAML blob.
+**Storage:** `lupo_metadata` table "metadata" (with table prefix of "lupo_"), structured as rows, not a single YAML blob.  
+**Optional blocks:** Routing and lists (from FLARE) are documented in [OPTIONAL_BLOCKS.md](./OPTIONAL_BLOCKS.md). See [DEPRECATION_FLARE_FLIP_FLP.md](./DEPRECATION_FLARE_FLIP_FLP.md) for deprecation notice.
 
 ---
 
@@ -42,14 +43,14 @@ lupopedia.session:
 - **LUPOPEDIA HEADERS** are the canonical metadata system name from **4.0.68** onward.
 - **Canonical block names from 4.0.69:** Use `lupopedia.*` in new or modified files. Legacy `flare.*` and `flame.*` remain valid; validators accept both.
 - Canonical blocks (preferred in YAML):
-  - `lupopedia.init` (legacy: flame.init)
-  - `lupopedia.conditional` (legacy: flare.conditional)
-  - `lupopedia.headers` (legacy: flare.headers)
+  - `lupopedia.init` (legacy: lupopedia.init)
+  - `lupopedia.conditional` (legacy: lupopedia.conditional)
+  - `lupopedia.headers` (legacy: lupopedia.headers)
   - `lupopedia.session` (session context: session_id, session_name, and other session-file fields; not in lupopedia.headers)
-  - `lupopedia.edges` (legacy: flare.edges)
-  - `lupopedia.footer` (legacy: flare.footer)
-  - `lupopedia.see` (legacy: flame.see)
-  - `lupopedia.close` (legacy: flame.close)
+  - `lupopedia.edges` (legacy: lupopedia.edges)
+  - `lupopedia.footer` (legacy: lupopedia.footer)
+  - `lupopedia.see` (legacy: lupopedia.see)
+  - `lupopedia.close` (legacy: lupopedia.close)
 
 ---
 
@@ -93,9 +94,9 @@ Children of the root represent blocks. Use canonical `lupopedia.*` or legacy `fl
 
 ### 3.3 Property rows
 
-Under each block row, each field is a metadata row, e.g. under `lupopedia.headers` (or legacy `flare.headers`):
+Under each block row, each field is a metadata row, e.g. under `lupopedia.headers` (or legacy `lupopedia.headers`):
 
-- `property_key` = `'lupopedia.version'`, `'lupopedia.schema'`, `'file_path_from_root'`, `'web_path'`, `'system_version'`, `'actor_id'`, `'delegation_chain'`, `'purpose'`, `'title'`, **`channel_name`** (optional), **`thread_name`** (optional), etc. (legacy: `flare.version`, `flare.schema`). Under **`lupopedia.session`**: `session_id`, `session_name`, `actor_id`, `actor_name`, `channel_id`, **`channel_name`** (optional), **`thread_id`** (optional), **`thread_name`** (optional), **`embedded_session_snapshot`** (optional; true when block was captured at artifact creation time), `federation_node_id`, `context_source`, `department_id`, `agent_name`, `actor_type`, `actor_nature`, `human_actor_name`, `paired_actor_id` (same as session file). Session = runtime context; headers = artifact metadata. Default: read session from active runtime; session in file only when verbose output embeds a snapshot. See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.1.
+- `property_key` = `'lupopedia.version'`, `'lupopedia.schema'`, `'file_path_from_root'`, `'web_path'`, `'system_version'`, `'actor_id'`, `'delegation_chain'`, `'purpose'`, `'title'`, **`channel_name`** (optional), **`thread_name`** (optional), etc. (legacy: `lupopedia.version`, `lupopedia.schema`). Under **`lupopedia.session`**: `session_id`, `session_name`, `actor_id`, `actor_name`, `channel_id`, **`channel_name`** (optional), **`thread_id`** (optional), **`thread_name`** (optional), **`embedded_session_snapshot`** (optional; true when block was captured at artifact creation time), `federation_node_id`, `context_source`, `department_id`, `agent_name`, `actor_type`, `actor_nature`, `human_actor_name`, `paired_actor_id` (same as session file). Session = runtime context; headers = artifact metadata. Default: read session from active runtime; session in file only when verbose output embeds a snapshot. See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.1.
 - `property_value` = corresponding value
 
 ### 3.4 Repeating structures
@@ -110,14 +111,14 @@ Edges, mappings, actions (e.g. under `lupopedia.edges`, `lupopedia.see`, `lupope
 
 Validators and YAML exporters MUST emit blocks in this order when present. Use **lupopedia.*** names in new files (4.0.69+):
 
-1. `lupopedia.init` (legacy: flame.init)
-2. `lupopedia.conditional` (legacy: flare.conditional)
-3. `lupopedia.headers` (legacy: flare.headers)
+1. `lupopedia.init` (legacy: lupopedia.init)
+2. `lupopedia.conditional` (legacy: lupopedia.conditional)
+3. `lupopedia.headers` (legacy: lupopedia.headers)
 4. `lupopedia.session` (session context: session_id, session_name, and other session-file fields)
-5. `lupopedia.edges` (legacy: flare.edges)
-6. `lupopedia.footer` (legacy: flare.footer)
-7. `lupopedia.see` (legacy: flame.see)
-8. `lupopedia.close` (legacy: flame.close)
+5. `lupopedia.edges` (legacy: lupopedia.edges)
+6. `lupopedia.footer` (legacy: lupopedia.footer)
+7. `lupopedia.see` (legacy: lupopedia.see)
+8. `lupopedia.close` (legacy: lupopedia.close)
 
 Optional blocks may be absent; if present, order is fixed. Validators accept both lupopedia.* and legacy flare.*/flame.*.
 
@@ -178,9 +179,9 @@ The `{session_name}` in the identity line is taken from **`lupopedia.session.ses
 
 ## 8. Required header fields (as properties)
 
-Minimum core fields (stored as property rows under `flare.headers` block) include:
+Minimum core fields (stored as property rows under `lupopedia.headers` block) include:
 
-- `flare.version`, `flare.schema`, `file_path_from_root`, `web_path`, `last_modified_utc`, `system_version`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`
+- `lupopedia.version`, `lupopedia.schema`, `file_path_from_root`, `web_path`, `last_modified_utc`, `system_version`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`
 
 Optional but supported: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`, **`channel_name`** (human-readable channel name), **`thread_name`** (human-readable thread name when thread-scoped). **Session fields** (`session_id`, `session_name`, `channel_id`, `channel_name`, `thread_id`, `thread_name`, and other session-file fields) belong in **`lupopedia.session`** when used for session context, and may also appear in `lupopedia.headers` for display.
 

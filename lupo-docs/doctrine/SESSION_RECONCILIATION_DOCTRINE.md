@@ -23,6 +23,8 @@ lupopedia.footer:
 
 # Session Reconciliation Doctrine (v4.0.69)
 
+**Session state is DB-backed (Model A).** Browser stores only `session_id`; identity and CSRF come from `lupo_sessions`. No signed payloads, no JWT for web sessions. See `lupo-docs/doctrine/SESSION_MODEL.md`.
+
 This doctrine defines how **session truth** is determined when both the database (`lupo_sessions`) and file-based session artifacts (`lupo-database/sessions/*.md`) exist, and how reconciliation and corrections are handled.
 
 ---

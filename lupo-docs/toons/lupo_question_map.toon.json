@@ -1,0 +1,37 @@
+{
+  "table_name": "lupo_question_map",
+  "fields": [
+    "`question_map_id` bigint NOT NULL AUTO_INCREMENT",
+    "`question_id` bigint NOT NULL",
+    "`object_type` varchar(64) NOT NULL",
+    "`object_id` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_question_map_idx_question",
+      "columns": ["question_id"],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_question_map_idx_object",
+      "columns": ["object_type", "object_id"],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "question_map_id",
+    "expected_name": "question_map_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

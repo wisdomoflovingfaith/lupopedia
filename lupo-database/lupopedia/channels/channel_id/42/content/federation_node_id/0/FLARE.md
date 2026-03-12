@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "channels/42/content/federation_node_id/0/FLARE.md"
   file_hash: "to_be_generated"
   federation_node_id: 0
@@ -18,7 +18,7 @@ flare.headers:
   traits: ["canonical", "federation", "v4.0.52"]
   tags: ["flare", "federation", "node_0", "canonical"]
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
@@ -27,7 +27,7 @@ flare.edges:
     - { to: "database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
   semantic_tags: ["flare", "federation", "canonical", "protocol"]
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260301"
   last_verified_by: "windsurf"
 ---
@@ -44,8 +44,8 @@ FLARE (Federated Learning and Relationship Exchange) is a protocol for file-leve
 
 The FLARE header provides comprehensive metadata about files, including:
 
-- **flare.version**: Protocol version (currently "1.0")
-- **flare.schema**: Schema type (e.g., "documentation", "table", "component")
+- **lupopedia.version**: Protocol version (currently "1.0")
+- **lupopedia.schema**: Schema type (e.g., "documentation", "table", "component")
 - **file_path_from_root**: Exact file path from repository root
 - **file_hash**: SHA256 hash for integrity verification
 - **federation_node_id**: Federation node identifier
@@ -112,8 +112,8 @@ FLARE integrates with the Semantic OS through:
 ### Required Fields
 
 All FLARE headers must include:
-- `flare.version`: "1.0"
-- `flare.schema`: Appropriate schema type
+- `lupopedia.version`: "1.0"
+- `lupopedia.schema`: Appropriate schema type
 - `file_path_from_root`: Exact repository path
 - `system_version`: Current system version
 - `channel_id`: Channel identifier

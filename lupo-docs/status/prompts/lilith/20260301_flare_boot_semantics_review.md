@@ -1,8 +1,8 @@
 ---
 # FLARE Header
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "review"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "review"
   file_path_from_root: "prompts/lilith/20260301_flare_boot_semantics_review.md"
   system_version: "4.0.53"
   channel_id: 42
@@ -16,7 +16,7 @@ flare.headers:
   tags: ["flare", "boot", "delegation", "ai_startup", "terminology"]
   lupo_agent: "lilith"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "channels/0/content/federation_node_id/0/FLARE.md", type: "verifies", weight: 1.0 }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
@@ -24,7 +24,7 @@ flare.edges:
     - { to: "channels/0/actor_ai_running_check.md", type: "related", weight: 0.9 }
   semantic_tags: ["flare", "boot", "delegation", "ai_startup", "review"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.53"
   last_verified: "20260301"
   last_verified_by: "lilith"

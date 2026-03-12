@@ -1,64 +1,27 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  file_path_from_root: ".\docs\INITIALIZATION_PROMPT_4_0_17.md"
-  file_hash: "068b8d7a4bfd627f3a2c04237459e86ad6e8a4cfda01987391faabca1f441aca"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  file_path_from_root: "lupo-docs/status/INITIALIZATION_PROMPT_4_0_17.md"
+  last_modified_utc: "20260312"
+  system_version: "4.0.71"
+  channel_id: 42
+  actor_id: 1003
+  delegation_chain: "cursor:root"
   artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
-
-flare.edges:
+  artifact_kind: "reference"
+  purpose: "Initialization Prompt for New Cursor Thread — Lupopedia 4.0.17"
+  tags: ["documentation", "initialization", "lupopedia_headers", "v4.0.71"]
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
-
-flare.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+lupopedia.footer:
+  version: "4.0.71"
+  last_verified: "20260312"
+  last_verified_by: "cursor"
 ---
-
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-
----
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
-  file_path_from_root: "docs\INITIALIZATION_PROMPT_4_0_17.md"
-  file_hash: "4dcb6cec9d8101bbb647f260aa866ee6db1df8e487d3f51aadfafff688c58001"
-  file_path_from_root: "docs\INITIALIZATION_PROMPT_4_0_17.md"
-  file_hash: "1e530f8001eddb0d597cebfc94f49baeae848ed0c05e44d700f977419c9b2deb"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: null
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Initialization Prompt for New Cursor Thread — Lupopedia 4.0.17"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["docs", "initialization_prompt_4_0_17md"]
-  lupo_agent: "windsurf"
-
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-flare.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
----
+# file: Initialization Prompt 4.0.17 — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/status/INITIALIZATION_PROMPT_4_0_17
 
 # Initialization Prompt for New Cursor Thread — Lupopedia 4.0.17
 
@@ -154,7 +117,7 @@ Before taking any action, load and apply **ALL** of the following doctrine from 
 - **Identity doctrine** — Actors, auth_users, actor_source_type; roles via 3-level model.
 - **Permission doctrine** — 3-layer model: channel roles, department roles, system.
 - **Department doctrine** — department_id = 0 is system (reserved); department_id = 1 is general.
-- **PHP 5.3 doctrine** — Use `array()` only; no short array `[]`; no null coalescing `??`; no typed properties/return types in core paths. See .cursor/rules/php-5-3-compatibility.mdc.
+- **PHP 5.3 doctrine** — Use `array()` only; no short array `[]`; no null coalescing `??`; no typed properties/return types in core paths. See .cursor/rules/php-5-6-compatibility.mdc.
 - **Schema doctrine (TOONs)** — TOONs in `docs/toons/` are the **only** source of truth. Never guess or invent schema. See .cursor/rules/toon-source-of-truth.mdc.
 - **Prefix doctrine** — Use `LUPO_TABLE_PREFIX`; never hardcode `lupo_`.
 - **Versioning doctrine** — Patch-only bumps (4.0.16 → 4.0.17); single canonical file `docs/doctrine/VERSIONING_DOCTRINE.md`.

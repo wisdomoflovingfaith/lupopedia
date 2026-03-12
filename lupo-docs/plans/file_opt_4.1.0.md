@@ -1,10 +1,10 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "optimization_plan"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "optimization_plan"
+  lupopedia.edges: []
   file_path_from_root: "docs/plans/file_opt_4.1.0.md"
   file_hash: "248e95e34b28722fd7cd5e0e69d0f090ef4852240aa1a83e39c99649032c2d4f"
   last_updated_utc: "20260228"
@@ -19,7 +19,7 @@ flare.headers:
   tags: ["optimization", "file_count", "4.1.0", "planning"]
   lupo_agent: "windsurf"
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

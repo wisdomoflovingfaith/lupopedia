@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "tldr"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "tldr"
   file_path_from_root: "lupo-channels/0/threads/VERSION_4.0.61/tldr.md"
   web_path: "http://www.lupopedia.com/threads/VERSION_4.0.61/tldr"
   last_modified_utc: "20260306"
@@ -37,10 +37,10 @@ flare.headers:
 
 ### 2. FLAME (the "what happens when this file loads" system)
 
-- **Lives in:** FLARE headers (`flare.headers` + optional `flame.init` / `flame.close`)
-- **`flame.init`** — Before: `dependency_check`, `service_check`, `env_var_equals`
-- **`flame.close`** — After: `register_completion`, `notify_channel`, `log_validation`
-- **Security:** depth‑limited recursion (max 3), guards via `flare.conditional`
+- **Lives in:** FLARE headers (`lupopedia.headers` + optional `lupopedia.init` / `lupopedia.close`)
+- **`lupopedia.init`** — Before: `dependency_check`, `service_check`, `env_var_equals`
+- **`lupopedia.close`** — After: `register_completion`, `notify_channel`, `log_validation`
+- **Security:** depth‑limited recursion (max 3), guards via `lupopedia.conditional`
 - **Examples:** Antigravity (conflict detection), Lilith (log reviews), Cursor (dependency checks)
 
 ---

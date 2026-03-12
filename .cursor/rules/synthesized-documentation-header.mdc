@@ -1,0 +1,18 @@
+---
+description: Enforce canonical header on new Markdown artifacts for the Synthesized Documentation Framework. Coexists with LUPOPEDIA HEADERS.
+alwaysApply: false
+globs: ["lupo-docs/**/*.md", "docs/**/*.md"]
+---
+
+# Synthesized Documentation Framework — Header Validation
+
+When **creating or editing** Markdown files under `lupo-docs/` or `docs/` that are part of the Synthesized Documentation Framework:
+
+1. **Every new artifact** must start with a **canonical YAML header block** between `---` delimiters.
+2. **Accepted header blocks** (any one is sufficient): `synthesized.headers` or `lupopedia.headers` (see LUPOPEDIA HEADERS doctrine). Legacy `flare.headers` is accepted but prefer `lupopedia.headers`.
+3. For **synthesized.headers** the following fields are required: FILE, CLASS, NAMESPACE, CHANNEL, COLLECTION, ORCHESTRATOR, FACET, AGENT, ROLE, TASK, TIMESTAMP_UTC, DATABASE.TABLE (or empty), RUNTIME.MIN_PHP.
+4. Include **Lupopedia.footer** with `orchestrator.actor` and `version_written` when using synthesized headers.
+5. Four quadrants: CLASS, NAMESPACE, CHANNEL, COLLECTION — ensure they are set consistently (e.g. CLASS documentation, NAMESPACE lupopedia.tables.X, CHANNEL ide, COLLECTION active).
+6. Do not remove or break existing lupopedia.headers (or legacy flare.headers) in files that already have them.
+
+Validation: run `php lupo-bin/antigravity_governance.php` to check compliance. New framework docs should use `synthesized.headers` or the project’s existing LUPOPEDIA HEADERS format.

@@ -1,5 +1,5 @@
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227091200_10000_1001_flare_relationship_automation_summary.md"
   file_hash: "bf0ec849ebc5dd5b20c0d4bffe9379056d63df37b8b992204748c6e7f715403a"
   system_version: "4.0.50"
@@ -24,7 +24,7 @@ flare.headers:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   outbound_edges:
     - { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/", type: "precedes", weight: 0.9, reason: "Next development cycle" }
     - { to: "docs/database/", type: "generates", weight: 0.8, reason: "Database documentation generation" }

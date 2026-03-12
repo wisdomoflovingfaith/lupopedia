@@ -204,9 +204,9 @@ function channels_handle_show($channel_id) {
 
     // Pending visitors (session metadata crafty_syntax.status = pending, department_id match) — initial load; panel will poll
     $pending_visitors = array();
-    $meta_col = 'metadata_json';
+    $meta_col = 'metadata';
     try {
-        $stmt = $db->prepare("SELECT session_id, last_seen_ymdhis, created_ymdhis, name_key, is_named, {$meta_col} FROM {$table_prefix}sessions WHERE actor_id = 0 AND is_deleted = 0 AND {$meta_col} IS NOT NULL AND {$meta_col} != ''");
+        $stmt = $db->prepare("SELECT session_id, last_activity_ymdhis AS last_seen_ymdhis, created_ymdhis, name_key, is_named, {$meta_col} FROM {$table_prefix}sessions WHERE actor_id = 0 AND {$meta_col} IS NOT NULL AND {$meta_col} != ''");
         $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $meta = json_decode($row[$meta_col] ?? '{}', true);
@@ -245,7 +245,7 @@ function channels_handle_show($channel_id) {
         $visitors[] = $row;
     }
     try {
-        $stmt = $db->prepare("SELECT session_id, last_seen_ymdhis, name_key, is_named, {$meta_col} FROM {$table_prefix}sessions WHERE actor_id = 0 AND is_deleted = 0 AND {$meta_col} IS NOT NULL AND {$meta_col} != ''");
+        $stmt = $db->prepare("SELECT session_id, last_activity_ymdhis AS last_seen_ymdhis, name_key, is_named, {$meta_col} FROM {$table_prefix}sessions WHERE actor_id = 0 AND {$meta_col} IS NOT NULL AND {$meta_col} != ''");
         $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $meta = json_decode($row[$meta_col] ?? '{}', true);

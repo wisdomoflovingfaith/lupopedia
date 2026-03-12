@@ -1,10 +1,10 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "DUAL_CHANNEL_BROADCAST_AUDIT_REPORT_4.0.45.md"
   file_hash: "ca2e533665c936197206d8fe9ba7f65db293cebb9bc8a15bcfc45a499538d70d"
   file_path_from_root: "DUAL_CHANNEL_BROADCAST_AUDIT_REPORT_4.0.45.md"
@@ -25,7 +25,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

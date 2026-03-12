@@ -1,10 +1,10 @@
 ---
-flare.headers:
+lupopedia.headers:
   actor_id: 1
   actor_name: "wolfie"
   delegation_chain: "wolfie:root"
-  flare.version: "1.0"
-  flare.schema: "doctrine"
+  lupopedia.version: "1.0"
+  lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-channels/42/content/federation_node_id/0/RULES.md"
   web_path: "http://www.lupopedia.com/channels/42/RULES"
   last_modified_utc: "20260310"
@@ -17,12 +17,12 @@ flare.headers:
   traits: ["doctrine", "rules", "database", "v4.0.68"]
   tags: ["rules", "database", "doctrine", "constraints"]
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/doctrine/RULES_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "database/migrations/20260310_create_rules_tables.sql", type: "implements", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.68"
   last_verified: "20260310"
   last_verified_by: "wolfie"

@@ -1,10 +1,10 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "DIRECTORY_STRUCTURE_DOCTRINE.md"
   file_hash: "82356a827edfa5e2ce4b07c4e2b05c7aaeb7e8c4a370987cbf772bd22291bcb0"
   file_path_from_root: "DIRECTORY_STRUCTURE_DOCTRINE.md"
@@ -25,10 +25,10 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use flare.headers"]
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
 ---
 
 ---

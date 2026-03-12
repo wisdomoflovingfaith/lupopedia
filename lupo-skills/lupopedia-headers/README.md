@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "skill"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "skill"
   file_path_from_root: "lupo-skills/lupopedia-headers/README.md"
   web_path: "http://www.lupopedia.com/skills/lupopedia-headers"
   last_modified_utc: "20260310"
@@ -14,12 +14,12 @@ flare.headers:
   tags: ["skill", "headers", "lupopedia", "metadata"]
   lupo_agent: "cursor"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/doctrine/RULES_DOCTRINE.md", type: "references", weight: 0.8 }
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.68"
   last_verified: "20260310"
   last_verified_by: "cursor"
@@ -71,9 +71,9 @@ Knowledge of LUPOPEDIA header format, structure, and usage. This skill covers:
 
 ```markdown
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "example.md"
   web_path: "http://www.lupopedia.com/example"
   last_modified_utc: "20260310"

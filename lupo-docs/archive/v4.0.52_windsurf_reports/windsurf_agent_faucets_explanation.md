@@ -1,7 +1,7 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flame.init:
+lupopedia.init:
   requirements:
     flare:
       version: ">=4.0.55"
@@ -10,7 +10,7 @@ flame.init:
     - type: dependency_check
       path: "lupo-includes/bootstrap.php"
 
-flare.conditional:
+lupopedia.conditional:
   guards:
     execution_mode: "advisory"
     allow:
@@ -46,9 +46,9 @@ flare.conditional:
       method: "FLARE automated application"
       success_criteria: ["header applied correctly"]
 
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs\archive\v4.0.52_windsurf_reports\windsurf_agent_faucets_explanation.md"
   file_hash: "33e040c5fcb2c40672cb349365b1491dc72236c39d00c09f3cf913547fdc2df3"
   last_updated_utc: "20260304"
@@ -64,18 +64,18 @@ flare.headers:
   tags: ["lupo-docs", "archive", "v4052_windsurf_reports", "windsurf_agent_faucets_explanationmd"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges: []
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260304"
   last_verified_by: "antigravity"
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["lupo-docs\archive\v4.0.52_windsurf_reports\windsurf_agent_faucets_explanation.md", "http://www.lupopedia.com/WINDSURF_AGENT_FAUCETS_EXPLANATION"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: register_completion
       channel_id: 0

@@ -1,5 +1,5 @@
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "docs/database/lupopedia/tables/actors_old.md"
   file_hash: "e0f955efce940e6db039228e1b039ca827362242cabc3b53fc472d8042dcd009"
   system_version: "4.0.50"
@@ -11,7 +11,7 @@ flare.headers:
   purpose: "Legacy/Historical doctrine for lupo_actors"
   lupo_agent: "gemini-cli"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "docs\database\lupopedia\tables\actors_old.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0, reason: "Canonical table documentation" }
@@ -22,7 +22,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---

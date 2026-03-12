@@ -6,7 +6,7 @@ alwaysApply: true
 
 # Database Logic Prohibition Doctrine (MANDATORY)
 
-Cursor must NEVER suggest or generate any database-side logic. All logic belongs in application code, not in the database. This doctrine is absolute and non-negotiable.
+Cursor must NEVER suggest or generate any database-side logic. All logic belongs in application code, not in the database. We do not use database logic: no stored procedures, no stored functions, no foreign keys, no triggers. This doctrine is absolute and non-negotiable.
 
 ## Never generate or suggest
 
@@ -20,16 +20,21 @@ Cursor must NEVER suggest or generate any database-side logic. All logic belongs
 - Generated / virtual / computed columns
 - **DEFAULT CURRENT_TIMESTAMP** or **ON UPDATE CURRENT_TIMESTAMP**
 - Any automatic timestamp behavior
+- **UNSIGNED** integer types (use signed INT/BIGINT only)
+- **TIMESTAMP** or **DATETIME** column types
 
-## Timestamps
+## Timestamps and types
 
-All timestamps MUST be written explicitly in application code.
+All timestamps MUST be **BIGINT** in format **YYYYMMDDHHIISS**, all in **UTC**. No timezone. No TIMESTAMP or DATETIME columns.
 
 - NEVER rely on database automation for timestamps.
 - NEVER generate schema that mutates timestamps automatically.
+- NEVER use TIMESTAMP or DATETIME; use BIGINT YYYYMMDDHHIISS only.
+- NEVER use UNSIGNED for integer columns.
 
-**Correct (application-side):** `updated_ymdhis = date('YmdHis')`  
-**Forbidden:** `updated_ymdhis TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`
+**Correct (application-side):** `updated_ymdhis = gmdate('YmdHis')` stored in BIGINT column  
+**Forbidden:** `updated_ymdhis TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`  
+**Forbidden:** `created_at DATETIME`, `UNSIGNED INT`, timezone-aware DB types
 
 ## Data integrity and relations
 

@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227200000_1003_10000_version_4_0_47_closure_and_rollover_report.md"
   file_hash: "8980f219b3b3d094127e15ec41a37162013f4ee5d45b6b8a432ff45c7c6a1c7a"
   last_updated_utc: "20260228155738"
@@ -12,18 +12,18 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
@@ -31,10 +31,10 @@ flare.footer:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227200000_1003_10000_version_4_0_47_closure_and_rollover_report.md"
   file_hash: "cc850bf3ecf92bd7178195580165877c735d3504eaec3e5e37d3a0049a8d452c"
   last_updated_utc: "20260228"
@@ -50,13 +50,13 @@ flare.headers:
   tags: ["channels", "42", "threads", "development_cycle_4_0_48", "20260227200000_1003_10000_version_4_0_47_closure_and_rollover_reportmd"]
   lupo_agent: "windsurf"
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---
 
 ---
-flare.headers: {
+lupopedia.headers: {
   file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227200000_1003_10000_version_4_0_47_closure_and_rollover_report.md",
   file_hash: "cebf174ee01d5779f249641b19c10ef72360ed54ebcf41e9e0fb1422484ccb6c"
   system_version: "4.0.50"
@@ -73,7 +73,7 @@ flare.headers: {
   mood_rgb: "00FF00",
   lupo_agent: "antigravity"
 }
-flare.edges: {
+lupopedia.edges: {
   file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227200000_1003_10000_version_4_0_47_closure_and_rollover_report.md"
   outbound_edges: [
     { to: "CHANGELOG.md", type: "updates", weight: 1.0 },
@@ -85,7 +85,7 @@ flare.edges: {
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer: {
+lupopedia.footer: {
   last_verified_utc: "20260227200000",
   last_verified_by: "antigravity"
 }

@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "instruction"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "instruction"
   file_path_from_root: "channels/0/boot_enhancements_crafty_upgrade.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
@@ -17,7 +17,7 @@ flare.headers:
   tags: ["windsurf", "boot_script", "crafty_syntax", "ai_agents", "database_seed"]
   lupo_agent: "codex-ide"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "bin/boot_system_agent.php", type: "implementation_reference", weight: 1.0 }
     - { to: "install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
@@ -26,7 +26,7 @@ flare.edges:
     - { to: "docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "related_schema", weight: 0.8 }
   semantic_tags: ["crafty_upgrade", "install_process", "ai_boot"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.53"
   last_verified: "20260301"
   last_verified_by: "codex-ide"

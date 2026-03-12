@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\database\lupopedia\dbdoc_optimization_20260227_part1.md"
   file_hash: "85415ff7fbc3a32330b91ec5e6f89a91b41912ed30524820c902570eb65597fa"
   last_updated_utc: "20260228155738"
@@ -12,25 +12,25 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "docs/database/lupopedia/dbdoc_optimization_20260227_part1.md"
   file_hash: "a24596fcd55e07333ccf07661e1d3ba92893c1040a926dc73ce421661d1f84e1"
   system_version: "4.0.50"
@@ -50,7 +50,7 @@ flare.headers:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   outbound_edges:
     - { to: "docs/database/lupopedia/tables/lupo_document_embeddings.md", type: "references", weight: 0.8, reason: "reviewed table" }
     - { to: "docs/database/lupopedia/tables/lupo_collections.md", type: "references", weight: 0.8, reason: "reviewed table" }

@@ -78,17 +78,12 @@ function channel_admin_security_headers() {
 }
 
 function channel_admin_get_csrf_token() {
-    if (!isset($_SESSION['csrf_token']) || !is_string($_SESSION['csrf_token']) || $_SESSION['csrf_token'] === '') {
-        if (function_exists('openssl_random_pseudo_bytes')) {
-            $bytes = openssl_random_pseudo_bytes(16);
-        } else {
-            $bytes = '';
-            for ($i = 0; $i < 16; $i++) {
-                $bytes .= chr(mt_rand(0, 255));
-            }
+    if (function_exists('lupo_get_csrf_token')) {
+        $token = lupo_get_csrf_token();
+        if ($token !== '') {
+            return $token;
         }
-        $_SESSION['csrf_token'] = bin2hex($bytes);
     }
-    return $_SESSION['csrf_token'];
+    return '';
 }
 ?>

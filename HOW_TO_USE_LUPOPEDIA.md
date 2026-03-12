@@ -1,10 +1,10 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "HOW_TO_USE_LUPOPEDIA.md"
   file_hash: "3e381d40e55d37dc4764c1143759aee151f2d004d522169d821da8b3b6de8e6a"
   file_path_from_root: "HOW_TO_USE_LUPOPEDIA.md"
@@ -25,7 +25,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

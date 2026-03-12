@@ -1,8 +1,8 @@
 ---
 # FLARE Header
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "status_report"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "status_report"
   file_path_from_root: "prompts/lilith/20260228_fileopt_anubis_consolidation_review.md"
   file_hash: "to_be_generated"
   last_modified_utc: "20260228"
@@ -18,7 +18,7 @@ flare.headers:
   tags: ["anubis", "consolidation", "fileopt", "phase6", "complete", "review"]
   lupo_agent: "lilith"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/status/FILEOPT_v4.0.52_FINAL_REPORT.md", type: "reviews", weight: 1.0 }
     - { to: "docs/doctrine/ANUBIS/ANUBIS_DOCUMENTATION_CONSOLIDATED.md", type: "references", weight: 1.0 }
@@ -30,7 +30,7 @@ flare.edges:
     - { to: "docs/doctrine/ANUBIS/LILITH_ANUBIS_GUIDANCE_FLIP.md", type: "references", weight: 0.8 }
   semantic_tags: ["anubis", "consolidation", "review", "complete", "phase6", "fileopt", "verification"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.52"
   last_verified: "20260228"
   last_verified_by: "lilith"

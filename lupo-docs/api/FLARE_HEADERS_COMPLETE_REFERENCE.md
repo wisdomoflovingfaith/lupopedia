@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\FLARE_HEADERS_COMPLETE_REFERENCE.md"
   file_hash: "fa41412c4ffd4c6970e16fa4b68d5e030b7525bcf6b3d51437fce5ef392c7771"
   last_updated_utc: "20260228155738"
@@ -12,25 +12,28 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# LUPOPEDIA HEADERS (replaces FLARE) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+
+**Deprecation (4.0.71):** FLARE, FLIP, and FLP are **deprecated** and **replaced** by **LUPOPEDIA HEADERS**. This reference still applies when using **`lupopedia.*`** block names. For the current canonical spec and optional blocks (routing, lists), see [lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md](../doctrine/LUPOPEDIA_HEADERS/README.md) and [OPTIONAL_BLOCKS.md](../doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md).
+
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md"
   system_version: "4.0.47"
   channel_id: 1
@@ -45,14 +48,14 @@ flare.headers:
   tags: ["flare", "headers", "footers", "complete_reference", "table_attributes", "api"]
   lupo_agent: "codex-ide"
 
-flare.footer:
+lupopedia.footer:
   view_count: 1250
   like_count: 42
   share_count: 15
   last_verified: "20260227"
   last_verified_by: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
@@ -61,7 +64,7 @@ flare.edges:
     - { to: "actors/registry.json", type: "references", weight: 0.8 }
   semantic_tags: ["flare", "headers", "footers", "reference", "documentation", "tables", "api"]
 ---
-flare.headers:
+lupopedia.headers:
   # ... required fields ...
   artifact_kind: "table"
   lupo_actors.actor_id: "BIGINT primary key, 0-9999 reserved for AI agents"
@@ -118,7 +121,7 @@ The `flare.lists` object links to external CSV-based history and discussion reco
 | `rate_limiting` | object | Rate limit config | `{ "requests": 100, "window": "1h" }` |
 | `data_format` | string | Request/response format | `"JSON"`, `"XML"` |
 
-## 🗺️ **Complete flare.edges Field Reference**
+## 🗺️ **Complete lupopedia.edges Field Reference**
 
 ### **🎯 Required Edge Fields**
 
@@ -128,7 +131,7 @@ The `flare.lists` object links to external CSV-based history and discussion reco
 | `inbound_edges` | array | List of inbound references (read-only snapshot) | See format below |
 | `semantic_tags` | array | Semantic relationship tags | `["database", "schema", "messaging"]` |
 
-## 📊 **Complete flare.footer Field Reference (Engagement)**
+## 📊 **Complete lupopedia.footer Field Reference (Engagement)**
 
 ### **🎯 Engagement Fields**
 
@@ -139,17 +142,18 @@ The `flare.lists` object links to external CSV-based history and discussion reco
 | `share_count` | integer | Total share count | `12` |
 | `last_verified` | string | Last verification date (YYYYMMDD) | `"20260227"` |
 | `last_verified_by` | string | Actor who verified this artifact | `"windsurf"` |
+| `next_action` | list (required) | 1–3 suggested next actions; contextual, forward-looking | See below |
 
 ### **📋 Outbound Edges Format**
 
 ```yaml
-# 💡 FLARE Edge Automation Tip:
-# Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
+# 💡 LUPOPEDIA HEADERS edge automation (legacy: FLARE Edge Suggester):
+# Use the edge suggester tool to automatically discover and suggest edges:
 # python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "path/to/file.md", type: "references", weight: 1.0, reason: "Primary reference", db_source: "lupo_contents" }
     - { to: "docs/toons/lupo_table.toon.json", type: "schema_reference", weight: 1.0 }
@@ -160,14 +164,18 @@ flare.edges:
 
   semantic_tags: ["tag1", "tag2", "tag3"]
 
-flare.footer:
+lupopedia.footer:
   view_count: 100
   like_count: 5
   share_count: 2
   last_verified: "20260227"
+  next_action:
+    - "Review related TOON definitions for schema alignment"
+    - "Validate LUPOPEDIA HEADERS consistency across sibling files"
+    - "Prepare follow-up migration for missing indexes"
 ```
 
-**Important:** Always include the automation tip comment above `flare.footer` to educate users about the FLARE Edge Suggester Tool. This promotes automation adoption and reduces manual edge discovery effort.
+**Important:** The automation tip above promotes edge discovery. For current header system use **LUPOPEDIA HEADERS** (FLARE/FLIP/FLP are deprecated); see lupo-docs/doctrine/LUPOPEDIA_HEADERS/.
 
 ### **🏷️ Edge Types**
 
@@ -282,7 +290,7 @@ outbound_edges:
 When documenting database tables, always reference the corresponding TOON file:
 
 ```yaml
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/toons/lupo_<table_name>.toon.json", type: "schema_reference", weight: 1.0 }
     # ... other edges

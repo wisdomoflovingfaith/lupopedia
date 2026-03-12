@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "lupo-channels/0/threads/VERSION_4.0.61/cli_commands.md"
   last_modified_utc: "20260306"
   system_version: "4.0.61"

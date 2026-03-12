@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\developer\dev\AUTH_TESTING_CHECKLIST_3.0.8.md"
   file_hash: "e576f59fcf3101f3d30b0007a12cc2ba6c3a76c73c7241673831a683fca8e378"
   last_updated_utc: "20260228155738"
@@ -12,29 +12,29 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "docs\channels\developer\dev\AUTH_TESTING_CHECKLIST_3.0.8.md"
   file_hash: "c8fec57f81ee5fd337042812452cfd6d6bfe17013fa4b3318f5d1ce3954f4739"
   file_path_from_root: "docs\channels\developer\dev\AUTH_TESTING_CHECKLIST_3.0.8.md"
@@ -55,7 +55,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---
@@ -226,12 +226,11 @@ file:
 - [ ] **Expected:** `expires_ymdhis` set to 24 hours from now
 - [ ] **Expected:** `created_ymdhis` set to current timestamp
 
-### 4.2 PHP Session Variables
+### 4.2 Session identity (Model A — DB-backed)
 - [ ] Log in successfully
-- [ ] Check `$_SESSION` array
-- [ ] **Expected:** `$_SESSION['session_id']` set
-- [ ] **Expected:** `$_SESSION['actor_id']` set
-- [ ] **Expected:** `$_SESSION['login_ymdhis']` set
+- [ ] Check `$GLOBALS['lupo_session']` is set
+- [ ] **Expected:** `$GLOBALS['lupo_session']->getActorId()` returns current actor (identity from lupo_sessions, not `$_SESSION['actor_id']`)
+- [ ] **Expected:** Session row in lupo_sessions with correct actor_id and last_activity_ymdhis
 
 ---
 

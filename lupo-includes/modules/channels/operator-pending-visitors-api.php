@@ -76,11 +76,11 @@ if ($department_id <= 0) {
 
 $pending = [];
 if ($department_id > 0) {
-    $meta_col = 'metadata_json';
+    $meta_col = 'metadata';
     try {
         $stmt = $db->prepare(
-            "SELECT s.session_id, s.last_seen_ymdhis, s.created_ymdhis, s.name_key, s.is_named, s.{$meta_col} FROM {$table_prefix}sessions s " .
-            "WHERE s.actor_id = 0 AND s.is_deleted = 0 AND s.{$meta_col} IS NOT NULL AND s.{$meta_col} != '' LIMIT 100"
+            "SELECT s.session_id, s.last_activity_ymdhis AS last_seen_ymdhis, s.created_ymdhis, s.name_key, s.is_named, s.metadata FROM {$table_prefix}sessions s " .
+            "WHERE s.actor_id = 0 AND s.{$meta_col} IS NOT NULL AND s.{$meta_col} != '' LIMIT 100"
         );
         $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

@@ -72,6 +72,10 @@ flare.edges:
 flare.footer:
   last_verified: "{LAST_VERIFIED}"
   last_verified_by: "{LAST_VERIFIED_BY}"
+  next_action:
+    - "{NEXT_ACTION_1}"
+    - "{NEXT_ACTION_2}"
+    - "{NEXT_ACTION_3}"
 
 flame.see:
   mappings:

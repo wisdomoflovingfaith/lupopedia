@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\appendix\HISTORY.md"
   file_hash: "89a152c897497931fb8301012e4c8ccae42c372b27a4a20ce4b712b8cb396cef"
   last_updated_utc: "20260228155738"
@@ -12,29 +12,29 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "docs\channels\appendix\HISTORY.md"
   file_hash: "5af4aa2611caf11b0372d01505afdcc9ac2e27221073fca4f00489d3a9ab00ce"
   last_updated_utc: "20260228"
@@ -50,13 +50,13 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "historymd"]
   lupo_agent: "windsurf"
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---
 
 ---
-flare.headers: {
+lupopedia.headers: {
   file_path_from_root: "docs/channels/appendix/HISTORY.md",
   file_hash: "5981c13f9cbe887d514913de258ad4251a87beaa2f925b470108c267c2be4032"
   system_version: "4.0.50"
@@ -71,7 +71,7 @@ flare.headers: {
   tags: ["lupopedia", "history", "crafty_syntax", "evolution", "v4.0.48", "history-update"],
   lupo_agent: "antigravity"
 }
-flare.edges: {
+lupopedia.edges: {
   file_path_from_root: "docs\channels\appendix\HISTORY.md"
   outbound_edges: [
     { to: "README.md", type: "references", weight: 1.0 },
@@ -83,7 +83,7 @@ flare.edges: {
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer: {
+lupopedia.footer: {
   last_verified_utc: "20260227",
   last_verified_by: "antigravity"
 }

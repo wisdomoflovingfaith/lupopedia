@@ -1,8 +1,8 @@
 # FLARE Header — see http://www.lupopedia.com/directives/ACTOR_PRIMARY_KEY_RESTRUCTURE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "directive"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "directive"
   file_path_from_root: "prompts/cursor/20260306_actor_primary_key_restructure.md"
   web_path: "http://www.lupopedia.com/directives/ACTOR_PRIMARY_KEY_RESTRUCTURE"
   last_modified_utc: "20260306"
@@ -19,7 +19,7 @@ flare.headers:
   agent_name_identity: "LILITH — Heterodox Reviewer (web DeepSeek)"
   lupo_agent: "lilith"
 
-flame.init:
+lupopedia.init:
   execution_mode: "required"
   pre_actions:
     - type: dependency_check
@@ -27,7 +27,7 @@ flame.init:
     - type: dependency_check
       target: "lupo-database/lupopedia/actors/actor_id/registry.json"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "modifies", weight: 1.0 }
     - { to: "lupo-database/lupopedia/mysql/seed/seed_actors_agents_4.0.45.sql", type: "modifies", weight: 1.0 }
@@ -37,18 +37,18 @@ flare.edges:
     - { to: "docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md", type: "creates", weight: 1.0 }
   semantic_tags: ["cursor", "actor", "primary_key", "restructure", "directive"]
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["prompts/cursor/20260306_actor_primary_key_restructure.md", "http://www.lupopedia.com/directives/ACTOR_PRIMARY_KEY_RESTRUCTURE"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: notify_completion
       channel_id: 42
       message: "Actor primary key restructure complete"
   actor_id: 2038
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.57"
   last_verified: "20260306"
   last_verified_by: "lilith"

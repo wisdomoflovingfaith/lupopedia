@@ -1,129 +1,46 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  file_path_from_root: ".\docs\README.md"
-  file_hash: "8d0b95561f36c3ef26daa31c36ab8f95c9d586fe2680330b736c0853d9f48a9d"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  file_path_from_root: "lupo-docs/README.md"
+  web_path: "http://www.lupopedia.com/docs"
+  last_modified_utc: "20260312"
+  system_version: "4.0.71"
+  channel_id: 42
+  actor_id: 1003
+  delegation_chain: "cursor:root"
   artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
-
-flare.edges:
+  artifact_kind: "index"
+  purpose: "Documentation index and navigation; required reading order for doctrine and lupopedia.init."
+  tags: ["documentation", "index", "doctrine", "lupopedia_headers", "4.0.71"]
+lupopedia.edges:
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
-
-flare.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+    - { to: "lupo-docs/INIT_README.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md", type: "references", weight: 0.9 }
+    - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
+lupopedia.footer:
+  version: "4.0.71"
+  last_verified: "20260312"
+  last_verified_by: "cursor"
+  next_action:
+    - "Keep required reading links and init doctrine paths current"
+    - "Add new doctrine to prerequisite list when created"
+    - "Validate LUPOPEDIA HEADERS on new docs under lupo-docs/"
 ---
+# file: Documentation Index — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/docs
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+## Required reading before using Lupopedia
 
----
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
-  file_path_from_root: "docs\README.md"
-  file_hash: "c8ca5c4526f213a2a9416643ef57b6eff5ebdd9004f46e6fdb138e998ef7a566"
-  file_path_from_root: "docs\README.md"
-  file_hash: "960a819d56051cfffbadc3747ea58feb8440553d7a3e85a770145aceeb67b2d9"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: null
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Documentation for README.md"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["docs", "readmemd"]
-  lupo_agent: "windsurf"
+Lupopedia is **doctrine-driven** and **header-driven**. Before working with `lupopedia.init` or editing LUPOPEDIA HEADERS, read the prerequisite doctrine in the correct order. **`lupopedia.init` is not the first file to read.**
 
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-flare.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
----
+1. **[lupo-docs/INIT_README.md](INIT_README.md)** — Prerequisites and "Before You Read" for init.
+2. **[lupo-docs/doctrine/LUPOPEDIA_HEADERS/](doctrine/LUPOPEDIA_HEADERS/README.md)** — Header format, file order (first line `---`, identity line after closing `---`), block order.
+3. **[lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md](doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md)** — Full prerequisite list and why each is required.
+
+See the project root [README.md](../README.md) for "Required Reading Before Using Lupopedia" and onboarding.
 
 ---
-wolfie.headers: {
-  file_path_from_root: "docs/README.md",
-  system_version: "4.0.39",
-  channel_id: 42,
-  mood_rgb: "708090",
-  purpose: "Documentation directory index and navigation guide for Lupopedia doctrine and architecture",
-  last_modified_utc: "20260224",
-  delegation_chain: "1001:10000",
-  actor_id: 1001,
-  lupo_agent: "kiro",
-  artifact_type: "guide",
-  artifact_kind: "index",
-  traits: ["essential", "navigation", "v4.0.39"],
-  hashtags: ["#docs", "#index", "#doctrine", "#architecture", "#navigation"],
-  engagement: {
-    likes: 0,
-    shares: 0,
-    views: 0,
-    last_interaction_utc: "20260224"
-  },
-  graph_stats: {
-    inbound_count: 5,
-    outbound_count: 8,
-    centrality_score: 0.70
-  }
-}
-
-flip.footer: {
-  inbound_edges: [
-    { from: "README.md", type: "references", weight: 1.0, hashtag: "#overview" },
-    { from: "QUICKSTART.md", type: "references", weight: 0.8, hashtag: "#onboarding" },
-    { from: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.7, hashtag: "#guide" },
-    { from: "docs/doctrine/", type: "indexed_by", weight: 0.9, hashtag: "#doctrine" },
-    { from: "docs/status/", type: "indexed_by", weight: 0.6, hashtag: "#status" }
-  ],
-  outbound_edges: [
-    { to: "README.md", type: "references", weight: 0.9, hashtag: "#overview" },
-    { to: "docs/doctrine/", type: "indexes", weight: 1.0, hashtag: "#doctrine" },
-    { to: "docs/status/", type: "indexes", weight: 0.7, hashtag: "#status" },
-    { to: "docs/versions/", type: "indexes", weight: 0.7, hashtag: "#roadmap" },
-    { to: "docs/toons/", type: "indexes", weight: 0.6, hashtag: "#schema" },
-    { to: "channels/51/identity-layer-architecture.md", type: "references", weight: 0.9, hashtag: "#architecture" },
-    { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.7, hashtag: "#actors" },
-    { to: "docs/status/AGENT_TASK_TRACKER.md", type: "references", weight: 0.6, hashtag: "#coordination" }
-  ],
-  referenced_by_actors: [1001, 1002, 1003, 10000],
-  references: {
-    by_files: ["README.md", "QUICKSTART.md", "HOW_TO_USE_LUPOPEDIA.md"],
-    by_actors: [1001, 10000]
-  },
-  semantic_tags: ["documentation_index", "navigation", "doctrine_reference", "architecture_guide"],
-  enrichment: {
-    llm_inferred_edges: [],
-    federated_metrics: {}
-  },
-  version: "4.0.39",
-  last_verified_utc: "20260224",
-  last_verified_by: "kiro"
-}
----
-
-FILE: docs/README.md
-TYPE: md
 
 # Documentation Index
 

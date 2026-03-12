@@ -1,8 +1,8 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "QUICKSTART.md"
   file_hash: "to_be_generated"
   last_updated_utc: "20260306"
@@ -17,7 +17,7 @@ flare.headers:
   traits: ["essential", "interactive", "v4.0.62"]
   tags: ["quickstart", "onboarding", "cli", "context_kernel"]
   lupo_agent: "windsurf"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260306"
   last_verified_by: "windsurf"
 ---

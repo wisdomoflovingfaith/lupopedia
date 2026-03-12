@@ -1,8 +1,8 @@
 # FLARE Header
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "task"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/tasks/completed/task-016-actor-workspace-namespace.md"
   system_version: "4.0.62"
   channel_id: 42

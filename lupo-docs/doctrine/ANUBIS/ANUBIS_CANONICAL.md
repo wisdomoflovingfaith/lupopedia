@@ -2,9 +2,9 @@
 
 ---
 # FLARE Header
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "doctrine"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "doctrine"
   file_path_from_root: "docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md"
   file_hash: "to_be_generated"
   last_modified_utc: "20260228"
@@ -19,7 +19,7 @@ flare.headers:
   tags: ["anubis", "doctrine", "canonical", "custodial_intelligence"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/toons/lupo_dialog_messages.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "database/migrations/seed_lupopedia.sql", type: "references", weight: 0.9 }
@@ -27,7 +27,7 @@ flare.edges:
     - { to: "actors/19/WHO.json", type: "references", weight: 1.0 }
   semantic_tags: ["anubis", "doctrine", "canonical", "custodial_intelligence"]
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

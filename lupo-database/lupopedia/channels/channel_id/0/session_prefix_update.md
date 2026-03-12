@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "instruction"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "instruction"
   file_path_from_root: "channels/0/session_prefix_update.md"
   system_version: "4.0.52"
   last_modified_utc: "20260301152952"
@@ -17,7 +17,7 @@ flare.headers:
   tags: ["sessions", "lupo_sessions", "prefix", "windsurf"]
   lupo_agent: "gemini-cli"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md", type: "references", weight: 1.0 }
     - { to: "docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
@@ -25,7 +25,7 @@ flare.edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
   semantic_tags: ["session_prefix", "agent_update", "isolation"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.52"
   last_verified: "20260301"
   last_verified_by: "gemini-cli"

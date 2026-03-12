@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "example"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "example"
   file_path_from_root: "lupo-skills/lupopedia-headers/examples/basic-header.md"
   web_path: "http://www.lupopedia.com/examples/basic-header"
   last_modified_utc: "20260310"
@@ -14,7 +14,7 @@ flare.headers:
   purpose: "Example of basic LUPOPEDIA header"
   tags: ["example", "header", "basic"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.68"
   last_verified: "20260310"
   last_verified_by: "cursor"

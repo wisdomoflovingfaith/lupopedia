@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/directives/AGENT_REGISTRY_IMPLEMENTATION_4.0.57
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "directive"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "directive"
   file_path_from_root: "prompts/cursor/20260306_agent_registry_implementation.md"
   web_path: "http://www.lupopedia.com/directives/AGENT_REGISTRY_IMPLEMENTATION_4.0.57"
   last_modified_utc: "20260306"
@@ -18,14 +18,14 @@ flare.headers:
   traits: ["directive", "v4.0.57", "registry", "implementation", "actionable"]
   tags: ["cursor", "registry", "identity", "implementation", "v4.0.57"]
   lupo_agent: "cursor"
-flame.init:
+lupopedia.init:
   execution_mode: "required"
   pre_actions:
     - type: dependency_check
       target: "docs/status/AGENT_REGISTRY_REFINEMENT_4.0.57.md"
     - type: dependency_check
       target: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md"
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "updates", weight: 1.0 }
     - { to: "docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md", type: "references", weight: 0.9 }
@@ -33,10 +33,10 @@ flare.edges:
     - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 0.9 }
     - { to: "docs/status/LILITH_FLAME_FAUCET_REPORT.md", type: "references", weight: 0.8 }
     - { to: "docs/status/FLARE_FEDERATION_REFINEMENT_4.0.57.md", type: "references", weight: 0.7 }
-flame.see:
+lupopedia.see:
   mappings:
     - ["prompts/cursor/20260306_agent_registry_implementation.md", "http://www.lupopedia.com/directives/AGENT_REGISTRY_IMPLEMENTATION_4.0.57"]
-flare.footer:
+lupopedia.footer:
   version: "4.0.57"
   last_verified: "20260306"
   last_verified_by: "lilith"

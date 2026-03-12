@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\prompts\jetbrains\20260227_api_endpoint_implementation.md"
   file_hash: "e442adcdc9d08d3db46dfa248826029220e2035f0083274f454f036676ae3e24"
   last_updated_utc: "20260228155738"
@@ -12,26 +12,26 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# LUPOPEDIA HEADERS (replaces FLARE) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "prompts/jetbrains/20260227_api_endpoint_implementation.md"
   file_hash: "ebcd664f6da335da2626c9c927401b4381fa988e4cde867a78fe382084f5dccb"
   system_version: "4.0.50"
@@ -48,7 +48,7 @@ flare.headers:
   tags: ["api", "endpoints", "channels", "admin_interface", "jetbrains", "4.0.49"]
   lupo_agent: "jetbrains"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "prompts\jetbrains\20260227_api_endpoint_implementation.md"
   outbound_edges:
     - { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227131500_10000_windsurf_api_endpoint_research_prompt.md", type: "implements", weight: 1.0, reason: "Research findings source" }
@@ -61,7 +61,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260227"
   last_verified_by: "lupopedia"
 ---

@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\database\lupopedia\tables\MIGRATION_MAPPING_REFERENCE.md"
   file_hash: "df289e0f079d8d4ec8273077d48b72ec36ba1dad29a5eb3e115e8b4a3a9461f3"
   last_updated_utc: "20260228155738"
@@ -12,29 +12,29 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "docs\database\lupopedia\tables\MIGRATION_MAPPING_REFERENCE.md"
   file_hash: "9122bacd95ac2e33f4c69fc874747f9cbb6db8ee8889eab1cf4b03a543facdd5"
   last_updated_utc: "20260228"
@@ -50,13 +50,13 @@ flare.headers:
   tags: ["docs", "database", "lupopedia", "tables", "migration_mapping_referencemd"]
   lupo_agent: "windsurf"
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---
 
 ---
-flare.headers: {
+lupopedia.headers: {
   file_path_from_root: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md",
   file_hash: "bc00b6ff7b11c7f786f66b448fb7ba36b714cf925bf0cf338f286284ca641ac3"
   system_version: "4.0.50"
@@ -71,7 +71,7 @@ flare.headers: {
   tags: ["legacy-reference", "history-update", "mapping", "doctrine"],
   lupo_agent: "antigravity"
 }
-flare.edges: {
+lupopedia.edges: {
   file_path_from_root: "docs\database\lupopedia\tables\MIGRATION_MAPPING_REFERENCE.md"
   outbound_edges: [
     { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 }
@@ -81,7 +81,7 @@ flare.edges: {
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer: {
+lupopedia.footer: {
   last_verified_utc: "20260227",
   last_verified_by: "antigravity"
 }

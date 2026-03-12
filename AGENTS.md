@@ -1,42 +1,45 @@
-# LUPOPEDIA HEADERS — see http://www.lupopedia.com/AGENTS
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "AGENTS.md"
   web_path: "http://www.lupopedia.com/AGENTS"
-  last_modified_utc: "20260306"
-  system_version: "4.0.57"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
+  last_modified_utc: "20260312"
+  system_version: "4.0.71"
+  channel_id: 42
+  actor_id: 1003
+  delegation_chain: "cursor:root"
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Comprehensive guide for WARP and all IDE surfaces (faucets) working with Lupopedia"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "comprehensive", "v4.0.57", "agents"]
+  traits: ["canonical", "comprehensive", "v4.0.71", "agents"]
   tags: ["agents", "warp", "documentation", "doctrine", "architecture"]
   agent_name_identity: "Windsurf IDE Agent"
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
-    - { to: "docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0 }
     - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 0.9 }
-    - { to: "docs/status/LILITH_FLAME_FAUCET_REPORT.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/status/LILITH_FLAME_FAUCET_REPORT.md", type: "references", weight: 0.8 }
     - { to: "lupo-agents/", type: "references", weight: 0.8 }
   semantic_tags: ["agents", "warp", "development_environment", "architecture", "doctrine"]
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["AGENTS.md", "http://www.lupopedia.com/AGENTS"]
 
-flare.footer:
-  version: "4.0.57"
-  last_verified: "20260306"
-  last_verified_by: "windsurf"
+lupopedia.footer:
+  version: "4.0.71"
+  last_verified: "20260312"
+  last_verified_by: "cursor"
+  next_action:
+    - "Keep agent identity and faucet links current with registry"
+    - "Validate LUPOPEDIA HEADERS and next_action when updating this guide"
+    - "Point new IDE agents to Required Reading and LUPOPEDIA_HEADERS doctrine"
 ---
+# file: AGENTS — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/AGENTS
 
 # AGENTS.md
 
@@ -48,7 +51,7 @@ Lupopedia is the continuation of Crafty Syntax Live Help 3.7.5 — a PHP live-ch
 
 ## Development Environment
 
-- **Runtime:** PHP 5.3 through 8.3+ (all code must compile on PHP 5.3 — no named arguments, union types, match, enums, typed properties, attributes, arrow functions, strict types, or return type declarations)
+- **Runtime:** PHP 5.6 through 8.3+ (all code must compile on PHP 5.6 minimum — no Composer/outside frameworks not in lupo-includes; no deprecated PHP 8+ syntax; no named arguments, union types, match, enums, typed properties, attributes, arrow functions, strict types, or return type declarations in core paths)
 - **Database:** MySQL 8.0+ / MariaDB 10.5+ / PostgreSQL (all SQL must work on all three)
 - **Web server:** Apache or Nginx with mod_rewrite, always installed in a subdirectory (never at web root)
 - **Local stack:** ServBay on Windows 11, PowerShell
@@ -180,10 +183,10 @@ Actor and agent IDs are defined in the **canonical registry**:
 
 - `lupo-database/lupopedia/actors/actor_id/registry.json`
 
-LUPOPEDIA HEADERS may include `agent_name_identity` for human-readable display (in the `flare.headers` block for compatibility):
+LUPOPEDIA HEADERS may include `agent_name_identity` for human-readable display (in the `lupopedia.headers` block):
 
 ```yaml
-flare.headers:
+lupopedia.headers:
   actor_id: 1003
   agent_name_identity: "Cursor IDE Agent"
 ```

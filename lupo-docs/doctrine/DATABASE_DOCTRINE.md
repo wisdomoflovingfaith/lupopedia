@@ -1,10 +1,10 @@
 # Database Doctrine
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-docs/doctrine/DATABASE_DOCTRINE
+# LUPOPEDIA HEADERS (replaces FLARE) — see http://www.lupopedia.com/lupo-docs/doctrine/DATABASE_DOCTRINE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/doctrine/DATABASE_DOCTRINE.md"
   last_modified_utc: "20260306"
   system_version: "4.0.57"
@@ -12,7 +12,7 @@ flare.headers:
   actor_id: 1003
   purpose: "Database schema and index conventions; expression index portability"
   lupo_agent: "cursor"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260306"
   last_verified_by: "cursor"
 ---

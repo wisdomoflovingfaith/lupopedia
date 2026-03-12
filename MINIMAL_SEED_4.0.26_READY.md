@@ -1,10 +1,10 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "MINIMAL_SEED_4.0.26_READY.md"
   file_hash: "f46c37a8e939c5015e3c735fc39801ac173d90381038d698d99c5fef55335893"
   file_path_from_root: "MINIMAL_SEED_4.0.26_READY.md"
@@ -25,7 +25,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
   file_path_from_root: "MINIMAL_SEED_4.0.26_READY.md"
@@ -33,14 +33,14 @@ flare.footer:
   system_version: "4.0.50"
   delegation_chain: null
   needs_review: ["delegation_chain"]
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.50"]
   tags: []
   artifact_type: "documentation"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

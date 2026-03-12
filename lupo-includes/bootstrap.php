@@ -175,10 +175,11 @@ if (class_exists('App\Auth\Session') && isset($GLOBALS['mydatabase'])) {
 // Start session and run idle check then validate
 if ($lupo_session !== null) {
     $lupo_session->start();
-    // Default collection_id to 0 so saved-collections-container has an active collection on first load
+    // Default collection_id to 0 so saved-collections-container has an active collection on first load (flash only; identity from DB).
     if (!isset($_SESSION['collection_id']) || $_SESSION['collection_id'] === '') {
         $_SESSION['collection_id'] = 0;
     }
+    // Model A: identity from DB; do not store actor_id in $_SESSION.
     if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
         error_log("SESSION: Session started - ID: " . substr($lupo_session->getSessionId(), 0, 8) . "...");
     }

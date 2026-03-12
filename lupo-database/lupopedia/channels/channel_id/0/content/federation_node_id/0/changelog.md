@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
+# LUPOPEDIA HEADERS — see http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "channels/42/content/federation_node_id/0/changelog.md"
   file_hash: "to_be_generated"
   federation_node_id: 0
@@ -13,12 +13,11 @@ flare.headers:
   actor_id: 1002
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
-  purpose: "FLARE changelog for federation node 0"
-  mood_rgb: "4169E1"
+  purpose: "Changelog for federation node 0 (LUPOPEDIA HEADERS)"
   traits: ["canonical", "federation", "v4.0.52"]
-  tags: ["flare", "federation", "changelog", "node_0", "canonical"]
+  tags: ["lupopedia_headers", "federation", "changelog", "node_0", "canonical"]
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
@@ -29,7 +28,7 @@ flare.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
   semantic_tags: ["flare", "federation", "changelog", "canonical", "protocol"]
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260301"
   last_verified_by: "windsurf"
 ---
@@ -54,7 +53,7 @@ This document serves as the changelog for federation node 0, tracking all FLARE-
 - ✅ **Canonical FLARE Definition**: Created `channels/42/content/federation_node_id/0/FLARE.md` as root FLARE definition
 - ✅ **Database Table**: Added `lupo_channel_content` table for federation node management
 - ✅ **Web Path Mapping**: Established `http://www.lupopedia.com/FLARE` as canonical URL
-- ✅ **Template System**: Updated FLARE header template with canonical URL support
+- ✅ **Template System**: Updated LUPOPEDIA HEADERS template with canonical URL support
 - ✅ **Documentation**: Created comprehensive table documentation and usage patterns
 
 #### Technical Specifications

@@ -1,9 +1,9 @@
 # Development Cycle 4.0.57 — Channel 42 Thread
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57.md"
   system_version: "4.0.57"
   channel_id: 42

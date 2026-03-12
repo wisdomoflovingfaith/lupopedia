@@ -1,0 +1,33 @@
+{
+  "table_name": "lupo_collection_links",
+  "fields": [
+    "`collection_link_id` bigint NOT NULL AUTO_INCREMENT",
+    "`collection_id` bigint NOT NULL",
+    "`link_url` varchar(2000) NOT NULL",
+    "`link_label` varchar(255) DEFAULT NULL",
+    "`sort_order` int NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_collection_links_idx_collection",
+      "columns": ["collection_id"],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "collection_link_id",
+    "expected_name": "collection_link_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

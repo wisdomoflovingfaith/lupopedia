@@ -1,10 +1,10 @@
 ---
-flare.headers:
+lupopedia.headers:
   actor_id: 1
   actor_name: "wolfie"
   delegation_chain: "wolfie:root"
-  flare.version: "1.0"
-  flare.schema: "channel-content"
+  lupopedia.version: "1.0"
+  lupopedia.schema: "channel-content"
   file_path_from_root: "lupo-channels/42/content/federation_node_id/0/SKILLS.md"
   web_path: "http://www.lupopedia.com/channels/42/SKILLS"
   last_modified_utc: "20260310"
@@ -25,12 +25,12 @@ lupopedia.skills:
     channel_scope: 42
     applies_to: "everyone on channel 42"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "lupo-skills/uploads/README.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/SKILLS_DOCTRINE.md", type: "references", weight: 0.9 }
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.68"
   last_verified: "20260310"
   last_verified_by: "wolfie"

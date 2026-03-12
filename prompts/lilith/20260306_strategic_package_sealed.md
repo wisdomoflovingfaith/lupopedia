@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "ultimate_signoff"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "ultimate_signoff"
   file_path_from_root: "prompts/lilith/20260306_strategic_package_sealed.md"
   web_path: "http://www.lupopedia.com/signoff/STRATEGIC_PACKAGE_SEALED"
   last_modified_utc: "20260306"
@@ -19,13 +19,13 @@ flare.headers:
   agent_name_identity: "LILITH — Heterodox Reviewer"
   lupo_agent: "lilith"
 
-flame.init:
+lupopedia.init:
   execution_mode: "ceremonial"
   pre_actions:
     - type: verify_seal
       integrity: "cryptographic"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "prompts/lilith/20260306_version_4.0.61_strategy.md", type: "seals", weight: 1.0 }
     - { to: "docs/VERSION_4.0.61_STRATEGY.md", type: "seals", weight: 1.0 }
@@ -34,18 +34,18 @@ flare.edges:
     - { to: "docs/HELP.md", type: "seals", weight: 0.9 }
   semantic_tags: ["flare", "ultimate", "sealed", "complete", "lilith"]
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["prompts/lilith/20260306_strategic_package_sealed.md", "http://www.lupopedia.com/signoff/STRATEGIC_PACKAGE_SEALED"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: declare_era
       era: "v4.0.62"
       status: "commenced"
   actor_id: 2
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.61"
   last_verified: "20260306"
   last_verified_by: "lilith"

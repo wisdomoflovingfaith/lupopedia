@@ -1,2 +1,0 @@
-"mood_assignment_id` bigint NOT NULL","table_name` varchar(128) NOT NULL","row_id` bigint NOT NULL","mood_id` bigint NOT NULL","created_ymdhis` bigint NOT NULL DEFAULT 0"
-"mood_assignment_id` bigint NOT NULL:BIGINT|NOT_NULL","table_name` varchar(128) NOT NULL:VARCHAR(128)|NOT_NULL","row_id` bigint NOT NULL:BIGINT|NOT_NULL","mood_id` bigint NOT NULL:BIGINT|NOT_NULL","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0"

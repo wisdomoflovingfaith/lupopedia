@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "actor-skill"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "actor-skill"
   file_path_from_root: "lupo-actors/wolfie/skills/lupopedia-headers.md"
   web_path: "http://www.lupopedia.com/actors/1/skills/lupopedia-headers"
   last_modified_utc: "20260310"
@@ -14,7 +14,7 @@ flare.headers:
   purpose: "WOLFIE's knowledge of LUPOPEDIA headers"
   tags: ["actor-1", "wolfie", "skill", "headers"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.68"
   last_verified: "20260310"
   last_verified_by: "cursor"

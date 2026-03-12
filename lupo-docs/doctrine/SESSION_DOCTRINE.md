@@ -1,8 +1,8 @@
 # file: Lupopedia Session Doctrine — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/doctrine/SESSION_DOCTRINE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "docs/doctrine/SESSION_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/docs/doctrine/SESSION_DOCTRINE"
   last_updated_utc: "20260307"
@@ -19,13 +19,13 @@ flare.headers:
   tags: ["session", "doctrine", "identity", "context", "ban_enforcement"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/lupopedia_whoami_readme.md", type: "references", weight: 0.9 }
     - { to: "docs/doctrine/", type: "references", weight: 0.8 }
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.64"
   last_verified: "20260307"
   last_verified_by: "antigravity"

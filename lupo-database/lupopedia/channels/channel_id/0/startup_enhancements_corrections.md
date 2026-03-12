@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "instruction"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "instruction"
   file_path_from_root: "channels/0/boot_enhancements_corrections.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
@@ -17,7 +17,7 @@ flare.headers:
   tags: ["windsurf", "boot_script", "crafty_syntax", "ai_agents", "review_fixes"]
   lupo_agent: "codex-ide"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "prompts/lilith/20260301_windsurf_boot_enhancements_review.md", type: "reviews", weight: 1.0 }
     - { to: "bin/boot_system_agent.php", type: "implementation_reference", weight: 1.0 }
@@ -26,7 +26,7 @@ flare.edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
   semantic_tags: ["crafty_upgrade", "review_corrections", "ai_boot"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.53"
   last_verified: "20260301"
   last_verified_by: "codex-ide"
@@ -208,9 +208,9 @@ $lilith_ai = new LilithAI(2);
 ```markdown
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "broadcast"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "broadcast"
   file_path_from_root: "channels/0/broadcast_message.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
@@ -225,12 +225,12 @@ flare.headers:
   tags: ["windsurf", "broadcast", "crafty_syntax", "completion"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "channels/0/boot_enhancements_corrections.md", type: "instruction_reference", weight: 1.0 }
   semantic_tags: ["crafty_upgrade", "completion", "broadcast"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.53"
   last_verified: "20260301"
   last_verified_by: "windsurf"

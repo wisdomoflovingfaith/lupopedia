@@ -1,2 +1,0 @@
-"edge_type_id` bigint NOT NULL","edge_type` varchar(100) NOT NULL","description` text","category` varchar(100)","created_ymd` bigint NOT NULL DEFAULT 0","updated_ymd` bigint NOT NULL DEFAULT 0"
-"edge_type_id` bigint NOT NULL:BIGINT|NOT_NULL","edge_type` varchar(100) NOT NULL:VARCHAR(100)|NOT_NULL","description` text:TEXT|NULL","category` varchar(100):VARCHAR(100)|NULL","created_ymd` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0","updated_ymd` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0"

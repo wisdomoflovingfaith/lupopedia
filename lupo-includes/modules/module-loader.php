@@ -372,6 +372,21 @@ function lupo_route_slug($slug)
         }
     }
 
+    // Semantic Navbar generator (4.0.71); semantic_navbar.php is integration entry, semantic-navbar-js.php is canonical JS output
+    if ($normalized_slug === 'nav/semantic-navbar' || $normalized_slug === 'nav/semantic-navbar-js' || $normalized_slug === 'nav/semantic_navbar') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $nav_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'nav' . DIRECTORY_SEPARATOR . 'semantic_navbar.php';
+        if (file_exists($nav_path)) {
+            require $nav_path;
+            exit;
+        }
+        $js_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'nav' . DIRECTORY_SEPARATOR . 'semantic-navbar-js.php';
+        if (file_exists($js_path)) {
+            require $js_path;
+            exit;
+        }
+    }
+
     // Crafty Syntax visitor: livehelp_js.php (legacy livehelp_js.php equivalent)
     if ($normalized_slug === 'livehelp_js' || $normalized_slug === 'livehelp-js') {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
@@ -609,6 +624,18 @@ function lupo_route_slug($slug)
     if (preg_match('#^api/operator/accept-visitor$#', $slug)) {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'operator-accept-visitor-api.php';
+        if (file_exists($api_path)) {
+            require_once $api_path;
+            exit;
+        }
+    }
+
+    // ── REST API: Semantic Navbar (4.0.71) ──────────────────────
+    if (preg_match('#^(edges|contexts|hashtags|folders|qa|references|namespaces|next|previous)/(.+)$#', $slug, $api_m)) {
+        $navbar_api_type = $api_m[1];
+        $navbar_api_slug = $api_m[2];
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'api' . DIRECTORY_SEPARATOR . 'semantic-navbar-api.php';
         if (file_exists($api_path)) {
             require_once $api_path;
             exit;

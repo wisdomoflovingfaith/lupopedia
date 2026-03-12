@@ -626,8 +626,15 @@
     // Load renderer function
     require_once(LUPO_INCLUDES_DIR . '/functions/render-saved-collections.php');
     
-    // Get current user ID (assume logged in user ID is 7 for now - replace with actual session logic)
-    $currentUserId = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : (defined('CURRENT_USER_ID') ? CURRENT_USER_ID : 0);
+    // Model A: identity from DB. Resolve via Session.
+    $currentUserId = 0;
+    if (isset($GLOBALS['lupo_session']) && $GLOBALS['lupo_session'] && method_exists($GLOBALS['lupo_session'], 'getActorId')) {
+        $aid = $GLOBALS['lupo_session']->getActorId();
+        $currentUserId = $aid !== null ? (int) $aid : 0;
+    }
+    if ($currentUserId === 0 && defined('CURRENT_USER_ID')) {
+        $currentUserId = (int) CURRENT_USER_ID;
+    }
     $isUserLoggedIn = ($currentUserId > 0);
     
     // Render saved collections data (always render for viewing, permissions apply to editing only)

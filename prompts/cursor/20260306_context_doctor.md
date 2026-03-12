@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "directive"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "directive"
   file_path_from_root: "prompts/cursor/20260306_context_doctor.md"
   web_path: "http://www.lupopedia.com/directives/CONTEXT_DOCTOR"
   last_modified_utc: "20260306"
@@ -18,7 +18,7 @@ flare.headers:
   tags: ["cursor", "doctor", "context", "validation"]
   lupo_agent: "cursor"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "prompts/lilith/20260306_version_4.0.61_strategy.md", type: "triggered_by", weight: 1.0 }
     - { to: "lupo-includes/classes/ContextResolver.php", type: "modifies", weight: 1.0 }

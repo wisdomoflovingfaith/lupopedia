@@ -1,2 +1,0 @@
-"anubis_orphaned_id` bigint NOT NULL","table_name` varchar(255) NOT NULL","orphan_id` bigint NOT NULL","timestamp_utc` bigint NOT NULL","reason` varchar(255) NOT NULL"
-"anubis_orphaned_id` bigint NOT NULL:BIGINT|NOT_NULL","table_name` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","orphan_id` bigint NOT NULL:BIGINT|NOT_NULL","timestamp_utc` bigint NOT NULL:BIGINT|NOT_NULL","reason` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL"

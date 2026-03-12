@@ -1,5 +1,5 @@
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "docs/database/lupopedia/tables/departments.md"
   file_hash: "fd8699a89b465a2522e53a5075d1d72f90429389d5d49acf399e4ab88d1e3ef2"
   system_version: "4.0.50"
@@ -11,7 +11,7 @@ flare.headers:
   purpose: "Core identity and configuration for system departments"
   lupo_agent: "gemini-cli"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "docs\database\lupopedia\tables\departments.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/actor_departments.md", type: "references", weight: 0.9 }
@@ -24,7 +24,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---

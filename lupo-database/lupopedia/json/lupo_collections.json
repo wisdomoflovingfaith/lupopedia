@@ -16,7 +16,10 @@
     "`updated_ymdhis` bigint NOT NULL",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint",
-    "`parent_id` bigint"
+    "`parent_id` bigint",
+    "`channel_id` bigint",
+    "`is_nav_menu` tinyint NOT NULL DEFAULT 0",
+    "`nav_icon` varchar(64)"
   ],
   "data": [],
   "indexes": [
@@ -24,6 +27,14 @@
       "index_name": "lupo_collections_idx_actor",
       "columns": [
         "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_collections_idx_channel_id",
+      "columns": [
+        "channel_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -56,6 +67,14 @@
       "index_name": "lupo_collections_idx_is_deleted",
       "columns": [
         "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_collections_idx_is_nav_menu",
+      "columns": [
+        "is_nav_menu"
       ],
       "is_unique": false,
       "index_type": "BTREE"

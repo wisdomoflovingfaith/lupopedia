@@ -1,7 +1,7 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-docs/status/report_on_flame_header_to_url_alias_and_database
+# LUPOPEDIA HEADERS (replaces FLARE) — see http://www.lupopedia.com/lupo-docs/status/report_on_flame_header_to_url_alias_and_database
 
 ---
-flame.init:
+lupopedia.init:
   requirements:
     flare:
       version: ">=4.0.55"
@@ -10,7 +10,7 @@ flame.init:
     - type: dependency_check
       path: "lupo-includes/bootstrap.php"
 
-flare.conditional:
+lupopedia.conditional:
   guards:
     execution_mode: "advisory"
     allow:
@@ -46,9 +46,9 @@ flare.conditional:
       method: "FLARE automated application"
       success_criteria: ["header applied correctly"]
 
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "status"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "status"
   file_path_from_root: "lupo-docs/status/report_on_flame_header_to_url_alias_and_database.md"
   file_hash: "f48935a614e25d7a1c75c2888f62b42fffb951fb55abaf2419cd7d3db88d694f"
   last_updated_utc: "20260304"
@@ -64,18 +64,18 @@ flare.headers:
   tags: ["lupo-docs", "status", "report_on_flame_header_to_url_alias_and_databasemd"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges: []
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260304"
   last_verified_by: "antigravity"
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["lupo-docs/status/report_on_flame_header_to_url_alias_and_database.md", "http://www.lupopedia.com/lupo-docs/status/report_on_flame_header_to_url_alias_and_database"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: register_completion
       channel_id: 0
@@ -89,7 +89,7 @@ flame.close:
   artifact_type: "report",
   artifact_kind: "documentation"
 }
-flame.see:
+lupopedia.see:
   mappings:
     - ["docs/status/report_on_flame_header_to_url_alias_and_database.md", "http://www.lupopedia.com/FLAME_MAPPING_REPORT"]
 ---
@@ -102,27 +102,27 @@ The FLARE protocol in v4.0.56 introduces the `flame` namespace for lifecycle hoo
 
 ### Canonical Block Order
 To ensure parser stability across multiple agents, headers MUST follow this order:
-1. `flame.init`: Prologue hook for requirements and pre-actions.
-2. `flare.conditional`: Guards (allow/deny) and 5W1H briefing.
-3. `flare.headers`: Standard file metadata.
-4. `flare.edges`: Semantic relationships.
-5. `flare.footer`: Verification metadata.
-6. `flame.see`: URL discovery mappings.
-7. `flame.close`: Epilogue hook for post-actions.
+1. `lupopedia.init`: Prologue hook for requirements and pre-actions.
+2. `lupopedia.conditional`: Guards (allow/deny) and 5W1H briefing.
+3. `lupopedia.headers`: Standard file metadata.
+4. `lupopedia.edges`: Semantic relationships.
+5. `lupopedia.footer`: Verification metadata.
+6. `lupopedia.see`: URL discovery mappings.
+7. `lupopedia.close`: Epilogue hook for post-actions.
 
-## 2. URL Alias Mapping (`flame.see`)
+## 2. URL Alias Mapping (`lupopedia.see`)
 
-The `flame.see` block provides the link between the web-canonical URL and the repository-local file path.
+The `lupopedia.see` block provides the link between the web-canonical URL and the repository-local file path.
 
 ### Schema
 ```yaml
-flame.see:
+lupopedia.see:
   mappings:
     - ["relative/path/to/file.md", "http://www.lupopedia.com/ALIAS"]
 ```
 
 ### Discovery Workflow
-1. **Indexing**: The `lupo-tools/flare_see.py` script scans the repository for `flame.see` blocks and builds a JSON index in `artifacts/index/flame_see_index.json`.
+1. **Indexing**: The `lupo-tools/flare_see.py` script scans the repository for `lupopedia.see` blocks and builds a JSON index in `artifacts/index/flame_see_index.json`.
 2. **Resolution**: The `lupo see <URL>` command queries the index to find the corresponding file path.
 
 ### Index Schema (`flame_see_index.json`)
@@ -155,12 +155,12 @@ When multiple files claim the same URL:
 
 ## 3. Path Staleness Mitigation
 
-If a file moves, the `file_path_from_root` and `flame.see` mappings must stay in sync.
+If a file moves, the `file_path_from_root` and `lupopedia.see` mappings must stay in sync.
 
 ### Git Move Hook Implementation
 ```bash
 #!/bin/bash
-# git-move-hook.sh - Post-commit hook to update flame.see mappings
+# git-move-hook.sh - Post-commit hook to update lupopedia.see mappings
 
 # Get list of moved/renamed files in last commit
 git diff --name-status HEAD~1 HEAD | grep '^R' | while read status old new; do
@@ -206,7 +206,7 @@ Flame actions tie into the Lupopedia database for audit logging and task orchest
 INSERT INTO lupo_audit_log (actor_id, action, target, created_ymdhis)
 VALUES (1004, 'url_resolution', 'http://www.lupopedia.com/FLARE', 20260304123000);
 
--- When flame.close registers completion (Faucet Interaction)
+-- When lupopedia.close registers completion (Faucet Interaction)
 UPDATE lupo_agent_faucets 
 SET last_used_ymdhis = 20260304123000, use_count = use_count + 1
 WHERE faucet_name = 'url_resolution';
@@ -224,7 +224,7 @@ WHERE file_hash = '19033383ad2d953cc1db20c04d51c42ae3a87578bc0624d4ab36644d3397f
 def validate_flame_see(see_block):
     errors = []
     if not isinstance(see_block.get('mappings'), list):
-        errors.append("flame.see.mappings must be a list")
+        errors.append("lupopedia.see.mappings must be a list")
     
     for mapping in see_block['mappings']:
         if not isinstance(mapping, list) or len(mapping) != 2:
@@ -266,7 +266,7 @@ def detect_circular_mappings(index):
 ### 7.2 Short-term (v4.0.58)
 - [ ] **Integrate database logging** for all URL resolutions.
 - [ ] **Add circularity detection** to validation scripts.
-- [ ] **Create faucet automation** for `flame.close` completions.
+- [ ] **Create faucet automation** for `lupopedia.close` completions.
 - [ ] **Update ANUBIS ingestion** to set `canonical_url` in `lupo_contents`.
 
 ### 7.3 Long-term (v4.1.0+)

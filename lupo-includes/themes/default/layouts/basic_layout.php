@@ -19,7 +19,11 @@ if (!isset($isUserLoggedIn)) {
     $isUserLoggedIn = false;
 }
 if (!isset($currentUserId)) {
-    $currentUserId = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : 0;
+    $currentUserId = 0;
+if (isset($GLOBALS['lupo_session']) && $GLOBALS['lupo_session'] && method_exists($GLOBALS['lupo_session'], 'getActorId')) {
+    $aid = $GLOBALS['lupo_session']->getActorId();
+    $currentUserId = $aid !== null ? (int) $aid : 0;
+}
     $isUserLoggedIn = ($currentUserId > 0);
 }
 

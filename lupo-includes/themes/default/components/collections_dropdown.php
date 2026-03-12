@@ -27,7 +27,11 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
 
 // Get current collection ID if set
 $currentCollectionId = isset($currentCollectionId) ? (int)$currentCollectionId : null;
-$currentUserId = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : 0;
+$currentUserId = 0;
+if (isset($GLOBALS['lupo_session']) && $GLOBALS['lupo_session'] && method_exists($GLOBALS['lupo_session'], 'getActorId')) {
+    $aid = $GLOBALS['lupo_session']->getActorId();
+    $currentUserId = $aid !== null ? (int) $aid : 0;
+}
 
 // Get login state for JavaScript (check if passed from parent, otherwise determine from session)
 if (!isset($isUserLoggedIn)) {

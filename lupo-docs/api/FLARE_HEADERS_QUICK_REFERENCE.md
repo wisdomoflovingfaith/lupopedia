@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\FLARE_HEADERS_QUICK_REFERENCE.md"
   file_hash: "51b2733b644c2b8fab751a431d620aa52d0589498df1ad0ace0b921028c035ae"
   last_updated_utc: "20260228155738"
@@ -12,25 +12,25 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
+# LUPOPEDIA HEADERS (replaces FLARE) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "docs/FLARE_HEADERS_QUICK_REFERENCE.md"
   system_version: "4.0.47"
   channel_id: 1
@@ -44,7 +44,7 @@ flare.headers:
   traits: ["canonical", "comprehensive"]
   tags: ["flare_headers", "quick_reference", "implementation_guide"]
   lupo_agent: "codex-ide"
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.8 }
@@ -52,7 +52,7 @@ flare.edges:
     - { to: "channels/0/broadcasts/20260224163100_0_10000_minimum_flare_header_requirements.md", type: "references", weight: 1.0 }
   semantic_tags: ["flare_headers", "quick_reference", "implementation_guide", "4.0.47"]
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260226"
   last_verified_by: "windsurf"
 ---
@@ -129,7 +129,7 @@ See `actors/registry.json` - the master source of truth for all actor IDs.
 ### Documentation File
 ```yaml
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "docs/guide/example.md"
   system_version: "4.1.0"
   channel_id: 1
@@ -138,11 +138,11 @@ flare.headers:
   delegation_chain: "1007:10000"
   artifact_type: "guide"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   view_count: 150
   last_verified: "20260226"
 ---
@@ -151,7 +151,7 @@ flare.footer:
 ### Doctrine File
 ```yaml
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "channels/0/broadcasts/example_doctrine.md"
   system_version: "4.1.0"
   channel_id: 0
@@ -160,10 +160,10 @@ flare.headers:
   delegation_chain: "1007:10000"
   artifact_type: "doctrine"
 
-flare.edges:
+lupopedia.edges:
   semantic_tags: ["doctrine", "system"]
 
-flare.footer:
+lupopedia.footer:
   view_count: 500
   like_count: 0
   share_count: 0
@@ -172,10 +172,10 @@ flare.footer:
 ---
 ```
 
-## 🗺️ **flare.edges Format**
+## 🗺️ **lupopedia.edges Format**
 
 ```yaml
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/related.md", type: "references", weight: 1.0, reason: "Primary reference" }
     - { to: "docs/toons/lupo_table.toon.json", type: "schema_reference", weight: 1.0 }
@@ -186,10 +186,10 @@ flare.edges:
   semantic_tags: ["tag1", "tag2", "tag3"]
 ```
 
-## 📊 **flare.footer Format (Engagement Snapshot)**
+## 📊 **lupopedia.footer Format (Engagement Snapshot)**
 
 ```yaml
-flare.footer:
+lupopedia.footer:
   view_count: 1234
   like_count: 56
   share_count: 12
@@ -221,7 +221,7 @@ $date = gmdate('Ymd'); // 20260226
 3. **Old System Version** - Use current version (4.0.47)
 4. **Missing Date** - Use YYYYMMDD UTC format
 5. **Invalid YAML** - Validate syntax before commit
-6. **Incorrect Header Format** - Must use `flare.headers` not legacy keys
+6. **Incorrect Header Format** - Must use `lupopedia.headers` not legacy keys
 7. **Missing Required Fields** - delegation_chain and artifact_type are REQUIRED
 8. **JSON-style Objects** - Use YAML format, not JSON with trailing commas
 

@@ -1,9 +1,9 @@
 # Thread: 4.0.55 Phase 2 Initialization
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "thread"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "thread"
   file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_55/thread-001.md"
   system_version: "4.0.55"
   channel_id: 42

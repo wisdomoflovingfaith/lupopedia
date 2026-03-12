@@ -1,0 +1,32 @@
+---
+description: "MANDATORY order for Markdown files with LUPOPEDIA HEADERS. First line MUST be ---; identity line (# file: ...) MUST come after the closing ---, never before."
+alwaysApply: true
+globs: ["**/*.md"]
+---
+
+# LUPOPEDIA HEADERS — File order (MANDATORY)
+
+When **any** Markdown file in this repo uses LUPOPEDIA HEADERS (YAML between `---`), the order **must** be exactly:
+
+## Correct order (no exceptions)
+
+1. **Line 1:** `---` (nothing before it — no title, no identity line, no blank line)
+2. **Next lines:** YAML blocks (e.g. lupopedia.headers, lupopedia.footer, lupopedia.edges) in canonical order
+3. **Closing:** `---` (end of YAML)
+4. **First line of body:** `# file: <title> — session: ... — delegation: ... — web_path: ...` (identity line)
+5. **Then:** Rest of document (headings, content)
+
+## WRONG (do not do this)
+
+- **Never** put the identity line (`# file: ...`) on line 1 or before the opening `---`.
+- **Never** put any heading or text before the first `---`.
+- **Never** put the identity line inside the YAML block.
+- **Never** duplicate the header: there must be **exactly one** YAML front matter block per file (one opening `---`, one set of blocks, one closing `---`). Do not add a second `---` ... YAML ... `---` later in the file. If merging or updating, keep a single consolidated block.
+
+## Quick check
+
+- If the file starts with `# file:` or `# LUPOPEDIA` or any `#` heading → **wrong**. Fix by moving that line to after the closing `---`.
+- If there are **two or more** `---` … YAML … `---` blocks (duplicate headers) → **wrong**. Keep exactly one front matter block; delete the duplicate and merge any needed fields into the first.
+- Correct: line 1 is literally `---` only, and there is exactly one such front matter block in the file.
+
+Applies to all IDE agents (Cursor, Windsurf, JetBrains, etc.). Canonical reference: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md §1.

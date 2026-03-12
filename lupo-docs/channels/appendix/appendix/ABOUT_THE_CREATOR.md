@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\appendix\appendix\ABOUT_THE_CREATOR.md"
   file_hash: "247342681e9759ffe9d0a6775102d27b72074b5fae8dadde4670a32167642efd"
   last_updated_utc: "20260228155738"
@@ -12,29 +12,29 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "docs\channels\appendix\appendix\ABOUT_THE_CREATOR.md"
   file_hash: "fbbeaeea047a9fb94825f8ba933fabdacf1a1a8ce2a9c9e6b5d3c8cd5253d3a6"
   last_updated_utc: "20260228"
@@ -50,13 +50,13 @@ flare.headers:
   tags: ["docs", "channels", "appendix", "about_the_creatormd"]
   lupo_agent: "windsurf"
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---
 
 ---
-flare.headers: {
+lupopedia.headers: {
   file_path_from_root: "docs/channels/appendix/appendix/ABOUT_THE_CREATOR.md",
   file_hash: "354978fcb5bf30b665d3124a287e29b48993fdcb487f80e8e6b9a04a2f7faf44"
   system_version: "4.0.50"
@@ -71,7 +71,7 @@ flare.headers: {
   tags: ["founder", "biography", "history", "career", "supercomputing", "history-update"],
   lupo_agent: "antigravity"
 }
-flare.edges: {
+lupopedia.edges: {
   file_path_from_root: "docs\channels\appendix\appendix\ABOUT_THE_CREATOR.md"
   outbound_edges: [
     { to: "docs/channels/appendix/appendix/FOUNDERS_NOTE.md", type: "references", weight: 1.0 },
@@ -82,7 +82,7 @@ flare.edges: {
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer: {
+lupopedia.footer: {
   last_verified_utc: "20260227",
   last_verified_by: "antigravity"
 }

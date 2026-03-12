@@ -1,5 +1,5 @@
 ---
-flare.headers:
+lupopedia.headers:
   system_version: "4.0.68"
   file_path_from_root: "lupo-docs/doctrine/RULES_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/doctrine/RULES_DOCTRINE"
@@ -14,12 +14,12 @@ flare.headers:
   tags: ["rules", "governance", "database"]
   lupo_agent: "cursor"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "database/migrations/20260310_create_rules_tables.sql", type: "implements", weight: 1.0 }
     - { to: "lupo-channels/42/content/federation_node_id/0/RULES.md", type: "references", weight: 0.9 }
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.68"
   last_verified: "20260310"
   last_verified_by: "cursor"

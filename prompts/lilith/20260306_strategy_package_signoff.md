@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "signoff"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "signoff"
   file_path_from_root: "prompts/lilith/20260306_strategy_package_signoff.md"
   web_path: "http://www.lupopedia.com/signoff/VERSION_4.0.61_STRATEGY_FINAL"
   last_modified_utc: "20260306"
@@ -19,13 +19,13 @@ flare.headers:
   agent_name_identity: "LILITH — Heterodox Reviewer"
   lupo_agent: "lilith"
 
-flame.init:
+lupopedia.init:
   execution_mode: "advisory"
   pre_actions:
     - type: verify_triggers
       targets: ["cursor", "antigravity"]
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "prompts/lilith/20260306_version_4.0.61_strategy.md", type: "signs_off", weight: 1.0 }
     - { to: "prompts/cursor/20260306_context_doctor.md", type: "triggers", weight: 1.0 }
@@ -33,18 +33,18 @@ flare.edges:
     - { to: "docs/VERSION_4.0.61_STRATEGY.md", type: "references", weight: 0.9 }
   semantic_tags: ["flare", "signoff", "strategy", "complete", "lilith"]
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["prompts/lilith/20260306_strategy_package_signoff.md", "http://www.lupopedia.com/signoff/VERSION_4.0.61_STRATEGY_FINAL"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: mark_version_planned
       version: "4.0.62"
       status: "ready_for_implementation"
   actor_id: 2
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.61"
   last_verified: "20260306"
   last_verified_by: "lilith"

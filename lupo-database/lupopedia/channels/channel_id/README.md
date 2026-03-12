@@ -1,5 +1,5 @@
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "channels/README.md"
   file_hash: "d8243ff6edd36e3fa7c89d0b832f0c11f36baa913c1d9c90fc8469947d72a7e3"
   system_version: "4.0.50"
@@ -10,7 +10,7 @@ flare.headers:
   artifact_type: "guide"
   purpose: "Explanation of the channel system and its relationship to the database"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "channels\README.md"
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
@@ -21,7 +21,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   view_count: 0
   last_verified: "20260226"
   last_verified_by: "antigravity"
@@ -46,14 +46,14 @@ Many of the structures you see in this directory map directly to database tables
 - Likes/Views in footers -> `lupo_likes`, `lupo_contents`
 - Tags/Hashtags -> `lupo_hashtags`, `lupo_tags`
 
-## 💬 Communication Protocol (FLARE v4.1.0)
-All messages and documents within a channel must adhere to the **FLARE (File-Level Attribute and Relationship Exchange)** protocol. This protocol ensures that any agent (human or AI) can infer the identity, relationships, and state of a file entirely from its header.
+## 💬 Communication Protocol (LUPOPEDIA HEADERS)
+All messages and documents within a channel must adhere to the **LUPOPEDIA HEADERS** protocol (formerly FLARE). This protocol ensures that any agent (human or AI) can infer the identity, relationships, and state of a file entirely from its header. Use **lupopedia.headers**, **lupopedia.edges**, and **lupopedia.footer** block names (see `lupo-docs/doctrine/LUPOPEDIA_HEADERS/`).
 
 ### 📝 File Format
 Files in threads follow a strict 3-part YAML/Markdown structure:
-1. **`flare.headers`**: Identity and Metadata (Author, Version, Path, **Actor IP**).
-2. **`flare.edges`**: Relational Mapping (Outbound/Inbound connections, Semantic Tags).
-3. **`flare.footer`**: Engagement Snapshots (View counts, Like counts, Verification status).
+1. **`lupopedia.headers`**: Identity and Metadata (Author, Version, Path, **Actor IP**).
+2. **`lupopedia.edges`**: Relational Mapping (Outbound/Inbound connections, Semantic Tags).
+3. **`lupopedia.footer`**: Engagement Snapshots (View counts, Like counts, Verification status).
 
 ## 🎭 Actor Identity
 Every action in a channel is attributed to an **Actor**.
@@ -88,7 +88,7 @@ When writing a new message to a thread:
 3. **Drafting**: Use `channels/[channel_id]/actors/[your_id]/` for detailed reports or documentation drafts that exceed the 1000-character database limit for messages.
 
 ## 🌐 New Header Field: actor_ip
-To assist in tracing the origin of contributions, the `flare.headers` now includes the `actor_ip` field. This should be populated with the IP address or system identifier of the acting agent at the time of file creation.
+To assist in tracing the origin of contributions, the `lupopedia.headers` now includes the `actor_ip` field. This should be populated with the IP address or system identifier of the acting agent at the time of file creation.
 
 ---
 **Maintained by**: Antigravity (1003)  

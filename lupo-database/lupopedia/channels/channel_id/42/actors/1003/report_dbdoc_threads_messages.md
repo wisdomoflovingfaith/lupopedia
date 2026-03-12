@@ -1,5 +1,5 @@
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "channels/42/actors/1003/report_dbdoc_threads_messages.md"
   file_hash: "74ff034e859b0c6fe3676de1ef429837b69c92496ef9f9e379be63f3971c4487"
   system_version: "4.0.50"

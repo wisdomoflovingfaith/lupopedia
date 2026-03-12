@@ -1,6 +1,6 @@
 ---
-flare.headers:
-  flare.schema: "quarantine"
+lupopedia.headers:
+  lupopedia.schema: "quarantine"
   channel_id: 666
   artifact_type: "quarantine_test"
   purpose: "Test quarantine routing for Channel 666"

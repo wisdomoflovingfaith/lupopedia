@@ -1,7 +1,7 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flame.init:
+lupopedia.init:
   requirements:
     flare:
       version: ">=4.0.55"
@@ -10,7 +10,7 @@ flame.init:
     - type: dependency_check
       path: "lupo-includes/bootstrap.php"
 
-flare.conditional:
+lupopedia.conditional:
   guards:
     execution_mode: "advisory"
     allow:
@@ -46,9 +46,9 @@ flare.conditional:
       method: "FLARE automated application"
       success_criteria: ["header applied correctly"]
 
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs\status\FLARE_ENHANCEMENTS_REPORT_4.0.56.md"
   file_hash: "61184058c59232a589ac8d9f9cc7acf4cb70569ec97abfdbd1c4f59ba114acaa"
   last_updated_utc: "20260304"
@@ -64,18 +64,18 @@ flare.headers:
   tags: ["lupo-docs", "status", "flare_enhancements_report_4056md"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges: []
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260304"
   last_verified_by: "antigravity"
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["lupo-docs\status\FLARE_ENHANCEMENTS_REPORT_4.0.56.md", "http://www.lupopedia.com/FLARE_ENHANCEMENTS_REPORT_4.0.56"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: register_completion
       channel_id: 0
@@ -85,21 +85,21 @@ flame.close:
 # FLARE Enhancements Implementation Report - v4.0.56 (Refined)
 
 ## 1. Executive Summary
-This report documents the refined implementation of the `flame.init` and `flame.close` lifecycle hooks. Based on the "Implementation Safety" review, the spec has been upgraded to support typed actions, execution modes, and targeted enforcement to protect legacy data.
+This report documents the refined implementation of the `lupopedia.init` and `lupopedia.close` lifecycle hooks. Based on the "Implementation Safety" review, the spec has been upgraded to support typed actions, execution modes, and targeted enforcement to protect legacy data.
 
 ## 2. Refined Implemented Features
 
 ### 2.1 Typed Actions & Ambiguity Removal
-Both `flame.init` and `flame.close` blocks now enforce object-based actions. This prevents agent hallucination by providing structured parameters for every hook.
+Both `lupopedia.init` and `lupopedia.close` blocks now enforce object-based actions. This prevents agent hallucination by providing structured parameters for every hook.
 - **Spec**: `pre_actions` and `post_actions` must be lists of objects.
 
 ### 2.2 Execution Modes
-The `execution_mode` field in `flame.init` allows creators to specify the strictness of the requirements:
+The `execution_mode` field in `lupopedia.init` allows creators to specify the strictness of the requirements:
 - `advisory`: May be ignored if context doesn't support the action.
 - `required`: Processing MUST fail if the action cannot be performed.
 
 ### 2.3 Responsibility Routing (Local actor_id)
-To prevent system flooding, `flame.close.actor_id` now defaults to the original `actor_id` of the file. This ensures that the results of the execution are routed back to the responsible party.
+To prevent system flooding, `lupopedia.close.actor_id` now defaults to the original `actor_id` of the file. This ensures that the results of the execution are routed back to the responsible party.
 
 ### 2.4 The "Safety Rule" (Mandatory Targeting)
 Enforcement for 4.0.55+ files is now granular. `flame` blocks are mandatory ONLY for "active" artifacts (prompts, tasks, instructions, threads, artifacts) and optional for archives/history to avoid migration bloat.
@@ -108,11 +108,11 @@ Enforcement for 4.0.55+ files is now granular. `flame` blocks are mandatory ONLY
 
 ### 3.1 Template Update
 `lupo-tools/flare_header_template.txt` now reflects the canonical order:
-1. `flame.init`
-2. `flare.headers`
-3. `flare.edges`
-4. `flare.footer`
-5. `flame.close`
+1. `lupopedia.init`
+2. `lupopedia.headers`
+3. `lupopedia.edges`
+4. `lupopedia.footer`
+5. `lupopedia.close`
 
 ### 3.2 Automation Update
 `lupo-tools/flare_apply.py` updated to generating the high-fidelity v4.0.56 headers.

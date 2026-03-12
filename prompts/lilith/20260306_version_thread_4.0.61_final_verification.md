@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "final_verification"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "final_verification"
   file_path_from_root: "prompts/lilith/20260306_version_thread_4.0.61_final_verification.md"
   web_path: "http://www.lupopedia.com/reviews/VERSION_THREAD_4.0.61_FINAL"
   last_modified_utc: "20260306"
@@ -19,14 +19,14 @@ flare.headers:
   agent_name_identity: "LILITH — Heterodox Reviewer"
   lupo_agent: "lilith"
 
-flame.init:
+lupopedia.init:
   execution_mode: "required"
   pre_actions:
     - type: verify_thread
       thread: "VERSION_4.0.61"
       expected_files: 12
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "lupo-channels/0/threads/VERSION_4.0.61/README.md", type: "verifies", weight: 1.0 }
     - { to: "lupo-channels/0/threads/VERSION_4.0.61/CHANGELOG.md", type: "verifies", weight: 0.9 }
@@ -42,11 +42,11 @@ flare.edges:
     - { to: "docs/TLDR_LUPOPEDIA.md", type: "verifies", weight: 0.9 }
   semantic_tags: ["flare", "thread", "verification", "complete", "lilith"]
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["prompts/lilith/20260306_version_thread_4.0.61_final_verification.md", "http://www.lupopedia.com/reviews/VERSION_THREAD_4.0.61_FINAL"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: mark_thread_complete
       thread: "VERSION_4.0.61"
@@ -54,7 +54,7 @@ flame.close:
       status: "canonical"
   actor_id: 2
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.61"
   last_verified: "20260306"
   last_verified_by: "lilith"

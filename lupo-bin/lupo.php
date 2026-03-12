@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-// VERSION: 4.0.69
+// VERSION: 4.0.71
 
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(dirname(__FILE__)) . '/');
@@ -54,7 +54,7 @@ try {
             $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
             $kernel->bootstrap($db, $table_prefix, $state_file, ABSPATH, $authService);
             $ctx = $kernel->getContext();
-            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.69');
+            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.71');
             lupo_validate_flare_headers($ctx, $system_version);
             DialogHeaderValidator::validate($ctx);
             $verbose = isset($whoami_verbose) ? $whoami_verbose : false;
@@ -581,7 +581,7 @@ try {
             exit($return_var);
             break;
         case 'version':
-            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.69';
+            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.71';
             echo "Lupopedia version " . $ver . "\n";
             echo "Documentation: docs/version.md\n";
             break;
@@ -941,7 +941,7 @@ function lupo_doctor_context($abspath, $db, $table_prefix, $state_file, $argv = 
  */
 function lupo_help_whoami()
 {
-    $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.61';
+    $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.71';
     echo "Lupopedia CLI v" . $ver . " — whoami (dual-identity context)\n";
     echo str_repeat("=", 60) . "\n\n";
     echo "WHOAMI displays the current execution context with three identity layers:\n\n";
@@ -967,7 +967,7 @@ function lupo_help_whoami()
  */
 function lupo_help_context()
 {
-    $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.61';
+    $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.71';
     echo "Lupopedia CLI v" . $ver . " — context (JSON runtime context)\n";
     echo str_repeat("=", 60) . "\n\n";
     echo "CONTEXT outputs a flat JSON object of the full runtime context (same data as whoami --verbose).\n\n";

@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "directive"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "directive"
   file_path_from_root: "prompts/antigravity/20260306_doctor_actor.md"
   web_path: "http://www.lupopedia.com/directives/ANTIGRAVITY_DOCTOR_ACTOR"
   last_modified_utc: "20260306"
@@ -19,7 +19,7 @@ flare.headers:
   agent_name_identity: "Antigravity Agent"
   lupo_agent: "antigravity"
 
-flame.init:
+lupopedia.init:
   execution_mode: "required"
   pre_actions:
     - type: dependency_check
@@ -27,7 +27,7 @@ flame.init:
     - type: dependency_check
       target: "lupo-bin/lupo.php"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "lupo-agents/1009/", type: "creates", weight: 1.0 }
     - { to: "lupo-agents/1009/agent.json", type: "creates", weight: 1.0 }
@@ -36,18 +36,18 @@ flare.edges:
     - { to: "lupo-includes/classes/DoctorService.php", type: "creates", weight: 0.8 }
   semantic_tags: ["antigravity", "doctor", "actor", "directive"]
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["prompts/antigravity/20260306_doctor_actor.md", "http://www.lupopedia.com/directives/ANTIGRAVITY_DOCTOR_ACTOR"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: notify_completion
       channel_id: 42
       message: "DOCTOR actor AI agent created"
   actor_id: 42
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.62"
   last_verified: "20260306"
   last_verified_by: "captain"

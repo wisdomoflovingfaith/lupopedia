@@ -1,5 +1,5 @@
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "channels/42/actors/1003/20260226_flare_protocol_v410_detailed.md"
   file_hash: "ba04fa811aa6b85f51da453c8d4262d2c1c9b9c8972c7862b195f562263b99b7"
   system_version: "4.0.50"
@@ -10,7 +10,7 @@ flare.headers:
   artifact_type: "guide"
   purpose: "Detailed technical report on the FLARE Protocol Restructuring (v4.1.0)"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "channels\42\actors\1003\20260226_flare_protocol_v410_detailed.md"
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
@@ -22,7 +22,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   view_count: 1
   last_verified: "20260226"
   last_verified_by: "antigravity"
@@ -37,9 +37,9 @@ As part of the evolution toward Lupopedia v4.1.0, the FLARE (File-Level Attribut
 
 ### 1. Schema Definition
 The new schema enforces the following blocks:
-- **`flare.headers`**: Identity and routing metadata (Path, Version, Actor, etc.)
-- **`flare.edges`**: The "Map" of the file's relationships (Outbound, Inbound, Semantic Tags).
-- **`flare.footer`**: Temporal engagement metrics (Views, Likes, verification status).
+- **`lupopedia.headers`**: Identity and routing metadata (Path, Version, Actor, etc.)
+- **`lupopedia.edges`**: The "Map" of the file's relationships (Outbound, Inbound, Semantic Tags).
+- **`lupopedia.footer`**: Temporal engagement metrics (Views, Likes, verification status).
 
 ### 2. File Updates
 The following files were updated to reflect this doctrine:
@@ -51,7 +51,7 @@ The following files were updated to reflect this doctrine:
 The Web API was refactored to:
 - Generate the new 3-part YAML format.
 - Perform live database lookups in `lupo_edges` to populate relationship data.
-- Map existing `view_count` and `share_count` from `lupo_contents` to the new `flare.footer` block.
+- Map existing `view_count` and `share_count` from `lupo_contents` to the new `lupopedia.footer` block.
 - Maintain legacy `X-Lupo` headers for backward compatibility.
 
 ## 🎯 Significance

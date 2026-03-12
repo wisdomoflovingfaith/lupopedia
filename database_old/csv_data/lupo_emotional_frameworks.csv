@@ -1,3 +1,0 @@
-"framework_name` varchar(32) NOT NULL","description` text","is_default` tinyint NOT NULL DEFAULT 0","created_ymdhis` bigint NOT NULL DEFAULT 0","updated_ymdhis` bigint NOT NULL"
-"framework_name` varchar(32) NOT NULL:VARCHAR(32)|NOT_NULL","description` text:TEXT|NULL","is_default` tinyint NOT NULL DEFAULT 0:INT|NOT_NULL|DEFAULT:0","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0","updated_ymdhis` bigint NOT NULL:BIGINT|NOT_NULL"
-contextual_holism,"Emotions inseparable from situation, history, relationship, and culture.",0,20250101000000,20250101000000

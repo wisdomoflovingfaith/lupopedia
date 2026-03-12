@@ -1,5 +1,5 @@
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "docs/database/lupopedia/tables/sessions.md"
   file_hash: "6102d95d4e9f738db614bcee8df0640eb7f70ee49128bbed334d0b9a9477f271"
   system_version: "4.0.50"
@@ -11,7 +11,7 @@ flare.headers:
   purpose: "Persistent session storage for authenticated and anonymous actors"
   lupo_agent: "gemini-cli"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "docs\database\lupopedia\tables\sessions.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9, reason: "Binding session to identity" }
@@ -24,7 +24,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---

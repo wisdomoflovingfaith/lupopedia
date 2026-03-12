@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "help"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "help"
   file_path_from_root: "prompts/lilith/20260306_doctor_sql_queries.md"
   web_path: "http://www.lupopedia.com/help/DOCTOR_SQL_QUERIES"
   last_modified_utc: "20260306"
@@ -19,29 +19,29 @@ flare.headers:
   agent_name_identity: "LILITH — Heterodox Reviewer"
   lupo_agent: "lilith"
 
-flame.init:
+lupopedia.init:
   execution_mode: "advisory"
   pre_actions:
     - type: dependency_check
       target: "lupo-database/lupopedia/"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/TASK_STATUS_REFERENCE.md", type: "references", weight: 0.7 }
     - { to: "docs/doctrine/", type: "references", weight: 0.8 }
   semantic_tags: ["flare", "help", "sql", "doctor", "health", "lilith"]
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["prompts/lilith/20260306_doctor_sql_queries.md", "http://www.lupopedia.com/help/DOCTOR_SQL_QUERIES"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: log_help
       topic: "doctor_sql"
   actor_id: 2
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.62"
   last_verified: "20260306"
   last_verified_by: "lilith"

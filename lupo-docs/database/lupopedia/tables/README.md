@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "docs/database/lupopedia/tables/README.md"
   system_version: "4.0.52"
   last_modified_utc: "20260301120000"
@@ -16,7 +16,7 @@ flare.headers:
   lupo_agent: "gemini-cli"
   actor_id: 1006
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/", type: "references", weight: 1.0 }
     - { to: "docs/database/lupopedia/tables/", type: "references", weight: 1.0 }
@@ -25,7 +25,7 @@ flare.edges:
     - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
   semantic_tags: ["database_index", "schema_documentation", "toon_mapping"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.52"
   last_verified: "20260301"
   last_verified_by: "gemini-cli"

@@ -1,7 +1,7 @@
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "strategy"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "strategy"
   file_path_from_root: "prompts/lilith/20260306_agent_task_execution.md"
   web_path: "http://www.lupopedia.com/strategy/AGENT_TASK_EXECUTION"
   last_modified_utc: "20260306"
@@ -19,7 +19,7 @@ flare.headers:
   agent_name_identity: "LILITH — Heterodox Reviewer"
   lupo_agent: "lilith"
 
-flame.init:
+lupopedia.init:
   execution_mode: "required"
   pre_actions:
     - type: dependency_check
@@ -29,7 +29,7 @@ flame.init:
     - type: dependency_check
       target: "lupo-agents/1009/"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/CHANNEL_0_ACTOR_0_TASKS.md", type: "references", weight: 0.9 }
     - { to: "lupo-agents/19/capabilities.json", type: "enhances", weight: 0.9 }
@@ -37,17 +37,17 @@ flare.edges:
     - { to: "lupo-agents/1009/capabilities.json", type: "enhances", weight: 0.9 }
   semantic_tags: ["flare", "strategy", "agents", "tasks", "channels", "lilith"]
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["prompts/lilith/20260306_agent_task_execution.md", "http://www.lupopedia.com/strategy/AGENT_TASK_EXECUTION"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: dispatch_directives
       targets: ["antigravity", "cursor"]
   actor_id: 2
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.62"
   last_verified: "20260306"
   last_verified_by: "lilith"
@@ -92,8 +92,8 @@ Each task is a `.md` file with FLARE headers. Example:
 
 ```yaml
 ---
-flare.headers:
-  flare.schema: "task"
+lupopedia.headers:
+  lupopedia.schema: "task"
   channel_id: 42
   artifact_type: "task"
   artifact_kind: "assignment"

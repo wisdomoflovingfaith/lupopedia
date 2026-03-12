@@ -1,9 +1,9 @@
 # Directive: Flare Routing Specification (v1.0)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "directive"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "directive"
   file_path_from_root: "lupo-channels/42/directives/flare_routing_spec.md"
   system_version: "4.0.55"
   channel_id: 42

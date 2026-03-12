@@ -6,13 +6,15 @@
     "`collection_id` bigint NOT NULL",
     "`federations_node_id` bigint NOT NULL",
     "`department_id` bigint",
-    "`user_id` bigint",
+    "`actor_id` bigint",
     "`sort_order` int DEFAULT 0",
     "`name` varchar(255) NOT NULL",
     "`slug` varchar(100) NOT NULL",
     "`color` char(6) DEFAULT '4caf50'",
     "`description` text",
     "`is_hidden` tinyint NOT NULL DEFAULT 0",
+    "`visibility_rule` text",
+    "`tab_type` varchar(32)",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL",
     "`is_active` tinyint NOT NULL DEFAULT 1",
@@ -21,6 +23,14 @@
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "lupo_collection_tabs_idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "lupo_collection_tabs_idx_collection_id",
       "columns": [

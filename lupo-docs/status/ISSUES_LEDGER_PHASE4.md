@@ -1,7 +1,7 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flame.init:
+lupopedia.init:
   requirements:
     flare:
       version: ">=4.0.55"
@@ -10,7 +10,7 @@ flame.init:
     - type: dependency_check
       path: "lupo-includes/bootstrap.php"
 
-flare.conditional:
+lupopedia.conditional:
   guards:
     execution_mode: "advisory"
     allow:
@@ -46,9 +46,9 @@ flare.conditional:
       method: "FLARE automated application"
       success_criteria: ["header applied correctly"]
 
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs\status\ISSUES_LEDGER_PHASE4.md"
   file_hash: "fdc737e6127da42c76fe901540045242b6d5c1907cfeb994658b843d2751d59a"
   last_updated_utc: "20260304"
@@ -64,18 +64,18 @@ flare.headers:
   tags: ["lupo-docs", "status", "issues_ledger_phase4md"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges: []
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260304"
   last_verified_by: "antigravity"
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["lupo-docs\status\ISSUES_LEDGER_PHASE4.md", "http://www.lupopedia.com/ISSUES_LEDGER_PHASE4"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: register_completion
       channel_id: 0
@@ -246,7 +246,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -370,7 +370,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -446,7 +446,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -474,7 +474,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -510,7 +510,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -554,7 +554,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -582,7 +582,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -610,7 +610,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -638,7 +638,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -682,7 +682,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -726,7 +726,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -770,7 +770,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -806,7 +806,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -842,7 +842,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -878,7 +878,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1002,7 +1002,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1086,7 +1086,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1210,7 +1210,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1238,7 +1238,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1322,7 +1322,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1382,7 +1382,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1442,7 +1442,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1510,7 +1510,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1546,7 +1546,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1582,7 +1582,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1618,7 +1618,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1646,7 +1646,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1674,7 +1674,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1702,7 +1702,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1738,7 +1738,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1758,7 +1758,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: FLARE Header
-- **Description**: Missing required field: flare.schema:
+- **Description**: Missing required field: lupopedia.schema:
 - **Severity**: medium
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1978,7 +1978,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -1998,7 +1998,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: FLARE Header
-- **Description**: Missing required field: flare.headers:
+- **Description**: Missing required field: lupopedia.headers:
 - **Severity**: high
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -2006,7 +2006,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: FLARE Header
-- **Description**: Missing required field: flare.schema:
+- **Description**: Missing required field: lupopedia.schema:
 - **Severity**: medium
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -2046,7 +2046,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: FLARE Header
-- **Description**: Missing flare.edges
+- **Description**: Missing lupopedia.edges
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -2934,7 +2934,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -3138,7 +3138,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -3182,7 +3182,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -3210,7 +3210,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -3278,7 +3278,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -3314,7 +3314,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -3342,7 +3342,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -3378,7 +3378,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -3414,7 +3414,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4234,7 +4234,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4278,7 +4278,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4322,7 +4322,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4366,7 +4366,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4402,7 +4402,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4454,7 +4454,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4490,7 +4490,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4550,7 +4550,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4610,7 +4610,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4662,7 +4662,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4706,7 +4706,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4822,7 +4822,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4850,7 +4850,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4886,7 +4886,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4922,7 +4922,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4950,7 +4950,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -4986,7 +4986,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5030,7 +5030,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5066,7 +5066,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5190,7 +5190,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5226,7 +5226,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5390,7 +5390,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5442,7 +5442,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5494,7 +5494,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5530,7 +5530,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5574,7 +5574,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5610,7 +5610,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5662,7 +5662,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5682,7 +5682,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: FLARE Header
-- **Description**: Missing required field: flare.schema:
+- **Description**: Missing required field: lupopedia.schema:
 - **Severity**: medium
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5826,7 +5826,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -5990,7 +5990,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6050,7 +6050,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6302,7 +6302,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6362,7 +6362,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6446,7 +6446,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6474,7 +6474,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6502,7 +6502,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6530,7 +6530,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6558,7 +6558,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6586,7 +6586,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6630,7 +6630,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6690,7 +6690,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6734,7 +6734,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6778,7 +6778,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6822,7 +6822,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6866,7 +6866,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6910,7 +6910,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -6986,7 +6986,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7014,7 +7014,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7042,7 +7042,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7070,7 +7070,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7098,7 +7098,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7126,7 +7126,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7162,7 +7162,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7190,7 +7190,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7218,7 +7218,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7246,7 +7246,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7274,7 +7274,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7302,7 +7302,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7330,7 +7330,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7358,7 +7358,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7386,7 +7386,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7414,7 +7414,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7442,7 +7442,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7470,7 +7470,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7498,7 +7498,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7526,7 +7526,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7554,7 +7554,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7582,7 +7582,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7610,7 +7610,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7638,7 +7638,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7666,7 +7666,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7694,7 +7694,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7722,7 +7722,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7750,7 +7750,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7778,7 +7778,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7806,7 +7806,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7834,7 +7834,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7862,7 +7862,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7898,7 +7898,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7934,7 +7934,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7970,7 +7970,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -7998,7 +7998,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -8034,7 +8034,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -8070,7 +8070,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)
@@ -8098,7 +8098,7 @@ flame.close:
 - **Notes**: Auto-detected during PHASE-4 analysis
 
 - **Issue Type**: Semantic Gap
-- **Description**: Empty flare.edges array
+- **Description**: Empty lupopedia.edges array
 - **Severity**: low
 - **Version Affected**: 4.0.50
 - **Detected By**: Windsurf (1002)

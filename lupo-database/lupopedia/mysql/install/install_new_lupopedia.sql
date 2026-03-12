@@ -2490,54 +2490,25 @@ CREATE INDEX lupo_semantic_index_idx_is_deleted ON lupo_semantic_index (is_delet
 
 
 
+-- Model A: DB-backed session authority. Browser stores only session_id; identity from DB. No session payload, no JWT.
 CREATE TABLE lupo_sessions (
-  session_id varchar(255) NOT NULL,
-  federation_node_id bigint NOT NULL DEFAULT 1,
-  actor_id bigint NOT NULL DEFAULT 0,
-  faucet_slug varchar(100) DEFAULT NULL,
-  faucet_instance_id varchar(100) DEFAULT NULL,
-  actor_name varchar(64) DEFAULT NULL,
-  channel_id bigint NOT NULL DEFAULT 1,
-  ip_address varchar(45) NOT NULL DEFAULT '',
-  user_agent varchar(255) NOT NULL DEFAULT '',
-  device_id varchar(100) DEFAULT NULL,
-  device_type varchar(64) DEFAULT NULL,
-  auth_method varchar(30) DEFAULT NULL,
-  auth_provider varchar(50) DEFAULT NULL,
-  security_level varchar(64) NOT NULL DEFAULT 'medium',
+  session_id varchar(128) NOT NULL,
+  actor_id bigint NOT NULL,
+  federation_node_id bigint NOT NULL DEFAULT 0,
+  ip_hash varchar(128) DEFAULT NULL,
+  ua_hash varchar(255) DEFAULT NULL,
+  csrf_token varchar(128) DEFAULT NULL,
+  last_activity_ymdhis bigint NOT NULL,
+  created_ymdhis bigint NOT NULL,
+  updated_ymdhis bigint NOT NULL,
   name_key varchar(100) DEFAULT NULL,
   is_named tinyint NOT NULL DEFAULT 0,
-  is_authenticated tinyint NOT NULL DEFAULT 0,
-  is_active tinyint NOT NULL DEFAULT 1,
-  is_expired tinyint NOT NULL DEFAULT 0,
-  is_revoked tinyint NOT NULL DEFAULT 0,
-  session_data text,
-  system_context varchar(50) DEFAULT NULL,
   metadata json DEFAULT NULL,
-  login_ymdhis bigint DEFAULT NULL,
-  last_seen_ymdhis bigint NOT NULL,
-  expires_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  recovery_attempts int DEFAULT 0,
-  recovery_data json,
   PRIMARY KEY (session_id)
 );
-
-CREATE INDEX lupo_sessions_idx_domain ON lupo_sessions (federation_node_id);
 CREATE INDEX lupo_sessions_idx_actor ON lupo_sessions (actor_id);
-CREATE INDEX lupo_sessions_idx_faucet ON lupo_sessions (faucet_slug, faucet_instance_id);
-CREATE INDEX lupo_sessions_idx_actor_name ON lupo_sessions (actor_name);
-CREATE INDEX lupo_sessions_idx_last_seen ON lupo_sessions (last_seen_ymdhis);
-CREATE INDEX lupo_sessions_idx_expires ON lupo_sessions (expires_ymdhis);
-CREATE INDEX lupo_sessions_idx_device ON lupo_sessions (device_id);
-CREATE INDEX lupo_sessions_idx_security ON lupo_sessions (security_level);
-CREATE INDEX lupo_sessions_idx_status ON lupo_sessions (is_active, is_expired, is_revoked);
-CREATE INDEX lupo_sessions_idx_cleanup ON lupo_sessions (is_deleted, last_seen_ymdhis);
-CREATE INDEX lupo_sessions_idx_created ON lupo_sessions (created_ymdhis);
-CREATE INDEX lupo_sessions_idx_channel_id ON lupo_sessions (channel_id);
+CREATE INDEX lupo_sessions_idx_last_activity ON lupo_sessions (last_activity_ymdhis);
+CREATE INDEX lupo_sessions_idx_federation ON lupo_sessions (federation_node_id);
 
 -- Old session events table removed in v4.0.55 - consolidated into lupo_unified_log
 
@@ -2718,6 +2689,232 @@ CREATE INDEX lupo_paths_idx_ymd ON lupo_paths (year_num, month_num, day_num);
 CREATE INDEX lupo_paths_idx_transition ON lupo_paths (transition_type);
 CREATE INDEX lupo_paths_idx_created ON lupo_paths (created_ymdhis);
 CREATE INDEX lupo_paths_idx_is_deleted ON lupo_paths (is_deleted);
+
+-- ============================================================
+-- SEMANTIC NAVBAR BACKEND (4.0.71): references, hashtags, folders
+-- No FKs; application enforces relations. BIGINT timestamps only.
+-- ============================================================
+CREATE TABLE lupo_references (
+  reference_id bigint NOT NULL AUTO_INCREMENT,
+  source_entity_type varchar(64) NOT NULL,
+  source_entity_id bigint NOT NULL,
+  url varchar(2000) DEFAULT NULL,
+  title varchar(500) DEFAULT NULL,
+  citation_text text,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (reference_id)
+);
+CREATE INDEX lupo_references_idx_source ON lupo_references (source_entity_type, source_entity_id);
+CREATE INDEX lupo_references_idx_created ON lupo_references (created_ymdhis);
+CREATE INDEX lupo_references_idx_is_deleted ON lupo_references (is_deleted);
+
+CREATE TABLE lupo_reference_links (
+  reference_link_id bigint NOT NULL AUTO_INCREMENT,
+  reference_id bigint NOT NULL,
+  object_type varchar(64) NOT NULL,
+  object_id bigint NOT NULL,
+  sort_order int NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (reference_link_id)
+);
+CREATE INDEX lupo_reference_links_idx_reference ON lupo_reference_links (reference_id);
+CREATE INDEX lupo_reference_links_idx_object ON lupo_reference_links (object_type, object_id);
+CREATE INDEX lupo_reference_links_idx_is_deleted ON lupo_reference_links (is_deleted);
+
+CREATE TABLE lupo_hashtags (
+  hashtag_id bigint NOT NULL AUTO_INCREMENT,
+  tag_slug varchar(128) NOT NULL,
+  label varchar(255) DEFAULT NULL,
+  use_count bigint NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (hashtag_id)
+);
+CREATE UNIQUE INDEX lupo_hashtags_uniq_slug ON lupo_hashtags (tag_slug);
+CREATE INDEX lupo_hashtags_idx_use_count ON lupo_hashtags (use_count);
+CREATE INDEX lupo_hashtags_idx_is_deleted ON lupo_hashtags (is_deleted);
+
+CREATE TABLE lupo_hashtag_map (
+  hashtag_map_id bigint NOT NULL AUTO_INCREMENT,
+  hashtag_id bigint NOT NULL,
+  object_type varchar(64) NOT NULL,
+  object_id bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (hashtag_map_id)
+);
+CREATE INDEX lupo_hashtag_map_idx_hashtag ON lupo_hashtag_map (hashtag_id);
+CREATE INDEX lupo_hashtag_map_idx_object ON lupo_hashtag_map (object_type, object_id);
+CREATE INDEX lupo_hashtag_map_idx_is_deleted ON lupo_hashtag_map (is_deleted);
+
+CREATE TABLE lupo_folders (
+  folder_id bigint NOT NULL AUTO_INCREMENT,
+  name varchar(255) NOT NULL,
+  slug varchar(128) NOT NULL,
+  parent_folder_id bigint DEFAULT NULL,
+  actor_id bigint DEFAULT NULL,
+  channel_id bigint DEFAULT NULL,
+  sort_order int NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (folder_id)
+);
+CREATE INDEX lupo_folders_idx_parent ON lupo_folders (parent_folder_id);
+CREATE INDEX lupo_folders_idx_actor ON lupo_folders (actor_id);
+CREATE INDEX lupo_folders_idx_channel ON lupo_folders (channel_id);
+CREATE INDEX lupo_folders_idx_slug ON lupo_folders (slug);
+CREATE INDEX lupo_folders_idx_is_deleted ON lupo_folders (is_deleted);
+
+CREATE TABLE lupo_folder_map (
+  folder_map_id bigint NOT NULL AUTO_INCREMENT,
+  folder_id bigint NOT NULL,
+  object_type varchar(64) NOT NULL,
+  object_id bigint NOT NULL,
+  sort_order int NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (folder_map_id)
+);
+CREATE INDEX lupo_folder_map_idx_folder ON lupo_folder_map (folder_id);
+CREATE INDEX lupo_folder_map_idx_object ON lupo_folder_map (object_type, object_id);
+CREATE INDEX lupo_folder_map_idx_is_deleted ON lupo_folder_map (is_deleted);
+
+-- Previous Pages Summary (4.0.71)
+CREATE TABLE lupo_paths_summary (
+  summary_id bigint NOT NULL AUTO_INCREMENT,
+  path_id bigint NOT NULL,
+  total_count bigint NOT NULL DEFAULT 0,
+  last_used_ymdhis bigint NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (summary_id)
+);
+CREATE INDEX lupo_paths_summary_idx_path ON lupo_paths_summary (path_id);
+
+-- Reference Map (Explicit mapping table, 4.0.71)
+CREATE TABLE lupo_reference_map (
+  reference_map_id bigint NOT NULL AUTO_INCREMENT,
+  reference_id bigint NOT NULL,
+  target_type varchar(64) NOT NULL,
+  target_id bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  PRIMARY KEY (reference_map_id)
+);
+CREATE INDEX lupo_reference_map_idx_reference ON lupo_reference_map (reference_id);
+CREATE INDEX lupo_reference_map_idx_target ON lupo_reference_map (target_type, target_id);
+
+-- Collection Links (Explicit link objects within collections, 4.0.71)
+CREATE TABLE lupo_collection_links (
+  collection_link_id bigint NOT NULL AUTO_INCREMENT,
+  collection_id bigint NOT NULL,
+  link_url varchar(2000) NOT NULL,
+  link_label varchar(255) DEFAULT NULL,
+  sort_order int NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  PRIMARY KEY (collection_link_id)
+);
+CREATE INDEX lupo_collection_links_idx_collection ON lupo_collection_links (collection_id);
+
+-- Collection Map (Mapping collections to multiple objects, 4.0.71)
+CREATE TABLE lupo_collection_map (
+  collection_map_id bigint NOT NULL AUTO_INCREMENT,
+  collection_id bigint NOT NULL,
+  object_type varchar(64) NOT NULL,
+  object_id bigint NOT NULL,
+  sort_order int NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  PRIMARY KEY (collection_map_id)
+);
+CREATE INDEX lupo_collection_map_idx_collection ON lupo_collection_map (collection_id);
+CREATE INDEX lupo_collection_map_idx_object ON lupo_collection_map (object_type, object_id);
+
+-- Edge Types (Definitions for semantic edges, 4.0.71)
+CREATE TABLE lupo_edge_types (
+  edge_type_id bigint NOT NULL AUTO_INCREMENT,
+  slug varchar(64) NOT NULL,
+  label varchar(128) NOT NULL,
+  description text,
+  is_bidirectional tinyint NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  PRIMARY KEY (edge_type_id)
+);
+CREATE UNIQUE INDEX lupo_edge_types_uniq_slug ON lupo_edge_types (slug);
+
+-- Edge Map (Mapping edges between objects, 4.0.71)
+CREATE TABLE lupo_edge_map (
+  edge_map_id bigint NOT NULL AUTO_INCREMENT,
+  edge_id bigint NOT NULL,
+  edge_type_id bigint NOT NULL,
+  source_type varchar(64) NOT NULL,
+  source_id bigint NOT NULL,
+  target_type varchar(64) NOT NULL,
+  target_id bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  PRIMARY KEY (edge_map_id)
+);
+CREATE INDEX lupo_edge_map_idx_edge ON lupo_edge_map (edge_id);
+CREATE INDEX lupo_edge_map_idx_type ON lupo_edge_map (edge_type_id);
+CREATE INDEX lupo_edge_map_idx_source ON lupo_edge_map (source_type, source_id);
+CREATE INDEX lupo_edge_map_idx_target ON lupo_edge_map (target_type, target_id);
+
+-- Questions (Semantic Q/A, 4.0.71)
+CREATE TABLE lupo_questions (
+  question_id bigint NOT NULL AUTO_INCREMENT,
+  slug varchar(128) NOT NULL,
+  question_text text NOT NULL,
+  actor_id bigint DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  PRIMARY KEY (question_id)
+);
+CREATE UNIQUE INDEX lupo_questions_uniq_slug ON lupo_questions (slug);
+
+-- Answers (Semantic Q/A, 4.0.71)
+CREATE TABLE lupo_answers (
+  answer_id bigint NOT NULL AUTO_INCREMENT,
+  question_id bigint NOT NULL,
+  answer_text text NOT NULL,
+  actor_id bigint DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  PRIMARY KEY (answer_id)
+);
+CREATE INDEX lupo_answers_idx_question ON lupo_answers (question_id);
+
+-- Question Map (Mapping questions to objects/contexts, 4.0.71)
+CREATE TABLE lupo_question_map (
+  question_map_id bigint NOT NULL AUTO_INCREMENT,
+  question_id bigint NOT NULL,
+  object_type varchar(64) NOT NULL,
+  object_id bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  PRIMARY KEY (question_map_id)
+);
+CREATE INDEX lupo_question_map_idx_question ON lupo_question_map (question_id);
+CREATE INDEX lupo_question_map_idx_object ON lupo_question_map (object_type, object_id);
+
+-- ============================================================
 
 CREATE TABLE lupo_referers (
   referer_id bigint NOT NULL,

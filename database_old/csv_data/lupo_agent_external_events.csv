@@ -1,2 +1,0 @@
-"external_event_id` bigint NOT NULL","agent_name` varchar(255) NOT NULL","source_system` varchar(255) NOT NULL","event_type` varchar(50) NOT NULL","event_payload_json` json","created_ymdhis` bigint NOT NULL DEFAULT 0"
-"external_event_id` bigint NOT NULL:BIGINT|NOT_NULL","agent_name` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","source_system` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","event_type` varchar(50) NOT NULL:VARCHAR(50)|NOT_NULL","event_payload_json` json:JSON|NULL","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0"

@@ -180,7 +180,7 @@ Cursor's 4.0.68-4.0.69 implementation of the **Actor-Faucet-Channel orchestratio
 **docs/ Directory (Mixed State):**
 - ✅ **Current (4.0.69):** CHANGELOG.md, README.md, AGENTS.md, HELP.md, `docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`, `docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`
 - ⚠️ **Outdated (4.0.61-4.0.64):** TLDR_LUPOPEDIA.md, actors.md, DIRECTORY_STRUCTURE.md, auth.md, CLI.md
-- ⚠️ **Outdated Doctrine (4.0.57):** `docs/doctrine/` (4 files with `flare.headers`)
+- ⚠️ **Outdated Doctrine (4.0.57):** `docs/doctrine/` (4 files with `lupopedia.headers`)
 - 🗂️ **Historical Status:** `docs/status/` (89 files, mixed 4.0.55-4.0.69)
 
 **lupo-docs/ Directory (Canonical Destination):**
@@ -204,9 +204,9 @@ Cursor's 4.0.68-4.0.69 implementation of the **Actor-Faucet-Channel orchestratio
 ### 3.3 Header Migration Checklist
 
 For each file being migrated/updated:
-- [ ] `flare.headers` → `lupopedia.headers`
-- [ ] `flare.footer` → `lupopedia.footer`
-- [ ] `flare.edges` → `lupopedia.edges`
+- [ ] `lupopedia.headers` → `lupopedia.headers`
+- [ ] `lupopedia.footer` → `lupopedia.footer`
+- [ ] `lupopedia.edges` → `lupopedia.edges`
 - [ ] Add `lupopedia.session` block (if applicable)
 - [ ] Update `system_version` to 4.0.69
 - [ ] Update `last_modified_utc` to current date

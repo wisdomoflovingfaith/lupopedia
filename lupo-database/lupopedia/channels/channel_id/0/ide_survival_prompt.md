@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "prompt"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "prompt"
   file_path_from_root: "channels/0/ide_survival_prompt.md"
   system_version: "4.0.52"
   last_modified_utc: "20260301"
@@ -18,7 +18,7 @@ flare.headers:
   tags: ["windsurf", "ide_crash", "kiro", "cursor", "zed", "jetbrains", "warp"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "channels/0/boot_readme.md", type: "references", weight: 0.9 }
@@ -26,7 +26,7 @@ flare.edges:
     - { to: "http://www.lupopedia.com/changelog", type: "update_target", weight: 1.0 }
   semantic_tags: ["ide_survival", "changelog_update"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.52"
   last_verified: "20260301"
   last_verified_by: "codex-ide"

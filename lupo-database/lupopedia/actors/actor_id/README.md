@@ -1,8 +1,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "actors/README.md"
   system_version: "4.0.52"
   last_updated_utc: "20260301151500"
@@ -17,13 +17,13 @@ flare.headers:
   tags: ["actors", "readme", "session_management"]
   lupo_agent: "gemini-cli"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
     - { to: "actors/registry.json", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.52"
   last_verified: "20260301"
   last_verified_by: "gemini-cli"

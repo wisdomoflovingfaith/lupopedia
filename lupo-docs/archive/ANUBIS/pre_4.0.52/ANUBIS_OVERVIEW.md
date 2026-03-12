@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\doctrine\ANUBIS\ANUBIS_OVERVIEW.md"
   file_hash: "bc767b899c0b367d219ccad4ca25b222289b01a392aab460cf726496e9e8384a"
   last_updated_utc: "20260228155738"
@@ -12,27 +12,27 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md"
   file_hash: "c9495e781e291bbeeb69e8227fa21fcd17101f5324227f754ca6ed209f4de2db"
   last_updated_utc: "20260228"
@@ -48,7 +48,7 @@ flare.headers:
   tags: ["docs", "doctrine", "anubis", "anubis_overview"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md", type: "references", weight: 1.0 }
@@ -60,7 +60,7 @@ flare.edges:
 
   last_updated_utc: "20260228"
   system_version: "4.0.50"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---

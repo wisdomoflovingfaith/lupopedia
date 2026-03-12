@@ -1,10 +1,10 @@
 ---
-flare.headers:
+lupopedia.headers:
   actor_id: 1
   actor_name: "wolfie"
   delegation_chain: "wolfie:root"
-  flare.version: "1.0"
-  flare.schema: "rule"
+  lupopedia.version: "1.0"
+  lupopedia.schema: "rule"
   file_path_from_root: "lupo-rules/skills/lupopedia-headers.md"
   web_path: "http://www.lupopedia.com/rules/skills/lupopedia-headers"
   last_modified_utc: "20260310"
@@ -24,7 +24,7 @@ lupopedia.rule:
     proficiency: "intermediate"
   description: "Skill rule for Lupopedia Headers capability"
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.68"
   last_verified: "20260310"
   last_verified_by: "wolfie"

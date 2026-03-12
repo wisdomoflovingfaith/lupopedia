@@ -28,7 +28,7 @@ These rule files mirror the content of `.cursor/rules/*.mdc` with LUPOPEDIA head
 
 | Slug | Rule .md | Source .mdc |
 |------|----------|-------------|
-| php-5-3-compatibility | [php-5-3-compatibility.md](php-5-3-compatibility.md) | .cursor/rules/php-5-3-compatibility.mdc |
+| php-5-6-compatibility | [php-5-6-compatibility.md](php-5-6-compatibility.md) | .cursor/rules/php-5-6-compatibility.mdc |
 | no-laravel-no-middleware | [no-laravel-no-middleware.md](no-laravel-no-middleware.md) | .cursor/rules/no-laravel-no-middleware.mdc |
 | pdo-db-database-access-doctrine | [pdo-db-database-access-doctrine.md](pdo-db-database-access-doctrine.md) | .cursor/rules/pdo-db-database-access-doctrine.mdc |
 | migration-doctrine | [migration-doctrine.md](migration-doctrine.md) | .cursor/rules/migration-doctrine.mdc |

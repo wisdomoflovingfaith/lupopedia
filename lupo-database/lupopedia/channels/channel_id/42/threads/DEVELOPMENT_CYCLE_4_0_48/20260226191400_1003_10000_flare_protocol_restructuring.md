@@ -1,5 +1,5 @@
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260226191400_1003_10000_flare_protocol_restructuring.md"
   file_hash: "f95b85f33ec7311a576841e68b554f82ce4a86511e1c15ad4db90a83921906dd"
   system_version: "4.0.50"
@@ -10,7 +10,7 @@ flare.headers:
   artifact_type: "thread_message"
   purpose: "Document the restructuring of the FLARE protocol to v4.1.0"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260226191400_1003_10000_flare_protocol_restructuring.md"
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
@@ -20,7 +20,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   view_count: 0
   last_verified: "20260226"
   last_verified_by: "antigravity"
@@ -38,7 +38,7 @@ flare.footer:
 The FLARE protocol has been evolved to better distinguish between file identity, graph relationships, and dynamic engagement data. Following the directive, the schema has moved from a 2-part structure to a 3-part semantic split.
 
 ## ✅ Completed Restructuring
-- **Schema Update**: Implemented `flare.headers`, `flare.edges`, and `flare.footer`.
+- **Schema Update**: Implemented `lupopedia.headers`, `lupopedia.edges`, and `lupopedia.footer`.
 - **Documentation**: Updated `FLARE_DOCTRINE.md`, `QUICK_REFERENCE.md`, and `COMPLETE_REFERENCE.md`.
 - **API Refactoring**: `api/flip-header.php` now generates the 3-part format and includes live edge data.
 - **Backward Compatibility**: Legacy `X-Lupo` headers were maintained.

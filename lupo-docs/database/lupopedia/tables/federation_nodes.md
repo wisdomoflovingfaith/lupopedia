@@ -1,5 +1,5 @@
 ---
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "docs/database/lupopedia/tables/federation_nodes.md"
   file_hash: "746c0fe3aca3b512da278c493bd2ff47d6cc7c493fca689de5827cf1a56bf651"
   system_version: "4.0.50"
@@ -11,7 +11,7 @@ flare.headers:
   purpose: "Registry for multi-site federation and instance discovery"
   lupo_agent: "gemini-cli"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "docs\database\lupopedia\tables\federation_nodes.md"
   outbound_edges:
 - { to: "docs/database/lupopedia/tables/departments.md", type: "references", weight: 0.6 }
@@ -23,7 +23,7 @@ flare.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---

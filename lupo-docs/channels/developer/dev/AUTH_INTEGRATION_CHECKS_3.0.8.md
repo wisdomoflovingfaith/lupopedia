@@ -1,8 +1,8 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\developer\dev\AUTH_INTEGRATION_CHECKS_3.0.8.md"
   file_hash: "2950087f7736c8e14289e6c68f2b4e27382a6b20b56d6c9fe9cc6abd4e21a5e2"
   last_updated_utc: "20260228155738"
@@ -12,29 +12,29 @@ flare.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
-  purpose: "Documentation file with FLARE header applied"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA HEADERS (replaces FLARE)
 
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
-  flare.edges: []
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
   file_path_from_root: "docs\channels\developer\dev\AUTH_INTEGRATION_CHECKS_3.0.8.md"
   file_hash: "9dffcf3d796616f1133e383fcac4a4c98ba86558e7245b15ae6b308532adb363"
   file_path_from_root: "docs\channels\developer\dev\AUTH_INTEGRATION_CHECKS_3.0.8.md"
@@ -55,7 +55,7 @@ flare.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-flare.footer:
+lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
 ---
@@ -371,11 +371,11 @@ module-loader.php
 - [x] `$mydatabase` - PDO object, set in bootstrap.php
 - [x] `$GLOBALS['mydatabase']` - Also available via globals
 
-**Session:**
-- [x] `$_SESSION` - PHP native session array
-- [x] `$_SESSION['session_id']` - Set by session helpers
-- [x] `$_SESSION['actor_id']` - Set by session helpers
-- [x] `$_SESSION['login_ymdhis']` - Set by session helpers
+**Session (Model A — DB-backed):**
+- [x] `$_SESSION` - PHP native session array (browser stores only session_id)
+- [x] `$GLOBALS['lupo_session']` - Session authority; identity from lupo_sessions table
+- [x] Actor identity via `$GLOBALS['lupo_session']->getActorId()` (not `$_SESSION['actor_id']`; legacy)
+- [x] Session ID and CSRF from DB; see lupo-docs/doctrine/SESSION_MODEL.md
 
 **Status:** ✅ PASS
 

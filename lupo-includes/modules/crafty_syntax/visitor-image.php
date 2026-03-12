@@ -90,15 +90,19 @@ if ($session_id !== '' && $what === 'getstate') {
     $referer = isset($_GET['referer']) ? substr((string)$_GET['referer'], 0, 250) : '';
     $title = isset($_GET['title']) ? substr((string)$_GET['title'], 0, 100) : '';
     try {
+        $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0';
+        $ua = substr(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '', 0, 255);
+        $ip_hash = function_exists('hash') && function_exists('hash_algos') && in_array('sha256', hash_algos()) ? hash('sha256', $ip) : md5($ip);
+        $ua_hash = function_exists('hash') && function_exists('hash_algos') && in_array('sha256', hash_algos()) ? hash('sha256', $ua) : md5($ua);
         $stmt = $db->prepare(
-            "INSERT INTO {$prefix}sessions (session_id, federation_node_id, actor_id, ip_address, user_agent, name_key, is_named, last_seen_ymdhis, created_ymdhis, updated_ymdhis)" .
-            " VALUES (:sid, 1, 0, :ip, :ua, NULL, 0, :now, :now, :now)" .
-            " ON DUPLICATE KEY UPDATE last_seen_ymdhis = :now2, updated_ymdhis = :now3"
+            "INSERT INTO {$prefix}sessions (session_id, actor_id, federation_node_id, ip_hash, ua_hash, last_activity_ymdhis, created_ymdhis, updated_ymdhis, name_key, is_named)" .
+            " VALUES (:sid, 0, 1, :ip_hash, :ua_hash, :now, :now, :now, NULL, 0)" .
+            " ON DUPLICATE KEY UPDATE last_activity_ymdhis = :now2, updated_ymdhis = :now3"
         );
         $stmt->execute(array(
             ':sid' => $session_id,
-            ':ip' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0',
-            ':ua' => substr(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '', 0, 255),
+            ':ip_hash' => $ip_hash,
+            ':ua_hash' => $ua_hash,
             ':now' => $now,
             ':now2' => $now,
             ':now3' => $now,

@@ -24,11 +24,11 @@ The Lupopedia channel system is a comprehensive framework for managing communica
 
 ### Header Structure
 ```yaml
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
+# LUPOPEDIA HEADERS (replaces FLARE) — see http://www.lupopedia.com/FLARE
 ---
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "documentation"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "documentation"
   file_path_from_root: "path/to/file.md"
   system_version: "4.0.52"
   file.last_modified_system_version: "4.0.52"  # Added for tracking
@@ -45,7 +45,7 @@ flare.headers:
   tags: ["channels", "content", "federation"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-database/lupopedia/toon/lupo_channel_content.toon.json", type: "schema_reference", weight: 1.0 }
@@ -56,15 +56,15 @@ flare.edges:
     - { to: "lupo-database/lupopedia/toon/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260301"
   last_verified_by: "windsurf"
 ---
 ```
 
 ### Required Fields
-- **flare.version**: "1.0" - FLARE protocol version
-- **flare.schema**: "documentation" - Document type
+- **lupopedia.version**: "1.0" - FLARE protocol version
+- **lupopedia.schema**: "documentation" - Document type
 - **file_path_from_root**: Repository path from root
 - **system_version**: "4.0.52" - Current system version
 - **channel_id**: 0 for system focus

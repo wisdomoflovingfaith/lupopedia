@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/actor_help_documentation_validation_v2
 
 ---
-flame.init:
+lupopedia.init:
   requirements:
     flare:
       version: ">=4.0.55"
@@ -10,7 +10,7 @@ flame.init:
     - type: dependency_check
       path: "lupo-includes/bootstrap.php"
 
-flare.conditional:
+lupopedia.conditional:
   guards:
     execution_mode: "advisory"
     allow:
@@ -46,9 +46,9 @@ flare.conditional:
       method: "FLARE automated application"
       success_criteria: ["header applied correctly"]
 
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "task"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/actor_help_documentation_validation_v2.md"
   file_hash: "def27004b16fa670935c4822c44700a29b8c6d405398de5db961ceeca91c74e3"
   last_updated_utc: "20260304"
@@ -64,25 +64,25 @@ flare.headers:
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "666", "tasks"]
   lupo_agent: "antigravity"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges: []
 
-flare.footer:
+lupopedia.footer:
   last_verified: "20260304"
   last_verified_by: "antigravity"
 
-flame.see:
+lupopedia.see:
   mappings:
     - ["lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/actor_help_documentation_validation_v2.md", "http://www.lupopedia.com/lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/actor_help_documentation_validation_v2"]
 
-flame.close:
+lupopedia.close:
   post_actions:
     - type: register_completion
       channel_id: 0
   actor_id: 1004
 ---
 
-flare.headers:
+lupopedia.headers:
   file_path_from_root: "channels/42/tasks/active/actor_help_documentation_validation_v2.md"
   file_hash: "<?php echo hash_file('channels/42/tasks/active/actor_help_documentation_validation_v2.md'); ?>"
   system_version: "4.0.50"
@@ -98,7 +98,7 @@ flare.headers:
   tags: ["actor_help", "documentation", "validation", "completeness", "lilith_reviewed"]
   lupo_agent: "windsurf"
 
-flare.edges:
+lupopedia.edges:
   file_path_from_root: "channels/42/tasks/active/actor_help_documentation_validation_v2.md"
   outbound_edges:
     - { to: "docs/doctrine/ACTOR_HELP_DOCTRINE.md", type: "references", weight: 1.0 }
@@ -111,7 +111,7 @@ flare.edges:
 
   last_updated_utc: "<?php echo gmdate('YmdHis'); ?>"
   system_version: "4.0.50"
-flare.footer:
+lupopedia.footer:
   last_verified_utc: "<?php echo gmdate('YmdHis'); ?>"
   last_verified_by: "windsurf"
 ---

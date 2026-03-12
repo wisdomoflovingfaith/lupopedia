@@ -1,8 +1,8 @@
 ---
 # FLARE Header
-flare.headers:
-  flare.version: "1.0"
-  flare.schema: "doctrine"
+lupopedia.headers:
+  lupopedia.version: "1.0"
+  lupopedia.schema: "doctrine"
   file_path_from_root: "channels/0/content/federation_node_id/0/FLARE.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
@@ -19,7 +19,7 @@ flare.headers:
   tags: ["flare", "delegation", "ai_activation", "system_startup", "federation"]
   lupo_agent: "gemini-cli"
 
-flare.edges:
+lupopedia.edges:
   outbound_edges:
     - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "docs/doctrine/DELEGATION_DOCTRINE.md", type: "references", weight: 1.0 }
@@ -29,7 +29,7 @@ flare.edges:
     - { to: "docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 0.9 }
   semantic_tags: ["flare", "delegation", "ai_activation", "system_startup", "canonical"]
 
-flare.footer:
+lupopedia.footer:
   version: "4.0.53"
   last_verified: "20260301"
   last_verified_by: "gemini-cli"
