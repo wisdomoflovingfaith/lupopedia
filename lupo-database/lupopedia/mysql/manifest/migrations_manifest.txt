@@ -1,3 +1,2 @@
-migrations/anubis_queue_tables_4.0.53.sql
-migrations/20260301_anubis_database_primacy_updates.sql
-migrations/dev_20260306_db_optimization_indexes.sql
+# Pre-4.1.0: No migration files. All schema in install_new_lupopedia.sql and future_features_lupopedia.sql.
+# See lupo-database/lupopedia/mysql/migrations/README.md.

@@ -2,10 +2,19 @@
 *.bat text eol=crlf
 *.cmd text eol=crlf
 *.ps1 text eol=crlf
+
+# Binary assets (Git and editors avoid rewriting)
+*.gif binary
 *.png binary
 *.jpg binary
 *.jpeg binary
-*.gif binary
 *.webp binary
 *.ico binary
 *.bmp binary
+*.pdf binary
+*.zip binary
+*.mp4 binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary

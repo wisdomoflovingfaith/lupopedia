@@ -5,24 +5,24 @@ lupopedia.init:
   artifact_kind: "metadata-snapshot"
   namespace: "lupopedia"
   domain: "core"
-  system_version: "4.0.73"
+  system_version: "4.0.74"
 
 lupopedia.metadata:
   comment: "Snapshot of metadata for this file or entity at artifact creation."
 
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   file_path_from_root: "TODO.md"
   web_path: "http://www.lupopedia.com/TODO"
   last_modified_utc: "20260313"
-  system_version: "4.0.73"
+  system_version: "4.0.74"
   channel_id: 42
   actor_id: 1003
   artifact_type: "repository-core"
   artifact_kind: "todo"
-  purpose: "Root-level pending tasks and next actions for Lupopedia (v4.0.73)."
-  tags: ["todo", "tasks", "core", "v4.0.73"]
+  purpose: "Root-level pending tasks and next actions for Lupopedia (v4.0.74)."
+  tags: ["todo", "tasks", "core", "v4.0.74"]
 
 lupopedia.edges:
   comment: "Snapshot at artifact creation. Core repo files."
@@ -34,32 +34,34 @@ lupopedia.edges:
 
 lupopedia.engagement:
   comment: "Root TODO for orchestrator and agents."
-  meta: "L-LUPO-ROOT-CURSOR; v4.0.73."
+  meta: "L-LUPO-ROOT-CURSOR; v4.0.74."
   views: 0
 
 lupopedia.footer:
-  version: "4.0.73"
+  version: "4.0.74"
   last_verified: "20260313"
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:
-    - "Sync lupo-rules/root content to lupo_orchestrator_rules when table is available"
-    - "Rehydrate metadata from lupo_metadata for core files when rehydration script exists"
+    - "v4.0.74: Test fresh install and Crafty 3.7.5 upgrade paths (see By version below)"
+    - "If using orchestrator rules: run future_features_lupopedia.sql for lupo_orchestrator_rules, then php scripts/sync_orchestrator_rules_to_db.php"
 ---
 # file: TODO (root) — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/TODO
 
 # TODO (root)
 
-Pending tasks and next actions for Lupopedia at version 4.0.73.
+Pending tasks and next actions for Lupopedia. v4.0.73 is the consolidation release; v4.0.74 focuses on installer and upgrade testing.
 
 ## Immediate
 
-- [ ] Run migration `database/migrations/20260313_lupo_orchestrator_rules.sql` if using orchestrator rules table.
-- [ ] Run `php scripts/sync_orchestrator_rules_to_db.php` to populate `lupo_orchestrator_rules` from `lupo-rules/root/` (after table exists).
+- [ ] **v4.0.74:** Test **upgrade from original Crafty Syntax 3.7.5** (import path) end-to-end.
+- [ ] **v4.0.74:** Test **brand-new Lupopedia install** (install SQL + seed) end-to-end.
+- [ ] If using orchestrator rules table: run `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql` (includes `lupo_orchestrator_rules`), then `php scripts/sync_orchestrator_rules_to_db.php`.
 
 ## By version
 
-See [CHANGELOG.md](CHANGELOG.md) for version-specific "Still needing to be done" and pending tasks.
+- **v4.0.73:** Consolidation release. All pre-4.1.0 migration schema folded into install SQL; migration replay removed. Supported paths: fresh install, Crafty 3.7.5 → Lupopedia upgrade only.
+- **v4.0.74:** Testing cycle for (1) fresh install and (2) Crafty Syntax 3.7.5 upgrade/import validation. See [CHANGELOG.md](CHANGELOG.md) for "Still needing to be done" and pending tasks.
 
 ## Doctrine
 

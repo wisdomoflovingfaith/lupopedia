@@ -2494,6 +2494,7 @@ CREATE INDEX lupo_semantic_index_idx_is_deleted ON lupo_semantic_index (is_delet
 CREATE TABLE lupo_sessions (
   session_id varchar(128) NOT NULL,
   actor_id bigint NOT NULL,
+  actor_name varchar(64) DEFAULT NULL,
   federation_node_id bigint NOT NULL DEFAULT 0,
   ip_hash varchar(128) DEFAULT NULL,
   ua_hash varchar(255) DEFAULT NULL,
@@ -2507,6 +2508,7 @@ CREATE TABLE lupo_sessions (
   PRIMARY KEY (session_id)
 );
 CREATE INDEX lupo_sessions_idx_actor ON lupo_sessions (actor_id);
+CREATE INDEX lupo_sessions_idx_actor_name ON lupo_sessions (actor_name);
 CREATE INDEX lupo_sessions_idx_last_activity ON lupo_sessions (last_activity_ymdhis);
 CREATE INDEX lupo_sessions_idx_federation ON lupo_sessions (federation_node_id);
 

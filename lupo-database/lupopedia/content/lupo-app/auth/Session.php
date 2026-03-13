@@ -217,8 +217,9 @@ class Session
 
     /**
      * Delete session row and clear PHP session (revocation).
+     * Internal implementation used by destroySession/markExpired.
      */
-    public function destroy()
+    public function destroyInternal()
     {
         if ($this->db && $this->db instanceof \PDO_DB) {
             $this->db->delete($this->table, 'session_id = :sid', array('sid' => $this->session_id));
@@ -365,7 +366,7 @@ class Session
         }
         $loaded = self::loadById($this->db, $sessionId);
         if ($loaded) {
-            return $loaded->destroy();
+            return $loaded->destroyInternal();
         }
         if (session_status() === PHP_SESSION_ACTIVE) {
             $_SESSION = array();
@@ -464,7 +465,7 @@ class Session
     {
         $loaded = $sessionId ? self::loadById($this->db, $sessionId) : null;
         if ($loaded) {
-            return $loaded->destroy();
+            return $loaded->destroyInternal();
         }
         return false;
     }

@@ -21,6 +21,10 @@ lupopedia.metadata:
   orchestrator:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
 
+lupopedia.comments:
+  - { comment_id: 1, channel_id: 42, actor_id: 1, actor_name: "wolfie", faucet_id: 101, faucet_name: "windsurf", comment_text: "Excellent work on the 4.0.73 implementation! All priority tasks completed successfully. The comments system will enhance our documentation and collaboration capabilities.", comment_type: "comment", created_ymdhis: 20260313150000, updated_ymdhis: 20260313150000 }
+  - { comment_id: 2, channel_id: 42, actor_id: 1003, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Second example comment for 4.0.73 to demonstrate multiple comment records in the lupopedia.comments block.", comment_type: "comment", created_ymdhis: 20260313151500, updated_ymdhis: 20260313151500 }
+
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
@@ -45,19 +49,7 @@ lupopedia.edges:
     - { to: "lupo-docs/status/implementation_cursor_audit_fixes.md", type: "references", weight: 0.8 }
     - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md", type: "references", weight: 0.8 }
   semantic_tags: ["changelog", "version_history", "core", "lupopedia"]
-
-lupopedia.comments:
-  - comment_id: 1
-    channel_id: 42
-    actor_id: 1
-    actor_name: "wolfie"
-    faucet_id: 101
-    faucet_name: "windsurf"
-    comment_text: "Excellent work on the 4.0.73 implementation! All priority tasks completed successfully. The comments system will enhance our documentation and collaboration capabilities."
-    comment_type: "comment"
-    created_ymdhis: 20260313150000
-    updated_ymdhis: 20260313150000
-
+ 
 lupopedia.footer:
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
   version: "4.0.73"
@@ -86,6 +78,8 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 ### [4.0.73] — LUPOPEDIA HEADERS expansion (2026-03-13)
 
+- **Consolidation release (pre-4.1.0 migrations):** All schema previously represented in `lupo-database/lupopedia/mysql/migrations/` has been consolidated into the canonical install SQL (`install_new_lupopedia.sql`) and optional/future-features SQL (`future_features_lupopedia.sql`). **Migration replay is no longer the expected path before 4.1.0.** Supported setup paths remain: (1) **fresh Lupopedia install** (install + seed) and (2) **upgrade/import from original Crafty Syntax 3.7.5.** The migrations directory has been cleared; `lupo-database/lupopedia/mysql/migrations/README.md` documents the pre-4.1.0 doctrine. **v4.0.74** will focus on installer and Crafty-upgrade testing for both paths.
+- **Install SQL:** Added `actor_name` and index `lupo_sessions_idx_actor_name` to `lupo_sessions` in install so fresh installs match the consolidated schema state.
 - **Grouped outbound_edges (transferable edge storage):** Audited edge schema and header format for grouped edge categories (code, documentation, schema, runtime). **lupo_edges** already has **edge_category** (varchar(100)); no schema change. Header format: single **outbound_edges** object with category keys (e.g. `outbound_edges.code`, `outbound_edges.documentation`), each a list of `{ to, type, weight }`. Documented in LUPOPEDIA_HEADERS_FORMAT.md §2.1.6 and OPTIONAL_BLOCKS.md; FlareValidatorService accepts both flat and grouped forms (normalizes then validates); lupo_collections.md and audit doc updated to grouped example. Mapping: group key → **lupo_edges.edge_category** on import; export groups by edge_category to rehydrate YAML. Audit: `lupo-docs/status/EDGE_STRUCTURE_AUDIT_GROUPED_OUTBOUND_EDGES.md`. Validator edge types extended with `documents`, `related_table`, `api_reference`.
 - **Cursor (4.0.73, this thread):** LUPOPEDIA_HEADERS_FORMAT and OPTIONAL_BLOCKS updated so **lupopedia.edges** and **lupopedia.engagement** both require **comment** and recommend **meta** (same convention). Created `lupo-collections/L-LUPO-CURSOR-RECENTFILES-V4_0_73.md` with lupopedia.edges and lupopedia.engagement (comment/meta snapshot). Updated `lupo_collections.md` to grouped **outbound_edges** (code: PHP/services/API/components; documentation: README, HOW_TO_USE_LUPOPEDIA, lupo_collection_tabs.md). Added **edge_category** usage note to `lupo_edges.md` for header sync/export. FlareValidatorService: **normalizeOutboundEdges()** and validation for flat or grouped **outbound_edges**; extended valid edge types. Audit doc `lupo-docs/status/EDGE_STRUCTURE_AUDIT_GROUPED_OUTBOUND_EDGES.md` added.
 - **LUPOPEDIA HEADERS documentation update:** Formalized historical alias names (**FLARE**, **FLIP**, **WOLFIE**, **FLP**, **FLPH**, **CROP**, **FLAME**) in canonical documentation and updated deprecation notices.

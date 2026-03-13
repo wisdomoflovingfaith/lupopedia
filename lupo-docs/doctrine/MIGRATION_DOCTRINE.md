@@ -85,10 +85,10 @@ X-Lupo-File-Path: docs/doctrine/MIGRATION_DOCTRINE.md
 
 ALL database structure changes MUST be done in TWO PLACES:
 
-1. **install_new_lupopedia.sql** — The canonical full schema. Every table and column that is required for a fresh install must be defined here. When schema changes, this file is updated to match the TOONs so that future installs get the new structure.
-2. **A new migration SQL file** — A one-time patch for development. Stored in `database/migrations/` (or `database/migrations_legacy/` if non-canonical). Used to apply the same change to an existing (live) database so that current development and testing match the canonical schema.
+1. **install_new_lupopedia.sql** — The canonical full schema. Every table and column that is required for a fresh install must be defined here. When schema changes, this file is updated to match the TOONs so that future installs get the new structure. Optional/future-features tables go in **future_features_lupopedia.sql**.
+2. **A new migration SQL file** — (From 4.1.0 onward.) A one-time patch for development, stored in `lupo-database/lupopedia/mysql/migrations/`. Used to apply the same change to an existing (live) database. **Before 4.1.0:** the migrations directory is not used (see `lupo-database/lupopedia/mysql/migrations/README.md`).
 
-Cursor must NEVER change only one of these. If the canonical schema is updated, a migration file must be provided for existing databases; if a migration is written, the canonical install file must be updated to match.
+**Pre-4.1.0 (v4.0.73 consolidation):** There is no Lupopedia → Lupopedia upgrade path. Migration replay is not used. All schema for a fresh 4.0.x install is in install_new_lupopedia.sql and future_features_lupopedia.sql only. Do not add new migration files for 4.0.x; update the canonical install (or future_features) SQL only. See `lupo-database/lupopedia/mysql/migrations/README.md`.
 
 ---
 
@@ -103,8 +103,8 @@ Cursor must NEVER change only one of these. If the canonical schema is updated, 
 ## 3. Requirements — Cursor MUST ALWAYS
 
 - **Read the schema from TOON files** in `/docs/toons/` (source of truth). Do not infer from PHP, from existing SQL, or from the live database.
-- **Update install_new_lupopedia.sql** to match the TOONs when a schema change is applied.
-- **Generate a migration SQL file** that applies the same change to the live DB when a schema change is required for development.
+- **Update install_new_lupopedia.sql** to match the TOONs when a schema change is applied (optional tables in future_features_lupopedia.sql).
+- **Generate a migration SQL file** (4.1.0+ only) that applies the same change to the live DB when a schema change is required for development. Before 4.1.0, do not add migration files; install SQL is the only source.
 
 ---
 
@@ -135,7 +135,7 @@ The wizard MUST NOT:
 | Rule | Requirement |
 |------|--------------|
 | Schema source | TOON files in `/docs/toons/` only. |
-| Canonical schema | `database/migrations/install_new_lupopedia.sql` must match TOONs. |
+| Canonical schema | `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` must match TOONs. |
 | Live DB changes | One-time migration SQL file; never direct DB modification by Cursor. |
 | No CLI SQL | No scoop mysql or command-line SQL tools. |
 | No live inference | Never infer schema from the live database. |

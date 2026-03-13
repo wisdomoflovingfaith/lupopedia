@@ -44,8 +44,8 @@ Cursor MUST follow the Migration Doctrine for all database structure changes. Th
 
 ALL database structure changes MUST be done in TWO PLACES:
 
-1. **install_new_lupopedia.sql** — Update the canonical full schema to match the TOONs.
-2. **A new migration SQL file** — One-time patch in `database/migrations/` to apply the same change to the live DB.
+1. **install_new_lupopedia.sql** — Update the canonical full schema to match the TOONs (optional tables in future_features_lupopedia.sql).
+2. **Migration SQL file (4.1.0+ only):** Before 4.1.0, do not add migration files; the migrations directory is empty. From 4.1.0 onward, a one-time patch in `lupo-database/lupopedia/mysql/migrations/` may apply the same change to an existing DB.
 
 ## Cursor MUST NEVER
 
