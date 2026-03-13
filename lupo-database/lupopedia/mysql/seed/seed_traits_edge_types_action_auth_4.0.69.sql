@@ -1,4 +1,4 @@
--- Seed kernel actor traits, core edge type definitions, and core action authorizations (4.0.69).
+-- Seed kernel actor traits, core edge type definitions, and core action authorizations (4.0.73).
 -- LILITH implementation prompt; single install path: run after install_new_lupopedia.sql.
 -- Explicit IDs (no AUTO_INCREMENT); BIGINT timestamps. Use LUPO_TABLE_PREFIX (default lupo_).
 

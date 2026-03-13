@@ -1,5 +1,5 @@
 -- ============================================================================
--- ACTORS AND AGENTS SEEDING FOR LUPOPEDIA 4.0.45+ (actor_name primary from 4.0.58)
+-- ACTORS AND AGENTS SEEDING FOR LUPOPEDIA 4.0.73+ (actor_name primary from 4.0.58)
 -- ============================================================================
 -- Purpose: Create actual actor and agent records for required system entities
 -- Run after: seed_registry_comprehensive_4.0.45.sql
@@ -103,10 +103,10 @@ INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_y
 VALUES ('test-banned-user', 1420, 'user', 'test-banned-user', 'Test Banned User', 20260226000000, 20260226000000, 0, 0, 0, '{"purpose":"banned_test_user","email":"test-banned-user@lupopedia.com"}');
 
 -- Ban records for banned actors
-INSERT INTO lupo_banned_actors (actor_id, actor_name, reason, banned_ymdhis, banned_by_actor_id, created_ymdhis, updated_ymdhis, is_deleted)
+INSERT INTO lupo_banned_actors (banned_actor_id, actor_id, actor_name, reason, banned_ymdhis, banned_by_actor_id, created_ymdhis, updated_ymdhis, is_deleted)
 VALUES
-(420, 'stoned-wolfie', 'Experimental AI persona violation - STONED WOLFIE banned per doctrine', 20260101000000, 1, 20260101000000, 20260226000000, 0),
-(1420, 'test-banned-user', 'Test banned user for testing ban functionality and retrospective data access', 20260226000000, 1000, 20260226000000, 20260226000000, 0);
+(1, 420, 'stoned-wolfie', 'Experimental AI persona violation - STONED WOLFIE banned per doctrine', 20260101000000, 1, 20260101000000, 20260226000000, 0),
+(2, 1420, 'test-banned-user', 'Test banned user for testing ban functionality and retrospective data access', 20260226000000, 1000, 20260226000000, 20260226000000, 0);
 
 -- ============================================================================
 -- PART 4: AGENTS TABLE (lupo_agents)
