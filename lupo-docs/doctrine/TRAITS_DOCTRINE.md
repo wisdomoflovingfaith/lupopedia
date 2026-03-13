@@ -1,23 +1,28 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.69"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/TRAITS_DOCTRINE.md"
-  last_modified_utc: "20260312"
+  last_modified_utc: "20260313"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
-  faucet_name: "cursor"
+  faucet_name: "windsurf"
   artifact_type: "doctrine"
   artifact_kind: "traits"
   purpose: "Actor traits: definition, storage, federation scope, enforcement. Schema from install_new_lupopedia.sql; column names from TOON."
 lupopedia.footer:
-  last_verified: "20260312"
-  last_verified_by: "wolfie"
+  last_verified: "20260313"
+  last_verified_by: "windsurf"
+  version: "4.0.73"
+  next_action:
+    - "Update doctrine to reflect TraitEnforcer implementation in 4.0.73"
+    - "Ensure trait storage and enforcement examples are current"
+    - "Verify federation scope examples match actual implementation"
 ---
 # file: Traits Doctrine — web_path: http://www.lupopedia.com/doctrine/TRAITS_DOCTRINE
 
-# Traits Doctrine (v4.0.69)
+# Traits Doctrine (v4.0.73)
 
 ## 1. Definition
 

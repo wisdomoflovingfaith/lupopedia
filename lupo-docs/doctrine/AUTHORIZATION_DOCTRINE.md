@@ -1,23 +1,28 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.69"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/AUTHORIZATION_DOCTRINE.md"
-  last_modified_utc: "20260312"
+  last_modified_utc: "20260313"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
-  faucet_name: "cursor"
+  faucet_name: "windsurf"
   artifact_type: "doctrine"
   artifact_kind: "authorization"
   purpose: "Pre-action authorization: required traits/roles per action; TraitEnforcer; no DB triggers."
 lupopedia.footer:
-  last_verified: "20260312"
-  last_verified_by: "wolfie"
+  last_verified: "20260313"
+  last_verified_by: "windsurf"
+  version: "4.0.73"
+  next_action:
+    - "Update doctrine to reflect TraitEnforcer implementation in 4.0.73"
+    - "Add examples of actual TraitEnforcer usage patterns"
+    - "Document integration points for pre-action hooks"
 ---
 # file: Authorization Doctrine — web_path: http://www.lupopedia.com/doctrine/AUTHORIZATION_DOCTRINE
 
-# Authorization Doctrine (v4.0.69)
+# Authorization Doctrine (v4.0.73)
 
 ## 1. Principle
 
